@@ -1,0 +1,15 @@
+require "rubygems"
+
+## -- Rsync Deploy config -- ##
+# Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
+ssh_user       = "dagda1@cuttingedgesolutionsscotland.com"
+ssh_port       = "22"
+document_root  = "~/cuttingedgesolutionsscotland.com/"
+rsync_delete   = false
+deploy_default = "rsync"
+public_dir      = "public"
+
+desc "Deploy website via rsync"
+task :deploy do
+  system("rsync -avze 'ssh -p #{ssh_port}'  #{public_dir}/ #{ssh_user}:#{document_root}")
+end
