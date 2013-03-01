@@ -248,7 +248,11 @@ a:active
 .our-team {background-color: #bab932;}
 .news {background-color: #d82545;}
 .contact-us {background-color: #1e1e1e;}
-
+.termsofservice{
+  color: black;
+  margin-left: 140px;
+  margin-right: 140px;
+}
 /******************************************************************************/
 /*  HEADER                                                                    */
 /******************************************************************************/
