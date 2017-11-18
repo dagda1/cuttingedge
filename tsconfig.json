@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "commonjs",
+    "strict": true,
+    "target": "es5",
+    "types": ["node", "jest"],
+    "sourceMap": true
+  }
+}
