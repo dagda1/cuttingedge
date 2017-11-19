@@ -1,6 +1,5 @@
 const glob = require('glob-promise');
 const { join } = require('path');
-const extractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   webpack: function(config, { dev }) {
@@ -28,15 +27,18 @@ module.exports = {
             modules: true,
             sourceMap: !!dev,
             minimize: !dev,
-            localIdentName: '[name]-[local]-[hash:base64:5]'
+            localIdentName: '[name]-[local]-[hash:base64:5]',
+            sourceMap: true
           }
         },
         {
           loader: 'postcss-loader',
           options: {
-            config: './postcss.config.js'
+            sourceMap: true
           }
-        }
+        },
+        'resolve-url-loader',
+        'sass-loader'
       ]
     };
 

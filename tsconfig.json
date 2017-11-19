@@ -5,7 +5,7 @@
     "module": "commonjs",
     "strict": true,
     "target": "es5",
-    "types": ["node", "jest"],
+    "types": ["node"],
     "sourceMap": true,
     "allowJs": false,
     "allowSyntheticDefaultImports": true,

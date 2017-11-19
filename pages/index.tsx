@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { App } from '../components/App/App';
-import { pageWithStyles } from '../components/pageWithStyles/pageWithStyles';
+const pageWithStyles = require('../components/pageWithStyles/pageWithStyles').pageWithStyles;
+
+console.log(pageWithStyles);
 
 export interface IndexProps {}
 

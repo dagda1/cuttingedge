@@ -12,7 +12,7 @@ module.exports = () => ({
     // Transfer @import rule by inlining content, e.g. @import 'normalize.css'
     // https://github.com/postcss/postcss-import
     require('postcss-import')(), // Add vendor prefixes to CSS rules using values from caniuse.com
-    require('postcss-flexbox-fixes'),
+    require('postcss-flexbugs-fixes'),
     autoprefixer({
       browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
       flexbox: 'no-2009'
