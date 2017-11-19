@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { App } from '../components/App/App';
-const pageWithStyles = require('../components/pageWithStyles/pageWithStyles').pageWithStyles;
+import { pageWithStyles } from '../components/pageWithStyles/pageWithStyles';
 
 console.log(pageWithStyles);
 
