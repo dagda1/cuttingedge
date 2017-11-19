@@ -1,11 +1,9 @@
 import * as React from 'react';
-import Link from 'next/link';
+import { App } from '../components/App/App';
+import { pageWithStyles } from '../components/pageWithStyles/pageWithStyles';
 
-export default () => (
-  <div>
-    Hello World.{' '}
-    <Link href="/about">
-      <a>About</a>
-    </Link>
-  </div>
-);
+export interface IndexProps {}
+
+const Index: React.StatelessComponent<IndexProps> = () => <App />;
+
+export default pageWithStyles(Index);

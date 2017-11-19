@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var link_1 = require("next/link");
-exports.default = function () { return (React.createElement("div", null,
-    "Hello World.",
-    ' ',
-    React.createElement(link_1.default, { href: "/about" },
-        React.createElement("a", null, "About")))); };
+var App_1 = require("../components/App/App");
+var pageWithStyles_1 = require("../components/pageWithStyles/pageWithStyles");
+var Index = function () { return React.createElement(App_1.App, null); };
+exports.default = pageWithStyles_1.pageWithStyles(Index);
 //# sourceMappingURL=index.js.map

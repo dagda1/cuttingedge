@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
     "jsx": "react",
+    "rootDirs": ["./components", "./pages"],
     "module": "commonjs",
     "strict": true,
     "target": "es5",
     "types": ["node", "jest"],
-    "sourceMap": true
+    "sourceMap": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true
   }
 }
