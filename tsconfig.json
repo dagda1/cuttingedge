@@ -1,14 +1,17 @@
 {
   "compilerOptions": {
-    "jsx": "react",
-    "rootDirs": ["./components", "./pages"],
     "module": "commonjs",
-    "strict": true,
-    "target": "es5",
-    "types": ["node"],
+    "target": "es6",
+    "jsx": "react",
+    "noImplicitAny": false,
+    "moduleResolution": "node",
     "sourceMap": true,
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "strictNullChecks": true
-  }
+    "outDir": "dist/server",
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "paths": {
+      "*": ["node_modules/*", "src/*", "config/*"]
+    }
+  },
+  "include": ["./src/**/*"]
 }
