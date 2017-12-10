@@ -5,6 +5,7 @@
     "@types/koa-router": "^7.0.26",
     "@types/webpack": "^3.8.1",
     "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
     "extract-css-chunks-webpack-plugin": "^2.0.18",
     "extract-text-webpack-plugin": "^3.0.2",
@@ -15,14 +16,16 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
+    "react-universal-component": "^2.8.0",
     "stats-webpack-plugin": "^0.6.1",
+    "webpack-flush-chunks": "^1.2.2",
     "webpack-hot-middleware": "^2.20.0",
     "webpack-merge": "^4.1.1",
     "winston": "^2.4.0",
     "zlib": "^1.0.5"
   },
   "scripts": {
-    "watch-server": "NODE_ENV=development nodemon --watch 'server/**/*' ./server/server.js"
+    "start": "NODE_ENV=development babel-node src/index"
   },
   "devDependencies": {
     "@types/history": "^4.6.2",
@@ -34,7 +37,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "concurrently": "^3.5.0",

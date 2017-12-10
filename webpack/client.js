@@ -1,7 +1,7 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const common = require('./common');
-const join = require('path').join;
+const join = require('path').resolve;
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 module.exports = merge(common, {

@@ -6,8 +6,8 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.ts', '.tsx'],
-    modules: [join(__dirname, '../node_modules'), join(__dirname, '../src')]
+    extensions: ['.ts', '.tsx', '.js'],
+    modules: [join(__dirname, '../node_modules')]
   },
   devtool: 'source-map',
   module: {

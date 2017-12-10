@@ -9,12 +9,9 @@ const render = (Component: React.ComponentClass) => {
 
 render(App);
 
-/**
- * This script provides hot module reloading in development mode.
- */
 if (module.hot && process.env.NODE_ENV === 'development') {
-  module.hot.accept('../shared/App', () => {
-    const App = require('../shared/App').default;
+  module.hot.accept('../shared/App/App', () => {
+    const App = require('../shared/App/App').default;
     render(App);
   });
 }
