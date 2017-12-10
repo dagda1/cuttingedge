@@ -1,16 +1,16 @@
-import * as path from 'path';
-import * as http from 'http';
-import * as Express from 'express';
-import * as React from 'react';
-import * as webppack from 'webpack';
+import path from 'path';
+import http from 'http';
+import Express from 'express';
+import React from 'react';
+import webppack from 'webpack';
 import { StaticRouter } from 'react-router';
 import { render } from './render';
-import * as App from '../components/App/App';
+import { App } from '../src/components/App/App';
 import * as webpack from 'webpack';
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
-const clientConfig = require('.../webpack/client.dev.js');
+const clientConfig = require('../webpack/client.dev.js');
 const serverConfig = require('../webpack/server.dev.js');
 
 const publicPath = clientConfig.output.publicPath;
@@ -41,7 +41,7 @@ compiler.plugin('done', done);
 app.get('/*', (req, res) => {
   const context = {};
 
-  const appWithRouter: any = (
+  const appWithRouter = (
     <StaticRouter location={req.url} context={context}>
       <App />
     </StaticRouter>

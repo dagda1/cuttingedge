@@ -1,15 +1,25 @@
-const paths = require('../config/paths');
+const join = require('path').join;
 
 module.exports = {
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+  output: {
+    path: join(__dirname, '../public/assets'),
+    publicPath: '/'
   },
-  loaders: [
-    {
-      test: /\.tsx?$/,
-      loader: 'awesome-typescript-loader',
-      include: '/src',
-      exclude: /node_modules/
-    }
-  ]
+  resolve: {
+    extensions: ['.ts', '.tsx'],
+    modules: [join(__dirname, '../node_modules'), join(__dirname, '../src')]
+  },
+  devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader'
+      }
+    ]
+  }
 };
