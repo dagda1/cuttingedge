@@ -25,7 +25,7 @@
     "zlib": "^1.0.5"
   },
   "scripts": {
-    "start": "NODE_ENV=development babel-node src/index"
+    "start": "NODE_ENV=development nodemon --ignore src/client/* --exec babel-node src/index"
   },
   "devDependencies": {
     "@types/history": "^4.6.2",

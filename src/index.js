@@ -58,6 +58,7 @@ const configureProduction = app => {
 const app = express();
 
 log('info', `Configuring server for environment: ${process.env.NODE_ENV}...`);
+
 if (process.env.NODE_ENV === 'development') {
   configureDevelopment(app);
 } else {
