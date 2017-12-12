@@ -1,4 +1,5 @@
 import * as React from 'react';
+require('./App.scss');
 
 export class App extends React.Component {
   render() {

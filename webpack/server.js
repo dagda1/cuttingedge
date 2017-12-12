@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const common = require('./common');
 const join = require('path').join;
 const nodeExternals = require('../scripts/node-externals');
+const path = require('path');
 
 module.exports = merge(common, {
   name: 'server',
@@ -17,8 +18,9 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.scss/,
+        test: /\.scss$/,
         exclude: /node_modules/,
+        include: [path.resolve(__dirname, '../src/shared')],
         use: [
           {
             loader: 'css-loader/locals',
@@ -28,7 +30,7 @@ module.exports = merge(common, {
             }
           },
           {
-            loader: 'scss-loader'
+            loader: 'sass-loader'
           }
         ]
       }

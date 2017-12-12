@@ -20,6 +20,8 @@ export default ({ clientStats }) => async (req, res) => {
   const chunkNames = flushChunkNames();
   const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
 
+  console.log(cssHash.toString());
+
   res.render('index', {
     appString,
     js,
