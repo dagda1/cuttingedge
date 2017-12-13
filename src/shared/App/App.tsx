@@ -1,8 +1,16 @@
 import * as React from 'react';
-require('./App.scss');
+import '../../assets/fonts/GeosansLight/GeosansLight.ttf';
+require('../global.scss');
+const styles = require('./App.scss');
+
+console.log(styles);
 
 export class App extends React.Component {
   render() {
-    return <h1>We are ssr.</h1>;
+    return (
+      <div className={styles.container}>
+        <h1>We are ssr.</h1>
+      </div>
+    );
   }
 }
