@@ -30,7 +30,6 @@
   ],
   "exclude": [
     "node_modules",
-    "src/server/**/*.*",
     "build",
     "src/**/*.test.ts",
     "src/**/*.test.tsx"

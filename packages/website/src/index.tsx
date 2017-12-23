@@ -1,8 +1,8 @@
-import express from 'express';
+import * as express from 'express';
 import { join } from 'path';
 import { log } from 'winston';
 
-const configureDevelopment = app => {
+const configureDevelopment = (app: any) => {
   const clientConfig = require('../webpack/client');
   const serverConfig = require('../webpack/server');
   const publicPath = clientConfig.output.publicPath;
@@ -25,9 +25,9 @@ const configureDevelopment = app => {
   app.set('views', join(__dirname, '../public/views'));
 };
 
-const configureProduction = app => {
+const configureProduction = (app: any) => {
   const clientStats = require('./assets/stats.json');
-  const serverRender = require('./assets/app.server.js').default;
+  const serverRender = require('./assets/app.server').default;
   const publicPath = '/';
   const outputPath = join(__dirname, 'assets');
 
