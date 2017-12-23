@@ -1,22 +1,31 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const common = require('./common');
-const join = require('path').join;
 const nodeExternals = require('../scripts/node-externals');
 const path = require('path');
 
-module.exports = merge(common, {
+module.exports = {
   name: 'server',
   target: 'node',
   externals: nodeExternals,
-  entry: [join(__dirname, '../src/server/index')],
+  entry: [path.join(__dirname, '../src/server/index')],
   devtool: 'inline-source-map',
   output: {
+    path: path.resolve('build'),
+    publicPath: '/',
     filename: 'app.server.js',
     libraryTarget: 'commonjs2'
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.scss'],
+    modules: [path.join(__dirname, '../node_modules')]
+  },
+  devtool: 'source-map',
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader'
+      },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
@@ -53,4 +62,4 @@ module.exports = merge(common, {
       maxChunks: 1
     })
   ]
-});
+};

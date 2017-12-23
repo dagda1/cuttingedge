@@ -1,3 +1,5 @@
+declare var module: any;
+
 import * as React from 'react';
 import { hydrate } from 'react-dom';
 

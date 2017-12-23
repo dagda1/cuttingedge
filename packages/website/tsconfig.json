@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "types": [
+      "node"
+    ],
+    "sourceMap": true,
+    "strict": true,
+    "jsx": "react",
+    "outDir": "./dist",
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "../../node_modules"
+    ],
+    "lib": [
+      "dom",
+      "es2015",
+      "es5",
+      "es6"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/server/**/*.*",
+    "build",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ]
+}

@@ -2,12 +2,6 @@ import express from 'express';
 import { join } from 'path';
 import { log } from 'winston';
 
-/**
- * Configures hot reloading and assets paths for local development environment.
- * Use the `yarn start` command to start the local development server.
- *
- * @param app Express app
- */
 const configureDevelopment = app => {
   const clientConfig = require('../webpack/client');
   const serverConfig = require('../webpack/server');
@@ -31,13 +25,6 @@ const configureDevelopment = app => {
   app.set('views', join(__dirname, '../public/views'));
 };
 
-/**
- * Configures assets paths for production environment.
- * This environment is used in deployment and inside the docker container.
- * Use the `npm run build` command to create a production build.
- *
- * @param app Express app
- */
 const configureProduction = app => {
   const clientStats = require('./assets/stats.json');
   const serverRender = require('./assets/app.server.js').default;

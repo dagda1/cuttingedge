@@ -1,23 +1,33 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const common = require('./common');
-const join = require('path').resolve;
+const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
-module.exports = merge(common, {
+module.exports = {
   name: 'client',
   target: 'web',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
-    join(__dirname, '../src/client/index')
+    path.join(__dirname, '../src/client/index')
   ],
   devtool: 'inline-source-map',
   output: {
+    path: path.resolve('build'),
+    publicPath: '/',
     filename: 'app.client.js',
     chunkFilename: '[name].js'
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.scss', '.js']
+  },
+  devtool: 'source-map',
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
@@ -65,4 +75,4 @@ module.exports = merge(common, {
     }),
     new webpack.HotModuleReplacementPlugin()
   ]
-});
+};
