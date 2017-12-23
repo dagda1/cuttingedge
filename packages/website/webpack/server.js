@@ -16,8 +16,8 @@ module.exports = {
     libraryTarget: 'commonjs2'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.scss'],
-    modules: [path.join(__dirname, '../node_modules')]
+    extensions: ['.js'],
+    modules: [path.join(__dirname, '../../../node_modules')]
   },
   devtool: 'source-map',
   module: {

@@ -4,7 +4,8 @@
     "load-grunt-tasks": "^3.5.2",
     "lodash": "4.17.4",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-universal-component": "^2.8.0"
   },
   "devDependencies": {
     "@types/express": "^4.0.39",
@@ -53,7 +54,5 @@
     "webpack-hot-server-middleware": "^0.1.0",
     "webpack-merge": "^4.1.0"
   },
-  "workspaces": [
-    "packages/*"
-  ]
+  "workspaces": ["packages/*"]
 }

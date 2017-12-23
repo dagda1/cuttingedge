@@ -14,7 +14,6 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
-    "react-universal-component": "^2.8.0",
     "winston": "^2.4.0",
     "zlib": "^1.0.5"
   },
