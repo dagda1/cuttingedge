@@ -19,7 +19,8 @@
     "zlib": "^1.0.5"
   },
   "scripts": {
-    "start": "NODE_ENV=development nodemon --watch 'src/server/**/*' -e ts,tsx --exec '../../node_modules/.bin/ts-node' ./src/index.tsx",
+    "start":
+      "NODE_ENV=development nodemon --watch 'src/server/**/*' -e ts,tsx --exec '../../node_modules/.bin/ts-node' ./src/index.tsx --traceResolution",
     "build": "grunt build"
   },
   "devDependencies": {

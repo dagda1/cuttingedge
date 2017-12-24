@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const { CheckerPlugin } = require('awesome-typescript-loader');
 
 module.exports = {
   name: 'client',
@@ -10,17 +11,16 @@ module.exports = {
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
     path.join(__dirname, '../src/client/index')
   ],
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   output: {
-    path: path.resolve('build'),
-    publicPath: '/',
     filename: 'app.client.js',
-    chunkFilename: '[name].js'
+    chunkFilename: '[name].js',
+    path: path.join(__dirname, '../public/assets'),
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.scss', '.js']
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -73,6 +73,7 @@ module.exports = {
         NODE_ENV: JSON.stringify('development')
       }
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new CheckerPlugin()
   ]
 };

@@ -2,34 +2,43 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "rootDir": "./src",
-    "types": [
-      "node"
-    ],
+    "moduleResolution": "node",
+    "allowJs": true,
+    "traceResolution": true,
+    "noImplicitAny": false,
+    "paths": {
+      "*": [
+        "src/client/*",
+        "src/shared/*",
+        "src/server/*"
+      ]
+    },
     "sourceMap": true,
+    "skipLibCheck": true,
     "strict": true,
     "jsx": "react",
-    "outDir": "./dist",
+    "outDir": "./public/assets",
     "strictNullChecks": true,
     "noUnusedLocals": true,
-    "skipLibCheck": true,
     "baseUrl": ".",
+    "diagnostics": true,
     "typeRoots": [
-      "../../node_modules"
+      "../../node_modules/@types"
     ],
     "lib": [
-      "dom",
-      "es2015",
       "es5",
-      "es6"
+      "es2015",
+      "es2016",
+      "dom"
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/shared/**/*.ts",
+    "src/client/**/*.tsx",
+    "src/serveer/**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
+    "../../node_modules",
     "build",
     "src/**/*.test.ts",
     "src/**/*.test.tsx"

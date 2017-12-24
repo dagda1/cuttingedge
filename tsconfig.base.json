@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "types": ["node"],
+    "sourceMap": true,
+    "strict": true,
+    "jsx": "react",
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "traceResolution": true
+  }
+}
