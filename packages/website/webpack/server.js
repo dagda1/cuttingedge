@@ -1,9 +1,7 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const nodeExternals = require('../scripts/node-externals');
 const path = require('path');
 const { CheckerPlugin } = require('awesome-typescript-loader');
-const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
@@ -12,11 +10,10 @@ module.exports = {
   name: 'server',
   target: 'node',
   externals: {
-    react: true,
-    'react-dom': true,
-    'react-dom/server': true,
-    'react-universal-component/server': true,
-    'webpack-flush-chunks': true
+    react: 'commonjs react',
+    'react-dom/server': 'commonjs react-dom/server',
+    'react-universal-component/server': 'commonjs react-universal-component/server',
+    'webpack-flush-chunks': 'commonjs webpack-flush-chunks'
   },
   entry: [path.join(__dirname, '../src/server/index')],
   devtool: 'cheap-module-eval-source-map',

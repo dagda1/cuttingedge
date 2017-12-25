@@ -5,8 +5,10 @@ import { hydrate } from 'react-dom';
 
 import { App } from '../shared/App/App';
 
+export const root = document.getElementById('root');
+
 const render = (Component: React.ComponentClass) => {
-  hydrate(<Component />, document.getElementById('root'));
+  hydrate(<Component />, root);
 };
 
 render(App);

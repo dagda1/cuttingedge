@@ -10,8 +10,6 @@ try {
   console.log(flushChunks);
   console.log(flushChunkNames);
   console.log(renderToString);
-  console.log(require('webpack-flush-chunks'));
-  console.log(require('react-dom').hydrate);
 } catch (e) {
   console.log(e);
 }

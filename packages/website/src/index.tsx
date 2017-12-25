@@ -16,11 +16,6 @@ const configureDevelopment = (app: any) => {
 
   app.use(publicPath, express.static(outputPath));
 
-  console.log('------------');
-  console.log(outputPath);
-  console.log(process.cwd());
-  console.log('------------');
-
   app.use(
     require('webpack-hot-server-middleware')(multiCompiler, {
       serverRendererOptions: { outputPath }

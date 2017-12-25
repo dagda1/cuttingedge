@@ -6,13 +6,6 @@
     "allowJs": true,
     "traceResolution": true,
     "noImplicitAny": false,
-    "paths": {
-      "*": [
-        "src/client/*",
-        "src/shared/*",
-        "src/server/*"
-      ]
-    },
     "sourceMap": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,7 +14,6 @@
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "baseUrl": ".",
-    "diagnostics": true,
     "typeRoots": [
       "../../node_modules/@types"
     ],
@@ -33,9 +25,8 @@
     ]
   },
   "include": [
-    "src/shared/**/*.ts",
-    "src/client/**/*.tsx",
-    "src/serveer/**/*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "exclude": [
     "../../node_modules",
