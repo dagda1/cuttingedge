@@ -1,9 +1,14 @@
+@import '../assets/sass/settings/_colors.scss';
+
 @font-face {
   font-family: 'GeosansLight';
   src: url('../assets/fonts/GeosansLight/GeosansLight.ttf');
 }
 
+html,
 body {
+  background-color: #000;
+  color: #fff;
   font-family: 'GeosansLight';
   font-size: 16px;
 }

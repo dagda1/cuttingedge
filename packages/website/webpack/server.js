@@ -13,7 +13,8 @@ module.exports = {
     react: 'commonjs react',
     'react-dom/server': 'commonjs react-dom/server',
     'react-universal-component/server': 'commonjs react-universal-component/server',
-    'webpack-flush-chunks': 'commonjs webpack-flush-chunks'
+    'webpack-flush-chunks': 'commonjs webpack-flush-chunks',
+    'isomorphic-style-loader': 'commonjs isomorphic-style-loader'
   },
   entry: [path.join(__dirname, '../src/server/index')],
   devtool: 'cheap-module-eval-source-map',
@@ -24,11 +25,36 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+    extensions: ['.ts', '.tsx', '.scss', '.js', '.json'],
     modules: ['../../../node_modules/', '../src']
   },
   module: {
     rules: [
+      {
+        exclude: [
+          /\.html$/,
+          /\.jsx?$/,
+          /\.jsx?$/,
+          /\.tsx?$/,
+          /\.css$/,
+          /\.json$/,
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/,
+          /\.scss$/,
+          /\.woff2?$/,
+          /\.eot$/,
+          /\.ttf$/,
+          /\.svg$/,
+          /\.csv$/,
+          /\.md$/
+        ],
+        loader: require.resolve('file-loader'),
+        options: {
+          name: '[path][name].[ext]?[hash:8]'
+        }
+      },
       {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
@@ -40,22 +66,19 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        exclude: [/\.tsx?$/, /\.scss$/, /\.json$/, /\.txt$/, /\.md$/],
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]?[hash:8]'
-        }
-      },
-      {
         test: /\.scss$/,
         exclude: /node_modules/,
-        include: [path.resolve(__dirname, '../src')],
         use: [
           {
-            loader: 'css-loader/locals',
+            loader: 'isomorphic-style-loader'
+          },
+          {
+            loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]'
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+              sourceMap: true
             }
           },
           {

@@ -24,33 +24,60 @@ module.exports = {
   module: {
     rules: [
       {
+        exclude: [
+          /\.html$/,
+          /\.jsx?$/,
+          /\.jsx?$/,
+          /\.tsx?$/,
+          /\.css$/,
+          /\.json$/,
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/,
+          /\.scss$/,
+          /\.woff2?$/,
+          /\.eot$/,
+          /\.ttf$/,
+          /\.svg$/,
+          /\.csv$/,
+          /\.md$/
+        ],
+        loader: require.resolve('file-loader'),
+        options: {
+          name: '[path][name].[ext]?[hash:8]'
+        }
+      },
+      {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
+        options: {
+          sourceMap: true,
+          useBabel: false,
+          useCache: false
+        },
         exclude: /node_modules/
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-                modules: true,
-                localIdentName: '[name]__[local]--[hash:base64:5]'
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: function() {
-                  return [require('autoprefixer')];
-                }
-              }
+        use: [
+          {
+            loader: 'isomorphic-style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+              sourceMap: true
             }
-          ]
-        })
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
