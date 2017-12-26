@@ -24,7 +24,6 @@
     "build": "grunt build"
   },
   "devDependencies": {
-    "isomorphic-style-loader": "4.0.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-flush-chunks": "^1.2.2",
     "webpack-hot-middleware": "^2.20.0",
