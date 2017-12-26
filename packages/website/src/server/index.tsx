@@ -1,4 +1,5 @@
 import * as React from 'react';
+import 'react-universal-component/server';
 import { flushChunkNames } from 'react-universal-component/server';
 import { renderToString } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';

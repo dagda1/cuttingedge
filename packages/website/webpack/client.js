@@ -61,23 +61,26 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'isomorphic-style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-              sourceMap: true
+        use: ExtractCssChunks.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                modules: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function() {
+                  return [require('autoprefixer')];
+                }
+              }
             }
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
+          ]
+        })
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,

@@ -14,7 +14,8 @@ module.exports = {
     'react-dom/server': 'commonjs react-dom/server',
     'react-universal-component/server': 'commonjs react-universal-component/server',
     'webpack-flush-chunks': 'commonjs webpack-flush-chunks',
-    'isomorphic-style-loader': 'commonjs isomorphic-style-loader'
+    history: 'commonjs ',
+    'react-router-dom': 'commonjs react-router-dom'
   },
   entry: [path.join(__dirname, '../src/server/index')],
   devtool: 'cheap-module-eval-source-map',
@@ -68,17 +69,13 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
+        include: [path.resolve(__dirname, '../src')],
         use: [
           {
-            loader: 'isomorphic-style-loader'
-          },
-          {
-            loader: 'css-loader',
+            loader: 'css-loader/locals',
             options: {
               modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-              sourceMap: true
+              localIdentName: '[name]__[local]--[hash:base64:5]'
             }
           },
           {
