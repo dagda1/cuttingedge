@@ -3,7 +3,7 @@ import 'react-universal-component/server';
 import { flushChunkNames } from 'react-universal-component/server';
 import { renderToString } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';
-import { App } from '../shared/App/App';
+import { App } from '../shared/components/App/App';
 
 console.log('***************');
 try {

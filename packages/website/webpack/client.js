@@ -4,6 +4,12 @@ const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 
+const reStyle = /\.(css|scss)$/;
+const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
+
+const isDevelopment = require('../src/constants').isDevelopment;
+const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]';
+
 module.exports = {
   name: 'client',
   target: 'web',
@@ -45,7 +51,7 @@ module.exports = {
         ],
         loader: require.resolve('file-loader'),
         options: {
-          name: '[path][name].[ext]?[hash:8]'
+          name: staticAssetName
         }
       },
       {
@@ -59,6 +65,14 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'url-loader',
+        options: {
+          name: staticAssetName,
+          limit: 10000
+        }
+      },
+      {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: ExtractCssChunks.extract({
@@ -68,8 +82,12 @@ module.exports = {
               options: {
                 sourceMap: true,
                 modules: true,
+                importLoaders: 2,
                 localIdentName: '[name]__[local]--[hash:base64:5]'
               }
+            },
+            {
+              loader: 'sass-loader'
             },
             {
               loader: 'postcss-loader',
@@ -81,13 +99,6 @@ module.exports = {
             }
           ]
         })
-      },
-      {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          name: 'fonts/[name].[ext]'
-        }
       }
     ]
   },
@@ -105,5 +116,14 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new CheckerPlugin()
-  ]
+  ],
+  // Some libraries import Node modules but don't use them in the browser.
+  // Tell Webpack to provide empty mocks for them so importing them works.
+  // https://webpack.js.org/configuration/node/
+  // https://github.com/webpack/node-libs-browser/tree/master/mock
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  }
 };

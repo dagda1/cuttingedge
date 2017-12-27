@@ -3,8 +3,16 @@ const webpack = require('webpack');
 const path = require('path');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
+
+const isDevelopment = require('../src/constants').isDevelopment;
+const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]';
+
+const isAnalyse = process.argv.includes('--analyse');
+const isVerbose = process.argv.includes('--verbose');
 
 module.exports = {
   name: 'server',
@@ -53,7 +61,7 @@ module.exports = {
         ],
         loader: require.resolve('file-loader'),
         options: {
-          name: '[path][name].[ext]?[hash:8]'
+          name: staticAssetName
         }
       },
       {
@@ -67,6 +75,14 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.(eot|svg|f|woff|woff2)$/,
+        loader: 'url-loader',
+        options: {
+          name: staticAssetName,
+          limit: 10000
+        }
+      },
+      {
         test: /\.scss$/,
         exclude: /node_modules/,
         include: [path.resolve(__dirname, '../src')],
@@ -75,6 +91,7 @@ module.exports = {
             loader: 'css-loader/locals',
             options: {
               modules: true,
+              importLoaders: 2,
               localIdentName: '[name]__[local]--[hash:base64:5]'
             }
           },
@@ -82,13 +99,6 @@ module.exports = {
             loader: 'sass-loader'
           }
         ]
-      },
-      {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          name: 'fonts/[name].[ext]'
-        }
       }
     ]
   },
@@ -101,6 +111,7 @@ module.exports = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
-    new CheckerPlugin()
+    new CheckerPlugin(),
+    ...(isAnalyse ? [new BundleAnalyzerPlugin()] : [])
   ]
 };
