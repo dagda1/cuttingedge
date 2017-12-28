@@ -8,13 +8,13 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
 
-const isDevelopment = require('../src/constants').isDevelopment;
-const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]';
+const common = require('./common');
+const { isDevelopment, staticAssetName } = common;
 
 const isAnalyse = process.argv.includes('--analyse');
 const isVerbose = process.argv.includes('--verbose');
 
-module.exports = {
+module.exports = merge(common, {
   name: 'server',
   target: 'node',
   externals: {
@@ -29,9 +29,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   output: {
     filename: 'app.server.js',
-    libraryTarget: 'commonjs2',
-    path: path.join(__dirname, '../public/assets'),
-    publicPath: '/'
+    libraryTarget: 'commonjs2'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.scss', '.js', '.json'],
@@ -65,24 +63,6 @@ module.exports = {
         }
       },
       {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
-        options: {
-          sourceMap: true,
-          useBabel: false,
-          useCache: false
-        },
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(eot|svg|f|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          name: staticAssetName,
-          limit: 10000
-        }
-      },
-      {
         test: /\.scss$/,
         exclude: /node_modules/,
         include: [path.resolve(__dirname, '../src')],
@@ -103,15 +83,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
-    }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
     new CheckerPlugin(),
     ...(isAnalyse ? [new BundleAnalyzerPlugin()] : [])
   ]
-};
+});
