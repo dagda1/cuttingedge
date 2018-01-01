@@ -1,6 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const isAnalyse = (module.exports.isAnalyse = process.argv.includes('--analyse'));
+const isVerbose = (module.exports.isDevelopment = process.argv.includes('--verbose'));
+const isDebug = (module.exports.isDebug = !process.argv.includes('--release'));
+
 const isDevelopment = (module.exports.isDevelopment = process.env.NODE_ENV === 'development');
 const staticAssetName = (module.exports.staticAssetName = isDevelopment
   ? '[path][name].[ext]?[hash:8]'
@@ -63,6 +67,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       }
-    })
+    }),
+    ...(isAnalyse ? [new BundleAnalyzerPlugin()] : [])
   ]
 };

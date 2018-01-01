@@ -13,7 +13,7 @@ const render = (Component: React.ComponentClass) => {
 
 render(App);
 
-if (module.hot && process.env.NODE_ENV === 'development') {
+if (module.hot && __DEV__) {
   module.hot.accept('../shared/components/App/App', () => {
     const App = require('../shared/components/App/App').default;
     render(App);

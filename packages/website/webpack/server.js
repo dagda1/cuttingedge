@@ -9,10 +9,7 @@ const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
 
 const common = require('./common');
-const { isDevelopment, staticAssetName } = common;
-
-const isAnalyse = process.argv.includes('--analyse');
-const isVerbose = process.argv.includes('--verbose');
+const { isDevelopment, staticAssetName, isAnalyse, isVerbose, isDebug } = common;
 
 module.exports = merge(common, {
   name: 'server',
@@ -83,10 +80,14 @@ module.exports = merge(common, {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
+      'process.env.BROWSER': false,
+      __DEV__: isDebug
+    }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
-    new CheckerPlugin(),
-    ...(isAnalyse ? [new BundleAnalyzerPlugin()] : [])
+    new CheckerPlugin()
   ]
 });

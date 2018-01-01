@@ -8,7 +8,7 @@ const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
 
 const common = require('./common');
-const { isDevelopment, staticAssetName } = common;
+const { isDevelopment, staticAssetName, isDebug } = common;
 
 module.exports = merge(common, {
   name: 'client',
@@ -58,6 +58,11 @@ module.exports = merge(common, {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': isDebug ? JSON.stringify('development') : JSON.stringify('production'),
+      'process.env.BROWSER': false,
+      __DEV__: isDebug
+    }),
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['bootstrap'], // needed to put webpack bootstrap code before chunks

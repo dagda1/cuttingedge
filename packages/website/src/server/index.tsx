@@ -4,6 +4,10 @@ import { flushChunkNames } from 'react-universal-component/server';
 import { renderToString } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';
 import { App } from '../shared/components/App/App';
+import { StaticRouter } from 'react-router-dom';
+import { Request, Response } from 'express';
+import configureStore from '../store';
+import selectedHistory from '../shared/history';
 
 console.log('***************');
 try {
@@ -25,12 +29,21 @@ console.log('***************');
  *
  * @param clientStats Parameter passed by hot server middleware
  */
-export default ({ clientStats }: { clientStats: any }) => async (req: any, res: any) => {
-  const app = <App />;
+export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response) => {
+  const store = configureStore({}, selectedHistory());
+  const context = {};
+
+  const app = (
+    <StaticRouter location={req.url} context={context}>
+      <App />
+    </StaticRouter>
+  );
 
   const appString = renderToString(app);
   const chunkNames = flushChunkNames();
   const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
+
+  res.status(200);
 
   res.render('index', {
     appString,
