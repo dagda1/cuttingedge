@@ -6,7 +6,6 @@ import history from '../../history';
 import { pages } from '../../routes';
 import { Provider } from 'react-redux';
 import configureStore from '../../../store';
-import { Home } from '../../components/Home';
 /* import { Helmet } from 'react-helmet'; */
 
 const store = configureStore({}, history);
@@ -17,7 +16,11 @@ export class App extends React.Component<any, any> {
       <div>
         <Provider store={store}>
           <ConnectedRouter history={history}>
-            <Route path="/" component={Home} exact />
+            <>
+              {pages.map(page => (
+                <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
+              ))}
+            </>
           </ConnectedRouter>
         </Provider>
       </div>

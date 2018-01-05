@@ -11,14 +11,6 @@ import history from '../shared/history';
 
 import { Provider } from 'react-redux';
 
-/**
- * Provides the server side rendered app. In development environment, this method is called by
- * `react-hot-server-middleware`.
- *
- * This method renders the ejs template `public/views/index.ejs`.
- *
- * @param clientStats Parameter passed by hot server middleware
- */
 export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response) => {
   const store = configureStore({}, history);
   const context = { store };
