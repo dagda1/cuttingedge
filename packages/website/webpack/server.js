@@ -19,8 +19,13 @@ module.exports = merge(common, {
     'react-dom/server': 'commonjs react-dom/server',
     'react-universal-component/server': 'commonjs react-universal-component/server',
     'webpack-flush-chunks': 'commonjs webpack-flush-chunks',
-    history: 'commonjs ',
-    'react-router-dom': 'commonjs react-router-dom'
+    history: 'commonjs history',
+    invariant: 'commonjs invariant',
+    redux: 'commonjs redux',
+    'react-router-dom': 'commonjs react-router-dom',
+    'resolve-pathname': 'commonjs resolve-pathname',
+    'value-equal': 'commonjs value-equal',
+    warning: 'commonjs warning'
   },
   entry: [path.join(__dirname, '../src/server/index')],
   devtool: 'cheap-module-eval-source-map',

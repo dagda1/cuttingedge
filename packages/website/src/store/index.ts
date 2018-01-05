@@ -10,7 +10,7 @@ const configureStore = (initialState: Object, history: History) => {
   const enhancers = middlewares.map(a => applyMiddleware(a));
 
   const getComposeFunc = () => {
-    if (BROWSER && __DEV__) {
+    if (process.env.BROWSER && __DEV__) {
       const { composeWithDevTools } = require('redux-devtools-extension');
       return composeWithDevTools;
     }

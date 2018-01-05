@@ -17,7 +17,7 @@ module.exports = merge(common, {
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
     path.join(__dirname, '../src/client/index')
   ],
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   output: {
     filename: 'app.client.js',
     chunkFilename: '[name].js'

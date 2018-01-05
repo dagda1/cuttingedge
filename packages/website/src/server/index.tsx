@@ -3,23 +3,13 @@ import 'react-universal-component/server';
 import { flushChunkNames } from 'react-universal-component/server';
 import { renderToString } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';
-import { App } from '../shared/components/App/App';
-import { StaticRouter } from 'react-router-dom';
+import { App } from '../shared/containers/App';
+import { StaticRouter, Route } from 'react-router-dom';
 import { Request, Response } from 'express';
 import configureStore from '../store';
-import selectedHistory from '../shared/history';
+import history from '../shared/history';
 
-console.log('***************');
-try {
-  console.log(__dirname);
-  console.log(flushChunks);
-  console.log(flushChunkNames);
-  console.log(renderToString);
-} catch (e) {
-  console.log(e);
-}
-
-console.log('***************');
+import { Provider } from 'react-redux';
 
 /**
  * Provides the server side rendered app. In development environment, this method is called by
@@ -30,13 +20,15 @@ console.log('***************');
  * @param clientStats Parameter passed by hot server middleware
  */
 export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response) => {
-  const store = configureStore({}, selectedHistory());
-  const context = {};
+  const store = configureStore({}, history);
+  const context = { store };
 
   const app = (
-    <StaticRouter location={req.url} context={context}>
-      <App />
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        <Route component={App} />
+      </StaticRouter>
+    </Provider>
   );
 
   const appString = renderToString(app);
