@@ -1,10 +1,13 @@
 import * as express from 'express';
 import { join } from 'path';
 import { log } from 'winston';
+import * as path from 'path';
 
 const configureDevelopment = (app: any) => {
-  const clientConfig = require('../webpack/client');
-  const serverConfig = require('../webpack/server');
+  const clientConfig = require('../../../webpack/client').configure({
+    entryPoint: path.join(process.cwd(), 'src/client/index')
+  });
+  const serverConfig = require('../../../webpack/server').configure();
   const publicPath = clientConfig.output.publicPath;
   const outputPath = clientConfig.output.path;
 

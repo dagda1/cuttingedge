@@ -18,7 +18,7 @@ module.exports = grunt => {
     },
     clean: 'build',
     webpack: {
-      dev: require('./webpack/client')
+      dev: require('../../webpack/client')
     },
     start: {}
   });

@@ -18,8 +18,8 @@ module.exports = grunt => {
     },
     clean: 'build',
     webpack: {
-      dev: require('./webpack/client'),
-      server: require('./webpack/server')
+      dev: require('../../webpack/client'),
+      server: require('../../webpack/server')
     },
     start: {}
   });
