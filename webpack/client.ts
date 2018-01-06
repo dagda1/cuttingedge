@@ -1,19 +1,24 @@
-const merge = require('webpack-merge');
-const webpack = require('webpack');
-const path = require('path');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const { CheckerPlugin } = require('awesome-typescript-loader');
+import * as merge from 'webpack-merge';
+import * as webpack from 'webpack';
+import * as path from 'path';
+import * as ExtractCssChunks from 'extract-css-chunks-webpack-plugin';
+import { CheckerPlugin } from 'awesome-typescript-loader';
+
 const { defaultsDeep } = require('lodash');
+const common = require('./common');
+
+const { isDevelopment, staticAssetName, isDebug } = common;
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
 
-const common = require('./common');
-const { isDevelopment, staticAssetName, isDebug } = common;
+export interface WebpackOptions {
+  entryPoint: string;
+}
 
 const defaultOptions = {};
 
-const configure = (overrides = {}) => {
+const configure = (overrides: WebpackOptions) => {
   const options = defaultsDeep(overrides, defaultOptions);
 
   return merge(common, {

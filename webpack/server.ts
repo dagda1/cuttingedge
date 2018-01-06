@@ -1,9 +1,8 @@
-const merge = require('webpack-merge');
-const webpack = require('webpack');
-const path = require('path');
-const { CheckerPlugin } = require('awesome-typescript-loader');
-
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+import * as merge from 'webpack-merge';
+import * as webpack from 'webpack';
+import * as path from 'path';
+import { CheckerPlugin } from 'awesome-typescript-loader';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
