@@ -5,6 +5,9 @@
     },
     {
       "path": "packages/website"
+    },
+    {
+      "path": "packages/component-library"
     }
   ],
   "settings": {}
