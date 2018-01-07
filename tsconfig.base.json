@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "types": ["node"],
     "sourceMap": true,
     "strict": true,
     "jsx": "react",
@@ -9,6 +8,8 @@
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "noImplicitAny": false,
-    "traceResolution": true
+    "traceResolution": true,
+    "lib": ["es5", "es2015", "es2016", "dom"],
+    "typeRoots": ["./node_modules/@types"]
   }
 }

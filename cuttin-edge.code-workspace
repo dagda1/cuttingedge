@@ -8,6 +8,9 @@
     },
     {
       "path": "packages/component-library"
+    },
+    {
+      "path": "packages/react-grid-gel"
     }
   ],
   "settings": {}

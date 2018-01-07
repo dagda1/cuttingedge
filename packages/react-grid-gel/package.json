@@ -1,10 +1,13 @@
 {
-  "name": "@cutting/component-library",
+  "name": "@cutting/react-grid-gel",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "version": "0.1.0",
   "license": "MIT",
-  "scripts": {}
+  "scripts": {},
+  "dependencies": {
+    "gel-grid": "3.0.4"
+  }
 }
