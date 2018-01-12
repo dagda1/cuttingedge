@@ -14,6 +14,7 @@ const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
 
 export interface WebpackOptions {
   entryPoint: string;
+  publicDir: string;
 }
 
 const defaultOptions = {};

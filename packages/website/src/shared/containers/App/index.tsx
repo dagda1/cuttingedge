@@ -13,17 +13,15 @@ const store = configureStore({}, history);
 export class App extends React.Component<any, any> {
   render() {
     return (
-      <div>
-        <Provider store={store}>
-          <ConnectedRouter history={history}>
-            <>
-              {pages.map(page => (
-                <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
-              ))}
-            </>
-          </ConnectedRouter>
-        </Provider>
-      </div>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <>
+            {pages.map(page => (
+              <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
+            ))}
+          </>
+        </ConnectedRouter>
+      </Provider>
     );
   }
 }
