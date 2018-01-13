@@ -5,6 +5,8 @@ import reducers from '../reducers';
 import '../../../../types';
 import '../types';
 
+declare var module: any;
+
 const configureStore = (initialState: Object, history: History) => {
   const middlewares = [routerMiddleware(history)];
   const enhancers = middlewares.map(a => applyMiddleware(a));

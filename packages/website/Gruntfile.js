@@ -3,6 +3,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const { merge } = require('lodash');
+const tsconfig = require('./tsconfig.json').compilerOptions;
+
+console.log(tsconfig);
 
 module.exports = grunt => {
   require('load-grunt-tasks')(grunt, {
@@ -27,24 +30,48 @@ module.exports = grunt => {
     },
     nodemon: {
       dev: {
-        script: './src/index.tsx',
+        script: './dist/packages/website/src/server/index.js',
         options: {
-          ext: 'ts,tsx',
-          wtach: ['src/server/**/*', 'src/shared/**/*'],
-          cwd: __dirname,
-          exec: '../../node_modules/.bin/ts-node'
+          cwd: __dirname
         }
+      }
+    },
+    copy: {
+      main: {
+        expand: true,
+        src: ['./src/**/*.scss', './src/**/*.css', './src/**/*.png', './src/**/*.jpg', './src/**/*.md'],
+        dest: 'dist/packages/website'
       }
     },
     ts: {
       node: {
-        src: ['src/server/**/*.ts', 'src/server/**/*.tsx', '!node_modules/**'],
+        src: ['./src/server/**/*.ts', './src/server/**/*.tsx', '!../../node_modules/**'],
+        dest: './dist',
         options: {
-          fast: 'never'
+          moduleResolution: 'node',
+          fast: 'never',
+          target: 'es5',
+          types: ['node'],
+          module: 'commonjs',
+          inlineSourceMap: true,
+          jsx: 'react',
+          strictNullChecks: true,
+          noUnusedLocals: true,
+          skipLibCheck: true,
+          noImplicitAny: false,
+          traceResolution: true,
+          lib: ['es2016', 'dom'],
+          inlineSources: true,
+          rootDir: '../../',
+          include: ['src/**/*.ts', 'src/**/*.tsx', '../../types/**/*.ts'],
+          exclude: ['../../node_modues', './dist'],
+          typeRoots: [path.join(__dirname, '../../node_modues/@types')]
         }
       }
     },
-    clean: 'build',
+    clean: {
+      node: './dist'
+    },
     watch: {
       node: {
         files: ['./src/server/**/*.ts', './src/server/**/*.tsx'],
@@ -62,6 +89,6 @@ module.exports = grunt => {
   });
 
   grunt.registerTask('build', ['clean', 'webpack:dev']);
-  grunt.registerTask('server', ['env:dev', 'nodemon:dev', 'open:dev']);
+  grunt.registerTask('server', ['clean:node', 'env:dev', 'ts:node', 'copy', 'nodemon:dev', 'watch:node']);
   grunt.registerTask('start', ['server']);
 };
