@@ -7,14 +7,11 @@ const configureDevelopment = (app: any) => {
   const outputPath = process.cwd();
 
   const clientConfig = require('../../../webpack/client').configure({
-    entryPoint: path.join(process.cwd(), 'src/client/index')
+    entryPoint: path.join(process.cwd(), 'src/client/index'),
+    outputPath
   });
 
   const publicPath = clientConfig.output.publicPath;
-
-  console.log('------------');
-  console.log(outputPath);
-  console.log('-------------');
 
   const serverConfig = require('../../../webpack/server').configure({
     entryPoint: path.join(process.cwd(), 'src/server/index'),
@@ -35,7 +32,7 @@ const configureDevelopment = (app: any) => {
     })
   );
 
-  app.set('views', join(process.cwd(), '../public/views'));
+  app.set('views', join(process.cwd(), './public/views'));
 };
 
 const configureProduction = (app: any) => {

@@ -65,6 +65,6 @@ module.exports = grunt => {
   });
 
   grunt.registerTask('build', ['clean', 'webpack:dev']);
-  grunt.registerTask('server', ['clean', 'env:dev', 'webpack:server', 'nodemon']);
+  grunt.registerTask('server', ['clean', 'env:dev', 'webpack:server', 'nodemon', 'open:dev']);
   grunt.registerTask('start', ['server']);
 };
