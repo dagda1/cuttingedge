@@ -35,19 +35,12 @@ module.exports = grunt => {
         }
       }
     },
-    copy: {
-      main: {
-        expand: true,
-        src: ['./src/**/*.scss', './src/**/*.css', './src/**/*.png', './src/**/*.jpg', './src/**/*.md'],
-        dest: 'dist/packages/website'
-      }
-    },
     clean: {
       node: './dist'
     },
     watch: {
       node: {
-        files: ['./src/server/**/*.ts', './src/server/**/*.tsx', './src/index.ts'],
+        files: ['./src/**/*.ts', './src/**/*.tsx', './src/index.ts'],
         options: { spawn: false },
         tasks: ['webpack:server']
       }
