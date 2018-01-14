@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { pageMaker } from '../PageMaker';
+/* import { pageMaker } from '../PageMaker'; */
 
 export const Home: React.StatelessComponent = () => (
   <div>
@@ -7,4 +7,4 @@ export const Home: React.StatelessComponent = () => (
   </div>
 );
 
-export default pageMaker({ Comp: Home });
+export default Home;

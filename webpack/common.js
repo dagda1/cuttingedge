@@ -12,7 +12,6 @@ const staticAssetName = (module.exports.staticAssetName = isDevelopment
 
 module.exports = {
   output: {
-    path: path.join(__dirname, '../public/assets'),
     publicPath: '/'
   },
   module: {
@@ -37,7 +36,7 @@ module.exports = {
           /\.csv$/,
           /\.md$/
         ],
-        loader: require.resolve('file-loader'),
+        loader: 'file-loader',
         options: {
           name: staticAssetName
         }
@@ -54,11 +53,10 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
         options: {
-          sourceMap: true,
           useBabel: false,
           useCache: false
         },
-        exclude: /node_modules/
+        include: [path.join(process.cwd(), 'src'), path.join(process.cwd(), '../../types')]
       }
     ]
   },

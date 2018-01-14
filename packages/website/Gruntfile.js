@@ -3,9 +3,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const { merge } = require('lodash');
-const tsconfig = require('./tsconfig.json').compilerOptions;
-
-console.log(tsconfig);
 
 module.exports = grunt => {
   require('load-grunt-tasks')(grunt, {
@@ -13,6 +10,8 @@ module.exports = grunt => {
     scope: 'devDependencies',
     requireResolution: true
   });
+
+  const outputPath = path.join(__dirname, 'dist');
 
   grunt.initConfig({
     env: {
@@ -30,7 +29,7 @@ module.exports = grunt => {
     },
     nodemon: {
       dev: {
-        script: './dist/packages/website/src/server/index.js',
+        script: './dist/server.js',
         options: {
           cwd: __dirname
         }
@@ -43,52 +42,29 @@ module.exports = grunt => {
         dest: 'dist/packages/website'
       }
     },
-    ts: {
-      node: {
-        src: ['./src/server/**/*.ts', './src/server/**/*.tsx', '!../../node_modules/**'],
-        dest: './dist',
-        options: {
-          moduleResolution: 'node',
-          fast: 'never',
-          target: 'es5',
-          types: ['node'],
-          module: 'commonjs',
-          inlineSourceMap: true,
-          jsx: 'react',
-          strictNullChecks: true,
-          noUnusedLocals: true,
-          skipLibCheck: true,
-          noImplicitAny: false,
-          traceResolution: true,
-          lib: ['es2016', 'dom'],
-          inlineSources: true,
-          rootDir: '../../',
-          include: ['src/**/*.ts', 'src/**/*.tsx', '../../types/**/*.ts'],
-          exclude: ['../../node_modues', './dist'],
-          typeRoots: [path.join(__dirname, '../../node_modues/@types')]
-        }
-      }
-    },
     clean: {
       node: './dist'
     },
     watch: {
       node: {
-        files: ['./src/server/**/*.ts', './src/server/**/*.tsx'],
+        files: ['./src/server/**/*.ts', './src/server/**/*.tsx', './src/index.ts'],
         options: { spawn: false },
-        tasks: ['ts:node']
+        tasks: ['webpack:server']
       }
-    }
-    /*     
-    , webpack: {
-      dev: require('../../webpack/client').configure({
-        entryPoint: path.join(process.cwd(), 'src/client/index')
+    },
+    webpack: {
+      client: require('../../webpack/client').configure({
+        entryPoint: path.join(__dirname, 'src/client/index'),
+        outputPath
       }),
-      server: require('../../webpack/server').configure()
-    }, */
+      server: require('../../webpack/server').configure({
+        entryPoint: path.join(__dirname, 'src/index'),
+        outputPath
+      })
+    }
   });
 
   grunt.registerTask('build', ['clean', 'webpack:dev']);
-  grunt.registerTask('server', ['clean:node', 'env:dev', 'ts:node', 'copy', 'nodemon:dev', 'watch:node']);
+  grunt.registerTask('server', ['clean', 'env:dev', 'webpack:server', 'nodemon']);
   grunt.registerTask('start', ['server']);
 };

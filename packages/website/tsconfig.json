@@ -6,7 +6,8 @@
     "moduleResolution": "node",
     "jsx": "react",
     "outDir": "./dist",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "sourceMap": true
   },
   "include": [
     "src/**/*.ts",

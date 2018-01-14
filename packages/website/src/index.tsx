@@ -4,12 +4,22 @@ import { log } from 'winston';
 import * as path from 'path';
 
 const configureDevelopment = (app: any) => {
+  const outputPath = process.cwd();
+
   const clientConfig = require('../../../webpack/client').configure({
     entryPoint: path.join(process.cwd(), 'src/client/index')
   });
-  const serverConfig = require('../../../webpack/server').configure();
+
   const publicPath = clientConfig.output.publicPath;
-  const outputPath = clientConfig.output.path;
+
+  console.log('------------');
+  console.log(outputPath);
+  console.log('-------------');
+
+  const serverConfig = require('../../../webpack/server').configure({
+    entryPoint: path.join(process.cwd(), 'src/server/index'),
+    outputPath
+  });
 
   const multiCompiler = require('webpack')([clientConfig, serverConfig]);
   const clientCompiler = multiCompiler.compilers.find((compiler: any) => compiler.name === 'client');
@@ -25,12 +35,12 @@ const configureDevelopment = (app: any) => {
     })
   );
 
-  app.set('views', join(__dirname, '../public/views'));
+  app.set('views', join(process.cwd(), '../public/views'));
 };
 
 const configureProduction = (app: any) => {
-  const clientStats = require('./assets/stats.json');
-  const serverRender = require('./assets/app.server').default;
+  /*   const clientStats = require('./assets/stats.json');
+  const serverRender = require('./server').default;
   const publicPath = '/';
   const outputPath = join(__dirname, 'assets');
 
@@ -42,7 +52,7 @@ const configureProduction = (app: any) => {
     })
   );
 
-  app.set('views', join(__dirname, 'views'));
+  app.set('views', join(__dirname, 'views')); */
 };
 
 const app = express();

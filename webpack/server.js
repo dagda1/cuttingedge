@@ -1,8 +1,9 @@
-import * as merge from 'webpack-merge';
-import * as webpack from 'webpack';
-import * as path from 'path';
-import { CheckerPlugin } from 'awesome-typescript-loader';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+const merge = require('webpack-merge');
+const webpack = require('webpack');
+const path = require('path');
+const { CheckerPlugin } = require('awesome-typescript-loader');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const nodeExternals = require('webpack-node-externals');
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
@@ -14,28 +15,21 @@ const configure = (options = {}) => {
   return merge(common, {
     name: 'server',
     target: 'node',
-    externals: {
-      react: 'commonjs react',
-      'react-dom/server': 'commonjs react-dom/server',
-      'react-universal-component/server': 'commonjs react-universal-component/server',
-      'webpack-flush-chunks': 'commonjs webpack-flush-chunks',
-      history: 'commonjs history',
-      invariant: 'commonjs invariant',
-      redux: 'commonjs redux',
-      'react-router-dom': 'commonjs react-router-dom',
-      'resolve-pathname': 'commonjs resolve-pathname',
-      'value-equal': 'commonjs value-equal',
-      warning: 'commonjs warning'
-    },
-    entry: [path.join(process.cwd(), 'src/server/index')],
+    externals: [
+      nodeExternals({
+        modulesDir: path.join(process.cwd(), '../../node_modules')
+      })
+    ],
+    entry: [options.entryPoint],
     devtool: 'cheap-module-eval-source-map',
     output: {
-      filename: 'app.server.js',
-      libraryTarget: 'commonjs2'
+      filename: 'server.js',
+      libraryTarget: 'commonjs2',
+      path: options.outputPath
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.scss', '.js', '.json'],
-      modules: ['../../../node_modules/', '../src']
+      modules: [path.join(process.cwd(), '../../node_modules'), path.join(process.cwd(), 'src')]
     },
     module: {
       rules: [
@@ -59,7 +53,7 @@ const configure = (options = {}) => {
             /\.csv$/,
             /\.md$/
           ],
-          loader: require.resolve('file-loader'),
+          loader: 'file-loader',
           options: {
             name: staticAssetName
           }
@@ -67,7 +61,7 @@ const configure = (options = {}) => {
         {
           test: /\.scss$/,
           exclude: /node_modules/,
-          include: [path.resolve(__dirname, path.join(process.cwd(), 'src'))],
+          include: [path.resolve(path.join(process.cwd(), 'src'))],
           use: [
             {
               loader: 'css-loader/locals',
