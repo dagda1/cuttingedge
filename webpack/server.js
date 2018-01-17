@@ -8,10 +8,12 @@ const nodeExternals = require('webpack-node-externals');
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
 
-const common = require('./common');
-const { isDevelopment, staticAssetName, isAnalyse, isVerbose, isDebug } = common;
+const { configureCommon } = require('./common');
 
 const configure = (options = {}) => {
+  const common = configureCommon(options);
+  const { isDevelopment, staticAssetName, isAnalyse, isVerbose, isDebug } = common;
+
   return merge(common, {
     name: 'server',
     target: 'node',

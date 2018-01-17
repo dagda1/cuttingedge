@@ -1,0 +1,21 @@
+.container {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 1.25rem;
+
+    li {
+      float: left;
+      display: block;
+    }
+
+    li a {
+      padding-right: 1rem;
+    }
+  }
+}

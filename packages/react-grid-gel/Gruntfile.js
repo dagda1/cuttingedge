@@ -2,13 +2,30 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const common = require('../../webpack/common');
 const { merge } = require('lodash');
+
+const { isDevelopment, staticAssetName } = common;
 
 module.exports = grunt => {
   require('load-grunt-tasks')(grunt, {
     config: '../../package.json',
     scope: 'devDependencies',
     requireResolution: true
+  });
+
+  const outputPath = path.join(__dirname, 'dist');
+
+  const webpack = require('../../webpack/client').configure({
+    entryPoint: path.join(__dirname, './demo'),
+    outputPath,
+    devServer: isDevelopment,
+    publicDir: 'demo/public',
+    typescriptOptions: {
+      rootDir: '.',
+      declaration: false,
+      configFileName: path.join(__dirname, './tsconfig.json')
+    }
   });
 
   grunt.initConfig({
@@ -25,43 +42,27 @@ module.exports = grunt => {
         path: 'http://localhost:3000'
       }
     },
-    nodemon: {
-      dev: {
-        script: './src/index.tsx',
-        options: {
-          ext: 'ts,tsx',
-          wtach: ['src/server/**/*', 'src/shared/**/*'],
-          cwd: __dirname,
-          exec: '../../node_modules/.bin/ts-node'
-        }
-      }
+    clean: {
+      web: 'dist'
     },
-    ts: {
-      node: {
-        src: ['src/server/**/*.ts', 'src/server/**/*.tsx', '!node_modules/**'],
-        options: {
-          fast: 'never'
-        }
-      }
-    },
-    clean: 'build',
     watch: {
       node: {
-        files: ['./src/server/**/*.ts', './src/server/**/*.tsx'],
+        files: ['./src/**/*.ts', './src/**/*.tsx', './src/index.ts'],
         options: { spawn: false },
-        tasks: ['ts:node']
+        tasks: ['webpack']
+      }
+    },
+
+    webpack,
+    'webpack-dev-server': {
+      start: {
+        webpack,
+        ...webpack.devServer
       }
     }
-    /*     
-    , webpack: {
-      dev: require('../../webpack/client').configure({
-        entryPoint: path.join(process.cwd(), 'src/client/index')
-      }),
-      server: require('../../webpack/server').configure()
-    }, */
   });
 
   grunt.registerTask('build', ['clean', 'webpack:dev']);
-  grunt.registerTask('server', ['env:dev', 'nodemon:dev', 'open:dev']);
-  grunt.registerTask('start', ['server']);
+  grunt.registerTask('demo', ['clean', 'env:dev', 'webpack-dev-server']);
+  grunt.registerTask('start', ['demo']);
 };
