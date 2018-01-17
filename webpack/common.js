@@ -5,15 +5,28 @@ const isAnalyse = (module.exports.isAnalyse = process.argv.includes('--analyse')
 const isVerbose = (module.exports.isDevelopment = process.argv.includes('--verbose'));
 const isDebug = (module.exports.isDebug = !process.argv.includes('--release'));
 
-const isDevelopment = (module.exports.isDevelopment = process.env.NODE_ENV === 'development');
-const staticAssetName = (module.exports.staticAssetName = isDevelopment
-  ? '[path][name].[ext]?[hash:8]'
-  : '[hash:8].[ext]');
+const getEnvironment = () => {
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]';
+  const isAnalyse = process.argv.includes('--analyse');
+  const isVerbose = process.argv.includes('--verbose');
+  const isDebug = !process.argv.includes('--release');
+
+  return {
+    isDevelopment,
+    staticAssetName,
+    isAnalyse,
+    isVerbose,
+    isDevelopment
+  };
+};
 
 const { merge } = require('lodash');
 
 const configureCommon = options => {
   const typescriptOptions = options.typescriptOptions || {};
+
+  const { staticAssetName } = getEnvironment();
 
   return {
     output: {
@@ -63,8 +76,7 @@ const configureCommon = options => {
               useCache: false
             },
             typescriptOptions
-          ),
-          include: [path.join(process.cwd(), 'src'), path.join(process.cwd(), '../../types')]
+          )
         }
       ]
     },
@@ -79,4 +91,4 @@ const configureCommon = options => {
   };
 };
 
-module.exports = { configureCommon };
+module.exports = { configureCommon, getEnvironment };

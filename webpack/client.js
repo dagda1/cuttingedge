@@ -6,7 +6,7 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 
 const { filter } = require('lodash');
-const { configureCommon } = require('./common');
+const { configureCommon, getEnvironment } = require('./common');
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
@@ -31,7 +31,11 @@ const configure = options => {
 
   const common = configureCommon(options);
 
-  const { isDevelopment, staticAssetName } = common;
+  const { isDevelopment, staticAssetName } = getEnvironment();
+
+  console.log('---------------------');
+  console.log(isDevelopment);
+  console.log('---------------------');
 
   return merge(common, {
     name: 'client',
@@ -128,4 +132,4 @@ const configure = options => {
   });
 };
 
-module.exports = { configure };
+module.exports = { configure, getUrlParts };

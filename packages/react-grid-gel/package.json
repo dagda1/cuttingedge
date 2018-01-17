@@ -7,7 +7,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "grunt start"
+    "start": "NODE_ENV=development grunt start"
   },
   "dependencies": {
     "gel-grid": "3.0.4"
