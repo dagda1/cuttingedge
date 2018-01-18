@@ -22,6 +22,7 @@ module.exports = grunt => {
     entryPoint: path.join(__dirname, './demo'),
     outputPath,
     devServer: true,
+    isStaticBuild: true,
     publicDir: path.join(__dirname, './demo/public'),
     typescriptOptions: {
       rootDir: '.',
@@ -30,15 +31,9 @@ module.exports = grunt => {
     }
   });
 
+  console.dir(webpack.module.rules[3]);
+
   grunt.initConfig({
-    env: {
-      dev: {
-        NODE_ENV: 'development'
-      },
-      prod: {
-        NODE_ENV: 'production'
-      }
-    },
     clean: {
       web: 'dist'
     },
@@ -53,6 +48,14 @@ module.exports = grunt => {
     webpack: {
       demo: webpack
     },
+    copy: {
+      default: {
+        expand: true,
+        cwd: 'src',
+        src: ['**/*.scss', '**/*.css', '**/*.png', '**/*.jpg', '**/*.md'],
+        dest: 'dist'
+      }
+    },
     'webpack-dev-server': {
       start: {
         webpack,
@@ -66,6 +69,6 @@ module.exports = grunt => {
   });
 
   grunt.registerTask('build', ['clean', 'webpack:dev']);
-  grunt.registerTask('demo', ['clean', 'webpack:demo', 'webpack-dev-server']);
+  grunt.registerTask('demo', ['clean', 'webpack:demo', 'webpack-dev-server', 'copy']);
   grunt.registerTask('start', ['demo']);
 };

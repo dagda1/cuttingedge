@@ -5,6 +5,9 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const getLocalIdent = require('./getLocalIdent');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const postcssOptions = require('./postcssOptions');
 
 const { filter } = require('lodash');
 const { configureCommon, getEnvironment } = require('./common');
@@ -26,8 +29,61 @@ function getUrlParts() {
   };
 }
 
+const getStaticCss = options => {
+  if (!options.isStaticBuild) {
+    return [false];
+  }
+
+  return [
+    {
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              minimize: options.isProduction
+            }
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: postcssOptions
+          }
+        ]
+      })
+    },
+    {
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              sourceMap: true,
+              minimize: !options.isDevelopment,
+              importLoaders: 2,
+              localIdentName: '[name]__[local]',
+              getLocalIdent: getLocalIdent
+            }
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: postcssOptions
+          },
+          'sass-loader'
+        ]
+      })
+    }
+  ];
+};
+
 const configure = options => {
-  const { entryPoint, outputPath, publicDir, proxy, devServer } = options;
+  const { entryPoint, outputPath, publicDir, proxy, devServer, isStaticBuild } = options;
   const { protocol, host, port } = getUrlParts();
 
   const common = configureCommon(options);
@@ -37,6 +93,7 @@ const configure = options => {
   console.log('---------------------');
   console.log(isDevelopment);
   console.log(devServer);
+  console.log(isStaticBuild);
   console.log('---------------------');
 
   return merge(common, {
@@ -71,8 +128,8 @@ const configure = options => {
       extensions: ['.ts', '.tsx', '.scss', '.js']
     },
     module: {
-      rules: [
-        {
+      rules: filter([
+        !isStaticBuild && {
           test: /\.scss$/,
           exclude: /node_modules/,
           use: ExtractCssChunks.extract({
@@ -99,21 +156,24 @@ const configure = options => {
               }
             ]
           })
-        }
-      ]
+        },
+        ...getStaticCss(options)
+      ])
     },
     plugins: filter([
+      isStaticBuild && new ExtractTextPlugin('style.css'),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
         'process.env.BROWSER': false,
         __DEV__: isDevelopment
       }),
-      new ExtractCssChunks(),
-      new webpack.optimize.CommonsChunkPlugin({
-        names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
-        filename: '[name].js',
-        minChunks: Infinity
-      }),
+      !isStaticBuild && new ExtractCssChunks(),
+      !isStaticBuild &&
+        new webpack.optimize.CommonsChunkPlugin({
+          names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
+          filename: '[name].js',
+          minChunks: Infinity
+        }),
       new webpack.HotModuleReplacementPlugin(),
       new CheckerPlugin(),
       devServer &&
