@@ -4,6 +4,7 @@ const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { filter } = require('lodash');
 const { configureCommon, getEnvironment } = require('./common');
@@ -35,6 +36,7 @@ const configure = options => {
 
   console.log('---------------------');
   console.log(isDevelopment);
+  console.log(devServer);
   console.log('---------------------');
 
   return merge(common, {

@@ -21,7 +21,7 @@ module.exports = grunt => {
   const webpack = configure({
     entryPoint: path.join(__dirname, './demo'),
     outputPath,
-    devServer: isDevelopment,
+    devServer: true,
     publicDir: path.join(__dirname, './demo/public'),
     typescriptOptions: {
       rootDir: '.',
