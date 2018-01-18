@@ -65,7 +65,7 @@ const getStaticCss = options => {
             query: {
               modules: true,
               sourceMap: true,
-              minimize: !options.isDevelopment,
+              minimize: options.isProduction,
               importLoaders: 2,
               localIdentName: '[name]__[local]',
               getLocalIdent: getLocalIdent
@@ -89,12 +89,6 @@ const configure = options => {
   const common = configureCommon(options);
 
   const { isDevelopment, staticAssetName } = getEnvironment();
-
-  console.log('---------------------');
-  console.log(isDevelopment);
-  console.log(devServer);
-  console.log(isStaticBuild);
-  console.log('---------------------');
 
   return merge(common, {
     name: 'client',

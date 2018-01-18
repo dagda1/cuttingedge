@@ -31,8 +31,6 @@ module.exports = grunt => {
     }
   });
 
-  console.dir(webpack.module.rules[3]);
-
   grunt.initConfig({
     clean: {
       web: 'dist'

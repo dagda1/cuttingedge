@@ -1,17 +1,15 @@
 import * as React from 'react';
 import * as cs from 'classnames';
 
-require('./Wrapper.scss');
-
-export interface WrapperProps {
+export interface WrapProps {
   Tag?: any;
   className?: string;
 }
 
-export const Wrapper: React.StatelessComponent<WrapperProps> = ({ Tag, className, children }) => (
+export const Wrap: React.StatelessComponent<WrapProps> = ({ Tag, className, children }) => (
   <Tag className={cs('gel-wrap', className)}>{children}</Tag>
 );
 
-Wrapper.defaultProps = {
+Wrap.defaultProps = {
   Tag: 'div'
 };

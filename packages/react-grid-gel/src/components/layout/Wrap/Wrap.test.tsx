@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { Wrapper } from '.';
+import { Wrap } from '.';
 import * as renderer from 'react-test-renderer';
 
-const wrap = (props = { children: <span>span</span> }) => shallow(<Wrapper {...props} />);
+const wrap = (props = { children: <span>span</span> }) => shallow(<Wrap {...props} />);
 
-describe('Wrapper', () => {
+describe('Wrap', () => {
   it('renders a div by default', () => {
     const wrapper = wrap();
 
     expect(wrapper.find('div')).toHaveLength(1);
   });
 
-  it('renders a wrapper class', () => {
+  it('renders a Wrap class', () => {
     const wrapper = wrap();
 
-    expect(wrapper.find('.wrapper')).toHaveLength(1);
+    expect(wrapper.find('.Wrap')).toHaveLength(1);
   });
 
   it('renders correctly', () => {
-    const wrapper = renderer.create(<Wrapper children={<span>span</span>} />).toJSON();
+    const wrapper = renderer.create(<Wrap children={<span>span</span>} />).toJSON();
 
     expect(wrapper).toMatchSnapshot();
   });

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Wrapper } from '../src/components';
+import { Wrap } from '../src';
 
 export const App = () => (
-  <Wrapper>
+  <Wrap>
     <h1>react-grid-gel</h1>
-  </Wrapper>
+  </Wrap>
 );

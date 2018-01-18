@@ -13,5 +13,9 @@ module.exports = (loaderContext, localIdentName, localName, options) => {
   var request = path.relative(options.context, loaderContext.resourcePath);
   const prefix = dasherize(path.parse(request).name);
 
+  if (path.basename(loaderContext.resourcePath) === 'main.scss') {
+    return localName;
+  }
+
   return `${prefix}__${localName}`;
 };
