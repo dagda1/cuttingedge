@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Wrap renders correctly 1`] = `
+exports[`<Wrap /> renders correctly 1`] = `
 <div
   className="gel-wrap"
 >

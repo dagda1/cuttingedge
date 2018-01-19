@@ -13,3 +13,5 @@ export const Wrap: React.StatelessComponent<WrapProps> = ({ Tag, className, chil
 Wrap.defaultProps = {
   Tag: 'div'
 };
+
+Wrap.displayName = 'Wrap';

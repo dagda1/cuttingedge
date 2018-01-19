@@ -5,7 +5,7 @@ import * as renderer from 'react-test-renderer';
 
 const wrap = (props = { children: <span>span</span> }) => shallow(<Wrap {...props} />);
 
-describe('Wrap', () => {
+describe('<Wrap />', () => {
   it('renders a div by default', () => {
     const wrapper = wrap();
 
