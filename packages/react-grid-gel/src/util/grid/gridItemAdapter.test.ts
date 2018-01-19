@@ -1,4 +1,4 @@
-import { gridItemAdapter } from './gridItemAdapter';
+import { gridItemAdapter } from '.';
 
 describe('gridItemAdapter', () => {
   test('creates grid item classes', () => {
