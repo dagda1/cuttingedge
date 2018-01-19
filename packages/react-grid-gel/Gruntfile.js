@@ -6,15 +6,20 @@ const common = require('../../webpack/common');
 const { merge } = require('lodash');
 const openBrowser = require('react-dev-utils/openBrowser');
 const { configure, getUrlParts } = require('../../webpack/client');
+const testConfig = require('../../tasks/test').config;
 
 const { isDevelopment, staticAssetName } = common;
 
 module.exports = grunt => {
+  if (!process.env.PORT) process.env.PORT = '8080';
+
   require('load-grunt-tasks')(grunt, {
     config: '../../package.json',
     scope: 'devDependencies',
     requireResolution: true
   });
+
+  grunt.loadTasks('../../tasks');
 
   const outputPath = path.join(__dirname, 'dist');
 
@@ -59,7 +64,8 @@ module.exports = grunt => {
         webpack,
         ...webpack.devServer
       }
-    }
+    },
+    test: testConfig
   });
 
   grunt.registerTask('browser', () => {

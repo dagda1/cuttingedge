@@ -9,6 +9,17 @@
     "@types/express" "*"
     "@types/node" "*"
 
+"@types/cheerio@*":
+  version "0.22.7"
+  resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.7.tgz#4a92eafedfb2b9f4437d3a4410006d81114c66ce"
+
+"@types/enzyme@^3.1.6":
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.6.tgz#5b6fd8c5d23d2e1d06eca528b54df81c3ee4cbbf"
+  dependencies:
+    "@types/cheerio" "*"
+    "@types/react" "*"
+
 "@types/express-serve-static-core@*":
   version "4.0.57"
   resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.0.57.tgz#3cd8ab4b11d5ecd70393bada7fc1c480491537dd"

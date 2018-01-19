@@ -5,12 +5,10 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const getLocalIdent = require('./getLocalIdent');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const postcssOptions = require('./postcssOptions');
 
 const { filter } = require('lodash');
-const { configureCommon, getEnvironment } = require('./common');
+const { configureCommon, getEnvironment, getStaticCss } = require('./common');
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
@@ -28,59 +26,6 @@ function getUrlParts() {
     urls
   };
 }
-
-const getStaticCss = options => {
-  if (!options.isStaticBuild) {
-    return [false];
-  }
-
-  return [
-    {
-      test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-              minimize: options.isProduction
-            }
-          },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: postcssOptions
-          }
-        ]
-      })
-    },
-    {
-      test: /\.scss$/,
-      exclude: /node_modules/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-          {
-            loader: 'css-loader',
-            query: {
-              modules: true,
-              sourceMap: true,
-              minimize: options.isProduction,
-              importLoaders: 2,
-              localIdentName: '[name]__[local]',
-              getLocalIdent: getLocalIdent
-            }
-          },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: postcssOptions
-          },
-          'sass-loader'
-        ]
-      })
-    }
-  ];
-};
 
 const configure = options => {
   const { entryPoint, outputPath, publicDir, proxy, devServer, isStaticBuild } = options;
