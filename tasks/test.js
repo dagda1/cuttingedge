@@ -1,4 +1,5 @@
 const runTests = require('../scripts/runTests');
+const path = require('path');
 
 module.exports = grunt => {
   grunt.registerMultiTask('test', function() {
@@ -8,7 +9,12 @@ module.exports = grunt => {
 };
 
 module.exports.config = {
-  dev: ['--env=jsdom', '--watch'],
+  dev: [
+    '--env=jsdom',
+    '--watch',
+    `--config=${path.join(__dirname, '../jest/jest.config.js')}`,
+    `--rootDir=${process.cwd()}`
+  ],
   updateSnapshots: ['--env=jsdom', '-u'],
-  ci: ['--env=jsdom', '--ci', '--testResultsProcessor', '../../node_modules/jest-junit', '--coverage']
+  ci: ['--env=jsdom', '--ci', '--testResultsProcessor', '../node_modules/jest-junit', '--coverage']
 };
