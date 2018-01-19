@@ -15,7 +15,7 @@ describe('Wrap', () => {
   it('renders a Wrap class', () => {
     const wrapper = wrap();
 
-    expect(wrapper.find('.Wrap')).toHaveLength(1);
+    expect(wrapper.find('.gel-wrap')).toHaveLength(1);
   });
 
   it('renders correctly', () => {

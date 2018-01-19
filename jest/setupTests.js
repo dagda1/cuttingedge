@@ -1,4 +1,4 @@
-require('raf');
+require('./raf');
 const Enzyme = require('enzyme');
 const EnzymeAdapter = require('enzyme-adapter-react-16');
 
