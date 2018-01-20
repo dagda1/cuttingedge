@@ -4,12 +4,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
 
-const isAnalyse = (module.exports.isAnalyse = process.argv.includes('--analyse'));
-const isVerbose = (module.exports.isDevelopment = process.argv.includes('--verbose'));
-const isDebug = (module.exports.isDebug = !process.argv.includes('--release'));
-
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
+  const isProduction = process.env.NODE_ENV === 'production';
   const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]';
   const isAnalyse = process.argv.includes('--analyse');
   const isVerbose = process.argv.includes('--verbose');
@@ -20,7 +17,8 @@ const getEnvironment = () => {
     staticAssetName,
     isAnalyse,
     isVerbose,
-    isDevelopment
+    isDevelopment,
+    isProduction
   };
 };
 
@@ -82,12 +80,10 @@ const { merge } = require('lodash');
 const configureCommon = options => {
   const typescriptOptions = options.typescriptOptions || {};
 
-  const { staticAssetName } = getEnvironment();
+  const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDevelopment, isDebug } = getEnvironment();
 
   return {
-    output: {
-      publicPath: '/'
-    },
+    output: { publicPath: '/' },
     module: {
       rules: [
         {
@@ -111,28 +107,13 @@ const configureCommon = options => {
             /\.md$/
           ],
           loader: 'file-loader',
-          options: {
-            name: staticAssetName
-          }
+          options: { name: staticAssetName }
         },
-        {
-          test: /\.(eot|svg|ttf|woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            name: staticAssetName,
-            limit: 10000
-          }
-        },
+        { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'url-loader', options: { name: staticAssetName, limit: 10000 } },
         {
           test: /\.tsx?$/,
           loader: 'awesome-typescript-loader',
-          options: merge(
-            {
-              useBabel: false,
-              useCache: false
-            },
-            typescriptOptions
-          )
+          options: merge({ useBabel: false, useCache: false }, typescriptOptions)
         }
       ]
     },
@@ -142,7 +123,18 @@ const configureCommon = options => {
           NODE_ENV: JSON.stringify('development')
         }
       }),
-      ...(isAnalyse ? [new BundleAnalyzerPlugin()] : [])
+      ...(isAnalyse ? [new BundleAnalyzerPlugin()] : []),
+      new FriendlyErrorsPlugin({
+        verbose: dotenv.raw.VERBOSE,
+        target,
+        onSuccessMessage: `Your application is running at http://${dotenv.raw.HOST}:${dotenv.raw.PORT}`
+      }),
+      isDevelopment &&
+        new FriendlyErrorsPlugin({
+          verbose: dotenv.raw.VERBOSE,
+          target,
+          onSuccessMessage: `Your application is running at http://${dotenv.raw.HOST}:${dotenv.raw.PORT}`
+        })
     ]
   };
 };

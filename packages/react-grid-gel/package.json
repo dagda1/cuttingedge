@@ -12,8 +12,5 @@
   },
   "dependencies": {
     "gel-grid": "^3.0.4"
-  },
-  "devDependencies": {
-    "gel-typography": "2.0.5"
   }
 }

@@ -1,13 +1,15 @@
 @import '../src/assets/scss/main';
-@import '~gel-typography/typography';
 
 html {
   height: 100%;
+  font-size: 100%;
 }
 
 body {
-  font-family: ReithSans, Arial, Helvetica, freesans, sans-serif;
-  @include gel-typography('body-copy');
+  height: 100%;
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1;
 }
 
 .controls {

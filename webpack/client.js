@@ -33,7 +33,7 @@ const configure = options => {
 
   const common = configureCommon(options);
 
-  const { isDevelopment, staticAssetName } = getEnvironment();
+  const { isDevelopment, isProduction, staticAssetName } = getEnvironment();
 
   return merge(common, {
     name: 'client',
@@ -100,12 +100,47 @@ const configure = options => {
       ])
     },
     plugins: filter([
+      isProduction &&
+        new webpack.optimize.UglifyJsPlugin({
+          compress: {
+            warnings: false,
+            // Disabled because of an issue with Uglify breaking seemingly valid code:
+            // https://github.com/facebookincubator/create-react-app/issues/2376
+            // Pending further investigation:
+            // https://github.com/mishoo/UglifyJS2/issues/2011
+            comparisons: false,
+            sequences: true, // join consecutive statemets with the ‚Äúcomma operator‚Äù
+            properties: true, // optimize property access: a["foo"] ‚Üí a.foo
+            dead_code: true, // discard unreachable code
+            drop_debugger: true, // discard ‚Äúdebugger‚Äù statements
+            unsafe: false, // some unsafe optimizations (see below)
+            conditionals: true, // optimize if-s and conditional expressions
+            evaluate: true, // evaluate constant expressions
+            booleans: true, // optimize boolean expressions
+            loops: true, // optimize loops
+            unused: true, // drop unused variables/functions
+            hoist_funs: true, // hoist function declarations
+            hoist_vars: false, // hoist variable declarations
+            if_return: true, // optimize if-s followed by return/continue
+            join_vars: true, // join var declarations
+            cascade: true, // try to cascade `right` into `left` in sequences
+            side_effects: true // drop side-effect-free statements
+          },
+          output: {
+            comments: false,
+            // Turned on because emoji and regex is not minified properly using default
+            // https://github.com/facebookincubator/create-react-app/issues/2488
+            ascii_only: true
+          },
+          sourceMap: false
+        }),
       isStaticBuild && new ExtractTextPlugin('style.css'),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
-        'process.env.BROWSER': false,
-        __DEV__: isDevelopment
-      }),
+      !isStaticBuild &&
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
+          'process.env.BROWSER': false,
+          __DEV__: isDevelopment
+        }),
       !isStaticBuild && new ExtractCssChunks(),
       !isStaticBuild &&
         new webpack.optimize.CommonsChunkPlugin({
@@ -115,10 +150,22 @@ const configure = options => {
         }),
       new webpack.HotModuleReplacementPlugin(),
       new CheckerPlugin(),
-      devServer &&
+      isStaticBuild &&
         new HtmlWebpackPlugin({
           inject: true,
-          template: publicDir ? path.join(publicDir, 'index.html') : 'public/index.html'
+          template: publicDir ? path.join(publicDir, 'index.html') : 'public/index.html',
+          minify: isProduction && {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true
+          }
         })
     ]),
     // Some libraries import Node modules but don't use them in the browser.
