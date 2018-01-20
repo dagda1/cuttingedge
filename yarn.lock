@@ -2798,11 +2798,17 @@ gel-grid@^3.0.4:
   dependencies:
     gel-sass-tools "^1.0.0"
 
-gel-sass-tools@^1.0.0:
+gel-sass-tools@^1.0.0, gel-sass-tools@^1.1.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/gel-sass-tools/-/gel-sass-tools-1.2.1.tgz#bb54277bd49a09da04673107fdd2ad9c0dcfeaa5"
   dependencies:
     sass-mq "^3.2.3"
+
+gel-typography@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/gel-typography/-/gel-typography-2.0.5.tgz#c5553b1954206dcbfecd839793da49a995da775d"
+  dependencies:
+    gel-sass-tools "^1.1.0"
 
 generate-function@^2.0.0:
   version "2.0.0"

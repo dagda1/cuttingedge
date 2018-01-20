@@ -8,9 +8,12 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development grunt start",
-    "test": "grunt test:dev"
+    "test": "NODE_ENV=test grunt test:dev"
   },
   "dependencies": {
     "gel-grid": "^3.0.4"
+  },
+  "devDependencies": {
+    "gel-typography": "2.0.5"
   }
 }
