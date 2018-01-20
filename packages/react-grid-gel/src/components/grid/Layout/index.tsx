@@ -32,6 +32,7 @@ export const Layout: React.StatelessComponent<LayoutProps> = ({
       'gel-layout--bottom': bottom,
       'gel-layout--right': right,
       'gel-layout--center': center,
+      'gel-layout--equal': equal,
       'gel-layout--auto': auto
     })}
   >
