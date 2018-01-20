@@ -18,6 +18,14 @@ $pt-rules: 'padding-top';
   }
 }
 
+@mixin m($space) {
+  margin: #{nth($scale, $space)} !important;
+}
+
+@mixin p($space) {
+  padding: #{nth($scale, $space)} !important;
+}
+
 @mixin mx($space) {
   @include add-space-rule($mx-rules, $space);
 }

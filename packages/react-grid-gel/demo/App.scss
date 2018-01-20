@@ -1,3 +1,5 @@
+@import '../src/assets/scss/main';
+
 html {
   height: 100%;
 }
@@ -5,4 +7,42 @@ html {
 .controls {
   background-color: #e6711b;
   color: #fff;
+
+  @include pt(1);
+  @include pb(3);
+  @include px(2);
+
+  &:after {
+    content: flip('Group 1 - Extra Small (0 - 399px)', 'Group 1 - Extra Small \200F(0 - 399px)');
+  }
+
+  @include mq-s {
+    &:after {
+      content: flip('Group 2 - Small (400px - 599px)', 'Group 2 - Small \200F(400px - 599px)');
+    }
+  }
+
+  @include mq-m {
+    &:after {
+      content: flip('Group 3 - Medium (600px - 899px)', 'Group 3 - Medium \200F(600px - 899px)');
+    }
+  }
+
+  @include mq-l {
+    &:after {
+      content: flip('Group 4 - Large (900px)', 'Group 4 - Large \200F(900px)');
+    }
+  }
+
+  @include mq-xl {
+    &:after {
+      content: flip('Group 5 - Extra Large (1008px)', 'Group 5 - Extra Large \200F(1008px)');
+    }
+  }
+
+  @include mq-xxl {
+    &:after {
+      content: flip('Group 6 - Extra Extra Large (1280px)', 'Group 6 - Extra Extra Large \200F(1280px)');
+    }
+  }
 }
