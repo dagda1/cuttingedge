@@ -28,7 +28,7 @@ function getUrlParts() {
 }
 
 const configure = options => {
-  const { entryPoint, outputPath, publicDir, proxy, devServer, isStaticBuild } = options;
+  const { entryPoint, outputPath, publicDir, proxy, devServer, isStaticBuild, minify } = options;
   const { protocol, host, port } = getUrlParts();
 
   const common = configureCommon(options);
@@ -38,10 +38,12 @@ const configure = options => {
   return merge(common, {
     name: 'client',
     target: 'web',
-    entry: [
-      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
-      entryPoint
-    ],
+    entry: isDevelopment
+      ? [
+          'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
+          entryPoint
+        ]
+      : [entryPoint],
     devtool: 'cheap-module-source-map',
     devServer: isDevelopment
       ? {
@@ -60,7 +62,7 @@ const configure = options => {
       : {},
     output: {
       path: outputPath,
-      filename: 'app.client.js',
+      filename: 'index.js',
       chunkFilename: '[name].js'
     },
     resolve: {
@@ -96,11 +98,11 @@ const configure = options => {
             ]
           })
         },
-        ...getStaticCss(options)
+        ...getStaticCss({ isDevelopment, isProduction, isStaticBuild, minify })
       ])
     },
     plugins: filter([
-      isProduction &&
+      minify &&
         new webpack.optimize.UglifyJsPlugin({
           compress: {
             warnings: false,
@@ -148,13 +150,13 @@ const configure = options => {
           filename: '[name].js',
           minChunks: Infinity
         }),
-      new webpack.HotModuleReplacementPlugin(),
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
       new CheckerPlugin(),
-      isStaticBuild &&
+      devServer &&
         new HtmlWebpackPlugin({
           inject: true,
           template: publicDir ? path.join(publicDir, 'index.html') : 'public/index.html',
-          minify: isProduction && {
+          minify: minify && {
             removeComments: true,
             collapseWhitespace: true,
             removeRedundantAttributes: true,

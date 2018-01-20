@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -36,7 +37,7 @@ const getStaticCss = options => {
             loader: require.resolve('css-loader'),
             options: {
               importLoaders: 1,
-              minimize: options.isProduction
+              minimize: options.minify
             }
           },
           {
@@ -57,7 +58,7 @@ const getStaticCss = options => {
             query: {
               modules: true,
               sourceMap: true,
-              minimize: options.isProduction,
+              minimize: options.minify,
               importLoaders: 2,
               localIdentName: '[name]__[local]',
               getLocalIdent: getLocalIdent
@@ -111,6 +112,7 @@ const configureCommon = options => {
         { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'url-loader', options: { name: staticAssetName, limit: 10000 } },
         {
           test: /\.tsx?$/,
+          exclude: /node_modules/,
           loader: 'awesome-typescript-loader',
           options: merge({ useBabel: false, useCache: false }, typescriptOptions)
         }

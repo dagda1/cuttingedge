@@ -23,11 +23,15 @@ module.exports = grunt => {
 
   const outputPath = path.join(__dirname, 'dist');
 
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  const isProduciton = process.env.NODE_ENV === 'production';
+
   const webpack = configure({
-    entryPoint: path.join(__dirname, './demo'),
+    entryPoint: isDevelopment ? path.join(__dirname, './demo') : path.join(__dirname, './src'),
     outputPath,
-    devServer: true,
+    devServer: isDevelopment,
     isStaticBuild: true,
+    minify: false,
     publicDir: path.join(__dirname, './demo/public'),
     typescriptOptions: {
       rootDir: '.',
@@ -72,7 +76,7 @@ module.exports = grunt => {
     openBrowser(getUrlParts().urls.localUrlForBrowser);
   });
 
-  grunt.registerTask('build', ['clean', 'webpack:dev']);
+  grunt.registerTask('build', ['clean', 'webpack', 'copy']);
   grunt.registerTask('demo', ['clean', 'webpack:demo', 'webpack-dev-server', 'copy']);
   grunt.registerTask('start', ['demo']);
 };
