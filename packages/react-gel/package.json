@@ -1,5 +1,5 @@
 {
-  "name": "@cutting/react-grid-gel",
+  "name": "@cutting/react-gel",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development grunt start",
-    "test": "NODE_ENV=test grunt test:dev"
+    "test": "NODE_ENV=test grunt test:dev",
+    "build": "NODE_ENV=production grunt build"
   },
   "dependencies": {
     "gel-grid": "^3.0.4"

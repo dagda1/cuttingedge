@@ -17,7 +17,6 @@ const getEnvironment = () => {
     staticAssetName,
     isAnalyse,
     isVerbose,
-    isDevelopment,
     isProduction
   };
 };
@@ -80,7 +79,7 @@ const { merge } = require('lodash');
 const configureCommon = options => {
   const typescriptOptions = options.typescriptOptions || {};
 
-  const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDevelopment, isDebug } = getEnvironment();
+  const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
 
   return {
     output: { publicPath: '/' },
@@ -123,18 +122,7 @@ const configureCommon = options => {
           NODE_ENV: JSON.stringify('development')
         }
       }),
-      ...(isAnalyse ? [new BundleAnalyzerPlugin()] : []),
-      new FriendlyErrorsPlugin({
-        verbose: dotenv.raw.VERBOSE,
-        target,
-        onSuccessMessage: `Your application is running at http://${dotenv.raw.HOST}:${dotenv.raw.PORT}`
-      }),
-      isDevelopment &&
-        new FriendlyErrorsPlugin({
-          verbose: dotenv.raw.VERBOSE,
-          target,
-          onSuccessMessage: `Your application is running at http://${dotenv.raw.HOST}:${dotenv.raw.PORT}`
-        })
+      ...(isAnalyse ? [new BundleAnalyzerPlugin()] : [])
     ]
   };
 };

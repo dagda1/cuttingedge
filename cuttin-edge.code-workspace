@@ -10,7 +10,7 @@
       "path": "packages/component-library"
     },
     {
-      "path": "packages/react-grid-gel"
+      "path": "packages/react-gel"
     }
   ],
   "settings": {}
