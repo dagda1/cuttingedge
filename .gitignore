@@ -23,3 +23,5 @@ yarn-error.log*
 
 **/.awcache
 *.tmp.txt
+
+.tscache
