@@ -6,10 +6,26 @@
 }
 
 html {
-  height: 100%;
   box-sizing: border-box;
-  font-size: 62.5%;
   font-family: 'GeosansLight';
+  font-size: 62.5%;
+}
+
+html,
+body {
+  background-color: $color__black;
+  color: $color__white;
+  margin: 0 auto;
+  max-width: 100%;
+  line-height: 1;
+  height: 100%;
+  text-rendering: optimizeSpeed;
+}
+
+body {
+  font-size: 160%;
+  margin: 0;
+  text-rendering: optimizeLegibility;
 }
 
 *,
@@ -18,15 +34,9 @@ html {
   box-sizing: inherit;
 }
 
-html,
-body {
-  background-color: $color__black;
-  color: $color__white;
-}
-
-body {
-  text-rendering: optimizeLegibility;
-  font-size: 1.6rem;
+ul {
+  padding-left: 0;
+  list-style: none;
 }
 
 a {

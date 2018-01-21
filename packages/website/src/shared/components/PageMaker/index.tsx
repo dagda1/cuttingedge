@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Menu } from '../Menu';
+import { Header } from '../Header';
 
 export interface PageMakerProps {
   Comp: React.ComponentType<any>;
@@ -7,7 +7,7 @@ export interface PageMakerProps {
 
 export const pageMaker = ({ Comp }: PageMakerProps) => props => (
   <>
-    <Menu />
+    <Header />
     <div>
       <Comp {...props} />
     </div>
