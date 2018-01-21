@@ -82,6 +82,8 @@ const configureCommon = options => {
 
   const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
 
+  console.log(typescriptOptions);
+
   return {
     output: { publicPath: '/' },
     module: {

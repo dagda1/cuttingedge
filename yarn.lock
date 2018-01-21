@@ -21,6 +21,10 @@
   version "0.22.7"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.7.tgz#4a92eafedfb2b9f4437d3a4410006d81114c66ce"
 
+"@types/classnames@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.3.tgz#3f0ff6873da793870e20a260cada55982f38a9e5"
+
 "@types/enzyme@^3.1.6":
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.6.tgz#5b6fd8c5d23d2e1d06eca528b54df81c3ee4cbbf"
@@ -50,6 +54,10 @@
   version "22.0.1"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.0.1.tgz#6370a6d60cce3845e4cd5d00bf65f654264685bc"
 
+"@types/lodash@^4.14.93":
+  version "4.14.93"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.93.tgz#a6d2a1e1601a3c29196f38ef1990b68a9afa1e1c"
+
 "@types/mime@*":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
@@ -70,6 +78,12 @@
   resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-4.0.19.tgz#4258eb59a9c3a01b5adf1bf9b14f068a7699bbb6"
   dependencies:
     "@types/history" "*"
+    "@types/react" "*"
+
+"@types/react-test-renderer@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.0.0.tgz#905a12076d7315eb4a36c4f0e5e760c7b3115420"
+  dependencies:
     "@types/react" "*"
 
 "@types/react@*":

@@ -4,19 +4,10 @@
     "target": "es5",
     "module": "commonjs",
     "declaration": true,
-    "moduleResolution": "node",
-    "outDir": "./dist",
-    "baseUrl": ".",
     "jsx": "react",
+    "outDir": "dist",
+    "rootDir": "./src"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "../../node_modules",
-    "build",
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

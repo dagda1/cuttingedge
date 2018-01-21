@@ -27,16 +27,16 @@ module.exports = grunt => {
   const isProduciton = process.env.NODE_ENV === 'production';
 
   const webpack = configure({
-    entryPoint: isDevelopment ? path.join(__dirname, './demo') : path.join(__dirname, './src'),
+    entryPoint: path.join(__dirname, './demo'),
     outputPath,
-    devServer: isDevelopment,
+    devServer: true,
     isStaticBuild: true,
     minify: false,
     publicDir: path.join(__dirname, './demo/public'),
     typescriptOptions: {
+      configFileName: path.join(__dirname, './tsconfig.json'),
       rootDir: '.',
-      declaration: false,
-      configFileName: path.join(__dirname, './tsconfig.json')
+      declaration: false
     }
   });
 
@@ -54,6 +54,17 @@ module.exports = grunt => {
 
     webpack: {
       demo: webpack
+    },
+    ts: {
+      default: {
+        tsconfig: path.join(__dirname, 'tsconfig.json'),
+        src: ['src/**/*.ts', 'src/**/*.tsx', '!node_modules/**'],
+        options: {
+          verbose: true,
+          typeRoots: [path.join(__dirname, '../../node_modules/@types')],
+          outDir: 'dist'
+        }
+      }
     },
     copy: {
       default: {
@@ -76,7 +87,7 @@ module.exports = grunt => {
     openBrowser(getUrlParts().urls.localUrlForBrowser);
   });
 
-  grunt.registerTask('build', ['clean', 'webpack', 'copy']);
-  grunt.registerTask('demo', ['clean', 'webpack:demo', 'webpack-dev-server', 'copy']);
+  grunt.registerTask('build', ['clean', 'ts', 'copy']);
+  grunt.registerTask('demo', ['clean', 'webpack', 'webpack-dev-server', 'copy']);
   grunt.registerTask('start', ['demo']);
 };
