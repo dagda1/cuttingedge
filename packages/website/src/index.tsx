@@ -13,6 +13,7 @@ const configureDevelopment = (app: any) => {
 
   const publicPath = clientConfig.output.publicPath;
 
+  console.log('about to hooooors drooooppp');
   const serverConfig = require('../../../webpack/server').configure({
     entryPoint: path.join(process.cwd(), 'src/server/index'),
     outputPath

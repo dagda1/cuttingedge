@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { filter } = require('lodash');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -26,13 +27,18 @@ const { merge } = require('lodash');
 
 const configureCommon = options => {
   const typescriptOptions = options.typescriptOptions || {};
+  const isNode = !!options.isNode;
+
+  console.log('+++++++++++++++++++++++++++++');
+  console.log(`isNode = ${isNode}`);
+  console.log('+++++++++++++++++++++++++++++');
 
   const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
 
   return {
     output: { publicPath: '/' },
     module: {
-      rules: [
+      rules: filter([
         {
           exclude: [
             /\.html$/,
@@ -63,23 +69,23 @@ const configureCommon = options => {
           loader: 'awesome-typescript-loader',
           options: merge({ useBabel: false, useCache: false }, typescriptOptions)
         },
-        {
+        !isNode && {
           test: /\.scss$/,
           exclude: /node_modules/,
           use: isDevelopment
             ? [
                 'style-loader',
                 {
-                  loader: require.resolve('css-loader'),
+                  loader: 'css-loader',
                   options: {
-                    importLoaders: 2,
+                    importLoaders: 1,
                     sourceMap: true,
                     modules: true,
                     localIdentName: '[name]__[local]',
                     getLocalIdent: getLocalIdent
                   }
                 },
-                { loader: require.resolve('postcss-loader'), options: postcssOptions },
+                { loader: 'postcss-loader', options: postcssOptions },
                 'sass-loader'
               ]
             : ExtractTextPlugin.extract({
@@ -96,14 +102,14 @@ const configureCommon = options => {
                     }
                   },
                   {
-                    loader: require.resolve('postcss-loader'),
+                    loader: 'postcss-loader',
                     options: postcssOptions
                   },
                   'sass-loader'
                 ]
               })
         }
-      ]
+      ])
     },
     plugins: [
       new webpack.DefinePlugin({

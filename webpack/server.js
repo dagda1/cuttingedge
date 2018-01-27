@@ -11,10 +11,13 @@ const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
 const { configureCommon, getEnvironment } = require('./common');
 
 const configure = (options = {}) => {
+  options.isNode = true;
+
   const common = configureCommon(options);
+
   const { isDevelopment, staticAssetName, isAnalyse, isVerbose, isDebug } = getEnvironment();
 
-  return merge(common, {
+  const config = merge(common, {
     name: 'server',
     target: 'node',
     externals: [
@@ -35,31 +38,6 @@ const configure = (options = {}) => {
     },
     module: {
       rules: [
-        {
-          exclude: [
-            /\.html$/,
-            /\.jsx?$/,
-            /\.jsx?$/,
-            /\.tsx?$/,
-            /\.css$/,
-            /\.json$/,
-            /\.bmp$/,
-            /\.gif$/,
-            /\.jpe?g$/,
-            /\.png$/,
-            /\.scss$/,
-            /\.woff2?$/,
-            /\.eot$/,
-            /\.ttf$/,
-            /\.svg$/,
-            /\.csv$/,
-            /\.md$/
-          ],
-          loader: 'file-loader',
-          options: {
-            name: staticAssetName
-          }
-        },
         {
           test: /\.scss$/,
           exclude: /node_modules/,
@@ -92,6 +70,8 @@ const configure = (options = {}) => {
       new CheckerPlugin()
     ]
   });
+
+  return config;
 };
 
 module.exports = { configure };

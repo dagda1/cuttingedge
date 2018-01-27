@@ -32,18 +32,15 @@ const configure = options => {
   const { entryPoint, outputPath, publicDir, proxy, devServer } = options;
   const { protocol, host, port } = getUrlParts();
 
+  options.isNode = false;
+
+  const { isStaticBuild } = options;
+
   const common = configureCommon(options);
 
   const { isDevelopment, isProduction, staticAssetName } = getEnvironment();
 
-  const { isStaticBuild } = options;
-  console.log('--------------');
-  console.log(`isDevelopment = ${isDevelopment}`);
-  console.log(`isProduction = ${isProduction}`);
-  console.log(`isStaticBuild = ${isStaticBuild}`);
-  console.log('--------------');
-
-  return merge(common, {
+  const config = merge(common, {
     name: 'client',
     target: 'web',
     entry: isDevelopment
@@ -154,6 +151,8 @@ const configure = options => {
       tls: 'empty'
     }
   });
+
+  return config;
 };
 
 module.exports = { configure, getUrlParts };
