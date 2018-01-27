@@ -1,14 +1,4 @@
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-$gel-grid-enable--markup-output: true;
+$gel-grid-enable--markup-output: false;
 $gel-grid-enable--box-sizing: true;
 $gel-grid-enable--whitespace-fix: true;
 

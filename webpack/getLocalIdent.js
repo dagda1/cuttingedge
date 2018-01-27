@@ -10,12 +10,15 @@ module.exports = (loaderContext, localIdentName, localName, options) => {
       loaderContext.options && typeof loaderContext.options.context === 'string'
         ? loaderContext.options.context
         : loaderContext.context;
-  var request = path.relative(options.context, loaderContext.resourcePath);
-  const prefix = dasherize(path.parse(request).name);
 
-  if (path.basename(loaderContext.resourcePath) === 'main.scss') {
-    return localName;
-  }
+  const request = path.relative(options.context, loaderContext.resourcePath);
+  const prefix = dasherize(path.parse(request).name);
+  /* 
+  console.log('-----------------------');
+  console.log(prefix);
+  console.log(localName);
+  console.log(`${prefix}__${localName}`);
+  console.log('-----------------------'); */
 
   return `${prefix}__${localName}`;
 };

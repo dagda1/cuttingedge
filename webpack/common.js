@@ -22,59 +22,6 @@ const getEnvironment = () => {
   };
 };
 
-const getStaticCss = options => {
-  if (!options.isStaticBuild) {
-    return [false];
-  }
-
-  return [
-    {
-      test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-              minimize: options.minify
-            }
-          },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: postcssOptions
-          }
-        ]
-      })
-    },
-    {
-      test: /\.scss$/,
-      exclude: /node_modules/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-          {
-            loader: 'css-loader',
-            query: {
-              modules: true,
-              sourceMap: true,
-              minimize: options.minify,
-              importLoaders: 2,
-              localIdentName: '[name]__[local]',
-              getLocalIdent: getLocalIdent
-            }
-          },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: postcssOptions
-          },
-          'sass-loader'
-        ]
-      })
-    }
-  ];
-};
-
 const { merge } = require('lodash');
 
 const configureCommon = options => {
@@ -115,6 +62,46 @@ const configureCommon = options => {
           exclude: /node_modules/,
           loader: 'awesome-typescript-loader',
           options: merge({ useBabel: false, useCache: false }, typescriptOptions)
+        },
+        {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: isDevelopment
+            ? [
+                'style-loader',
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    importLoaders: 2,
+                    sourceMap: true,
+                    modules: true,
+                    localIdentName: '[name]__[local]',
+                    getLocalIdent: getLocalIdent
+                  }
+                },
+                { loader: require.resolve('postcss-loader'), options: postcssOptions },
+                'sass-loader'
+              ]
+            : ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [
+                  {
+                    loader: 'css-loader',
+                    query: {
+                      modules: true,
+                      minimize: isProduction,
+                      importLoaders: 2,
+                      localIdentName: '[name]__[local]',
+                      getLocalIdent: getLocalIdent
+                    }
+                  },
+                  {
+                    loader: require.resolve('postcss-loader'),
+                    options: postcssOptions
+                  },
+                  'sass-loader'
+                ]
+              })
         }
       ]
     },
@@ -129,4 +116,4 @@ const configureCommon = options => {
   };
 };
 
-module.exports = { configureCommon, getEnvironment, getStaticCss };
+module.exports = { configureCommon, getEnvironment };

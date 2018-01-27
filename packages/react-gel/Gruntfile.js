@@ -31,7 +31,6 @@ module.exports = grunt => {
     outputPath,
     devServer: true,
     isStaticBuild: true,
-    minify: false,
     publicDir: path.join(__dirname, './demo/public'),
     typescriptOptions: {
       configFileName: path.join(__dirname, './tsconfig.json'),

@@ -6,9 +6,10 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const getLocalIdent = require('./getLocalIdent');
 
 const { filter } = require('lodash');
-const { configureCommon, getEnvironment, getStaticCss } = require('./common');
+const { configureCommon, getEnvironment } = require('./common');
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
@@ -28,12 +29,19 @@ function getUrlParts() {
 }
 
 const configure = options => {
-  const { entryPoint, outputPath, publicDir, proxy, devServer, isStaticBuild, minify } = options;
+  const { entryPoint, outputPath, publicDir, proxy, devServer } = options;
   const { protocol, host, port } = getUrlParts();
 
   const common = configureCommon(options);
 
   const { isDevelopment, isProduction, staticAssetName } = getEnvironment();
+
+  const { isStaticBuild } = options;
+  console.log('--------------');
+  console.log(`isDevelopment = ${isDevelopment}`);
+  console.log(`isProduction = ${isProduction}`);
+  console.log(`isStaticBuild = ${isStaticBuild}`);
+  console.log('--------------');
 
   return merge(common, {
     name: 'client',
@@ -45,7 +53,7 @@ const configure = options => {
         ]
       : [entryPoint],
     devtool: 'cheap-module-source-map',
-    devServer: isDevelopment
+    devServer: devServer
       ? {
           inline: true,
           port,
@@ -68,41 +76,8 @@ const configure = options => {
     resolve: {
       extensions: ['.ts', '.tsx', '.scss', '.js']
     },
-    module: {
-      rules: filter([
-        !isStaticBuild && {
-          test: /\.scss$/,
-          exclude: /node_modules/,
-          use: ExtractCssChunks.extract({
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: true,
-                  modules: true,
-                  importLoaders: 2,
-                  localIdentName: '[name]__[local]--[hash:base64:5]'
-                }
-              },
-              {
-                loader: 'sass-loader'
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: function() {
-                    return [require('autoprefixer')];
-                  }
-                }
-              }
-            ]
-          })
-        },
-        ...getStaticCss({ isDevelopment, isProduction, isStaticBuild, minify })
-      ])
-    },
     plugins: filter([
-      minify &&
+      isProduction &&
         new webpack.optimize.UglifyJsPlugin({
           compress: {
             warnings: false,
@@ -136,13 +111,12 @@ const configure = options => {
           },
           sourceMap: false
         }),
-      isStaticBuild && new ExtractTextPlugin('style.css'),
-      !isStaticBuild &&
-        new webpack.DefinePlugin({
-          'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
-          'process.env.BROWSER': false,
-          __DEV__: isDevelopment
-        }),
+      isProduction && new ExtractTextPlugin('style.css'),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
+        'process.env.BROWSER': false,
+        __DEV__: isDevelopment
+      }),
       !isStaticBuild && new ExtractCssChunks(),
       !isStaticBuild &&
         new webpack.optimize.CommonsChunkPlugin({
@@ -156,7 +130,7 @@ const configure = options => {
         new HtmlWebpackPlugin({
           inject: true,
           template: publicDir ? path.join(publicDir, 'index.html') : 'public/index.html',
-          minify: minify && {
+          isProduction: isProduction && {
             removeComments: true,
             collapseWhitespace: true,
             removeRedundantAttributes: true,
