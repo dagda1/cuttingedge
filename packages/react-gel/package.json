@@ -12,8 +12,5 @@
     "start": "NODE_ENV=development grunt start",
     "test": "NODE_ENV=test grunt test:dev",
     "build": "NODE_ENV=development grunt build"
-  },
-  "dependencies": {
-    "gel-grid": "^3.0.4"
   }
 }
