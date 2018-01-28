@@ -4,6 +4,7 @@ const path = require('path');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const nodeExternals = require('webpack-node-externals');
+const getLocalIdent = require('./getLocalIdent');
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
@@ -47,8 +48,8 @@ const configure = (options = {}) => {
               loader: 'css-loader/locals',
               options: {
                 modules: true,
-                importLoaders: 2,
-                localIdentName: '[name]__[local]--[hash:base64:5]'
+                importLoaders: 1,
+                getLocalIdent
               }
             },
             {

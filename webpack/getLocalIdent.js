@@ -4,6 +4,8 @@ const decamelize = str => str.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase(
 
 const dasherize = str => decamelize(str).replace(/[ _]/g, '-');
 
+const excludedFileNames = ['global', '_grid'].map(f => `${f}.scss`);
+
 module.exports = (loaderContext, localIdentName, localName, options) => {
   if (!options.context)
     options.context =
@@ -11,7 +13,7 @@ module.exports = (loaderContext, localIdentName, localName, options) => {
         ? loaderContext.options.context
         : loaderContext.context;
 
-  if (path.basename(loaderContext.resourcePath) === '_grid.scss') {
+  if (excludedFileNames.indexOf(path.basename(loaderContext.resourcePath)) > -1) {
     return localName;
   }
 

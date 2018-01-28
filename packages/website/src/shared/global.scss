@@ -13,10 +13,9 @@ html {
 
 html,
 body {
-  background-color: $color__black;
-  color: $color__white;
+  background-color: $black;
+  color: $white;
   margin: 0 auto;
-  max-width: 100%;
   line-height: 1;
   height: 100%;
   text-rendering: optimizeSpeed;

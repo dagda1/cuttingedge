@@ -1,3 +1,9 @@
+@import '../../../assets/scss/main';
+
+path {
+  fill: $white;
+}
+
 .container {
   &:after {
     content: '';
@@ -7,12 +13,12 @@
 
   ul {
     li {
-      float: left;
-      display: block;
+      display: inline-block;
+      vertical-align: middle;
     }
 
     li a {
-      padding-right: 1rem;
+      padding-left: 1rem;
     }
   }
 }
