@@ -29,10 +29,6 @@ const configureCommon = options => {
   const typescriptOptions = options.typescriptOptions || {};
   const isNode = !!options.isNode;
 
-  console.log('+++++++++++++++++++++++++++++');
-  console.log(`isNode = ${isNode}`);
-  console.log('+++++++++++++++++++++++++++++');
-
   const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
 
   return {
@@ -74,19 +70,17 @@ const configureCommon = options => {
           exclude: /node_modules/,
           use: isDevelopment
             ? [
-                'style-loader',
+                { loader: 'style-loader' },
                 {
                   loader: 'css-loader',
                   options: {
-                    importLoaders: 1,
-                    sourceMap: true,
+                    importLoaders: 2,
                     modules: true,
-                    localIdentName: '[name]__[local]',
                     getLocalIdent: getLocalIdent
                   }
                 },
                 { loader: 'postcss-loader', options: postcssOptions },
-                'sass-loader'
+                { loader: 'sass-loader' }
               ]
             : ExtractTextPlugin.extract({
                 fallback: 'style-loader',

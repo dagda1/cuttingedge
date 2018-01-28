@@ -11,14 +11,12 @@ module.exports = (loaderContext, localIdentName, localName, options) => {
         ? loaderContext.options.context
         : loaderContext.context;
 
+  if (path.basename(loaderContext.resourcePath) === '_grid.scss') {
+    return localName;
+  }
+
   const request = path.relative(options.context, loaderContext.resourcePath);
   const prefix = dasherize(path.parse(request).name);
-  /* 
-  console.log('-----------------------');
-  console.log(prefix);
-  console.log(localName);
-  console.log(`${prefix}__${localName}`);
-  console.log('-----------------------'); */
 
   return `${prefix}__${localName}`;
 };

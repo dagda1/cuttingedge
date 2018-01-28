@@ -1,4 +1,4 @@
-/* @import '../../src/styles/main'; */
+@import '../../tools';
 
 .bar {
   width: 100%;
@@ -6,5 +6,5 @@
   background-color: #d4e7eb;
   color: #121212;
 
-  /* @include mt(2); */
+  @include mt(2);
 }

@@ -49,7 +49,7 @@ const configure = options => {
           entryPoint
         ]
       : [entryPoint],
-    devtool: 'cheap-module-source-map',
+    devtool: isDevelopment && 'cheap-module-source-map',
     devServer: devServer
       ? {
           inline: true,
@@ -68,7 +68,8 @@ const configure = options => {
     output: {
       path: outputPath,
       filename: 'index.js',
-      chunkFilename: '[name].js'
+      chunkFilename: '[name].js',
+      devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath)
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.scss', '.js']
@@ -114,13 +115,13 @@ const configure = options => {
         'process.env.BROWSER': false,
         __DEV__: isDevelopment
       }),
-      !isStaticBuild && new ExtractCssChunks(),
+      /*       !isStaticBuild && new ExtractCssChunks(),
       !isStaticBuild &&
         new webpack.optimize.CommonsChunkPlugin({
           names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
           filename: '[name].js',
           minChunks: Infinity
-        }),
+        }), */
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       new CheckerPlugin(),
       devServer &&

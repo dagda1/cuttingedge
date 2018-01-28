@@ -61,6 +61,7 @@
     "react-test-renderer": "^16.2.0",
     "resolve-url-loader": "^2.2.0",
     "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.1",
     "ts-jest": "^22.0.1",
     "ts-node": "^4.1.0",
     "tslint-config-prettier": "^1.6.0",
@@ -72,5 +73,7 @@
     "webpack-merge": "^4.1.0",
     "webpack-node-externals": "^1.6.0"
   },
-  "workspaces": ["packages/*"]
+  "workspaces": [
+    "packages/*"
+  ]
 }
