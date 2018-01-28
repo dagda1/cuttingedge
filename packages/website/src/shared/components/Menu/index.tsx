@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import * as Urls from '../../../urls';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { Rhombus } from '../../../client/components/atoms/index';
 import { pages } from '../../routes';
@@ -17,7 +16,7 @@ export const Menu: React.StatelessComponent = () => (
               <Rhombus />
             </li>
             {pages.map((page, i) => (
-              <li>
+              <li key={page.heading}>
                 <Link to={page.path}>{page.heading}</Link>
               </li>
             ))}
