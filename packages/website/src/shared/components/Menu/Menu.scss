@@ -6,9 +6,7 @@ path {
 
 .container {
   @include mt(2);
-  &:after {
-    content: '';
-    display: table;
-    clear: both;
-  }
+
+  margin: 0 auto;
+  max-width: $desktop-max-width;
 }

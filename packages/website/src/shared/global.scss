@@ -36,4 +36,9 @@ ul {
 
 a {
   color: inherit;
+
+  &:focus {
+    @include accessible-outline;
+    color: $black;
+  }
 }

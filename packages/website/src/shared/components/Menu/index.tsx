@@ -9,19 +9,15 @@ const styles = require('./Menu.scss');
 export const Menu: React.StatelessComponent = () => (
   <nav className={styles.container}>
     <Wrap>
-      <Layout>
+      <Layout center middle equal fit>
         <GelItem>
-          <Layout>
-            <GelItem>
-              <Rhombus />
-            </GelItem>
-            {pages.map((page, i) => (
-              <GelItem key={page.heading}>
-                <Link to={page.path}>{page.heading}</Link>
-              </GelItem>
-            ))}
-          </Layout>
+          <Rhombus />
         </GelItem>
+        {pages.map((page, i) => (
+          <GelItem key={page.heading}>
+            <Link to={page.path}>{page.heading}</Link>
+          </GelItem>
+        ))}
       </Layout>
     </Wrap>
   </nav>

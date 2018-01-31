@@ -1,0 +1,4 @@
+@mixin accessible-outline {
+  background-color: $accessible-outline;
+  outline: 3px solid $accessible-outline;
+}
