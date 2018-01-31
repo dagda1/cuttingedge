@@ -11,6 +11,7 @@ export interface LayoutProps {
   center?: boolean;
   equal?: boolean;
   auto?: boolean;
+  fit?: boolean;
 }
 
 export const Layout: React.StatelessComponent<LayoutProps> = ({
@@ -23,6 +24,7 @@ export const Layout: React.StatelessComponent<LayoutProps> = ({
   center,
   equal,
   auto,
+  fit,
   children
 }) => (
   <Tag
@@ -33,7 +35,8 @@ export const Layout: React.StatelessComponent<LayoutProps> = ({
       'gel-layout--right': right,
       'gel-layout--center': center,
       'gel-layout--equal': equal,
-      'gel-layout--auto': auto
+      'gel-layout--auto': auto,
+      'gel-layout--fit': fit
     })}
   >
     {children}

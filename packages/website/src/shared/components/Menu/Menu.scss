@@ -5,20 +5,10 @@ path {
 }
 
 .container {
+  @include mt(2);
   &:after {
     content: '';
     display: table;
     clear: both;
-  }
-
-  ul {
-    li {
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    li a {
-      padding-left: 1rem;
-    }
   }
 }

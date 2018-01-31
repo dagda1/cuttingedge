@@ -11,16 +11,16 @@ export const Menu: React.StatelessComponent = () => (
     <Wrap>
       <Layout>
         <GelItem>
-          <ul>
-            <li>
+          <Layout>
+            <GelItem>
               <Rhombus />
-            </li>
+            </GelItem>
             {pages.map((page, i) => (
-              <li key={page.heading}>
+              <GelItem key={page.heading}>
                 <Link to={page.path}>{page.heading}</Link>
-              </li>
+              </GelItem>
             ))}
-          </ul>
+          </Layout>
         </GelItem>
       </Layout>
     </Wrap>

@@ -6,31 +6,27 @@
 }
 
 html {
-  box-sizing: border-box;
   font-family: 'GeosansLight';
   font-size: 62.5%;
+  overflow-y: scroll;
 }
 
 html,
 body {
   background-color: $black;
   color: $white;
-  margin: 0 auto;
-  line-height: 1;
+  line-height: 1.5;
+  font-weight: 400;
   height: 100%;
-  text-rendering: optimizeSpeed;
 }
 
 body {
-  font-size: 160%;
   margin: 0;
-  text-rendering: optimizeLegibility;
-}
+  font-size: 160%;
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+  @include mq-l {
+    font-size: 190%;
+  }
 }
 
 ul {
