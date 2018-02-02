@@ -3,19 +3,11 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "moduleResolution": "node",
+    "declaration": true,
     "jsx": "react",
-    "outDir": "./dist",
-    "baseUrl": "."
+    "outDir": "dist",
+    "rootDir": "./src"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "../../node_modules",
-    "build",
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

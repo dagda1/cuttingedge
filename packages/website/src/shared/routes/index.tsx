@@ -10,11 +10,16 @@ export interface Page {
   path: string;
   component: React.ComponentType<any>;
   exact?: boolean;
+  footerPage?: boolean;
 }
 
 export const pages: Page[] = [
   { heading: 'Home', path: Urls.Home, component: Home, exact: true },
   { heading: 'OSS', path: Urls.OSS, component: OSS },
   { heading: 'Blog', path: Urls.Blog, component: Blog },
-  { heading: 'Privacy Policy', path: Urls.PrivacyPolicy, component: PrivacyPolicy, exact: true }
+  { heading: 'Privacy Policy', path: Urls.PrivacyPolicy, component: PrivacyPolicy, exact: true, footerPage: true }
 ];
+
+export const bannerPages = pages.filter(p => !p.footerPage);
+
+export const footerPages = pages.filter(p => p.footerPage);

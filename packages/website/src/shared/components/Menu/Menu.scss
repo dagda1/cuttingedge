@@ -7,6 +7,9 @@ path {
 .container {
   @include mt(2);
 
-  margin: 0 auto;
-  max-width: $desktop-max-width;
+  ul li {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+  }
 }

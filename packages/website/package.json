@@ -11,6 +11,7 @@
     "build": "NODE_ENV=production grunt build"
   },
   "dependencies": {
+    "@cutting/component-library": "0.1.0",
     "@cutting/react-gel": "0.1.0",
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
