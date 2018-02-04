@@ -6,6 +6,12 @@ footer {
   right: 0;
   bottom: 0;
   @include py(2);
+
+  font-size: 14px;
+
+  @include mq-m {
+    font-size: 19px;
+  }
 }
 
 .logo__container {
@@ -33,8 +39,21 @@ footer {
   padding-top: 0;
 }
 
+.logo,
+.links {
+  text-align: center;
+
+  @include mq-m {
+    text-align: left;
+  }
+}
+
 .contact {
-  text-align: right;
+  text-align: center;
+
+  @include mq-m {
+    text-align: right;
+  }
 }
 
 .social {
