@@ -26,8 +26,8 @@ export const App = () => (
     </header>
     <div>
       <Wrap>
-        <Layout center>
-          <GelItem xxl="10/12">
+        <Layout>
+          <GelItem>
             <div className={styles.controls}>
               <p>Your device is currently using:</p>
             </div>

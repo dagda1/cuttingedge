@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
-import { Rhombus } from '../../../client/components/atoms/index';
+import { Heading, Cow } from '@cutting/component-library';
 import { bannerPages } from '../../routes';
 import * as cs from 'classnames';
 
@@ -13,8 +13,11 @@ export const Menu: React.StatelessComponent = () => (
       <Layout>
         <GelItem>
           <ul>
+            <li className={styles.logo__container}>
+              <Cow />
+            </li>
             <li>
-              <Rhombus />
+              <Heading>Cutting-Edge Solutions (Scotland)</Heading>
             </li>
             {bannerPages.map((page, i) => (
               <li key={page.heading}>

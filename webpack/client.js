@@ -6,6 +6,7 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
 
 const { filter } = require('lodash');
@@ -73,6 +74,48 @@ const configure = options => {
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.scss', '.js']
+    },
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: isDevelopment
+            ? [
+                { loader: 'style-loader' },
+                {
+                  loader: 'css-loader',
+                  options: {
+                    importLoaders: 2,
+                    modules: true,
+                    getLocalIdent: getLocalIdent
+                  }
+                },
+                { loader: 'postcss-loader', options: postcssOptions },
+                { loader: 'sass-loader' }
+              ]
+            : ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [
+                  {
+                    loader: 'css-loader',
+                    query: {
+                      modules: true,
+                      minimize: isProduction,
+                      importLoaders: 2,
+                      localIdentName: '[name]__[local]',
+                      getLocalIdent: getLocalIdent
+                    }
+                  },
+                  {
+                    loader: 'postcss-loader',
+                    options: postcssOptions
+                  },
+                  'sass-loader'
+                ]
+              })
+        }
+      ]
     },
     plugins: filter([
       isProduction &&

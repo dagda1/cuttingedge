@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading renders correctly 1`] = `
+<h1
+  className=""
+  tabIndex={undefined}
+/>
+`;

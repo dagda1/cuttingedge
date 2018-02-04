@@ -23,7 +23,14 @@ const configure = (options = {}) => {
     target: 'node',
     externals: [
       nodeExternals({
-        modulesDir: path.join(process.cwd(), '../../node_modules')
+        modulesDir: path.join(process.cwd(), '../../node_modules'),
+        whitelist: [
+          isDevelopment ? 'webpack/hot/poll?300' : null,
+          /\.(eot|woff|woff2|ttf|otf)$/,
+          /\.(svg|png|jpg|jpeg|gif|ico)$/,
+          /\.(mp4|mp3|ogg|swf|webp)$/,
+          /\.(css|scss|sass|sss|less)$/
+        ].filter(x => x)
       })
     ],
     entry: [options.entryPoint],
@@ -41,14 +48,12 @@ const configure = (options = {}) => {
       rules: [
         {
           test: /\.scss$/,
-          exclude: /node_modules/,
-          include: [path.resolve(path.join(process.cwd(), 'src'))],
           use: [
             {
               loader: 'css-loader/locals',
               options: {
                 modules: true,
-                importLoaders: 1,
+                importLoaders: 2,
                 getLocalIdent
               }
             },

@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { filter } = require('lodash');
@@ -64,44 +63,6 @@ const configureCommon = options => {
           exclude: /node_modules/,
           loader: 'awesome-typescript-loader',
           options: merge({ useBabel: false, useCache: false }, typescriptOptions)
-        },
-        !isNode && {
-          test: /\.scss$/,
-          exclude: /node_modules/,
-          use: isDevelopment
-            ? [
-                { loader: 'style-loader' },
-                {
-                  loader: 'css-loader',
-                  options: {
-                    importLoaders: 2,
-                    modules: true,
-                    getLocalIdent: getLocalIdent
-                  }
-                },
-                { loader: 'postcss-loader', options: postcssOptions },
-                { loader: 'sass-loader' }
-              ]
-            : ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: [
-                  {
-                    loader: 'css-loader',
-                    query: {
-                      modules: true,
-                      minimize: isProduction,
-                      importLoaders: 2,
-                      localIdentName: '[name]__[local]',
-                      getLocalIdent: getLocalIdent
-                    }
-                  },
-                  {
-                    loader: 'postcss-loader',
-                    options: postcssOptions
-                  },
-                  'sass-loader'
-                ]
-              })
         }
       ])
     },
