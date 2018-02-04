@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Header } from '../Header';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
+import { Footer } from '../Footer';
 import * as cs from 'classnames';
 
 const styles = require('./Page.scss');
@@ -19,5 +20,6 @@ export const pageMaker = ({ Comp }: PageMakerProps) => props => (
         </GelItem>
       </Layout>
     </Wrap>
+    <Footer />
   </>
 );

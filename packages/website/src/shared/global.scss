@@ -9,6 +9,7 @@ html {
   font-family: 'GeosansLight';
   font-size: 62.5%;
   overflow-y: scroll;
+  position: relative;
 }
 
 html,
@@ -30,6 +31,7 @@ body {
 }
 
 ul {
+  margin-top: 0;
   padding-left: 0;
   list-style: none;
 }

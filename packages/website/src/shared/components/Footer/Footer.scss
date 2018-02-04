@@ -1,0 +1,73 @@
+@import '../../../assets/scss/main';
+
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include py(2);
+}
+
+.logo__container {
+  width: 40px;
+  display: inline-block;
+  vertical-align: middle;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  > div {
+    margin-top: -5px;
+  }
+}
+
+.name {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.links {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.contact {
+  text-align: right;
+}
+
+.social {
+  display: inline-block;
+  vertical-align: top;
+
+  li {
+    display: inline-block;
+    @include mr(2);
+    @include pr(2);
+    border-right: 1px solid #333;
+    height: 20px;
+    line-height: 21px;
+
+    a {
+      display: inline-block;
+      width: 20px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.email {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: -3px;
+}
+
+.copyright {
+  margin-top: -15px;
+}
