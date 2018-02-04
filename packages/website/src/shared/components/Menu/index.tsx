@@ -17,7 +17,7 @@ export const Menu: React.StatelessComponent = () => (
               <Cow />
             </li>
             <li>
-              <Heading>Cutting-Edge Solutions (Scotland)</Heading>
+              <Heading level={2}>Paul Cowan</Heading>
             </li>
             {bannerPages.map((page, i) => (
               <li key={page.heading}>

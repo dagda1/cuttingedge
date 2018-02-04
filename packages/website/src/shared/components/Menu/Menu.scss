@@ -7,16 +7,32 @@ path {
 .container {
   @include mt(2);
 
-  h1 {
+  h2 {
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
   }
 
+  ul {
+    margin-bottom: 0;
+  }
+
   ul li {
     display: inline-block;
     vertical-align: middle;
     margin-right: 20px;
+  }
+}
+
+ul li.logo__container {
+  width: 150px;
+  display: inline-block;
+  margin-right: 0;
+  margin-left: -19px;
+
+  svg {
+    width: 100%;
+    height: auto;
   }
 }

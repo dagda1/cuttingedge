@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const styles = require('./Cow.scss');
+/* const styles = require('./Cow.scss'); */
 
 export interface CowProps {
   className?: string;
@@ -16,7 +16,7 @@ export const Cow: React.StatelessComponent<CowProps> = ({ className }) => (
     viewBox="0 0 1000 1000"
     enableBackground="new 0 0 1000 1000"
   >
-    <g className={styles.container}>
+    <g>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
