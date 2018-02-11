@@ -20,6 +20,6 @@ export const pages: Page[] = [
   { heading: 'Privacy Policy', path: Urls.PrivacyPolicy, component: PrivacyPolicy, exact: true, footerPage: true }
 ];
 
-export const bannerPages = pages.filter(p => !p.footerPage);
+export const bannerPages = pages.filter(p => !p.footerPage && p.path !== Urls.Home);
 
 export const footerPages = pages.filter(p => p.footerPage);

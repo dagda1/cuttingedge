@@ -1,3 +1,4 @@
+import 'font-awesome/css/font-awesome.css';
 require('../../global.scss');
 import * as React from 'react';
 import { ConnectedRouter } from 'react-router-redux';

@@ -47,7 +47,7 @@ const configure = (options = {}) => {
     module: {
       rules: [
         {
-          test: /\.scss$/,
+          test: /\.(css|scss|sass)$/,
           use: [
             {
               loader: 'css-loader/locals',

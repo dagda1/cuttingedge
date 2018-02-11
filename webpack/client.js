@@ -78,8 +78,7 @@ const configure = options => {
     module: {
       rules: [
         {
-          test: /\.scss$/,
-          exclude: /node_modules/,
+          test: /\.(css|scss|sass)$/,
           use: isDevelopment
             ? [
                 { loader: 'style-loader' },
@@ -158,13 +157,13 @@ const configure = options => {
         'process.env.BROWSER': false,
         __DEV__: isDevelopment
       }),
-      /*       !isStaticBuild && new ExtractCssChunks(),
+      !isStaticBuild && new ExtractCssChunks(),
       !isStaticBuild &&
         new webpack.optimize.CommonsChunkPlugin({
           names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
           filename: '[name].js',
           minChunks: Infinity
-        }), */
+        }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       new CheckerPlugin(),
       devServer &&
