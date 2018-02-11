@@ -13,13 +13,15 @@ export interface PageMakerProps {
 export const pageMaker = ({ Comp }: PageMakerProps) => props => (
   <>
     <Header />
-    <Wrap className={cs('wrapper', styles.container)}>
-      <Layout>
-        <GelItem>
-          <Comp {...props} />
-        </GelItem>
-      </Layout>
-    </Wrap>
+    <main role="main">
+      <Wrap className={cs('wrapper', styles.container)}>
+        <Layout>
+          <GelItem>
+            <Comp {...props} />
+          </GelItem>
+        </Layout>
+      </Wrap>
+    </main>
     <Footer />
   </>
 );
