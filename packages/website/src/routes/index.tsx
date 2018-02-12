@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Urls from '../../urls';
+import * as Urls from '../urls';
 import Home from '../components/Home';
 import PrivacyPolicy from '../components/PrivacyPolicy';
 import TermsOfService from '../components/TermsOfService';

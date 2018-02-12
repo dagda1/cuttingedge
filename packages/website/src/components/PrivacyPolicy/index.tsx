@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { pageMaker } from '../PageMaker';
-import { StaticLayout } from '../../../layouts/StaticLayout';
+import { StaticLayout } from '../../layouts/StaticLayout';
 
-const markdown = require('../../../markdown/privacy.md');
+const markdown = require('../../markdown/privacy.md');
 
 export const PrivacyPolicy: React.StatelessComponent = () => (
   <StaticLayout heading="Privacy Policy">

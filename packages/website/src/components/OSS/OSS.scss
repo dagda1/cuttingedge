@@ -1,0 +1,40 @@
+@import '../../assets/scss/main';
+
+.container {
+  h1 {
+    @include mb(3);
+  }
+}
+
+.icon {
+  width: 50px;
+}
+
+.repo {
+  a {
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(51, 51, 51);
+    border-image: initial;
+    overflow: auto;
+    transition: all 0.2s ease;
+    padding: 20px;
+    margin-right: 40px;
+    width: 100%;
+    height: 270px;
+    $color: $main-color;
+
+    &:hover {
+      border-color: $main-color;
+    }
+  }
+
+  &:focus {
+    @include accessible-outline;
+  }
+
+  a div {
+    background-color: inherit;
+  }
+}

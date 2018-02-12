@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { pageMaker } from '../PageMaker';
 import { posts, Post } from './posts';
-import { StaticLayout } from '../../../layouts/StaticLayout';
+import { StaticLayout } from '../../layouts/StaticLayout';
 import { Heading, ExternalLink } from '@cutting/component-library';
 
 export const Blog: React.StatelessComponent = () => (

@@ -3,11 +3,11 @@ import 'react-universal-component/server';
 import { flushChunkNames } from 'react-universal-component/server';
 import { renderToString } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';
-import { App } from '../shared/containers/App';
+import { App } from '../containers/App';
 import { StaticRouter, Route } from 'react-router-dom';
 import { Request, Response } from 'express';
 import configureStore from '../store';
-import history from '../shared/history';
+import history from '../routes/history';
 
 import { Provider } from 'react-redux';
 

@@ -4,7 +4,7 @@ import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { Heading, Cow } from '@cutting/component-library';
 import { bannerPages } from '../../routes';
 import * as cs from 'classnames';
-import * as urls from '../../../urls';
+import * as urls from '../../urls';
 
 const styles = require('./Menu.scss');
 
