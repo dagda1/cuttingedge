@@ -4,6 +4,7 @@ import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { Heading, Cow } from '@cutting/component-library';
 import { bannerPages } from '../../routes';
 import * as cs from 'classnames';
+import * as urls from '../../../urls';
 
 const styles = require('./Menu.scss');
 
@@ -14,7 +15,9 @@ export const Menu: React.StatelessComponent = () => (
         <GelItem>
           <ul>
             <li className={styles.logo__container}>
-              <Cow />
+              <Link to={urls.Home}>
+                <Cow />
+              </Link>
             </li>
             <li>
               <Heading level={2}>Paul Cowan</Heading>
