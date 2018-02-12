@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { pageMaker } from '../PageMaker';
-import { StaticLayout } from '../../layouts/StaticLayout';
+import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { Pyramid } from '../Pyramid';
 
-export const Home: React.StatelessComponent = () => <StaticLayout heading="Home" />;
+export const Home: React.StatelessComponent = () => (
+  <ApplicationLayout>
+    <Pyramid />
+  </ApplicationLayout>
+);
 
 export default pageMaker({ Comp: Home });

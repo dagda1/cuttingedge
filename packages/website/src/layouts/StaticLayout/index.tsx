@@ -3,7 +3,7 @@ import { Layout, GelItem } from '@cutting/react-gel';
 import { ApplicationLayout } from '../ApplicationLayout';
 
 export interface StaticLayoutProps {
-  heading: string;
+  heading?: string;
 }
 
 export const StaticLayout: React.StatelessComponent<StaticLayoutProps> = ({ heading, children }) => (

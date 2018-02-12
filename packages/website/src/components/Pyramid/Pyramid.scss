@@ -1,0 +1,105 @@
+@keyframes spinY {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.holder {
+  margin-left: 25%;
+}
+
+.container {
+  perspective: 800px;
+  perspective-origin: center;
+}
+
+.shape {
+  transform-origin: 50% 90% 0px;
+  transform-style: preserve-3d;
+  transform: rotateX(20deg) rotateY(40deg);
+  position: relative;
+  animation: spinY 8s infinite linear;
+}
+
+$base: 270px;
+$half-base: ($base / 2);
+$apothem: 270px; //(1/2 base) / cos(theta)
+$apex-angle: 30deg; // apex angle = 180 - 90(right-angle) - α
+$base-move: 0 - ($apothem - $half-base);
+
+.shape div:not(.base) {
+  position: absolute;
+  border-left: $half-base solid transparent;
+  border-right: $half-base solid transparent;
+  border-bottom: $apothem solid;
+  transform-origin: $half-base $apothem 0; /* bottom of trangle (1/2 Base, Apothem) */
+  opacity: 0.5;
+}
+
+.shape div {
+  &:after {
+    position: absolute;
+    top: $half-base;
+    text-align: center;
+    color: #fff;
+    font-size: 1.75em;
+  }
+}
+
+.base {
+  position: absolute;
+  width: $base;
+  height: $base;
+  background-color: rgba(147, 81, 166, 0.9);
+  transform: rotateX(90deg) translate3d(0px, 0px, $base-move);
+  opacity: 0.5;
+
+  &:after {
+    content: 'TDD';
+    left: 80px;
+    top: 93px !important;
+  }
+}
+
+.shape div.front {
+  border-bottom-color: #e04545;
+  transform: rotateY(0deg) translate3d(0px, 0px, $half-base) rotateX($apex-angle);
+
+  &:after {
+    content: 'Responsive';
+    left: -60px;
+  }
+}
+
+.shape div.back {
+  border-bottom-color: #ccaf5a;
+  transform: rotateY(90deg) translate3d(0px, 0px, $half-base) rotateX($apex-angle);
+
+  &:after {
+    content: 'Typescript';
+    left: -60px;
+  }
+}
+
+.shape div.left {
+  border-bottom-color: #800000;
+  transform: rotateY(180deg) translate3d(0px, 0px, $half-base) rotateX($apex-angle);
+
+  &:after {
+    content: 'SASS';
+    left: -20px;
+  }
+}
+
+.shape div.right {
+  border-bottom-color: #4ccfc8;
+  transform: rotateY(270deg) translate3d(0px, 0px, $half-base) rotateX($apex-angle);
+
+  &:after {
+    content: 'React';
+    left: -20px;
+  }
+}
