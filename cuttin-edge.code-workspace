@@ -10,7 +10,13 @@
       "path": "packages/component-library"
     },
     {
+      "path": "packages/connected-components"
+    },
+    {
       "path": "packages/react-gel"
+    },
+    {
+      "path": "packages/util"
     }
   ],
   "settings": {}
