@@ -15,8 +15,8 @@ html {
 
 html,
 body {
-  background-color: $black;
-  color: $white;
+  background-color: $main-bg-color;
+  color: $main-color;
   line-height: 1.5;
   font-weight: 400;
 }
@@ -38,7 +38,12 @@ ul {
 }
 
 a {
-  color: inherit;
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $main-color;
+  }
 
   &:focus {
     @include accessible-outline;

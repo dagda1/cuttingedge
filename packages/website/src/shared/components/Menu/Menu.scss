@@ -1,7 +1,7 @@
 @import '../../../assets/scss/main';
 
 path {
-  fill: $white;
+  fill: $main-color;
 }
 
 .container {
@@ -24,6 +24,10 @@ path {
     a {
       position: relative;
       top: 5px;
+
+      &:hover {
+        color: $main-color;
+      }
     }
   }
 }
@@ -42,5 +46,16 @@ ul li.logo__container {
   svg {
     width: 100%;
     height: auto;
+  }
+
+  a {
+    display: inline-block;
+    @include mr(1);
+
+    &:focus {
+      svg {
+        background: $link-focus-color;
+      }
+    }
   }
 }

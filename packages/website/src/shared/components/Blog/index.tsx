@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { pageMaker } from '../PageMaker';
 import { posts, Post } from './posts';
+import { StaticLayout } from '../../../layouts/StaticLayout';
 import { Heading, ExternalLink } from '@cutting/component-library';
 
 export const Blog: React.StatelessComponent = () => (
-  <>
-    <h1>Blog</h1>
+  <StaticLayout heading="blog">
     {posts.map((post: Post, i: number) => (
       <>
         <Heading level={2}>{post.title}</Heading>
@@ -15,7 +15,7 @@ export const Blog: React.StatelessComponent = () => (
         </p>
       </>
     ))}
-  </>
+  </StaticLayout>
 );
 
 export default pageMaker({ Comp: Blog });

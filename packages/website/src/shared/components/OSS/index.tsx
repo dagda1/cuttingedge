@@ -8,18 +8,11 @@ const styles = require('./OSS.scss');
 
 export const OSS: React.StatelessComponent = () => (
   <Wrap className={styles.container}>
-    <h1>Open Source Software</h1>
-    <Layout>
-      <GelItem>
-        <ExternalLink href="https://github.com/dagda1">
-          <Heading level={2}>Github Repose</Heading>
-        </ExternalLink>
-      </GelItem>
-    </Layout>
+    <Heading level={1}>Open Source Software</Heading>
     <Layout>
       {repos.map((repo: Repo, i: number) => (
-        <GelItem m="1/2" l="1/4" className={styles.repo}>
-          <ExternalLink href={repo.link} key={i}>
+        <GelItem m="1/2" l="1/4" className={styles.repo} key={i}>
+          <ExternalLink href={repo.link}>
             <div className={styles.icon}>
               <Github />
             </div>
@@ -30,6 +23,13 @@ export const OSS: React.StatelessComponent = () => (
           </ExternalLink>
         </GelItem>
       ))}
+    </Layout>
+    <Layout>
+      <GelItem>
+        <Heading level={2} className={styles.heading__repos}>
+          For full list of github repos <ExternalLink href="https://github.com/dagda1">click here</ExternalLink>
+        </Heading>
+      </GelItem>
     </Layout>
   </Wrap>
 );
