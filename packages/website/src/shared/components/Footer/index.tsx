@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { Cow, Github, Twitter } from '@cutting/component-library';
 import { footerPages } from '../../routes';
-import * as urls from '../../../urls';
 import { Link } from 'react-router-dom';
 
 const styles = require('./Footer.scss');
