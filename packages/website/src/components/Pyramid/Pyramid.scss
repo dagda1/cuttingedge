@@ -7,10 +7,6 @@
   }
 }
 
-.holder {
-  margin-left: 25%;
-}
-
 .container {
   perspective: 800px;
   perspective-origin: center;
@@ -46,6 +42,9 @@ $base-move: 0 - ($apothem - $half-base);
     text-align: center;
     color: #fff;
     font-size: 1.75em;
+    text-transform: uppercase;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -58,9 +57,7 @@ $base-move: 0 - ($apothem - $half-base);
   opacity: 0.5;
 
   &:after {
-    content: 'TDD';
-    left: 80px;
-    top: 93px !important;
+    content: 'Typescript';
   }
 }
 
@@ -69,8 +66,7 @@ $base-move: 0 - ($apothem - $half-base);
   transform: rotateY(0deg) translate3d(0px, 0px, $half-base) rotateX($apex-angle);
 
   &:after {
-    content: 'Responsive';
-    left: -60px;
+    content: 'D3';
   }
 }
 
@@ -79,8 +75,7 @@ $base-move: 0 - ($apothem - $half-base);
   transform: rotateY(90deg) translate3d(0px, 0px, $half-base) rotateX($apex-angle);
 
   &:after {
-    content: 'Typescript';
-    left: -60px;
+    content: 'node';
   }
 }
 
@@ -90,7 +85,6 @@ $base-move: 0 - ($apothem - $half-base);
 
   &:after {
     content: 'SASS';
-    left: -20px;
   }
 }
 
@@ -99,7 +93,6 @@ $base-move: 0 - ($apothem - $half-base);
   transform: rotateY(270deg) translate3d(0px, 0px, $half-base) rotateX($apex-angle);
 
   &:after {
-    content: 'React';
-    left: -20px;
+    content: 'REACT';
   }
 }
