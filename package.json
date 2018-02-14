@@ -26,8 +26,10 @@
     "@types/lodash": "^4.14.93",
     "@types/react": "^16.0.31",
     "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.15",
     "@types/react-router": "^4.0.18",
     "@types/react-router-dom": "^4.2.3",
+    "@types/react-router-redux": "^5.0.12",
     "@types/react-test-renderer": "^16.0.0",
     "@types/webpack": "^3.8.1",
     "@types/webpack-env": "^1.13.3",
@@ -83,5 +85,7 @@
     "webpack-merge": "^4.1.0",
     "webpack-node-externals": "^1.6.0"
   },
-  "workspaces": ["packages/*"]
+  "workspaces": [
+    "packages/*"
+  ]
 }

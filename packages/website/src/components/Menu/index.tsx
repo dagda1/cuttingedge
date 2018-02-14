@@ -11,7 +11,7 @@ const styles = require('./Menu.scss');
 export const Menu: React.StatelessComponent = () => (
   <nav className={cs(styles.container, 'wrapper')}>
     <Wrap>
-      <Layout>
+      <Layout center>
         <GelItem>
           <ul>
             <li className={styles.logo__container}>

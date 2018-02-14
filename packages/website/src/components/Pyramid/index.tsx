@@ -5,7 +5,7 @@ const styles = require('./Pyramid.scss');
 
 export const Pyramid: React.StatelessComponent = () => (
   <Wrap>
-    <Layout middle>
+    <Layout center>
       <GelItem s="1/3" className={styles.holder}>
         <div className={styles.container}>
           <div className={styles.shape}>

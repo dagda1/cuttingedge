@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 import ScrollToTop, { ScrollToTopProps } from '.';
 import { History } from 'history';
 import createMemoryHistory from 'history/createMemoryHistory';
-import { flushPromises } from '@cutting/util';
 
 const Home = () => <h1>Home</h1>;
 const About = () => <h1>About</h1>;
@@ -18,10 +17,10 @@ const App = (props: Partial<ScrollToTopProps> = {}) => (
   </ScrollToTop>
 );
 
-const wrap = (history: History, props) => testUtils.wrap(App, props, history);
+const wrap = (history: History, props: Partial<ScrollToTopProps>) => testUtils.wrap(App, props, history);
 
 describe('<ScrollToTop/>', () => {
-  let history;
+  let history: History;
 
   beforeEach(() => {
     history = createMemoryHistory();
@@ -46,9 +45,13 @@ describe('<ScrollToTop/>', () => {
 
     history.push('/about');
 
+    wrapper.update();
+
     expect(changeHandler).toHaveBeenCalledWith('/about');
 
     history.push('/page');
+
+    wrapper.update();
 
     expect(changeHandler).toHaveBeenCalledWith('/page');
   });
