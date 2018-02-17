@@ -4,8 +4,8 @@ import { Layout, GelItem } from '@cutting/react-gel';
 const styles = require('./Pyramid.scss');
 
 export const Pyramid: React.StatelessComponent = () => (
-  <Layout center middle>
-    <GelItem s="1/3" className={styles.holder}>
+  <Layout center middle className={styles.parent}>
+    <GelItem s="1/3">
       <div>
         <div className={styles.container}>
           <div className={styles.shape}>
