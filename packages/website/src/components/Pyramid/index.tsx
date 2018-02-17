@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Wrap, Layout, GelItem } from '@cutting/react-gel';
+import { Layout, GelItem } from '@cutting/react-gel';
 
 const styles = require('./Pyramid.scss');
 
 export const Pyramid: React.StatelessComponent = () => (
-  <Wrap>
-    <Layout center>
-      <GelItem s="1/3" className={styles.holder}>
+  <Layout center middle>
+    <GelItem s="1/3" className={styles.holder}>
+      <div>
         <div className={styles.container}>
           <div className={styles.shape}>
             <div className={styles.base} />
@@ -16,7 +16,7 @@ export const Pyramid: React.StatelessComponent = () => (
             <div className={styles.left} />
           </div>
         </div>
-      </GelItem>
-    </Layout>
-  </Wrap>
+      </div>
+    </GelItem>
+  </Layout>
 );

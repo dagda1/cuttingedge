@@ -25,8 +25,8 @@ module.exports = function(grunt) {
         tasks: ['test:ci']
       },
       start: {
-        src: ['packages/applicant/Gruntfile.js'],
-        tasks: ['webpack-dev-server']
+        src: ['packages/website/Gruntfile.js'],
+        tasks: ['start']
       }
     }
   });
