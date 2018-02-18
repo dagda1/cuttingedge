@@ -27,7 +27,7 @@ module.exports = grunt => {
     },
     nodemon: {
       dev: {
-        script: './dist/server.js',
+        script: './dist/index.js',
         options: {
           cwd: __dirname
         }
@@ -49,12 +49,17 @@ module.exports = grunt => {
         isStaticBuild: false
       }),
       server: require('../../webpack/server').configure({
-        entryPoint: path.join(__dirname, 'src/server/index')
+        entryPoint: path.join(__dirname, 'src/server/index'),
+        filename: 'server.js'
+      }),
+      node: require('../../webpack/server').configure({
+        entryPoint: path.join(__dirname, 'src/index'),
+        filename: 'index.js'
       })
     }
   });
 
-  grunt.registerTask('build', ['clean', 'webpack:client', 'webpack:server']);
-  grunt.registerTask('server', ['clean', 'env:dev', 'webpack:server', 'nodemon', 'open:dev']);
+  grunt.registerTask('build', ['clean', 'webpack:client', 'webpack:server', 'webpack:node']);
+  grunt.registerTask('server', ['clean', 'env:dev', 'webpack:node', 'nodemon', 'open:dev']);
   grunt.registerTask('start', ['server']);
 };

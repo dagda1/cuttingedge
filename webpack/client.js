@@ -157,7 +157,6 @@ const configure = options => {
         }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isProduction && ssrBuild && new StatsWebpackPlugin('stats.json'),
-      new CheckerPlugin(),
       devServer &&
         new HtmlWebpackPlugin({
           inject: true,

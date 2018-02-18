@@ -12,7 +12,8 @@ const configureDevelopment = (app: any) => {
   const outputPath = clientConfig.output.path;
 
   const serverConfig = require('../../../webpack/server').configure({
-    entryPoint: path.join(process.cwd(), 'src/server/index')
+    entryPoint: path.join(process.cwd(), 'src/server/index'),
+    filename: 'server.js'
   });
 
   const multiCompiler = require('webpack')([clientConfig, serverConfig]);

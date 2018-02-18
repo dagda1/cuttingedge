@@ -1,7 +1,6 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const path = require('path');
-const { CheckerPlugin } = require('awesome-typescript-loader');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const nodeExternals = require('webpack-node-externals');
 const getLocalIdent = require('./getLocalIdent');
@@ -36,7 +35,7 @@ const configure = (options = {}) => {
     entry: [options.entryPoint],
     devtool: 'cheap-module-eval-source-map',
     output: {
-      filename: 'server.js',
+      filename: options.filename,
       libraryTarget: 'commonjs2'
     },
     resolve: {
@@ -63,15 +62,9 @@ const configure = (options = {}) => {
       ]
     },
     plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
-        'process.env.BROWSER': false,
-        __DEV__: isDebug
-      }),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1
-      }),
-      new CheckerPlugin()
+      })
     ]
   });
 
