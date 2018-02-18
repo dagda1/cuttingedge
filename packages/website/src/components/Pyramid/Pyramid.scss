@@ -7,10 +7,6 @@
   }
 }
 
-.parent {
-  height: 10%;
-}
-
 .container {
   perspective: 800px;
   perspective-origin: center;
@@ -24,9 +20,9 @@
   animation: spinY 8s infinite linear;
 }
 
-$base: 270px;
+$base: 330px;
 $half-base: ($base / 2);
-$apothem: 270px; //(1/2 base) / cos(theta)
+$apothem: $base; //(1/2 base) / cos(theta)
 $apex-angle: 30deg; // apex angle = 180 - 90(right-angle) - α
 $base-move: 0 - ($apothem - $half-base);
 
