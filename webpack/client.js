@@ -5,7 +5,6 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
 const StatsWebpackPlugin = require('stats-webpack-plugin');
@@ -37,15 +36,19 @@ const configure = options => {
   options.isNode = false;
 
   const { isStaticBuild } = options;
+  const ssrBuild = !isStaticBuild;
+
+  const { isDevelopment, isProduction, staticAssetName } = getEnvironment();
 
   const common = configureCommon(options);
 
-  console.log('-----------------------');
-  console.log(options);
-  console.log(`isStaticBuild = ${isStaticBuild}`);
-  console.log('-----------------------');
+  console.log('-------------------------');
+  console.log(`ssrBuild = ${ssrBuild}`);
+  console.log(`isProduction = ${isProduction}`);
+  console.log(`isDevelopment = ${isDevelopment}`);
+  console.log(`isStaticBuild && isProduction = ${isStaticBuild && isProduction}`);
+  console.log('-------------------------');
 
-  const { isDevelopment, isProduction, staticAssetName } = getEnvironment();
   const config = merge(common, {
     name: 'client',
     target: 'web',
@@ -81,41 +84,40 @@ const configure = options => {
       rules: [
         {
           test: /\.(css|scss|sass)$/,
-          use:
-            isDevelopment || !isStaticBuild
-              ? [
-                  { loader: 'style-loader' },
+          use: isDevelopment
+            ? [
+                { loader: 'style-loader' },
+                {
+                  loader: 'css-loader',
+                  options: {
+                    importLoaders: 2,
+                    modules: true,
+                    getLocalIdent: getLocalIdent
+                  }
+                },
+                { loader: 'postcss-loader', options: postcssOptions },
+                { loader: 'sass-loader' }
+              ]
+            : ExtractCssChunks.extract({
+                fallback: 'style-loader',
+                use: [
                   {
                     loader: 'css-loader',
-                    options: {
-                      importLoaders: 2,
+                    query: {
                       modules: true,
+                      minimize: isProduction,
+                      importLoaders: 2,
+                      localIdentName: '[name]__[local]',
                       getLocalIdent: getLocalIdent
                     }
                   },
-                  { loader: 'postcss-loader', options: postcssOptions },
-                  { loader: 'sass-loader' }
+                  {
+                    loader: 'postcss-loader',
+                    options: postcssOptions
+                  },
+                  'sass-loader'
                 ]
-              : ExtractTextPlugin.extract({
-                  fallback: 'style-loader',
-                  use: [
-                    {
-                      loader: 'css-loader',
-                      query: {
-                        modules: true,
-                        minimize: isProduction,
-                        importLoaders: 2,
-                        localIdentName: '[name]__[local]',
-                        getLocalIdent: getLocalIdent
-                      }
-                    },
-                    {
-                      loader: 'postcss-loader',
-                      options: postcssOptions
-                    },
-                    'sass-loader'
-                  ]
-                })
+              })
         }
       ]
     },
@@ -154,20 +156,15 @@ const configure = options => {
           },
           sourceMap: false
         }),
-      !isStaticBuild && isProduction && new ExtractTextPlugin('style.css'),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
-        'process.env.BROWSER': false,
-        __DEV__: isDevelopment
-      }),
-      !isStaticBuild && new ExtractCssChunks(),
-      !isStaticBuild &&
+      ssrBuild && new ExtractCssChunks(),
+      ssrBuild &&
         new webpack.optimize.CommonsChunkPlugin({
           names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
           filename: '[name].js',
           minChunks: Infinity
         }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
+      isProduction && ssrBuild && new StatsWebpackPlugin('stats.json'),
       new CheckerPlugin(),
       devServer &&
         new HtmlWebpackPlugin({
@@ -196,6 +193,12 @@ const configure = options => {
       net: 'empty',
       tls: 'empty'
     }
+  });
+
+  config.plugins.forEach(plugin => {
+    console.log('-----------------');
+    console.log(plugin);
+    console.log('-----------------');
   });
 
   return config;

@@ -45,7 +45,7 @@ module.exports = grunt => {
     },
     webpack: {
       client: require('../../webpack/client').configure({
-        entryPoint: path.join(__dirname, 'src/server/index'),
+        entryPoint: path.join(__dirname, 'src/client/index'),
         isStaticBuild: false
       }),
       server: require('../../webpack/server').configure({

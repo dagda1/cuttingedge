@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const getLocalIdent = require('./getLocalIdent');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { filter } = require('lodash');
@@ -87,9 +86,9 @@ const configureCommon = options => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('development')
-        }
+        'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
+        'process.env.BROWSER': false,
+        __DEV__: isDevelopment
       }),
       ...(isAnalyse ? [new BundleAnalyzerPlugin()] : [])
     ]
