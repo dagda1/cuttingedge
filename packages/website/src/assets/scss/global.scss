@@ -15,10 +15,6 @@ html {
 
 html,
 body {
-  background-color: $main-bg-color;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
   color: $main-color;
   line-height: 1.5;
   font-weight: 400;
@@ -29,6 +25,17 @@ body {
   font-size: 190%;
   padding-bottom: 150px;
   background-image: url(../images/lightening.jpg);
+  background-color: $main-bg-color;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  @include mq-l {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0;
+  }
 
   @include mq-l {
     font-size: 190%;

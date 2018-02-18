@@ -3,9 +3,13 @@ import { pageMaker } from '../PageMaker';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Pyramid } from '../Pyramid';
 
+const styles = require('./Home.scss');
+
 export const Home: React.StatelessComponent = () => (
   <ApplicationLayout heading="Frontend developer and gun for hire" italicise>
-    <Pyramid />
+    <div className={styles.main}>
+      <Pyramid />
+    </div>
   </ApplicationLayout>
 );
 

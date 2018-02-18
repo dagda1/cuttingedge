@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
+const StatsWebpackPlugin = require('stats-webpack-plugin');
 
 const { filter } = require('lodash');
 const { configureCommon, getEnvironment } = require('./common');
