@@ -32,6 +32,12 @@ const configureCommon = options => {
 
   return {
     output: { publicPath: '/' },
+    resolve: {
+      extensions: ['.ts', '.tsx', '.scss', '.js'],
+      alias: {
+        assets: path.resolve(__dirname, '../src/assets')
+      }
+    },
     module: {
       rules: filter([
         {
@@ -57,7 +63,11 @@ const configureCommon = options => {
           loader: 'file-loader',
           options: { name: staticAssetName }
         },
-        { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'url-loader', options: { name: staticAssetName, limit: 10000 } },
+        {
+          test: /\.(eot|svg|ttf|woff|woff2|jpg)$/,
+          loader: 'url-loader',
+          options: { name: staticAssetName, limit: 10000 }
+        },
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,

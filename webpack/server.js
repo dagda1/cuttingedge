@@ -41,7 +41,6 @@ const configure = (options = {}) => {
       path: options.outputPath
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.scss', '.js', '.json'],
       modules: [path.join(process.cwd(), '../../node_modules'), path.join(process.cwd(), 'src')]
     },
     module: {

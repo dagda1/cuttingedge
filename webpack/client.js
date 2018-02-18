@@ -72,9 +72,6 @@ const configure = options => {
       chunkFilename: '[name].js',
       devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath)
     },
-    resolve: {
-      extensions: ['.ts', '.tsx', '.scss', '.js']
-    },
     module: {
       rules: [
         {
