@@ -1,0 +1,15 @@
+.main {
+  h1 {
+    text-align: center;
+
+    &.italic {
+      color: #fff;
+      font-family: adobe-garamond-pro;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 1px;
+      line-height: 1.5em;
+      text-transform: none;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import '../../assets/scss/main';
+
+.main {
+  display: none;
+
+  @include mq-l {
+    display: block;
+  }
+}
