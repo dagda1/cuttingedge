@@ -30,7 +30,7 @@ function getUrlParts() {
 }
 
 const configure = options => {
-  const { entryPoint, outputPath, publicDir, proxy, devServer } = options;
+  const { entryPoint, publicDir, proxy, devServer } = options;
   const { protocol, host, port } = getUrlParts();
 
   options.isNode = false;
@@ -39,12 +39,12 @@ const configure = options => {
 
   const common = configureCommon(options);
 
+  console.log('-----------------------');
+  console.log(options);
+  console.log(`isStaticBuild = ${isStaticBuild}`);
+  console.log('-----------------------');
+
   const { isDevelopment, isProduction, staticAssetName } = getEnvironment();
-
-  console.log('-----------------------------');
-  console.log(outputPath);
-  console.log('-----------------------------');
-
   const config = merge(common, {
     name: 'client',
     target: 'web',
@@ -71,7 +71,7 @@ const configure = options => {
         }
       : {},
     output: {
-      path: outputPath,
+      path: path.resolve('dist'),
       filename: 'client.js',
       chunkFilename: '[name].js',
       devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath)
@@ -80,40 +80,41 @@ const configure = options => {
       rules: [
         {
           test: /\.(css|scss|sass)$/,
-          use: isDevelopment
-            ? [
-                { loader: 'style-loader' },
-                {
-                  loader: 'css-loader',
-                  options: {
-                    importLoaders: 2,
-                    modules: true,
-                    getLocalIdent: getLocalIdent
-                  }
-                },
-                { loader: 'postcss-loader', options: postcssOptions },
-                { loader: 'sass-loader' }
-              ]
-            : ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: [
+          use:
+            isDevelopment || !isStaticBuild
+              ? [
+                  { loader: 'style-loader' },
                   {
                     loader: 'css-loader',
-                    query: {
-                      modules: true,
-                      minimize: isProduction,
+                    options: {
                       importLoaders: 2,
-                      localIdentName: '[name]__[local]',
+                      modules: true,
                       getLocalIdent: getLocalIdent
                     }
                   },
-                  {
-                    loader: 'postcss-loader',
-                    options: postcssOptions
-                  },
-                  'sass-loader'
+                  { loader: 'postcss-loader', options: postcssOptions },
+                  { loader: 'sass-loader' }
                 ]
-              })
+              : ExtractTextPlugin.extract({
+                  fallback: 'style-loader',
+                  use: [
+                    {
+                      loader: 'css-loader',
+                      query: {
+                        modules: true,
+                        minimize: isProduction,
+                        importLoaders: 2,
+                        localIdentName: '[name]__[local]',
+                        getLocalIdent: getLocalIdent
+                      }
+                    },
+                    {
+                      loader: 'postcss-loader',
+                      options: postcssOptions
+                    },
+                    'sass-loader'
+                  ]
+                })
         }
       ]
     },
@@ -152,7 +153,7 @@ const configure = options => {
           },
           sourceMap: false
         }),
-      isProduction && new ExtractTextPlugin('style.css'),
+      !isStaticBuild && isProduction && new ExtractTextPlugin('style.css'),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
         'process.env.BROWSER': false,

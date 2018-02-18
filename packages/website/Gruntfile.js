@@ -11,8 +11,6 @@ module.exports = grunt => {
     requireResolution: true
   });
 
-  const outputPath = path.join(__dirname, 'dist');
-
   grunt.initConfig({
     env: {
       dev: {
@@ -46,14 +44,17 @@ module.exports = grunt => {
       }
     },
     webpack: {
+      client: require('../../webpack/client').configure({
+        entryPoint: path.join(__dirname, 'src/server/index'),
+        isStaticBuild: false
+      }),
       server: require('../../webpack/server').configure({
-        entryPoint: path.join(__dirname, 'src/index'),
-        outputPath
+        entryPoint: path.join(__dirname, 'src/index')
       })
     }
   });
 
-  grunt.registerTask('build', ['clean', 'webpack:dev']);
+  grunt.registerTask('build', ['clean', 'webpack:client']);
   grunt.registerTask('server', ['clean', 'env:dev', 'webpack:server', 'nodemon', 'open:dev']);
   grunt.registerTask('start', ['server']);
 };

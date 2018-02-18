@@ -21,14 +21,11 @@ module.exports = grunt => {
 
   grunt.loadTasks('../../tasks');
 
-  const outputPath = path.join(__dirname, 'dist');
-
   const isDevelopment = process.env.NODE_ENV === 'development';
   const isProduciton = process.env.NODE_ENV === 'production';
 
   const webpack = configure({
     entryPoint: path.join(__dirname, './demo'),
-    outputPath,
     devServer: true,
     isStaticBuild: true,
     publicDir: path.join(__dirname, './demo/public'),

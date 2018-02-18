@@ -38,7 +38,7 @@ const configure = (options = {}) => {
     output: {
       filename: 'server.js',
       libraryTarget: 'commonjs2',
-      path: options.outputPath
+      path: path.resolve('dist')
     },
     resolve: {
       modules: [path.join(process.cwd(), '../../node_modules'), path.join(process.cwd(), 'src')]

@@ -4,18 +4,15 @@ import { log } from 'winston';
 import * as path from 'path';
 
 const configureDevelopment = (app: any) => {
-  const outputPath = path.join(process.cwd(), 'dist');
-
   const clientConfig = require('../../../webpack/client').configure({
-    entryPoint: path.join(process.cwd(), 'src/client/index'),
-    outputPath
+    entryPoint: path.join(process.cwd(), 'src/client/index')
   });
 
   const publicPath = clientConfig.output.publicPath;
+  const outputPath = clientConfig.output.path;
 
   const serverConfig = require('../../../webpack/server').configure({
-    entryPoint: path.join(process.cwd(), 'src/server/index'),
-    outputPath
+    entryPoint: path.join(process.cwd(), 'src/server/index')
   });
 
   const multiCompiler = require('webpack')([clientConfig, serverConfig]);
@@ -36,18 +33,30 @@ const configureDevelopment = (app: any) => {
 };
 
 const configureProduction = (app: any) => {
-  const clientAssetsDir = path.join(__dirname, '../dist/client');
+  const clientAssetsDir = path.join(__dirname, '../dist/');
   const clientStatsPath = path.join(clientAssetsDir, 'stats.json');
-  const serverRendererpath = path.join(__dirname, '../dist/server.js');
-  const serverRenderer = require(serverRendererpath);
-  const stats = require(clientStatsPath);
-  app.use(express.static(clientAssetsDir));
-  app.use(serverRenderer(stats));
+  const serverRenderPath = path.join(__dirname, '../dist/server.js');
+  const clientStats = require(clientStatsPath);
+  const serverRender = require(serverRenderPath).default;
+  const publicPath = '/';
+  const outputPath = join(__dirname, 'dist');
+
+  app.use(publicPath, express.static(outputPath));
+  app.use(
+    serverRender({
+      clientStats,
+      outputPath
+    })
+  );
+
+  app.set('views', join(__dirname, '../dist/  views'));
 };
 
 const app = express();
 
-log('info', `Configuring server for environment: ${process.env.NODE_ENV}...`);
+console.log('-----------------------');
+console.log('info', `Configuring server for environment: ${process.env.NODE_ENV}...`);
+console.log('-----------------------');
 
 if (process.env.NODE_ENV === 'development') {
   configureDevelopment(app);
