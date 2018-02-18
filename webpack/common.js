@@ -33,10 +33,7 @@ const configureCommon = options => {
   return {
     output: { publicPath: '/' },
     resolve: {
-      extensions: ['.ts', '.tsx', '.scss', '.js'],
-      alias: {
-        assets: path.resolve(__dirname, '../src/assets')
-      }
+      extensions: ['.ts', '.tsx', '.scss', '.js']
     },
     module: {
       rules: filter([

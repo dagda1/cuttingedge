@@ -16,6 +16,9 @@ html {
 html,
 body {
   background-color: $main-bg-color;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   color: $main-color;
   line-height: 1.5;
   font-weight: 400;

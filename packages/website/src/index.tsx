@@ -4,7 +4,7 @@ import { log } from 'winston';
 import * as path from 'path';
 
 const configureDevelopment = (app: any) => {
-  const outputPath = process.cwd();
+  const outputPath = path.join(process.cwd(), 'dist');
 
   const clientConfig = require('../../../webpack/client').configure({
     entryPoint: path.join(process.cwd(), 'src/client/index'),
@@ -36,20 +36,13 @@ const configureDevelopment = (app: any) => {
 };
 
 const configureProduction = (app: any) => {
-  /*   const clientStats = require('./assets/stats.json');
-  const serverRender = require('./server').default;
-  const publicPath = '/';
-  const outputPath = join(__dirname, 'assets');
-
-  app.use(publicPath, express.static(outputPath));
-  app.use(
-    serverRender({
-      clientStats,
-      outputPath
-    })
-  );
-
-  app.set('views', join(__dirname, 'views')); */
+  const clientAssetsDir = path.join(__dirname, '../dist/client');
+  const clientStatsPath = path.join(clientAssetsDir, 'stats.json');
+  const serverRendererpath = path.join(__dirname, '../dist/server.js');
+  const serverRenderer = require(serverRendererpath);
+  const stats = require(clientStatsPath);
+  app.use(express.static(clientAssetsDir));
+  app.use(serverRenderer(stats));
 };
 
 const app = express();

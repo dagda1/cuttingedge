@@ -41,6 +41,10 @@ const configure = options => {
 
   const { isDevelopment, isProduction, staticAssetName } = getEnvironment();
 
+  console.log('-----------------------------');
+  console.log(outputPath);
+  console.log('-----------------------------');
+
   const config = merge(common, {
     name: 'client',
     target: 'web',
@@ -68,7 +72,7 @@ const configure = options => {
       : {},
     output: {
       path: outputPath,
-      filename: 'index.js',
+      filename: 'client.js',
       chunkFilename: '[name].js',
       devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath)
     },
