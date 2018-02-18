@@ -7,7 +7,7 @@ const { filter } = require('lodash');
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
   const isProduction = process.env.NODE_ENV === 'production';
-  const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]';
+  const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : 'static/media/[hash:8].[ext]';
   const isAnalyse = process.argv.includes('--analyse');
   const isVerbose = process.argv.includes('--verbose');
   const isDebug = !process.argv.includes('--release');
@@ -27,10 +27,16 @@ const configureCommon = options => {
   const typescriptOptions = options.typescriptOptions || {};
   const isNode = !!options.isNode;
 
+  const { isStaticBuild } = options;
+  const ssrBuild = !isStaticBuild;
+
   const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
 
   return {
-    output: { publicPath: '/' },
+    output: {
+      path: path.resolve('dist'),
+      publicPath: '/'
+    },
     resolve: {
       extensions: ['.ts', '.tsx', '.scss', '.js']
     },

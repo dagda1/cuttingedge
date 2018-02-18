@@ -49,12 +49,12 @@ module.exports = grunt => {
         isStaticBuild: false
       }),
       server: require('../../webpack/server').configure({
-        entryPoint: path.join(__dirname, 'src/index')
+        entryPoint: path.join(__dirname, 'src/server/index')
       })
     }
   });
 
-  grunt.registerTask('build', ['clean', 'webpack:client']);
+  grunt.registerTask('build', ['clean', 'webpack:client', 'webpack:server']);
   grunt.registerTask('server', ['clean', 'env:dev', 'webpack:server', 'nodemon', 'open:dev']);
   grunt.registerTask('start', ['server']);
 };

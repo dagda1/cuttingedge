@@ -38,16 +38,9 @@ const configure = options => {
   const { isStaticBuild } = options;
   const ssrBuild = !isStaticBuild;
 
-  const { isDevelopment, isProduction, staticAssetName } = getEnvironment();
+  const { isDevelopment, isProduction } = getEnvironment();
 
   const common = configureCommon(options);
-
-  console.log('-------------------------');
-  console.log(`ssrBuild = ${ssrBuild}`);
-  console.log(`isProduction = ${isProduction}`);
-  console.log(`isDevelopment = ${isDevelopment}`);
-  console.log(`isStaticBuild && isProduction = ${isStaticBuild && isProduction}`);
-  console.log('-------------------------');
 
   const config = merge(common, {
     name: 'client',
@@ -75,9 +68,8 @@ const configure = options => {
         }
       : {},
     output: {
-      path: path.resolve('dist'),
-      filename: 'client.js',
-      chunkFilename: '[name].js',
+      filename: `static/js/[name].[${isProduction ? 'chunkhash' : 'hash'}:8].js`,
+      chunkFilename: `static/js/[name].[${isProduction ? 'chunkhash' : 'hash'}:8].chunk.js`,
       devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath)
     },
     module: {
@@ -156,7 +148,7 @@ const configure = options => {
           },
           sourceMap: false
         }),
-      ssrBuild && new ExtractCssChunks(),
+      ssrBuild && new ExtractCssChunks(isDevelopment ? undefined : 'static/css/[name].[contenthash].css'),
       ssrBuild &&
         new webpack.optimize.CommonsChunkPlugin({
           names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
@@ -193,12 +185,6 @@ const configure = options => {
       net: 'empty',
       tls: 'empty'
     }
-  });
-
-  config.plugins.forEach(plugin => {
-    console.log('-----------------');
-    console.log(plugin);
-    console.log('-----------------');
   });
 
   return config;

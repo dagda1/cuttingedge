@@ -16,7 +16,7 @@ const configure = (options = {}) => {
 
   const common = configureCommon(options);
 
-  const { isDevelopment, staticAssetName, isAnalyse, isVerbose, isDebug } = getEnvironment();
+  const { isDevelopment, isAnalyse, isVerbose, isDebug } = getEnvironment();
 
   const config = merge(common, {
     name: 'server',
@@ -37,8 +37,7 @@ const configure = (options = {}) => {
     devtool: 'cheap-module-eval-source-map',
     output: {
       filename: 'server.js',
-      libraryTarget: 'commonjs2',
-      path: path.resolve('dist')
+      libraryTarget: 'commonjs2'
     },
     resolve: {
       modules: [path.join(process.cwd(), '../../node_modules'), path.join(process.cwd(), 'src')]

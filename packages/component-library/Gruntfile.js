@@ -8,7 +8,7 @@ const openBrowser = require('react-dev-utils/openBrowser');
 const { configure, getUrlParts } = require('../../webpack/client');
 const testConfig = require('../../tasks/test').config;
 
-const { isDevelopment, staticAssetName } = common;
+const { isDevelopment } = common;
 
 module.exports = grunt => {
   if (!process.env.PORT) process.env.PORT = '8888';
