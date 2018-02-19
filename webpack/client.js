@@ -152,7 +152,7 @@ const configure = options => {
       ssrBuild &&
         new webpack.optimize.CommonsChunkPlugin({
           names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
-          filename: '[name].js',
+          filename: 'static/js/[name].js',
           minChunks: Infinity
         }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),

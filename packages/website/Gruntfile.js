@@ -36,6 +36,14 @@ module.exports = grunt => {
     clean: {
       node: './dist'
     },
+    copy: {
+      prod: {
+        expand: true,
+        flatten: true,
+        src: 'public/views/*',
+        dest: 'dist/views/'
+      }
+    },
     watch: {
       node: {
         files: ['./src/**/*.ts', './src/**/*.tsx', './src/index.ts'],
@@ -59,7 +67,8 @@ module.exports = grunt => {
     }
   });
 
-  grunt.registerTask('build', ['clean', 'webpack:client', 'webpack:server', 'webpack:node']);
+  grunt.registerTask('node', ['clean', 'webpack:node']);
+  grunt.registerTask('build', ['clean', 'webpack:client', 'webpack:server', 'webpack:node', 'copy']);
   grunt.registerTask('server', ['clean', 'env:dev', 'webpack:node', 'nodemon', 'open:dev']);
   grunt.registerTask('start', ['server']);
 };

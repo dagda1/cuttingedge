@@ -34,10 +34,22 @@ const configureDevelopment = (app: any) => {
 };
 
 const configureProduction = (app: any) => {
-  const clientAssetsDir = path.join(__dirname, '../dist/');
-  const clientStatsPath = path.join(clientAssetsDir, 'stats.json');
-  const serverRenderPath = path.join(__dirname, '../dist/server.js');
+  const rootDir = path.join(process.cwd(), 'dist');
+  const clientStatsPath = path.join(rootDir, 'stats.json');
+  const serverRenderPath = path.join(rootDir, 'server.js');
+
+  console.log('-------------------');
+  console.log('process.cwd() = ${process.cwd()}');
+  console.log(`rootDir = ${rootDir}`);
+  console.log(`clientStatsPath = ${clientStatsPath}`);
+  console.log(`serverRenderPath = ${serverRenderPath}`);
+  console.log('-------------------');
+
+  console.log('about to make it hererere');
+
   const clientStats = require(clientStatsPath);
+
+  console.log('made it hererere');
   const serverRender = require(serverRenderPath).default;
   const publicPath = '/';
   const outputPath = join(__dirname, 'dist');
