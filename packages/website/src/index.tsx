@@ -34,27 +34,13 @@ const configureDevelopment = (app: any) => {
 };
 
 const configureProduction = (app: any) => {
-  const rootDir = path.join(process.cwd(), 'dist');
-  const clientStatsPath = path.join(rootDir, 'stats.json');
-  const serverRenderPath = path.join(rootDir, 'server.js');
-
-  console.log('-------------------');
-  console.log('process.cwd() = ${process.cwd()}');
-  console.log(`rootDir = ${rootDir}`);
-  console.log(`clientStatsPath = ${clientStatsPath}`);
-  console.log(`serverRenderPath = ${serverRenderPath}`);
-  console.log('-------------------');
-
-  console.log('about to make it hererere');
-
-  const clientStats = require(clientStatsPath);
-
-  console.log('made it hererere');
-  const serverRender = require(serverRenderPath).default;
+  const clientStats = require('./stats.json');
+  const serverRender = require('./server.js').default;
   const publicPath = '/';
-  const outputPath = join(__dirname, 'dist');
+  const outputPath = join(process.cwd(), 'dist');
 
   app.use(publicPath, express.static(outputPath));
+
   app.use(
     serverRender({
       clientStats,
@@ -62,7 +48,7 @@ const configureProduction = (app: any) => {
     })
   );
 
-  app.set('views', join(__dirname, '../dist/  views'));
+  app.set('views', join(process.cwd(), 'dist/views'));
 };
 
 const app = express();

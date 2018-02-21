@@ -17,21 +17,23 @@ const configure = (options = {}) => {
 
   const { isDevelopment, isAnalyse, isVerbose, isDebug } = getEnvironment();
 
+  const externals =
+    options.externals ||
+    nodeExternals({
+      modulesDir: path.join(process.cwd(), '../../node_modules'),
+      whitelist: [
+        isDevelopment ? 'webpack/hot/poll?300' : null,
+        /\.(eot|woff|woff2|ttf|otf)$/,
+        /\.(svg|png|jpg|jpeg|gif|ico)$/,
+        /\.(mp4|mp3|ogg|swf|webp)$/,
+        /\.(css|scss|sass|sss|less)$/
+      ].filter(x => x)
+    });
+
   const config = merge(common, {
     name: 'server',
     target: 'node',
-    externals: [
-      nodeExternals({
-        modulesDir: path.join(process.cwd(), '../../node_modules'),
-        whitelist: [
-          isDevelopment ? 'webpack/hot/poll?300' : null,
-          /\.(eot|woff|woff2|ttf|otf)$/,
-          /\.(svg|png|jpg|jpeg|gif|ico)$/,
-          /\.(mp4|mp3|ogg|swf|webp)$/,
-          /\.(css|scss|sass|sss|less)$/
-        ].filter(x => x)
-      })
-    ],
+    externals,
     entry: [options.entryPoint],
     devtool: 'cheap-module-eval-source-map',
     output: {
