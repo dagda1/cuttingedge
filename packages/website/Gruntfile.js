@@ -5,7 +5,7 @@ const path = require('path');
 const { merge } = require('lodash');
 const readdirSync = require('fs').readdirSync;
 
-const modExternals = readdirSync(path.join(__dirname, '../../node_modules'))
+const nodeExternals = readdirSync(path.join(__dirname, '../../node_modules'))
   .filter(x => !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(x))
   .reduce((externals, mod) => {
     externals[mod] = `commonjs ${mod}`;
@@ -13,7 +13,7 @@ const modExternals = readdirSync(path.join(__dirname, '../../node_modules'))
   }, {});
 
 const externals = {
-  ...modExternals,
+  ...nodeExternals,
   './stats.json': 'commonjs ./stats.json',
   './server.js': 'commonjs ./server.js'
 };
@@ -78,7 +78,7 @@ module.exports = grunt => {
         entryPoint: path.join(__dirname, 'src/index'),
         filename: 'index.js',
         externals: {
-          ...modExternals,
+          ...nodeExternals,
           './stats.json': 'commonjs ./stats.json',
           './server.js': 'commonjs ./server.js'
         }
