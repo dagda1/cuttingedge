@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development grunt start",
-    "build": "NODE_ENV=production grunt build"
+    "build": "NODE_ENV=production grunt build",
+    "deploy": "NODE_ENV=production ./bin/deploy.sh",
+    "serve": "NODE_ENV=production node ./index.js"
   },
   "dependencies": {
     "@cutting/component-library": "0.1.0",
@@ -17,6 +19,8 @@
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "global": "^4.3.2",
+    "grunt-cli": "^1.2.0",
     "react-universal-component": "^2.8.0",
     "redux-devtools-extension": "2.13.2",
     "winston": "^2.4.0",

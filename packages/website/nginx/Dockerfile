@@ -1,11 +1,13 @@
-FROM node:9
 FROM nginx:1.13
 
-ADD ./ssl /etc/nginx/ssl
+ADD ./nginx/ssl /etc/nginx/ssl
 
-ADD ./nginx_nossl.conf /etc/nginx/
-ADD ./nginx_ssl.conf /etc/nginx/
-ADD ../dist /static
+ADD ./nginx/nginx_no_ssl.conf /etc/nginx/nginx_no_ssl.conf
+ADD ./nginx/nginx_ssl.conf /etc/nginx/nginx_ssl.conf
+ADD ./dist /cutting
 
-ADD ./setupconf.sh .
+ADD ./nginx/setupconf.sh .
+
+RUN chmod +x ./setupconf.sh
+
 RUN ./setupconf.sh

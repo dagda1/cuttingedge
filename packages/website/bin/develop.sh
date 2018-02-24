@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 #start development server on :8000
