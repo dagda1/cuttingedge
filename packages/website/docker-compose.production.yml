@@ -2,8 +2,8 @@ version: '3'
 services:
     server:
         build:
-            context: ./
-            dockerfile: ./Dockerfile
+            context: ../../
+            dockerfile: ./packages/website/Dockerfile
         command: node /cutting/index.js
         environment:
             PORT: 8000

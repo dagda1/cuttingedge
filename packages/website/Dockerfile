@@ -2,11 +2,11 @@
 FROM node:9.2
 
 # add code
-COPY ./dist /cutting
+COPY ./packages/website/dist /cutting
 
 WORKDIR /cutting
 
 COPY package.json yarn.lock /cutting/
-RUN BUILD_ONLY=true yarn install --pure-lockfile && yarn cache clean --production
+COPY ./node_modules /cutting/
 
 CMD npm run serve
