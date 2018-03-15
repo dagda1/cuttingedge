@@ -39,6 +39,8 @@ const configureProduction = (app: any) => {
   const publicPath = '/';
   const outputPath = join(process.cwd(), 'dist');
 
+  console.log('we are here captain monyana');
+
   app.use(publicPath, express.static(outputPath));
 
   app.use(

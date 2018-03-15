@@ -4,6 +4,7 @@ const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const nodeExternals = require('webpack-node-externals');
 const getLocalIdent = require('./getLocalIdent');
+const fs = require('fs');
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
@@ -17,10 +18,21 @@ const configure = (options = {}) => {
 
   const { isDevelopment, isAnalyse, isVerbose, isDebug } = getEnvironment();
 
+  const modulesDirectory = fs.existsSync('../../node_modules') ? '../../node_modules' : './node_modules';
+  const modulesDir = path.join(process.cwd(), modulesDirectory);
+
+  console.log('----------------------------');
+  console.log(`process.cwd() = ${process.cwd()}`);
+  console.log(`modulesDirectory = ${modulesDirectory}`);
+  console.log(`modulesDir = ${modulesDir}`);
+  console.log(`fs.exists('./node_modules') = ${fs.exists('./node_modules')}`);
+  console.log(`fs.existsSync(modulesDir) ${fs.existsSync(modulesDir)}`);
+  console.log('----------------------------');
+
   const externals =
     options.externals ||
     nodeExternals({
-      modulesDir: path.join(process.cwd(), '../../node_modules'),
+      modulesDir,
       whitelist: [
         isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,
@@ -41,7 +53,7 @@ const configure = (options = {}) => {
       libraryTarget: 'commonjs2'
     },
     resolve: {
-      modules: [path.join(process.cwd(), '../../node_modules'), path.join(process.cwd(), 'src')]
+      modules: [path.join(process.cwd(), modulesDirectory), path.join(process.cwd(), 'src')]
     },
     module: {
       rules: [
