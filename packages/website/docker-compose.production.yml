@@ -4,7 +4,7 @@ services:
         build:
             context: ../../
             dockerfile: ./packages/website/Dockerfile
-        command: node /cutting/index.js
+        command: tail -F anything
         environment:
             PORT: 8000
             NODE_ENV: production

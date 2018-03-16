@@ -25,7 +25,7 @@ const configure = (options = {}) => {
   console.log(`process.cwd() = ${process.cwd()}`);
   console.log(`modulesDirectory = ${modulesDirectory}`);
   console.log(`modulesDir = ${modulesDir}`);
-  console.log(`fs.exists('./node_modules') = ${fs.exists('./node_modules')}`);
+  console.log(`NODE_ENV=${process.node.env}`);
   console.log(`fs.existsSync(modulesDir) ${fs.existsSync(modulesDir)}`);
   console.log('----------------------------');
 

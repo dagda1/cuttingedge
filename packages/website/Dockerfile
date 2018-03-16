@@ -6,17 +6,23 @@ RUN apt-get -qq -y install lsof
 
 RUN rm -rf /cutting/
 
-# add code
 COPY ./packages/website/dist /cutting/
 
 WORKDIR /cutting
 
+RUN rm -rf /node_modules/@cutting
+
 COPY ./packages/website/package.json ./packages/website/yarn.lock /cutting/
 
-RUN mkdir /cutting/node_modules
-ADD node_modules /cutting/node_modules
+ADD ./packages/website/.npmrc-deploy /root/.npmrc
 
-RUN ls -a /cutting
-RUN ls -a /cutting/node_modules
+RUN yarn install --production
 
-CMD yarn run serve
+RUN mkdir /cutting/tmp
+ADD node_modules /cutting/tmp
+
+RUN rm -rf /cutting/tmp/@cutting
+
+RUN cp -rf /cutting/tmp/* /cutting/node_modules
+
+#CMD yarn run serve
