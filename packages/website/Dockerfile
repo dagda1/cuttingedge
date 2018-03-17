@@ -25,4 +25,6 @@ RUN rm -rf /cutting/tmp/@cutting
 
 RUN cp -rf /cutting/tmp/* /cutting/node_modules
 
+RUN rm -rf /cutting/tmp
+
 #CMD yarn run serve
