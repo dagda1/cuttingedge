@@ -4,10 +4,11 @@ services:
         build:
             context: ../../
             dockerfile: ./packages/website/Dockerfile
-        command: tail -F anything
+        command: node /cutting/index.js
         environment:
             PORT: 8000
             NODE_ENV: production
+        restart: always
     nginx:
         build:
             context: ./
@@ -16,3 +17,4 @@ services:
             - server
         ports:
             - "80:80"
+        restart: always
