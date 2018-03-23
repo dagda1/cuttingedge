@@ -14,4 +14,8 @@ ADD ./nginx/setupconf.sh .
 
 RUN chmod +x ./setupconf.sh
 
+RUN apt-get update && apt-get install -y procps curl lsof
+
 RUN ./setupconf.sh
+
+# CMD ["nginx", "-g", "daemon off;"]

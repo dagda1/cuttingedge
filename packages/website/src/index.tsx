@@ -37,7 +37,12 @@ const configureProduction = (app: any) => {
   const clientStats = require('./stats.json');
   const serverRender = require('./server.js').default;
   const publicPath = '/';
-  const outputPath = join(process.cwd(), 'dist');
+  const outputPath = join(process.cwd(), '.');
+
+  console.log('-----------------------');
+  console.log(`outputPath`);
+  console.log(`join(process.cwd(), './views') = ${join(process.cwd(), './views')}`);
+  console.log('-----------------------');
 
   console.log('we are here captain monyana');
 
@@ -50,7 +55,7 @@ const configureProduction = (app: any) => {
     })
   );
 
-  app.set('views', join(process.cwd(), 'dist/views'));
+  app.set('views', join(process.cwd(), './views'));
 };
 
 const app = express();
@@ -64,5 +69,9 @@ if (process.env.NODE_ENV === 'development') {
 log('info', 'Configuring server engine...');
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
+
+console.log('---------------------');
+console.log(`process.env.PORT = ${process.env.PORT}`);
+console.log('---------------------');
 
 app.listen(app.get('port'), () => log('info', `Server listening on port ${app.get('port')}...`));

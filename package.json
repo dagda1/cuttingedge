@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build": "grunt build"
+    "build": "NODE_ENV=production grunt build"
   },
   "dependencies": {
     "@cutting/util": "0.1.0",
@@ -89,8 +89,6 @@
     "webpack-node-externals": "^1.6.0"
   },
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   }
 }
