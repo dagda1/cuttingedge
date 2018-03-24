@@ -21,14 +21,6 @@ const configure = (options = {}) => {
   const modulesDirectory = fs.existsSync('../../node_modules') ? '../../node_modules' : './node_modules';
   const modulesDir = path.join(process.cwd(), modulesDirectory);
 
-  console.log('----------------------------');
-  console.log(`process.cwd() = ${process.cwd()}`);
-  console.log(`modulesDirectory = ${modulesDirectory}`);
-  console.log(`modulesDir = ${modulesDir}`);
-  console.log(`NODE_ENV=${process.env.NODE_ENV}`);
-  console.log(`fs.existsSync(modulesDir) ${fs.existsSync(modulesDir)}`);
-  console.log('----------------------------');
-
   const externals =
     options.externals ||
     nodeExternals({

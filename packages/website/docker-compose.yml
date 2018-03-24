@@ -1,0 +1,21 @@
+version: '3'
+services:
+    server:
+        build:
+            context: ../../
+            dockerfile: ./packages/website/Dockerfile
+        command: yarn serve
+        environment:
+            PORT: 3000
+            NODE_ENV: production
+        restart: always
+    nginx:
+        build:
+            context: ./
+            dockerfile: ./nginx/Dockerfile
+        command: nginx -c /etc/nginx/nginx.conf -g "daemon off;"
+        depends_on:
+            - server
+        ports:
+            - "80:80"
+        restart: always
