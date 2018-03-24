@@ -39,13 +39,6 @@ const configureProduction = (app: any) => {
   const publicPath = '/';
   const outputPath = join(process.cwd(), '.');
 
-  console.log('-----------------------');
-  console.log(`outputPath`);
-  console.log(`join(process.cwd(), './views') = ${join(process.cwd(), './views')}`);
-  console.log('-----------------------');
-
-  console.log('we are here captain monyana');
-
   app.use(publicPath, express.static(outputPath));
 
   app.use(

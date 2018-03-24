@@ -12,4 +12,5 @@ if ls ssl/*.crt &> /dev/null; then
 else
     echo "not using ssl"
     mv ./nginx_no_ssl.conf ./nginx.conf
+    #cp ./nginx.conf ./conf.d/default.conf
 fi
