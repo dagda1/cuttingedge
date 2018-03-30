@@ -52,7 +52,7 @@ export const Footer: React.StatelessComponent = () => (
                 </a>
               </div>
               <div className={styles.copyright}>
-                Copyright © Cutting-Edge Solutions (Scotland) inc. Al rights reserved
+                Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved
               </div>
             </GelItem>
           </Layout>

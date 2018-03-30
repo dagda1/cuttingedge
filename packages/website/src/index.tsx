@@ -63,8 +63,4 @@ log('info', 'Configuring server engine...');
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
 
-console.log('---------------------');
-console.log(`process.env.PORT = ${process.env.PORT}`);
-console.log('---------------------');
-
 app.listen(app.get('port'), () => log('info', `Server listening on port ${app.get('port')}...`));

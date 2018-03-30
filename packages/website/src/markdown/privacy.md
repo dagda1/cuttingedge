@@ -1,4 +1,4 @@
-This Privacy Policy governs the manner in which CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED collects, uses, maintains and discloses information collected from users (each, a "User") of the http://cutting-edge.scot/ website ("Site"). This privacy policy applies to the Site and all products and services offered by CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED.
+This Privacy Policy governs the manner in which CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED collects, uses, maintains and discloses information collected from users (each, a "User") of the http://cutting.scot/ website ("Site"). This privacy policy applies to the Site and all products and services offered by CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED.
 
 Personal identification information
 
@@ -44,7 +44,7 @@ Contacting us
 
 If you have any questions about this Privacy Policy, the practices of this site, or your dealings with this site, please contact us at:
 CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED
-http://cutting-edge.scot /
+http://cutting.scot /
 29 Fifth Avenue Glasgow G12 0AR United Kingdom
 +44 7908771391
 dagda1@scotalt.net

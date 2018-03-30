@@ -3,13 +3,14 @@ import 'react-universal-component/server';
 import { flushChunkNames } from 'react-universal-component/server';
 import { renderToString } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';
-import { App } from '../containers/App';
 import { StaticRouter, Route } from 'react-router-dom';
 import { Request, Response } from 'express';
 import configureStore from '../store';
 import history from '../routes/history';
 
 import { Provider } from 'react-redux';
+import { Switch } from 'react-router';
+import { pages } from '../routes';
 
 /**
  * Provides the server side rendered app. In development environment, this method is called by
@@ -21,12 +22,18 @@ import { Provider } from 'react-redux';
  */
 export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response) => {
   const store = configureStore({}, history);
-  const context = { store };
+  const context: any = { store };
 
   const app = (
     <Provider store={store}>
       <StaticRouter location={req.url} context={context}>
-        <Route component={App} />
+        <Switch>
+          <>
+            {pages.map(page => (
+              <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
+            ))}
+          </>
+        </Switch>
       </StaticRouter>
     </Provider>
   );
