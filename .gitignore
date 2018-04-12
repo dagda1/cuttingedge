@@ -29,7 +29,3 @@ yarn-error.log*
 .tscache
 
 .npmrc-deploy
-
-docker-compose-prod.yml
-
-ssl
