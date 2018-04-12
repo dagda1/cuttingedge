@@ -27,3 +27,9 @@ yarn-error.log*
 *.tmp.txt
 
 .tscache
+
+.npmrc-deploy
+
+docker-compose-prod.yml
+
+ssl

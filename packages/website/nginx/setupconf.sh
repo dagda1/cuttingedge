@@ -11,6 +11,5 @@ if ls ssl/*.crt &> /dev/null; then
     sed -i "s#ssl/server.key#$KEY#g" /etc/nginx/nginx.conf
 else
     echo "not using ssl"
-    mv ./nginx_no_ssl.conf ./nginx.conf
-    #cp ./nginx.conf ./conf.d/default.conf
+    mv ./nginx_ssl.conf ./nginx.conf
 fi

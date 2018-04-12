@@ -17,4 +17,7 @@ RUN chmod +x ./setupconf.sh
 RUN mkdir /etc/nginx/logs/
 RUN touch /etc/nginx/logs/error.log
 
+RUN chown -R root:root /etc/nginx/ssl
+RUN chmod -R 600 /etc/nginx/ssl
+
 RUN ./setupconf.sh
