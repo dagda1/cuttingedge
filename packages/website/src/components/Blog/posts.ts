@@ -6,6 +6,12 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    title: 'Higher Kinded Types in Typescript',
+    summary:
+      'Higher kinded types are not currently possible in typescript but first of all let’s explain why they exist.',
+    link: 'http://www.thesoftwaresimpleton.com/blog/2018/04/14/higher-kinded-types/'
+  },
+  {
     title: 'Creating an Accessible React Website',
     summary:
       "I've recently been working on an online application form in the form of a multistep wizard that had strict accessibility requirements. I've never worked on a project with such strict requirements before. I've also heard rumblings that it was not possible to make a SPA accessible. It turns out that there is not that much work involved in making your site accessible and I am going to ensure that any work I do from now on has an accessible first approach. I'm now going to outline in no particular order what I have learned over the past few months.",

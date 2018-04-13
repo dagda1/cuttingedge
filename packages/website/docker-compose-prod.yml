@@ -7,6 +7,7 @@ services:
         PORT: 3000
         NODE_ENV: production
     command: yarn serve
+    restart: always
 
   nginx:
     image: ngingx
@@ -16,3 +17,4 @@ services:
     volumes:
         - /root/ssl:/etc/nginx/ssl/
     command: nginx -c /etc/nginx/nginx.conf -g "daemon off;"
+    restart: always
