@@ -27,6 +27,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
+    "@types/winston": "^2.3.9",
     "stats-webpack-plugin": "^0.6.2",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-flush-chunks": "^1.2.2",

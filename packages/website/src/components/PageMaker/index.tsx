@@ -9,7 +9,7 @@ export interface PageMakerProps {
   Comp: React.ComponentType<any>;
 }
 
-export const pageMaker = ({ Comp }: PageMakerProps) => props => (
+export const pageMaker = ({ Comp }: PageMakerProps) => (props: any) => (
   <>
     <Header />
     <main role="main" className={cs('wrapper', styles.container)}>
