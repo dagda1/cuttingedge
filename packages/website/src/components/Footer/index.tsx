@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const styles = require('./Footer.scss');
 
-export const Footer: React.StatelessComponent = () => (
+export const Footer: React.SFC = () => (
   <footer role="contentinfo">
     <Wrap className="wrapper">
       <Layout>

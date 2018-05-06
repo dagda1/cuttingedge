@@ -6,7 +6,7 @@ import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 
 const styles = require('./OSS.scss');
 
-export const OSS: React.StatelessComponent = () => (
+export const OSS: React.SFC = () => (
   <Wrap className={styles.container}>
     <Heading level={1}>Open Source Software</Heading>
     <Layout>

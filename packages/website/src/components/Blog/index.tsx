@@ -4,7 +4,7 @@ import { posts, Post } from './posts';
 import { StaticLayout } from '../../layouts/StaticLayout';
 import { Heading, ExternalLink } from '@cutting/component-library';
 
-export const Blog: React.StatelessComponent = () => (
+export const Blog: React.SFC = () => (
   <StaticLayout heading="Blog">
     {posts.map((post: Post, i: number) => (
       <div key={i}>

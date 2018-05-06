@@ -13,7 +13,7 @@ import { ScrollToTop } from '@cutting/connected-components';
 
 const store = configureStore({}, history);
 
-export class App extends React.Component<any, any> {
+export class App extends React.Component {
   render() {
     return (
       <Provider store={store}>

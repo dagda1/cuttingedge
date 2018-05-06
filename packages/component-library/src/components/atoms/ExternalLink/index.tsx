@@ -4,7 +4,7 @@ export interface ExternalLinkProps extends React.AnchorHTMLAttributes<HTMLAnchor
   dataSelector?: string;
 }
 
-export const ExternalLink: React.StatelessComponent<ExternalLinkProps> = ({
+export const ExternalLink: React.SFC<ExternalLinkProps> = ({
   className,
   href,
   dataSelector,

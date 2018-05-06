@@ -8,7 +8,7 @@ import * as urls from '../../urls';
 
 const styles = require('./Menu.scss');
 
-export const Menu: React.StatelessComponent = () => (
+export const Menu: React.SFC = () => (
   <nav className={cs(styles.container, 'wrapper')}>
     <Wrap>
       <Layout center>

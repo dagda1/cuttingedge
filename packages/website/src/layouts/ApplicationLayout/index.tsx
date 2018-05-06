@@ -10,11 +10,7 @@ export interface ApplicationLayoutProps {
 
 const styles = require('./ApplicationLayout.scss');
 
-export const ApplicationLayout: React.StatelessComponent<ApplicationLayoutProps> = ({
-  heading,
-  italicise,
-  children
-}) => (
+export const ApplicationLayout: React.SFC<ApplicationLayoutProps> = ({ heading, italicise, children }) => (
   <>
     <Wrap className={styles.main}>
       {heading && (
