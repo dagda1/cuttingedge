@@ -168,6 +168,12 @@
     "@types/tapable" "*"
     "@types/uglify-js" "*"
 
+"@types/winston@^2.3.9":
+  version "2.3.9"
+  resolved "https://registry.npmjs.org/@types/winston/-/winston-2.3.9.tgz#1ff9f1bb57952fe3d88c1b21c4899ede316a35bc"
+  dependencies:
+    "@types/node" "*"
+
 abab@^1.0.3, abab@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"

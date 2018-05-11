@@ -1,3 +1,5 @@
+import * as invariant from 'invariant';
+
 export function elementIsVisibleInScrollable(container: HTMLElement, element: HTMLElement) {
   const containerTop = container.scrollTop;
   const containerBottom = containerTop + container.clientHeight;
@@ -59,26 +61,34 @@ function doScrolling(element: HTMLElement, container: HTMLElement, duration: num
   });
 }
 
+export interface ScrollToOptions {
+  container: HTMLElement | Window | string;
+  offset: number;
+  duration: number;
+}
+
+export const resolveElement = (element: HTMLElement | string): HTMLElement =>
+  typeof element === 'string' ? (document.querySelector(element) as HTMLElement) : element;
+
 export const scrollToElement = (
-  element: HTMLElement,
-  container: HTMLElement,
-  options: {
-    offset: number;
-  } = { offset: 0 }
+  element: HTMLElement | string,
+  { container, duration, offset }: { container: HTMLElement | string | Window; duration: number; offset: number }
 ) => (e?: Event) => {
+  const elementToScrollTo = resolveElement(element);
+  const scollContainer = resolveElement(container);
+
+  invariant(elementToScrollTo, 'element cannot be null');
+  invariant(scollContainer, 'container cannot be null');
+
   setTimeout(() => {
-    if (elementIsVisibleInScrollable(element, container)) {
+    if (elementIsVisibleInScrollable(elementToScrollTo, scollContainer)) {
       return;
     }
 
-    doScrolling(element, container, 1000, options);
+    doScrolling(elementToScrollTo, scollContainer, 1000, options);
   });
 };
 
-export interface ScrollToOptions {
-  offset: number;
-}
-
-export const scrollTo = (element: HTMLElement, container: HTMLElement, options: ScrollToOptions = { offset: 0 }) => {
-  return scrollToElement(element, container, options);
-};
+/* export const scrollTo = (element: HTMLElement, options: ScrollToOptions = { offset: 0 }) => {
+  return scrollToElement(element, options);
+}; */

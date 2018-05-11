@@ -11,7 +11,7 @@ const testConfig = require('../../tasks/test').config;
 const { isDevelopment } = common;
 
 module.exports = grunt => {
-  if (!process.env.PORT) process.env.PORT = '8080';
+  if (!process.env.PORT) process.env.PORT = '3100';
 
   require('load-grunt-tasks')(grunt, {
     config: '../../package.json',
