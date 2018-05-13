@@ -561,13 +561,13 @@ awesome-typescript-loader@^3.4.0:
     object-assign "^4.1.1"
     source-map-support "^0.4.15"
 
-aws-sign2@~0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.6.0.tgz#14342dd38dbcc94d0e5b87d763cd63612c0e794f"
+aws-sign2@~0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.8.0.tgz#14342dd38dbcc94d0e5b87d763cd63612c0e794f"
 
-aws-sign2@~0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
+aws-sign2@~0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.8.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
 
 aws4@^1.2.1, aws4@^1.6.0:
   version "1.6.0"
@@ -1692,7 +1692,7 @@ css-loader@^0.28.7:
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.9.tgz#68064b85f4e271d7ce4c48a58300928e535d1c95"
   dependencies:
     babel-code-frame "^6.26.0"
-    css-selector-tokenizer "^0.7.0"
+    css-selector-tokenizer "^0.8.0"
     cssnano "^3.10.0"
     icss-utils "^2.1.0"
     loader-utils "^1.0.2"
@@ -1715,9 +1715,9 @@ css-select@^1.1.0, css-select@~1.2.0:
     domutils "1.5.1"
     nth-check "~1.0.1"
 
-css-selector-tokenizer@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/css-selector-tokenizer/-/css-selector-tokenizer-0.7.0.tgz#e6988474ae8c953477bf5e7efecfceccd9cf4c86"
+css-selector-tokenizer@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/css-selector-tokenizer/-/css-selector-tokenizer-0.8.0.tgz#e6988474ae8c953477bf5e7efecfceccd9cf4c86"
   dependencies:
     cssesc "^0.1.0"
     fastparse "^1.1.1"
@@ -2189,7 +2189,7 @@ enzyme-adapter-react-16@^1.1.1:
     object.assign "^4.0.4"
     object.values "^1.0.4"
     prop-types "^15.6.0"
-    react-reconciler "^0.7.0"
+    react-reconciler "^0.8.0"
     react-test-renderer "^16.0.0-0"
 
 enzyme-adapter-utils@^1.3.0:
@@ -2443,9 +2443,9 @@ exec-sh@^0.2.0:
   dependencies:
     merge "^1.1.3"
 
-execa@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-0.7.0.tgz#944becd34cc41ee32a63a9faf27ad5a65fc59777"
+execa@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#944becd34cc41ee32a63a9faf27ad5a65fc59777"
   dependencies:
     cross-spawn "^5.0.1"
     get-stream "^3.0.0"
@@ -3195,9 +3195,9 @@ grunt-env@^0.4.4:
     ini "~1.3.0"
     lodash "~2.4.1"
 
-grunt-hub@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/grunt-hub/-/grunt-hub-0.7.0.tgz#8f722ffd1abfe9e5cad3b89d75b1417858ec25ac"
+grunt-hub@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/grunt-hub/-/grunt-hub-0.8.0.tgz#8f722ffd1abfe9e5cad3b89d75b1417858ec25ac"
   dependencies:
     async "~0.9.0"
     chalk "~0.4.0"
@@ -5762,7 +5762,7 @@ os-locale@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/os-locale/-/os-locale-2.1.0.tgz#42bc2900a6b5b8bd17376c8e882b65afccf24bf2"
   dependencies:
-    execa "^0.7.0"
+    execa "^0.8.0"
     lcid "^1.0.0"
     mem "^1.1.0"
 
@@ -6098,7 +6098,7 @@ postcss-global-import@^1.0.1:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/postcss-global-import/-/postcss-global-import-1.0.6.tgz#0ef46c56dd38ba99901052aa9f56f91fbeafa45d"
   dependencies:
-    css-selector-tokenizer "^0.7.0"
+    css-selector-tokenizer "^0.8.0"
     postcss "^6.0.14"
     resolve "^1.1.7"
 
@@ -6214,14 +6214,14 @@ postcss-modules-local-by-default@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/postcss-modules-local-by-default/-/postcss-modules-local-by-default-1.2.0.tgz#f7d80c398c5a393fa7964466bd19500a7d61c069"
   dependencies:
-    css-selector-tokenizer "^0.7.0"
+    css-selector-tokenizer "^0.8.0"
     postcss "^6.0.1"
 
 postcss-modules-scope@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/postcss-modules-scope/-/postcss-modules-scope-1.1.0.tgz#d6ea64994c79f97b62a72b426fbe6056a194bb90"
   dependencies:
-    css-selector-tokenizer "^0.7.0"
+    css-selector-tokenizer "^0.8.0"
     postcss "^6.0.1"
 
 postcss-modules-values@^1.3.0:
@@ -6289,7 +6289,7 @@ postcss-svgo@^2.1.1:
     is-svg "^2.0.0"
     postcss "^5.0.14"
     postcss-value-parser "^3.2.3"
-    svgo "^0.7.0"
+    svgo "^0.8.0"
 
 postcss-unique-selectors@^2.0.2:
   version "2.0.2"
@@ -6661,9 +6661,9 @@ react-proxy@^3.0.0-alpha.0:
   dependencies:
     lodash "^4.6.1"
 
-react-reconciler@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.7.0.tgz#9614894103e5f138deeeb5eabaf3ee80eb1d026d"
+react-reconciler@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.8.0.tgz#9614894103e5f138deeeb5eabaf3ee80eb1d026d"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -6989,7 +6989,7 @@ request@2, request@^2.79.0, request@^2.83.0:
   version "2.83.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
   dependencies:
-    aws-sign2 "~0.7.0"
+    aws-sign2 "~0.8.0"
     aws4 "^1.6.0"
     caseless "~0.12.0"
     combined-stream "~1.0.5"
@@ -7009,14 +7009,14 @@ request@2, request@^2.79.0, request@^2.83.0:
     safe-buffer "^5.1.1"
     stringstream "~0.0.5"
     tough-cookie "~2.3.3"
-    tunnel-agent "^0.6.0"
+    tunnel-agent "^0.8.0"
     uuid "^3.1.0"
 
 request@2.81.0:
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
   dependencies:
-    aws-sign2 "~0.6.0"
+    aws-sign2 "~0.8.0"
     aws4 "^1.2.1"
     caseless "~0.12.0"
     combined-stream "~1.0.5"
@@ -7036,14 +7036,14 @@ request@2.81.0:
     safe-buffer "^5.0.1"
     stringstream "~0.0.4"
     tough-cookie "~2.3.0"
-    tunnel-agent "^0.6.0"
+    tunnel-agent "^0.8.0"
     uuid "^3.0.0"
 
 request@~2.79.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
-    aws-sign2 "~0.6.0"
+    aws-sign2 "~0.8.0"
     aws4 "^1.2.1"
     caseless "~0.11.0"
     combined-stream "~1.0.5"
@@ -7262,7 +7262,7 @@ sass-mq@^3.2.3:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/sass-mq/-/sass-mq-3.3.2.tgz#3472e04c31a432bcd55b3b604edc72ae9a4def1a"
 
-sax@>=0.6.0, sax@^1.2.1, sax@^1.2.4, sax@~1.2.1:
+sax@>=0.8.0, sax@^1.2.1, sax@^1.2.4, sax@~1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
@@ -7544,7 +7544,7 @@ source-map-support@^0.5.0:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.3.tgz#2b3d5fff298cfa4d1afd7d4352d569e9a0158e76"
   dependencies:
-    source-map "^0.6.0"
+    source-map "^0.8.0"
 
 source-map-url@^0.4.0:
   version "0.4.0"
@@ -7574,7 +7574,7 @@ source-map@^0.4.2, source-map@^0.4.4:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
+source-map@^0.8.0, source-map@^0.6.1, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
@@ -7886,7 +7886,7 @@ supports-color@^5.1.0, supports-color@^5.2.0:
   dependencies:
     has-flag "^3.0.0"
 
-svgo@^0.7.0:
+svgo@^0.8.0:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-0.7.2.tgz#9f5772413952135c6fefbf40afe6a4faa88b4bb5"
   dependencies:
@@ -7935,7 +7935,7 @@ term-size@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/term-size/-/term-size-1.2.0.tgz#458b83887f288fc56d6fffbfad262e26638efa69"
   dependencies:
-    execa "^0.7.0"
+    execa "^0.8.0"
 
 test-exclude@^4.1.1:
   version "4.1.1"
@@ -8129,9 +8129,9 @@ tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
 
-tunnel-agent@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.6.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
+tunnel-agent@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.8.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
   dependencies:
     safe-buffer "^5.0.1"
 
@@ -8591,8 +8591,8 @@ webpack@^3.10.0:
     yargs "^8.0.2"
 
 websocket-driver@>=0.5.1:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/websocket-driver/-/websocket-driver-0.7.0.tgz#0caf9d2d755d93aee049d4bdd0d3fe2cca2a24eb"
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/websocket-driver/-/websocket-driver-0.8.0.tgz#0caf9d2d755d93aee049d4bdd0d3fe2cca2a24eb"
   dependencies:
     http-parser-js ">=0.4.0"
     websocket-extensions ">=0.1.1"
@@ -8743,7 +8743,7 @@ xml2js@^0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
   dependencies:
-    sax ">=0.6.0"
+    sax ">=0.8.0"
     xmlbuilder "~9.0.1"
 
 xmlbuilder@~9.0.1:
