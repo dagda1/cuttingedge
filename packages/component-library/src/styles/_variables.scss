@@ -1,0 +1,11 @@
+/* break points */
+$screen-small-min: 480px;
+$screen-medium-min: 768px;
+$screen-large-min: 992px;
+$screen-xlarge-min: 1200px;
+
+$form-element-height: 42px;
+
+/* be consistent with spacing to avoid random pixel adding. */
+$scale: 8, 16, 32, 48;
+$font-size: 16, 19

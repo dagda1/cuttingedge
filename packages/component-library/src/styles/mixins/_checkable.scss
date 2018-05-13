@@ -1,0 +1,75 @@
+$checkable-width: 38px;
+$checkable-border: 3px;
+$checkable-scale: 0.7;
+
+@mixin checkable($input-type, $icon, $font-size: $checkable-width, $border-radius: 0) {
+  position: relative;
+
+  @include margin-b(3);
+
+  input[type='#{$input-type}'] {
+    position: absolute;
+    opacity: 0;
+  }
+
+  label {
+    @include responsive-font;
+
+    .content {
+      display: inline-block;
+      margin-left: 3rem;
+      vertical-align: middle;
+      position: relative;
+      top: 10%;
+      transform: translateY(10%);
+    }
+  }
+
+  label:before {
+    content: '';
+    width: $checkable-width;
+    height: $checkable-width;
+    border: $checkable-border solid $checkable-border-bg;
+    position: absolute;
+    border-radius: $border-radius;
+  }
+
+  input[type='#{$input-type}']:checked + label {
+    &:before {
+      border: $checkable-border solid $radio-bg-color;
+    }
+
+    &:after {
+      font-family: FontAwesome;
+      content: $icon;
+      position: absolute;
+      width: $checkable-width;
+      height: $checkable-width;
+      line-height: $checkable-width;
+      color: $radio-bg-color;
+      border: none;
+      font-size: $font-size;
+      text-align: center;
+      transform: scale($checkable-scale);
+      left: 0;
+    }
+  }
+
+  input[type='#{$input-type}']:focus + label::before {
+    box-shadow: 0 0 0 4px $element-focus-color;
+    outline: none;
+  }
+
+  &.invalid {
+    label,
+    input[type='#{$input-type}']:checked + label {
+      &:before {
+        border: 2px solid $form-error-border;
+      }
+    }
+
+    input[type='#{$input-type}']:checked + label:before {
+      border-width: 3px;
+    }
+  }
+}

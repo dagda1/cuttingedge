@@ -1,0 +1,53 @@
+@mixin mq($screen-size: 0, $min-or-max: 'min') {
+  @media (#{$min-or-max}-width: #{$screen-size}) {
+    @content;
+  }
+}
+
+@mixin mq-small {
+  @include mq($screen-small-min) {
+    @content;
+  };
+}
+
+@mixin mq-medium {
+  @include mq($screen-medium-min) {
+    @content;
+  }
+}
+
+@mixin mq-large {
+  @include mq($screen-large-min) {
+    @content;
+  }
+}
+
+@mixin mq-xlarge {
+  @include mq($screen-xlarge-min) {
+    @content;
+  }
+}
+
+@mixin mq-small-max {
+  @include mq($screen-small-min, "max") {
+    @content;
+  };
+}
+
+@mixin mq-medium-max {
+  @include mq($screen-medium-min, "max") {
+    @content;
+  }
+}
+
+@mixin mq-large-max {
+  @include mq($screen-large-min, "max") {
+    @content;
+  }
+}
+
+@mixin mq-xlarge-max {
+  @include mq($screen-xlarge-min, "max") {
+    @content;
+  }
+}

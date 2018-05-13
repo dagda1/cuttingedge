@@ -1,0 +1,9 @@
+@mixin error-indicator {
+  content: '\f111';
+  font-family: FontAwesome;
+  font-size: 12px;
+  line-height: 13px;
+  padding-right: 7px;
+  vertical-align: middle;
+  color: $label-error-color;
+}

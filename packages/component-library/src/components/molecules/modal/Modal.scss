@@ -1,0 +1,54 @@
+@import '../../../styles/index';
+
+.dialog {
+  border: 1px solid $modal-border-color;
+  z-index: 100;
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  &.open {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.description {
+  @include sr-only;
+}
+
+.heading,
+.footer {
+  background: $modal-header-bg;
+  color: $modal-header-color;
+
+  display: flex;
+  justify-content: center;
+
+  h2 {
+    color: inherit;
+  }
+}
+
+.heading {
+  button {
+    background: transparent;
+    width: 63px;
+    border-radius: 50%;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    right: 0;
+    margin-right: 7px;
+  }
+}
+
+.body {
+  flex: 1 1 auto;
+}

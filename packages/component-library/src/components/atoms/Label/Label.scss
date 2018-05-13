@@ -1,0 +1,34 @@
+@import '../../../styles/index';
+
+.default {
+  font-weight: normal;
+  color: $label-default-color;
+}
+
+.invalid {
+  font-weight: bold;
+  color: $label-error-color;
+  &:before {
+    color: $label-error-color;
+  }
+}
+
+.required {
+  &:before {
+    content: '*';
+    margin-right: .5rem;
+  }
+}
+
+.strong {
+  &:not(.invalid) {
+    font-weight: bold;
+    color: $black;
+  }
+}
+
+.double-margin:not(.strong) {
+  @include mq-small {
+    @include margin-b(3);
+  }
+}

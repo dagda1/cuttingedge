@@ -1,0 +1,37 @@
+@import '../../../styles/index';
+
+.input {
+  label {
+    @include margin-b(1);
+
+    @include mq-small {
+      @include margin-b(2);
+
+      &.double-margin {
+        @include margin-b(3);
+      }
+    }
+
+    font-weight: normal;
+
+    &.strong {
+      font-weight: bold;
+    }
+
+    &.invalid {
+      display: inline-block;
+    }
+  }
+}
+
+.invalid {
+  display: inline-block;
+}
+
+.highlight {
+  @include highlight;
+}
+
+.label__additional {
+  @include margin-l(1);
+}
