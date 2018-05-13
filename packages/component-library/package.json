@@ -6,10 +6,10 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "license": "MIT",
   "dependencies": {
-    "@cutting/react-gel": "0.2.0"
+    "@cutting/react-gel": "0.1.0"
   },
   "scripts": {
     "start": "NODE_ENV=development grunt start",

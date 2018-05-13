@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { Input } from './Input';
+import { Input } from '.';
 
 const wrap = (props = {}) => shallow(<Input {...props} />);
 

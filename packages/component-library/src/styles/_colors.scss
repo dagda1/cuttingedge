@@ -46,13 +46,30 @@ $input-border-color: $base-grey !default;
 $input-error-bg: $white !default;
 $input-error-border: $error-red !default;
 
+$checkable-border-bg: $base-grey !default;
+$radio-bg-color: $primary-blue !default;
+
 $element-focus-color: $notification-yellow !default;
 
 $btn-nav-focus-bg: $lighter-grey !default;
 $btn-nav-focus-color: $black !default;
 $btn-nav-focus-border: $base-grey !default;
 
-$modal-border-color: $white;
-$modal-header-bg: $white;
-$modal-header-color: $black;
-$modal-text-color: $white;
+$beta-bg: $notification-yellow !default;
+
+$highlight-form-control: $primary-blue !default;
+
+$alert-bg-color: $white !default;
+$alert-error-border-color: $error-red !default;
+$alert-error-color: $error-red !default;
+$alert-success-border-color: $validation-green !default;
+$alert-success-color: $validation-green !default;
+
+$login-layout-color: $light-yellow !default;
+$login-layout-inner: $white;
+
+$cookie-banner-bg: $black !default;
+$cookie-banner-color: $white !default;
+
+$site-banner-bg: $white;
+$banner-bg: $white;

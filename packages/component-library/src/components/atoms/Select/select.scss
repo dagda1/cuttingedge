@@ -1,0 +1,45 @@
+@import '../../../styles/index';
+
+.container {
+  &:after {
+    content: "\F0D7";
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: black;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    pointer-events: auto;
+
+    @ie9only {
+      content: "";
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      position: inherit;
+      right: auto;
+      top: auto;
+    }
+  }
+}
+
+.default {
+  border: 1px solid $input-border-color;
+  border-radius: 0;
+  height: 42px;
+  appearance: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:focus {
+    background: $input-bg-focus;
+    border: 2px solid $input-border-color-focus;
+    @include visible-focus;
+  }
+}
+
+.invalid {
+  @include outline(2px, $label-error-color);
+}

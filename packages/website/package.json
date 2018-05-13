@@ -13,8 +13,8 @@
     "serve": "NODE_ENV=production node ./index.js"
   },
   "dependencies": {
-    "@cutting/component-library": "0.1.0",
-    "@cutting/connected-components": "0.1.0",
+    "@cutting/component-library": "0.3.0",
+    "@cutting/connected-components": "0.2.0",
     "@cutting/react-gel": "0.1.0",
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
