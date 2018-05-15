@@ -6,7 +6,7 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.8.0",
+  "version": "0.10.0",
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development grunt start",
@@ -14,7 +14,7 @@
     "build": "NODE_ENV=development grunt build"
   },
   "dependencies": {
-    "@cutting/component-library": "0.8.0",
+    "@cutting/component-library": "0.10.0",
     "redux-form": "^7.3.0"
   },
   "devDependencies": {

@@ -2,13 +2,13 @@
 
 .input {
   label {
-    @include margin-b(1);
+    @include mb(1);
 
-    @include mq-small {
-      @include margin-b(2);
+    @include mq-s {
+      @include mb(2);
 
       &.double-margin {
-        @include margin-b(3);
+        @include mb(3);
       }
     }
 
@@ -33,5 +33,5 @@
 }
 
 .label__additional {
-  @include margin-l(1);
+  @include ml(1);
 }

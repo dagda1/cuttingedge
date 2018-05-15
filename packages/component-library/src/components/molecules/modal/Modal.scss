@@ -1,4 +1,4 @@
-@import '../../../styles/index';
+@import '../../../styles/_index.scss';
 
 .dialog {
   border: 1px solid $modal-border-color;
@@ -27,6 +27,7 @@
 
   display: flex;
   justify-content: center;
+  align-content: center;
 
   h2 {
     color: inherit;
@@ -43,9 +44,8 @@
     align-items: center;
     justify-content: center;
 
-    position: absolute;
     right: 0;
-    margin-right: 7px;
+    @include ml(4);
   }
 }
 

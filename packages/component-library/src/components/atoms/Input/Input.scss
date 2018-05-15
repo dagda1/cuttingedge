@@ -1,8 +1,8 @@
-@import '../../../styles/index';
+@import '../../../styles/_index.scss';
 
-input[type="text"],
-input[type="number"],
-input[type="password"] {
+input[type='text'],
+input[type='number'],
+input[type='password'] {
   &.default {
     border: 1px solid $input-border-color;
 
@@ -11,6 +11,8 @@ input[type="password"] {
       border: 2px solid $input-border-color-focus;
       @include visible-focus;
     }
+
+    @include form-control;
   }
 
   &.invalid {

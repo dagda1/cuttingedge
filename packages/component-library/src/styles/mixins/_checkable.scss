@@ -5,7 +5,7 @@ $checkable-scale: 0.7;
 @mixin checkable($input-type, $icon, $font-size: $checkable-width, $border-radius: 0) {
   position: relative;
 
-  @include margin-b(3);
+  @include mb(3);
 
   input[type='#{$input-type}'] {
     position: absolute;

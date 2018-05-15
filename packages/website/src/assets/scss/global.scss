@@ -5,6 +5,12 @@
   src: url('../fonts/GeosansLight/GeosansLight.ttf');
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 html {
   font-family: 'GeosansLight';
   font-size: 62.5%;

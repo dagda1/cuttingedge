@@ -1,8 +1,15 @@
-@import '../../../styles/index';
+@import '../../../styles/_index.scss';
 
 .default {
   font-weight: normal;
   color: $label-default-color;
+  display: block;
+
+  @include mb(1);
+
+  @include mq-m {
+    @include mq(2);
+  }
 }
 
 .invalid {
@@ -16,7 +23,7 @@
 .required {
   &:before {
     content: '*';
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 }
 
@@ -28,7 +35,7 @@
 }
 
 .double-margin:not(.strong) {
-  @include mq-small {
-    @include margin-b(3);
+  @include mq-s {
+    @include mb(3);
   }
 }

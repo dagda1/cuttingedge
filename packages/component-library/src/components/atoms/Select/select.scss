@@ -2,7 +2,7 @@
 
 .container {
   &:after {
-    content: "\F0D7";
+    content: '\F0D7';
     font-family: FontAwesome;
     font-size: 20px;
     color: black;
@@ -10,16 +10,6 @@
     right: 10px;
     top: 7px;
     pointer-events: auto;
-
-    @ie9only {
-      content: "";
-      font-family: inherit;
-      font-size: inherit;
-      color: inherit;
-      position: inherit;
-      right: auto;
-      top: auto;
-    }
   }
 }
 
@@ -28,6 +18,8 @@
   border-radius: 0;
   height: 42px;
   appearance: none;
+
+  @include form-control;
 
   &::-ms-expand {
     display: none;
