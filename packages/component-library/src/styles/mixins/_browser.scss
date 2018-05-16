@@ -1,5 +1,0 @@
-@mixin ie9only {
-  @media screen and (min-width: 0\0) {
-    @content;
-  }
-}
