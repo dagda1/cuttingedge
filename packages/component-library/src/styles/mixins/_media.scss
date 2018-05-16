@@ -4,12 +4,6 @@
   }
 }
 
-@mixin mq-xs {
-  @include mq($from: gel-bp-xs) {
-    @content;
-  }
-}
-
 @mixin mq-s {
   @include mq($from: gel-bp-s) {
     @content;

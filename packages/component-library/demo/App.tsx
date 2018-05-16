@@ -1,8 +1,8 @@
 import 'font-awesome/css/font-awesome.css';
 import * as React from 'react';
 import { Rhombus, Cow, Modal, Heading, FormInput, FormSelect } from '../src/components';
-import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
+import {Wrap, Layout, GelItem} from '@cutting/react-gel';
 
 require('./App.scss');
 

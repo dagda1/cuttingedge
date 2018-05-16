@@ -22,5 +22,7 @@
       "path": "packages/util"
     }
   ],
-  "settings": {}
+  "settings": {
+    "typescript.tsdk": "cuttingedge/node_modules/typescript/lib"
+  }
 }
