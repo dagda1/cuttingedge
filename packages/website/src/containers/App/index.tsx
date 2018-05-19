@@ -1,4 +1,3 @@
-import 'font-awesome/css/font-awesome.css';
 require('../../assets/scss/global.scss');
 import * as React from 'react';
 import { Switch } from 'react-router';

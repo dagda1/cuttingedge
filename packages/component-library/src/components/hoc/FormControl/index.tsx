@@ -77,7 +77,7 @@ export function FormControl<T>(Comp: React.ComponentType<T>): React.ComponentTyp
             {label}
             {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
           </Label>
-          <div className="input-wrapper">
+          <div className={styles.wrapper}>
             <Comp
               id={this.id}
               name={name}

@@ -2,14 +2,16 @@
 
 .container {
   &:after {
-    content: '\F0D7';
-    font-family: FontAwesome;
-    font-size: 20px;
-    color: black;
+    content: '▼';
+    padding: 12px 8px;
     position: absolute;
     right: 10px;
-    top: 7px;
-    pointer-events: auto;
+    top: 0;
+    z-index: 1;
+    text-align: center;
+    width: 10%;
+    height: 100%;
+    pointer-events: none;
   }
 }
 

@@ -22,6 +22,14 @@
       display: inline-block;
     }
   }
+
+  @include mq-s {
+    @include mb(2);
+  }
+}
+
+.wrapper {
+  position: relative;
 }
 
 .invalid {
