@@ -30,7 +30,7 @@ function getUrlParts() {
 }
 
 const configure = options => {
-  const { entryPoint, publicDir, proxy, devServer } = options;
+  const { entries, publicDir, proxy, devServer } = options;
   const { protocol, host, port } = getUrlParts();
 
   options.isNode = false;
@@ -42,15 +42,17 @@ const configure = options => {
 
   const common = configureCommon(options);
 
+  const entryPoints = Array.isArray(entries) ? entries : [entries];
+
   const config = merge(common, {
     name: 'client',
     target: 'web',
     entry: isDevelopment
       ? [
           'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
-          entryPoint
+          ...entryPoints
         ]
-      : [entryPoint],
+      : [...entryPoints],
     devtool: isDevelopment && 'cheap-module-source-map',
     devServer: devServer
       ? {

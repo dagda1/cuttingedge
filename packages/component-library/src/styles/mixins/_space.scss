@@ -11,10 +11,9 @@ $pr-rules: 'padding-right';
 $pb-rules: 'padding-bottom';
 $pt-rules: 'padding-top';
 
-/* TODO: should we use the rem function here? */
 @mixin add-space-rule($rules, $space) {
   @each $rule in $rules {
-    #{$rule}: #{nth($scale, $space)} !important;
+    #{$rule}: #{nth($scale, $space)}px !important;
   }
 }
 

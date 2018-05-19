@@ -8,7 +8,7 @@
   @include mb(1);
 
   @include mq-m {
-    @include mq(2);
+    @include mb(2);
   }
 }
 
@@ -30,7 +30,7 @@
 .strong {
   &:not(.invalid) {
     font-weight: bold;
-    color: $black;
+    color: $label-default-color;
   }
 }
 

@@ -1,5 +1,8 @@
 import 'font-awesome/css/font-awesome.css';
 import * as React from 'react';
+import { Heading } from '@cutting/component-library';
+import { Wrap, Layout, GelItem } from '@cutting/react-gel';
+import {Form}
 
 require('./App.scss');
 
@@ -20,6 +23,14 @@ export class App extends React.Component<AppProps, AppState> {
   openModal = (open: boolean) => this.setState({ modalOpen: open });
 
   render() {
-    return <div>dfsd</div>;
+    return (
+      <Wrap>
+        <Layout>
+          <GelItem>
+            <Heading>Heading</Heading>
+          </GelItem>
+        </Layout>
+      </Wrap>
+    );
   }
 }

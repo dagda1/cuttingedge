@@ -1,6 +1,6 @@
-:global {
-  /* @import '~@cutting/react-gel/grid'; */
-}
+$label-default-color: #fff;
+
+@import '../src/styles/_index.scss';
 
 html {
   height: 100%;
@@ -19,4 +19,8 @@ body {
 *:before,
 *:after {
   box-sizing: border-box !important;
+}
+
+ul {
+  padding: 0;
 }

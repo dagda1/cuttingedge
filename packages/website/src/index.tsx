@@ -5,14 +5,14 @@ import * as path from 'path';
 
 const configureDevelopment = (app: any) => {
   const clientConfig = require('../../../webpack/client').configure({
-    entryPoint: path.join(process.cwd(), 'src/client/index')
-});
+    entries: path.join(process.cwd(), 'src/client/index')
+  });
 
   const publicPath = clientConfig.output.publicPath;
   const outputPath = clientConfig.output.path;
 
   const serverConfig = require('../../../webpack/server').configure({
-    entryPoint: path.join(process.cwd(), 'src/server/index'),
+    entries: path.join(process.cwd(), 'src/server/index'),
     filename: 'server.js'
   });
 
