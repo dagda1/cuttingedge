@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { Heading, Cow } from '@cutting/component-library';
 import { bannerPages } from '../../routes';
@@ -15,16 +15,18 @@ export const Menu: React.SFC = () => (
         <GelItem>
           <ul>
             <li className={styles.logo__container}>
-              <Link to={urls.Home}>
+              <NavLink to={urls.Home}>
                 <Cow />
-              </Link>
+              </NavLink>
             </li>
             <li>
               <Heading level={2}>Paul Cowan</Heading>
             </li>
             {bannerPages.map((page, i) => (
               <li key={page.heading}>
-                <Link to={page.path}>{page.heading}</Link>
+                <NavLink to={page.path} activeClassName={styles.active}>
+                  {page.heading}
+                </NavLink>
               </li>
             ))}
           </ul>
