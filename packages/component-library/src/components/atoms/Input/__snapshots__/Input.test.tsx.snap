@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> snapshot test 1`] = `
+<input
+  aria-required={undefined}
+  autoComplete="off"
+  className="default form-control"
+  required={undefined}
+  type="text"
+/>
+`;

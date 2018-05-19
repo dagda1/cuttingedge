@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   // Modules can be explicitly auto-mocked using jest.mock(moduleName).
   // https://facebook.github.io/jest/docs/en/configuration.html#automock-boolean
@@ -81,15 +83,15 @@ module.exports = {
   // timers: // [string]
 
   transform: {
-    '^.+\\.(ts|tsx)$': '<rootDir>../../node_modules/ts-jest/preprocessor.js',
-    '^.+\\.css$': '<rootDir>/../../jest/cssTransform.js',
-    '^(?!.*\\.(js|jsx|css|json)$)': '<rootDir>/../../jest/fileTransform.js'
+    '^.+\\.(ts|tsx)$': path.join(__dirname, '../node_modules/ts-jest/preprocessor.js'),
+    '^.+\\.css$': path.join(__dirname, './cssTransform.js'),
+    '^(?!.*\\.(js|jsx|css|json)$)': path.join(__dirname, './fileTransform.js')
   },
 
-  setupFiles: ['<rootDir>../../jest/setupTests.js'],
-  roots: ['<rootDir>../../'],
+  setupFiles: [path.join(__dirname, './setupTests.js')],
+  roots: [path.join(process.cwd(), '../../')],
 
-  testMatch: ['<rootDir>/src/**/?(*.)(spec|test).ts?(x)'],
+  testMatch: [path.join(process.cwd(), './src/**/?(*.)(spec|test).ts?(x)')],
 
   // transformIgnorePatterns: // [array<string>]
   // unmockedModulePathPatterns: // [array<string>]

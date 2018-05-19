@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const getLocalIdent = require('./getLocalIdent');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { filter } = require('lodash');
 

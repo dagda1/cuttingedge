@@ -23,7 +23,7 @@ function mapOptionsToValues<T extends _.Dictionary<string>, K extends keyof T>(
 }
 
 function mergeOptions(options: object[], dividerAt: number) {
-  if (dividerAt !== undefined && dividerAt !== null) {
+  if (dividerAt > -1) {
     const divider = (
       <option key="divider" disabled>
         ──────────

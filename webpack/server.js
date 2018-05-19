@@ -1,7 +1,6 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const path = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const nodeExternals = require('webpack-node-externals');
 const getLocalIdent = require('./getLocalIdent');
 const fs = require('fs');
