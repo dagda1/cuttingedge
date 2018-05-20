@@ -8,26 +8,31 @@ import { pages } from '../../routes';
 import { Provider } from 'react-redux';
 import configureStore from '../../store';
 import { ScrollToTop } from '@cutting/connected-components';
-/* import { Helmet } from 'react-helmet'; */
+import Helmet from 'react-helmet';
 
 const store = configureStore({}, history);
 
 export class App extends React.Component {
   render() {
     return (
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <ScrollToTop>
-            <Switch>
-              <>
-                {pages.map(page => (
-                  <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
-                ))}
-              </>
-            </Switch>
-          </ScrollToTop>
-        </ConnectedRouter>
-      </Provider>
+      <>
+        <Helmet>
+          <title>App Component | React Universal</title>
+        </Helmet>
+        <Provider store={store}>
+          <ConnectedRouter history={history}>
+            <ScrollToTop>
+              <Switch>
+                <>
+                  {pages.map(page => (
+                    <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
+                  ))}
+                </>
+              </Switch>
+            </ScrollToTop>
+          </ConnectedRouter>
+        </Provider>
+      </>
     );
   }
 }

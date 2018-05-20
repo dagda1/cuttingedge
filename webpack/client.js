@@ -1,14 +1,13 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const path = require('path');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
 const StatsWebpackPlugin = require('stats-webpack-plugin');
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { filter } = require('lodash');
 const { configureCommon, getEnvironment } = require('./common');
 
@@ -150,13 +149,7 @@ const configure = options => {
           },
           sourceMap: false
         }),
-      ssrBuild && new ExtractCssChunks(isDevelopment ? undefined : 'static/css/[name].[contenthash].css'),
-      /*       ssrBuild &&
-        new webpack.optimize.CommonsChunkPlugin({
-          names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
-          filename: 'static/js/[name].js',
-          minChunks: Infinity
-        }), */
+      ssrBuild && !isDevelopment && new ExtractTextPlugin('static/css/[name].[contenthash].css'),
       isProduction && ssrBuild && new StatsWebpackPlugin('stats.json'),
       devServer &&
         new HtmlWebpackPlugin({
