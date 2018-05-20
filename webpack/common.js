@@ -33,6 +33,7 @@ const configureCommon = options => {
   const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
 
   return {
+    mode: isDevelopment ? 'development' : 'production',
     output: {
       path: path.resolve('dist'),
       publicPath: '/'

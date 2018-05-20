@@ -47,17 +47,13 @@ const configure = options => {
   const config = merge(common, {
     name: 'client',
     target: 'web',
-    entry: isDevelopment
-      ? [
-          'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
-          ...entryPoints
-        ]
-      : [...entryPoints],
+    entry: entryPoints,
     devtool: isDevelopment && 'cheap-module-source-map',
     devServer: devServer
       ? {
           inline: true,
           port,
+          headers: { 'Access-Control-Allow-Origin': '*' },
           disableHostCheck: true,
           contentBase: publicDir || path.resolve('public'),
           hot: true,
@@ -72,7 +68,8 @@ const configure = options => {
     output: {
       filename: `static/js/[name].[${isProduction ? 'chunkhash' : 'hash'}:8].js`,
       chunkFilename: `static/js/[name].[${isProduction ? 'chunkhash' : 'hash'}:8].chunk.js`,
-      devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath)
+      devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath),
+      publicPath: isDevelopment ? `http://${host}:${port}/` : '/'
     },
     module: {
       rules: [
@@ -116,6 +113,9 @@ const configure = options => {
       ]
     },
     plugins: filter([
+      isDevelopment && isDevelopment && new webpack.optimize.OccurrenceOrderPlugin(),
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
+      isDevelopment && new webpack.NoEmitOnErrorsPlugin(),
       isProduction &&
         new webpack.optimize.UglifyJsPlugin({
           compress: {
@@ -151,13 +151,12 @@ const configure = options => {
           sourceMap: false
         }),
       ssrBuild && new ExtractCssChunks(isDevelopment ? undefined : 'static/css/[name].[contenthash].css'),
-      ssrBuild &&
+      /*       ssrBuild &&
         new webpack.optimize.CommonsChunkPlugin({
           names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
           filename: 'static/js/[name].js',
           minChunks: Infinity
-        }),
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
+        }), */
       isProduction && ssrBuild && new StatsWebpackPlugin('stats.json'),
       devServer &&
         new HtmlWebpackPlugin({
@@ -177,6 +176,17 @@ const configure = options => {
           }
         })
     ]),
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            chunks: 'initial',
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors'
+          }
+        }
+      }
+    },
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
     // https://webpack.js.org/configuration/node/
