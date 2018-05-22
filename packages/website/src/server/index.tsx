@@ -39,15 +39,7 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
   const chunkNames = flushChunkNames();
   const chunks = flushChunks(clientStats, { chunkNames });
 
-  const { js, styles, cssHash } = chunks;
-
-  console.log('--------------------');
-  console.dir(chunkNames);
-  console.log('--------------------');
-  console.dir(chunks);
-  console.log('--------------------');
-  console.dir(cssHash.toString());
-  console.log('--------------------');
+  const { js, styles } = chunks;
 
   const appString = renderToString(app);
   const { title } = Helmet.renderStatic();
@@ -65,7 +57,6 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
       </head>
       <body>
         <div id="root">${appString}</div>
-        ${cssHash}
         ${js}
       </body>
     </html>

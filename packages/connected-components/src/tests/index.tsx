@@ -8,7 +8,7 @@ import { History } from 'history';
 
 export const wrap = (Comp: React.ComponentType<any>, props = {}, history: History): ReactWrapper => {
   const reducers = combineReducers({
-    router: routerReducer as Reducer<RouterState, any>
+    router: routerReducer as Reducer<RouterState>
   });
 
   const store = createStore(reducers, {}, applyMiddleware(routerMiddleware(history)));
@@ -16,9 +16,7 @@ export const wrap = (Comp: React.ComponentType<any>, props = {}, history: Histor
   return mount(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <>
-          <Comp {...props} />}/>
-        </>
+        <Comp {...props} />}/>
       </ConnectedRouter>
     </Provider>
   );

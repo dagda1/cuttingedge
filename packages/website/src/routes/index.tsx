@@ -12,14 +12,29 @@ export interface Page {
   component: React.ComponentType<any>;
   exact?: boolean;
   footerPage?: boolean;
+  componentPath: string;
 }
 
 export const pages: Page[] = [
-  { heading: 'Home', path: Urls.Home, component: Home, exact: true },
-  { heading: 'OSS', path: Urls.OSS, component: OSS, exact: true },
-  { heading: 'Blog', path: Urls.Blog, component: Blog, exact: true },
-  { heading: 'Privacy Policy', path: Urls.PrivacyPolicy, component: PrivacyPolicy, exact: true, footerPage: true },
-  { heading: 'Terms of Service', path: Urls.TermsOfService, component: TermsOfService, exact: true, footerPage: true }
+  { heading: 'Home', path: Urls.Home, component: Home, exact: true, componentPath: '../components/Home' },
+  { heading: 'OSS', path: Urls.OSS, component: OSS, exact: true, componentPath: '../components/OSS' },
+  { heading: 'Blog', path: Urls.Blog, component: Blog, exact: true, componentPath: '../components/Blog' },
+  {
+    heading: 'Privacy Policy',
+    path: Urls.PrivacyPolicy,
+    component: PrivacyPolicy,
+    exact: true,
+    footerPage: true,
+    componentPath: '../components/PrivacyPolicy'
+  },
+  {
+    heading: 'Terms of Service',
+    path: Urls.TermsOfService,
+    component: TermsOfService,
+    exact: true,
+    footerPage: true,
+    componentPath: '../components/TermsOfService'
+  }
 ];
 
 export const bannerPages = pages.filter(p => !p.footerPage && p.path !== Urls.Home);

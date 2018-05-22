@@ -47,7 +47,7 @@ const configure = options => {
     name: 'client',
     target: 'web',
     entry: entryPoints,
-    devtool: isDevelopment && 'cheap-module-source-map',
+    devtool: isDevelopment && 'inline-source-map',
     devServer: devServer
       ? {
           inline: true,
@@ -88,7 +88,7 @@ const configure = options => {
                 { loader: 'postcss-loader', options: postcssOptions },
                 { loader: 'sass-loader' }
               ]
-            : ExtractCssChunks.extract({
+            : ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: [
                   {
@@ -169,7 +169,7 @@ const configure = options => {
           }
         })
     ]),
-    optimization: {
+    /*     optimization: {
       splitChunks: {
         cacheGroups: {
           commons: {
@@ -179,7 +179,7 @@ const configure = options => {
           }
         }
       }
-    },
+    }, */
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
     // https://webpack.js.org/configuration/node/

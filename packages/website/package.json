@@ -25,6 +25,7 @@
     "@cutting/connected-components": "0.12.0",
     "@cutting/react-gel": "0.3.0",
     "@types/winston": "^2.3.9",
+    "babel-plugin-universal-import": "^2.0.0",
     "grunt-cli": "^1.2.0",
     "redux-devtools-extension": "2.13.2",
     "stats-webpack-plugin": "^0.6.2",

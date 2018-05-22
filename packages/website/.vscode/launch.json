@@ -7,8 +7,12 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/start"
+      "name": "`yarn start`",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["start"],
+      "stopOnEntry": false,
+      "port": 5858
     }
   ]
 }

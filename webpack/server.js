@@ -39,7 +39,7 @@ const configure = (options = {}) => {
     target: 'node',
     externals,
     entry: [options.entries],
-    devtool: 'cheap-module-eval-source-map',
+    devtool: !isDevelopment && 'inline-source-map',
     output: {
       filename: options.filename,
       libraryTarget: 'commonjs2'
