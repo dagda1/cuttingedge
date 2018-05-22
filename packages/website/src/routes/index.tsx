@@ -16,16 +16,16 @@ export interface Page {
 }
 
 export const pages: Page[] = [
-  { heading: 'Home', path: Urls.Home, component: Home, exact: true, componentPath: '../components/Home' },
-  { heading: 'OSS', path: Urls.OSS, component: OSS, exact: true, componentPath: '../components/OSS' },
-  { heading: 'Blog', path: Urls.Blog, component: Blog, exact: true, componentPath: '../components/Blog' },
+  { heading: 'Home', path: Urls.Home, component: Home, exact: true, componentPath: 'Home' },
+  { heading: 'OSS', path: Urls.OSS, component: OSS, exact: true, componentPath: 'OSS' },
+  { heading: 'Blog', path: Urls.Blog, component: Blog, exact: true, componentPath: 'Blog' },
   {
     heading: 'Privacy Policy',
     path: Urls.PrivacyPolicy,
     component: PrivacyPolicy,
     exact: true,
     footerPage: true,
-    componentPath: '../components/PrivacyPolicy'
+    componentPath: 'PrivacyPolicy'
   },
   {
     heading: 'Terms of Service',
@@ -33,7 +33,7 @@ export const pages: Page[] = [
     component: TermsOfService,
     exact: true,
     footerPage: true,
-    componentPath: '../components/TermsOfService'
+    componentPath: 'TermsOfService'
   }
 ];
 

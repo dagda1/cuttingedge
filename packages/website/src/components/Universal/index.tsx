@@ -12,5 +12,5 @@ const load = (props: UniversalProps) =>
 
 export const UniversalComponent = universal(load, {
   chunkName: props => props.page,
-  resolve: props => (require as any).resolveWeak(`./${props.page}`)
+  resolve: props => (require as any).resolveWeak(`../${props.page}`)
 });
