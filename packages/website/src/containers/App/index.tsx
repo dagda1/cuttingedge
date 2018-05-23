@@ -29,9 +29,7 @@ export class App extends React.Component {
                     <Route
                       key={page.path}
                       path={page.path}
-                      component={(props: any) => {
-                        return <UniversalComponent page={page.componentPath} />;
-                      }}
+                      component={(props: any) => <UniversalComponent page={page.componentPath} />}
                       exact={page.exact}
                     />
                   ))}

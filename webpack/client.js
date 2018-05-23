@@ -46,7 +46,7 @@ const configure = options => {
   const config = merge(common, {
     name: 'client',
     target: 'web',
-    entry: entryPoints,
+    entry: isDevelopment ? ['webpack-hot-middleware/client', ...entryPoints] : entryPoints,
     devtool: isDevelopment && 'cheap-module-source-map',
     devServer: devServer
       ? {
@@ -112,9 +112,7 @@ const configure = options => {
       ]
     },
     plugins: filter([
-      isDevelopment && isDevelopment && new webpack.optimize.OccurrenceOrderPlugin(),
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
-      isDevelopment && new webpack.NoEmitOnErrorsPlugin(),
+      isDevelopment && new webpack.HotModuleReplacementPlugin({ multiStep: true }),
       isProduction &&
         new webpack.optimize.UglifyJsPlugin({
           compress: {
