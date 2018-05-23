@@ -10,6 +10,7 @@ const StatsWebpackPlugin = require('stats-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { filter } = require('lodash');
 const { configureCommon, getEnvironment } = require('./common');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
@@ -113,41 +114,7 @@ const configure = options => {
     },
     plugins: filter([
       isDevelopment && new webpack.HotModuleReplacementPlugin({ multiStep: true }),
-      isProduction &&
-        new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            warnings: false,
-            // Disabled because of an issue with Uglify breaking seemingly valid code:
-            // https://github.com/facebookincubator/create-react-app/issues/2376
-            // Pending further investigation:
-            // https://github.com/mishoo/UglifyJS2/issues/2011
-            comparisons: false,
-            sequences: true, // join consecutive statemets with the ‚Äúcomma operator‚Äù
-            properties: true, // optimize property access: a["foo"] ‚Üí a.foo
-            dead_code: true, // discard unreachable code
-            drop_debugger: true, // discard ‚Äúdebugger‚Äù statements
-            unsafe: false, // some unsafe optimizations (see below)
-            conditionals: true, // optimize if-s and conditional expressions
-            evaluate: true, // evaluate constant expressions
-            booleans: true, // optimize boolean expressions
-            loops: true, // optimize loops
-            unused: true, // drop unused variables/functions
-            hoist_funs: true, // hoist function declarations
-            hoist_vars: false, // hoist variable declarations
-            if_return: true, // optimize if-s followed by return/continue
-            join_vars: true, // join var declarations
-            cascade: true, // try to cascade `right` into `left` in sequences
-            side_effects: true // drop side-effect-free statements
-          },
-          output: {
-            comments: false,
-            // Turned on because emoji and regex is not minified properly using default
-            // https://github.com/facebookincubator/create-react-app/issues/2488
-            ascii_only: true
-          },
-          sourceMap: false
-        }),
-      ssrBuild && !isDevelopment && new ExtractTextPlugin('static/css/[name].[contenthash].css'),
+      ssrBuild && isProduction && new ExtractTextPlugin('static/css/[name].[md5:contenthash:hex:20].css'),
       isProduction && ssrBuild && new StatsWebpackPlugin('stats.json'),
       devServer &&
         new HtmlWebpackPlugin({
@@ -167,27 +134,81 @@ const configure = options => {
           }
         })
     ]),
-    /*     optimization: {
-      splitChunks: {
-        cacheGroups: {
-          commons: {
-            chunks: 'initial',
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors'
-          }
-        }
-      }
-    }, */
-    // Some libraries import Node modules but don't use them in the browser.
-    // Tell Webpack to provide empty mocks for them so importing them works.
-    // https://webpack.js.org/configuration/node/
-    // https://github.com/webpack/node-libs-browser/tree/master/mock
     node: {
       fs: 'empty',
       net: 'empty',
       tls: 'empty'
     }
   });
+
+  if (isProduction) {
+    config.optimization = {
+      minimize: true,
+      minimizer: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            parse: {
+              // we want uglify-js to parse ecma 8 code. However, we don't want it
+              // to apply any minfication steps that turns valid ecma 5 code
+              // into invalid ecma 5 code. This is why the 'compress' and 'output'
+              // sections only apply transformations that are ecma 5 safe
+              // https://github.com/facebook/create-react-app/pull/4234
+              ecma: 8
+            },
+            compress: {
+              ecma: 5,
+              warnings: false,
+              // Disabled because of an issue with Uglify breaking seemingly valid code:
+              // https://github.com/facebook/create-react-app/issues/2376
+              // Pending further investigation:
+              // https://github.com/mishoo/UglifyJS2/issues/2011
+              comparisons: false
+            },
+            mangle: {
+              safari10: true
+            },
+            output: {
+              ecma: 5,
+              comments: false,
+              // Turned on because emoji and regex is not minified properly using default
+              // https://github.com/facebook/create-react-app/issues/2488
+              ascii_only: true
+            }
+          },
+          parallel: true,
+          cache: true,
+          sourceMap: true
+        })
+      ]
+      // @todo automatic vendor bundle
+      // Automatically split vendor and commons
+      // https://twitter.com/wSokra/status/969633336732905474
+      // splitChunks: {
+      //   chunks: 'all',
+      //   minSize: 30000,
+      //   minChunks: 1,
+      //   maxAsyncRequests: 5,
+      //   maxInitialRequests: 3,
+      //   name: true,
+      //   cacheGroups: {
+      //     commons: {
+      //       test: /[\\/]node_modules[\\/]/,
+      //       name: 'vendor',
+      //       chunks: 'all',
+      //     },
+      //     main: {
+      //       chunks: 'all',
+      //       minChunks: 2,
+      //       reuseExistingChunk: true,
+      //       enforce: true,
+      //     },
+      //   },
+      // },
+      // Keep the runtime chunk seperated to enable long term caching
+      // https://twitter.com/wSokra/status/969679223278505985
+      // runtimeChunk: true,
+    };
+  }
 
   return config;
 };
