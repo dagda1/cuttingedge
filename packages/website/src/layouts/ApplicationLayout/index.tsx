@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { Heading } from '@cutting/component-library';
 import * as cs from 'classnames';
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
 
 export interface ApplicationLayoutProps {
   heading?: string;
@@ -11,8 +13,9 @@ export interface ApplicationLayoutProps {
 const styles = require('./ApplicationLayout.scss');
 
 export const ApplicationLayout: React.SFC<ApplicationLayoutProps> = ({ heading, italicise, children }) => (
-  <>
-    <Wrap className={styles.main}>
+  <Wrap>
+    <Header />
+    <main className={styles.main}>
       {heading && (
         <Layout>
           <GelItem>
@@ -20,7 +23,8 @@ export const ApplicationLayout: React.SFC<ApplicationLayoutProps> = ({ heading, 
           </GelItem>
         </Layout>
       )}
-      <>{children}</>
-    </Wrap>
-  </>
+      {children}
+    </main>
+    <Footer />
+  </Wrap>
 );

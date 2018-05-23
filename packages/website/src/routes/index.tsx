@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as Urls from '../urls';
-import Home from '../components/Home';
-import PrivacyPolicy from '../components/PrivacyPolicy';
-import TermsOfService from '../components/TermsOfService';
-import OSS from '../components/OSS';
-import Blog from '../components/Blog';
+import { Home } from '../components/Home';
+import { PrivacyPolicy } from '../components/PrivacyPolicy';
+import { TermsOfService } from '../components/TermsOfService';
+import { OSS } from '../components/OSS';
+import { Blog } from '../components/Blog';
 
 export interface Page {
   heading: string;

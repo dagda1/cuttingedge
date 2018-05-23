@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { pageMaker } from '../PageMaker';
 import { repos, Repo } from './repos';
 import { Heading, ExternalLink, Github } from '@cutting/component-library';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
@@ -33,5 +32,3 @@ export const OSS: React.SFC = () => (
     </Layout>
   </Wrap>
 );
-
-export default pageMaker({ Comp: OSS });

@@ -9,7 +9,6 @@ import { Provider } from 'react-redux';
 import configureStore from '../../store';
 import { ScrollToTop } from '@cutting/connected-components';
 import Helmet from 'react-helmet';
-import { UniversalComponent } from '../../components/Universal';
 
 const store = configureStore({}, history);
 
@@ -26,12 +25,7 @@ export class App extends React.Component {
               <Switch>
                 <>
                   {pages.map(page => (
-                    <Route
-                      key={page.path}
-                      path={page.path}
-                      component={(props: any) => <UniversalComponent page={page.componentPath} />}
-                      exact={page.exact}
-                    />
+                    <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
                   ))}
                 </>
               </Switch>
