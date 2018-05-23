@@ -13,6 +13,7 @@
     "typeRoots": ["./node_modules/@types"],
     "strictFunctionTypes": false,
     "suppressImplicitAnyIndexErrors": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "removeComments": false
   }
 }

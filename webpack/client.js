@@ -47,7 +47,7 @@ const configure = options => {
     name: 'client',
     target: 'web',
     entry: entryPoints,
-    devtool: isDevelopment && 'inline-source-map',
+    devtool: isDevelopment && 'cheap-module-source-map',
     devServer: devServer
       ? {
           inline: true,
@@ -68,7 +68,7 @@ const configure = options => {
       filename: `static/js/[name].[${isProduction ? 'chunkhash' : 'hash'}:8].js`,
       chunkFilename: `static/js/[name].[${isProduction ? 'chunkhash' : 'hash'}:8].chunk.js`,
       devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath),
-      publicPath: isDevelopment ? `http://${host}:${port}/` : '/'
+      publicPath: '/'
     },
     module: {
       rules: [
