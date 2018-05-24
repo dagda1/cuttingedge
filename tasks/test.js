@@ -16,5 +16,12 @@ module.exports.config = {
     `--rootDir=${process.cwd()}`
   ],
   updateSnapshots: ['--env=jsdom', '-u'],
-  ci: ['--env=jsdom', '--ci', '--testResultsProcessor', '../node_modules/jest-junit', '--coverage']
+  ci: [
+    '--env=jsdom',
+    '--ci',
+    `--config=${path.join(__dirname, '../jest/jest.config.js')}`,
+    '--testResultsProcessor',
+    path.join(__dirname, '../node_modules/jest-junit'),
+    '--coverage'
+  ]
 };

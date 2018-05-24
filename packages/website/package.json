@@ -10,7 +10,8 @@
     "start": "NODE_ENV=development grunt start",
     "build": "NODE_ENV=production grunt build",
     "deploy": "NODE_ENV=production ./bin/deploy.sh",
-    "serve": "NODE_ENV=production node ./index.js"
+    "serve": "NODE_ENV=production node ./index.js",
+    "test": "NODE_ENV=test grunt test:dev"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
