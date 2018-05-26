@@ -1,92 +1,12 @@
-<testsuites name="jest tests" tests="3" failures="2" time="4.199">
-  <testsuite name="&lt;ScrollToTop/&gt;" errors="0" failures="2" skipped="0" timestamp="2018-05-24T05:37:38" time="1.639" tests="2">
-    <testcase classname="&lt;ScrollToTop/&gt; should call changeHandler initially" name="&lt;ScrollToTop/&gt; should call changeHandler initially" time="0.043">
-      <failure>Invariant Violation: A &lt;Router&gt; may have only one child element
-    at invariant (/Users/paulcowan/projects/cuttingedge/node_modules/invariant/invariant.js:40:15)
-    at Router.componentWillMount (/Users/paulcowan/projects/cuttingedge/node_modules/react-router/Router.js:80:29)
-    at callComponentWillMount (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:6872:16)
-    at mountClassInstance (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:6968:7)
-    at updateClassComponent (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:8337:9)
-    at beginWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:8982:16)
-    at performUnitOfWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:11814:16)
-    at workLoop (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:11843:26)
-    at renderRoot (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:11874:9)
-    at performWorkOnRoot (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12449:24)
-    at performWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12370:9)
-    at performSyncWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12347:5)
-    at requestWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12247:7)
-    at scheduleWorkImpl (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12122:13)
-    at scheduleWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12082:12)
-    at scheduleRootUpdate (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12710:5)
-    at updateContainerAtExpirationTime (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12738:12)
-    at Object.updateContainer (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12765:14)
-    at ReactRoot.Object.&lt;anonymous&gt;.ReactRoot.render (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:16069:15)
-    at /Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:16488:14
-    at Object.unbatchedUpdates (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12557:12)
-    at legacyRenderSubtreeIntoContainer (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:16484:17)
-    at Object.render (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:16543:12)
-    at Object.render (/Users/paulcowan/projects/cuttingedge/node_modules/enzyme-adapter-react-16/build/ReactSixteenAdapter.js:218:50)
-    at new ReactWrapper (/Users/paulcowan/projects/cuttingedge/node_modules/enzyme/build/ReactWrapper.js:98:16)
-    at Object.mount (/Users/paulcowan/projects/cuttingedge/node_modules/enzyme/build/mount.js:19:10)
-    at Object.&lt;anonymous&gt;.exports.wrap (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/tests/index.tsx:16:10)
-    at wrap (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/components/ScrollToTop/ScrollToTop.test.tsx:20:79)
-    at Object.&lt;anonymous&gt; (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/components/ScrollToTop/ScrollToTop.test.tsx:32:21)
-    at Object.asyncFn (/Users/paulcowan/projects/cuttingedge/node_modules/jest-jasmine2/build/jasmine_async.js:82:37)
-    at resolve (/Users/paulcowan/projects/cuttingedge/node_modules/jest-jasmine2/build/queue_runner.js:52:12)
-    at new Promise (&lt;anonymous&gt;)
-    at mapper (/Users/paulcowan/projects/cuttingedge/node_modules/jest-jasmine2/build/queue_runner.js:39:19)
-    at promise.then (/Users/paulcowan/projects/cuttingedge/node_modules/jest-jasmine2/build/queue_runner.js:73:82)
-    at &lt;anonymous&gt;
-    at process._tickCallback (internal/process/next_tick.js:160:7)</failure>
+<testsuites name="jest tests" tests="3" failures="0" time="2.675">
+  <testsuite name="&lt;ScrollToTop/&gt;" errors="0" failures="0" skipped="0" timestamp="2018-05-24T05:46:10" time="0.949" tests="2">
+    <testcase classname="&lt;ScrollToTop/&gt; should call changeHandler initially" name="&lt;ScrollToTop/&gt; should call changeHandler initially" time="0.039">
     </testcase>
-    <testcase classname="&lt;ScrollToTop/&gt; should call changeHandler on route change" name="&lt;ScrollToTop/&gt; should call changeHandler on route change" time="0.005">
-      <failure>Invariant Violation: A &lt;Router&gt; may have only one child element
-    at invariant (/Users/paulcowan/projects/cuttingedge/node_modules/invariant/invariant.js:40:15)
-    at Router.componentWillMount (/Users/paulcowan/projects/cuttingedge/node_modules/react-router/Router.js:80:29)
-    at callComponentWillMount (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:6872:16)
-    at mountClassInstance (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:6968:7)
-    at updateClassComponent (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:8337:9)
-    at beginWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:8982:16)
-    at performUnitOfWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:11814:16)
-    at workLoop (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:11843:26)
-    at renderRoot (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:11874:9)
-    at performWorkOnRoot (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12449:24)
-    at performWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12370:9)
-    at performSyncWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12347:5)
-    at requestWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12247:7)
-    at scheduleWorkImpl (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12122:13)
-    at scheduleWork (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12082:12)
-    at scheduleRootUpdate (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12710:5)
-    at updateContainerAtExpirationTime (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12738:12)
-    at Object.updateContainer (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12765:14)
-    at ReactRoot.Object.&lt;anonymous&gt;.ReactRoot.render (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:16069:15)
-    at /Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:16488:14
-    at Object.unbatchedUpdates (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:12557:12)
-    at legacyRenderSubtreeIntoContainer (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:16484:17)
-    at Object.render (/Users/paulcowan/projects/cuttingedge/node_modules/react-dom/cjs/react-dom.development.js:16543:12)
-    at Object.render (/Users/paulcowan/projects/cuttingedge/node_modules/enzyme-adapter-react-16/build/ReactSixteenAdapter.js:218:50)
-    at new ReactWrapper (/Users/paulcowan/projects/cuttingedge/node_modules/enzyme/build/ReactWrapper.js:98:16)
-    at Object.mount (/Users/paulcowan/projects/cuttingedge/node_modules/enzyme/build/mount.js:19:10)
-    at Object.&lt;anonymous&gt;.exports.wrap (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/tests/index.tsx:16:10)
-    at wrap (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/components/ScrollToTop/ScrollToTop.test.tsx:20:79)
-    at Object.&lt;anonymous&gt; (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/components/ScrollToTop/ScrollToTop.test.tsx:44:25)
-    at step (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/components/ScrollToTop/ScrollToTop.test.tsx:40:23)
-    at Object.next (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/components/ScrollToTop/ScrollToTop.test.tsx:21:51)
-    at /Users/paulcowan/projects/cuttingedge/packages/connected-components/src/components/ScrollToTop/ScrollToTop.test.tsx:15:71
-    at new Promise (&lt;anonymous&gt;)
-    at Object.&lt;anonymous&gt;.__awaiter (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/components/ScrollToTop/ScrollToTop.test.tsx:11:12)
-    at Object.&lt;anonymous&gt; (/Users/paulcowan/projects/cuttingedge/packages/connected-components/src/components/ScrollToTop/ScrollToTop.test.tsx:41:51)
-    at Object.asyncFn (/Users/paulcowan/projects/cuttingedge/node_modules/jest-jasmine2/build/jasmine_async.js:82:37)
-    at resolve (/Users/paulcowan/projects/cuttingedge/node_modules/jest-jasmine2/build/queue_runner.js:52:12)
-    at new Promise (&lt;anonymous&gt;)
-    at mapper (/Users/paulcowan/projects/cuttingedge/node_modules/jest-jasmine2/build/queue_runner.js:39:19)
-    at promise.then (/Users/paulcowan/projects/cuttingedge/node_modules/jest-jasmine2/build/queue_runner.js:73:82)
-    at &lt;anonymous&gt;
-    at process._tickCallback (internal/process/next_tick.js:160:7)</failure>
+    <testcase classname="&lt;ScrollToTop/&gt; should call changeHandler on route change" name="&lt;ScrollToTop/&gt; should call changeHandler on route change" time="0.008">
     </testcase>
   </testsuite>
-  <testsuite name="renderFormInput" errors="0" failures="0" skipped="0" timestamp="2018-05-24T05:37:38" time="2.169" tests="1">
-    <testcase classname="renderFormInput should render error label if invalid" name="renderFormInput should render error label if invalid" time="0.032">
+  <testsuite name="renderFormInput" errors="0" failures="0" skipped="0" timestamp="2018-05-24T05:46:11" time="0.273" tests="1">
+    <testcase classname="renderFormInput should render error label if invalid" name="renderFormInput should render error label if invalid" time="0.015">
     </testcase>
   </testsuite>
 </testsuites>

@@ -7,7 +7,7 @@ exports[`ErrorLabel renders consistently 1`] = `
   id="error"
 >
   <ul
-    className="current-errors container"
+    className="current-errors"
   >
     <li
       data-selector="form-error"

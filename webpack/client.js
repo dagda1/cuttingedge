@@ -72,6 +72,7 @@ const configure = options => {
       publicPath: '/'
     },
     module: {
+      strictExportPresence: true,
       rules: [
         {
           test: /\.(css|scss|sass)$/,
