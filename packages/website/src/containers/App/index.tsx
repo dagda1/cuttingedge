@@ -17,7 +17,7 @@ export class App extends React.Component {
     return (
       <>
         <Helmet>
-          <title>App Component | React Universal</title>
+          <title>Cutting-Edge Solutions (Scotland)</title>
         </Helmet>
         <Provider store={store}>
           <ConnectedRouter history={history}>

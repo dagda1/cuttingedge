@@ -87,8 +87,6 @@
     "webpack-node-externals": "^1.6.0"
   },
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   }
 }
