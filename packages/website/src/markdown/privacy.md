@@ -47,4 +47,4 @@ CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED
 http://cutting.scot /
 29 Fifth Avenue Glasgow G12 0AR United Kingdom
 +44 7908771391
-dagda1@scotalt.net
+paul.cowan@cutting.scot

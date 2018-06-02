@@ -47,8 +47,8 @@ export const Footer: React.SFC = () => (
                     </a>
                   </li>
                 </ul>
-                <a className={styles.email} href="mailto:dagda1@scotalt.net">
-                  dagda1@scotalt.net
+                <a className={styles.email} href="mailto:paul.cowan@cutting.scot">
+                  paul.cowan@cutting.scot
                 </a>
               </div>
               <div className={styles.copyright}>
