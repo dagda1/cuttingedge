@@ -1,0 +1,71 @@
+@mixin mq-xs {
+  @include mq($from: gel-bp-xs) {
+    @content;
+  }
+}
+
+@mixin mq-s {
+  @include mq($from: gel-bp-s) {
+    @content;
+  }
+}
+
+@mixin mq-m {
+  @include mq($from: gel-bp-m) {
+    @content;
+  }
+}
+
+@mixin mq-l {
+  @include mq($from: gel-bp-l) {
+    @content;
+  }
+}
+
+@mixin mq-xl {
+  @include mq($from: gel-bp-xl) {
+    @content;
+  }
+}
+
+@mixin mq-xxl {
+  @include mq($from: gel-bp-xxl) {
+    @content;
+  }
+}
+
+@mixin mq-xs-max {
+  @include mq($until: gel-bp-xs) {
+    @content;
+  }
+}
+
+@mixin mq-s-max {
+  @include mq($until: gel-bp-s) {
+    @content;
+  }
+}
+
+@mixin mq-m-max {
+  @include mq($until: gel-bp-m) {
+    @content;
+  }
+}
+
+@mixin mq-l-max {
+  @include mq($until: gel-bp-l) {
+    @content;
+  }
+}
+
+@mixin mq-xl-max {
+  @include mq($until: gel-bp-xl) {
+    @content;
+  }
+}
+
+@mixin mq-xxl-max {
+  @include mq($until: gel-bp-xxl) {
+    @content;
+  }
+}

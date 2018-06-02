@@ -1,0 +1,23 @@
+@import '../../../styles/index';
+
+.container {
+  font-size: 16px;
+  line-height: 21px;
+  color: $label-error-color;
+  font-weight: normal;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  margin-left: 0;
+  list-style: none;
+
+  li {
+    padding-top: 0px;
+
+    display: flex;
+    align-items: center;
+
+    &:before {
+      @include error-indicator;
+    }
+  }
+}

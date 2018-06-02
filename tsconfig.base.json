@@ -11,6 +11,9 @@
     "lib": ["es5", "es2015", "es2016", "dom"],
     "types": ["node", "jest"],
     "typeRoots": ["./node_modules/@types"],
-    "strictFunctionTypes": false
+    "strictFunctionTypes": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitReturns": true,
+    "removeComments": false
   }
 }

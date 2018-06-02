@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const getLocalIdent = require('./getLocalIdent');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { filter } = require('lodash');
 
@@ -34,6 +33,7 @@ const configureCommon = options => {
   const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
 
   return {
+    mode: isDevelopment ? 'development' : 'production',
     output: {
       path: path.resolve('dist'),
       publicPath: '/'

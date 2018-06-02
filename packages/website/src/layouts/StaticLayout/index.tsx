@@ -6,7 +6,7 @@ export interface StaticLayoutProps {
   heading?: string;
 }
 
-export const StaticLayout: React.StatelessComponent<StaticLayoutProps> = ({ heading, children }) => (
+export const StaticLayout: React.SFC<StaticLayoutProps> = ({ heading, children }) => (
   <ApplicationLayout heading={heading}>
     <Layout>
       <GelItem>{children}</GelItem>

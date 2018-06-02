@@ -1,8 +1,16 @@
 @import 'main';
+@import '~@cutting/react-gel/tools';
+@import '~@cutting/react-gel/grid';
 
 @font-face {
   font-family: 'GeosansLight';
   src: url('../fonts/GeosansLight/GeosansLight.ttf');
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 html {

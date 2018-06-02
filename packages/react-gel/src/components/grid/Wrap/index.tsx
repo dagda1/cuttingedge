@@ -6,7 +6,7 @@ export interface WrapProps {
   className?: string;
 }
 
-export const Wrap: React.StatelessComponent<WrapProps> = ({ Tag, className, children }) => (
+export const Wrap: React.SFC<WrapProps> = ({ Tag, className, children }) => (
   <Tag className={cs('gel-wrap', className)}>{children}</Tag>
 );
 

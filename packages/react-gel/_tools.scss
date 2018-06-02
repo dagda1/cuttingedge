@@ -2,7 +2,5 @@ $gel-grid-enable--markup-output: false;
 
 @import '~gel-sass-tools/sass-tools';
 @import '~sass-mq/mq';
-@import '~gel-grid/grid';
 
 @import './src/styles/settings';
-@import './src/styles/mixins/index';

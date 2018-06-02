@@ -1,98 +1,45 @@
-module.exports = {
-  // Modules can be explicitly auto-mocked using jest.mock(moduleName).
-  // https://facebook.github.io/jest/docs/en/configuration.html#automock-boolean
-  automock: false, // [boolean]
+const fs = require('fs');
+const path = require('path');
+const _ = require('lodash');
 
-  // Respect Browserify's "browser" field in package.json when resolving modules.
-  // https://facebook.github.io/jest/docs/en/configuration.html#browser-boolean
-  browser: false, // [boolean]
+// load project-local settings if they exist
+const localSettingsPath = path.join(process.cwd(), 'jest.config.js');
+const localSettings = fs.existsSync(localSettingsPath) ? require(localSettingsPath) : {};
 
-  // This config option can be used here to have Jest stop running tests after the first failure.
-  // https://facebook.github.io/jest/docs/en/configuration.html#bail-boolean
-  bail: false, // [boolean]
-
-  // The directory where Jest should store its cached dependency information.
-  // https://facebook.github.io/jest/docs/en/configuration.html#cachedirectory-string
-  // cacheDirectory: '/tmp/<path>', // [string]
-
-  // Indicates whether the coverage information should be collected while executing the test.
-  // Because this retrofits all executed files with coverage collection statements,
-  // it may significantly slow down your tests.
-  // https://facebook.github.io/jest/docs/en/configuration.html#collectcoverage-boolean
-  // collectCoverage: false, // [boolean]
-
-  // https://facebook.github.io/jest/docs/en/configuration.html#collectcoveragefrom-array
-  collectCoverageFrom: [
-    '<rootDir>/src/**/*.{ts,tsx}',
-    '!<rootDir>/src/**/*.d.ts',
-    '!**/node_modules/**',
-    '!**/vendor/**'
-  ],
-
-  // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
-  coverageDirectory: '<rootDir>../../.coverage', // [string]
-
-  // coveragePathIgnorePatterns: // [array<string>]
-  // coverageReporters: [], // [array<string>]
-  // coverageThreshold: {}, // [object]
-
-  globals: {
-    __DEV__: true
+module.exports = _.mergeWith(
+  {
+    rootDir: process.cwd(),
+    coverageDirectory: '<rootDir>/.coverage',
+    globals: {
+      __DEV__: true
+    },
+    collectCoverageFrom: [
+      'src/**/*.{js,jsx,ts,tsx}',
+      '!src/**/*.d.ts',
+      '!src/**/*.test.*',
+      '!src/test/**/*.*',
+      '!src/features/**/*.*'
+    ],
+    setupFiles: [path.join(__dirname, './setupTests.js')],
+    testMatch: [
+      '<rootDir>/src/**/__tests__/**/*.ts?(x)',
+      '<rootDir>/src/**/?(*.)(spec|test).ts?(x)',
+      '<rootDir>/src/**/*.feature'
+    ],
+    testEnvironment: 'node',
+    testURL: 'http://localhost',
+    transform: {
+      '^.+\\.(ts|tsx)$': '<rootDir>/../../node_modules/ts-jest/preprocessor.js',
+      '^.+\\.css$': path.join(__dirname, './cssTransform.js'),
+      '^.+\\.csv$': path.join(__dirname, './fileTransform.js'),
+      '^(?!.*\\.(js|jsx|css|json)$)': path.join(__dirname, './fileTransform.js')
+    },
+    transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
+    moduleNameMapper: {
+      '^react-native$': 'react-native-web'
+    },
+    moduleFileExtensions: ['web.js', 'js', 'json', 'web.jsx', 'jsx', 'ts', 'tsx', 'feature', 'csv']
   },
-
-  // https://facebook.github.io/jest/docs/en/configuration.html#mapcoverage-boolean
-  // mapCoverage: false, // [boolean]
-
-  // The default extensions Jest will look for.
-  // https://facebook.github.io/jest/docs/en/configuration.html#modulefileextensions-array-string
-  moduleFileExtensions: ['js', 'json', 'jsx', 'node', 'ts', 'tsx'],
-
-  // moduleDirectories: // [array<string>]
-
-  // A map from regular expressions to module names that allow to stub out resources,
-  // like images or styles with a single module.
-  moduleNameMapper: {
-    '\\.(css|less|scss|sss)$': 'identity-obj-proxy',
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': 'GlobalImageStub'
-  },
-
-  // modulePathIgnorePatterns: // [array<string>]
-  // modulePaths: // [array<string>]
-  // notify: false, // [boolean]
-  // preset: // [string]
-  // projects: // [array<string>]
-  // clearMocks: // [boolean]
-  // reporters: // [array<moduleName | [moduleName, options]>]
-  // resetMocks: // [boolean]
-  // resetModules: // [boolean]
-  // resolver: // [string]
-  // rootDir: // [string]
-  // roots: // [array<string>]
-  // setupFiles: // [array]
-  // setupTestFrameworkScriptFile: // [string]
-  // snapshotSerializers: // [array<string>]
-  // testEnvironment: // [string]
-  // testMatch: // [array<string>]
-  // testPathIgnorePatterns: // [array<string>]
-  // testRegex: // [string]
-  // testResultsProcessor: // [string]
-  // testRunner: // [string]
-  // testURL: // [string]
-  // timers: // [string]
-
-  transform: {
-    '^.+\\.(ts|tsx)$': '<rootDir>../../node_modules/ts-jest/preprocessor.js',
-    '^.+\\.css$': '<rootDir>/../../jest/cssTransform.js',
-    '^(?!.*\\.(js|jsx|css|json)$)': '<rootDir>/../../jest/fileTransform.js'
-  },
-
-  setupFiles: ['<rootDir>../../jest/setupTests.js'],
-  roots: ['<rootDir>../../'],
-
-  testMatch: ['<rootDir>/src/**/?(*.)(spec|test).ts?(x)'],
-
-  // transformIgnorePatterns: // [array<string>]
-  // unmockedModulePathPatterns: // [array<string>]
-
-  verbose: true // [boolean]
-};
+  localSettings,
+  (objValue, srcValue) => (_.isArray(objValue) ? objValue.concat(srcValue) : undefined)
+);

@@ -25,7 +25,7 @@ module.exports = grunt => {
   const isProduciton = process.env.NODE_ENV === 'production';
 
   const webpack = configure({
-    entryPoint: path.join(__dirname, './demo'),
+    entries: path.join(__dirname, './demo'),
     devServer: true,
     isStaticBuild: true,
     publicDir: path.join(__dirname, './demo/public'),

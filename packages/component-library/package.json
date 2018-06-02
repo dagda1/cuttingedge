@@ -6,14 +6,15 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.1.0",
+  "version": "0.12.0",
   "license": "MIT",
   "dependencies": {
-    "@cutting/react-gel": "0.1.0"
+    "@cutting/react-gel": "^0.3.0"
   },
   "scripts": {
     "start": "NODE_ENV=development grunt start",
     "test": "NODE_ENV=test grunt test:dev",
-    "build": "NODE_ENV=development grunt build"
+    "build": "NODE_ENV=development grunt build",
+    "prepublish": "yarn build"
   }
 }

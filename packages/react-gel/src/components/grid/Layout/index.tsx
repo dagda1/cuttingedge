@@ -14,7 +14,7 @@ export interface LayoutProps {
   fit?: boolean;
 }
 
-export const Layout: React.StatelessComponent<LayoutProps> = ({
+export const Layout: React.SFC<LayoutProps> = ({
   Tag,
   className,
   flush,

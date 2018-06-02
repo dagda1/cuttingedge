@@ -1,0 +1,5 @@
+@mixin form-control {
+  height: $form-element-height;
+  width: 100%;
+  padding: 6px 12px;
+}

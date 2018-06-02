@@ -1,7 +1,6 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const path = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const nodeExternals = require('webpack-node-externals');
 const getLocalIdent = require('./getLocalIdent');
 const fs = require('fs');
@@ -30,7 +29,8 @@ const configure = (options = {}) => {
         /\.(eot|woff|woff2|ttf|otf)$/,
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
-        /\.(css|scss|sass|sss|less)$/
+        /\.(css|scss|sass|sss|less)$/,
+        /^@cutting/
       ].filter(x => x)
     });
 
@@ -38,8 +38,8 @@ const configure = (options = {}) => {
     name: 'server',
     target: 'node',
     externals,
-    entry: [options.entryPoint],
-    devtool: 'cheap-module-eval-source-map',
+    entry: [options.entries],
+    devtool: !isDevelopment && 'cheap-module-source-map',
     output: {
       filename: options.filename,
       libraryTarget: 'commonjs2'
@@ -48,6 +48,7 @@ const configure = (options = {}) => {
       modules: [path.join(process.cwd(), modulesDirectory), path.join(process.cwd(), 'src')]
     },
     module: {
+      strictExportPresence: true,
       rules: [
         {
           test: /\.(css|scss|sass)$/,

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorLabel renders consistently 1`] = `
+<div
+  aria-hidden="false"
+  className="form-group"
+  id="error"
+>
+  <ul
+    className="current-errors"
+  >
+    <li
+      data-selector="form-error"
+    >
+      error
+    </li>
+  </ul>
+</div>
+`;

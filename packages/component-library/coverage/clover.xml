@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1527140130043" clover="3.2.0">
+  <project timestamp="1527140130043" name="All files">
+    <metrics statements="70" coveredstatements="45" conditionals="42" coveredconditionals="21" methods="12" coveredmethods="4" elements="124" coveredelements="70" complexity="0" loc="70" ncloc="70" packages="7" files="8" classes="8">
+      <package name="components.atoms.ExternalLink">
+        <metrics statements="20" coveredstatements="6" conditionals="19" coveredconditionals="6" methods="3" coveredmethods="0"/>
+        <file name="index.js" path="/Users/paulcowan/projects/cuttingedge/packages/component-library/dist/components/atoms/ExternalLink/index.js">
+          <metrics statements="20" coveredstatements="6" conditionals="19" coveredconditionals="6" methods="3" coveredmethods="0"/>
+          <line num="2" count="1" type="cond" truecount="3" falsecount="1"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="10" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="12" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="14" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="components.atoms.Heading">
+        <metrics statements="23" coveredstatements="16" conditionals="19" coveredconditionals="12" methods="3" coveredmethods="2"/>
+        <file name="index.js" path="/Users/paulcowan/projects/cuttingedge/packages/component-library/dist/components/atoms/Heading/index.js">
+          <metrics statements="23" coveredstatements="16" conditionals="19" coveredconditionals="12" methods="3" coveredmethods="2"/>
+          <line num="2" count="1" type="cond" truecount="3" falsecount="1"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="10" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="cond" truecount="3" falsecount="1"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="14" count="1" type="cond" truecount="3" falsecount="1"/>
+          <line num="15" count="1" type="cond" truecount="0" falsecount="2"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="components.atoms.Svg">
+        <metrics statements="11" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="1"/>
+        <file name="Rhombus.js" path="/Users/paulcowan/projects/cuttingedge/packages/component-library/dist/components/atoms/Svg/Rhombus.js">
+          <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/paulcowan/projects/cuttingedge/packages/component-library/dist/components/atoms/Svg/index.js">
+          <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+          <line num="3" count="4" type="cond" truecount="1" falsecount="1"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="components.atoms.Svg.Cow">
+        <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="index.js" path="/Users/paulcowan/projects/cuttingedge/packages/component-library/dist/components/atoms/Svg/Cow/index.js">
+          <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="components.atoms.Svg.Github">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="index.js" path="/Users/paulcowan/projects/cuttingedge/packages/component-library/dist/components/atoms/Svg/Github/index.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="components.atoms.Svg.Twitter">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="index.js" path="/Users/paulcowan/projects/cuttingedge/packages/component-library/dist/components/atoms/Svg/Twitter/index.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="utl.prefixer">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <file name="index.js" path="/Users/paulcowan/projects/cuttingedge/packages/component-library/dist/utl/prefixer/index.js">
+          <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="5" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="6" count="2" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

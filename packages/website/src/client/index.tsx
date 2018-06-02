@@ -15,7 +15,8 @@ render(App);
 
 if (module.hot && __DEV__) {
   module.hot.accept('../containers/App', () => {
-    const App = require('../containers/App').default;
+    const { App } = require('../containers/App');
+
     render(App);
   });
 }

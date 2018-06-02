@@ -7,16 +7,14 @@ import { StaticRouter, Route } from 'react-router-dom';
 import { Request, Response } from 'express';
 import configureStore from '../store';
 import history from '../routes/history';
-
 import { Provider } from 'react-redux';
 import { Switch } from 'react-router';
 import { pages } from '../routes';
+import Helmet from 'react-helmet';
 
 /**
  * Provides the server side rendered app. In development environment, this method is called by
  * `react-hot-server-middleware`.
- *
- * This method renders the ejs template `public/views/index.ejs`.
  *
  * @param clientStats Parameter passed by hot server middleware
  */
@@ -38,16 +36,30 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
     </Provider>
   );
 
-  const appString = renderToString(app);
   const chunkNames = flushChunkNames();
-  const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
+  const chunks = flushChunks(clientStats, { chunkNames });
 
-  res.status(200);
+  const { js, styles } = chunks;
 
-  res.render('index', {
-    appString,
-    js,
-    styles,
-    cssHash
-  });
+  const appString = renderToString(app);
+  const { title } = Helmet.renderStatic();
+
+  res.status(200).send(`
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="google-site-verification" content="BoQSEIcVcThY2sG5OjvUASRtt2T57q_tJWXR996FagQ" />
+        ${styles}        
+        ${title}        
+      </head>
+      <body>
+        <div id="root">${appString}</div>
+        ${js}
+      </body>
+    </html>
+`);
 };

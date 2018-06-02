@@ -8,18 +8,7 @@ export interface GelItemProps extends BreakPointProps {
   w?: string;
 }
 
-export const GelItem: React.StatelessComponent<GelItemProps> = ({
-  Tag,
-  className,
-  children,
-  w,
-  s,
-  m,
-  l,
-  xl,
-  xxl,
-  ...rest
-}) => (
+export const GelItem: React.SFC<GelItemProps> = ({ Tag, className, children, w, s, m, l, xl, xxl, ...rest }) => (
   <Tag className={cs('gel-layout__item', gridItemAdapter({ w, s, m, l, xl, xxl }), className, { ...rest })}>
     {children}
   </Tag>

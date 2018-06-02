@@ -19,13 +19,15 @@ module.exports = grunt => {
     requireResolution: true
   });
 
+  const modulesFolder = path.resolve('../../node_modules');
+
   grunt.loadTasks('../../tasks');
 
   const isDevelopment = process.env.NODE_ENV === 'development';
   const isProduciton = process.env.NODE_ENV === 'production';
 
   const webpack = configure({
-    entryPoint: path.join(__dirname, './demo'),
+    entries: [path.join(__dirname, './demo')],
     devServer: true,
     isStaticBuild: true,
     publicDir: path.join(__dirname, './demo/public'),

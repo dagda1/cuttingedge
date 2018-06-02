@@ -1,18 +1,19 @@
 import * as express from 'express';
+import { Express } from 'express';
 import { join } from 'path';
 import { log } from 'winston';
 import * as path from 'path';
 
 const configureDevelopment = (app: any) => {
   const clientConfig = require('../../../webpack/client').configure({
-    entryPoint: path.join(process.cwd(), 'src/client/index')
+    entries: path.join(process.cwd(), 'src/client/index')
   });
 
   const publicPath = clientConfig.output.publicPath;
   const outputPath = clientConfig.output.path;
 
   const serverConfig = require('../../../webpack/server').configure({
-    entryPoint: path.join(process.cwd(), 'src/server/index'),
+    entries: path.join(process.cwd(), 'src/server/index'),
     filename: 'server.js'
   });
 
@@ -33,14 +34,13 @@ const configureDevelopment = (app: any) => {
   app.set('views', join(process.cwd(), './public/views'));
 };
 
-const configureProduction = (app: any) => {
+const configureProduction = (app: Express) => {
   const clientStats = require('./stats.json');
   const serverRender = require('./server.js').default;
   const publicPath = '/';
   const outputPath = join(process.cwd(), '.');
 
   app.use(publicPath, express.static(outputPath));
-
   app.use(
     serverRender({
       clientStats,
@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 log('info', 'Configuring server engine...');
-app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
+app.set('view engine', 'ejs');
 
 app.listen(app.get('port'), () => log('info', `Server listening on port ${app.get('port')}...`));

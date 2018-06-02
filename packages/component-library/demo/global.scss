@@ -1,0 +1,26 @@
+$label-default-color: #fff;
+
+@import '../src/styles/_index.scss';
+
+html {
+  height: 100%;
+  font-size: 100%;
+}
+
+body {
+  height: 100%;
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1;
+  background-color: #000;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box !important;
+}
+
+ul {
+  padding: 0;
+}

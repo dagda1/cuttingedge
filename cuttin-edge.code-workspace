@@ -13,6 +13,9 @@
       "path": "packages/connected-components"
     },
     {
+      "path": "packages/react-scrollto-any"
+    },
+    {
       "path": "packages/react-gel"
     },
     {

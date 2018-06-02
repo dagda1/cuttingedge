@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { LOCATION_CHANGE, RouterState, LocationChangeAction } from 'react-router-redux';
+import { LOCATION_CHANGE, LocationChangeAction } from 'react-router-redux';
 import reducerBuilder from './builder';
 
 const routeInitialState = { location: null };
@@ -7,9 +7,10 @@ const routeInitialState = { location: null };
 export interface State {}
 
 const routeReducer = reducerBuilder(routeInitialState).build({
-  [LOCATION_CHANGE]: (state: RouterState, action: LocationChangeAction) => {
-    return { ...state, location: action.payload };
-  }
+  [LOCATION_CHANGE]: (state: Object, action: LocationChangeAction) => ({
+    ...state,
+    location: action.payload.pathname
+  })
 });
 
 export default combineReducers({

@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const path = require('path');
 const { merge } = require('lodash');
 const readdirSync = require('fs').readdirSync;
+const testConfig = require('../../tasks/test').config;
 
 const nodeExternals = readdirSync(path.join(__dirname, '../../node_modules'))
   .filter(x => !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(x))
@@ -24,6 +25,8 @@ module.exports = grunt => {
     scope: 'devDependencies',
     requireResolution: true
   });
+
+  grunt.loadTasks('../../tasks');
 
   grunt.initConfig({
     env: {
@@ -67,15 +70,15 @@ module.exports = grunt => {
     },
     webpack: {
       client: require('../../webpack/client').configure({
-        entryPoint: path.join(__dirname, 'src/client/index'),
+        entries: path.join(__dirname, 'src/client/index'),
         isStaticBuild: false
       }),
       server: require('../../webpack/server').configure({
-        entryPoint: path.join(__dirname, 'src/server/index'),
+        entries: path.join(__dirname, 'src/server/index'),
         filename: 'server.js'
       }),
       node: require('../../webpack/server').configure({
-        entryPoint: path.join(__dirname, 'src/index'),
+        entries: path.join(__dirname, 'src/index'),
         filename: 'index.js',
         externals: {
           ...nodeExternals,
@@ -83,7 +86,8 @@ module.exports = grunt => {
           './server.js': 'commonjs ./server.js'
         }
       })
-    }
+    },
+    test: testConfig
   });
 
   grunt.registerTask('build:node', ['clean', 'webpack:node']);

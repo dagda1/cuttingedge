@@ -12,43 +12,47 @@ body {
   line-height: 1;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box !important;
+}
+
 .controls {
   background-color: #e6711b;
   color: #fff;
 
-  @include pt(1);
-  @include pb(3);
-  @include px(2);
+  padding: 8px 16px 24px 16px;
 
   &:after {
     content: flip('Group 1 - Extra Small (0 - 399px)', 'Group 1 - Extra Small \200F(0 - 399px)');
   }
 
-  @include mq-s {
+  @media only screen and (min-width: 400px) {
     &:after {
       content: flip('Group 2 - Small (400px - 599px)', 'Group 2 - Small \200F(400px - 599px)');
     }
   }
 
-  @include mq-m {
+  @media only screen and (min-width: 600px) {
     &:after {
       content: flip('Group 3 - Medium (600px - 899px)', 'Group 3 - Medium \200F(600px - 899px)');
     }
   }
 
-  @include mq-l {
+  @media only screen and (min-width: 900px) {
     &:after {
       content: flip('Group 4 - Large (900px)', 'Group 4 - Large \200F(900px)');
     }
   }
 
-  @include mq-xl {
+  @media only screen and (min-width: 1008px) {
     &:after {
       content: flip('Group 5 - Extra Large (1008px)', 'Group 5 - Extra Large \200F(1008px)');
     }
   }
 
-  @include mq-xxl {
+  @media only screen and (min-width: 1280px) {
     &:after {
       content: flip('Group 6 - Extra Extra Large (1280px)', 'Group 6 - Extra Extra Large \200F(1280px)');
     }

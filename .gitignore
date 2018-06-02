@@ -29,3 +29,5 @@ yarn-error.log*
 .tscache
 
 .npmrc-deploy
+
+lcov.info

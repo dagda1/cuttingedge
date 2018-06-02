@@ -1,3 +1,4 @@
+import '@cutting/react-gel/_grid.scss';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { App } from './App';
