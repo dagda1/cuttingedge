@@ -13,18 +13,20 @@ export interface ApplicationLayoutProps {
 const styles = require('./ApplicationLayout.scss');
 
 export const ApplicationLayout: React.SFC<ApplicationLayoutProps> = ({ heading, italicise, children }) => (
-  <Wrap>
-    <Header />
-    <main className={styles.main}>
-      {heading && (
-        <Layout>
-          <GelItem>
-            <Heading className={cs({ [styles.italic]: italicise })}>{heading}</Heading>
-          </GelItem>
-        </Layout>
-      )}
-      {children}
-    </main>
-    <Footer />
-  </Wrap>
+  <ApplicationLayout>
+    <Wrap>
+      <Header />
+      <main className={styles.main}>
+        {heading && (
+          <Layout>
+            <GelItem>
+              <Heading className={cs({ [styles.italic]: italicise })}>{heading}</Heading>
+            </GelItem>
+          </Layout>
+        )}
+        {children}
+      </main>
+      <Footer />
+    </Wrap>
+  </ApplicationLayout>
 );
