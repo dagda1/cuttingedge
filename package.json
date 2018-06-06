@@ -43,7 +43,6 @@
     "css-loader": "^0.28.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fast-glob": "^2.2.0",
     "file-loader": "^1.1.11",
     "gel-grid": "^3.0.4",

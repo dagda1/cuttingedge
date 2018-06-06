@@ -36,10 +36,9 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
     </Provider>
   );
 
-  const chunkNames = flushChunkNames();
-  const chunks = flushChunks(clientStats, { chunkNames });
-
-  const { js, styles } = chunks;
+  const { js, styles } = flushChunks(clientStats, {
+    chunkNames: flushChunkNames()
+  });
 
   const appString = renderToString(app);
   const { title } = Helmet.renderStatic();
@@ -53,8 +52,8 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-site-verification" content="BoQSEIcVcThY2sG5OjvUASRtt2T57q_tJWXR996FagQ" />
-        ${styles}        
-        ${title}        
+        ${styles}
+        ${title}
       </head>
       <body>
         <div id="root">${appString}</div>

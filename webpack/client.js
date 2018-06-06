@@ -7,8 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
 const StatsWebpackPlugin = require('stats-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { filter } = require('lodash');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const _ = require('lodash');
 const { configureCommon, getEnvironment } = require('./common');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -78,7 +78,7 @@ const configure = options => {
           test: /\.(css|scss|sass)$/,
           use: isDevelopment
             ? [
-                { loader: 'style-loader' },
+                ExtractCssChunks.loader,
                 {
                   loader: 'css-loader',
                   options: {
@@ -90,7 +90,7 @@ const configure = options => {
                 { loader: 'postcss-loader', options: postcssOptions },
                 { loader: 'sass-loader' }
               ]
-            : ExtractTextPlugin.extract({
+            : ExtractCssChunks.extract({
                 fallback: 'style-loader',
                 use: [
                   {
@@ -113,9 +113,29 @@ const configure = options => {
         }
       ]
     },
-    plugins: filter([
+    optimization: {
+      runtimeChunk: {
+        name: 'bootstrap'
+      },
+      splitChunks: {
+        chunks: 'initial', // <-- The key to this
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor'
+          }
+        }
+      }
+    },
+    plugins: _.filter([
       isDevelopment && new webpack.HotModuleReplacementPlugin({ multiStep: true }),
-      ssrBuild && isProduction && new ExtractTextPlugin('static/css/[name].[md5:contenthash:hex:20].css'),
+      ssrBuild &&
+        new ExtractCssChunks({
+          filename: isDevelopment ? '[name].css' : 'static/css/[name].[md5:contenthash:hex:20].css',
+          chunkFilename: '[id].css',
+          hot: isDevelopment
+        }),
+      isProduction && ssrBuild && new ExtractCssChunksPlugin(),
       isProduction && ssrBuild && new StatsWebpackPlugin('stats.json'),
       devServer &&
         new HtmlWebpackPlugin({
@@ -143,7 +163,7 @@ const configure = options => {
   });
 
   if (isProduction) {
-    config.optimization = {
+    config.optimization = _.merge({}, config.optimization, {
       minimize: true,
       minimizer: [
         new UglifyJsPlugin({
@@ -208,7 +228,7 @@ const configure = options => {
       // Keep the runtime chunk seperated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       // runtimeChunk: true,
-    };
+    });
   }
 
   return config;
