@@ -4,10 +4,8 @@ const path = require('path');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const postcssOptions = require('./postcssOptions');
 const getLocalIdent = require('./getLocalIdent');
 const StatsWebpackPlugin = require('stats-webpack-plugin');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const _ = require('lodash');
 const { configureCommon, getEnvironment } = require('./common');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -71,48 +69,6 @@ const configure = options => {
       devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath),
       publicPath: '/'
     },
-    module: {
-      strictExportPresence: true,
-      rules: [
-        {
-          test: /\.(css|scss|sass)$/,
-          use: isDevelopment
-            ? [
-                ExtractCssChunks.loader,
-                {
-                  loader: 'css-loader',
-                  options: {
-                    importLoaders: 2,
-                    modules: true,
-                    getLocalIdent: getLocalIdent
-                  }
-                },
-                { loader: 'postcss-loader', options: postcssOptions },
-                { loader: 'sass-loader' }
-              ]
-            : ExtractCssChunks.extract({
-                fallback: 'style-loader',
-                use: [
-                  {
-                    loader: 'css-loader',
-                    query: {
-                      modules: true,
-                      minimize: isProduction,
-                      importLoaders: 2,
-                      localIdentName: '[name]__[local]',
-                      getLocalIdent: getLocalIdent
-                    }
-                  },
-                  {
-                    loader: 'postcss-loader',
-                    options: postcssOptions
-                  },
-                  'sass-loader'
-                ]
-              })
-        }
-      ]
-    },
     optimization: {
       runtimeChunk: {
         name: 'bootstrap'
@@ -129,13 +85,6 @@ const configure = options => {
     },
     plugins: _.filter([
       isDevelopment && new webpack.HotModuleReplacementPlugin({ multiStep: true }),
-      ssrBuild &&
-        new ExtractCssChunks({
-          filename: isDevelopment ? '[name].css' : 'static/css/[name].[md5:contenthash:hex:20].css',
-          chunkFilename: '[id].css',
-          hot: isDevelopment
-        }),
-      isProduction && ssrBuild && new ExtractCssChunksPlugin(),
       isProduction && ssrBuild && new StatsWebpackPlugin('stats.json'),
       devServer &&
         new HtmlWebpackPlugin({

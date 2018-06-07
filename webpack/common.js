@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const getLocalIdent = require('./getLocalIdent');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { filter } = require('lodash');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const postcssOptions = require('./postcssOptions');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -32,7 +34,7 @@ const configureCommon = options => {
 
   const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
 
-  return {
+  const config = {
     mode: isDevelopment ? 'development' : 'production',
     output: {
       path: path.resolve('dist'),
@@ -42,6 +44,7 @@ const configureCommon = options => {
       extensions: ['.ts', '.tsx', '.scss', '.js']
     },
     module: {
+      strictExportPresence: true,
       rules: filter([
         {
           exclude: [
@@ -78,6 +81,23 @@ const configureCommon = options => {
           options: merge({ useBabel: false, useCache: false }, typescriptOptions)
         },
         {
+          test: /\.(css|scss|sass)$/,
+          use: [
+            ExtractCssChunks.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2,
+                modules: true,
+                getLocalIdent: getLocalIdent,
+                minimize: isProduction
+              }
+            },
+            { loader: 'postcss-loader', options: postcssOptions },
+            { loader: 'sass-loader' }
+          ]
+        },
+        {
           test: /\.md$/,
           use: [
             {
@@ -91,16 +111,24 @@ const configureCommon = options => {
         }
       ])
     },
-    plugins: [
+    plugins: filter([
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
         'process.env.BROWSER': false,
         __DEV__: isDevelopment
       }),
+      ssrBuild &&
+        new ExtractCssChunks({
+          filename: isDevelopment ? '[name].css' : 'static/css/[name].[md5:contenthash:hex:20].css',
+          chunkFilename: '[id].css',
+          hot: isDevelopment
+        }),
       new CheckerPlugin(),
       ...(isAnalyse ? [new BundleAnalyzerPlugin()] : [])
-    ]
+    ])
   };
+
+  return config;
 };
 
 module.exports = { configureCommon, getEnvironment };

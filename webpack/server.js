@@ -48,25 +48,7 @@ const configure = (options = {}) => {
       modules: [path.join(process.cwd(), modulesDirectory), path.join(process.cwd(), 'src')]
     },
     module: {
-      strictExportPresence: true,
-      rules: [
-        {
-          test: /\.(css|scss|sass)$/,
-          use: [
-            {
-              loader: 'css-loader/locals',
-              options: {
-                modules: true,
-                importLoaders: 2,
-                getLocalIdent
-              }
-            },
-            {
-              loader: 'sass-loader'
-            }
-          ]
-        }
-      ]
+      strictExportPresence: true
     },
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({
