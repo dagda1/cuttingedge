@@ -5,6 +5,7 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 const { filter } = require('lodash');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const postcssOptions = require('./postcssOptions');
+const fs = require('fs');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -28,11 +29,14 @@ const { merge } = require('lodash');
 const configureCommon = options => {
   const typescriptOptions = options.typescriptOptions || {};
   const isNode = !!options.isNode;
+  const devServer = options.devServer;
 
   const { isStaticBuild } = options;
   const ssrBuild = !isStaticBuild;
 
   const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
+
+  const modulesDirectory = fs.existsSync('../../node_modules') ? '../../node_modules' : './node_modules';
 
   const config = {
     mode: isDevelopment ? 'development' : 'production',
@@ -41,7 +45,13 @@ const configureCommon = options => {
       publicPath: '/'
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.scss', '.js']
+      modules: [path.join(process.cwd(), modulesDirectory), path.join(process.cwd(), 'src')],
+      extensions: ['.ts', '.tsx', '.scss', '.js'],
+      alias: isDevelopment
+        ? {
+            'webpack/hot/poll': require.resolve('webpack/hot/poll')
+          }
+        : {}
     },
     module: {
       strictExportPresence: true,
@@ -82,20 +92,34 @@ const configureCommon = options => {
         },
         {
           test: /\.(css|scss|sass)$/,
-          use: [
-            ExtractCssChunks.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                modules: true,
-                getLocalIdent: getLocalIdent,
-                minimize: isProduction
-              }
-            },
-            { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader' }
-          ]
+          use: devServer
+            ? [
+                { loader: 'style-loader' },
+                {
+                  loader: 'css-loader',
+                  options: {
+                    importLoaders: 2,
+                    modules: true,
+                    getLocalIdent: getLocalIdent
+                  }
+                },
+                { loader: 'postcss-loader', options: postcssOptions },
+                { loader: 'sass-loader' }
+              ]
+            : [
+                ExtractCssChunks.loader,
+                {
+                  loader: 'css-loader',
+                  options: {
+                    importLoaders: 2,
+                    modules: true,
+                    getLocalIdent: getLocalIdent,
+                    minimize: isProduction
+                  }
+                },
+                { loader: 'postcss-loader', options: postcssOptions },
+                { loader: 'sass-loader' }
+              ]
         },
         {
           test: /\.md$/,
@@ -117,7 +141,7 @@ const configureCommon = options => {
         'process.env.BROWSER': false,
         __DEV__: isDevelopment
       }),
-      ssrBuild &&
+      !devServer &&
         new ExtractCssChunks({
           filename: isDevelopment ? '[name].css' : 'static/css/[name].[md5:contenthash:hex:20].css',
           chunkFilename: '[id].css',

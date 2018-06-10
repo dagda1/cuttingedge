@@ -34,18 +34,17 @@ const configure = (options = {}) => {
       ].filter(x => x)
     });
 
+  const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
+
   const config = merge(common, {
     name: 'server',
     target: 'node',
     externals,
-    entry: [options.entries],
+    entry: isDevelopment ? [...entries] : entries,
     devtool: !isDevelopment && 'cheap-module-source-map',
     output: {
       filename: options.filename,
       libraryTarget: 'commonjs2'
-    },
-    resolve: {
-      modules: [path.join(process.cwd(), modulesDirectory), path.join(process.cwd(), 'src')]
     },
     module: {
       strictExportPresence: true

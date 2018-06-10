@@ -51,7 +51,6 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="google-site-verification" content="BoQSEIcVcThY2sG5OjvUASRtt2T57q_tJWXR996FagQ" />
         ${styles}
         ${title}
       </head>

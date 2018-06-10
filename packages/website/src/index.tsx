@@ -53,6 +53,8 @@ const configureProduction = (app: Express) => {
 
 const app = express();
 
+app.disable('x-powered-by');
+
 if (process.env.NODE_ENV === 'development') {
   configureDevelopment(app);
 } else {
