@@ -19,6 +19,9 @@
       "path": "packages/react-gel"
     },
     {
+      "path": "packages/cutting-devtools"
+    },
+    {
       "path": "packages/util"
     }
   ],

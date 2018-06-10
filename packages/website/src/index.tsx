@@ -20,8 +20,8 @@ const configureDevelopment = (app: any) => {
   const multiCompiler = require('webpack')([clientConfig, serverConfig]);
   const clientCompiler = multiCompiler.compilers.find((compiler: any) => compiler.name === 'client');
 
-  app.use(require('webpack-dev-middleware')(multiCompiler, { serverSideRender: true }));
   app.use(require('webpack-hot-middleware')(clientCompiler));
+  app.use(require('webpack-dev-middleware')(multiCompiler, { serverSideRender: true }));
 
   app.use(publicPath, express.static(outputPath));
 

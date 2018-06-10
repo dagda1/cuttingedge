@@ -11,6 +11,9 @@ import { Provider } from 'react-redux';
 import { Switch } from 'react-router';
 import { pages } from '../routes';
 import Helmet from 'react-helmet';
+import { State } from '../reducers/types';
+import * as serialize from 'serialize-javascript';
+import { some } from 'lodash';
 
 /**
  * Provides the server side rendered app. In development environment, this method is called by
@@ -18,9 +21,22 @@ import Helmet from 'react-helmet';
  *
  * @param clientStats Parameter passed by hot server middleware
  */
-export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response) => {
+export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response, next: any) => {
+  const preloadedState: State = {};
+
   const store = configureStore({}, history);
+
   const context: any = { store };
+
+  // TODO: find a better way of filtering websocket hot reloading
+  if (some(['sockjs', 'hot-update.json'], part => req.url.indexOf(part) > -1)) {
+    next();
+    return;
+  }
+
+  console.log('--------------------');
+  console.log(req.url);
+  console.log('--------------------');
 
   const app = (
     <Provider store={store}>
@@ -56,6 +72,9 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
       </head>
       <body>
         <div id="root">${appString}</div>
+        <script>
+          window.__PRELOADED_STATE__ = ${serialize(preloadedState)}
+        </script>
         ${js}
       </body>
     </html>
