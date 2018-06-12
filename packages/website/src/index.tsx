@@ -4,15 +4,18 @@ import { join } from 'path';
 import { log } from 'winston';
 import * as path from 'path';
 
+const webPackClient = require('@cutting/devtools/webpack/client');
+const webPackServer = require('@cutting/devtools/webpack/server');
+
 const configureDevelopment = (app: any) => {
-  const clientConfig = require('../../../webpack/client').configure({
+  const clientConfig = webPackClient.configure({
     entries: path.join(process.cwd(), 'src/client/index')
   });
 
   const publicPath = clientConfig.output.publicPath;
   const outputPath = clientConfig.output.path;
 
-  const serverConfig = require('../../../webpack/server').configure({
+  const serverConfig = webPackServer.configure({
     entries: path.join(process.cwd(), 'src/server/index'),
     filename: 'server.js'
   });

@@ -9,9 +9,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "NODE_ENV=development grunt start",
-    "test": "NODE_ENV=test grunt test:dev",
-    "build": "NODE_ENV=development grunt build"
+    "start": "PORT=7777 NODE_ENV=development cutting start",
+    "test": "NODE_ENV=test cutting test",
+    "build": "NODE_ENV=development cutting ts-build"
   },
   "dependencies": {},
   "devDependencies": {
