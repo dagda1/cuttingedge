@@ -9,7 +9,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "test": "NODE_ENV=test cutting test",
+    "test": "echo no tests in util....yet",
     "build": "NODE_ENV=development cutting ts-build"
   }
 }

@@ -4,7 +4,7 @@ import { flushChunkNames } from 'react-universal-component/server';
 import { renderToString } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';
 import { StaticRouter, Route } from 'react-router-dom';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import configureStore from '../store';
 import history from '../routes/history';
 import { Provider } from 'react-redux';
@@ -21,7 +21,7 @@ import { some } from 'lodash';
  *
  * @param clientStats Parameter passed by hot server middleware
  */
-export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response, next: any) => {
+export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response, next: NextFunction) => {
   const preloadedState: State = {};
 
   const store = configureStore({}, history);

@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "cutting each-pkg yarn build",
-    "test": "CI=true cutting /each-pkg yarn test",
+    "test": "CI=true cutting each-pkg yarn test",
     "start": "yarn build && yarn --cwd packages/website/ start"
   },
   "dependencies": {
