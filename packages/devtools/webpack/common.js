@@ -80,7 +80,18 @@ const configureCommon = options => {
           options: { name: staticAssetName }
         },
         {
-          test: /\.(eot|svg|ttf|woff|woff2|jpg)$/,
+          test: [
+            /\.bmp$/,
+            /\.gif$/,
+            /\.jpe?g$/,
+            /\.png$/,
+            /\.woff$/,
+            /\.woff2$/,
+            /\.eot$/,
+            /\.eot$/,
+            /\.ttf$/,
+            /\.svg/
+          ],
           loader: 'url-loader',
           options: { name: staticAssetName, limit: 10000 }
         },

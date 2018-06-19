@@ -6,7 +6,7 @@ const chalk = require('chalk');
 const program = require('commander');
 const { spawn, spawnSync } = require('child_process');
 
-const packages = ['util', 'component-library', 'connected-components', 'website'];
+const packages = require(path.join(process.cwd(), 'pkg'));
 
 /**
  * Gets the package.json contents of each package located in the
@@ -15,15 +15,10 @@ const packages = ['util', 'component-library', 'connected-components', 'website'
  * @returns {[Object]} Array of package.json data
  */
 function getPackages() {
-  let workspacePath = path.resolve('./packages');
-
-  return packages
-    .map(pkgPath => path.join(workspacePath, pkgPath))
-    .filter(pkgPath => fs.lstatSync(pkgPath).isDirectory())
-    .map(pkgPath => {
-      let pkg = require(path.join(pkgPath, './package.json'));
-      return { ...pkg, path: pkgPath };
-    });
+  return packages.filter(pkgPath => fs.lstatSync(pkgPath).isDirectory()).map(pkgPath => {
+    let pkg = require(path.join(pkgPath, './package.json'));
+    return { ...pkg, path: pkgPath };
+  });
 }
 
 /**
