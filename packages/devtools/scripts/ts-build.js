@@ -22,11 +22,16 @@ function runTypeScriptBuild() {
 
   const { options } = ts.parseJsonConfigFileContent(json.config, ts.sys, path.dirname(tsconfig));
 
+  options.configFilePath = path.join(process.cwd(), 'tsconfig.json');
+
   options.outDir = outDir;
   options.src = src;
-  options.typeRoots = typeRoots;
 
-  const rootFile = path.resolve(paths.appSrc, 'index.ts');
+  let rootFile = path.join(process.cwd(), 'src/index.tsx');
+
+  if (!fs.existsSync(rootFile)) {
+    rootFile = path.join(process.cwd(), 'src/index.ts');
+  }
 
   const host = ts.createCompilerHost(options, true);
   const prog = ts.createProgram([rootFile], options, host);
