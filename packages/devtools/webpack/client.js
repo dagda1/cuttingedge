@@ -9,6 +9,7 @@ const StatsWebpackPlugin = require('stats-webpack-plugin');
 const _ = require('lodash');
 const { configureCommon, getEnvironment } = require('./common');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 
 const reStyle = /\.(css|scss)$/;
 const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
@@ -66,7 +67,11 @@ const configure = options => {
           historyApiFallback: { disableDotRule: true },
           https: protocol === 'https',
           host,
-          proxy
+          proxy,
+          before(app) {
+            // This lets us open files from the runtime error overlay.
+            app.use(errorOverlayMiddleware());
+          }
         }
       : {},
     output: {

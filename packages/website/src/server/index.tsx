@@ -13,7 +13,6 @@ import { pages } from '../routes';
 import Helmet from 'react-helmet';
 import { State } from '../reducers/types';
 import * as serialize from 'serialize-javascript';
-import { some } from 'lodash';
 
 /**
  * Provides the server side rendered app. In development environment, this method is called by
@@ -27,16 +26,6 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
   const store = configureStore({}, history);
 
   const context: any = { store };
-
-  // TODO: find a better way of filtering websocket hot reloading
-  if (some(['sockjs', 'hot-update.json'], part => req.url.indexOf(part) > -1)) {
-    next();
-    return;
-  }
-
-  console.log('--------------------');
-  console.log(req.url);
-  console.log('--------------------');
 
   const app = (
     <Provider store={store}>

@@ -6,6 +6,9 @@ const { filter } = require('lodash');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const postcssOptions = require('./postcssOptions');
 const fs = require('fs');
+const WebpackBar = require('webpackbar');
+const AssetsPlugin = require('assets-webpack-plugin');
+const paths = require('../config/paths');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -26,9 +29,17 @@ const getEnvironment = () => {
 
 const { merge } = require('lodash');
 
+const sassOptions = {
+  outputStyle: 'expanded',
+  sourceMap: false,
+  data: '@import "./styles/_overrides.scss";',
+  includePaths: [path.join(process.cwd(), 'src')]
+};
+
 const configureCommon = options => {
   const typescriptOptions = options.typescriptOptions || {};
   const isNode = !!options.isNode;
+  const isWeb = !isNode;
   const devServer = options.devServer;
 
   const { isStaticBuild } = options;
@@ -36,17 +47,16 @@ const configureCommon = options => {
 
   const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
 
-  const modulesDirectory = fs.existsSync('../../node_modules') ? '../../node_modules' : './node_modules';
-
   const config = {
     mode: isDevelopment ? 'development' : 'production',
+    watch: isDevelopment,
     output: {
       path: path.resolve('dist'),
       publicPath: '/'
     },
     resolve: {
-      modules: [path.join(process.cwd(), modulesDirectory), path.join(process.cwd(), 'src')],
-      extensions: ['.ts', '.tsx', '.scss', '.js'],
+      modules: [path.join(process.cwd(), 'src'), 'node_modules'],
+      extensions: ['.js', '.ts', '.tsx', '.scss', '.json', '.csv'],
       alias: isDevelopment
         ? {
             'webpack/hot/poll': require.resolve('webpack/hot/poll')
@@ -80,7 +90,7 @@ const configureCommon = options => {
           options: { name: staticAssetName }
         },
         {
-          test: /\.(eot|svg|ttf|woff|woff2|jpg)$/,
+          test: /\.(eot|svg|ttf|woff|woff2|jpg|png)$/,
           loader: 'url-loader',
           options: { name: staticAssetName, limit: 10000 }
         },
@@ -104,7 +114,7 @@ const configureCommon = options => {
                   }
                 },
                 { loader: 'postcss-loader', options: postcssOptions },
-                { loader: 'sass-loader' }
+                { loader: 'sass-loader', options: sassOptions }
               ]
             : [
                 ExtractCssChunks.loader,
@@ -118,7 +128,7 @@ const configureCommon = options => {
                   }
                 },
                 { loader: 'postcss-loader', options: postcssOptions },
-                { loader: 'sass-loader' }
+                { loader: 'sass-loader', options: sassOptions }
               ]
         },
         {
@@ -141,6 +151,16 @@ const configureCommon = options => {
         'process.env.BROWSER': false,
         __DEV__: isDevelopment
       }),
+      isWeb &&
+        new AssetsPlugin({
+          path: paths.appBuild,
+          filename: 'assets.json'
+        }),
+      isDevelopment &&
+        new WebpackBar({
+          color: isWeb ? '#f56be2' : '#c065f4',
+          name: isWeb ? 'client' : 'server'
+        }),
       !devServer &&
         new ExtractCssChunks({
           filename: isDevelopment ? '[name].css' : 'static/css/[name].[md5:contenthash:hex:20].css',
