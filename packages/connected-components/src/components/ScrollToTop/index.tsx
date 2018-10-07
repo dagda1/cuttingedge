@@ -12,7 +12,7 @@ export class ScrollToTopView extends React.Component<ScrollToTopProps> {
     const root = document.querySelector('#root') as any;
     setTimeout(() => {
       root.focus();
-    }, 100);
+    },         100);
   };
 
   handleChange = () => {

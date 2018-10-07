@@ -1,56 +1,71 @@
 const fs = require('fs-extra');
 const path = require('path');
 const ts = require('typescript');
-const exec = require('child_process').execSync;
 const paths = require('../config/paths');
 const copy = require('copy');
+const chalk = require('chalk');
+const { exec } = require('child_process');
 
 function runTypeScriptBuild() {
-  const c2Config = require(paths.defaultC2ConfigPath).ts;
-
+  const buildConfig = require(paths.jsBuildConfigPath).ts;
   const {
     src,
     tsconfig,
     options: { outDir, typeRoots }
-  } = c2Config;
+  } = buildConfig;
 
   console.log(`Running typescript build in ${outDir}/`);
 
   fs.emptyDirSync(paths.appBuild);
 
-  const json = ts.parseConfigFileTextToJson(tsconfig, ts.sys.readFile(tsconfig), true);
+  process.argv.push('--noEmit', false);
+  process.argv.push('--pretty', true);
+  process.argv.push('--sourceMap', process.argv.includes('--source-map'));
 
-  const { options } = ts.parseJsonConfigFileContent(json.config, ts.sys, path.dirname(tsconfig));
+  const tscPath = path.join(__dirname, '../../../node_modules/.bin/tsc');
 
-  options.configFilePath = path.join(process.cwd(), 'tsconfig.json');
+  const tsc = exec(`${tscPath} ${process.argv.slice(2).join(' ')}`);
 
-  options.outDir = outDir;
-  options.src = src;
+  tsc.stdout.on('data', data => console.log(chalk.red(data)));
+  tsc.stderr.on('data', data => console.error(chalk.red(data)));
 
-  let rootFile = path.join(process.cwd(), 'src/index.tsx');
+  tsc.on('close', code => {
+    console.log(chalk.cyan(`tsc exited with code ${code}`));
 
-  if (!fs.existsSync(rootFile)) {
-    rootFile = path.join(process.cwd(), 'src/index.ts');
-  }
+    if (code !== 0) {
+      process.exit(1);
+    }
 
-  const host = ts.createCompilerHost(options, true);
-  const prog = ts.createProgram([rootFile], options, host);
-  const result = prog.emit();
-
-  if (result.emitSkipped) {
-    const message = result.diagnostics
-      .map(d => `${ts.DiagnosticCategory[d.category]} ${d.code} (${d.file}:${d.start}): ${d.messageText}`)
-      .join('\n');
-
-    throw new Error(`Failed to compile typescript:\n\n${message}`);
-  }
+    runTsLint();
+  });
 }
 
+function runTsLint() {
+  console.log(`Running tslint`);
+
+  const tslintPath = path.join(__dirname, '../../../node_modules/.bin/tslint');
+
+  console.log(`${tslintPath} -c ${paths.tsLintConfig} -p ${paths.tsConfig} -t stylish --fix`);
+  const tslint = exec(`${tslintPath} -c ${paths.tsLintConfig} -p ${paths.tsConfig} -t stylish --fix`);
+
+  tslint.stdout.on('data', data => console.log(chalk.red(data)));
+  tslint.stderr.on('data', data => console.error(chalk.red(data)));
+
+  tslint.on('close', code => {
+    console.log(chalk.cyan(`tslint exited with code ${code}`));
+
+    if (code !== 0) {
+      process.exit(1);
+    }
+  });
+}
 function build() {
   try {
     runTypeScriptBuild();
 
-    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md'].map(pattern => `${paths.appSrc}/**/${pattern}`);
+    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg'].map(
+      pattern => `${paths.appSrc}/**/${pattern}`
+    );
 
     copy(patterns, paths.appBuild, (err, files) => {
       if (err) throw err;
@@ -58,9 +73,11 @@ function build() {
   } catch (e) {
     console.error(e);
     console.log(e.stack);
+
     if (e.frame) {
       console.error(e.frame);
     }
+
     process.exit(1);
   }
 }

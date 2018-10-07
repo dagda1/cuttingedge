@@ -4,6 +4,7 @@ const decamelize = str => str.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase(
 
 const dasherize = str => decamelize(str).replace(/[ _]/g, '-');
 
+// don't add css module prefixes to the following files names.
 const excludedFileNames = ['global', '_grid'].map(f => `${f}.scss`);
 
 module.exports = (loaderContext, localIdentName, localName, options) => {

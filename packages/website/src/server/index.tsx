@@ -1,71 +1,86 @@
 import * as React from 'react';
-import 'react-universal-component/server';
-import { flushChunkNames } from 'react-universal-component/server';
-import { renderToString } from 'react-dom/server';
-import flushChunks from 'webpack-flush-chunks';
-import { StaticRouter, Route } from 'react-router-dom';
+import * as express from 'express';
 import { Request, Response, NextFunction } from 'express';
+import { routes } from '../routes';
+import * as helmet from 'helmet';
+import * as bodyParser from 'body-parser';
+import { HttpStatusCode, isProduction, error } from '@cutting/util';
+import { render } from './render';
+import * as favicon from 'serve-favicon';
+import * as path from 'path';
+import { Assets } from 'assets-webpack-plugin';
 import configureStore from '../store';
-import history from '../routes/history';
+import { history } from '../routes/history';
+import { LayoutProps } from './types';
+import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import { Switch } from 'react-router';
-import { pages } from '../routes';
-import Helmet from 'react-helmet';
-import { State } from '../reducers/types';
-import * as serialize from 'serialize-javascript';
 
-/**
- * Provides the server side rendered app. In development environment, this method is called by
- * `react-hot-server-middleware`.
- *
- * @param clientStats Parameter passed by hot server middleware
- */
-export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response, next: NextFunction) => {
-  const preloadedState: State = {};
+const assets: Assets = require(process.env.C2_ASSETS_MANIFEST as string) as Assets;
 
-  const store = configureStore({}, history);
+const referrerPolicy = require('referrer-policy');
 
-  const context: any = { store };
+export const app = express();
 
-  const app = (
-    <Provider store={store}>
-      <StaticRouter location={req.url} context={context}>
-        <Switch>
-          <>
-            {pages.map(page => (
-              <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
-            ))}
-          </>
-        </Switch>
-      </StaticRouter>
-    </Provider>
+app.use(helmet());
+app.use(helmet.noCache());
+
+app.use(referrerPolicy({ policy: 'no-referrer' }));
+app.use(helmet.hidePoweredBy());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const publidDir = path.join(process.cwd(), isProduction ? 'dist/public' : 'public');
+
+app.use(express.static(publidDir));
+
+if (isProduction) {
+  app.use(favicon(path.join(__dirname, publidDir, 'favicon.ico')));
+
+  app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", 'data:']
+      }
+    })
   );
+}
 
-  const { js, styles } = flushChunks(clientStats, {
-    chunkNames: flushChunkNames()
+const createConnectedLayout = (store: Store): React.SFC<LayoutProps> => ({ location, children }) => (
+  <Provider store={store}>{children}</Provider>
+);
+
+app.get('/*', async (req, res) => {
+  const preloadedState = {};
+
+  const store = configureStore(preloadedState, history);
+
+  const html = await render({
+    req,
+    res,
+    routes,
+    assets,
+    Layout: createConnectedLayout(store)
   });
 
-  const appString = renderToString(app);
-  const { title } = Helmet.renderStatic();
+  res.send(html);
+});
 
-  res.status(200).send(`
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        ${styles}
-        ${title}
-      </head>
-      <body>
-        <div id="root">${appString}</div>
-        <script>
-          window.__PRELOADED_STATE__ = ${serialize(preloadedState)}
-        </script>
-        ${js}
-      </body>
-    </html>
-`);
+const errorHandler = (err: Error, _: Request, res: Response, next: NextFunction) => {
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  error(err);
+
+  res.status(HttpStatusCode.InternalServerError).send('Internal Error');
 };
+
+app.use(errorHandler);
+
+process.on('unhandledRejection', (err) => {
+  error(err);
+  throw err;
+});

@@ -6,7 +6,7 @@ module.exports = () => {
   try {
     c2Config = require(paths.appC2Config);
   } catch (e) {
-    c2Config = require(paths.defaultC2ConfigPath);
+    c2Config = require(paths.jsBuildConfigPath);
   }
 
   return c2Config;

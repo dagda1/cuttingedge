@@ -38,27 +38,50 @@ const nodePaths = (process.env.NODE_PATH || '')
   .filter(folder => !path.isAbsolute(folder))
   .map(resolveApp);
 
+const resolvedNodeModules = ['../node_modules', './node_modules']
+  .filter(m => fs.existsSync(m))
+  .map(m => path.join(process.cwd(), m));
+
+const libPackages = [
+  'packages/util',
+  'packages/component-library',
+  'packages/connected-components',
+  'packages/d3',
+  'packages/security-resilience-system/graphql'
+].map(dep => path.resolve(process.cwd(), dep));
+
+const webAppPackages = ['packages/security-resilience-system/frontend'].map(dep => path.resolve(process.cwd(), dep));
+
+const appBuildDirName = 'dist';
+
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('dist'),
-  appBuildPublic: resolveApp('dist/public'),
-  appManifest: resolveApp('dist/assets.json'),
+  appBuild: resolveApp(`${appBuildDirName}`),
+  appBuildPublic: resolveApp(`${appBuildDirName}/public`),
+  appManifest: resolveApp(`${appBuildDirName}/assets.json`),
   appPublic: resolveApp('public'),
   appNodeModules: resolveApp('node_modules'),
   appSrc: resolveApp('src'),
   appPackageJson: resolveApp('package.json'),
   appServerIndexJs: resolveApp('src'),
   appClientIndexJs: resolveApp('src/client'),
+  appSrcIndexJs: './src',
   testsSetup: resolveApp('src/setupTests.js'),
   appHtml: resolveApp('public/index.html'),
-  appBabelRc: resolveApp('.babelrc'),
-  appEslintRc: resolveApp('.eslintrc'),
-  appC2Config: resolveApp('cutting.config.js'),
   nodePaths: nodePaths,
   ownPath: resolveOwn('.'),
   ownNodeModules: resolveOwn('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  defaultC2ConfigPath: requireRelative('./default.cutting.config.js')
+  jsBuildConfigPath: requireRelative('./build.config.js'),
+  localBuildConfig: resolveApp('./build.config.js'),
+  resolvedNodeModules,
+  tsConfig: resolveApp('tsconfig.json'),
+  devDir: resolveApp('dev'),
+  devDirPublic: resolveApp('dev/public'),
+  tsLintConfig: requireRelative('../../../tslint.json'),
+  libPackages,
+  webAppPackages,
+  allPackages: [...libPackages, ...webAppPackages]
 };

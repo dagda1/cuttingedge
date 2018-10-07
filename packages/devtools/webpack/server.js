@@ -3,61 +3,141 @@ const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const getLocalIdent = require('./getLocalIdent');
+const paths = require('../config/paths');
+const postcssOptions = require('./postCssoptions');
+const StartServerPlugin = require('start-server-webpack-plugin');
+const { filter } = require('lodash');
 const fs = require('fs');
 
-const reStyle = /\.(css|scss)$/;
-const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
+const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
-const { configureCommon, getEnvironment } = require('./common');
+const port = process.env.PORT;
 
-const configure = (options = {}) => {
-  options.isNode = true;
+getExternals = function(isDevelopment) {
+  const modulesDir = path.resolve(__dirname, '../../../node_modules');
 
-  const common = configureCommon(options);
+  if (!fs.existsSync(modulesDir)) {
+    throw new Error('not found node_modules');
+  }
 
-  const { isDevelopment, isAnalyse, isVerbose, isDebug } = getEnvironment();
-
-  const modulesDirectory = fs.existsSync('../../node_modules') ? '../../node_modules' : './node_modules';
-  const modulesDir = path.join(process.cwd(), modulesDirectory);
-
-  const externals =
-    options.externals ||
+  return [
+    nodeExternals(),
     nodeExternals({
       modulesDir,
       whitelist: [
+        isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
-        /^@cutting/,
-        /^@ds/,
-        /^@c2/
+        /^@cutting/
       ].filter(x => x)
-    });
+    }),
+    {
+      './server.js': 'commonjs ./server.js'
+    }
+  ];
+};
+
+const configure = (options = {}) => {
+  const common = configureCommon(options);
+
+  options.isWeb = false;
+  const { isDevelopment, isProduction } = getEnvironment();
+
+  const sassOptions = {
+    outputStyle: 'expanded',
+    sourceMap: isDevelopment,
+    data: '@import "./styles/_overrides.scss";',
+    includePaths: [paths.appSrc],
+    minimize: isProduction
+  };
+
+  const env = getEnvVariables(options);
+
+  const devServerPort = isProduction ? port : parseInt(port, 10) + 1;
 
   const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
+
+  let nodeArgs;
+
+  if (isDevelopment) {
+    nodeArgs = ['-r', 'source-map-support/register'];
+
+    // Passthrough --inspect and --inspect-brk flags (with optional [host:port] value) to node
+    if (process.env.INSPECT_BRK) {
+      nodeArgs.push(process.env.INSPECT_BRK);
+    } else if (process.env.INSPECT) {
+      nodeArgs.push(process.env.INSPECT);
+    }
+  }
 
   const config = merge(common, {
     name: 'server',
     target: 'node',
-    externals,
-    entry: isDevelopment ? [...entries] : entries,
+    watch: isDevelopment,
+    externals: getExternals(isDevelopment),
+    watch: isDevelopment,
+    entry: isDevelopment ? ['razzle-dev-utils/prettyNodeErrors', 'webpack/hot/poll?300', ...entries] : entries,
     devtool: !isDevelopment && 'cheap-module-source-map',
+    node: {
+      __console: false,
+      __dirname: false,
+      __filename: false
+    },
     output: {
+      path: paths.appBuild,
       filename: options.filename,
+      publicPath: isDevelopment ? `http://${env.raw.HOST}:${devServerPort}/` : '/',
       libraryTarget: 'commonjs2'
     },
     module: {
-      strictExportPresence: true
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: 'css-loader/locals',
+              options: {
+                importLoaders: 2
+              }
+            },
+            { loader: 'postcss-loader', options: postcssOptions }
+          ]
+        },
+        {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'css-loader/locals',
+              options: {
+                importLoaders: 2,
+                modules: true,
+                getLocalIdent: getLocalIdent
+              }
+            },
+            { loader: 'postcss-loader', options: postcssOptions },
+            { loader: 'sass-loader', options: sassOptions }
+          ]
+        }
+      ]
     },
-    plugins: [
-      new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1
-      })
-    ]
+
+    plugins: filter([
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
+      isDevelopment && new webpack.NamedModulesPlugin(),
+      // Ignore assets.json to avoid infinite recompile bug
+      isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
+      isDevelopment &&
+        new StartServerPlugin({
+          name: 'server.js',
+          nodeArgs
+        })
+    ])
   });
 
   return config;
 };
 
-module.exports = { configure };
+module.exports = { configure, getExternals };

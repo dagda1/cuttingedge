@@ -6,7 +6,7 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -15,25 +15,25 @@ const path = require('path');
 // Ensure environment variables are read.
 require('../config/env');
 
-const requireRelative = relativePath => require(path.join(__dirname, relativePath));
+const requireRelative = (relativePath) => require(path.join(__dirname, relativePath));
 
 const webpack = require('webpack');
 const fs = require('fs-extra');
 const chalk = require('chalk');
 const paths = require('../config/paths');
 const printErrors = require('razzle-dev-utils/printErrors');
-const logger = require('razzle-dev-utils/logger');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const configureWebpackClient = requireRelative('../webpack/client').configure;
 const configureWebpackServer = requireRelative('../webpack/server').configure;
+const merge = require('lodash').merge;
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
-  .then(previousFileSizes => {
+  .then((previousFileSizes) => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
@@ -60,7 +60,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
       printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
       console.log();
     },
-    err => {
+    (err) => {
       console.log(chalk.red('Failed to compile.\n'));
       console.log((err.message || err) + '\n');
       process.exit(1);
@@ -68,24 +68,25 @@ measureFileSizesBeforeBuild(paths.appBuild)
   );
 
 function build(previousFileSizes) {
-  let c2Config = {};
-  try {
-    c2Config = require(paths.defaultC2ConfigPath);
-  } catch (e) {}
+  const globalBuildConfig = require(paths.jsBuildConfigPath);
 
-  let clientConfig = !!c2Config.client && configureWebpackClient(c2Config.client);
-  let serverConfig = !!c2Config.server && configureWebpackServer(c2Config.server);
+  const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  process.noDeprecation = true; // turns off that loadQuery clutter.
+  const buildConfig = merge(globalBuildConfig, localBuildConfig);
+
+  let clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
+  let serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
+
+  let nodeConfig = !!buildConfig.server && configureWebpackServer(buildConfig.node);
 
   console.log('Creating an optimized production build...');
   console.log('Compiling client...');
-  // First compile the client. We need it to properly output assets.json (asset
-  // manifest file with the correct hashes on file names BEFORE we can start
-  // the server compiler.
+
   return new Promise((resolve, reject) => {
     compile(clientConfig, (err, clientStats) => {
       if (err) {
+        console.dir(err);
+        process.exit(1);
         reject(err);
       }
       const clientMessages = formatWebpackMessages(clientStats.toJson({}, true));
@@ -106,13 +107,28 @@ function build(previousFileSizes) {
       }
 
       console.log(chalk.green('Compiled client successfully.'));
-      console.log('Compiling server...');
 
+      if (!serverConfig) {
+        console.log(chalk.green('client only build.'));
+
+        return resolve({
+          stats: clientStats,
+          previousFileSizes,
+          warnings: clientMessages.warnings
+        });
+      }
+      console.log('Compiling server...');
       compile(serverConfig, (err, serverStats) => {
         if (err) {
+          console.log(chalk.red('server errored....'));
+          consol.dir(err, { depth: null });
           reject(err);
+          return;
         }
         const serverMessages = formatWebpackMessages(serverStats.toJson({}, true));
+
+        console.dir(serverMessages);
+
         if (serverMessages.errors.length) {
           return reject(new Error(serverMessages.errors.join('\n\n')));
         }
@@ -129,11 +145,42 @@ function build(previousFileSizes) {
           );
           return reject(new Error(serverMessages.warnings.join('\n\n')));
         }
-        console.log(chalk.green('Compiled server successfully.'));
-        return resolve({
-          stats: clientStats,
-          previousFileSizes,
-          warnings: Object.assign({}, clientMessages.warnings, serverMessages.warnings)
+
+        console.log(chalk.cyan('compiling node.......'));
+
+        compile(nodeConfig, (err, nodeStats) => {
+          if (err) {
+            console.dir(err);
+            reject(err);
+            process.exit(1);
+            return;
+          }
+          const nodeMessages = formatWebpackMessages(nodeStats.toJson({}, true));
+          if (nodeMessages.errors.length) {
+            return reject(new Error(nodeMessages.errors.join('\n\n')));
+          }
+
+          if (
+            process.env.CI &&
+            (typeof process.env.CI !== 'string' || process.env.CI.toLowerCase() !== 'false') &&
+            nodeMessages.warnings.length
+          ) {
+            console.log(
+              chalk.yellow(
+                '\nTreating warnings as errors because process.env.CI = true.\n' +
+                  'Most CI servers set it automatically.\n'
+              )
+            );
+            return reject(new Error(nodeMessages.warnings.join('\n\n')));
+          }
+
+          console.log(chalk.green('Compiled node successfully.'));
+
+          return resolve({
+            stats: clientStats,
+            previousFileSizes,
+            warnings: Object.assign({}, clientMessages.warnings, nodeMessages.warnings, serverMessages.warnings)
+          });
         });
       });
     });
@@ -143,7 +190,7 @@ function build(previousFileSizes) {
 function copyPublicFolder() {
   fs.copySync(paths.appPublic, paths.appBuildPublic, {
     dereference: true,
-    filter: file => file !== paths.appHtml
+    filter: (file) => file !== paths.appHtml
   });
 }
 
@@ -151,6 +198,7 @@ function copyPublicFolder() {
 function compile(config, cb) {
   let compiler;
   try {
+    config.bail = true;
     compiler = webpack(config);
   } catch (e) {
     printErrors('Failed to compile.', [e]);

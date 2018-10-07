@@ -10,7 +10,11 @@ switch (script) {
   case 'web-build':
   case 'each-pkg':
   case 'start':
+  case 'ssr-start':
+  case 'ssr-build':
+  case 'webserver-start':
   case 'test': {
+    console.log(require.resolve('../scripts/' + script));
     const result = spawn.sync('node', [require.resolve('../scripts/' + script)].concat(args), { stdio: 'inherit' });
     if (result.signal) {
       if (result.signal === 'SIGKILL') {

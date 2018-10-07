@@ -6,7 +6,7 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.12.0",
+  "version": "0.2.0",
   "license": "MIT",
   "scripts": {
     "start": "PORT=9999 NODE_ENV=development cutting start",
@@ -14,7 +14,7 @@
     "build": "NODE_ENV=development cutting ts-build"
   },
   "dependencies": {
-    "@cutting/component-library": "0.12.0",
+    "@cutting/component-library": "0.3.0",
     "redux-form": "^7.3.0"
   },
   "devDependencies": {

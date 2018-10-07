@@ -57,6 +57,7 @@ export type FieldProps = ReduxForm.GenericFieldHTMLAttributes & {
   filterOptions?: (c: any) => boolean;
 };
 
+// tslint:disable
 export interface IField {
   new (): ReduxForm.Field<FieldProps>;
 }

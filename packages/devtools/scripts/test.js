@@ -5,12 +5,14 @@ process.env.BABEL_ENV = 'test';
 process.env.NODE_ENV = 'test';
 process.env.PUBLIC_URL = '';
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
+delete require.cache[require.resolve('../config/env')];
+
 // Ensure environment variables are read.
-require('../config/env');
+require('../config/env').getClientEnv();
 
 const jest = require('jest');
 const argv = process.argv.slice(2);
@@ -18,13 +20,23 @@ const argv = process.argv.slice(2);
 // Watch unless on CI or in coverage mode
 if (!process.env.CI && argv.indexOf('--coverage') < 0) {
   argv.push('--watch');
+  argv.push('--no-cache');
 }
 
-const config = require('../jest/jest.config');
+const config = require('../jest/jest.config.js');
+
 const path = require('path');
 const paths = require('../config/paths');
+
 argv.push('--config', JSON.stringify(config));
 argv.push('--env', 'jsdom');
 argv.push('--rootDir', `${process.cwd()}`);
+argv.push('--coverage');
+
+if (process.env.CI) {
+  argv.push('--ci');
+  argv.push('--testResultsProcessor');
+  argv.push('--globalTeardown');
+}
 
 jest.run(argv);

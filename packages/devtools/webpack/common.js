@@ -1,22 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
-const getLocalIdent = require('./getLocalIdent');
-const { CheckerPlugin } = require('awesome-typescript-loader');
-const { filter } = require('lodash');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const postcssOptions = require('./postcssOptions');
-const fs = require('fs');
-const WebpackBar = require('webpackbar');
-const AssetsPlugin = require('assets-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const paths = require('../config/paths');
+const WebpackBar = require('webpackbar');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { filter } = require('lodash');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
   const isProduction = process.env.NODE_ENV === 'production';
   const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : 'static/media/[hash:8].[ext]';
-  const isAnalyse = process.argv.includes('--analyse');
+  const isAnalyse = process.argv.includes('--analyze') || process.argv.includes('--analyse');
   const isVerbose = process.argv.includes('--verbose');
-  const isDebug = !process.argv.includes('--release');
 
   return {
     isDevelopment,
@@ -27,36 +22,46 @@ const getEnvironment = () => {
   };
 };
 
-const { merge } = require('lodash');
+const getEnvVariables = (options) => {
+  const { isDevelopment } = getEnvironment();
+  delete require.cache[require.resolve('../config/env')];
 
-const sassOptions = {
-  outputStyle: 'expanded',
-  sourceMap: false,
-  data: '@import "./styles/_overrides.scss";',
-  includePaths: [path.join(process.cwd(), 'src')]
+  return require('../config/env').getClientEnv(
+    options.isNode ? 'node' : 'web',
+    {},
+    {
+      'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
+      __DEV__: isDevelopment,
+      __BROWSER__: !options.isNode
+    }
+  );
 };
 
-const configureCommon = options => {
-  const typescriptOptions = options.typescriptOptions || {};
+const HappyPack = require('happypack');
+
+const configureCommon = (options) => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
-  const devServer = options.devServer;
-
   const { isStaticBuild } = options;
   const ssrBuild = !isStaticBuild;
-
-  const { isDevelopment, isProduction, staticAssetName, isAnalyse, isDebug } = getEnvironment();
+  const { isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
+  const env = getEnvVariables(options);
 
   const config = {
     mode: isDevelopment ? 'development' : 'production',
-    watch: isDevelopment,
+    context: process.cwd(),
     output: {
-      path: path.resolve('dist'),
+      path: paths.appBuild,
       publicPath: '/'
     },
     resolve: {
       modules: [path.join(process.cwd(), 'src'), 'node_modules'],
-      extensions: ['.js', '.ts', '.tsx', '.scss', '.json', '.csv']
+      extensions: ['.js', '.json', '.ts', '.tsx', '.scss', '.csv'],
+      alias: isDevelopment
+        ? {
+            'webpack/hot/poll': require.resolve('webpack/hot/poll')
+          }
+        : {}
     },
     module: {
       strictExportPresence: true,
@@ -85,57 +90,53 @@ const configureCommon = options => {
           options: { name: staticAssetName }
         },
         {
-          test: [
-            /\.bmp$/,
-            /\.gif$/,
-            /\.jpe?g$/,
-            /\.png$/,
-            /\.woff$/,
-            /\.woff2$/,
-            /\.eot$/,
-            /\.eot$/,
-            /\.ttf$/,
-            /\.svg/
-          ],
+          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff$/, /\.woff2$/, /\.eot$/, /\.eot$/, /\.ttf$/],
           loader: 'url-loader',
           options: { name: staticAssetName, limit: 10000 }
         },
         {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          loader: 'awesome-typescript-loader',
-          options: merge({ useBabel: false, useCache: false }, typescriptOptions)
+          test: /\.tsx$/,
+          enforce: 'pre',
+          use: [
+            {
+              loader: 'tslint-loader',
+              options: {
+                configFile: paths.tsLintConfig,
+                tsConfig: paths.tsConfig,
+                emitError: true,
+                failOnHint: true,
+                fix: true
+              }
+            }
+          ]
         },
         {
-          test: /\.(css|scss|sass)$/,
-          use: devServer
-            ? [
-                { loader: 'style-loader' },
-                {
-                  loader: 'css-loader',
-                  options: {
-                    importLoaders: 2,
-                    modules: true,
-                    getLocalIdent: getLocalIdent
-                  }
-                },
-                { loader: 'postcss-loader', options: postcssOptions },
-                { loader: 'sass-loader', options: sassOptions }
-              ]
-            : [
-                ExtractCssChunks.loader,
-                {
-                  loader: 'css-loader',
-                  options: {
-                    importLoaders: 2,
-                    modules: true,
-                    getLocalIdent: getLocalIdent,
-                    minimize: isProduction
-                  }
-                },
-                { loader: 'postcss-loader', options: postcssOptions },
-                { loader: 'sass-loader', options: sassOptions }
-              ]
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          loader: 'ts-loader',
+          options: {
+            configFile: paths.tsConfig,
+            transpileOnly: isDevelopment,
+            experimentalWatchApi: isDevelopment,
+            compilerOptions: {
+              sourceMap: isDevelopment
+            }
+          }
+        },
+        {
+          test: /\.csv$/,
+          loader: 'csv-loader',
+          options: {
+            header: true,
+            skipEmptyLines: true
+          }
+        },
+        {
+          test: /\.svg/,
+          use: {
+            loader: 'svg-url-loader',
+            options: {}
+          }
         },
         {
           test: /\.md$/,
@@ -152,33 +153,44 @@ const configureCommon = options => {
       ])
     },
     plugins: filter([
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
-        'process.env.BROWSER': false,
-        __DEV__: isDevelopment
+      new HappyPack({
+        id: 'ts',
+        threads: 4,
+        loaders: [
+          {
+            path: 'ts-loader',
+            query: { happyPackMode: true }
+          }
+        ]
       }),
-      isWeb &&
-        new AssetsPlugin({
-          path: paths.appBuild,
-          filename: 'assets.json'
-        }),
+      new webpack.DefinePlugin(env.stringified),
       isDevelopment &&
         new WebpackBar({
           color: isWeb ? '#f56be2' : '#c065f4',
           name: isWeb ? 'client' : 'server'
         }),
-      !devServer &&
-        new ExtractCssChunks({
-          filename: isDevelopment ? '[name].css' : 'static/css/[name].[md5:contenthash:hex:20].css',
-          chunkFilename: '[id].css',
-          hot: isDevelopment
-        }),
-      new CheckerPlugin(),
-      ...(isAnalyse ? [new BundleAnalyzerPlugin()] : [])
+      isAnalyse && new BundleAnalyzerPlugin(),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new ForkTsCheckerWebpackPlugin(),
+      isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest])
     ])
   };
-
+  /*   config.optimization = config.optimization || {};
+  config.optimization.noEmitOnErrors = isProduction;
+  if (isDevelopment) {
+    // As suggested by Microsoft's Outlook team, these optimizations
+    // crank up Webpack x TypeScript perf.
+    // @see https://medium.com/@kenneth_chau/speeding-up-webpack-typescript-incremental-builds-by-7x-3912ba4c1d15
+    config.output.pathinfo = false;
+    config.optimization = {
+      ...config.optimization,
+      ...{
+        removeAvailableModules: false,
+        removeEmptyChunks: false,
+        splitChunks: false
+      }
+    };
+  } */
   return config;
 };
-
-module.exports = { configureCommon, getEnvironment };
+module.exports = { configureCommon, getEnvironment, getEnvVariables };

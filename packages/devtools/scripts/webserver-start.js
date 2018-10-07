@@ -13,7 +13,6 @@ const setPorts = require('razzle-dev-utils/setPorts');
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
-const path = require('path');
 
 process.noDeprecation = true; // turns off that loadQuery clutter.
 
@@ -28,7 +27,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 function main() {
   logger.start('Compiling...');
 
-  let c2 = require(paths.defaultC2ConfigPath);
+  let c2 = require(paths.jsBuildConfigPath);
 
   // Delete assets.json to always have a manifest up to date
   fs.removeSync(paths.appManifest);
@@ -41,8 +40,6 @@ function main() {
   // Compile our assets with webpack
   const clientCompiler = compile(clientConfig);
   const serverCompiler = compile(serverConfig);
-
-  console.dir(serverConfig, { depth: null });
 
   // Start our server webpack instance in watch mode after assets compile
   clientCompiler.plugin('done', () => {

@@ -27,7 +27,7 @@ export class Menu extends React.Component<{}, MenuState> {
   }
 
   toggleIsExpanded = () => {
-    this.setState(prevState => ({ isExpanded: !prevState.isExpanded }));
+    this.setState((prevState) => ({ isExpanded: !prevState.isExpanded }));
   }
 
   menuItems = () => {

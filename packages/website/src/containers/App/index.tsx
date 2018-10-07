@@ -3,8 +3,8 @@ import * as React from 'react';
 import { Switch } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router';
-import history from '../../routes/history';
-import { pages } from '../../routes';
+import { history } from '../../routes/history';
+import { routes } from '../../routes';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import { ScrollToTop } from '@cutting/connected-components';
@@ -28,7 +28,7 @@ export class App extends React.Component<AppProps> {
             <ScrollToTop>
               <Switch>
                 <>
-                  {pages.map(page => (
+                  {routes.map((page) => (
                     <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
                   ))}
                 </>
