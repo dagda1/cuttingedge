@@ -4,7 +4,6 @@
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
-    text-align: center;
 
     &.italic {
       color: #fff;
@@ -14,6 +13,10 @@
       letter-spacing: 1px;
       line-height: 1.5em;
       text-transform: none;
+    }
+
+    &.center {
+      text-align: center;
     }
   }
 }

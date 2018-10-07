@@ -6,14 +6,18 @@ import { Route } from 'react-router';
 import history from '../../routes/history';
 import { pages } from '../../routes';
 import { Provider } from 'react-redux';
-import configureStore from '../../store';
-import { ScrollToTop } from '@cutting/connected-components';
 import Helmet from 'react-helmet';
+import { ScrollToTop } from '@cutting/connected-components';
+import { Store } from 'redux';
 
-const store = configureStore({}, history);
+export interface AppProps {
+  store: Store<any>;
+}
 
-export class App extends React.Component {
+export class App extends React.Component<AppProps> {
   render() {
+    const { store } = this.props;
+
     return (
       <>
         <Helmet>
@@ -36,3 +40,5 @@ export class App extends React.Component {
     );
   }
 }
+
+export default App;

@@ -4,13 +4,15 @@ import { flushChunkNames } from 'react-universal-component/server';
 import { renderToString } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';
 import { StaticRouter, Route } from 'react-router-dom';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import configureStore from '../store';
 import history from '../routes/history';
 import { Provider } from 'react-redux';
 import { Switch } from 'react-router';
 import { pages } from '../routes';
 import Helmet from 'react-helmet';
+import { State } from '../reducers/types';
+import * as serialize from 'serialize-javascript';
 
 /**
  * Provides the server side rendered app. In development environment, this method is called by
@@ -18,8 +20,11 @@ import Helmet from 'react-helmet';
  *
  * @param clientStats Parameter passed by hot server middleware
  */
-export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response) => {
+export default ({ clientStats }: { clientStats: any }) => async (req: Request, res: Response, next: NextFunction) => {
+  const preloadedState: State = {};
+
   const store = configureStore({}, history);
+
   const context: any = { store };
 
   const app = (
@@ -36,10 +41,9 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
     </Provider>
   );
 
-  const chunkNames = flushChunkNames();
-  const chunks = flushChunks(clientStats, { chunkNames });
-
-  const { js, styles } = chunks;
+  const { js, styles } = flushChunks(clientStats, {
+    chunkNames: flushChunkNames()
+  });
 
   const appString = renderToString(app);
   const { title } = Helmet.renderStatic();
@@ -52,12 +56,14 @@ export default ({ clientStats }: { clientStats: any }) => async (req: Request, r
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="google-site-verification" content="BoQSEIcVcThY2sG5OjvUASRtt2T57q_tJWXR996FagQ" />
-        ${styles}        
-        ${title}        
+        ${styles}
+        ${title}
       </head>
       <body>
         <div id="root">${appString}</div>
+        <script>
+          window.__PRELOADED_STATE__ = ${serialize(preloadedState)}
+        </script>
         ${js}
       </body>
     </html>

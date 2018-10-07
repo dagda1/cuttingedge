@@ -9,7 +9,7 @@
     "baseUrl": ".",
     "sourceMap": true
   },
-  "files": ["../../node_modules/react-universal-component/index.d.ts", "../../types/index.d.ts"],
+  "files": ["../../node_modules/react-universal-component/index.d.ts", "../../types/index.ts"],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "build", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

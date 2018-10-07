@@ -18,11 +18,11 @@ $pt-rules: 'padding-top';
 }
 
 @mixin m($space) {
-  margin: #{nth($scale, $space)} !important;
+  margin: #{nth($scale, $space)}px !important;
 }
 
 @mixin p($space) {
-  padding: #{nth($scale, $space)} !important;
+  padding: #{nth($scale, $space)}px !important;
 }
 
 @mixin mx($space) {

@@ -30,43 +30,26 @@ const configure = (options = {}) => {
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
-        /^@cutting/
+        /^@cutting/,
+        /^@ds/,
+        /^@c2/
       ].filter(x => x)
     });
+
+  const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
 
   const config = merge(common, {
     name: 'server',
     target: 'node',
     externals,
-    entry: [options.entries],
+    entry: isDevelopment ? [...entries] : entries,
     devtool: !isDevelopment && 'cheap-module-source-map',
     output: {
       filename: options.filename,
       libraryTarget: 'commonjs2'
     },
-    resolve: {
-      modules: [path.join(process.cwd(), modulesDirectory), path.join(process.cwd(), 'src')]
-    },
     module: {
-      strictExportPresence: true,
-      rules: [
-        {
-          test: /\.(css|scss|sass)$/,
-          use: [
-            {
-              loader: 'css-loader/locals',
-              options: {
-                modules: true,
-                importLoaders: 2,
-                getLocalIdent
-              }
-            },
-            {
-              loader: 'sass-loader'
-            }
-          ]
-        }
-      ]
+      strictExportPresence: true
     },
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({

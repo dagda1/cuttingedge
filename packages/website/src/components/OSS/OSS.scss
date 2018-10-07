@@ -1,8 +1,8 @@
 @import '../../assets/scss/main';
 
 .container {
-  h1 {
-    @include mb(3);
+  h2 {
+    @include mb(1);
   }
 }
 
@@ -36,5 +36,11 @@
 
   a div {
     background-color: inherit;
+  }
+}
+
+.community__list {
+  li {
+    display: block;
   }
 }

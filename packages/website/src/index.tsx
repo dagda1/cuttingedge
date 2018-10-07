@@ -3,16 +3,20 @@ import { Express } from 'express';
 import { join } from 'path';
 import { log } from 'winston';
 import * as path from 'path';
+import * as helmet from 'helmet';
+
+const webPackClient = require('@cutting/devtools/webpack/client');
+const webPackServer = require('@cutting/devtools/webpack/server');
 
 const configureDevelopment = (app: any) => {
-  const clientConfig = require('../../../webpack/client').configure({
+  const clientConfig = webPackClient.configure({
     entries: path.join(process.cwd(), 'src/client/index')
   });
 
   const publicPath = clientConfig.output.publicPath;
   const outputPath = clientConfig.output.path;
 
-  const serverConfig = require('../../../webpack/server').configure({
+  const serverConfig = webPackServer.configure({
     entries: path.join(process.cwd(), 'src/server/index'),
     filename: 'server.js'
   });
@@ -20,8 +24,8 @@ const configureDevelopment = (app: any) => {
   const multiCompiler = require('webpack')([clientConfig, serverConfig]);
   const clientCompiler = multiCompiler.compilers.find((compiler: any) => compiler.name === 'client');
 
-  app.use(require('webpack-dev-middleware')(multiCompiler, { serverSideRender: true }));
   app.use(require('webpack-hot-middleware')(clientCompiler));
+  app.use(require('webpack-dev-middleware')(multiCompiler, { serverSideRender: true }));
 
   app.use(publicPath, express.static(outputPath));
 
@@ -53,7 +57,16 @@ const configureProduction = (app: Express) => {
 
 const app = express();
 
-if (process.env.NODE_ENV === 'development') {
+app.disable('x-powered-by');
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+log('info', `Configuring server for environment: ${process.env.NODE_ENV}...`);
+app.use(helmet());
+
+app.disable('x-powered-by');
+
+if (isDevelopment) {
   configureDevelopment(app);
 } else {
   configureProduction(app);
