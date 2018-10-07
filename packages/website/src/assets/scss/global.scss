@@ -72,5 +72,5 @@ a {
 
 :global .wrapper {
   margin: 0 auto;
-  max-width: $desktop-max-width;
+  max-width: $desktop-max-width !important;
 }

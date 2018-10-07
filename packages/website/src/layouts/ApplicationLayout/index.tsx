@@ -16,15 +16,21 @@ const styles = require('./ApplicationLayout.scss');
 export const ApplicationLayout: React.SFC<ApplicationLayoutProps> = ({ heading, italicise, center, children }) => (
   <Wrap>
     <Header />
-    <main className={styles.main}>
+    <main className={cs(styles.main, 'wrapper')}>
       {heading && (
-        <Layout>
-          <GelItem>
-            <Heading className={cs({ [styles.italic]: italicise, [styles.center]: center })}>{heading}</Heading>
-          </GelItem>
-        </Layout>
+        <Wrap>
+          <Layout>
+            <GelItem>
+              <Heading className={cs({ [styles.italic]: italicise, [styles.center]: center })}>{heading}</Heading>
+            </GelItem>
+          </Layout>
+        </Wrap>
       )}
-      {children}
+      <Wrap>
+        <Layout>
+          <GelItem>{children}</GelItem>
+        </Layout>
+      </Wrap>
     </main>
     <Footer />
   </Wrap>

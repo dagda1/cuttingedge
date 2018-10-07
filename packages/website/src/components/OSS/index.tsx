@@ -1,5 +1,5 @@
 import { ExternalLink, Github, Heading } from '@cutting/component-library';
-import { GelItem, Layout, Wrap } from '@cutting/react-gel';
+import { GelItem, Layout } from '@cutting/react-gel';
 import * as React from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
@@ -8,13 +8,13 @@ const styles = require('./OSS.scss');
 
 export const OSS: React.SFC = () => (
   <ApplicationLayout>
-    <Wrap className={styles.container}>
+    <div className={styles.container}>
       <Heading level={1}>Open Source Software</Heading>
       <Heading level={2}>Community Pull Requests</Heading>
       <ul className={styles.community__list}>
         <li>
           <ExternalLink href="https://github.com/jaredpalmer/after.js/pulls?q=is%3Apr+author%3Adagda1+is%3Aclosed">
-            Numerous commit to afterjs
+            Numerous commits to afterjs
           </ExternalLink>
         </li>
         <li>
@@ -55,6 +55,6 @@ export const OSS: React.SFC = () => (
           </Heading>
         </GelItem>
       </Layout>
-    </Wrap>
+    </div>
   </ApplicationLayout>
 );

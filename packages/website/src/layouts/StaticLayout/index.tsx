@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Layout, GelItem } from '@cutting/react-gel';
 import { ApplicationLayout } from '../ApplicationLayout';
 
 export interface StaticLayoutProps {
@@ -7,9 +6,5 @@ export interface StaticLayoutProps {
 }
 
 export const StaticLayout: React.SFC<StaticLayoutProps> = ({ heading, children }) => (
-  <ApplicationLayout heading={heading}>
-    <Layout>
-      <GelItem>{children}</GelItem>
-    </Layout>
-  </ApplicationLayout>
+  <ApplicationLayout heading={heading}>{children}</ApplicationLayout>
 );
