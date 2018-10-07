@@ -5,7 +5,7 @@ import { Pyramid } from '../Pyramid';
 const styles = require('./Home.scss');
 
 export const Home: React.SFC = () => (
-  <ApplicationLayout heading="Frontend developer, cutting-edge solutions" italicise>
+  <ApplicationLayout heading="Frontend developer, cutting-edge solutions" italicise center>
     <div className={styles.main}>
       <Pyramid />
     </div>

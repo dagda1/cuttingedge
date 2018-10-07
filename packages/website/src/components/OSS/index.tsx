@@ -1,8 +1,8 @@
+import { ExternalLink, Github, Heading } from '@cutting/component-library';
+import { GelItem, Layout, Wrap } from '@cutting/react-gel';
 import * as React from 'react';
-import { repos, Repo } from './repos';
-import { Heading, ExternalLink, Github } from '@cutting/component-library';
-import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { Repo, repos } from './repos';
 
 const styles = require('./OSS.scss');
 
@@ -10,6 +10,29 @@ export const OSS: React.SFC = () => (
   <ApplicationLayout>
     <Wrap className={styles.container}>
       <Heading level={1}>Open Source Software</Heading>
+      <Heading level={2}>Community Pull Requests</Heading>
+      <ul className={styles.community__list}>
+        <li>
+          <ExternalLink href="https://github.com/jaredpalmer/after.js/pulls?q=is%3Apr+author%3Adagda1+is%3Aclosed">
+            Numerous commit to afterjs
+          </ExternalLink>
+        </li>
+        <li>
+          <ExternalLink href="https://github.com/hshoff/vx/pull/355">vx polygon componet</ExternalLink>
+        </li>
+        <li>
+          <ExternalLink href="https://github.com/emberjs/ember.js/pull/2938">
+            Emberjs - keyhandler test helper
+          </ExternalLink>
+        </li>
+        <li>
+          <ExternalLink href="https://github.com/bvaughn/react-window/pull/1">react-window</ExternalLink>
+        </li>
+        <li>
+          <ExternalLink href="https://github.com/bvaughn/react-window/pull/1">enzyme</ExternalLink>
+        </li>
+      </ul>
+      <Heading level={2}>My Work</Heading>
       <Layout>
         {repos.map((repo: Repo, i: number) => (
           <GelItem m="1/2" l="1/4" className={styles.repo} key={i}>

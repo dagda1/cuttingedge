@@ -4,7 +4,6 @@ import { join } from 'path';
 import { log } from 'winston';
 import * as path from 'path';
 import * as helmet from 'helmet';
-import * as shrinkRay from 'shrink-ray';
 
 const webPackClient = require('@cutting/devtools/webpack/client');
 const webPackServer = require('@cutting/devtools/webpack/server');
@@ -64,11 +63,6 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 
 log('info', `Configuring server for environment: ${process.env.NODE_ENV}...`);
 app.use(helmet());
-app.use(
-  shrinkRay({
-    filter: () => !isDevelopment
-  })
-);
 
 app.disable('x-powered-by');
 
