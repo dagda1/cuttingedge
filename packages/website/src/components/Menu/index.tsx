@@ -24,21 +24,21 @@ export class Menu extends React.Component<{}, MenuState> {
 
   collapse = () => {
     this.setState({ isExpanded: false });
-  }
+  };
 
   toggleIsExpanded = () => {
     this.setState((prevState) => ({ isExpanded: !prevState.isExpanded }));
-  }
+  };
 
   menuItems = () => {
     return bannerPages.map((page, i) => (
-      <li key={page.heading} className={cs(styles.horizontal, {[styles.expanded]: this.state.isExpanded})}>
-        <NavLink to={page.path} activeClassName={styles.active}>
+      <li key={page.heading} className={cs(styles.horizontal)}>
+        <NavLink to={page.path} activeClassName={styles.active} onClick={this.collapse}>
           {page.heading}
         </NavLink>
       </li>
-    ))
-  }
+    ));
+  };
 
   render() {
     return (
@@ -56,14 +56,16 @@ export class Menu extends React.Component<{}, MenuState> {
                   <Heading level={2}>Paul Cowan</Heading>
                 </li>
                 <li className={styles.mobile__button__container}>
-                  <MobileNavButton onClick={this.toggleIsExpanded} isActive={this.state.isExpanded}/>
+                  <MobileNavButton onClick={this.toggleIsExpanded} isActive={this.state.isExpanded} />
                 </li>
                 {this.menuItems()}
               </ul>
             </GelItem>
           </Layout>
-          <Layout className={cs(styles.expandable, {[styles.expanded]: this.state.isExpanded})}>
-            {this.menuItems()}
+          <Layout className={cs(styles.expandable, { [styles.expanded]: this.state.isExpanded })}>
+            <GelItem>
+              <ul>{this.menuItems()}</ul>
+            </GelItem>
           </Layout>
         </Wrap>
       </nav>

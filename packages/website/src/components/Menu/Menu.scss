@@ -26,12 +26,8 @@ path {
 
     @include mq-m {
       &:not(.mobile__button__container) {
-        margin-right: 20px;
+        @include mr(3);
       }
-    }
-
-    .mobile__button__container {
-      @include ml(1);
     }
 
     a {
@@ -80,7 +76,7 @@ ul li.logo__container {
 .expandable {
   display: none;
   position: absolute;
-  top: 8rem;
+  top: 16rem;
   bottom: 0;
   left: 0;
   right: 0;
@@ -93,11 +89,29 @@ ul li.logo__container {
 .mobile__button__container {
   display: inline-flex;
   justify-content: flex-end;
+  margin-left: 12px;
+  position: relative;
+
+  button {
+    position: absolute;
+    top: -12px;
+  }
 }
 
 @media (max-width: 37.5rem) {
   .expandable.expanded {
     display: block;
+
+    @include py(2);
+
+    ul li {
+      border: 1px solid #fff;
+      @include pt(1);
+      @include pb(2);
+      @include mb(1);
+      @include pl(1);
+      color: #fff;
+    }
 
     ul li.horizontal {
       display: block;
@@ -106,5 +120,18 @@ ul li.logo__container {
 
   ul li.horizontal {
     display: none;
+  }
+
+  ul li.menu__mobile__button__container {
+    @include ml(1);
+  }
+
+  ul li.horizontal.expanded {
+    display: block;
+
+    a {
+      width: 100%;
+      display: inline-block;
+    }
   }
 }
