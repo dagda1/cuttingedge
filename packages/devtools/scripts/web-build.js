@@ -107,6 +107,7 @@ function build(previousFileSizes) {
 
       console.log(chalk.green('Compiled client successfully.'));
       console.log('Compiling server...');
+
       compile(serverConfig, (err, serverStats) => {
         if (err) {
           reject(err);
