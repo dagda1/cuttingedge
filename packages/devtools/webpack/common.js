@@ -56,12 +56,7 @@ const configureCommon = options => {
     },
     resolve: {
       modules: [path.join(process.cwd(), 'src'), 'node_modules'],
-      extensions: ['.js', '.ts', '.tsx', '.scss', '.json', '.csv'],
-      alias: isDevelopment
-        ? {
-            'webpack/hot/poll': require.resolve('webpack/hot/poll')
-          }
-        : {}
+      extensions: ['.js', '.ts', '.tsx', '.scss', '.json', '.csv']
     },
     module: {
       strictExportPresence: true,

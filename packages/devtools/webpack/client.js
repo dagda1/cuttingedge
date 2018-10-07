@@ -46,13 +46,7 @@ const configure = options => {
   const config = merge(common, {
     name: 'client',
     target: 'web',
-    entry: isDevelopment
-      ? [
-          'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
-          require.resolve('react-dev-utils/webpackHotDevClient'),
-          ...entryPoints
-        ]
-      : ['babel-polyfill', ...entryPoints],
+    entry: isDevelopment ? [...entryPoints] : ['babel-polyfill', ...entryPoints],
     devtool: isDevelopment && 'cheap-module-source-map',
     devServer: devServer
       ? {

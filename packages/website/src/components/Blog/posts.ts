@@ -6,6 +6,18 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    title: 'React polygon component',
+    summary:
+      'I am writing this because I could not find anything adequate in my interweb searches for how to draw a hexagon using a svg polygon What I…',
+    link: 'http://www.thesoftwaresimpleton.com/blog/2018/09/06/hexagon'
+  },
+  {
+    title: 'Narrowing a union type in typescript and a gotcha with callbacks',
+    summary:
+      'Narrowing a union type In typescript, a union type describes a value that can be one of several types separated by the vertical bar, for…',
+    link: 'http://www.thesoftwaresimpleton.com/blog/2018/08/31/narrow-union-type.md'
+  },
+  {
     title: 'Higher Kinded Types in Typescript',
     summary:
       'Higher kinded types are not currently possible in typescript but first of all let’s explain why they exist.',
@@ -14,14 +26,8 @@ export const posts: Post[] = [
   {
     title: 'Creating an Accessible React Website',
     summary:
-      "I've recently been working on an online application form in the form of a multistep wizard that had strict accessibility requirements. I've never worked on a project with such strict requirements before. I've also heard rumblings that it was not possible to make a SPA accessible. It turns out that there is not that much work involved in making your site accessible and I am going to ensure that any work I do from now on has an accessible first approach. I'm now going to outline in no particular order what I have learned over the past few months.",
+      'I\'ve recently been working on an online application form in the form of a multistep wizard that had strict accessibility requirements. I\'ve never worked on a project with such strict requirements before. I\'ve also heard rumblings that it was not possible to make a SPA accessible. It turns out that there is not that much work involved in making your site accessible and I am going to ensure that any work I do from now on has an accessible first approach. I\'m now going to outline in no particular order what I have learned over the past few months.',
     link: 'http://www.thesoftwaresimpleton.com/blog/2017/11/05/accessible-react/'
-  },
-  {
-    title: 'Instance Reducers',
-    summary:
-      'I recently came across a situation with redux that I had not considered before. I had created an autocomplete component that was using redux to store its internal state. This was all well and good when there was only one autocomplete component per page but when I have multiple autocomplete components on a given page then a change to one component was reflected in every component as you can see in the screen shot below where selecting a value in one component instance is reflected in all component instances:',
-    link: 'http://www.thesoftwaresimpleton.com/blog/2016/12/20/instance-reducers/'
   },
   {
     title: 'Streams and Async Await in Nodejs',

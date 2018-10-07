@@ -25,7 +25,6 @@ const configure = (options = {}) => {
     nodeExternals({
       modulesDir,
       whitelist: [
-        isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,

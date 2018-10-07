@@ -1,10 +1,107 @@
+User picture
+0
+
+Search in this repo
+ Home
+Continuity2
+Meridian New Stack
+Summary
+Tickets
+Git
+Wiki
+Stream
+Files
+Team
+...
+Source
+Commits
+Compare
+Merge Requests
+Fork Network
+Instructions
+Settings
+meridian-new-stack/tslint.json
+tslint.json
+2018-09-09 08:10
+bd62d56e04
 {
-  "defaultSeverity": "error",
-  "extends": ["tslint:latest", "tslint-config-prettier"],
-  "jsRules": {},
+  "extends": ["tslint:latest", "tslint-react"],
   "rules": {
-    "quotemark": [true, "single", "jsx-double"],
-    "semicolon": [true, "always"]
-  },
-  "rulesDirectory": []
+    "align": [true, "parameters", "arguments", "statements"],
+    "array-type": [true, "array"],
+    "ban": false,
+    "class-name": true,
+    "comment-format": [true, "check-space"],
+    "curly": true,
+    "eofline": false,
+    "forin": true,
+    "indent": [true, "spaces"],
+    "interface-name": [true, "never-prefix"],
+    "jsdoc-format": true,
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false,
+    "jsx-wrap-multiline": false,
+    "label-position": true,
+    "max-line-length": [true, 120],
+    "member-access": false,
+    "member-ordering": false,
+    "no-any": false,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-consecutive-blank-lines": true,
+    "no-console": false,
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-imports": false,
+    "no-duplicate-variable": true,
+    "no-empty": true,
+    "no-eval": true,
+    "no-implicit-dependencies": false,
+    "no-shadowed-variable": false,
+    "no-string-literal": true,
+    "no-submodule-imports": false,
+    "no-switch-case-fall-through": true,
+    "no-trailing-whitespace": false,
+    "no-unused-expression": true,
+    "no-use-before-declare": true,
+    "no-var-requires": false,
+    "object-literal-key-quotes": false,
+    "object-literal-sort-keys": false,
+    "only-arrow-functions": false,
+    "ordered-imports": false,
+    "one-line": [true, "check-catch", "check-else", "check-open-brace", "check-whitespace"],
+    "quotemark": [true, "single", "avoid-escape", "jsx-double"],
+    "radix": true,
+    "semicolon": [false, "always"],
+    "switch-default": true,
+    "trailing-comma": false,
+    "triple-equals": [true, "allow-null-check"],
+    "typedef": [true, "parameter", "property-declaration"],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-module",
+      "check-operator",
+      "check-separator",
+      "check-type",
+      "check-typecast"
+    ]
+  }
 }
+Home / Developer API / Support Portal / System Status
+
+Meridian new stack is powered by Assembla.
+

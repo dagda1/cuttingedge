@@ -21,7 +21,18 @@ path {
   ul li {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 20px;
+
+    @include mr(1);
+
+    @include mq-m {
+      &:not(.mobile__button__container) {
+        margin-right: 20px;
+      }
+    }
+
+    .mobile__button__container {
+      @include ml(1);
+    }
 
     a {
       position: relative;
@@ -64,4 +75,36 @@ ul li.logo__container {
 
 .active {
   color: $white;
+}
+
+.expandable {
+  display: none;
+  position: absolute;
+  top: 8rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  background-color: $black;
+  z-index: 10;
+  padding: 1rem;
+}
+
+.mobile__button__container {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 37.5rem) {
+  .expandable.expanded {
+    display: block;
+
+    ul li.horizontal {
+      display: block;
+    }
+  }
+
+  ul li.horizontal {
+    display: none;
+  }
 }
