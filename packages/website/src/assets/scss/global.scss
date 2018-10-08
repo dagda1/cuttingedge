@@ -59,7 +59,10 @@ ul {
 a {
   color: $link-color;
   text-decoration: none;
+}
 
+a,
+button {
   &:hover {
     color: $main-color;
   }

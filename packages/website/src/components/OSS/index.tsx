@@ -29,7 +29,7 @@ export const OSS: React.SFC = () => (
           <ExternalLink href="https://github.com/bvaughn/react-window/pull/1">react-window</ExternalLink>
         </li>
         <li>
-          <ExternalLink href="https://github.com/bvaughn/react-window/pull/1">enzyme</ExternalLink>
+          <ExternalLink href="https://github.com/airbnb/enzyme/pull/1408">enzyme</ExternalLink>
         </li>
       </ul>
       <Heading level={2}>My Work</Heading>
