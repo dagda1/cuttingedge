@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@cutting/devtools": "0.5.0",
-    "@cutting/util": "0.2.0",
+    "@cutting/util": "0.3.0",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
     "express": "^4.16.3",

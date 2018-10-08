@@ -11,7 +11,7 @@
     "build": "NODE_ENV=production cutting ssr-build",
     "test": "NODE_ENV=test cutting test",
     "deploy": "NODE_ENV=production yarn build && ./bin/deploy.sh",
-    "serve": "NODE_ENV=production node ./index.js"
+    "serve": "NODE_ENV=production node ./dist/server.js"
   },
   "dependencies": {
     "@types/assets-webpack-plugin": "^3.5.1",

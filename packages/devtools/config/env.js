@@ -38,7 +38,7 @@ const nodePath = (process.env.NODE_PATH || '')
   .map(folder => path.resolve(appDirectory, folder))
   .join(path.delimiter);
 
-// Grab NODE_ENV and C2_* environment variables and prepare them to be
+// Grab NODE_ENV and CUTTING_* environment variables and prepare them to be
 // injected into the application via DefinePlugin in Webpack configuration.
 const CUTTING = /^CUTTING_/i;
 
@@ -59,12 +59,12 @@ function getClientEnvironment(target, options = {}, additional = {}) {
           VERBOSE: !!process.env.VERBOSE,
           HOST: process.env.HOST || options.host || 'localhost',
           BUILD_TARGET: target === 'web' ? 'client' : 'server',
-          C2_ASSETS_MANIFEST: paths.appManifest,
+          CUTTING_ASSETS_MANIFEST: paths.appManifest,
           // only for production builds. Useful if you need to serve from a CDN
           PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
           // The public dir changes between dev and prod, so we use an environment
           // variable available to users.
-          C2_PUBLIC_DIR: process.env.NODE_ENV === 'production' ? paths.appBuildPublic : paths.appPublic,
+          CUTTING_PUBLIC_DIR: process.env.NODE_ENV === 'production' ? paths.appBuildPublic : paths.appPublic,
           CI: process.env.CI,
           PUBLIC_URL: ''
         },

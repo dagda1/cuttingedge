@@ -3,23 +3,27 @@ FROM node:9.2
 
 RUN rm -rf /cutting/
 
-COPY ./packages/website/dist /cutting/
+RUN mkdir -p /cutting/dist
 
-WORKDIR /cutting
+COPY ./packages/website/dist /cutting/dist
+
+WORKDIR /cutting/dist
 
 RUN rm -rf /node_modules/@cutting
 
-COPY ./packages/website/package.json ./packages/website/yarn.lock /cutting/
+COPY ./packages/website/package.json /cutting/dist
 
 ADD ./packages/website/.npmrc-deploy /root/.npmrc
 
 RUN yarn install --production --network-timeout 1000000
 
 RUN mkdir /cutting/tmp
-ADD node_modules /cutting/tmp
+ADD node_modules /cutting/dist/tmp
 
-RUN rm -rf /cutting/tmp/@cutting
+RUN rm -rf /cutting/dist/tmp/@cutting
 
-RUN cp -rf /cutting/tmp/* /cutting/node_modules
+RUN cp -rf /cutting/dist/tmp/* /cutting/dist/node_modules
 
-RUN rm -rf /cutting/tmp
+RUN rm -rf /cutting/dist/tmp
+
+WORKDIR /cutting/
