@@ -6,7 +6,7 @@ import * as helmet from 'helmet';
 import * as bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction, error } from '@cutting/util';
 import { render } from './render';
-/* import * as favicon from 'serve-favicon'; */
+import * as favicon from 'serve-favicon';
 import * as path from 'path';
 import { Assets } from 'assets-webpack-plugin';
 import configureStore from '../store';
@@ -35,7 +35,7 @@ const publidDir = path.join(process.cwd(), isProduction ? 'dist/public' : 'publi
 app.use(express.static(publidDir));
 
 if (isProduction) {
-  /* app.use(favicon(path.join(__dirname, publidDir, 'favicon.ico'))); */
+  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
   app.use(
     helmet.contentSecurityPolicy({

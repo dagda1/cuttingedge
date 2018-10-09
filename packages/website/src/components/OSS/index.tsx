@@ -18,7 +18,7 @@ export const OSS: React.SFC = () => (
           </ExternalLink>
         </li>
         <li>
-          <ExternalLink href="https://github.com/hshoff/vx/pull/355">vx polygon componet</ExternalLink>
+          <ExternalLink href="https://github.com/hshoff/vx/pull/355">vx polygon component</ExternalLink>
         </li>
         <li>
           <ExternalLink href="https://github.com/emberjs/ember.js/pull/2938">
