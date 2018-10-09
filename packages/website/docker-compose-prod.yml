@@ -6,7 +6,7 @@ services:
     environment:
         PORT: 3000
         NODE_ENV: production
-    command: yarn serve
+    command: node ./dist/index.js
     restart: always
 
   nginx:
