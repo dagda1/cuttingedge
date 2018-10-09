@@ -5,25 +5,25 @@ RUN rm -rf /cutting/
 
 RUN mkdir -p /cutting/dist
 
-COPY ./packages/website/dist /cutting/dist
-
 WORKDIR /cutting/dist
+
+COPY ./packages/website/dist .
 
 RUN rm -rf /node_modules/@cutting
 
-COPY ./packages/website/package.json /cutting/dist
+COPY ./packages/website/package.json .
 
 ADD ./packages/website/.npmrc-deploy /root/.npmrc
 
 RUN yarn install --production --network-timeout 1000000
 
 RUN mkdir /cutting/tmp
-ADD node_modules /cutting/dist/tmp
+ADD node_modules ./tmp
 
-RUN rm -rf /cutting/dist/tmp/@cutting
+RUN rm -rf ./tmp/@cutting
 
-RUN cp -rf /cutting/dist/tmp/* /cutting/dist/node_modules
+RUN cp -rf ./tmp/* ./node_modules
 
-RUN rm -rf /cutting/dist/tmp
+RUN rm -rf ./tmp
 
 WORKDIR /cutting/

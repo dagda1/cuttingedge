@@ -4,17 +4,18 @@ services:
   server:
     image: website_server
     environment:
-        PORT: 3000
-        NODE_ENV: production
-    command: node ./dist/index.js
+      PORT: 3000
+      NODE_ENV: production
+    command: yarn serve
     restart: always
 
   nginx:
     image: ngingx
     ports:
-        - "80:80"
-        - "443:443"
+      - '80:80'
+      - '443:443'
     volumes:
-        - /root/ssl:/etc/nginx/ssl/
+      - /root/nginx:/etc/nginx
+      - /root/ssl:/etc/nginx/ssl/
     command: nginx -c /etc/nginx/nginx.conf -g "daemon off;"
     restart: always
