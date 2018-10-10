@@ -20,7 +20,7 @@ export const Footer: React.SFC = () => (
               </div>
               <span className={styles.name}>Paul Cowan</span>
             </GelItem>
-            <GelItem m="1/2">
+            <GelItem m="1/2" className={styles.links}>
               <ul className={styles.NavLinks}>
                 {footerPages.map((page, i) => (
                   <li key={page.path}>

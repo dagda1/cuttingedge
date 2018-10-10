@@ -5,7 +5,7 @@ footer {
   left: 0;
   right: 0;
   bottom: 0;
-  @include py(2);
+  @include pt(2);
 
   font-size: 14px;
 
@@ -26,6 +26,10 @@ footer {
 
   > div {
     margin-top: -5px;
+  }
+
+  .links {
+    text-align: center;
   }
 }
 
