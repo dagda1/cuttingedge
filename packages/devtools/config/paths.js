@@ -44,13 +44,12 @@ const resolvedNodeModules = ['../node_modules', './node_modules']
 
 const libPackages = [
   'packages/util',
+  'packages/react-gel',
   'packages/component-library',
-  'packages/connected-components',
-  'packages/d3',
-  'packages/security-resilience-system/graphql'
+  'packages/connected-components'
 ].map(dep => path.resolve(process.cwd(), dep));
 
-const webAppPackages = ['packages/security-resilience-system/frontend'].map(dep => path.resolve(process.cwd(), dep));
+const webAppPackages = ['packages/website'].map(dep => path.resolve(process.cwd(), dep));
 
 const appBuildDirName = 'dist';
 

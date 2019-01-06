@@ -10,7 +10,9 @@ export const Blog: React.SFC = () => (
         <Heading level={2}>{post.title}</Heading>
         <p>{post.summary}</p>
         <p>
-          <ExternalLink href={post.link}>Read More</ExternalLink>
+          <ExternalLink href={post.link} blank={false}>
+            Read More
+          </ExternalLink>
         </p>
       </div>
     ))}

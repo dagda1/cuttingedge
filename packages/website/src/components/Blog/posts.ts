@@ -7,22 +7,21 @@ export interface Post {
 // tslint:disable
 export const posts: Post[] = [
   {
-    title: 'React polygon component',
+    title: "Down the rabbit hole with typescript's mapped and lookup types",
+    summary: 'Two of the more abstract concepts in typescript are mapped types and lookup types.',
+    link: 'https://thesoftwaresimpleton.com/blog/2018/12/14/mapped-types'
+  },
+  {
+    title: 'SVG transformations with affine matrices',
     summary:
-      'I am writing this because I could not find anything adequate in my interweb searches for how to draw a hexagon using a svg polygon What I…',
-    link: 'https://thesoftwaresimpleton.com/blog/2018/09/06/hexagon'
+      'I recently had a requirement to add zooming and panning to an svg image. Panning and zooming are popular interaction techniques which let the user focus on a region of interest by restricting the view. The obvious choice was to use d3-zoom but as react is rendering the svg content, D3 is a bit of a bad fit as it mutates the DOM directly. I somehow ended up using affine matrices to compute the transformations.',
+    link: 'https://thesoftwaresimpleton.com/blog/2018/09/25/affine-matrix'
   },
   {
     title: 'Narrowing a union type in typescript and a gotcha with callbacks',
     summary:
       'Narrowing a union type In typescript, a union type describes a value that can be one of several types separated by the vertical bar, for…',
-    link: 'https://thesoftwaresimpleton.com/blog/2018/08/31/narrow-union-type.md'
-  },
-  {
-    title: 'Higher Kinded Types in Typescript',
-    summary:
-      'Higher kinded types are not currently possible in typescript but first of all let’s explain why they exist.',
-    link: 'https://thesoftwaresimpleton.com/blog/2018/04/14/higher-kinded-types/'
+    link: 'https://thesoftwaresimpleton.com/blog/2018/08/31/narrow-union-type'
   },
   {
     title: 'Creating an Accessible React Website',
