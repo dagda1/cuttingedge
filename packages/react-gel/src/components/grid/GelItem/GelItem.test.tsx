@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { shallow } from 'enzyme';
-import * as renderer from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import { GelItem, GelItemProps } from '.';
 
 const wrap = (props: GelItemProps = {}) =>

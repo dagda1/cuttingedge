@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as mousetrap from 'mousetrap';
+import React from 'react';
+import mousetrap from 'mousetrap';
 
 export interface Shortcut {
   keySequence: string;

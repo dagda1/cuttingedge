@@ -1,4 +1,4 @@
-import * as winston from 'winston';
+import winston from 'winston';
 const chalk = require('chalk');
 
 export const { info, error, debug, log } = winston.createLogger({

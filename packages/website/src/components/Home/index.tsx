@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Pyramid } from '../Pyramid';
 

@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { shallow } from 'enzyme';
 import { Wrap } from '.';
-import * as renderer from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 
 const wrap = (props = { children: <span>span</span> }) => shallow(<Wrap {...props} />);
 

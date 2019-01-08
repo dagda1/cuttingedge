@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { shallow } from 'enzyme';
 import { Layout, LayoutProps } from '.';
-import * as renderer from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 
 const wrap = (props: LayoutProps & { children?: any } = { children: <span>div</span> }) =>
   shallow(<Layout {...props}>test</Layout>);

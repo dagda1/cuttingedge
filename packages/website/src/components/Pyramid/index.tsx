@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Layout, GelItem } from '@cutting/react-gel';
 
 const styles = require('./Pyramid.scss');

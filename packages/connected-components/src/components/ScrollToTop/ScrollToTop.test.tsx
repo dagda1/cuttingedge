@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as testUtils from '../../tests';
+import React from 'react';
+import testUtils from '../../tests';
 import { Route } from 'react-router-dom';
 import ScrollToTop, { ScrollToTopProps } from '.';
 import { History } from 'history';

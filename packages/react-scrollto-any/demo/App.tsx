@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { range, partialRight } from 'lodash';
 

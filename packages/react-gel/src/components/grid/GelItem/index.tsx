@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as cs from 'classnames';
+import React from 'react';
+import cs from 'classnames';
 import { gridItemAdapter } from '../../../util';
 import { BreakPointProps } from '../../../types';
 

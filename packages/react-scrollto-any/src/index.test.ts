@@ -1,1 +1,1 @@
-import * as react from 'React';
+import react from 'React';

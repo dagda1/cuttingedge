@@ -1,5 +1,5 @@
 import { mount, ReactWrapper } from 'enzyme';
-import * as React from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter, RouterState } from 'react-router-redux';
 import { createStore, combineReducers, applyMiddleware, Reducer } from 'redux';

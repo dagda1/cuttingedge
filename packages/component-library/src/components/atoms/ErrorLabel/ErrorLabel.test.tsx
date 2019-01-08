@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
-import * as React from 'react';
-import * as renderer from 'react-test-renderer';
+import React from 'react';
+import renderer from 'react-test-renderer';
 import { Error, ErrorLabel, ErrorProps } from '.';
 
 const wrap = (props: ErrorProps) => shallow(<ErrorLabel {...props} />);

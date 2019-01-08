@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import * as React from 'react';
+import React from 'react';
 import { Label, LabelProps } from '.';
 
 const wrap = (props: LabelProps = {}) => shallow(<Label {...props}>label</Label>);

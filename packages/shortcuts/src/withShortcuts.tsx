@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Shortcuts, CreateShortcuts } from './Shortcuts';
 import { isComponentClass } from '../../../utils/react';
 const hoistStatics = require('hoist-non-react-statics');

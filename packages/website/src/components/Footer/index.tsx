@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { Cow, Github, Twitter } from '@cutting/component-library';
 import { footerPages } from '../../routes';

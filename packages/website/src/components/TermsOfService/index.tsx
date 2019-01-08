@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { StaticLayout } from '../../layouts/StaticLayout';
 
 const markdown = require('../../markdown/terms-of-service.md');

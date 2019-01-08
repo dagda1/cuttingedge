@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
-import * as _ from 'lodash';
-import * as React from 'react';
+import _ from 'lodash';
+import React from 'react';
 import { Select, SelectProps } from '.';
 
 const wrap = (props: SelectProps) => shallow(<Select {...props} />);

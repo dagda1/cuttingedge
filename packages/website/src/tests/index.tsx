@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { combineReducers } from 'redux';
 import { Middleware } from 'redux';
@@ -20,14 +20,14 @@ export const createStoreForTesting = (stateOverride?: Partial<State>) => {
   const reducer = getReducers();
 
   const middlewares: Middleware[] = [];
-  const enhancers = middlewares.map(a => applyMiddleware(a));
+  const enhancers = middlewares.map((a) => applyMiddleware(a));
 
   return createStore(reducer, initialState, compose(...enhancers));
 };
 
 export const wrapComponentInReduxForTesting = function<T>(
   Comp: React.ComponentType<T>,
-  props = {},
+  props: T,
   stateOverride: Partial<State> = {}
 ): ReactWrapper {
   return mount(

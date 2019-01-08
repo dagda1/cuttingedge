@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import * as React from 'react';
+import React from 'react';
 import { Button, ButtonProps } from '.';
 
 const wrap = (props: Partial<ButtonProps> = {}) => shallow(<Button {...{ children: 'Click Me!', ...props }} />);

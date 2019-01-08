@@ -1,12 +1,12 @@
-import * as React from 'react';
-import * as ReactDOMServer from 'react-dom/server';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 import { matchPath, StaticRouter } from 'react-router-dom';
 import { Document as DefaultDoc } from './Document';
 import { After } from './After';
 import { loadInitialProps } from './loadInitialProps';
-import * as utils from './utils';
-import * as url from 'url';
+import { isPromise } from './utils';
+import url from 'url';
 import { Request, Response } from 'express';
 import { Assets, AsyncRouteProps, LayoutComponent } from './types';
 
@@ -55,7 +55,7 @@ export async function render<T>(options: AfterRenderOptions<T>) {
       </StaticRouter>
     );
 
-    const renderedContent = utils.isPromise(asyncOrSyncRender) ? await asyncOrSyncRender : asyncOrSyncRender;
+    const renderedContent = isPromise(asyncOrSyncRender) ? await asyncOrSyncRender : asyncOrSyncRender;
     const helmet = Helmet.renderStatic();
 
     return { helmet, ...renderedContent };
@@ -75,7 +75,7 @@ export async function render<T>(options: AfterRenderOptions<T>) {
   if (match.path === '**') {
     res.status(404);
   } else if (match && match.redirectTo && match.path) {
-    res.redirect(301, req.originalUrl.replace(match.path, match.redirectTo));
+    res.redirect(301, req.originalUrl.replace(match.path as string, match.redirectTo));
     return;
   }
 

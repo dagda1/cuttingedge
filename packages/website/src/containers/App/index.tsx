@@ -1,5 +1,5 @@
 require('../../assets/scss/global.scss');
-import * as React from 'react';
+import React from 'react';
 import { Switch } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router';

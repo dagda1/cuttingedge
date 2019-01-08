@@ -1,6 +1,6 @@
 declare var module: any;
 
-import * as React from 'react';
+import React from 'react';
 import { hydrate } from 'react-dom';
 
 import { App, AppProps } from '../containers/App';

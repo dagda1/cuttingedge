@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { withShortcuts } from './withShortcuts';
 import { Shortcuts, Shortcut } from './Shortcuts';

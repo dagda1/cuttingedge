@@ -45,6 +45,7 @@
     "only-arrow-functions": false,
     "ordered-imports": false,
     "one-line": [true, "check-catch", "check-else", "check-open-brace", "check-whitespace"],
+    "prefer-for-of": false,
     "quotemark": [true, "single", "avoid-escape", "jsx-double"],
     "radix": true,
     "semicolon": [false, "always"],

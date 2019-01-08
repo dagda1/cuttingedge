@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
-import * as React from 'react';
-import * as renderer from 'react-test-renderer';
+import React from 'react';
+import renderer from 'react-test-renderer';
 import { Heading, HeadingProps } from '.';
 
 const wrap = (props: HeadingProps = {}) => shallow(<Heading {...props} />);

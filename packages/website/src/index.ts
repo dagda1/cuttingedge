@@ -1,6 +1,6 @@
 declare var module: any;
 import { app } from './server';
-import * as http from 'http';
+import http from 'http';
 
 const server = http.createServer(app);
 

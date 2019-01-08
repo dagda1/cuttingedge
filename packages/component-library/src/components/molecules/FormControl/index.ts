@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Input, InputProps } from '../../atoms/Input';
 import { Select, SelectProps } from '../../atoms/Select';
 import { FormControl, FormControlWrapperProps } from '../../hoc/FormControl';

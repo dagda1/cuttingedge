@@ -1,4 +1,4 @@
-import * as invariant from 'invariant';
+import invariant from 'invariant';
 
 export function elementIsVisibleInScrollable(container: HTMLElement, element: HTMLElement) {
   const containerTop = container.scrollTop;

@@ -1,7 +1,7 @@
 import { Cow, Heading } from '@cutting/component-library';
 import { GelItem, Layout, Wrap } from '@cutting/react-gel';
-import * as cs from 'classnames';
-import * as React from 'react';
+import cs from 'classnames';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { bannerPages } from '../../routes';
 import * as urls from '../../urls';

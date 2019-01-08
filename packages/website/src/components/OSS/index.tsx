@@ -1,6 +1,6 @@
 import { ExternalLink, Github, Heading } from '@cutting/component-library';
 import { GelItem, Layout } from '@cutting/react-gel';
-import * as React from 'react';
+import React from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
 

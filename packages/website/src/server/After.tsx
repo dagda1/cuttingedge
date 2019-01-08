@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Switch, Route, withRouter, match as Match, RouteComponentProps } from 'react-router-dom';
 import { loadInitialProps } from './loadInitialProps';
 import { History, Location } from 'history';

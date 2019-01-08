@@ -1,5 +1,5 @@
 /* import '../src/styles/_main.scss'; */
-import * as React from 'react';
+import React from 'react';
 import { Wrap, Layout, GelItem } from '../src';
 import { Bar } from './Bar';
 

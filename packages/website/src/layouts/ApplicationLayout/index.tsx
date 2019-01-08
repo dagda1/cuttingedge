@@ -1,7 +1,7 @@
 import { Heading } from '@cutting/component-library';
 import { GelItem, Layout, Wrap } from '@cutting/react-gel';
-import * as cs from 'classnames';
-import * as React from 'react';
+import cs from 'classnames';
+import React from 'react';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 

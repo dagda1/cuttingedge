@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Shortcuts, ShortcutsProps } from './Shortcuts';
 import { mount } from 'enzyme';

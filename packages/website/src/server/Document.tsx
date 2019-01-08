@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as serialize from 'serialize-javascript';
+import React from 'react';
+import serialize from 'serialize-javascript';
 import { DocumentProps } from './types';
 
 export class Document extends React.Component<DocumentProps> {

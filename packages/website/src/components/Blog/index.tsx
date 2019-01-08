@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { posts, Post } from './posts';
 import { StaticLayout } from '../../layouts/StaticLayout';
 import { Heading, ExternalLink } from '@cutting/component-library';

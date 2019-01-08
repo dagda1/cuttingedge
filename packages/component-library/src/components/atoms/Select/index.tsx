@@ -1,6 +1,6 @@
-import * as cs from 'classnames';
-import * as _ from 'lodash';
-import * as React from 'react';
+import cs from 'classnames';
+import _ from 'lodash';
+import React from 'react';
 import { isNil } from 'lodash';
 
 const styles = require('./select.scss');

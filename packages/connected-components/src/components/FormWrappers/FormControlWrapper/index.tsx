@@ -1,6 +1,6 @@
 import { FormInput, FormSelect } from '@cutting/component-library';
-import * as React from 'react';
-import * as ReduxForm from 'redux-form';
+import React from 'react';
+import ReduxForm from 'redux-form';
 import { WrappedFieldInputProps, WrappedFieldMetaProps } from 'redux-form';
 
 export type ControlValue = string | number | Date;

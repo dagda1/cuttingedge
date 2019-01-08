@@ -1,5 +1,5 @@
-import * as cs from 'classnames';
-import * as React from 'react';
+import cs from 'classnames';
+import React from 'react';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   level?: number;
@@ -8,7 +8,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 export const Heading: React.SFC<HeadingProps> = ({ level, className, tabIndex, children, ...rest }) => {
-  const Tag = `h${level}`;
+  const Tag = `h${level}` as any;
 
   return (
     <Tag className={cs(className)} {...rest} tabIndex={tabIndex}>

@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { Button } from '../../atoms/Button';
-import * as cs from 'classnames';
+import cs from 'classnames';
 import { Heading } from '../..';
 
 const styles = require('./Modal.scss');

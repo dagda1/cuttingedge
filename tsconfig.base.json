@@ -4,6 +4,7 @@
     "strict": true,
     "jsx": "react",
     "outDir": "./dist",
+    "esModuleInterop": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,

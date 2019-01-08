@@ -1,5 +1,5 @@
 import { mount } from 'enzyme';
-import * as React from 'react';
+import React from 'react';
 import { FormControlProps, renderFormInput as RenderFormInput } from '.';
 
 const wrap = (props: FormControlProps) => mount(<RenderFormInput {...props} />);

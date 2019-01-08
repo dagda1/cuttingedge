@@ -1,6 +1,6 @@
-import * as cs from 'classnames';
+import cs from 'classnames';
 import { identity } from 'lodash';
-import * as React from 'react';
+import React from 'react';
 
 const styles = require('./Button.scss');
 
