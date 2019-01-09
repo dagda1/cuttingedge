@@ -46,7 +46,8 @@ const libPackages = [
   'packages/util',
   'packages/react-gel',
   'packages/component-library',
-  'packages/connected-components'
+  'packages/connected-components',
+  'packages/react-key-mapper'
 ].map(dep => path.resolve(process.cwd(), dep));
 
 const webAppPackages = ['packages/website'].map(dep => path.resolve(process.cwd(), dep));
@@ -77,10 +78,11 @@ module.exports = {
   localBuildConfig: resolveApp('./build.config.js'),
   resolvedNodeModules,
   tsConfig: resolveApp('tsconfig.json'),
-  devDir: resolveApp('dev'),
-  devDirPublic: resolveApp('dev/public'),
+  devDir: resolveApp('demo'),
+  devDirPublic: resolveApp('demo/public'),
   tsLintConfig: requireRelative('../../../tslint.json'),
   libPackages,
   webAppPackages,
-  allPackages: [...libPackages, ...webAppPackages]
+  allPackages: [...libPackages, ...webAppPackages],
+  defaultC2ConfigPath: path.join(__dirname, './build.config.js')
 };

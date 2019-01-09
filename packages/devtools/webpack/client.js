@@ -15,9 +15,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { filter } = require('lodash');
 const paths = require('../config/paths');
 const AssetsPlugin = require('assets-webpack-plugin');
-
-const reStyle = /\.(css|scss)$/;
-const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
+const fs = require('fs');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -80,6 +78,10 @@ const configure = options => {
       return acc;
     }, {});
   }
+
+  const template = publicDir ? path.join(publicDir, 'index.html') : 'public/index.html';
+
+  const templateExists = fs.existsSync(template);
 
   const config = merge(common, {
     name: 'client',
@@ -185,10 +187,10 @@ const configure = options => {
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
 
-      (devServer || isStaticBuild) &&
+      (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({
           inject: true,
-          template: publicDir ? path.join(publicDir, 'index.html') : 'public/index.html',
+          template,
           minify: isProduction && {
             removeComments: true,
             collapseWhitespace: true,

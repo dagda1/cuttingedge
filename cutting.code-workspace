@@ -4,6 +4,9 @@
       "path": "."
     },
     {
+      "path": "packages/react-key-mapper"
+    },
+    {
       "path": "packages/website"
     },
     {

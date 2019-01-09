@@ -1,5 +1,6 @@
 import React from 'react';
 import mousetrap from 'mousetrap';
+import { componentHasRef } from '../utils';
 
 export interface Shortcut {
   keySequence: string;
@@ -15,14 +16,6 @@ export interface ShortcutsProps {
 export interface ShortcutsState {
   shortcuts: Shortcut[];
 }
-
-type Refable<T> = React.ReactElement<T> & {
-  ref: React.RefObject<T>;
-};
-
-const componentHasRef = function<T>(component: React.ReactElement<T> | Refable<T>): component is Refable<T> {
-  return !!(component as any).ref;
-};
 
 export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsState> {
   constructor(props: ShortcutsProps) {
@@ -62,7 +55,7 @@ export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsStat
   };
 
   clearShortcuts = () => {
-    this.state.shortcuts.forEach(shortcut => mousetrap.unbind(shortcut.keySequence));
+    this.state.shortcuts.forEach((shortcut) => mousetrap.unbind(shortcut.keySequence));
   };
 
   componentDidMount() {

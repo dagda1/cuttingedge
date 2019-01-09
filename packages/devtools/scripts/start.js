@@ -19,17 +19,23 @@ const { choosePort, createCompiler, prepareProxy, prepareUrls } = require('react
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
 const configureWebpackClient = require('../webpack/client').configure;
-const configureWebpackServer = require('../webpack/server').configure;
 const path = require('path');
+const fs = require('fs');
 
 const isInteractive = process.stdout.isTTY;
 
 const devServerConfig = require(paths.defaultC2ConfigPath).devServer;
 
+if (!fs.existsSync(devServerConfig.publicDir)) {
+  devServerConfig.publicDir = paths.devDirPublic;
+  devServerConfig.entries = paths.devDir;
+}
+
 let config = configureWebpackClient(devServerConfig);
 
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([path.join(devServerConfig.publicDir, 'index.html'), devServerConfig.entries])) {
+  console.log('required files missing');
   process.exit(1);
 }
 
