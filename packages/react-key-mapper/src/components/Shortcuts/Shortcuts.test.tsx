@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Shortcuts, ShortcutsProps } from '.';
+import { Shortcuts } from '.';
 import { mount } from 'enzyme';
 
 const shortcuts = [{ keySequence: 'a', action: () => undefined }];

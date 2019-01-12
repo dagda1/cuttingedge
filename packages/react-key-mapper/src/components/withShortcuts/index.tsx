@@ -1,6 +1,7 @@
 import React from 'react';
-import { Shortcuts, CreateShortcuts } from '../Shortcuts';
+import { Shortcuts } from '../Shortcuts';
 import { isComponentClass } from '../../utils';
+import { CreateShortcuts } from '../../types';
 const hoistStatics = require('hoist-non-react-statics');
 
 export const withShortcuts = function<T>(createShortcuts: CreateShortcuts) {

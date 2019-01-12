@@ -1,13 +1,7 @@
 import React from 'react';
 import mousetrap from 'mousetrap';
 import { componentHasRef } from '../../utils';
-
-export interface Shortcut {
-  keySequence: string;
-  action: (...args: any[]) => any;
-}
-
-export type CreateShortcuts = (props: any, instance?: React.ReactNode) => Shortcut[];
+import { CreateShortcuts, Shortcut } from '../../types';
 
 export interface ShortcutsProps {
   createShortcuts: CreateShortcuts;
