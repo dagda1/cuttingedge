@@ -1,6 +1,6 @@
 import React from 'react';
 import mousetrap from 'mousetrap';
-import { componentHasRef } from '../utils';
+import { componentHasRef } from '../../utils';
 
 export interface Shortcut {
   keySequence: string;

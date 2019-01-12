@@ -1,7 +1,7 @@
 require('./global.scss');
-import React, { StrictMode, lazy, Suspense } from 'react';
+import React from 'react';
+import { Shortcuts } from '../src/Shortcuts.tsx'
 
-const styles = require('./App.scss');
 
 export const App: React.SFC = () => {
   return <h1>rect-key-mapper</h1>;

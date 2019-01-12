@@ -1,11 +1,9 @@
 import React from 'react';
 
-import { Shortcuts, ShortcutsProps } from './Shortcuts';
+import { Shortcuts, ShortcutsProps } from '.';
 import { mount } from 'enzyme';
 
 const shortcuts = [{ keySequence: 'a', action: () => undefined }];
-
-const wrap = (props: ShortcutsProps) => mount(<Shortcuts {...props} />);
 
 describe('<Shortcuts />', () => {
   it('should add shortcuts for stateless component', () => {
@@ -13,7 +11,7 @@ describe('<Shortcuts />', () => {
 
     const createShortcuts = (props: any) => shortcuts;
 
-    const wrapper = mount(
+    const wrapper = mount<Shortcuts>(
       <Shortcuts createShortcuts={createShortcuts}>
         <Stateless />
       </Shortcuts>

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { withShortcuts } from './withShortcuts';
-import { Shortcuts, Shortcut } from './Shortcuts';
+import { withShortcuts } from '.';
+import { Shortcuts, Shortcut } from '../Shortcuts';
 import { mount } from 'enzyme';
 
 const shortcuts = [{ keySequence: 'a', action: () => undefined }];
