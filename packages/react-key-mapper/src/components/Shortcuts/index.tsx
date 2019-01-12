@@ -1,14 +1,22 @@
 import React from 'react';
 import mousetrap from 'mousetrap';
-import { componentHasRef } from '../../utils';
-import { CreateShortcuts, Shortcut } from '../../types';
+import { ShortcutMap, ShortcutHandler } from '../../types';
+import invariant from 'invariant';
+import { buildShortcuts } from './buildShortcuts';
 
 export interface ShortcutsProps {
-  createShortcuts: CreateShortcuts;
+  mapKey: string;
+  shortcutMap: ShortcutMap;
+  handler: ShortcutHandler;
+}
+
+export interface ShortcutAction {
+  keys: string | string[];
+  action: string;
 }
 
 export interface ShortcutsState {
-  shortcuts: Shortcut[];
+  shortcuts: ShortcutAction[];
 }
 
 export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsState> {
@@ -20,47 +28,31 @@ export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsStat
     };
   }
 
-  resolveShorcuts = (): Shortcut[] => {
-    const { createShortcuts, children } = this.props;
-
-    const component = React.Children.only(children);
-
-    if (!componentHasRef(component)) {
-      return createShortcuts(component.props);
-    }
-
-    const ref = component.ref;
-
-    const instance = ref.current;
-
-    return createShortcuts(component.props, instance);
-  };
-
   buildShortcuts = () => {
     this.clearShortcuts();
 
-    const shortcuts = this.resolveShorcuts();
+    const { shortcutMap, mapKey: key, handler } = this.props;
 
-    shortcuts.forEach((shortcut: Shortcut) => {
-      mousetrap.bind(shortcut.keySequence, shortcut.action);
+    const map = shortcutMap[key];
+
+    invariant(map, `no key ${key} found in shortcutMap`);
+
+    const shortcutActions = buildShortcuts(map);
+
+    shortcutActions.forEach((shortcut) => {
+      mousetrap.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
+        handler(shortcut.action, e);
+      });
     });
 
-    this.setState({ shortcuts });
+    this.setState({ shortcuts: shortcutActions });
   };
 
   clearShortcuts = () => {
-    this.state.shortcuts.forEach((shortcut) => mousetrap.unbind(shortcut.keySequence));
+    this.state.shortcuts.forEach((shortcut) => mousetrap.unbind(shortcut.keys));
   };
 
   componentDidMount() {
-    this.buildShortcuts();
-  }
-
-  componentDidUpdate(prevProps: ShortcutsProps, prevState: ShortcutsState) {
-    if (this.props === prevProps) {
-      return;
-    }
-
     this.buildShortcuts();
   }
 

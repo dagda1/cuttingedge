@@ -1,29 +1,26 @@
 import React from 'react';
 import { KeyCode } from './keycodes';
 
+export type ShortcutHandler = (action: string, event: ExtendedKeyboardEvent) => void;
+
+export type KeyStroke = KeyCode | KeyCode[] | string;
+
 export interface Combination {
-  combination: KeyCode[];
+  combination: KeyStroke[];
 }
 
 export interface Sequence {
-  sequence: KeyCode[];
+  sequence: KeyStroke[];
 }
 
-export interface ShortcutMapItem {
-  [key: string]: KeyCode | KeyCode[] | Combination | Combination[] | Sequence | Sequence[];
+export interface Shortcut {
+  [key: string]: KeyStroke | KeyStroke[] | Combination | Combination[] | Sequence | Sequence[];
 }
 
 export interface ShortcutMap {
-  [key: string]: ShortcutMapItem;
+  [key: string]: Shortcut;
 }
 
 export type Refable<T> = React.ReactElement<T> & {
   ref: React.RefObject<T>;
 };
-
-export interface Shortcut {
-  keySequence: string;
-  action: (...args: any[]) => any;
-}
-
-export type CreateShortcuts = (props: any, instance?: React.ReactNode) => Shortcut[];

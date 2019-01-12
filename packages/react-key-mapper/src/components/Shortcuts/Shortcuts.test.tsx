@@ -2,8 +2,9 @@ import React from 'react';
 
 import { Shortcuts } from '.';
 import { mount } from 'enzyme';
+import { ShortcutMap } from '../../types';
 
-const shortcuts = [{ keySequence: 'a', action: () => undefined }];
+const shortcuts: ShortcutMap = [{ keySequence: 'a', action: () => undefined }];
 
 describe('<Shortcuts />', () => {
   it('should add shortcuts for stateless component', () => {

@@ -1,7 +1,8 @@
 require('./global.scss');
 import React from 'react';
-import { Shortcuts } from '../src/components/Shortcuts';
 import { Box } from './types';
+import { shortcutMap } from './shortCutMap';
+import { withShortcuts } from '../src/components/withShortcuts';
 
 const boxes = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }].map(
   (b): Box => {
@@ -9,6 +10,8 @@ const boxes = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, {
   }
 );
 
-export const App: React.SFC = () => {
-  return <h1>rect-key-mapper</h1>;
-};
+const AppView = () => <h1>Here we are</h1>;
+
+export const App = withShortcuts(shortcutMap, 'BOX', (action: string, e: ExtendedKeyboardEvent) => {
+  console.log(action);
+})(AppView);
