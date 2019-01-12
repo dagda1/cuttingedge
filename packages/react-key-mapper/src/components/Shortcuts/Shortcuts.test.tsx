@@ -2,41 +2,26 @@ import React from 'react';
 
 import { Shortcuts } from '.';
 import { mount } from 'enzyme';
-import { ShortcutMap } from '../../types';
+import { ShortcutMap, ShortcutHandler } from '../../types';
 
-const shortcuts: ShortcutMap = [{ keySequence: 'a', action: () => undefined }];
+const shortcuts: ShortcutMap = {
+  key: {
+    MOVE_UP: 'a'
+  }
+};
 
 describe('<Shortcuts />', () => {
   it('should add shortcuts for stateless component', () => {
     const Stateless = (props: any) => <div>Stateless</div>;
 
-    const createShortcuts = (props: any) => shortcuts;
-
     const wrapper = mount<Shortcuts>(
-      <Shortcuts createShortcuts={createShortcuts}>
+      <Shortcuts shortcutMap={shortcuts} mapKey="key" handler={(action, e) => undefined}>
         <Stateless />
       </Shortcuts>
     );
 
-    expect(wrapper.state().shortcuts).toBe(shortcuts);
-  });
+    const shortcutActions = wrapper.state().shortcuts;
 
-  it('should assign ref to class component', () => {
-    class Classy extends React.Component {
-      render() {
-        return <div>classy</div>;
-      }
-    }
-
-    const createShortcuts = (props: any, instance: Classy) => {
-      expect(instance).toBeInstanceOf(Classy);
-      return shortcuts;
-    };
-
-    const wrapper = mount(
-      <Shortcuts createShortcuts={createShortcuts}>
-        <Classy ref={React.createRef()} />
-      </Shortcuts>
-    );
+    expect(shortcutActions).toHaveLength(1);
   });
 });

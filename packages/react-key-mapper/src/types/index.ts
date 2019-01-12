@@ -3,7 +3,7 @@ import { KeyCode } from './keycodes';
 
 export type ShortcutHandler = (action: string, event: ExtendedKeyboardEvent) => void;
 
-export type KeyStroke = KeyCode | KeyCode[] | string;
+export type KeyStroke = KeyCode | string;
 
 export interface Combination {
   combination: KeyStroke[];
@@ -13,8 +13,10 @@ export interface Sequence {
   sequence: KeyStroke[];
 }
 
+export type ShortcutItem = KeyStroke | KeyStroke[] | Combination | Sequence;
+
 export interface Shortcut {
-  [key: string]: KeyStroke | KeyStroke[] | Combination | Combination[] | Sequence | Sequence[];
+  [key: string]: ShortcutItem;
 }
 
 export interface ShortcutMap {
