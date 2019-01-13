@@ -30,7 +30,13 @@ describe('<Shortcuts />', () => {
   describe.only('scoped Shortcuts', () => {
     const Scoped = () => <div>Scoped</div>;
 
-    const defaultProps: ShortcutsProps = { shortcutMap, mapKey: 'key', handler: dummyHandler, scoped: true };
+    const defaultProps: ShortcutsProps = {
+      shortcutMap,
+      mapKey: 'key',
+      handler: dummyHandler,
+      scoped: true,
+      ScopedWrapperComponentType: 'div'
+    };
 
     const wrap = (props: Partial<ShortcutsProps> = {}) => {
       return mount<Shortcuts>(
