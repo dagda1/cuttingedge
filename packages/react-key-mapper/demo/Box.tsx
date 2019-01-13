@@ -33,6 +33,7 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
         onMoveRequest({ y: y - SHIFT }, index);
         break;
       case 'MOVE_DOWN':
+        console.log(y);
         onMoveRequest({ y: y + SHIFT }, index);
         break;
       default:
@@ -42,7 +43,9 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
 
   return (
     <Shortcuts shortcutMap={shortcutMap} mapKey="BOX" handler={handleMove} scoped tabIndex={-1}>
-      <div style={style}>{index + 1}</div>
+      <div style={style}>
+        {index + 1} ({x}, {y})
+      </div>
     </Shortcuts>
   );
 };

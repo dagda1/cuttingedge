@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { FunctionComponent, ComponentClass } from 'react';
 import mousetrap from 'mousetrap';
 import { ShortcutMap, ShortcutHandler } from '../../types';
 import invariant from 'invariant';
 import { buildShortcuts } from './buildShortcuts';
 
-export interface ShortcutsProps {
+export interface ShortcutsProps<
+  TScopedWrapperComponentType = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> {
   mapKey: string;
   shortcutMap: ShortcutMap;
   handler: ShortcutHandler;
   scoped?: boolean;
   tabIndex?: number;
-  ScopedWrapperComponentType?: any;
+  ScopedWrapperComponentType:
+    | FunctionComponent<TScopedWrapperComponentType>
+    | ComponentClass<TScopedWrapperComponentType>
+    | string;
 }
 
 export interface ShortcutAction {
@@ -38,7 +43,8 @@ export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsStat
 
   static defaultProps = {
     scoped: false,
-    tabIndex: -1
+    tabIndex: -1,
+    ScopedWrapperComponentType: 'div'
   };
 
   componentDidMount() {

@@ -1,8 +1,6 @@
 require('./global.scss');
 import React, { useState } from 'react';
 import { Box, Point } from './types';
-import { shortcutMap } from './shortCutMap';
-import { withShortcuts } from '../src/components/withShortcuts';
 import { Box as MovableBox } from './Box';
 
 const boxes = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }].map(
@@ -15,13 +13,14 @@ export const App: React.FC = () => {
   const [boxState, setState] = useState(boxes);
 
   const handleMove = (newPosition: Partial<Point>, index: number) => {
-    setState((state) =>
-      state.map((box, i) => {
-        return index === i ? { ...box, ...newPosition } : box;
-      })
-    );
+    setState((state) => {
+      return state.map((box, i) => {
+        return index === i ? { ...box, ...newPosition } : { ...box };
+      });
+    });
   };
 
+  console.log({ boxState });
   return (
     <div>
       <h1>Click on any box and use arrow keys or WSAD</h1>
