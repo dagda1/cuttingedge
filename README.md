@@ -7,7 +7,7 @@
  There are initially 4 subpackages supporting the main meridian parent package all running under a `@cutting` scoped yarn package name:
 
  1. [@cutting/devtools](./packages/devtools/README.md) - Common [webpack](https://webpack.js.org/), [jest](https://facebook.github.io/jest/) and npm **scripts**
- 2. [@cutting/react-key-mapper](./packages/devtools/README.md) - Declaratively manage shortcuts on react components.
+ 2. [@cutting/react-typed-mousetrap](./packages/devtools/README.md) - Declaratively manage shortcuts on react components.
  2. [@cutting/util](./packages/util/README.md) - Any common functionality applicable to all packages can be found here.
  3. [@cutting/react-scroll](./packages/react-scrollto-any/README.md) - Scroll to any component or scroll the window.
  4. [@cutting/component-library](./packages/component-library/README.md) - Common react components that can be shared among all projects.  This ensures consistency in both styling and functionality.  The [atomic design methodology](http://atomicdesign.bradfrost.com/chapter-2/) will be used to add a logical grouping to the component structure.

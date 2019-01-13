@@ -1,17 +1,25 @@
 import React from 'react';
 import { KeyCode } from './keycodes';
+import { FunctionComponent, ComponentClass } from 'react';
 
-export interface ShortcutsProps {
+export interface ShortcutsProps<
+  TScopedWrapperComponentType = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
+> {
   mapKey: string;
   shortcutMap: ShortcutMap;
   handler: ShortcutHandler;
   scoped?: boolean;
   tabIndex?: number;
+  ScopedWrapperComponentType:
+    | FunctionComponent<TScopedWrapperComponentType>
+    | ComponentClass<TScopedWrapperComponentType>
+    | string;
 }
 
 export interface ShortcutAction {
   keys: string | string[];
   action: string;
+  trapper?: MousetrapStatic | MousetrapInstance;
 }
 
 export type ShortcutHandler = (action: string, event: ExtendedKeyboardEvent) => void;

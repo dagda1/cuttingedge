@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Shortcuts, ShortcutsProps } from '.';
+import { Shortcuts } from '.';
 import { mount } from 'enzyme';
-import { ShortcutMap, ShortcutHandler } from '../../types';
+import { ShortcutMap, ShortcutsProps } from '../../types';
 
 const shortcutMap: ShortcutMap = {
   key: {
@@ -27,7 +27,7 @@ describe('<Shortcuts />', () => {
     expect(shortcutActions).toHaveLength(1);
   });
 
-  describe.only('scoped Shortcuts', () => {
+  describe('scoped Shortcuts', () => {
     const Scoped = () => <div>Scoped</div>;
 
     const defaultProps: ShortcutsProps = {

@@ -47,7 +47,7 @@ const libPackages = [
   'packages/react-gel',
   'packages/component-library',
   'packages/connected-components',
-  'packages/react-key-mapper'
+  'packages/react-typed-mousetrap'
 ].map(dep => path.resolve(process.cwd(), dep));
 
 const webAppPackages = ['packages/website'].map(dep => path.resolve(process.cwd(), dep));

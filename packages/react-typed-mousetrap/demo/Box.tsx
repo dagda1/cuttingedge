@@ -20,13 +20,8 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
     left: `${x + index * 120}px`
   };
 
-  if (index === 0) {
-    console.log({ x, y });
-  }
-
   const SHIFT = 10;
   const handleMove = (action) => {
-    console.log(index);
     switch (action) {
       case 'MOVE_LEFT':
         onMoveRequest({ x: x - SHIFT }, index);
@@ -46,12 +41,9 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
   };
 
   return (
-    <Shortcuts shortcutMap={shortcutMap} mapKey="BOX" handler={(action) => handleMove(action)} scoped tabIndex={-1}>
+    <Shortcuts shortcutMap={shortcutMap} mapKey="BOX" handler={handleMove} scoped>
       <div style={style}>
         {index + 1} ({x}, {y})
-        <button type="button" onClick={() => handleMove('MOVE_DOWN')}>
-          D
-        </button>
       </div>
     </Shortcuts>
   );

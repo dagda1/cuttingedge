@@ -1,24 +1,23 @@
 {
-  "name": "@cutting/react-key-mapper",
+  "name": "@cutting/react-typed-mousetrap",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
-  "dependencies": {
-    "@cutting/react-gel": "^0.5.0",
-    "@types/mousetrap": "^1.6.0",
-    "invariant": "^2.2.4",
-    "mousetrap": "^1.6.2"
-  },
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=development cutting ts-build",
     "prepublish": "yarn build"
+  },
+  "dependencies": {
+    "@cutting/react-gel": "^0.5.0",
+    "invariant": "^2.2.4",
+    "mousetrap": "^1.6.2"
   },
   "devDependencies": {
     "@types/invariant": "^2.2.29",

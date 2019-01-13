@@ -4,7 +4,7 @@
       "path": "."
     },
     {
-      "path": "packages/react-key-mapper"
+      "path": "packages/react-typed-mousetrap"
     },
     {
       "path": "packages/website"

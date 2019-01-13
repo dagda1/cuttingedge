@@ -1,28 +1,8 @@
-import React, { FunctionComponent, ComponentClass } from 'react';
+import React from 'react';
 import mousetrap from 'mousetrap';
-import { ShortcutMap, ShortcutHandler } from '../../types';
+import { ShortcutAction, ShortcutsProps } from '../../types';
 import invariant from 'invariant';
 import { buildShortcuts } from './buildShortcuts';
-
-export interface ShortcutsProps<
-  TScopedWrapperComponentType = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> {
-  mapKey: string;
-  shortcutMap: ShortcutMap;
-  handler: ShortcutHandler;
-  scoped?: boolean;
-  tabIndex?: number;
-  ScopedWrapperComponentType:
-    | FunctionComponent<TScopedWrapperComponentType>
-    | ComponentClass<TScopedWrapperComponentType>
-    | string;
-}
-
-export interface ShortcutAction {
-  keys: string | string[];
-  action: string;
-  trapper?: MousetrapStatic | MousetrapInstance;
-}
 
 export interface ShortcutsState {
   shortcuts: ShortcutAction[];
@@ -47,7 +27,9 @@ export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsStat
     ScopedWrapperComponentType: 'div'
   };
 
-  componentDidMount() {
+  bindShortcuts = () => {
+    this.unbindShortcuts();
+
     const { shortcutMap, mapKey: key, handler, scoped } = this.props;
 
     const map = shortcutMap[key];
@@ -67,14 +49,30 @@ export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsStat
     });
 
     this.setState({ shortcuts: shortcutActions });
-  }
+  };
 
-  componentWillUnmount() {
+  unbindShortcuts = () => {
     this.state.shortcuts.forEach((shortcut) => {
       if (shortcut.trapper) {
         shortcut.trapper.unbind(shortcut.keys);
       }
     });
+  };
+
+  componentDidMount() {
+    this.bindShortcuts();
+  }
+
+  componentDidUpdate(prevProps: ShortcutsProps, prevState: ShortcutsState) {
+    if (prevProps === this.props) {
+      return;
+    }
+
+    this.bindShortcuts();
+  }
+
+  componentWillUnmount() {
+    this.unbindShortcuts();
   }
 
   render() {
