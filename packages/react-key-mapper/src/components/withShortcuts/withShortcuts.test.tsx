@@ -5,16 +5,18 @@ import { Shortcuts } from '../Shortcuts';
 import { mount } from 'enzyme';
 import { ShortcutMap } from '../../types';
 
-const shortcuts: ShortcutMap = {
+const shortcutMap: ShortcutMap = {
   key: {
     MOVE_UP: 'a'
   }
 };
 
+const props = { shortcutMap, mapKey: 'key', handler: (action, e) => undefined };
+
 describe('withShortcuts', () => {
   it('should create wrapped shortcuts component with stateless', () => {
     const Stateless = (props: any) => <div>Stateless</div>;
-    const Wrapped = withShortcuts(shortcuts, 'key', (action, e) => undefined)(Stateless as any);
+    const Wrapped = withShortcuts(props)(Stateless as any);
     const wrapper = mount(<Wrapped />);
 
     expect(wrapper.find(Shortcuts)).toHaveLength(1);

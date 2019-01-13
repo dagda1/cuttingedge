@@ -10,6 +10,7 @@ export interface ShortcutsProps {
   handler: ShortcutHandler;
   scoped?: boolean;
   tabIndex?: number;
+  ScopedWrapperComponentType?: any;
 }
 
 export interface ShortcutAction {
@@ -71,16 +72,16 @@ export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsStat
   }
 
   render() {
-    const { scoped, children, tabIndex } = this.props;
+    const { scoped, children, tabIndex, ScopedWrapperComponentType } = this.props;
 
     if (!scoped) {
       return children;
     }
 
     return (
-      <div tabIndex={tabIndex} ref={this.ref}>
+      <ScopedWrapperComponentType tabIndex={tabIndex} ref={this.ref} className="mousetrap">
         {children}
-      </div>
+      </ScopedWrapperComponentType>
     );
   }
 }
