@@ -2,7 +2,7 @@
 
 Declaratively manage keyboard shortcuts on react components.
 
-A thin wrapper around [mousetrap(https://github.com/ccampbell/mousetrap)].
+A thin wrapper around [mousetrap](https://github.com/ccampbell/mousetrap).
 
 Written in typescript so you can take advantage of better typesafety
 
@@ -41,7 +41,7 @@ export const shortcutMap: ShortcutMap = {
 
 You can pass simple strings, an array of strings or a `combination` element that requires more than one key to activate or a `sequence` of keys that relies on each key in the sequence being executed before the handler fires.
 
-There is a [KeyCode enum](./src/types/keycodes.ts) to help with the special keys.
+There is a [KeyCode enum](https://github.com/dagda1/cuttingedge/blob/master/packages/react-typed-mousetrap/src/types/keycodes.ts) to help with the special keys.
 
 Pass the map and the key of values you want to hook up into a component:
 
