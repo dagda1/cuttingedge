@@ -20,7 +20,6 @@ export const App: React.FC = () => {
     });
   };
 
-  console.log({ boxState });
   return (
     <div>
       <h1>Click on any box and use arrow keys or WSAD</h1>

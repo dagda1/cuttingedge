@@ -1,11 +1,12 @@
 export enum KeyCode {
-  Ctrl = 'ctrl',
-  Command = 'command',
-  Enter = 'enter',
   Alt = 'meta',
-  LeftArrow = 'left',
-  RightArrow = 'right',
-  UpArrow = 'up',
+  Command = 'command',
+  Ctrl = 'ctrl',
   DownArrow = 'down',
-  Mod = 'mod' // On Mac this ends up mapping to command whereas on Windows and Linux it maps to ctrl.
+  Enter = 'enter',
+  Escape = 'esc',
+  LeftArrow = 'left',
+  Mod = 'mod', // On Mac this ends up mapping to command whereas on Windows and Linux it maps to ctrl.
+  RightArrow = 'right',
+  UpArrow = 'up'
 }
