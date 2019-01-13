@@ -105,7 +105,7 @@ const configureCommon = (options) => {
                 tsConfig: paths.tsConfig,
                 emitError: true,
                 failOnHint: true,
-                fix: true
+                fix: false
               }
             }
           ]

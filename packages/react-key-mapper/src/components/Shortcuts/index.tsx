@@ -8,11 +8,14 @@ export interface ShortcutsProps {
   mapKey: string;
   shortcutMap: ShortcutMap;
   handler: ShortcutHandler;
+  scoped?: boolean;
+  tabIndex?: number;
 }
 
 export interface ShortcutAction {
   keys: string | string[];
   action: string;
+  trapper?: MousetrapStatic | MousetrapInstance;
 }
 
 export interface ShortcutsState {
@@ -20,18 +23,25 @@ export interface ShortcutsState {
 }
 
 export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsState> {
+  ref: React.RefObject<HTMLDivElement>;
+
   constructor(props: ShortcutsProps) {
     super(props);
 
     this.state = {
       shortcuts: []
     };
+
+    this.ref = React.createRef();
   }
 
-  buildShortcuts = () => {
-    this.clearShortcuts();
+  static defaultProps = {
+    scoped: false,
+    tabIndex: -1
+  };
 
-    const { shortcutMap, mapKey: key, handler } = this.props;
+  componentDidMount() {
+    const { shortcutMap, mapKey: key, handler, scoped } = this.props;
 
     const map = shortcutMap[key];
 
@@ -39,28 +49,38 @@ export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsStat
 
     const shortcutActions = buildShortcuts(map);
 
+    const trapper = scoped && this.ref.current ? new mousetrap(this.ref.current) : mousetrap;
+
     shortcutActions.forEach((shortcut) => {
-      mousetrap.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
+      trapper.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
         handler(shortcut.action, e);
       });
+
+      shortcut.trapper = trapper;
     });
 
     this.setState({ shortcuts: shortcutActions });
-  };
-
-  clearShortcuts = () => {
-    this.state.shortcuts.forEach((shortcut) => mousetrap.unbind(shortcut.keys));
-  };
-
-  componentDidMount() {
-    this.buildShortcuts();
   }
 
   componentWillUnmount() {
-    this.clearShortcuts();
+    this.state.shortcuts.forEach((shortcut) => {
+      if (shortcut.trapper) {
+        shortcut.trapper.unbind(shortcut.keys);
+      }
+    });
   }
 
   render() {
-    return this.props.children;
+    const { scoped, children, tabIndex } = this.props;
+
+    if (!scoped) {
+      return children;
+    }
+
+    return (
+      <div tabIndex={tabIndex} ref={this.ref}>
+        {children}
+      </div>
+    );
   }
 }

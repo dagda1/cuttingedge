@@ -1,8 +1,9 @@
 require('./global.scss');
-import React from 'react';
-import { Box } from './types';
+import React, { useState } from 'react';
+import { Box, Point } from './types';
 import { shortcutMap } from './shortCutMap';
 import { withShortcuts } from '../src/components/withShortcuts';
+import { Box as MovableBox } from './Box';
 
 const boxes = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }].map(
   (b): Box => {
@@ -10,8 +11,23 @@ const boxes = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, {
   }
 );
 
-const AppView = () => <h1>Here we are</h1>;
+export const App: React.FC = () => {
+  const [boxState, setState] = useState(boxes);
 
-export const App = withShortcuts(shortcutMap, 'BOX', (action: string, e: ExtendedKeyboardEvent) => {
-  console.log(action);
-})(AppView);
+  const handleMove = (newPosition: Partial<Point>, index: number) => {
+    setState((state) =>
+      state.map((box, i) => {
+        return index === i ? { ...box, ...newPosition } : box;
+      })
+    );
+  };
+
+  return (
+    <div>
+      <h1>Click on any box and use arrow keys or WSAD</h1>
+      {boxState.map(({ x, y, color }, index) => (
+        <MovableBox key={index} color={color} index={index} x={x} y={y} onMoveRequest={handleMove} />
+      ))}
+    </div>
+  );
+};

@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { Point, Box as BoxType } from './types';
 import { Shortcuts } from '../src/components/Shortcuts';
+import { shortcutMap } from './shortCutMap';
 
 interface BoxProps {
   index: number;
@@ -34,11 +35,13 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
       case 'MOVE_DOWN':
         onMoveRequest({ y: y + SHIFT }, index);
         break;
+      default:
+        throw new Error('Unknown action');
     }
   };
 
   return (
-    <Shortcuts name="BOX" handler={handleMove}>
+    <Shortcuts shortcutMap={shortcutMap} mapKey="BOX" handler={handleMove} scoped tabIndex={-1}>
       <div style={style}>{index + 1}</div>
     </Shortcuts>
   );

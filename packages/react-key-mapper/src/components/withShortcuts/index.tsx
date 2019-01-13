@@ -1,10 +1,17 @@
 import React from 'react';
 import { Shortcuts } from '../Shortcuts';
-import { ShortcutMap, ShortcutHandler } from '../../types';
+import { ShortcutsProps } from '../../types';
 
-export const withShortcuts = function<T>(shortcutMap: ShortcutMap, key: string, handler: ShortcutHandler) {
+export const defaultOptions: Partial<ShortcutsProps> = {
+  scoped: false,
+  tabIndex: -1
+};
+
+export const withShortcuts = function<T>(options: ShortcutsProps) {
+  const merged = { ...defaultOptions, ...options };
+
   return (Component: React.ComponentType<T>) => (props: T) => (
-    <Shortcuts shortcutMap={shortcutMap} mapKey={key} handler={handler}>
+    <Shortcuts {...merged}>
       <Component {...props} />
     </Shortcuts>
   );
