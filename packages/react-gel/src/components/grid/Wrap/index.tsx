@@ -1,12 +1,13 @@
 import React from 'react';
 import cs from 'classnames';
+import { Taggable } from '@cutting/util';
 
 export interface WrapProps {
-  Tag: any;
+  Tag?: Taggable;
   className?: string;
 }
 
-export const Wrap: React.SFC<WrapProps> = ({ Tag, className, children }) => (
+export const Wrap: React.SFC<WrapProps> = ({ Tag = 'div', className, children }) => (
   <Tag className={cs('gel-wrap', className)}>{children}</Tag>
 );
 

@@ -6,11 +6,15 @@ export interface Repo {
 
 export const repos: Repo[] = [
   {
+    name: 'react-typed-mousetrap',
+    description: 'Declaratively manage keyboard shortcuts on react components.',
+    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/react-typed-mousetrap'
+  },
+  {
     name: 'styled-gel',
     description: 'Styled-components responsive flexbox grid',
     link: 'https://github.com/dagda1/styled-gel'
   },
-  { name: 'd3-geometry', description: 'D3, React and Redux', link: 'https://github.com/dagda1/d3-geometry' },
   { name: 'cuttingedge', description: 'Source code for this site', link: 'https://github.com/dagda1/cuttingedge' },
   {
     name: 'knex-csv',
