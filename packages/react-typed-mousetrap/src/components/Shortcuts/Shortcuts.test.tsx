@@ -70,12 +70,18 @@ describe('<Shortcuts />', () => {
       expect(mousetrap.props().tabIndex).toBe(4);
     });
 
-    it.only("should override wrapped element's element type", () => {
+    it("should override wrapped element's element type", () => {
       const wrapper = wrap({ ScopedWrapperComponentType: 'span' });
 
       const mousetrap = wrapper.find('span');
 
       expect(mousetrap).toHaveLength(1);
+    });
+
+    it('should add className to wrapped element', () => {
+      const wrapper = wrap({ className: 'some-class' });
+
+      expect(wrapper.find('.mousetrap').hasClass('some-class')).toBe(true);
     });
   });
 });

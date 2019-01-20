@@ -3,6 +3,7 @@ import mousetrap from 'mousetrap';
 import { ShortcutAction, ShortcutsProps } from '../../types';
 import invariant from 'invariant';
 import { buildShortcuts } from './buildShortcuts';
+import cs from 'classnames';
 
 export interface ShortcutsState {
   shortcuts: ShortcutAction[];
@@ -76,14 +77,14 @@ export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsStat
   }
 
   render() {
-    const { scoped, children, tabIndex, ScopedWrapperComponentType } = this.props;
+    const { scoped, children, tabIndex, ScopedWrapperComponentType, className } = this.props;
 
     if (!scoped) {
       return children;
     }
 
     return (
-      <ScopedWrapperComponentType tabIndex={tabIndex} ref={this.ref} className="mousetrap">
+      <ScopedWrapperComponentType tabIndex={tabIndex} ref={this.ref} className={cs('mousetrap', className)}>
         {children}
       </ScopedWrapperComponentType>
     );
