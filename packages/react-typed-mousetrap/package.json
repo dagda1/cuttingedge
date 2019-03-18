@@ -9,7 +9,7 @@
   "version": "0.6.0",
   "license": "MIT",
   "scripts": {
-    "start": "PORT=8888 NODE_ENV=development cutting start",
+    "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=development cutting ts-build",
     "prepublish": "yarn build"

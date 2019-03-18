@@ -506,13 +506,6 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-test-renderer@^16.8.1":
-  version "16.8.1"
-  resolved "https://registry.npmjs.org/@types/react-test-renderer/-/react-test-renderer-16.8.1.tgz#96f3ce45a3a41c94eca532a99103dd3042c9d055"
-  integrity sha512-8gU69ELfJGxzVWVYj4MTtuHxz9nO+d175XeQ1XrXXxesUBsB4KK6OCfzVhEX6leZWWBDVtMJXp/rUjhClzL7gw==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react@*", "@types/react@^16.8.4":
   version "16.8.8"
   resolved "https://registry.npmjs.org/@types/react/-/react-16.8.8.tgz#4b60a469fd2469f7aa6eaa0f8cfbc51f6d76e662"
@@ -8418,7 +8411,7 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
-react-test-renderer@^16.0.0-0, react-test-renderer@^16.4.0:
+react-test-renderer@^16.0.0-0:
   version "16.8.4"
   resolved "https://registry.npmjs.org/react-test-renderer/-/react-test-renderer-16.8.4.tgz#abee4c2c3bf967a8892a7b37f77370c5570d5329"
   integrity sha512-jQ9Tf/ilIGSr55Cz23AZ/7H3ABEdo9oy2zF9nDHZyhLHDSLKuoILxw2ifpBfuuwQvj4LCoqdru9iZf7gwFH28A==

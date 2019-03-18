@@ -10,7 +10,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "PORT=7777 NODE_ENV=development cutting start",
-    "test": "NODE_ENV=test cutting test",
+    "test": "echo no tests....yet",
     "build": "NODE_ENV=development cutting ts-build"
   },
   "dependencies": {},

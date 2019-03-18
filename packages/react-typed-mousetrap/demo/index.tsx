@@ -4,9 +4,7 @@ import { App } from './App';
 const ReactDOM = require('react-dom');
 
 const render = (Application: React.ComponentType) => {
-  const container = document.getElementById('root');
-  const root = ReactDOM.createRoot(container);
-  root.render(<Application />);
+  ReactDOM.render(<Application />, document.getElementById('root'));
 };
 
 render(App);

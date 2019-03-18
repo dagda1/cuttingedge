@@ -11,12 +11,12 @@ const shortcutMap: ShortcutMap = {
   }
 };
 
-const props = { shortcutMap, mapKey: 'key', handler: (action, e) => undefined };
+const props = { shortcutMap, mapKey: 'key', handler: (action: any, e: any) => undefined };
 
 describe('withShortcuts', () => {
   it('should create wrapped shortcuts component with stateless', () => {
     const Stateless = (props: any) => <div>Stateless</div>;
-    const Wrapped = withShortcuts(props)(Stateless as any);
+    const Wrapped = withShortcuts(props as any)(Stateless as any);
     const wrapper = mount(<Wrapped />);
 
     expect(wrapper.find(Shortcuts)).toHaveLength(1);

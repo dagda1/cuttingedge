@@ -10,7 +10,7 @@ const shortcutMap: ShortcutMap = {
   }
 };
 
-const dummyHandler = (action, e) => undefined;
+const dummyHandler = (action: any, e: any) => undefined;
 
 describe('<Shortcuts />', () => {
   it('should add a shortcuts', () => {
