@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Wrap } from '.';
-import renderer from 'react-test-renderer';
 
 const wrap = (props = { children: <span>span</span> }) => shallow(<Wrap {...props} />);
 
@@ -16,11 +15,5 @@ describe('<Wrap />', () => {
     const wrapper = wrap();
 
     expect(wrapper.find('.gel-wrap')).toHaveLength(1);
-  });
-
-  it('renders correctly', () => {
-    const wrapper = renderer.create(<Wrap children={<span>span</span>} />).toJSON();
-
-    expect(wrapper).toMatchSnapshot();
   });
 });

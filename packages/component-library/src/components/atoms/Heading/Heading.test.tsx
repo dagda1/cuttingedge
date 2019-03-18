@@ -1,6 +1,5 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { Heading, HeadingProps } from '.';
 
 const wrap = (props: HeadingProps = {}) => shallow(<Heading {...props} />);
@@ -28,11 +27,5 @@ describe('Heading', () => {
     const wrapper = wrap({ level: 2 });
 
     expect(wrapper.find('h2')).toHaveLength(1);
-  });
-
-  it('renders correctly', () => {
-    const h1 = renderer.create(<Heading />).toJSON();
-
-    expect(h1).toMatchSnapshot();
   });
 });

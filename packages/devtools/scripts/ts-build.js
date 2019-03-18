@@ -34,9 +34,12 @@ function runTypeScriptBuild() {
 
   fs.emptyDirSync(paths.appBuild);
 
-  process.argv.push('--noEmit', false);
+  if (!process.argv.includes('-b') && !process.argv.includes('--build')) {
+    process.argv.push('--sourceMap', process.argv.includes('--source-map'));
+    process.argv.push('--noEmit', false);
+  }
+
   process.argv.push('--pretty', true);
-  process.argv.push('--sourceMap', process.argv.includes('--source-map'));
 
   const tscPath = findExecutable(__dirname, 'tsc');
   const tsc = exec(`${tscPath} ${process.argv.slice(2).join(' ')}`);

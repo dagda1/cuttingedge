@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
 import { GelItem, GelItemProps } from '.';
 
 const wrap = (props: GelItemProps = {}) =>
@@ -31,9 +30,5 @@ describe('<GelItem />', () => {
     expect(el.hasClass('gel-layout__item')).toBe(true);
     expect(el.hasClass('gel-3/4@m')).toBe(true);
     expect(el.hasClass('gel-3/10@l')).toBe(true);
-  });
-
-  it('renders correctly', () => {
-    renderer.create(<GelItem l="1/2">Foo</GelItem>);
   });
 });

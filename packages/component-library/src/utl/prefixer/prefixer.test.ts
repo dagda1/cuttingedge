@@ -1,6 +1,6 @@
 import { prefixId } from '.';
 
-describe('prpefixer', () => {
+describe('prefixer', () => {
   it('prefixes with no args', () => {
     const result = prefixId();
 

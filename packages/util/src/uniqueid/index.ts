@@ -4,15 +4,11 @@ export interface IdCounter {
 
 const idCounter: IdCounter = {};
 
-export const uniqueId = (prefix: string = '$idcounter$') => {
+export const uniqueId = (prefix: string = '') => {
   if (!idCounter[prefix]) {
     idCounter[prefix] = 0;
   }
 
   const id = ++idCounter[prefix];
-  if (prefix === '$lodash$') {
-    return `${id}`;
-  }
-
   return `${prefix + id}`;
 };

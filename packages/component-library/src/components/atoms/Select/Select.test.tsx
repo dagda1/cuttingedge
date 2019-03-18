@@ -5,7 +5,7 @@ import { Select, SelectProps } from '.';
 const wrap = (props: SelectProps) => shallow(<Select {...props} />);
 
 describe('Select', () => {
-  it('renders props when passed in', () => {
+  it.only('renders props when passed in', () => {
     const wrapper = wrap({ id: 'foo', options: [] });
 
     expect(wrapper.find({ id: 'foo' })).toHaveLength(1);

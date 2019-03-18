@@ -1,6 +1,5 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { Error, ErrorLabel, ErrorProps } from '.';
 
 const wrap = (props: ErrorProps) => shallow(<ErrorLabel {...props} />);
@@ -20,11 +19,5 @@ describe('ErrorLabel', () => {
     expect(label).toHaveLength(1);
 
     expect(label.text()).toBe('Error');
-  });
-
-  it('renders consistently', () => {
-    const errorLabel = renderer.create(<ErrorLabel id="error" errorMessage="error" />).toJSON();
-
-    expect(errorLabel).toMatchSnapshot();
   });
 });

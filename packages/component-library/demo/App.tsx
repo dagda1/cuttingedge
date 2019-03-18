@@ -4,6 +4,7 @@ import { Rhombus, Cow, Modal, Heading, FormInput, FormSelect } from '../src/comp
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 
+//tslint:disable
 export interface AppProps {}
 export interface AppState {
   modalOpen: boolean;
