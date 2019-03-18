@@ -10,7 +10,6 @@ const printErrors = require('razzle-dev-utils/printErrors');
 const clearConsole = require('react-dev-utils/clearConsole');
 const logger = require('razzle-dev-utils/logger');
 const setPorts = require('razzle-dev-utils/setPorts');
-const merge = require('lodash').merge;
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
@@ -33,7 +32,7 @@ function main() {
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = merge(globalBuildConfig, localBuildConfig);
+  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
 
   const clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
   const serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);

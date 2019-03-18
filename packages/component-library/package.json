@@ -9,12 +9,12 @@
   "version": "0.3.0",
   "license": "MIT",
   "dependencies": {
-    "@cutting/react-gel": "^0.5.0"
+    "@cutting/react-gel": "^0.6.0"
   },
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=development cutting ts-build",
+    "build": "NODE_ENV=development cutting ts-build -b",
     "prepublish": "yarn build"
   }
 }

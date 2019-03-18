@@ -12,6 +12,6 @@
   "license": "MIT",
   "dependencies": {
     "copy": "^0.3.2",
-    "react-dev-utils": "^5.0.1"
+    "react-dev-utils": "^8.0.0"
   }
 }

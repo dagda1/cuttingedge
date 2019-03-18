@@ -31,3 +31,6 @@ yarn-error.log*
 .npmrc-deploy
 
 lcov.info
+*.js.html
+
+coverage

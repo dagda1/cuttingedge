@@ -1,7 +1,7 @@
 import React from 'react';
 import cs from 'classnames';
-import { gridItemAdapter } from '../../../util';
-import { BreakPointProps } from '../../../types';
+import { BreakPointProps } from '../../..';
+import { gridItemAdapter } from '../../../util/grid';
 
 export interface GelItemProps extends BreakPointProps {
   Tag?: any;

@@ -1,10 +1,15 @@
-import { map } from 'lodash';
 import { BreakPointProps } from '../../types';
 
-export const gridItemAdapter = (props: BreakPointProps): string =>
-  map<BreakPointProps, string>(props, (value, breakpoint) => {
-    if (!value) { return ''; }
-    const className = breakpoint.toString() === 'w' ? value : `${value}@${breakpoint}`;
+export const gridItemAdapter = (props: BreakPointProps): string => {
+  return Object.entries(props)
+    .map(([breakpoint, value]) => {
+      if (!value) {
+        return '';
+      }
 
-    return `gel-${className}`;
-  }).join(' ');
+      const className = breakpoint.toString() === 'w' ? value : `${value}@${breakpoint}`;
+
+      return `gel-${className}`;
+    })
+    .join(' ');
+};

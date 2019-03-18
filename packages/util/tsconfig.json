@@ -5,8 +5,9 @@
     "module": "commonjs",
     "declaration": true,
     "jsx": "react",
-    "outDir": "dist",
-    "rootDir": "./src"
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "composite": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]

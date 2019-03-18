@@ -6,8 +6,10 @@
     "declaration": true,
     "jsx": "react",
     "outDir": "dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "composite": true
   },
+  "references": [{ "path": "../util" }],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

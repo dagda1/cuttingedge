@@ -1,6 +1,6 @@
 import cs from 'classnames';
-import { identity } from 'lodash';
 import React from 'react';
+import { identity } from '@cutting/util';
 
 const styles = require('./Button.scss');
 

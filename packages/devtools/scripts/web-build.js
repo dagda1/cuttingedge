@@ -28,7 +28,6 @@ const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const configureWebpackClient = requireRelative('../webpack/client').configure;
 const configureWebpackServer = requireRelative('../webpack/server').configure;
-const merge = require('lodash').merge;
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
@@ -72,7 +71,7 @@ function build(previousFileSizes) {
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = merge(globalBuildConfig, localBuildConfig);
+  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
 
   let clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
   let serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);

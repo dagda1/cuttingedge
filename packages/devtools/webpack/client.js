@@ -4,18 +4,20 @@ const path = require('path');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const getLocalIdent = require('./getLocalIdent');
-const _ = require('lodash');
-const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const { configureCommon, getEnvironment } = require('./common');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { filter } = require('lodash');
 const paths = require('../config/paths');
 const AssetsPlugin = require('assets-webpack-plugin');
 const fs = require('fs');
+const TerserPlugin = require('terser-webpack-plugin');
+const safePostCssParser = require('postcss-safe-parser');
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
+const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -51,8 +53,6 @@ const configure = options => {
   };
 
   const common = configureCommon(options);
-
-  const env = getEnvVariables(options);
 
   const devServerPort = isProduction || isStaticBuild ? port : parseInt(port, 10) + 1;
 
@@ -116,16 +116,17 @@ const configure = options => {
     output: {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath: isDevelopment ? `${protocol}://${host}:${devServerPort}/` : '/',
-      pathinfo: true,
-      libraryTarget: 'var',
-      filename: isDevelopment ? 'static/js/[name].js' : 'static/js/[name].[chunkhash:8].js',
-      chunkFilename: isDevelopment ? 'static/js/[name].chunk.js' : 'static/js/[name].[chunkhash:8].chunk.js',
+      pathinfo: isDevelopment,
+      filename: isProduction ? 'static/js/[name].[contenthash:8].js' : isDevelopment && 'static/js/bundle.js',
+      chunkFilename: isProduction
+        ? 'static/js/[name].[contenthash:8].chunk.js'
+        : isDevelopment && 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
       hotUpdateChunkFilename: 'hot/hot-update.js',
       hotUpdateMainFilename: 'hot/hot-update.json'
     },
     module: {
-      rules: filter([
+      rules: [
         {
           test: /\.css$/,
           use: devServer
@@ -178,14 +179,11 @@ const configure = options => {
                 { loader: 'sass-loader', options: sassOptions }
               ]
         }
-      ])
+      ].filter(Boolean)
     },
 
-    plugins: _.filter([
-      isProduction && new webpack.optimize.ModuleConcatenationPlugin(),
-      isProduction && new webpack.optimize.OccurrenceOrderPlugin(),
+    plugins: [
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
-      isDevelopment && new webpack.NamedModulesPlugin(),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({
@@ -199,11 +197,14 @@ const configure = options => {
             removeEmptyAttributes: true,
             removeStyleLinkTypeAttributes: true,
             keepClosingSlash: true,
-            minifyJS: isProduction,
-            minifyCSS: isProduction,
-            minifyURLs: isProduction
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true
           }
         }),
+      isProduction && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
+      new ModuleNotFoundPlugin(paths.appPath),
+      isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       isStaticBuild &&
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
@@ -221,39 +222,53 @@ const configure = options => {
         filename: 'assets.json'
       }),
       isProduction && new webpack.HashedModuleIdsPlugin()
-    ])
+    ].filter(Boolean)
   });
 
   if (isProduction) {
-    config.optimization = _.merge({}, config.optimization, {
-      minimize: true,
-      minimizer: [
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            parse: {
-              ecma: 8
+    config.optimization = {
+      ...config.optimization,
+      ...{
+        minimize: true,
+        minimizer: [
+          new TerserPlugin({
+            terserOptions: {
+              parse: {
+                ecma: 8
+              },
+              compress: {
+                ecma: 5,
+                warnings: false,
+                comparisons: false,
+                inline: 2,
+                dead_code: true
+              },
+              mangle: {
+                safari10: true
+              },
+              output: {
+                ecma: 5,
+                comments: false,
+                ascii_only: true
+              }
             },
-            compress: {
-              ecma: 5,
-              warnings: false,
-              comparisons: false
-            },
-            mangle: {
-              safari10: true
-            },
-            output: {
-              ecma: 5,
-              comments: false,
-              ascii_only: true
+            parallel: true,
+            cache: true,
+            sourceMap: false
+          }),
+          new OptimizeCSSAssetsPlugin({
+            cssProcessorOptions: {
+              parser: safePostCssParser
             }
-          },
-          parallel: true,
-          cache: true,
-          sourceMap: false
-        }),
-        new OptimizeCSSAssetsPlugin({})
-      ]
-    });
+          })
+        ],
+        splitChunks: {
+          chunks: 'all',
+          name: false
+        },
+        runtimeChunk: true
+      }
+    };
   }
 
   return config;

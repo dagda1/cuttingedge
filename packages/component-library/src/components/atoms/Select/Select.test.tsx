@@ -1,5 +1,4 @@
 import { shallow } from 'enzyme';
-import _ from 'lodash';
 import React from 'react';
 import { Select, SelectProps } from '.';
 
@@ -64,7 +63,7 @@ describe('Select', () => {
       options: countries,
       valueKey: 'id',
       optionKey: 'displayName',
-      filterOptions: o => !_.includes(['uk', 'ireland'], o.id)
+      filterOptions: o => ['uk', 'ireland'].indexOf(o.id) === -1
     });
 
     const options = wrapper.find('option');

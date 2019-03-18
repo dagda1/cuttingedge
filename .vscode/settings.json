@@ -1,1 +1,35 @@
-{}
+{
+  "prettier.requireConfig": true,
+  "files.exclude": {
+    "**/.coverage": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/*.feature.json": true,
+    "**/*.js": {
+      "**/*.js": { "when": "$(basename).ts" },
+      "**/*?.js": { "when": "$(basename).tsx" }
+    },
+    "**/*.js.map": true,
+    "**/*.ts*.html": true,
+    "**/cucumber.json": true,
+    "**/CVS": true,
+    "**/dist/*.*": true,
+    "**/junit.xml": true,
+    "**/node_modules": true
+  },
+  "editor.useTabStops": false,
+  "editor.tabSize": 2,
+  "tslint.configFile": "./tslint.json",
+  "search.exclude": {
+    "**/dist/*.*": true
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "tslint.autoFixOnSave": false,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "typescript.preferences.quoteStyle": "single",
+  "editor.fontSize": 13,
+  "editor.formatOnSave": true,
+  "git.autofetch": true
+}

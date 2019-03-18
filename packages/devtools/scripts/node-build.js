@@ -28,7 +28,6 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const configureWebpackServer = requireRelative('../webpack/node').configure;
-const merge = require('lodash').merge;
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
@@ -69,7 +68,7 @@ function build(previousFileSizes) {
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = merge(globalBuildConfig, localBuildConfig);
+  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
 
   let nodeConfig = !!buildConfig.server && configureWebpackServer(buildConfig.node);
   console.log(chalk.cyan('Creating an optimized production build...'));

@@ -18,8 +18,8 @@ const jest = require('jest');
 const argv = process.argv.slice(2);
 
 // Watch unless on CI or in coverage mode
-if (!process.env.CI && argv.indexOf('--coverage') < 0) {
-  argv.push('--watch');
+if (!process.env.CI) {
+  argv.push('--watchAll');
   argv.push('--no-cache');
 }
 
@@ -31,12 +31,16 @@ const paths = require('../config/paths');
 argv.push('--config', JSON.stringify(config));
 argv.push('--env', 'jsdom');
 argv.push('--rootDir', `${process.cwd()}`);
-argv.push('--coverage');
 
 if (process.env.CI) {
   argv.push('--ci');
   argv.push('--testResultsProcessor');
   argv.push('--globalTeardown');
+  argv.push('--coverage');
 }
 
-jest.run(argv);
+try {
+  console.dir(jest.run(argv));
+} catch (e) {
+  console.dir(e);
+}

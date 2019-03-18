@@ -13,6 +13,7 @@ const setPorts = require('razzle-dev-utils/setPorts');
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
+const path = require('path');
 
 process.noDeprecation = true; // turns off that loadQuery clutter.
 
@@ -49,7 +50,7 @@ function main() {
         stats: 'none'
       },
       /* eslint-disable no-unused-vars */
-      stats => {}
+      (stats) => {}
     );
   });
 
@@ -60,7 +61,7 @@ function main() {
   const port = (process.env.PORT && parseInt(process.env.PORT) + 1) || c2.port || 3001;
 
   // Start Webpack-dev-server
-  clientDevServer.listen(port, HOST, err => {
+  clientDevServer.listen(port, HOST, (err) => {
     console.dir(err);
     if (err) {
       logger.error(err);

@@ -6,7 +6,7 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -23,7 +23,6 @@ const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
-const merge = require('lodash').merge;
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
@@ -31,7 +30,7 @@ const configureWebpackServer = require('../webpack/server').configure;
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuildPublic)
-  .then(previousFileSizes => {
+  .then((previousFileSizes) => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
@@ -59,7 +58,7 @@ measureFileSizesBeforeBuild(paths.appBuildPublic)
 
       printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
     },
-    err => {
+    (err) => {
       console.log(chalk.red('Failed to compile.\n'));
       console.log((err.message || err) + '\n');
       process.exit(1);
@@ -71,7 +70,7 @@ function build(previousFileSizes) {
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = merge(globalBuildConfig, localBuildConfig);
+  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
 
   let clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
   let serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
@@ -154,7 +153,7 @@ function build(previousFileSizes) {
 function copyPublicFolder() {
   fs.copySync(paths.appPublic, paths.appBuildPublic, {
     dereference: true,
-    filter: file => file !== paths.appHtml
+    filter: (file) => file !== paths.appHtml
   });
 }
 

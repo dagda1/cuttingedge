@@ -4,7 +4,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const paths = require('../config/paths');
 const WebpackBar = require('webpackbar');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const { filter } = require('lodash');
+const resolve = require('resolve');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -22,7 +22,7 @@ const getEnvironment = () => {
   };
 };
 
-const getEnvVariables = (options) => {
+const getEnvVariables = options => {
   const { isDevelopment } = getEnvironment();
   delete require.cache[require.resolve('../config/env')];
 
@@ -39,7 +39,7 @@ const getEnvVariables = (options) => {
 
 const HappyPack = require('happypack');
 
-const configureCommon = (options) => {
+const configureCommon = options => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
   const { isStaticBuild } = options;
@@ -56,7 +56,19 @@ const configureCommon = (options) => {
     },
     resolve: {
       modules: [path.join(process.cwd(), 'src'), 'node_modules'],
-      extensions: ['.js', '.json', '.ts', '.tsx', '.scss', '.csv'],
+      extensions: [
+        '.web.mjs',
+        '.mjs',
+        '.web.js',
+        '.js',
+        '.web.ts',
+        '.ts',
+        '.web.tsx',
+        '.tsx',
+        '.json',
+        '.web.jsx',
+        '.jsx'
+      ],
       alias: isDevelopment
         ? {
             'webpack/hot/poll': require.resolve('webpack/hot/poll')
@@ -65,132 +77,140 @@ const configureCommon = (options) => {
     },
     module: {
       strictExportPresence: true,
-      rules: filter([
-        {
-          exclude: [
-            /\.html$/,
-            /\.jsx?$/,
-            /\.jsx?$/,
-            /\.tsx?$/,
-            /\.css$/,
-            /\.json$/,
-            /\.bmp$/,
-            /\.gif$/,
-            /\.jpe?g$/,
-            /\.png$/,
-            /\.scss$/,
-            /\.woff2?$/,
-            /\.eot$/,
-            /\.ttf$/,
-            /\.svg$/,
-            /\.csv$/,
-            /\.md$/
-          ],
-          loader: 'file-loader',
-          options: { name: staticAssetName }
-        },
-        {
-          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff$/, /\.woff2$/, /\.eot$/, /\.eot$/, /\.ttf$/],
-          loader: 'url-loader',
-          options: { name: staticAssetName, limit: 10000 }
-        },
-        {
-          test: /\.tsx$/,
-          enforce: 'pre',
-          use: [
-            {
-              loader: 'tslint-loader',
-              options: {
-                configFile: paths.tsLintConfig,
-                tsConfig: paths.tsConfig,
-                emitError: true,
-                failOnHint: true,
-                fix: false
+      rules: Array.prototype.filter.call(
+        [
+          {
+            exclude: [
+              /\.html$/,
+              /\.jsx?$/,
+              /\.jsx?$/,
+              /\.tsx?$/,
+              /\.css$/,
+              /\.json$/,
+              /\.bmp$/,
+              /\.gif$/,
+              /\.jpe?g$/,
+              /\.png$/,
+              /\.scss$/,
+              /\.woff2?$/,
+              /\.eot$/,
+              /\.ttf$/,
+              /\.svg$/,
+              /\.csv$/,
+              /\.md$/
+            ],
+            loader: 'file-loader',
+            options: { name: staticAssetName }
+          },
+          {
+            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff$/, /\.woff2$/, /\.eot$/, /\.eot$/, /\.ttf$/],
+            loader: 'url-loader',
+            options: { name: staticAssetName, limit: 10000 }
+          },
+          {
+            test: /\.tsx$/,
+            enforce: 'pre',
+            use: [
+              {
+                loader: 'tslint-loader',
+                options: {
+                  configFile: paths.tsLintConfig,
+                  tsConfig: paths.tsConfig,
+                  emitError: true,
+                  failOnHint: true,
+                  fix: false
+                }
+              }
+            ]
+          },
+          {
+            test: /\.tsx?$/,
+            exclude: /node_modules/,
+            loader: 'ts-loader',
+            options: {
+              configFile: paths.tsConfig,
+              transpileOnly: isDevelopment,
+              experimentalWatchApi: isDevelopment,
+              compilerOptions: {
+                sourceMap: true
               }
             }
-          ]
-        },
-        {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          loader: 'ts-loader',
-          options: {
-            configFile: paths.tsConfig,
-            transpileOnly: isDevelopment,
-            experimentalWatchApi: isDevelopment,
-            compilerOptions: {
-              sourceMap: isDevelopment
+          },
+          {
+            test: /\.csv$/,
+            loader: 'csv-loader',
+            options: {
+              header: true,
+              skipEmptyLines: true
             }
-          }
-        },
-        {
-          test: /\.csv$/,
-          loader: 'csv-loader',
-          options: {
-            header: true,
-            skipEmptyLines: true
-          }
-        },
-        {
-          test: /\.svg/,
-          use: {
-            loader: 'svg-url-loader',
-            options: {}
-          }
-        },
-        {
-          test: /\.md$/,
-          use: [
-            {
-              loader: 'html-loader'
-            },
-            {
-              loader: 'markdown-loader',
+          },
+          {
+            test: /\.svg/,
+            use: {
+              loader: 'svg-url-loader',
               options: {}
             }
-          ]
-        }
-      ])
-    },
-    plugins: filter([
-      new HappyPack({
-        id: 'ts',
-        threads: 4,
-        loaders: [
+          },
           {
-            path: 'ts-loader',
-            query: { happyPackMode: true }
+            test: /\.md$/,
+            use: [
+              {
+                loader: 'html-loader'
+              },
+              {
+                loader: 'markdown-loader',
+                options: {}
+              }
+            ]
           }
-        ]
-      }),
-      new webpack.DefinePlugin(env.stringified),
-      isDevelopment &&
-        new WebpackBar({
-          color: isWeb ? '#f56be2' : '#c065f4',
-          name: isWeb ? 'client' : 'server'
+        ],
+        x => !!x
+      )
+    },
+    plugins: Array.prototype.filter.call(
+      [
+        new HappyPack({
+          id: 'ts',
+          threads: 4,
+          loaders: [
+            {
+              path: 'ts-loader',
+              query: { happyPackMode: true }
+            }
+          ]
         }),
-      isAnalyse && new BundleAnalyzerPlugin(),
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      new ForkTsCheckerWebpackPlugin(),
-      isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest])
-    ])
+        new webpack.DefinePlugin(env.stringified),
+        isDevelopment &&
+          new WebpackBar({
+            color: isWeb ? '#f56be2' : '#c065f4',
+            name: isWeb ? 'client' : 'server'
+          }),
+        isAnalyse && new BundleAnalyzerPlugin(),
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new ForkTsCheckerWebpackPlugin({
+          typescript: resolve.sync('typescript', {
+            basedir: paths.appNodeModules
+          }),
+          async: isDevelopment,
+          useTypescriptIncrementalApi: true,
+          checkSyntacticErrors: true,
+          tsconfig: paths.tsConfig,
+          reportFiles: [
+            '**',
+            '!**/__tests__/**',
+            '!**/?(*.)(spec|test).*',
+            '!**/src/setupProxy.*',
+            '!**/src/setupTests.*'
+          ],
+          watch: paths.appSrc,
+          silent: true
+        }),
+        isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest])
+      ],
+      Boolean
+    )
   };
-  /*   config.optimization = config.optimization || {};
-  config.optimization.noEmitOnErrors = isProduction;
-  if (isDevelopment) {
-    // As suggested by Microsoft's Outlook team, these optimizations
-    // crank up Webpack x TypeScript perf.
-    // @see https://medium.com/@kenneth_chau/speeding-up-webpack-typescript-incremental-builds-by-7x-3912ba4c1d15
-    config.output.pathinfo = false;
-    config.optimization = {
-      ...config.optimization,
-      ...{
-        removeAvailableModules: false,
-        removeEmptyChunks: false,
-        splitChunks: false
-      }
-    };
-  } */
+
   return config;
 };
 module.exports = { configureCommon, getEnvironment, getEnvVariables };

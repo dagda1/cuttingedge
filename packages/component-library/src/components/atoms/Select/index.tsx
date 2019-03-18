@@ -1,18 +1,17 @@
 import cs from 'classnames';
-import _ from 'lodash';
 import React from 'react';
-import { isNil } from 'lodash';
+import { isNil, identity } from '@cutting/util';
 
 const styles = require('./select.scss');
 
-function mapOptionsToValues<T extends _.Dictionary<string>, K extends keyof T>(
+function mapOptionsToValues<T extends { [key: string]: any }, K extends keyof T>(
   element: T,
   valueKey?: K,
   optionKey?: K,
   index?: number
 ) {
   if (isNil(valueKey) || isNil(optionKey)) {
-    return <option key={`${element}R{index}`}>{element}</option>;
+    return <option key={`${element}${index}`}>{element}</option>;
   } else {
     return (
       <option value={element[valueKey]} key={`${element[valueKey]}${index}`}>
@@ -62,7 +61,7 @@ export const Select: React.StatelessComponent<SelectProps> = ({
 }) => (
   <div className={styles.container}>
     <select value={value} className={cs(className, styles.default, { [styles.invalid]: invalid })} {...rest}>
-      {!_.isNil(defaultLabel) && (
+      {!isNil(defaultLabel) && (
         <option value="" key="">
           {defaultLabel}
         </option>
@@ -78,5 +77,5 @@ export const Select: React.StatelessComponent<SelectProps> = ({
 
 Select.defaultProps = {
   defaultLabel: '',
-  filterOptions: _.identity
+  filterOptions: identity
 };

@@ -22,14 +22,13 @@ function runTypeScriptBuild() {
   process.argv.push('--pretty', true);
   process.argv.push('--sourceMap', process.argv.includes('--source-map'));
 
-  const tscPath = path.join(__dirname, '../../../node_modules/.bin/tsc');
-
+  const tscPath = path.join(__dirname, '../node_modules/.bin/tsc');
   const tsc = exec(`${tscPath} ${process.argv.slice(2).join(' ')}`);
 
-  tsc.stdout.on('data', data => console.log(chalk.red(data)));
-  tsc.stderr.on('data', data => console.error(chalk.red(data)));
+  tsc.stdout.on('data', (data) => console.log(chalk.red(data)));
+  tsc.stderr.on('data', (data) => console.error(chalk.red(data)));
 
-  tsc.on('close', code => {
+  tsc.on('close', (code) => {
     console.log(chalk.cyan(`tsc exited with code ${code}`));
 
     if (code !== 0) {
@@ -43,15 +42,13 @@ function runTypeScriptBuild() {
 function runTsLint() {
   console.log(`Running tslint`);
 
-  const tslintPath = path.join(__dirname, '../../../node_modules/.bin/tslint');
+  const tslintPath = path.join(__dirname, '../node_modules/.bin/tslint');
+  const tslint = exec(`${tslintPath} -c ${paths.tsLintConfig} -p ${paths.tsConfig} -t stylish`);
 
-  console.log(`${tslintPath} -c ${paths.tsLintConfig} -p ${paths.tsConfig} -t stylish --fix`);
-  const tslint = exec(`${tslintPath} -c ${paths.tsLintConfig} -p ${paths.tsConfig} -t stylish --fix`);
+  tslint.stdout.on('data', (data) => console.log(chalk.red(data)));
+  tslint.stderr.on('data', (data) => console.error(chalk.red(data)));
 
-  tslint.stdout.on('data', data => console.log(chalk.red(data)));
-  tslint.stderr.on('data', data => console.error(chalk.red(data)));
-
-  tslint.on('close', code => {
+  tslint.on('close', (code) => {
     console.log(chalk.cyan(`tslint exited with code ${code}`));
 
     if (code !== 0) {
@@ -64,7 +61,7 @@ function build() {
     runTypeScriptBuild();
 
     const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg'].map(
-      pattern => `${paths.appSrc}/**/${pattern}`
+      (pattern) => `${paths.appSrc}/**/${pattern}`
     );
 
     copy(patterns, paths.appBuild, (err, files) => {

@@ -6,15 +6,13 @@ const getLocalIdent = require('./getLocalIdent');
 const paths = require('../config/paths');
 const postcssOptions = require('./postCssoptions');
 const StartServerPlugin = require('start-server-webpack-plugin');
-const { filter } = require('lodash');
-const fs = require('fs');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
 const port = process.env.PORT;
 
 getExternals = function(isDevelopment) {
-  const modulesDir = path.resolve(__dirname, '../../../node_modules');
+  const modulesDir = path.resolve(__dirname, '../node_modules');
 
   if (!fs.existsSync(modulesDir)) {
     throw new Error('not found node_modules');
@@ -30,8 +28,8 @@ getExternals = function(isDevelopment) {
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
-        /^@cutting/
-      ].filter(x => x)
+        /^@c2/
+      ].filter(Boolean)
     }),
     {
       './server.js': 'commonjs ./server.js'
@@ -124,7 +122,7 @@ const configure = (options = {}) => {
       ]
     },
 
-    plugins: filter([
+    plugins: [
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
       // Ignore assets.json to avoid infinite recompile bug
@@ -134,7 +132,7 @@ const configure = (options = {}) => {
           name: 'server.js',
           nodeArgs
         })
-    ])
+    ].filter(Boolean)
   });
 
   return config;

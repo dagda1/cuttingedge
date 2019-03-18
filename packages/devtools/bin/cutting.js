@@ -9,7 +9,7 @@ switch (script) {
   case 'ts-build':
   case 'web-build':
   case 'each-pkg':
-  case 'start':
+  case 'devserver-start':
   case 'ssr-start':
   case 'ssr-build':
   case 'webserver-start':
