@@ -1,14 +1,13 @@
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ConnectedRouter, RouterState } from 'react-router-redux';
-import { createStore, combineReducers, applyMiddleware, Reducer } from 'redux';
-import { routerMiddleware, routerReducer } from 'react-router-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { History } from 'history';
+import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
 
 export const wrap = (Comp: React.ComponentType<any>, props = {}, history: History): ReactWrapper => {
   const reducers = combineReducers({
-    router: routerReducer as Reducer<RouterState>
+    router: connectRouter(history)
   });
 
   const store = createStore(reducers, {}, applyMiddleware(routerMiddleware(history)));

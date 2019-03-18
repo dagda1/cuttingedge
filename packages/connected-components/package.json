@@ -15,9 +15,10 @@
   },
   "dependencies": {
     "@cutting/component-library": "0.3.0",
-    "redux-form": "^7.3.0"
+    "connected-react-router": "^6.3.2",
+    "redux-form": "^8.1.0"
   },
   "devDependencies": {
-    "@types/redux-form": "^7.2.5"
+    "@types/redux-form": "^8.1.0"
   }
 }

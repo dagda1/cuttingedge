@@ -1,9 +1,9 @@
 import React from 'react';
-import testUtils from '../../tests';
+import * as testUtils from '../../tests';
 import { Route } from 'react-router-dom';
 import ScrollToTop, { ScrollToTopProps } from '.';
 import { History } from 'history';
-import createMemoryHistory from 'history/createMemoryHistory';
+import { createMemoryHistory } from 'history';
 
 const Home = () => <h1>Home</h1>;
 const About = () => <h1>About</h1>;

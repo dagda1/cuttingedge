@@ -1,7 +1,12 @@
 import { FormInput, FormSelect } from '@cutting/component-library';
 import React from 'react';
-import ReduxForm from 'redux-form';
-import { WrappedFieldInputProps, WrappedFieldMetaProps } from 'redux-form';
+import {
+  WrappedFieldInputProps,
+  WrappedFieldMetaProps,
+  GenericFieldHTMLAttributes,
+  Field,
+  FieldArray
+} from 'redux-form';
 
 export type ControlValue = string | number | Date;
 
@@ -11,7 +16,6 @@ export interface FormControlProps {
   meta: WrappedFieldMetaProps;
 }
 
-/* eslint react/display-name: "off"*/
 export const renderFormControl = (Comp: React.ComponentType<any>): React.StatelessComponent<FormControlProps> => ({
   controlOnChange = (e: React.ChangeEvent<any>) => undefined,
   input: { onChange, value, name },
@@ -35,7 +39,7 @@ export const renderFormInput = renderFormControl(FormInput);
 export const renderFormSelect = renderFormControl(FormSelect);
 
 // TODO: refactor this into separate components
-export type FieldProps = ReduxForm.GenericFieldHTMLAttributes & {
+export type FieldProps = GenericFieldHTMLAttributes & {
   dataSelector?: string;
   'data-selector'?: string;
   monthYearOnly?: boolean;
@@ -59,13 +63,9 @@ export type FieldProps = ReduxForm.GenericFieldHTMLAttributes & {
 
 // tslint:disable
 export interface IField {
-  new (): ReduxForm.Field<FieldProps>;
+  new (): Field<FieldProps>;
 }
 
 export interface IFieldArray {
-  new (): ReduxForm.FieldArray<FieldProps>;
+  new (): FieldArray<FieldProps>;
 }
-
-export const Field = ReduxForm.Field as IField;
-// TODO: do this
-export const FieldArray = ReduxForm.FieldArray as any;
