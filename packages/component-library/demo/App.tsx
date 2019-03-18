@@ -1,10 +1,10 @@
+// tslint:disable
 require('./global.scss');
 import React from 'react';
 import { Rhombus, Cow, Modal, Heading, FormInput, FormSelect } from '../src/components';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 
-//tslint:disable
 export interface AppProps {}
 export interface AppState {
   modalOpen: boolean;
