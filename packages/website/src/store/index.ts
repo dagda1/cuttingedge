@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
 import { History } from 'history';
-import reducers from '../reducers';
 import '../../../../types';
 import '../types';
+import { routerMiddleware } from 'connected-react-router';
+import reducers from '../reducers';
 
 declare var module: any;
 

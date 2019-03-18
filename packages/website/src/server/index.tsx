@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 import { routes } from '../routes';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
-import { HttpStatusCode, isProduction, error } from '@cutting/util';
+import { HttpStatusCode, isProduction } from '@cutting/util';
 import { render } from './render';
 import favicon from 'serve-favicon';
 import path from 'path';
@@ -73,14 +73,14 @@ const errorHandler = (err: Error, _: Request, res: Response, next: NextFunction)
     return next(err);
   }
 
-  error(err);
+  console.error(err);
 
   res.status(HttpStatusCode.InternalServerError).send('Internal Error');
 };
 
 app.use(errorHandler);
 
-process.on('unhandledRejection', (err) => {
-  error(err);
+process.on('unhandledRejection', err => {
+  console.error(err);
   throw err;
 });

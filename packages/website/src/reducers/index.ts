@@ -1,18 +1,5 @@
 import { combineReducers } from 'redux';
-import { LOCATION_CHANGE, LocationChangeAction } from 'react-router-redux';
-import reducerBuilder from './builder';
+import { connectRouter } from 'connected-react-router';
+import { history } from '../routes/history';
 
-const routeInitialState = { location: null };
-
-export interface State {}
-
-const routeReducer = reducerBuilder(routeInitialState).build({
-  [LOCATION_CHANGE]: (state: Object, action: LocationChangeAction) => ({
-    ...state,
-    location: action.payload.pathname
-  })
-});
-
-export default combineReducers({
-  route: routeReducer
-});
+export default combineReducers({ router: connectRouter(history) });

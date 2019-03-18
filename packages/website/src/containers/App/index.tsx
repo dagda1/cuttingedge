@@ -1,7 +1,6 @@
 require('../../assets/scss/global.scss');
 import React from 'react';
 import { Switch } from 'react-router';
-import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router';
 import { history } from '../../routes/history';
 import { routes } from '../../routes';
@@ -9,6 +8,7 @@ import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import { ScrollToTop } from '@cutting/connected-components';
 import { Store } from 'redux';
+import { ConnectedRouter } from 'connected-react-router';
 
 export interface AppProps {
   store: Store<any>;
@@ -27,11 +27,9 @@ export class App extends React.Component<AppProps> {
           <ConnectedRouter history={history}>
             <ScrollToTop>
               <Switch>
-                <>
-                  {routes.map((page) => (
-                    <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
-                  ))}
-                </>
+                {routes.map(page => (
+                  <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
+                ))}
               </Switch>
             </ScrollToTop>
           </ConnectedRouter>

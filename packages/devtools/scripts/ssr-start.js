@@ -7,7 +7,6 @@ const webpack = require('webpack');
 const paths = require('../config/paths');
 const devServer = require('webpack-dev-server-speedy');
 const printErrors = require('razzle-dev-utils/printErrors');
-const clearConsole = require('react-dev-utils/clearConsole');
 const logger = require('razzle-dev-utils/logger');
 const setPorts = require('razzle-dev-utils/setPorts');
 
@@ -18,8 +17,8 @@ process.noDeprecation = true;
 
 // Capture any --inspect or --inspect-brk flags (with optional values) so that we
 // can pass them when we invoke nodejs
-process.env.INSPECT_BRK = process.argv.find((arg) => arg.match(/--inspect-brk(=|$)/)) || '';
-process.env.INSPECT = process.argv.find((arg) => arg.match(/--inspect(=|$)/)) || '';
+process.env.INSPECT_BRK = process.argv.find(arg => arg.match(/--inspect-brk(=|$)/)) || '';
+process.env.INSPECT = process.argv.find(arg => arg.match(/--inspect(=|$)/)) || '';
 
 function main() {
   fs.emptyDirSync(paths.appBuild);
@@ -47,7 +46,7 @@ function main() {
         stats: 'none'
       },
       /* eslint-disable no-unused-vars */
-      (stats) => {}
+      stats => {}
     );
   });
 
@@ -57,7 +56,7 @@ function main() {
    */
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
 
-  clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || razzle.port || 3001, (err) => {
+  clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || razzle.port || 3001, err => {
     if (err) {
       logger.error(err);
     }

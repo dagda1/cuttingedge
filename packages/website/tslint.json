@@ -1,8 +1,7 @@
 {
-  "extends": ["tslint:latest", "tslint-react"],
+  "extends": ["tslint:latest", "tslint-react", "tslint-react-hooks"],
   "rules": {
     "align": [true, "parameters", "arguments", "statements"],
-    "arrow-parens": false,
     "array-type": [true, "array"],
     "ban": false,
     "class-name": true,
@@ -49,6 +48,7 @@
     "prefer-for-of": false,
     "quotemark": [true, "single", "avoid-escape", "jsx-double"],
     "radix": true,
+    "react-hooks-nesting": "error",
     "semicolon": [false, "always"],
     "switch-default": true,
     "trailing-comma": false,

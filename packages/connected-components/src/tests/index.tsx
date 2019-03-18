@@ -15,9 +15,7 @@ export const wrap = (Comp: React.ComponentType<any>, props = {}, history: Histor
   return mount(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <>
-          <Comp {...props} />
-        </>
+        <Comp {...props} />
       </ConnectedRouter>
     </Provider>
   );

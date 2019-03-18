@@ -1,5 +1,5 @@
-import createBrowserHistory from 'history/createBrowserHistory';
-import createMemoryHistory from 'history/createMemoryHistory';
+import { createBrowserHistory } from 'history';
+import { createMemoryHistory } from 'history';
 import { RouterHistory } from '../types';
 const selectedHistory: RouterHistory = typeof window !== 'undefined' ? createBrowserHistory : createMemoryHistory;
 

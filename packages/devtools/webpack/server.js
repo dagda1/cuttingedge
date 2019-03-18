@@ -6,6 +6,7 @@ const getLocalIdent = require('./getLocalIdent');
 const paths = require('../config/paths');
 const postcssOptions = require('./postCssoptions');
 const StartServerPlugin = require('start-server-webpack-plugin');
+const fs = require('fs');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
