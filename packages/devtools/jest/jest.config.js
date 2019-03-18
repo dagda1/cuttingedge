@@ -29,7 +29,7 @@ module.exports = _.mergeWith(
     testEnvironment: 'node',
     testURL: 'http://localhost',
     transform: {
-      '^.+\\.(ts|tsx)$': '<rootDir>/../../node_modules/ts-jest/preprocessor.js',
+      '^.+\\.(ts|tsx)$': 'ts-jest',
       '^.+\\.css$': path.join(__dirname, './cssTransform.js'),
       '^.+\\.csv$': path.join(__dirname, './fileTransform.js'),
       '^(?!.*\\.(js|jsx|css|json)$)': path.join(__dirname, './fileTransform.js')
