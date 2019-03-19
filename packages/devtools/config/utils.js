@@ -14,7 +14,7 @@ const findFile = (current, fileName, tries = 0) => {
     return file;
   }
 
-  return findFile(path.resolve(current, '..'), fileName, tries++);
+  return findFile(path.resolve(current, '..'), fileName, ++tries);
 };
 
 module.exports = {

@@ -8,7 +8,7 @@
     "cutting": "./bin/cutting.js"
   },
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "license": "MIT",
   "dependencies": {
     "copy": "^0.3.2",

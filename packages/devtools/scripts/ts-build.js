@@ -19,7 +19,7 @@ function findExecutable(current, executable, tries = 0) {
     return modulesDir;
   }
 
-  return findExecutable(path.resolve(current, '..'), executable, tries++);
+  return findExecutable(path.resolve(current, '..'), executable, ++tries);
 }
 
 function runTypeScriptBuild() {
