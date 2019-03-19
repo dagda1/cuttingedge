@@ -8,6 +8,7 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
+const { findFile } = require('./utils');
 
 function ensureSlash(path, needsSlash) {
   const hasSlash = path.endsWith('/');
@@ -80,9 +81,9 @@ module.exports = {
   tsConfig: resolveApp('tsconfig.json'),
   devDir: resolveApp('demo'),
   devDirPublic: resolveApp('demo/public'),
-  tsLintConfig: requireRelative('../../../tslint.json'),
+  tsLintConfig: findFile(path.resolve('..'), 'tslint.json'),
   libPackages,
   webAppPackages,
   allPackages: [...libPackages, ...webAppPackages],
-  defaultC2ConfigPath: path.join(__dirname, './build.config.js')
+  defaultBuildConfigPath: path.join(__dirname, './build.config.js')
 };

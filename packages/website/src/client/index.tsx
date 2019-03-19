@@ -1,5 +1,3 @@
-declare var module: any;
-
 import React from 'react';
 import { hydrate } from 'react-dom';
 

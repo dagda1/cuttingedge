@@ -12,7 +12,7 @@ function findExecutable(current, executable, tries = 0) {
   const modulesDir = path.resolve(current, 'node_modules', '.bin', executable);
 
   if (tries === MaxTries) {
-    throw new Error(`cannot find ${tsc} in ${modulesDir}`);
+    throw new Error(`cannot find ${executable} in ${modulesDir}`);
   }
 
   if (fs.existsSync(modulesDir)) {
@@ -42,6 +42,9 @@ function runTypeScriptBuild() {
   process.argv.push('--pretty', true);
 
   const tscPath = findExecutable(__dirname, 'tsc');
+
+  console.log(`running tsc in ${chalk.yellow(tscPath)} with ${chalk.yellow(process.argv.slice(2).join(' '))}`);
+
   const tsc = exec(`${tscPath} ${process.argv.slice(2).join(' ')}`);
 
   tsc.stdout.on('data', data => console.log(chalk.red(data)));

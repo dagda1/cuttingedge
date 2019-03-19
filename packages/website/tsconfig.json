@@ -7,9 +7,11 @@
     "jsx": "react",
     "outDir": "./dist",
     "baseUrl": ".",
-    "sourceMap": true
+    "sourceMap": true,
+    "composite": true
   },
-  "files": ["../../node_modules/react-universal-component/index.d.ts", "../../types/index.ts"],
+  "files": ["../../types/index.d.ts"],
+  "references": [{ "path": "../util" }, { "path": "../component-library" }, { "path": "../connected-components" }],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["../../node_modules", "build", "src/**/*.test.ts", "src/**/*.test.tsx"]
+  "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

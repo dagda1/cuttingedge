@@ -1,4 +1,4 @@
-import { isObject, isFunction } from 'lodash';
+import { isObject, isFunction } from '@cutting/util';
 import { AsyncRouteableComponent, AsyncRouteComponentType } from './types';
 
 export const isPromise = (value: any): boolean => isObject(value) && isFunction(value.then);

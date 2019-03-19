@@ -9,7 +9,7 @@
     "rootDir": "./src",
     "composite": true
   },
-  "references": [{ "path": "../util" }],
+  "references": [{ "path": "../util" }, { "path": "../react-gel" }],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

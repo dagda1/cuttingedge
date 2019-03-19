@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { History } from 'history';
-import '../../../../types';
-import '../types';
 import { routerMiddleware } from 'connected-react-router';
 import reducers from '../reducers';
 
 declare var module: any;
+declare var __DEV__: boolean;
 
 const configureStore = (initialState: Object, history: History) => {
   const middlewares = [routerMiddleware(history)];
