@@ -2,11 +2,12 @@
   "private": true,
   "scripts": {
     "build": "cutting each-pkg yarn build",
+    "build:libs": "cutting each-pkg -l yarn build",
     "test": "CI=true cutting each-pkg yarn test",
     "start": "yarn build && yarn --cwd packages/website/ ssr-start"
   },
   "dependencies": {
-    "@cutting/devtools": "0.6.0",
+    "@cutting/devtools": "0.6.3",
     "@cutting/util": "0.4.0",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
@@ -19,8 +20,8 @@
     "react-dom": "16.8.3",
     "react-helmet": "^5.2.0",
     "react-redux": "^6.0.1",
-    "react-router": "4.4.0",
-    "react-router-dom": "4.4.0",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
     "redux": "^4.0.1",
     "webpack-dev-server-speedy": "^3.1.1",
     "zlib": "^1.0.5"
@@ -50,7 +51,6 @@
     "css-loader": "^0.28.11",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
-    "extract-css-chunks-webpack-plugin": "^3.0.5",
     "file-loader": "^1.1.11",
     "fork-ts-checker-webpack-plugin": "^1.0.0-alpha.6",
     "fs-extra": "^7.0.1",
@@ -70,8 +70,8 @@
     "raf": "^3.4.0",
     "react-dev-utils": "^8.0.0",
     "react-error-overlay": "^4.0.0",
-    "sass-loader": "^7.0.3",
-    "style-loader": "^0.21.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "svg-url-loader": "^2.3.2",
     "terser-webpack-plugin": "^1.2.3",
     "ts-jest": "^24.0.0",

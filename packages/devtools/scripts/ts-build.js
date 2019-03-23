@@ -5,7 +5,7 @@ const paths = require('../config/paths');
 const copy = require('copy');
 const chalk = require('chalk');
 const { exec } = require('child_process');
-
+const { findFile } = require('../config/utils');
 const MaxTries = 15;
 
 function findExecutable(current, executable, tries = 0) {
@@ -25,12 +25,8 @@ function findExecutable(current, executable, tries = 0) {
 function runTypeScriptBuild() {
   const buildConfig = require(paths.jsBuildConfigPath).ts;
   const {
-    src,
-    tsconfig,
-    options: { outDir, typeRoots }
+    options: {}
   } = buildConfig;
-
-  console.log(`Running typescript build in ${outDir}/`);
 
   fs.emptyDirSync(paths.appBuild);
 
@@ -63,9 +59,14 @@ function runTypeScriptBuild() {
 
 function runTsLint() {
   console.log(`Running tslint`);
-
   const tslintPath = findExecutable(__dirname, 'tslint');
-  const tslint = exec(`${tslintPath} -c ${paths.tsLintConfig} -p ${paths.tsConfig} -t stylish`);
+
+  console.log(`running tslint in ${chalk.yellow(tslintPath)} with ${chalk.yellow(process.argv.slice(2).join(' '))}`);
+
+  const tslintConfig = findFile(process.cwd(), 'tslint.json');
+  console.log(chalk.yellow(`using config ${tslintConfig}`));
+
+  const tslint = exec(`${tslintPath} -c ${tslintConfig} -p ${paths.tsConfig} -t stylish`);
 
   tslint.stdout.on('data', data => console.log(chalk.red(data)));
   tslint.stderr.on('data', data => console.error(chalk.red(data)));
