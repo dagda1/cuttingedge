@@ -80,7 +80,7 @@ const errorHandler = (err: Error, _: Request, res: Response, next: NextFunction)
 
 app.use(errorHandler);
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   console.error(err);
   throw err;
 });

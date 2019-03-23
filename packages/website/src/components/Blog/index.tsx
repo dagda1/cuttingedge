@@ -7,7 +7,9 @@ export const Blog: React.SFC = () => (
   <StaticLayout heading="Blog">
     {posts.map((post: Post, i: number) => (
       <div key={i}>
-        <Heading level={2}>{post.title}</Heading>
+        <ExternalLink href={post.link} blank={false}>
+          <Heading level={2}>{post.title}</Heading>
+        </ExternalLink>
         <p>{post.summary}</p>
         <p>
           <ExternalLink href={post.link} blank={false}>

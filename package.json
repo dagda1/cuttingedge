@@ -20,8 +20,8 @@
     "react-dom": "16.8.3",
     "react-helmet": "^5.2.0",
     "react-redux": "^6.0.1",
-    "react-router": "4.3.1",
-    "react-router-dom": "4.3.1",
+    "react-router": "5.0.0",
+    "react-router-dom": "5.0.0",
     "redux": "^4.0.1",
     "webpack-dev-server-speedy": "^3.1.1",
     "zlib": "^1.0.5"
@@ -80,6 +80,7 @@
     "tslint-config-prettier": "^1.13.0",
     "tslint-loader": "^3.6.0",
     "tslint-react": "^3.6.0",
+    "tslint-react-hooks": "^2.0.0",
     "typescript": "3.3",
     "url-loader": "^1.0.1",
     "webpack": "^4.29.6",
@@ -88,6 +89,8 @@
     "webpackbar": "^3.1.5"
   },
   "workspaces": {
-    "packages": ["packages/*"]
+    "packages": [
+      "packages/*"
+    ]
   }
 }

@@ -27,7 +27,7 @@ export class App extends React.Component<AppProps> {
           <ConnectedRouter history={history}>
             <ScrollToTop>
               <Switch>
-                {routes.map(page => (
+                {routes.map((page) => (
                   <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
                 ))}
               </Switch>

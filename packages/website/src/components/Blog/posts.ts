@@ -7,6 +7,24 @@ export interface Post {
 // tslint:disable
 export const posts: Post[] = [
   {
+    title: 'Code splitting with typescript, webpack and React lazy',
+    summary:
+      'I am writing this because everytime I have to set up code splitting with typescript, webpack and React, I forget how I did it last time and…',
+    link: 'https://thesoftwaresimpleton.com/blog/2019/03/15/ts-code-splitting'
+  },
+  {
+    title: 'typescript - excess property checks and return type widening',
+    summary:
+      'The title of this post would not have meant anything to me 24 hours ago until I came across a scenario that I am surprised I have not come…',
+    link: 'https://thesoftwaresimpleton.com/blog/2019/03/03/return-body-ts'
+  },
+  {
+    title: 'React hooks and closures, there may be dragons',
+    summary:
+      'The title of this post would not have meant anything to me 24 hours ago until I came across a scenario that I am surprised I have not come…',
+    link: 'https://thesoftwaresimpleton.com/blog/2019/02/09/hooks'
+  },
+  {
     title: "Down the rabbit hole with typescript's mapped and lookup types",
     summary: 'Two of the more abstract concepts in typescript are mapped types and lookup types.',
     link: 'https://thesoftwaresimpleton.com/blog/2018/12/14/mapped-types'
@@ -14,7 +32,7 @@ export const posts: Post[] = [
   {
     title: 'SVG transformations with affine matrices',
     summary:
-      'I recently had a requirement to add zooming and panning to an svg image. Panning and zooming are popular interaction techniques which let the user focus on a region of interest by restricting the view. The obvious choice was to use d3-zoom but as react is rendering the svg content, D3 is a bit of a bad fit as it mutates the DOM directly. I somehow ended up using affine matrices to compute the transformations.',
+      'I recently had a requirement to add zooming and panning to an svg image. Panning and zooming are popular interaction techniques which let…',
     link: 'https://thesoftwaresimpleton.com/blog/2018/09/25/affine-matrix'
   },
   {
@@ -28,12 +46,6 @@ export const posts: Post[] = [
     summary:
       "I've recently been working on an online application form in the form of a multistep wizard that had strict accessibility requirements. I've never worked on a project with such strict requirements before. I've also heard rumblings that it was not possible to make a SPA accessible. It turns out that there is not that much work involved in making your site accessible and I am going to ensure that any work I do from now on has an accessible first approach. I'm now going to outline in no particular order what I have learned over the past few months.",
     link: 'https://thesoftwaresimpleton.com/blog/2017/11/05/accessible-react/'
-  },
-  {
-    title: 'Streams and Async Await in Nodejs',
-    summary:
-      'Dealing with asynchronicity in nodejs has been a challenge from day one due to its non blocking nature. The evolution has been slow and the node world has moved from callback hell to promises and from promises to generators.',
-    link: 'https://thesoftwaresimpleton.com/blog/2016/09/10/async-await/'
   },
   {
     title: 'Animating a Sine Wave With d3.js and MathJax',
