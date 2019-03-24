@@ -5,6 +5,7 @@ const paths = require('../config/paths');
 const WebpackBar = require('webpackbar');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const resolve = require('resolve');
+const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -22,7 +23,7 @@ const getEnvironment = () => {
   };
 };
 
-const getEnvVariables = options => {
+const getEnvVariables = (options) => {
   const { isDevelopment } = getEnvironment();
   delete require.cache[require.resolve('../config/env')];
 
@@ -39,12 +40,10 @@ const getEnvVariables = options => {
 
 const HappyPack = require('happypack');
 
-const configureCommon = options => {
+const configureCommon = (options) => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
-  const { isStaticBuild } = options;
-  const ssrBuild = !isStaticBuild;
-  const { isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
+  const { isDevelopment, isProduction, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables(options);
 
   const config = {
@@ -164,7 +163,7 @@ const configureCommon = options => {
             ]
           }
         ],
-        x => !!x
+        (x) => !!x
       )
     },
     plugins: Array.prototype.filter.call(
@@ -184,6 +183,20 @@ const configureCommon = options => {
           new WebpackBar({
             color: isWeb ? '#f56be2' : '#c065f4',
             name: isWeb ? 'client' : 'server'
+          }),
+        isProduction &&
+          new OptimizeCssnanoPlugin({
+            sourceMap: isDevelopment,
+            cssnanoOptions: {
+              preset: [
+                'default',
+                {
+                  discardComments: {
+                    removeAll: true
+                  }
+                }
+              ]
+            }
           }),
         isAnalyse && new BundleAnalyzerPlugin(),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
