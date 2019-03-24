@@ -8,6 +8,7 @@ const args = process.argv.slice(3);
 switch (script) {
   case 'ts-build':
   case 'web-build':
+  case 'static-build':
   case 'each-pkg':
   case 'devserver-start':
   case 'ssr-start':
