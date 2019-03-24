@@ -1,45 +1,29 @@
-import React from 'react';
+import React, { useRef, useState, useLayoutEffect } from 'react';
 import mousetrap from 'mousetrap';
 import { ShortcutAction, ShortcutsProps } from '../../types';
-import invariant from 'invariant';
 import { buildShortcuts } from './buildShortcuts';
 import cs from 'classnames';
+import invariant from 'invariant';
 
-export interface ShortcutsState {
-  shortcuts: ShortcutAction[];
-}
+export const Shortcuts: React.FC<ShortcutsProps> = ({
+  scoped = false,
+  tabIndex = -1,
+  ScopedWrapperComponentType = 'div',
+  shortcutMap,
+  handler,
+  mapKey,
+  className,
+  children
+}) => {
+  const ref = useRef<HTMLElement>(null);
+  const [shortcuts, setShortcuts] = useState<ShortcutAction[]>();
 
-export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsState> {
-  ref: React.RefObject<HTMLDivElement>;
+  useLayoutEffect(() => {
+    const trapper = scoped && ref.current ? new mousetrap(ref.current) : mousetrap;
 
-  constructor(props: ShortcutsProps) {
-    super(props);
-
-    this.state = {
-      shortcuts: []
-    };
-
-    this.ref = React.createRef();
-  }
-
-  static defaultProps = {
-    scoped: false,
-    tabIndex: -1,
-    ScopedWrapperComponentType: 'div'
-  };
-
-  bindShortcuts = () => {
-    this.unbindShortcuts();
-
-    const { shortcutMap, mapKey: key, handler, scoped } = this.props;
-
-    const map = shortcutMap[key];
-
-    invariant(map, `no key ${key} found in shortcutMap`);
+    const map = shortcutMap[mapKey];
 
     const shortcutActions = buildShortcuts(map);
-
-    const trapper = scoped && this.ref.current ? new mousetrap(this.ref.current) : mousetrap;
 
     shortcutActions.forEach((shortcut) => {
       trapper.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
@@ -49,44 +33,31 @@ export class Shortcuts extends React.PureComponent<ShortcutsProps, ShortcutsStat
       shortcut.trapper = trapper;
     });
 
-    this.setState({ shortcuts: shortcutActions });
-  };
+    setShortcuts(shortcutActions);
 
-  unbindShortcuts = () => {
-    this.state.shortcuts.forEach((shortcut) => {
-      if (shortcut.trapper) {
-        shortcut.trapper.unbind(shortcut.keys);
+    return () => {
+      if (!shortcuts) {
+        return;
       }
-    });
-  };
 
-  componentDidMount() {
-    this.bindShortcuts();
+      shortcuts.forEach((shortcut) => {
+        if (shortcut.trapper) {
+          shortcut.trapper.unbind(shortcut.keys);
+        }
+      });
+    };
+    // tslint:disable-next-line
+  }, [handler]);
+
+  if (!scoped) {
+    invariant(children, 'If a mousetrap scoped component then there should be child mice.');
+
+    return <>{children}</>;
   }
 
-  componentDidUpdate(prevProps: ShortcutsProps, prevState: ShortcutsState) {
-    if (prevProps === this.props) {
-      return;
-    }
-
-    this.bindShortcuts();
-  }
-
-  componentWillUnmount() {
-    this.unbindShortcuts();
-  }
-
-  render() {
-    const { scoped, children, tabIndex, ScopedWrapperComponentType, className } = this.props;
-
-    if (!scoped) {
-      return children;
-    }
-
-    return (
-      <ScopedWrapperComponentType tabIndex={tabIndex} ref={this.ref} className={cs('mousetrap', className)}>
-        {children}
-      </ScopedWrapperComponentType>
-    );
-  }
-}
+  return (
+    <ScopedWrapperComponentType tabIndex={tabIndex} ref={ref} className={cs('mousetrap', className)}>
+      {children}
+    </ScopedWrapperComponentType>
+  );
+};

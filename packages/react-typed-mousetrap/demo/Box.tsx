@@ -22,6 +22,7 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
 
   const SHIFT = 10;
   const handleMove = (action) => {
+    console.log({ x, y });
     switch (action) {
       case 'MOVE_LEFT':
         onMoveRequest({ x: x - SHIFT }, index);

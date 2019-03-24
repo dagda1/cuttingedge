@@ -11,7 +11,7 @@ export interface ShortcutsProps<
   scoped?: boolean;
   tabIndex?: number;
   className?: string;
-  ScopedWrapperComponentType:
+  ScopedWrapperComponentType?:
     | FunctionComponent<TScopedWrapperComponentType>
     | ComponentClass<TScopedWrapperComponentType>
     | string;
