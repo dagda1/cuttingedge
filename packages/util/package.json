@@ -1,12 +1,12 @@
 {
   "name": "@cutting/util",
+  "version": "0.5.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.4.0",
   "license": "MIT",
   "scripts": {
     "test": "echo no tests in util....yet",

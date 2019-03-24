@@ -62,7 +62,7 @@ export function asyncComponent<Props>({
       const { Component: ComponentFromState } = this.state;
 
       if (ComponentFromState) {
-        return <ComponentFromState {...this.props} />;
+        return <ComponentFromState {...this.props as any} />;
       }
 
       if (Placeholder) {

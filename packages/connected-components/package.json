@@ -1,12 +1,12 @@
 {
   "name": "@cutting/connected-components",
+  "version": "0.4.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.3.0",
   "license": "MIT",
   "scripts": {
     "start": "PORT=9999 NODE_ENV=development cutting start",
@@ -14,7 +14,7 @@
     "build": "NODE_ENV=development cutting ts-build -b"
   },
   "dependencies": {
-    "@cutting/component-library": "0.3.0",
+    "@cutting/component-library": "0.4.0",
     "connected-react-router": "^6.3.2",
     "redux-form": "^8.1.0"
   },

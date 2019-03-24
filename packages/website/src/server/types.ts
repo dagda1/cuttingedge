@@ -42,7 +42,7 @@ export type AsyncRouteComponentType<Props> =
   | React.StatelessComponent<Props> & AsyncComponent;
 
 export type AsyncRouteableComponent<Props = any> =
-  | AsyncRouteComponentType<Partial<RouteComponentProps<Props>>>
+  | AsyncRouteComponentType<RouteComponentProps<Props>>
   | React.ComponentType<RouteComponentProps<Props>>
   | React.ComponentType<Props>;
 

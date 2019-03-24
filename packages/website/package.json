@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development cutting ssr-start",
@@ -25,9 +25,9 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/component-library": "0.3.0",
-    "@cutting/connected-components": "0.3.0",
-    "@cutting/react-gel": "0.6.0",
+    "@cutting/component-library": "0.4.0",
+    "@cutting/connected-components": "0.4.0",
+    "@cutting/react-gel": "0.6.1",
     "@types/helmet": "^0.0.38",
     "@types/serialize-javascript": "^1.3.2",
     "@types/serve-favicon": "^2.2.30",
