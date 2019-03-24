@@ -4,13 +4,6 @@ import { Request, Response } from 'express';
 import { IncomingMessage, ServerResponse } from 'http';
 import { History, Location } from 'history';
 
-export interface LayoutProps {
-  location: Location;
-  children: React.ReactNode;
-}
-
-export type LayoutComponent = React.ComponentType<LayoutProps>;
-
 export interface DocumentProps {
   req: Request;
   res: Response;
@@ -49,7 +42,7 @@ export type AsyncRouteComponentType<Props> =
   | React.StatelessComponent<Props> & AsyncComponent;
 
 export type AsyncRouteableComponent<Props = any> =
-  | AsyncRouteComponentType<RouteComponentProps<Props>>
+  | AsyncRouteComponentType<Partial<RouteComponentProps<Props>>>
   | React.ComponentType<RouteComponentProps<Props>>
   | React.ComponentType<Props>;
 
@@ -78,3 +71,10 @@ export interface Assets {
     [ext: string]: string;
   };
 }
+
+export interface LayoutProps {
+  location: Location;
+  children: React.ReactNode;
+}
+
+export type LayoutComponent = React.ComponentType<LayoutProps>;

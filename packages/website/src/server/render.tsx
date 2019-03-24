@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 import { matchPath, StaticRouter } from 'react-router-dom';
 import { Document as DefaultDoc } from './Document';
 import { After } from './After';
 import { loadInitialProps } from './loadInitialProps';
-import { isPromise } from './utils';
-import url from 'url';
+import * as utils from './utils';
+import * as url from 'url';
 import { Request, Response } from 'express';
 import { Assets, AsyncRouteProps, LayoutComponent } from './types';
 
@@ -28,20 +28,11 @@ export interface AfterRenderOptions<T> {
   routes: AsyncRouteProps[];
   document?: typeof DefaultDoc;
   Layout?: LayoutComponent;
-  customRenderer?: (element: React.ReactElement<T>) => { hthl: string };
+  customRenderer?: (element: React.ReactElement<T>) => { html: string };
 }
 
 export async function render<T>(options: AfterRenderOptions<T>) {
-  const {
-    req,
-    res,
-    routes,
-    assets,
-    document: Document,
-    customRenderer,
-    Layout = ({ children }: { children: React.ReactNode }) => <>{children}</>,
-    ...rest
-  } = options;
+  const { req, res, routes, assets, document: Document, customRenderer, ...rest } = options;
   const Doc = Document || DefaultDoc;
 
   const context = {};
@@ -51,11 +42,11 @@ export async function render<T>(options: AfterRenderOptions<T>) {
     const renderer = customRenderer || defaultRenderer;
     const asyncOrSyncRender = renderer(
       <StaticRouter location={req.url} context={context}>
-        {fn(After)({ routes, data, Layout })}
+        {fn(After)({ routes, data })}
       </StaticRouter>
     );
 
-    const renderedContent = isPromise(asyncOrSyncRender) ? await asyncOrSyncRender : asyncOrSyncRender;
+    const renderedContent = utils.isPromise(asyncOrSyncRender) ? await asyncOrSyncRender : asyncOrSyncRender;
     const helmet = Helmet.renderStatic();
 
     return { helmet, ...renderedContent };

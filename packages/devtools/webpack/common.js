@@ -184,20 +184,19 @@ const configureCommon = (options) => {
             color: isWeb ? '#f56be2' : '#c065f4',
             name: isWeb ? 'client' : 'server'
           }),
-        isProduction &&
-          new OptimizeCssnanoPlugin({
-            sourceMap: isDevelopment,
-            cssnanoOptions: {
-              preset: [
-                'default',
-                {
-                  discardComments: {
-                    removeAll: true
-                  }
+        new OptimizeCssnanoPlugin({
+          sourceMap: isDevelopment,
+          cssnanoOptions: {
+            preset: [
+              'default',
+              {
+                discardComments: {
+                  removeAll: true
                 }
-              ]
-            }
-          }),
+              }
+            ]
+          }
+        }),
         isAnalyse && new BundleAnalyzerPlugin(),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new ForkTsCheckerWebpackPlugin({

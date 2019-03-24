@@ -1,5 +1,6 @@
 import React from 'react';
 import { Module, AsyncRouteComponentState, AsyncRouteComponentType, Ctx } from './types';
+import { Component, ComponentType } from 'react';
 
 /**
  * Returns a new React component, ready to be instantiated.
@@ -10,21 +11,28 @@ export function asyncComponent<Props>({
   loader,
   Placeholder
 }: {
-  loader: () => Promise<Module<React.ComponentType<Props>>>;
-  Placeholder?: React.ComponentType<Props>;
+  loader: () => Promise<Module<ComponentType<Props>>>;
+  Placeholder?: ComponentType<Props>;
 }) {
-  let Component: AsyncRouteComponentType<Props> | null = null;
+  // keep Component in a closure to avoid doing this stuff more than once
+  let ComponentToRender: AsyncRouteComponentType<Props> | null = null;
 
-  return class AsyncRouteComponent extends React.Component<Props, AsyncRouteComponentState> {
+  return class AsyncRouteComponent extends Component<Props, AsyncRouteComponentState> {
+    /**
+     * Static so that you can call load against an uninstantiated version of
+     * this component. This should only be called one time outside of the
+     * normal render path.
+     */
     static load() {
       return loader().then((ResolvedComponent) => {
-        Component = ResolvedComponent!.default || ResolvedComponent;
+        ComponentToRender = ResolvedComponent!.default || ResolvedComponent;
       });
     }
 
     static getInitialProps(ctx: Ctx<any>) {
-      if (Component !== null) {
-        return Component.getInitialProps ? Component.getInitialProps(ctx) : Promise.resolve(null);
+      // Need to call the wrapped components getInitialProps if it exists
+      if (ComponentToRender !== null) {
+        return ComponentToRender.getInitialProps ? ComponentToRender.getInitialProps(ctx) : Promise.resolve(null);
       }
     }
 
@@ -32,7 +40,7 @@ export function asyncComponent<Props>({
       super(props);
       this.updateState = this.updateState.bind(this);
       this.state = {
-        Component
+        Component: ComponentToRender
       };
     }
 
@@ -41,9 +49,11 @@ export function asyncComponent<Props>({
     }
 
     updateState() {
-      if (this.state.Component !== Component) {
+      // Only update state if we don't already have a reference to the
+      // component, this prevent unnecessary renders.
+      if (this.state.Component !== ComponentToRender) {
         this.setState({
-          Component
+          Component: ComponentToRender
         });
       }
     }
@@ -51,11 +61,8 @@ export function asyncComponent<Props>({
     render() {
       const { Component: ComponentFromState } = this.state;
 
-      // TODO: fix typings
-      const Comp: any = ComponentFromState;
-
       if (ComponentFromState) {
-        return <Comp {...this.props} />;
+        return <ComponentFromState {...this.props} />;
       }
 
       if (Placeholder) {

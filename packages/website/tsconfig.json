@@ -4,6 +4,7 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "jsx": "react",
     "outDir": "./dist",
     "baseUrl": ".",
