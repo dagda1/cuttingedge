@@ -22,7 +22,6 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
 
   const SHIFT = 10;
   const handleMove = (action) => {
-    console.log({ x, y });
     switch (action) {
       case 'MOVE_LEFT':
         onMoveRequest({ x: x - SHIFT }, index);
@@ -42,7 +41,7 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
   };
 
   return (
-    <Shortcuts shortcutMap={shortcutMap} mapKey="BOX" handler={handleMove} scoped>
+    <Shortcuts shortcutMap={shortcutMap} handler={handleMove} scoped>
       <div style={style}>
         {index + 1} ({x}, {y})
       </div>

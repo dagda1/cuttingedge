@@ -1,6 +1,6 @@
 import React, { useRef, useState, useLayoutEffect } from 'react';
 import mousetrap from 'mousetrap';
-import { ShortcutAction, ShortcutsProps } from '../../types';
+import { ShortcutAction, ShortcutsProps, Shortcut } from '../../types';
 import { buildShortcuts } from './buildShortcuts';
 import cs from 'classnames';
 import invariant from 'invariant';
@@ -21,7 +21,7 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
   useLayoutEffect(() => {
     const trapper = scoped && ref.current ? new mousetrap(ref.current) : mousetrap;
 
-    const map = shortcutMap[mapKey];
+    const map = mapKey ? (shortcutMap[mapKey] as Shortcut) : (shortcutMap as Shortcut);
 
     const shortcutActions = buildShortcuts(map);
 

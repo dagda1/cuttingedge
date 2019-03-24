@@ -1,10 +1,16 @@
 import React from 'react';
 import { Shortcuts } from './index';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { ShortcutMap, ShortcutsProps } from '../../types';
 import { Omit } from '@cutting/util/src/types/misc';
+import { KeyCode } from '../../types/keycodes';
 
-const shortcutMap: ShortcutMap = {
+type Wrap = (
+  props?: Partial<ShortcutsProps<React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>>>,
+  handler?: jest.Mock<any, any>
+) => ReactWrapper;
+
+const singleShortcutMap: ShortcutMap = {
   key: {
     MOVE_UP: 'a'
   }
@@ -17,7 +23,7 @@ describe('<Shortcuts />', () => {
     const Stateless = (props: any) => <div>Stateless</div>;
 
     const wrapper = mount<typeof Shortcuts>(
-      <Shortcuts shortcutMap={shortcutMap} mapKey="key" handler={dummyHandler}>
+      <Shortcuts shortcutMap={singleShortcutMap} mapKey="key" handler={dummyHandler}>
         <Stateless />
       </Shortcuts>
     );
@@ -31,25 +37,38 @@ describe('<Shortcuts />', () => {
     expect(shortcutActions).toHaveLength(1);
   });
 
+  const Scoped = () => <div>Scoped</div>;
+
+  const defaultProps: Omit<ShortcutsProps, 'handler' | 'shortcutMap'> = {
+    scoped: true,
+    ScopedWrapperComponentType: 'div'
+  };
+
+  const createWrapper = (map: ShortcutMap, mapKey?: string) => (
+    props: Partial<ShortcutsProps> = {},
+    handler: jest.Mock = jest.fn()
+  ) => {
+    return mount<typeof Shortcuts>(
+      <Shortcuts {...defaultProps} {...props} shortcutMap={map} mapKey={mapKey} handler={handler}>
+        <Scoped />
+      </Shortcuts>
+    );
+  };
+
   describe('scoped Shortcuts', () => {
-    const Scoped = () => <div>Scoped</div>;
-    const defaultProps: Omit<ShortcutsProps, 'handler'> = {
-      shortcutMap,
-      mapKey: 'key',
-      scoped: true,
-      ScopedWrapperComponentType: 'div'
+    let wrap: Wrap;
+
+    const singleShortcutMap: ShortcutMap = {
+      MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
+      MOVE_RIGHT: [KeyCode.RightArrow, 'd']
     };
 
-    const wrap = (props: Partial<ShortcutsProps> = {}, handler: jest.Mock = jest.fn()) => {
-      return mount<typeof Shortcuts>(
-        <Shortcuts {...defaultProps} {...props} handler={handler}>
-          <Scoped />
-        </Shortcuts>
-      );
-    };
+    beforeEach(() => {
+      wrap = createWrapper(singleShortcutMap);
+    });
 
     it('should wrap a scoped component in a div by default', () => {
-      const wrapper = wrap();
+      const wrapper = wrap(singleShortcutMap);
 
       const mousetrap = wrapper.find('.mousetrap');
 
@@ -96,6 +115,28 @@ describe('<Shortcuts />', () => {
       const wrapper = wrap({ className: 'some-class' });
 
       expect(wrapper.find('.mousetrap').hasClass('some-class')).toBe(true);
+    });
+  });
+
+  describe('with multiple maps', () => {
+    const multipleShortcutMap: ShortcutMap = {
+      key: {
+        MOVE_UP: 'a'
+      }
+    };
+
+    let wrap: Wrap;
+
+    beforeEach(() => {
+      wrap = createWrapper(multipleShortcutMap, 'key');
+    });
+
+    it('should pick correct map item', () => {
+      const wrapper = wrap();
+
+      const mousetrap = wrapper.find('.mousetrap');
+
+      expect(mousetrap).toHaveLength(1);
     });
   });
 });

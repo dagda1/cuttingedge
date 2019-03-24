@@ -5,7 +5,7 @@ import { FunctionComponent, ComponentClass } from 'react';
 export interface ShortcutsProps<
   TScopedWrapperComponentType = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
 > {
-  mapKey: string;
+  mapKey?: string;
   shortcutMap: ShortcutMap;
   handler: ShortcutHandler;
   scoped?: boolean;
@@ -41,9 +41,11 @@ export interface Shortcut {
   [key: string]: ShortcutItem;
 }
 
-export interface ShortcutMap {
-  [key: string]: Shortcut;
-}
+export type ShortcutMap =
+  | {
+      [key: string]: Shortcut;
+    }
+  | Shortcut;
 
 export type Refable<T> = React.ReactElement<T> & {
   ref: React.RefObject<T>;
