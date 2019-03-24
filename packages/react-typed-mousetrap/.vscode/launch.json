@@ -5,13 +5,13 @@
       "type": "node",
       "request": "launch",
       "name": "Jest Tests",
-      "program": "${workspaceRoot}/../../node_modules/jest/bin/jest.js",
-      "cwd": "${workspaceRoot}",
+      "program": "${cwd}/../../node_modules/jest/bin/jest.js",
+      "cwd": "${cwd}",
       "args": [
         "--runInBand",
         "--no-cache",
         "--env=jsdom",
-        "--config=${workspaceRoot}/../devtools/jest/jest.config.js",
+        "--config=${cwd}/../devtools/jest/jest.config.js",
         "${file}"
       ],
       "runtimeArgs": ["--nolazy"],
@@ -22,7 +22,7 @@
       },
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["${workspaceRoot}/node_modules/**/*.js"]
+      "skipFiles": ["${cwd}/../../node_modules/**/*.js"]
     }
   ]
 }

@@ -153,6 +153,14 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@cutting/react-gel@0.6.0":
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/@cutting/react-gel/-/react-gel-0.6.0.tgz#7a20a968ae504e03cbcfc11f067c89ef6fddf071"
+  integrity sha512-rcxXW4nApxg1Fu8k2u53ocsZKnvNbP86zqRlBbweOVxFVuqcNUTxjHCZoDGUEzDkM0Vc/dsRmc+ry+5a8WGt8Q==
+  dependencies:
+    gel-grid "^4.0.0"
+    gel-sass-tools "^1.2.1"
+
 "@intervolga/optimize-cssnano-plugin@^1.0.6":
   version "1.0.6"
   resolved "https://registry.npmjs.org/@intervolga/optimize-cssnano-plugin/-/optimize-cssnano-plugin-1.0.6.tgz#be7c7846128b88f6a9b1d1261a0ad06eb5c0fdf8"
@@ -384,7 +392,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/enzyme@^3.9.0":
+"@types/enzyme@^3.9.1":
   version "3.9.1"
   resolved "https://registry.npmjs.org/@types/enzyme/-/enzyme-3.9.1.tgz#3a0ce07e30066dbc26cd3474c8e680af2d249e26"
   integrity sha512-CasnOP73BFE3/5JvGkod+oQtGOD1+CVWz9BV2iAqDFJ+sofL5gTiizSr8ZM3lpDY27ptC8yjAdrUCdv8diKKqw==
