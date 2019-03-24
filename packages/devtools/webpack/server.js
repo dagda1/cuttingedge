@@ -96,8 +96,9 @@ const configure = (options = {}) => {
           test: /\.css$/,
           use: [
             {
-              loader: 'css-loader/locals',
+              loader: 'css-loader',
               options: {
+                exportOnlyLocals: true,
                 importLoaders: 2
               }
             },
@@ -109,8 +110,9 @@ const configure = (options = {}) => {
           exclude: /node_modules/,
           use: [
             {
-              loader: 'css-loader/locals',
+              loader: 'css-loader',
               options: {
+                exportOnlyLocals: true,
                 importLoaders: 2,
                 modules: true,
                 getLocalIdent: getLocalIdent

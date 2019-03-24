@@ -33,7 +33,7 @@ function getUrlParts() {
   };
 }
 
-const configure = options => {
+const configure = (options) => {
   const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
   const { protocol, host, port } = getUrlParts();
 
@@ -121,7 +121,7 @@ const configure = options => {
       chunkFilename: isProduction
         ? 'static/js/[name].[contenthash:8].chunk.js'
         : isDevelopment && 'static/js/[name].chunk.js',
-      devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
+      devtoolModuleFilenameTemplate: (info) => path.resolve(info.resourcePath).replace(/\\/g, '/'),
       hotUpdateChunkFilename: 'hot/hot-update.js',
       hotUpdateMainFilename: 'hot/hot-update.json'
     },
@@ -171,8 +171,7 @@ const configure = options => {
                   options: {
                     importLoaders: 2,
                     modules: true,
-                    getLocalIdent: getLocalIdent,
-                    minimize: isProduction
+                    getLocalIdent: getLocalIdent
                   }
                 },
                 { loader: 'postcss-loader', options: postcssOptions },

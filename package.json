@@ -7,7 +7,7 @@
     "start": "yarn build && yarn --cwd packages/website/ ssr-start"
   },
   "dependencies": {
-    "@cutting/devtools": "0.6.3",
+    "@cutting/devtools": "0.7.0",
     "@cutting/util": "0.4.0",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
@@ -48,7 +48,7 @@
     "commander": "^2.15.1",
     "copy": "^0.3.2",
     "cross-env": "^5.1.6",
-    "css-loader": "^0.28.11",
+    "css-loader": "^2.1.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "file-loader": "^1.1.11",
@@ -85,12 +85,11 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.1.0",
+    "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2",
     "webpackbar": "^3.1.5"
   },
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   }
 }
