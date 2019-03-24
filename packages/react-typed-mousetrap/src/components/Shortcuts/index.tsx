@@ -27,6 +27,9 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
 
     shortcutActions.forEach((shortcut) => {
       trapper.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+
         handler(shortcut.action, e);
       });
 

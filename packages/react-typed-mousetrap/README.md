@@ -43,10 +43,10 @@ You can pass simple strings, an array of strings or a `combination` element that
 
 There is a [KeyCode enum](https://github.com/dagda1/cuttingedge/blob/master/packages/react-typed-mousetrap/src/types/keycodes.ts) to help with the special keys.
 
-Pass the map and the key of values you want to hook up into a component:
+Pass the map of values you want to hook up into a component:
 
 ```jsx
-<Shortcuts shortcutMap={shortcutMap} mapKey="BOX" handler={handleMove} scoped>
+<Shortcuts shortcutMap={shortcutMap} handler={handleMove} scoped>
   <div>
     {index + 1} ({x}, {y})
   </div>
@@ -58,8 +58,8 @@ The `Shortcuts` component will call your handler function passing the name of th
 In the above example, there is the following configuration element:
 
 ```js
-BOX: {
-    MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
+{
+  MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
 ```
 
 If the left arrow is pressed or the `a` key is pressed then your handler function will be called like this:
@@ -92,6 +92,25 @@ const handleMove = (action) => {
     }
 ```
 
+You can optionally pass a `mapKey` prop if you want to keep all shortcut maps in the same object. The `mapKey` prop will allow you to select the map for this context, e.g.
+
+```js
+export const shortcutMap: ShortcutMap = {
+  BOX: {
+    MOVE_LEFT: [KeyCode.LeftArrow, 'a']
+  },
+  OTHER: {
+    ONE_KEY_EXAMPLE: 'a'
+  }
+};
+```
+
+Then you can select `BOX` or `OTHER` by spcecifying the `mapKey` prop:
+
+```js
+<Shortcuts shortcutMap={shortcutMap} napKey="BOX" handler={handleMove} scoped>
+```
+
 ## scoped
 
 By default handlers will be added to the `document` object unless the `scoped` prop is passed in which case the component is wrapped in an html elemnt that receives the events.
@@ -100,7 +119,7 @@ By default handlers will be added to the `document` object unless the `scoped` p
 
 - `handler`: the function that will receive the action and event arguments which the key sequence triggers.
 - `shortcutMap`: - the full configuration object for the application.
-- `mapKey`: the key from the `shortcutMap` that contains the configuration for this component.
+- `mapKey`: (optional) the key from the `shortcutMap` that contains the configuration for this component, if omitted then the whole object is the map.
 - `scoped`: `false` by default. If false, events are added to the `document` object. If true, the component is wrapped in a wrapper html elment to which the events are assigned.
   `tabIndex`: The `tab-index` of the html element that wraps the component. `-1` by default. Has no effect if `scoped` is false.
 - `ScopedWrapperComponentType`: The type of wrapper html element that wraps components when the `scope` prop is true. Default is `<div />`. Has no effect if `scoped` is false.
