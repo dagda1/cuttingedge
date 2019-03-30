@@ -49,6 +49,7 @@
     "copy": "^0.3.2",
     "cross-env": "^5.1.6",
     "css-loader": "^2.1.1",
+    "extract-css-chunks-webpack-plugin": "^4.0.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "file-loader": "^1.1.11",
@@ -81,7 +82,7 @@
     "tslint-loader": "^3.6.0",
     "tslint-react": "^3.6.0",
     "tslint-react-hooks": "^2.0.0",
-    "typescript": "3.3",
+    "typescript": "3.4",
     "url-loader": "^1.0.1",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.1.0",
@@ -90,8 +91,6 @@
     "webpackbar": "^3.1.5"
   },
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   }
 }

@@ -1,8 +1,8 @@
 import HandlerBuilder from 'handler-builder';
 import { Action } from 'redux';
 
-export default (initialState: Object) =>
+export default <T>(initialState: T) =>
   new HandlerBuilder<string>(
-    (state = initialState, action: Action) => action.type,
-    (state = initialState, action: Action) => state
+    (state: T = initialState, action: Action) => action.type,
+    (state: T = initialState, action: Action) => state
   );
