@@ -9,7 +9,6 @@ const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('../config/paths');
 const AssetsPlugin = require('assets-webpack-plugin');
 const fs = require('fs');
@@ -129,54 +128,29 @@ const configure = (options) => {
       rules: [
         {
           test: /\.css$/,
-          use: devServer
-            ? [
-                { loader: 'style-loader' },
-                {
-                  loader: 'css-loader'
-                },
-                { loader: 'postcss-loader', options: postcssOptions }
-              ]
-            : [
-                isStaticBuild ? MiniCssExtractPlugin.loader : ExtractCssChunks.loader,
-                {
-                  loader: 'css-loader',
-                  options: {
-                    importLoaders: 1
-                  }
-                },
-                { loader: 'postcss-loader', options: postcssOptions }
-              ]
+          use: [
+            ExtractCssChunks.loader,
+            {
+              loader: 'css-loader'
+            },
+            { loader: 'postcss-loader', options: postcssOptions }
+          ]
         },
         {
           test: /\.scss$/,
-          use: devServer
-            ? [
-                { loader: 'style-loader' },
-                {
-                  loader: 'css-loader',
-                  options: {
-                    importLoaders: 2,
-                    modules: true,
-                    getLocalIdent: getLocalIdent
-                  }
-                },
-                { loader: 'postcss-loader', options: postcssOptions },
-                { loader: 'sass-loader', options: sassOptions }
-              ]
-            : [
-                isStaticBuild ? MiniCssExtractPlugin.loader : ExtractCssChunks.loader,
-                {
-                  loader: 'css-loader',
-                  options: {
-                    importLoaders: 2,
-                    modules: true,
-                    getLocalIdent: getLocalIdent
-                  }
-                },
-                { loader: 'postcss-loader', options: postcssOptions },
-                { loader: 'sass-loader', options: sassOptions }
-              ]
+          use: [
+            ExtractCssChunks.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2,
+                modules: true,
+                getLocalIdent: getLocalIdent
+              }
+            },
+            { loader: 'postcss-loader', options: postcssOptions },
+            { loader: 'sass-loader', options: sassOptions }
+          ]
         }
       ].filter(Boolean)
     },
@@ -204,17 +178,11 @@ const configure = (options) => {
       isProduction && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-      isStaticBuild &&
-        new MiniCssExtractPlugin({
-          filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-          chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css'
-        }),
-      ssrBuild &&
-        new ExtractCssChunks({
-          filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-          chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
-          hot: isDevelopment
-        }),
+      new ExtractCssChunks({
+        filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
+        hot: isDevelopment
+      }),
 
       new AssetsPlugin({
         path: paths.appBuild,
