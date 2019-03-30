@@ -34,3 +34,5 @@ lcov.info
 *.js.html
 
 coverage
+
+tsconfig.tsbuildinfo
