@@ -129,7 +129,13 @@ const configure = (options) => {
         {
           test: /\.css$/,
           use: [
-            ExtractCssChunks.loader,
+            {
+              loader: ExtractCssChunks.loader,
+              options: {
+                hot: isDevelopment,
+                reloadAll: true
+              }
+            },
             {
               loader: 'css-loader'
             },
@@ -139,7 +145,13 @@ const configure = (options) => {
         {
           test: /\.scss$/,
           use: [
-            ExtractCssChunks.loader,
+            {
+              loader: ExtractCssChunks.loader,
+              options: {
+                hot: isDevelopment,
+                reloadAll: true
+              }
+            },
             {
               loader: 'css-loader',
               options: {
@@ -192,6 +204,8 @@ const configure = (options) => {
     ].filter(Boolean)
   });
 
+  config.optimization = {};
+
   if (isProduction) {
     config.optimization = {
       ...config.optimization,
@@ -228,15 +242,22 @@ const configure = (options) => {
               parser: safePostCssParser
             }
           })
-        ],
-        splitChunks: {
-          chunks: 'all',
-          name: false
-        },
-        runtimeChunk: true
+        ]
       }
     };
   }
+
+  config.optimization.splitChunks = {
+    chunks: 'initial',
+    cacheGroups: {
+      vendors: {
+        test: /[\\/]node_modules[\\/]/,
+        name: 'vendor'
+      }
+    }
+  };
+
+  config.optimization.runtimeChunk = true;
 
   return config;
 };

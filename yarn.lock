@@ -2411,6 +2411,11 @@ crypto-random-string@^1.0.0:
   resolved "https://registry.npmjs.org/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
 
+css-chunks-html-webpack-plugin@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/css-chunks-html-webpack-plugin/-/css-chunks-html-webpack-plugin-1.1.1.tgz#3bdad090f81ef3d7730a680525770e53f538d48b"
+  integrity sha512-C6h8TtkD38TiT/M8lXD1FuNZj/xopZpVVpqcul4GGZ6ULYFVSIjXubXagOXZ8RpbpH2pFSH5v+jL0byjG7YFxQ==
+
 css-color-names@0.0.4, css-color-names@^0.0.4:
   version "0.0.4"
   resolved "https://registry.npmjs.org/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
@@ -3468,7 +3473,7 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-css-chunks-webpack-plugin@^4.0.2:
+extract-css-chunks-webpack-plugin@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/extract-css-chunks-webpack-plugin/-/extract-css-chunks-webpack-plugin-4.2.0.tgz#e23bdb40cbfecfabf1affe5798b27be9625a25bc"
   integrity sha512-ws8uIGdkKSa2TyDcdX70eo3uuBSHvp3hbeiqKaBHGIFEVBRWLk9gpLL09QoJN45FfgrXGl6D48NkOnhi2vuuXg==
@@ -10080,7 +10085,7 @@ tslint-react@^3.6.0:
   dependencies:
     tsutils "^2.13.1"
 
-tslint@^5.10.0:
+tslint@^5.12.1:
   version "5.14.0"
   resolved "https://registry.npmjs.org/tslint/-/tslint-5.14.0.tgz#be62637135ac244fc9b37ed6ea5252c9eba1616e"
   integrity sha512-IUla/ieHVnB8Le7LdQFRGlVJid2T/gaJe5VkjzRVSRR6pA2ODYrnfR1hmxi+5+au9l50jBwpbBL34txgv4NnTQ==
