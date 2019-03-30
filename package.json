@@ -4,10 +4,10 @@
     "build": "cutting each-pkg yarn build",
     "build:libs": "cutting each-pkg -l yarn build",
     "test": "CI=true cutting each-pkg yarn test",
-    "start": "yarn build && yarn --cwd packages/website/ ssr-start"
+    "start": "yarn build && yarn --cwd packages/website/ssr-start"
   },
   "dependencies": {
-    "@cutting/devtools": "0.7.1",
+    "@cutting/devtools": "0.8.1",
     "@cutting/util": "0.5.0",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
@@ -51,6 +51,7 @@
     "css-loader": "^2.1.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
+    "extract-css-chunks-webpack-plugin": "^4.2.0",
     "file-loader": "^1.1.11",
     "fork-ts-checker-webpack-plugin": "^1.0.0-alpha.6",
     "fs-extra": "^7.0.1",
@@ -61,7 +62,6 @@
     "istanbul-lib-coverage": "^2.0.3",
     "jest": "^24.5.0",
     "jest-junit": "^5.1.0",
-    "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "postcss-flexbugs-fixes": "^3.3.1",
     "postcss-loader": "^2.1.5",
@@ -71,12 +71,11 @@
     "react-dev-utils": "^8.0.0",
     "react-error-overlay": "^4.0.0",
     "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
     "svg-url-loader": "^2.3.2",
     "terser-webpack-plugin": "^1.2.3",
     "ts-jest": "^24.0.0",
     "ts-loader": "^5.3.3",
-    "tslint": "^5.10.0",
+    "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.13.0",
     "tslint-loader": "^3.6.0",
     "tslint-react": "^3.6.0",
@@ -90,8 +89,6 @@
     "webpackbar": "^3.1.5"
   },
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   }
 }
