@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "test": "echo no tests in util....yet",
-    "build": "NODE_ENV=development cutting ts-build"
+    "build": "NODE_ENV=development cutting ts-build -b"
   },
   "devDependencies": {}
 }
