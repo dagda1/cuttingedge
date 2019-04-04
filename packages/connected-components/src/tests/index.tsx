@@ -1,5 +1,5 @@
-import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
+import { mount, ReactWrapper } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { History } from 'history';
