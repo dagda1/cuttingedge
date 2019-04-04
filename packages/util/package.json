@@ -12,8 +12,5 @@
     "test": "echo no tests in util....yet",
     "build": "NODE_ENV=development cutting ts-build"
   },
-  "dependencies": {
-    "winston": "^3.0.0"
-  },
   "devDependencies": {}
 }

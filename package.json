@@ -92,8 +92,6 @@
     "webpackbar": "^3.1.5"
   },
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   }
 }
