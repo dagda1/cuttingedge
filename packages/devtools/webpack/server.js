@@ -6,7 +6,7 @@ const getLocalIdent = require('./getLocalIdent');
 const paths = require('../config/paths');
 const postcssOptions = require('./postCssoptions');
 const StartServerPlugin = require('start-server-webpack-plugin');
-const fs = require('fs');
+const fs = require('fs-extra');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
@@ -96,9 +96,8 @@ const configure = (options = {}) => {
           test: /\.css$/,
           use: [
             {
-              loader: 'css-loader',
+              loader: 'css-loader/locals',
               options: {
-                exportOnlyLocals: true,
                 importLoaders: 2
               }
             },
@@ -110,9 +109,8 @@ const configure = (options = {}) => {
           exclude: /node_modules/,
           use: [
             {
-              loader: 'css-loader',
+              loader: 'css-loader/locals',
               options: {
-                exportOnlyLocals: true,
                 importLoaders: 2,
                 modules: true,
                 getLocalIdent: getLocalIdent

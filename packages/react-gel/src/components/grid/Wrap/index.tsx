@@ -1,6 +1,6 @@
 import React from 'react';
 import cs from 'classnames';
-import { Taggable } from '@cutting/util';
+import { Taggable } from '@cutting/util/src/types';
 
 export interface WrapProps {
   Tag?: Taggable;
