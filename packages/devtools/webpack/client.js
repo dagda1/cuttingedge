@@ -156,7 +156,6 @@ const configure = (options) => {
                 {
                   loader: 'css-loader',
                   options: {
-                    importLoaders: 2,
                     modules: true,
                     getLocalIdent: getLocalIdent
                   }
@@ -171,8 +170,7 @@ const configure = (options) => {
                   options: {
                     importLoaders: 2,
                     modules: true,
-                    getLocalIdent: getLocalIdent,
-                    minimize: isProduction
+                    getLocalIdent: getLocalIdent
                   }
                 },
                 { loader: 'postcss-loader', options: postcssOptions },
