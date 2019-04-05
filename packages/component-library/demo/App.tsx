@@ -26,7 +26,7 @@ export class App extends React.Component<AppProps, AppState> {
       <Wrap>
         <Layout>
           <GelItem>
-            <Heading level={2}>Inputs</Heading>
+            <Heading level={2}>Input</Heading>
           </GelItem>
         </Layout>
         <Layout>
@@ -35,7 +35,7 @@ export class App extends React.Component<AppProps, AppState> {
               highlight
               label="Highlight"
               maxLength={100}
-              onKeyDown={e => {
+              onKeyDown={(e) => {
                 console.log(e);
                 return true;
               }}

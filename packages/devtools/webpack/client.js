@@ -129,7 +129,12 @@ const configure = (options) => {
         {
           test: /\.css$/,
           use: [
-            ExtractCssChunks.loader,
+            {
+              loader: ExtractCssChunks.loader,
+              options: {
+                hot: isDevelopment
+              }
+            },
             {
               loader: 'css-loader',
               options: {
@@ -142,7 +147,12 @@ const configure = (options) => {
         {
           test: /\.scss$/,
           use: [
-            ExtractCssChunks.loader,
+            {
+              loader: ExtractCssChunks.loader,
+              options: {
+                hot: isDevelopment
+              }
+            },
             {
               loader: 'css-loader',
               options: {
@@ -183,8 +193,7 @@ const configure = (options) => {
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new ExtractCssChunks({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
-        hot: isDevelopment
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css'
       }),
 
       new AssetsPlugin({
