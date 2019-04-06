@@ -30,15 +30,14 @@ export class Menu extends React.Component<{}, MenuState> {
     this.setState((prevState) => ({ isExpanded: !prevState.isExpanded }));
   };
 
-  menuItems = () => {
-    return bannerPages.map((page, i) => (
+  menuItems = () =>
+    bannerPages.map((page, i) => (
       <li key={page.heading} className={cs(styles.horizontal)}>
         <NavLink to={page.path} activeClassName={styles.active} onClick={this.collapse}>
           {page.heading}
         </NavLink>
       </li>
     ));
-  };
 
   render() {
     return (

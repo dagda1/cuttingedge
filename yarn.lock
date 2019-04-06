@@ -795,7 +795,7 @@ assert@^1.1.1:
   dependencies:
     util "0.10.3"
 
-assets-webpack-plugin@^3.8.4:
+assets-webpack-plugin@^3.9.10:
   version "3.9.10"
   resolved "https://registry.npmjs.org/assets-webpack-plugin/-/assets-webpack-plugin-3.9.10.tgz#ab2d2139845e0009557d20024f1e9523b29b02b4"
   integrity sha512-aWmIi46fRhicSScuZ0n1Gk5c5vJehCihHm2L7nd7NdBqXWi5JRM+mREz/hmMay67fSRgXk5JEKFGAF1gE33z0Q==

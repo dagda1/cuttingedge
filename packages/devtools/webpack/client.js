@@ -241,11 +241,21 @@ const configure = (options) => {
             }
           })
         ],
-        splitChunks: {
-          chunks: 'all',
-          name: false
-        },
-        runtimeChunk: true
+        splitChunks: ssrBuild
+          ? {
+              cacheGroups: {
+                vendor: {
+                  test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                  name: 'vendor',
+                  chunks: 'all'
+                }
+              }
+            }
+          : {
+              chunks: 'all',
+              name: false
+            },
+        runtimeChunk: isStaticBuild
       }
     };
   }

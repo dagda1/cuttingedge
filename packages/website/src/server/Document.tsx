@@ -29,6 +29,7 @@ export class Document extends React.Component<DocumentProps> {
         <body {...bodyAttrs}>
           <AfterRoot />
           <AfterData data={data} />
+          {assets.vendor && <script type="text/javascript" src={assets.vendor.js} defer crossOrigin="anonymous" />}
           <script type="text/javascript" src={assets.client.js} defer crossOrigin="anonymous" />
         </body>
       </html>
