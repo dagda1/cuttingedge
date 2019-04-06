@@ -4,7 +4,7 @@ export interface Post {
   link: string;
 }
 
-// tslint:disable
+// eslint:disable
 export const posts: Post[] = [
   {
     title: 'Code splitting with typescript, webpack and React lazy',

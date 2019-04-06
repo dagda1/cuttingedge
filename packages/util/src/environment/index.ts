@@ -1,10 +1,10 @@
 export enum environments {
-  development = 'development',
-  test = 'test',
-  production = 'production'
+    development = 'development',
+    test = 'test',
+    production = 'production'
 }
 
-export const env = environments[process.env.NODE_ENV as any] || environments.development;
+export const env = environments[process.env.NODE_ENV as string] || environments.development;
 
 export const isDevelopment = env === environments.development;
 export const isTest = env === environments.test;

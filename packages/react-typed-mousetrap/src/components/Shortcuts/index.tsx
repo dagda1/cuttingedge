@@ -49,7 +49,7 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
         }
       });
     };
-    // tslint:disable-next-line
+    // eslint:disable-next-line
   }, [handler]);
 
   if (!scoped) {

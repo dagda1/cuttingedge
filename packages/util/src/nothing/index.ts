@@ -1,1 +1,1 @@
-export const isNil = (a: any): a is null | undefined => a === undefined || a === null;
+export const isNil = <T>(a: T | null | undefined): a is null | undefined => a === undefined || a === null;

@@ -1,16 +1,28 @@
 {
-  "extends": ["tslint:latest", "tslint-react", "tslint-react-hooks"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react-hooks", "prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "es6": true
+  },
   "rules": {
     "align": [true, "parameters", "arguments", "statements"],
-    "arrow-parens": false,
+    "arrow-parens": "off",
     "array-type": [true, "array"],
     "ban": false,
     "class-name": true,
     "comment-format": [true, "check-space"],
-    "curly": true,
+    "curly": 2,
     "eofline": false,
     "forin": true,
-    "indent": [true, "spaces"],
+    "indent": 2,
     "interface-name": [true, "never-prefix"],
     "jsdoc-format": true,
     "jsx-boolean-value": false,
@@ -23,15 +35,15 @@
     "member-ordering": false,
     "no-any": false,
     "no-arg": true,
-    "no-bitwise": true,
+    "no-bitwise": 2,
     "no-consecutive-blank-lines": true,
-    "no-console": false,
+    "no-console": 1,
     "no-construct": true,
-    "no-debugger": true,
-    "no-duplicate-imports": false,
+    "no-debugger": 1,
+    "no-duplicate-imports": 0,
     "no-duplicate-variable": true,
-    "no-empty": true,
-    "no-eval": true,
+    "no-empty": 2,
+    "no-eval": 2,
     "no-implicit-dependencies": false,
     "no-shadowed-variable": false,
     "no-string-literal": true,
@@ -48,7 +60,9 @@
     "one-line": [true, "check-catch", "check-else", "check-open-brace", "check-whitespace"],
     "prefer-for-of": false,
     "quotemark": [true, "single", "avoid-escape", "jsx-double"],
-    "radix": true,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "radix": 2,
     "semicolon": [false, "always"],
     "switch-default": true,
     "trailing-comma": false,
@@ -75,5 +89,11 @@
       "check-type",
       "check-typecast"
     ]
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
   }
 }

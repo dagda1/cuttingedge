@@ -32,6 +32,7 @@
     "@types/history": "^4.6.2",
     "@types/jest": "^23.0.0",
     "@types/lodash": "^4.14.109",
+    "@types/node": "^11.13.0",
     "@types/react": "^16.8.12",
     "@types/react-dom": "^16.8.3",
     "@types/react-helmet": "^5.0.6",
@@ -40,10 +41,13 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/react-router-redux": "^5.0.16",
     "@types/webpack-env": "^1.13.6",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
     "acorn": "^6.0.5",
     "add": "^2.0.6",
     "assets-webpack-plugin": "^3.9.10",
     "autoprefixer": "^9.5.0",
+    "babel-eslint": "^10.0.1",
     "babel-polyfill": "^6.26.0",
     "bfj": "^6.1.1",
     "commander": "^2.15.1",
@@ -52,6 +56,11 @@
     "css-loader": "^2.1.1",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.11.2",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.5.0",
     "extract-css-chunks-webpack-plugin": "4.3.0",
     "file-loader": "^1.1.11",
     "fork-ts-checker-webpack-plugin": "^1.0.1",
@@ -75,11 +84,6 @@
     "svg-url-loader": "^2.3.2",
     "ts-jest": "^22.4.6",
     "ts-loader": "^5.3.3",
-    "tslint": "^5.12.1",
-    "tslint-config-prettier": "^1.13.0",
-    "tslint-loader": "^3.6.0",
-    "tslint-react": "^3.6.0",
-    "tslint-react-hooks": "^2.0.0",
     "typescript": "3.3",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
@@ -90,6 +94,8 @@
     "webpackbar": "^3.1.5"
   },
   "workspaces": {
-    "packages": ["packages/*"]
+    "packages": [
+      "packages/*"
+    ]
   }
 }

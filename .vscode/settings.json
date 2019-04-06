@@ -21,12 +21,10 @@
   },
   "editor.useTabStops": false,
   "editor.tabSize": 2,
-  "tslint.configFile": "./tslint.json",
   "search.exclude": {
     "**/dist/*.*": true
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "tslint.autoFixOnSave": false,
   "diffEditor.ignoreTrimWhitespace": true,
   "typescript.preferences.quoteStyle": "single",
   "editor.fontSize": 13,

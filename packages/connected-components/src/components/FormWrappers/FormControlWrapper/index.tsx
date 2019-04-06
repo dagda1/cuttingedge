@@ -61,7 +61,7 @@ export type FieldProps = GenericFieldHTMLAttributes & {
   filterOptions?: (c: any) => boolean;
 };
 
-// tslint:disable
+// eslint:disable
 export interface IField {
   new (): Field<FieldProps>;
 }

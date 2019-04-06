@@ -19,7 +19,7 @@ export async function ensureReady(routes: AsyncRouteProps[], pathname?: string) 
   let data;
   if (typeof window !== undefined && !!document) {
     // deserialize state from 'serialize-javascript' format
-    // tslint:disable-next-line
+    // eslint:disable-next-line
     data = eval('(' + (document as any).getElementById('server-app-state').textContent + ')');
   }
   return Promise.resolve(data);

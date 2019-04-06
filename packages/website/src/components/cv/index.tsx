@@ -4,7 +4,7 @@ import * as Urls from '../../urls';
 
 const styles = require('./CV.scss');
 
-// tslint:disable
+// eslint:disable
 export const CV: React.FC = () => {
   const CVFile = 'paulcowan-cv.pdf';
 

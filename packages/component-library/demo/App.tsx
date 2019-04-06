@@ -1,4 +1,4 @@
-// tslint:disable
+// eslint:disable
 require('./global.scss');
 import React from 'react';
 import { Rhombus, Cow, Modal, Heading, FormInput, FormSelect } from '../src/components';
