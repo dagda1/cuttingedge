@@ -14,7 +14,6 @@ import { history } from '../routes/history';
 import { LayoutProps } from './types';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import fs from 'fs';
 
 const assets: Assets = require(process.env.CUTTING_ASSETS_MANIFEST as string) as Assets;
 
@@ -59,6 +58,10 @@ app.get('/cv', (req, res) => {
   const pdfPath = path.join(process.cwd(), 'src', 'server', 'assets', CVFile);
 
   res.status(200).download(pdfPath, CVFile, (err) => {
+    if (!err) {
+      return;
+    }
+
     console.log(err);
   });
 });
