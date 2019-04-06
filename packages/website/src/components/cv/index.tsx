@@ -17,7 +17,7 @@ export const CV: React.FC = () => {
       <div className={styles['pdf-viewer']}>
         <h1>
           <a className={styles.link} href={Urls.Download}>
-            CLICK HERE TO DOWNLOAD CV (pdf)
+            <span>CLICK HERE TO DOWNLOAD CV (pdf)</span>
           </a>
         </h1>
         <iframe src={viewerUrl} />

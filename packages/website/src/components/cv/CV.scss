@@ -10,6 +10,7 @@
   iframe {
     width: 100%;
     height: 100%;
+    @include mt(1);
   }
 }
 
@@ -19,6 +20,9 @@
 
 .link {
   color: white;
-  @include pb(2);
-  text-decoration: underline;
+
+  span {
+    display: inline-block;
+    border-bottom: 1px solid $white;
+  }
 }

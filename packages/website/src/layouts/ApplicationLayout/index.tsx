@@ -28,7 +28,7 @@ export const ApplicationLayout: React.SFC<ApplicationLayoutProps> = ({
         <Wrap>
           <Layout>
             <GelItem>
-              <Heading className={cs({ [styles.italic]: italicise, [styles.center]: center })}>{heading}</Heading>
+              <Heading className={cs({[styles.italic]: italicise, [styles.center]: center })}>{heading}</Heading>
             </GelItem>
           </Layout>
         </Wrap>
