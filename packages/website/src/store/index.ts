@@ -2,13 +2,14 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { History } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import reducers from '../reducers';
+import { State } from '../reducers/types';
 
 declare var module: any;
 declare var __DEV__: boolean;
 
-const configureStore = (initialState: Object, history: History) => {
+const configureStore = (initialState: State, history: History) => {
   const middlewares = [routerMiddleware(history)];
-  const enhancers = middlewares.map(a => applyMiddleware(a));
+  const enhancers = middlewares.map((a) => applyMiddleware(a));
 
   const getComposeFunc = () => {
     if (process.env.BROWSER && __DEV__) {
@@ -33,6 +34,6 @@ const configureStore = (initialState: Object, history: History) => {
   return store;
 };
 
-export default (initialState: Object = {}, history: History) => {
+export default (initialState: State = {}, history: History) => {
   return configureStore(initialState, history);
 };

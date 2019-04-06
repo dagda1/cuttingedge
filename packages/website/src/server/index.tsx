@@ -49,15 +49,15 @@ if (isProduction) {
   );
 }
 
-const createConnectedLayout = (store: Store): React.SFC<LayoutProps> => ({ location, children }) => (
+const createConnectedLayout = (store: Store): React.SFC<LayoutProps> => ({ location: _, children }) => (
   <Provider store={store}>{children}</Provider>
 );
 
 app.get('/cv', (req, res) => {
   const CVFile = 'paulcowan-cv.pdf';
-  const pdfPath = path.join(process.cwd(), 'src', 'server', 'assets', CVFile);
+  const pdfPath = ['', publidDir, 'assets', CVFile].join('/');
 
-  res.status(200).download(pdfPath, CVFile, (err) => {
+  res.status(HttpStatusCode.Ok).download(pdfPath, CVFile, (err) => {
     if (!err) {
       return;
     }

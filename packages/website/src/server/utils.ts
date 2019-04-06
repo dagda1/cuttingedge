@@ -11,10 +11,10 @@ export const isPromise = (value: any): boolean => isObject(value) && isFunction(
 
 /** @private Guard cluase to narrow the AsyncRouteableComponent union type on getInitialProps */
 export function isAsyncComponent(Component: AsyncRouteableComponent): Component is AsyncRouteComponentType<any> {
-  return (<AsyncRouteComponentType<any>>Component).getInitialProps !== undefined;
+  return (Component as AsyncRouteComponentType<any>).getInitialProps !== undefined;
 }
 
 /** @private Guard cluase to narrow the AsyncRouteableComponent union type on load */
 export function isLoadableComponent(Component: AsyncRouteableComponent): Component is AsyncRouteComponentType<any> {
-  return (<AsyncRouteComponentType<any>>Component).load !== undefined;
+  return (Component as AsyncRouteComponentType<any>).load !== undefined;
 }

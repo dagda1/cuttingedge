@@ -8,6 +8,7 @@ export enum HttpStatusCode {
   Unauthorised = 401,
   PaymentRequired = 402,
   Forbidden = 403,
+  NotFound = 404,
   InternalServerError = 500,
   NotImplemented = 501,
   BadGateway = 502,
