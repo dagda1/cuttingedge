@@ -46,7 +46,12 @@ export const routes: (Page | RouteOnly)[] = [
   },
   {
     heading: 'CV',
-    path: Urls.CV
+    path: Urls.CV,
+    component: asyncComponent({
+      loader: () => import('../components/cv').then((module) => module.CV),
+      Placeholder: () => <Loading />
+    }),
+    exact: true
   },
   {
     heading: 'Privacy Policy',

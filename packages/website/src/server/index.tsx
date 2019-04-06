@@ -53,7 +53,7 @@ const createConnectedLayout = (store: Store): React.SFC<LayoutProps> => ({ locat
   <Provider store={store}>{children}</Provider>
 );
 
-app.get('/cv', (req, res) => {
+app.get('/download', (req, res) => {
   const CVFile = 'paulcowan-cv.pdf';
   const pdfPath = ['', publidDir, 'assets', CVFile].join('/');
 

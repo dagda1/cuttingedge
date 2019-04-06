@@ -1,0 +1,24 @@
+@import '../../assets/scss/main';
+
+.pdf-viewer {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  bottom: 143px;
+  right: 0px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.main h1 {
+  text-align: center;
+}
+
+.link {
+  color: white;
+  @include pb(2);
+  text-decoration: underline;
+}

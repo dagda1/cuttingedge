@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 import { bannerPages } from '../../routes';
 import * as urls from '../../urls';
 import { MobileNavButton } from '../MobileNavButton';
-import { isPage } from '../../utils/guards';
 
 const styles = require('./Menu.scss');
 
@@ -34,13 +33,9 @@ export class Menu extends React.Component<{}, MenuState> {
   menuItems = () =>
     bannerPages.map((page, i) => (
       <li key={page.heading} className={cs(styles.horizontal)}>
-        {isPage(page) ? (
-          <NavLink to={page.path} activeClassName={styles.active} onClick={this.collapse}>
-            {page.heading}
-          </NavLink>
-        ) : (
-          <a href={page.path}>{page.heading}</a>
-        )}
+        <NavLink to={page.path} activeClassName={styles.active} onClick={this.collapse}>
+          {page.heading}
+        </NavLink>
       </li>
     ));
 

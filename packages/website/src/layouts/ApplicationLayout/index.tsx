@@ -9,14 +9,21 @@ export interface ApplicationLayoutProps {
   heading?: string;
   italicise?: boolean;
   center?: boolean;
+  className?: 'string';
 }
 
 const styles = require('./ApplicationLayout.scss');
 
-export const ApplicationLayout: React.SFC<ApplicationLayoutProps> = ({ heading, italicise, center, children }) => (
+export const ApplicationLayout: React.SFC<ApplicationLayoutProps> = ({
+  heading,
+  italicise,
+  center,
+  className,
+  children
+}) => (
   <Wrap>
     <Header />
-    <main className={cs(styles.main, 'wrapper')}>
+    <main className={cs(styles.main, 'wrapper', className)}>
       {heading && (
         <Wrap>
           <Layout>
