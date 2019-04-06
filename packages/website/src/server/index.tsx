@@ -1,7 +1,7 @@
 import React from 'react';
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
-import { routes } from '../routes';
+import { componentRoutes } from '../routes';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction } from '@cutting/util';
@@ -14,6 +14,7 @@ import { history } from '../routes/history';
 import { LayoutProps } from './types';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
+import fs from 'fs';
 
 const assets: Assets = require(process.env.CUTTING_ASSETS_MANIFEST as string) as Assets;
 
@@ -41,7 +42,8 @@ if (isProduction) {
     helmet.contentSecurityPolicy({
       directives: {
         defaultSrc: ["'self'"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'"],
         imgSrc: ["'self'", 'data:']
       }
     })
@@ -52,7 +54,16 @@ const createConnectedLayout = (store: Store): React.SFC<LayoutProps> => ({ locat
   <Provider store={store}>{children}</Provider>
 );
 
-app.get('/*', async (req, res) => {
+app.get('/cv', (req, res) => {
+  const CVFile = 'paulcowan-cv.pdf';
+  const pdfPath = path.join(process.cwd(), 'src', 'server', 'assets', CVFile);
+
+  res.status(200).download(pdfPath, CVFile, (err) => {
+    console.log(err);
+  });
+});
+
+app.get('/*', async (req, res, next) => {
   const preloadedState = {};
 
   const store = configureStore(preloadedState, history);
@@ -60,7 +71,7 @@ app.get('/*', async (req, res) => {
   const html = await render({
     req,
     res,
-    routes,
+    routes: componentRoutes,
     assets,
     Layout: createConnectedLayout(store)
   });
