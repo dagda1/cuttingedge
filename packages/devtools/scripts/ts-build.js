@@ -43,36 +43,36 @@ function runTypeScriptBuild() {
 
   const tsc = exec(`${tscPath} ${process.argv.slice(2).join(' ')}`);
 
-  tsc.stdout.on('data', data => console.log(chalk.red(data)));
-  tsc.stderr.on('data', data => console.error(chalk.red(data)));
+  tsc.stdout.on('data', (data) => console.log(chalk.red(data)));
+  tsc.stderr.on('data', (data) => console.error(chalk.red(data)));
 
-  tsc.on('close', code => {
+  tsc.on('close', (code) => {
     console.log(chalk.cyan(`tsc exited with code ${code}`));
 
     if (code !== 0) {
       process.exit(1);
     }
 
-    runTsLint();
+    runEslint();
   });
 }
 
-function runTsLint() {
-  console.log(`Running tslint`);
-  const tslintPath = findExecutable(__dirname, 'tslint');
+function runEslint() {
+  console.log(`Running eslint`);
+  const eslintPath = findExecutable(__dirname, 'eslint');
 
-  console.log(`running tslint in ${chalk.yellow(tslintPath)} with ${chalk.yellow(process.argv.slice(2).join(' '))}`);
+  console.log(`running eslint in ${chalk.yellow(eslintPath)} with ${chalk.yellow(process.argv.slice(2).join(' '))}`);
 
-  const tslintConfig = findFile(process.cwd(), 'tslint.json');
-  console.log(chalk.yellow(`using config ${tslintConfig}`));
+  const eslintConfig = findFile(process.cwd(), 'eslintrc.json');
+  console.log(chalk.yellow(`using config ${eslintConfig}`));
 
-  const tslint = exec(`${tslintPath} -c ${tslintConfig} -p ${paths.tsConfig} -t stylish`);
+  const eslint = exec(`${eslintPath} ${paths.appSrc} --ext .ts,.tsx -c ${eslintConfig} --fix`);
 
-  tslint.stdout.on('data', data => console.log(chalk.red(data)));
-  tslint.stderr.on('data', data => console.error(chalk.red(data)));
+  eslint.stdout.on('data', (data) => console.log(chalk.red(data)));
+  eslint.stderr.on('data', (data) => console.error(chalk.red(data)));
 
-  tslint.on('close', code => {
-    console.log(chalk.cyan(`tslint exited with code ${code}`));
+  eslint.on('close', (code) => {
+    console.log(chalk.cyan(`eslint exited with code ${code}`));
 
     if (code !== 0) {
       process.exit(1);
@@ -84,7 +84,7 @@ function build() {
     runTypeScriptBuild();
 
     const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg'].map(
-      pattern => `${paths.appSrc}/**/${pattern}`
+      (pattern) => `${paths.appSrc}/**/${pattern}`
     );
 
     copy(patterns, paths.appBuild, (err, files) => {

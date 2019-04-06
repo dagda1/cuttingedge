@@ -114,7 +114,7 @@ const configureCommon = (options) => {
               {
                 loader: 'tslint-loader',
                 options: {
-                  configFile: paths.tsLintConfig,
+                  configFile: paths.esLintConfig,
                   tsConfig: paths.tsConfig,
                   emitError: true,
                   failOnHint: true,
