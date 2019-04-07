@@ -9,9 +9,10 @@ import Helmet from 'react-helmet';
 import { ScrollToTop } from '@cutting/connected-components';
 import { Store } from 'redux';
 import { ConnectedRouter } from 'connected-react-router';
+import { State } from '../../reducers/types';
 
 export interface AppProps {
-  store: Store<any>;
+  store: Store<State>;
 }
 
 export class App extends React.Component<AppProps> {

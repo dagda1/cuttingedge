@@ -7,6 +7,7 @@ import { createBrowserHistory } from 'history';
 
 export const root = document.getElementById('root');
 
+// eslint-disable-next-line
 const preloadedState = (window as any).__PRELOADED_STATE__;
 
 const history = createBrowserHistory();

@@ -25,11 +25,11 @@ export function asyncComponent<Props>({
      */
     static load() {
       return loader().then((ResolvedComponent) => {
-        ComponentToRender = ResolvedComponent!.default || ResolvedComponent;
+        ComponentToRender = ResolvedComponent.default || ResolvedComponent;
       });
     }
 
-    static getInitialProps(ctx: Ctx<any>) {
+    static getInitialProps(ctx: Ctx<Props>) {
       // Need to call the wrapped components getInitialProps if it exists
       if (ComponentToRender !== null) {
         return ComponentToRender.getInitialProps ? ComponentToRender.getInitialProps(ctx) : Promise.resolve(null);
@@ -62,6 +62,7 @@ export function asyncComponent<Props>({
       const { Component: ComponentFromState } = this.state;
 
       if (ComponentFromState) {
+        // eslint-disable-next-line
         return <ComponentFromState {...this.props as any} />;
       }
 

@@ -6,7 +6,7 @@ import { isPage } from '../utils/guards';
 export interface Page {
   heading: string;
   path: string;
-  component: React.ComponentType<any>;
+  component: React.ComponentType;
   exact?: boolean;
   footerPage?: boolean;
 }
@@ -16,6 +16,7 @@ export type RouteOnly = Pick<Page, 'heading' | 'path' | 'footerPage'>;
 // TODO: better loader
 const Loading = () => <div>...LOADING...</div>;
 
+/* eslint-disable react/display-name */
 export const routes: (Page | RouteOnly)[] = [
   {
     heading: 'Home',

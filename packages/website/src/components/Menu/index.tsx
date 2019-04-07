@@ -31,7 +31,7 @@ export class Menu extends React.Component<{}, MenuState> {
   };
 
   menuItems = () =>
-    bannerPages.map((page, i) => (
+    bannerPages.map((page) => (
       <li key={page.heading} className={cs(styles.horizontal)}>
         <NavLink to={page.path} activeClassName={styles.active} onClick={this.collapse}>
           {page.heading}

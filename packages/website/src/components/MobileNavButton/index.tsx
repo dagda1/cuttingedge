@@ -3,7 +3,7 @@ import React from 'react';
 const styles = require('./MobileNavButton.scss');
 
 export interface MobileNavButtonProps {
-  onClick: React.MouseEventHandler<any>;
+  onClick: React.MouseEventHandler;
   isActive?: boolean;
 }
 

@@ -9,9 +9,14 @@ import * as utils from './utils';
 import * as url from 'url';
 import { Request, Response } from 'express';
 import { Assets, AsyncRouteProps, LayoutComponent } from './types';
+import { getDisplayName } from '@cutting/util';
 
 const modPageFn = function<Props>(Page: React.ComponentType<Props>) {
-  return (props: Props) => <Page {...props} />;
+  const Wrapped: React.FunctionComponent<Props> = (props: Props) => <Page {...props} />;
+
+  Wrapped.displayName = getDisplayName(Wrapped);
+
+  return Wrapped;
 };
 
 /*
@@ -36,6 +41,12 @@ export async function render<T>(options: AfterRenderOptions<T>) {
   const Doc = Document || DefaultDoc;
 
   const context = {};
+  const { match, data } = await loadInitialProps(routes, url.parse(req.url).pathname as string, {
+    req,
+    res,
+    ...rest
+  });
+
   const renderPage = async (fn = modPageFn) => {
     // By default, we keep ReactDOMServer synchronous renderToString function
     const defaultRenderer = (element: React.ReactElement<T>) => ({ html: ReactDOMServer.renderToString(element) });
@@ -51,12 +62,6 @@ export async function render<T>(options: AfterRenderOptions<T>) {
 
     return { helmet, ...renderedContent };
   };
-
-  const { match, data } = await loadInitialProps(routes, url.parse(req.url).pathname as string, {
-    req,
-    res,
-    ...rest
-  });
 
   if (!match) {
     res.status(404);

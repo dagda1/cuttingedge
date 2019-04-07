@@ -22,7 +22,7 @@ export const Footer: React.SFC = () => (
             </GelItem>
             <GelItem m="1/2" className={styles.links}>
               <ul className={styles.NavLinks}>
-                {footerPages.map((page, i) => (
+                {footerPages.map((page) => (
                   <li key={page.path}>
                     <NavLink to={page.path}>{page.heading}</NavLink>
                   </li>
@@ -37,12 +37,12 @@ export const Footer: React.SFC = () => (
               <div>
                 <ul className={styles.social}>
                   <li>
-                    <a href="https://github.com/dagda1" target="_blank">
+                    <a href="https://github.com/dagda1" target="_blank" rel="noopener noreferrer">
                       <Github />
                     </a>
                   </li>
                   <li>
-                    <a href="https://twitter.com/dagda1" target="_blank">
+                    <a href="https://twitter.com/dagda1" target="_blank" rel="noopener noreferrer">
                       <Twitter />
                     </a>
                   </li>

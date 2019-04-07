@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 import { componentRoutes } from '../routes';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
-import { HttpStatusCode, isProduction } from '@cutting/util';
+import { HttpStatusCode, isProduction, getDisplayName } from '@cutting/util';
 import { render } from './render';
 import favicon from 'serve-favicon';
 import path from 'path';
@@ -49,9 +49,15 @@ if (isProduction) {
   );
 }
 
-const createConnectedLayout = (store: Store): React.SFC<LayoutProps> => ({ location: _, children }) => (
-  <Provider store={store}>{children}</Provider>
-);
+/* eslint-disable no-console */
+
+const createConnectedLayout = (store: Store): React.SFC<LayoutProps> => {
+  const Wrapped: React.FunctionComponent<LayoutProps> = ({ children }) => <Provider store={store}>{children}</Provider>;
+
+  Wrapped.displayName = getDisplayName(Wrapped);
+
+  return Wrapped;
+};
 
 app.get('/download', (req, res) => {
   const CVFile = 'paulcowan-cv.pdf';
@@ -66,7 +72,7 @@ app.get('/download', (req, res) => {
   });
 });
 
-app.get('/*', async (req, res, next) => {
+app.get('/*', async (req, res) => {
   const preloadedState = {};
 
   const store = configureStore(preloadedState, history);

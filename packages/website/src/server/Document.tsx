@@ -41,6 +41,7 @@ export function AfterRoot() {
   return <div id="root">DO_NOT_DELETE_THIS_YOU_WILL_BREAK_YOUR_APP</div>;
 }
 
+// eslint-disable-next-line
 export function AfterData({ data }: any) {
   return (
     <script
