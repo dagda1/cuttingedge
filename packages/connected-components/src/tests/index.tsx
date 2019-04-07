@@ -5,7 +5,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { History } from 'history';
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
 
-export const wrap = (Comp: React.ComponentType<any>, props = {}, history: History): ReactWrapper => {
+export const wrap = (Comp: React.ComponentType, props = {}, history: History): ReactWrapper => {
   const reducers = combineReducers({
     router: connectRouter(history)
   });

@@ -2,17 +2,17 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Location } from 'history';
 
-export interface ScrollToTopProps extends RouteComponentProps<any> {
+export interface ScrollToTopProps<T> extends RouteComponentProps<T> {
   location: Location;
-  changeHandler?: (location: string) => any;
+  changeHandler?: (location: string) => void;
 }
 
-export class ScrollToTopView extends React.Component<ScrollToTopProps> {
+export class ScrollToTopView<T> extends React.Component<ScrollToTopProps<T>> {
   focusOnElement = () => {
-    const root = document.querySelector('#root') as any;
+    const root = document.querySelector('#root') as HTMLElement;
     setTimeout(() => {
       root.focus();
-    },         100);
+    }, 100);
   };
 
   handleChange = () => {
@@ -27,7 +27,7 @@ export class ScrollToTopView extends React.Component<ScrollToTopProps> {
     this.focusOnElement();
   }
 
-  componentDidUpdate(prevProps: ScrollToTopProps) {
+  componentDidUpdate(prevProps: ScrollToTopProps<T>) {
     if (this.props.location.hash.length || this.props.location === prevProps.location) {
       return;
     }

@@ -1,6 +1,6 @@
 {
   "name": "@cutting/connected-components",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -9,7 +9,7 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "start": "PORT=9999 NODE_ENV=development cutting start",
+    "start": "PORT=9999 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=development cutting ts-build -b"
   },

@@ -1,55 +1,56 @@
-import { FormInput, FormSelect } from '@cutting/component-library';
+import { FormInput, FormSelect, OptionType } from '@cutting/component-library';
 import React from 'react';
-import {
-  WrappedFieldInputProps,
-  WrappedFieldMetaProps,
-  GenericFieldHTMLAttributes,
-  Field,
-  FieldArray
-} from 'redux-form';
+import { WrappedFieldInputProps, WrappedFieldMetaProps, GenericFieldHTMLAttributes } from 'redux-form';
+import { getDisplayName } from '@cutting/util/src/react/components';
 
 export type ControlValue = string | number | Date;
 
 export interface FormControlProps {
-  controlOnChange?: React.ChangeEventHandler<any>;
+  controlOnChange?: React.ChangeEventHandler<HTMLElement>;
   input: WrappedFieldInputProps;
   meta: WrappedFieldMetaProps;
 }
 
-export const renderFormControl = (Comp: React.ComponentType<any>): React.StatelessComponent<FormControlProps> => ({
-  controlOnChange = (e: React.ChangeEvent<any>) => undefined,
-  input: { onChange, value, name },
-  meta: { active, error, invalid, submitFailed, touched },
-  ...rest
-}) => (
-  <Comp
-    name={name}
-    invalid={!active && touched && invalid && submitFailed}
-    errorMessage={!active && invalid && error}
-    onChange={(e: React.ChangeEvent<any>) => {
-      controlOnChange(e);
-      onChange(e);
-    }}
-    value={value}
-    {...rest}
-  />
-);
+export function renderFormControl<T>(Comp: React.ComponentType): React.FunctionComponent<FormControlProps & T> {
+  const Wrapped: React.FunctionComponent<FormControlProps & T> = ({
+    controlOnChange = () => undefined,
+    input: { onChange, value, name },
+    meta: { active, error, invalid, submitFailed, touched },
+    ...rest
+  }) => (
+    <Comp
+      name={name}
+      invalid={!active && touched && invalid && submitFailed}
+      errorMessage={!active && invalid && error}
+      onChange={(e: React.ChangeEvent<HTMLElement>) => {
+        controlOnChange(e);
+        onChange(e);
+      }}
+      value={value}
+      {...rest}
+    />
+  );
+
+  Wrapped.displayName = getDisplayName(Wrapped);
+
+  return Wrapped;
+}
 
 export const renderFormInput = renderFormControl(FormInput);
 export const renderFormSelect = renderFormControl(FormSelect);
 
-// TODO: refactor this into separate components
 export type FieldProps = GenericFieldHTMLAttributes & {
   dataSelector?: string;
   'data-selector'?: string;
   monthYearOnly?: boolean;
   dateFormat?: string;
+  // eslint-disable-next-line
   controlOnChange?: (...args: any[]) => any;
   label?: string;
   additionalLabel?: React.ReactNode;
   maxLength?: number;
-  onKeyDown?: React.KeyboardEventHandler<any>;
-  options?: any[];
+  onKeyDown?: React.KeyboardEventHandler;
+  options?: OptionType[];
   legend?: string;
   valueKey?: string | number;
   optionKey?: string | number;
@@ -58,14 +59,5 @@ export type FieldProps = GenericFieldHTMLAttributes & {
   dividerAt?: number;
   errorDataSelector?: string;
   hideLegend?: boolean;
-  filterOptions?: (c: any) => boolean;
+  filterOptions?: (c: OptionType) => boolean;
 };
-
-// eslint:disable
-export interface IField {
-  new (): Field<FieldProps>;
-}
-
-export interface IFieldArray {
-  new (): FieldArray<FieldProps>;
-}
