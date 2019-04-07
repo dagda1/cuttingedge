@@ -21,6 +21,7 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
   };
 
   const SHIFT = 10;
+  // eslint:disable-nex-line
   const handleMove = (action) => {
     switch (action) {
       case 'MOVE_LEFT':

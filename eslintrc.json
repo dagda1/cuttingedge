@@ -15,7 +15,7 @@
   },
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/indent": ["error", 2, { "SwitchCase": 1 }],
     "@typescript-eslint/no-var-requires": "off",
     "align": [true, "parameters", "arguments", "statements"],
     "arrow-parens": "off",
@@ -26,7 +26,6 @@
     "curly": 2,
     "eofline": false,
     "forin": true,
-    "indent": ["error", 2],
     "interface-name": [true, "never-prefix"],
     "jsdoc-format": true,
     "jsx-boolean-value": false,

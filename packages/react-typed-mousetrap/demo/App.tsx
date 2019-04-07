@@ -5,6 +5,7 @@ import { Box as MovableBox } from './Box';
 
 const boxes = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }].map(
   (b): Box => {
+    // eslint-disable-next-line no-console
     console.log(b);
     return { ...b, color: `hsl(${Math.random() * 360}, 100%, 50%)` };
   }
