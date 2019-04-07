@@ -112,7 +112,8 @@ const configureCommon = (options) => {
               {
                 loader: 'eslint-loader',
                 options: {
-                  fix: isProduction,
+                  fix: true,
+                  emitWarning: isDevelopment,
                   failOnWarning: isProduction,
                   configFile: paths.esLintConfig
                 }

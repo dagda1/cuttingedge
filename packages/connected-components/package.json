@@ -14,7 +14,7 @@
     "build": "NODE_ENV=development cutting ts-build -b"
   },
   "dependencies": {
-    "@cutting/component-library": "0.4.0",
+    "@cutting/component-library": "0.4.1",
     "connected-react-router": "^6.3.2",
     "redux-form": "^8.1.0"
   },

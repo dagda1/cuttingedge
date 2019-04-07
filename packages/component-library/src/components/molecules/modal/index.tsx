@@ -14,11 +14,14 @@ export interface ModalProps {
 }
 
 export class Modal extends React.Component<ModalProps> {
-  static defaultProps = {
+  public static defaultProps = {
     open: false
   };
 
-  closeModal = (e: Event) => this.props.openHandler(false);
+  closeModal = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    this.props.openHandler(false);
+  };
 
   render() {
     const { description, heading, footer, open, children } = this.props;

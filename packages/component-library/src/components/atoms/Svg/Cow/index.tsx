@@ -15,6 +15,7 @@ export const Cow: React.SFC<CowProps> = ({ className }) => (
     height="1000px"
     viewBox="0 0 1000 1000"
     enableBackground="new 0 0 1000 1000"
+    className={className}
   >
     <g>
       <path

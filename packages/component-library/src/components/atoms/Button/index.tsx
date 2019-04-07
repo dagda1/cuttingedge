@@ -11,7 +11,7 @@ export enum ButtonStyle {
 }
 
 export interface ButtonProps {
-  onClick?: React.EventHandler<any>;
+  onClick?: React.MouseEventHandler;
   className?: string;
   buttonStyle?: ButtonStyle;
   disabled?: boolean;
@@ -22,7 +22,7 @@ export interface ButtonProps {
   id?: string;
   htmlFor?: string;
   tabIndex?: number;
-  onKeyDown?: React.KeyboardEventHandler<any>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
   dataSelector?: string;
   title?: string;
 }

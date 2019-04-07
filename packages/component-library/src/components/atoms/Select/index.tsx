@@ -1,20 +1,26 @@
 import cs from 'classnames';
 import React from 'react';
-import { isNil, identity } from '@cutting/util';
+import { isNil } from '@cutting/util';
 
 const styles = require('./select.scss');
 
-function mapOptionsToValues<T extends { [key: string]: any }, K extends keyof T>(
-  element: T,
-  valueKey?: K,
-  optionKey?: K,
+export interface OptionType {
+  [key: string]: string | string[] | number | undefined;
+}
+
+function mapOptionsToValues(
+  element: OptionType,
+  valueKey?: keyof OptionType,
+  optionKey?: keyof OptionType,
   index?: number
 ) {
   if (isNil(valueKey) || isNil(optionKey)) {
     return <option key={`${element}${index}`}>{element}</option>;
   } else {
+    const value = element[valueKey];
+
     return (
-      <option value={element[valueKey]} key={`${element[valueKey]}${index}`}>
+      <option value={value} key={`${element[valueKey]}${index}`}>
         {element[optionKey]}
       </option>
     );
@@ -37,45 +43,40 @@ function mergeOptions(options: object[], dividerAt: number) {
 
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   defaultLabel?: string;
-  options: any[];
+  options: OptionType[];
   invalid?: boolean;
-  valueKey?: string;
-  optionKey?: string;
+  valueKey?: keyof OptionType;
+  optionKey?: keyof OptionType;
   dividerAt?: number;
-  filterOptions?: (option: any) => boolean;
-  legend?: string;
+  filterOptions?: (option: OptionType) => boolean;
 }
 
-export const Select: React.StatelessComponent<SelectProps> = ({
+export const Select: React.FC<SelectProps> = ({
   value,
-  defaultLabel,
+  defaultLabel = '',
   className,
-  options = [],
+  options,
   invalid,
   valueKey,
   optionKey,
   dividerAt,
-  filterOptions,
-  legend,
+  filterOptions = () => true,
   ...rest
-}) => (
-  <div className={styles.container}>
-    <select value={value} className={cs(className, styles.default, { [styles.invalid]: invalid })} {...rest}>
-      {!isNil(defaultLabel) && (
-        <option value="" key="">
-          {defaultLabel}
-        </option>
-      )}
-      {filterOptions &&
-        mergeOptions(
-          options.filter(filterOptions).map((x, i: number) => mapOptionsToValues(x, valueKey, optionKey, i)),
-          dividerAt || -1
+}) => {
+  return (
+    <div className={styles.container}>
+      <select value={value} className={cs(className, styles.default, { [styles.invalid]: invalid })} {...rest}>
+        {!isNil(defaultLabel) && (
+          <option value="" key="">
+            {defaultLabel}
+          </option>
         )}
-    </select>
-  </div>
-);
-
-Select.defaultProps = {
-  defaultLabel: '',
-  filterOptions: identity
+        {filterOptions &&
+          mergeOptions(
+            options.filter(filterOptions).map((x, i: number) => mapOptionsToValues(x, valueKey, optionKey, i)),
+            dividerAt || -1
+          )}
+      </select>
+    </div>
+  );
 };

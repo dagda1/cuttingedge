@@ -13,7 +13,14 @@ export const ExternalLink: React.SFC<ExternalLinkProps> = ({
   children,
   ...rest
 }: ExternalLinkProps) => (
-  <a href={href} rel="noopener noreferrer" target={blank ? '_blank' : ''} className={className} {...rest}>
+  <a
+    href={href}
+    data-selector={dataSelector}
+    rel="noopener noreferrer"
+    target={blank ? '_blank' : ''}
+    className={className}
+    {...rest}
+  >
     {children}
   </a>
 );

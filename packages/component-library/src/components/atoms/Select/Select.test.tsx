@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { Select, SelectProps } from '.';
 
+/* eslint-disable */
 const wrap = (props: SelectProps) => shallow(<Select {...props} />);
 
 describe('Select', () => {
@@ -63,7 +64,7 @@ describe('Select', () => {
       options: countries,
       valueKey: 'id',
       optionKey: 'displayName',
-      filterOptions: o => ['uk', 'ireland'].indexOf(o.id) === -1
+      filterOptions: (o) => ['uk', 'ireland'].indexOf(o.id.toString()) === -1
     });
 
     const options = wrapper.find('option');

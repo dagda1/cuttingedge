@@ -19,16 +19,12 @@ export interface FormControlWrapperProps {
   name?: string;
   required?: boolean;
   strong?: boolean;
-  width?: any;
+  width?: number | string;
 }
 
-export function FormControl<T>(Comp: React.ComponentType<T>): React.ComponentType<FormControlWrapperProps & T> {
+export function FormControl<T>(Comp: React.ComponentType<T>): React.ComponentClass<FormControlWrapperProps & T> {
   return class FormControlWrapper extends React.Component<FormControlWrapperProps & T> {
     id?: string;
-
-    static defaultProps: any = {
-      strong: true
-    };
 
     constructor(props: FormControlWrapperProps & T) {
       super(props);
@@ -49,14 +45,8 @@ export function FormControl<T>(Comp: React.ComponentType<T>): React.ComponentTyp
         additionalLabel,
         highlight,
         required,
-        small,
-        medium,
-        large,
-        xlarge,
         ...rest
-      } = this.props as any;
-
-      /* const inputContainer = { small, medium, large, xlarge }; */
+      } = this.props;
 
       const errorId = `${this.id}-error`;
 
@@ -85,17 +75,16 @@ export function FormControl<T>(Comp: React.ComponentType<T>): React.ComponentTyp
               aria-invalid={invalid}
               required={required}
               aria-describedby={errorId}
-              {...rest}
+              {...rest as T}
             />
           </div>
           <div id={errorId} className="form-group" aria-hidden={!invalid} role="alert">
-            {invalid &&
-              errorMessage && (
-                <Error
-                  dataSelector={(rest['data-selector'] && `${rest['data-selector']}-error`) || errorDataSelector}
-                  errorMessage={errorMessage}
-                />
-              )}
+            {invalid && errorMessage && (
+              <Error
+                dataSelector={(rest['data-selector'] && `${rest['data-selector']}-error`) || errorDataSelector}
+                errorMessage={errorMessage.toString()}
+              />
+            )}
           </div>
         </div>
       );

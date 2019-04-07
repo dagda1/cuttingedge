@@ -1,5 +1,6 @@
 import cs from 'classnames';
 import React from 'react';
+import { Taggable } from '@cutting/util';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   level?: number;
@@ -8,7 +9,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 export const Heading: React.SFC<HeadingProps> = ({ level, className, tabIndex, children, ...rest }) => {
-  const Tag = `h${level}` as any;
+  const Tag = `h${level}` as Taggable;
 
   return (
     <Tag className={cs(className)} {...rest} tabIndex={tabIndex}>
