@@ -42,9 +42,7 @@ const HappyPack = require('happypack');
 const configureCommon = (options) => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
-  const { isStaticBuild } = options;
-  const ssrBuild = !isStaticBuild;
-  const { isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
+  const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables(options);
 
   const config = {
@@ -112,13 +110,11 @@ const configureCommon = (options) => {
             enforce: 'pre',
             use: [
               {
-                loader: 'tslint-loader',
+                loader: 'eslint-loader',
                 options: {
-                  configFile: paths.esLintConfig,
-                  tsConfig: paths.tsConfig,
-                  emitError: true,
-                  failOnHint: true,
-                  fix: false
+                  fix: isProduction,
+                  failOnWarning: true,
+                  configFile: paths.esLintConfig
                 }
               }
             ]

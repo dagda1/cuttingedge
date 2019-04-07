@@ -14,10 +14,10 @@ export const App = () => (
             <h1>Grid</h1>
             <p>
               This is a working demo of the
-              <a target="_blank" href="http://www.bbc.co.uk/gel/guidelines/grid">
-                {' '}
+              <a target="_blank" rel="noopener noreferrer" href="http://www.bbc.co.uk/gel/guidelines/grid">
                 GEL Grid Guidelines
-              </a>. The demo shows how our flexible, percentage-based grid works and how you can use it to create a BBC
+              </a>
+              . The demo shows how our flexible, percentage-based grid works and how you can use it to create a BBC
               website.
             </p>
           </GelItem>

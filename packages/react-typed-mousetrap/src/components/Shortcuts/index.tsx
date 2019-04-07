@@ -49,8 +49,7 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
         }
       });
     };
-    // eslint:disable-next-line
-  }, [handler]);
+  }, [handler, mapKey, scoped, shortcutMap, shortcuts]);
 
   if (!scoped) {
     invariant(children, 'If a mousetrap scoped component then there should be child mice.');

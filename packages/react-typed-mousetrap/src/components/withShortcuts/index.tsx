@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shortcuts } from '../Shortcuts';
 import { ShortcutsProps } from '../../types';
+import { getDisplayName } from '@cutting/util/src/react/components';
 
 export const defaultOptions: Partial<ShortcutsProps> = {
   scoped: false,
@@ -10,9 +11,15 @@ export const defaultOptions: Partial<ShortcutsProps> = {
 export const withShortcuts = function<T>(options: ShortcutsProps) {
   const merged = { ...defaultOptions, ...options };
 
-  return (Component: React.ComponentType<T>) => (props: T) => (
-    <Shortcuts {...merged}>
-      <Component {...props} />
-    </Shortcuts>
-  );
+  return (Component: React.ComponentType<T>) => {
+    const WithShortcuts: React.FunctionComponent<T> = (props: T) => (
+      <Shortcuts {...merged}>
+        <Component {...props} />
+      </Shortcuts>
+    );
+
+    WithShortcuts.displayName = getDisplayName(WithShortcuts);
+
+    return WithShortcuts;
+  };
 };

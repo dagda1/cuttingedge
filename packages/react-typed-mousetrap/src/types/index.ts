@@ -12,9 +12,9 @@ export interface ShortcutsProps<
   tabIndex?: number;
   className?: string;
   ScopedWrapperComponentType?:
-    | FunctionComponent<TScopedWrapperComponentType>
-    | ComponentClass<TScopedWrapperComponentType>
-    | string;
+  | FunctionComponent<TScopedWrapperComponentType>
+  | ComponentClass<TScopedWrapperComponentType>
+  | string;
 }
 
 export interface ShortcutAction {
@@ -43,8 +43,8 @@ export interface Shortcut {
 
 export type ShortcutMap =
   | {
-      [key: string]: Shortcut;
-    }
+    [key: string]: Shortcut;
+  }
   | Shortcut;
 
 export type Refable<T> = React.ReactElement<T> & {

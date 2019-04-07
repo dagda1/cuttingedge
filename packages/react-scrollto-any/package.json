@@ -15,6 +15,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@cutting/react-gel": "0.6.0"
+    "@cutting/react-gel": "0.6.2"
   }
 }

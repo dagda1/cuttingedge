@@ -1,7 +1,7 @@
 export enum environments {
-    development = 'development',
-    test = 'test',
-    production = 'production'
+  development = 'development',
+  test = 'test',
+  production = 'production'
 }
 
 export const env = environments[process.env.NODE_ENV as string] || environments.development;
