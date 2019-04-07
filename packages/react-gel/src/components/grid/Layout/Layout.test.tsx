@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Layout, LayoutProps } from '.';
 
-const wrap = (props: LayoutProps & { children?: any } = { children: <span>div</span> }) =>
+const wrap = (props: LayoutProps & { children?: React.ReactNode } = { children: <span>div</span> }) =>
   shallow(<Layout {...props}>test</Layout>);
 
 describe('<Layout />', () => {

@@ -61,12 +61,14 @@ function runEslint() {
   console.log(`Running eslint`);
   const eslintPath = findExecutable(__dirname, 'eslint');
 
-  console.log(`running eslint in ${chalk.yellow(eslintPath)} with ${chalk.yellow(process.argv.slice(2).join(' '))}`);
-
   const eslintConfig = findFile(process.cwd(), 'eslintrc.json');
   console.log(chalk.yellow(`using config ${eslintConfig}`));
 
-  const eslint = exec(`${eslintPath} ${paths.appSrc} --ext .ts,.tsx -c ${eslintConfig} --fix`);
+  const args = ` ${paths.appSrc} --ext .ts,.tsx -c ${eslintConfig} --fix`;
+
+  console.log(`running eslint in ${chalk.yellow(eslintPath)} with ${chalk.yellow(args)}`);
+
+  const eslint = exec(`${eslintPath} ${args}`);
 
   eslint.stdout.on('data', (data) => console.log(chalk.red(data)));
   eslint.stderr.on('data', (data) => console.error(chalk.red(data)));

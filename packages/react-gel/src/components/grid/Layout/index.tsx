@@ -1,8 +1,9 @@
 import React from 'react';
 import cs from 'classnames';
+import { Taggable } from '@cutting/util';
 
 export interface LayoutProps {
-  Tag?: any;
+  Tag?: Taggable;
   className?: string;
   flush?: boolean;
   bottom?: boolean;
@@ -15,7 +16,7 @@ export interface LayoutProps {
 }
 
 export const Layout: React.SFC<LayoutProps> = ({
-  Tag,
+  Tag = 'div',
   className,
   flush,
   middle,

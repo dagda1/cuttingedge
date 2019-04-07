@@ -24,10 +24,22 @@
   "search.exclude": {
     "**/dist/*.*": true
   },
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": false
+  },
+
   "diffEditor.ignoreTrimWhitespace": true,
   "typescript.preferences.quoteStyle": "single",
   "editor.fontSize": 13,
-  "editor.formatOnSave": true,
   "git.autofetch": true
 }

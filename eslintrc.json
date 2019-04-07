@@ -1,7 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react-hooks", "prettier"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier", "plugin:react/recommended"],
+  "extends": ["plugin:@typescript-eslint/recommended", "prettier", "plugin:react/recommended"],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
@@ -10,9 +10,12 @@
   "env": {
     "node": true,
     "commonjs": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/indent": ["error", 2],
     "align": [true, "parameters", "arguments", "statements"],
     "arrow-parens": "off",
     "array-type": [true, "array"],
@@ -22,7 +25,7 @@
     "curly": 2,
     "eofline": false,
     "forin": true,
-    "indent": 2,
+    "indent": ["error", 2],
     "interface-name": [true, "never-prefix"],
     "jsdoc-format": true,
     "jsx-boolean-value": false,
@@ -55,14 +58,15 @@
     "no-var-requires": false,
     "object-literal-key-quotes": false,
     "object-literal-sort-keys": false,
+    "one-line": [true, "check-catch", "check-else", "check-open-brace", "check-whitespace"],
     "only-arrow-functions": false,
     "ordered-imports": false,
-    "one-line": [true, "check-catch", "check-else", "check-open-brace", "check-whitespace"],
     "prefer-for-of": false,
     "quotemark": [true, "single", "avoid-escape", "jsx-double"],
+    "radix": 2,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "radix": 2,
+    "react/prop-types": "off",
     "semicolon": [false, "always"],
     "switch-default": true,
     "trailing-comma": false,
