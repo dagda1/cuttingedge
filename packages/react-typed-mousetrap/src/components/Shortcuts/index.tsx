@@ -4,7 +4,6 @@ import { ShortcutAction, ShortcutsProps, Shortcut } from '../../types';
 import { buildShortcuts } from './buildShortcuts';
 import cs from 'classnames';
 import invariant from 'invariant';
-import { usePrevious } from '../../hooks/usePrevious';
 
 export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   scoped = false,
@@ -18,13 +17,8 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
 }) => {
   const ref = useRef<HTMLElement>(null);
   const [shortcuts, setShortcuts] = useState<ShortcutAction[]>();
-  const previousHandler = usePrevious(handler);
 
   useLayoutEffect(() => {
-    if (shortcuts && handler === previousHandler) {
-      return;
-    }
-
     const trapper = scoped && ref.current ? new mousetrap(ref.current) : mousetrap;
 
     const map = mapKey ? (shortcutMap[mapKey] as Shortcut) : (shortcutMap as Shortcut);
@@ -55,7 +49,8 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
         }
       });
     };
-  }, [handler, mapKey, previousHandler, scoped, shortcutMap, shortcuts]);
+    // eslint-disable-next-line
+  }, [handler, mapKey, scoped, shortcutMap]);
 
   if (!scoped) {
     invariant(children, 'If a mousetrap scoped component then there should be child mice.');
