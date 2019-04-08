@@ -8,7 +8,7 @@ interface BoxProps {
   onMoveRequest: (point: Partial<Point>, index: number) => void;
 }
 
-export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRequest }) => {
+export const Box: React.FunctionComponent<BoxType & BoxProps> = ({ x, y, color, index, onMoveRequest }) => {
   const style: CSSProperties = {
     width: '100px',
     height: '100px',

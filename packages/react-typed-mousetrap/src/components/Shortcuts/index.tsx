@@ -6,7 +6,7 @@ import cs from 'classnames';
 import invariant from 'invariant';
 import { usePrevious } from '@cutting/util/src/hooks/usePrevious';
 
-export const Shortcuts: React.FC<ShortcutsProps> = ({
+export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   scoped = false,
   tabIndex = -1,
   ScopedWrapperComponentType = 'div',
@@ -55,7 +55,7 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
         }
       });
     };
-  }, [handler, mapKey, scoped, shortcutMap, shortcuts]);
+  }, [handler, mapKey, previousHandler, scoped, shortcutMap, shortcuts]);
 
   if (!scoped) {
     invariant(children, 'If a mousetrap scoped component then there should be child mice.');
