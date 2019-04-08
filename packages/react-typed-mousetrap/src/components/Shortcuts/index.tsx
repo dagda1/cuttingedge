@@ -4,7 +4,7 @@ import { ShortcutAction, ShortcutsProps, Shortcut } from '../../types';
 import { buildShortcuts } from './buildShortcuts';
 import cs from 'classnames';
 import invariant from 'invariant';
-import { usePrevious } from '@cutting/util/src/hooks/usePrevious';
+import { usePrevious } from '../../hooks/usePrevious';
 
 export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   scoped = false,
