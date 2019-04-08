@@ -16,7 +16,7 @@ export class Document extends React.Component<DocumentProps> {
     const bodyAttrs = helmet.bodyAttributes.toComponent();
 
     return (
-      <html {...htmlAttrs}>
+      <html lang="em" {...htmlAttrs}>
         <head>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta charSet="utf-8" />

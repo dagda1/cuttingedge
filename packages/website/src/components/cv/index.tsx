@@ -20,7 +20,7 @@ export const CV: React.FunctionComponent = () => {
             <span>CLICK HERE TO DOWNLOAD CV (pdf)</span>
           </a>
         </h1>
-        <iframe src={viewerUrl} />
+        <iframe title="CV" src={viewerUrl} />
       </div>
     </ApplicationLayout>
   );
