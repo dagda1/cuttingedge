@@ -1,7 +1,7 @@
 import React from 'react';
 import { Shortcuts } from '../Shortcuts';
 import { ShortcutsProps } from '../../types';
-import { getDisplayName } from '@cutting/util/src/react/components';
+import { getDisplayName } from '../../utils/getDisplayName';
 
 export const defaultOptions: Partial<ShortcutsProps> = {
   scoped: false,

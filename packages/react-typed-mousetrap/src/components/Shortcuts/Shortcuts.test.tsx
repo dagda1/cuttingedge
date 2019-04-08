@@ -2,8 +2,8 @@ import React from 'react';
 import { Shortcuts } from './index';
 import { mount, ReactWrapper } from 'enzyme';
 import { ShortcutMap, ShortcutsProps } from '../../types';
-import { Omit } from '@cutting/util/src/types/misc';
 import { KeyCode } from '../../types/keycodes';
+import { Omit } from '../../types/omit';
 
 type Wrap = (
   props?: Partial<ShortcutsProps<React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>>>,
