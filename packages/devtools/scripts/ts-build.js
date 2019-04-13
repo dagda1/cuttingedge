@@ -61,7 +61,7 @@ function runEslint() {
   console.log(`Running eslint`);
   const eslintPath = findExecutable(__dirname, 'eslint');
 
-  const eslintConfig = findFile(process.cwd(), 'eslintrc.json');
+  const eslintConfig = findFile(process.cwd(), '.eslintrc.json');
   console.log(chalk.yellow(`using config ${eslintConfig}`));
 
   const args = ` ${paths.appSrc} --ext .ts,.tsx --ignore-pattern *.test.* -c ${eslintConfig} --fix`;

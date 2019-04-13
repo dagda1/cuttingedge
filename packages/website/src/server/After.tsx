@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Switch, Route, withRouter, match as Match, RouteComponentProps } from 'react-router-dom';
 import { loadInitialProps } from './loadInitialProps';
@@ -49,6 +51,7 @@ class Afterparty extends React.Component<Props, AfterpartyState> {
         data: undefined // unless you want to keep it
       });
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { data, match, routes, history, location, staticContext, Layout, ...rest } = nextProps;
 
       loadInitialProps(this.props.routes, nextProps.location.pathname, {
@@ -84,7 +87,7 @@ class Afterparty extends React.Component<Props, AfterpartyState> {
     const { location, Layout } = this.props;
     const initialData = this.prefetcherCache[location.pathname] || data;
 
-    const defaultLayout = ({ children, location }: LayoutProps) => <>{children}</>;
+    const defaultLayout = ({ children }: LayoutProps) => <>{children}</>;
 
     const FinalLayout = Layout || defaultLayout;
 
