@@ -4,8 +4,6 @@ import { loadInitialProps } from './loadInitialProps';
 import { History, Location } from 'history';
 import { AsyncRouteProps, LayoutComponent, LayoutProps } from './types';
 
-/* eslint-disable */
-
 export interface AfterpartyProps extends RouteComponentProps<any> {
   history: History;
   location: Location;

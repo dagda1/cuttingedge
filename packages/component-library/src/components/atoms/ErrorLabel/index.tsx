@@ -10,11 +10,7 @@ export interface ErrorProps {
   className?: string;
 }
 
-export const Error: React.StatelessComponent<ErrorProps> = ({
-  errorMessage,
-  dataSelector,
-  className
-}) => (
+export const Error: React.StatelessComponent<ErrorProps> = ({ errorMessage, dataSelector, className }) => (
   <ul className={cs('current-errors', className, styles.container)}>
     <li data-selector={dataSelector}>{errorMessage}</li>
   </ul>
@@ -24,10 +20,7 @@ Error.defaultProps = {
   dataSelector: 'form-error'
 };
 
-export const ErrorLabel: React.StatelessComponent<ErrorProps> = ({
-  id,
-  ...props
-}) => (
+export const ErrorLabel: React.StatelessComponent<ErrorProps> = ({ id, ...props }) => (
   <div id={id} className="form-group" aria-hidden="false">
     <Error {...props} />
   </div>

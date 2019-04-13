@@ -24,7 +24,7 @@ export const Label: React.StatelessComponent<LabelProps> = ({
   doubleLabelMargin,
   children,
   dataSelector
-}) =>
+}) => (
   <label
     htmlFor={htmlFor}
     id={id}
@@ -37,6 +37,7 @@ export const Label: React.StatelessComponent<LabelProps> = ({
     data-selector={dataSelector}
   >
     {children}
-  </label>;
+  </label>
+);
 
 Label.displayName = 'Label';

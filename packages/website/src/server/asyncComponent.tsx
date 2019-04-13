@@ -62,7 +62,6 @@ export function asyncComponent<Props>({
       const { Component: ComponentFromState } = this.state;
 
       if (ComponentFromState) {
-        // eslint-disable-next-line
         return <ComponentFromState {...this.props as any} />;
       }
 

@@ -28,8 +28,13 @@
   "typescript.preferences.quoteStyle": "single",
   "editor.fontSize": 13,
   "git.autofetch": true,
-  "eslint.packageManager": "yarn",
-  "eslint.options": {
-    "configFile": "../../eslintrc.json"
-  }
+  "eslint.workingDirectories": [
+    "./packages/devtools",
+    "./packages/util",
+    "./packages/react-gel",
+    "./packages/component-library",
+    "./packages/connected-components",
+    "./packages/react-typed-mousetrap",
+    "./packages/website"
+  ]
 }

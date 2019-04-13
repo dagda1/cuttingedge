@@ -3,8 +3,9 @@
   "plugins": ["@typescript-eslint", "react-hooks", "prettier", "jsx-a11y"],
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "prettier",
     "plugin:react/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
     "plugin:jsx-a11y/recommended"
   ],
   "parserOptions": {
@@ -13,6 +14,7 @@
     "project": "./tsconfig.json"
   },
   "env": {
+    "browser": true,
     "node": true,
     "commonjs": true,
     "es6": true,
@@ -20,9 +22,11 @@
   },
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/indent": ["error", 2, { "SwitchCase": 1 }],
-    "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-var-requires": "off",
     "align": [true, "parameters", "arguments", "statements"],
     "arrow-parens": "off",
     "array-type": [true, "array"],
@@ -38,6 +42,7 @@
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
     "jsx-wrap-multiline": false,
+    "jsx-a11y/no-static-element-interactions": "off",
     "label-position": true,
     "max-line-length": [true, 120],
     "member-access": false,

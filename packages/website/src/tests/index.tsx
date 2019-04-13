@@ -20,7 +20,7 @@ export const createStoreForTesting = (stateOverride?: Partial<State>) => {
   const reducer = getReducers();
 
   const middlewares: Middleware[] = [];
-  const enhancers = middlewares.map(a => applyMiddleware(a));
+  const enhancers = middlewares.map((a) => applyMiddleware(a));
 
   return createStore(reducer, initialState, compose(...enhancers));
 };
