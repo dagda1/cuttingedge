@@ -19,8 +19,14 @@ export async function ensureReady(routes: AsyncRouteProps[], pathname?: string) 
   let data;
   if (typeof window !== undefined && !!document) {
     // deserialize state from 'serialize-javascript' format
-    // eslint:disable-next-line
-    data = eval('(' + (document as any).getElementById('server-app-state').textContent + ')');
+    const serverAppState = document.getElementById('server-app-state');
+
+    if (!serverAppState) {
+      throw new Error('no server-app-state element');
+    }
+
+    // eslint-disable-next-line
+    data = eval('(' + serverAppState.textContent + ')');
   }
   return Promise.resolve(data);
 }

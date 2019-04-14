@@ -1,9 +1,12 @@
 import React from 'react';
 import serialize from 'serialize-javascript';
-import { DocumentProps } from './types';
+import { DocumentProps, DocumentType } from './types';
 
-export class Document extends React.Component<DocumentProps> {
-  static async getInitialProps({ assets, data, renderPage }: DocumentProps) {
+export class Document<TProps extends DocumentType, TData = {}, TParams = unknown> extends React.Component<
+  DocumentProps<TProps, TData, TParams>
+> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static async getInitialProps({ assets, data, renderPage }: DocumentProps<any>) {
     const page = await renderPage();
 
     return { assets, data, ...page };
@@ -41,8 +44,7 @@ export function AfterRoot() {
   return <div id="root">DO_NOT_DELETE_THIS_YOU_WILL_BREAK_YOUR_APP</div>;
 }
 
-// eslint-disable-next-line
-export function AfterData({ data }: any) {
+export function AfterData<TData>({ data }: { data: TData }) {
   return (
     <script
       id="server-app-state"

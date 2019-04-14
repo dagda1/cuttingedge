@@ -1,20 +1,23 @@
 import { AsyncRouteableComponent, AsyncRouteComponentType } from './types';
 
 /** @private is the given object a Function? */
-export const isFunction = (obj: any) => 'function' === typeof obj;
+export const isFunction = <T>(obj: T) => 'function' === typeof obj;
 
 /** @private is the given object an Object? */
-export const isObject = (obj: any) => obj !== null && typeof obj === 'object';
+export const isObject = <T>(obj: T) => obj !== null && typeof obj === 'object';
 
 /** @private is the given object/value a promise? */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isPromise = (value: any): boolean => isObject(value) && isFunction(value.then);
 
 /** @private Guard cluase to narrow the AsyncRouteableComponent union type on getInitialProps */
-export function isAsyncComponent(Component: AsyncRouteableComponent): Component is AsyncRouteComponentType<any> {
-  return (Component as AsyncRouteComponentType<any>).getInitialProps !== undefined;
+export function isAsyncComponent<T>(Component: AsyncRouteableComponent): Component is AsyncRouteComponentType<T> {
+  return (Component as AsyncRouteComponentType<T>).getInitialProps !== undefined;
 }
 
 /** @private Guard cluase to narrow the AsyncRouteableComponent union type on load */
-export function isLoadableComponent(Component: AsyncRouteableComponent): Component is AsyncRouteComponentType<any> {
-  return (Component as AsyncRouteComponentType<any>).load !== undefined;
+export function isLoadableComponent<Props>(
+  Component: AsyncRouteableComponent
+): Component is AsyncRouteComponentType<Props> {
+  return (Component as AsyncRouteComponentType<Props>).load !== undefined;
 }

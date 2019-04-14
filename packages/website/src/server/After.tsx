@@ -5,7 +5,7 @@ import { loadInitialProps } from './loadInitialProps';
 import { History, Location } from 'history';
 import { AsyncRouteProps, LayoutComponent, LayoutProps } from './types';
 
-export interface AfterpartyProps<TData = unknown, TParams = unknown> extends RouteComponentProps<TParams> {
+export interface AfterpartyProps<TData = {}, TParams = unknown> extends RouteComponentProps<TParams> {
   history: History;
   location: Location;
   data?: Promise<TData>[];
@@ -14,22 +14,23 @@ export interface AfterpartyProps<TData = unknown, TParams = unknown> extends Rou
   Layout?: LayoutComponent;
 }
 
-export interface AfterpartyState<TData = unknown> {
+export interface AfterpartyState<TData = {}> {
   data?: Promise<TData>[];
   previousLocation: Location | null;
 }
 
-type Props = AfterpartyProps;
+type Props<TData, TParams> = AfterpartyProps<TData, TParams>;
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-class Afterparty extends React.Component<Props, AfterpartyState> {
+class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TData, TParams>, AfterpartyState> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prefetcherCache: any;
 
-  static defaultProps: Pick<Props, 'Layout'> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static defaultProps: Pick<Props<any, any>, 'Layout'> = {
     Layout: ({ children }: { children: React.ReactNode }) => <>{children}</>
   };
 
-  constructor(props: Props) {
+  constructor(props: Props<TData, TParams>) {
     super(props);
 
     this.state = {

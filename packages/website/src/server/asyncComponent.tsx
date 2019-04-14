@@ -31,9 +31,11 @@ export function asyncComponent<Props>({
 
     static getInitialProps(ctx: Ctx<Props>) {
       // Need to call the wrapped components getInitialProps if it exists
-      if (ComponentToRender !== null) {
-        return ComponentToRender.getInitialProps ? ComponentToRender.getInitialProps(ctx) : Promise.resolve(null);
+      if (ComponentToRender === null) {
+        return undefined;
       }
+
+      return ComponentToRender.getInitialProps ? ComponentToRender.getInitialProps(ctx) : Promise.resolve(null);
     }
 
     constructor(props: Props) {
