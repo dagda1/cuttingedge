@@ -1,23 +1,19 @@
 import React from 'react';
 import * as Urls from '../urls';
 import { asyncComponent } from '../server/asyncComponent';
-import { isPage } from '../utils/guards';
+import { AsyncRouteProps } from '../server/types';
 
-export interface Page {
+export interface Page<Props = unknown> extends AsyncRouteProps<Props> {
   heading: string;
   path: string;
-  component: React.ComponentType;
-  exact?: boolean;
   footerPage?: boolean;
 }
-
-export type RouteOnly = Pick<Page, 'heading' | 'path' | 'footerPage'>;
 
 // TODO: better loader
 const Loading = () => <div>...LOADING...</div>;
 
 /* eslint-disable react/display-name */
-export const routes: (Page | RouteOnly)[] = [
+export const routes: Page[] = [
   {
     heading: 'Home',
     path: Urls.Home,
@@ -77,7 +73,5 @@ export const routes: (Page | RouteOnly)[] = [
 ];
 
 export const bannerPages = routes.filter((p) => !p.footerPage && p.path !== Urls.Home);
-
-export const componentRoutes: Page[] = routes.filter(isPage);
 
 export const footerPages = routes.filter((p) => p.footerPage);

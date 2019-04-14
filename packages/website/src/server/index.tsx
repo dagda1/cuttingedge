@@ -1,7 +1,7 @@
 import React from 'react';
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
-import { componentRoutes } from '../routes';
+import { routes } from '../routes';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction, getDisplayName } from '@cutting/util';
@@ -80,7 +80,7 @@ app.get('/*', async (req, res) => {
   const html = await render({
     req,
     res,
-    routes: componentRoutes,
+    routes,
     assets,
     Layout: createConnectedLayout(store)
   });

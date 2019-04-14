@@ -64,7 +64,7 @@ function runEslint() {
   const eslintConfig = findFile(process.cwd(), '.eslintrc.json');
   console.log(chalk.yellow(`using config ${eslintConfig}`));
 
-  const args = ` ${paths.appSrc} --ext ts --ext tsx --ignore-pattern *.test.* -c ${eslintConfig} --fix`;
+  const args = ` --ext .ts,.tsx ${paths.appSrc} --ignore-pattern *.test.* -c ${eslintConfig} --fix`;
 
   console.log(`running eslint in ${chalk.yellow(eslintPath)} with ${chalk.yellow(args)}`);
 
