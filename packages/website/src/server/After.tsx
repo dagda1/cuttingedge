@@ -1,27 +1,27 @@
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Switch, Route, withRouter, match as Match, RouteComponentProps } from 'react-router-dom';
 import { loadInitialProps } from './loadInitialProps';
 import { History, Location } from 'history';
 import { AsyncRouteProps, LayoutComponent, LayoutProps } from './types';
 
-export interface AfterpartyProps extends RouteComponentProps<any> {
+export interface AfterpartyProps<TData = unknown, TParams = unknown> extends RouteComponentProps<TParams> {
   history: History;
   location: Location;
-  data?: Promise<any>[];
+  data?: Promise<TData>[];
   routes: AsyncRouteProps[];
-  match: Match<any>;
+  match: Match<TParams>;
   Layout?: LayoutComponent;
 }
 
-export interface AfterpartyState {
-  data?: Promise<any>[];
+export interface AfterpartyState<TData = unknown> {
+  data?: Promise<TData>[];
   previousLocation: Location | null;
 }
 
 type Props = AfterpartyProps;
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class Afterparty extends React.Component<Props, AfterpartyState> {
   prefetcherCache: any;
 
