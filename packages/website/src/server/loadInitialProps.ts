@@ -2,7 +2,7 @@ import { matchPath } from 'react-router-dom';
 import { AsyncRouteProps, InitialProps, CtxBase } from './types';
 import { isAsyncComponent } from './utils';
 
-export async function loadInitialProps(
+export async function loadInitialProps<TData = unknown>(
   routes: AsyncRouteProps[],
   pathname: string,
   ctx: CtxBase

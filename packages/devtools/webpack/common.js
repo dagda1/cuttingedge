@@ -47,6 +47,7 @@ const configureCommon = (options) => {
 
   const config = {
     mode: isDevelopment ? 'development' : 'production',
+    devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
     context: process.cwd(),
     output: {
       path: paths.appBuild,

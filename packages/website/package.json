@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development cutting ssr-start",
+    "debug": "yarn start -- --inspect=localhost:9230",
     "build": "NODE_ENV=production cutting ssr-build",
     "test": "NODE_ENV=test cutting test",
     "deploy": "NODE_ENV=production yarn build && ./bin/deploy.sh",

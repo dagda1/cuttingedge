@@ -78,7 +78,6 @@ const configure = (options = {}) => {
     externals: getExternals(isDevelopment),
     watch: isDevelopment,
     entry: isDevelopment ? ['razzle-dev-utils/prettyNodeErrors', 'webpack/hot/poll?300', ...entries] : entries,
-    devtool: !isDevelopment && 'cheap-module-source-map',
     node: {
       __console: false,
       __dirname: false,

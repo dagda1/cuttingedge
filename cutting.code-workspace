@@ -29,6 +29,7 @@
     }
   ],
   "settings": {
-    "typescript.tsdk": "cuttingedge/node_modules/typescript/lib"
+    "typescript.tsdk": "cuttingedge/node_modules/typescript/lib",
+    "eslint.packageManager": "yarn"
   }
 }

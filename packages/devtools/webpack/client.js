@@ -86,7 +86,6 @@ const configure = (options) => {
     name: 'client',
     target: 'web',
     entry: finalEntries,
-    devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
     devServer: isDevelopment
       ? {
           before(app) {
