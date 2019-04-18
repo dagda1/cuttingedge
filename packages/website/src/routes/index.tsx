@@ -1,7 +1,6 @@
 import React from 'react';
 import * as Urls from '../urls';
-import { asyncComponent } from '../server/asyncComponent';
-import { AsyncRouteProps } from '../server/types';
+import { AsyncRouteProps, asyncComponent } from '@cutting/afterafterjs';
 
 export interface Page<Props = unknown> extends AsyncRouteProps<Props> {
   heading: string;

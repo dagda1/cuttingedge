@@ -4,6 +4,9 @@
       "path": "."
     },
     {
+      "path": "packages/afterafterjs"
+    },
+    {
       "path": "packages/react-typed-mousetrap"
     },
     {

@@ -21,3 +21,7 @@ export function isLoadableComponent<Props>(
 ): Component is AsyncRouteComponentType<Props> {
   return (Component as AsyncRouteComponentType<Props>).load !== undefined;
 }
+
+export function getDisplayName<T>(WrappedComponent: React.ComponentType<T>) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}

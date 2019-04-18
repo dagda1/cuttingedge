@@ -9,7 +9,7 @@ import * as utils from './utils';
 import * as url from 'url';
 import { Request, Response } from 'express';
 import { Assets, AsyncRouteProps, LayoutComponent } from './types';
-import { getDisplayName } from '@cutting/util';
+import { getDisplayName } from './utils';
 
 const modPageFn = function<Props>(Page: React.ComponentType<Props>) {
   const Wrapped: React.FunctionComponent<Props> = (props: Props) => <Page {...props} />;

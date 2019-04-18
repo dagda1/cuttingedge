@@ -5,13 +5,12 @@ import { routes } from '../routes';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction, getDisplayName } from '@cutting/util';
-import { render } from './render';
+import { render, LayoutProps } from '@cutting/afterafterjs';
 import favicon from 'serve-favicon';
 import path from 'path';
 import { Assets } from 'assets-webpack-plugin';
 import configureStore from '../store';
 import { history } from '../routes/history';
-import { LayoutProps } from './types';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 
