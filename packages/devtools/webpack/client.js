@@ -17,6 +17,7 @@ const safePostCssParser = require('postcss-safe-parser');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+const sassOptions = require('./sassOptions');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -42,14 +43,6 @@ const configure = (options) => {
   const ssrBuild = !isStaticBuild;
 
   const { isDevelopment, isProduction } = getEnvironment();
-
-  const sassOptions = {
-    outputStyle: 'expanded',
-    sourceMap: isDevelopment,
-    data: '@import "./styles/_overrides.scss";',
-    includePaths: [paths.appSrc],
-    minimize: isProduction
-  };
 
   const common = configureCommon(options);
 

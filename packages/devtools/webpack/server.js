@@ -7,36 +7,23 @@ const paths = require('../config/paths');
 const postcssOptions = require('./postCssoptions');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const fs = require('fs-extra');
+const sassOptions = require('./sassOptions');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
 const port = process.env.PORT;
 
 getExternals = function(isDevelopment) {
-  const modulesDirectory = fs.existsSync('../../node_modules') ? '../../node_modules' : './node_modules';
-  const modulesDir = path.join(process.cwd(), modulesDirectory);
-
-
-  if (!fs.existsSync(paths.appNodeModules)) {
-    throw new Error('not found node_modules');
-  }
-
   return [
-    nodeExternals(),
     nodeExternals({
-      modulesDir,
       whitelist: [
         isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
-        /^@cutting/
-      ].filter(Boolean)
+      ].filter(x => x),
     }),
-    {
-      './server.js': 'commonjs ./server.js'
-    }
   ];
 };
 
@@ -45,14 +32,6 @@ const configure = (options = {}) => {
 
   options.isWeb = false;
   const { isDevelopment, isProduction } = getEnvironment();
-
-  const sassOptions = {
-    outputStyle: 'expanded',
-    sourceMap: isDevelopment,
-    data: '@import "./styles/_overrides.scss";',
-    includePaths: [paths.appSrc],
-    minimize: isProduction
-  };
 
   const env = getEnvVariables(options);
 
