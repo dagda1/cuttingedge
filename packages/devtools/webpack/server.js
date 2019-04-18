@@ -13,9 +13,11 @@ const { configureCommon, getEnvironment, getEnvVariables } = require('./common')
 const port = process.env.PORT;
 
 getExternals = function(isDevelopment) {
-  const modulesDir = path.resolve(__dirname, '../node_modules');
+  const modulesDirectory = fs.existsSync('../../node_modules') ? '../../node_modules' : './node_modules';
+  const modulesDir = path.join(process.cwd(), modulesDirectory);
 
-  if (!fs.existsSync(modulesDir)) {
+
+  if (!fs.existsSync(paths.appNodeModules)) {
     throw new Error('not found node_modules');
   }
 
@@ -29,7 +31,7 @@ getExternals = function(isDevelopment) {
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
-        /^@c2/
+        /^@cutting/
       ].filter(Boolean)
     }),
     {
