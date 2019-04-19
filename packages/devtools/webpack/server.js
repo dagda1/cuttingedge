@@ -1,13 +1,8 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const getLocalIdent = require('./getLocalIdent');
 const paths = require('../config/paths');
-const postcssOptions = require('./postCssoptions');
 const StartServerPlugin = require('start-server-webpack-plugin');
-const fs = require('fs-extra');
-const sassOptions = require('./sassOptions');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
@@ -18,12 +13,9 @@ getExternals = function(isDevelopment) {
     nodeExternals({
       whitelist: [
         isDevelopment ? 'webpack/hot/poll?300' : null,
-        /\.(eot|woff|woff2|ttf|otf)$/,
-        /\.(svg|png|jpg|jpeg|gif|ico)$/,
-        /\.(mp4|mp3|ogg|swf|webp)$/,
-        /\.(css|scss|sass|sss|less)$/,
-      ].filter(x => x),
-    }),
+        /^@cutting/
+      ].filter(x => x)
+    })
   ];
 };
 
@@ -73,7 +65,7 @@ const configure = (options = {}) => {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.(css|scss|sass)$/,
           use: [
             {
               loader: 'css-loader',
@@ -82,24 +74,9 @@ const configure = (options = {}) => {
                 importLoaders: 2
               }
             },
-            { loader: 'postcss-loader', options: postcssOptions }
-          ]
-        },
-        {
-          test: /\.scss$/,
-          exclude: /node_modules/,
-          use: [
             {
-              loader: 'css-loader',
-              options: {
-                exportOnlyLocals: true,
-                importLoaders: 2,
-                modules: true,
-                getLocalIdent: getLocalIdent
-              }
-            },
-            { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader', options: sassOptions }
+              loader: 'sass-loader'
+            }
           ]
         }
       ]

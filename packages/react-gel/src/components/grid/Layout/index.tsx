@@ -15,7 +15,7 @@ export interface LayoutProps {
   fit?: boolean;
 }
 
-export const Layout: React.SFC<LayoutProps> = ({
+export const Layout: React.FunctionComponent<LayoutProps> = ({
   Tag = 'div',
   className,
   flush,

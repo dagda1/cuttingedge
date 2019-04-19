@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Twitter: React.SFC = () => (
+export const Twitter: React.FunctionComponent = () => (
   <svg viewBox="0 0 11 9" xmlns="http://www.w3.org/2000/svg">
     <path
       // eslint:disable-next-line

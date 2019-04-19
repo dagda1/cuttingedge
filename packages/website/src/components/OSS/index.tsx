@@ -6,7 +6,7 @@ import { Repo, repos } from './repos';
 
 const styles = require('./OSS.scss');
 
-export const OSS: React.SFC = () => (
+export const OSS: React.FunctionComponent = () => (
   <ApplicationLayout>
     <div className={styles.container}>
       <Heading level={1}>Open Source Software</Heading>

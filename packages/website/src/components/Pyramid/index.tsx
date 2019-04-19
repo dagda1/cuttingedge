@@ -3,7 +3,7 @@ import { Layout, GelItem } from '@cutting/react-gel';
 
 const styles = require('./Pyramid.scss');
 
-export const Pyramid: React.SFC = () => (
+export const Pyramid: React.FunctionComponent = () => (
   <Layout center className={styles.parent}>
     <GelItem s="1/3">
       <div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Github: React.SFC = () => (
+export const Github: React.FunctionComponent = () => (
   <svg viewBox="0 0 33 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="github" fill="#fff">

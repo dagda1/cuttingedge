@@ -15,10 +15,6 @@
   },
   "dependencies": {
     "@cutting/component-library": "0.4.1",
-    "connected-react-router": "^6.3.2",
-    "redux-form": "^8.1.0"
-  },
-  "devDependencies": {
-    "@types/redux-form": "^8.1.0"
+    "formik": "^1.5.2"
   }
 }

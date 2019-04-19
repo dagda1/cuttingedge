@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 const styles = require('./Footer.scss');
 
-export const Footer: React.SFC = () => (
+export const Footer: React.FunctionComponent = () => (
   <footer role="contentinfo">
     <Wrap className="wrapper">
       <Layout>

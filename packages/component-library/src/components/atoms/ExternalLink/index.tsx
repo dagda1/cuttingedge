@@ -5,7 +5,7 @@ export interface ExternalLinkProps extends React.AnchorHTMLAttributes<HTMLAnchor
   blank?: boolean;
 }
 
-export const ExternalLink: React.SFC<ExternalLinkProps> = ({
+export const ExternalLink: React.FunctionComponent<ExternalLinkProps> = ({
   className,
   href,
   dataSelector,

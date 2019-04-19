@@ -3,7 +3,7 @@ import { posts, Post } from './posts';
 import { StaticLayout } from '../../layouts/StaticLayout';
 import { Heading, ExternalLink } from '@cutting/component-library';
 
-export const Blog: React.SFC = () => (
+export const Blog: React.FunctionComponent = () => (
   <StaticLayout heading="Blog">
     {posts.map((post: Post, i: number) => (
       <div key={i}>

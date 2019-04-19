@@ -10,7 +10,7 @@ export interface GelItemProps extends BreakPointProps {
   w?: string;
 }
 
-export const GelItem: React.SFC<GelItemProps> = ({
+export const GelItem: React.FunctionComponent<GelItemProps> = ({
   Tag = 'div',
   className,
   children,

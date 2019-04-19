@@ -50,7 +50,7 @@ if (isProduction) {
 
 /* eslint-disable no-console */
 
-const createConnectedLayout = (store: Store): React.SFC<LayoutProps> => {
+const createConnectedLayout = (store: Store): React.FunctionComponent<LayoutProps> => {
   const Wrapped: React.FunctionComponent<LayoutProps> = ({ children }) => <Provider store={store}>{children}</Provider>;
 
   Wrapped.displayName = getDisplayName(Wrapped);
