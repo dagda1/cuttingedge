@@ -7,7 +7,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   invalid?: boolean;
 }
 
-export const Input: React.StatelessComponent<InputProps> = ({ invalid, className, required, ...rest }) => (
+export const Input: React.FunctionComponent<InputProps> = ({ invalid, className, required, ...rest }) => (
   <input
     autoComplete="off"
     required={required}

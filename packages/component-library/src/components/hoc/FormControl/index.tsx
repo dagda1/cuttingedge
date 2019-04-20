@@ -6,27 +6,27 @@ import { prefixId } from '../../../utl';
 
 const styles = require('./FormControl.scss');
 
-export interface FormControlWrapperProps {
+export type GenericFieldHTMLAttributes<InputType> = React.InputHTMLAttributes<InputType>;
+
+export type FormControlProps<InputType> = {
   additionalLabel?: React.ReactNode;
   className?: string;
-  doubleLabelMargin?: boolean;
   errorDataSelector?: string;
   errorMessage?: string;
   highlight?: boolean;
-  id?: string;
   invalid?: boolean;
   label: string;
-  name?: string;
   required?: boolean;
   strong?: boolean;
-  width?: number | string;
-}
+} & GenericFieldHTMLAttributes<InputType>;
 
-export function FormControl<T>(Comp: React.ComponentType<T>): React.ComponentClass<FormControlWrapperProps & T> {
-  return class FormControlWrapper extends React.Component<FormControlWrapperProps & T> {
+export function FormControl<T, InputType>(
+  Comp: React.ComponentType<T>
+): React.ComponentClass<FormControlProps<InputType> & T> {
+  return class FormControlWrapper extends React.Component<FormControlProps<InputType> & T> {
     id?: string;
 
-    constructor(props: FormControlWrapperProps & T) {
+    constructor(props: FormControlProps<InputType> & T) {
       super(props);
 
       this.id = this.props.id || this.props.name || prefixId();
@@ -38,7 +38,6 @@ export function FormControl<T>(Comp: React.ComponentType<T>): React.ComponentCla
         name,
         label,
         strong,
-        doubleLabelMargin,
         errorDataSelector,
         errorMessage,
         className,
@@ -51,17 +50,12 @@ export function FormControl<T>(Comp: React.ComponentType<T>): React.ComponentCla
       const errorId = `${this.id}-error`;
 
       return (
-        <div
-          className={cs('form-group', styles.input, className, highlight && styles.highlight, {
-            'double-margin': doubleLabelMargin
-          })}
-        >
+        <div className={cs('form-group', styles.input, className, highlight && styles.highlight)}>
           <Label
             id={`${this.id}-label`}
             htmlFor={this.id}
             required={required}
             strong={strong}
-            doubleLabelMargin
             dataSelector={rest['data-selector'] && `${rest['data-selector']}-label`}
           >
             {label}

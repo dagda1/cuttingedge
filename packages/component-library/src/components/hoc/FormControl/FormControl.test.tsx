@@ -1,12 +1,12 @@
 import { mount } from 'enzyme';
 import React from 'react';
 import { Select } from '../../atoms/Select';
-import { FormControl, FormControlWrapperProps } from '.';
+import { FormControl, FormControlProps } from '.';
 
 const FormSelect = FormControl(Select);
 
-const wrap = (props?: Partial<FormControlWrapperProps>) =>
-  mount(<FormSelect options={[1, 2, 3]} label="label" {...props} />);
+const wrap = (props?: Partial<FormControlProps<HTMLSelectElement>>) =>
+  mount(<FormSelect options={[1, 2, 3] as any} label="label" {...props} />);
 
 describe('FormControl', () => {
   it('should wrap component with label', () => {

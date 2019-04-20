@@ -1,63 +1,70 @@
-import { FormInput, FormSelect, OptionType } from '@cutting/component-library';
+import { FormInput, FormSelect } from '@cutting/component-library';
 import React from 'react';
-import { WrappedFieldInputProps, WrappedFieldMetaProps, GenericFieldHTMLAttributes } from 'redux-form';
-import { getDisplayName } from '@cutting/util/src/react/components';
+import {
+  GenericFieldHTMLAttributes,
+  FormikHandlers,
+  FieldConfig,
+  FormikState,
+  FormikComputedProps,
+  getIn
+} from 'formik';
+import { getDisplayName } from '@cutting/util';
+import { FormControlProps } from '@cutting/component-library';
+import { domOnlyProps } from '../../../utils/domOnlyProps';
 
 export type ControlValue = string | number | Date;
 
-export interface FormControlProps {
-  controlOnChange?: React.ChangeEventHandler<HTMLElement>;
-  input: WrappedFieldInputProps;
-  meta: WrappedFieldMetaProps;
-}
+export type FormControlWrapperProps<Props = {}, InputType = GenericFieldHTMLAttributes> = FormikHandlers &
+  FieldConfig &
+  FormikState<Props> &
+  FormikComputedProps<Props> &
+  FormControlProps<InputType> & {
+    controlOnChange?: React.ChangeEventHandler<HTMLElement>;
+  };
 
-export function renderFormControl<T>(Comp: React.ComponentType): React.FunctionComponent<FormControlProps & T> {
-  const Wrapped: React.FunctionComponent<FormControlProps & T> = ({
-    controlOnChange = () => undefined,
-    input: { onChange, value, name },
-    meta: { active, error, invalid, submitFailed, touched },
+export function renderFormControl<Props, InputType extends HTMLElement>(
+  Comp: React.ComponentType<FormControlProps<InputType>>
+): React.FunctionComponent<FormControlProps<Props>> {
+  const Wrapped: React.FunctionComponent<FormControlWrapperProps<Props, InputType>> = ({
+    controlOnChange = (e: React.ChangeEvent<InputType>) => e,
+    handleChange,
+    handleBlur,
+    touched,
+    values,
+    errors,
+    submitCount,
+    isValid,
+    name,
+    label,
     ...rest
-  }) => (
-    <Comp
-      name={name}
-      invalid={!active && touched && invalid && submitFailed}
-      errorMessage={!active && invalid && error}
-      onChange={(e: React.ChangeEvent<HTMLElement>) => {
-        controlOnChange(e);
-        onChange(e);
-      }}
-      value={value}
-      {...rest}
-    />
-  );
+  }) => {
+    const error = getIn(errors, name);
+    const value = getIn(values, name);
+    const isTouched = getIn(touched, name);
+    const invalid = !isValid;
+    const submitted = submitCount > 0;
+
+    return (
+      <Comp
+        label={label}
+        name={name}
+        onBlur={handleBlur}
+        invalid={submitted && invalid && isTouched}
+        errorMessage={submitted && touched && invalid && error}
+        onChange={(e: React.ChangeEvent<InputType>) => {
+          controlOnChange(e);
+          handleChange(e);
+        }}
+        value={value}
+        {...domOnlyProps(rest)}
+      />
+    );
+  };
 
   Wrapped.displayName = getDisplayName(Wrapped);
 
   return Wrapped;
 }
 
-export const renderFormInput = renderFormControl(FormInput);
-export const renderFormSelect = renderFormControl(FormSelect);
-
-export type FieldProps = GenericFieldHTMLAttributes & {
-  dataSelector?: string;
-  'data-selector'?: string;
-  monthYearOnly?: boolean;
-  dateFormat?: string;
-  // eslint-disable-next-line
-  controlOnChange?: (...args: any[]) => any;
-  label?: string;
-  additionalLabel?: React.ReactNode;
-  maxLength?: number;
-  onKeyDown?: React.KeyboardEventHandler;
-  options?: OptionType[];
-  legend?: string;
-  valueKey?: string | number;
-  optionKey?: string | number;
-  defaultLabel?: string;
-  doubleLabelMargin?: boolean;
-  dividerAt?: number;
-  errorDataSelector?: string;
-  hideLegend?: boolean;
-  filterOptions?: (c: OptionType) => boolean;
-};
+export const ConnectedFormInput = renderFormControl(FormInput);
+export const ConnectedFormSelect = renderFormControl(FormSelect);

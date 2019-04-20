@@ -10,18 +10,16 @@ export interface LabelProps {
   required?: boolean;
   className?: string;
   strong?: boolean;
-  doubleLabelMargin?: boolean;
   dataSelector?: string;
 }
 
-export const Label: React.StatelessComponent<LabelProps> = ({
+export const Label: React.FunctionComponent<LabelProps> = ({
   id,
   htmlFor,
   invalid,
   required,
   className,
   strong,
-  doubleLabelMargin,
   children,
   dataSelector
 }) => (
@@ -31,8 +29,7 @@ export const Label: React.StatelessComponent<LabelProps> = ({
     className={cs(styles.default, className, {
       [styles.required]: required,
       [styles.invalid]: invalid,
-      [styles.strong]: strong,
-      [styles['double-margin']]: doubleLabelMargin
+      [styles.strong]: strong
     })}
     data-selector={dataSelector}
   >

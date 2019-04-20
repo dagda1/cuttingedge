@@ -17,8 +17,6 @@ export interface ButtonProps {
   disabled?: boolean;
   type?: string;
   component?: React.ComponentType<ButtonProps> | string;
-  to?: string;
-  href?: string;
   id?: string;
   htmlFor?: string;
   tabIndex?: number;
@@ -27,7 +25,7 @@ export interface ButtonProps {
   title?: string;
 }
 
-export const Button: React.StatelessComponent<ButtonProps> = ({
+export const Button: React.FunctionComponent<ButtonProps> = ({
   onClick,
   className,
   buttonStyle,

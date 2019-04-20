@@ -6,7 +6,7 @@
     "start": "yarn build && yarn --cwd packages/website/ start"
   },
   "dependencies": {
-    "@cutting/util": "0.5.1",
+    "@cutting/util": "0.6.0",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
     "express": "^4.16.3",
@@ -23,7 +23,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "0.9.1",
+    "@cutting/devtools": "0.10.0",
     "@types/classnames": "^2.2.4",
     "@types/enzyme": "^3.1.14",
     "@types/express": "^4.16.0",

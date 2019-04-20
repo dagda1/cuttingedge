@@ -19,9 +19,4 @@ describe('Button', () => {
     wrapper.find('button').simulate('click');
     expect(onClick).toHaveBeenCalledTimes(1);
   });
-
-  it('renders the component you specify', () => {
-    const wrapper = wrap({ component: 'a' });
-    expect(wrapper.is('a')).toBeTruthy();
-  });
 });

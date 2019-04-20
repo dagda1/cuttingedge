@@ -6,6 +6,7 @@ const isProduction = !isDevelopment;
 module.exports =  {
   outputStyle: 'expanded',
   sourceMap: isDevelopment,
+  data: '@import "./styles/_overrides.scss";',
   includePaths: [paths.appSrc],
   minimize: isProduction
 };
