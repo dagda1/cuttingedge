@@ -3,34 +3,35 @@
 .input {
   display: flex;
 
-  &.vertical {
-    flex-direction: column;
-    justify-content: flex-start;
-  }
+  flex-direction: column;
+  justify-content: flex-start;
 
-  &.horizontal {
-    flex: 1;
-    flex-wrap: wrap;
-    align-items: center;
-
-    .wrapper {
+  @include mq-m {
+    &.horizontal {
+      flex-direction: row;
       flex: 1;
-    }
+      flex-wrap: wrap;
+      align-items: center;
 
-    label {
-      @include mr(1);
-    }
+      .wrapper {
+        flex: 1;
+      }
 
-    [role='alert'] {
-      width: 100%;
+      label {
+        @include mr(1);
+      }
+
+      [role='alert'] {
+        width: 100%;
+      }
     }
   }
 
   label {
-    @include mb(1);
+    @include my(1);
 
     @include mq-s {
-      @include mb(2);
+      @include my(2);
     }
 
     font-weight: normal;
