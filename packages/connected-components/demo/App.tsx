@@ -1,8 +1,9 @@
 import React from 'react';
-import { Heading, Button } from '@cutting/component-library';
+import { Heading, Button, ButtonStyle } from '@cutting/component-library';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { withFormik, FormikProps } from 'formik';
 import { ConnectedFormInput } from '../src/components/FormWrappers/FormControlWrapper';
+import { LayoutType } from '@cutting/component-library/src/components';
 
 require('./App.scss');
 
@@ -15,8 +16,10 @@ const MyForm: React.FunctionComponent<FormikProps<WeatherState>> = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <ConnectedFormInput {...props} name="city" label="city" />
-      <Button type="submit">Submit</Button>
+      <ConnectedFormInput {...props} name="city" label="city" layoutType={LayoutType.horizontal} />
+      <Button type="submit" buttonStyle={ButtonStyle.Primary}>
+        Submit
+      </Button>
     </form>
   );
 };
@@ -36,10 +39,8 @@ const MyEnhancedForm = withFormik({
   },
 
   handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+    alert(JSON.stringify(values, null, 2));
+    setSubmitting(false);
   },
 
   displayName: 'BasicForm'
@@ -71,7 +72,7 @@ export class App extends React.Component<AppProps, AppState> {
           </GelItem>
         </Layout>
         <Layout>
-          <GelItem>
+          <GelItem m="1/2">
             <MyEnhancedForm />
           </GelItem>
         </Layout>

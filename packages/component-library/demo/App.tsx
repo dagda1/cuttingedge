@@ -1,7 +1,7 @@
 // eslint:disable
 require('./global.scss');
 import React from 'react';
-import { Rhombus, Cow, Modal, Heading, FormInput, FormSelect } from '../src/components';
+import { Rhombus, Cow, Modal, Heading, FormInput, FormSelect, LayoutType } from '../src/components';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 
@@ -52,6 +52,21 @@ export class App extends React.Component<AppProps, AppState> {
             <FormInput
               strong={false}
               label="This is a really, really, really, really, really, really, really, really, really, really long bit of text"
+            />
+          </GelItem>
+        </Layout>
+        <Layout>
+          <GelItem l="1/4">
+            <FormInput
+              layoutType={LayoutType.horizontal}
+              label="Horizontal"
+              maxLength={100}
+              onKeyDown={(e) => {
+                console.log(e);
+                return true;
+              }}
+              invalid
+              errorMessage="foo bar"
             />
           </GelItem>
         </Layout>

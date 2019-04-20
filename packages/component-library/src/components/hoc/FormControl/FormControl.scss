@@ -1,15 +1,36 @@
 @import '../../../styles/index';
 
 .input {
+  display: flex;
+
+  &.vertical {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  &.horizontal {
+    flex: 1;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .wrapper {
+      flex: 1;
+    }
+
+    label {
+      @include mr(1);
+    }
+
+    [role='alert'] {
+      width: 100%;
+    }
+  }
+
   label {
     @include mb(1);
 
     @include mq-s {
       @include mb(2);
-
-      &.double-margin {
-        @include mb(3);
-      }
     }
 
     font-weight: normal;

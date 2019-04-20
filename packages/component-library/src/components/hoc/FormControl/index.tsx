@@ -6,6 +6,11 @@ import { prefixId } from '../../../utl';
 
 const styles = require('./FormControl.scss');
 
+export enum LayoutType {
+  vertical = 'vertical',
+  horizontal = 'horizontal'
+}
+
 export type GenericFieldHTMLAttributes<InputType> = React.InputHTMLAttributes<InputType>;
 
 export type FormControlProps<InputType> = {
@@ -18,6 +23,7 @@ export type FormControlProps<InputType> = {
   label: string;
   required?: boolean;
   strong?: boolean;
+  layoutType?: LayoutType;
 } & GenericFieldHTMLAttributes<InputType>;
 
 export function FormControl<T, InputType>(
@@ -32,6 +38,11 @@ export function FormControl<T, InputType>(
       this.id = this.props.id || this.props.name || prefixId();
     }
 
+    public static defaultProps = {
+      layoutType: LayoutType.vertical
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any;
+
     render() {
       const {
         invalid,
@@ -44,13 +55,20 @@ export function FormControl<T, InputType>(
         additionalLabel,
         highlight,
         required,
+        layoutType,
         ...rest
       } = this.props;
 
       const errorId = `${this.id}-error`;
 
       return (
-        <div className={cs('form-group', styles.input, className, highlight && styles.highlight)}>
+        <div
+          className={cs(styles.input, className, {
+            [styles.highlight]: highlight,
+            [styles.vertical]: layoutType === LayoutType.vertical,
+            [styles.horizontal]: layoutType === LayoutType.horizontal
+          })}
+        >
           <Label
             id={`${this.id}-label`}
             htmlFor={this.id}
@@ -66,13 +84,13 @@ export function FormControl<T, InputType>(
               id={this.id}
               name={name}
               invalid={invalid}
-              aria-invalid={invalid}
               required={required}
+              aria-invalid={invalid}
               aria-describedby={errorId}
               {...rest as T}
             />
           </div>
-          <div id={errorId} className="form-group" aria-hidden={!invalid} role="alert">
+          <div id={errorId} aria-hidden={!invalid} role="alert">
             {invalid && errorMessage && (
               <Error
                 dataSelector={(rest['data-selector'] && `${rest['data-selector']}-error`) || errorDataSelector}

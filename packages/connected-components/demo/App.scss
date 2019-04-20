@@ -1,3 +1,7 @@
+$label-default-color: #fff;
+
+@import '../src/styles/_index.scss';
+
 html {
   height: 100%;
   font-size: 100%;
@@ -9,8 +13,15 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1;
   background-color: #000;
+  color: #fff;
 }
 
-h1 {
-  color: #fff;
+*,
+*:before,
+*:after {
+  box-sizing: border-box !important;
+}
+
+ul {
+  padding: 0;
 }

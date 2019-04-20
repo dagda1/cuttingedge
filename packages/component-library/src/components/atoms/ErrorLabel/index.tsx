@@ -21,7 +21,7 @@ export const Error: React.FunctionComponent<ErrorProps> = ({
 );
 
 export const ErrorLabel: React.FunctionComponent<ErrorProps> = ({ id, ...props }) => (
-  <div id={id} className="form-group" aria-hidden="false">
+  <div id={id} aria-hidden="false">
     <Error {...props} />
   </div>
 );
