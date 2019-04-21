@@ -6,6 +6,15 @@
   flex-direction: column;
   justify-content: flex-start;
 
+  label,
+  input,
+  textarea,
+  select {
+    font: inherit;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
   @include mq-m {
     &.horizontal {
       flex-direction: row;

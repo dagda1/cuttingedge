@@ -3,7 +3,7 @@ import React from 'react';
 import { Switch, Route, withRouter, match as Match, RouteComponentProps } from 'react-router-dom';
 import { loadInitialProps } from './loadInitialProps';
 import { History, Location } from 'history';
-import { AsyncRouteProps, LayoutComponent, LayoutProps } from './types';
+import { AsyncRouteProps } from './types';
 
 export interface AfterpartyProps<TData = {}, TParams = unknown> extends RouteComponentProps<TParams> {
   history: History;
@@ -11,7 +11,6 @@ export interface AfterpartyProps<TData = {}, TParams = unknown> extends RouteCom
   data?: Promise<TData>[];
   routes: AsyncRouteProps[];
   match: Match<TParams>;
-  Layout?: LayoutComponent;
 }
 
 export interface AfterpartyState<TData = {}> {
@@ -24,11 +23,6 @@ type Props<TData, TParams> = AfterpartyProps<TData, TParams>;
 class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TData, TParams>, AfterpartyState> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prefetcherCache: any;
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static defaultProps: Pick<Props<any, any>, 'Layout'> = {
-    Layout: ({ children }: { children: React.ReactNode }) => <>{children}</>
-  };
 
   constructor(props: Props<TData, TParams>) {
     super(props);
@@ -53,7 +47,7 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
       });
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { data, match, routes, history, location, staticContext, Layout, ...rest } = nextProps;
+      const { data, match, routes, history, location, staticContext, ...rest } = nextProps;
 
       loadInitialProps(this.props.routes, nextProps.location.pathname, {
         location: nextProps.location,
@@ -85,35 +79,29 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
 
   render() {
     const { previousLocation, data } = this.state;
-    const { location, Layout } = this.props;
+    const { location } = this.props;
     const initialData = this.prefetcherCache[location.pathname] || data;
 
-    const defaultLayout = ({ children }: LayoutProps) => <>{children}</>;
-
-    const FinalLayout = Layout || defaultLayout;
-
     return (
-      <FinalLayout location={location}>
-        <Switch>
-          {this.props.routes.map((r, i) => (
-            <Route
-              key={`route--${i}`}
-              path={r.path}
-              exact={r.exact}
-              location={previousLocation || location}
-              render={(props) =>
-                React.createElement(r.component, {
-                  ...initialData,
-                  history: props.history,
-                  location: previousLocation || location,
-                  match: props.match,
-                  prefetch: this.prefetch
-                })
-              }
-            />
-          ))}
-        </Switch>
-      </FinalLayout>
+      <Switch>
+        {this.props.routes.map((r, i) => (
+          <Route
+            key={`route--${i}`}
+            path={r.path}
+            exact={r.exact}
+            location={previousLocation || location}
+            render={(props) =>
+              React.createElement(r.component, {
+                ...initialData,
+                history: props.history,
+                location: previousLocation || location,
+                match: props.match,
+                prefetch: this.prefetch
+              })
+            }
+          />
+        ))}
+      </Switch>
     );
   }
 }

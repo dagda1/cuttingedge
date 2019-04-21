@@ -32,12 +32,12 @@ export interface AfterRenderOptions<T> {
   assets: Assets;
   routes: AsyncRouteProps[];
   document?: typeof DefaultDoc;
-  Layout?: LayoutComponent;
+  Layout: LayoutComponent;
   customRenderer?: (element: React.ReactElement<T>) => { html: string };
 }
 
 export async function render<T>(options: AfterRenderOptions<T>) {
-  const { req, res, routes, assets, document: Document, customRenderer, ...rest } = options;
+  const { req, res, routes, assets, document: Document, customRenderer, Layout, ...rest } = options;
   const Doc = Document || DefaultDoc;
 
   const context = {};
@@ -47,14 +47,16 @@ export async function render<T>(options: AfterRenderOptions<T>) {
     ...rest
   });
 
-  const renderPage = async (fn = modPageFn) => {
+  const renderPage = async () => {
     // By default, we keep ReactDOMServer synchronous renderToString function
     const defaultRenderer = (element: React.ReactElement<T>) => ({ html: ReactDOMServer.renderToString(element) });
     const renderer = customRenderer || defaultRenderer;
     const asyncOrSyncRender = renderer(
-      <StaticRouter location={req.url} context={context}>
-        {fn(After)({ routes, data })}
-      </StaticRouter>
+      <Layout>
+        <StaticRouter location={req.url} context={context}>
+          {modPageFn(After)({ routes, data })}
+        </StaticRouter>
+      </Layout>
     );
 
     const renderedContent = utils.isPromise(asyncOrSyncRender) ? await asyncOrSyncRender : asyncOrSyncRender;
@@ -85,6 +87,7 @@ export async function render<T>(options: AfterRenderOptions<T>) {
     data,
     helmet: Helmet.renderStatic(),
     match: reactRouterMatch,
+    Layout,
     ...rest
   });
 

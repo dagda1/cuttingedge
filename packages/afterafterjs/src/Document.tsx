@@ -6,8 +6,8 @@ export class Document<TProps extends DocumentType, TData = {}, TParams = unknown
   DocumentProps<TProps, TData, TParams>
 > {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static async getInitialProps({ assets, data, renderPage }: DocumentProps<any>) {
-    const page = await renderPage();
+  static async getInitialProps({ assets, data, renderPage, Layout }: DocumentProps<any>) {
+    const page = await renderPage(Layout);
 
     return { assets, data, ...page };
   }

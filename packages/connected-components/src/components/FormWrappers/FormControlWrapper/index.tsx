@@ -10,7 +10,6 @@ import {
 } from 'formik';
 import { getDisplayName } from '@cutting/util';
 import { FormControlProps } from '@cutting/component-library';
-import { domOnlyProps } from '../../../utils/domOnlyProps';
 
 export type ControlValue = string | number | Date;
 
@@ -35,8 +34,7 @@ export function renderFormControl<Props, InputType extends HTMLElement>(
     submitCount,
     isValid,
     name,
-    label,
-    ...rest
+    label
   }) => {
     const error = getIn(errors, name);
     const value = getIn(values, name);
@@ -56,7 +54,6 @@ export function renderFormControl<Props, InputType extends HTMLElement>(
           handleChange(e);
         }}
         value={value}
-        {...domOnlyProps(rest)}
       />
     );
   };

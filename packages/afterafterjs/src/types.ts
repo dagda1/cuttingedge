@@ -16,8 +16,9 @@ export interface DocumentProps<TDocument extends DocumentType, TData = {}, TPara
   helmet: HelmetData;
   assets: Assets;
   data: Promise<TData>[];
-  renderPage: () => Promise<TDocument>;
+  renderPage: (Layout: LayoutComponent) => Promise<TDocument>;
   match: Match<TParams> | null;
+  Layout: LayoutComponent;
 }
 
 export interface CtxBase {
@@ -81,7 +82,6 @@ export interface Assets {
 }
 
 export interface LayoutProps {
-  location: Location;
   children: React.ReactNode;
 }
 
