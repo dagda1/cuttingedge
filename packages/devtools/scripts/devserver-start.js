@@ -13,7 +13,7 @@ require('../config/env').getClientEnv();
 const configureWebpackClient = require('../webpack/client').configure;
 const chalk = require('chalk');
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server-speedy');
+const WebpackDevServer = require('webpack-dev-server');
 const clearConsole = require('react-dev-utils/clearConsole');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const { choosePort, createCompiler, prepareProxy, prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
