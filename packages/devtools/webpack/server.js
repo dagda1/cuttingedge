@@ -3,6 +3,9 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const paths = require('../config/paths');
 const StartServerPlugin = require('start-server-webpack-plugin');
+const postcssOptions = require('./postCssoptions');
+const getLocalIdent = require('./getLocalIdent');
+const sassOptions = require('./sassOptions');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
@@ -13,7 +16,12 @@ getExternals = function(isDevelopment) {
     nodeExternals({
       whitelist: [
         isDevelopment ? 'webpack/hot/poll?300' : null,
-        /^@cutting/
+        /\.(eot|woff|woff2|ttf|otf)$/,
+        /\.(svg|png|jpg|jpeg|gif|ico)$/,
+        /\.(mp4|mp3|ogg|swf|webp)$/,
+        /\.(css|scss|sass|sss|less)$/,
+        /^@cutting/,
+        /^@c2/
       ].filter(x => x)
     })
   ];
@@ -65,7 +73,7 @@ const configure = (options = {}) => {
     module: {
       rules: [
         {
-          test: /\.(css|scss|sass)$/,
+          test: /\.css$/,
           use: [
             {
               loader: 'css-loader',
@@ -74,19 +82,34 @@ const configure = (options = {}) => {
                 importLoaders: 2
               }
             },
+            { loader: 'postcss-loader', options: postcssOptions }
+          ]
+        },
+        {
+          test: /\.scss$/,
+          use: [
             {
-              loader: 'sass-loader'
-            }
+              loader: 'css-loader',
+              options: {
+                exportOnlyLocals: true,
+                importLoaders: 2,
+                modules: true,
+                getLocalIdent: getLocalIdent
+              }
+            },
+            { loader: 'postcss-loader', options: postcssOptions },
+            { loader: 'sass-loader', options: sassOptions }
           ]
         }
       ]
     },
 
     plugins: [
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1
+      }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
-      // Ignore assets.json to avoid infinite recompile bug
-      isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
       isDevelopment &&
         new StartServerPlugin({
           name: 'server.js',
