@@ -6,6 +6,7 @@ const StartServerPlugin = require('start-server-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
 const getLocalIdent = require('./getLocalIdent');
 const sassOptions = require('./sassOptions');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
@@ -76,10 +77,15 @@ const configure = (options = {}) => {
           test: /\.css$/,
           use: [
             {
+              loader: ExtractCssChunks.loader,
+              options: {
+                hot: isDevelopment
+              }
+            },
+            {
               loader: 'css-loader',
               options: {
-                exportOnlyLocals: true,
-                importLoaders: 2
+                importLoaders: 1
               }
             },
             { loader: 'postcss-loader', options: postcssOptions }
@@ -89,10 +95,16 @@ const configure = (options = {}) => {
           test: /\.scss$/,
           use: [
             {
+              loader: ExtractCssChunks.loader,
+              options: {
+                hot: isDevelopment,
+                modules: true
+              }
+            },
+            {
               loader: 'css-loader',
               options: {
-                exportOnlyLocals: true,
-                importLoaders: 2,
+                importLoaders: 1,
                 modules: true,
                 getLocalIdent: getLocalIdent
               }
@@ -110,6 +122,10 @@ const configure = (options = {}) => {
       }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
+      new ExtractCssChunks({
+        filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css'
+      }),
       isDevelopment &&
         new StartServerPlugin({
           name: 'server.js',

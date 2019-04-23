@@ -7,7 +7,6 @@ const getLocalIdent = require('./getLocalIdent');
 const { configureCommon, getEnvironment } = require('./common');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
 const paths = require('../config/paths');
 const AssetsPlugin = require('assets-webpack-plugin');
@@ -18,6 +17,7 @@ const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const sassOptions = require('./sassOptions');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -124,7 +124,8 @@ const configure = (options) => {
             {
               loader: ExtractCssChunks.loader,
               options: {
-                hot: isDevelopment
+                hot: isDevelopment,
+                modules: true
               }
             },
             {
@@ -142,7 +143,8 @@ const configure = (options) => {
             {
               loader: ExtractCssChunks.loader,
               options: {
-                hot: isDevelopment
+                hot: isDevelopment,
+                modules: true
               }
             },
             {
@@ -185,7 +187,7 @@ const configure = (options) => {
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new ExtractCssChunks({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css'
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
       }),
 
       new AssetsPlugin({
