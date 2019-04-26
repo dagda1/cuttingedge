@@ -17,7 +17,7 @@ const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const sassOptions = require('./sassOptions');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const ExtractCssChunks = require('mini-css-extract-plugin');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -81,26 +81,36 @@ const configure = (options) => {
     entry: finalEntries,
     devServer: isDevelopment
       ? {
+          disableHostCheck: true,
+          clientLogLevel: 'none',
+          contentBase: paths.appBuild,
+          // Enable gzip compression of generated files.
+          compress: true,
+          // watchContentBase: true,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+          historyApiFallback: {
+            // Paths with dots should still use the history fallback.
+            // See https://github.com/facebookincubator/create-react-app/issues/387.
+            disableDotRule: true,
+          },
+          host: 'localhost',
+          hot: true,
+          noInfo: true,
+          overlay: false,
+          port: devServerPort,
+          quiet: true,
+          // By default files from `contentBase` will not trigger a page reload.
+          // Reportedly, this avoids CPU overload on some systems.
+          // https://github.com/facebookincubator/create-react-app/issues/293
+          watchOptions: {
+            ignored: /node_modules/,
+          },
           before(app) {
             // This lets us open files from the runtime error overlay.
             app.use(errorOverlayMiddleware());
           },
-          contentBase: paths.appBuild,
-          inline: true,
-          clientLogLevel: 'none',
-          compress: true,
-          disableHostCheck: true,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          historyApiFallback: { disableDotRule: true },
-          host,
-          hot: false,
-          hotOnly: true,
-          https: protocol === 'https',
-          noInfo: true,
-          port: devServerPort,
-          quiet: true,
-          overlay: false,
-          watchOptions: { ignored: /node_modules/ },
           proxy
         }
       : {},
@@ -163,7 +173,7 @@ const configure = (options) => {
     },
 
     plugins: [
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
+      isDevelopment && new webpack.HotModuleReplacementPlugin({multistep: true}),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({
@@ -188,6 +198,7 @@ const configure = (options) => {
       new ExtractCssChunks({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
         chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
+        allChunks: true
       }),
 
       new AssetsPlugin({

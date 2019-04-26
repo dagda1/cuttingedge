@@ -1,0 +1,47 @@
+@import '../../../styles/_index.scss';
+
+.container {
+  margin-bottom: 0;
+
+  input[type='radio'] {
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    width: $radio-length;
+    height: $radio-length;
+    z-index: 1;
+    margin: 0;
+    zoom: 1;
+    opacity: 0;
+  }
+
+  label {
+    font-weight: 400;
+    color: $radio-color;
+    display: flex;
+    align-items: center;
+
+    &:before {
+      content: '';
+      width: $radio-length;
+      height: $radio-length;
+      border: 3px solid pink;
+      border-radius: 50%;
+    }
+
+    :after {
+      content: '';
+      border: 10px solid;
+      top: 9px;
+      left: 9px;
+      border-radius: 50%;
+      zoom: 1;
+      opacity: 0;
+    }
+  }
+}
+
+.content {
+  @include ml(2);
+}

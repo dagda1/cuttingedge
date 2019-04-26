@@ -3,6 +3,7 @@ require('./global.scss');
 import React from 'react';
 import { Rhombus, Cow, Modal, Heading, FormInput, FormSelect, LayoutType } from '../src/components';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
+import { Radio } from '../src/components/atoms/Radio';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 
 /* eslint-disable */
@@ -25,6 +26,14 @@ export class App extends React.Component<AppProps, AppState> {
   render() {
     return (
       <Wrap>
+        <Layout>
+          <GelItem>
+            <Heading level={2}>Radio</Heading>
+          </GelItem>
+        </Layout>
+        <Layout>
+          <GelItem l="1/4"><Radio name="radio">Fuck</Radio></GelItem>
+        </Layout>
         <Layout>
           <GelItem>
             <Heading level={2}>Input</Heading>

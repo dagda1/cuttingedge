@@ -6,7 +6,7 @@ const StartServerPlugin = require('start-server-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
 const getLocalIdent = require('./getLocalIdent');
 const sassOptions = require('./sassOptions');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const ExtractCssChunks = require('mini-css-extract-plugin');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
@@ -124,7 +124,8 @@ const configure = (options = {}) => {
       isDevelopment && new webpack.NamedModulesPlugin(),
       new ExtractCssChunks({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css'
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
+        allChunks: true
       }),
       isDevelopment &&
         new StartServerPlugin({
