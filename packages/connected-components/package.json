@@ -14,7 +14,7 @@
     "build": "NODE_ENV=development cutting ts-build -b"
   },
   "dependencies": {
-    "@cutting/component-library": "0.6.0",
+    "@cutting/component-library": "0.7.0",
     "connected-react-router": "^6.4.0",
     "formik": "^1.5.2"
   }

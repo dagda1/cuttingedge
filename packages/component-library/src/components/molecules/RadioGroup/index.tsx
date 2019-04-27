@@ -51,23 +51,25 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps & RadioLayoutPr
       })}
     >
       <legend>{legend}</legend>
-      {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
-      {options.map(({ id, checked, name, content, ...option }) => {
-        return (
-          <Radio
-            key={id}
-            id={id}
-            name={name}
-            layout={layout}
-            size={size}
-            checked={selectedValue && id === selectedValue.id}
-            onChange={changeHandler}
-            {...option}
-          >
-            {content}
-          </Radio>
-        );
-      })}
+      <div className={styles.options__container}>
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
+        {options.map(({ id, checked, name, content, ...option }) => {
+          return (
+            <Radio
+              key={id}
+              id={id}
+              name={name}
+              layout={layout}
+              size={size}
+              checked={selectedValue && id === selectedValue.id}
+              onChange={changeHandler}
+              {...option}
+            >
+              {content}
+            </Radio>
+          );
+        })}
+      </div>
     </fieldset>
   );
 };

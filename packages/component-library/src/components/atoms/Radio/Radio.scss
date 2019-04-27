@@ -53,6 +53,12 @@
     }
   }
 
+  &.inline {
+    label {
+      @include mr(2);
+    }
+  }
+
   &.large {
     input[type='radio'],
     label:before,

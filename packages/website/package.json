@@ -27,7 +27,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/component-library": "0.6.0",
+    "@cutting/component-library": "0.7.0",
     "@cutting/connected-components": "0.6.2",
     "@cutting/react-gel": "0.6.2",
     "@types/helmet": "^0.0.38",

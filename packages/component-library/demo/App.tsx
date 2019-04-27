@@ -49,6 +49,20 @@ export class App extends React.Component<AppProps, AppState> {
               name:"small-stacked", value:"on", checked: true, content: "ON"
             }]} />
           </GelItem>
+          <GelItem l="1/4">
+            <RadioGroup  layout={RadioLayout.inline} size={RadioSize.large} legend="large inline" options={[{
+              name:"large-inline", value:"off", content: "OFF"
+            },{
+              name:"large-inline", value:"on", checked: true, content: "ON"
+            }]} />
+          </GelItem>
+          <GelItem l="1/4">
+            <RadioGroup  layout={RadioLayout.inline} size={RadioSize.small} legend="small inline" options={[{
+              name:"small-inline", value:"off", content: "OFF"
+            },{
+              name:"small-inline", value:"on", checked: true, content: "ON"
+            }]} />
+          </GelItem>
         </Layout>
         <Layout>
           <GelItem>

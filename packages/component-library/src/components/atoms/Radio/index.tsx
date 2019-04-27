@@ -18,7 +18,8 @@ export const Radio: React.FunctionComponent<RadioProps & RadioEventHandlers & Ra
     className={cs(styles.container, {
       [styles.large]: size === RadioSize.large,
       [styles.small]: size === RadioSize.small,
-      [styles.stacked]: layout === RadioLayout.stacked
+      [styles.stacked]: layout === RadioLayout.stacked,
+      [styles.inline]: layout === RadioLayout.inline
     })}
   >
     <input id={id} name={name} type="radio" value={value} onChange={onChange} checked={checked} />
