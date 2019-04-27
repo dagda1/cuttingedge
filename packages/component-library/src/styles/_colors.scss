@@ -49,7 +49,8 @@ $input-error-border: $error-red !default;
 $checkable-border-bg: $base-grey !default;
 $radio-bg-color: $primary-blue !default;
 $radio-color: $white !default;
-$radio-length: 38px;
+$radio-size-large: 38px;
+$radio-size-small: ($radio-size-large / 2);
 
 $element-focus-color: $notification-yellow !default;
 

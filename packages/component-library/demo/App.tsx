@@ -3,8 +3,9 @@ require('./global.scss');
 import React from 'react';
 import { Rhombus, Cow, Modal, Heading, FormInput, FormSelect, LayoutType } from '../src/components';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
-import { Radio } from '../src/components/atoms/Radio';
+import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
+import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
 
 /* eslint-disable */
 export interface AppProps {}
@@ -28,11 +29,26 @@ export class App extends React.Component<AppProps, AppState> {
       <Wrap>
         <Layout>
           <GelItem>
-            <Heading level={2}>Radio</Heading>
+            <Heading level={2}>Radio Group Stacked</Heading>
           </GelItem>
         </Layout>
         <Layout>
-          <GelItem l="1/4"><Radio name="radio">Fuck</Radio></GelItem>
+          <GelItem l="1/4">
+            <RadioGroup legend="large stacked" 
+                        layout={RadioLayout.stacked} size={RadioSize.large} options={[{
+                        name:"large-stacked", value:"off", content: "OFF"
+                        },{
+                          name:"large-stacked", value:"on", checked: true, content: "ON"
+                        }]}
+            />
+          </GelItem>
+          <GelItem l="1/4">
+            <RadioGroup  layout={RadioLayout.stacked} size={RadioSize.small} legend="small stacked" options={[{
+              name:"small-stacked", value:"off", content: "OFF"
+            },{
+              name:"small-stacked", value:"on", checked: true, content: "ON"
+            }]} />
+          </GelItem>
         </Layout>
         <Layout>
           <GelItem>

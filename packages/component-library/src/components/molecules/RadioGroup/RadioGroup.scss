@@ -1,0 +1,11 @@
+@import '../../../styles/_index.scss';
+
+.fieldset {
+  display: flex;
+  border: none;
+  padding: 0;
+
+  legend {
+    @include sr-only;
+  }
+}

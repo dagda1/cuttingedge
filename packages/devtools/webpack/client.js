@@ -17,7 +17,7 @@ const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const sassOptions = require('./sassOptions');
-const ExtractCssChunks = require('mini-css-extract-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -84,9 +84,8 @@ const configure = (options) => {
           disableHostCheck: true,
           clientLogLevel: 'none',
           contentBase: paths.appBuild,
-          // Enable gzip compression of generated files.
           compress: true,
-          // watchContentBase: true,
+          watchContentBase: true,
           headers: {
             'Access-Control-Allow-Origin': '*',
           },
@@ -135,7 +134,7 @@ const configure = (options) => {
               loader: ExtractCssChunks.loader,
               options: {
                 hot: isDevelopment,
-                modules: true
+                reloadAll: true
               }
             },
             {
@@ -154,7 +153,7 @@ const configure = (options) => {
               loader: ExtractCssChunks.loader,
               options: {
                 hot: isDevelopment,
-                modules: true
+                reloadAll: true
               }
             },
             {
@@ -205,7 +204,8 @@ const configure = (options) => {
         path: paths.appBuild,
         filename: 'assets.json'
       }),
-      isProduction && new webpack.HashedModuleIdsPlugin()
+      isProduction && new webpack.HashedModuleIdsPlugin(),
+      isProduction && new webpack.optimize.AggressiveMergingPlugin(),
     ].filter(Boolean)
   });
 

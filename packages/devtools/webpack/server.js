@@ -6,7 +6,7 @@ const StartServerPlugin = require('start-server-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
 const getLocalIdent = require('./getLocalIdent');
 const sassOptions = require('./sassOptions');
-const ExtractCssChunks = require('mini-css-extract-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 

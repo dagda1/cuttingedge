@@ -11,8 +11,7 @@
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "dependencies": {
-    "copy": "^0.3.2",
-    "react-dev-utils": "^8.0.0"
+    "copy": "^0.3.2"
   },
   "devDependencies": {
     "@intervolga/optimize-cssnano-plugin": "^1.0.6"

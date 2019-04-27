@@ -1,20 +1,29 @@
 import React from 'react';
+import cs from 'classnames';
+import { RadioProps, RadioSize, RadioLayout, RadioLayoutProps, RadioEventHandlers } from './types';
 
 const styles = require('./Radio.scss');
 
-export interface RadioProps {
-  id?: string;
-  name: string;
-  checked?: boolean;
-}
-
-export const Radio: React.FunctionComponent<RadioProps> = ({ id, name, children }) => {
-  return (
-    <div className={styles.container}>
-      <input type="radio" name={name} id={id || name} />
-      <label htmlFor={id || name}>
-        <div className={styles.content}>{children}</div>
-      </label>
-    </div>
-  );
-};
+export const Radio: React.FunctionComponent<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
+  id,
+  name,
+  value,
+  checked,
+  children,
+  layout,
+  onChange,
+  size
+}) => (
+  <div
+    className={cs(styles.container, {
+      [styles.large]: size === RadioSize.large,
+      [styles.small]: size === RadioSize.small,
+      [styles.stacked]: layout === RadioLayout.stacked
+    })}
+  >
+    <input id={id} name={name} type="radio" value={value} onChange={onChange} checked={checked} />
+    <label htmlFor={id}>
+      <div className={styles.content}>{children}</div>
+    </label>
+  </div>
+);

@@ -2,18 +2,26 @@
 
 .container {
   margin-bottom: 0;
+  position: relative;
 
   input[type='radio'] {
     position: absolute;
     cursor: pointer;
     left: 0;
     top: 0;
-    width: $radio-length;
-    height: $radio-length;
     z-index: 1;
     margin: 0;
     zoom: 1;
     opacity: 0;
+
+    &:focus + label:before {
+      box-shadow: 0 0 0 4px $accessible-outline;
+      outline: none;
+    }
+
+    &:checked + label:after {
+      opacity: 1;
+    }
   }
 
   label {
@@ -24,24 +32,58 @@
 
     &:before {
       content: '';
-      width: $radio-length;
-      height: $radio-length;
-      border: 3px solid pink;
+      border: 3px solid $radio-bg-color;
       border-radius: 50%;
     }
 
-    :after {
+    &:after {
       content: '';
-      border: 10px solid;
-      top: 9px;
-      left: 9px;
+      position: absolute;
+      background-color: $radio-bg-color;
+      border: none;
+      text-align: center;
       border-radius: 50%;
-      zoom: 1;
       opacity: 0;
+    }
+  }
+
+  &.stacked {
+    label {
+      @include mb(2);
+    }
+  }
+
+  &.large {
+    input[type='radio'],
+    label:before,
+    label:after {
+      width: $radio-size-large;
+      height: $radio-size-large;
+    }
+
+    label:after {
+      transform: scale(0.5);
+    }
+  }
+
+  &.small {
+    input[type='radio'],
+    label:before,
+    label:after {
+      width: $radio-size-small;
+      height: $radio-size-small;
+    }
+
+    label:after {
+      transform: scale(0.4);
     }
   }
 }
 
 .content {
+  display: inline-block;
   @include ml(2);
+  vertical-align: middle;
+  position: relative;
+  top: 10%;
 }

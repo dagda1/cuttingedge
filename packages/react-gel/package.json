@@ -16,8 +16,5 @@
   "dependencies": {
     "gel-grid": "^4.0.0",
     "gel-sass-tools": "^1.2.1"
-  },
-  "devDependencies": {
-    "react-dev-utils": "8.0.0"
   }
 }

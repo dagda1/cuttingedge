@@ -23,7 +23,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "0.11.2",
+    "@cutting/devtools": "0.11.3",
     "@types/classnames": "^2.2.4",
     "@types/enzyme": "^3.1.14",
     "@types/express": "^4.16.0",
@@ -76,9 +76,9 @@
     "postcss-safe-parser": "^4.0.1",
     "prettier": "^1.13.5",
     "raf": "^3.4.0",
-    "razzle-dev-utils": "^2.4.1",
-    "react-dev-utils": "^5.0.1",
-    "react-error-overlay": "^4.0.0",
+    "razzle-dev-utils": "^3.0.0",
+    "react-dev-utils": "^9.0.0",
+    "react-error-overlay": "^5.0.4",
     "react-test-renderer": "^16.4.0",
     "sass-loader": "^7.1.0",
     "source-map-support": "^0.5.12",
