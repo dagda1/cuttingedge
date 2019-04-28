@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio';
 import { RadioProps, RadioLayoutProps, RadioSize, RadioLayout } from '../../atoms/Radio/types';
 import cs from 'classnames';
+import { Omit } from '@cutting/util';
 
 const styles = require('./RadioGroup.scss');
 
@@ -9,19 +10,23 @@ export type RadioOption = RadioProps & { content: React.ReactNode };
 
 export interface RadioGroupProps<T = {}> {
   legend: string;
-  options: RadioOption[];
+  name: string;
+  options: (Omit<RadioOption, 'name' | 'id'> & Partial<Pick<RadioOption, 'id'>>)[];
   onChange?: (option: RadioProps<T>) => void;
+  className?: string;
 }
 
 export const RadioGroup: React.FunctionComponent<RadioGroupProps & RadioLayoutProps> = ({
   legend,
   layout,
   size,
+  name,
   options: radioOptions,
-  onChange
+  onChange,
+  className
 }) => {
   const optionsWithIds = useRef<RadioOption[]>(
-    radioOptions.map((o, index) => ({ ...o, id: o.id || `${o.name}-${index}` }))
+    radioOptions.map((o, index) => ({ ...o, name, id: o.id || `${name}-${index}` }))
   );
   const [selectedValue, setSelectedValue] = useState(optionsWithIds.current.find((o) => !!o.checked));
   const options = optionsWithIds.current;
@@ -51,7 +56,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps & RadioLayoutPr
       })}
     >
       <legend>{legend}</legend>
-      <div className={styles.options__container}>
+      <div className={cs(styles.options__container, className)}>
         {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
         {options.map(({ id, checked, name, content, ...option }) => {
           return (

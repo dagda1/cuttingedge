@@ -4,7 +4,7 @@ export enum RadioLayout {
 }
 
 export type RadioProps<T = {}> = T & {
-  id?: string;
+  id: string;
   name: string;
   checked?: boolean;
   value: string | string | number;

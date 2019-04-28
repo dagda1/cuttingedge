@@ -19,31 +19,25 @@
       outline: none;
     }
 
-    &:checked + label:after {
-      opacity: 1;
+    &:checked + label:before {
+      background: radial-gradient($radio-bg-color 0%, $radio-bg-color 40%, transparent 50%, transparent 100%);
     }
   }
 
   label {
-    font-weight: 400;
-    color: $radio-color;
     display: flex;
+    position: relative;
+    padding-left: 30px;
     align-items: center;
+    line-height: 30px;
+    font-size: 1.25rem;
 
     &:before {
       content: '';
-      border: 3px solid $radio-bg-color;
-      border-radius: 50%;
-    }
-
-    &:after {
-      content: '';
       position: absolute;
-      background-color: $radio-bg-color;
-      border: none;
-      text-align: center;
+      left: 0;
       border-radius: 50%;
-      opacity: 0;
+      border: 2px solid $radio-bg-color;
     }
   }
 
@@ -51,11 +45,23 @@
     label {
       @include mb(2);
     }
+
+    .content {
+      @include ml(2);
+    }
   }
 
   &.inline {
     label {
-      @include mr(2);
+      @include mr(1);
+
+      .content {
+        @include ml(1);
+      }
+    }
+
+    &.large .content {
+      @include ml(2);
     }
   }
 
@@ -80,15 +86,18 @@
       height: $radio-size-small;
     }
 
+    label:before {
+      border-width: 2px;
+    }
+
     label:after {
-      transform: scale(0.4);
+      transform: scale(0.5);
     }
   }
 }
 
 .content {
   display: inline-block;
-  @include ml(2);
   vertical-align: middle;
   position: relative;
   top: 10%;
