@@ -18,6 +18,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const sassOptions = require('./sassOptions');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -106,7 +107,8 @@ const configure = (options) => {
           watchOptions: {
             ignored: /node_modules/
           },
-          before(app) {
+          before(app, server) {
+            app.use(evalSourceMapMiddleware(server));
             // This lets us open files from the runtime error overlay.
             app.use(errorOverlayMiddleware());
           },
@@ -121,9 +123,7 @@ const configure = (options) => {
       chunkFilename: isProduction
         ? 'static/js/[name].[contenthash:8].chunk.js'
         : isDevelopment && 'static/js/[name].chunk.js',
-      devtoolModuleFilenameTemplate: (info) => path.resolve(info.resourcePath).replace(/\\/g, '/'),
-      hotUpdateChunkFilename: 'hot/hot-update.js',
-      hotUpdateMainFilename: 'hot/hot-update.json'
+      devtoolModuleFilenameTemplate: (info) => path.resolve(info.resourcePath).replace(/\\/g, '/')
     },
     module: {
       rules: [

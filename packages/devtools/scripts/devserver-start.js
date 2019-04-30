@@ -51,11 +51,16 @@ choosePort(HOST, DEFAULT_PORT)
     const appName = require(paths.appPackageJson).name;
     const urls = prepareUrls(protocol, HOST, port);
 
-    const compiler = createCompiler({ webpack, config, appName, urls, useYarn: false });
-
     const proxySetting = require(paths.appPackageJson).proxy;
 
     config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic);
+
+    const devSocket = {
+      warnings: (warnings) => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
+      errors: (errors) => devServer.sockWrite(devServer.sockets, 'errors', errors)
+    };
+
+    const compiler = createCompiler({ webpack, config, appName, devSocket, useTypeScript: true, urls, useYarn: false });
 
     const devServer = new WebpackDevServer(compiler, config.devServer);
 
