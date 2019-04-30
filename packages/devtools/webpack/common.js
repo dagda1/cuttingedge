@@ -5,6 +5,7 @@ const paths = require('../config/paths');
 const WebpackBar = require('webpackbar');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const resolve = require('resolve');
+const fs = require('fs-extra');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -26,7 +27,9 @@ const getEnvVariables = (options) => {
   const { isDevelopment } = getEnvironment();
   delete require.cache[require.resolve('../config/env')];
 
-  return require('../config/env').getClientEnv(
+  const { getClientEnv } = require('../config/env');
+
+  return getClientEnv(
     options.isNode ? 'node' : 'web',
     {},
     {
@@ -45,6 +48,12 @@ const configureCommon = (options) => {
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables(options);
 
+  const packagesPath = path.resolve(__dirname, '../../devtools');
+
+  const monoRepoNodeModules = fs.existsSync(packagesPath)
+    ? path.resolve(packagesPath, '../../node_modules')
+    : undefined;
+
   const config = {
     mode: isDevelopment ? 'development' : 'production',
     devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
@@ -54,7 +63,11 @@ const configureCommon = (options) => {
       publicPath: '/'
     },
     resolve: {
-      modules: [path.join(process.cwd(), 'src'), 'node_modules'],
+      symlinks: false,
+      modules: ['node_modules', paths.appNodeModules].concat(
+        // It is guaranteed to exist because we tweak it in `env.js`
+        env.raw.nodePath || path.resolve('.')
+      ),
       extensions: [
         '.web.mjs',
         '.mjs',
@@ -68,11 +81,13 @@ const configureCommon = (options) => {
         '.web.jsx',
         '.jsx'
       ],
-      alias: isDevelopment
-        ? {
-            'webpack/hot/poll': require.resolve('webpack/hot/poll')
-          }
-        : {}
+      alias: {
+        // This is required so symlinks work during development.
+        'webpack/hot/poll': require.resolve('webpack/hot/poll')
+      }
+    },
+    resolveLoader: {
+      modules: [paths.appNodeModules, paths.ownNodeModules, monoRepoNodeModules].filter(Boolean)
     },
     module: {
       strictExportPresence: true,

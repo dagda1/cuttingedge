@@ -6,7 +6,7 @@ const StartServerPlugin = require('start-server-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
 const getLocalIdent = require('./getLocalIdent');
 const sassOptions = require('./sassOptions');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
@@ -23,7 +23,7 @@ getExternals = function(isDevelopment) {
         /\.(css|scss|sass|sss|less)$/,
         /^@cutting/,
         /^@c2/
-      ].filter(x => x)
+      ].filter((x) => x)
     })
   ];
 };
@@ -77,9 +77,9 @@ const configure = (options = {}) => {
           test: /\.css$/,
           use: [
             {
-              loader: ExtractCssChunks.loader,
+              loader: MiniCssExtractPlugin.loader,
               options: {
-                hot: isDevelopment
+                hmr: isDevelopment
               }
             },
             {
@@ -95,10 +95,9 @@ const configure = (options = {}) => {
           test: /\.scss$/,
           use: [
             {
-              loader: ExtractCssChunks.loader,
+              loader: MiniCssExtractPlugin.loader,
               options: {
-                hot: isDevelopment,
-                modules: true
+                hmr: isDevelopment
               }
             },
             {
@@ -122,10 +121,9 @@ const configure = (options = {}) => {
       }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
-      new ExtractCssChunks({
+      new MiniCssExtractPlugin({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
-        allChunks: true
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css'
       }),
       isDevelopment &&
         new StartServerPlugin({

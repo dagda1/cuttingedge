@@ -17,7 +17,7 @@ const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const sassOptions = require('./sassOptions');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -87,12 +87,12 @@ const configure = (options) => {
           compress: true,
           watchContentBase: true,
           headers: {
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': '*'
           },
           historyApiFallback: {
             // Paths with dots should still use the history fallback.
             // See https://github.com/facebookincubator/create-react-app/issues/387.
-            disableDotRule: true,
+            disableDotRule: true
           },
           host: 'localhost',
           hot: true,
@@ -104,7 +104,7 @@ const configure = (options) => {
           // Reportedly, this avoids CPU overload on some systems.
           // https://github.com/facebookincubator/create-react-app/issues/293
           watchOptions: {
-            ignored: /node_modules/,
+            ignored: /node_modules/
           },
           before(app) {
             // This lets us open files from the runtime error overlay.
@@ -131,10 +131,9 @@ const configure = (options) => {
           test: /\.css$/,
           use: [
             {
-              loader: ExtractCssChunks.loader,
+              loader: MiniCssExtractPlugin.loader,
               options: {
-                hot: isDevelopment,
-                reloadAll: true
+                hmr: isDevelopment
               }
             },
             {
@@ -150,10 +149,9 @@ const configure = (options) => {
           test: /\.scss$/,
           use: [
             {
-              loader: ExtractCssChunks.loader,
+              loader: MiniCssExtractPlugin.loader,
               options: {
-                hot: isDevelopment,
-                reloadAll: true
+                hmr: isDevelopment
               }
             },
             {
@@ -172,7 +170,7 @@ const configure = (options) => {
     },
 
     plugins: [
-      isDevelopment && new webpack.HotModuleReplacementPlugin({multistep: true}),
+      isDevelopment && new webpack.HotModuleReplacementPlugin({ multistep: true }),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({
@@ -194,10 +192,9 @@ const configure = (options) => {
       isProduction && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-      new ExtractCssChunks({
+      new MiniCssExtractPlugin({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
-        allChunks: true
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css'
       }),
 
       new AssetsPlugin({
@@ -205,7 +202,7 @@ const configure = (options) => {
         filename: 'assets.json'
       }),
       isProduction && new webpack.HashedModuleIdsPlugin(),
-      isProduction && new webpack.optimize.AggressiveMergingPlugin(),
+      isProduction && new webpack.optimize.AggressiveMergingPlugin()
     ].filter(Boolean)
   });
 

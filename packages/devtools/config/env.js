@@ -66,7 +66,8 @@ function getClientEnvironment(target, options = {}, additional = {}) {
           // variable available to users.
           CUTTING_PUBLIC_DIR: process.env.NODE_ENV === 'production' ? paths.appBuildPublic : paths.appPublic,
           CI: process.env.CI,
-          PUBLIC_URL: ''
+          PUBLIC_URL: '',
+          nodePath
         },
         additional
       )
