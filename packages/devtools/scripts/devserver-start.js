@@ -24,17 +24,22 @@ const fs = require('fs');
 
 const isInteractive = process.stdout.isTTY;
 
-const devServerConfig = require(paths.jsBuildConfigPath).devServer;
+const globalServerConfig = require(paths.jsBuildConfigPath).devServer;
 
-if (!fs.existsSync(devServerConfig.publicDir)) {
-  devServerConfig.publicDir = paths.devDirPublic;
-  devServerConfig.entries = paths.devDir;
-}
+const localDevServerConfig = require(paths.localBuildConfig).devServer || {};
+
+const devServerConfig = { ...globalServerConfig, ...localDevServerConfig };
+
+devServerConfig.publicDir = fs.existsSync(devServerConfig.publicDir) ? devServerConfig.publicDir : paths.devDirPublic;
+devServerConfig.entries =
+  Array.isArray(devServerConfig.entries) || fs.existsSync(devServerConfig.entries)
+    ? devServerConfig.entries
+    : paths.devDir;
 
 let config = configureWebpackClient(devServerConfig);
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([path.join(devServerConfig.publicDir, 'index.html'), devServerConfig.entries])) {
+if (!checkRequiredFiles([path.join(devServerConfig.publicDir, 'index.html')])) {
   process.exit(1);
 }
 
