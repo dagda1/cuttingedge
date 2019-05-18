@@ -1,5 +1,5 @@
 # production dockerfile
-FROM node:10.3
+FROM node:11.6
 
 RUN rm -rf /cutting/
 

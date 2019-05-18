@@ -17,7 +17,7 @@ export const CV: React.FunctionComponent = () => {
       <div className={styles['pdf-viewer']}>
         <h1>
           <a className={styles.link} href={Urls.Download}>
-            <span>CLICK HERE TO DOWNLOAD CV (pdf)</span>
+            <span>CLICK HERE TO DOWNLOAD MY CV (pdf)</span>
           </a>
         </h1>
         <iframe title="CV" src={viewerUrl} />
