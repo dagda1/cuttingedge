@@ -36,3 +36,4 @@ lcov.info
 coverage
 
 tsconfig.tsbuildinfo
+test-results
