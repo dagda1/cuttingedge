@@ -1,5 +1,4 @@
 export * from './types';
-export * from './tests/helper.test';
 export * from './environment';
 export * from './uniqueid';
 export * from './identity';

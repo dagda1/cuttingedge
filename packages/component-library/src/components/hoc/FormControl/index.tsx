@@ -87,7 +87,7 @@ export function FormControl<T, InputType>(
               required={required}
               aria-invalid={invalid}
               aria-describedby={errorId}
-              {...rest as T}
+              {...(rest as T)}
             />
           </div>
           <div id={errorId} aria-hidden={!invalid} role="alert">

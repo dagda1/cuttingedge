@@ -65,7 +65,7 @@ export function asyncComponent<Props>({
 
       if (ComponentFromState) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return <ComponentFromState {...this.props as any} />;
+        return <ComponentFromState {...(this.props as any)} />;
       }
 
       if (Placeholder) {
