@@ -7,17 +7,17 @@ The [atomic design methodology](http://atomicdesign.bradfrost.com/chapter-2/) wi
 ## view functionality
 
 ```sh
-yarn start
+npm start
 ```
 
 ## build
 
 ```sh
-yarn build
+npm run build
 ```
 
 ## run tests
 
 ```sh
-yarn test
+npm test
 ```

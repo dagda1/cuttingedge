@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp ../../yarn.lock .
+cp ../../package.jsom.lock .
 
 source ./bin/env.sh
 
@@ -8,7 +8,7 @@ echo "building backend"
 
 dcprod build
 
-rm ./yarn.lock
+rm ./package.jsom.lock
 
 ./bin/stop_production.sh
 ./bin/start_production.sh

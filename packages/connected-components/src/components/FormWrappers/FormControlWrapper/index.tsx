@@ -1,29 +1,22 @@
 import { FormInput, FormSelect } from '@cutting/component-library';
 import React from 'react';
-import {
-  GenericFieldHTMLAttributes,
-  FormikHandlers,
-  FieldConfig,
-  FormikState,
-  FormikComputedProps,
-  getIn
-} from 'formik';
+import { FormikHandlers, FieldConfig, FormikState, FormikComputedProps, getIn } from 'formik';
 import { getDisplayName } from '@cutting/util';
 import { FormControlProps } from '@cutting/component-library';
 
 export type ControlValue = string | number | Date;
 
-export type FormControlWrapperProps<Props = {}, InputType = GenericFieldHTMLAttributes> = FormikHandlers &
+export type FormControlWrapperProps<Props, InputType> = FormikHandlers &
   FieldConfig &
   FormikState<Props> &
   FormikComputedProps<Props> &
   FormControlProps<InputType> & {
-    controlOnChange?: React.ChangeEventHandler<HTMLElement>;
+    controlOnChange?: React.ChangeEventHandler<InputType>;
   };
 
 export function renderFormControl<Props, InputType extends HTMLElement>(
   Comp: React.ComponentType<FormControlProps<InputType>>
-): React.FunctionComponent<FormControlProps<Props>> {
+): React.FunctionComponent<FormControlProps<InputType>> {
   const Wrapped: React.FunctionComponent<FormControlWrapperProps<Props, InputType>> = ({
     controlOnChange = (e: React.ChangeEvent<InputType>) => e,
     handleChange,

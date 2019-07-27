@@ -1,4 +1,4 @@
-export const isPlainObject = <T>(obj: T): boolean => {
+export const isPlainObject = <T extends object>(obj: T): boolean => {
   const isObject = typeof obj === 'object' && obj !== null && !Array.isArray(obj);
 
   if (!isObject || (obj.toString && obj.toString() !== '[object Object]')) {

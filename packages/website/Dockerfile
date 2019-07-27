@@ -15,7 +15,7 @@ COPY ./packages/website/package.json .
 
 ADD ./packages/website/.npmrc-deploy /root/.npmrc
 
-RUN yarn install --production --network-timeout 1000000
+RUN npm install --production --network-timeout 1000000
 
 RUN mkdir /cutting/tmp
 ADD node_modules ./tmp

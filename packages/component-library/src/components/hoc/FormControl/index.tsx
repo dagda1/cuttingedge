@@ -11,8 +11,6 @@ export enum LayoutType {
   horizontal = 'horizontal'
 }
 
-export type GenericFieldHTMLAttributes<InputType> = React.InputHTMLAttributes<InputType>;
-
 export type FormControlProps<InputType> = {
   additionalLabel?: React.ReactNode;
   className?: string;
@@ -24,7 +22,7 @@ export type FormControlProps<InputType> = {
   required?: boolean;
   strong?: boolean;
   layoutType?: LayoutType;
-} & GenericFieldHTMLAttributes<InputType>;
+} & React.InputHTMLAttributes<InputType>;
 
 export function FormControl<T, InputType>(
   Comp: React.ComponentType<T>

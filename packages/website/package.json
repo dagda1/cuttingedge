@@ -8,10 +8,10 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development cutting ssr-start",
-    "debug": "yarn start -- --inspect=localhost:9230",
+    "debug": "npm start -- --inspect=localhost:9230",
     "build": "NODE_ENV=production cutting ssr-build",
     "test": "NODE_ENV=test cutting test",
-    "deploy": "NODE_ENV=production yarn build && ./bin/deploy.sh",
+    "deploy": "NODE_ENV=production npm run build && ./bin/deploy.sh",
     "serve": "NODE_ENV=production node ./dist/server.js"
   },
   "dependencies": {
@@ -43,7 +43,6 @@
     "ts-node": "^8.0.3",
     "webpack-dev-middleware": "^3.1.3",
     "webpack-flush-chunks": "^1.2.3",
-    "webpack-hot-server-middleware": "^0.5.0",
-    "webpack-merge": "^4.1.4"
+    "webpack-hot-server-middleware": "^0.5.0"
   }
 }

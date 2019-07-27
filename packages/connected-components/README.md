@@ -3,17 +3,17 @@
 [Redux](https://redux.js.org/) is the defacto state management solution for react at this time of writing and any common redux functionality can be found here.
 
 ```sh
-yarn start
+npm start
 ```
 
 ## build
 
 ```sh
-yarn build
+npm run build
 ```
 
 ## run tests
 
 ```sh
-yarn test
+npm test
 ```
