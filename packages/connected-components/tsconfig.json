@@ -6,10 +6,8 @@
     "declaration": true,
     "jsx": "react",
     "outDir": "dist",
-    "rootDir": "./src",
-    "composite": true
+    "rootDir": "./src"
   },
-  "references": [{ "path": "../util" }, { "path": "../component-library" }],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "**/*.test.ts", "**/*.test.tsx"]
 }

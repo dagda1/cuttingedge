@@ -8,16 +8,9 @@
     "jsx": "react",
     "outDir": "./dist",
     "baseUrl": ".",
-    "sourceMap": true,
-    "composite": true
+    "sourceMap": true
   },
   "files": ["../../types/index.d.ts"],
-  "references": [
-    { "path": "../util" },
-    { "path": "../afterafterjs" },
-    { "path": "../component-library" },
-    { "path": "../connected-components" }
-  ],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

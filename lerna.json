@@ -7,7 +7,6 @@
     "packages/react-typed-mousetrap",
     "packages/component-library",
     "packages/connected-components",
-    "packages/react-scrollto-any",
     "packages/website"
   ],
   "version": "independent"

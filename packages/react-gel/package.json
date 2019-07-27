@@ -11,7 +11,7 @@
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=development cutting ts-build -b"
+    "build": "NODE_ENV=development cutting ts-build"
   },
   "dependencies": {
     "@cutting/util": "0.6.0",

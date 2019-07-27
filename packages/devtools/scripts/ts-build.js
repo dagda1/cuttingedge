@@ -55,11 +55,9 @@ function runTypeScriptBuild() {
 
   fs.emptyDirSync(paths.appBuild);
 
-  if (!process.argv.includes('-b') && !process.argv.includes('--build')) {
-    process.argv.push('--sourceMap', process.argv.includes('--source-map'));
-  }
-
   process.argv.push('--pretty', true);
+
+  process.argv.push('-p', paths.tsConfig);
 
   const tscPath = findExecutable(__dirname, 'tsc');
 

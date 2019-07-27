@@ -6,8 +6,7 @@
     "declaration": true,
     "jsx": "react",
     "outDir": "./dist",
-    "rootDir": "./src",
-    "composite": true
+    "rootDir": "./src"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
