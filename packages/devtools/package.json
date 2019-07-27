@@ -1,6 +1,6 @@
 {
   "name": "@cutting/devtools",
-  "version": "0.11.7",
+  "version": "0.11.11",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -15,5 +15,12 @@
   },
   "devDependencies": {
     "@intervolga/optimize-cssnano-plugin": "^1.0.6"
-  }
+  },
+  "files": [
+    "bin/cutting.js",
+    "config/**/*",
+    "jest/**/*.js",
+    "scripts/**/*.js",
+    "webpack/**/*.js"
+  ]
 }

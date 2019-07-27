@@ -1,17 +1,20 @@
 #! /usr/bin/env node
+/* eslint-disable no-console */
 
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const program = require('commander');
-const { spawn, spawnSync } = require('child_process');
+const { spawn } = require('child_process');
 const paths = require('../config/paths');
 
 function getPackages(packages) {
-  return packages.filter(pkgPath => fs.lstatSync(pkgPath).isDirectory()).map(pkgPath => {
-    let pkg = require(path.join(pkgPath, './package.json'));
-    return { ...pkg, path: pkgPath };
-  });
+  return packages
+    .filter((pkgPath) => fs.lstatSync(pkgPath).isDirectory())
+    .map((pkgPath) => {
+      let pkg = require(path.join(pkgPath, './package.json'));
+      return { ...pkg, path: pkgPath };
+    });
 }
 
 /**
@@ -32,9 +35,12 @@ function runPkgCmd(cmd, args, pkg) {
       cwd: pkg.path
     });
 
-    child.on('exit', code => {
-      if (code === 0) resolve();
-      else reject(code);
+    child.on('exit', (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(code);
+      }
     });
   });
 }

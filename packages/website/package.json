@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@cutting/afterafterjs": "0.4.0",
-    "@types/assets-webpack-plugin": "^3.5.1",
+    "@cutting/util": "0.6.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "global": "^4.3.2",
@@ -27,8 +27,10 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
+    "@types/assets-webpack-plugin": "^3.5.1",
     "@cutting/component-library": "0.7.2",
     "@cutting/connected-components": "0.6.2",
+    "@cutting/devtools": "0.11.11",
     "@cutting/react-gel": "0.6.2",
     "@types/helmet": "^0.0.38",
     "@types/serialize-javascript": "^1.3.2",

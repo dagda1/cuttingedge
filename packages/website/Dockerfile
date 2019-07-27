@@ -15,7 +15,7 @@ COPY ./packages/website/package.json .
 
 ADD ./packages/website/.npmrc-deploy /root/.npmrc
 
-RUN npm install --production --network-timeout 1000000
+RUN npm install --production
 
 RUN mkdir /cutting/tmp
 ADD node_modules ./tmp

@@ -1,4 +1,5 @@
-export const isPlainObject = <T extends object>(obj: T): boolean => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isPlainObject = (obj: any): boolean => {
   const isObject = typeof obj === 'object' && obj !== null && !Array.isArray(obj);
 
   if (!isObject || (obj.toString && obj.toString() !== '[object Object]')) {

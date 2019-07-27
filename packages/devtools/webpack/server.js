@@ -104,8 +104,9 @@ const configure = (options = {}) => {
               loader: 'css-loader',
               options: {
                 importLoaders: 1,
-                modules: true,
-                getLocalIdent: getLocalIdent
+                modules: {
+                  getLocalIdent: getLocalIdent
+                }
               }
             },
             { loader: 'postcss-loader', options: postcssOptions },

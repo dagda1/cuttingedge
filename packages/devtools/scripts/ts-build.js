@@ -1,6 +1,6 @@
+/* eslint-disable no-console */
 const fs = require('fs-extra');
 const path = require('path');
-const ts = require('typescript');
 const paths = require('../config/paths');
 const copy = require('copy');
 const chalk = require('chalk');
@@ -20,41 +20,6 @@ function findExecutable(current, executable, tries = 0) {
   }
 
   return findExecutable(path.resolve(current, '..'), executable, ++tries);
-}
-
-function runTypeScriptBuild() {
-  const buildConfig = require(paths.jsBuildConfigPath).ts;
-  const {
-    options: {}
-  } = buildConfig;
-
-  fs.emptyDirSync(paths.appBuild);
-
-  if (!process.argv.includes('-b') && !process.argv.includes('--build')) {
-    process.argv.push('--sourceMap', process.argv.includes('--source-map'));
-    process.argv.push('--noEmit', false);
-  }
-
-  process.argv.push('--pretty', true);
-
-  const tscPath = findExecutable(__dirname, 'tsc');
-
-  console.log(`running tsc in ${chalk.yellow(tscPath)} with ${chalk.yellow(process.argv.slice(2).join(' '))}`);
-
-  const tsc = exec(`${tscPath} ${process.argv.slice(2).join(' ')}`);
-
-  tsc.stdout.on('data', (data) => console.log(chalk.red(data)));
-  tsc.stderr.on('data', (data) => console.error(chalk.red(data)));
-
-  tsc.on('close', (code) => {
-    console.log(chalk.cyan(`tsc exited with code ${code}`));
-
-    if (code !== 0) {
-      process.exit(1);
-    }
-
-    runEslint();
-  });
 }
 
 function runEslint() {
@@ -81,6 +46,44 @@ function runEslint() {
     }
   });
 }
+
+function runTypeScriptBuild() {
+  const buildConfig = require(paths.jsBuildConfigPath).ts;
+  const {
+    options: {}
+  } = buildConfig;
+
+  fs.emptyDirSync(paths.appBuild);
+
+  if (!process.argv.includes('-b') && !process.argv.includes('--build')) {
+    process.argv.push('--sourceMap', process.argv.includes('--source-map'));
+  }
+
+  process.argv.push('--pretty', true);
+
+  const tscPath = findExecutable(__dirname, 'tsc');
+
+  const tscCommand = `${tscPath} ${process.argv.slice(2).join(' ')}`;
+
+  console.log(`cwd = ${chalk.red(process.cwd())}`);
+  console.log(chalk.cyan(`running tsc in ${chalk.yellow(tscPath)} with ${tscCommand}`));
+
+  const tsc = exec(tscCommand);
+
+  tsc.stdout.on('data', (data) => console.log(chalk.red(data)));
+  tsc.stderr.on('data', (data) => console.error(chalk.red(data)));
+
+  tsc.on('close', (code) => {
+    console.log(chalk.cyan(`tsc exited with code ${code}`));
+
+    if (code !== 0) {
+      process.exit(1);
+    }
+
+    runEslint();
+  });
+}
+
 function build() {
   try {
     runTypeScriptBuild();
@@ -89,8 +92,10 @@ function build() {
       (pattern) => `${paths.appSrc}/**/${pattern}`
     );
 
-    copy(patterns, paths.appBuild, (err, files) => {
-      if (err) throw err;
+    copy(patterns, paths.appBuild, (err) => {
+      if (err) {
+        throw err;
+      }
     });
   } catch (e) {
     console.error(e);

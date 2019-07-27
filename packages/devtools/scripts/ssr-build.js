@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+/* eslint-disable no-console */
 'use strict';
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.NODE_ENV = 'production';
@@ -18,7 +19,6 @@ const fs = require('fs-extra');
 const chalk = require('chalk');
 const paths = require('../config/paths');
 const printErrors = require('razzle-dev-utils/printErrors');
-const logger = require('razzle-dev-utils/logger');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
@@ -49,7 +49,6 @@ measureFileSizesBeforeBuild(paths.appBuildPublic)
         console.log(
           '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
         );
-        console.log('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
       } else {
         console.log(chalk.green('Compiled successfully.\n'));
       }

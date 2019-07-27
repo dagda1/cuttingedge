@@ -9,7 +9,7 @@
     "rootDir": "./src",
     "composite": true
   },
-  "files": ["../../types/index.d.ts"],
+
   "references": [{ "path": "../util" }],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
