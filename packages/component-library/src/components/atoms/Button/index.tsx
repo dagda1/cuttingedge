@@ -1,6 +1,7 @@
 import cs from 'classnames';
 import React from 'react';
 import { identity } from '@cutting/util';
+import { StandardProps } from '../../../types';
 
 const styles = require('./Button.scss');
 
@@ -10,20 +11,12 @@ export enum ButtonStyle {
   Inverse = 'inverse'
 }
 
-export interface ButtonProps {
+export type ButtonProps = StandardProps<
+  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+> & {
   onClick?: React.MouseEventHandler;
-  className?: string;
   buttonStyle?: ButtonStyle;
-  disabled?: boolean;
-  type?: string;
-  component?: React.ComponentType<ButtonProps> | string;
-  id?: string;
-  htmlFor?: string;
-  tabIndex?: number;
-  onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
-  dataSelector?: string;
-  title?: string;
-}
+};
 
 export const Button: React.FunctionComponent<ButtonProps> = ({
   onClick,
@@ -32,23 +25,15 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   disabled,
   type,
   children,
-  component,
-  dataSelector,
   title,
   ...rest
 }) => {
-  const Component = component || 'button';
-
   const primary = buttonStyle === ButtonStyle.Primary;
   const secondary = buttonStyle === ButtonStyle.Secondary;
   const inverse = buttonStyle === ButtonStyle.Inverse;
 
-  if (dataSelector) {
-    rest['data-selector'] = dataSelector;
-  }
-
   return (
-    <Component
+    <button
       className={cs(className, styles.default, {
         [styles.disabled]: disabled,
         [styles.inverse]: inverse,
@@ -62,7 +47,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
       {...rest}
     >
       {children}
-    </Component>
+    </button>
   );
 };
 
