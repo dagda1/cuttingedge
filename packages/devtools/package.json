@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@intervolga/optimize-cssnano-plugin": "^1.0.6",
+    "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
     "react-hooks-testing-library": "^0.6.0"
   },

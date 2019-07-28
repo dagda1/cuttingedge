@@ -1,22 +1,24 @@
-import { shallow } from 'enzyme';
 import React from 'react';
 import { Button, ButtonProps } from '.';
+import { render, fireEvent } from '@testing-library/react';
 
-const wrap = (props: Partial<ButtonProps> = {}) => shallow(<Button {...{ children: 'Click Me!', ...props }} />);
+const wrap = (props: Partial<ButtonProps> = {}) => render(<Button {...{ children: 'Click Me!', ...props }} />);
 
 describe('Button', () => {
   it('should render a button and text', () => {
-    const wrapper = wrap();
+    const { getByText } = wrap();
 
-    expect(wrapper.type()).toBe('button');
-    expect(wrapper.find('button').text()).toBe('Click Me!');
+    const button = getByText('Click Me!') as HTMLButtonElement;
+
+    expect(button.type).toBe('button');
   });
 
   it('should assign a click handler', () => {
     const onClick = jest.fn();
-    const wrapper = wrap({ onClick });
+    const { getByText } = wrap({ onClick });
 
-    wrapper.find('button').simulate('click');
+    fireEvent.click(getByText('Click Me!'));
+
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

@@ -20,7 +20,11 @@ module.exports = mergeWith(
       '!src/test/**/*.*',
       '!src/features/**/*.*'
     ],
-    setupFiles: [path.join(__dirname, './setupTests.js')],
+    setupFilesAfterEnv: [
+      '@testing-library/jest-dom/extend-expect',
+      '@testing-library/react/cleanup-after-each',
+      path.join(__dirname, './setupTests.js')
+    ],
     testMatch: [
       '<rootDir>/src/**/__tests__/**/*.ts?(x)',
       '<rootDir>/src/**/?(*.)(spec|test).ts?(x)',
