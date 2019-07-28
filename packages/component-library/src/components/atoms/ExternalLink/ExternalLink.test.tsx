@@ -1,18 +1,20 @@
-import { mount } from 'enzyme';
 import React from 'react';
 import { ExternalLink } from '.';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
 describe('<ExternalLink />', () => {
   it('should render target and rel props', () => {
-    const externalLink = mount(<ExternalLink href="http://blah.com">Blah</ExternalLink>);
+    const { getByTestId } = render(
+      <ExternalLink dataSelector="the-a" href="http://blah.com/">
+        Blah
+      </ExternalLink>
+    );
 
-    const wrapper = externalLink.find('a');
+    const a = getByTestId('the-a') as HTMLAnchorElement;
 
-    const { href, target, rel } = wrapper.props();
-
-    expect(href).toBe('http://blah.com');
-    expect(target).toBe('_blank');
-    expect(rel).toBe('noopener noreferrer');
-    expect(wrapper.text()).toBe('Blah');
+    expect(a.href).toBe('http://blah.com/');
+    expect(a.target).toBe('_blank');
+    expect(a.rel).toBe('noopener noreferrer');
+    expect(a.innerHTML).toBe('Blah');
   });
 });

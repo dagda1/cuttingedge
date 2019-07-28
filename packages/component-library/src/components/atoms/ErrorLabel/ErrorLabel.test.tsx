@@ -1,23 +1,19 @@
-import { shallow } from 'enzyme';
 import React from 'react';
-import { Error, ErrorLabel, ErrorProps } from '.';
+import { ErrorLabel, ErrorProps } from '.';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
-const wrap = (props: ErrorProps) => shallow(<ErrorLabel {...props} />);
+const wrap = (props: ErrorProps) => render(<ErrorLabel {...props} />);
 
 describe('ErrorLabel', () => {
   it('should tag custom data-selector', () => {
-    const wrapper = wrap({
+    const { getByTestId } = wrap({
       id: 'error',
       dataSelector: 'error-selector',
       errorMessage: 'Error'
     });
 
-    const label = wrapper
-      .find(Error)
-      .dive()
-      .find('[data-selector="error-selector"]');
-    expect(label).toHaveLength(1);
+    const label = getByTestId('error-selector') as HTMLLabelElement;
 
-    expect(label.text()).toBe('Error');
+    expect(label.innerHTML).toBe('Error');
   });
 });

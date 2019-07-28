@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { render, queries, queryHelpers, Matcher, MatcherOptions, RenderOptions } from '@testing-library/react';
+import {
+  render,
+  queries,
+  queryHelpers,
+  Matcher,
+  MatcherOptions,
+  RenderOptions,
+  RenderResult
+} from '@testing-library/react';
 import '@testing-library/react/cleanup-after-each';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -36,7 +44,7 @@ const mergedQueries = {
   queryAllByTestId
 };
 
-const customRender = <Element = any>(ui: React.ReactElement<Element>, options: Omit<RenderOptions, 'queries'> = {}) =>
+const customRender = (ui: React.ReactElement<any>, options: RenderOptions = {}): RenderResult =>
   render(ui, { queries: { ...mergedQueries }, ...options });
 
 // re-export everything
