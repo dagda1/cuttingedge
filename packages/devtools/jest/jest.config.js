@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const _ = require('lodash');
 
 // load project-local settings if they exist
 const localSettingsPath = path.join(process.cwd(), 'jest.config.js');
@@ -41,5 +40,5 @@ module.exports = _.mergeWith(
     moduleFileExtensions: ['web.js', 'js', 'json', 'web.jsx', 'jsx', 'ts', 'tsx', 'feature', 'csv']
   },
   localSettings,
-  (objValue, srcValue) => (_.isArray(objValue) ? objValue.concat(srcValue) : undefined)
+  (objValue, srcValue) => (Array.isArray(objValue) ? objValue.concat(srcValue) : undefined)
 );

@@ -21,15 +21,23 @@ const { choosePort, createCompiler, prepareProxy, prepareUrls } = require('react
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 
 const isInteractive = process.stdout.isTTY;
+
+if (!fs.existsSync(paths.localBuildConfig)) {
+  throw new Error(`no build.config.js at ${paths.localBuildConfig}`);
+}
 
 const globalServerConfig = require(paths.jsBuildConfigPath).devServer;
 
 const localDevServerConfig = require(paths.localBuildConfig).devServer || {};
 
 const devServerConfig = { ...globalServerConfig, ...localDevServerConfig };
+
+console.dir(devServerConfig);
+
+throw new Error('fuck');
 
 devServerConfig.publicDir = fs.existsSync(devServerConfig.publicDir) ? devServerConfig.publicDir : paths.devDirPublic;
 devServerConfig.entries =
