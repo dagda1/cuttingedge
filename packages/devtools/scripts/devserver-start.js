@@ -37,14 +37,6 @@ const devServerConfig = { ...globalServerConfig, ...localDevServerConfig };
 
 console.dir(devServerConfig);
 
-throw new Error('fuck');
-
-devServerConfig.publicDir = fs.existsSync(devServerConfig.publicDir) ? devServerConfig.publicDir : paths.devDirPublic;
-devServerConfig.entries =
-  Array.isArray(devServerConfig.entries) || fs.existsSync(devServerConfig.entries)
-    ? devServerConfig.entries
-    : paths.devDir;
-
 let config = configureWebpackClient(devServerConfig);
 
 // Warn and crash if required files are missing
