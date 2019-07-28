@@ -26,6 +26,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   type,
   children,
   title,
+  dataSelector,
   ...rest
 }) => {
   const primary = buttonStyle === ButtonStyle.Primary;
@@ -44,6 +45,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       title={title}
+      data-selector={dataSelector}
       {...rest}
     >
       {children}

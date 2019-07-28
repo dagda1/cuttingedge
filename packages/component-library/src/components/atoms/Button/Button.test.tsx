@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ButtonProps } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@cutting/devtools/jest/react-testing-overrides';
 
 const wrap = (props: Partial<ButtonProps> = {}) => render(<Button {...{ children: 'Click Me!', ...props }} />);
 
@@ -20,5 +20,13 @@ describe('Button', () => {
     fireEvent.click(getByText('Click Me!'));
 
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add a data-selector', () => {
+    const { getByTestId } = wrap({ dataSelector: 'the-button' });
+
+    const button = getByTestId('the-button') as HTMLButtonElement;
+
+    expect(button).toBeDefined();
   });
 });

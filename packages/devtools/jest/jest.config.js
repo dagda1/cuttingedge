@@ -22,8 +22,8 @@ module.exports = mergeWith(
     ],
     setupFilesAfterEnv: [
       '@testing-library/jest-dom/extend-expect',
-      '@testing-library/react/cleanup-after-each',
-      path.join(__dirname, './setupTests.js')
+      path.join(__dirname, './setupTests.js'),
+      '@testing-library/react/cleanup-after-each'
     ],
     testMatch: [
       '<rootDir>/src/**/__tests__/**/*.ts?(x)',
@@ -42,7 +42,8 @@ module.exports = mergeWith(
     moduleNameMapper: {
       '^react-native$': 'react-native-web'
     },
-    moduleFileExtensions: ['web.js', 'js', 'json', 'web.jsx', 'jsx', 'ts', 'tsx', 'feature', 'csv']
+    moduleFileExtensions: ['web.js', 'js', 'json', 'web.jsx', 'jsx', 'ts', 'tsx', 'feature', 'csv'],
+    moduleDirectories: ['node_modules', 'node_modules/@cutting/devtools/jest']
   },
   localSettings,
   (objValue, srcValue) => (Array.isArray(objValue) ? objValue.concat(srcValue) : undefined)
