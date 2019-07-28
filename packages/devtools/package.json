@@ -11,10 +11,13 @@
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "dependencies": {
-    "copy": "^0.3.2"
+    "copy": "^0.3.2",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@intervolga/optimize-cssnano-plugin": "^1.0.6"
+    "@intervolga/optimize-cssnano-plugin": "^1.0.6",
+    "@testing-library/react": "^8.0.7",
+    "react-hooks-testing-library": "^0.6.0"
   },
   "files": [
     "bin/cutting.js",

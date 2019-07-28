@@ -1,11 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const mergeWith = require('lodash/mergeWith');
 
 // load project-local settings if they exist
 const localSettingsPath = path.join(process.cwd(), 'jest.config.js');
 const localSettings = fs.existsSync(localSettingsPath) ? require(localSettingsPath) : {};
 
-module.exports = _.mergeWith(
+module.exports = mergeWith(
   {
     rootDir: process.cwd(),
     coverageDirectory: '<rootDir>/.coverage',

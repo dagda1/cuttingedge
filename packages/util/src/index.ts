@@ -6,3 +6,4 @@ export * from './nothing';
 export * from './object';
 export * from './hooks/usePrevious';
 export * from './react/components';
+export * from './hooks/usePrevious';

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 // Do this as the first thing so that any code reading it knows the right env.
@@ -24,9 +25,6 @@ if (!process.env.CI) {
 }
 
 const config = require('../jest/jest.config.js');
-
-const path = require('path');
-const paths = require('../config/paths');
 
 argv.push('--config', JSON.stringify(config));
 argv.push('--env', 'jsdom');
