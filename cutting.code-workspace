@@ -33,6 +33,7 @@
   ],
   "settings": {
     "typescript.tsdk": "cuttingedge/node_modules/typescript/lib",
-    "eslint.packageManager": "npm"
+    "eslint.packageManager": "npm",
+    "workbench.colorCustomizations": {}
   }
 }
