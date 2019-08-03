@@ -13,6 +13,7 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   handler,
   mapKey,
   className,
+  dataSelector = 'keyboard-shortcuts',
   children
 }) => {
   const ref = useRef<HTMLElement>(null);
@@ -59,7 +60,12 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   }
 
   return (
-    <ScopedWrapperComponentType tabIndex={tabIndex} ref={ref} className={cs('mousetrap', className)}>
+    <ScopedWrapperComponentType
+      data-selector={dataSelector}
+      tabIndex={tabIndex}
+      ref={ref}
+      className={cs('mousetrap', className)}
+    >
       {children}
     </ScopedWrapperComponentType>
   );

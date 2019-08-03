@@ -1,13 +1,13 @@
-import { shallow } from 'enzyme';
 import React from 'react';
 import { Label, LabelProps } from '.';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
-const wrap = (props: LabelProps = {}) => shallow(<Label {...props}>label</Label>);
+const wrap = (props: LabelProps = {}) => render(<Label {...props}>label</Label>);
 
 describe('Label', () => {
   it('renders a label', () => {
-    const wrapper = wrap();
+    const { container } = wrap();
 
-    expect(wrapper.find('label')).toHaveLength(1);
+    expect(container.querySelector('label')).toBeTruthy();
   });
 });

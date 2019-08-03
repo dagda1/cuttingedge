@@ -1,21 +1,22 @@
-import { shallow } from 'enzyme';
 import React from 'react';
 import { Input } from '.';
+import { render, fireEvent } from '@cutting/devtools/jest/react-testing-overrides';
 
-const wrap = (props = {}) => shallow(<Input {...props} />);
+const wrap = (props = {}) => render(<Input {...props} />);
 
 describe('<Input />', () => {
   it('renders text input by default', () => {
-    const wrapper = wrap();
+    const { container } = wrap();
 
-    expect(wrapper.find({ type: 'text' })).toHaveLength(1);
+    expect(container.querySelector('input[type="text"]')).toBeTruthy();
   });
 
   it('should handle keyDown', () => {
     const onKeyDown = jest.fn();
-    const wrapper = wrap({ onKeyDown });
+    const { container } = wrap({ onKeyDown });
+    const input = container.querySelector('input[type="text"]') as HTMLInputElement;
 
-    wrapper.find('input').simulate('keydown');
+    fireEvent.keyDown(input, { key: 'Enter', code: 13, charCode: 13 });
 
     expect(onKeyDown).toHaveBeenCalled();
   });
