@@ -1,5 +1,5 @@
 require('./global.scss');
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Box, Point } from './types';
 import { Box as MovableBox } from './Box';
 
@@ -14,13 +14,13 @@ const boxes = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, {
 export const App: React.FunctionComponent = () => {
   const [boxState, setState] = useState(boxes);
 
-  const handleMove = (newPosition: Partial<Point>, index: number) => {
+  const handleMove = useCallback((newPosition: Partial<Point>, index: number) => {
     setState((state) => {
       return state.map((box, i) => {
         return index === i ? { ...box, ...newPosition } : { ...box };
       });
     });
-  };
+  }, []);
 
   return (
     <div>

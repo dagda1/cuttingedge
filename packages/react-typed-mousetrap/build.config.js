@@ -1,11 +1,9 @@
-const path = require('path');
-const paths = require('../../config/paths');
-
-const entry = process.env.NODE_ENV === 'production' ? path.join(paths.appSrc, 'start') : paths.appSrc;
+const paths = require('@cutting/devtools/config/paths');
 
 module.exports = {
-  client: {
-    entries: entry,
+  devServer: {
+    entries: paths.devDir,
+    publicDir: paths.devDirPublic,
     ssrBuild: false,
     isStaticBuild: true
   }

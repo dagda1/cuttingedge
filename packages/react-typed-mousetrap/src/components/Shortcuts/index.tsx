@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import mousetrap from 'mousetrap';
 import { ShortcutAction, ShortcutsProps, Shortcut } from '../../types';
 import { buildShortcuts } from './buildShortcuts';
@@ -17,10 +17,33 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   children
 }) => {
   const ref = useRef<HTMLElement>(null);
-  const [shortcuts, setShortcuts] = useState<ShortcutAction[]>();
+  const shortcutsRef = useRef<ShortcutAction[]>([]);
+  const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>();
 
-  useLayoutEffect(() => {
-    const trapper = scoped && ref.current ? new mousetrap(ref.current) : mousetrap;
+  useEffect(() => {
+    if (!ref.current || !!mousetrapRef.current) {
+      return;
+    }
+
+    if (!scoped) {
+      mousetrapRef.current = mousetrap;
+      return;
+    }
+
+    mousetrapRef.current = new mousetrap(ref.current);
+
+    return () => {
+      mousetrapRef.current && mousetrapRef.current.reset();
+    };
+  }, [scoped]);
+
+  useEffect(() => {
+    if (!ref.current || !mousetrapRef.current) {
+      return;
+    }
+
+    const shortcuts = shortcutsRef.current;
+    const trapper = mousetrapRef.current;
 
     const map = mapKey ? (shortcutMap[mapKey] as Shortcut) : (shortcutMap as Shortcut);
 
@@ -37,8 +60,6 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
       shortcut.trapper = trapper;
     });
 
-    setShortcuts(shortcutActions);
-
     return () => {
       if (!shortcuts) {
         return;
@@ -48,9 +69,10 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
         if (shortcut.trapper) {
           shortcut.trapper.unbind(shortcut.keys);
         }
+
+        trapper.reset();
       });
     };
-    // eslint-disable-next-line
   }, [handler, mapKey, scoped, shortcutMap]);
 
   if (!scoped) {
