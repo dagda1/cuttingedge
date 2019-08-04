@@ -2,13 +2,17 @@ import React from 'react';
 import { KeyCode } from './keycodes';
 import { FunctionComponent, ComponentClass } from 'react';
 
-export interface ShortcutsProps<
-  TScopedWrapperComponentType = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
-> {
-  mapKey?: string;
+export interface UseShortcuts {
   shortcutMap: ShortcutMap;
+  mapKey?: string;
   handler: ShortcutHandler;
   scoped?: boolean;
+  ref?: React.RefObject<HTMLElement>;
+}
+
+export interface ShortcutsProps<
+  TScopedWrapperComponentType = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
+> extends Omit<UseShortcuts, 'ref'> {
   tabIndex?: number;
   className?: string;
   dataSelector?: string;

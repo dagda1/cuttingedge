@@ -1,27 +1,14 @@
-import React, { useRef, useEffect } from 'react';
-import mousetrap from 'mousetrap';
-import { ShortcutAction, ShortcutsProps, Shortcut } from '../../types';
-import { buildShortcuts } from './buildShortcuts';
-import cs from 'classnames';
-import invariant from 'invariant';
+import { useRef, useEffect } from 'react';
+import { ShortcutAction, UseShortcuts, Shortcut } from '../../types';
+import mousetrap = require('mousetrap');
+import { buildShortcuts } from '../Shortcuts/buildShortcuts';
 
-export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
-  scoped = false,
-  tabIndex = -1,
-  ScopedWrapperComponentType = 'div',
-  shortcutMap,
-  handler,
-  mapKey,
-  className,
-  dataSelector = 'keyboard-shortcuts',
-  children
-}) => {
-  const ref = useRef<HTMLElement>(null);
+export const useShortcuts = ({ shortcutMap, scoped, ref, mapKey, handler }: UseShortcuts) => {
   const shortcutsRef = useRef<ShortcutAction[]>([]);
   const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>();
 
   useEffect(() => {
-    if (!ref.current || !!mousetrapRef.current) {
+    if (!!mousetrapRef.current) {
       return;
     }
 
@@ -30,15 +17,23 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
       return;
     }
 
+    if (!ref) {
+      throw new Error('You need to supply a ref for a scoped mousetrap.');
+    }
+
+    if (!ref.current) {
+      return;
+    }
+
     mousetrapRef.current = new mousetrap(ref.current);
 
     return () => {
       mousetrapRef.current && mousetrapRef.current.reset();
     };
-  }, [scoped]);
+  }, [ref, scoped]);
 
   useEffect(() => {
-    if (!ref.current || !mousetrapRef.current) {
+    if (!mousetrapRef.current) {
       return;
     }
 
@@ -73,22 +68,5 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
         trapper.reset();
       });
     };
-  }, [handler, mapKey, scoped, shortcutMap]);
-
-  if (!scoped) {
-    invariant(children, 'If a mousetrap scoped component then there should be child mice.');
-
-    return <>{children}</>;
-  }
-
-  return (
-    <ScopedWrapperComponentType
-      data-selector={dataSelector}
-      tabIndex={tabIndex}
-      ref={ref}
-      className={cs('mousetrap', className)}
-    >
-      {children}
-    </ScopedWrapperComponentType>
-  );
+  }, [handler, mapKey, ref, shortcutMap]);
 };

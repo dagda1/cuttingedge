@@ -1,2 +1,1 @@
-export * from './Shortcuts';
-export * from './withShortcuts';
+export * from './Shortcuts/Shortcuts';

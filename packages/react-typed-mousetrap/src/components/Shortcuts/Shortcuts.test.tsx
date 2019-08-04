@@ -1,31 +1,13 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { Shortcuts } from './index';
+import { Shortcuts } from './Shortcuts';
 import { ShortcutMap, ShortcutsProps } from '../../types';
 import { KeyCode } from '../../types/keycodes';
 import { Omit } from '../../types/omit';
 import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
 describe('<Shortcuts />', () => {
-  // xit('should add a shortcuts', () => {
-  //   const Stateless = (props: any) => <div>Stateless</div>;
-
-  //   const wrapper = render(
-  //     <Shortcuts shortcutMap={singleShortcutMap} mapKey="key" handler={dummyHandler}>
-  //       <Stateless />
-  //     </Shortcuts>
-  //   );
-
-  //   const comp = wrapper.find(Shortcuts);
-
-  //   Object.keys(comp).forEach((o) => console.log(`${o} = ${wrapper[o]}`));
-
-  //   const shortcutActions = wrapper.state().shortcuts;
-
-  //   expect(shortcutActions).toHaveLength(1);
-  // });
-
   const Scoped = () => <div>Scoped</div>;
 
   const defaultProps: Omit<ShortcutsProps, 'handler' | 'shortcutMap'> = {
@@ -49,13 +31,13 @@ describe('<Shortcuts />', () => {
     it('should wrap a scoped component in a div by default', () => {
       const { getByTestId } = wrap({ shortcutMap: singleShortcutMap, handler: jest.fn() });
 
-      expect(getByTestId('keyboard-shortcuts')).toBeTruthy();
+      getByTestId('keyboard-shortcuts');
     });
 
     it('should override default data-selector', () => {
       const { getByTestId } = wrap({ shortcutMap: singleShortcutMap, handler: jest.fn(), dataSelector: 'my-selector' });
 
-      expect(getByTestId('my-selector')).toBeTruthy();
+      getByTestId('my-selector');
     });
 
     it("should initially set the wrapped element's tabIndex to -1", () => {
@@ -94,26 +76,4 @@ describe('<Shortcuts />', () => {
       expect(mousetrap.classList.contains('some-class')).toBe(true);
     });
   });
-
-  // describe('with multiple maps', () => {
-  //   const multipleShortcutMap: ShortcutMap = {
-  //     key: {
-  //       MOVE_UP: 'a'
-  //     }
-  //   };
-
-  //   let wrap: Wrap;
-
-  //   beforeEach(() => {
-  //     wrap = createWrapper(multipleShortcutMap, 'key');
-  //   });
-
-  //   it('should pick correct map item', () => {
-  //     const wrapper = wrap();
-
-  //     const mousetrap = wrapper.find('.mousetrap');
-
-  //     expect(mousetrap).toHaveLength(1);
-  //   });
-  // });
 });
