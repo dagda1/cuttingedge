@@ -69,4 +69,7 @@ export const useShortcuts = ({ shortcutMap, scoped, ref, mapKey, handler }: UseS
       });
     };
   }, [handler, mapKey, ref, shortcutMap]);
+
+  // for testing
+  return { mousetrap: mousetrapRef.current, shortcuts: shortcutsRef.current };
 };
