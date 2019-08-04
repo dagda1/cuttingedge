@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { ShortcutAction, UseShortcuts, Shortcut } from '../../types';
 import mousetrap = require('mousetrap');
 import { buildShortcuts } from '../Shortcuts/buildShortcuts';
+import { clearArray } from '../../utils';
 
 export const useShortcuts = ({ shortcutMap, scoped, ref, mapKey, handler }: UseShortcuts) => {
   const shortcutsRef = useRef<ShortcutAction[]>([]);
@@ -54,6 +55,10 @@ export const useShortcuts = ({ shortcutMap, scoped, ref, mapKey, handler }: UseS
 
       shortcut.trapper = trapper;
     });
+
+    clearArray(shortcuts);
+
+    shortcuts.push(...shortcutActions);
 
     return () => {
       if (!shortcuts) {

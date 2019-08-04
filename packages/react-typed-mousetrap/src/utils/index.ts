@@ -22,3 +22,13 @@ export const isPlainObject = (obj: any): boolean => {
 };
 
 export const isStringArray = <T>(arr: T[]): boolean => arr.every((x) => typeof x === 'string');
+
+export const clearArray = <T>(a: T[]) => {
+  if (!a) {
+    return;
+  }
+
+  while (a.length) {
+    a.pop();
+  }
+};
