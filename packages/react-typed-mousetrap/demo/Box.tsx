@@ -1,6 +1,6 @@
 import React, { CSSProperties, useCallback } from 'react';
 import { Point, Box as BoxType } from './types';
-import { Shortcuts } from '../src/components/Shortcuts/Shortcuts';
+import { Shortcuts } from '../src/components/Shortcuts';
 import { shortcutMap } from './shortCutMap';
 
 interface BoxProps {

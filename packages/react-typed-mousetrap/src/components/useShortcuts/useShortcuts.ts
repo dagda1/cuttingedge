@@ -57,10 +57,6 @@ export const useShortcuts = ({ shortcutMap, ref, mapKey, handler }: UseShortcuts
     shortcuts.push(...shortcutActions);
 
     return () => {
-      if (!shortcuts) {
-        return;
-      }
-
       shortcuts.forEach((shortcut) => {
         if (shortcut.trapper) {
           shortcut.trapper.unbind(shortcut.keys);
