@@ -1,6 +1,5 @@
 import { buildShortcuts } from './buildShortcuts';
-import { ShortcutMap } from '../../react-typed-mousetrap/src/types';
-import { KeyCode } from '../../react-typed-mousetrap/src/types/keycodes';
+import { ShortcutMap, KeyCode } from './types';
 
 export const shortcutMap: ShortcutMap = {
   object: {

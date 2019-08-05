@@ -2,10 +2,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Shortcuts } from './Shortcuts';
-import { ShortcutMap, ShortcutsProps } from '../../types';
-import { KeyCode } from '../../types/keycodes';
-import { Omit } from '../../types/omit';
 import { render } from '@cutting/devtools/jest/react-testing-overrides';
+import { ShortcutsProps, ShortcutMap } from '@cutting/use-shortcuts';
+import { KeyCode } from '@cutting/use-shortcuts/dist/types/keycodes';
 
 describe('<Shortcuts />', () => {
   const Scoped = () => <div>Scoped</div>;

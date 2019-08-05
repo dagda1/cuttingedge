@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@cutting/devtools": "0.11.11",
+    "@cutting/use-shortcuts": "0.1.0",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
     "@types/invariant": "^2.2.29",

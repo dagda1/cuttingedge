@@ -3,8 +3,7 @@ import React, { useState, useCallback } from 'react';
 import { Box, Point } from './types';
 import { Box as MovableBox } from './Box';
 import { Shortcuts } from '../src/components/Shortcuts';
-import { ShortcutMap } from '../src/types';
-import { KeyCode } from '../src/types/keycodes';
+import { ShortcutMap, KeyCode } from '@cutting/use-shortcuts';
 
 const globalDocumentShortcuts: ShortcutMap = {
   alert: { combination: [KeyCode.Ctrl, 'a'] }
