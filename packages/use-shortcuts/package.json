@@ -1,0 +1,31 @@
+{
+  "name": "@cutting/use-shortcuts",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagda1/cuttingedge.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "echo no start",
+    "test": "NODE_ENV=test cutting test",
+    "build": "NODE_ENV=development cutting ts-build",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "@cutting/util": "0.6.0",
+    "invariant": "^2.2.4",
+    "lodash": "^4.17.15",
+    "mousetrap": "^1.6.2"
+  },
+  "devDependencies": {
+    "@cutting/devtools": "0.11.11",
+    "@testing-library/jest-dom": "^4.0.0",
+    "@testing-library/react": "^8.0.7",
+    "@types/invariant": "^2.2.29",
+    "@types/mousetrap": "^1.6.0",
+    "react-hooks-testing-library": "^0.6.0"
+  }
+}

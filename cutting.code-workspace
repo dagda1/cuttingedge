@@ -7,6 +7,9 @@
       "path": "packages/afterafterjs"
     },
     {
+      "path": "packages/use-shortcuts"
+    },
+    {
       "path": "packages/react-typed-mousetrap"
     },
     {
