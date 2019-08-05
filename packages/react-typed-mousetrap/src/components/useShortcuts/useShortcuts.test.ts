@@ -2,11 +2,10 @@
 /* eslint-disable no-console */
 import { renderHook } from '@testing-library/react-hooks';
 import { useShortcuts } from './useShortcuts';
-import { KeyCode } from '../../types/keycodes';
 import { ShortcutMap, UseShortcuts, UseShortcutsResult } from '../../types';
 import mousetrap from 'mousetrap';
 
-const shortcutMap: ShortcutMap = { DO_SOMETHING: KeyCode.DownArrow };
+const shortcutMap: ShortcutMap = { DO_SOMETHING: 'a' };
 const handler = (action: keyof typeof shortcutMap) => {
   switch (action) {
     case 'DO_SOMETHING':
@@ -50,12 +49,37 @@ describe('useShortcuts', () => {
 
     expect(shortcuts[0].trapper).not.toBe(mousetrap); // should be mousetrap instance
     let mtrap = shortcuts[0].trapper as any;
-    expect(Object.keys(mtrap._callbacks)[0]).toBe('down');
+    expect(Object.keys(mtrap._callbacks)[0]).toBe('a');
 
     rerender({ ...props, ref, handler: () => console.log('new handler') });
 
     expect(shortcuts).toHaveLength(1);
     mtrap = shortcuts[0].trapper as any;
-    expect(Object.keys(mtrap._callbacks)[0]).toBe('down');
+    expect(Object.keys(mtrap._callbacks)[0]).toBe('a');
+  });
+
+  it('should call the supplied handler', () => {
+    document.body.insertAdjacentHTML('afterbegin', `<input id="input" type="text">`);
+
+    var input = document.querySelector('input') as HTMLInputElement;
+
+    const fn = jest.fn();
+
+    const props: UseShortcuts = { shortcutMap, handler: fn, ref: { current: null } };
+
+    renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
+      initialProps: { ...props, ref: { current: input } }
+    });
+
+    const event = document.createEvent('Events') as any;
+
+    event.initEvent('keypress', true, true);
+    event.keyCode = 65;
+    event.which = 65;
+    event.code = 'a';
+
+    input.dispatchEvent(event);
+
+    expect(fn).toBeCalled();
   });
 });
