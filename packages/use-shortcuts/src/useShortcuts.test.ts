@@ -97,8 +97,6 @@ describe('useShortcuts', () => {
       initialProps: { shortcutMap: combinationShortcutMap, handler }
     });
 
-    console.log(shortcuts);
-
     expect(shortcuts).toHaveLength(2);
     expect(shortcuts[0].action).toBe('COMBINATION_EXAMPLE');
     expect(shortcuts[1].action).toBe('SEQUENCE_EXAMPLE');

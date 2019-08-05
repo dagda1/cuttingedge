@@ -1,5 +1,5 @@
-import { Shortcut, ShortcutItem, ShortcutAction } from '../../types';
-import { isPlainObject } from '../../utils';
+import { Shortcut, ShortcutAction, ShortcutItem } from './types';
+import { isPlainObject } from './utils';
 
 export const buildShortcuts = (map: Shortcut): ShortcutAction[] => {
   const shortcutActions: ShortcutAction[] = [];
