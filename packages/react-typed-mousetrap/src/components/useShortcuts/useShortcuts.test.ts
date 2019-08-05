@@ -4,6 +4,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useShortcuts } from './useShortcuts';
 import { ShortcutMap, UseShortcuts, UseShortcutsResult } from '../../types';
 import mousetrap from 'mousetrap';
+import { KeyCode } from '../../types/keycodes';
 
 const shortcutMap: ShortcutMap = { DO_SOMETHING: 'a' };
 const handler = (action: keyof typeof shortcutMap) => {
@@ -81,5 +82,25 @@ describe('useShortcuts', () => {
     input.dispatchEvent(event);
 
     expect(fn).toBeCalled();
+  });
+
+  it('should create combination and sequence shortcuts', () => {
+    const combinationShortcutMap: ShortcutMap = {
+      COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
+      SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] }
+    };
+    const {
+      result: {
+        current: { shortcuts }
+      }
+    } = renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
+      initialProps: { shortcutMap: combinationShortcutMap, handler }
+    });
+
+    console.log(shortcuts);
+
+    expect(shortcuts).toHaveLength(2);
+    expect(shortcuts[0].action).toBe('COMBINATION_EXAMPLE');
+    expect(shortcuts[1].action).toBe('SEQUENCE_EXAMPLE');
   });
 });
