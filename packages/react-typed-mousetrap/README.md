@@ -21,7 +21,7 @@ npm install @cutting/react-typed-mousetrap -S
 Declare a `ShortcutMap` object like below of type `ShorcutMap`:
 
 ```js
-import { ShortcutMap } from '@types/react-typed-mouse';
+import { ShortcutMap } from '@cutting/use-shortcuts';
 
 export const shortcutMap: ShortcutMap = {
   MOVE_LEFT: [KeyCode.LeftArrow, 'a'],

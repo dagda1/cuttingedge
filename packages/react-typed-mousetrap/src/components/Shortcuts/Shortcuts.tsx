@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import cs from 'classnames';
 import invariant from 'invariant';
-import { useShortcuts, ShortcutsProps } from '@cutting/use-shortcuts';
+import { useShortcuts } from '@cutting/use-shortcuts';
+import { ShortcutsProps } from '../../types';
 
 export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   scoped = false,

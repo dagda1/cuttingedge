@@ -3,8 +3,8 @@
 import React from 'react';
 import { Shortcuts } from './Shortcuts';
 import { render } from '@cutting/devtools/jest/react-testing-overrides';
-import { ShortcutsProps, ShortcutMap } from '@cutting/use-shortcuts';
-import { KeyCode } from '@cutting/use-shortcuts/dist/types/keycodes';
+import { ShortcutMap, KeyCode } from '@cutting/use-shortcuts';
+import { ShortcutsProps } from '../../types';
 
 describe('<Shortcuts />', () => {
   const Scoped = () => <div>Scoped</div>;

@@ -15,6 +15,7 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
+    "@cutting/use-shortcuts": "0.1.0",
     "@cutting/util": "0.6.0",
     "invariant": "^2.2.4",
     "lodash": "^4.17.15",
@@ -22,7 +23,6 @@
   },
   "devDependencies": {
     "@cutting/devtools": "0.11.11",
-    "@cutting/use-shortcuts": "0.1.0",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
     "@types/invariant": "^2.2.29",
