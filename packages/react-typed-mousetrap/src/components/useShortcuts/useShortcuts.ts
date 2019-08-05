@@ -1,10 +1,10 @@
 import { useRef, useEffect } from 'react';
-import { ShortcutAction, UseShortcuts, Shortcut } from '../../types';
+import { ShortcutAction, UseShortcuts, Shortcut, UseShortcutsResult } from '../../types';
 import mousetrap = require('mousetrap');
 import { buildShortcuts } from '../Shortcuts/buildShortcuts';
 import { clearArray } from '../../utils';
 
-export const useShortcuts = ({ shortcutMap, scoped, ref, mapKey, handler }: UseShortcuts) => {
+export const useShortcuts = ({ shortcutMap, ref, mapKey, handler }: UseShortcuts): UseShortcutsResult => {
   const shortcutsRef = useRef<ShortcutAction[]>([]);
   const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>();
 
@@ -13,13 +13,9 @@ export const useShortcuts = ({ shortcutMap, scoped, ref, mapKey, handler }: UseS
       return;
     }
 
-    if (!scoped) {
+    if (!ref) {
       mousetrapRef.current = mousetrap;
       return;
-    }
-
-    if (!ref) {
-      throw new Error('You need to supply a ref for a scoped mousetrap.');
     }
 
     if (!ref.current) {
@@ -31,7 +27,7 @@ export const useShortcuts = ({ shortcutMap, scoped, ref, mapKey, handler }: UseS
     return () => {
       mousetrapRef.current && mousetrapRef.current.reset();
     };
-  }, [ref, scoped]);
+  }, [ref]);
 
   useEffect(() => {
     if (!mousetrapRef.current) {
@@ -76,5 +72,5 @@ export const useShortcuts = ({ shortcutMap, scoped, ref, mapKey, handler }: UseS
   }, [handler, mapKey, ref, shortcutMap]);
 
   // for testing
-  return { mousetrap: mousetrapRef.current, shortcuts: shortcutsRef.current };
+  return { shortcuts: shortcutsRef.current };
 };

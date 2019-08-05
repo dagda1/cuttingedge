@@ -6,8 +6,11 @@ export interface UseShortcuts {
   shortcutMap: ShortcutMap;
   mapKey?: string;
   handler: ShortcutHandler;
-  scoped?: boolean;
   ref?: React.RefObject<HTMLElement>;
+}
+
+export interface UseShortcutsResult {
+  shortcuts: ShortcutAction[];
 }
 
 export interface ShortcutsProps<
@@ -16,6 +19,8 @@ export interface ShortcutsProps<
   tabIndex?: number;
   className?: string;
   dataSelector?: string;
+  scoped?: boolean;
+
   ScopedWrapperComponentType?:
     | FunctionComponent<TScopedWrapperComponentType>
     | ComponentClass<TScopedWrapperComponentType>

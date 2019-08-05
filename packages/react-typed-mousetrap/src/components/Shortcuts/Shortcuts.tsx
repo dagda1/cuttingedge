@@ -18,7 +18,6 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   const ref = useRef<HTMLElement>(null);
 
   useShortcuts({
-    scoped,
     shortcutMap,
     handler,
     mapKey,
