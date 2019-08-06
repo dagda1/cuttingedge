@@ -41,7 +41,3 @@ export type ShortcutMap =
       [key: string]: Shortcut;
     }
   | Shortcut;
-
-export type Refable<T> = React.ReactElement<T> & {
-  ref: React.RefObject<T>;
-};

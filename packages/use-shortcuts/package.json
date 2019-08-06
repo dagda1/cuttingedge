@@ -11,7 +11,7 @@
   "scripts": {
     "start": "echo no start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=development cutting ts-build",
+    "build": "NODE_ENV=production cutting rollup --package-name use-shortcuts",
     "prepublish": "npm run build"
   },
   "dependencies": {

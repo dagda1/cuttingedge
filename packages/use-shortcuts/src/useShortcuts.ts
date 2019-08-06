@@ -1,8 +1,8 @@
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import mousetrap = require('mousetrap');
 import { UseShortcuts, ShortcutAction, UseShortcutsResult, Shortcut } from './types';
 import { buildShortcuts } from './buildShortcuts';
-import { clearArray } from './utils';
+import { clearArray } from './utils/clearArray';
 
 export const useShortcuts = ({ shortcutMap, ref, mapKey, handler }: UseShortcuts): UseShortcutsResult => {
   const shortcutsRef = useRef<ShortcutAction[]>([]);
