@@ -6,6 +6,12 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "main": "dist/use-shortcuts.js",
+  "umd:main": "lib/use-shortcuts.umd.js",
+  "module": "lib/use-shortcuts.module.js",
+  "browser": {
+    "./lib/use-shortcuts.js": "./lib/use-shortcuts.js",
+    "./lib/use-shortcuts.module.js": "./lib/use-shortcuts.module.js"
+  },
   "types": "dist/use-shortcuts.d.ts",
   "license": "MIT",
   "scripts": {
@@ -27,5 +33,8 @@
     "@types/invariant": "^2.2.29",
     "@types/mousetrap": "^1.6.0",
     "react-hooks-testing-library": "^0.6.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
