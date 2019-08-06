@@ -3,14 +3,14 @@ import React, { useState, useCallback } from 'react';
 import { Box, Point } from './types';
 import { Box as MovableBox } from './Box';
 import { Shortcuts } from '../src/components/Shortcuts';
-import { ShortcutMap, KeyCode } from '@cutting/use-shortcuts';
+import { ShortcutMap, KeyCode, Action } from '@cutting/use-shortcuts';
 
 const globalDocumentShortcuts: ShortcutMap = {
   alert: { combination: [KeyCode.Ctrl, 'a'] }
 };
 
-const globalHandler = (action: keyof typeof globalDocumentShortcuts) => {
-  switch (action) {
+const globalHandler = (action: Action) => {
+  switch (action.type) {
     case 'alert':
       alert('global alert');
       return;

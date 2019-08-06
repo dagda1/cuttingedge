@@ -9,5 +9,6 @@ export {
   Combination,
   Sequence,
   ShortcutItem,
-  ShortcutMap
+  ShortcutMap,
+  Action
 } from './internal';

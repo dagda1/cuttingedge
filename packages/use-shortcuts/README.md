@@ -1,6 +1,6 @@
 # use-shortcuts
 
-Declaratively manage keyboard shortcuts with this react hook.
+Effortlessly create keyboard shortcuts with this react hook.
 
 A thin wrapper around [mousetrap](https://github.com/ccampbell/mousetrap).
 
@@ -25,9 +25,9 @@ import { useShortcuts } from '@cutting/use-shortcuts';
 const MyCmponent: React.FC = () => {
   useShortcuts({
     shortcutMap: {
-      MOVE_LEFT: KeyCode.LeftArrow,
+      MOVE_LEFT: 'a',
     },
-    handler: (action) => {
+    handler: (action, e) => {
       switch (action.type) {
         case 'MOVE_LEFT':
           console.log('move left');
@@ -41,27 +41,35 @@ const MyCmponent: React.FC = () => {
 };
 ```
 
-In the above example, an object of type [ShortcutMap](./src/types/types.ts) has one key property `MOVE_LEFT` which returns a string value representing a keyboard key.
+The `useShortcuts` hook will call your handler function passing the name of the key as an `action` argument and the associated `event` object.
 
-When the left arrow key is pressed an action is dispatched to the handler function also passed supplied to `useShortcuts` with a type property that matches the key in the `shortcutMap` which in this case is `MOVE_LEFT`.
+In the above example, there is the following configuration element that will trigger a `MOVE_LEFT` action if the `a` character is pressed.
+
+The `handler` field takes a function that expects an `Action` object:
+
+```javascript
+(action: { type: string } => void)
+```
+## Keys and Key sequences
 
 You can pass simple strings, an array of strings or a `combination` element that requires more than one key to activate or a `sequence` of keys that relies on each key in the sequence being executed before the handler fires.
 
-There is a [KeyCode enum](https://github.com/dagda1/cuttingedge/blob/master/packages/react-typed-mousetrap/src/types/keycodes.ts) to help with the special keys.
-
-Pass a map of values you want to hook up into the hook along with a handler function:
+There is a [KeyCode enum](./src/types/keycodes.ts) to help with the special keys.
 
 ```jsx
   import { ShortcutMap } from '@cutting/use-shortcuts';
 
   export const shortcutMap: ShortcutMap = {
+    // 'a' dispatches { type: 'SIMPLE_STRING' }
+    SIMPLE_STRING: 'a',
+    // left arrow and 'a' dispatches {type: 'MOVE_LEFT' }
     MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
-    MOVE_RIGHT: [KeyCode.RightArrow, 'd'],
-    MOVE_UP: [KeyCode.UpArrow, 'w'],
-    MOVE_DOWN: [KeyCode.DownArrow, 's'],
+    // right arrow and 'd' dispatches {type: 'MOVE_RIGHT' }
+    MOVE_RIGHT: [KeyCode.RightArrow, 'd'], either
+    // ctrl + f dispatches { type: 'COMBINATION_EXAMPLE' }
     COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
+    // x followed by c dispatches { type: 'SEQUENCE_EXAMPLE' }
     SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] },
-    SIMPLE_STRING: 'a'
 };
 
 const MyCmponent: React.FC = () => {
@@ -70,6 +78,9 @@ const MyCmponent: React.FC = () => {
       switch (action) {
         case 'MOVE_LEFT':
           console.log('move left');
+          break;
+        case 'MOVE_RIGHT':
+          console.log('move right');
           break;
         // etc.
       }
@@ -83,56 +94,36 @@ const MyCmponent: React.FC = () => {
   });
 ```
 
-The `useShortcuts` hook will call your handler function passing the name of the key as an `action` argument and the associated `event` object.
+## configuration
 
-In the above example, there is the following configuration element that will trigger a `MOVE_LEFT` action if the left arrow or `a` characters are pressed.
+`useShortcuts` takes a configuration object of type [UseShortcuts](./src/types/types):
 
-```js
-export const shortcutMap: ShortcutMap = {
-  MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
+```javascript
+export interface UseShortcuts {
+  shortcutMap: ShortcutMap;
+  handler: ShortcutHandler;
+  ref?: React.RefObject<HTMLElement>;
+}
 ```
 
-If the left arrow is pressed or the `a` key is pressed then your handler function will be called like this:
+|field   |  description |
+|---|---|
+| shortcutMap  | A key value pair object where the keys are the actions tht get dispatched and the values are the keys that invoke the actions.  |
+| handler  | The function that `useShortcuts` will call with the action keys from the `shortcutMap`   |
+| ref  |an optional `React.RefObject<HTMLElement>` that will have add the keyboard event listeners bound to.  If `ref` is omitte then the event listeners will be added to the document object.   |
 
-```js
-handler('MOVE_LEFT', e);
-```
+## adding event listeners to an html element
 
-Which is handled in the above example like this:
-
-```js
-const handleMove = (action) => {
-    switch (action) {
-      case 'MOVE_LEFT':
-        console.log('move left');
-        break;
-      // etc.
-```
-
-## add event handlers to an html element
-
-By default handlers will be added to the `document` object unless the `ref` attribute is supplied in the  in which case the component is wrapped in an html elemnt that receives the events.
-
-## Props
-
-- `handler`: the function that will receive the action and event arguments which the key sequence triggers.
-- `shortcutMap`: A key value pair of
-- `ref`: 
-
-## view demo
-
-```sh
-yarn start
-```
+By default event listeners are added to the `document` object unless the `ref` attribute is supplied in the  in which case the component is wrapped in an html elemnt that receives the events.
 
 ## build
 
 ```sh
-yarn build
+npm run build
 ```
 
 ## run tests
 
 ```sh
-yarn test
+npm test
 ```

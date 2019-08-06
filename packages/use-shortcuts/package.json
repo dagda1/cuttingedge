@@ -1,5 +1,6 @@
 {
   "name": "@cutting/use-shortcuts",
+  "description": "Effortlessly create keyboard shortcuts with this react hook.",
   "version": "0.1.0",
   "repository": {
     "type": "git",
