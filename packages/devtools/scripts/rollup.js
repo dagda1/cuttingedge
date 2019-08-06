@@ -12,7 +12,7 @@ const path = require('path');
 const ts = require('typescript');
 
 if (!process.argv.includes('--package-name')) {
-  throw new Error('no name switch');
+  throw new Error('no --package-name switch');
 }
 
 const packageName = process.argv[3];
@@ -63,13 +63,21 @@ async function generateBundledModule(inputFile, outputFile, format, production) 
   if (production) {
     plugins = [
       resolvePlugin(),
-      commonjs(),
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+      commonjs({
+        include: /node_modules/
+      }),
       terserPlugin(),
       filesizePlugin()
     ];
   } else {
-    plugins = [resolvePlugin(), commonjs(), filesizePlugin()];
+    plugins = [
+      resolvePlugin(),
+      commonjs({
+        include: /node_modules/
+      }),
+      filesizePlugin()
+    ];
   }
 
   const bundle = await rollup({

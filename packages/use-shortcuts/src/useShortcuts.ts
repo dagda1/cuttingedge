@@ -1,10 +1,10 @@
+import mousetrap from 'mousetrap';
 import { useEffect, useRef } from 'react';
-import mousetrap = require('mousetrap');
-import { UseShortcuts, ShortcutAction, UseShortcutsResult, Shortcut } from './types';
+import { UseShortcuts, ShortcutAction, UseShortcutsResult } from './types';
 import { buildShortcuts } from './buildShortcuts';
 import { clearArray } from './utils/clearArray';
 
-export const useShortcuts = ({ shortcutMap, ref, mapKey, handler }: UseShortcuts): UseShortcutsResult => {
+export const useShortcuts = ({ shortcutMap, ref, handler }: UseShortcuts): UseShortcutsResult => {
   const shortcutsRef = useRef<ShortcutAction[]>([]);
   const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>();
 
@@ -37,9 +37,7 @@ export const useShortcuts = ({ shortcutMap, ref, mapKey, handler }: UseShortcuts
     const shortcuts = shortcutsRef.current;
     const trapper = mousetrapRef.current;
 
-    const map = mapKey ? (shortcutMap[mapKey] as Shortcut) : (shortcutMap as Shortcut);
-
-    const shortcutActions = buildShortcuts(map);
+    const shortcutActions = buildShortcuts(shortcutMap);
 
     shortcutActions.forEach((shortcut) => {
       trapper.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
@@ -65,7 +63,7 @@ export const useShortcuts = ({ shortcutMap, ref, mapKey, handler }: UseShortcuts
         trapper.reset();
       });
     };
-  }, [handler, mapKey, ref, shortcutMap]);
+  }, [handler, ref, shortcutMap]);
 
   // for testing
   return { shortcuts: shortcutsRef.current };

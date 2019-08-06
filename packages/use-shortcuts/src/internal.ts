@@ -3,4 +3,3 @@ export * from './types/keycodes';
 export * from './types/types';
 export * from './utils/clearArray';
 export * from './utils/isPlainObject';
-export * from './utils/isStringArray';

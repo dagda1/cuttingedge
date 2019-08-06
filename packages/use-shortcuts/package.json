@@ -5,8 +5,8 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/use-shortcuts.js",
+  "types": "dist/use-shortcuts.d.ts",
   "license": "MIT",
   "scripts": {
     "start": "echo no start",

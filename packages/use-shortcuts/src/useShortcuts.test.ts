@@ -2,13 +2,13 @@
 /* eslint-disable no-console */
 import { renderHook } from '@testing-library/react-hooks';
 import { useShortcuts } from './useShortcuts';
-import { ShortcutMap, UseShortcuts, UseShortcutsResult } from './types';
+import { ShortcutMap, UseShortcuts, UseShortcutsResult, ShortcutHandler } from './types';
 import mousetrap from 'mousetrap';
 import { KeyCode } from './types/keycodes';
 
 const shortcutMap: ShortcutMap = { DO_SOMETHING: 'a' };
-const handler = (action: keyof typeof shortcutMap) => {
-  switch (action) {
+const handler: ShortcutHandler = (action) => {
+  switch (action.type) {
     case 'DO_SOMETHING':
       console.log('do something');
       return;
@@ -24,7 +24,7 @@ describe('useShortcuts', () => {
 
   it('should create shortcuts with no ref', () => {
     const { result } = renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
-      initialProps: { shortcutMap, handler }
+      initialProps: { shortcutMap, handler: () => undefined }
     });
 
     const { shortcuts } = result.current;
@@ -98,7 +98,7 @@ describe('useShortcuts', () => {
     });
 
     expect(shortcuts).toHaveLength(2);
-    expect(shortcuts[0].action).toBe('COMBINATION_EXAMPLE');
-    expect(shortcuts[1].action).toBe('SEQUENCE_EXAMPLE');
+    expect(shortcuts[0].action.type).toBe('COMBINATION_EXAMPLE');
+    expect(shortcuts[1].action.type).toBe('SEQUENCE_EXAMPLE');
   });
 });

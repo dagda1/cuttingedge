@@ -23,7 +23,7 @@ export const Box: React.FunctionComponent<BoxType & BoxProps> = ({ x, y, color, 
   const SHIFT = 10;
   // eslint:disable-nex-line
   const handleMove = useCallback(
-    (action) => {
+    (action: keyof typeof shortcutMap) => {
       switch (action) {
         case 'MOVE_LEFT':
           onMoveRequest({ x: x - SHIFT }, index);

@@ -1,40 +1,34 @@
 import { buildShortcuts } from './buildShortcuts';
-import { ShortcutMap, KeyCode } from './types';
-
-export const shortcutMap: ShortcutMap = {
-  object: {
-    FIRST: { combination: [KeyCode.Ctrl, 'a'] }
-  },
-  simpleString: {
-    FIRST: 'a'
-  },
-  array: {
-    MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
-    COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
-    SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] }
-  }
-};
+import { KeyCode } from './types';
 
 describe('buildShortcuts', () => {
   it('should assign 1 key to 1 handler', () => {
-    const result = buildShortcuts(shortcutMap.simpleString);
+    const result = buildShortcuts({
+      FIRST: 'a'
+    });
 
-    expect(result).toEqual([{ keys: 'a', action: 'FIRST' }]);
+    expect(result).toEqual([{ keys: 'a', action: { type: 'FIRST' } }]);
   });
 
   it('should build shortCuts from 1 object', () => {
-    const result = buildShortcuts(shortcutMap.object);
+    const result = buildShortcuts({
+      FIRST: { combination: [KeyCode.Ctrl, 'a'] }
+    });
 
-    expect(result).toEqual([{ keys: 'ctrl+a', action: 'FIRST' }]);
+    expect(result).toEqual([{ keys: 'ctrl+a', action: { type: 'FIRST' } }]);
   });
 
   it('should build shortcuts from array', () => {
-    const result = buildShortcuts(shortcutMap.array);
+    const result = buildShortcuts({
+      MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
+      COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
+      SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] }
+    });
 
     expect(result).toEqual([
-      { keys: ['left', 'a'], action: 'MOVE_LEFT' },
-      { keys: 'ctrl+f', action: 'COMBINATION_EXAMPLE' },
-      { keys: 'x c', action: 'SEQUENCE_EXAMPLE' }
+      { keys: ['left', 'a'], action: { type: 'MOVE_LEFT' } },
+      { keys: 'ctrl+f', action: { type: 'COMBINATION_EXAMPLE' } },
+      { keys: 'x c', action: { type: 'SEQUENCE_EXAMPLE' } }
     ]);
   });
 });

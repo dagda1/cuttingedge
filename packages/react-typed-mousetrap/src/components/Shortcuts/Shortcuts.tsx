@@ -10,7 +10,6 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   ScopedWrapperComponentType = 'div',
   shortcutMap,
   handler,
-  mapKey,
   className,
   dataSelector = 'keyboard-shortcuts',
   children
@@ -20,7 +19,6 @@ export const Shortcuts: React.FunctionComponent<ShortcutsProps> = ({
   useShortcuts({
     shortcutMap,
     handler,
-    mapKey,
     ref
   });
 

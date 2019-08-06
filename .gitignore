@@ -8,7 +8,7 @@ node_modules
 
 # production
 /build
-/.build.es*
+.build.es*
 
 dist
 
