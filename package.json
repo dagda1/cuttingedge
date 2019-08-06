@@ -12,6 +12,7 @@
     "global": "^4.3.2",
     "handler-builder": "^1.1.0",
     "history": "^4.7.2",
+    "marked": ">=0.6.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-helmet": "^5.2.0",
