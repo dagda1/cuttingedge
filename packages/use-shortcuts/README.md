@@ -10,10 +10,10 @@ Written in typescript so you can take advantage of better typesafety
 
 ```sh
 # npm
-npm install @cutting/react-typed-mousetrap -S
+npm install @cutting/use-shortcuts -S
 
 # yarn
-yarn add @cutting/react-typed-mousetrap -S
+yarn add @cutting/use-shortcuts -S
 ```
 
 ## Usage
@@ -60,11 +60,11 @@ There is a [KeyCode enum](./src/types/keycodes.ts) to help with the special keys
   import { ShortcutMap } from '@cutting/use-shortcuts';
 
   export const shortcutMap: ShortcutMap = {
-    // 'a' dispatches { type: 'SIMPLE_STRING' }
-    SIMPLE_STRING: 'a',
-    // left arrow and 'a' dispatches {type: 'MOVE_LEFT' }
+    // 'x' dispatches { type: 'SIMPLE_STRING' }
+    SIMPLE_STRING: 'x',
+    // left arrow or 'a' dispatch {type: 'MOVE_LEFT' }
     MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
-    // right arrow and 'd' dispatches {type: 'MOVE_RIGHT' }
+    // right arrow or 'd' dispatch {type: 'MOVE_RIGHT' }
     MOVE_RIGHT: [KeyCode.RightArrow, 'd'], either
     // ctrl + f dispatches { type: 'COMBINATION_EXAMPLE' }
     COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
