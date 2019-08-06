@@ -1,42 +1,12 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { Shortcuts } from './index';
-import { mount, ReactWrapper } from 'enzyme';
-import { ShortcutMap, ShortcutsProps } from '../../types';
-import { KeyCode } from '../../types/keycodes';
-import { Omit } from '../../types/omit';
-
-type Wrap = (
-  props?: Partial<ShortcutsProps<React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>>>,
-  handler?: jest.Mock<any, any>
-) => ReactWrapper;
-
-const singleShortcutMap: ShortcutMap = {
-  key: {
-    MOVE_UP: 'a'
-  }
-};
-
-const dummyHandler = (action: any, e: any) => undefined;
+import { Shortcuts } from './Shortcuts';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
+import { ShortcutMap, KeyCode } from '@cutting/use-shortcuts';
+import { ShortcutsProps } from '../../types';
 
 describe('<Shortcuts />', () => {
-  xit('should add a shortcuts', () => {
-    const Stateless = (props: any) => <div>Stateless</div>;
-
-    const wrapper = mount<typeof Shortcuts>(
-      <Shortcuts shortcutMap={singleShortcutMap} mapKey="key" handler={dummyHandler}>
-        <Stateless />
-      </Shortcuts>
-    );
-
-    const comp = wrapper.find(Shortcuts);
-
-    Object.keys(comp).forEach((o) => console.log(`${o} = ${wrapper[o]}`));
-
-    const shortcutActions = wrapper.state().shortcuts;
-
-    expect(shortcutActions).toHaveLength(1);
-  });
-
   const Scoped = () => <div>Scoped</div>;
 
   const defaultProps: Omit<ShortcutsProps, 'handler' | 'shortcutMap'> = {
@@ -44,99 +14,65 @@ describe('<Shortcuts />', () => {
     ScopedWrapperComponentType: 'div'
   };
 
-  const createWrapper = (map: ShortcutMap, mapKey?: string) => (
-    props: Partial<ShortcutsProps> = {},
-    handler: jest.Mock = jest.fn()
-  ) => {
-    return mount<typeof Shortcuts>(
-      <Shortcuts {...defaultProps} {...props} shortcutMap={map} mapKey={mapKey} handler={handler}>
+  const wrap = (props: ShortcutsProps) =>
+    render(
+      <Shortcuts {...defaultProps} {...props}>
         <Scoped />
       </Shortcuts>
     );
-  };
 
   describe('scoped Shortcuts', () => {
-    let wrap: Wrap;
-
     const singleShortcutMap: ShortcutMap = {
       MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
       MOVE_RIGHT: [KeyCode.RightArrow, 'd']
     };
 
-    beforeEach(() => {
-      wrap = createWrapper(singleShortcutMap);
-    });
-
     it('should wrap a scoped component in a div by default', () => {
-      const wrapper = wrap(singleShortcutMap);
+      const { getByTestId } = wrap({ shortcutMap: singleShortcutMap, handler: jest.fn() });
 
-      const mousetrap = wrapper.find('.mousetrap');
-
-      expect(mousetrap).toHaveLength(1);
+      getByTestId('keyboard-shortcuts');
     });
 
-    xit('should assign event handler', () => {
-      const handler = jest.fn();
+    it('should override default data-selector', () => {
+      const { getByTestId } = wrap({ shortcutMap: singleShortcutMap, handler: jest.fn(), dataSelector: 'my-selector' });
 
-      const wrapper = wrap(undefined, handler);
-
-      const target = wrapper.find('.mousetrap');
-
-      target.simulate('keypress', { keyCode: 'a'.charCodeAt(0) });
-
-      expect(handler).toHaveBeenCalled();
+      getByTestId('my-selector');
     });
 
     it("should initially set the wrapped element's tabIndex to -1", () => {
-      const wrapper = wrap();
+      const { getByTestId } = wrap({ shortcutMap: singleShortcutMap, handler: jest.fn() });
 
-      const mousetrap = wrapper.find('.mousetrap');
+      const mousetrap = getByTestId('keyboard-shortcuts');
 
-      expect(mousetrap.props().tabIndex).toBe(-1);
+      expect(mousetrap.tabIndex).toBe(-1);
     });
 
     it("should override wrapped element's tabIndex to prop", () => {
-      const wrapper = wrap({ tabIndex: 4 });
+      const { getByTestId } = wrap({ shortcutMap: singleShortcutMap, handler: jest.fn(), tabIndex: 4 });
 
-      const mousetrap = wrapper.find('.mousetrap');
+      const mousetrap = getByTestId('keyboard-shortcuts');
 
-      expect(mousetrap.props().tabIndex).toBe(4);
+      expect(mousetrap.tabIndex).toBe(4);
     });
 
     it("should override wrapped element's element type", () => {
-      const wrapper = wrap({ ScopedWrapperComponentType: 'span' });
+      const { getByTestId } = wrap({
+        ScopedWrapperComponentType: 'span',
+        shortcutMap: singleShortcutMap,
+        handler: jest.fn()
+      });
 
-      const mousetrap = wrapper.find('span');
+      const mousetrap = getByTestId('keyboard-shortcuts');
 
-      expect(mousetrap).toHaveLength(1);
+      expect(mousetrap.tagName.toLowerCase()).toBe('span');
     });
 
     it('should add className to wrapped element', () => {
-      const wrapper = wrap({ className: 'some-class' });
+      const { getByTestId } = wrap({ shortcutMap: singleShortcutMap, handler: jest.fn(), className: 'some-class' });
 
-      expect(wrapper.find('.mousetrap').hasClass('some-class')).toBe(true);
-    });
-  });
+      const mousetrap = getByTestId('keyboard-shortcuts') as HTMLDivElement;
 
-  describe('with multiple maps', () => {
-    const multipleShortcutMap: ShortcutMap = {
-      key: {
-        MOVE_UP: 'a'
-      }
-    };
-
-    let wrap: Wrap;
-
-    beforeEach(() => {
-      wrap = createWrapper(multipleShortcutMap, 'key');
-    });
-
-    it('should pick correct map item', () => {
-      const wrapper = wrap();
-
-      const mousetrap = wrapper.find('.mousetrap');
-
-      expect(mousetrap).toHaveLength(1);
+      expect(mousetrap.classList.contains('some-class')).toBe(true);
     });
   });
 });

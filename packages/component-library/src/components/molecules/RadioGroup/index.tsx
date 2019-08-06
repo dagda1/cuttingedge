@@ -2,7 +2,6 @@ import React, { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio';
 import { RadioProps, RadioLayoutProps, RadioSize, RadioLayout } from '../../atoms/Radio/types';
 import cs from 'classnames';
-import { Omit } from '@cutting/util';
 
 const styles = require('./RadioGroup.scss');
 

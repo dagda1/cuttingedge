@@ -36,5 +36,6 @@
     "./packages/connected-components",
     "./packages/react-typed-mousetrap",
     "./packages/website"
-  ]
+  ],
+  "workbench.colorCustomizations": {}
 }

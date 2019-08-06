@@ -15,6 +15,7 @@ switch (script) {
   case 'ssr-start':
   case 'ssr-build':
   case 'webserver-start':
+  case 'rollup':
   case 'test': {
     console.log(require.resolve('../scripts/' + script));
     const result = spawn.sync('node', [require.resolve('../scripts/' + script)].concat(args), { stdio: 'inherit' });

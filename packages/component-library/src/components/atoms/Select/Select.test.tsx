@@ -1,21 +1,20 @@
-import { shallow } from 'enzyme';
 import React from 'react';
 import { Select, SelectProps } from '.';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
-/* eslint-disable */
-const wrap = (props: SelectProps) => shallow(<Select {...props} />);
+const wrap = (props: SelectProps) => render(<Select {...props} />);
 
 describe('Select', () => {
   it.only('renders props when passed in', () => {
-    const wrapper = wrap({ id: 'foo', options: [] });
+    const { container } = wrap({ id: 'foo', options: [] });
 
-    expect(wrapper.find({ id: 'foo' })).toHaveLength(1);
+    expect(container.querySelector('#foo')).toBeTruthy();
   });
 
   it('renders a default label by default', () => {
-    const wrapper = wrap({ options: [] });
+    const { container } = wrap({ options: [] });
 
-    const options = wrapper.find('option');
+    const options = container.getElementsByTagName('option');
 
     expect(options).toHaveLength(1);
   });
@@ -23,13 +22,13 @@ describe('Select', () => {
   it('should render options from array of objects', () => {
     const countries = [{ id: 'uk', displayName: 'United Kingdom' }];
 
-    const wrapper = wrap({
+    const { container } = wrap({
       options: countries,
       valueKey: 'id',
       optionKey: 'displayName'
     });
 
-    const options = wrapper.find('option');
+    const options = container.getElementsByTagName('option');
 
     expect(options.length).toBe(2);
   });
@@ -37,20 +36,20 @@ describe('Select', () => {
   it('should insert a divider into the select', () => {
     const countries = [{ id: 'uk', displayName: 'United Kingdom' }, { id: 'irleand', displayName: 'Ireland' }];
 
-    const wrapper = wrap({
+    const { container } = wrap({
       options: countries,
       valueKey: 'id',
       optionKey: 'displayName',
       dividerAt: 1
     });
 
-    const options = wrapper.find('option');
+    const options = container.getElementsByTagName('option');
 
     expect(options).toHaveLength(4);
 
-    const option = options.at(2);
+    const option = options[2];
 
-    expect(option.props().disabled).toBe(true);
+    expect(option.getAttribute('disabled')).toBe(true);
   });
 
   it('should use filterOptions prop to exclude options from <Select />', () => {
@@ -60,17 +59,17 @@ describe('Select', () => {
       { id: 'albania', displayName: 'Albania' }
     ];
 
-    const wrapper = wrap({
+    const { container } = wrap({
       options: countries,
       valueKey: 'id',
       optionKey: 'displayName',
       filterOptions: (o) => ['uk', 'ireland'].indexOf(o.id.toString()) === -1
     });
 
-    const options = wrapper.find('option');
+    const options = container.getElementsByTagName('option');
 
     expect(options).toHaveLength(2);
 
-    expect(options.at(1).props().value).toBe('albania');
+    expect(options[1].value).toBe('albania');
   });
 });

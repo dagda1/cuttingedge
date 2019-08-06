@@ -1,7 +1,8 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useCallback } from 'react';
 import { Point, Box as BoxType } from './types';
 import { Shortcuts } from '../src/components/Shortcuts';
 import { shortcutMap } from './shortCutMap';
+import { Action } from '@cutting/use-shortcuts';
 
 interface BoxProps {
   index: number;
@@ -21,25 +22,27 @@ export const Box: React.FunctionComponent<BoxType & BoxProps> = ({ x, y, color, 
   };
 
   const SHIFT = 10;
-  // eslint:disable-nex-line
-  const handleMove = (action) => {
-    switch (action) {
-      case 'MOVE_LEFT':
-        onMoveRequest({ x: x - SHIFT }, index);
-        break;
-      case 'MOVE_RIGHT':
-        onMoveRequest({ x: x + SHIFT }, index);
-        break;
-      case 'MOVE_UP':
-        onMoveRequest({ y: y - SHIFT }, index);
-        break;
-      case 'MOVE_DOWN':
-        onMoveRequest({ y: y + SHIFT }, index);
-        break;
-      default:
-        throw new Error('Unknown action');
-    }
-  };
+  const handleMove = useCallback(
+    (action: Action) => {
+      switch (action.type) {
+        case 'MOVE_LEFT':
+          onMoveRequest({ x: x - SHIFT }, index);
+          break;
+        case 'MOVE_RIGHT':
+          onMoveRequest({ x: x + SHIFT }, index);
+          break;
+        case 'MOVE_UP':
+          onMoveRequest({ y: y - SHIFT }, index);
+          break;
+        case 'MOVE_DOWN':
+          onMoveRequest({ y: y + SHIFT }, index);
+          break;
+        default:
+          throw new Error('Unknown action');
+      }
+    },
+    [index, onMoveRequest, x, y]
+  );
 
   return (
     <Shortcuts shortcutMap={shortcutMap} handler={handleMove} scoped>

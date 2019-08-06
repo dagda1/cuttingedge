@@ -7,6 +7,9 @@
       "path": "packages/afterafterjs"
     },
     {
+      "path": "packages/use-shortcuts"
+    },
+    {
       "path": "packages/react-typed-mousetrap"
     },
     {
@@ -33,6 +36,7 @@
   ],
   "settings": {
     "typescript.tsdk": "cuttingedge/node_modules/typescript/lib",
-    "eslint.packageManager": "npm"
+    "eslint.packageManager": "npm",
+    "workbench.colorCustomizations": {}
   }
 }

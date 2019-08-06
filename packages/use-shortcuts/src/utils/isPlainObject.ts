@@ -20,5 +20,3 @@ export const isPlainObject = (obj: any): boolean => {
     Function.prototype.toString.call(Ctor) === Function.prototype.toString.call(Object)
   );
 };
-
-export const isStringArray = <T>(arr: T[]): boolean => arr.every((x) => typeof x === 'string');

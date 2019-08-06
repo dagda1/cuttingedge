@@ -1,10 +1,10 @@
-import { Shortcut, ShortcutItem, ShortcutAction } from '../../types';
-import { isPlainObject } from '../../utils';
+import { ShortcutAction, ShortcutItem, ShortcutMap } from './types';
+import { isPlainObject } from './utils/isPlainObject';
 
-export const buildShortcuts = (map: Shortcut): ShortcutAction[] => {
+export const buildShortcuts = (map: ShortcutMap): ShortcutAction[] => {
   const shortcutActions: ShortcutAction[] = [];
-  Object.keys(map).forEach((mapKey) => {
-    const shortcut = map[mapKey];
+  Object.keys(map).forEach((key) => {
+    const shortcut = map[key];
 
     const createCombination = (shortcut: ShortcutItem) => {
       const comboType = Object.keys(shortcut)[0];
@@ -19,7 +19,7 @@ export const buildShortcuts = (map: Shortcut): ShortcutAction[] => {
     if (isPlainObject(shortcut)) {
       const keys = createCombination(shortcut);
 
-      shortcutActions.push({ keys, action: mapKey });
+      shortcutActions.push({ keys, action: { type: key } });
     } else if (Array.isArray(shortcut)) {
       const keys = shortcut.map((element) => {
         if (typeof element === 'string') {
@@ -29,9 +29,9 @@ export const buildShortcuts = (map: Shortcut): ShortcutAction[] => {
         return createCombination(element);
       });
 
-      shortcutActions.push({ keys, action: mapKey });
+      shortcutActions.push({ keys, action: { type: key } });
     } else if (typeof shortcut === 'string') {
-      shortcutActions.push({ keys: shortcut, action: mapKey });
+      shortcutActions.push({ keys: shortcut, action: { type: key } });
     }
   });
 

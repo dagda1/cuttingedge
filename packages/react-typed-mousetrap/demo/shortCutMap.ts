@@ -1,5 +1,4 @@
-import { ShortcutMap } from '../src/types';
-import { KeyCode } from '../src/types/keyCodes';
+import { ShortcutMap, KeyCode } from '@cutting/use-shortcuts';
 
 export const shortcutMap: ShortcutMap = {
   MOVE_LEFT: [KeyCode.LeftArrow, 'a'],

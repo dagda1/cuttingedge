@@ -1,11 +1,11 @@
 import cs from 'classnames';
 import React from 'react';
-import { isNil } from '@cutting/util';
+import isNil from 'lodash/isNil';
 
 const styles = require('./select.scss');
 
 export interface OptionType {
-  [key: string]: string | string[] | number | undefined;
+  [key: string]: string | string[] | number;
 }
 
 function mapOptionsToValues(

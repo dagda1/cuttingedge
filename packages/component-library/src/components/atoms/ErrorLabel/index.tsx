@@ -1,14 +1,14 @@
 import cs from 'classnames';
 import React from 'react';
+import { StandardProps } from '../../../types';
 
 const styles = require('./ErrorLabel.scss');
 
-export interface ErrorProps {
-  id?: string;
+export type ErrorProps = StandardProps<React.HTMLAttributes<HTMLUListElement>> & {
   errorMessage: string;
   dataSelector?: string;
   className?: string;
-}
+};
 
 export const Error: React.FunctionComponent<ErrorProps> = ({
   errorMessage,
