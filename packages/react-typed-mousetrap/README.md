@@ -1,8 +1,6 @@
 # react-typed-mousetrap
 
-Declaratively manage keyboard shortcuts on react components.
-
-A thin wrapper around [mousetrap](https://github.com/ccampbell/mousetrap).
+React component that wraps [use-shortcuts](https://github.com/dagda1/cuttingedge/tree/master/packages/use-shortcuts).
 
 Written in typescript so you can take advantage of better typesafety
 
@@ -60,7 +58,7 @@ In the above example, there is the following configuration element:
 If the left arrow is pressed or the `a` key is pressed then your handler function will be called like this:
 
 ```js
-handler('MOVE_LEFT', e);
+handler({type: 'MOVE_LEFT'}, e);
 ```
 
 Which is handled in the above example like this:
@@ -69,7 +67,7 @@ Which is handled in the above example like this:
 const SHIFT = 10;
 
 const handleMove = (action) => {
-    switch (action) {
+    switch (action.type) {
       case 'MOVE_LEFT':
         onMoveRequest({ x: x - SHIFT }, index);
         break;
@@ -85,25 +83,6 @@ const handleMove = (action) => {
       default:
         throw new Error('Unknown action');
     }
-```
-
-You can optionally pass a `mapKey` prop if you want to keep all shortcut maps in the same object. The `mapKey` prop will allow you to select the map for this context, e.g.
-
-```js
-export const shortcutMap: ShortcutMap = {
-  BOX: {
-    MOVE_LEFT: [KeyCode.LeftArrow, 'a']
-  },
-  OTHER: {
-    ONE_KEY_EXAMPLE: 'a'
-  }
-};
-```
-
-Then you can select `BOX` or `OTHER` by spcecifying the `mapKey` prop:
-
-```js
-<Shortcuts shortcutMap={shortcutMap} napKey="BOX" handler={handleMove} scoped>
 ```
 
 ## scoped
