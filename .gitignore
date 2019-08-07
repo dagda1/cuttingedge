@@ -38,3 +38,5 @@ coverage
 
 tsconfig.tsbuildinfo
 test-results
+
+.rts2_cache_*

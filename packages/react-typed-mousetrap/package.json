@@ -15,10 +15,9 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/use-shortcuts": "0.1.0",
+    "@cutting/use-shortcuts": "0.1.2",
     "@cutting/util": "0.6.0",
     "invariant": "^2.2.4",
-    "lodash": "^4.17.15",
     "mousetrap": "^1.6.2"
   },
   "devDependencies": {

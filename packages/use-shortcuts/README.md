@@ -2,9 +2,9 @@
 
 Effortlessly create keyboard shortcuts with this react hook.
 
-A thin wrapper around [mousetrap](https://github.com/ccampbell/mousetrap).
+`use-shortcuts` is really a thin wrapper around [mousetrap](https://github.com/ccampbell/mousetrap).
 
-Written in typescript so you can take advantage of better typesafety
+`use-shortcuts` is written in typescript so you can take advantage of better typesafety
 
 ## install
 
@@ -17,7 +17,6 @@ yarn add @cutting/use-shortcuts -S
 ```
 
 ## Usage
-Declare a `ShortcutMap` object like below of type `ShorcutMap`:
 
 ```js
 import { useShortcuts } from '@cutting/use-shortcuts';
@@ -40,12 +39,20 @@ const MyCmponent: React.FC = () => {
   return <div>component</dv>
 };
 ```
+The `useShortcuts` hook is called passing in a configurtion object of type `UseShortcuts`:
 
-The `useShortcuts` hook will call your handler function passing the name of the key as an `action` argument and the associated `event` object.
+```javascript
+export interface UseShortcuts {
+  shortcutMap: ShortcutMap;
+  handler: ShortcutHandler;
+  ref?: React.RefObject<HTMLElement>;
+}
+```
+In the example above, a `shortcutMap` object is supplied which is a key value pair of *actions* that are dispatched when keyboard events are triggered.
 
-In the above example, there is the following configuration element that will trigger a `MOVE_LEFT` action if the `a` character is pressed.
+In this example, if the `a` key is pressed, the use `useShortcuts` hook will dispatch an action of `{ type: 'MOVE_LEFT' }` to the handler function that is also supplied to the configuration object.
 
-The `handler` field takes a function that expects an `Action` object:
+The `handler` attribute takes a function that expects an `Action` object:
 
 ```javascript
 (action: { type: string } => void)
@@ -110,7 +117,7 @@ export interface UseShortcuts {
 |---|---|
 | shortcutMap  | A key value pair object where the keys are the actions tht get dispatched and the values are the keys that invoke the actions.  |
 | handler  | The function that `useShortcuts` will call with the action keys from the `shortcutMap`   |
-| ref  |an optional `React.RefObject<HTMLElement>` that will have add the keyboard event listeners bound to.  If `ref` is omitte then the event listeners will be added to the document object.   |
+| ref  |an optional `React.RefObject<HTMLElement>` that will have add the keyboard event listeners bound to.  If `ref` is omitted then the event listeners will be added to the document object.   |
 
 ## adding event listeners to an html element
 
