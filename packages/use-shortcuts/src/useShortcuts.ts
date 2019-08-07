@@ -41,7 +41,6 @@ export const useShortcuts = ({ shortcutMap, ref, handler }: UseShortcuts): UseSh
 
     shortcutActions.forEach((shortcut) => {
       trapper.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
-        e.preventDefault();
         e.stopPropagation();
 
         handler(shortcut.action, e);
