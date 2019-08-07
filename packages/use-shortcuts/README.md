@@ -39,7 +39,7 @@ const MyCmponent: React.FC = () => {
   return <div>component</dv>
 };
 ```
-The `useShortcuts` hook is called passing in a configurtion object of type `UseShortcuts`:
+In the above example, the `useShortcuts` hook is called and a configurtion object of type `UseShortcuts` is supplied as an argument:
 
 ```javascript
 export interface UseShortcuts {
@@ -48,9 +48,9 @@ export interface UseShortcuts {
   ref?: React.RefObject<HTMLElement>;
 }
 ```
-In the example above, a `shortcutMap` object is supplied which is a key value pair of *actions* that are dispatched when keyboard events are triggered.
+The configuration object has a required property `shortcutMap` which is a key value pair of *actions* that are dispatched when keyboard events are triggered.
 
-In this example, if the `a` key is pressed, the use `useShortcuts` hook will dispatch an action of `{ type: 'MOVE_LEFT' }` to the handler function that is also supplied to the configuration object.
+In this example, if the `a` key is pressed, the `useShortcuts` hook will dispatch an action object of `{ type: 'MOVE_LEFT' }` to the handler function that is also a required field of the configuration object.
 
 The `handler` attribute takes a function that expects an `Action` object:
 
