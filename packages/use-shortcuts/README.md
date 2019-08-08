@@ -99,6 +99,8 @@ const MyCmponent: React.FC = () => {
     shortcutMap,
     handler
   });
+
+  return <div>component</dv>
 ```
 
 ## configuration
@@ -121,7 +123,34 @@ export interface UseShortcuts {
 
 ## adding event listeners to an html element
 
-By default event listeners are added to the `document` object unless the `ref` attribute is supplied in the  in which case the component is wrapped in an html elemnt that receives the events.
+By default event listeners are added to the `document` object unless the `ref` attribute is supplied in the  in which case the event handlers are added to that element when it is in the DOM:
+
+```javascript
+export const Comp: React.FunctionComponent = () => {
+  const ref = useRef<HTMLInputElement>(null);
+  const [text, setText] = useState('');
+
+  useShortcuts({
+    shortcutMap: {
+      AAA: 'a',
+    },
+    handler: (action: Action) => {
+      console.log(action);
+    },
+    ref,
+  });
+
+
+  return (
+    <input
+      type="text"
+      ref={ref}
+      value={text}
+      onChange={e => setText(e.target.value)}
+    />
+  )
+}
+```
 
 ## build
 
