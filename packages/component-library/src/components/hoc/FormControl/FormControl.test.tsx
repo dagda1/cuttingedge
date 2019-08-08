@@ -10,46 +10,38 @@ const wrap = (props?: Partial<FormControlProps<HTMLSelectElement>>) =>
 
 describe('FormControl', () => {
   it('should wrap component with label', () => {
-    const { findAllByText } = wrap();
+    const { getByText } = wrap();
 
-    findAllByText('label');
+    getByText('label');
   });
 
-  // it('should render an error state', () => {
-  //   const wrapper = wrap({ invalid: true, errorMessage: 'error' });
+  it('should render an error state', () => {
+    const { getByTestId } = wrap({ invalid: true, errorMessage: 'error' });
 
-  //   const errorLabel = wrapper.find('[data-selector]');
+    getByTestId('form-error');
+  });
 
-  //   expect(errorLabel.text()).toBe('error');
-  // });
+  it('should be able to tag an error label', () => {
+    const { getByTestId, getByText } = wrap({
+      invalid: true,
+      errorDataSelector: 'error-selector',
+      errorMessage: 'Error'
+    });
 
-  // it('should be able to tag an error label', () => {
-  //   const wrapper = wrap({
-  //     invalid: true,
-  //     errorDataSelector: 'error-selector',
-  //     errorMessage: 'Error'
-  //   });
+    getByTestId('error-selector');
 
-  //   const label = wrapper.find('[data-selector="error-selector"]').hostNodes();
+    getByText('Error');
+  });
 
-  //   expect(label).toHaveLength(1);
+  it('should add aria tags for invalid', () => {
+    const { container } = wrap({ invalid: true });
 
-  //   expect(label.text()).toBe('Error');
-  // });
+    expect(container.querySelector('[aria-invalid=true]')).toBeTruthy();
+  });
 
-  // it('should add aria tags for invalid', () => {
-  //   const wrapper = wrap({ invalid: true });
+  it('should add additional markup to FormControl', () => {
+    const { getByText } = wrap({ additionalLabel: <em>additional</em> });
 
-  //   expect(wrapper.find('[aria-invalid=true]').hostNodes()).toHaveLength(1);
-  // });
-
-  // it('should add additional markup to FormControl', () => {
-  //   const wrapper = wrap({ additionalLabel: <em>additional</em> });
-
-  //   const target = wrapper.find('em');
-
-  //   expect(target).toHaveLength(1);
-
-  //   expect(target.text()).toBe('additional');
-  // });
+    getByText('additional');
+  });
 });
