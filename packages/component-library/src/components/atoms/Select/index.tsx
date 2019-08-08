@@ -9,10 +9,10 @@ export interface OptionType {
   [key: string]: string | string[] | number;
 }
 
-const isOptionType = (o: string | OptionType): o is OptionType => isObject(o);
+const isOptionType = (o: number | string | OptionType): o is OptionType => isObject(o);
 
 function mapOptionsToValues(
-  element: string | OptionType,
+  element: number | string | OptionType,
   valueKey?: keyof OptionType,
   optionKey?: keyof OptionType,
   index?: number
@@ -50,7 +50,7 @@ function mergeOptions(options: object[], dividerAt: number) {
 
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   defaultLabel?: string;
-  options: string[] | OptionType[];
+  options: (number | string | OptionType)[];
   invalid?: boolean;
   valueKey?: keyof OptionType;
   optionKey?: keyof OptionType;
@@ -79,11 +79,7 @@ export const Select: React.FunctionComponent<SelectProps> = ({
           </option>
         )}
         {mergeOptions(
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (options as any)
-            .filter(filterOptions)
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .map((x: any, i: number) => mapOptionsToValues(x, valueKey, optionKey, i)),
+          options.filter(filterOptions).map((x, i: number) => mapOptionsToValues(x, valueKey, optionKey, i)),
           dividerAt || -1
         )}
       </select>
