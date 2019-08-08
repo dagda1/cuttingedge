@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-shortcuts",
   "description": "Effortlessly create keyboard shortcuts with this react hook.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -14,6 +14,10 @@
     "./lib/use-shortcuts.module.js": "./lib/use-shortcuts.module.js"
   },
   "types": "dist/use-shortcuts.d.ts",
+  "typings": "dist/use-shortcuts.d.ts",
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "scripts": {
     "start": "echo no start",
@@ -34,7 +38,14 @@
     "@types/mousetrap": "^1.6.0",
     "react-hooks-testing-library": "^0.6.0"
   },
-  "files": [
-    "dist"
+  "keywords": [
+    "hotkeys",
+    "focus",
+    "react",
+    "reactjs",
+    "reactnative",
+    "hooks",
+    "hook",
+    "use-shortcuts"
   ]
 }

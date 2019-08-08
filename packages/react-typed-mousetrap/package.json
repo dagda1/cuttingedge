@@ -1,12 +1,16 @@
 {
   "name": "@cutting/react-typed-mousetrap",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
@@ -27,5 +31,16 @@
     "@types/invariant": "^2.2.29",
     "@types/mousetrap": "^1.6.0",
     "react-hooks-testing-library": "^0.6.0"
-  }
+  },
+  "keywords": [
+    "react-component",
+    "hotkeys",
+    "focus",
+    "react",
+    "reactjs",
+    "reactnative",
+    "hooks",
+    "hook",
+    "use-shortcuts"
+  ]
 }
