@@ -8,7 +8,7 @@ import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
 
 /* eslint-disable */
-export interface AppProps {}
+export interface AppProps { }
 export interface AppState {
   modalOpen: boolean;
 }
@@ -34,34 +34,34 @@ export class App extends React.Component<AppProps, AppState> {
         </Layout>
         <Layout>
           <GelItem l="1/4">
-            <RadioGroup legend="large stacked" 
-                        name="larg-stacked"
-                        layout={RadioLayout.stacked} size={RadioSize.large} options={[{
-                        value:"off", content: "OFF"
-                        },{
-                          value:"on", checked: true, content: "ON"
-                        }]}
+            <RadioGroup legend="large stacked"
+              name="larg-stacked"
+              layout={RadioLayout.stacked} size={RadioSize.large} options={[{
+                value: "off", content: "OFF"
+              }, {
+                value: "on", checked: true, content: "ON"
+              }]}
             />
           </GelItem>
           <GelItem l="1/4">
-            <RadioGroup name="small-stacked"  layout={RadioLayout.stacked} size={RadioSize.small} legend="small stacked" options={[{
-              value:"off", content: "OFF"
-            },{
-              value:"on", checked: true, content: "ON"
+            <RadioGroup name="small-stacked" layout={RadioLayout.stacked} size={RadioSize.small} legend="small stacked" options={[{
+              value: "off", content: "OFF"
+            }, {
+              value: "on", checked: true, content: "ON"
             }]} />
           </GelItem>
           <GelItem l="1/4">
-            <RadioGroup name="large-inline"  layout={RadioLayout.inline} size={RadioSize.large} legend="large inline" options={[{
-              value:"off", content: "OFF"
-            },{
-              value:"on", checked: true, content: "ON"
+            <RadioGroup name="large-inline" layout={RadioLayout.inline} size={RadioSize.large} legend="large inline" options={[{
+              value: "off", content: "OFF"
+            }, {
+              value: "on", checked: true, content: "ON"
             }]} />
           </GelItem>
           <GelItem l="1/4">
-            <RadioGroup name="small-inline"  layout={RadioLayout.inline} size={RadioSize.small} legend="small inline" options={[{
-              value:"off", content: "OFF"
-            },{
-              value:"on", checked: true, content: "ON"
+            <RadioGroup name="small-inline" layout={RadioLayout.inline} size={RadioSize.small} legend="small inline" options={[{
+              value: "off", content: "OFF"
+            }, {
+              value: "on", checked: true, content: "ON"
             }]} />
           </GelItem>
         </Layout>

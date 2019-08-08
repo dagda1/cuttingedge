@@ -6,13 +6,13 @@ import { render } from '@cutting/devtools/jest/react-testing-overrides';
 const FormSelect = FormControl(Select);
 
 const wrap = (props?: Partial<FormControlProps<HTMLSelectElement>>) =>
-  render(<FormSelect options={[1, 2, 3]} label="label" {...props} />);
+  render(<FormSelect options={[1, 2, 3].map(String)} label="label" {...props} />);
 
 describe('FormControl', () => {
   it('should wrap component with label', () => {
-    const {} = wrap();
+    const { findAllByText } = wrap();
 
-    expect(wrapper.find('label')).toHaveLength(1);
+    findAllByText('label');
   });
 
   // it('should render an error state', () => {

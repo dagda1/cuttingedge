@@ -11,7 +11,7 @@ describe('Select', () => {
     expect(container.querySelector('#foo')).toBeTruthy();
   });
 
-  it('renders a default label by default', () => {
+  it('should a default label', () => {
     const { container } = wrap({ options: [] });
 
     const options = container.getElementsByTagName('option');
@@ -49,7 +49,7 @@ describe('Select', () => {
 
     const option = options[2];
 
-    expect(option.getAttribute('disabled')).toBe(true);
+    expect(option.hasAttribute('disabled')).toBe(true);
   });
 
   it('should use filterOptions prop to exclude options from <Select />', () => {
@@ -71,5 +71,17 @@ describe('Select', () => {
     expect(options).toHaveLength(2);
 
     expect(options[1].value).toBe('albania');
+  });
+
+  it('should render a select from an arraoy of strings', () => {
+    const colours = ['green', 'blue', 'purple'];
+
+    const { container } = wrap({
+      options: colours
+    });
+
+    const options = container.getElementsByTagName('option');
+
+    expect(options).toHaveLength(4);
   });
 });

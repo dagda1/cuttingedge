@@ -1,7 +1,7 @@
+import cs from 'classnames';
 import React from 'react';
 import isNil from 'lodash/isNil';
 import isObject from 'lodash.isobject';
-import cs from 'classnames';
 
 const styles = require('./select.scss');
 
@@ -9,15 +9,19 @@ export interface OptionType {
   [key: string]: string | string[] | number;
 }
 
+const isOptionType = (o: string | OptionType): o is OptionType => isObject(o);
+
 function mapOptionsToValues(
-  element: OptionType,
+  element: string | OptionType,
   valueKey?: keyof OptionType,
   optionKey?: keyof OptionType,
   index?: number
 ) {
-  if (isNil(valueKey) || isNil(optionKey)) {
-    return <option key={`${element}${index}`}>{element}</option>;
-  } else {
+  if (isOptionType(element)) {
+    if (!valueKey || !optionKey) {
+      throw new Error('No valueKey or optionKey supplied for array of objects.');
+    }
+
     const value = element[valueKey];
 
     return (
@@ -25,6 +29,8 @@ function mapOptionsToValues(
         {element[optionKey]}
       </option>
     );
+  } else {
+    return <option key={`${element}${index}`}>{element}</option>;
   }
 }
 
@@ -42,14 +48,6 @@ function mergeOptions(options: object[], dividerAt: number) {
   return options;
 }
 
-const isArrayOfStringsOrNumbers = (arr: unknown[]): arr is string[] | number[] => {
-  if (arr.length === 0) {
-    return true;
-  }
-
-  return arr.every((a) => (!isObject(a) && typeof a === 'number') || typeof a === 'string');
-};
-
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   defaultLabel?: string;
   options: string[] | OptionType[];
@@ -60,7 +58,7 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
   filterOptions?: (option: OptionType) => boolean;
 }
 
-export const Select: React.FC<SelectProps> = ({
+export const Select: React.FunctionComponent<SelectProps> = ({
   value,
   defaultLabel = '',
   className,
@@ -72,8 +70,6 @@ export const Select: React.FC<SelectProps> = ({
   filterOptions = () => true,
   ...rest
 }) => {
-  const resolvedOptions = isArrayOfStringsOrNumbers(options) ? options.map((x) => ({ key: x, value: x })) : options;
-
   return (
     <div className={styles.container}>
       <select value={value} className={cs(className, styles.default, { [styles.invalid]: invalid })} {...rest}>
@@ -82,11 +78,14 @@ export const Select: React.FC<SelectProps> = ({
             {defaultLabel}
           </option>
         )}
-        {filterOptions &&
-          mergeOptions(
-            resolvedOptions.filter(filterOptions).map((x, i: number) => mapOptionsToValues(x, valueKey, optionKey, i)),
-            dividerAt || -1
-          )}
+        {mergeOptions(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (options as any)
+            .filter(filterOptions)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .map((x: any, i: number) => mapOptionsToValues(x, valueKey, optionKey, i)),
+          dividerAt || -1
+        )}
       </select>
     </div>
   );
