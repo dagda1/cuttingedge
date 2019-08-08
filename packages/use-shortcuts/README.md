@@ -123,7 +123,7 @@ export interface UseShortcuts {
 
 ## adding event listeners to an html element
 
-By default event listeners are added to the `document` object unless the `ref` attribute is supplied in the  in which case the event handlers are added to that element when it is in the DOM:
+By default event listeners are added to the `document` object unless the `ref` attribute is supplied in the configuration, in which case the event handlers are added to that element when it is in the DOM:
 
 ```javascript
 export const Comp: React.FunctionComponent = () => {
