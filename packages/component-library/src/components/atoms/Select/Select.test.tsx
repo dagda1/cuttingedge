@@ -5,7 +5,7 @@ import { render } from '@cutting/devtools/jest/react-testing-overrides';
 const wrap = (props: SelectProps) => render(<Select {...props} />);
 
 describe('Select', () => {
-  it.only('renders props when passed in', () => {
+  it('renders props when passed in', () => {
     const { container } = wrap({ id: 'foo', options: [] });
 
     expect(container.querySelector('#foo')).toBeTruthy();

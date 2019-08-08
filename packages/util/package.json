@@ -17,8 +17,5 @@
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
     "react-hooks-testing-library": "^0.6.0"
-  },
-  "dependencies": {
-    "lodash": "^4.17.15"
   }
 }

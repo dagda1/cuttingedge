@@ -1,6 +1,7 @@
-import cs from 'classnames';
 import React from 'react';
 import isNil from 'lodash/isNil';
+import isObject from 'lodash.isobject';
+import cs from 'classnames';
 
 const styles = require('./select.scss');
 
@@ -41,9 +42,17 @@ function mergeOptions(options: object[], dividerAt: number) {
   return options;
 }
 
+const isArrayOfStringsOrNumbers = (arr: unknown[]): arr is string[] | number[] => {
+  if (arr.length === 0) {
+    return true;
+  }
+
+  return arr.every((a) => (!isObject(a) && typeof a === 'number') || typeof a === 'string');
+};
+
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   defaultLabel?: string;
-  options: OptionType[];
+  options: string[] | OptionType[];
   invalid?: boolean;
   valueKey?: keyof OptionType;
   optionKey?: keyof OptionType;
@@ -51,7 +60,7 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
   filterOptions?: (option: OptionType) => boolean;
 }
 
-export const Select: React.FunctionComponent<SelectProps> = ({
+export const Select: React.FC<SelectProps> = ({
   value,
   defaultLabel = '',
   className,
@@ -63,6 +72,8 @@ export const Select: React.FunctionComponent<SelectProps> = ({
   filterOptions = () => true,
   ...rest
 }) => {
+  const resolvedOptions = isArrayOfStringsOrNumbers(options) ? options.map((x) => ({ key: x, value: x })) : options;
+
   return (
     <div className={styles.container}>
       <select value={value} className={cs(className, styles.default, { [styles.invalid]: invalid })} {...rest}>
@@ -73,7 +84,7 @@ export const Select: React.FunctionComponent<SelectProps> = ({
         )}
         {filterOptions &&
           mergeOptions(
-            options.filter(filterOptions).map((x, i: number) => mapOptionsToValues(x, valueKey, optionKey, i)),
+            resolvedOptions.filter(filterOptions).map((x, i: number) => mapOptionsToValues(x, valueKey, optionKey, i)),
             dividerAt || -1
           )}
       </select>
