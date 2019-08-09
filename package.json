@@ -2,7 +2,7 @@
   "name": "cuttingedge",
   "private": true,
   "scripts": {
-    "build": "lerna run build --ignore @cutting/react-scrollto-any",
+    "build": "lerna run build",
     "clean": "git clean -dfqX -- ./node_modules **/{dist,node_modules}/ ./packages/*/tsconfig*tsbuildinfo",
     "test": "CI=true cutting each-pkg npm test",
     "start": "npm run build && npm --cwd packages/website/ start"
