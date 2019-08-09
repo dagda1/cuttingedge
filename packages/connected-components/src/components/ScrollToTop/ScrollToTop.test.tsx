@@ -1,15 +1,13 @@
 import React from 'react';
-import * as testUtils from '../../tests';
+import { renderWithRouter } from '../../tests';
 import { Route } from 'react-router-dom';
 import ScrollToTop, { ScrollToTopProps } from '.';
-import { History } from 'history';
-import { createMemoryHistory } from 'history';
 
 const Home = () => <h1>Home</h1>;
 const About = () => <h1>About</h1>;
 const Page = () => <h1>Page</h1>;
 
-const App = (props: Partial<ScrollToTopProps> = {}) => (
+const App: React.FC<Partial<ScrollToTopProps>> = (props: Partial<ScrollToTopProps> = {}) => (
   <ScrollToTop {...props}>
     <Route path="/" component={Home} exact />
     <Route path="/about" component={About} />
@@ -17,23 +15,11 @@ const App = (props: Partial<ScrollToTopProps> = {}) => (
   </ScrollToTop>
 );
 
-const wrap = (history: History, props: Partial<ScrollToTopProps>) => testUtils.wrap(App, props, history);
-
 describe('<ScrollToTop/>', () => {
-  let history: History;
-
-  beforeEach(() => {
-    history = createMemoryHistory();
-  });
-
   it('should call changeHandler initially', () => {
     const changeHandler = jest.fn();
 
-    const wrapper = wrap(history, { changeHandler });
-
-    history.push('/');
-
-    wrapper.update();
+    renderWithRouter(<App changeHandler={changeHandler} />);
 
     expect(changeHandler).toHaveBeenCalledWith('/');
   });
@@ -41,17 +27,13 @@ describe('<ScrollToTop/>', () => {
   it('should call changeHandler on route change', async () => {
     const changeHandler = jest.fn();
 
-    const wrapper = wrap(history, { changeHandler });
+    const { history } = renderWithRouter(<App changeHandler={changeHandler} />);
 
     history.push('/about');
-
-    wrapper.update();
 
     expect(changeHandler).toHaveBeenCalledWith('/about');
 
     history.push('/page');
-
-    wrapper.update();
 
     expect(changeHandler).toHaveBeenCalledWith('/page');
   });

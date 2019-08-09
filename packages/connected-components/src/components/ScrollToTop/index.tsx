@@ -2,12 +2,13 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Location } from 'history';
 
-export interface ScrollToTopProps<T> extends RouteComponentProps<T> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface ScrollToTopProps<Params = any> extends RouteComponentProps<Params> {
   location: Location;
   changeHandler?: (location: string) => void;
 }
 
-export class ScrollToTopView<T> extends React.Component<ScrollToTopProps<T>> {
+export class ScrollToTopView extends React.Component<ScrollToTopProps> {
   focusOnElement = () => {
     const root = document.querySelector('#root') as HTMLElement;
     setTimeout(() => {
@@ -27,7 +28,7 @@ export class ScrollToTopView<T> extends React.Component<ScrollToTopProps<T>> {
     this.focusOnElement();
   }
 
-  componentDidUpdate(prevProps: ScrollToTopProps<T>) {
+  componentDidUpdate(prevProps: ScrollToTopProps) {
     if (this.props.location.hash.length || this.props.location === prevProps.location) {
       return;
     }

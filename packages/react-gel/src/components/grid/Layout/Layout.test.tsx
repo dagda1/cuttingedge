@@ -1,20 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { Layout, LayoutProps } from '.';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
 const wrap = (props: LayoutProps & { children?: React.ReactNode } = { children: <span>div</span> }) =>
-  shallow(<Layout {...props}>test</Layout>);
+  render(<Layout {...props}>test</Layout>);
 
 describe('<Layout />', () => {
-  it('renders a div by default', () => {
-    const wrapper = wrap();
-
-    expect(wrapper.find('div')).toHaveLength(1);
-  });
-
   it('renders a Layout class', () => {
-    const wrapper = wrap();
+    const { container } = wrap();
 
-    expect(wrapper.find('.gel-layout')).toHaveLength(1);
+    expect(container.querySelector('.gel-layout')).toBeTruthy();
   });
 });

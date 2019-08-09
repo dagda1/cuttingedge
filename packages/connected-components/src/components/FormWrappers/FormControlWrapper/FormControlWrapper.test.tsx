@@ -1,13 +1,12 @@
-import { mount } from 'enzyme';
 import React from 'react';
 import { FormControlWrapperProps, ConnectedFormInput } from '.';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
-const wrap = (props: FormControlWrapperProps) => mount(<ConnectedFormInput {...props} />);
+const wrap = (props: FormControlWrapperProps) => render(<ConnectedFormInput {...props} />);
 
 describe('renderFormInput', () => {
   it('should render error label if invalid', () => {
-    const wrapper = wrap({
-      
+    const { getByTestId, getByText } = wrap({
       // input: {} as any,
       // meta: {
       //   invalid: true,
@@ -17,9 +16,7 @@ describe('renderFormInput', () => {
       // } as any
     });
 
-    const error = wrapper.find('[data-selector]');
-
-    expect(error.props()['data-selector']).toBe('form-error');
-    expect(error.text()).toBe('some error');
+    getByTestId('form-error');
+    getByText('some error');
   });
 });

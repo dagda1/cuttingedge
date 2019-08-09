@@ -1,19 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { Wrap } from '.';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
-const wrap = (props = { children: <span>span</span> }) => shallow(<Wrap {...props} />);
+const wrap = (props = { children: <span>span</span> }) => render(<Wrap {...props} />);
 
 describe('<Wrap />', () => {
-  it('renders a div by default', () => {
-    const wrapper = wrap();
-
-    expect(wrapper.find('div')).toHaveLength(1);
-  });
-
   it('renders a Wrap class', () => {
-    const wrapper = wrap();
+    const { container } = wrap();
 
-    expect(wrapper.find('.gel-wrap')).toHaveLength(1);
+    expect(container.querySelector('.gel-wrap')).toBeTruthy();
   });
 });
