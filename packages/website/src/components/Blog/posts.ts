@@ -7,6 +7,18 @@ export interface Post {
 // eslint:disable
 export const posts: Post[] = [
   {
+    title: 'Cypress.io: the Selenium killer',
+    summary:
+      'One of the main differences between cypress.io and selenium is that selenium executes in a process outside of the browser or device we are testing. Cypress executes in the browser and in the same run loop as the device under test.',
+    link: 'https://blog.logrocket.com/cypress-io-the-selenium-killer/'
+  },
+  {
+    title: 'const assertions are the killer new TypeScript feature',
+    summary:
+      'For my money, const assertions are the killer new feature of TypeScript 3.4 and as I will explain later, I can omit a lot of tedious type declarations using this new feature.',
+    link: 'https://blog.logrocket.com/const-assertions-are-the-killer-new-typescript-feature-b73451f35802/'
+  },
+  {
     title: 'Code splitting with typescript, webpack and React lazy',
     summary:
       'I am writing this because everytime I have to set up code splitting with typescript, webpack and React, I forget how I did it last time and…',

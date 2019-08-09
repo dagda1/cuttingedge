@@ -6,9 +6,9 @@ export interface Repo {
 
 export const repos: Repo[] = [
   {
-    name: 'react-typed-mousetrap',
-    description: 'Declaratively manage keyboard shortcuts on react components.',
-    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/react-typed-mousetrap'
+    name: 'use-shortcuts',
+    description: 'Effortlessly create keyboard shortcuts with this react hook.',
+    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/use-shortcuts'
   },
   {
     name: 'styled-gel',

@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+/* eslint-disable no-console */
 'use strict';
 
 process.env.NODE_ENV = 'development';
@@ -17,8 +18,19 @@ process.noDeprecation = true;
 
 // Capture any --inspect or --inspect-brk flags (with optional values) so that we
 // can pass them when we invoke nodejs
-process.env.INSPECT_BRK = process.argv.find(arg => arg.match(/--inspect-brk(=|$)/)) || '';
-process.env.INSPECT = process.argv.find(arg => arg.match(/--inspect(=|$)/)) || '';
+process.env.INSPECT_BRK = process.argv.find((arg) => arg.match(/--inspect-brk(=|$)/)) || '';
+process.env.INSPECT = process.argv.find((arg) => arg.match(/--inspect(=|$)/)) || '';
+
+function compile(config) {
+  let compiler;
+  try {
+    compiler = webpack(config);
+  } catch (e) {
+    printErrors('Failed to compile.', [e]);
+    process.exit(1);
+  }
+  return compiler;
+}
 
 function main() {
   fs.emptyDirSync(paths.appBuild);
@@ -46,7 +58,7 @@ function main() {
         stats: 'none'
       },
       /* eslint-disable no-unused-vars */
-      stats => {}
+      () => {}
     );
   });
 
@@ -56,22 +68,12 @@ function main() {
    */
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
 
-  clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || razzle.port || 3001, err => {
+  clientDevServer.listen((process.env.PORT && Number(process.env.PORT) + 1) || razzle.port || 3001, (err) => {
     if (err) {
+      console.log('fuckkk');
       logger.error(err);
     }
   });
-}
-
-function compile(config) {
-  let compiler;
-  try {
-    compiler = webpack(config);
-  } catch (e) {
-    printErrors('Failed to compile.', [e]);
-    process.exit(1);
-  }
-  return compiler;
 }
 
 setPorts()

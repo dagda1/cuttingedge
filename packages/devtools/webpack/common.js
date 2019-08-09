@@ -82,7 +82,6 @@ const configureCommon = (options) => {
         '.jsx'
       ],
       alias: {
-        // This is required so symlinks work during development.
         'webpack/hot/poll': require.resolve('webpack/hot/poll')
       }
     },

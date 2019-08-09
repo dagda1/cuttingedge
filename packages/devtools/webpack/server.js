@@ -21,6 +21,7 @@ getExternals = function(isDevelopment) {
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
+        /^@babel/,
         /^@cutting/,
         /^@c2/
       ].filter((x) => x)
