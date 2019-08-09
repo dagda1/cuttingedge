@@ -1,5 +1,4 @@
-import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
+import React, { ReactNode } from 'react';
 import { combineReducers } from 'redux';
 import { Middleware } from 'redux';
 import { createStore } from 'redux';
@@ -10,6 +9,8 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { connectRouter } from 'connected-react-router';
 import { history } from '../routes/history';
+import { createMemoryHistory } from 'history';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
 const getReducers = () => combineReducers({ router: connectRouter(history) });
 
@@ -25,16 +26,17 @@ export const createStoreForTesting = (stateOverride?: Partial<State>) => {
   return createStore(reducer, initialState, compose(...enhancers));
 };
 
-export const wrapComponentInReduxForTesting = function<T>(
-  Comp: React.ComponentType<T>,
-  props: T,
+export const wrapComponentInReduxForTesting = (
+  ui: ReactNode,
+  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
   stateOverride: Partial<State> = {}
-): ReactWrapper {
-  return mount(
-    <Provider store={createStoreForTesting(stateOverride)}>
-      <MemoryRouter>
-        <Comp {...props} />
-      </MemoryRouter>
-    </Provider>
-  );
+) => {
+  return {
+    ...render(
+      <Provider store={createStoreForTesting(stateOverride)}>
+        <MemoryRouter>{ui}</MemoryRouter>
+      </Provider>
+    ),
+    history
+  };
 };
