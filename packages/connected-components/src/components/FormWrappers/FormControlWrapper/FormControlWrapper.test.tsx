@@ -2,21 +2,45 @@ import React from 'react';
 import { FormControlWrapperProps, ConnectedFormInput } from '.';
 import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
-const wrap = (props: FormControlWrapperProps) => render(<ConnectedFormInput {...props} />);
+const defaultProps: FormControlWrapperProps = {
+  handleSubmit: () => undefined,
+  handleBlur: () => undefined,
+  handleChange: () => undefined,
+  handleReset: () => undefined,
+  name: 'input',
+  touched: {},
+  errors: {},
+  isValidating: false,
+  isSubmitting: false,
+  submitCount: 0,
+  values: {},
+  dirty: true,
+  isValid: false,
+  initialValues: {},
+  label: 'input'
+};
+
+const wrap = (props: Partial<FormControlWrapperProps> = {}) => {
+  const merged = { ...defaultProps, ...props };
+  return render(<ConnectedFormInput {...merged} />);
+};
 
 describe('renderFormInput', () => {
+  it('should render abel', () => {
+    const { getByLabelText } = wrap();
+
+    getByLabelText('input');
+  });
+
   it('should render error label if invalid', () => {
     const { getByTestId, getByText } = wrap({
-      // input: {} as any,
-      // meta: {
-      //   invalid: true,
-      //   submitFailed: true,
-      //   error: 'some error',
-      //   touched: true
-      // } as any
+      invalid: true,
+      errors: { input: 'something required' },
+      touched: { input: true },
+      submitCount: 1
     });
 
     getByTestId('form-error');
-    getByText('some error');
+    getByText('something required');
   });
 });

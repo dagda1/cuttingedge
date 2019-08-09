@@ -6,7 +6,8 @@ import { FormControlProps } from '@cutting/component-library';
 
 export type ControlValue = string | number | Date;
 
-export type FormControlWrapperProps<Props, InputType> = FormikHandlers &
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type FormControlWrapperProps<Props = any, InputType = HTMLElement> = FormikHandlers &
   FieldConfig &
   FormikState<Props> &
   FormikComputedProps<Props> &
