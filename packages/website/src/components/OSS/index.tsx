@@ -1,8 +1,9 @@
-import { ExternalLink, Github, Heading } from '@cutting/component-library';
+import { ExternalLink, Heading } from '@cutting/component-library';
 import { GelItem, Layout } from '@cutting/react-gel';
 import React from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
+import { Github } from '../Svg';
 
 const styles = require('./OSS.scss');
 

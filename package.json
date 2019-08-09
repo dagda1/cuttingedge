@@ -2,10 +2,11 @@
   "name": "cuttingedge",
   "private": true,
   "scripts": {
+    "bootstrap": "lerna bootstrap --hoist --strict --ignore-prepublish",
     "build": "lerna run build",
     "clean": "git clean -dfqX -- ./node_modules **/{dist,node_modules}/ ./packages/*/tsconfig*tsbuildinfo",
-    "test": "CI=true cutting each-pkg npm test",
-    "start": "npm run build && npm --cwd packages/website/ start"
+    "start": "npm run build && npm --cwd packages/website/ start",
+    "test": "CI=true cutting each-pkg npm test"
   },
   "dependencies": {
     "classnames": "2.2.6",
@@ -66,6 +67,7 @@
     "jest": "^24.8.0",
     "jest-junit": "^5.1.0",
     "lerna": "^3.16.4",
+    "markdown-loader": "^5.1.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "postcss-flexbugs-fixes": "^3.3.1",
