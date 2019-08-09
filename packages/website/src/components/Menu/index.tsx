@@ -1,4 +1,4 @@
-import { Cow, Heading } from '@cutting/component-library';
+import { Heading } from '@cutting/component-library';
 import { GelItem, Layout, Wrap } from '@cutting/react-gel';
 import cs from 'classnames';
 import React from 'react';
@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { bannerPages } from '../../routes';
 import * as urls from '../../urls';
 import { MobileNavButton } from '../MobileNavButton';
+import { Cow } from '../Svg';
 
 const styles = require('./Menu.scss');
 

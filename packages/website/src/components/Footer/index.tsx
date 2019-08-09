@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrap, Layout, GelItem } from '@cutting/react-gel';
-import { Cow, Github, Twitter } from '@cutting/component-library';
+import { Cow, Github, Twitter } from '../Svg';
 import { footerPages } from '../../routes';
 import { NavLink } from 'react-router-dom';
 
