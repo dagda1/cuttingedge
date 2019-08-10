@@ -7,5 +7,5 @@
 }
 
 @mixin font($size) {
-  font-size: #{nth($font-size, $size)}px;
+  font-size: #{nth($font-size, $size)}rem;
 }

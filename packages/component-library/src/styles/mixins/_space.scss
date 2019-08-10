@@ -11,18 +11,30 @@ $pr-rules: 'padding-right';
 $pb-rules: 'padding-bottom';
 $pt-rules: 'padding-top';
 
+$spacing: 0.625; // 8px
+$unit: rem;
+
+$spacing-x1: #{$spacing}#{$unit} !important;
+$spacing-x2: #{$spacing * 2}#{$unit} !important;
+$spacing-x3: #{$spacing * 3}#{$unit} !important;
+$spacing-x4: #{$spacing * 4}#{$unit} !important;
+$spacing-x5: #{$spacing * 5}#{$unit} !important;
+$spacing-x6: #{$spacing * 6}#{$unit} !important;
+$spacing-x7: #{$spacing * 7}#{$unit} !important;
+$spacing-x8: #{$spacing * 8}#{$unit} !important;
+
 @mixin add-space-rule($rules, $space) {
   @each $rule in $rules {
-    #{$rule}: #{nth($scale, $space)}px !important;
+    #{$rule}: #{nth($scale, $space)}#{$unit} !important;
   }
 }
 
 @mixin m($space) {
-  margin: #{nth($scale, $space)}px !important;
+  margin: #{nth($scale, $space)}#{$unit} !important;
 }
 
 @mixin p($space) {
-  padding: #{nth($scale, $space)}px !important;
+  padding: #{nth($scale, $space)}#{$unit} !important;
 }
 
 @mixin mx($space) {

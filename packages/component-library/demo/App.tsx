@@ -1,24 +1,26 @@
 /* eslint-disable no-console */
 // eslint:disable
-require('./global.scss');
 import React, { useState } from 'react';
 import { Modal, Heading, FormInput, FormSelect, LayoutType } from '../src/components';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
-import { Wrap, Layout, GelItem } from '@cutting/react-gel';
+import { Layout, GelItem } from '@cutting/react-gel';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
+
+const styles = require('./global.scss');
 
 export const App: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <Wrap>
-      <Layout>
-        <GelItem>
+    <div className={styles.grid}>
+      <div className={styles.layout}>
+        <div className={styles.item}>
           <Heading level={2}>Radio Group</Heading>
-        </GelItem>
-      </Layout>
-      <Layout>
-        <GelItem l="1/4">
+        </div>
+      </div>
+      <div className={styles.layout}>
+        <div className={styles.item}>
           <RadioGroup
             legend="large stacked"
             name="larg-stacked"
@@ -36,8 +38,8 @@ export const App: React.FC = () => {
               }
             ]}
           />
-        </GelItem>
-        <GelItem l="1/4">
+        </div>
+        <div className={styles.item}>
           <RadioGroup
             name="small-stacked"
             layout={RadioLayout.stacked}
@@ -55,8 +57,8 @@ export const App: React.FC = () => {
               }
             ]}
           />
-        </GelItem>
-        <GelItem l="1/4">
+        </div>
+        <div className={styles.item}>
           <RadioGroup
             name="large-inline"
             layout={RadioLayout.inline}
@@ -74,8 +76,8 @@ export const App: React.FC = () => {
               }
             ]}
           />
-        </GelItem>
-        <GelItem l="1/4">
+        </div>
+        <div className={styles.item}>
           <RadioGroup
             name="small-inline"
             layout={RadioLayout.inline}
@@ -93,15 +95,15 @@ export const App: React.FC = () => {
               }
             ]}
           />
-        </GelItem>
-      </Layout>
-      <Layout>
-        <GelItem>
+        </div>
+      </div>
+      <div className={styles.layout}>
+        <div className={styles.item}>
           <Heading level={2}>Input</Heading>
-        </GelItem>
-      </Layout>
-      <Layout>
-        <GelItem l="1/4">
+        </div>
+      </div>
+      <div className={styles.layout}>
+        <div className={styles.item}>
           <FormInput
             highlight
             label="Highlight"
@@ -111,22 +113,22 @@ export const App: React.FC = () => {
               return true;
             }}
           />
-        </GelItem>
-        <GelItem l="1/4">
+        </div>
+        <div className={styles.item}>
           <FormInput label="Invalid" invalid errorMessage="Error Message" />
-        </GelItem>
-        <GelItem l="1/4">
+        </div>
+        <div className={styles.item}>
           <FormInput label="Invalid &amp; required" invalid required errorMessage="Error Message" />
-        </GelItem>
-        <GelItem l="1/4">
+        </div>
+        <div className={styles.item}>
           <FormInput
             strong={false}
             label="This is a really, really, really, really, really, really, really, really, really, really long bit of text"
           />
-        </GelItem>
-      </Layout>
-      <Layout>
-        <GelItem l="1/4">
+        </div>
+      </div>
+      <div className={styles.layout}>
+        <div className={styles.item}>
           <FormInput
             layoutType={LayoutType.horizontal}
             label="Horizontal"
@@ -138,15 +140,15 @@ export const App: React.FC = () => {
             invalid
             errorMessage="foo bar"
           />
-        </GelItem>
-      </Layout>
-      <Layout>
-        <GelItem>
+        </div>
+      </div>
+      <div className={styles.layout}>
+        <div className={styles.item}>
           <Heading level={2}>Selects</Heading>
-        </GelItem>
-      </Layout>
-      <Layout>
-        <GelItem s="1/4">
+        </div>
+      </div>
+      <div className={styles.layout}>
+        <div className={styles.item}>
           <FormSelect
             label="Select"
             options={[
@@ -163,8 +165,8 @@ export const App: React.FC = () => {
             valueKey="value"
             dividerAt={1}
           />
-        </GelItem>
-        <GelItem s="1/4">
+        </div>
+        <div className={styles.item}>
           <FormSelect
             label="invalid"
             invalid
@@ -174,15 +176,15 @@ export const App: React.FC = () => {
             optionKey="displayName"
             errorMessage="Invalid Select"
           />
-        </GelItem>
-      </Layout>
-      <Layout>
-        <GelItem>
+        </div>
+      </div>
+      <div className={styles.layout}>
+        <div className={styles.item}>
           <Modal
             heading="heading"
             description="accessibility description"
             footer="footer"
-            openHandler={this.openModal}
+            openHandler={() => setModalOpen(false)}
             open={modalOpen}
           >
             <nav>
@@ -199,17 +201,17 @@ export const App: React.FC = () => {
               </ul>
             </nav>
           </Modal>
-        </GelItem>
-      </Layout>
-      <Layout>
-        <GelItem>
+        </div>
+      </div>
+      <div className={styles.layout}>
+        <div className={styles.item}>
           <div>
-            <Button onClick={() => this.openModal(true)} buttonStyle={ButtonStyle.Inverse}>
+            <Button onClick={() => setModalOpen(true)} buttonStyle={ButtonStyle.Inverse}>
               Open Modal
             </Button>
           </div>
-        </GelItem>
-      </Layout>
-    </Wrap>
+        </div>
+      </div>
+    </div>
   );
 };
