@@ -1,8 +1,7 @@
-import { FormInput, FormSelect } from '@cutting/component-library';
 import React from 'react';
 import { FormikHandlers, FieldConfig, FormikState, FormikComputedProps, getIn } from 'formik';
 import { getDisplayName } from '@cutting/util';
-import { FormControlProps } from '@cutting/component-library';
+import { FormControlProps, FormInput, FormSelect } from '@cutting/component-library';
 
 export type ControlValue = string | number | Date;
 

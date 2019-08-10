@@ -1,8 +1,7 @@
 import React from 'react';
-import { Heading, Button, ButtonStyle } from '@cutting/component-library';
+import { Heading, Button, ButtonStyle, LayoutType } from '@cutting/component-library';
 import { withFormik, FormikProps } from 'formik';
 import { ConnectedFormInput } from '../src/components/FormWrappers/FormControlWrapper';
-import { LayoutType } from '@cutting/component-library/src/components';
 
 const styles = require('./App.scss');
 
@@ -45,37 +44,17 @@ const MyEnhancedForm = withFormik({
   displayName: 'BasicForm'
 })(MyForm);
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AppProps {}
-export interface AppState {
-  modalOpen: boolean;
-}
-
-export class App extends React.Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-
-    this.state = {
-      modalOpen: false
-    };
-  }
-
-  openModal = (open: boolean) => this.setState({ modalOpen: open });
-
-  render() {
-    return (
-      <div className={styles.wrap}>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <Heading>Weather</Heading>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <MyEnhancedForm />
-          </div>
-        </div>
+export const App: React.FC = () => (
+  <div className={styles.wrap}>
+    <div className={styles.layout}>
+      <div className={styles.item}>
+        <Heading>Weather</Heading>
       </div>
-    );
-  }
-}
+    </div>
+    <div className={styles.layout}>
+      <div className={styles.item}>
+        <MyEnhancedForm />
+      </div>
+    </div>
+  </div>
+);
