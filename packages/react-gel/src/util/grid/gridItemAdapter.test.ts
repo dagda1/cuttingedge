@@ -7,6 +7,5 @@ describe('gridItemAdapter', () => {
     expect(gridItemAdapter({ m: '5/8' })).toBe('gel-5/8@m');
     expect(gridItemAdapter({ l: '11/12' })).toBe('gel-11/12@l');
     expect(gridItemAdapter({ xl: '3/4' })).toBe('gel-3/4@xl');
-    expect(gridItemAdapter({ xxl: '7/8' })).toBe('gel-7/8@xxl');
   });
 });

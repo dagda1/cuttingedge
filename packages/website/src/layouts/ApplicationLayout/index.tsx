@@ -21,24 +21,12 @@ export const ApplicationLayout: React.FunctionComponent<ApplicationLayoutProps> 
   className,
   children
 }) => (
-  <Wrap>
+  <>
     <Header />
-    <main className={cs(styles.main, 'wrapper', className)}>
-      {heading && (
-        <Wrap>
-          <Layout>
-            <GelItem>
-              <Heading className={cs({ [styles.italic]: italicise, [styles.center]: center })}>{heading}</Heading>
-            </GelItem>
-          </Layout>
-        </Wrap>
-      )}
-      <Wrap>
-        <Layout>
-          <GelItem>{children}</GelItem>
-        </Layout>
-      </Wrap>
+    <main className={className}>
+      {heading && <Heading className={cs({ [styles.italic]: italicise, [styles.center]: center })}>{heading}</Heading>}
+      {children}
     </main>
     <Footer />
-  </Wrap>
+  </>
 );

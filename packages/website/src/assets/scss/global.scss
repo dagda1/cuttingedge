@@ -1,6 +1,4 @@
 @import 'main';
-@import '~@cutting/react-gel/tools';
-@import '~@cutting/react-gel/grid';
 
 @font-face {
   font-family: 'GeosansLight';
@@ -10,15 +8,15 @@
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  box-sizing: border-box !important;
 }
 
 html {
   font-family: 'GeosansLight';
   font-size: 62.5%;
   overflow-y: scroll;
-  position: relative;
   min-height: 100%;
+  height: 100%;
 }
 
 html,
@@ -29,9 +27,9 @@ body {
 }
 
 body {
+  height: 100%;
   margin: 0;
   font-size: 190%;
-  padding-bottom: 150px;
   background-image: url(../images/lightening.jpg);
   background-color: $main-bg-color;
 
@@ -73,7 +71,18 @@ button {
   }
 }
 
-:global .wrapper {
+:global #root {
+  height: 100%;
   margin: 0 auto;
   max-width: $desktop-max-width !important;
+  display: flex;
+  flex-direction: column;
+
+  @include pl(1);
+  @include pr(1);
+
+  @include mq-m {
+    @include pl(2);
+    @include pr(2);
+  }
 }

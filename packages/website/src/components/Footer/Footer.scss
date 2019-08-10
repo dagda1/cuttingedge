@@ -1,12 +1,7 @@
 @import '../../assets/scss/main';
 
 footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  @include pt(2);
-
+  display: flex;
   font-size: 14px;
 
   @include mq-m {

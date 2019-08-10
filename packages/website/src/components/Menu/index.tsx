@@ -42,7 +42,7 @@ export class Menu extends React.Component<{}, MenuState> {
 
   render() {
     return (
-      <nav className={cs(styles.container, 'wrapper')}>
+      <nav className={styles.container}>
         <Wrap>
           <Layout center className={styles.full}>
             <GelItem>
