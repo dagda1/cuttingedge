@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Modal, Heading, FormInput, FormSelect, LayoutType } from '../src/components';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
-import { Layout, GelItem } from '@cutting/react-gel';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
 
 const styles = require('./global.scss');
@@ -13,7 +12,7 @@ export const App: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className={styles.grid}>
+    <div className={styles.wrap}>
       <div className={styles.layout}>
         <div className={styles.item}>
           <Heading level={2}>Radio Group</Heading>

@@ -9,7 +9,6 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/react-gel": "^0.6.2",
     "@cutting/util": "0.6.0",
     "lodash": "^4.17.15",
     "lodash.isobject": "^3.0.2"

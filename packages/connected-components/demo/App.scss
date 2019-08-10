@@ -1,7 +1,5 @@
 $label-default-color: #fff;
-
 @import '../src/styles/_index.scss';
-
 html {
   height: 100%;
   font-size: 100%;
@@ -25,3 +23,36 @@ body {
 ul {
   padding: 0;
 }
+
+
+.wrap {
+  @include pl(2);
+  @include pr(2);
+
+
+  max-width: 1008px;
+  margin: 0 auto;
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  text-align: left;
+  flex-flow: row wrap;
+}
+
+.item {
+  display: block;
+  @include pl(1);
+  flex: auto;
+  
+  @include mq-m {
+    flex: 1;
+    display: inline-block;
+  }
+  
+  @include mq-l {
+    @include pl(2);
+  }
+}
+

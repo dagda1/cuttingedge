@@ -1,11 +1,10 @@
 import React from 'react';
 import { Heading, Button, ButtonStyle } from '@cutting/component-library';
-import { Wrap, Layout, GelItem } from '@cutting/react-gel';
 import { withFormik, FormikProps } from 'formik';
 import { ConnectedFormInput } from '../src/components/FormWrappers/FormControlWrapper';
 import { LayoutType } from '@cutting/component-library/src/components';
 
-require('./App.scss');
+const styles = require('./App.scss');
 
 export interface WeatherState {
   city: string;
@@ -65,18 +64,18 @@ export class App extends React.Component<AppProps, AppState> {
 
   render() {
     return (
-      <Wrap>
-        <Layout>
-          <GelItem>
+      <div className={styles.wrap}>
+        <div className={styles.layout}>
+          <div className={styles.item}>
             <Heading>Weather</Heading>
-          </GelItem>
-        </Layout>
-        <Layout>
-          <GelItem m="1/2">
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
             <MyEnhancedForm />
-          </GelItem>
-        </Layout>
-      </Wrap>
+          </div>
+        </div>
+      </div>
     );
   }
 }

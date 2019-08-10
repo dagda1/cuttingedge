@@ -1,8 +1,10 @@
 /* break points */
-$screen-small-min: 30rem !default;
-$screen-medium-min: 48rem !default;
-$screen-large-min: 62rem !default;
-$screen-xlarge-min: 80rem !default;
+$mobile: 30rem !default;
+$tablet: 48rem !default;
+$desktop: 62rem !default;
+$widescreen: 80rem !default;
+
+
 
 $form-element-height: 2.5rem !default;
 
