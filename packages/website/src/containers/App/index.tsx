@@ -15,29 +15,23 @@ export interface AppProps {
   store: Store<State>;
 }
 
-export class App extends React.Component<AppProps> {
-  render() {
-    const { store } = this.props;
-
-    return (
-      <>
-        <Helmet>
-          <title>Cutting-Edge Solutions (Scotland)</title>
-        </Helmet>
-        <Provider store={store}>
-          <ConnectedRouter history={history}>
-            <ScrollToTop>
-              <Switch>
-                {routes.map((page) => (
-                  <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
-                ))}
-              </Switch>
-            </ScrollToTop>
-          </ConnectedRouter>
-        </Provider>
-      </>
-    );
-  }
-}
+export const App: React.FC<AppProps> = ({ store }) => (
+  <>
+    <Helmet>
+      <title>Cutting-Edge Solutions (Scotland)</title>
+    </Helmet>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <ScrollToTop>
+          <Switch>
+            {routes.map((page) => (
+              <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
+            ))}
+          </Switch>
+        </ScrollToTop>
+      </ConnectedRouter>
+    </Provider>
+  </>
+);
 
 export default App;

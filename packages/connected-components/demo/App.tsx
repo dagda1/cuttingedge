@@ -9,7 +9,7 @@ export interface WeatherState {
   city: string;
 }
 
-const MyForm: React.FunctionComponent<FormikProps<WeatherState>> = (props) => {
+const MyForm: React.FC<FormikProps<WeatherState>> = (props) => {
   const { handleSubmit } = props;
 
   return (

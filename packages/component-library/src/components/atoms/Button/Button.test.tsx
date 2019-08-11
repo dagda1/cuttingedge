@@ -29,4 +29,12 @@ describe('Button', () => {
 
     expect(button).toBeDefined();
   });
+
+  it('should add aria-label and aria-labelledby attributes', () => {
+    const { getByLabelText } = wrap({ ariaLabel: 'label', ariaLabelledBy: 'labelled by' });
+
+    const button = getByLabelText('label') as HTMLButtonElement;
+
+    expect(button.getAttribute('aria-labelledby')).toBe('labelled by');
+  });
 });

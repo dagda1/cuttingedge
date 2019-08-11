@@ -12,7 +12,7 @@ import { Assets, AsyncRouteProps, LayoutComponent } from './types';
 import { getDisplayName } from './utils';
 
 const modPageFn = function<Props>(Page: React.ComponentType<Props>) {
-  const Wrapped: React.FunctionComponent<Props> = (props: Props) => <Page {...props} />;
+  const Wrapped: React.FC<Props> = (props: Props) => <Page {...props} />;
 
   Wrapped.displayName = getDisplayName(Wrapped);
 

@@ -7,7 +7,7 @@ export interface MobileNavButtonProps {
   isActive?: boolean;
 }
 
-export const MobileNavButton: React.FunctionComponent<MobileNavButtonProps> = ({ onClick, isActive }) => (
+export const MobileNavButton: React.FC<MobileNavButtonProps> = ({ onClick, isActive }) => (
   <button className={isActive ? styles.MobileNavButtonActive : styles.MobileNavButton} onClick={onClick}>
     <svg
       height="24"

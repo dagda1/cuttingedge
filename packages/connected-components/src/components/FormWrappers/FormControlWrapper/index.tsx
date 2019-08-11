@@ -16,8 +16,8 @@ export type FormControlWrapperProps<Props = any, InputType = HTMLElement> = Form
 
 export function renderFormControl<Props, InputType extends HTMLElement>(
   Comp: React.ComponentType<FormControlProps<InputType>>
-): React.FunctionComponent<FormControlProps<InputType>> {
-  const Wrapped: React.FunctionComponent<FormControlWrapperProps<Props, InputType>> = ({
+): React.FC<FormControlProps<InputType>> {
+  const Wrapped: React.FC<FormControlWrapperProps<Props, InputType>> = ({
     controlOnChange = (e: React.ChangeEvent<InputType>) => e,
     handleChange,
     handleBlur,

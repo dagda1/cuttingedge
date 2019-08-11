@@ -15,7 +15,7 @@ export interface RadioGroupProps<T = {}> {
   className?: string;
 }
 
-export const RadioGroup: React.FunctionComponent<RadioGroupProps & RadioLayoutProps> = ({
+export const RadioGroup: React.FC<RadioGroupProps & RadioLayoutProps> = ({
   legend,
   layout,
   size,

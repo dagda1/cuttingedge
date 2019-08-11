@@ -13,7 +13,7 @@ export interface ApplicationLayoutProps {
 
 const styles = require('./ApplicationLayout.scss');
 
-export const ApplicationLayout: React.FunctionComponent<ApplicationLayoutProps> = ({
+export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
   heading,
   italicise,
   center,

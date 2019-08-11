@@ -4,7 +4,7 @@ import { RadioProps, RadioSize, RadioLayout, RadioLayoutProps, RadioEventHandler
 
 const styles = require('./Radio.scss');
 
-export const Radio: React.FunctionComponent<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
+export const Radio: React.FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
   id,
   name,
   value,

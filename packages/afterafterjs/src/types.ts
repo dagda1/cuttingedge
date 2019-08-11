@@ -46,7 +46,7 @@ export interface AsyncRouteComponent<Props extends DocumentType, TParams = unkno
 
 export type AsyncRouteComponentType<Props> =
   | React.ComponentClass<Props> & AsyncComponent
-  | React.FunctionComponent<Props> & AsyncComponent;
+  | React.FC<Props> & AsyncComponent;
 
 export type AsyncRouteableComponent<Props = unknown> =
   | AsyncRouteComponentType<RouteComponentProps<Props>>

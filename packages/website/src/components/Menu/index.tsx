@@ -18,7 +18,6 @@ export const Menu: React.FC = () => {
 
   const collapse = () => setExpanded(false);
   const toggleIsExpanded = () => {
-    console.log(expanded);
     setExpanded(!expanded);
   };
 

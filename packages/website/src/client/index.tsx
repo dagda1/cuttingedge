@@ -14,7 +14,7 @@ const history = createBrowserHistory();
 
 const store = configureStore(preloadedState, history);
 
-const render = (Component: React.ComponentClass, props: AppProps) => {
+const render = (Component: React.FC<AppProps>, props: AppProps) => {
   hydrate(<Component {...props} />, root);
 };
 

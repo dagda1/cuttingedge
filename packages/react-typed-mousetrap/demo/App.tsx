@@ -27,7 +27,7 @@ const boxes = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, {
   }
 );
 
-export const App: React.FunctionComponent = () => {
+export const App: React.FC = () => {
   const [boxState, setState] = useState(boxes);
 
   const handleMove = useCallback((newPosition: Partial<Point>, index: number) => {

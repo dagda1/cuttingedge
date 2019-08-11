@@ -6,7 +6,7 @@ import { Github } from '../Svg';
 
 const styles = require('./OSS.scss');
 
-export const OSS: React.FunctionComponent = () => (
+export const OSS: React.FC = () => (
   <ApplicationLayout>
     <div className={styles.container}>
       <Heading level={1}>Open Source Software</Heading>

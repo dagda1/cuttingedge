@@ -5,7 +5,7 @@
     "bootstrap": "lerna bootstrap --hoist --strict --ignore-prepublish",
     "build": "lerna run build",
     "clean": "git clean -dfqX -- ./node_modules **/{dist,node_modules}/ ./packages/*/tsconfig*tsbuildinfo",
-    "start": "npm run build && npm --cwd packages/website/ start",
+    "start": "npm run build && lerna run start --scope @cutting/website",
     "test": "CI=true cutting each-pkg npm test"
   },
   "dependencies": {

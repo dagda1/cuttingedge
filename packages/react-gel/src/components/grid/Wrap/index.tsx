@@ -7,7 +7,7 @@ export interface WrapProps {
   className?: string;
 }
 
-export const Wrap: React.FunctionComponent<WrapProps> = ({ Tag = 'div', className, children }) => (
+export const Wrap: React.FC<WrapProps> = ({ Tag = 'div', className, children }) => (
   <Tag className={cs('gel-wrap', className)}>{children}</Tag>
 );
 

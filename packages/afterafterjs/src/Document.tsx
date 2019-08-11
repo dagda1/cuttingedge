@@ -3,8 +3,8 @@ import serialize from 'serialize-javascript';
 import { DocumentProps, DocumentType } from './types';
 
 export class Document<TProps extends DocumentType, TData = {}, TParams = unknown> extends React.Component<
-  DocumentProps<TProps, TData, TParams>
-> {
+  DocumentProps<TProps, TData, TParams>>
+{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static async getInitialProps({ assets, data, renderPage, Layout }: DocumentProps<any>) {
     const page = await renderPage(Layout);
@@ -19,7 +19,7 @@ export class Document<TProps extends DocumentType, TData = {}, TParams = unknown
     const bodyAttrs = helmet.bodyAttributes.toComponent();
 
     return (
-      <html lang="em" {...htmlAttrs}>
+      <html lang="en" {...htmlAttrs}>
         <head>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta charSet="utf-8" />

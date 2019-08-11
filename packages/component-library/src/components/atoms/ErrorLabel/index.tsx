@@ -10,17 +10,13 @@ export type ErrorProps = StandardProps<React.HTMLAttributes<HTMLUListElement>> &
   className?: string;
 };
 
-export const Error: React.FunctionComponent<ErrorProps> = ({
-  errorMessage,
-  className,
-  dataSelector = 'form-error'
-}) => (
+export const Error: React.FC<ErrorProps> = ({ errorMessage, className, dataSelector = 'form-error' }) => (
   <ul className={cs('current-errors', className, styles.container)}>
     <li data-selector={dataSelector}>{errorMessage}</li>
   </ul>
 );
 
-export const ErrorLabel: React.FunctionComponent<ErrorProps> = ({ id, ...props }) => (
+export const ErrorLabel: React.FC<ErrorProps> = ({ id, ...props }) => (
   <div id={id} aria-hidden="false">
     <Error {...props} />
   </div>

@@ -13,7 +13,7 @@ export interface LabelProps {
   dataSelector?: string;
 }
 
-export const Label: React.FunctionComponent<LabelProps> = ({
+export const Label: React.FC<LabelProps> = ({
   id,
   htmlFor,
   invalid,

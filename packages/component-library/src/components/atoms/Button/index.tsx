@@ -16,9 +16,11 @@ export type ButtonProps = StandardProps<
 > & {
   onClick?: React.MouseEventHandler;
   buttonStyle?: ButtonStyle;
+  ariaLabel?: string;
+  ariaLabelledBy?: string;
 };
 
-export const Button: React.FunctionComponent<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   onClick,
   className,
   buttonStyle,
@@ -26,6 +28,8 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   type,
   children,
   title,
+  ariaLabel,
+  ariaLabelledBy,
   dataSelector,
   ...rest
 }) => {
@@ -46,6 +50,8 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
       disabled={disabled}
       title={title}
       data-selector={dataSelector}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
       {...rest}
     >
       {children}

@@ -3,7 +3,7 @@ import { posts, Post } from './posts';
 import { StaticLayout } from '../../layouts/StaticLayout';
 import { Heading, ExternalLink } from '@cutting/component-library';
 
-export const Blog: React.FunctionComponent = () => (
+export const Blog: React.FC = () => (
   <StaticLayout heading="Blog">
     <p>
       I have recently started writing for <ExternalLink href="https://blog.logrocket.com/">Logrocket</ExternalLink>. My

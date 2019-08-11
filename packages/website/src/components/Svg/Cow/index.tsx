@@ -6,7 +6,7 @@ export interface CowProps {
   className?: string;
 }
 
-export const Cow: React.FunctionComponent<CowProps> = ({ className }) => (
+export const Cow: React.FC<CowProps> = ({ className }) => (
   <svg
     version="1.1"
     id="Layer_1"

@@ -2,7 +2,7 @@ import React from 'react';
 
 const styles = require('./Pyramid.scss');
 
-export const Pyramid: React.FunctionComponent = () => (
+export const Pyramid: React.FC = () => (
   <div className={styles.main}>
     <div className={styles.container}>
       <div className={styles.shape}>

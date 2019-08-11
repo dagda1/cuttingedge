@@ -58,7 +58,7 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
   filterOptions?: (option: OptionType) => boolean;
 }
 
-export const Select: React.FunctionComponent<SelectProps> = ({
+export const Select: React.FC<SelectProps> = ({
   value,
   defaultLabel = '',
   className,
