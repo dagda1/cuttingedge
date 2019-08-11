@@ -14,10 +14,13 @@ export interface MenuState {
 }
 
 export const Menu: React.FC = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
-  const collapse = () => setIsExpanded(false);
-  const toggleIsExpanded = () => setIsExpanded(!isExpanded);
+  const collapse = () => setExpanded(false);
+  const toggleIsExpanded = () => {
+    console.log(expanded);
+    setExpanded(!expanded);
+  };
 
   return (
     <nav className={styles.container}>
@@ -32,13 +35,15 @@ export const Menu: React.FC = () => {
             <Heading level={2}>Paul Cowan</Heading>
           </li>
           <li className={styles.mobile__button__container}>
-            <MobileNavButton onClick={toggleIsExpanded} isActive={isExpanded} />
+            <MobileNavButton onClick={toggleIsExpanded} isActive={expanded} />
           </li>
           <MenuItems collapse={collapse} />
         </ul>
       </div>
-      <div className={cs(styles.expandable, { [styles.expanded]: isExpanded })}>
-        <MenuItems collapse={collapse} />
+      <div className={cs(styles.expandable, { [styles.expanded]: expanded })}>
+        <ul>
+          <MenuItems collapse={collapse} />
+        </ul>
       </div>
     </nav>
   );
