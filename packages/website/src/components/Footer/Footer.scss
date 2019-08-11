@@ -2,10 +2,34 @@
 
 footer {
   display: flex;
+  flex-direction: column;
   font-size: 14px;
+  @include mb(2);
 
   @include mq-m {
+    margin-bottom: 0 !important;
+    flex-direction: row;
     font-size: 19px;
+  }
+}
+
+.left {
+  @include mq-m {
+    flex: 0 0 33.333%;
+  }
+  
+  display: flex;
+  flex-direction: column;
+
+
+  @include mq-m {
+    flex-direction: row;
+  }
+}
+
+.right {
+  @include mq-m {
+    flex: 0 0 66.6666%;
   }
 }
 
@@ -40,11 +64,16 @@ footer {
 
 .logo,
 .links {
+  flex: 0 0 50%;
   text-align: center;
 
   @include mq-m {
     text-align: left;
   }
+}
+
+.links{
+  margin-top: 1px;
 }
 
 .contact {

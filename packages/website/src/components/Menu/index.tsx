@@ -1,7 +1,7 @@
 import { Heading } from '@cutting/component-library';
 import { GelItem, Layout, Wrap } from '@cutting/react-gel';
 import cs from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { bannerPages } from '../../routes';
 import * as urls from '../../urls';
@@ -14,61 +14,49 @@ export interface MenuState {
   isExpanded: boolean;
 }
 
-export class Menu extends React.Component<{}, MenuState> {
-  constructor(props: {}) {
-    super(props);
+export const Menu: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
 
-    this.state = {
-      isExpanded: false
-    };
-  }
+  const collapse = () => setIsExpanded(false);
 
-  collapse = () => {
-    this.setState({ isExpanded: false });
-  };
+  const toggleIsExpanded = () => setIsExpanded(!isExpanded);
 
-  toggleIsExpanded = () => {
-    this.setState((prevState) => ({ isExpanded: !prevState.isExpanded }));
-  };
-
-  menuItems = () =>
+  const menuItems = () =>
     bannerPages.map((page) => (
       <li key={page.heading} className={cs(styles.horizontal)}>
-        <NavLink to={page.path} activeClassName={styles.active} onClick={this.collapse}>
+        <NavLink to={page.path} activeClassName={styles.active} onClick={collapse}>
           {page.heading}
         </NavLink>
       </li>
     ));
 
-  render() {
-    return (
-      <nav className={styles.container}>
-        <Wrap>
-          <Layout center className={styles.full}>
-            <GelItem>
-              <ul>
-                <li className={styles.logo__container}>
-                  <NavLink to={urls.Home}>
-                    <Cow />
-                  </NavLink>
-                </li>
-                <li>
-                  <Heading level={2}>Paul Cowan</Heading>
-                </li>
-                <li className={styles.mobile__button__container}>
-                  <MobileNavButton onClick={this.toggleIsExpanded} isActive={this.state.isExpanded} />
-                </li>
-                {this.menuItems()}
-              </ul>
-            </GelItem>
-          </Layout>
-          <Layout className={cs(styles.expandable, { [styles.expanded]: this.state.isExpanded })}>
-            <GelItem>
-              <ul>{this.menuItems()}</ul>
-            </GelItem>
-          </Layout>
-        </Wrap>
-      </nav>
-    );
-  }
-}
+  return (
+    <nav className={styles.container}>
+      <Wrap>
+        <Layout center className={styles.full}>
+          <GelItem>
+            <ul>
+              <li className={styles.logo__container}>
+                <NavLink to={urls.Home}>
+                  <Cow />
+                </NavLink>
+              </li>
+              <li>
+                <Heading level={2}>Paul Cowan</Heading>
+              </li>
+              <li className={styles.mobile__button__container}>
+                <MobileNavButton onClick={toggleIsExpanded} isActive={isExpanded} />
+              </li>
+              {menuItems()}
+            </ul>
+          </GelItem>
+        </Layout>
+        <Layout className={cs(styles.expandable, { [styles.expanded]: isExpanded })}>
+          <GelItem>
+            <ul>{menuItems()}</ul>
+          </GelItem>
+        </Layout>
+      </Wrap>
+    </nav>
+  );
+};
