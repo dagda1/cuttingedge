@@ -78,11 +78,9 @@ button {
   display: flex;
   flex-direction: column;
 
-  @include pl(1);
-  @include pr(1);
+  @include px(4);
 
   @include mq-m {
-    @include pl(2);
-    @include pr(2);
+    @include px(2);
   }
 }

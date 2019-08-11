@@ -34,9 +34,9 @@ export const OSS: React.FunctionComponent = () => (
         </li>
       </ul>
       <Heading level={2}>My Work</Heading>
-      <Layout>
+      <div className={styles.repos}>
         {repos.map((repo: Repo, i: number) => (
-          <GelItem m="1/2" l="1/4" className={styles.repo} key={i}>
+          <div className={styles.repo} key={i}>
             <ExternalLink href={repo.link}>
               <div className={styles.icon}>
                 <Github />
@@ -46,9 +46,9 @@ export const OSS: React.FunctionComponent = () => (
               </div>
               <div>{repo.description}</div>
             </ExternalLink>
-          </GelItem>
+          </div>
         ))}
-      </Layout>
+      </div>
       <Layout>
         <GelItem>
           <Heading level={2} className={styles.heading__repos}>

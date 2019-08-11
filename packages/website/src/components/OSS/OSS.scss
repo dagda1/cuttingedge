@@ -10,7 +10,25 @@
   width: 50px;
 }
 
+.repos {
+  display: block;
+
+  @include mq-m {
+    display: flex;
+    flex-flow: wrap;
+  }
+}
+
 .repo {
+  @include mq-m {
+    flex: 1 0 47%;
+    @include mr(1);
+  }
+
+  @include mq-l {
+    flex: 1 0 21%;
+    @include mr(1);
+  }
   a {
     display: inline-block;
     border-width: 1px;
@@ -20,10 +38,9 @@
     overflow: auto;
     transition: all 0.2s ease;
     padding: 20px;
-    margin-right: 40px;
-    width: 100%;
     height: 270px;
     $color: $main-color;
+    width: 100%;
 
     &:hover {
       border-color: $main-color;
