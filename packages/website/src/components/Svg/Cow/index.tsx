@@ -9,7 +9,6 @@ export interface CowProps {
 export const Cow: React.FC<CowProps> = ({ className }) => (
   <svg
     version="1.1"
-    id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"
     width="1000px"
     height="1000px"

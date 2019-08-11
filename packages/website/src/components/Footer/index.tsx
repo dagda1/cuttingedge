@@ -2,6 +2,7 @@ import React from 'react';
 import { Cow, Github, Twitter } from '../Svg';
 import { footerPages } from '../../routes';
 import { NavLink } from 'react-router-dom';
+import { ExternalLink } from '@cutting/component-library';
 
 const styles = require('./Footer.scss');
 
@@ -31,14 +32,14 @@ export const Footer: React.FC = () => (
         <div>
           <ul className={styles.social}>
             <li>
-              <a href="https://github.com/dagda1" target="_blank" rel="noopener noreferrer">
-                <Github />
-              </a>
+              <ExternalLink href="https://github.com/dagda1" ariaLabel="Github profile">
+                <Github></Github>
+              </ExternalLink>
             </li>
             <li>
-              <a href="https://twitter.com/dagda1" target="_blank" rel="noopener noreferrer">
-                <Twitter />
-              </a>
+              <ExternalLink href="https://twitter.com/dagda1" ariaLabel="twitter profile">
+                <Twitter></Twitter>
+              </ExternalLink>
             </li>
           </ul>
           <a className={styles.email} href="mailto:paul.cowan@cutting.scot">

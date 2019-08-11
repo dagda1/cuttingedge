@@ -8,7 +8,12 @@ export interface MobileNavButtonProps {
 }
 
 export const MobileNavButton: React.FC<MobileNavButtonProps> = ({ onClick, isActive }) => (
-  <button className={isActive ? styles.MobileNavButtonActive : styles.MobileNavButton} onClick={onClick}>
+  <button
+    id="mobile-nav"
+    aria-label="Open menu button"
+    className={isActive ? styles.MobileNavButtonActive : styles.MobileNavButton}
+    onClick={onClick}
+  >
     <svg
       height="24"
       className="octicon octicon-three-bars notification-indicator"

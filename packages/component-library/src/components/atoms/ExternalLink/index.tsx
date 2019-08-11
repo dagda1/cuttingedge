@@ -3,6 +3,8 @@ import React from 'react';
 export interface ExternalLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   dataSelector?: string;
   blank?: boolean;
+  ariaLabel?: string;
+  ariaLabelledBy?: string;
 }
 
 export const ExternalLink: React.FC<ExternalLinkProps> = ({
@@ -11,6 +13,8 @@ export const ExternalLink: React.FC<ExternalLinkProps> = ({
   dataSelector,
   blank = true,
   children,
+  ariaLabel,
+  ariaLabelledBy,
   ...rest
 }: ExternalLinkProps) => (
   <a
@@ -19,6 +23,8 @@ export const ExternalLink: React.FC<ExternalLinkProps> = ({
     rel="noopener noreferrer"
     target={blank ? '_blank' : ''}
     className={className}
+    aria-label={ariaLabel}
+    aria-labelledby={ariaLabelledBy}
     {...rest}
   >
     {children}

@@ -17,4 +17,16 @@ describe('<ExternalLink />', () => {
     expect(a.rel).toBe('noopener noreferrer');
     expect(a.innerHTML).toBe('Blah');
   });
+
+  it('should add aria-label and aria-labelledby attributes', () => {
+    const { getByLabelText } = render(
+      <ExternalLink ariaLabel="label" ariaLabelledBy="labelled by" dataSelector="the-a" href="http://blah.com/">
+        Blah
+      </ExternalLink>
+    );
+
+    const button = getByLabelText('label') as HTMLAnchorElement;
+
+    expect(button.getAttribute('aria-labelledby')).toBe('labelled by');
+  });
 });

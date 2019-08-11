@@ -26,7 +26,7 @@ export const Menu: React.FC = () => {
       <div className={styles.full}>
         <ul>
           <li className={styles.logo__container}>
-            <NavLink to={urls.Home}>
+            <NavLink aria-label="home" to={urls.Home}>
               <Cow />
             </NavLink>
           </li>
