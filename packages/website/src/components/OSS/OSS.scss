@@ -2,7 +2,7 @@
 
 .container {
   h2 {
-    @include mb(1);
+    @include mb(4);
   }
 }
 
@@ -55,6 +55,7 @@
     background-color: inherit;
   }
 }
+
 
 .community__list {
   li {

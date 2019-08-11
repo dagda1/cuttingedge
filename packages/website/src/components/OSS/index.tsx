@@ -1,5 +1,4 @@
 import { ExternalLink, Heading } from '@cutting/component-library';
-import { GelItem, Layout } from '@cutting/react-gel';
 import React from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
@@ -49,13 +48,11 @@ export const OSS: React.FunctionComponent = () => (
           </div>
         ))}
       </div>
-      <Layout>
-        <GelItem>
-          <Heading level={2} className={styles.heading__repos}>
-            For full list of github repos <ExternalLink href="https://github.com/dagda1">click here</ExternalLink>
-          </Heading>
-        </GelItem>
-      </Layout>
+      <div>
+        <Heading level={2} className={styles.heading__repos}>
+          For full list of github repos <ExternalLink href="https://github.com/dagda1">click here</ExternalLink>
+        </Heading>
+      </div>
     </div>
   </ApplicationLayout>
 );

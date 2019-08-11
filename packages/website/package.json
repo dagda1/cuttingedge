@@ -31,7 +31,6 @@
     "@cutting/component-library": "0.7.2",
     "@cutting/connected-components": "0.6.2",
     "@cutting/devtools": "0.11.11",
-    "@cutting/react-gel": "0.6.2",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
     "@types/assets-webpack-plugin": "^3.5.1",
