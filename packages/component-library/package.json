@@ -18,7 +18,8 @@
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
     "@types/lodash.isobject": "^3.0.6",
-    "react-hooks-testing-library": "^0.6.0"
+    "react-hooks-testing-library": "^0.6.0",
+    "typescript-plugin-css-modules": "^1.2.1"
   },
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
