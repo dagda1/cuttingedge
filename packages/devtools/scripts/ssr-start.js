@@ -70,7 +70,6 @@ function main() {
 
   clientDevServer.listen((process.env.PORT && Number(process.env.PORT) + 1) || razzle.port || 3001, (err) => {
     if (err) {
-      console.log('fuckkk');
       logger.error(err);
     }
   });
