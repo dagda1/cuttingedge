@@ -11,7 +11,6 @@ module.exports = {
   server: {
     entries: paths.appServerIndexJs,
     filename: 'server.js',
-    bail: true,
     progress: true
   },
   ts: {

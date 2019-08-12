@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const path = require('path');
@@ -19,6 +20,7 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 const sassOptions = require('./sassOptions');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
+const ignoredFiles = require('react-dev-utils/ignoredFiles');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -87,6 +89,10 @@ const configure = (options) => {
           contentBase: paths.appBuild,
           compress: true,
           watchContentBase: true,
+          watchOptions: {
+            ignored: ignoredFiles(paths.appSrc)
+          },
+          publicPath: '/',
           headers: {
             'Access-Control-Allow-Origin': '*'
           },
@@ -240,7 +246,8 @@ const configure = (options) => {
           }),
           new OptimizeCSSAssetsPlugin({
             cssProcessorOptions: {
-              parser: safePostCssParser
+              parser: safePostCssParser,
+              map: isDevelopment ? { inline: false, annotation: true } : false
             }
           })
         ],

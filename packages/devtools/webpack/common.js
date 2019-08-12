@@ -6,6 +6,8 @@ const WebpackBar = require('webpackbar');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const resolve = require('resolve');
 const fs = require('fs-extra');
+const HappyPack = require('happypack');
+const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -40,7 +42,24 @@ const getEnvVariables = (options) => {
   );
 };
 
-const HappyPack = require('happypack');
+const MaxTries = 15;
+const ModulesDirName = 'node_modules';
+
+function findAppNodeModules(current, packageName = 'typescript', tries = 0) {
+  const modulesDir = path.resolve(current, ModulesDirName, packageName);
+
+  if (tries === MaxTries) {
+    throw new Error(`cannot find ${packageName} in ${modulesDir}`);
+  }
+
+  if (fs.existsSync(modulesDir)) {
+    return path.join(current, ModulesDirName);
+  }
+
+  return findAppNodeModules(path.resolve(current, '..'), packageName, ++tries);
+}
+
+const repoNodeModules = findAppNodeModules(__dirname);
 
 const configureCommon = (options) => {
   const isNode = !!options.isNode;
@@ -48,14 +67,9 @@ const configureCommon = (options) => {
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables(options);
 
-  const packagesPath = path.resolve(__dirname, '../../devtools');
-
-  const monoRepoNodeModules = fs.existsSync(packagesPath)
-    ? path.resolve(packagesPath, '../../node_modules')
-    : undefined;
-
   const config = {
     mode: isDevelopment ? 'development' : 'production',
+    bail: isProduction,
     devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
     context: process.cwd(),
     output: {
@@ -64,7 +78,7 @@ const configureCommon = (options) => {
     },
     resolve: {
       symlinks: false,
-      modules: ['node_modules', paths.appNodeModules].concat(
+      modules: ['node_modules', repoNodeModules].concat(
         // It is guaranteed to exist because we tweak it in `env.js`
         env.raw.nodePath || path.resolve('.')
       ),
@@ -86,7 +100,7 @@ const configureCommon = (options) => {
       }
     },
     resolveLoader: {
-      modules: [paths.appNodeModules, paths.ownNodeModules, monoRepoNodeModules].filter(Boolean)
+      modules: [paths.appNodeModules, paths.ownNodeModules, repoNodeModules].filter(Boolean)
     },
     module: {
       strictExportPresence: true,
@@ -113,12 +127,12 @@ const configureCommon = (options) => {
               /\.md$/
             ],
             loader: 'file-loader',
-            options: { name: staticAssetName }
+            options: { name: staticAssetName, emitFile: isWeb }
           },
           {
             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff$/, /\.woff2$/, /\.eot$/, /\.eot$/, /\.ttf$/],
             loader: 'url-loader',
-            options: { name: staticAssetName, limit: 10000 }
+            options: { name: staticAssetName, limit: 10000, emitFile: isWeb }
           },
           {
             test: /\.tsx$/,
@@ -201,7 +215,7 @@ const configureCommon = (options) => {
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new ForkTsCheckerWebpackPlugin({
           typescript: resolve.sync('typescript', {
-            basedir: paths.appNodeModules
+            basedir: repoNodeModules
           }),
           async: isDevelopment,
           useTypescriptIncrementalApi: true,
@@ -215,7 +229,8 @@ const configureCommon = (options) => {
             '!**/src/setupTests.*'
           ],
           watch: paths.appSrc,
-          silent: true
+          silent: true,
+          formatter: isProduction ? typescriptFormatter : undefined
         }),
         isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest])
       ],
