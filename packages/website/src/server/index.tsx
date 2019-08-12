@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
@@ -42,13 +43,12 @@ if (isProduction) {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
-        imgSrc: ["'self'", 'data:']
+        imgSrc: ["'self'", 'data:'],
+        fontSrc: ["'self'", 'data:']
       }
     })
   );
 }
-
-/* eslint-disable no-console */
 
 const createConnectedLayout = (store: Store): React.FC<LayoutProps> => {
   const Wrapped: React.FC<LayoutProps> = ({ children }) => <Provider store={store}>{children}</Provider>;

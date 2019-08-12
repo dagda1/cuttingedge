@@ -13,19 +13,19 @@
 .repos {
   display: block;
 
-  @include mq-m {
+  @include mq-s {
     display: flex;
     flex-flow: wrap;
   }
 }
 
 .repo {
-  @include mq-m {
+  @include mq-s {
     flex: 1 0 47%;
     @include mr(1);
   }
 
-  @include mq-l {
+  @include mq-m {
     flex: 1 0 21%;
     @include mr(1);
   }
