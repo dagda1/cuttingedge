@@ -101,7 +101,8 @@ const configure = (options) => {
             // See https://github.com/facebookincubator/create-react-app/issues/387.
             disableDotRule: true
           },
-          host: 'localhost',
+          host,
+          https: protocol === 'https',
           hot: true,
           noInfo: true,
           overlay: false,
