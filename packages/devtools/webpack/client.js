@@ -57,7 +57,13 @@ const configure = (options) => {
     const entryPoints = Array.isArray(entries) ? entries : [entries];
 
     finalEntries = isDevelopment
-      ? [require.resolve('react-dev-utils/webpackHotDevClient'), 'babel-polyfill', ...entryPoints]
+      ? [
+          `webpack-dev-server/client?${protocol}://${host}:${port}`,
+          'webpack/hot/dev-server',
+          require.resolve('react-dev-utils/webpackHotDevClient'),
+          'babel-polyfill',
+          ...entryPoints
+        ]
       : ['babel-polyfill', ...entryPoints];
   }
 
@@ -85,38 +91,29 @@ const configure = (options) => {
     devServer: isDevelopment
       ? {
           disableHostCheck: true,
-          clientLogLevel: 'none',
+          clientLogLevel: 'info',
           contentBase: paths.appBuild,
           compress: true,
-          watchContentBase: true,
-          watchOptions: {
-            ignored: ignoredFiles(paths.appSrc)
-          },
-          publicPath: '/',
+          liveReload: false,
           headers: {
             'Access-Control-Allow-Origin': '*'
           },
           historyApiFallback: {
-            // Paths with dots should still use the history fallback.
-            // See https://github.com/facebookincubator/create-react-app/issues/387.
             disableDotRule: true
           },
           host,
           https: protocol === 'https',
+          hotOnly: true,
           hot: true,
           noInfo: true,
           overlay: false,
           port: devServerPort,
           quiet: true,
-          // By default files from `contentBase` will not trigger a page reload.
-          // Reportedly, this avoids CPU overload on some systems.
-          // https://github.com/facebookincubator/create-react-app/issues/293
           watchOptions: {
-            ignored: /node_modules/
+            ignored: ignoredFiles(paths.appSrc)
           },
           before(app, server) {
             app.use(evalSourceMapMiddleware(server));
-            // This lets us open files from the runtime error overlay.
             app.use(errorOverlayMiddleware());
           },
           proxy
@@ -178,7 +175,7 @@ const configure = (options) => {
     },
 
     plugins: [
-      isDevelopment && new webpack.HotModuleReplacementPlugin({ multistep: true }),
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({

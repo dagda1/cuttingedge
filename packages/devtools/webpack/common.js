@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const paths = require('../config/paths');
 const WebpackBar = require('webpackbar');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -217,12 +217,12 @@ const configureCommon = (options) => {
           typescript: resolve.sync('typescript', {
             basedir: repoNodeModules
           }),
-          async: isDevelopment,
+          async: false,
           useTypescriptIncrementalApi: true,
           checkSyntacticErrors: true,
           tsconfig: paths.tsConfig,
           reportFiles: [
-            '**',
+            'src/**/*.{ts,tsx}',
             '!**/__tests__/**',
             '!**/?(*.)(spec|test).*',
             '!**/src/setupProxy.*',

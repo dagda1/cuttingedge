@@ -57,7 +57,6 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.6.0",
     "file-loader": "^4.1.0",
-    "fork-ts-checker-webpack-plugin": "^1.4.3",
     "fs-extra": "^7.0.1",
     "happypack": "^5.0.1",
     "html-loader": "^0.5.5",

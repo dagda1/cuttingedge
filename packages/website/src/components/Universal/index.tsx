@@ -2,7 +2,7 @@ import universal from 'react-universal-component';
 import importCss from 'babel-plugin-universal-import/importCss';
 
 export interface UniversalProps {
-  page: any;
+  page: string;
 }
 
 const load = (props: UniversalProps) =>

@@ -27,42 +27,27 @@ const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
 
-// First, read the current file sizes in build directory.
-// This lets us display how much they changed later.
-measureFileSizesBeforeBuild(paths.appBuildPublic)
-  .then((previousFileSizes) => {
-    // Remove all content but keep the directory so that
-    // if you're in it, you don't end up in Trash
-    fs.emptyDirSync(paths.appBuild);
+// Helper function to copy public directory to build/public
+function copyPublicFolder() {
+  fs.copySync(paths.appPublic, paths.appBuildPublic, {
+    dereference: true,
+    filter: (file) => file !== paths.appHtml
+  });
+}
 
-    // Merge with the public folder
-    copyPublicFolder();
-
-    // Start the webpack build
-    return build(previousFileSizes);
-  })
-  .then(
-    ({ stats, previousFileSizes, warnings }) => {
-      if (warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings.\n'));
-        console.log(warnings.join('\n\n'));
-        console.log(
-          '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
-        );
-      } else {
-        console.log(chalk.green('Compiled successfully.\n'));
-      }
-
-      console.log('File sizes after gzip:\n');
-
-      printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
-    },
-    (err) => {
-      console.log(chalk.red('Failed to compile.\n'));
-      console.log((err.message || err) + '\n');
-      process.exit(1);
-    }
-  );
+// Wrap webpack compile in a try catch.
+function compile(config, cb) {
+  let compiler;
+  try {
+    compiler = webpack(config);
+  } catch (e) {
+    printErrors('Failed to compile.', [e]);
+    process.exit(1);
+  }
+  compiler.run((err, stats) => {
+    cb(err, stats);
+  });
+}
 
 function build(previousFileSizes) {
   const globalBuildConfig = require(paths.jsBuildConfigPath);
@@ -148,24 +133,39 @@ function build(previousFileSizes) {
   });
 }
 
-// Helper function to copy public directory to build/public
-function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuildPublic, {
-    dereference: true,
-    filter: (file) => file !== paths.appHtml
-  });
-}
+// First, read the current file sizes in build directory.
+// This lets us display how much they changed later.
+measureFileSizesBeforeBuild(paths.appBuildPublic)
+  .then((previousFileSizes) => {
+    // Remove all content but keep the directory so that
+    // if you're in it, you don't end up in Trash
+    fs.emptyDirSync(paths.appBuild);
 
-// Wrap webpack compile in a try catch.
-function compile(config, cb) {
-  let compiler;
-  try {
-    compiler = webpack(config);
-  } catch (e) {
-    printErrors('Failed to compile.', [e]);
-    process.exit(1);
-  }
-  compiler.run((err, stats) => {
-    cb(err, stats);
-  });
-}
+    // Merge with the public folder
+    copyPublicFolder();
+
+    // Start the webpack build
+    return build(previousFileSizes);
+  })
+  .then(
+    ({ stats, previousFileSizes, warnings }) => {
+      if (warnings.length) {
+        console.log(chalk.yellow('Compiled with warnings.\n'));
+        console.log(warnings.join('\n\n'));
+        console.log(
+          '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
+        );
+      } else {
+        console.log(chalk.green('Compiled successfully.\n'));
+      }
+
+      console.log('File sizes after gzip:\n');
+
+      printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
+    },
+    (err) => {
+      console.log(chalk.red('Failed to compile.\n'));
+      console.log((err.message || err) + '\n');
+      process.exit(1);
+    }
+  );

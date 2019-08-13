@@ -22,7 +22,7 @@ export const App: React.FC = () => {
         <div className={styles.item}>
           <RadioGroup
             legend="large stacked"
-            name="larg-stacked"
+            name="large-stacked"
             layout={RadioLayout.stacked}
             size={RadioSize.large}
             options={[
@@ -214,3 +214,5 @@ export const App: React.FC = () => {
     </div>
   );
 };
+
+export default App;
