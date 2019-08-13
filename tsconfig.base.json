@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "noImplicitAny": true,
     "lib": ["es5", "es2015", "es2016", "dom"],
-    "types": ["node", "jest"],
+    "types": ["node", "jest", "webpack-env"],
     "typeRoots": ["./node_modules/@types"],
     "strictFunctionTypes": false,
     "suppressImplicitAnyIndexErrors": true,

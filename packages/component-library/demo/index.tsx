@@ -1,7 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare var module: any;
-declare var __DEV__: boolean;
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';

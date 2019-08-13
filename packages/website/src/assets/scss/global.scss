@@ -80,7 +80,7 @@ button {
 
   @include px(4);
 
-  @include mq-m {
+  @include mq-l {
     @include px(2);
   }
 }
