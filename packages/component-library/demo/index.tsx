@@ -10,7 +10,7 @@ const render = (Component: React.FC) => {
 
 render(App);
 
-if (module.hot && __DEV__) {
+if (module.hot) {
   module.hot.accept('./App', () => {
     const App = require('./App').default;
     render(App);
