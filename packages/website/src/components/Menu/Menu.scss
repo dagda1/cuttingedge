@@ -6,7 +6,6 @@ path {
 
 .full {
   display: flex;
-  justify-content: center;
 
   @include mq-m {
     justify-content: flex-start
@@ -31,7 +30,7 @@ path {
     display: inline-block;
     vertical-align: middle;
 
-    @include mr(1);
+    @include mr(3);
 
     @include mq-m {
       &:not(.mobile__button__container) {
