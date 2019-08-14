@@ -16,9 +16,5 @@ module.exports = (loaderContext, localIdentName, localName, options) => {
   const request = path.relative(options.context, loaderContext.resourcePath).replace(sassModuleRegex, '');
   const prefix = dasherize(path.parse(request).name);
 
-  console.log('----------------');
-  console.log(request);
-  console.log('----------------');
-
   return `${prefix}__${localName}`;
 };
