@@ -3,7 +3,7 @@ import React from 'react';
 import { identity } from '@cutting/util';
 import { StandardProps } from '../../../types';
 
-const styles = require('./Button.scss');
+const styles = require('./Button.module.scss');
 
 export enum ButtonStyle {
   Primary = 'primary',

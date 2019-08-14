@@ -22,7 +22,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 
-const { cssRegex, sassRegex, sassModuleRegex } = require('constants');
+const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -154,6 +154,7 @@ const configure = (options) => {
         },
         {
           test: sassRegex,
+          exclude: sassModuleRegex,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
