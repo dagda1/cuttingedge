@@ -5,6 +5,8 @@ import { StandardProps } from '../../../types';
 
 const styles = require('./Button.module.scss');
 
+console.log(styles);
+
 export enum ButtonStyle {
   Primary = 'primary',
   Secondary = 'secondary',

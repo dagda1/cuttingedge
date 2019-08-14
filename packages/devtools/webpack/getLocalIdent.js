@@ -1,25 +1,24 @@
 const path = require('path');
+const { sassModuleRegex } = require('./constants');
 
-const decamelize = str => str.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
+const decamelize = (str) => str.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
 
-const dasherize = str => decamelize(str).replace(/[ _]/g, '-');
-
-// don't add css module prefixes to the following files names.
-const excludedFileNames = ['global', '_grid'].map(f => `${f}.scss`);
+const dasherize = (str) => decamelize(str).replace(/[ _]/g, '-');
 
 module.exports = (loaderContext, localIdentName, localName, options) => {
-  if (!options.context)
+  if (!options.context) {
     options.context =
       loaderContext.options && typeof loaderContext.options.context === 'string'
         ? loaderContext.options.context
         : loaderContext.context;
-
-  if (excludedFileNames.indexOf(path.basename(loaderContext.resourcePath)) > -1) {
-    return localName;
   }
 
-  const request = path.relative(options.context, loaderContext.resourcePath);
+  const request = path.relative(options.context, loaderContext.resourcePath).replace(sassModuleRegex, '');
   const prefix = dasherize(path.parse(request).name);
+
+  console.log('----------------');
+  console.log(request);
+  console.log('----------------');
 
   return `${prefix}__${localName}`;
 };

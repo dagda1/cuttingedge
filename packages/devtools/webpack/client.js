@@ -165,10 +165,8 @@ const configure = (options) => {
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
-                modules: {
-                  getLocalIdent: getLocalIdent
-                }
+                importLoaders: 2,
+                sourceMap: isDevelopment
               }
             },
             { loader: 'postcss-loader', options: postcssOptions },
@@ -189,6 +187,7 @@ const configure = (options) => {
               loader: 'css-loader',
               options: {
                 importLoaders: 2,
+                sourceMap: isDevelopment,
                 modules: {
                   getLocalIdent: getLocalIdent
                 }
