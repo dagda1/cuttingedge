@@ -1,6 +1,6 @@
 import React from 'react';
 
-const styles = require('./MobileNavButton.scss');
+const styles = require('./MobileNavButton.module.scss');
 
 export interface MobileNavButtonProps {
   onClick: React.MouseEventHandler;

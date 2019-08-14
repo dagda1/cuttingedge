@@ -3,7 +3,7 @@ import { bannerPages } from '../../routes';
 import cs from 'classnames';
 import { NavLink } from 'react-router-dom';
 
-const styles = require('./Menu.scss');
+const styles = require('./Menu.module.scss');
 
 export interface MenuItemsProps {
   collapse: () => void;

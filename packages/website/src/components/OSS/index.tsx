@@ -4,7 +4,7 @@ import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
 import { Github } from '../Svg';
 
-const styles = require('./OSS.scss');
+const styles = require('./OSS.module.scss');
 
 export const OSS: React.FC = () => (
   <ApplicationLayout>

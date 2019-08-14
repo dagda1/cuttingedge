@@ -2,7 +2,7 @@ import React from 'react';
 import cs from 'classnames';
 import { RadioProps, RadioSize, RadioLayout, RadioLayoutProps, RadioEventHandlers } from './types';
 
-const styles = require('./Radio.scss');
+const styles = require('./Radio.module.scss');
 
 export const Radio: React.FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
   id,

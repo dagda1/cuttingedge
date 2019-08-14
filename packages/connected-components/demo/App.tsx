@@ -3,7 +3,7 @@ import { Heading, Button, ButtonStyle, LayoutType } from '@cutting/component-lib
 import { withFormik, FormikProps } from 'formik';
 import { ConnectedFormInput } from '../src/components/FormWrappers/FormControlWrapper';
 
-const styles = require('./App.scss');
+const styles = require('./App.module.scss');
 
 export interface WeatherState {
   city: string;

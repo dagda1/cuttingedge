@@ -4,7 +4,7 @@ import { Error } from '../../atoms/ErrorLabel';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 
-const styles = require('./FormControl.scss');
+const styles = require('./FormControl.module.scss');
 
 export enum LayoutType {
   vertical = 'vertical',

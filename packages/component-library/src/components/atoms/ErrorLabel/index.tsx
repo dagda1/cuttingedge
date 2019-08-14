@@ -2,7 +2,7 @@ import cs from 'classnames';
 import React from 'react';
 import { StandardProps } from '../../../types';
 
-const styles = require('./ErrorLabel.scss');
+const styles = require('./ErrorLabel.module.scss');
 
 export type ErrorProps = StandardProps<React.HTMLAttributes<HTMLUListElement>> & {
   errorMessage: string;

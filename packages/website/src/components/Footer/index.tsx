@@ -4,7 +4,7 @@ import { footerPages } from '../../routes';
 import { NavLink } from 'react-router-dom';
 import { ExternalLink } from '@cutting/component-library';
 
-const styles = require('./Footer.scss');
+const styles = require('./Footer.module.scss');
 
 export const Footer: React.FC = () => (
   <footer role="contentinfo">

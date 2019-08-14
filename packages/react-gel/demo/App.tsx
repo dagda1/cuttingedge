@@ -3,7 +3,7 @@ import React from 'react';
 import { Wrap, Layout, GelItem } from '../src';
 import { Bar } from './Bar';
 
-const styles = require('./App.scss');
+const styles = require('./App.module.scss');
 
 export const App = () => (
   <>

@@ -6,7 +6,7 @@ import { Button, ButtonStyle } from '../src/components/atoms/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
 
-const styles = require('./global.scss');
+const styles = require('./global.module.scss');
 
 export const App: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);

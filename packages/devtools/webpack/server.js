@@ -93,7 +93,7 @@ const configure = (options = {}) => {
           ]
         },
         {
-          test: /\.scss$/,
+          test: /\.module\.css$/,
           use: [
             {
               loader: ExtractCssChunks.loader,

@@ -3,7 +3,7 @@ import { Radio } from '../../atoms/Radio';
 import { RadioProps, RadioLayoutProps, RadioSize, RadioLayout } from '../../atoms/Radio/types';
 import cs from 'classnames';
 
-const styles = require('./RadioGroup.scss');
+const styles = require('./RadioGroup.module.scss');
 
 export type RadioOption = RadioProps & { content: React.ReactNode };
 

@@ -3,7 +3,7 @@ import React from 'react';
 import isNil from 'lodash/isNil';
 import isObject from 'lodash.isobject';
 
-const styles = require('./select.scss');
+const styles = require('./Select.module.scss');
 
 export interface OptionType {
   [key: string]: string | string[] | number;

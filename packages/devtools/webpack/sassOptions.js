@@ -3,7 +3,7 @@ const paths = require('../config/paths');
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = !isDevelopment;
 
-module.exports =  {
+module.exports = {
   outputStyle: 'expanded',
   sourceMap: isDevelopment,
   data: '@import "./styles/_overrides.scss";',

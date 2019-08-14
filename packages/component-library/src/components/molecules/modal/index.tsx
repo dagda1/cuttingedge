@@ -3,7 +3,7 @@ import { Button } from '../../atoms/Button';
 import cs from 'classnames';
 import { Heading } from '../..';
 
-const styles = require('./Modal.scss');
+const styles = require('./Modal.module.scss');
 
 export interface ModalProps {
   heading: string;

@@ -22,6 +22,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 
+const { cssRegex, sassRegex, sassModuleRegex } = require('constants');
+
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
   const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
@@ -132,7 +134,7 @@ const configure = (options) => {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: cssRegex,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -147,10 +149,34 @@ const configure = (options) => {
               }
             },
             { loader: 'postcss-loader', options: postcssOptions }
-          ]
+          ],
+          sideEffects: true
         },
         {
-          test: /\.scss$/,
+          test: sassRegex,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: isDevelopment
+              }
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                modules: {
+                  getLocalIdent: getLocalIdent
+                }
+              }
+            },
+            { loader: 'postcss-loader', options: postcssOptions },
+            { loader: 'sass-loader' }
+          ],
+          sideEffects: true
+        },
+        {
+          test: sassModuleRegex,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -169,7 +195,8 @@ const configure = (options) => {
             },
             { loader: 'postcss-loader', options: postcssOptions },
             { loader: 'sass-loader', options: sassOptions }
-          ]
+          ],
+          sideEffects: true
         }
       ].filter(Boolean)
     },

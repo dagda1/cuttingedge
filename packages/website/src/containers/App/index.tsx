@@ -1,4 +1,4 @@
-require('../../assets/scss/global.scss');
+require('../../assets/scss/global.module.scss');
 import React from 'react';
 import { Switch } from 'react-router';
 import { Route } from 'react-router';
@@ -14,6 +14,7 @@ import { State } from '../../reducers/types';
 export interface AppProps {
   store: Store<State>;
 }
+
 
 export const App: React.FC<AppProps> = ({ store }) => (
   <>

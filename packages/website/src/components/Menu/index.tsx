@@ -7,7 +7,7 @@ import { MobileNavButton } from '../MobileNavButton';
 import { Cow } from '../Svg';
 import { MenuItems } from './MenuItems';
 
-const styles = require('./Menu.scss');
+const styles = require('./Menu.module.scss');
 
 export interface MenuState {
   isExpanded: boolean;

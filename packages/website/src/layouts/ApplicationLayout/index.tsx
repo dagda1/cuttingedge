@@ -4,14 +4,14 @@ import React from 'react';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 
+const styles = require('./ApplicationLayout.module.scss');
+
 export interface ApplicationLayoutProps {
   heading?: string;
   italicise?: boolean;
   center?: boolean;
   className?: 'string';
 }
-
-const styles = require('./ApplicationLayout.scss');
 
 export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
   heading,

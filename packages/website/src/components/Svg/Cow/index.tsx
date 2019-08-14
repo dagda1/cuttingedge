@@ -1,7 +1,5 @@
 import React from 'react';
 
-/* const styles = require('./Cow.scss'); */
-
 export interface CowProps {
   className?: string;
 }

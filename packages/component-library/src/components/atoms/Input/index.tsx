@@ -1,7 +1,7 @@
 import cs from 'classnames';
 import React from 'react';
 
-const styles = require('./Input.scss');
+const styles = require('./Input.module.scss');
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean;
