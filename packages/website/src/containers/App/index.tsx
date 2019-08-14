@@ -15,7 +15,6 @@ export interface AppProps {
   store: Store<State>;
 }
 
-
 export const App: React.FC<AppProps> = ({ store }) => (
   <>
     <Helmet>

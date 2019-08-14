@@ -1,5 +1,6 @@
 {
   "packages": [
+    "packages/useful-types",
     "packages/devtools",
     "packages/util",
     "packages/afterafterjs",

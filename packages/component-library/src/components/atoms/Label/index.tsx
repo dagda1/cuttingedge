@@ -1,7 +1,7 @@
 import cs from 'classnames';
 import React from 'react';
 
-const styles = require('./Label.module.scss');
+import styles from './Label.module.scss';
 
 export interface LabelProps {
   id?: string;

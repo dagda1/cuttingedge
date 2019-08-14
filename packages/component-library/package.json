@@ -9,12 +9,14 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
+    "@cutting/useful-types": "^0.1.0",
     "@cutting/util": "0.6.0",
     "lodash": "^4.17.15",
     "lodash.isobject": "^3.0.2"
   },
   "devDependencies": {
     "@cutting/devtools": "0.11.11",
+    "@cutting/useful-types": "0.1.0",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
     "@types/lodash.isobject": "^3.0.6",

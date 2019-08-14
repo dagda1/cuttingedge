@@ -3,7 +3,7 @@ import { Radio } from '../../atoms/Radio';
 import { RadioProps, RadioLayoutProps, RadioSize, RadioLayout } from '../../atoms/Radio/types';
 import cs from 'classnames';
 
-const styles = require('./RadioGroup.module.scss');
+import styles from './RadioGroup.module.scss';
 
 export type RadioOption = RadioProps & { content: React.ReactNode };
 
@@ -48,10 +48,7 @@ export const RadioGroup: React.FC<RadioGroupProps & RadioLayoutProps> = ({
   return (
     <fieldset
       className={cs(styles.fieldset, {
-        [styles.large]: size === RadioSize.large,
-        [styles.small]: size === RadioSize.small,
-        [styles.stacked]: layout === RadioLayout.stacked,
-        [styles.inlihe]: layout === RadioLayout.inline
+        [styles.stacked]: layout === RadioLayout.stacked
       })}
     >
       <legend>{legend}</legend>

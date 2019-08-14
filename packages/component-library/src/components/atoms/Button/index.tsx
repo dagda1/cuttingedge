@@ -2,8 +2,9 @@ import cs from 'classnames';
 import React from 'react';
 import { identity } from '@cutting/util';
 import { StandardProps } from '../../../types';
+import styles from './Button.module.scss';
 
-const styles = require('./Button.module.scss');
+// const styles = require('./Button.module.scss');
 
 export enum ButtonStyle {
   Primary = 'primary',

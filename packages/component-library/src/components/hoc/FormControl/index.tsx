@@ -4,7 +4,7 @@ import { Error } from '../../atoms/ErrorLabel';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 
-const styles = require('./FormControl.module.scss');
+import styles from './FormControl.module.scss';
 
 export enum LayoutType {
   vertical = 'vertical',
@@ -63,7 +63,6 @@ export function FormControl<T, InputType>(
         <div
           className={cs(styles.input, className, {
             [styles.highlight]: highlight,
-            [styles.vertical]: layoutType === LayoutType.vertical,
             [styles.horizontal]: layoutType === LayoutType.horizontal
           })}
         >

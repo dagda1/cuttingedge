@@ -20,12 +20,15 @@
     },
     {
       "path": "packages/connected-components"
-    
+    },
     {
       "path": "packages/react-gel"
     },
     {
       "path": "packages/devtools"
+    },
+    {
+      "path": "packages/useful-types"
     },
     {
       "path": "packages/util"

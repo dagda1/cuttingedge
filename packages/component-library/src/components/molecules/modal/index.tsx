@@ -3,7 +3,7 @@ import { Button } from '../../atoms/Button';
 import cs from 'classnames';
 import { Heading } from '../..';
 
-const styles = require('./Modal.module.scss');
+import styles from './Modal.module.scss';
 
 export interface ModalProps {
   heading: string;
@@ -33,7 +33,6 @@ export class Modal extends React.Component<ModalProps> {
         aria-labelledby="dialog-title"
         aria-describedby="dialog-description"
       >
-        <div className={styles.header} />
         <div className={styles.heading}>
           <Heading level={2}>{heading}</Heading>
           <Button onClick={this.closeModal}>
