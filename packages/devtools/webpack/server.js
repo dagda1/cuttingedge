@@ -8,6 +8,8 @@ const getLocalIdent = require('./getLocalIdent');
 const sassOptions = require('./sassOptions');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
+const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
+
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
 const port = process.env.PORT;
@@ -75,7 +77,7 @@ const configure = (options = {}) => {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: cssRegex,
           use: [
             {
               loader: ExtractCssChunks.loader,
@@ -93,7 +95,27 @@ const configure = (options = {}) => {
           ]
         },
         {
-          test: /\.module\.css$/,
+          test: sassRegex,
+          exclude: sassModuleRegex,
+          use: [
+            {
+              loader: ExtractCssChunks.loader,
+              options: {
+                hmr: isDevelopment
+              }
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1
+              }
+            },
+            { loader: 'postcss-loader', options: postcssOptions },
+            { loader: 'sass-loader', options: sassOptions }
+          ]
+        },
+        {
+          test: sassModuleRegex,
           use: [
             {
               loader: ExtractCssChunks.loader,

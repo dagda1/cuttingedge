@@ -1,5 +1,4 @@
 {
-  "prettier.requireConfig": true,
   "files.exclude": {
     "**/.coverage": true,
     "**/.DS_Store": true,
@@ -35,7 +34,9 @@
     "./packages/component-library",
     "./packages/connected-components",
     "./packages/react-typed-mousetrap",
+    "./packages/useful-types",
+    "./packages/use-shortcuts",
     "./packages/website"
   ],
-  "workbench.colorCustomizations": {}
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio';
-import { RadioProps, RadioLayoutProps, RadioSize, RadioLayout } from '../../atoms/Radio/types';
+import { RadioProps, RadioLayoutProps, RadioLayout } from '../../atoms/Radio/types';
 import cs from 'classnames';
 
 import styles from './RadioGroup.module.scss';

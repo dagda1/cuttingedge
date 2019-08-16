@@ -2,7 +2,7 @@ import React from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Pyramid } from '../Pyramid';
 
-const styles = require('./Home.module.scss');
+import styles from './Home.module.scss';
 
 export const Home: React.FC = () => (
   <ApplicationLayout heading="Frontend developer, cutting-edge solutions" italicise center>
