@@ -2,8 +2,9 @@ import React from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import * as Urls from '../../urls';
 
-import styles from './CV.module.scss';
+const styles = require('./CV.module.scss');
 
+// eslint:disable
 export const CV: React.FC = () => {
   const CVFile = 'paulcowan-cv.pdf';
 
