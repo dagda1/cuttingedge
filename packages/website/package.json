@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@cutting/afterafterjs": "0.5.0",
+    "@cutting/component-library": "0.8.0",
+    "@cutting/connected-components": "0.8.0",    
     "@cutting/useful-types": "^0.1.0",
     "@cutting/util": "0.6.0",
     "body-parser": "^1.18.2",
@@ -29,8 +31,6 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/component-library": "0.7.2",
-    "@cutting/connected-components": "0.6.2",
     "@cutting/devtools": "0.12.0",
     "@cutting/useful-types": "0.1.0",
     "@testing-library/jest-dom": "^4.0.0",
