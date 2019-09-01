@@ -1,6 +1,6 @@
 {
   "name": "@cutting/devtools",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -11,17 +11,15 @@
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "dependencies": {
-    "@cutting/useful-types": "^0.1.0",
-    "copy": "^0.3.2",
-    "lodash": "^4.17.15"
-  },
-  "devDependencies": {
     "@cutting/useful-types": "0.1.0",
     "@intervolga/optimize-cssnano-plugin": "^1.0.6",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
+    "copy": "^0.3.2",
+    "core-js": "3.2.1",
     "extract-css-chunks-webpack-plugin": "^4.6.0",
     "react-hooks-testing-library": "^0.6.0",
+    "regenerator-runtime": "^0.13.3",
     "rollup": "^1.6.0",
     "rollup-plugin-filesize": "^6.0.1",
     "rollup-plugin-node-resolve": "^4.0.1",

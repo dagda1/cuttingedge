@@ -55,6 +55,8 @@ const configure = (options) => {
 
   let finalEntries;
 
+  const polyfills = ['core-js/stable', 'regenerator-runtime/runtime'];
+
   if (isStaticBuild) {
     const entryPoints = Array.isArray(entries) ? entries : [entries];
 
@@ -63,7 +65,7 @@ const configure = (options) => {
           `webpack-dev-server/client?${protocol}://${host}:${port}`,
           'webpack/hot/dev-server',
           require.resolve('react-dev-utils/webpackHotDevClient'),
-          'babel-polyfill',
+          ...polyfills,
           ...entryPoints
         ]
       : ['babel-polyfill', ...entryPoints];
@@ -75,8 +77,8 @@ const configure = (options) => {
 
       acc[key] =
         isDevelopment && options.hotReloading
-          ? [require.resolve('razzle-dev-utils/webpackHotDevClient'), 'babel-polyfill', entry]
-          : ['babel-polyfill', entry];
+          ? [require.resolve('razzle-dev-utils/webpackHotDevClient'), ...polyfills, entry]
+          : [...polyfills, entry];
 
       return acc;
     }, {});
