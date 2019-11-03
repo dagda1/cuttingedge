@@ -36,6 +36,7 @@
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-config-react": "^1.1.7",
+    "eslint-loader": "^3.0.2",
     "eslint-plugin-jest": "^23.0.2",
     "eslint-plugin-jest-formatting": "^1.2.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",

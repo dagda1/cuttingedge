@@ -1,4 +1,5 @@
-  'use strict';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+'use strict';
 
 const path = require('path');
 const fs = require('fs');
@@ -8,7 +9,6 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
-const { findFile } = require('./utils');
 
 function ensureSlash(path, needsSlash) {
   const hasSlash = path.endsWith('/');
@@ -21,15 +21,18 @@ function ensureSlash(path, needsSlash) {
   }
 }
 
-const getPublicUrl = (appPackageJson) => envPublicUrl || require(appPackageJson).homepage;
+const getPublicUrl = (appPackageJson) =>
+  envPublicUrl || require(appPackageJson).homepage;
 
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
-  const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
+  const servedUrl =
+    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
   return ensureSlash(servedUrl, true);
 }
 
-const resolveOwn = (relativePath) => path.resolve(__dirname, '..', relativePath);
+const resolveOwn = (relativePath) =>
+  path.resolve(__dirname, '..', relativePath);
 
 const requireRelative = (relativePath) => path.resolve(__dirname, relativePath);
 
@@ -49,10 +52,12 @@ const libPackages = [
   'packages/react-gel',
   'packages/component-library',
   'packages/connected-components',
-  'packages/react-typed-mousetrap'
+  'packages/react-typed-mousetrap',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
-const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));
+const webAppPackages = ['packages/website'].map((dep) =>
+  path.resolve(process.cwd(), dep),
+);
 
 const appBuildDirName = 'dist';
 
@@ -82,9 +87,9 @@ module.exports = {
   tsConfig: resolveApp('tsconfig.json'),
   devDir: resolveApp('demo'),
   devDirPublic: resolveApp('demo/public'),
-  esLintConfig: path.join(process.cwd(), '.eslintrc.json'),
+  esLintConfig: resolveApp('.eslintrc.json'),
   libPackages,
   webAppPackages,
   allPackages: [...libPackages, ...webAppPackages],
-  defaultBuildConfigPath: path.join(__dirname, './build.config.js')
+  defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
 };
