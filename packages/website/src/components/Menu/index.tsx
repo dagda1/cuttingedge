@@ -16,8 +16,8 @@ export interface MenuState {
 export const Menu: React.FC = () => {
   const [expanded, setExpanded] = useState(false);
 
-  const collapse = () => setExpanded(false);
-  const toggleIsExpanded = () => {
+  const collapse = (): void => setExpanded(false);
+  const toggleIsExpanded = (): void => {
     setExpanded(!expanded);
   };
 

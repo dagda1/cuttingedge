@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import serialize from 'serialize-javascript';
 import { DocumentProps, DocumentType } from './types';
 
@@ -6,13 +6,13 @@ export class Document<TProps extends DocumentType, TData = {}, TParams = unknown
   DocumentProps<TProps, TData, TParams>
 > {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static async getInitialProps({ assets, data, renderPage, Layout }: DocumentProps<any>) {
+  static async getInitialProps({ assets, data, renderPage, Layout }: DocumentProps<any>): Promise<any> {
     const page = await renderPage(Layout);
 
     return { assets, data, ...page };
   }
 
-  render() {
+  render(): ReactNode {
     const { helmet, assets, data } = this.props;
     // get attributes from React Helmet
     const htmlAttrs = helmet.htmlAttributes.toComponent();
@@ -40,11 +40,11 @@ export class Document<TProps extends DocumentType, TData = {}, TParams = unknown
   }
 }
 
-export function AfterRoot() {
+export function AfterRoot(): ReactElement<HTMLElement> {
   return <div id="root">DO_NOT_DELETE_THIS_YOU_WILL_BREAK_YOUR_APP</div>;
 }
 
-export function AfterData<TData>({ data }: { data: TData }) {
+export function AfterData<TData>({ data }: { data: TData }): ReactElement<HTMLScriptElement> {
   return (
     <script
       id="server-app-state"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Button } from '../../atoms/Button';
 import cs from 'classnames';
 import { Heading } from '../..';
@@ -18,12 +18,12 @@ export class Modal extends React.Component<ModalProps> {
     open: false
   };
 
-  closeModal = (e: React.MouseEvent) => {
+  closeModal = (e: React.MouseEvent): void => {
     e.stopPropagation();
     this.props.openHandler(false);
   };
 
-  render() {
+  render(): ReactNode {
     const { description, heading, footer, open, children } = this.props;
 
     return (
