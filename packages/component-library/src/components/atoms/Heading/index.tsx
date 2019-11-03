@@ -8,7 +8,13 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   tabIndex?: number;
 }
 
-export const Heading: React.FC<HeadingProps> = ({ level, className, tabIndex, children, ...rest }) => {
+export const Heading: React.FC<HeadingProps> = ({
+  level,
+  className,
+  tabIndex,
+  children,
+  ...rest
+}) => {
   const Tag = `h${level}` as Taggable;
 
   return (
@@ -19,7 +25,7 @@ export const Heading: React.FC<HeadingProps> = ({ level, className, tabIndex, ch
 };
 
 Heading.defaultProps = {
-  level: 1
+  level: 1,
 };
 
 Heading.displayName = 'Heading';

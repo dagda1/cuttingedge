@@ -15,7 +15,7 @@ export interface ModalProps {
 
 export class Modal extends React.Component<ModalProps> {
   public static defaultProps = {
-    open: false
+    open: false,
   };
 
   closeModal = (e: React.MouseEvent): void => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { ReactNode } from 'react';
 import { combineReducers } from 'redux';
 import { Middleware } from 'redux';
@@ -14,7 +15,9 @@ import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
 const getReducers = () => combineReducers({ router: connectRouter(history) });
 
-export const getInitialState = (stateOverride: Partial<State> = {}): State => ({ ...stateOverride });
+export const getInitialState = (stateOverride: Partial<State> = {}): State => ({
+  ...stateOverride,
+});
 
 export const createStoreForTesting = (stateOverride?: Partial<State>) => {
   const initialState = getInitialState(stateOverride);
@@ -28,15 +31,18 @@ export const createStoreForTesting = (stateOverride?: Partial<State>) => {
 
 export const wrapComponentInReduxForTesting = (
   ui: ReactNode,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-  stateOverride: Partial<State> = {}
+  {
+    route = '/',
+    history = createMemoryHistory({ initialEntries: [route] }),
+  } = {},
+  stateOverride: Partial<State> = {},
 ) => {
   return {
     ...render(
       <Provider store={createStoreForTesting(stateOverride)}>
         <MemoryRouter>{ui}</MemoryRouter>
-      </Provider>
+      </Provider>,
     ),
-    history
+    history,
   };
 };

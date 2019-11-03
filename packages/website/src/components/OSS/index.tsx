@@ -18,7 +18,9 @@ export const OSS: React.FC = () => (
           </ExternalLink>
         </li>
         <li>
-          <ExternalLink href="https://github.com/hshoff/vx/pull/355">vx polygon component</ExternalLink>
+          <ExternalLink href="https://github.com/hshoff/vx/pull/355">
+            vx polygon component
+          </ExternalLink>
         </li>
         <li>
           <ExternalLink href="https://github.com/emberjs/ember.js/pull/2938">
@@ -26,10 +28,14 @@ export const OSS: React.FC = () => (
           </ExternalLink>
         </li>
         <li>
-          <ExternalLink href="https://github.com/bvaughn/react-window/pull/1">react-window</ExternalLink>
+          <ExternalLink href="https://github.com/bvaughn/react-window/pull/1">
+            react-window
+          </ExternalLink>
         </li>
         <li>
-          <ExternalLink href="https://github.com/airbnb/enzyme/pull/1408">enzyme</ExternalLink>
+          <ExternalLink href="https://github.com/airbnb/enzyme/pull/1408">
+            enzyme
+          </ExternalLink>
         </li>
       </ul>
       <Heading level={2}>My Work</Heading>
@@ -50,7 +56,10 @@ export const OSS: React.FC = () => (
       </div>
       <div>
         <Heading level={2} className={styles.heading__repos}>
-          For full list of github repos <ExternalLink href="https://github.com/dagda1">click here</ExternalLink>
+          For full list of github repos{' '}
+          <ExternalLink href="https://github.com/dagda1">
+            click here
+          </ExternalLink>
         </Heading>
       </div>
     </div>

@@ -9,11 +9,14 @@ import styles from './Button.module.scss';
 export enum ButtonStyle {
   Primary = 'primary',
   Secondary = 'secondary',
-  Inverse = 'inverse'
+  Inverse = 'inverse',
 }
 
 export type ButtonProps = StandardProps<
-  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+  React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >
 > & {
   onClick?: React.MouseEventHandler;
   buttonStyle?: ButtonStyle;
@@ -44,7 +47,7 @@ export const Button: React.FC<ButtonProps> = ({
         [styles.disabled]: disabled,
         [styles.inverse]: inverse,
         [styles.primary]: primary,
-        [styles.secondary]: secondary
+        [styles.secondary]: secondary,
       })}
       type={type}
       onClick={onClick}
@@ -62,5 +65,5 @@ export const Button: React.FC<ButtonProps> = ({
 
 Button.defaultProps = {
   onClick: identity,
-  type: 'button'
+  type: 'button',
 };

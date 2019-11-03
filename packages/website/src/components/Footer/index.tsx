@@ -32,12 +32,18 @@ export const Footer: React.FC = () => (
         <div>
           <ul className={styles.social}>
             <li>
-              <ExternalLink href="https://github.com/dagda1" ariaLabel="Github profile">
+              <ExternalLink
+                href="https://github.com/dagda1"
+                ariaLabel="Github profile"
+              >
                 <Github></Github>
               </ExternalLink>
             </li>
             <li>
-              <ExternalLink href="https://twitter.com/dagda1" ariaLabel="twitter profile">
+              <ExternalLink
+                href="https://twitter.com/dagda1"
+                ariaLabel="twitter profile"
+              >
                 <Twitter></Twitter>
               </ExternalLink>
             </li>
@@ -46,7 +52,9 @@ export const Footer: React.FC = () => (
             paul.cowan@cutting.scot
           </a>
         </div>
-        <div className={styles.copyright}>Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</div>
+        <div className={styles.copyright}>
+          Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved
+        </div>
       </div>
     </div>
   </footer>

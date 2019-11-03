@@ -1,12 +1,25 @@
 import React from 'react';
-import { FormikHandlers, FieldConfig, FormikState, FormikComputedProps, getIn } from 'formik';
+import {
+  FormikHandlers,
+  FieldConfig,
+  FormikState,
+  FormikComputedProps,
+  getIn,
+} from 'formik';
 import { getDisplayName } from '@cutting/util';
-import { FormControlProps, FormInput, FormSelect } from '@cutting/component-library';
+import {
+  FormControlProps,
+  FormInput,
+  FormSelect,
+} from '@cutting/component-library';
 
 export type ControlValue = string | number | Date;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type FormControlWrapperProps<Props = any, InputType = HTMLElement> = FormikHandlers &
+export type FormControlWrapperProps<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Props = any,
+  InputType = HTMLElement
+> = FormikHandlers &
   FieldConfig &
   FormikState<Props> &
   FormikComputedProps<Props> &
@@ -15,10 +28,12 @@ export type FormControlWrapperProps<Props = any, InputType = HTMLElement> = Form
   };
 
 export function renderFormControl<Props, InputType extends HTMLElement>(
-  Comp: React.ComponentType<FormControlProps<InputType>>
+  Comp: React.ComponentType<FormControlProps<InputType>>,
 ): React.FC<FormControlProps<InputType>> {
   const Wrapped: React.FC<FormControlWrapperProps<Props, InputType>> = ({
-    controlOnChange = (e: React.ChangeEvent<InputType>): React.ChangeEvent<InputType> => e,
+    controlOnChange = (
+      e: React.ChangeEvent<InputType>,
+    ): React.ChangeEvent<InputType> => e,
     handleChange,
     handleBlur,
     touched,
@@ -27,7 +42,7 @@ export function renderFormControl<Props, InputType extends HTMLElement>(
     submitCount,
     isValid,
     name,
-    label
+    label,
   }) => {
     const error = getIn(errors, name);
     const value = getIn(values, name);

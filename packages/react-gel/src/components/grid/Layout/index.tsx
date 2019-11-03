@@ -26,7 +26,7 @@ export const Layout: React.FC<LayoutProps> = ({
   equal,
   auto,
   fit,
-  children
+  children,
 }) => (
   <Tag
     className={cs('gel-layout', className, {
@@ -37,7 +37,7 @@ export const Layout: React.FC<LayoutProps> = ({
       'gel-layout--center': center,
       'gel-layout--equal': equal,
       'gel-layout--auto': auto,
-      'gel-layout--fit': fit
+      'gel-layout--fit': fit,
     })}
   >
     {children}
@@ -45,7 +45,7 @@ export const Layout: React.FC<LayoutProps> = ({
 );
 
 Layout.defaultProps = {
-  Tag: 'div'
+  Tag: 'div',
 };
 
 Layout.displayName = 'Layout';

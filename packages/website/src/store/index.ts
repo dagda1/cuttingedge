@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createStore, applyMiddleware, compose } from 'redux';
 import { History } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import reducers from '../reducers';
 import { State } from '../reducers/types';
 
-declare var module: any;
-declare var __DEV__: boolean;
+declare let __DEV__: boolean;
 
 const configureStore = (initialState: State, history: History) => {
   const middlewares = [routerMiddleware(history)];
@@ -21,7 +21,7 @@ const configureStore = (initialState: State, history: History) => {
   };
 
   const composeFunc = getComposeFunc();
-  const composedEnhancers = composeFunc.apply(null, enhancers);
+  const composedEnhancers = composeFunc(...enhancers);
 
   const store = createStore(reducers, initialState, composedEnhancers);
 

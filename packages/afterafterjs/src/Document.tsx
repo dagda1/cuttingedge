@@ -2,11 +2,19 @@ import React, { ReactNode, ReactElement } from 'react';
 import serialize from 'serialize-javascript';
 import { DocumentProps, DocumentType } from './types';
 
-export class Document<TProps extends DocumentType, TData = {}, TParams = unknown> extends React.Component<
-  DocumentProps<TProps, TData, TParams>
-> {
+export class Document<
+  TProps extends DocumentType,
+  TData = {},
+  TParams = unknown
+> extends React.Component<DocumentProps<TProps, TData, TParams>> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static async getInitialProps({ assets, data, renderPage, Layout }: DocumentProps<any>): Promise<any> {
+  static async getInitialProps({
+    assets,
+    data,
+    renderPage,
+    Layout,
+  }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  DocumentProps<any>): Promise<any> {
     const page = await renderPage(Layout);
 
     return { assets, data, ...page };
@@ -27,13 +35,27 @@ export class Document<TProps extends DocumentType, TData = {}, TParams = unknown
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}
           {helmet.link.toComponent()}
-          {assets.client.css && <link rel="stylesheet" href={assets.client.css} />}
+          {assets.client.css && (
+            <link rel="stylesheet" href={assets.client.css} />
+          )}
         </head>
         <body {...bodyAttrs}>
           <AfterRoot />
           <AfterData data={data} />
-          {assets.vendor && <script type="text/javascript" src={assets.vendor.js} defer crossOrigin="anonymous" />}
-          <script type="text/javascript" src={assets.client.js} defer crossOrigin="anonymous" />
+          {assets.vendor && (
+            <script
+              type="text/javascript"
+              src={assets.vendor.js}
+              defer
+              crossOrigin="anonymous"
+            />
+          )}
+          <script
+            type="text/javascript"
+            src={assets.client.js}
+            defer
+            crossOrigin="anonymous"
+          />
         </body>
       </html>
     );
@@ -44,13 +66,17 @@ export function AfterRoot(): ReactElement<HTMLElement> {
   return <div id="root">DO_NOT_DELETE_THIS_YOU_WILL_BREAK_YOUR_APP</div>;
 }
 
-export function AfterData<TData>({ data }: { data: TData }): ReactElement<HTMLScriptElement> {
+export function AfterData<TData>({
+  data,
+}: {
+  data: TData;
+}): ReactElement<HTMLScriptElement> {
   return (
     <script
       id="server-app-state"
       type="application/json"
       dangerouslySetInnerHTML={{
-        __html: serialize({ ...data })
+        __html: serialize({ ...data }),
       }}
     />
   );

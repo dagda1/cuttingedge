@@ -7,7 +7,8 @@ export const gridItemAdapter = (props: BreakPointProps): string => {
         return '';
       }
 
-      const className = breakpoint.toString() === 'w' ? value : `${value}@${breakpoint}`;
+      const className =
+        breakpoint.toString() === 'w' ? value : `${value}@${breakpoint}`;
 
       return `gel-${className}`;
     })

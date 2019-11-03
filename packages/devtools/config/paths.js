@@ -82,7 +82,7 @@ module.exports = {
   tsConfig: resolveApp('tsconfig.json'),
   devDir: resolveApp('demo'),
   devDirPublic: resolveApp('demo/public'),
-  esLintConfig: findFile(process.cwd(), '.eslintrc.json'),
+  esLintConfig: path.join(process.cwd(), '.eslintrc.json'),
   libPackages,
   webAppPackages,
   allPackages: [...libPackages, ...webAppPackages],

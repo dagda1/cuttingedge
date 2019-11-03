@@ -8,7 +8,7 @@ import styles from './FormControl.module.scss';
 
 export enum LayoutType {
   vertical = 'vertical',
-  horizontal = 'horizontal'
+  horizontal = 'horizontal',
 }
 
 export type FormControlProps<InputType> = {
@@ -25,9 +25,11 @@ export type FormControlProps<InputType> = {
 } & React.InputHTMLAttributes<InputType>;
 
 export function FormControl<T, InputType>(
-  Comp: React.ComponentType<T>
+  Comp: React.ComponentType<T>,
 ): React.ComponentClass<FormControlProps<InputType> & T> {
-  return class FormControlWrapper extends React.Component<FormControlProps<InputType> & T> {
+  return class FormControlWrapper extends React.Component<
+    FormControlProps<InputType> & T
+  > {
     id?: string;
 
     constructor(props: FormControlProps<InputType> & T) {
@@ -37,7 +39,7 @@ export function FormControl<T, InputType>(
     }
 
     public static defaultProps = {
-      layoutType: LayoutType.vertical
+      layoutType: LayoutType.vertical,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
 
@@ -63,7 +65,7 @@ export function FormControl<T, InputType>(
         <div
           className={cs(styles.input, className, {
             [styles.highlight]: highlight,
-            [styles.horizontal]: layoutType === LayoutType.horizontal
+            [styles.horizontal]: layoutType === LayoutType.horizontal,
           })}
         >
           <Label
@@ -71,10 +73,16 @@ export function FormControl<T, InputType>(
             htmlFor={this.id}
             required={required}
             strong={strong}
-            dataSelector={rest['data-selector'] && `${rest['data-selector']}-label`}
+            dataSelector={
+              rest['data-selector'] && `${rest['data-selector']}-label`
+            }
           >
             {label}
-            {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
+            {additionalLabel && (
+              <span className={styles.label__additional}>
+                {additionalLabel}
+              </span>
+            )}
           </Label>
           <div className={styles.wrapper}>
             <Comp
@@ -90,7 +98,10 @@ export function FormControl<T, InputType>(
           <div id={errorId} aria-hidden={!invalid} role="alert">
             {invalid && errorMessage && (
               <Error
-                dataSelector={(rest['data-selector'] && `${rest['data-selector']}-error`) || errorDataSelector}
+                dataSelector={
+                  (rest['data-selector'] && `${rest['data-selector']}-error`) ||
+                  errorDataSelector
+                }
                 errorMessage={errorMessage.toString()}
               />
             )}

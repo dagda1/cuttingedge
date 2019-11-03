@@ -10,8 +10,27 @@ export interface GelItemProps extends BreakPointProps {
   w?: string;
 }
 
-export const GelItem: React.FC<GelItemProps> = ({ Tag = 'div', className, children, w, s, m, l, xl, ...rest }) => (
-  <Tag className={cs('gel-layout__item', gridItemAdapter({ w, s, m, l, xl }), className, { ...rest })}>{children}</Tag>
+export const GelItem: React.FC<GelItemProps> = ({
+  Tag = 'div',
+  className,
+  children,
+  w,
+  s,
+  m,
+  l,
+  xl,
+  ...rest
+}) => (
+  <Tag
+    className={cs(
+      'gel-layout__item',
+      gridItemAdapter({ w, s, m, l, xl }),
+      className,
+      { ...rest },
+    )}
+  >
+    {children}
+  </Tag>
 );
 
 GelItem.displayName = 'GelItem';

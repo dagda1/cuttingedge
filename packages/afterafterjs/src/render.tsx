@@ -11,7 +11,9 @@ import { Request, Response } from 'express';
 import { Assets, AsyncRouteProps, LayoutComponent } from './types';
 import { getDisplayName } from './utils';
 
-const modPageFn = function<Props>(Page: React.ComponentType<Props>): React.FC<Props> {
+const modPageFn = function<Props>(
+  Page: React.ComponentType<Props>,
+): React.FC<Props> {
   const Wrapped: React.FC<Props> = (props: Props) => <Page {...props} />;
 
   Wrapped.displayName = getDisplayName(Wrapped);
@@ -36,16 +38,31 @@ export interface AfterRenderOptions<T> {
   customRenderer?: (element: React.ReactElement<T>) => { html: string };
 }
 
-export async function render<T>(options: AfterRenderOptions<T>): Promise<string | undefined> {
-  const { req, res, routes, assets, document: Document, customRenderer, Layout, ...rest } = options;
+export async function render<T>(
+  options: AfterRenderOptions<T>,
+): Promise<string | undefined> {
+  const {
+    req,
+    res,
+    routes,
+    assets,
+    document: Document,
+    customRenderer,
+    Layout,
+    ...rest
+  } = options;
   const Doc = Document || DefaultDoc;
 
   const context = {};
-  const { match, data } = await loadInitialProps(routes, url.parse(req.url).pathname as string, {
-    req,
-    res,
-    ...rest
-  });
+  const { match, data } = await loadInitialProps(
+    routes,
+    url.parse(req.url).pathname as string,
+    {
+      req,
+      res,
+      ...rest,
+    },
+  );
 
   const renderPage = async (): Promise<{
     html: string;
@@ -53,17 +70,21 @@ export async function render<T>(options: AfterRenderOptions<T>): Promise<string 
   }> => {
     // By default, we keep ReactDOMServer synchronous renderToString function
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-    const defaultRenderer = (element: React.ReactElement<T>) => ({ html: ReactDOMServer.renderToString(element) });
+    const defaultRenderer = (element: React.ReactElement<T>) => ({
+      html: ReactDOMServer.renderToString(element),
+    });
     const renderer = customRenderer || defaultRenderer;
     const asyncOrSyncRender = renderer(
       <Layout>
         <StaticRouter location={req.url} context={context}>
           {modPageFn(After)({ routes, data })}
         </StaticRouter>
-      </Layout>
+      </Layout>,
     );
 
-    const renderedContent = utils.isPromise(asyncOrSyncRender) ? await asyncOrSyncRender : asyncOrSyncRender;
+    const renderedContent = utils.isPromise(asyncOrSyncRender)
+      ? await asyncOrSyncRender
+      : asyncOrSyncRender;
     const helmet = Helmet.renderStatic();
 
     return { helmet, ...renderedContent };
@@ -77,7 +98,10 @@ export async function render<T>(options: AfterRenderOptions<T>): Promise<string 
   if (match.path === '**') {
     res.status(404);
   } else if (match && match.redirectTo && match.path) {
-    res.redirect(301, req.originalUrl.replace(match.path as string, match.redirectTo));
+    res.redirect(
+      301,
+      req.originalUrl.replace(match.path as string, match.redirectTo),
+    );
     return;
   }
 
@@ -92,9 +116,12 @@ export async function render<T>(options: AfterRenderOptions<T>): Promise<string 
     helmet: Helmet.renderStatic(),
     match: reactRouterMatch,
     Layout,
-    ...rest
+    ...rest,
   });
 
   const doc = ReactDOMServer.renderToStaticMarkup(<Doc {...docProps} />);
-  return `<!doctype html>${doc.replace('DO_NOT_DELETE_THIS_YOU_WILL_BREAK_YOUR_APP', html)}`;
+  return `<!doctype html>${doc.replace(
+    'DO_NOT_DELETE_THIS_YOU_WILL_BREAK_YOUR_APP',
+    html,
+  )}`;
 }

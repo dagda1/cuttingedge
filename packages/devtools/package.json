@@ -28,6 +28,21 @@
     "rollup-plugin-typescript2": "^0.22.1",
     "typescript-plugin-css-modules": "^1.2.1"
   },
+  "devDependencies": {
+    "@cutting/eslint-config": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-jest": "^23.0.2",
+    "eslint-plugin-jest-formatting": "^1.2.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0"
+  },
   "files": [
     "bin/cutting.js",
     "config/**/*",

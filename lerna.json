@@ -1,5 +1,6 @@
 {
   "packages": [
+    "packages/eslint-config",
     "packages/useful-types",
     "packages/devtools",
     "packages/util",

@@ -1,6 +1,6 @@
 export enum RadioLayout {
   inline = 'inline',
-  stacked = 'stacked'
+  stacked = 'stacked',
 }
 
 export type RadioProps<T = {}> = T & {
@@ -21,5 +21,5 @@ export interface RadioLayoutProps {
 
 export enum RadioSize {
   small = 'small',
-  large = 'large'
+  large = 'large',
 }

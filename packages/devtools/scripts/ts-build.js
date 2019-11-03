@@ -5,7 +5,6 @@ const paths = require('../config/paths');
 const copy = require('copy');
 const chalk = require('chalk');
 const { exec } = require('child_process');
-const { findFile } = require('../config/utils');
 const MaxTries = 15;
 
 function findExecutable(current, executable, tries = 0) {
@@ -26,10 +25,16 @@ function runEslint() {
   console.log(`Running eslint`);
   const eslintPath = findExecutable(__dirname, 'eslint');
 
-  const eslintConfig = findFile(process.cwd(), '.eslintrc.json');
-  console.log(chalk.yellow(`using config ${eslintConfig}`));
+  const esLintConfig = paths.esLintConfig;
 
-  const args = ` --ext .ts,.tsx ${paths.appSrc} --ignore-pattern *.test.* -c ${eslintConfig} --fix`;
+  if(!fs.existsSync(esLintConfig)){
+    console.log(`no config file found at ${esLintConfig}`);
+    throw new Error(`no config file found at ${esLintConfig}`);
+  }
+
+  console.log(chalk.yellow(`using config ${esLintConfig}`));
+
+  const args = ` --ext .ts,.tsx ${paths.appSrc} --ignore-pattern *.test.* -c ${esLintConfig} --fix`;
 
   console.log(`running eslint in ${chalk.yellow(eslintPath)} with ${chalk.yellow(args)}`);
 

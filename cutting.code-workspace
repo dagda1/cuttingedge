@@ -4,6 +4,9 @@
       "path": "."
     },
     {
+      "path": "packages/eslint-config"
+    },
+    {
       "path": "packages/afterafterjs"
     },
     {

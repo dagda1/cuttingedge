@@ -9,17 +9,20 @@ export interface OptionType {
   [key: string]: string | string[] | number;
 }
 
-const isOptionType = (o: number | string | OptionType): o is OptionType => isObject(o);
+const isOptionType = (o: number | string | OptionType): o is OptionType =>
+  isObject(o);
 
 function mapOptionsToValues(
   element: number | string | OptionType,
   valueKey?: keyof OptionType,
   optionKey?: keyof OptionType,
-  index?: number
+  index?: number,
 ): ReactElement<HTMLOptionElement> {
   if (isOptionType(element)) {
     if (!valueKey || !optionKey) {
-      throw new Error('No valueKey or optionKey supplied for array of objects.');
+      throw new Error(
+        'No valueKey or optionKey supplied for array of objects.',
+      );
     }
 
     const value = element[valueKey];
@@ -36,7 +39,7 @@ function mapOptionsToValues(
 
 function mergeOptions(
   options: ReactElement<HTMLOptionElement>[],
-  dividerAt: number
+  dividerAt: number,
 ): ReactElement<HTMLOptionElement>[] {
   if (dividerAt > -1) {
     const divider = (
@@ -51,7 +54,8 @@ function mergeOptions(
   return options;
 }
 
-export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+export interface SelectProps
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
   defaultLabel?: string;
   options: (number | string | OptionType)[];
   invalid?: boolean;
@@ -75,15 +79,23 @@ export const Select: React.FC<SelectProps> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <select value={value} className={cs(className, styles.default, { [styles.invalid]: invalid })} {...rest}>
+      <select
+        value={value}
+        className={cs(className, styles.default, { [styles.invalid]: invalid })}
+        {...rest}
+      >
         {!isNil(defaultLabel) && (
           <option value="" key="">
             {defaultLabel}
           </option>
         )}
         {mergeOptions(
-          options.filter(filterOptions).map((x, i: number) => mapOptionsToValues(x, valueKey, optionKey, i)),
-          dividerAt || -1
+          options
+            .filter(filterOptions)
+            .map((x, i: number) =>
+              mapOptionsToValues(x, valueKey, optionKey, i),
+            ),
+          dividerAt || -1,
         )}
       </select>
     </div>

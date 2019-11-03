@@ -18,59 +18,67 @@ export const routes: Page[] = [
     path: Urls.Home,
     component: asyncComponent({
       loader: () => import('../components/Home').then((module) => module.Home),
-      Placeholder: () => <Loading />
+      Placeholder: () => <Loading />,
     }),
-    exact: true
+    exact: true,
   },
   {
     heading: 'OSS',
     path: Urls.OSS,
     component: asyncComponent({
       loader: () => import('../components/OSS').then((module) => module.OSS),
-      Placeholder: () => <Loading />
+      Placeholder: () => <Loading />,
     }),
-    exact: true
+    exact: true,
   },
   {
     heading: 'Blog',
     path: Urls.Blog,
     component: asyncComponent({
       loader: () => import('../components/Blog').then((module) => module.Blog),
-      Placeholder: () => <Loading />
+      Placeholder: () => <Loading />,
     }),
-    exact: true
+    exact: true,
   },
   {
     heading: 'CV',
     path: Urls.CV,
     component: asyncComponent({
       loader: () => import('../components/cv').then((module) => module.CV),
-      Placeholder: () => <Loading />
+      Placeholder: () => <Loading />,
     }),
-    exact: true
+    exact: true,
   },
   {
     heading: 'Privacy Policy',
     path: Urls.PrivacyPolicy,
     component: asyncComponent({
-      loader: () => import('../components/PrivacyPolicy').then((module) => module.PrivacyPolicy),
-      Placeholder: () => <Loading />
+      loader: () =>
+        import('../components/PrivacyPolicy').then(
+          (module) => module.PrivacyPolicy,
+        ),
+      Placeholder: () => <Loading />,
     }),
     exact: true,
-    footerPage: true
+    footerPage: true,
   },
   {
     heading: 'Terms of Service',
     path: Urls.TermsOfService,
     component: asyncComponent({
-      loader: () => import('../components/TermsOfService').then((module) => module.TermsOfService),
-      Placeholder: () => <Loading />
+      loader: () =>
+        import('../components/TermsOfService').then(
+          (module) => module.TermsOfService,
+        ),
+      Placeholder: () => <Loading />,
     }),
     exact: true,
-    footerPage: true
-  }
+    footerPage: true,
+  },
 ];
 
-export const bannerPages = routes.filter((p) => !p.footerPage && p.path !== Urls.Home);
+export const bannerPages = routes.filter(
+  (p) => !p.footerPage && p.path !== Urls.Home,
+);
 
 export const footerPages = routes.filter((p) => p.footerPage);

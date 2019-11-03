@@ -1,5 +1,10 @@
 import React, { ReactNode } from 'react';
-import { Module, AsyncRouteComponentState, AsyncRouteComponentType, Ctx } from './types';
+import {
+  Module,
+  AsyncRouteComponentState,
+  AsyncRouteComponentType,
+  Ctx,
+} from './types';
 import { Component, ComponentType } from 'react';
 
 /**
@@ -10,7 +15,7 @@ import { Component, ComponentType } from 'react';
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function asyncComponent<Props>({
   loader,
-  Placeholder
+  Placeholder,
 }: {
   loader: () => Promise<Module<ComponentType<Props>>>;
   Placeholder?: ComponentType<Props>;
@@ -18,7 +23,10 @@ export function asyncComponent<Props>({
   // keep Component in a closure to avoid doing this stuff more than once
   let ComponentToRender: AsyncRouteComponentType<Props> | null = null;
 
-  return class AsyncRouteComponent extends Component<Props, AsyncRouteComponentState> {
+  return class AsyncRouteComponent extends Component<
+    Props,
+    AsyncRouteComponentState
+  > {
     /**
      * Static so that you can call load against an uninstantiated version of
      * this component. This should only be called one time outside of the
@@ -37,14 +45,16 @@ export function asyncComponent<Props>({
         return undefined;
       }
 
-      return ComponentToRender.getInitialProps ? ComponentToRender.getInitialProps(ctx) : Promise.resolve(null);
+      return ComponentToRender.getInitialProps
+        ? ComponentToRender.getInitialProps(ctx)
+        : Promise.resolve(null);
     }
 
     constructor(props: Props) {
       super(props);
       this.updateState = this.updateState.bind(this);
       this.state = {
-        Component: ComponentToRender
+        Component: ComponentToRender,
       };
     }
 
@@ -57,7 +67,7 @@ export function asyncComponent<Props>({
       // component, this prevent unnecessary renders.
       if (this.state.Component !== ComponentToRender) {
         this.setState({
-          Component: ComponentToRender
+          Component: ComponentToRender,
         });
       }
     }

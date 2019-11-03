@@ -15,7 +15,8 @@ import { history } from '../routes/history';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 
-const assets: Assets = require(process.env.CUTTING_ASSETS_MANIFEST as string) as Assets;
+const assets: Assets = require(process.env
+  .CUTTING_ASSETS_MANIFEST as string) as Assets;
 
 const referrerPolicy = require('referrer-policy');
 
@@ -30,7 +31,10 @@ app.use(helmet.hidePoweredBy());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const publidDir = path.join(process.cwd(), isProduction ? 'dist/public' : 'public');
+const publidDir = path.join(
+  process.cwd(),
+  isProduction ? 'dist/public' : 'public',
+);
 
 app.use(express.static(publidDir));
 
@@ -44,14 +48,16 @@ if (isProduction) {
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
         imgSrc: ["'self'", 'data:'],
-        fontSrc: ["'self'", 'data:']
-      }
-    })
+        fontSrc: ["'self'", 'data:'],
+      },
+    }),
   );
 }
 
 const createConnectedLayout = (store: Store): React.FC<LayoutProps> => {
-  const Wrapped: React.FC<LayoutProps> = ({ children }) => <Provider store={store}>{children}</Provider>;
+  const Wrapped: React.FC<LayoutProps> = ({ children }) => (
+    <Provider store={store}>{children}</Provider>
+  );
 
   Wrapped.displayName = getDisplayName(Wrapped);
 
@@ -81,13 +87,18 @@ app.get('/*', async (req, res) => {
     res,
     routes,
     assets,
-    Layout: createConnectedLayout(store)
+    Layout: createConnectedLayout(store),
   });
 
   res.send(html);
 });
 
-const errorHandler = (err: Error, _: Request, res: Response, next: NextFunction): void => {
+const errorHandler = (
+  err: Error,
+  _: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
   if (res.headersSent) {
     return next(err);
   }

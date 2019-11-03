@@ -1,6 +1,10 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio';
-import { RadioProps, RadioLayoutProps, RadioLayout } from '../../atoms/Radio/types';
+import {
+  RadioProps,
+  RadioLayoutProps,
+  RadioLayout,
+} from '../../atoms/Radio/types';
 import cs from 'classnames';
 
 import styles from './RadioGroup.module.scss';
@@ -10,7 +14,8 @@ export type RadioOption = RadioProps & { content: React.ReactNode };
 export interface RadioGroupProps<T = {}> {
   legend: string;
   name: string;
-  options: (Omit<RadioOption, 'name' | 'id'> & Partial<Pick<RadioOption, 'id'>>)[];
+  options: (Omit<RadioOption, 'name' | 'id'> &
+    Partial<Pick<RadioOption, 'id'>>)[];
   onChange?: (option: RadioProps<T>) => void;
   className?: string;
 }
@@ -22,12 +27,18 @@ export const RadioGroup: React.FC<RadioGroupProps & RadioLayoutProps> = ({
   name,
   options: radioOptions,
   onChange,
-  className
+  className,
 }) => {
   const optionsWithIds = useRef<RadioOption[]>(
-    radioOptions.map((o, index) => ({ ...o, name, id: o.id || `${name}-${index}` }))
+    radioOptions.map((o, index) => ({
+      ...o,
+      name,
+      id: o.id || `${name}-${index}`,
+    })),
   );
-  const [selectedValue, setSelectedValue] = useState(optionsWithIds.current.find((o) => !!o.checked));
+  const [selectedValue, setSelectedValue] = useState(
+    optionsWithIds.current.find((o) => !!o.checked),
+  );
   const options = optionsWithIds.current;
 
   const changeHandler = useCallback(
@@ -42,13 +53,13 @@ export const RadioGroup: React.FC<RadioGroupProps & RadioLayoutProps> = ({
 
       onChange && onChange(option);
     },
-    [onChange]
+    [onChange],
   );
 
   return (
     <fieldset
       className={cs(styles.fieldset, {
-        [styles.stacked]: layout === RadioLayout.stacked
+        [styles.stacked]: layout === RadioLayout.stacked,
       })}
     >
       <legend>{legend}</legend>

@@ -5,12 +5,15 @@ export interface UniversalProps {
   page: string;
 }
 
-const load = (props: UniversalProps) =>
-  Promise.all([import(/* webpackChunkName: '[request]' */ `./${props.page}`), importCss(props.page)]).then(
-    (proms) => proms[0]
-  );
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const load = (props: UniversalProps): Promise<any> =>
+  Promise.all([
+    import(/* webpackChunkName: '[request]' */ `./${props.page}`),
+    importCss(props.page),
+  ]).then((proms) => proms[0]);
 
 export const UniversalComponent = universal(load, {
   chunkName: (props) => props.page,
-  resolve: (props) => (require as any).resolveWeak(`../${props.page}`)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  resolve: (props) => (require as any).resolveWeak(`../${props.page}`),
 });

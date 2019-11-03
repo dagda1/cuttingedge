@@ -13,12 +13,12 @@ export enum HttpStatusCode {
   NotImplemented = 501,
   BadGateway = 502,
   ServiceUnavailable = 503,
-  GatewayTimeout = 504
+  GatewayTimeout = 504,
 }
 
 export enum HttpMethod {
   GET = 'get',
   POST = 'post',
   PUT = 'put',
-  DELETE = 'delete'
+  DELETE = 'delete',
 }

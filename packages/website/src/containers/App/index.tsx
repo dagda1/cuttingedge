@@ -25,7 +25,12 @@ export const App: React.FC<AppProps> = ({ store }) => (
         <ScrollToTop>
           <Switch>
             {routes.map((page) => (
-              <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
+              <Route
+                key={page.path}
+                path={page.path}
+                component={page.component}
+                exact={page.exact}
+              />
             ))}
           </Switch>
         </ScrollToTop>

@@ -1,11 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 import React, { ReactNode } from 'react';
-import { Switch, Route, withRouter, match as Match, RouteComponentProps } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  withRouter,
+  match as Match,
+  RouteComponentProps,
+} from 'react-router-dom';
 import { loadInitialProps } from './loadInitialProps';
 import { History, Location } from 'history';
 import { AsyncRouteProps } from './types';
 
-export interface AfterpartyProps<TData = {}, TParams = unknown> extends RouteComponentProps<TParams> {
+export interface AfterpartyProps<TData = {}, TParams = unknown>
+  extends RouteComponentProps<TParams> {
   history: History;
   location: Location;
   data?: Promise<TData>[];
@@ -20,7 +28,10 @@ export interface AfterpartyState<TData = {}> {
 
 type Props<TData, TParams> = AfterpartyProps<TData, TParams>;
 
-class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TData, TParams>, AfterpartyState> {
+class Afterparty<TData = {}, TParams = unknown> extends React.Component<
+  Props<TData, TParams>,
+  AfterpartyState
+> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prefetcherCache: any;
 
@@ -29,7 +40,7 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
 
     this.state = {
       data: props.data,
-      previousLocation: null
+      previousLocation: null,
     };
 
     this.prefetcherCache = {};
@@ -43,16 +54,23 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
       // save the location so we can render the old screen
       this.setState({
         previousLocation: this.props.location,
-        data: undefined // unless you want to keep it
+        data: undefined, // unless you want to keep it
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { data, match, routes, history, location, staticContext, ...rest } = nextProps;
+      const {
+        data,
+        match,
+        routes,
+        history,
+        location,
+        staticContext,
+        ...rest
+      } = nextProps;
 
       loadInitialProps(this.props.routes, nextProps.location.pathname, {
         location: nextProps.location,
         history: nextProps.history,
-        ...rest
+        ...rest,
       })
         .then(({ data }) => {
           this.setState({ previousLocation: null, data });
@@ -66,12 +84,12 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
 
   prefetch = (pathname: string): void => {
     loadInitialProps(this.props.routes, pathname, {
-      history: this.props.history
+      history: this.props.history,
     })
       .then(({ data }) => {
         this.prefetcherCache = {
           ...this.prefetcherCache,
-          [pathname]: data
+          [pathname]: data,
         };
       })
       .catch((e) => console.log(e));
@@ -96,7 +114,7 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
                 history: props.history,
                 location: previousLocation || location,
                 match: props.match,
-                prefetch: this.prefetch
+                prefetch: this.prefetch,
               })
             }
           />

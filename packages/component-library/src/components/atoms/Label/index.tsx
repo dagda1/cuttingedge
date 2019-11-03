@@ -21,7 +21,7 @@ export const Label: React.FC<LabelProps> = ({
   className,
   strong,
   children,
-  dataSelector
+  dataSelector,
 }) => (
   <label
     htmlFor={htmlFor}
@@ -29,7 +29,7 @@ export const Label: React.FC<LabelProps> = ({
     className={cs(styles.default, className, {
       [styles.required]: required,
       [styles.invalid]: invalid,
-      [styles.strong]: strong
+      [styles.strong]: strong,
     })}
     data-selector={dataSelector}
   >

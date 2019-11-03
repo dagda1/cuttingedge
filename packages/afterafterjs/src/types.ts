@@ -1,4 +1,8 @@
-import { RouteProps, RouteComponentProps, match as Match } from 'react-router-dom';
+import {
+  RouteProps,
+  RouteComponentProps,
+  match as Match,
+} from 'react-router-dom';
 import { HelmetData } from 'react-helmet';
 import { Request, Response } from 'express';
 import { IncomingMessage, ServerResponse } from 'http';
@@ -8,9 +12,15 @@ export interface DocumentType {
   html: string;
 }
 
-export type Renderer = <T>(element: React.ReactElement<T>) => DocumentType | Promise<DocumentType>;
+export type Renderer = <T>(
+  element: React.ReactElement<T>,
+) => DocumentType | Promise<DocumentType>;
 
-export interface DocumentProps<TDocument extends DocumentType, TData = {}, TParams = unknown> {
+export interface DocumentProps<
+  TDocument extends DocumentType,
+  TData = {},
+  TParams = unknown
+> {
   req: Request;
   res: Response;
   helmet: HelmetData;
@@ -40,7 +50,11 @@ export interface AsyncComponent<TData = {}, TParams = unknown> {
   load?: () => Promise<React.ReactNode>;
 }
 
-export interface AsyncRouteComponent<Props extends DocumentType, TParams = unknown, TData = {}>
+export interface AsyncRouteComponent<
+  Props extends DocumentType,
+  TParams = unknown,
+  TData = {}
+>
   extends AsyncComponent<TParams, TData>,
     React.Component<DocumentProps<Props> & Props, AsyncRouteComponentState> {}
 

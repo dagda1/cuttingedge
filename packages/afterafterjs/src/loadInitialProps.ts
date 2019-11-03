@@ -5,7 +5,7 @@ import { isAsyncComponent } from './utils';
 export async function loadInitialProps<TData = unknown>(
   routes: AsyncRouteProps[],
   pathname: string,
-  ctx: CtxBase
+  ctx: CtxBase,
 ): Promise<InitialProps> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const promises: Promise<any>[] = [];
@@ -18,9 +18,11 @@ export async function loadInitialProps<TData = unknown>(
 
       promises.push(
         component.load
-          ? component.load().then(() => component.getInitialProps({ match, ...ctx }))
+          ? component
+              .load()
+              .then(() => component.getInitialProps({ match, ...ctx }))
           : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (component.getInitialProps({ match, ...ctx }) as any)
+            (component.getInitialProps({ match, ...ctx }) as any),
       );
     }
 
@@ -29,6 +31,6 @@ export async function loadInitialProps<TData = unknown>(
 
   return {
     match: matchedComponent,
-    data: (await Promise.all(promises))[0]
+    data: (await Promise.all(promises))[0],
   };
 }

@@ -12,21 +12,24 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
   handler,
   className,
   dataSelector = 'keyboard-shortcuts',
-  children
+  children,
 }) => {
   const ref = useRef<HTMLElement>(null);
 
   useShortcuts({
     shortcutMap,
     handler,
-    ref
+    ref,
   });
 
   if (!scoped) {
     return <>{children}</>;
   }
 
-  invariant(children, 'If a mousetrap scoped component then there should be child mice.');
+  invariant(
+    children,
+    'If a mousetrap scoped component then there should be child mice.',
+  );
 
   return (
     <ScopedWrapperComponentType
