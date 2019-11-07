@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
-import Helmet from 'react-helmet';
+import Helmet, { HelmetData } from 'react-helmet';
 import { matchPath, StaticRouter } from 'react-router-dom';
 import { Document as DefaultDoc } from './Document';
 import { After } from './After';
@@ -11,7 +11,7 @@ import { Request, Response } from 'express';
 import { Assets, AsyncRouteProps, LayoutComponent } from './types';
 import { getDisplayName } from './utils';
 
-const modPageFn = function<Props>(Page: React.ComponentType<Props>) {
+const modPageFn = function<Props>(Page: React.ComponentType<Props>): React.FC<Props> {
   const Wrapped: React.FC<Props> = (props: Props) => <Page {...props} />;
 
   Wrapped.displayName = getDisplayName(Wrapped);
@@ -36,7 +36,7 @@ export interface AfterRenderOptions<T> {
   customRenderer?: (element: React.ReactElement<T>) => { html: string };
 }
 
-export async function render<T>(options: AfterRenderOptions<T>) {
+export async function render<T>(options: AfterRenderOptions<T>): Promise<string | undefined> {
   const { req, res, routes, assets, document: Document, customRenderer, Layout, ...rest } = options;
   const Doc = Document || DefaultDoc;
 
@@ -47,8 +47,12 @@ export async function render<T>(options: AfterRenderOptions<T>) {
     ...rest
   });
 
-  const renderPage = async () => {
+  const renderPage = async (): Promise<{
+    html: string;
+    helmet: HelmetData;
+  }> => {
     // By default, we keep ReactDOMServer synchronous renderToString function
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const defaultRenderer = (element: React.ReactElement<T>) => ({ html: ReactDOMServer.renderToString(element) });
     const renderer = customRenderer || defaultRenderer;
     const asyncOrSyncRender = renderer(

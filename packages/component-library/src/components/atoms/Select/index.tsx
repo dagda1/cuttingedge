@@ -1,5 +1,5 @@
 import cs from 'classnames';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import isNil from 'lodash/isNil';
 import isObject from 'lodash.isobject';
 
@@ -16,7 +16,7 @@ function mapOptionsToValues(
   valueKey?: keyof OptionType,
   optionKey?: keyof OptionType,
   index?: number
-) {
+): ReactElement<HTMLOptionElement> {
   if (isOptionType(element)) {
     if (!valueKey || !optionKey) {
       throw new Error('No valueKey or optionKey supplied for array of objects.');
@@ -34,7 +34,10 @@ function mapOptionsToValues(
   }
 }
 
-function mergeOptions(options: object[], dividerAt: number) {
+function mergeOptions(
+  options: ReactElement<HTMLOptionElement>[],
+  dividerAt: number
+): ReactElement<HTMLOptionElement>[] {
   if (dividerAt > -1) {
     const divider = (
       <option key="divider" disabled>
@@ -67,7 +70,7 @@ export const Select: React.FC<SelectProps> = ({
   valueKey,
   optionKey,
   dividerAt,
-  filterOptions = () => true,
+  filterOptions = (): true => true,
   ...rest
 }) => {
   return (

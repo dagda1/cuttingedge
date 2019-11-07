@@ -1,5 +1,5 @@
 import cs from 'classnames';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Error } from '../../atoms/ErrorLabel';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
@@ -41,7 +41,7 @@ export function FormControl<T, InputType>(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
 
-    render() {
+    render(): ReactElement {
       const {
         invalid,
         name,

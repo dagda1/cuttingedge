@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Switch, Route, withRouter, match as Match, RouteComponentProps } from 'react-router-dom';
 import { loadInitialProps } from './loadInitialProps';
 import { History, Location } from 'history';
@@ -36,7 +36,7 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
   }
 
   // only runs clizzient
-  componentWillReceiveProps(nextProps: AfterpartyProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: AfterpartyProps): void {
     const navigated = nextProps.location !== this.props.location;
     if (navigated) {
       window.scrollTo(0, 0);
@@ -64,7 +64,7 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
     }
   }
 
-  prefetch = (pathname: string) => {
+  prefetch = (pathname: string): void => {
     loadInitialProps(this.props.routes, pathname, {
       history: this.props.history
     })
@@ -77,7 +77,7 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
       .catch((e) => console.log(e));
   };
 
-  render() {
+  render(): ReactNode {
     const { previousLocation, data } = this.state;
     const { location } = this.props;
     const initialData = this.prefetcherCache[location.pathname] || data;
@@ -90,7 +90,7 @@ class Afterparty<TData = {}, TParams = unknown> extends React.Component<Props<TD
             path={r.path}
             exact={r.exact}
             location={previousLocation || location}
-            render={(props) =>
+            render={(props): ReactNode =>
               React.createElement(r.component, {
                 ...initialData,
                 history: props.history,

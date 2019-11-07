@@ -87,7 +87,7 @@ app.get('/*', async (req, res) => {
   res.send(html);
 });
 
-const errorHandler = (err: Error, _: Request, res: Response, next: NextFunction) => {
+const errorHandler = (err: Error, _: Request, res: Response, next: NextFunction): void => {
   if (res.headersSent) {
     return next(err);
   }

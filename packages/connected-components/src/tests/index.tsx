@@ -5,6 +5,7 @@ import { createMemoryHistory } from 'history';
 import { render } from '@cutting/devtools/jest/react-testing-overrides';
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const renderWithRouter = (
   ui: ReactNode,
   { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Module, AsyncRouteComponentState, AsyncRouteComponentType, Ctx } from './types';
 import { Component, ComponentType } from 'react';
 
@@ -7,6 +7,7 @@ import { Component, ComponentType } from 'react';
  * Note the closure here protecting Component, and providing a unique
  * instance of Component to the static implementation of `load`.
  */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function asyncComponent<Props>({
   loader,
   Placeholder
@@ -23,12 +24,13 @@ export function asyncComponent<Props>({
      * this component. This should only be called one time outside of the
      * normal render path.
      */
-    static load() {
+    static load(): Promise<void> {
       return loader().then((ResolvedComponent) => {
         ComponentToRender = ResolvedComponent.default || ResolvedComponent;
       });
     }
 
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     static getInitialProps(ctx: Ctx<Props>) {
       // Need to call the wrapped components getInitialProps if it exists
       if (ComponentToRender === null) {
@@ -46,11 +48,11 @@ export function asyncComponent<Props>({
       };
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount(): void {
       AsyncRouteComponent.load().then(this.updateState);
     }
 
-    updateState() {
+    updateState(): void {
       // Only update state if we don't already have a reference to the
       // component, this prevent unnecessary renders.
       if (this.state.Component !== ComponentToRender) {
@@ -60,7 +62,7 @@ export function asyncComponent<Props>({
       }
     }
 
-    render() {
+    render(): ReactNode {
       const { Component: ComponentFromState } = this.state;
 
       if (ComponentFromState) {

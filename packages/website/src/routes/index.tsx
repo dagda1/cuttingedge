@@ -9,7 +9,7 @@ export interface Page<Props = unknown> extends AsyncRouteProps<Props> {
 }
 
 // TODO: better loader
-const Loading = () => <div>...LOADING...</div>;
+const Loading = (): JSX.Element => <div>...LOADING...</div>;
 
 /* eslint-disable react/display-name */
 export const routes: Page[] = [

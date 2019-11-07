@@ -18,7 +18,7 @@ export function renderFormControl<Props, InputType extends HTMLElement>(
   Comp: React.ComponentType<FormControlProps<InputType>>
 ): React.FC<FormControlProps<InputType>> {
   const Wrapped: React.FC<FormControlWrapperProps<Props, InputType>> = ({
-    controlOnChange = (e: React.ChangeEvent<InputType>) => e,
+    controlOnChange = (e: React.ChangeEvent<InputType>): React.ChangeEvent<InputType> => e,
     handleChange,
     handleBlur,
     touched,
@@ -42,7 +42,7 @@ export function renderFormControl<Props, InputType extends HTMLElement>(
         onBlur={handleBlur}
         invalid={submitted && invalid && isTouched}
         errorMessage={submitted && touched && invalid && error}
-        onChange={(e: React.ChangeEvent<InputType>) => {
+        onChange={(e: React.ChangeEvent<InputType>): void => {
           controlOnChange(e);
           handleChange(e);
         }}

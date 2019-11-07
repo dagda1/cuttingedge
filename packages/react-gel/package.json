@@ -1,6 +1,6 @@
 {
   "name": "@cutting/react-gel",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -21,7 +21,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@cutting/devtools": "0.12.0",
+    "@cutting/devtools": "0.13.0",
     "@cutting/useful-types": "0.1.0",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
