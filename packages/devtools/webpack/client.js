@@ -129,7 +129,9 @@ const configure = (options) => {
       chunkFilename: isProduction
         ? 'static/js/[name].[contenthash:8].chunk.js'
         : isDevelopment && 'static/js/[name].chunk.js',
-      devtoolModuleFilenameTemplate: (info) => path.resolve(info.resourcePath).replace(/\\/g, '/')
+      devtoolModuleFilenameTemplate: (info) => path.resolve(info.resourcePath).replace(/\\/g, '/'),
+      hotUpdateChunkFilename: 'hot/hot-update.js',
+      hotUpdateMainFilename: 'hot/hot-update.json'
     },
     module: {
       rules: [
