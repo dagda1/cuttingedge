@@ -10,9 +10,18 @@ import {
 
 import styles from './Radio.module.scss';
 
-export const Radio: React.FC<
-  RadioProps & RadioEventHandlers & RadioLayoutProps
-> = ({ id, name, value, checked, children, layout, onChange, size }) => (
+export const Radio: React.FC<RadioProps &
+  RadioEventHandlers &
+  RadioLayoutProps> = ({
+  id,
+  name,
+  value,
+  checked,
+  children,
+  layout,
+  onChange,
+  size,
+}) => (
   <div
     className={cs(styles.container, {
       [styles.large]: size === RadioSize.large,

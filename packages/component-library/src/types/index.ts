@@ -8,6 +8,8 @@ export type StandardProps<
   dataSelector?: string;
 } & {
   ref?: AcceptsRef extends true
-    ? (C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>)
+    ? C extends { ref?: infer RefType }
+      ? RefType
+      : React.Ref<unknown>
     : never;
 };
