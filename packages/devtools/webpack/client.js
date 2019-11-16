@@ -144,6 +144,7 @@ const configure = (options) => {
         : isDevelopment && 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: (info) =>
         path.resolve(info.resourcePath).replace(/\\/g, '/'),
+      hotUpdateChunkFilename: 'hot/hot-update.js',
     },
     module: {
       rules: [
