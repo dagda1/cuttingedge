@@ -22,8 +22,7 @@ module.exports = mergeWith(
     ],
     setupFilesAfterEnv: [
       '@testing-library/jest-dom/extend-expect',
-      path.join(__dirname, './setupTests.js'),
-      '@testing-library/react/cleanup-after-each'
+      path.join(__dirname, './setupTests.js')
     ],
     testMatch: [
       '<rootDir>/src/**/__tests__/**/*.ts?(x)',

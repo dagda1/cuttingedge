@@ -18,10 +18,11 @@ require('../config/env').getClientEnv();
 const jest = require('jest');
 const argv = process.argv.slice(2);
 
+argv.push('--no-cache');
+
 // Watch unless on CI or in coverage mode
 if (!process.env.CI) {
   argv.push('--watchAll');
-  argv.push('--no-cache');
 }
 
 const config = require('../jest/jest.config.js');
