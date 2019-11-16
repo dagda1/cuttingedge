@@ -32,7 +32,7 @@
     "mousetrap": "^1.6.2"
   },
   "devDependencies": {
-    "@cutting/devtools": "0.13.0",
+    "@cutting/devtools": "0.14.0",
     "@cutting/eslint-config": "^1.0.0",
     "@cutting/useful-types": "0.1.0",
     "@testing-library/jest-dom": "^4.0.0",
