@@ -1,6 +1,6 @@
 {
   "name": "@cutting/devtools",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -11,8 +11,6 @@
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "dependencies": {
-    "@cutting/eslint-config": "^1.0.0",
-    "@cutting/useful-types": "0.1.0",
     "@intervolga/optimize-cssnano-plugin": "^1.0.6",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^9.3.2",
