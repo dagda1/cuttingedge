@@ -1,6 +1,6 @@
 {
   "name": "@cutting/devtools",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -37,6 +37,7 @@
     "jest-junit": "^9.0.0",
     "markdown-loader": "^5.1.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-flexbugs-fixes": "^3.3.1",
     "postcss-loader": "^2.1.5",
     "postcss-safe-parser": "^4.0.1",
