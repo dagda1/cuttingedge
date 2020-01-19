@@ -184,7 +184,7 @@ const configureCommon = (options) => {
               transpileOnly: isDevelopment,
               experimentalWatchApi: isDevelopment,
               compilerOptions: {
-                sourceMap: true,
+                sourceMap: isDevelopment,
               },
             },
           },

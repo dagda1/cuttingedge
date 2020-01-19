@@ -79,7 +79,7 @@ const configure = (options) => {
       acc[key] =
         isDevelopment && options.hotReloading
           ? [
-              require.resolve('razzle-dev-utils/webpackHotDevClient'),
+              require.resolve('react-dev-utils/webpackHotDevClient'),
               ...polyfills,
               entry,
             ]

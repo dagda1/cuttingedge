@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { renderWithRouter } from '../../tests';
 import { Route } from 'react-router-dom';
@@ -7,13 +8,15 @@ const Home = () => <h1>Home</h1>;
 const About = () => <h1>About</h1>;
 const Page = () => <h1>Page</h1>;
 
-const App: React.FC<Partial<ScrollToTopProps>> = (props: Partial<ScrollToTopProps> = {}) => (
-  <ScrollToTop {...props}>
-    <Route path="/" component={Home} exact />
-    <Route path="/about" component={About} />
-    <Route path="/page" component={Page} />
-  </ScrollToTop>
-);
+const App: React.FC<Partial<ScrollToTopProps>> = (
+  props: Partial<ScrollToTopProps> = {},
+) => (
+    <ScrollToTop {...props}>
+      <Route path="/" component={Home} exact />
+      <Route path="/about" component={About} />
+      <Route path="/page" component={Page} />
+    </ScrollToTop>
+  );
 
 describe('<ScrollToTop/>', () => {
   it('should call changeHandler initially', () => {

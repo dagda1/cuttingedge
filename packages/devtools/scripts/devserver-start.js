@@ -41,6 +41,7 @@ let config = configureWebpackClient(devServerConfig);
 
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([path.join(devServerConfig.publicDir, 'index.html')])) {
+  console.log('no index.html file can be found');
   process.exit(1);
 }
 

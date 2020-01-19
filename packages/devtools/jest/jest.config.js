@@ -41,7 +41,7 @@ module.exports = mergeWith(
     moduleNameMapper: {
       '^react-native$': 'react-native-web'
     },
-    moduleFileExtensions: ['web.js', 'js', 'json', 'web.jsx', 'jsx', 'ts', 'tsx', 'feature', 'csv'],
+    moduleFileExtensions: ['web.js', 'js', 'json', 'web.jsx', 'jsx', 'ts', 'tsx', 'feature', 'csv', 'svg'],
     moduleDirectories: ['node_modules', 'node_modules/@cutting/devtools/jest']
   },
   localSettings,

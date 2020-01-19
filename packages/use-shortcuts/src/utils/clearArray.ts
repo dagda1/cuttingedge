@@ -1,4 +1,4 @@
-export const clearArray = <T>(a: T[]) => {
+export const clearArray = <T>(a: T[]): void => {
   if (!a) {
     return;
   }

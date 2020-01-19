@@ -1,7 +1,13 @@
 /* eslint-disable no-console */
 // eslint:disable
 import React, { useState } from 'react';
-import { Modal, Heading, FormInput, FormSelect, LayoutType } from '../src/components';
+import {
+  Modal,
+  Heading,
+  FormInput,
+  FormSelect,
+  LayoutType,
+} from '../src/components';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
@@ -28,13 +34,13 @@ export const App: React.FC = () => {
             options={[
               {
                 value: 'off',
-                content: 'OFF'
+                content: 'OFF',
               },
               {
                 value: 'on',
                 checked: true,
-                content: 'ON'
-              }
+                content: 'ON',
+              },
             ]}
           />
         </div>
@@ -47,13 +53,13 @@ export const App: React.FC = () => {
             options={[
               {
                 value: 'off',
-                content: 'OFF'
+                content: 'OFF',
               },
               {
                 value: 'on',
                 checked: true,
-                content: 'ON'
-              }
+                content: 'ON',
+              },
             ]}
           />
         </div>
@@ -66,13 +72,13 @@ export const App: React.FC = () => {
             options={[
               {
                 value: 'off',
-                content: 'OFF'
+                content: 'OFF',
               },
               {
                 value: 'on',
                 checked: true,
-                content: 'ON'
-              }
+                content: 'ON',
+              },
             ]}
           />
         </div>
@@ -85,13 +91,13 @@ export const App: React.FC = () => {
             options={[
               {
                 value: 'off',
-                content: 'OFF'
+                content: 'OFF',
               },
               {
                 value: 'on',
                 checked: true,
-                content: 'ON'
-              }
+                content: 'ON',
+              },
             ]}
           />
         </div>
@@ -117,7 +123,12 @@ export const App: React.FC = () => {
           <FormInput label="Invalid" invalid errorMessage="Error Message" />
         </div>
         <div className={styles.item}>
-          <FormInput label="Invalid &amp; required" invalid required errorMessage="Error Message" />
+          <FormInput
+            label="Invalid &amp; required"
+            invalid
+            required
+            errorMessage="Error Message"
+          />
         </div>
         <div className={styles.item}>
           <FormInput
@@ -158,7 +169,7 @@ export const App: React.FC = () => {
               { key: 'Dr', value: 'Dr' },
               { key: 'Reverend', value: 'Reverend' },
               { key: 'Professor', value: 'Professor' },
-              { key: 'Other', value: 'Other' }
+              { key: 'Other', value: 'Other' },
             ]}
             optionKey="key"
             valueKey="value"
@@ -205,7 +216,10 @@ export const App: React.FC = () => {
       <div className={styles.layout}>
         <div className={styles.item}>
           <div>
-            <Button onClick={() => setModalOpen(true)} buttonStyle={ButtonStyle.Inverse}>
+            <Button
+              onClick={() => setModalOpen(true)}
+              buttonStyle={ButtonStyle.Inverse}
+            >
               Open Modal
             </Button>
           </div>

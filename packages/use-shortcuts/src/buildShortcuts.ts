@@ -6,7 +6,7 @@ export const buildShortcuts = (map: ShortcutMap): ShortcutAction[] => {
   Object.keys(map).forEach((key) => {
     const shortcut = map[key];
 
-    const createCombination = (shortcut: ShortcutItem) => {
+    const createCombination = (shortcut: ShortcutItem): string => {
       const comboType = Object.keys(shortcut)[0];
       const comboValues = shortcut[comboType];
       const keys = Array.isArray(comboValues) ? comboValues : [comboValues];
