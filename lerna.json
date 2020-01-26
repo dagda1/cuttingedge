@@ -4,6 +4,7 @@
     "packages/useful-types",
     "packages/devtools",
     "packages/util",
+    "packages/hooks",
     "packages/afterafterjs",
     "packages/react-gel",
     "packages/use-shortcuts",

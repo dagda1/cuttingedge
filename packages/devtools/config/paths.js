@@ -48,6 +48,7 @@ const resolvedNodeModules = ['../node_modules', './node_modules']
 
 const libPackages = [
   'packages/util',
+  'packages/hooks',
   'packages/afterafterjs',
   'packages/react-gel',
   'packages/component-library',

@@ -1,0 +1,37 @@
+{
+  "name": "@cutting/hooks",
+  "description": "Reusable React hooks.",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagda1/cuttingedge.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "start": "echo no start",
+    "test": "NODE_ENV=test cutting test",
+    "build": "NODE_ENV=production cutting rollup --package-name hooks",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@cutting/devtools": "^0.16.0", 
+    "@cutting/eslint-config": "^1.1.0",
+    "@cutting/useful-types": "0.2.0",
+    "@testing-library/jest-dom": "^4.0.0",
+    "@types/mousetrap": "^1.6.0"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "reactnative",
+    "hooks"
+  ]
+}
