@@ -11,7 +11,7 @@ export const useScrollToTop = ({ ref }: UseScrollToTopProps): void => {
   const previousPathname = usePrevious(pathname);
 
   useLayoutEffect(() => {
-    if (pathname === previousPathname || !ref?.current) {
+    if (pathname === previousPathname || !ref.current) {
       return;
     }
 

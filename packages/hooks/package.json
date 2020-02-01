@@ -19,14 +19,14 @@
     "build": "NODE_ENV=production cutting rollup --package-name hooks",
     "prepublish": "npm run build"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@cutting/devtools": "^0.16.0", 
+    "@cutting/devtools": "0.17.0",
     "@cutting/eslint-config": "^1.1.0",
     "@cutting/useful-types": "0.2.0",
     "@testing-library/jest-dom": "^4.0.0",
-    "@types/mousetrap": "^1.6.0"
+    "@types/mousetrap": "^1.6.0",
+    "typescript": "^3.7.5"
   },
   "keywords": [
     "react",

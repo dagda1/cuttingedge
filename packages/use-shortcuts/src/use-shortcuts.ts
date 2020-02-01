@@ -10,5 +10,5 @@ export {
   Sequence,
   ShortcutItem,
   ShortcutMap,
-  Action
+  Action,
 } from './internal';

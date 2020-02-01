@@ -27,7 +27,10 @@ async function generateBundledModule(inputFile, outputFile, format) {
   const bundle = await rollup({
     input: inputFile,
     // TODO: configure externals etc.
-    external: ['react', 'react-dom', 'mousetrap'],
+    external: (id) => {
+      console.log(id);
+      return !id.startsWith('.') && !path.isAbsolute(id);
+    },
     plugins: [
       resolvePlugin({
         mainFields: ['module', 'main', 'browser']
@@ -45,14 +48,23 @@ async function generateBundledModule(inputFile, outputFile, format) {
         },
         tsconfigOverride: {
           compilerOptions: {
-            target: 'esnext',
-            module: 'es2015'
+            "target": "es5"
           }
         }
       }),
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      terserPlugin(),
+      terserPlugin({
+        sourcemap: true,
+        output: { comments: true },
+        compress: {
+          keep_infinity: true,
+          pure_getters: true,
+          passes: 10,
+        },
+        ecma: 5,
+        warnings: true,
+      }),
       filesizePlugin()
     ]
   });
@@ -69,7 +81,18 @@ async function generateBundledModule(inputFile, outputFile, format) {
 }
 
 async function build() {
-  const rootFile = path.join(paths.appSrc, `${packageName}.ts`);
+  let candidates = [];
+
+  [packageName, path.join(packageName, 'index'), 'index'].forEach(candidate => {
+   ['.ts', '.tsx'].forEach(fileType => {
+     candidates.push(path.join(paths.appSrc, `${candidate}${fileType}`));
+   })
+  });
+
+  let rootFile = candidates.find(candidate => fs.existsSync(candidate));
+
+  console.log(rootFile)
+
   await Promise.all([generateBundledModule(rootFile, path.join(paths.appBuild, `${packageName}.js`), 'cjs')]);
 }
 

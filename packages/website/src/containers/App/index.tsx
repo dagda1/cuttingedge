@@ -6,7 +6,6 @@ import { history } from '../../routes/history';
 import { routes } from '../../routes';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
-import { ScrollToTop } from '@cutting/connected-components';
 import { Store } from 'redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { State } from '../../reducers/types';
@@ -23,18 +22,16 @@ export const App: React.FC<AppProps> = ({ store }) => {
       </Helmet>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <ScrollToTop>
-            <Switch>
-              {routes.map((page) => (
-                <Route
-                  key={page.path}
-                  path={page.path}
-                  component={page.component}
-                  exact={page.exact}
-                />
-              ))}
-            </Switch>
-          </ScrollToTop>
+          <Switch>
+            {routes.map((page) => (
+              <Route
+                key={page.path}
+                path={page.path}
+                component={page.component}
+                exact={page.exact}
+              />
+            ))}
+          </Switch>
         </ConnectedRouter>
       </Provider>
     </>

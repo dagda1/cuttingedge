@@ -1,7 +1,5 @@
-function add(a: number, b: number): number {
-  return a + b;
-}
-
-const result = add(3, '4');
-
-console.log(result);
+export { useShortcuts } from './useShortcuts';
+export * from './types/keycodes';
+export * from './types/types';
+export * from './utils/clearArray';
+export * from './utils/isPlainObject';
