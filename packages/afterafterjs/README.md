@@ -1,3 +1,0 @@
-# @ccutting/afterafterjs
-
-## WIP

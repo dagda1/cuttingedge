@@ -15,7 +15,6 @@
     "serve": "NODE_ENV=production node ./dist/server.js"
   },
   "dependencies": {
-    "@cutting/afterafterjs": "0.6.0",
     "@cutting/component-library": "0.9.0",
     "@cutting/connected-components": "0.9.0",
     "@cutting/util": "0.7.0",

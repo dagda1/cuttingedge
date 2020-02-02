@@ -7,9 +7,6 @@
       "path": "packages/eslint-config"
     },
     {
-      "path": "packages/afterafterjs"
-    },
-    {
       "path": "packages/use-shortcuts"
     },
     {
