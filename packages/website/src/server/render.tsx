@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { ServerLocation } from '@reach/router';
 import { App } from '../containers/App';
 import { HttpStatusCode } from '@cutting/util';
+import { StaticRouter, StaticRouterContext } from 'react-router';
 
 const assets = require(process.env.CUTTING_ASSETS_MANIFEST as string);
 
@@ -13,10 +13,12 @@ export interface RendererOptions {
 }
 
 export async function render({ req, res }: RendererOptions): Promise<void> {
+  const context: StaticRouterContext = {};
+
   const appString = renderToString(
-    <ServerLocation url={req.url}>
+    <StaticRouter location={req.url} context={context}>
       <App />
-    </ServerLocation>,
+    </StaticRouter>,
   );
 
   const scriptTags = ['vendor', 'client']

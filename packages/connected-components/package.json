@@ -16,7 +16,6 @@
   "dependencies": {
     "@cutting/component-library": "0.9.0",
     "@cutting/util": "0.7.0",
-    "connected-react-router": "^6.4.0",
     "formik": "^1.5.2",
     "lodash": "^4.17.15"
   },

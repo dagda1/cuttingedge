@@ -1,8 +1,8 @@
 import React from 'react';
 import { Cow, Github, Twitter } from '../Svg';
 import { footerPages } from '../../routes';
+import { NavLink } from 'react-router-dom';
 import { ExternalLink } from '@cutting/component-library';
-import { Link } from '@reach/router';
 
 const styles = require('./Footer.module.scss');
 
@@ -21,7 +21,7 @@ export const Footer: React.FC = () => (
         <ul className={styles.NavLinks}>
           {footerPages.map(page => (
             <li key={page.path}>
-              <Link to={page.path}>{page.heading}</Link>
+              <NavLink to={page.path}>{page.heading}</NavLink>
             </li>
           ))}
         </ul>

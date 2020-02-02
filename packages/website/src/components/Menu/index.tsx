@@ -1,7 +1,7 @@
 import { Heading } from '@cutting/component-library';
 import cs from 'classnames';
 import React, { useState } from 'react';
-import { Link } from '@reach/router';
+import { NavLink } from 'react-router-dom';
 import * as urls from '../../urls';
 import { MobileNavButton } from '../MobileNavButton';
 import { Cow } from '../Svg';
@@ -26,9 +26,9 @@ export const Menu: React.FC = () => {
       <div className={styles.full}>
         <ul>
           <li className={styles.logo__container}>
-            <Link aria-label="home" to={urls.Home}>
+            <NavLink aria-label="home" to={urls.Home}>
               <Cow />
-            </Link>
+            </NavLink>
           </li>
           <li>
             <Heading level={2}>Paul Cowan</Heading>

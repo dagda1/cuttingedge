@@ -1,7 +1,7 @@
 import React from 'react';
 import { bannerPages } from '../../routes';
 import cs from 'classnames';
-import { Link } from '@reach/router';
+import { NavLink } from 'react-router-dom';
 
 const styles = require('./Menu.module.scss');
 
@@ -13,9 +13,9 @@ export const MenuItems: React.FC<MenuItemsProps> = ({ collapse }) => (
   <>
     {bannerPages.map(page => (
       <li key={page.heading} className={cs(styles.horizontal)}>
-        <Link to={page.path} onClick={collapse}>
+        <NavLink to={page.path} activeClassName={styles.active} onClick={collapse}>
           {page.heading}
-        </Link>
+        </NavLink>
       </li>
     ))}
   </>

@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { render } from '@cutting/devtools/jest/react-testing-overrides';
-import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const renderWithRouter = (
@@ -13,16 +13,14 @@ export const renderWithRouter = (
     history = createMemoryHistory({ initialEntries: [route] }),
   }: { route: string; history: MemoryHistory },
 ) => {
-  const reducers = combineReducers({
-    router: connectRouter(history),
-  });
+  const reducers = combineReducers({});
 
-  const store = createStore(reducers, {}, applyMiddleware(routerMiddleware(history)));
+  const store = createStore(reducers);
 
   return {
     ...render(
       <Provider store={store}>
-        <ConnectedRouter history={history}>{ui}</ConnectedRouter>
+        <Router>{ui}</Router>
       </Provider>,
     ),
     history,

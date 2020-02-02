@@ -1,5 +1,4 @@
 import React, { useLayoutEffect } from 'react';
-import { usePrevious } from '../use-previous';
 import { useLocation } from 'react-router';
 
 export interface UseScrollToTopProps<E = HTMLElement> {
@@ -8,10 +7,9 @@ export interface UseScrollToTopProps<E = HTMLElement> {
 
 export const useScrollToTop = ({ ref }: UseScrollToTopProps): void => {
   const { pathname } = useLocation();
-  const previousPathname = usePrevious(pathname);
 
   useLayoutEffect(() => {
-    if (pathname === previousPathname || !ref.current) {
+    if (!ref.current) {
       return;
     }
 
@@ -24,5 +22,5 @@ export const useScrollToTop = ({ ref }: UseScrollToTopProps): void => {
     return (): void => {
       clearTimeout(clearTimer);
     };
-  }, [pathname, previousPathname, ref]);
+  }, [pathname, ref]);
 };
