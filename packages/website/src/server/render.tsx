@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
+import { ServerLocation } from '@reach/router';
 import { App } from '../containers/App';
 import { HttpStatusCode } from '@cutting/util';
 
@@ -17,10 +17,10 @@ export async function render(options: RendererOptions): Promise<void> {
 
   const context: { url?: string } = {};
 
-  const app = (
-    <StaticRouter location={req.url} context={context}>
+  const ServerApp: React.ReactElement = (
+    <ServerLocation url={req.url}>
       <App />
-    </StaticRouter>
+    </ServerLocation>
   );
 
   if (context.url) {
@@ -33,7 +33,7 @@ export async function render(options: RendererOptions): Promise<void> {
     return;
   }
 
-  const appString = renderToString(app);
+  const appString = renderToString(ServerApp);
 
   const scriptTags = ['vendor', 'client']
     .filter(k => !!assets[k]?.js)

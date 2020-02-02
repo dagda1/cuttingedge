@@ -5,7 +5,6 @@ export interface StaticLayoutProps {
   heading?: string;
 }
 
-export const StaticLayout: React.FC<StaticLayoutProps> = ({
-  heading,
-  children,
-}) => <ApplicationLayout heading={heading}>{children}</ApplicationLayout>;
+export const StaticLayout: React.FC<StaticLayoutProps> = ({ heading, children }) => (
+  <ApplicationLayout heading={heading}>{children}</ApplicationLayout>
+);

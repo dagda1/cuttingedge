@@ -7,10 +7,7 @@ export interface MobileNavButtonProps {
   isActive?: boolean;
 }
 
-export const MobileNavButton: React.FC<MobileNavButtonProps> = ({
-  onClick,
-  isActive,
-}) => (
+export const MobileNavButton: React.FC<MobileNavButtonProps> = ({ onClick, isActive }) => (
   <button
     id="mobile-nav"
     aria-label="Open menu button"
