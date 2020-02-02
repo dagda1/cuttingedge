@@ -18,7 +18,6 @@
     "@types/jest": "^24.0.23",
     "assets-webpack-plugin": "^3.9.10",
     "autoprefixer": "^9.7.1",
-    "babel-eslint": "^10.0.3",
     "commander": "^4.0.1",
     "copy": "^0.3.2",
     "core-js": "3.4.1",

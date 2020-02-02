@@ -13,10 +13,7 @@ export enum ButtonStyle {
 }
 
 export type ButtonProps = StandardProps<
-  React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  >
+  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 > & {
   onClick?: React.MouseEventHandler;
   buttonStyle?: ButtonStyle;
