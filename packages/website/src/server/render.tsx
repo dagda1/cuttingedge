@@ -5,7 +5,7 @@ import { ServerLocation } from '@reach/router';
 import { App } from '../containers/App';
 import { HttpStatusCode } from '@cutting/util';
 
-const assets = require(process.env.DS_ASSETS_MANIFEST as string);
+const assets = require(process.env.CUTTING_ASSETS_MANIFEST as string);
 
 export interface RendererOptions {
   req: Request;

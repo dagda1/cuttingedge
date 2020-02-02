@@ -9,7 +9,6 @@ import path from 'path';
 // import favicon from 'serve-favicon';
 import { Exception } from '../errors/Exception';
 
-const expressSanitized = require('express-sanitized');
 const referrerPolicy = require('referrer-policy');
 const cookieParser = require('cookie-parser');
 
@@ -23,7 +22,6 @@ app.use(helmet.hidePoweredBy());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(expressSanitized());
 
 app.use(cookieParser());
 app.use(csrf({ cookie: { key: '_csrf', secure: isProduction, sameSite: true } }));
