@@ -56,9 +56,7 @@ export const routeable: Routable[] = [
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mapper = (c: Routable) => ({ path, ...rest }: any): JSX.Element => (
-  <Route path={path} component={c} {...rest}></Route>
-);
+const mapper = (c: Routable): JSX.Element => <Route path={c.path} component={c.component}></Route>;
 
 export const routes = routeable.map(mapper);
 

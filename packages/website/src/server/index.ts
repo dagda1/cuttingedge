@@ -1,7 +1,7 @@
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
-import csrf from 'csurf';
+// import csurf from 'csurf';
 import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction } from '@cutting/util';
 import { render } from './render';
@@ -10,7 +10,7 @@ import path from 'path';
 import { Exception } from '../errors/Exception';
 
 const referrerPolicy = require('referrer-policy');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 
 export const app = express();
 
@@ -23,14 +23,12 @@ app.use(helmet.hidePoweredBy());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(cookieParser());
-app.use(csrf({ cookie: { key: '_csrf', secure: isProduction, sameSite: true } }));
+// app.use(cookieParser());
+// app.use(csurf({ cookie: { key: '_csrf', secure: isProduction, sameSite: true } }));
 
 const publicDir = 'public';
 
 app.use(express.static(path.join(process.cwd(), publicDir)));
-
-console.log(path.join(process.cwd(), publicDir));
 
 if (isProduction) {
   // app.use(favicon(path.join(__dirname, 'favicon.ico')));

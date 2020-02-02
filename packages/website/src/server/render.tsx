@@ -12,28 +12,14 @@ export interface RendererOptions {
   res: Response;
 }
 
-export async function render(options: RendererOptions): Promise<void> {
-  const { req, res } = options;
-
-  const context: { url?: string } = {};
-
-  const ServerApp: React.ReactElement = (
+export async function render({ req, res }: RendererOptions): Promise<void> {
+  const appString = renderToString(
     <ServerLocation url={req.url}>
       <App />
-    </ServerLocation>
+    </ServerLocation>,
   );
 
-  if (context.url) {
-    res.writeHead(301, {
-      Location: context.url,
-    });
-
-    res.end();
-
-    return;
-  }
-
-  const appString = renderToString(ServerApp);
+  console.log(appString.trim().length);
 
   const scriptTags = ['vendor', 'client']
     .filter(k => !!assets[k]?.js)
