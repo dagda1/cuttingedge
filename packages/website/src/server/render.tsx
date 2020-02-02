@@ -19,8 +19,6 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
     </ServerLocation>,
   );
 
-  console.log(appString.trim().length);
-
   const scriptTags = ['vendor', 'client']
     .filter(k => !!assets[k]?.js)
     .map(k => `<script src="${assets[k].js}" defer crossorigin></script>`)

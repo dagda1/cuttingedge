@@ -83,4 +83,10 @@ button {
   @include mq-l {
     @include px(2);
   }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
 }
