@@ -1,5 +1,4 @@
 #! /usr/bin/env node
-/* eslint-disable no-console */
 'use strict';
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.NODE_ENV = 'production';
@@ -7,7 +6,7 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', err => {
   throw err;
 });
 
@@ -19,42 +18,61 @@ const fs = require('fs-extra');
 const chalk = require('chalk');
 const paths = require('../config/paths');
 const printErrors = require('razzle-dev-utils/printErrors');
+const logger = require('razzle-dev-utils/logger');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
+const merge = require('lodash/merge');
+const { copyPublicFolder } = require('./utils/copy-public-folder');
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
 
-// Helper function to copy public directory to build/public
-function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuildPublic, {
-    dereference: true,
-    filter: (file) => file !== paths.appHtml
-  });
-}
+// First, read the current file sizes in build directory.
+// This lets us display how much they changed later.
+measureFileSizesBeforeBuild(paths.appBuildPublic)
+  .then(previousFileSizes => {
+    // Remove all content but keep the directory so that
+    // if you're in it, you don't end up in Trash
+    fs.emptyDirSync(paths.appBuild);
 
-// Wrap webpack compile in a try catch.
-function compile(config, cb) {
-  let compiler;
-  try {
-    compiler = webpack(config);
-  } catch (e) {
-    printErrors('Failed to compile.', [e]);
-    process.exit(1);
-  }
-  compiler.run((err, stats) => {
-    cb(err, stats);
-  });
-}
+    // Merge with the public folder
+    copyPublicFolder();
+
+    // Start the webpack build
+    return build(previousFileSizes);
+  })
+  .then(
+    ({ stats, previousFileSizes, warnings }) => {
+      if (warnings.length) {
+        console.log(chalk.yellow('Compiled with warnings.\n'));
+        console.log(warnings.join('\n\n'));
+        console.log(
+          '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
+        );
+        console.log('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
+      } else {
+        console.log(chalk.green('Compiled successfully.\n'));
+      }
+
+      console.log('File sizes after gzip:\n');
+
+      printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
+    },
+    err => {
+      console.log(chalk.red('Failed to compile.\n'));
+      console.log((err.message || err) + '\n');
+      process.exit(1);
+    }
+  );
 
 function build(previousFileSizes) {
   const globalBuildConfig = require(paths.jsBuildConfigPath);
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
+  const buildConfig = merge(globalBuildConfig, localBuildConfig);
 
   let clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
   let serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
@@ -70,7 +88,9 @@ function build(previousFileSizes) {
   return new Promise((resolve, reject) => {
     compile(clientConfig, (err, clientStats) => {
       if (err) {
+        console.error(err);
         reject(err);
+        return;
       }
       const clientMessages = formatWebpackMessages(clientStats.toJson({}, true));
 
@@ -97,7 +117,9 @@ function build(previousFileSizes) {
 
       compile(serverConfig, (err, serverStats) => {
         if (err) {
+          console.error(err);
           reject(err);
+          return;
         }
 
         const serverMessages = formatWebpackMessages(serverStats.toJson({}, true));
@@ -133,39 +155,16 @@ function build(previousFileSizes) {
   });
 }
 
-// First, read the current file sizes in build directory.
-// This lets us display how much they changed later.
-measureFileSizesBeforeBuild(paths.appBuildPublic)
-  .then((previousFileSizes) => {
-    // Remove all content but keep the directory so that
-    // if you're in it, you don't end up in Trash
-    fs.emptyDirSync(paths.appBuild);
-
-    // Merge with the public folder
-    copyPublicFolder();
-
-    // Start the webpack build
-    return build(previousFileSizes);
-  })
-  .then(
-    ({ stats, previousFileSizes, warnings }) => {
-      if (warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings.\n'));
-        console.log(warnings.join('\n\n'));
-        console.log(
-          '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
-        );
-      } else {
-        console.log(chalk.green('Compiled successfully.\n'));
-      }
-
-      console.log('File sizes after gzip:\n');
-
-      printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
-    },
-    (err) => {
-      console.log(chalk.red('Failed to compile.\n'));
-      console.log((err.message || err) + '\n');
-      process.exit(1);
-    }
-  );
+// Wrap webpack compile in a try catch.
+function compile(config, cb) {
+  let compiler;
+  try {
+    compiler = webpack(config);
+  } catch (e) {
+    printErrors('Failed to compile.', [e]);
+    process.exit(1);
+  }
+  compiler.run((err, stats) => {
+    cb(err, stats);
+  });
+}

@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { connectRouter } from 'connected-react-router';
 import { history } from '../routes/history';
-import { createMemoryHistory } from 'history';
+import { createMemoryHistory, MemoryHistory } from 'history';
 import { render } from '@cutting/devtools/jest/react-testing-overrides';
 
 const getReducers = () => combineReducers({ router: connectRouter(history) });
@@ -31,7 +31,10 @@ export const createStoreForTesting = (stateOverride?: Partial<State>) => {
 
 export const wrapComponentInReduxForTesting = (
   ui: ReactNode,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
+  {
+    route = '/',
+    history = createMemoryHistory({ initialEntries: [route] }),
+  }: { route: string; history: MemoryHistory },
   stateOverride: Partial<State> = {},
 ) => {
   return {

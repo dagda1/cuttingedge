@@ -1,13 +1,7 @@
 /* eslint-disable no-console */
 // eslint:disable
 import React, { useState } from 'react';
-import {
-  Modal,
-  Heading,
-  FormInput,
-  FormSelect,
-  LayoutType,
-} from '../src/components';
+import { Modal, Heading, FormInput, LayoutType } from '../src/components';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
@@ -113,7 +107,7 @@ export const App: React.FC = () => {
             highlight
             label="Highlight"
             maxLength={100}
-            onKeyDown={(e) => {
+            onKeyDown={e => {
               console.log(e);
               return true;
             }}
@@ -123,12 +117,7 @@ export const App: React.FC = () => {
           <FormInput label="Invalid" invalid errorMessage="Error Message" />
         </div>
         <div className={styles.item}>
-          <FormInput
-            label="Invalid &amp; required"
-            invalid
-            required
-            errorMessage="Error Message"
-          />
+          <FormInput label="Invalid &amp; required" invalid required errorMessage="Error Message" />
         </div>
         <div className={styles.item}>
           <FormInput
@@ -143,7 +132,7 @@ export const App: React.FC = () => {
             layoutType={LayoutType.horizontal}
             label="Horizontal"
             maxLength={100}
-            onKeyDown={(e) => {
+            onKeyDown={e => {
               console.log(e);
               return true;
             }}
@@ -155,37 +144,6 @@ export const App: React.FC = () => {
       <div className={styles.layout}>
         <div className={styles.item}>
           <Heading level={2}>Selects</Heading>
-        </div>
-      </div>
-      <div className={styles.layout}>
-        <div className={styles.item}>
-          <FormSelect
-            label="Select"
-            options={[
-              { key: 'Mr', value: 'Mr' },
-              { key: 'Mrs', value: 'Mrs' },
-              { key: 'Miss', value: 'Miss' },
-              { key: 'Ms', value: 'Ms' },
-              { key: 'Dr', value: 'Dr' },
-              { key: 'Reverend', value: 'Reverend' },
-              { key: 'Professor', value: 'Professor' },
-              { key: 'Other', value: 'Other' },
-            ]}
-            optionKey="key"
-            valueKey="value"
-            dividerAt={1}
-          />
-        </div>
-        <div className={styles.item}>
-          <FormSelect
-            label="invalid"
-            invalid
-            defaultLabel="Select a country"
-            options={[{ id: 'uk', displayName: 'United Kingdom' }]}
-            valueKey="id"
-            optionKey="displayName"
-            errorMessage="Invalid Select"
-          />
         </div>
       </div>
       <div className={styles.layout}>
@@ -216,10 +174,7 @@ export const App: React.FC = () => {
       <div className={styles.layout}>
         <div className={styles.item}>
           <div>
-            <Button
-              onClick={() => setModalOpen(true)}
-              buttonStyle={ButtonStyle.Inverse}
-            >
+            <Button onClick={() => setModalOpen(true)} buttonStyle={ButtonStyle.Inverse}>
               Open Modal
             </Button>
           </div>

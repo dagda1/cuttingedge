@@ -11,7 +11,7 @@ export enum LayoutType {
   horizontal = 'horizontal',
 }
 
-export type FormControlProps<InputType> = {
+export type FormControlProps<E> = {
   additionalLabel?: React.ReactNode;
   className?: string;
   errorDataSelector?: string;
@@ -22,24 +22,19 @@ export type FormControlProps<InputType> = {
   required?: boolean;
   strong?: boolean;
   layoutType?: LayoutType;
-} & React.InputHTMLAttributes<InputType>;
+} & React.InputHTMLAttributes<E>;
 
-export function FormControl<T, InputType>(
-  Comp: React.ComponentType<T>,
-): React.ComponentClass<FormControlProps<InputType> & T> {
-  return class FormControlWrapper extends React.Component<FormControlProps<InputType> & T> {
+export function FormControl<P, E extends HTMLElement>(
+  Comp: React.ComponentType<P>,
+): React.ComponentClass<FormControlProps<E> & P> {
+  return class FormControlWrapper extends React.Component<FormControlProps<E> & P> {
     id?: string;
 
-    constructor(props: FormControlProps<InputType> & T) {
+    constructor(props: FormControlProps<E> & P) {
       super(props);
 
       this.id = this.props.id || this.props.name || prefixId();
     }
-
-    public static defaultProps = {
-      layoutType: LayoutType.vertical,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
 
     render(): ReactElement {
       const {
@@ -53,7 +48,7 @@ export function FormControl<T, InputType>(
         additionalLabel,
         highlight,
         required,
-        layoutType,
+        layoutType = LayoutType.vertical,
         ...rest
       } = this.props;
 
@@ -84,7 +79,7 @@ export function FormControl<T, InputType>(
               required={required}
               aria-invalid={invalid}
               aria-describedby={errorId}
-              {...(rest as T)}
+              {...(rest as P)}
             />
           </div>
           <div id={errorId} aria-hidden={!invalid} role="alert">

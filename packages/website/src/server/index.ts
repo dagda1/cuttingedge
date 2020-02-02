@@ -57,14 +57,12 @@ app.get('/*', async (req, res) => {
   });
 });
 
-const errorHandler = (err: Exception, req: Request, res: Response, next: NextFunction) => {
+const errorHandler = (err: Exception, req: Request, res: Response, next: NextFunction): void => {
   if (res.headersSent) {
     return next(err);
   }
 
   console.error(err);
-
-  error(err);
 
   res.status(err.status || HttpStatusCode.InternalServerError).send(err.message || 'Internal Error');
 };
@@ -76,6 +74,6 @@ process.on('unhandledRejection', err => {
     return;
   }
 
-  error(err);
+  console.error(err);
   throw err;
 });

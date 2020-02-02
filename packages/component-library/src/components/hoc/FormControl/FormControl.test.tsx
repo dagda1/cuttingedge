@@ -1,12 +1,13 @@
+/* eslint-disable jest/expect-expect */
 import React from 'react';
-import { Select } from '../../atoms/Select';
+import { Input } from '../../atoms/Input';
 import { FormControl, FormControlProps } from '.';
-import { render } from '@cutting/devtools/jest/react-testing-overrides';
+import { render, RenderResult } from '@cutting/devtools/jest/react-testing-overrides';
 
-const FormSelect = FormControl(Select);
+const FormInput = FormControl(Input);
 
-const wrap = (props?: Partial<FormControlProps<HTMLSelectElement>>) =>
-  render(<FormSelect options={[1, 2, 3]} label="label" {...props} />);
+const wrap = (props?: Partial<FormControlProps<HTMLInputElement>>): RenderResult =>
+  render(<FormInput value={props?.value} label="label" {...props} />);
 
 describe('FormControl', () => {
   it('should wrap component with label', () => {
@@ -25,7 +26,7 @@ describe('FormControl', () => {
     const { getByTestId, getByText } = wrap({
       invalid: true,
       errorDataSelector: 'error-selector',
-      errorMessage: 'Error'
+      errorMessage: 'Error',
     });
 
     getByTestId('error-selector');

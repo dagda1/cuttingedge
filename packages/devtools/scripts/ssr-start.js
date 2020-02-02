@@ -1,5 +1,4 @@
 #! /usr/bin/env node
-/* eslint-disable no-console */
 'use strict';
 
 process.env.NODE_ENV = 'development';
@@ -8,8 +7,10 @@ const webpack = require('webpack');
 const paths = require('../config/paths');
 const devServer = require('webpack-dev-server');
 const printErrors = require('razzle-dev-utils/printErrors');
+const clearConsole = require('react-dev-utils/clearConsole');
 const logger = require('razzle-dev-utils/logger');
 const setPorts = require('razzle-dev-utils/setPorts');
+const merge = require('lodash/merge');
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
@@ -18,19 +19,8 @@ process.noDeprecation = true;
 
 // Capture any --inspect or --inspect-brk flags (with optional values) so that we
 // can pass them when we invoke nodejs
-process.env.INSPECT_BRK = process.argv.find((arg) => arg.match(/--inspect-brk(=|$)/)) || '';
-process.env.INSPECT = process.argv.find((arg) => arg.match(/--inspect(=|$)/)) || '';
-
-function compile(config) {
-  let compiler;
-  try {
-    compiler = webpack(config);
-  } catch (e) {
-    printErrors('Failed to compile.', [e]);
-    process.exit(1);
-  }
-  return compiler;
-}
+process.env.INSPECT_BRK = process.argv.find(arg => arg.match(/--inspect-brk(=|$)/)) || '';
+process.env.INSPECT = process.argv.find(arg => arg.match(/--inspect(=|$)/)) || '';
 
 function main() {
   fs.emptyDirSync(paths.appBuild);
@@ -43,10 +33,10 @@ function main() {
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
+  const buildConfig = merge(globalBuildConfig, localBuildConfig);
 
-  const clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
-  const serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
+  let clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
+  let serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
 
   const clientCompiler = compile(clientConfig);
   const serverCompiler = compile(serverConfig);
@@ -58,7 +48,7 @@ function main() {
         stats: 'none'
       },
       /* eslint-disable no-unused-vars */
-      () => {}
+      stats => {}
     );
   });
 
@@ -68,11 +58,22 @@ function main() {
    */
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
 
-  clientDevServer.listen((process.env.PORT && Number(process.env.PORT) + 1) || razzle.port || 3001, (err) => {
+  clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || razzle.port || 3001, err => {
     if (err) {
       logger.error(err);
     }
   });
+}
+
+function compile(config) {
+  let compiler;
+  try {
+    compiler = webpack(config);
+  } catch (e) {
+    printErrors('Failed to compile.', [e]);
+    process.exit(1);
+  }
+  return compiler;
 }
 
 setPorts()
