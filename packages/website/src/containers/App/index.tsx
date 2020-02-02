@@ -23,13 +23,8 @@ export const App: React.FC<AppProps> = ({ store }) => {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Switch>
-            {routes.map((page) => (
-              <Route
-                key={page.path}
-                path={page.path}
-                component={page.component}
-                exact={page.exact}
-              />
+            {routes.map(page => (
+              <Route key={page.path} path={page.path} component={page.component} exact={page.exact} />
             ))}
           </Switch>
         </ConnectedRouter>

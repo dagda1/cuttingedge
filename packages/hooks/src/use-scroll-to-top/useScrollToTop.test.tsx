@@ -23,6 +23,7 @@ describe('useScrollToTop', () => {
     const focus = jest.fn();
     const scrollTo = jest.fn();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const ref: any = {
       current: {
         focus,

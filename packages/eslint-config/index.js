@@ -13,7 +13,6 @@ module.exports = {
   plugins: ['@typescript-eslint', 'jest', 'jest-formatting'],
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-explicit-any': 'error',
     'no-var': 'warn',
     'jest/consistent-test-it': ['error', { fn: 'it' }],
     'jest-formatting/padding-before-test-blocks': 2,
@@ -23,7 +22,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        printWidth: 80,
+        printWidth: 120,
         singleQuote: true,
         semi: true,
         tabWidth: 2,

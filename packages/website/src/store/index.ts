@@ -9,7 +9,7 @@ declare let __DEV__: boolean;
 
 const configureStore = (initialState: State, history: History) => {
   const middlewares = [routerMiddleware(history)];
-  const enhancers = middlewares.map((a) => applyMiddleware(a));
+  const enhancers = middlewares.map(a => applyMiddleware(a));
 
   const getComposeFunc = () => {
     if (process.env.BROWSER && __DEV__) {

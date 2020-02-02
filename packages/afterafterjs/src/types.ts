@@ -1,8 +1,4 @@
-import {
-  RouteProps,
-  RouteComponentProps,
-  match as Match,
-} from 'react-router-dom';
+import { RouteProps, RouteComponentProps, match as Match } from 'react-router-dom';
 import { HelmetData } from 'react-helmet';
 import { Request, Response } from 'express';
 import { IncomingMessage, ServerResponse } from 'http';
@@ -12,15 +8,9 @@ export interface DocumentType {
   html: string;
 }
 
-export type Renderer = <T>(
-  element: React.ReactElement<T>,
-) => DocumentType | Promise<DocumentType>;
+export type Renderer = <T>(element: React.ReactElement<T>) => DocumentType | Promise<DocumentType>;
 
-export interface DocumentProps<
-  TDocument extends DocumentType,
-  TData = {},
-  TParams = unknown
-> {
+export interface DocumentProps<TDocument extends DocumentType, TData = {}, TParams = unknown> {
   req: Request;
   res: Response;
   helmet: HelmetData;
@@ -50,11 +40,7 @@ export interface AsyncComponent<TData = {}, TParams = unknown> {
   load?: () => Promise<React.ReactNode>;
 }
 
-export interface AsyncRouteComponent<
-  Props extends DocumentType,
-  TParams = unknown,
-  TData = {}
->
+export interface AsyncRouteComponent<Props extends DocumentType, TParams = unknown, TData = {}>
   extends AsyncComponent<TParams, TData>,
     React.Component<DocumentProps<Props> & Props, AsyncRouteComponentState> {}
 
@@ -67,7 +53,8 @@ export type AsyncRouteableComponent<Props = unknown> =
   | React.ComponentType<RouteComponentProps<Props>>
   | React.ComponentType<Props>;
 
-export interface AsyncRouteProps<Props = unknown> extends RouteProps {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface AsyncRouteProps<Props = any> extends RouteProps {
   component: AsyncRouteableComponent<Props>;
   redirectTo?: string;
 }
@@ -80,6 +67,8 @@ export interface InitialProps<TData = {}> {
 export type Module<P> =
   | {
       default?: P;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       [x: string]: any;
     }

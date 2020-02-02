@@ -1,28 +1,89 @@
-# eslint-config-typescript
+# @cutting eslint-config
 
-Shared eslint configuration
+This package centralises eslint rules to a common package that can be consumed by other packages.
+
+## Intstallation
+
+Import this library:
+
+```bash
+yarn add @cutting/eslint-config -S
+```
+
+Create a `.eslintrc.json` in the root of the project that will consume this library.
+
+The bare minimum that is required for a consuming package's `.eslintrc.json` is:
+
+```json
+{
+  "extends": ["@cutting/eslint-config/react"]
+}
+```
+
+### Packages.json scripts
+
+Add the following lines to your package.json to enable linting and prettier to run on files without extensions:
+
+```bash
+  "scripts": {
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:fix": "npm run lint -- --fix"
+  }
+```
+
+## VS Code extensions
+
+ESLint
+
+After installing the extension, we need to change some settings of VSCode under: File > Preferences > Settings . Here we want to go to the JSON view of our settings in the top right corner there is a Button with {} on it. Here we need to add this config 👇:
+
+```json
+"eslint.validate": [
+  "javascript",
+  "javascriptreact",
+  {
+    "language": "typescript",
+    "autoFix": true
+  },
+  {
+    "language": "typescriptreact",
+    "autoFix": true
+  }
+]
+```
+
+## Prettier
+
+Prettier also has an extension for VSCode, the best version is published by Esben Petersen. link The package will apply the prettier/recommended, but you can override those in your project with a .prettierrc file.
+
+## What rules are applied
 
 The following sets of rules are implemented in this package:
 
-### Typescript
+## Typescript
 
-* @typescript-eslint/recommended ([rules](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules))
+@typescript-eslint/recommended (rules)
 
-### React
-
+**React**
 All typescript rules, plus (in order):
 
-* eslint-plugin-react/recommended ([rules](https://github.com/yannickcr/eslint-plugin-react#list-of-supported-rules))
-* eslint-plugin-jsx-a11y ([rules](https://github.com/evcohen/eslint-plugin-jsx-a11y#supported-rules))
-* eslint-plugin-react-hooks (rules set manually)
-* eslint-plugin-jest ([rules](https://github.com/jest-community/eslint-plugin-jest#rules))
-* eslint-plugin-import ([rules](https://github.com/benmosher/eslint-plugin-import#rules))
-* eslint-config-prettier ([rules](https://github.com/prettier/eslint-config-prettier#special-rules))
-* eslint-config-prettier/@typescript-eslint
-* eslint-plugin-jest-formatting ([rules](https://github.com/dangreenisrael/eslint-plugin-jest-formatting#rule-documentation))
+eslint-plugin-react/recommended (rules)
+eslint-plugin-jsx-a11y (rules)
+eslint-plugin-react-hooks (rules set manually)
+eslint-plugin-jest (rules)
+eslint-plugin-import (rules)
+eslint-config-prettier (rules)
+eslint-config-prettier/@typescript-eslint
+eslint-plugin-jest-formatting (rules)
+Overrides
+Some rules are overriden. Please see `.eslintrc.json` in the package.
 
-### Overrides
+## Overrides
 
-Some rules are overriden.  Please see `.eslintrc.json` in the package.
+Rules can be overriden in the consuming project's `.eslintrc.json`, or you can disable rules in the files rule by adding the following types of comment
 
-Further rules can be overriden in the projects `.eslintrc.json`, or you can disable rules in the files / for a line using the `/* eslint-disable: <rule> */`, or `//eslint-disable-next-line <rule>`, although these should be kept to a minimum.
+```javascript
+/* eslint-disable: <rule> */
+
+//eslint-disable-next-line <rule>
+```

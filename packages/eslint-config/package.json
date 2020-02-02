@@ -1,12 +1,21 @@
 {
   "name": "@cutting/eslint-config",
-  "version": "1.1.0",
+  "version": "3.0.16",
+  "description": "Cutting eslint configuration definition",
   "main": "index.js",
+  "scripts": {
+    "build": "echo \"no build\"",
+    "lint": "echo \"no lint\"",
+    "lint:fix": "echo \"no lint:fix\"",
+    "test:ci": "echo \"no tests\""
+  },
   "files": [
     "index.js",
     "react.js",
+    "angular.js",
+    "node.js",
     "README.md"
-  ],
+  ],  
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -18,19 +27,30 @@
     "typescript",
     "react"
   ],
-  "author": "Paul Cowan <paul.cowan@cutting.scot>",
-  "dependencies": {
-    "@typescript-eslint/eslint-plugin": "2.7.0",
-    "@typescript-eslint/parser": "2.7.0",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.6.0",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-config-react": "^1.1.7",
-    "eslint-plugin-jest": "^23.0.4",
+  "peerDependencies": {
+    "@typescript-eslint/parser": "^2.14.0",
+    "babel-eslint": "10.0.3",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-jest": "23.2.0",
     "eslint-plugin-jest-formatting": "^1.2.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^2.2.0"
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "prettier": "1.19.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "babel-eslint": "10.0.3",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-jest": "23.2.0",
+    "eslint-plugin-jest-formatting": "^1.2.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0"
   }
 }
