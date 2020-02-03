@@ -1,6 +1,6 @@
 {
   "name": "@cutting/util",
-  "version": "0.7.0",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -13,8 +13,8 @@
     "build": "NODE_ENV=development cutting ts-build"
   },
   "devDependencies": {
-    "@cutting/devtools": "0.17.0", 
-    "@cutting/eslint-config": "^1.1.0",
+    "@cutting/devtools": "^2.0.0",
+    "@cutting/eslint-config": "^2.0.0",
     "@cutting/useful-types": "^0.1.0"
   }
 }

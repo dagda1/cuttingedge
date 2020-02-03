@@ -1,6 +1,6 @@
 {
   "name": "@cutting/eslint-config",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Cutting eslint configuration definition",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "angular.js",
     "node.js",
     "README.md"
-  ],  
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
