@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { App } from '../containers/App';
 import { HttpStatusCode } from '@cutting/util';
 import { StaticRouter, StaticRouterContext } from 'react-router';
+import { Routes } from '../routes';
 
 const assets = require(process.env.CUTTING_ASSETS_MANIFEST as string);
 
@@ -17,7 +17,7 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
 
   const appString = renderToString(
     <StaticRouter location={req.url} context={context}>
-      <App />
+      <Routes />
     </StaticRouter>,
   );
 

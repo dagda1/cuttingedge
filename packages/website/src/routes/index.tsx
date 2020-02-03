@@ -1,3 +1,4 @@
+import React from 'react';
 import { Home } from '../components/Home';
 import { OSS } from '../components/OSS';
 import { Blog } from '../components/Blog';
@@ -6,7 +7,7 @@ import { PrivacyPolicy } from '../components/PrivacyPolicy';
 import { TermsOfService } from '../components/TermsOfService';
 
 import * as Urls from '../urls';
-import { RouteProps } from 'react-router';
+import { RouteProps, Route, Switch } from 'react-router';
 
 export type Page<P = unknown> = RouteProps & {
   heading: string;
@@ -15,7 +16,7 @@ export type Page<P = unknown> = RouteProps & {
 } & P;
 
 /* eslint-disable react/display-name */
-export const routes: Page[] = [
+export const routable: Page[] = [
   {
     heading: 'Home',
     path: Urls.Home,
@@ -56,6 +57,14 @@ export const routes: Page[] = [
   },
 ];
 
-export const bannerPages = routes.filter(p => !p.footerPage && p.path !== Urls.Home);
+export const Routes: React.FC = () => (
+  <Switch>
+    {routable.map(({ path, ...rest }) => (
+      <Route key={path} path={path} {...rest} />
+    ))}
+  </Switch>
+);
 
-export const footerPages = routes.filter(p => p.footerPage);
+export const bannerPages = routable.filter(p => !p.footerPage && p.path !== Urls.Home);
+
+export const footerPages = routable.filter(p => p.footerPage);
