@@ -1,8 +1,9 @@
 import { Heading } from '@cutting/component-library';
 import cs from 'classnames';
-import React from 'react';
+import React, { useRef } from 'react';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
+import { useScrollToTop } from '@cutting/hooks';
 
 const styles = require('./ApplicationLayout.module.scss');
 
@@ -19,22 +20,28 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
   center,
   className,
   children,
-}) => (
-  <>
-    <Header />
-    <main className={className}>
-      {heading && (
-        <Heading
-          className={cs({
-            [styles.italic]: italicise,
-            [styles.center]: center,
-          })}
-        >
-          {heading}
-        </Heading>
-      )}
-      {children}
-    </main>
-    <Footer />
-  </>
-);
+}) => {
+  const root = useRef<HTMLDivElement>(null);
+
+  useScrollToTop({ ref: root });
+
+  return (
+    <div ref={root} style={{ outline: 0 }}>
+      <Header />
+      <main className={className}>
+        {heading && (
+          <Heading
+            className={cs({
+              [styles.italic]: italicise,
+              [styles.center]: center,
+            })}
+          >
+            {heading}
+          </Heading>
+        )}
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
+};

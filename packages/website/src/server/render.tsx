@@ -35,7 +35,7 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         ${`<link rel="stylesheet" href="${assets.client.css}">`}
-        <title>Payments</title>
+        <title>Cutting-Edge Solutions (Scotland)</title>
       </head>
       <body>
         <div id="root">${appString}</div>

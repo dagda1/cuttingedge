@@ -77,6 +77,10 @@ ul li.logo__container {
   }
 }
 
+.active {
+  color: $active-nav-link-color;
+}
+
 .expandable {
   display: none;
   position: absolute;
