@@ -26,14 +26,14 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/util": "^2.0.0",
+    "@cutting/util": "2.0.0",
     "invariant": "^2.2.4",
     "mousetrap": "^1.6.2"
   },
   "devDependencies": {
-    "@cutting/devtools": "^2.0.0",
-    "@cutting/eslint-config": "^2.0.0",
-    "@cutting/useful-types": "^2.0.0",
+    "@cutting/devtools": "2.0.0",
+    "@cutting/eslint-config": "2.0.0",
+    "@cutting/useful-types": "2.0.0",
     "@testing-library/jest-dom": "^4.0.0",
     "@types/invariant": "^2.2.29",
     "@types/mousetrap": "^1.6.0"

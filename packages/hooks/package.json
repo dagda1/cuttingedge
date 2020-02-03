@@ -1,12 +1,18 @@
 {
   "name": "@cutting/hooks",
-  "description": "Reusable React hooks.",
+  "description": "Hooks man, hooks.",
   "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "main": "dist/index.js",
+  "main": "dist/hooks.js",
+  "umd:main": "lib/hooks.umd.js",
+  "module": "lib/hooks.module.js",
+  "browser": {
+    "./lib/hooks.js": "./lib/hooks.js",
+    "./lib/hooks.module.js": "./lib/hooks.module.js"
+  },
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "files": [
@@ -19,18 +25,26 @@
     "build": "NODE_ENV=production cutting rollup --package-name hooks",
     "prepublish": "npm run build"
   },
+  "dependencies": {
+    "@cutting/util": "2.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
   "devDependencies": {
-    "@cutting/devtools": "^2.0.0",
-    "@cutting/eslint-config": "^2.0.0",
-    "@cutting/useful-types": "^2.0.0",
+    "@cutting/devtools": "2.0.0",
+    "@cutting/eslint-config": "2.0.0",
+    "@cutting/useful-types": "2.0.0",
     "@testing-library/jest-dom": "^4.0.0",
-    "@types/mousetrap": "^1.6.0",
-    "typescript": "^3.7.5"
+    "@types/invariant": "^2.2.29"
   },
   "keywords": [
+    "hotkeys",
+    "focus",
     "react",
     "reactjs",
     "reactnative",
+    "hooks",
+    "hook",
     "hooks"
   ]
 }
