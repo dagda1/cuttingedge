@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
 export interface UseScrollToTopProps<E = HTMLElement> {
@@ -8,7 +8,7 @@ export interface UseScrollToTopProps<E = HTMLElement> {
 export const useScrollToTop = ({ ref }: UseScrollToTopProps): void => {
   const { pathname } = useLocation();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!ref.current) {
       return;
     }

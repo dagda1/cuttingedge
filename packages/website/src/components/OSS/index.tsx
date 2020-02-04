@@ -7,7 +7,7 @@ import { Github } from '../Svg';
 const styles = require('./OSS.module.scss');
 
 export const OSS: React.FC = () => (
-  <ApplicationLayout>
+  <ApplicationLayout heading="Open Source Contributions">
     <div className={styles.container}>
       <Heading level={1}>Open Source Software</Heading>
       <Heading level={2}>Community Pull Requests</Heading>

@@ -3,7 +3,7 @@ import cs from 'classnames';
 import React, { useRef } from 'react';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
-import { useScrollToTop } from '@cutting/hooks';
+import { useScrollToTop, useDocumentTitle } from '@cutting/hooks';
 
 const styles = require('./ApplicationLayout.module.scss');
 
@@ -24,6 +24,7 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
   const root = useRef<HTMLDivElement>(null);
 
   useScrollToTop({ ref: root });
+  useDocumentTitle(heading);
 
   return (
     <div ref={root} style={{ outline: 0 }}>
