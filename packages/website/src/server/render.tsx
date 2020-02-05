@@ -3,7 +3,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { HttpStatusCode } from '@cutting/util';
 import { StaticRouter, StaticRouterContext } from 'react-router';
-import { Routes } from '../routes';
+import { Routes, routable } from '../routes';
+import { CuttingEdge } from '../../constants';
 
 const assets = require(process.env.CUTTING_ASSETS_MANIFEST as string);
 
@@ -35,7 +36,6 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         ${`<link rel="stylesheet" href="${assets.client.css}">`}
-        <title>Cutting-Edge Solutions (Scotland)</title>
       </head>
       <body>
         <div id="root">${appString}</div>
