@@ -3,8 +3,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { HttpStatusCode } from '@cutting/util';
 import { StaticRouter, StaticRouterContext } from 'react-router';
-import { Routes, routable } from '../routes';
-import { CuttingEdge } from '../../constants';
+import { Routes } from '../routes';
 
 const assets = require(process.env.CUTTING_ASSETS_MANIFEST as string);
 
