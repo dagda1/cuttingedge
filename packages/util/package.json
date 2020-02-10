@@ -13,8 +13,8 @@
     "build": "NODE_ENV=development cutting ts-build"
   },
   "devDependencies": {
-    "@cutting/devtools": "^2.0.0",
-    "@cutting/eslint-config": "^2.0.0",
-    "@cutting/useful-types": "^0.2.0"
+    "@cutting/devtools": "2.0.0",
+    "@cutting/eslint-config": "2.0.0",
+    "@cutting/useful-types": "2.0.0"
   }
 }

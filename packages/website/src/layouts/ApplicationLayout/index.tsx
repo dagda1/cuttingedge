@@ -23,8 +23,8 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
 }) => {
   const root = useRef<HTMLDivElement>(null);
 
-  // useScrollToTop({ ref: root });
-  // useDocumentTitle(heading);
+  useScrollToTop({ ref: root });
+  useDocumentTitle(heading);
 
   return (
     <div ref={root} style={{ outline: 0 }}>
