@@ -2,7 +2,7 @@ import React from 'react';
 import { ApplicationLayout } from '../ApplicationLayout';
 
 export interface StaticLayoutProps {
-  heading?: string;
+  heading: string;
 }
 
 export const StaticLayout: React.FC<StaticLayoutProps> = ({ heading, children }) => (

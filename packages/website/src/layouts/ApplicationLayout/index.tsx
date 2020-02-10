@@ -8,7 +8,7 @@ import { useScrollToTop, useDocumentTitle } from '@cutting/hooks';
 const styles = require('./ApplicationLayout.module.scss');
 
 export interface ApplicationLayoutProps {
-  heading?: string;
+  heading: string;
   italicise?: boolean;
   center?: boolean;
   className?: 'string';
@@ -23,8 +23,8 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
 }) => {
   const root = useRef<HTMLDivElement>(null);
 
-  useScrollToTop({ ref: root });
-  useDocumentTitle(heading);
+  // useScrollToTop({ ref: root });
+  // useDocumentTitle(heading);
 
   return (
     <div ref={root} style={{ outline: 0 }}>
