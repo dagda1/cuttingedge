@@ -30,16 +30,14 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
     <div ref={root} style={{ outline: 0 }}>
       <Header />
       <main className={className}>
-        {heading && (
-          <Heading
-            className={cs({
-              [styles.italic]: italicise,
-              [styles.center]: center,
-            })}
-          >
-            {heading}
-          </Heading>
-        )}
+        <Heading
+          className={cs({
+            [styles.italic]: italicise,
+            [styles.center]: center,
+          })}
+        >
+          {heading}
+        </Heading>
         {children}
       </main>
       <Footer />
