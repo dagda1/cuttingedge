@@ -1,6 +1,6 @@
 {
   "name": "@cutting/react-typed-mousetrap",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -19,8 +19,8 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/use-shortcuts": "2.0.0",
-    "@cutting/util": "2.0.0",
+    "@cutting/use-shortcuts": "^2.0.1",
+    "@cutting/util": "^2.0.1",
     "invariant": "^2.2.4",
     "mousetrap": "^1.6.2"
   },
