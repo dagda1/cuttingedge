@@ -6,10 +6,10 @@ export interface Action<T extends string = any> {
   type: T;
 }
 
-export interface UseShortcuts {
+export interface UseShortcuts<E extends HTMLElement = HTMLElement> {
   shortcutMap: ShortcutMap;
   handler: ShortcutHandler;
-  ref?: React.RefObject<HTMLElement>;
+  ref?: React.RefObject<E>;
 }
 
 export interface UseShortcutsResult {

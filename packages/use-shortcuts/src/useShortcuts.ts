@@ -4,7 +4,11 @@ import { UseShortcuts, ShortcutAction, UseShortcutsResult } from './types';
 import { buildShortcuts } from './buildShortcuts';
 import { clearArray } from './utils/clearArray';
 
-export const useShortcuts = ({ shortcutMap, ref, handler }: UseShortcuts): UseShortcutsResult => {
+export const useShortcuts = <E extends HTMLElement = HTMLElement>({
+  shortcutMap,
+  ref,
+  handler,
+}: UseShortcuts<E>): UseShortcutsResult => {
   const shortcutsRef = useRef<ShortcutAction[]>([]);
   const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>();
 
@@ -24,7 +28,7 @@ export const useShortcuts = ({ shortcutMap, ref, handler }: UseShortcuts): UseSh
 
     mousetrapRef.current = new mousetrap(ref.current);
 
-    return () => {
+    return (): void => {
       mousetrapRef.current && mousetrapRef.current.reset();
     };
   }, [ref]);
@@ -39,7 +43,7 @@ export const useShortcuts = ({ shortcutMap, ref, handler }: UseShortcuts): UseSh
 
     const shortcutActions = buildShortcuts(shortcutMap);
 
-    shortcutActions.forEach((shortcut) => {
+    shortcutActions.forEach(shortcut => {
       trapper.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
         e.stopPropagation();
 
@@ -53,8 +57,8 @@ export const useShortcuts = ({ shortcutMap, ref, handler }: UseShortcuts): UseSh
 
     shortcuts.push(...shortcutActions);
 
-    return () => {
-      shortcuts.forEach((shortcut) => {
+    return (): void => {
+      shortcuts.forEach(shortcut => {
         if (shortcut.trapper) {
           shortcut.trapper.unbind(shortcut.keys);
         }

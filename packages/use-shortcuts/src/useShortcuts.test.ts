@@ -7,7 +7,7 @@ import mousetrap from 'mousetrap';
 import { KeyCode } from './types/keycodes';
 
 const shortcutMap: ShortcutMap = { DO_SOMETHING: 'a' };
-const handler: ShortcutHandler = (action) => {
+const handler: ShortcutHandler = action => {
   switch (action.type) {
     case 'DO_SOMETHING':
       console.log('do something');
@@ -23,8 +23,8 @@ describe('useShortcuts', () => {
   });
 
   it('should create shortcuts with no ref', () => {
-    const { result } = renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
-      initialProps: { shortcutMap, handler: () => undefined }
+    const { result } = renderHook<UseShortcuts, UseShortcutsResult>(p => useShortcuts(p), {
+      initialProps: { shortcutMap, handler: (): undefined => undefined },
     });
 
     const { shortcuts } = result.current;
@@ -38,8 +38,8 @@ describe('useShortcuts', () => {
 
     const props: UseShortcuts = { shortcutMap, handler, ref: { current: null } };
 
-    const { result, rerender } = renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
-      initialProps: { ...props, ref: { current: null } }
+    const { result, rerender } = renderHook<UseShortcuts, UseShortcutsResult>(p => useShortcuts(p), {
+      initialProps: { ...props, ref: { current: null } },
     });
 
     const { shortcuts } = result.current;
@@ -62,14 +62,14 @@ describe('useShortcuts', () => {
   it('should call the supplied handler', () => {
     document.body.insertAdjacentHTML('afterbegin', `<input id="input" type="text">`);
 
-    var input = document.querySelector('input') as HTMLInputElement;
+    const input = document.querySelector('input') as HTMLInputElement;
 
     const fn = jest.fn();
 
     const props: UseShortcuts = { shortcutMap, handler: fn, ref: { current: null } };
 
-    renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
-      initialProps: { ...props, ref: { current: input } }
+    renderHook<UseShortcuts, UseShortcutsResult>(p => useShortcuts(p), {
+      initialProps: { ...props, ref: { current: input } },
     });
 
     const event = document.createEvent('Events') as any;
@@ -87,14 +87,14 @@ describe('useShortcuts', () => {
   it('should create combination and sequence shortcuts', () => {
     const combinationShortcutMap: ShortcutMap = {
       COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
-      SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] }
+      SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] },
     };
     const {
       result: {
-        current: { shortcuts }
-      }
-    } = renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
-      initialProps: { shortcutMap: combinationShortcutMap, handler }
+        current: { shortcuts },
+      },
+    } = renderHook<UseShortcuts, UseShortcutsResult>(p => useShortcuts(p), {
+      initialProps: { shortcutMap: combinationShortcutMap, handler },
     });
 
     expect(shortcuts).toHaveLength(2);
