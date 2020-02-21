@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable jest/expect-expect */
 import React from 'react';
 import { FormControlWrapperProps, ConnectedFormInput } from '.';
 import { render } from '@cutting/devtools/jest/react-testing-overrides';
@@ -17,7 +19,7 @@ const defaultProps: FormControlWrapperProps = {
   dirty: true,
   isValid: false,
   initialValues: {},
-  label: 'input'
+  label: 'input',
 };
 
 const wrap = (props: Partial<FormControlWrapperProps> = {}) => {
@@ -37,7 +39,7 @@ describe('renderFormInput', () => {
       invalid: true,
       errors: { input: 'something required' },
       touched: { input: true },
-      submitCount: 1
+      submitCount: 1,
     });
 
     getByTestId('form-error');

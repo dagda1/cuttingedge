@@ -34,7 +34,7 @@
     "@cutting/devtools": "2.1.0",
     "@cutting/eslint-config": "2.1.0",
     "@cutting/useful-types": "2.1.0",
-    "@testing-library/jest-dom": "^4.0.0",
+    "@testing-library/jest-dom": "^5.1.1",
     "@types/invariant": "^2.2.29"
   },
   "keywords": [

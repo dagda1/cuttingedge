@@ -50,6 +50,7 @@ function runEslint() {
       process.exit(1);
     }
   });
+
 }
 
 function runTypeScriptBuild() {
