@@ -9,4 +9,3 @@ export const env = environments[process.env.NODE_ENV as string] || environments.
 export const isDevelopment = env === environments.development;
 export const isTest = env === environments.test;
 export const isProduction = env === environments.production;
-export const isCI = isDevelopment;

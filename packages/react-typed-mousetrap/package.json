@@ -1,6 +1,6 @@
 {
   "name": "@cutting/react-typed-mousetrap",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -19,15 +19,15 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/use-shortcuts": "^2.0.1",
-    "@cutting/util": "^2.0.1",
+    "@cutting/use-shortcuts": "2.1.0",
+    "@cutting/util": "2.1.0",
     "invariant": "^2.2.4",
     "mousetrap": "^1.6.2"
   },
   "devDependencies": {
-    "@cutting/devtools": "2.0.0",
-    "@cutting/eslint-config": "2.0.0",
-    "@cutting/useful-types": "2.0.0",
+    "@cutting/devtools": "2.1.0",
+    "@cutting/eslint-config": "2.1.0",
+    "@cutting/useful-types": "2.1.0",
     "@testing-library/jest-dom": "^4.0.0",
     "@types/invariant": "^2.2.29",
     "@types/mousetrap": "^1.6.0"

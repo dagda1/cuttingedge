@@ -1,0 +1,2 @@
+require('./raf');
+require('./polyfills');

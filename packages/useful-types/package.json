@@ -19,6 +19,6 @@
     "build": "echo no build"
   },
   "devDependencies": {
-    "@cutting/eslint-config": "^2.0.0"
+    "@cutting/eslint-config": "2.1.0"
   }
 }
