@@ -28,15 +28,15 @@
   "dependencies": {
     "@cutting/util": "2.1.0",
     "invariant": "^2.2.4",
-    "mousetrap": "^1.6.2"
+    "mousetrap": "^1.6.5"
   },
   "devDependencies": {
     "@cutting/devtools": "2.1.0",
     "@cutting/eslint-config": "2.1.0",
     "@cutting/useful-types": "2.1.0",
     "@testing-library/jest-dom": "^5.1.1",
-    "@types/invariant": "^2.2.29",
-    "@types/mousetrap": "^1.6.0"
+    "@types/invariant": "^2.2.31",
+    "@types/mousetrap": "^1.6.3"
   },
   "keywords": [
     "hotkeys",

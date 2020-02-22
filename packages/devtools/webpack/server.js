@@ -25,7 +25,8 @@ getExternals = function(isDevelopment) {
         /\.(css|scss|sass|sss|less)$/,
         /^@babel/,
         /^@cutting/,
-        /^@c2/
+        /^react$/,
+        /^react-dom$/
       ].filter((x) => x)
     })
   ];
