@@ -3,6 +3,7 @@
 footer {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   font-size: 14px;
   @include mb(2);
 

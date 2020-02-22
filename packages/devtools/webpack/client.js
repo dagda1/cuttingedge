@@ -63,7 +63,7 @@ const configure = (options) => {
 
     finalEntries = isDevelopment
       ? [
-          `webpack-dev-server/client?${protocol}://${host}:${port}`,
+          `webpack-dev-server/client?${protocol}://${host}:${devServerPort}`,
           'webpack/hot/dev-server',
           require.resolve('react-dev-utils/webpackHotDevClient'),
           ...polyfills,

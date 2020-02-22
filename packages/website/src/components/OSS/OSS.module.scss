@@ -5,7 +5,6 @@
     @include mb(4);
   }
   display: flex;
-  flex: 1;
   flex-direction: column;
 }
 
@@ -16,19 +15,19 @@
 .repos {
   display: block;
 
-  @include mq-s {
+  @include mq-m {
     display: flex;
     flex-flow: wrap;
   }
 }
 
 .repo {
-  @include mq-s {
+  @include mq-m {
     flex: 1 0 47%;
     @include mr(1);
   }
 
-  @include mq-m {
+  @include mq-l {
     flex: 1 0 21%;
     @include mr(1);
   }

@@ -3,7 +3,9 @@
 main {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex-grow: 1;      /* added this */
+  flex-shrink: 0;    /* added this */
+  display: flex;
   h1 {
     margin-top: 0;
     margin-bottom: 0;
@@ -29,9 +31,3 @@ main {
 .sr-anchor{
   outline: 0
 }
-
-// .content{
-//   display: flex;
-//   flex-direction: column;
-//   flex: 1;
-// }
