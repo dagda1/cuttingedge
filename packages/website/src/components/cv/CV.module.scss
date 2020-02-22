@@ -1,9 +1,6 @@
 @import '../../assets/scss/main';
 
 .pdf-viewer {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
   @include mb(2);
 
   iframe {

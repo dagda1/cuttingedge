@@ -41,7 +41,7 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
             {heading}
           </Heading>
         )}
-        {children}
+        <div className={styles.content}>{children}</div>
       </main>
       <Footer />
     </div>
