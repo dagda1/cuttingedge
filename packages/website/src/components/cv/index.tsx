@@ -10,12 +10,10 @@ export const CV: React.FC = () => {
 
   const pdfUrl = ['', 'assets', CVFile].join('/');
 
-  console.log(pdfUrl);
-
   const viewerUrl = `/pdfjs/web/viewer.html?file=${pdfUrl}&fileName=${CVFile}&openFile=true&download=true&viewBookmark=true`;
 
   return (
-    <ApplicationLayout className={styles.main} heading="Current CV">
+    <ApplicationLayout className={styles.main}>
       <div className={styles['pdf-viewer']}>
         <h1>
           <a className={styles.link} href={Urls.Download}>

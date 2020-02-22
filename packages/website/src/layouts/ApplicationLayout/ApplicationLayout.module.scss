@@ -1,6 +1,8 @@
 @import '../../assets/scss/main';
 
 main {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   h1 {
     margin-top: 0;
