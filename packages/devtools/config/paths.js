@@ -76,6 +76,7 @@ module.exports = {
   appSrcIndexJs: './src',
   testsSetup: resolveApp('src/setupTests.js'),
   appHtml: resolveApp('public/index.html'),
+  appFavIco: resolveApp('public/favicon.ico'),
   nodePaths: nodePaths,
   ownPath: resolveOwn('.'),
   ownNodeModules: resolveOwn('node_modules'),

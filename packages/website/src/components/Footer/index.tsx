@@ -3,7 +3,6 @@ import { Cow, Github, Twitter } from '../Svg';
 import { footerPages } from '../../routes';
 import { NavLink } from 'react-router-dom';
 import { ExternalLink } from '@cutting/component-library';
-import { CuttingEdge } from '../../../constants';
 
 const styles = require('./Footer.module.scss');
 
@@ -43,11 +42,9 @@ export const Footer: React.FC = () => (
               </ExternalLink>
             </li>
           </ul>
-          <a className={styles.email} href="mailto:paul.cowan@cutting.scot">
-            paul.cowan@cutting.scot
-          </a>
+          <ExternalLink href="mailto:paul.cowan@cutting.scot">paul.cowan@cutting.scot</ExternalLink>
         </div>
-        <div className={styles.copyright}>Copyright © ${CuttingEdge} inc. All rights reserved</div>
+        <div className={styles.copyright}>Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</div>
       </div>
     </div>
   </footer>

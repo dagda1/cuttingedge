@@ -29,18 +29,12 @@ const { copyPublicFolder } = require('./utils/copy-public-folder');
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
 
-// First, read the current file sizes in build directory.
-// This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuildPublic)
   .then(previousFileSizes => {
-    // Remove all content but keep the directory so that
-    // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
 
-    // Merge with the public folder
     copyPublicFolder();
 
-    // Start the webpack build
     return build(previousFileSizes);
   })
   .then(
