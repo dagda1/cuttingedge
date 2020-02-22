@@ -6,8 +6,8 @@ import { Heading, ExternalLink } from '@cutting/component-library';
 export const Blog: React.FC = () => (
   <StaticLayout heading="My blog posts">
     <p>
-      I have recently started writing for <ExternalLink href="https://blog.logrocket.com/">Logrocket</ExternalLink>. My
-      personal blog is <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.
+      I blog professionally for <ExternalLink href="https://blog.logrocket.com/">Logrocket</ExternalLink>. My personal
+      blog is <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.
     </p>
     {posts.map((post: Post, i: number) => (
       <div key={i}>

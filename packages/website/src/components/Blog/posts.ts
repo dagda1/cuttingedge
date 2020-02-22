@@ -7,6 +7,29 @@ export interface Post {
 // eslint:disable
 export const posts: Post[] = [
   {
+    title: 'Act now to make your React website accessible',
+    summary:
+      'I do not care about the various WCAG 2.x standards. People use these standards as an excuse to do the bare minimum to make...',
+    link: 'https://blog.logrocket.com/make-your-react-website-accessible/',
+  },
+  {
+    title: 'Is typescript worth it?',
+    summary:
+      'I am, for the most part, a TypeScript fan but I do have some nagging doubts that I would like to discuss in this...',
+    link: 'https://blog.logrocket.com/is-typescript-worth-it/',
+  },
+  {
+    title: 'Automated testing is not working',
+    summary: 'Many, many reasons why we are on the wrong tract',
+    link: 'https://blog.logrocket.com/automated-testing-is-not-working/',
+  },
+  {
+    title: 'Frustrations with React Hooks',
+    summary:
+      'While the response to Hooks has been overwhelmingly positive, we are going to look at some of the not so popular parts of React..',
+    link: 'https://blog.logrocket.com/frustrations-with-react-hooks/',
+  },
+  {
     title: 'Cypress.io: the Selenium killer',
     summary:
       'One of the main differences between cypress.io and selenium is that selenium executes in a process outside of the browser or device we are testing. Cypress executes in the browser and in the same run loop as the device under test.',
@@ -16,8 +39,7 @@ export const posts: Post[] = [
     title: 'const assertions are the killer new TypeScript feature',
     summary:
       'For my money, const assertions are the killer new feature of TypeScript 3.4 and as I will explain later, I can omit a lot of tedious type declarations using this new feature.',
-    link:
-      'https://blog.logrocket.com/const-assertions-are-the-killer-new-typescript-feature-b73451f35802/',
+    link: 'https://blog.logrocket.com/const-assertions-are-the-killer-new-typescript-feature-b73451f35802/',
   },
   {
     title: 'Code splitting with typescript, webpack and React lazy',
@@ -39,8 +61,7 @@ export const posts: Post[] = [
   },
   {
     title: "Down the rabbit hole with typescript's mapped and lookup types",
-    summary:
-      'Two of the more abstract concepts in typescript are mapped types and lookup types.',
+    summary: 'Two of the more abstract concepts in typescript are mapped types and lookup types.',
     link: 'https://thesoftwaresimpleton.com/blog/2018/12/14/mapped-types',
   },
   {
