@@ -17,6 +17,7 @@
   "dependencies": {
     "@cutting/component-library": "2.1.0",
     "@cutting/connected-components": "2.1.0",
+    "@cutting/hooks": "2.1.0",
     "@cutting/util": "2.1.0",
     "body-parser": "^1.18.2",
     "cookie-parser": "1.4.4",

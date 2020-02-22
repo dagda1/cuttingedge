@@ -38,7 +38,9 @@ function runEslint() {
 
   console.log(`running eslint in ${chalk.yellow(eslintPath)} with ${chalk.yellow(args)}`);
 
-  const eslint = exec(`${eslintPath} ${args}`);
+  const eslint = exec(`${eslintPath} ${args}`, (err, stdout, stderr) => {
+    console.log(arguments);
+  });
 
   eslint.stdout.on('data', (data) => console.log(chalk.red(data)));
   eslint.stderr.on('data', (data) => console.error(chalk.red(data)));
@@ -49,6 +51,8 @@ function runEslint() {
     if (code !== 0) {
       process.exit(1);
     }
+
+    console.log('got here')
   });
 
 }
