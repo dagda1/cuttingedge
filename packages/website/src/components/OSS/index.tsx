@@ -9,7 +9,6 @@ const styles = require('./OSS.module.scss');
 export const OSS: React.FC = () => (
   <ApplicationLayout heading="Open Source Contributions">
     <div className={styles.container}>
-      <Heading level={1}>Open Source Software</Heading>
       <Heading level={2}>Community Pull Requests</Heading>
       <ul className={styles.community__list}>
         <li>

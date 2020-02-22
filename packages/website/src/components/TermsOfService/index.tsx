@@ -1,10 +1,10 @@
 import React from 'react';
-import { StaticLayout } from '../../layouts/StaticLayout';
+import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 
 const markdown = require('../../markdown/terms-of-service.md');
 
 export const TermsOfService: React.FC = () => (
-  <StaticLayout heading="Terms of Service">
+  <ApplicationLayout heading="Terms of Service">
     <div dangerouslySetInnerHTML={{ __html: markdown }} />
-  </StaticLayout>
+  </ApplicationLayout>
 );

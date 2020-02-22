@@ -28,20 +28,20 @@ app.use(express.static(publicDir));
 if (isProduction) {
   app.use(favicon(path.join(publicDir, 'favicon.ico')));
 
-  // app.use(
-  //   helmet.contentSecurityPolicy({
-  //     directives: {
-  //       defaultSrc: ["'self'", 'http://localhost:3001'],
-  //       scriptSrc: ["'self'", 'http://localhost:3001'],
-  //       styleSrc: ["'self'", 'http://localhost:3001'],
-  //       imgSrc: ["'self'", 'data:', 'http://localhost:3001'],
-  //       fontSrc: ["'self'", 'data:', 'http://localhost:3001'],
-  //       objectSrc: ["'self'", 'blob:', 'http://localhost:3001'],
-  //       frameSrc: ["'self'", 'http://localhost:3001'],
-  //     },
-  //     browserSniff: false,
-  //   }),
-  // );
+  app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'"],
+        imgSrc: ["'self'", 'data:'],
+        fontSrc: ["'self'", 'data:'],
+        objectSrc: ["'self'", 'blob:'],
+        frameSrc: ["'self'"],
+      },
+      browserSniff: false,
+    }),
+  );
 }
 
 app.get('/download', (req, res) => {

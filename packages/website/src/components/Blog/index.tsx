@@ -1,10 +1,10 @@
 import React from 'react';
 import { posts, Post } from './posts';
-import { StaticLayout } from '../../layouts/StaticLayout';
 import { Heading, ExternalLink } from '@cutting/component-library';
+import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 
 export const Blog: React.FC = () => (
-  <StaticLayout heading="My blog posts">
+  <ApplicationLayout heading="My blog posts">
     <p>
       I blog professionally for <ExternalLink href="https://blog.logrocket.com/">Logrocket</ExternalLink>. My personal
       blog is <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.
@@ -22,5 +22,5 @@ export const Blog: React.FC = () => (
         </p>
       </div>
     ))}
-  </StaticLayout>
+  </ApplicationLayout>
 );

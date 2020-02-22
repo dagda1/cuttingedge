@@ -4,6 +4,9 @@
   h2 {
     @include mb(4);
   }
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 .icon {
