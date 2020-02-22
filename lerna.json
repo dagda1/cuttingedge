@@ -12,5 +12,5 @@
     "packages/connected-components",
     "packages/website"
   ],
-  "version": "independent"
+  "version": "fixed"
 }

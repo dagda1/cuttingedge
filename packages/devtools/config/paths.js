@@ -49,9 +49,9 @@ const resolvedNodeModules = ['../node_modules', './node_modules']
 const libPackages = [
   'packages/util',
   'packages/hooks',
-  'packages/react-gel',
   'packages/component-library',
   'packages/connected-components',
+  'packages/use-shortcuts',
   'packages/react-typed-mousetrap',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
