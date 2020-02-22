@@ -24,7 +24,7 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
   const root = useRef<HTMLDivElement>(null);
 
   useScrollToTop({ ref: root });
-  // useDocumentTitle(heading);
+  useDocumentTitle(heading);
 
   return (
     <div className={styles['sr-anchor']} ref={root}>

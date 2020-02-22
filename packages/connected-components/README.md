@@ -1,6 +1,6 @@
 # @cutting/connected-components
 
-[Redux](https://redux.js.org/) is the defacto state management solution for react at this time of writing and any common redux functionality can be found here.
+[Formik](https://github.com/jaredpalmer/formik) components
 
 ```sh
 npm start

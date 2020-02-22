@@ -48,7 +48,6 @@
     "bowser": "^2.9.0",
     "nodemon": "^2.0.2",
     "react-hooks-testing-library": "^0.6.0",
-    "redux-devtools-extension": "2.13.8",
     "start-server-webpack-plugin": "^2.2.5",
     "stats-webpack-plugin": "^0.7.0",
     "ts-node": "^8.6.2",

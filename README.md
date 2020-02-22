@@ -11,7 +11,7 @@
  3. [@cutting/use-shortcuts](./packages/use-shortcuts/README.md) - Effortlessly create keyboard shortcust with this react hook.
  4. [@cutting/react-typed-mousetrap](./packages/devtools/README.md) - Declaratively manage shortcuts on react components.
  5. [@cutting/component-library](./packages/component-library/README.md) - Common react components that can be shared among all projects.  This ensures consistency in both styling and functionality.  The [atomic design methodology](http://atomicdesign.bradfrost.com/chapter-2/) will be used to add a logical grouping to the component structure.
- 6. [@cutting/connected-components](./packages/connected-components/README.md) - [Redux](https://redux.js.org/) is the defacto state management solution for react at this time of writing and any common redux functionality can be found here.
+ 6. [@cutting/connected-components](./packages/connected-components/README.md) - [Formik](https://github.com/jaredpalmer/formik) components
  7. [@cutting/website](./packages/website/README.md) - Frontend main site code for the [cutting website](http://cutting.**scot**])
 
 Each subpackage above can be deployed or imported as an npm package in isolation.
