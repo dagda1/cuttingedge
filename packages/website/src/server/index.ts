@@ -7,6 +7,7 @@ import { render } from './render';
 import path from 'path';
 import favicon from 'serve-favicon';
 import { Exception } from '../errors/Exception';
+// TODO: remove helmet-csp dependency when helmet-csp@2.9.5 is merged into helmet
 import csp from 'helmet-csp';
 
 const referrerPolicy = require('referrer-policy');
