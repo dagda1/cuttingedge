@@ -7,6 +7,7 @@ import { render } from './render';
 import path from 'path';
 import favicon from 'serve-favicon';
 import { Exception } from '../errors/Exception';
+import csp from 'helmet-csp';
 
 const referrerPolicy = require('referrer-policy');
 
@@ -29,7 +30,7 @@ if (isProduction) {
   app.use(favicon(path.join(publicDir, 'favicon.ico')));
 
   app.use(
-    helmet.contentSecurityPolicy({
+    csp({
       directives: {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'"],
@@ -39,7 +40,6 @@ if (isProduction) {
         objectSrc: ["'self'", 'blob:'],
         frameSrc: ["'self'"],
       },
-      browserSniff: false,
     }),
   );
 }
