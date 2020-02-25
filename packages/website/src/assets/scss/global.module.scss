@@ -65,9 +65,10 @@ button {
     color: $main-color;
   }
 
-  &:focus {
+  &:focus, &:focus h2 {
     @include accessible-outline;
     color: $black;
+    outline: none;
   }
 }
 
