@@ -6,8 +6,9 @@ import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 export const Blog: React.FC = () => (
   <ApplicationLayout heading="My blog posts">
     <p>
-      I blog professionally for <ExternalLink href="https://blog.logrocket.com/">Logrocket</ExternalLink>. My personal
-      blog is <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.
+      I blog professionally for{' '}
+      <ExternalLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</ExternalLink>. My personal blog is{' '}
+      <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.
     </p>
     {posts.map((post: Post, i: number) => (
       <div key={i}>
