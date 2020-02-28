@@ -1,5 +1,5 @@
 import React from 'react';
-import { posts, Post } from './posts';
+import { posts } from './posts';
 import { Heading, ExternalLink } from '@cutting/component-library';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 
@@ -7,10 +7,10 @@ export const Blog: React.FC = () => (
   <ApplicationLayout heading="My blog posts">
     <p>
       I blog professionally for{' '}
-      <ExternalLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</ExternalLink>. My personal blog is{' '}
-      <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.
+      <ExternalLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</ExternalLink>.<br />
+      My personal blog is <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.
     </p>
-    {posts.map((post: Post, i: number) => (
+    {posts.map((post, i) => (
       <div key={i}>
         <ExternalLink href={post.link} blank={false}>
           <Heading level={2}>{post.title}</Heading>
