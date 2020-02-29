@@ -25,3 +25,5 @@ export const CV: React.FC = () => {
     </ApplicationLayout>
   );
 };
+
+export default CV;

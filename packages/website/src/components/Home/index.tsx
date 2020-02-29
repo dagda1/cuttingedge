@@ -11,3 +11,5 @@ export const Home: React.FC = () => (
     </div>
   </ApplicationLayout>
 );
+
+export default Home;

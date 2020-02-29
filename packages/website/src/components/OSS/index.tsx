@@ -55,3 +55,5 @@ export const OSS: React.FC = () => (
     </div>
   </ApplicationLayout>
 );
+
+export default OSS;

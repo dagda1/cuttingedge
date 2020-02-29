@@ -1,19 +1,17 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
+import { loadableReady } from '@loadable/component';
 
 import { App } from '../containers/App';
 
-export const root = document.getElementById('root');
+const bootstrap = (): void => {
+  const root = document.getElementById('root');
 
-const render = (Component: React.FC): ReturnType<typeof hydrate> => {
-  hydrate(<Component />, root);
+  if (!root) {
+    return;
+  }
+
+  hydrate(<App />, root);
 };
 
-render(App);
-
-if (module.hot && __DEV__) {
-  module.hot.accept('../containers/App', () => {
-    const App = require('../containers/App').default;
-    render(App);
-  });
-}
+loadableReady(() => bootstrap());

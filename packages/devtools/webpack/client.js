@@ -22,7 +22,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const { loadableTransformer } = require('loadable-ts-transformer')
-
+const LoadablePlugin = require('@loadable/webpack-plugin');
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 
 function getUrlParts() {
@@ -137,7 +137,12 @@ const configure = (options) => {
         ? `${protocol}://${host}:${devServerPort}/`
         : '/',
       pathinfo: isDevelopment,
-      filename: 'static/js/[name].[contenthash].js',
+      filename: isProduction
+        ? 'static/js/[name].[contenthash:8].js'
+        : isDevelopment && 'static/js/bundle.js',
+      chunkFilename: isProduction
+        ? 'static/js/[name].[contenthash:8].chunk.js'
+        : isDevelopment && 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: (info) =>
         path.resolve(info.resourcePath).replace(/\\/g, '/'),
       hotUpdateChunkFilename: 'hot/hot-update.js',
@@ -266,8 +271,12 @@ const configure = (options) => {
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new MiniCssExtractPlugin({
-        filename:'static/css/[name].[chunkhash].css',
-        chunkFilename: 'static/css/[id].[chunkhash].css',
+        filename: isDevelopment
+          ? 'static/css/[name].css'
+          : 'static/css/[name].[contenthash].css',
+        chunkFilename: isDevelopment
+          ? 'static/css/[id].css'
+          : 'static/css/[id].[hash].css',
       }),
 
       new AssetsPlugin({

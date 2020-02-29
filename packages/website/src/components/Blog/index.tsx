@@ -25,3 +25,5 @@ export const Blog: React.FC = () => (
     ))}
   </ApplicationLayout>
 );
+
+export default Blog;

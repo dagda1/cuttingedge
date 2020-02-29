@@ -8,3 +8,5 @@ export const TermsOfService: React.FC = () => (
     <div dangerouslySetInnerHTML={{ __html: markdown }} />
   </ApplicationLayout>
 );
+
+export default TermsOfService;

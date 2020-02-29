@@ -8,3 +8,5 @@ export const PrivacyPolicy: React.FC = () => (
     <div dangerouslySetInnerHTML={{ __html: markdown }} />
   </ApplicationLayout>
 );
+
+export default PrivacyPolicy;

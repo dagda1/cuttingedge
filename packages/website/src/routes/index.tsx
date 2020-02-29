@@ -1,10 +1,5 @@
 import React from 'react';
-import { Home } from '../components/Home';
-import { OSS } from '../components/OSS';
-import { Blog } from '../components/Blog';
-import { CV } from '../components/cv';
-import { PrivacyPolicy } from '../components/PrivacyPolicy';
-import { TermsOfService } from '../components/TermsOfService';
+import loadable from '@loadable/component';
 
 import * as Urls from '../urls';
 import { RouteProps, Route, Switch } from 'react-router';
@@ -14,6 +9,13 @@ export type Page<P = unknown> = RouteProps & {
   path: string;
   footerPage?: boolean;
 } & P;
+
+const Home = loadable(() => import('src/components/Home'));
+const OSS = loadable(() => import('src/components/OSS'));
+const Blog = loadable(() => import('src/components/Blog'));
+const CV = loadable(() => import('src/components/cv'));
+const PrivacyPolicy = loadable(() => import('src/components/PrivacyPolicy'));
+const TermsOfService = loadable(() => import('src/components/TermsOfService'));
 
 /* eslint-disable react/display-name */
 export const routable: Page[] = [
