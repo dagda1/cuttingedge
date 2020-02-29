@@ -10,6 +10,7 @@ const resolve = require('resolve');
 const fs = require('fs-extra');
 const HappyPack = require('happypack');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -78,6 +79,8 @@ const configureCommon = (options) => {
     isAnalyse,
   } = getEnvironment();
   const env = getEnvVariables(options);
+
+  const {ssrBuild} = options;
 
   const config = {
     mode: isDevelopment ? 'development' : 'production',
@@ -159,6 +162,35 @@ const configureCommon = (options) => {
             ],
             loader: 'url-loader',
             options: { name: staticAssetName, limit: 10000, emitFile: isWeb },
+          },
+          {
+            test: /\.tsx$/,
+            enforce: 'pre',
+            use: [
+              {
+                loader: 'eslint-loader',
+                options: {
+                  fix: isProduction,
+                  emitWarning: isDevelopment,
+                  failOnWarning: isProduction,
+                  configFile: paths.esLintConfig,
+                },
+              },
+            ],
+          },
+          {
+            test: /\.tsx?$/,
+            exclude: /node_modules/,
+            loader: 'ts-loader',
+            options: {
+              configFile: paths.tsConfig,
+              transpileOnly: isDevelopment,
+              experimentalWatchApi: isDevelopment,
+              getCustomTransformers: () => ssrBuild ? {} : ({ before: [loadableTransformer] }),
+              compilerOptions: {
+                sourceMap: isDevelopment,
+              },
+            },
           },
           {
             test: /\.csv$/,

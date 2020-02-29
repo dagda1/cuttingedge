@@ -21,9 +21,9 @@ const sassOptions = require('./sassOptions');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
-const { loadableTransformer } = require('loadable-ts-transformer')
-const LoadablePlugin = require('@loadable/webpack-plugin');
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
+const { loadableTransformer } = require('loadable-ts-transformer');
+const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -50,7 +50,7 @@ const configure = (options) => {
 
   const { isDevelopment, isProduction } = getEnvironment();
 
-  const common = configureCommon(options);
+  const common = configureCommon({...options, ssrBuild });
 
   const devServerPort =
     isProduction || isStaticBuild ? port : parseInt(port, 10) + 1;
@@ -285,6 +285,10 @@ const configure = (options) => {
       }),
       isProduction && new webpack.HashedModuleIdsPlugin(),
       isProduction && new webpack.optimize.AggressiveMergingPlugin(),
+      ssrBuild && new LoadableWebpackPlugin({
+        outputAsset: false,
+        writeToDisk: { filename },
+      }),
     ].filter(Boolean),
   });
 

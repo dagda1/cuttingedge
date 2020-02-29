@@ -1,8 +1,8 @@
-const path = require('path');
+const paths = require('@cutting/devtools/config/paths');
 
 module.exports = {
   client: {
-    entries: { client: path.join(process.cwd(), 'src/client') },
+    entries: paths.appClientIndexJs,
     ssrBuild: true,
     hotReloading: true,
   },
