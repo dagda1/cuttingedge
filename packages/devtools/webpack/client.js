@@ -21,6 +21,7 @@ const sassOptions = require('./sassOptions');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
+const { loadableTransformer } = require('loadable-ts-transformer')
 
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 
@@ -136,18 +137,42 @@ const configure = (options) => {
         ? `${protocol}://${host}:${devServerPort}/`
         : '/',
       pathinfo: isDevelopment,
-      filename: isProduction
-        ? 'static/js/[name].[contenthash:8].js'
-        : isDevelopment && 'static/js/bundle.js',
-      chunkFilename: isProduction
-        ? 'static/js/[name].[contenthash:8].chunk.js'
-        : isDevelopment && 'static/js/[name].chunk.js',
+      filename: 'static/js/[name].[contenthash].js',
       devtoolModuleFilenameTemplate: (info) =>
         path.resolve(info.resourcePath).replace(/\\/g, '/'),
       hotUpdateChunkFilename: 'hot/hot-update.js',
     },
     module: {
       rules: [
+        {
+          test: /\.tsx$/,
+          enforce: 'pre',
+          use: [
+            {
+              loader: 'eslint-loader',
+              options: {
+                fix: isProduction,
+                emitWarning: isDevelopment,
+                failOnWarning: isProduction,
+                configFile: paths.esLintConfig,
+              },
+            },
+          ],
+        },
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          loader: 'ts-loader',
+          options: {
+            configFile: paths.tsConfig,
+            transpileOnly: true,
+            getCustomTransformers: () => ({ before: [loadableTransformer] }),
+            experimentalWatchApi: isDevelopment,
+            compilerOptions: {
+              sourceMap: isDevelopment,
+            },
+          },
+        },
         {
           test: cssRegex,
           use: [
@@ -241,12 +266,8 @@ const configure = (options) => {
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new MiniCssExtractPlugin({
-        filename: isDevelopment
-          ? 'static/css/[name].css'
-          : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment
-          ? 'static/css/[id].css'
-          : 'static/css/[id].[hash].css',
+        filename:'static/css/[name].[chunkhash].css',
+        chunkFilename: 'static/css/[id].[chunkhash].css',
       }),
 
       new AssetsPlugin({
