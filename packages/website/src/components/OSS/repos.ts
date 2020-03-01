@@ -8,8 +8,7 @@ export const repos: Repo[] = [
   {
     name: 'use-shortcuts',
     description: 'Effortlessly create keyboard shortcuts with this react hook.',
-    link:
-      'https://github.com/dagda1/cuttingedge/tree/master/packages/use-shortcuts',
+    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/use-shortcuts',
   },
   {
     name: 'styled-gel',

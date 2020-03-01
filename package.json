@@ -2,11 +2,10 @@
   "name": "cuttingedge",
   "private": true,
   "scripts": {
-    "bootstrap": "npx lerna bootstrap --hoist --strict --ignore-prepublish",
-    "build": "NODE_ENV=production ./packages/devtools/bin/cutting.js each-pkg npm run build",
-    "clean": "git clean -dfqX -- ./node_modules **/{dist,node_modules}/ ./packages/*/tsconfig*tsbuildinfo",
-    "start": "npm run build && lerna run start --scope @cutting/website",
-    "test": "CI=true cutting each-pkg npm test"
+    "build": "cutting each-pkg yarn build",
+    "build:libs": "cutting each-pkg -l yarn build",
+    "test": "CI=true cutting each-pkg yarn test",
+    "start": "yarn build && yarn --cwd packages/website/ ssr-start"
   },
   "dependencies": {
     "classnames": "2.2.6",
@@ -35,5 +34,8 @@
     "packages": [
       "packages/*"
     ]
+  },
+  "resolutions": {
+    "core-js": "3.6.4"
   }
 }

@@ -10,7 +10,7 @@ const resolve = require('resolve');
 const fs = require('fs-extra');
 const HappyPack = require('happypack');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-const LoadablePlugin = require('@loadable/webpack-plugin');
+const { loadableTransformer } = require('@loadable/webpack-plugin');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -184,9 +184,8 @@ const configureCommon = (options) => {
             loader: 'ts-loader',
             options: {
               configFile: paths.tsConfig,
-              transpileOnly: isDevelopment,
-              experimentalWatchApi: isDevelopment,
-              getCustomTransformers: () => ssrBuild ? {} : ({ before: [loadableTransformer] }),
+              transpileOnly: true,
+              getCustomTransformers: () => isNode ? {} : ({ before: [loadableTransformer] }),
               compilerOptions: {
                 sourceMap: isDevelopment,
               },

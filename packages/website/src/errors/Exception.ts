@@ -9,14 +9,14 @@ export class Exception extends Error {
    * @param status
    * @param message
    */
-  constructor(status: any, message?: string, innerException?: any) {
+  constructor(status: number, message?: string) {
     super(message);
 
     this.status = status;
     this.message = message || 'Internal Error';
   }
 
-  toString() {
+  toString(): string {
     return `${this.name} (${this.status}): ${this.message}`.trim();
   }
 }

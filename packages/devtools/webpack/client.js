@@ -74,17 +74,18 @@ const configure = (options) => {
   }
 
   if (ssrBuild) {
-    finalEntries = Object.keys(entries).reduce((acc, key) => {
-      const entry = entries[key];
+    const enumer = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
+    finalEntries = Object.keys(enumer).reduce((acc, key) => {
+      const entryPoints = Array.isArray(enumer[key]) ? enumer[key] : [enumer[key]];
 
       acc[key] =
         isDevelopment && options.hotReloading
           ? [
               require.resolve('react-dev-utils/webpackHotDevClient'),
               ...polyfills,
-              entry,
+              ...entryPoints,
             ]
-          : [...polyfills, entry];
+          : [...polyfills, ...entryPoints];
 
       return acc;
     }, {});
