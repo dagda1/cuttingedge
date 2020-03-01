@@ -4,23 +4,19 @@ const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const paths = require('../config/paths');
 const WebpackBar = require('webpackbar');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const resolve = require('resolve');
 const fs = require('fs-extra');
 const HappyPack = require('happypack');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-const { loadableTransformer } = require('@loadable/webpack-plugin');
-const logger = require('../scripts/logger');
+const { loadableTransformer } = require('loadable-ts-transformer');
+const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
   const isProduction = process.env.NODE_ENV === 'production';
-  const staticAssetName = isDevelopment
-    ? '[path][name].[ext]?[hash:8]'
-    : 'static/media/[hash:8].[ext]';
-  const isAnalyse =
-    process.argv.includes('--analyze') || process.argv.includes('--analyse');
+  const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : 'static/media/[hash:8].[ext]';
+  const isAnalyse = process.argv.includes('--analyze') || process.argv.includes('--analyse');
   const isVerbose = process.argv.includes('--verbose');
 
   return {
@@ -32,7 +28,7 @@ const getEnvironment = () => {
   };
 };
 
-const getEnvVariables = (options) => {
+const getEnvVariables = options => {
   const { isDevelopment } = getEnvironment();
   delete require.cache[require.resolve('../config/env')];
 
@@ -42,9 +38,7 @@ const getEnvVariables = (options) => {
     options.isNode ? 'node' : 'web',
     {},
     {
-      'process.env.NODE_ENV': isDevelopment
-        ? JSON.stringify('development')
-        : JSON.stringify('production'),
+      'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
       __DEV__: isDevelopment,
       __BROWSER__: !options.isNode,
     },
@@ -70,16 +64,13 @@ function findAppNodeModules(current, packageName = 'typescript', tries = 0) {
 
 const repoNodeModules = findAppNodeModules(__dirname);
 
-const configureCommon = (options) => {
+const configureCommon = options => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
-  const {
-    isProduction,
-    isDevelopment,
-    staticAssetName,
-    isAnalyse,
-  } = getEnvironment();
+  const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables(options);
+
+  const { ssrBuild } = options;
 
   const config = {
     mode: isDevelopment ? 'development' : 'production',
@@ -114,11 +105,7 @@ const configureCommon = (options) => {
       },
     },
     resolveLoader: {
-      modules: [
-        paths.appNodeModules,
-        paths.ownNodeModules,
-        repoNodeModules,
-      ].filter(Boolean),
+      modules: [paths.appNodeModules, paths.ownNodeModules, repoNodeModules].filter(Boolean),
     },
     module: {
       strictExportPresence: true,
@@ -148,17 +135,7 @@ const configureCommon = (options) => {
             options: { name: staticAssetName, emitFile: isWeb },
           },
           {
-            test: [
-              /\.bmp$/,
-              /\.gif$/,
-              /\.jpe?g$/,
-              /\.png$/,
-              /\.woff$/,
-              /\.woff2$/,
-              /\.eot$/,
-              /\.eot$/,
-              /\.ttf$/,
-            ],
+            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff$/, /\.woff2$/, /\.eot$/, /\.eot$/, /\.ttf$/],
             loader: 'url-loader',
             options: { name: staticAssetName, limit: 10000, emitFile: isWeb },
           },
@@ -184,10 +161,7 @@ const configureCommon = (options) => {
             options: {
               configFile: paths.tsConfig,
               transpileOnly: true,
-              getCustomTransformers: () => isNode ? {} : ({ before: [loadableTransformer] }),
-              compilerOptions: {
-                sourceMap: isDevelopment,
-              },
+              getCustomTransformers: () => (ssrBuild ? { before: [loadableTransformer] } : {}),
             },
           },
           {
@@ -218,7 +192,7 @@ const configureCommon = (options) => {
             ],
           },
         ],
-        (x) => !!x,
+        x => !!x,
       ),
     },
     plugins: Array.prototype.filter.call(
@@ -261,6 +235,11 @@ const configureCommon = (options) => {
           formatter: isProduction ? typescriptFormatter : undefined,
         }),
         isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
+        ssrBuild &&
+          new LoadableWebpackPlugin({
+            outputAsset: false,
+            writeToDisk: { filename: paths.appBuild },
+          }),
       ],
       Boolean,
     ),

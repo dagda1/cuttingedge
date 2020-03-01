@@ -7,6 +7,7 @@ const postcssOptions = require('./postCssoptions');
 const getLocalIdent = require('./getLocalIdent');
 const sassOptions = require('./sassOptions');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const path = require('path');
 
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 
@@ -25,15 +26,17 @@ getExternals = function(isDevelopment) {
         /\.(css|scss|sass|sss|less)$/,
         /^@babel/,
         /^@cutting/,
+        /^@loadable/,
         /^react$/,
-        /^react-dom$/
-      ].filter((x) => x)
-    })
+        /^react-dom$/,
+        /^loadable-ts-transformer$/,
+      ].filter(x => x),
+    }),
   ];
 };
 
 const configure = (options = {}) => {
-  const common = configureCommon({...options, isNode: true });
+  const common = configureCommon({ ...options, isNode: true, ssrBuild: true });
 
   options.isWeb = false;
   const { isDevelopment, isProduction } = getEnvironment();
@@ -56,24 +59,26 @@ const configure = (options = {}) => {
       nodeArgs.push(process.env.INSPECT);
     }
   }
-  
+
   const config = merge(common, {
     name: 'server',
     target: 'node',
     watch: isDevelopment,
     externals: getExternals(isDevelopment),
     watch: isDevelopment,
-    entry: isDevelopment ? [path.join(__dirname, '../prettyNodeErrors'), 'webpack/hot/poll?300', ...entries] : entries,
+    entry: isDevelopment
+      ? [path.join(__dirname, '../scripts/prettyNodeErrors'), 'webpack/hot/poll?300', ...entries]
+      : entries,
     node: {
       __console: false,
       __dirname: false,
-      __filename: false
+      __filename: false,
     },
     output: {
       path: paths.appBuild,
       filename: options.filename,
       publicPath: isDevelopment ? `http://${env.raw.HOST}:${devServerPort}/` : '/',
-      libraryTarget: 'commonjs2'
+      libraryTarget: 'commonjs2',
     },
     module: {
       rules: [
@@ -83,17 +88,17 @@ const configure = (options = {}) => {
             {
               loader: ExtractCssChunks.loader,
               options: {
-                hmr: isDevelopment
-              }
+                hmr: isDevelopment,
+              },
             },
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1
-              }
+                importLoaders: 1,
+              },
             },
-            { loader: 'postcss-loader', options: postcssOptions }
-          ]
+            { loader: 'postcss-loader', options: postcssOptions },
+          ],
         },
         {
           test: sassRegex,
@@ -102,18 +107,18 @@ const configure = (options = {}) => {
             {
               loader: ExtractCssChunks.loader,
               options: {
-                hmr: isDevelopment
-              }
+                hmr: isDevelopment,
+              },
             },
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1
-              }
+                importLoaders: 1,
+              },
             },
             { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader', options: sassOptions }
-          ]
+            { loader: 'sass-loader', options: sassOptions },
+          ],
         },
         {
           test: sassModuleRegex,
@@ -121,41 +126,41 @@ const configure = (options = {}) => {
             {
               loader: ExtractCssChunks.loader,
               options: {
-                hmr: isDevelopment
-              }
+                hmr: isDevelopment,
+              },
             },
             {
               loader: 'css-loader',
               options: {
                 importLoaders: 1,
                 modules: {
-                  getLocalIdent: getLocalIdent
-                }
-              }
+                  getLocalIdent: getLocalIdent,
+                },
+              },
             },
             { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader', options: sassOptions }
-          ]
-        }
-      ]
+            { loader: 'sass-loader', options: sassOptions },
+          ],
+        },
+      ],
     },
 
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1
+        maxChunks: 1,
       }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
       new ExtractCssChunks({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css'
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
       }),
       isDevelopment &&
         new StartServerPlugin({
           name: 'server.js',
-          nodeArgs
-        })
-    ].filter(Boolean)
+          nodeArgs,
+        }),
+    ].filter(Boolean),
   });
 
   return config;

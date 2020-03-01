@@ -23,7 +23,6 @@ const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 const { loadableTransformer } = require('loadable-ts-transformer');
-const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -39,7 +38,7 @@ function getUrlParts() {
   };
 }
 
-const configure = (options) => {
+const configure = options => {
   const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
   const { protocol, host, port } = getUrlParts();
 
@@ -50,10 +49,9 @@ const configure = (options) => {
 
   const { isDevelopment, isProduction } = getEnvironment();
 
-  const common = configureCommon({...options, ssrBuild });
+  const common = configureCommon({ ...options, ssrBuild });
 
-  const devServerPort =
-    isProduction || isStaticBuild ? port : parseInt(port, 10) + 1;
+  const devServerPort = isProduction || isStaticBuild ? port : parseInt(port, 10) + 1;
 
   let finalEntries;
 
@@ -80,20 +78,14 @@ const configure = (options) => {
 
       acc[key] =
         isDevelopment && options.hotReloading
-          ? [
-              require.resolve('react-dev-utils/webpackHotDevClient'),
-              ...polyfills,
-              ...entryPoints,
-            ]
+          ? [require.resolve('react-dev-utils/webpackHotDevClient'), ...polyfills, ...entryPoints]
           : [...polyfills, ...entryPoints];
 
       return acc;
     }, {});
   }
 
-  const template = publicDir
-    ? path.join(publicDir, 'index.html')
-    : 'public/index.html';
+  const template = publicDir ? path.join(publicDir, 'index.html') : 'public/index.html';
 
   const templateExists = fs.existsSync(template);
 
@@ -134,18 +126,13 @@ const configure = (options) => {
       : {},
     output: {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
-      publicPath: isDevelopment
-        ? `${protocol}://${host}:${devServerPort}/`
-        : '/',
+      publicPath: isDevelopment ? `${protocol}://${host}:${devServerPort}/` : '/',
       pathinfo: isDevelopment,
-      filename: isProduction
-        ? 'static/js/[name].[contenthash:8].js'
-        : isDevelopment && 'static/js/bundle.js',
+      filename: isProduction ? 'static/js/[name].[contenthash:8].js' : isDevelopment && 'static/js/bundle.js',
       chunkFilename: isProduction
         ? 'static/js/[name].[contenthash:8].chunk.js'
         : isDevelopment && 'static/js/[name].chunk.js',
-      devtoolModuleFilenameTemplate: (info) =>
-        path.resolve(info.resourcePath).replace(/\\/g, '/'),
+      devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
       hotUpdateChunkFilename: 'hot/hot-update.js',
     },
     module: {
@@ -255,7 +242,6 @@ const configure = (options) => {
           inject: true,
           template,
           minify: isProduction && {
-            removeComments: true,
             collapseWhitespace: true,
             removeRedundantAttributes: true,
             useShortDoctype: true,
@@ -267,17 +253,12 @@ const configure = (options) => {
             minifyURLs: true,
           },
         }),
-      isProduction &&
-        new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
+      isProduction && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new MiniCssExtractPlugin({
-        filename: isDevelopment
-          ? 'static/css/[name].css'
-          : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment
-          ? 'static/css/[id].css'
-          : 'static/css/[id].[hash].css',
+        filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
       }),
 
       new AssetsPlugin({
@@ -286,10 +267,6 @@ const configure = (options) => {
       }),
       isProduction && new webpack.HashedModuleIdsPlugin(),
       isProduction && new webpack.optimize.AggressiveMergingPlugin(),
-      ssrBuild && new LoadableWebpackPlugin({
-        outputAsset: false,
-        writeToDisk: { filename: paths.appBuild },
-      }),
     ].filter(Boolean),
   });
 

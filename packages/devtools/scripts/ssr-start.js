@@ -35,8 +35,8 @@ function main() {
 
   const buildConfig = merge(globalBuildConfig, localBuildConfig);
 
-  let clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
-  let serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
+  const clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
+  const serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
 
   const clientCompiler = compile(clientConfig);
   const serverCompiler = compile(serverConfig);
@@ -45,10 +45,10 @@ function main() {
     serverCompiler.watch(
       {
         quiet: true,
-        stats: 'none'
+        stats: 'none',
       },
       /* eslint-disable no-unused-vars */
-      stats => {}
+      stats => {},
     );
   });
 
@@ -78,4 +78,4 @@ function compile(config) {
 
 setPorts()
   .then(main)
-  .catch(console.error);
+  .catch(logger.error);
