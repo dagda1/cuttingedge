@@ -287,7 +287,7 @@ const configure = (options) => {
       isProduction && new webpack.optimize.AggressiveMergingPlugin(),
       ssrBuild && new LoadableWebpackPlugin({
         outputAsset: false,
-        writeToDisk: { filename },
+        writeToDisk: { filename: paths.appBuild },
       }),
     ].filter(Boolean),
   });
