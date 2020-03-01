@@ -17,8 +17,8 @@ const webpack = require('webpack');
 const fs = require('fs-extra');
 const chalk = require('chalk');
 const paths = require('../config/paths');
-const printErrors = require('razzle-dev-utils/printErrors');
-const logger = require('razzle-dev-utils/logger');
+const printErrors = require('./printErrors');
+const logger = require('./logger');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
@@ -40,26 +40,25 @@ measureFileSizesBeforeBuild(paths.appBuildPublic)
   .then(
     ({ stats, previousFileSizes, warnings }) => {
       if (warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings.\n'));
-        console.log(warnings.join('\n\n'));
-        console.log(
+        logger.info('Compiled with warnings.\n');
+        logger.info(warnings.join('\n\n'));
+        logger.info(
           '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
         );
-        console.log('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
+        logger.info('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
       } else {
-        console.log(chalk.green('Compiled successfully.\n'));
+        logger.info('Compiled successfully.\n');
       }
 
-      console.log('File sizes after gzip:\n');
+      logger.info('File sizes after gzip:\n');
 
       printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
-    },
-    err => {
-      console.log(chalk.red('Failed to compile.\n'));
-      console.log((err.message || err) + '\n');
+    }).catch(err => {
+      logger.error('Failed to compile.\n');
+      logger.error((err.message || err) + '\n');
+      logger.error(err.stack);
       process.exit(1);
-    }
-  );
+    });
 
 function build(previousFileSizes) {
   const globalBuildConfig = require(paths.jsBuildConfigPath);
@@ -73,8 +72,8 @@ function build(previousFileSizes) {
 
   process.noDeprecation = true; // turns off that loadQuery clutter.
 
-  console.log('Creating an optimized production build...');
-  console.log('Compiling client...');
+  logger.info('Creating an optimized production build...');
+  logger.info('Compiling client...');
 
   // First compile the client. We need it to properly output assets.json (asset
   // manifest file with the correct hashes on file names BEFORE we can start
@@ -82,7 +81,7 @@ function build(previousFileSizes) {
   return new Promise((resolve, reject) => {
     compile(clientConfig, (err, clientStats) => {
       if (err) {
-        console.error(err);
+        logger.error(err);
         reject(err);
         return;
       }
@@ -97,21 +96,19 @@ function build(previousFileSizes) {
         (typeof process.env.CI !== 'string' || process.env.CI.toLowerCase() !== 'false') &&
         clientMessages.warnings.length
       ) {
-        console.log(
-          chalk.yellow(
+        logger.info(
             '\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n'
-          )
-        );
+          );
 
         return reject(new Error(clientMessages.warnings.join('\n\n')));
       }
 
-      console.log(chalk.green('Compiled client successfully.'));
-      console.log('Compiling server...');
+      logger.info('Compiled client successfully.');
+      logger.info('Compiling server...');
 
       compile(serverConfig, (err, serverStats) => {
         if (err) {
-          console.error(err);
+          logger.error(err);
           reject(err);
           return;
         }
@@ -119,6 +116,7 @@ function build(previousFileSizes) {
         const serverMessages = formatWebpackMessages(serverStats.toJson({}, true));
 
         if (serverMessages.errors.length) {
+          logger.error(JSON.stringify({errors: serverMessages.errors}));
           return reject(new Error(serverMessages.errors.join('\n\n')));
         }
 
@@ -127,17 +125,15 @@ function build(previousFileSizes) {
           (typeof process.env.CI !== 'string' || process.env.CI.toLowerCase() !== 'false') &&
           serverMessages.warnings.length
         ) {
-          console.log(
-            chalk.yellow(
+          logger.warn(
               '\nTreating warnings as errors because process.env.CI = true.\n' +
                 'Most CI servers set it automatically.\n'
-            )
-          );
+            );
 
           return reject(new Error(serverMessages.warnings.join('\n\n')));
         }
 
-        console.log(chalk.green('Compiled server successfully.'));
+        logger.done('Compiled server successfully.');
 
         return resolve({
           stats: clientStats,

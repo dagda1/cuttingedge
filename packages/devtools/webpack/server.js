@@ -56,14 +56,14 @@ const configure = (options = {}) => {
       nodeArgs.push(process.env.INSPECT);
     }
   }
-
+  
   const config = merge(common, {
     name: 'server',
     target: 'node',
     watch: isDevelopment,
     externals: getExternals(isDevelopment),
     watch: isDevelopment,
-    entry: isDevelopment ? ['razzle-dev-utils/prettyNodeErrors', 'webpack/hot/poll?300', ...entries] : entries,
+    entry: isDevelopment ? [path.join(__dirname, '../prettyNodeErrors'), 'webpack/hot/poll?300', ...entries] : entries,
     node: {
       __console: false,
       __dirname: false,

@@ -18,7 +18,6 @@ module.exports = {
     src: ['src/**/*.ts', 'src/**/*.tsx'],
     options: {
       verbose: true,
-      typeRoots: [path.join(rootDir, '../node_modules/@types')],
       outDir: 'dist'
     }
   },

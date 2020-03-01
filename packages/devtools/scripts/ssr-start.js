@@ -6,10 +6,10 @@ const fs = require('fs-extra');
 const webpack = require('webpack');
 const paths = require('../config/paths');
 const devServer = require('webpack-dev-server');
-const printErrors = require('razzle-dev-utils/printErrors');
+const printErrors = require('./printErrors');
 const clearConsole = require('react-dev-utils/clearConsole');
-const logger = require('razzle-dev-utils/logger');
-const setPorts = require('razzle-dev-utils/setPorts');
+const logger = require('./logger');
+const setPorts = require('./setPorts');
 const merge = require('lodash/merge');
 
 const configureWebpackClient = require('../webpack/client').configure;
