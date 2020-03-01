@@ -28,8 +28,12 @@
     "@types/react-router": "^5.1.4",
     "@types/react-router-dom": "^5.1.3",
     "@types/webpack-env": "^1.15.1",
-    "lerna": "^3.20.2",
     "node-sass": "^4.13.1",
     "typescript": "^3.8.2"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   }
 }
