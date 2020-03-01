@@ -33,7 +33,7 @@ getExternals = function(isDevelopment) {
 };
 
 const configure = (options = {}) => {
-  const common = configureCommon({...options, ssrBuild: false     });
+  const common = configureCommon({...options, isNode: true });
 
   options.isWeb = false;
   const { isDevelopment, isProduction } = getEnvironment();

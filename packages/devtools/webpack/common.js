@@ -11,6 +11,7 @@ const fs = require('fs-extra');
 const HappyPack = require('happypack');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const { loadableTransformer } = require('@loadable/webpack-plugin');
+const logger = require('../scripts/logger');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -79,8 +80,6 @@ const configureCommon = (options) => {
     isAnalyse,
   } = getEnvironment();
   const env = getEnvVariables(options);
-
-  const {ssrBuild} = options;
 
   const config = {
     mode: isDevelopment ? 'development' : 'production',
