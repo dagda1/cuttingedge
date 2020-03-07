@@ -128,9 +128,9 @@ const configure = options => {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath: isDevelopment ? `${protocol}://${host}:${devServerPort}/` : '/',
       pathinfo: isDevelopment,
-      filename: isProduction ? 'static/js/[name].[contenthash:8].js' : isDevelopment && 'static/js/bundle.js',
+      filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : isDevelopment && 'static/js/bundle.js',
       chunkFilename: isProduction
-        ? 'static/js/[name].[contenthash:8].chunk.js'
+        ? 'static/js/[name].[chunkhash:8].chunk.js'
         : isDevelopment && 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
       hotUpdateChunkFilename: 'hot/hot-update.js',
@@ -228,15 +228,15 @@ const configure = options => {
             minifyURLs: true,
           },
         }),
-      isProduction && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
+      // isProduction && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new MiniCssExtractPlugin({
-        filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
+        filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined,
       }),
-      isProduction && new webpack.HashedModuleIdsPlugin(),
-      isProduction && new webpack.optimize.AggressiveMergingPlugin(),
+      // isProduction && new webpack.HashedModuleIdsPlugin(),
+      // isProduction && new webpack.optimize.AggressiveMergingPlugin(),
     ].filter(Boolean),
   });
 

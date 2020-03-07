@@ -12,8 +12,7 @@ export interface RendererOptions {
   res: Response;
 }
 
-const rootDir = process.cwd();
-const statsFile = path.resolve(rootDir, 'dist/loadable-stats.json');
+const statsFile = path.resolve(process.cwd(), 'dist/loadable-stats.json');
 
 export async function render({ req, res }: RendererOptions): Promise<void> {
   const extractor = new ChunkExtractor({
@@ -39,7 +38,6 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        ${extractor.getLinkTags()}
         ${extractor.getStyleTags()}   
       </head>
       <body>

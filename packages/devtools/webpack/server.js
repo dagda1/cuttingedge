@@ -6,6 +6,7 @@ const StartServerPlugin = require('start-server-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
 const getLocalIdent = require('./getLocalIdent');
 const sassOptions = require('./sassOptions');
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
@@ -25,7 +26,7 @@ getExternals = function(isDevelopment) {
         /\.(css|scss|sass|sss|less)$/,
         /^@babel/,
         /^@cutting/,
-        /^@loadable/,
+        /^@loadable\/component$/,
         /^react$/,
         /^react-dom$/,
         /^loadable-ts-transformer$/,
@@ -65,7 +66,9 @@ const configure = (options = {}) => {
     watch: isDevelopment,
     externals: getExternals(isDevelopment),
     watch: isDevelopment,
-    entry: { server: paths.appServerIndexJs },
+    entry: isDevelopment
+      ? [path.join(__dirname, '../scripts/prettyNodeErrors'), 'webpack/hot/poll?300', ...entries]
+      : entries,
     node: {
       __console: false,
       __dirname: false,
@@ -149,8 +152,8 @@ const configure = (options = {}) => {
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
       new MiniCssExtractPlugin({
-        filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
+        filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined,
       }),
       isDevelopment &&
         new StartServerPlugin({

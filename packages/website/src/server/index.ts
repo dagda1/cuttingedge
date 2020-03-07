@@ -5,9 +5,8 @@ import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction } from '@cutting/util';
 import { render } from './render';
 import path from 'path';
-// import favicon from 'serve-favicon';
+import favicon from 'serve-favicon';
 import { Exception } from '../errors/Exception';
-// TODO: remove helmet-csp dependency when helmet-csp@2.9.5 is merged into helmet
 import { contentSecurityPolicy } from 'helmet';
 
 const referrerPolicy = require('referrer-policy');
@@ -15,6 +14,10 @@ const referrerPolicy = require('referrer-policy');
 export const app = express();
 
 const rootDir = process.cwd();
+
+const publicDir = path.join(rootDir, isProduction ? 'dist/public' : 'public');
+
+app.use(express.static(publicDir));
 
 app.use(helmet());
 app.use(helmet.noCache());
@@ -26,11 +29,8 @@ app.use(express.static(process.env.CUTTING_ASSETS_MANIFEST as string));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const publicDir = path.join(rootDir, isProduction ? 'dist/public' : 'public');
-
 if (isProduction) {
-  // app.use(favicon(path.join(publicDir, 'favicon.ico')));
-
+  app.use(favicon(path.join(publicDir, 'favicon.ico')));
   app.use(
     contentSecurityPolicy({
       directives: {

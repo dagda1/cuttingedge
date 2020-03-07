@@ -61,7 +61,7 @@ module.exports = {
   appPath: resolveApp('.'),
   appBuild: resolveApp(`${appBuildDirName}`),
   appBuildPublic: resolveApp(`${appBuildDirName}/public`),
-  appManifest: resolveApp(`${appBuildDirName}/assets.json`),
+  appManifest: resolveApp(`${appBuildDirName}/loadable-stats.json`),
   appPublic: resolveApp('public'),
   appNodeModules: resolveApp('node_modules'),
   appSrc: resolveApp('src'),
