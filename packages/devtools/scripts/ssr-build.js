@@ -37,28 +37,28 @@ measureFileSizesBeforeBuild(paths.appBuildPublic)
 
     return build(previousFileSizes);
   })
-  .then(
-    ({ stats, previousFileSizes, warnings }) => {
-      if (warnings.length) {
-        logger.info('Compiled with warnings.\n');
-        logger.info(warnings.join('\n\n'));
-        logger.info(
-          '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
-        );
-        logger.info('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
-      } else {
-        logger.info('Compiled successfully.\n');
-      }
+  .then(({ stats, previousFileSizes, warnings }) => {
+    if (warnings.length) {
+      logger.info('Compiled with warnings.\n');
+      logger.info(warnings.join('\n\n'));
+      logger.info(
+        '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.',
+      );
+      logger.info('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
+    } else {
+      logger.info('Compiled successfully.\n');
+    }
 
-      logger.info('File sizes after gzip:\n');
+    logger.info('File sizes after gzip:\n');
 
-      printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
-    }).catch(err => {
-      logger.error('Failed to compile.\n');
-      logger.error((err.message || err) + '\n');
-      logger.error(err.stack);
-      process.exit(1);
-    });
+    printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
+  })
+  .catch(err => {
+    logger.error('Failed to compile.\n');
+    logger.error((err.message || err) + '\n');
+    logger.error(err.stack);
+    process.exit(1);
+  });
 
 function build(previousFileSizes) {
   const globalBuildConfig = require(paths.jsBuildConfigPath);
@@ -67,8 +67,8 @@ function build(previousFileSizes) {
 
   const buildConfig = merge(globalBuildConfig, localBuildConfig);
 
-  let clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
-  let serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
+  const clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
+  const serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
 
   process.noDeprecation = true; // turns off that loadQuery clutter.
 
@@ -97,8 +97,8 @@ function build(previousFileSizes) {
         clientMessages.warnings.length
       ) {
         logger.info(
-            '\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n'
-          );
+          '\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n',
+        );
 
         return reject(new Error(clientMessages.warnings.join('\n\n')));
       }
@@ -116,7 +116,7 @@ function build(previousFileSizes) {
         const serverMessages = formatWebpackMessages(serverStats.toJson({}, true));
 
         if (serverMessages.errors.length) {
-          logger.error(JSON.stringify({errors: serverMessages.errors}));
+          logger.error(JSON.stringify({ errors: serverMessages.errors }));
           return reject(new Error(serverMessages.errors.join('\n\n')));
         }
 
@@ -126,9 +126,9 @@ function build(previousFileSizes) {
           serverMessages.warnings.length
         ) {
           logger.warn(
-              '\nTreating warnings as errors because process.env.CI = true.\n' +
-                'Most CI servers set it automatically.\n'
-            );
+            '\nTreating warnings as errors because process.env.CI = true.\n' +
+              'Most CI servers set it automatically.\n',
+          );
 
           return reject(new Error(serverMessages.warnings.join('\n\n')));
         }
@@ -138,7 +138,7 @@ function build(previousFileSizes) {
         return resolve({
           stats: clientStats,
           previousFileSizes,
-          warnings: Object.assign({}, clientMessages.warnings, serverMessages.warnings)
+          warnings: Object.assign({}, clientMessages.warnings, serverMessages.warnings),
         });
       });
     });

@@ -6,7 +6,7 @@ const fs = require('fs');
 const url = require('url');
 
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
 
@@ -21,30 +21,27 @@ function ensureSlash(path, needsSlash) {
   }
 }
 
-const getPublicUrl = (appPackageJson) =>
-  envPublicUrl || require(appPackageJson).homepage;
+const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage;
 
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
-  const servedUrl =
-    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
+  const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
   return ensureSlash(servedUrl, true);
 }
 
-const resolveOwn = (relativePath) =>
-  path.resolve(__dirname, '..', relativePath);
+const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 
-const requireRelative = (relativePath) => path.resolve(__dirname, relativePath);
+const requireRelative = relativePath => path.resolve(__dirname, relativePath);
 
 const nodePaths = (process.env.NODE_PATH || '')
   .split(process.platform === 'win32' ? ';' : ':')
   .filter(Boolean)
-  .filter((folder) => !path.isAbsolute(folder))
+  .filter(folder => !path.isAbsolute(folder))
   .map(resolveApp);
 
 const resolvedNodeModules = ['../node_modules', './node_modules']
-  .filter((m) => fs.existsSync(m))
-  .map((m) => path.join(process.cwd(), m));
+  .filter(m => fs.existsSync(m))
+  .map(m => path.join(process.cwd(), m));
 
 const libPackages = [
   'packages/util',
@@ -53,11 +50,9 @@ const libPackages = [
   'packages/connected-components',
   'packages/use-shortcuts',
   'packages/react-typed-mousetrap',
-].map((dep) => path.resolve(process.cwd(), dep));
+].map(dep => path.resolve(process.cwd(), dep));
 
-const webAppPackages = ['packages/website'].map((dep) =>
-  path.resolve(process.cwd(), dep),
-);
+const webAppPackages = ['packages/website'].map(dep => path.resolve(process.cwd(), dep));
 
 const appBuildDirName = 'dist';
 

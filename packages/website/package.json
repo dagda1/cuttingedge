@@ -22,7 +22,6 @@
     "@loadable/component": "^5.12.0",
     "@loadable/server": "^5.12.0",
     "@types/loadable__server": "^5.12.0",
-    "assets-webpack-plugin": "^3.9.10",
     "body-parser": "^1.19.0",
     "cookie-parser": "1.4.4",
     "csurf": "^1.11.0",

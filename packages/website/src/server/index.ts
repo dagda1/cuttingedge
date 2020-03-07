@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction } from '@cutting/util';
 import { render } from './render';
 import path from 'path';
-import favicon from 'serve-favicon';
+// import favicon from 'serve-favicon';
 import { Exception } from '../errors/Exception';
 // TODO: remove helmet-csp dependency when helmet-csp@2.9.5 is merged into helmet
 import { contentSecurityPolicy } from 'helmet';
@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 const publicDir = path.join(rootDir, isProduction ? 'dist/public' : 'public');
 
 if (isProduction) {
-  app.use(favicon(path.join(publicDir, 'favicon.ico')));
+  // app.use(favicon(path.join(publicDir, 'favicon.ico')));
 
   app.use(
     contentSecurityPolicy({

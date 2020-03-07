@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
+import { ChunkExtractor } from '@loadable/server';
 import { HttpStatusCode } from '@cutting/util';
 import { StaticRouter, StaticRouterContext } from 'react-router';
 import { Routes } from '../routes';
@@ -13,21 +13,22 @@ export interface RendererOptions {
 }
 
 const rootDir = process.cwd();
+const statsFile = path.resolve(rootDir, 'dist/loadable-stats.json');
 
 export async function render({ req, res }: RendererOptions): Promise<void> {
   const extractor = new ChunkExtractor({
     entrypoints: ['client'],
-    statsFile: path.resolve(rootDir, 'dist/loadable-stats.json'),
+    statsFile,
   });
 
   const context: StaticRouterContext = {};
 
   const html = renderToString(
-    <ChunkExtractorManager extractor={extractor}>
+    extractor.collectChunks(
       <StaticRouter location={req.url} context={context}>
         <Routes />
-      </StaticRouter>
-    </ChunkExtractorManager>,
+      </StaticRouter>,
+    ),
   );
 
   res.status(HttpStatusCode.Ok).send(`

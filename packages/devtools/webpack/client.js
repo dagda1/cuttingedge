@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/camelcase */
 const merge = require('webpack-merge');
 const webpack = require('webpack');
@@ -10,7 +11,6 @@ const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
 const paths = require('../config/paths');
-const AssetsPlugin = require('assets-webpack-plugin');
 const fs = require('fs');
 const TerserPlugin = require('terser-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
@@ -22,7 +22,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
-const { loadableTransformer } = require('loadable-ts-transformer');
+const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -92,7 +92,7 @@ const configure = options => {
   const config = merge(common, {
     name: 'client',
     target: 'web',
-    entry: finalEntries,
+    entry: { client: paths.appClientIndexJs },
     devServer: isDevelopment
       ? {
           disableHostCheck: true,
@@ -137,35 +137,6 @@ const configure = options => {
     },
     module: {
       rules: [
-        {
-          test: /\.tsx$/,
-          enforce: 'pre',
-          use: [
-            {
-              loader: 'eslint-loader',
-              options: {
-                fix: isProduction,
-                emitWarning: isDevelopment,
-                failOnWarning: isProduction,
-                configFile: paths.esLintConfig,
-              },
-            },
-          ],
-        },
-        {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          loader: 'ts-loader',
-          options: {
-            configFile: paths.tsConfig,
-            transpileOnly: true,
-            getCustomTransformers: () => ({ before: [loadableTransformer] }),
-            experimentalWatchApi: isDevelopment,
-            compilerOptions: {
-              sourceMap: isDevelopment,
-            },
-          },
-        },
         {
           test: cssRegex,
           use: [
@@ -235,6 +206,10 @@ const configure = options => {
     },
 
     plugins: [
+      ssrBuild &&
+        new LoadableWebpackPlugin({
+          writeToDisk: { filename: paths.appBuild },
+        }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
 
       (devServer || (isStaticBuild && templateExists)) &&
@@ -259,11 +234,6 @@ const configure = options => {
       new MiniCssExtractPlugin({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
         chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
-      }),
-
-      new AssetsPlugin({
-        path: paths.appBuild,
-        filename: 'assets.json',
       }),
       isProduction && new webpack.HashedModuleIdsPlugin(),
       isProduction && new webpack.optimize.AggressiveMergingPlugin(),
@@ -293,13 +263,13 @@ const configure = options => {
               },
               output: {
                 ecma: 5,
-                comments: false,
+                comments: 'all',
                 ascii_only: true,
               },
             },
             parallel: true,
             cache: true,
-            sourceMap: false,
+            sourceMap: true,
           }),
           new OptimizeCSSAssetsPlugin({
             cssProcessorOptions: {
@@ -310,13 +280,8 @@ const configure = options => {
         ],
         splitChunks: ssrBuild
           ? {
-              cacheGroups: {
-                vendor: {
-                  test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-                  name: 'vendor',
-                  chunks: 'all',
-                },
-              },
+              name: 'vendor',
+              chunks: 'initial',
             }
           : {
               chunks: 'all',

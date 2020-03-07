@@ -6,8 +6,7 @@ const StartServerPlugin = require('start-server-webpack-plugin');
 const postcssOptions = require('./postCssoptions');
 const getLocalIdent = require('./getLocalIdent');
 const sassOptions = require('./sassOptions');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 
@@ -66,9 +65,7 @@ const configure = (options = {}) => {
     watch: isDevelopment,
     externals: getExternals(isDevelopment),
     watch: isDevelopment,
-    entry: isDevelopment
-      ? [path.join(__dirname, '../scripts/prettyNodeErrors'), 'webpack/hot/poll?300', ...entries]
-      : entries,
+    entry: { server: paths.appServerIndexJs },
     node: {
       __console: false,
       __dirname: false,
@@ -86,7 +83,7 @@ const configure = (options = {}) => {
           test: cssRegex,
           use: [
             {
-              loader: ExtractCssChunks.loader,
+              loader: MiniCssExtractPlugin.loader,
               options: {
                 hmr: isDevelopment,
               },
@@ -105,7 +102,7 @@ const configure = (options = {}) => {
           exclude: sassModuleRegex,
           use: [
             {
-              loader: ExtractCssChunks.loader,
+              loader: MiniCssExtractPlugin.loader,
               options: {
                 hmr: isDevelopment,
               },
@@ -124,7 +121,7 @@ const configure = (options = {}) => {
           test: sassModuleRegex,
           use: [
             {
-              loader: ExtractCssChunks.loader,
+              loader: MiniCssExtractPlugin.loader,
               options: {
                 hmr: isDevelopment,
               },
@@ -151,7 +148,7 @@ const configure = (options = {}) => {
       }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
-      new ExtractCssChunks({
+      new MiniCssExtractPlugin({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[contenthash].css',
         chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[hash].css',
       }),
