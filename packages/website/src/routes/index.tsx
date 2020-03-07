@@ -10,12 +10,26 @@ export type Page<P = unknown> = RouteProps & {
   footerPage?: boolean;
 } & P;
 
-const Home = loadable(() => import('src/components/Home'));
-const OSS = loadable(() => import('src/components/OSS'));
-const Blog = loadable(() => import('src/components/Blog'));
-const CV = loadable(() => import('src/components/cv'));
-const PrivacyPolicy = loadable(() => import('src/components/PrivacyPolicy'));
-const TermsOfService = loadable(() => import('src/components/TermsOfService'));
+const fallback = <div>loading....</div>;
+
+const Home = loadable(() => import('src/components/Home'), {
+  fallback,
+});
+const OSS = loadable(() => import('src/components/OSS'), {
+  fallback: <div>Loading...</div>,
+});
+const Blog = loadable(() => import('src/components/Blog'), {
+  fallback: <div>Loading...</div>,
+});
+const CV = loadable(() => import('src/components/cv'), {
+  fallback: <div>Loading...</div>,
+});
+const PrivacyPolicy = loadable(() => import('src/components/PrivacyPolicy'), {
+  fallback: <div>Loading...</div>,
+});
+const TermsOfService = loadable(() => import('src/components/TermsOfService'), {
+  fallback: <div>Loading...</div>,
+});
 
 /* eslint-disable react/display-name */
 export const routable: Page[] = [
