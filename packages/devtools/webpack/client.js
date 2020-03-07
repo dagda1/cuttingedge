@@ -92,7 +92,7 @@ const configure = options => {
   const config = merge(common, {
     name: 'client',
     target: 'web',
-    entry: { client: paths.appClientIndexJs },
+    entry: finalEntries,
     devServer: isDevelopment
       ? {
           disableHostCheck: true,
@@ -228,15 +228,12 @@ const configure = options => {
             minifyURLs: true,
           },
         }),
-      // isProduction && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new MiniCssExtractPlugin({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
         chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined,
       }),
-      // isProduction && new webpack.HashedModuleIdsPlugin(),
-      // isProduction && new webpack.optimize.AggressiveMergingPlugin(),
     ].filter(Boolean),
   });
 
