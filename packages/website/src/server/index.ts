@@ -24,7 +24,6 @@ app.use(helmet.noCache());
 
 app.use(referrerPolicy({ policy: 'no-referrer' }));
 app.use(helmet.hidePoweredBy());
-app.use(express.static(process.env.CUTTING_ASSETS_MANIFEST as string));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
