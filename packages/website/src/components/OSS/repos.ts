@@ -11,18 +11,18 @@ export const repos: Repo[] = [
     link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/use-shortcuts',
   },
   {
-    name: 'styled-gel',
-    description: 'Styled-components responsive flexbox grid',
-    link: 'https://github.com/dagda1/styled-gel',
+    name: '@cutting/hooks',
+    description: 'Useful reusable hooks',
+    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/hooks',
   },
   {
     name: 'cuttingedge',
-    description: 'Source code for this site',
+    description: 'Source code for this site. SSR, code splitting , hot reloading etc....',
     link: 'https://github.com/dagda1/cuttingedge',
   },
   {
-    name: 'knex-csv',
-    description: 'Add transformations to a csv upload',
-    link: 'https://github.com/dagda1/knex-csv-transformer',
+    name: 'styled-gel',
+    description: 'Styled-components responsive flexbox grid',
+    link: 'https://github.com/dagda1/styled-gel',
   },
 ];

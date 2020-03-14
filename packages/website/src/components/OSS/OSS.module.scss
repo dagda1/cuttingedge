@@ -62,5 +62,9 @@
 .community__list {
   li {
     display: block;
+
+    a {
+      text-decoration: underline;
+    }
   }
 }

@@ -30,6 +30,11 @@ export const OSS: React.FC = () => (
         <li>
           <ExternalLink href="https://github.com/airbnb/enzyme/pull/1408">enzyme</ExternalLink>
         </li>
+        <li>
+          <ExternalLink href="https://github.com/pulls?q=is%3Apr+author%3Adagda1+is%3Apublic+is%3Amerged">
+            And many, many, many others....
+          </ExternalLink>
+        </li>
       </ul>
       <Heading level={2}>My Work</Heading>
       <div className={styles.repos}>
