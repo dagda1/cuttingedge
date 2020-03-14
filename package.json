@@ -36,6 +36,7 @@
     ]
   },
   "resolutions": {
+    "acorn": "6.4.1",
     "core-js": "3.6.4"
   }
 }
