@@ -15,18 +15,23 @@ const fallback = <div>loading....</div>;
 const Home = loadable(() => import('src/components/Home'), {
   fallback,
 });
+
 const OSS = loadable(() => import('src/components/OSS'), {
-  fallback: <div>Loading...</div>,
+  fallback,
 });
+
 const Blog = loadable(() => import('src/components/Blog'), {
   fallback: <div>Loading...</div>,
 });
+
 const CV = loadable(() => import('src/components/cv'), {
   fallback: <div>Loading...</div>,
 });
+
 const PrivacyPolicy = loadable(() => import('src/components/PrivacyPolicy'), {
   fallback: <div>Loading...</div>,
 });
+
 const TermsOfService = loadable(() => import('src/components/TermsOfService'), {
   fallback: <div>Loading...</div>,
 });
@@ -46,7 +51,7 @@ export const routable: Page[] = [
     exact: true,
   },
   {
-    heading: 'Blog',
+    heading: 'Blogg',
     path: Urls.Blog,
     component: Blog,
     exact: true,

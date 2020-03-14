@@ -45,5 +45,5 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
         ${extractor.getScriptTags()}
       </body>
     </html>
-`);
+  `);
 }

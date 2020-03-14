@@ -63,7 +63,7 @@ const configure = options => {
       ? [
           `webpack-dev-server/client?${protocol}://${host}:${devServerPort}`,
           'webpack/hot/dev-server',
-          require.resolve('react-dev-utils/webpackHotDevClient'),
+          require.resolve('../scripts/webpackHotDevClient'),
           ...polyfills,
           ...entryPoints,
         ]
@@ -77,7 +77,7 @@ const configure = options => {
 
       acc[key] =
         isDevelopment && options.hotReloading
-          ? [require.resolve('react-dev-utils/webpackHotDevClient'), ...polyfills, ...entryPoints]
+          ? [require.resolve('../scripts/webpackHotDevClient'), ...polyfills, ...entryPoints]
           : [...polyfills, ...entryPoints];
 
       return acc;
@@ -132,7 +132,7 @@ const configure = options => {
         ? 'static/js/[name].[chunkhash:8].chunk.js'
         : isDevelopment && 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
-      hotUpdateChunkFilename: 'hot/hot-update.js',
+      hotUpdateChunkFilename: ssrBuild ? undefined : 'hot/hot-update.js',
     },
     module: {
       rules: [
