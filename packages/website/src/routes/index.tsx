@@ -51,7 +51,7 @@ export const routable: Page[] = [
     exact: true,
   },
   {
-    heading: 'Blogg',
+    heading: 'Blog',
     path: Urls.Blog,
     component: Blog,
     exact: true,
