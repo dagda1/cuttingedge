@@ -1,0 +1,19 @@
+import React from 'react';
+import { ErrorLabel, ErrorProps } from '.';
+import { render } from '@cutting/devtools/jest/react-testing-overrides';
+
+const wrap = (props: ErrorProps) => render(<ErrorLabel {...props} />);
+
+describe('ErrorLabel', () => {
+  it('should tag custom data-selector', () => {
+    const { getByTestId } = wrap({
+      id: 'error',
+      dataSelector: 'error-selector',
+      errorMessage: 'Error'
+    });
+
+    const label = getByTestId('error-selector') as HTMLLabelElement;
+
+    expect(label.innerHTML).toBe('Error');
+  });
+});

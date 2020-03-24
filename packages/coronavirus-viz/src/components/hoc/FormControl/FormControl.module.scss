@@ -1,0 +1,76 @@
+@import '../../../styles/index';
+
+.input {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: flex-start;
+
+  label,
+  input,
+  textarea,
+  select {
+    font: inherit;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  @include mq-m {
+    &.horizontal {
+      flex-direction: row;
+      flex: 1;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .wrapper {
+        flex: 1;
+      }
+
+      label {
+        @include mr(1);
+      }
+
+      [role='alert'] {
+        width: 100%;
+      }
+    }
+  }
+
+  label {
+    @include my(1);
+
+    @include mq-s {
+      @include my(2);
+    }
+
+    font-weight: normal;
+
+    &.strong {
+      font-weight: bold;
+    }
+
+    &.invalid {
+      display: inline-block;
+    }
+  }
+
+  @include mq-s {
+    @include mb(2);
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+
+.invalid {
+  display: inline-block;
+}
+
+.highlight {
+  @include highlight;
+}
+
+.label__additional {
+  @include ml(1);
+}
