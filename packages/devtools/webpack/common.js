@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -110,6 +109,14 @@ const configureCommon = options => {
       strictExportPresence: true,
       rules: Array.prototype.filter.call(
         [
+          {
+            test: /\.worker\.(js|ts)$/,
+            use: [
+              {
+                loader: 'worker-loader',
+              },
+            ],
+          },
           {
             exclude: [
               /\.html$/,

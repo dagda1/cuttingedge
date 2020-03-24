@@ -72,5 +72,10 @@
     "jest/**/*.js",
     "scripts/**/*.js",
     "webpack/**/*.js"
-  ]
+  ],
+  "devDependencies": {
+    "micromatch": "^4.0.2",
+    "workbox-webpack-plugin": "^5.0.0",
+    "worker-loader": "^2.0.0"
+  }
 }

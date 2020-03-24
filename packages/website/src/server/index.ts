@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction } from '@cutting/util';
-import { render } from './render';
+import { render, renderAppShell } from './render';
 import path from 'path';
 import favicon from 'serve-favicon';
 import { Exception } from '../errors/Exception';
@@ -56,6 +56,11 @@ app.get('/download', (req, res) => {
 
     console.log(err);
   });
+});
+
+app.get('/app-shell', async (req, res) => {
+  console.log('shite');
+  await renderAppShell({ req, res });
 });
 
 app.get('/*', async (req, res) => {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 'use strict';
 
 const path = require('path');
@@ -62,6 +61,7 @@ module.exports = {
   appBuild: resolveApp(`${appBuildDirName}`),
   appBuildPublic: resolveApp(`${appBuildDirName}/public`),
   appManifest: resolveApp(`${appBuildDirName}/loadable-stats.json`),
+  serviceWorkerFile: resolveApp(`${appBuildDirName}/service-worker.js`),
   appPublic: resolveApp('public'),
   appNodeModules: resolveApp('node_modules'),
   appSrc: resolveApp('src'),

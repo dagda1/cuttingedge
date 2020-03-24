@@ -3,36 +3,6 @@
     {
       "path": "."
     },
-    {
-      "path": "packages/eslint-config"
-    },
-    {
-      "path": "packages/use-shortcuts"
-    },
-    {
-      "path": "packages/react-typed-mousetrap"
-    },
-    {
-      "path": "packages/website"
-    },
-    {
-      "path": "packages/component-library"
-    },
-    {
-      "path": "packages/connected-components"
-    },
-    {
-      "path": "packages/react-gel"
-    },
-    {
-      "path": "packages/devtools"
-    },
-    {
-      "path": "packages/useful-types"
-    },
-    {
-      "path": "packages/util"
-    }
   ],
   "settings": {
     "typescript.tsdk": "cuttingedge/node_modules/typescript/lib",

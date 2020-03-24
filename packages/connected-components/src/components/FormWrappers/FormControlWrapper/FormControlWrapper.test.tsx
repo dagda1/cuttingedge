@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable jest/expect-expect */
 import React from 'react';
 import { FormControlWrapperProps, ConnectedFormInput } from '.';

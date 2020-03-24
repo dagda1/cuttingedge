@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/camelcase */
 const merge = require('webpack-merge');
 const webpack = require('webpack');
@@ -22,6 +21,7 @@ const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
+const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -233,6 +233,20 @@ const configure = options => {
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
         chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined,
       }),
+      ssrBuild &&
+        new GenerateSW({
+          swDest: paths.serviceWorkerFile,
+          exclude: [/\.map$/, /^(?:asset-)manifest.*\.js(?:on)?$/],
+          // these options encourage the ServiceWorkers to get in there fast
+          // and not allow any straggling "old" SWs to hang around
+          clientsClaim: true,
+          skipWaiting: true,
+        }),
+      ssrBuild &&
+        new InjectManifest({
+          swSrc: paths.serviceWorkerFile,
+          exclude: [/\.map$/, /^(?:asset-)manifest.*\.js(?:on)?$/],
+        }),
     ].filter(Boolean),
   });
 

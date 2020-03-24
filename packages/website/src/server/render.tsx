@@ -47,3 +47,27 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
     </html>
   `);
 }
+
+export const renderAppShell = async ({ res }: RendererOptions): Promise<void> => {
+  const extractor = new ChunkExtractor({
+    entrypoints: ['client'],
+    statsFile,
+  });
+
+  res.status(HttpStatusCode.Ok).send(`
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      ${extractor.getStyleTags()}   
+    </head>
+    <body>
+      <div id="root"></div>
+      ${extractor.getScriptTags()}
+    </body>
+  </html>
+`);
+};

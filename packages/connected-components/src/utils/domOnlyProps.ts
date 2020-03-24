@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const domOnlyProps = ({
   isSubmitting,
   isValidating,

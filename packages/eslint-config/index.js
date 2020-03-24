@@ -13,6 +13,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'jest', 'jest-formatting'],
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
     'no-var': 'warn',
     'jest/consistent-test-it': ['error', { fn: 'it' }],
     'jest-formatting/padding-before-test-blocks': 2,

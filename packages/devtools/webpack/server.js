@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
