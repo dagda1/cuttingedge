@@ -27,7 +27,9 @@ export type FormControlProps<E> = {
 export function FormControl<P, E extends HTMLElement>(
   Comp: React.ComponentType<P>,
 ): React.ComponentClass<FormControlProps<E> & P> {
-  return class FormControlWrapper extends React.Component<FormControlProps<E> & P> {
+  return class FormControlWrapper extends React.Component<
+    FormControlProps<E> & P
+  > {
     id?: string;
 
     constructor(props: FormControlProps<E> & P) {
@@ -66,10 +68,16 @@ export function FormControl<P, E extends HTMLElement>(
             htmlFor={this.id}
             required={required}
             strong={strong}
-            dataSelector={rest['data-selector'] && `${rest['data-selector']}-label`}
+            dataSelector={
+              rest['data-selector'] && `${rest['data-selector']}-label`
+            }
           >
             {label}
-            {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
+            {additionalLabel && (
+              <span className={styles.label__additional}>
+                {additionalLabel}
+              </span>
+            )}
           </Label>
           <div className={styles.wrapper}>
             <Comp
@@ -85,7 +93,10 @@ export function FormControl<P, E extends HTMLElement>(
           <div id={errorId} aria-hidden={!invalid} role="alert">
             {invalid && errorMessage && (
               <Error
-                dataSelector={(rest['data-selector'] && `${rest['data-selector']}-error`) || errorDataSelector}
+                dataSelector={
+                  (rest['data-selector'] && `${rest['data-selector']}-error`) ||
+                  errorDataSelector
+                }
                 errorMessage={errorMessage.toString()}
               />
             )}

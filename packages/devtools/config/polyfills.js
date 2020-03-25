@@ -19,5 +19,4 @@ window.requestAnimationFrame =
     }, 20);
   };
 
-window.cancelAnimationFrame =
-  window.cancelAnimationFrame || window.clearTimeout;
+window.cancelAnimationFrame = window.cancelAnimationFrame || window.clearTimeout;

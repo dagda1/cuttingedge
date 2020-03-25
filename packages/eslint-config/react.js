@@ -1,6 +1,5 @@
 module.exports = {
-  extends: ['./index',
-  'plugin:react/recommended'],
+  extends: ['./index', 'plugin:react/recommended'],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -8,17 +7,13 @@ module.exports = {
       jsx: true
     }
   },
-  extends: [
-    './index',
-    'plugin:react/recommended',
-    'plugin:jsx-a11y/recommended',
-  ],
+  extends: ['./index', 'plugin:react/recommended', 'plugin:jsx-a11y/recommended'],
   settings: {
     react: {
       pragma: 'React',
       version: 'detect'
     }
-  },  
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true

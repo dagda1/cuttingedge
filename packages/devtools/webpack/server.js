@@ -30,9 +30,9 @@ getExternals = function(isDevelopment) {
         /^@loadable\/component$/,
         /^react$/,
         /^react-dom$/,
-        /^loadable-ts-transformer$/,
-      ].filter(x => x),
-    }),
+        /^loadable-ts-transformer$/
+      ].filter(x => x)
+    })
   ];
 };
 
@@ -73,13 +73,13 @@ const configure = (options = {}) => {
     node: {
       __console: false,
       __dirname: false,
-      __filename: false,
+      __filename: false
     },
     output: {
       path: paths.appBuild,
       filename: options.filename,
       publicPath: isDevelopment ? `http://${env.raw.HOST}:${devServerPort}/` : '/',
-      libraryTarget: 'commonjs2',
+      libraryTarget: 'commonjs2'
     },
     module: {
       rules: [
@@ -89,17 +89,17 @@ const configure = (options = {}) => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: isDevelopment,
-              },
+                hmr: isDevelopment
+              }
             },
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
-              },
+                importLoaders: 1
+              }
             },
-            { loader: 'postcss-loader', options: postcssOptions },
-          ],
+            { loader: 'postcss-loader', options: postcssOptions }
+          ]
         },
         {
           test: sassRegex,
@@ -108,18 +108,18 @@ const configure = (options = {}) => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: isDevelopment,
-              },
+                hmr: isDevelopment
+              }
             },
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
-              },
+                importLoaders: 1
+              }
             },
             { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader', options: sassOptions },
-          ],
+            { loader: 'sass-loader', options: sassOptions }
+          ]
         },
         {
           test: sassModuleRegex,
@@ -127,41 +127,41 @@ const configure = (options = {}) => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: isDevelopment,
-              },
+                hmr: isDevelopment
+              }
             },
             {
               loader: 'css-loader',
               options: {
                 importLoaders: 1,
                 modules: {
-                  getLocalIdent: getLocalIdent,
-                },
-              },
+                  getLocalIdent: getLocalIdent
+                }
+              }
             },
             { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader', options: sassOptions },
-          ],
-        },
-      ],
+            { loader: 'sass-loader', options: sassOptions }
+          ]
+        }
+      ]
     },
 
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1,
+        maxChunks: 1
       }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
       new MiniCssExtractPlugin({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined,
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined
       }),
       isDevelopment &&
         new StartServerPlugin({
           name: 'server.js',
-          nodeArgs,
-        }),
-    ].filter(Boolean),
+          nodeArgs
+        })
+    ].filter(Boolean)
   });
 
   return config;

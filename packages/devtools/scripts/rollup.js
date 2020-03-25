@@ -27,7 +27,7 @@ async function generateBundledModule(inputFile, outputFile, format) {
   const bundle = await rollup({
     input: inputFile,
     // TODO: configure externals etc.
-    external: (id) => {
+    external: id => {
       console.log(id);
       return !id.startsWith('.') && !path.isAbsolute(id);
     },
@@ -48,7 +48,7 @@ async function generateBundledModule(inputFile, outputFile, format) {
         },
         tsconfigOverride: {
           compilerOptions: {
-            "target": "es5"
+            target: 'es5'
           }
         }
       }),
@@ -60,10 +60,10 @@ async function generateBundledModule(inputFile, outputFile, format) {
         compress: {
           keep_infinity: true,
           pure_getters: true,
-          passes: 10,
+          passes: 10
         },
         ecma: 5,
-        warnings: true,
+        warnings: true
       }),
       filesizePlugin()
     ]
@@ -84,19 +84,19 @@ async function build() {
   let candidates = [];
 
   [packageName, path.join(packageName, 'index'), 'index'].forEach(candidate => {
-   ['.ts', '.tsx'].forEach(fileType => {
-     candidates.push(path.join(paths.appSrc, `${candidate}${fileType}`));
-   })
+    ['.ts', '.tsx'].forEach(fileType => {
+      candidates.push(path.join(paths.appSrc, `${candidate}${fileType}`));
+    });
   });
 
   let rootFile = candidates.find(candidate => fs.existsSync(candidate));
 
-  console.log(rootFile)
+  console.log(rootFile);
 
   await Promise.all([generateBundledModule(rootFile, path.join(paths.appBuild, `${packageName}.js`), 'cjs')]);
 }
 
-build().catch((e) => {
+build().catch(e => {
   console.error(e);
   if (e.frame) {
     console.error(e.frame);

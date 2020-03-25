@@ -35,16 +35,14 @@ var FontInspector = (function FontInspectorClosure() {
     }
   }
   function selectFont(fontName, show) {
-    var divs = document.querySelectorAll('div[' + fontAttribute + '=' +
-                                         fontName + ']');
+    var divs = document.querySelectorAll('div[' + fontAttribute + '=' + fontName + ']');
     for (var i = 0, ii = divs.length; i < ii; ++i) {
       var div = divs[i];
       div.className = show ? 'debuggerShowText' : 'debuggerHideText';
     }
   }
   function textLayerClick(e) {
-    if (!e.target.dataset.fontName ||
-        e.target.tagName.toUpperCase() !== 'DIV') {
+    if (!e.target.dataset.fontName || e.target.tagName.toUpperCase() !== 'DIV') {
       return;
     }
     var fontName = e.target.dataset.fontName;
@@ -134,11 +132,14 @@ var FontInspector = (function FontInspectorClosure() {
       var select = document.createElement('input');
       select.setAttribute('type', 'checkbox');
       select.dataset.fontName = fontName;
-      select.addEventListener('click', (function(select, fontName) {
-        return (function() {
-           selectFont(fontName, select.checked);
-        });
-      })(select, fontName));
+      select.addEventListener(
+        'click',
+        (function(select, fontName) {
+          return function() {
+            selectFont(fontName, select.checked);
+          };
+        })(select, fontName)
+      );
       font.appendChild(select);
       font.appendChild(name);
       font.appendChild(document.createTextNode(' '));
@@ -154,7 +155,7 @@ var FontInspector = (function FontInspectorClosure() {
           resetSelection();
         }
       }, 2000);
-    },
+    }
   };
 })();
 
@@ -243,7 +244,7 @@ var StepperManager = (function StepperManagerClosure() {
     saveBreakPoints: function saveBreakPoints(pageIndex, bps) {
       breakPoints[pageIndex] = bps;
       sessionStorage.setItem('pdfjsBreakPoints', JSON.stringify(breakPoints));
-    },
+    }
   };
 })();
 
@@ -261,14 +262,16 @@ var Stepper = (function StepperClosure() {
   function simplifyArgs(args) {
     if (typeof args === 'string') {
       var MAX_STRING_LENGTH = 75;
-      return args.length <= MAX_STRING_LENGTH ? args :
-        args.substring(0, MAX_STRING_LENGTH) + '...';
+      return args.length <= MAX_STRING_LENGTH ? args : args.substring(0, MAX_STRING_LENGTH) + '...';
     }
     if (typeof args !== 'object' || args === null) {
       return args;
     }
-    if ('length' in args) { // array
-      var simpleArgs = [], i, ii;
+    if ('length' in args) {
+      // array
+      var simpleArgs = [],
+        i,
+        ii;
       var MAX_ITEMS = 10;
       for (i = 0, ii = Math.min(MAX_ITEMS, args.length); i < ii; i++) {
         simpleArgs.push(simplifyArgs(args[i]));
@@ -330,8 +333,7 @@ var Stepper = (function StepperClosure() {
       }
 
       var chunk = document.createDocumentFragment();
-      var operatorsToDisplay = Math.min(MAX_OPERATORS_COUNT,
-                                        operatorList.fnArray.length);
+      var operatorsToDisplay = Math.min(MAX_OPERATORS_COUNT, operatorList.fnArray.length);
       for (var i = this.operatorListIdx; i < operatorsToDisplay; i++) {
         var line = c('tr');
         line.className = 'line';
@@ -433,7 +435,7 @@ var Stepper = (function StepperClosure() {
           row.style.backgroundColor = null;
         }
       }
-    },
+    }
   };
   return Stepper;
 })();
@@ -484,7 +486,7 @@ var Stats = (function Stats() {
       statsDiv.textContent = stat.toString();
       wrapper.appendChild(title);
       wrapper.appendChild(statsDiv);
-      stats.push({ pageNumber, div: wrapper, });
+      stats.push({ pageNumber, div: wrapper });
       stats.sort(function(a, b) {
         return a.pageNumber - b.pageNumber;
       });
@@ -496,7 +498,7 @@ var Stats = (function Stats() {
     cleanup() {
       stats = [];
       clear(this.panel);
-    },
+    }
   };
 })();
 
@@ -507,13 +509,10 @@ window.PDFBug = (function PDFBugClosure() {
   var activePanel = null;
 
   return {
-    tools: [
-      FontInspector,
-      StepperManager,
-      Stats
-    ],
+    tools: [FontInspector, StepperManager, Stats],
     enable(ids) {
-      var all = false, tools = this.tools;
+      var all = false,
+        tools = this.tools;
       if (ids.length === 1 && ids[0] === 'all') {
         all = true;
       }
@@ -566,12 +565,15 @@ window.PDFBug = (function PDFBugClosure() {
         var panel = document.createElement('div');
         var panelButton = document.createElement('button');
         panelButton.textContent = tool.name;
-        panelButton.addEventListener('click', (function(selected) {
-          return function(event) {
-            event.preventDefault();
-            self.selectPanel(selected);
-          };
-        })(i));
+        panelButton.addEventListener(
+          'click',
+          (function(selected) {
+            return function(event) {
+              event.preventDefault();
+              self.selectPanel(selected);
+            };
+          })(i)
+        );
         controls.appendChild(panelButton);
         panels.appendChild(panel);
         tool.panel = panel;
@@ -579,9 +581,13 @@ window.PDFBug = (function PDFBugClosure() {
         if (tool.enabled) {
           tool.init(pdfjsLib);
         } else {
-          panel.textContent = tool.name + ' is disabled. To enable add ' +
-                              ' "' + tool.id + '" to the pdfBug parameter ' +
-                              'and refresh (separate multiple by commas).';
+          panel.textContent =
+            tool.name +
+            ' is disabled. To enable add ' +
+            ' "' +
+            tool.id +
+            '" to the pdfBug parameter ' +
+            'and refresh (separate multiple by commas).';
         }
         buttons.push(panelButton);
       }
@@ -614,6 +620,6 @@ window.PDFBug = (function PDFBugClosure() {
           tools[j].panel.setAttribute('hidden', 'true');
         }
       }
-    },
+    }
   };
 })();

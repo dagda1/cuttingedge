@@ -1,6 +1,7 @@
 import React from 'react';
 
-export interface ExternalLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface ExternalLinkProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   dataSelector?: string;
   blank?: boolean;
   ariaLabel?: string;

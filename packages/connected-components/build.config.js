@@ -5,6 +5,6 @@ module.exports = {
     entries: paths.devDir,
     publicDir: paths.devDirPublic,
     ssrBuild: false,
-    isStaticBuild: true,
-  },
+    isStaticBuild: true
+  }
 };

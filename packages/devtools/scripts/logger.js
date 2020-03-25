@@ -6,33 +6,33 @@ const logTypes = {
   warn: {
     bg: 'bgYellow',
     msg: ' WARNING ',
-    text: 'yellow',
+    text: 'yellow'
   },
   debug: {
     bg: 'bgMagenta',
     msg: ' DEBUG ',
-    text: 'magenta',
+    text: 'magenta'
   },
   info: {
     bg: 'bgCyan',
     msg: ' INFO ',
-    text: 'cyan',
+    text: 'cyan'
   },
   error: {
     bg: 'bgRed',
     msg: ' ERROR ',
-    text: 'red',
+    text: 'red'
   },
   start: {
     bg: 'bgBlue',
     msg: ' WAIT ',
-    text: 'blue',
+    text: 'blue'
   },
   done: {
     bg: 'bgGreen',
     msg: ' DONE ',
-    text: 'green',
-  },
+    text: 'green'
+  }
 };
 
 const write = (type, text, verbose) => {
@@ -41,8 +41,7 @@ const write = (type, text, verbose) => {
 
   const logType = logTypes[type];
 
-  textToLog +=
-    chalk[logType.bg].black(logType.msg) + ' ' + chalk[logType.text](text);
+  textToLog += chalk[logType.bg].black(logType.msg) + ' ' + chalk[logType.text](text);
 
   if (verbose) {
     if (typeof verbose === 'object') {
@@ -93,5 +92,5 @@ module.exports = {
   warn,
   error,
   start,
-  done,
+  done
 };

@@ -1,10 +1,12 @@
-/* eslint-disable no-console */
+'use strict';
 const fs = require('fs-extra');
 const path = require('path');
 const paths = require('../config/paths');
 const copy = require('copy');
 const chalk = require('chalk');
 const { exec } = require('child_process');
+const { findFile } = require('../config/utils');
+const logger = require('./logger');
 const MaxTries = 15;
 
 function findExecutable(current, executable, tries = 0) {
@@ -22,29 +24,20 @@ function findExecutable(current, executable, tries = 0) {
 }
 
 function runEslint() {
-  console.log(`Running eslint`);
+  logger.start(`Running eslint`);
   const eslintPath = findExecutable(__dirname, 'eslint');
 
-  const esLintConfig = paths.esLintConfig;
+  const eslintConfig = findFile(process.cwd(), '.eslintrc.json');
 
-  if(!fs.existsSync(esLintConfig)){
-    console.log(`no config file found at ${esLintConfig}`);
-    throw new Error(`no config file found at ${esLintConfig}`);
-  }
-
-  console.log(chalk.yellow(`using config ${esLintConfig}`));
-
-  const args = ` --ext .ts,.tsx ${paths.appSrc} --ignore-pattern *.test.* -c ${esLintConfig} --fix`;
-
-  console.log(`running eslint in ${chalk.yellow(eslintPath)} with ${chalk.yellow(args)}`);
+  const args = ` --ext .ts,.tsx --max-warnings 0 ${paths.appSrc} --ignore-pattern *.test.* -c ${eslintConfig} --fix`;
 
   const eslint = exec(`${eslintPath} ${args}`);
 
-  eslint.stdout.on('data', (data) => console.log(chalk.red(data)));
-  eslint.stderr.on('data', (data) => console.error(chalk.red(data)));
+  eslint.stdout.on('data', data => logger.info(chalk.red(data)));
+  eslint.stderr.on('data', data => logger.error(chalk.red(data)));
 
-  eslint.on('close', (code) => {
-    console.log(chalk.cyan(`eslint exited with code ${code}`));
+  eslint.on('close', code => {
+    logger.done(`eslint exited with code ${code}`);
 
     if (code !== 0) {
       process.exit(1);
@@ -68,16 +61,15 @@ function runTypeScriptBuild() {
 
   const tscCommand = `${tscPath} ${process.argv.slice(2).join(' ')}`;
 
-  console.log(`cwd = ${chalk.red(process.cwd())}`);
-  console.log(chalk.cyan(`running tsc in ${chalk.yellow(tscPath)} with ${tscCommand}`));
+  logger.start(chalk.cyan(`running tsc`));
 
   const tsc = exec(tscCommand);
 
-  tsc.stdout.on('data', (data) => console.log(chalk.red(data)));
-  tsc.stderr.on('data', (data) => console.error(chalk.red(data)));
+  tsc.stdout.on('data', data => logger.info(data));
+  tsc.stderr.on('data', data => logger.error(chalk.red(data)));
 
-  tsc.on('close', (code) => {
-    console.log(chalk.cyan(`tsc exited with code ${code}`));
+  tsc.on('close', code => {
+    logger.done(`tsc exited with code ${code}`);
 
     if (code !== 0) {
       process.exit(1);
@@ -92,20 +84,20 @@ function build() {
     runTypeScriptBuild();
 
     const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg'].map(
-      (pattern) => `${paths.appSrc}/**/${pattern}`
+      pattern => `${paths.appSrc}/**/${pattern}`
     );
 
-    copy(patterns, paths.appBuild, (err) => {
+    copy(patterns, paths.appBuild, err => {
       if (err) {
         throw err;
       }
     });
   } catch (e) {
-    console.error(e);
-    console.log(e.stack);
+    logger.error(e);
+    logger.error(e.stack);
 
     if (e.frame) {
-      console.error(e.frame);
+      logger.error(e.frame);
     }
 
     process.exit(1);

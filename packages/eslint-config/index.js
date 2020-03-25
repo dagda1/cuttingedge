@@ -5,29 +5,57 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
     'plugin:@typescript-eslint/recommended',
-    'plugin:jsx-a11y/recommended',
     'plugin:jest/recommended',
+    'plugin:jest-formatting/recommended',
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended'
   ],
-  plugins: ['@typescript-eslint', 'jest', 'jest-formatting'],
+  plugins: ['@typescript-eslint'],
   rules: {
-    '@typescript-eslint/no-var-requires': 'off',
-    'no-var': 'warn',
+    '@typescript-eslint/no-var-requires': ['off'],
+    '@typescript-eslint/explicit-member-accessibility': ['off'],
+    '@typescript-eslint/explicit-function-return-type': ['off'],
+
+    // TODO: we really should turn this on
+    '@typescript-eslint/no-explicit-any': ['off'],
+    '@typescript-eslint/no-non-null-assertion': ['off'],
+    '@typescript-eslint/no-parameter-properties': ['off'],
+
     'jest/consistent-test-it': ['error', { fn: 'it' }],
     'jest-formatting/padding-before-test-blocks': 2,
     'jest-formatting/padding-before-describe-blocks': 2,
-    semi: ['error', 'always'],
+    'jest/expect-expect': ['off'],
+
+    'no-var': 'warn',
     'prefer-const': 'warn',
     'prettier/prettier': [
       'error',
       {
-        printWidth: 120,
+        printWidth: 80,
         singleQuote: true,
         semi: true,
         tabWidth: 2,
         trailingComma: 'all'
       }
-    ]
-  }
+    ],
+    semi: ['error', 'always']
+  },
+  overrides: [
+    {
+      files: ['**/*.js'],
+      rules: {
+        'prettier/prettier': [
+          'error',
+          {
+            printWidth: 140,
+            singleQuote: true,
+            semi: true,
+            tabWidth: 2,
+            trailingComma: 'all'
+          }
+        ],
+        semi: ['error', 'always']
+      }
+    }
+  ]
 };

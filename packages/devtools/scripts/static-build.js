@@ -6,7 +6,7 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', err => {
   throw err;
 });
 
@@ -15,7 +15,7 @@ const path = require('path');
 // Ensure environment variables are read.
 require('../config/env');
 
-const requireRelative = (relativePath) => require(path.join(__dirname, relativePath));
+const requireRelative = relativePath => require(path.join(__dirname, relativePath));
 
 const webpack = require('webpack');
 const fs = require('fs-extra');
@@ -31,7 +31,7 @@ const configureWebpackClient = requireRelative('../webpack/client').configure;
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
-  .then((previousFileSizes) => {
+  .then(previousFileSizes => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
@@ -47,9 +47,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
       if (warnings.length) {
         console.log(chalk.yellow('Compiled with warnings.\n'));
         console.log(warnings.join('\n\n'));
-        console.log(
-          '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
-        );
+        console.log('\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.');
         console.log('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
       } else {
         console.log(chalk.green('Compiled successfully.\n'));
@@ -58,11 +56,11 @@ measureFileSizesBeforeBuild(paths.appBuild)
       printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
       console.log();
     },
-    (err) => {
+    err => {
       console.log(chalk.red('Failed to compile.\n'));
       console.log((err.message || err) + '\n');
       process.exit(1);
-    }
+    },
   );
 
 function build(previousFileSizes) {
@@ -72,7 +70,7 @@ function build(previousFileSizes) {
 
   const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
 
-  let clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
+  const clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
 
   console.log(chalk.cyan('Creating an optimized production build...'));
   console.log(chalk.cyan('Compiling client...'));
@@ -92,9 +90,7 @@ function build(previousFileSizes) {
         clientMessages.warnings.length
       ) {
         console.log(
-          chalk.yellow(
-            '\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n'
-          )
+          chalk.yellow('\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n'),
         );
         return reject(new Error(clientMessages.warnings.join('\n\n')));
       }
@@ -104,7 +100,7 @@ function build(previousFileSizes) {
       return resolve({
         stats: clientStats,
         previousFileSizes,
-        warnings: clientMessages.warnings
+        warnings: clientMessages.warnings,
       });
     });
   });
@@ -117,7 +113,7 @@ function copyPublicFolder() {
 
   fs.copySync(paths.appPublic, paths.appBuildPublic, {
     dereference: true,
-    filter: (file) => file !== paths.appHtml
+    filter: file => file !== paths.appHtml,
   });
 }
 

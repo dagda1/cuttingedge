@@ -5,7 +5,7 @@
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', err => {
   throw err;
 });
 
@@ -49,7 +49,7 @@ const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
 choosePort(HOST, DEFAULT_PORT)
-  .then((port) => {
+  .then(port => {
     if (port == null) {
       // We have not found a port.
       return;
@@ -63,8 +63,8 @@ choosePort(HOST, DEFAULT_PORT)
     config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic);
 
     const devSocket = {
-      warnings: (warnings) => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
-      errors: (errors) => devServer.sockWrite(devServer.sockets, 'errors', errors)
+      warnings: warnings => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
+      errors: errors => devServer.sockWrite(devServer.sockets, 'errors', errors)
     };
 
     const compiler = createCompiler({ webpack, config, appName, devSocket, useTypeScript: true, urls, useYarn: false });
@@ -72,7 +72,7 @@ choosePort(HOST, DEFAULT_PORT)
     const devServer = new WebpackDevServer(compiler, config.devServer);
 
     // Launch WebpackDevServer.
-    devServer.listen(port, HOST, (err) => {
+    devServer.listen(port, HOST, err => {
       if (err) {
         return console.log(err);
       }
@@ -90,7 +90,7 @@ choosePort(HOST, DEFAULT_PORT)
       });
     });
   })
-  .catch((err) => {
+  .catch(err => {
     if (err && err.message) {
       console.log(err.message);
     }

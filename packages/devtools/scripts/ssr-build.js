@@ -42,7 +42,7 @@ measureFileSizesBeforeBuild(paths.appBuildPublic)
       logger.info('Compiled with warnings.\n');
       logger.info(warnings.join('\n\n'));
       logger.info(
-        '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.',
+        '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
       );
       logger.info('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
     } else {
@@ -97,7 +97,7 @@ function build(previousFileSizes) {
         clientMessages.warnings.length
       ) {
         logger.info(
-          '\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n',
+          '\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n'
         );
 
         return reject(new Error(clientMessages.warnings.join('\n\n')));
@@ -126,8 +126,7 @@ function build(previousFileSizes) {
           serverMessages.warnings.length
         ) {
           logger.warn(
-            '\nTreating warnings as errors because process.env.CI = true.\n' +
-              'Most CI servers set it automatically.\n',
+            '\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n'
           );
 
           return reject(new Error(serverMessages.warnings.join('\n\n')));
@@ -138,7 +137,7 @@ function build(previousFileSizes) {
         return resolve({
           stats: clientStats,
           previousFileSizes,
-          warnings: Object.assign({}, clientMessages.warnings, serverMessages.warnings),
+          warnings: Object.assign({}, clientMessages.warnings, serverMessages.warnings)
         });
       });
     });

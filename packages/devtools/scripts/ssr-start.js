@@ -45,10 +45,10 @@ function main() {
     serverCompiler.watch(
       {
         quiet: true,
-        stats: 'none',
+        stats: 'none'
       },
       /* eslint-disable no-unused-vars */
-      stats => {},
+      stats => {}
     );
   });
 

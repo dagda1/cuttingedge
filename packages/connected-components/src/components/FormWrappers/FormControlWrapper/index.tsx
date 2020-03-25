@@ -1,5 +1,11 @@
 import React from 'react';
-import { FormikHandlers, FieldConfig, FormikState, FormikComputedProps, getIn } from 'formik';
+import {
+  FormikHandlers,
+  FieldConfig,
+  FormikState,
+  FormikComputedProps,
+  getIn,
+} from 'formik';
 import { getDisplayName } from '@cutting/util';
 import { FormControlProps, FormInput } from '@cutting/component-library';
 
@@ -21,7 +27,9 @@ export function renderFormControl<Props, InputType extends HTMLElement>(
   Comp: React.ComponentType<FormControlProps<InputType>>,
 ): React.FC<FormControlWrapperProps<Props, InputType>> {
   const Wrapped: React.FC<FormControlWrapperProps<Props, InputType>> = ({
-    controlOnChange = (e: React.ChangeEvent<InputType>): React.ChangeEvent<InputType> => e,
+    controlOnChange = (
+      e: React.ChangeEvent<InputType>,
+    ): React.ChangeEvent<InputType> => e,
     handleChange,
     handleBlur,
     touched,

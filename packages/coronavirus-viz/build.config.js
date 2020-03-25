@@ -2,9 +2,9 @@ const paths = require('@cutting/devtools/config/paths');
 
 module.exports = {
   devServer: {
-    entries: paths.devDir,
-    publicDir: paths.devDirPublic,
+    entries: paths.appSrc,
+    publicDir: paths.publicDir,
     ssrBuild: false,
-    isStaticBuild: true,
-  },
+    isStaticBuild: true
+  }
 };

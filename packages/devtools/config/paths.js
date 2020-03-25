@@ -49,7 +49,7 @@ const libPackages = [
   'packages/component-library',
   'packages/connected-components',
   'packages/use-shortcuts',
-  'packages/react-typed-mousetrap',
+  'packages/react-typed-mousetrap'
 ].map(dep => path.resolve(process.cwd(), dep));
 
 const webAppPackages = ['packages/website'].map(dep => path.resolve(process.cwd(), dep));
@@ -87,5 +87,5 @@ module.exports = {
   libPackages,
   webAppPackages,
   allPackages: [...libPackages, ...webAppPackages],
-  defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
+  defaultBuildConfigPath: path.join(__dirname, './build.config.js')
 };

@@ -1,10 +1,18 @@
 import React from 'react';
 import cs from 'classnames';
-import { RadioProps, RadioSize, RadioLayout, RadioLayoutProps, RadioEventHandlers } from './types';
+import {
+  RadioProps,
+  RadioSize,
+  RadioLayout,
+  RadioLayoutProps,
+  RadioEventHandlers,
+} from './types';
 
 import styles from './Radio.module.scss';
 
-export const Radio: React.FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
+export const Radio: React.FC<RadioProps &
+  RadioEventHandlers &
+  RadioLayoutProps> = ({
   id,
   name,
   value,
@@ -22,7 +30,14 @@ export const Radio: React.FC<RadioProps & RadioEventHandlers & RadioLayoutProps>
       [styles.inline]: layout === RadioLayout.inline,
     })}
   >
-    <input id={id} name={name} type="radio" value={value} onChange={onChange} checked={checked} />
+    <input
+      id={id}
+      name={name}
+      type="radio"
+      value={value}
+      onChange={onChange}
+      checked={checked}
+    />
     <label htmlFor={id}>
       <div className={styles.content}>{children}</div>
     </label>

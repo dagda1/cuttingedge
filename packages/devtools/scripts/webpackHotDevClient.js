@@ -49,9 +49,9 @@ ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
         '&lineNumber=' +
         window.encodeURIComponent(errorLocation.lineNumber || 1) +
         '&colNumber=' +
-        window.encodeURIComponent(errorLocation.colNumber || 1),
+        window.encodeURIComponent(errorLocation.colNumber || 1)
     }),
-    { mode: 'no-cors' },
+    { mode: 'no-cors' }
   );
 });
 
@@ -66,7 +66,7 @@ ErrorOverlay.startReportingRuntimeErrors({
   onError: function() {
     hadRuntimeError = true;
   },
-  filename: process.env.REACT_BUNDLE_PATH || '/static/js/bundle.js',
+  filename: process.env.REACT_BUNDLE_PATH || '/static/js/bundle.js'
 });
 
 if (module.hot && typeof module.hot.dispose === 'function') {
@@ -83,8 +83,8 @@ const connection = new SockJS(
     hostname: window.location.hostname,
     port: sockJsPort,
     // Hardcoded in WebpackDevServer
-    pathname: '/sockjs-node',
-  }),
+    pathname: '/sockjs-node'
+  })
 );
 
 // Unlike WebpackDevServer client, we won't try to reconnect
@@ -140,7 +140,7 @@ function handleWarnings(warnings) {
     // Print warnings to the console.
     const formatted = formatWebpackMessages({
       warnings: warnings,
-      errors: [],
+      errors: []
     });
 
     if (typeof console !== 'undefined' && typeof console.warn === 'function') {
@@ -180,7 +180,7 @@ function handleErrors(errors) {
   // "Massage" webpack messages.
   const formatted = formatWebpackMessages({
     errors: errors,
-    warnings: [],
+    warnings: []
   });
 
   // Only show the first error.
@@ -282,7 +282,7 @@ function tryApplyUpdates(onHotUpdateSuccess) {
       },
       function(err) {
         handleApplyUpdates(err, null);
-      },
+      }
     );
   }
 }

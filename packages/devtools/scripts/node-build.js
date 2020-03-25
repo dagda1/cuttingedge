@@ -7,7 +7,7 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', err => {
   throw err;
 });
 
@@ -16,7 +16,7 @@ const path = require('path');
 // Ensure environment variables are read.
 require('../config/env');
 
-const requireRelative = (relativePath) => require(path.join(__dirname, relativePath));
+const requireRelative = relativePath => require(path.join(__dirname, relativePath));
 
 const webpack = require('webpack');
 const fs = require('fs-extra');
@@ -32,7 +32,7 @@ const configureWebpackServer = requireRelative('../webpack/node').configure;
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
-  .then((previousFileSizes) => {
+  .then(previousFileSizes => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
@@ -56,7 +56,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
       printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
       console.log();
     },
-    (err) => {
+    err => {
       console.log(chalk.red('Failed to compile.\n'));
       console.log((err.message || err) + '\n');
       process.exit(1);

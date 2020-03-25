@@ -26,7 +26,10 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
     return <>{children}</>;
   }
 
-  invariant(children, 'If a mousetrap scoped component then there should be child mice.');
+  invariant(
+    children,
+    'If a mousetrap scoped component then there should be child mice.',
+  );
 
   return (
     <ScopedWrapperComponentType

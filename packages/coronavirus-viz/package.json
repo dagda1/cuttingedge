@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@cutting/util": "2.1.0",
+    "@cutting/component-library": "2.1.0",
     "lodash": "^4.17.15",
     "lodash.isobject": "^3.0.2"
   },
@@ -21,7 +22,7 @@
     "@types/lodash.isobject": "^3.0.6"
   },
   "scripts": {
-    "build": "NODE_ENV=development cutting ts-build",
+    "build": "NODE_ENV=development cutting static-build",
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true npm test",
