@@ -1,5 +1,4 @@
 #! /usr/bin/env node
-/* eslint-disable no-console */
 'use strict';
 
 process.env.BABEL_ENV = 'development';
@@ -12,7 +11,6 @@ process.on('unhandledRejection', err => {
 require('../config/env').getClientEnv();
 
 const configureWebpackClient = require('../webpack/client').configure;
-const chalk = require('chalk');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const clearConsole = require('react-dev-utils/clearConsole');
@@ -21,27 +19,22 @@ const { choosePort, createCompiler, prepareProxy, prepareUrls } = require('react
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
 const path = require('path');
-const fs = require('fs-extra');
+const fs = require('fs');
+const logger = require('../scripts/logger');
 
 const isInteractive = process.stdout.isTTY;
 
-if (!fs.existsSync(paths.localBuildConfig)) {
-  throw new Error(`no build.config.js at ${paths.localBuildConfig}`);
+const devServerConfig = require(paths.jsBuildConfigPath).devServer;
+
+if (!fs.existsSync(devServerConfig.publicDir)) {
+  devServerConfig.publicDir = paths.devDirPublic;
+  devServerConfig.entries = paths.devDir;
 }
 
-const globalServerConfig = require(paths.jsBuildConfigPath).devServer;
-
-const localDevServerConfig = require(paths.localBuildConfig).devServer || {};
-
-const devServerConfig = { ...globalServerConfig, ...localDevServerConfig };
-
-console.dir(devServerConfig);
-
-let config = configureWebpackClient(devServerConfig);
+const config = configureWebpackClient(devServerConfig);
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([path.join(devServerConfig.publicDir, 'index.html')])) {
-  console.log('no index.html file can be found');
+if (!checkRequiredFiles([path.join(devServerConfig.publicDir, 'index.html'), devServerConfig.entries])) {
   process.exit(1);
 }
 
@@ -51,35 +44,31 @@ const HOST = process.env.HOST || '0.0.0.0';
 choosePort(HOST, DEFAULT_PORT)
   .then(port => {
     if (port == null) {
-      // We have not found a port.
+      logger.error('We have not found a port.');
       return;
     }
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.appPackageJson).name;
     const urls = prepareUrls(protocol, HOST, port);
+    const useYarn = true;
+
+    const compiler = createCompiler({ webpack, config, appName, urls, useYarn });
 
     const proxySetting = require(paths.appPackageJson).proxy;
 
     config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic);
 
-    const devSocket = {
-      warnings: warnings => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
-      errors: errors => devServer.sockWrite(devServer.sockets, 'errors', errors)
-    };
-
-    const compiler = createCompiler({ webpack, config, appName, devSocket, useTypeScript: true, urls, useYarn: false });
-
     const devServer = new WebpackDevServer(compiler, config.devServer);
 
-    // Launch WebpackDevServer.
     devServer.listen(port, HOST, err => {
       if (err) {
-        return console.log(err);
+        logger.error(err);
+        return;
       }
       if (isInteractive) {
         clearConsole();
       }
-      console.log(chalk.cyan('Starting the development server...\n'));
+      logger.info('Starting the development server...\n');
       openBrowser(urls.localUrlForBrowser);
     });
 
@@ -92,7 +81,7 @@ choosePort(HOST, DEFAULT_PORT)
   })
   .catch(err => {
     if (err && err.message) {
-      console.log(err.message);
+      logger.error(err.message);
     }
     process.exit(1);
   });

@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+/* eslint-disable @typescript-eslint/no-use-before-define */
 'use strict';
 
 process.env.NODE_ENV = 'development';
@@ -7,7 +8,6 @@ const webpack = require('webpack');
 const paths = require('../config/paths');
 const devServer = require('webpack-dev-server');
 const printErrors = require('./printErrors');
-const clearConsole = require('react-dev-utils/clearConsole');
 const logger = require('./logger');
 const setPorts = require('./setPorts');
 const merge = require('lodash/merge');
@@ -47,18 +47,14 @@ function main() {
         quiet: true,
         stats: 'none'
       },
-      /* eslint-disable no-unused-vars */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       stats => {}
     );
   });
 
-  /**
-   * Create a new instance of Webpack-dev-server for assets only
-   * This will actually run on a different port than the main app.
-   */
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
 
-  clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || razzle.port || 3001, err => {
+  clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || 3001, err => {
     if (err) {
       logger.error(err);
     }
