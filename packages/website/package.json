@@ -55,7 +55,6 @@
     "start-server-webpack-plugin": "^2.2.5",
     "stats-webpack-plugin": "^0.7.0",
     "ts-node": "^8.6.2",
-    "webpack-dev-middleware": "^3.7.2",
     "webpack-flush-chunks": "^2.0.3",
     "webpack-hot-server-middleware": "^0.6.0"
   }

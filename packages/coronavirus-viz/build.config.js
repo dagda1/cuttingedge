@@ -5,6 +5,6 @@ module.exports = {
     entries: paths.appSrc,
     publicDir: paths.publicDir,
     ssrBuild: false,
-    isStaticBuild: true
-  }
+    isStaticBuild: true,
+  },
 };
