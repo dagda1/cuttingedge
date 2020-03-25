@@ -6,7 +6,8 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "bin": {
-    "cutting": "./bin/cutting.js"
+    "cutting": "./bin/cutting.js",
+    "version-bump": "./version-bump/index.js"
   },
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
