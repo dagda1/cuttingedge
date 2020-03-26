@@ -9,15 +9,17 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/util": "2.1.0",
-    "@cutting/component-library": "2.1.0",
+    "@cutting/component-library": "2.2.0",
+    "@cutting/util": "2.2.0",
+    "dayjs": "^1.8.23",
     "lodash": "^4.17.15",
-    "lodash.isobject": "^3.0.2"
+    "lodash.isobject": "^3.0.2",
+    "react-async": "^10.0.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "2.1.0",
-    "@cutting/eslint-config": "2.1.0",
-    "@cutting/useful-types": "2.1.0",
+    "@cutting/devtools": "2.2.0",
+    "@cutting/eslint-config": "2.2.0",
+    "@cutting/useful-types": "2.2.0",
     "@testing-library/jest-dom": "^5.1.1",
     "@types/lodash.isobject": "^3.0.6"
   },
