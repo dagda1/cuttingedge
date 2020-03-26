@@ -1,10 +1,17 @@
 /* eslint-disable no-console */
 // eslint:disable
-import React from 'react';
+import React, { useRef } from 'react';
 import { useAsync } from 'react-async';
 import dayjs from 'dayjs';
+import { useParentSize } from '@cutting/hooks';
+import { scaleLinear } from '@vx/scale';
+import { ResponsiveSVG } from '@cutting/component-library';
+import { Grid } from '@vx/grid';
+import { Group } from '@vx/group';
 
 require('../../styles/global.module.scss');
+
+const styles = require('./App.module.scss');
 
 // https://www.nationsonline.org/oneworld/country_code_list.htm
 enum Countries {
@@ -27,6 +34,18 @@ type DayData = Result & {
   delta: number;
 };
 
+function numTicksForHeight(height: number) {
+  if (height <= 300) return 3;
+  if (300 < height && height <= 600) return 5;
+  return 10;
+}
+
+function numTicksForWidth(width: number) {
+  if (width <= 300) return 2;
+  if (300 < width && width <= 400) return 5;
+  return 10;
+}
+
 // documenter.getpostman.com/view/2568274/SzS8rjbe?version=latest
 const baseUrl = 'https://covidapi.info/api/v1/country';
 
@@ -37,7 +56,7 @@ const transform = (results: Results, country: Countries): DayData[] => {
       date: dayjs(k).format('DD/MM/YYYY'),
       ...results.result[k],
     }))
-    .filter(d => d.deaths > 0);
+    .filter(d => d.deaths > 10);
 
   const result = data.map((d, i) => {
     return {
@@ -70,6 +89,8 @@ const getCountriesData = () => {
 };
 
 export const App: React.FC = () => {
+  const parentRef = useRef<HTMLDivElement>(null);
+  const { width, height } = useParentSize({ ref: parentRef });
   const { error, isLoading, data } = useAsync(getCountriesData);
 
   if (isLoading || !data) {
@@ -80,34 +101,45 @@ export const App: React.FC = () => {
     return <div>{error}</div>;
   }
 
+  console.log(data);
+
+  const xMax = width;
+  const yMax = height;
+
+  const xScale = scaleLinear({
+    range: [0, xMax],
+    domain: [0, Math.max(...Object.keys(data).map(k => data[k].length))],
+  });
+  const yScale = scaleLinear({
+    range: [0, yMax],
+    domain: [
+      0,
+      Math.max(
+        ...Object.keys(data).map(k =>
+          Math.max(...data[k].map((x: DayData) => x.deaths)),
+        ),
+      ),
+    ],
+    nice: true,
+  });
+
+  console.log(width, height);
+
   return (
-    <div>
-      <table style={{ width: '100%' }}>
-        <tbody>
-          {Object.keys(data).map((k, i) => {
-            const country = data[k];
-            return (
-              <React.Fragment key={i}>
-                <tr>
-                  <td>{k}</td>
-                </tr>
-                <tr>
-                  {country.map((c: DayData, i: number) => (
-                    <React.Fragment key={i}>
-                      <td style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>
-                        {c.date}
-                        <br /> confirmed = {c.confirmed}
-                        <br /> deaths = {c.deaths}
-                        <br /> delta = {c.delta}
-                      </td>
-                    </React.Fragment>
-                  ))}
-                </tr>
-              </React.Fragment>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className={styles.main} ref={parentRef}>
+      <ResponsiveSVG height={height} width={width}>
+        <Grid
+          top={0}
+          left={0}
+          xScale={xScale}
+          yScale={yScale}
+          stroke="rgba(142, 32, 95, 0.9)"
+          width={xMax}
+          height={yMax}
+          numTicksRows={numTicksForHeight(height)}
+          numTicksColumns={numTicksForWidth(width)}
+        />
+      </ResponsiveSVG>
     </div>
   );
 };

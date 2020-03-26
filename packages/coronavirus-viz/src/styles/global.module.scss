@@ -16,6 +16,14 @@ body {
   color: #fff;
 }
 
+:global #root{
+  @include p(1);
+  display: flex;
+  flex: 1;
+  height: 100%;
+  flex-direction: column;
+}
+
 *,
 *:before,
 *:after {

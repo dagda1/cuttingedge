@@ -10,11 +10,16 @@
   "license": "MIT",
   "dependencies": {
     "@cutting/component-library": "2.2.0",
+    "@cutting/hooks": "2.2.0",
     "@cutting/util": "2.2.0",
+    "@vx/grid": "^0.0.195",
+    "@vx/group": "^0.0.195",
+    "d3-array": "^2.4.0",
     "dayjs": "^1.8.23",
     "lodash": "^4.17.15",
     "lodash.isobject": "^3.0.2",
-    "react-async": "^10.0.0"
+    "react-async": "^10.0.0",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
     "@cutting/devtools": "2.2.0",
@@ -27,7 +32,6 @@
     "build": "NODE_ENV=development cutting static-build",
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "test:ci": "CI=true npm test",
-    "prepublish": "npm run build"
+    "test:ci": "CI=true npm test"
   }
 }
