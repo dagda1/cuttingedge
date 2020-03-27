@@ -58,6 +58,7 @@ export const useParentSize = ({
   ref,
   transformFunc = dimensions => dimensions,
 }: ParentSizeProps) => {
+  const [dimensions, setDimensions] = useState
   function reducer(state: Dimensions, action: SizeAction) {
     switch (action.type) {
       case SizeActionTypes.SET_SIZE: {

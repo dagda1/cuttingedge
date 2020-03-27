@@ -12,21 +12,21 @@
     "@cutting/component-library": "2.2.0",
     "@cutting/hooks": "2.2.0",
     "@cutting/util": "2.2.0",
-    "@vx/grid": "^0.0.195",
-    "@vx/group": "^0.0.195",
     "d3-array": "^2.4.0",
     "dayjs": "^1.8.23",
     "lodash": "^4.17.15",
     "lodash.isobject": "^3.0.2",
     "react-async": "^10.0.0",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "victory": "^34.1.3"
   },
   "devDependencies": {
     "@cutting/devtools": "2.2.0",
     "@cutting/eslint-config": "2.2.0",
     "@cutting/useful-types": "2.2.0",
     "@testing-library/jest-dom": "^5.1.1",
-    "@types/lodash.isobject": "^3.0.6"
+    "@types/lodash.isobject": "^3.0.6",
+    "@types/victory": "^33.1.4"
   },
   "scripts": {
     "build": "NODE_ENV=development cutting static-build",
