@@ -117,7 +117,12 @@ export const App: React.FC = () => {
           <FormInput label="Invalid" invalid errorMessage="Error Message" />
         </div>
         <div className={styles.item}>
-          <FormInput label="Invalid &amp; required" invalid required errorMessage="Error Message" />
+          <FormInput
+            label="Invalid &amp; required"
+            invalid
+            required
+            errorMessage="Error Message"
+          />
         </div>
         <div className={styles.item}>
           <FormInput
@@ -174,7 +179,10 @@ export const App: React.FC = () => {
       <div className={styles.layout}>
         <div className={styles.item}>
           <div>
-            <Button onClick={() => setModalOpen(true)} buttonStyle={ButtonStyle.Inverse}>
+            <Button
+              onClick={() => setModalOpen(true)}
+              buttonStyle={ButtonStyle.Inverse}
+            >
               Open Modal
             </Button>
           </div>

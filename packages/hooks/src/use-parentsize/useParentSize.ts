@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export interface ParentSizeState {
@@ -20,67 +20,49 @@ export interface Dimensions {
 
 type Transform = (dimensions: Dimensions) => Dimensions;
 
+export interface UseParentSizeOptions {
+  initialDimensions: Dimensions;
+  transformFunc?: Transform;
+}
+
 const identityTransform: Transform = (dimensions: Dimensions) => dimensions;
 
-export interface ParentSizeProps {
-  ref: React.RefObject<HTMLDivElement>;
-  transformFunc?: ({ width, height }: Dimensions) => Dimensions;
-}
+export const useParentSize = <E extends HTMLElement = HTMLElement>(
+  ref: React.RefObject<E>,
+  {
+    initialDimensions = { width: 0, height: 0 },
+    transformFunc = identityTransform,
+  }: UseParentSizeOptions = { initialDimensions: { width: 0, height: 0 } },
+) => {
+  const [dimensions, setDimensions] = useState(initialDimensions);
 
-function getSize(
-  el: HTMLElement | null,
-  transformFunc: Transform = identityTransform,
-): Dimensions {
-  if (!el) {
-    return transformFunc({
-      width: 0,
-      height: 0,
-    });
-  }
-
-  const { width, height } = el.getBoundingClientRect();
-
-  return transformFunc({
-    width,
-    height,
-  });
-}
-
-export enum SizeActionTypes {
-  SET_SIZE = 'SET_SIZE',
-}
-
-export interface SizeAction {
-  type: SizeActionTypes.SET_SIZE;
-}
-
-export const useParentSize = ({
-  ref,
-  transformFunc = dimensions => dimensions,
-}: ParentSizeProps) => {
-  const [dimensions, setDimensions] = useState
-  function reducer(state: Dimensions, action: SizeAction) {
-    switch (action.type) {
-      case SizeActionTypes.SET_SIZE: {
-        return getSize(ref.current, transformFunc);
-      }
-      default:
-        throw new Error('unknown size error');
-    }
-  }
-
-  const [state, dispatch] = useReducer(
-    reducer,
-    transformFunc({ width: 0, height: 0 }),
-  );
+  const previous = useRef(dimensions);
 
   useEffect(() => {
     if (!ref.current) {
       return;
     }
 
-    let resizeObserver: ResizeObserver | null = new ResizeObserver(() => {
-      dispatch({ type: SizeActionTypes.SET_SIZE });
+    const resizeObserver: ResizeObserver = new ResizeObserver(entries => {
+      console.log(entries);
+      if (!Array.isArray(entries)) {
+        return;
+      }
+
+      const entry = entries[0];
+
+      const newWidth = Math.round(entry.contentRect.width);
+      const newHeight = Math.round(entry.contentRect.height);
+
+      if (
+        newWidth !== previous.current.width &&
+        newHeight !== previous.current.height
+      ) {
+        previous.current.height = newHeight;
+        previous.current.width = newWidth;
+
+        setDimensions(transformFunc({ width: newWidth, height: newHeight }));
+      }
     });
 
     resizeObserver.observe(ref.current);
@@ -91,9 +73,8 @@ export const useParentSize = ({
       }
 
       resizeObserver.disconnect();
-      resizeObserver = null;
     };
-  }, [ref]);
+  }, [ref, transformFunc]);
 
-  return state;
+  return dimensions;
 };

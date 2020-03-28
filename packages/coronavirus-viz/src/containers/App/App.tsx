@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 // eslint:disable
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useAsync } from 'react-async';
 import { useParentSize } from '@cutting/hooks';
 import {
@@ -81,23 +81,12 @@ const getCountriesData = () => {
 };
 
 export const App: React.FC = () => {
-  const [{ width, height }, setDimensions] = useState({
-    width: 600,
-    height: 600,
-  });
   const parentRef = useRef(null);
 
-  useParentSize({
-    ref: parentRef,
-    callback: (entry: any) => {
-      const { width, height } = entry;
-
-      setDimensions({
-        width,
-        height,
-      });
-    },
+  const { width, height } = useParentSize(parentRef, {
+    initialDimensions: { width: 200, height: 200 },
   });
+
   const { error, isLoading, data } = useAsync(getCountriesData);
 
   if (isLoading || !data) {

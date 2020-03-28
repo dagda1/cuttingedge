@@ -1,7 +1,7 @@
 {
   "name": "@cutting/hooks",
   "description": "Hooks man, hooks.",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "echo no start",
+    "start": "PORT=9999 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup --package-name hooks",
     "prepublish": "npm run build"
