@@ -2,7 +2,7 @@
 // eslint:disable
 import React, { useRef } from 'react';
 import { useAsync } from 'react-async';
-import { useParentSize } from './useParentSize';
+import { useParentSize } from '@cutting/hooks';
 import {
   VictoryChart,
   VictoryVoronoiContainer,
@@ -10,14 +10,14 @@ import {
   VictoryTooltip,
   VictoryLine,
   VictoryScatter,
+  VictoryLegend,
+  VictoryAxis,
 } from 'victory';
 import dayjs from 'dayjs';
 import { Heading } from '@cutting/component-library';
 
 require('../../styles/global.module.scss');
 const styles = require('./App.module.scss');
-
-console.log({ styles });
 
 // https://www.nationsonline.org/oneworld/count ry_code_list.htm
 enum Countries {
@@ -55,8 +55,6 @@ const transform = (results: Results, country: Countries): DayData[] => {
     })
     .filter(d => d.y > 1)
     .map(({ y, ...rest }, i) => ({ ...rest, x: i + 1, y, country }));
-
-  console.log(data);
 
   const result = data.map((d, i) => {
     return {
@@ -127,45 +125,90 @@ export const App: React.FC = () => {
 
   return (
     <>
-      <Heading>
-        Coroanavirus number of deaths comparisons since the first day of each
-        country&apos;s first recorded death
-      </Heading>
+      <Heading>Coroanavirus deaths over days since first death</Heading>
       <div className={styles.container} ref={ref}>
         {!data ? (
           <div>loading.....</div>
         ) : (
-          <VictoryChart
-            height={adjustedHeight}
-            width={width}
-            containerComponent={<VictoryVoronoiContainer />}
-            theme={{
-              axis: {
-                style: {
-                  axis: { stroke: AxisColor },
-                  tickLabels: { color: AxisColor, fill: AxisColor },
+          <>
+            <svg height="20px" width="100%">
+              <VictoryLegend
+                x={0}
+                y={0}
+                centerTitle
+                standalone={false}
+                orientation="horizontal"
+                gutter={20}
+                style={{
+                  labels: {
+                    fill: AxisColor,
+                  },
+                }}
+                data={[
+                  { name: 'UK', symbol: { fill: 'cyan' } },
+                  { name: 'Italy', symbol: { fill: 'blue' } },
+                  { name: 'Spain', symbol: { fill: 'yellow' } },
+                  { name: 'China', symbol: { fill: 'red' } },
+                  { name: 'USA', symbol: { fill: 'yellow' } },
+                ]}
+              />
+            </svg>
+            <VictoryChart
+              height={adjustedHeight - 50}
+              width={width}
+              containerComponent={<VictoryVoronoiContainer />}
+              theme={{
+                axis: {
+                  style: {
+                    axis: { stroke: AxisColor },
+                    tickLabels: { color: AxisColor, fill: AxisColor },
+                    grid: { stroke: '#fff', strokeOpacity: 0.2 },
+                  },
                 },
-              },
-            }}
-          >
-            {Object.keys(data).map(k => {
-              const country = data[k];
-              return (
-                <VictoryGroup
-                  key={k}
-                  color={country.color}
-                  labels={({ datum }) =>
-                    `${country.name} ${datum.date}\n day ${datum.x}\n deaths = ${datum.y}\n delta from day before = ${datum.delta}`
-                  }
-                  labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-                  data={country.data}
-                >
-                  <VictoryLine />
-                  <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
-                </VictoryGroup>
-              );
-            })}
-          </VictoryChart>
+              }}
+            >
+              <VictoryAxis
+                dependentAxis
+                label="Number of deaths"
+                orientation="left"
+                standalone={false}
+                style={{
+                  axisLabel: {
+                    fill: AxisColor,
+                    fillOpacity: 0.5,
+                  },
+                }}
+              />
+              <VictoryAxis
+                orientation={'bottom'}
+                label="days since first reported death"
+                standalone={false}
+                style={{
+                  axisLabel: {
+                    fill: AxisColor,
+                    fillOpacity: 0.5,
+                  },
+                }}
+              />
+              {Object.keys(data).map(k => {
+                const country = data[k];
+                return (
+                  <VictoryGroup
+                    key={k}
+                    color={country.color}
+                    labels={({ datum }) =>
+                      `${country.name} ${datum.date}\n day ${datum.x}\n deaths = ${datum.y}\n delta from day before = ${datum.delta}`
+                    }
+                    labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
+                    data={country.data}
+                  >
+                    <VictoryLine />
+                    <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
+                  </VictoryGroup>
+                );
+              })}
+            </VictoryChart>
+          </>
         )}
       </div>
     </>

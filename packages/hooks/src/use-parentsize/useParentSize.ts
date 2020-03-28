@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState, useCallback, RefObject } from 'react';
+import { useEffect, useState, useCallback, RefObject } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export interface Dimensions {
@@ -6,22 +6,35 @@ export interface Dimensions {
   height: number;
 }
 
-export const useParentSize = (ref: RefObject<HTMLElement>) => {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+export interface UseParentSizeOptions {
+  initialDimensions: Dimensions;
+}
 
-  const handleResize = useCallback((entries: ResizeObserverEntry[]) => {
-    if (!Array.isArray(entries)) {
-      return;
-    }
+export const useParentSize = (
+  ref: RefObject<HTMLElement>,
+  { initialDimensions }: UseParentSizeOptions,
+) => {
+  const [dimensions, setDimensions] = useState(initialDimensions);
 
-    const entry = entries[0];
-    const newWidth = Math.round(entry.contentRect.width);
-    const newHeight = Math.round(entry.contentRect.height);
+  const handleResize = useCallback(
+    (entries: ResizeObserverEntry[]) => {
+      if (!Array.isArray(entries)) {
+        return;
+      }
 
-    setDimensions({ width: newWidth, height: newHeight });
-  }, []);
+      const entry = entries[0];
+      const { width } = dimensions;
+      const newWidth = Math.round(entry.contentRect.width);
+      const newHeight = Math.round(entry.contentRect.height);
 
-  useLayoutEffect(() => {
+      if (width !== newWidth) {
+        setDimensions({ width: newWidth, height: newHeight });
+      }
+    },
+    [dimensions],
+  );
+
+  useEffect(() => {
     if (!ref.current) {
       return;
     }
