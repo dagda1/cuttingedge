@@ -36,6 +36,10 @@ const TermsOfService = loadable(() => import('src/components/TermsOfService'), {
   fallback: <div>Loading...</div>,
 });
 
+const Graph = loadable(() => import('src/components/Graph'), {
+  fallback: <div>Loading...</div>,
+});
+
 /* eslint-disable react/display-name */
 export const routable: Page[] = [
   {
@@ -75,6 +79,13 @@ export const routable: Page[] = [
     component: TermsOfService,
     exact: true,
     footerPage: true,
+  },
+  {
+    heading: 'Covid-19',
+    path: Urls.Covid19,
+    component: Graph,
+    exact: true,
+    footerPage: false,
   },
 ];
 

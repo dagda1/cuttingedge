@@ -13,12 +13,7 @@ if (!NODE_ENV) {
 }
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
-const dotenvFiles = [
-  `${paths.dotenv}.${NODE_ENV}.local`,
-  `${paths.dotenv}.${NODE_ENV}`,
-  `${paths.dotenv}.local`,
-  paths.dotenv
-];
+const dotenvFiles = [`${paths.dotenv}.${NODE_ENV}.local`, `${paths.dotenv}.${NODE_ENV}`, `${paths.dotenv}.local`, paths.dotenv];
 // Load environment variables from .env* files. Suppress warnings using silent
 // if this file is missing. dotenv will never modify any environment variables
 // that have already been set.
@@ -26,7 +21,7 @@ const dotenvFiles = [
 dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
     require('dotenv').config({
-      path: dotenvFile
+      path: dotenvFile,
     });
   }
 });
@@ -53,30 +48,24 @@ function getClientEnvironment(target, options = {}, additional = {}) {
       Object.assign(
         {},
         {
-          // Useful for determining whether we’re running in production mode.
-          // Most importantly, it switches React into the correct mode.
           NODE_ENV: process.env.NODE_ENV || 'development',
           VERBOSE: !!process.env.VERBOSE,
           HOST: process.env.HOST || options.host || 'localhost',
           BUILD_TARGET: target === 'web' ? 'client' : 'server',
-          // only for production builds. Useful if you need to serve from a CDN
           PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
-          // The public dir changes between dev and prod, so we use an environment
-          // variable available to users.
           CUTTING_PUBLIC_DIR: process.env.NODE_ENV === 'production' ? paths.appBuildPublic : paths.appPublic,
           CI: process.env.CI,
           PUBLIC_URL: '',
-          nodePath
+          nodePath,
         },
-        additional
-      )
+        additional,
+      ),
     );
 
   if (process.env.NODE_ENV === 'development') {
     raw.PORT = Number(process.env.PORT);
   }
 
-  // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = Object.keys(raw).reduce((env, key) => {
     if (['__DEV__', '__BROWSER__'].includes(key)) {
       env[key] = JSON.stringify(raw[key]);
@@ -92,5 +81,5 @@ function getClientEnvironment(target, options = {}, additional = {}) {
 
 module.exports = {
   getClientEnv: getClientEnvironment,
-  nodePath: nodePath
+  nodePath: nodePath,
 };
