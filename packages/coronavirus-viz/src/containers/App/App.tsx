@@ -2,7 +2,7 @@
 // eslint:disable
 import React, { useRef } from 'react';
 import { useAsync } from 'react-async';
-import { useParentSize } from '@cutting/hooks';
+import { useParentSize } from './useParentSize';
 import {
   VictoryChart,
   VictoryVoronoiContainer,
@@ -13,6 +13,9 @@ import {
 } from 'victory';
 
 require('../../styles/global.module.scss');
+const styles = require('./App.module.scss');
+
+console.log({ styles });
 
 // https://www.nationsonline.org/oneworld/count ry_code_list.htm
 enum Countries {
@@ -69,11 +72,31 @@ const getCountriesData = () => {
     fetch(`${baseUrl}/${Countries.Spain}`, { headers }),
   ])
     .then(async result => {
-      const gb = transform(await result[0].json(), Countries.GB);
-      const italy = transform(await result[1].json(), Countries.IT);
-      const usa = transform(await result[2].json(), Countries.USA);
-      const china = transform(await result[3].json(), Countries.China);
-      const spain = transform(await result[4].json(), Countries.Spain);
+      const gb = {
+        data: transform(await result[0].json(), Countries.GB),
+        color: 'cyan',
+        name: 'UK',
+      };
+      const italy = {
+        data: transform(await result[1].json(), Countries.IT),
+        color: 'blue',
+        name: 'Italy',
+      };
+      const usa = {
+        data: transform(await result[2].json(), Countries.USA),
+        color: 'white',
+        name: 'USA',
+      };
+      const china = {
+        data: transform(await result[3].json(), Countries.China),
+        color: 'red',
+        name: 'China',
+      };
+      const spain = {
+        data: transform(await result[4].json(), Countries.Spain),
+        color: 'yellow',
+        name: 'Spain',
+      };
 
       return { gb, italy, usa, china, spain };
     })
@@ -81,85 +104,52 @@ const getCountriesData = () => {
 };
 
 export const App: React.FC = () => {
-  const parentRef = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const { width, height } = useParentSize(parentRef, {
+  const { width, height } = useParentSize(ref, {
     initialDimensions: { width: 200, height: 200 },
   });
 
-  const { error, isLoading, data } = useAsync(getCountriesData);
+  const { data } = useAsync(getCountriesData);
 
-  if (isLoading || !data) {
-    return <div>Loading.....</div>;
-  }
+  console.log('---------------');
+  console.log(ref.current?.getBoundingClientRect().height);
+  console.log(ref.current);
+  console.log({ width, height });
+  console.log('---------------');
+  const aspect = width / height;
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  console.log(data);
+  const adjustedHeight = Math.round(width / aspect);
 
   return (
-    <VictoryChart
-      height={height}
-      width={width}
-      containerComponent={<VictoryVoronoiContainer />}
-    >
-      <VictoryGroup
-        color="#c43a31"
-        labels={({ datum }) =>
-          `${datum.country} - day ${datum.x}, deaths = ${datum.y}, delta = ${datum.delta}`
-        }
-        labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-        data={data.china}
-      >
-        <VictoryLine />
-        <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
-      </VictoryGroup>
-      <VictoryGroup
-        color="blue"
-        labels={({ datum }) =>
-          `${datum.country} - day ${datum.x}, deaths = ${datum.y}, delta = ${datum.delta}`
-        }
-        labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-        data={data.italy}
-      >
-        <VictoryLine />
-        <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
-      </VictoryGroup>
-      <VictoryGroup
-        color="cyan"
-        labels={({ datum }) =>
-          `${datum.country} - day ${datum.x}, deaths = ${datum.y}, delta = ${datum.delta}`
-        }
-        labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-        data={data.gb}
-      >
-        <VictoryLine />
-        <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
-      </VictoryGroup>
-      <VictoryGroup
-        color="white"
-        labels={({ datum }) =>
-          `${datum.country} - day ${datum.x}, deaths = ${datum.y}, delta = ${datum.delta}`
-        }
-        labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-        data={data.usa}
-      >
-        <VictoryLine />
-        <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
-      </VictoryGroup>
-      <VictoryGroup
-        color="yellow"
-        labels={({ datum }) =>
-          `${datum.country} - day ${datum.x}, deaths = ${datum.y}, delta = ${datum.delta}`
-        }
-        labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-        data={data.spain}
-      >
-        <VictoryLine />
-        <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
-      </VictoryGroup>
-    </VictoryChart>
+    <div className={styles.container} ref={ref}>
+      {!data ? (
+        <div>loading.....</div>
+      ) : (
+        <VictoryChart
+          height={adjustedHeight}
+          width={width}
+          containerComponent={<VictoryVoronoiContainer />}
+        >
+          {Object.keys(data).map(k => {
+            const country = data[k];
+            return (
+              <VictoryGroup
+                key={k}
+                color={country.color}
+                labels={({ datum }) =>
+                  `${country.name} \n day ${datum.x}\n deaths = ${datum.y}\n delta from day before = ${datum.delta}`
+                }
+                labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
+                data={country.data}
+              >
+                <VictoryLine />
+                <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
+              </VictoryGroup>
+            );
+          })}
+        </VictoryChart>
+      )}
+    </div>
   );
 };

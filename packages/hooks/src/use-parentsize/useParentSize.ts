@@ -1,80 +1,41 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useLayoutEffect, useState, useCallback, RefObject } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-
-export interface ParentSizeState {
-  height: number;
-  width: number;
-  left: number;
-  top: number;
-}
-
-export interface ParentSizeResult {
-  ref: React.RefObject<HTMLDivElement>;
-  resize: (dimensions: ParentSizeState) => void;
-}
 
 export interface Dimensions {
   width: number;
   height: number;
 }
 
-type Transform = (dimensions: Dimensions) => Dimensions;
+export const useParentSize = (ref: RefObject<HTMLElement>) => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-export interface UseParentSizeOptions {
-  initialDimensions: Dimensions;
-  transformFunc?: Transform;
-}
+  const handleResize = useCallback((entries: ResizeObserverEntry[]) => {
+    if (!Array.isArray(entries)) {
+      return;
+    }
 
-const identityTransform: Transform = (dimensions: Dimensions) => dimensions;
+    const entry = entries[0];
+    const newWidth = Math.round(entry.contentRect.width);
+    const newHeight = Math.round(entry.contentRect.height);
 
-export const useParentSize = <E extends HTMLElement = HTMLElement>(
-  ref: React.RefObject<E>,
-  {
-    initialDimensions = { width: 0, height: 0 },
-    transformFunc = identityTransform,
-  }: UseParentSizeOptions = { initialDimensions: { width: 0, height: 0 } },
-) => {
-  const [dimensions, setDimensions] = useState(initialDimensions);
+    setDimensions({ width: newWidth, height: newHeight });
+  }, []);
 
-  const previous = useRef(dimensions);
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!ref.current) {
       return;
     }
 
-    const resizeObserver: ResizeObserver = new ResizeObserver(entries => {
-      console.log(entries);
-      if (!Array.isArray(entries)) {
-        return;
-      }
-
-      const entry = entries[0];
-
-      const newWidth = Math.round(entry.contentRect.width);
-      const newHeight = Math.round(entry.contentRect.height);
-
-      if (
-        newWidth !== previous.current.width &&
-        newHeight !== previous.current.height
-      ) {
-        previous.current.height = newHeight;
-        previous.current.width = newWidth;
-
-        setDimensions(transformFunc({ width: newWidth, height: newHeight }));
-      }
-    });
-
+    let resizeObserver: ResizeObserver | null = new ResizeObserver(
+      (entries: ResizeObserverEntry[]) => handleResize(entries),
+    );
     resizeObserver.observe(ref.current);
 
     return () => {
-      if (!resizeObserver) {
-        return;
-      }
-
-      resizeObserver.disconnect();
+      resizeObserver?.disconnect();
+      resizeObserver = null;
     };
-  }, [ref, transformFunc]);
+  }, [handleResize, ref]);
 
   return dimensions;
 };
