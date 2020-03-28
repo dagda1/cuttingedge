@@ -31,6 +31,16 @@ body {
   margin: 0;
   font-size: 190%;
   background-color: $main-bg-color;
+
+  &.covid {
+    h1 {
+      font-size: 2rem;
+    }
+
+    footer {
+      display: none;
+    }
+  }
   
   &:not(.covid){
     background-image: url(../images/lightening.jpg);

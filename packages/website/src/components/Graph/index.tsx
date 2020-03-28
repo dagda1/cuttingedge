@@ -15,6 +15,7 @@ import {
 } from 'victory';
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
+import { ResponsiveSVG } from '@cutting/component-library';
 
 const styles = require('./Graph.module.scss');
 
@@ -116,13 +117,11 @@ export const Graph: React.FC = () => {
     initialDimensions: { width: 200, height: 200 },
   });
 
-  console.log({ width, height });
-
   const { data } = useAsync(getCountriesData);
 
   const aspect = width / height;
 
-  const adjustedHeight = Math.round(width / aspect);
+  const adjustedHeight = Math.min(Math.round(width / aspect), 700);
 
   return (
     <ApplicationLayout
@@ -135,7 +134,7 @@ export const Graph: React.FC = () => {
           <div>loading.....</div>
         ) : (
           <>
-            <svg height="20px" width="100%">
+            <ResponsiveSVG width={width * 1.1} height={200}>
               <VictoryLegend
                 x={0}
                 y={0}
@@ -156,7 +155,7 @@ export const Graph: React.FC = () => {
                   { name: 'USA', symbol: { fill: '#fff' } },
                 ]}
               />
-            </svg>
+            </ResponsiveSVG>
             <VictoryChart
               height={adjustedHeight - 40}
               width={width}

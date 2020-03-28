@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, RefObject } from 'react';
+import { useEffect, useCallback, RefObject, useReducer } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export interface Dimensions {
@@ -10,11 +10,34 @@ export interface UseParentSizeOptions {
   initialDimensions: Dimensions;
 }
 
+export enum SizeActionTypes {
+  SetSize = 'SET_SIZE',
+}
+
+export interface SizeAction {
+  type: SizeActionTypes.SetSize;
+  payload: Dimensions;
+}
+
 export const useParentSize = (
   ref: RefObject<HTMLElement>,
-  { initialDimensions }: UseParentSizeOptions,
+  { initialDimensions }: UseParentSizeOptions = {
+    initialDimensions: { width: 0, height: 0 },
+  },
 ) => {
-  const [dimensions, setDimensions] = useState(initialDimensions);
+  // need to use useReducer because useState with setDimensions({ width: //etc })
+  // causes an infinite re-render as you are setting a new object each time
+  function reducer(state: Dimensions, action: SizeAction) {
+    switch (action.type) {
+      case SizeActionTypes.SetSize: {
+        return { width: action.payload.width, height: action.payload.height };
+      }
+      default:
+        throw new Error('unknown size error');
+    }
+  }
+
+  const [dimensions, dispatch] = useReducer(reducer, initialDimensions);
 
   const handleResize = useCallback(
     (entries: ResizeObserverEntry[]) => {
@@ -28,7 +51,10 @@ export const useParentSize = (
       const newHeight = Math.round(entry.contentRect.height);
 
       if (width !== newWidth) {
-        setDimensions({ width: newWidth, height: newHeight });
+        dispatch({
+          type: SizeActionTypes.SetSize,
+          payload: { width: newWidth, height: newHeight },
+        });
       }
     },
     [dimensions],
