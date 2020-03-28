@@ -11,6 +11,8 @@ import {
   VictoryLine,
   VictoryScatter,
 } from 'victory';
+import dayjs from 'dayjs';
+import { Heading } from '@cutting/component-library';
 
 require('../../styles/global.module.scss');
 const styles = require('./App.module.scss');
@@ -44,12 +46,17 @@ const baseUrl = 'https://covidapi.info/api/v1/country';
 
 const transform = (results: Results, country: Countries): DayData[] => {
   const data = Object.keys(results.result)
-    .map((k, i) => ({
-      x: i + 1,
-      y: results.result[k].deaths,
-    }))
+    .map((k, i) => {
+      return {
+        x: i + 1,
+        y: results.result[k].deaths,
+        date: dayjs(k).format('DD/MM/YYYY'),
+      };
+    })
     .filter(d => d.y > 1)
-    .map(({ y }, i) => ({ x: i + 1, y, country }));
+    .map(({ y, ...rest }, i) => ({ ...rest, x: i + 1, y, country }));
+
+  console.log(data);
 
   const result = data.map((d, i) => {
     return {
@@ -103,6 +110,8 @@ const getCountriesData = () => {
     .catch(console.error);
 };
 
+const AxisColor = '#fff';
+
 export const App: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -112,44 +121,53 @@ export const App: React.FC = () => {
 
   const { data } = useAsync(getCountriesData);
 
-  console.log('---------------');
-  console.log(ref.current?.getBoundingClientRect().height);
-  console.log(ref.current);
-  console.log({ width, height });
-  console.log('---------------');
   const aspect = width / height;
 
   const adjustedHeight = Math.round(width / aspect);
 
   return (
-    <div className={styles.container} ref={ref}>
-      {!data ? (
-        <div>loading.....</div>
-      ) : (
-        <VictoryChart
-          height={adjustedHeight}
-          width={width}
-          containerComponent={<VictoryVoronoiContainer />}
-        >
-          {Object.keys(data).map(k => {
-            const country = data[k];
-            return (
-              <VictoryGroup
-                key={k}
-                color={country.color}
-                labels={({ datum }) =>
-                  `${country.name} \n day ${datum.x}\n deaths = ${datum.y}\n delta from day before = ${datum.delta}`
-                }
-                labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-                data={country.data}
-              >
-                <VictoryLine />
-                <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
-              </VictoryGroup>
-            );
-          })}
-        </VictoryChart>
-      )}
-    </div>
+    <>
+      <Heading>
+        Coroanavirus number of deaths comparisons since the first day of each
+        country&apos;s first recorded death
+      </Heading>
+      <div className={styles.container} ref={ref}>
+        {!data ? (
+          <div>loading.....</div>
+        ) : (
+          <VictoryChart
+            height={adjustedHeight}
+            width={width}
+            containerComponent={<VictoryVoronoiContainer />}
+            theme={{
+              axis: {
+                style: {
+                  axis: { stroke: AxisColor },
+                  tickLabels: { color: AxisColor, fill: AxisColor },
+                },
+              },
+            }}
+          >
+            {Object.keys(data).map(k => {
+              const country = data[k];
+              return (
+                <VictoryGroup
+                  key={k}
+                  color={country.color}
+                  labels={({ datum }) =>
+                    `${country.name} ${datum.date}\n day ${datum.x}\n deaths = ${datum.y}\n delta from day before = ${datum.delta}`
+                  }
+                  labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
+                  data={country.data}
+                >
+                  <VictoryLine />
+                  <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
+                </VictoryGroup>
+              );
+            })}
+          </VictoryChart>
+        )}
+      </div>
+    </>
   );
 };
