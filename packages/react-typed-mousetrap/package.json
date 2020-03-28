@@ -19,15 +19,15 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/use-shortcuts": "2.2.0",
-    "@cutting/util": "2.2.0",
+    "@cutting/use-shortcuts": "2.3.1",
+    "@cutting/util": "2.3.1",
     "invariant": "^2.2.4",
     "mousetrap": "^1.6.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "2.2.0",
-    "@cutting/eslint-config": "2.2.0",
-    "@cutting/useful-types": "2.2.0",
+    "@cutting/devtools": "2.3.1",
+    "@cutting/eslint-config": "2.3.1",
+    "@cutting/useful-types": "2.3.1",
     "@testing-library/jest-dom": "^5.1.1",
     "@types/invariant": "^2.2.31",
     "@types/mousetrap": "^1.6.3"

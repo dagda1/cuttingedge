@@ -14,14 +14,14 @@
     "build": "NODE_ENV=development cutting ts-build"
   },
   "dependencies": {
-    "@cutting/component-library": "2.2.0",
-    "@cutting/util": "2.2.0",
+    "@cutting/component-library": "2.3.1",
+    "@cutting/util": "2.3.1",
     "formik": "^1.5.2",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@cutting/devtools": "2.2.0",
-    "@cutting/eslint-config": "2.2.0",
+    "@cutting/devtools": "2.3.1",
+    "@cutting/eslint-config": "2.3.1",
     "@cutting/useful-types": "2.1.0"
   }
 }

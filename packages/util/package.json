@@ -14,8 +14,8 @@
     "test:ci": "CI=true npm test"
   },
   "devDependencies": {
-    "@cutting/devtools": "2.2.0",
-    "@cutting/eslint-config": "2.2.0",
+    "@cutting/devtools": "2.3.1",
+    "@cutting/eslint-config": "2.3.1",
     "@cutting/useful-types": "2.1.0"
   }
 }

@@ -15,10 +15,10 @@
     "serve": "NODE_ENV=production node ./dist/server.js"
   },
   "dependencies": {
-    "@cutting/component-library": "2.2.0",
-    "@cutting/connected-components": "2.2.0",
-    "@cutting/hooks": "2.2.0",
-    "@cutting/util": "2.2.0",
+    "@cutting/component-library": "2.3.1",
+    "@cutting/connected-components": "2.3.1",
+    "@cutting/hooks": "2.3.1",
+    "@cutting/util": "2.3.1",
     "@loadable/component": "^5.12.0",
     "@loadable/server": "^5.12.0",
     "@types/loadable__server": "^5.12.0",
@@ -36,9 +36,9 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "2.2.0",
-    "@cutting/eslint-config": "2.2.0",
-    "@cutting/useful-types": "2.2.0",
+    "@cutting/devtools": "2.3.1",
+    "@cutting/eslint-config": "2.3.1",
+    "@cutting/useful-types": "2.3.1",
     "@loadable/webpack-plugin": "^5.12.0",
     "@testing-library/jest-dom": "^5.1.1",
     "@types/csurf": "^1.9.36",
