@@ -33,7 +33,7 @@ if (isProduction) {
   app.use(
     contentSecurityPolicy({
       directives: {
-        defaultSrc: ["'self'"],
+        defaultSrc: ["'self'", 'https://covidapi.info/'],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
         imgSrc: ["'self'", 'data:'],
@@ -65,14 +65,21 @@ app.get('/*', async (req, res) => {
   });
 });
 
-const errorHandler = (err: Exception, req: Request, res: Response, next: NextFunction): void => {
+const errorHandler = (
+  err: Exception,
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
   if (res.headersSent) {
     return next(err);
   }
 
   console.error(err);
 
-  res.status(err.status || HttpStatusCode.InternalServerError).send(err.message || 'Internal Error');
+  res
+    .status(err.status || HttpStatusCode.InternalServerError)
+    .send(err.message || 'Internal Error');
 };
 
 app.use(errorHandler);
