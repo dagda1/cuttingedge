@@ -106,7 +106,7 @@ ul li.logo__container {
   }
 }
 
-@media (max-width: 42.5rem) {
+@media (max-width: $menu-breakpoint) {
   .expandable.expanded {
     display: block;
 
