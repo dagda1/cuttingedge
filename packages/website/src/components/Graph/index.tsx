@@ -19,6 +19,9 @@ import { ResponsiveSVG } from '@cutting/component-library';
 
 const styles = require('./Graph.module.scss');
 
+const Italy = '#016CD0';
+const Ireland = '#169B62';
+
 // https://www.nationsonline.org/oneworld/count ry_code_list.htm
 enum Countries {
   China = 'CHN',
@@ -26,6 +29,7 @@ enum Countries {
   GB = 'GBR',
   USA = 'USA',
   Spain = 'ESP',
+  Ireland = 'IRL',
 }
 
 type Result = { confirmed: number; deaths: number; recovered: number };
@@ -75,6 +79,7 @@ const getCountriesData = () => {
     fetch(`${baseUrl}/${Countries.USA}`, { headers }),
     fetch(`${baseUrl}/${Countries.China}`, { headers }),
     fetch(`${baseUrl}/${Countries.Spain}`, { headers }),
+    fetch(`${baseUrl}/${Countries.Ireland}`, { headers }),
   ])
     .then(async result => {
       const gb = {
@@ -84,7 +89,7 @@ const getCountriesData = () => {
       };
       const italy = {
         data: transform(await result[1].json(), Countries.IT),
-        color: '#016CD0',
+        color: Italy,
         name: 'Italy',
       };
       const usa = {
@@ -102,8 +107,13 @@ const getCountriesData = () => {
         color: 'yellow',
         name: 'Spain',
       };
+      const ireland = {
+        data: transform(await result[5].json(), Countries.Ireland),
+        color: Ireland,
+        name: 'Ireland',
+      };
 
-      return { gb, italy, usa, china, spain };
+      return { gb, italy, usa, china, spain, ireland };
     })
     .catch(console.error);
 };
@@ -123,6 +133,8 @@ export const Graph: React.FC = () => {
 
   const adjustedHeight = Math.min(Math.round(width / aspect), 700);
 
+  const numberOfItems = width > 600 ? 8 : 4;
+
   return (
     <ApplicationLayout
       heading={`Covid-19 deaths over days since first death on ${dayjs()
@@ -134,28 +146,32 @@ export const Graph: React.FC = () => {
           <div>loading.....</div>
         ) : (
           <>
-            <ResponsiveSVG width={width * 1.1} height={200}>
-              <VictoryLegend
-                x={0}
-                y={0}
-                centerTitle
-                standalone={false}
-                orientation="horizontal"
-                gutter={20}
-                style={{
-                  labels: {
-                    fill: AxisColor,
-                  },
-                }}
-                data={[
-                  { name: 'UK', symbol: { fill: 'cyan' } },
-                  { name: 'Italy', symbol: { fill: '#016CD0' } },
-                  { name: 'Spain', symbol: { fill: 'yellow' } },
-                  { name: 'China', symbol: { fill: 'red' } },
-                  { name: 'USA', symbol: { fill: '#fff' } },
-                ]}
-              />
-            </ResponsiveSVG>
+            <div className={styles.legend}>
+              <ResponsiveSVG width={width * 1.2} height={200}>
+                <VictoryLegend
+                  x={0}
+                  y={0}
+                  centerTitle
+                  standalone={false}
+                  orientation="horizontal"
+                  itemsPerRow={numberOfItems}
+                  gutter={20}
+                  style={{
+                    labels: {
+                      fill: AxisColor,
+                    },
+                  }}
+                  data={[
+                    { name: 'UK', symbol: { fill: 'cyan' } },
+                    { name: 'Ireland', symbol: { fill: Ireland } },
+                    { name: 'Italy', symbol: { fill: Italy } },
+                    { name: 'Spain', symbol: { fill: 'yellow' } },
+                    { name: 'China', symbol: { fill: 'red' } },
+                    { name: 'USA', symbol: { fill: '#fff' } },
+                  ]}
+                />
+              </ResponsiveSVG>
+            </div>
             <VictoryChart
               height={adjustedHeight - 40}
               width={width}

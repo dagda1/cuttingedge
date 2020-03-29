@@ -35,6 +35,11 @@ body {
   &.covid {
     h1 {
       font-size: 2rem;
+      @include mb(1);
+    }
+
+    svg:first-of-type{
+      @include mb(2);
     }
 
     footer {
@@ -57,6 +62,10 @@ body {
   @include mq-l {
     font-size: 190%;
   }
+}
+
+main {
+  margin-top: -25px;
 }
 
 ul {
