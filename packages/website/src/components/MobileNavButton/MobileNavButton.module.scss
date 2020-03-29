@@ -30,7 +30,7 @@
   fill: #000;
 }
 
-@media (max-width: 37.5rem) {
+@media (max-width: $menu-breakpoint) {
   .MobileNavButton {
     display: block;
   }
