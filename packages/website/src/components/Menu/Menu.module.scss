@@ -13,7 +13,6 @@ path {
 }
 
 .container {
-  v
   h2 {
     margin-top: 0;
     margin-bottom: 0;
@@ -107,7 +106,7 @@ ul li.logo__container {
   }
 }
 
-@media (max-width: 37.5rem) {
+@media (max-width: 42.5rem) {
   .expandable.expanded {
     display: block;
 

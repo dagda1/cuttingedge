@@ -34,8 +34,9 @@ body {
 
   &.covid {
     h1 {
+      margin-top: -20px;
       font-size: 2rem;
-      @include mb(1);
+      @include mb(2);
     }
 
     svg:first-of-type{
@@ -62,10 +63,6 @@ body {
   @include mq-l {
     font-size: 190%;
   }
-}
-
-main {
-  margin-top: -25px;
 }
 
 ul {

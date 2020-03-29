@@ -137,7 +137,7 @@ export const Graph: React.FC = () => {
 
   return (
     <ApplicationLayout
-      heading={`Covid-19 days since first death on ${dayjs()
+      heading={`Covid-19 data gathered ${dayjs()
         .subtract(1, 'day')
         .format('DD/MM/YYYY')}`}
     >
