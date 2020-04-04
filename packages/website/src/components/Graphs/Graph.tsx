@@ -21,6 +21,8 @@ import {
   AxisColor,
   CovidGraphData,
 } from '../Graphs/types';
+import * as Urls from 'src/urls';
+import { NavLink } from 'react-router-dom';
 
 const styles = require('./Graph.module.scss');
 
@@ -35,7 +37,6 @@ export const Graph: React.FC<GraphProps> = ({
   data,
   xAxisLabel,
   yAxisLabel,
-  title,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -50,16 +51,33 @@ export const Graph: React.FC<GraphProps> = ({
   const numberOfItems = width > 600 ? 8 : 4;
 
   return (
-    <ApplicationLayout
-      heading={`Covid-19 - ${title} - data gathered ${dayjs()
-        .subtract(1, 'day')
-        .format('DD/MM/YYYY')}`}
-    >
+    <ApplicationLayout>
       <div className={styles.container} ref={ref}>
         {!data ? (
           <div>loading.....</div>
         ) : (
           <>
+            <ul className={styles.links}>
+              <li>Covid-19 </li>
+              {[
+                { url: Urls.Covid19, text: 'total deaths' },
+                {
+                  url: Urls.IncreaseInDeaths,
+                  text: 'Daily increase in deaths',
+                },
+              ].map(u => (
+                <li key={u.url}>
+                  <NavLink activeClassName={styles.active} to={u.url}>
+                    {u.text}
+                  </NavLink>
+                </li>
+              ))}
+              <li>
+                {dayjs()
+                  .subtract(1, 'day')
+                  .format('DD/MM/YYYY')}
+              </li>
+            </ul>
             <div className={styles.legend}>
               <ResponsiveSVG width={width * 1.2} height={200}>
                 <VictoryLegend
@@ -154,7 +172,12 @@ export const Graph: React.FC<GraphProps> = ({
                     data={country.data}
                   >
                     <VictoryLine />
-                    <VictoryScatter size={() => (k === Countries.GB ? 8 : 3)} />
+                    <VictoryScatter
+                      size={() => {
+                        console.log(k === Countries.GB, Countries.GB);
+                        return k === Countries.GB ? 5 : 3;
+                      }}
+                    />
                   </VictoryGroup>
                 );
               })}

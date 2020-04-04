@@ -71,7 +71,14 @@ const getCountriesData = () => {
         name: countryData[Countries.Ireland].longName,
       };
 
-      return { gb, italy, usa, china, spain, ireland };
+      return {
+        [Countries.GB]: gb,
+        [Countries.IT]: italy,
+        [Countries.USA]: usa,
+        [Countries.China]: china,
+        [Countries.Spain]: spain,
+        [Countries.Ireland]: ireland,
+      };
     })
     .catch(console.error);
 };

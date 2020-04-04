@@ -21,7 +21,7 @@ const IncreseFromPreviousDay = loadable(
 export const routable: Page[] = [
   {
     heading: 'Deaths',
-    path: Urls.Deaths,
+    path: Urls.Covid19,
     component: Deaths,
     exact: true,
   },
