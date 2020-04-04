@@ -57,5 +57,6 @@
     "ts-node": "^8.6.2",
     "webpack-flush-chunks": "^2.0.3",
     "webpack-hot-server-middleware": "^0.6.0"
-  }
+  },
+  "resolutions": {}
 }

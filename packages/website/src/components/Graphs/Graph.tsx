@@ -15,29 +15,34 @@ import {
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { ResponsiveSVG } from '@cutting/component-library';
-import { Countries, countryData } from '../Graphs/types';
-import { useCountryCovidData } from '../Graphs/useCountryCovidData';
+import {
+  Countries,
+  countryData,
+  AxisColor,
+  CovidGraphData,
+} from '../Graphs/types';
 
 const styles = require('./Graph.module.scss');
 
-const AxisColor = '#fff';
+export interface GraphProps {
+  title: string;
+  data: CovidGraphData;
+  xAxisLabel: string;
+  yAxisLabel: string;
+}
 
-export const Graph: React.FC = () => {
+export const Graph: React.FC<GraphProps> = ({ data }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const { width, height } = useParentSize(ref, {
     initialDimensions: { width: 200, height: 200 },
   });
 
-  const { data } = useCountryCovidData();
-
   const aspect = width / height;
 
   const adjustedHeight = Math.min(Math.round(width / aspect), 700);
 
   const numberOfItems = width > 600 ? 8 : 4;
-
-  console.log(data);
 
   return (
     <ApplicationLayout
@@ -144,12 +149,7 @@ export const Graph: React.FC = () => {
                     data={country.data}
                   >
                     <VictoryLine />
-                    <VictoryScatter
-                      size={x => {
-                        // console.log({ x });
-                        return 3;
-                      }}
-                    />
+                    <VictoryScatter size={() => (k === Countries.GB ? 8 : 3)} />
                   </VictoryGroup>
                 );
               })}

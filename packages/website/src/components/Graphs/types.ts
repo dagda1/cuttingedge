@@ -1,3 +1,5 @@
+import { useCountryCovidData } from './useCountryCovidData';
+
 // https://www.nationsonline.org/oneworld/count ry_code_list.htm
 export enum Countries {
   China = 'CHN',
@@ -28,6 +30,8 @@ export type DayData = {
   country: Countries;
 };
 
+export type CovidGraphData = ReturnType<typeof useCountryCovidData>;
+
 export const countryData: CountryData = {
   [Countries.China]: {
     longName: 'China',
@@ -54,5 +58,4 @@ export const countryData: CountryData = {
     color: '#fff',
   },
 };
-
-console.log(Object.keys(countryData));
+export const AxisColor = '#fff';
