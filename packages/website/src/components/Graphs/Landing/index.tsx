@@ -11,6 +11,10 @@ const Deaths = loadable(() => import('src/components/Deaths'), {
   fallback,
 });
 
+const RateOfChange = loadable(() => import('src/components/RateOfChange'), {
+  fallback,
+});
+
 const IncreseFromPreviousDay = loadable(
   () => import('src/components/IncreseFromPreviousDay'),
   {
@@ -26,9 +30,15 @@ export const routable: Page[] = [
     exact: true,
   },
   {
-    heading: 'Rate of Change',
+    heading: 'Increase in deathss',
     path: Urls.IncreaseInDeaths,
     component: IncreseFromPreviousDay,
+    exact: true,
+  },
+  {
+    heading: 'Rate of change',
+    path: Urls.RateOfChange,
+    component: RateOfChange,
     exact: true,
   },
 ];

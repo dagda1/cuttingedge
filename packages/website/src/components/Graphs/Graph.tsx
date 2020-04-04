@@ -59,6 +59,10 @@ export const Graph: React.FC<GraphProps> = ({
           <>
             <ul className={styles.links}>
               {[
+                {
+                  url: Urls.RateOfChange,
+                  text: 'Rate of change',
+                },
                 { url: Urls.Covid19, text: 'Total deaths' },
                 {
                   url: Urls.IncreaseInDeaths,
@@ -167,16 +171,12 @@ export const Graph: React.FC<GraphProps> = ({
                   <VictoryGroup
                     key={k}
                     color={country.color}
-                    labels={({ datum }) =>
-                      `${country.name} ${datum.date}\n day ${datum.x}\n deaths = ${datum.y}\n delta from day before = ${datum.delta}`
-                    }
                     labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
                     data={country.data}
                   >
                     <VictoryLine />
                     <VictoryScatter
                       size={() => {
-                        console.log(k === Countries.GB, Countries.GB);
                         return k === Countries.GB ? 5 : 3;
                       }}
                     />
