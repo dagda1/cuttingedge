@@ -13,7 +13,11 @@
 }
 
 .links {
-  display: flex;
+  display: none;
+
+  @include mq-m{
+    display: flex;
+  }
   margin-top: 0;
   margin-bottom: 1rem;
 

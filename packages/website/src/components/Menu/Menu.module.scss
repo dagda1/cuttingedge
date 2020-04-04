@@ -50,7 +50,11 @@ path {
 }
 
 ul li.logo__container {
-  width: 100px;
+  width: 75px;
+
+  @include mq-m {
+    width: 100px;
+  }
 
   display: inline-block;
   margin-right: 0;
@@ -131,22 +135,30 @@ ul li.logo__container {
         display: block;
       }
     }
-  }
 
+  }
+  
   ul li.horizontal {
     display: none;
   }
-
+  
   ul li.menu__mobile__button__container {
     @include ml(1);
   }
-
+  
   ul li.horizontal.expanded {
     display: block;
-
+    
     a {
       width: 100%;
       display: inline-block;
     }
+  }
+}
+ul li.mobile{
+  display: block;
+
+  @include mq-m {
+    display: none !important;
   }
 }

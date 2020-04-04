@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import * as urls from '../../urls';
 import { MobileNavButton } from '../MobileNavButton';
 import { Cow } from '../Svg';
-import { MenuItems } from './MenuItems';
+import { MenuItems, MobileMenuItems } from './MenuItems';
 
 const styles = require('./Menu.module.scss');
 
@@ -41,7 +41,7 @@ export const Menu: React.FC = () => {
       </div>
       <div className={cs(styles.expandable, { [styles.expanded]: expanded })}>
         <ul>
-          <MenuItems collapse={collapse} />
+          <MobileMenuItems collapse={collapse} />
         </ul>
       </div>
     </nav>

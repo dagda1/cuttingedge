@@ -60,10 +60,10 @@ export const Graph: React.FC<GraphProps> = ({
             <ul className={styles.links}>
               {[
                 {
-                  url: Urls.RateOfChange,
+                  url: Urls.Covid19,
                   text: 'Rate of change',
                 },
-                { url: Urls.Covid19, text: 'Total deaths' },
+                { url: Urls.Deaths, text: 'Total deaths' },
                 {
                   url: Urls.IncreaseInDeaths,
                   text: 'Daily increase in deaths',

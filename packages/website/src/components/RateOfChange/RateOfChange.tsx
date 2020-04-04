@@ -14,9 +14,11 @@ export const RateOfChange: React.FC = () => {
             return [d.x, d.delta == 0 ? 1 : d.delta];
           }),
         ])
-        .points.map(([x, y]) => ({ x, y }), { r2: 3 });
+        .points.map(([x, y]) => ({ x, y }));
     });
   }
+
+  console.log(data);
 
   return (
     <Graph
