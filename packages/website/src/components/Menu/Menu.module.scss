@@ -52,10 +52,6 @@ path {
 ul li.logo__container {
   width: 100px;
 
-  @include mq-m {
-    width: 135px;
-  }
-
   display: inline-block;
   margin-right: 0;
   margin-left: -19px;

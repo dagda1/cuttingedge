@@ -15,12 +15,15 @@
 .links {
   display: flex;
   margin-top: 0;
+  margin-bottom: 1rem;
 
   li {
     margin-right: 1rem;
-
+    
     a {
-      text-decoration: underline;
+      &:not(.active) {
+        text-decoration: underline;
+      }
 
       &.active {
         color: $active-nav-link-color

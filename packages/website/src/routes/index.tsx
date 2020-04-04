@@ -76,7 +76,7 @@ export const routable: Page[] = [
     footerPage: true,
   },
   {
-    heading: 'Covid-19',
+    heading: 'COVID-19',
     path: Urls.Covid19,
     component: Graphs,
     exact: false,

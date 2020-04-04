@@ -58,25 +58,23 @@ export const Graph: React.FC<GraphProps> = ({
         ) : (
           <>
             <ul className={styles.links}>
-              <li>Covid-19 </li>
               {[
-                { url: Urls.Covid19, text: 'total deaths' },
+                { url: Urls.Covid19, text: 'Total deaths' },
                 {
                   url: Urls.IncreaseInDeaths,
                   text: 'Daily increase in deaths',
                 },
               ].map(u => (
                 <li key={u.url}>
-                  <NavLink activeClassName={styles.active} to={u.url}>
+                  <NavLink
+                    activeClassName={styles.active}
+                    to={u.url}
+                    exact={true}
+                  >
                     {u.text}
                   </NavLink>
                 </li>
               ))}
-              <li>
-                {dayjs()
-                  .subtract(1, 'day')
-                  .format('DD/MM/YYYY')}
-              </li>
             </ul>
             <div className={styles.legend}>
               <ResponsiveSVG width={width * 1.2} height={200}>
@@ -138,7 +136,9 @@ export const Graph: React.FC<GraphProps> = ({
             >
               <VictoryAxis
                 dependentAxis
-                label={yAxisLabel}
+                label={`${yAxisLabel} up until ${dayjs()
+                  .subtract(1, 'day')
+                  .format('DD/MM/YYYY')}`}
                 orientation="left"
                 standalone={false}
                 style={{
@@ -150,7 +150,9 @@ export const Graph: React.FC<GraphProps> = ({
               />
               <VictoryAxis
                 orientation={'bottom'}
-                label={xAxisLabel}
+                label={`${xAxisLabel} up until ${dayjs()
+                  .subtract(1, 'day')
+                  .format('DD/MM/YYYY')}`}
                 standalone={false}
                 style={{
                   axisLabel: {
