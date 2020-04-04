@@ -23,6 +23,7 @@ import {
 } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 const styles = require('./Graph.module.scss');
 
@@ -31,12 +32,14 @@ export interface GraphProps {
   title: string;
   xAxisLabel: string;
   yAxisLabel: string;
+  labels: (data: any) => string;
 }
 
 export const Graph: React.FC<GraphProps> = ({
   data,
   xAxisLabel,
   yAxisLabel,
+  labels,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -50,6 +53,7 @@ export const Graph: React.FC<GraphProps> = ({
 
   const numberOfItems = width > 600 ? 8 : 4;
 
+  const location = useLocation();
   return (
     <ApplicationLayout>
       <div className={styles.container} ref={ref}>
@@ -68,17 +72,23 @@ export const Graph: React.FC<GraphProps> = ({
                   url: Urls.IncreaseInDeaths,
                   text: 'Daily increase in deaths',
                 },
-              ].map(u => (
-                <li key={u.url}>
-                  <NavLink
-                    activeClassName={styles.active}
-                    to={u.url}
-                    exact={true}
-                  >
-                    {u.text}
-                  </NavLink>
-                </li>
-              ))}
+              ].map(u => {
+                if (location.pathname === u.url) {
+                  return <li key={u.url}>{u.text}</li>;
+                }
+
+                return (
+                  <li key={u.url}>
+                    <NavLink
+                      activeClassName={styles.active}
+                      to={u.url}
+                      exact={true}
+                    >
+                      {u.text}
+                    </NavLink>
+                  </li>
+                );
+              })}
             </ul>
             <div className={styles.legend}>
               <ResponsiveSVG width={width * 1.2} height={200}>
@@ -106,7 +116,7 @@ export const Graph: React.FC<GraphProps> = ({
                     },
                     {
                       name: countryData[Countries.IT].longName,
-                      symbol: { fill: countryData[Countries.IT].longName },
+                      symbol: { fill: countryData[Countries.IT].color },
                     },
                     {
                       name: countryData[Countries.Spain].longName,
@@ -171,15 +181,16 @@ export const Graph: React.FC<GraphProps> = ({
                   <VictoryGroup
                     key={k}
                     color={country.color}
+                    labels={labels}
                     labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
                     data={country.data}
                   >
-                    <VictoryLine />
-                    <VictoryScatter
-                      size={() => {
-                        return k === Countries.GB ? 5 : 3;
+                    <VictoryLine
+                      style={{
+                        data: { strokeWidth: k === Countries.GB ? 3 : 1 },
                       }}
                     />
+                    <VictoryScatter size={() => (k === Countries.GB ? 5 : 3)} />
                   </VictoryGroup>
                 );
               })}

@@ -13,7 +13,7 @@ export enum Countries {
 export type CountryData = {
   [key in Countries]: {
     longName: string;
-    color: string;
+      color: string;
   };
 };
 

@@ -40,11 +40,6 @@ const getCountriesData = () => {
     fetch(`${baseUrl}/${Countries.Ireland}`, { headers }),
   ])
     .then(async result => {
-      const gb = {
-        data: transform(await result[0].json(), Countries.GB),
-        color: countryData[Countries.GB].color,
-        name: countryData[Countries.GB].longName,
-      };
       const italy = {
         data: transform(await result[1].json(), Countries.IT),
         color: countryData[Countries.IT].color,
@@ -70,14 +65,19 @@ const getCountriesData = () => {
         color: countryData[Countries.Ireland].color,
         name: countryData[Countries.Ireland].longName,
       };
+      const gb = {
+        data: transform(await result[0].json(), Countries.GB),
+        color: countryData[Countries.GB].color,
+        name: countryData[Countries.GB].longName,
+      };
 
       return {
-        [Countries.GB]: gb,
         [Countries.IT]: italy,
         [Countries.USA]: usa,
         [Countries.China]: china,
         [Countries.Spain]: spain,
         [Countries.Ireland]: ireland,
+        [Countries.GB]: gb,
       };
     })
     .catch(console.error);

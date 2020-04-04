@@ -6,11 +6,13 @@ export const IncreseFromPreviousDay: React.FC = () => {
   const { data } = useCountryCovidData();
 
   if (data) {
-    console.log(Object.keys(data));
-
     Object.keys(data).forEach(c => {
       data[c];
-      data[c].data = data[c].data.map((d: any) => ({ ...d, y: d.delta }));
+      data[c].data = data[c].data.map((d: any) => ({
+        ...d,
+        deaths: d.y,
+        y: d.delta,
+      }));
     });
   }
 
@@ -20,6 +22,9 @@ export const IncreseFromPreviousDay: React.FC = () => {
       xAxisLabel="Days since first reported death"
       yAxisLabel="Increase in deaths from previous day"
       data={data as any}
+      labels={({ datum }) =>
+        `${datum?.date}\n day ${datum.x}\n deaths = ${datum.deaths}\n delta from day before = ${datum.delta}`
+      }
     />
   );
 };

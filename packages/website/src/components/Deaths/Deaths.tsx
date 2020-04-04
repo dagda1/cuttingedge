@@ -11,6 +11,9 @@ export const Deaths: React.FC = () => {
       yAxisLabel="Number of deaths"
       xAxisLabel="days since first reported death"
       data={data as any}
+      labels={({ datum }) =>
+        `${datum?.date}\n day ${datum.x}\n deaths = ${datum.y}\n delta from day before = ${datum.delta}`
+      }
     />
   );
 };
