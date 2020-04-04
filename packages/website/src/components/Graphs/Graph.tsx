@@ -25,13 +25,17 @@ import {
 const styles = require('./Graph.module.scss');
 
 export interface GraphProps {
-  title: string;
   data: CovidGraphData;
+  title: string;
   xAxisLabel: string;
   yAxisLabel: string;
 }
 
-export const Graph: React.FC<GraphProps> = ({ data }) => {
+export const Graph: React.FC<GraphProps> = ({
+  data,
+  xAxisLabel,
+  yAxisLabel,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const { width, height } = useParentSize(ref, {
@@ -115,7 +119,7 @@ export const Graph: React.FC<GraphProps> = ({ data }) => {
             >
               <VictoryAxis
                 dependentAxis
-                label="Number of deaths"
+                label={yAxisLabel}
                 orientation="left"
                 standalone={false}
                 style={{
@@ -127,7 +131,7 @@ export const Graph: React.FC<GraphProps> = ({ data }) => {
               />
               <VictoryAxis
                 orientation={'bottom'}
-                label="days since first reported death"
+                label={xAxisLabel}
                 standalone={false}
                 style={{
                   axisLabel: {

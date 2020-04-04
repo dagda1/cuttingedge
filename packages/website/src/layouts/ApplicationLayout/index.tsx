@@ -32,7 +32,7 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (__BROWSER__ && pathname === Covid19) {
+    if (__BROWSER__ && pathname.indexOf(Covid19) > -1) {
       document.body.classList.add('covid');
     } else {
       document.body.classList.remove('covid');

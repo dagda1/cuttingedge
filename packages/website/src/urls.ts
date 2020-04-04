@@ -6,3 +6,5 @@ export const Download = '/download';
 export const PrivacyPolicy = '/privacy-policy';
 export const TermsOfService = '/terms-of-service';
 export const Covid19 = '/covid-19';
+export const Deaths = '/covid-19/deaths';
+export const IncreaseInDeaths = '/covid-19/increase-in-deaths';

@@ -1,14 +1,9 @@
 import React from 'react';
 import loadable from '@loadable/component';
 
-import * as Urls from '../urls';
-import { RouteProps, Route, Switch } from 'react-router';
-
-export type Page<P = unknown> = RouteProps & {
-  heading: string;
-  path: string;
-  footerPage?: boolean;
-} & P;
+import * as Urls from 'src/urls';
+import { Route, Switch } from 'react-router';
+import { Page } from 'src/types';
 
 const fallback = <div>loading....</div>;
 
@@ -36,7 +31,7 @@ const TermsOfService = loadable(() => import('src/components/TermsOfService'), {
   fallback: <div>Loading...</div>,
 });
 
-const Graph = loadable(() => import('src/components/Graph'), {
+const Graphs = loadable(() => import('src/components/Graphs/Landing'), {
   fallback: <div>Loading...</div>,
 });
 
@@ -83,8 +78,8 @@ export const routable: Page[] = [
   {
     heading: 'Covid-19',
     path: Urls.Covid19,
-    component: Graph,
-    exact: true,
+    component: Graphs,
+    exact: false,
     footerPage: false,
   },
 ];
