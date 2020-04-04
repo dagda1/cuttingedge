@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 // eslint:disable
 import React, { useRef } from 'react';
-import { useAsync } from 'react-async';
 import { useParentSize } from '@cutting/hooks';
 import {
   VictoryChart,
@@ -16,107 +15,10 @@ import {
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { ResponsiveSVG } from '@cutting/component-library';
+import { Countries, countryData } from '../Graphs/types';
+import { useCountryCovidData } from '../Graphs/useCountryCovidData';
 
 const styles = require('./Graph.module.scss');
-
-const Italy = '#016CD0';
-const Ireland = '#169B62';
-
-// https://www.nationsonline.org/oneworld/count ry_code_list.htm
-enum Countries {
-  China = 'CHN',
-  IT = 'ITA',
-  GB = 'GBR',
-  USA = 'USA',
-  Spain = 'ESP',
-  Ireland = 'IRL',
-}
-
-type Result = { confirmed: number; deaths: number; recovered: number };
-
-type Results = {
-  count: number;
-  result: Result;
-};
-
-type DayData = {
-  x: number;
-  y: number;
-  country: Countries;
-};
-
-// documenter.getpostman.com/view/2568274/SzS8rjbe?version=latest
-const baseUrl = 'https://covidapi.info/api/v1/country';
-
-const transform = (results: Results, country: Countries): DayData[] => {
-  const data = Object.keys(results.result)
-    .map((k, i) => {
-      return {
-        x: i + 1,
-        y: results.result[k].deaths,
-        date: dayjs(k).format('DD/MM/YYYY'),
-      };
-    })
-    .filter(d => d.y > 1)
-    .map(({ y, ...rest }, i) => ({ ...rest, x: i + 1, y, country }));
-
-  const result = data.map((d, i) => {
-    return {
-      ...d,
-      delta: i === 0 ? 0 : d.y - data[i - 1].y,
-    };
-  });
-
-  return result;
-};
-
-const getCountriesData = () => {
-  const headers = { Accept: 'application/json' };
-
-  return Promise.all([
-    fetch(`${baseUrl}/${Countries.GB}`, { headers }),
-    fetch(`${baseUrl}/${Countries.IT}`, { headers }),
-    fetch(`${baseUrl}/${Countries.USA}`, { headers }),
-    fetch(`${baseUrl}/${Countries.China}`, { headers }),
-    fetch(`${baseUrl}/${Countries.Spain}`, { headers }),
-    fetch(`${baseUrl}/${Countries.Ireland}`, { headers }),
-  ])
-    .then(async result => {
-      const gb = {
-        data: transform(await result[0].json(), Countries.GB),
-        color: 'cyan',
-        name: 'UK',
-      };
-      const italy = {
-        data: transform(await result[1].json(), Countries.IT),
-        color: Italy,
-        name: 'Italy',
-      };
-      const usa = {
-        data: transform(await result[2].json(), Countries.USA),
-        color: '#fff',
-        name: 'USA',
-      };
-      const china = {
-        data: transform(await result[3].json(), Countries.China),
-        color: 'red',
-        name: 'China',
-      };
-      const spain = {
-        data: transform(await result[4].json(), Countries.Spain),
-        color: 'yellow',
-        name: 'Spain',
-      };
-      const ireland = {
-        data: transform(await result[5].json(), Countries.Ireland),
-        color: Ireland,
-        name: 'Ireland',
-      };
-
-      return { gb, italy, usa, china, spain, ireland };
-    })
-    .catch(console.error);
-};
 
 const AxisColor = '#fff';
 
@@ -127,13 +29,15 @@ export const Graph: React.FC = () => {
     initialDimensions: { width: 200, height: 200 },
   });
 
-  const { data } = useAsync(getCountriesData);
+  const { data } = useCountryCovidData();
 
   const aspect = width / height;
 
   const adjustedHeight = Math.min(Math.round(width / aspect), 700);
 
   const numberOfItems = width > 600 ? 8 : 4;
+
+  console.log(data);
 
   return (
     <ApplicationLayout
@@ -162,12 +66,30 @@ export const Graph: React.FC = () => {
                     },
                   }}
                   data={[
-                    { name: 'UK', symbol: { fill: 'cyan' } },
-                    { name: 'Ireland', symbol: { fill: Ireland } },
-                    { name: 'Italy', symbol: { fill: Italy } },
-                    { name: 'Spain', symbol: { fill: 'yellow' } },
-                    { name: 'China', symbol: { fill: 'red' } },
-                    { name: 'USA', symbol: { fill: '#fff' } },
+                    {
+                      name: countryData[Countries.GB].longName,
+                      symbol: { fill: countryData[Countries.GB].color },
+                    },
+                    {
+                      name: countryData[Countries.Ireland].longName,
+                      symbol: { fill: countryData[Countries.Ireland].color },
+                    },
+                    {
+                      name: countryData[Countries.IT].longName,
+                      symbol: { fill: countryData[Countries.IT].longName },
+                    },
+                    {
+                      name: countryData[Countries.Spain].longName,
+                      symbol: { fill: countryData[Countries.Spain].color },
+                    },
+                    {
+                      name: countryData[Countries.China].longName,
+                      symbol: { fill: countryData[Countries.China].color },
+                    },
+                    {
+                      name: countryData[Countries.USA].longName,
+                      symbol: { fill: countryData[Countries.USA].color },
+                    },
                   ]}
                 />
               </ResponsiveSVG>
@@ -222,7 +144,12 @@ export const Graph: React.FC = () => {
                     data={country.data}
                   >
                     <VictoryLine />
-                    <VictoryScatter size={({ active }) => (active ? 8 : 3)} />
+                    <VictoryScatter
+                      size={x => {
+                        // console.log({ x });
+                        return 3;
+                      }}
+                    />
                   </VictoryGroup>
                 );
               })}
