@@ -11,7 +11,7 @@ const Deaths = loadable(() => import('src/components/Deaths'), {
   fallback,
 });
 
-const RateOfChange = loadable(
+const IncreseFromPreviousDay = loadable(
   () => import('src/components/IncreseFromPreviousDay'),
   {
     fallback,
@@ -28,7 +28,7 @@ export const routable: Page[] = [
   {
     heading: 'Rate of Change',
     path: Urls.IncreaseInDeaths,
-    component: RateOfChange,
+    component: IncreseFromPreviousDay,
     exact: true,
   },
 ];

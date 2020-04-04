@@ -35,6 +35,7 @@ export const Graph: React.FC<GraphProps> = ({
   data,
   xAxisLabel,
   yAxisLabel,
+  title,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -50,7 +51,7 @@ export const Graph: React.FC<GraphProps> = ({
 
   return (
     <ApplicationLayout
-      heading={`Covid-19 data gathered ${dayjs()
+      heading={`Covid-19 - ${title} - data gathered ${dayjs()
         .subtract(1, 'day')
         .format('DD/MM/YYYY')}`}
     >
