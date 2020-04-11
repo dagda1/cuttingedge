@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
 import Graph from 'src/components/Graphs/Graph';
+import dayjs from 'dayjs';
 
 export const IncreseFromPreviousDay: React.FC = () => {
   const { data } = useCountryCovidData();
@@ -23,7 +24,9 @@ export const IncreseFromPreviousDay: React.FC = () => {
       yAxisLabel="Increase in deaths from previous day"
       data={data as any}
       labels={({ datum }) =>
-        `${datum?.date}\n day ${datum.x}\n deaths = ${datum.deaths}\n delta from day before = ${datum.delta}`
+        `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths = ${
+          datum.deaths
+        }\n delta from day before = ${datum.delta}`
       }
     />
   );

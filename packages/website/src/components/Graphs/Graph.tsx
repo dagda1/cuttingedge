@@ -4,7 +4,6 @@ import React, { useRef } from 'react';
 import { useParentSize } from '@cutting/hooks';
 import {
   VictoryChart,
-  VictoryVoronoiContainer,
   VictoryGroup,
   VictoryTooltip,
   VictoryLine,
@@ -33,13 +32,15 @@ export interface GraphProps {
   xAxisLabel: string;
   yAxisLabel: string;
   labels: (data: any) => string;
+  xTicksAreDates?: boolean;
 }
 
 export const Graph: React.FC<GraphProps> = ({
   data,
-  xAxisLabel,
   yAxisLabel,
   labels,
+  title,
+  xTicksAreDates = true,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -47,11 +48,7 @@ export const Graph: React.FC<GraphProps> = ({
     initialDimensions: { width: 200, height: 200 },
   });
 
-  const aspect = width / height;
-
-  const adjustedHeight = Math.min(Math.round(width / aspect), 700);
-
-  const numberOfItems = width > 600 ? 8 : 4;
+  const largeScreen = width > 600;
 
   const location = useLocation();
   return (
@@ -91,18 +88,22 @@ export const Graph: React.FC<GraphProps> = ({
               })}
             </ul>
             <div className={styles.legend}>
-              <ResponsiveSVG width={width} height={adjustedHeight}>
+              <ResponsiveSVG width={width} height={height}>
                 <VictoryLegend
+                  title={title}
                   x={0}
                   y={0}
                   centerTitle
                   standalone={false}
                   orientation="horizontal"
-                  itemsPerRow={numberOfItems}
+                  itemsPerRow={largeScreen ? 8 : 4}
                   gutter={20}
                   style={{
                     labels: {
                       fill: AxisColor,
+                    },
+                    title: {
+                      fill: '#fff',
                     },
                   }}
                   data={Object.keys(countryData).map(k => ({
@@ -113,9 +114,11 @@ export const Graph: React.FC<GraphProps> = ({
               </ResponsiveSVG>
             </div>
             <VictoryChart
-              height={adjustedHeight - 40}
+              height={height - 50}
               width={width}
-              containerComponent={<VictoryVoronoiContainer />}
+              containerComponent={
+                <ResponsiveSVG width={width} height={height} />
+              }
               theme={{
                 axis: {
                   style: {
@@ -145,14 +148,17 @@ export const Graph: React.FC<GraphProps> = ({
                 standalone={false}
                 style={{
                   tickLabels: {
-                    position: 'relative',
-                    top: 200,
-                    angle: 45,
+                    angle: largeScreen ? 45 : 90,
                     verticalAnchor: 'middle',
                     textAnchor: 'start',
+                    fontSize: largeScreen ? '12px' : '8px',
                   },
                 }}
-                tickFormat={t => `-   ${dayjs(t).format('DD/MM')}`}
+                tickFormat={t =>
+                  xTicksAreDates
+                    ? `-   ${dayjs(t).format('DD/MM')}`
+                    : console.log(t)
+                }
               />
               {Object.keys(data).map(k => {
                 const country = data[k];

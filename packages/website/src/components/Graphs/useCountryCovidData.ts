@@ -11,12 +11,11 @@ const baseUrl = 'https://covidapi.info/api/v1/country';
 
 const transform = (results: Results, country: Countries): DayData[] => {
   const data = results.result.map((day, i) => {
-    console.log(day);
     return {
       x: (dayjs as any).utc(day.date).format(),
       y: day.deaths,
       index: i,
-      country: country,
+      country,
     };
   });
 
@@ -30,7 +29,9 @@ const transform = (results: Results, country: Countries): DayData[] => {
   return result;
 };
 
-const startDate = '2020-03-13';
+const startDate = dayjs()
+  .subtract(30, 'day')
+  .format('YYYY-MM-DD');
 
 const getCountriesData = async () => {
   const headers = { Accept: 'application/json' };
@@ -45,7 +46,7 @@ const getCountriesData = async () => {
     );
 
     results[country] = {
-      data: transform(await result.json(), Countries[country]),
+      data: transform(await result.json(), countryData[country]),
       color: countryData[country].color,
       name: countryData[country].longName,
     };

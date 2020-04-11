@@ -2,13 +2,12 @@ import { useCountryCovidData } from './useCountryCovidData';
 
 // https://www.nationsonline.org/oneworld/country_code_list.htm
 export enum Countries {
-  Canada = 'Can',
-  // China = 'CHN',
-  Ireland = 'IRL',
+  Canada = 'CAN',
+  Brazil = 'BRA',
   IT = 'ITA',
   GB = 'GBR',
   Spain = 'ESP',
-  Sweden = 'SWE',
+  Germany = 'DEU',
   USA = 'USA',
 }
 
@@ -16,6 +15,7 @@ export type CountryData = {
   [key in Countries]: {
     longName: string;
     color: string;
+    population: number;
   };
 };
 
@@ -43,31 +43,38 @@ export const countryData: CountryData = {
   [Countries.Canada]: {
     longName: 'Canada',
     color: 'red',
+    population: 38000000,
   },
-  [Countries.Sweden]: {
-    longName: 'Sweden',
-    color: 'purple',
+  [Countries.Germany]: {
+    longName: 'Germany',
+    color: 'brown',
+    population: 84000000,
   },
 
   [Countries.IT]: {
     longName: 'Italy',
     color: '#016CD0',
+    population: 60000000,
   },
-  [Countries.Ireland]: {
-    longName: 'Ireland',
-    color: '#169B62',
+  [Countries.Brazil]: {
+    longName: 'Brazil',
+    color: '#d4af37',
+    population: 210000000,
   },
   [Countries.Spain]: {
     longName: 'Spain',
     color: 'yellow',
+    population: 47000000,
   },
   [Countries.USA]: {
     longName: 'USA',
     color: '#fff',
+    population: 383000000,
   },
   [Countries.GB]: {
     longName: 'UK',
     color: 'cyan',
+    population: 67000000,
   },
 };
 export const AxisColor = '#fff';

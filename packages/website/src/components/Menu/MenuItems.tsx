@@ -43,7 +43,7 @@ export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
           heading: 'COVID-19 Daily increase in deaths',
         },
       ].map(page => {
-        if (page.heading === location.pathname) {
+        if (page.path === location.pathname) {
           return <li key={page.heading}>{page.heading}</li>;
         }
 
