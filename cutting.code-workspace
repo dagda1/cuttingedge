@@ -7,5 +7,6 @@
   "settings": {
     "typescript.tsdk": "cuttingedge/node_modules/typescript/lib",
     "workbench.colorCustomizations": {},
+    "editor.fontSize": 16
   }
 }
