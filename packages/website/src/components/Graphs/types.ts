@@ -1,31 +1,38 @@
 import { useCountryCovidData } from './useCountryCovidData';
 
-// https://www.nationsonline.org/oneworld/count ry_code_list.htm
+// https://www.nationsonline.org/oneworld/country_code_list.htm
 export enum Countries {
-  China = 'CHN',
+  Canada = 'Can',
+  // China = 'CHN',
+  Ireland = 'IRL',
   IT = 'ITA',
   GB = 'GBR',
-  USA = 'USA',
   Spain = 'ESP',
-  Ireland = 'IRL',
+  Sweden = 'SWE',
+  USA = 'USA',
 }
 
 export type CountryData = {
   [key in Countries]: {
     longName: string;
-      color: string;
+    color: string;
   };
 };
 
-export type Result = { confirmed: number; deaths: number; recovered: number };
+export type DayStatistics = {
+  confirmed: number;
+  deaths: number;
+  recovered: number;
+  date: string;
+};
 
 export type Results = {
   count: number;
-  result: Result;
+  result: DayStatistics[];
 };
 
 export type DayData = {
-  x: number;
+  x: string;
   y: number;
   country: Countries;
 };
@@ -33,17 +40,18 @@ export type DayData = {
 export type CovidGraphData = ReturnType<typeof useCountryCovidData>;
 
 export const countryData: CountryData = {
-  [Countries.China]: {
-    longName: 'China',
+  [Countries.Canada]: {
+    longName: 'Canada',
     color: 'red',
   },
+  [Countries.Sweden]: {
+    longName: 'Sweden',
+    color: 'purple',
+  },
+
   [Countries.IT]: {
     longName: 'Italy',
     color: '#016CD0',
-  },
-  [Countries.GB]: {
-    longName: 'UK',
-    color: 'cyan',
   },
   [Countries.Ireland]: {
     longName: 'Ireland',
@@ -56,6 +64,10 @@ export const countryData: CountryData = {
   [Countries.USA]: {
     longName: 'USA',
     color: '#fff',
+  },
+  [Countries.GB]: {
+    longName: 'UK',
+    color: 'cyan',
   },
 };
 export const AxisColor = '#fff';

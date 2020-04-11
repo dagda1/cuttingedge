@@ -2,21 +2,23 @@ import { Results, Countries, DayData, countryData } from './types';
 import { useAsync } from 'react-async';
 
 import dayjs from 'dayjs';
+const utc = require('dayjs/plugin/utc');
+
+dayjs.extend(utc);
 
 // documenter.getpostman.com/view/2568274/SzS8rjbe?version=latest
 const baseUrl = 'https://covidapi.info/api/v1/country';
 
 const transform = (results: Results, country: Countries): DayData[] => {
-  const data = Object.keys(results.result)
-    .map((k, i) => {
-      return {
-        x: i + 1,
-        y: results.result[k].deaths,
-        date: dayjs(k).format('DD/MM/YYYY'),
-      };
-    })
-    .filter(d => d.y > 1)
-    .map(({ y, ...rest }, i) => ({ ...rest, x: i + 1, y, country }));
+  const data = results.result.map((day, i) => {
+    console.log(day);
+    return {
+      x: (dayjs as any).utc(day.date).format(),
+      y: day.deaths,
+      index: i,
+      country: country,
+    };
+  });
 
   const result = data.map((d, i) => {
     return {
@@ -28,59 +30,30 @@ const transform = (results: Results, country: Countries): DayData[] => {
   return result;
 };
 
-const getCountriesData = () => {
+const startDate = '2020-03-13';
+
+const getCountriesData = async () => {
   const headers = { Accept: 'application/json' };
+  const results: any = {};
 
-  return Promise.all([
-    fetch(`${baseUrl}/${Countries.GB}`, { headers }),
-    fetch(`${baseUrl}/${Countries.IT}`, { headers }),
-    fetch(`${baseUrl}/${Countries.USA}`, { headers }),
-    fetch(`${baseUrl}/${Countries.China}`, { headers }),
-    fetch(`${baseUrl}/${Countries.Spain}`, { headers }),
-    fetch(`${baseUrl}/${Countries.Ireland}`, { headers }),
-  ])
-    .then(async result => {
-      const italy = {
-        data: transform(await result[1].json(), Countries.IT),
-        color: countryData[Countries.IT].color,
-        name: countryData[Countries.IT].longName,
-      };
-      const usa = {
-        data: transform(await result[2].json(), Countries.USA),
-        color: countryData[Countries.USA].color,
-        name: countryData[Countries.USA].longName,
-      };
-      const china = {
-        data: transform(await result[3].json(), Countries.China),
-        color: countryData[Countries.China].color,
-        name: countryData[Countries.China].longName,
-      };
-      const spain = {
-        data: transform(await result[4].json(), Countries.Spain),
-        color: countryData[Countries.Spain].color,
-        name: countryData[Countries.Spain].longName,
-      };
-      const ireland = {
-        data: transform(await result[5].json(), Countries.Ireland),
-        color: countryData[Countries.Ireland].color,
-        name: countryData[Countries.Ireland].longName,
-      };
-      const gb = {
-        data: transform(await result[0].json(), Countries.GB),
-        color: countryData[Countries.GB].color,
-        name: countryData[Countries.GB].longName,
-      };
+  for (const country of Object.keys(countryData)) {
+    const result = await fetch(
+      `${baseUrl}/${country.toUpperCase()}/timeseries/${startDate}/${dayjs().format(
+        'YYYY-MM-DD',
+      )}`,
+      { headers },
+    );
 
-      return {
-        [Countries.IT]: italy,
-        [Countries.USA]: usa,
-        [Countries.China]: china,
-        [Countries.Spain]: spain,
-        [Countries.Ireland]: ireland,
-        [Countries.GB]: gb,
-      };
-    })
-    .catch(console.error);
+    results[country] = {
+      data: transform(await result.json(), Countries[country]),
+      color: countryData[country].color,
+      name: countryData[country].longName,
+    };
+
+    // console.log(results[country].data);
+  }
+
+  return results;
 };
 
 export const useCountryCovidData = () => {

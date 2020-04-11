@@ -91,7 +91,7 @@ export const Graph: React.FC<GraphProps> = ({
               })}
             </ul>
             <div className={styles.legend}>
-              <ResponsiveSVG width={width * 1.2} height={200}>
+              <ResponsiveSVG width={width} height={adjustedHeight}>
                 <VictoryLegend
                   x={0}
                   y={0}
@@ -105,32 +105,10 @@ export const Graph: React.FC<GraphProps> = ({
                       fill: AxisColor,
                     },
                   }}
-                  data={[
-                    {
-                      name: countryData[Countries.GB].longName,
-                      symbol: { fill: countryData[Countries.GB].color },
-                    },
-                    {
-                      name: countryData[Countries.Ireland].longName,
-                      symbol: { fill: countryData[Countries.Ireland].color },
-                    },
-                    {
-                      name: countryData[Countries.IT].longName,
-                      symbol: { fill: countryData[Countries.IT].color },
-                    },
-                    {
-                      name: countryData[Countries.Spain].longName,
-                      symbol: { fill: countryData[Countries.Spain].color },
-                    },
-                    {
-                      name: countryData[Countries.China].longName,
-                      symbol: { fill: countryData[Countries.China].color },
-                    },
-                    {
-                      name: countryData[Countries.USA].longName,
-                      symbol: { fill: countryData[Countries.USA].color },
-                    },
-                  ]}
+                  data={Object.keys(countryData).map(k => ({
+                    name: countryData[k].longName,
+                    symbol: { fill: countryData[k].color },
+                  }))}
                 />
               </ResponsiveSVG>
             </div>
@@ -164,16 +142,17 @@ export const Graph: React.FC<GraphProps> = ({
               />
               <VictoryAxis
                 orientation={'bottom'}
-                label={`${xAxisLabel} up until ${dayjs()
-                  .subtract(1, 'day')
-                  .format('DD/MM/YYYY')}`}
                 standalone={false}
                 style={{
-                  axisLabel: {
-                    fill: AxisColor,
-                    fillOpacity: 0.5,
+                  tickLabels: {
+                    position: 'relative',
+                    top: 200,
+                    angle: 45,
+                    verticalAnchor: 'middle',
+                    textAnchor: 'start',
                   },
                 }}
+                tickFormat={t => `-   ${dayjs(t).format('DD/MM')}`}
               />
               {Object.keys(data).map(k => {
                 const country = data[k];

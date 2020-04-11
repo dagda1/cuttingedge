@@ -108,7 +108,7 @@ const configure = options => {
           host,
           https: protocol === 'https',
           hotOnly: true,
-          hot: true,
+          hot: false,
           noInfo: true,
           overlay: false,
           port: devServerPort,

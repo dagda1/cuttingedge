@@ -10,8 +10,8 @@ export const RateOfChange: React.FC = () => {
     Object.keys(data).forEach(c => {
       data[c].data = regression
         .exponential([
-          ...data[c].data.map((d: any) => {
-            return [d.x, d.delta == 0 ? 1 : d.delta];
+          ...data[c].data.map((d: any, i: number) => {
+            return [i, d.delta == 0 ? 1 : d.delta];
           }),
         ])
         .points.map(([x, y]) => ({ x, y }));
