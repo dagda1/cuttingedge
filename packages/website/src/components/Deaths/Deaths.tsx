@@ -17,7 +17,7 @@ export const Deaths: React.FC = () => {
 
   return (
     <Graph
-      title="Number of deaths from first reported death"
+      title="Number of deaths  (per 100000 people)"
       yAxisLabel="Number of deaths (per 100000 people)"
       xAxisLabel="days since first reported death"
       data={data as any}

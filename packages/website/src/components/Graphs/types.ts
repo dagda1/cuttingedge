@@ -42,12 +42,12 @@ export type CovidGraphData = ReturnType<typeof useCountryCovidData>;
 export const countryData: CountryData = {
   [Countries.Canada]: {
     longName: 'Canada',
-    color: 'red',
+    color: '#FF0000',
     population: 38000000,
   },
   [Countries.Germany]: {
     longName: 'Germany',
-    color: 'brown',
+    color: '#9400D3',
     population: 84000000,
   },
 
@@ -58,12 +58,12 @@ export const countryData: CountryData = {
   },
   [Countries.Brazil]: {
     longName: 'Brazil',
-    color: '#d4af37',
+    color: '#FFFF00',
     population: 210000000,
   },
   [Countries.Spain]: {
     longName: 'Spain',
-    color: 'yellow',
+    color: '#00FF00',
     population: 47000000,
   },
   [Countries.USA]: {

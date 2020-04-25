@@ -26,21 +26,21 @@ import { useLocation } from 'react-router';
 
 const styles = require('./Graph.module.scss');
 
-export interface GraphProps {
+export type GraphProps = {
   data: CovidGraphData;
   title: string;
   xAxisLabel: string;
   yAxisLabel: string;
   labels: (data: any) => string;
-  xTicksAreDates?: boolean;
-}
+  tickFormat?: (t: any) => any;
+};
 
 export const Graph: React.FC<GraphProps> = ({
   data,
   yAxisLabel,
   labels,
   title,
-  xTicksAreDates = true,
+  tickFormat = t => `-   ${dayjs(t).format('DD/MM')}`,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -154,11 +154,7 @@ export const Graph: React.FC<GraphProps> = ({
                     fontSize: largeScreen ? '12px' : '8px',
                   },
                 }}
-                tickFormat={t =>
-                  xTicksAreDates
-                    ? `-   ${dayjs(t).format('DD/MM')}`
-                    : console.log(t)
-                }
+                tickFormat={tickFormat}
               />
               {Object.keys(data).map(k => {
                 const country = data[k];

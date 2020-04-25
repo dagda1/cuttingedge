@@ -20,12 +20,12 @@ export const RateOfChange: React.FC = () => {
 
   return (
     <Graph
-      title="Daily Increase in deaths"
+      title="Rate of change"
       xAxisLabel="Days since first reported death"
       yAxisLabel="Increase in deaths from previous day"
       data={data as any}
       labels={({ datum }) => `delta from day before = ${Math.round(datum.y)}`}
-      xTicksAreDates={false}
+      tickFormat={t => `-   ${t}`}
     />
   );
 };
