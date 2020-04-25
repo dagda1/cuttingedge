@@ -7,7 +7,7 @@ import { Page } from 'src/types';
 
 const fallback = <div>loading....</div>;
 
-const Deaths = loadable(() => import('src/components/Deaths'), {
+const Deaths = loadable(() => import('src/components/Confirmed'), {
   fallback,
 });
 

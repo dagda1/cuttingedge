@@ -64,10 +64,10 @@ export const Graph: React.FC<GraphProps> = ({
                   url: Urls.Covid19,
                   text: 'Rate of change',
                 },
-                { url: Urls.Deaths, text: 'Total deaths' },
+                { url: Urls.Deaths, text: 'Total confirmed' },
                 {
                   url: Urls.IncreaseInDeaths,
-                  text: 'Daily increase in deaths',
+                  text: 'Daily increase in confirmed',
                 },
               ].map(u => {
                 if (location.pathname === u.url) {

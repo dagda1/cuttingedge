@@ -37,14 +37,18 @@ export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
           path: Covid19,
           heading: 'COVID-19 Rate of change',
         },
-        { path: Deaths, heading: 'COVID-19 Total deaths' },
+        { path: Deaths, heading: 'COVID-19 Total confirmed' },
         {
           path: IncreaseInDeaths,
-          heading: 'COVID-19 Daily increase in deaths',
+          heading: 'COVID-19 Daily increase in confirmed',
         },
       ].map(page => {
         if (page.path === location.pathname) {
-          return <li key={page.heading}>{page.heading}</li>;
+          return (
+            <li className={styles.selected} key={page.heading}>
+              {page.heading}
+            </li>
+          );
         }
 
         return (

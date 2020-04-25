@@ -12,11 +12,13 @@ export enum Countries {
 }
 
 export type CountryData = {
-  [key in Countries]: {
-    longName: string;
-    color: string;
-    population: number;
-  };
+  longName: string;
+  color: string;
+  population: number;
+};
+
+export type CountriesData = {
+  [key in Countries]: CountryData;
 };
 
 export type DayStatistics = {
@@ -32,14 +34,16 @@ export type Results = {
 };
 
 export type DayData = {
-  x: string;
+  delta: number;
+  x: any;
   y: number;
-  country: Countries;
+  index: number;
+  country: CountryData;
 };
 
 export type CovidGraphData = ReturnType<typeof useCountryCovidData>;
 
-export const countryData: CountryData = {
+export const countryData: CountriesData = {
   [Countries.Canada]: {
     longName: 'Canada',
     color: '#FF0000',

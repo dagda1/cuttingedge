@@ -151,7 +151,6 @@ const configure = options => {
             },
             { loader: 'postcss-loader', options: postcssOptions },
           ],
-          sideEffects: true,
         },
         {
           test: sassRegex,
@@ -173,7 +172,6 @@ const configure = options => {
             { loader: 'postcss-loader', options: postcssOptions },
             { loader: 'sass-loader' },
           ],
-          sideEffects: true,
         },
         {
           test: sassModuleRegex,

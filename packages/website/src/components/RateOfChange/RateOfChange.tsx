@@ -4,7 +4,7 @@ import Graph from 'src/components/Graphs/Graph';
 import regression from 'regression';
 
 export const RateOfChange: React.FC = () => {
-  const { data } = useCountryCovidData();
+  const { data } = useCountryCovidData({ startDate: '2020-02-01' });
 
   if (data) {
     Object.keys(data).forEach(c => {
@@ -22,7 +22,7 @@ export const RateOfChange: React.FC = () => {
     <Graph
       title="Rate of change"
       xAxisLabel="Days since first reported death"
-      yAxisLabel="Increase in deaths from previous day"
+      yAxisLabel="Increase in confirmed from previous day"
       data={data as any}
       labels={({ datum }) => `delta from day before = ${Math.round(datum.y)}`}
       tickFormat={t => `-   ${t}`}

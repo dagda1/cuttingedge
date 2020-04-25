@@ -4,7 +4,7 @@ import Graph from 'src/components/Graphs/Graph';
 import dayjs from 'dayjs';
 
 export const Deaths: React.FC = () => {
-  const { data } = useCountryCovidData();
+  const { data } = useCountryCovidData({ startDate: '2020-03-10' });
 
   if (data) {
     Object.keys(data).forEach(c => {
@@ -17,12 +17,12 @@ export const Deaths: React.FC = () => {
 
   return (
     <Graph
-      title="Number of deaths  (per 100000 people)"
-      yAxisLabel="Number of deaths (per 100000 people)"
+      title="Number of confirmed cases (normalised per 100000 people)"
+      yAxisLabel="Number of confirmed (per 100000 people)"
       xAxisLabel="days since first reported death"
       data={data as any}
       labels={({ datum }) =>
-        `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths = ${Math.round(
+        `${dayjs(datum?.x).format('DD/MM/YY')}\n confirmed = ${Math.round(
           datum.y,
         )}\n delta from day before = ${datum.delta}`
       }

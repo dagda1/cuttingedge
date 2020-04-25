@@ -60,6 +60,11 @@ ul li.logo__container {
   margin-right: 0;
   margin-left: -19px;
 
+  &.selected{
+    width: 100%;
+    border: 1px solid red;
+  }
+
   svg {
     width: 100%;
     height: auto;

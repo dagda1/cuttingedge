@@ -1,7 +1,15 @@
-import { Results, Countries, DayData, countryData } from './types';
+import {
+  Results,
+  Countries,
+  DayData,
+  countryData,
+  CountriesData,
+  CountryData,
+} from './types';
 import { useAsync } from 'react-async';
 
 import dayjs from 'dayjs';
+import { useCallback } from 'react';
 const utc = require('dayjs/plugin/utc');
 
 dayjs.extend(utc);
@@ -9,11 +17,11 @@ dayjs.extend(utc);
 // documenter.getpostman.com/view/2568274/SzS8rjbe?version=latest
 const baseUrl = 'https://covidapi.info/api/v1/country';
 
-const transform = (results: Results, country: Countries): DayData[] => {
+const transform = (results: Results, country: CountryData): DayData[] => {
   const data = results.result.map((day, i) => {
     return {
       x: (dayjs as any).utc(day.date).format(),
-      y: day.deaths,
+      y: day.confirmed,
       index: i,
       country,
     };
@@ -29,11 +37,15 @@ const transform = (results: Results, country: Countries): DayData[] => {
   return result;
 };
 
-const startDate = dayjs()
+const DefaultStartDate = dayjs()
   .subtract(30, 'day')
   .format('YYYY-MM-DD');
 
-const getCountriesData = async () => {
+export interface CountryDataProps {
+  startDate?: string;
+}
+
+const getCountriesData = async ({ startDate }: CountryDataProps) => {
   const headers = { Accept: 'application/json' };
   const results: any = {};
 
@@ -50,13 +62,17 @@ const getCountriesData = async () => {
       color: countryData[country].color,
       name: countryData[country].longName,
     };
-
-    // console.log(results[country].data);
   }
 
   return results;
 };
 
-export const useCountryCovidData = () => {
-  return useAsync(getCountriesData);
+export const useCountryCovidData = (
+  { startDate }: CountryDataProps = { startDate: DefaultStartDate },
+) => {
+  const getData = useCallback(() => getCountriesData({ startDate }), [
+    startDate,
+  ]);
+
+  return useAsync(getData);
 };
