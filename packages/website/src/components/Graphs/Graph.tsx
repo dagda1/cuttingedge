@@ -49,13 +49,12 @@ export const Graph: React.FC<GraphProps> = ({
 
   const { width, height } = useParentSize(ref, {
     initialDimensions: { width: 200, height: 200 },
-    offset: { width: 100, height: 10 },
   });
   const largeScreen = width > 600;
 
   const location = useLocation();
 
-  if (result.isSettled === false) {
+  if (result.isSettled === false || width < 200 || height < 450) {
     return (
       <div className={styles.container} ref={ref}>
         <LoadingOverlay busy={true} darkMode />
@@ -97,7 +96,7 @@ export const Graph: React.FC<GraphProps> = ({
             );
           })}
         </ul>
-        <div>
+        <div className={styles.legend}>
           <ResponsiveSVG width={width} height={height}>
             <VictoryLegend
               x={0}
@@ -123,9 +122,8 @@ export const Graph: React.FC<GraphProps> = ({
           </ResponsiveSVG>
         </div>
         <VictoryChart
-          height={height}
+          height={largeScreen ? height - 180 : height - 120}
           width={width}
-          containerComponent={<ResponsiveSVG width={width} height={height} />}
           theme={{
             axis: {
               style: {

@@ -22,7 +22,7 @@ export const IncreseFromPreviousDay: React.FC = () => {
     <Graph
       heading="Daily Increase in confirmed cases"
       xAxisLabel="Days since first reported death"
-      yAxisLabel="Increase in confirmed cases from previous day"
+      yAxisLabel="Increase in confirmed cases from previous day (Normalised per 100000 people)"
       result={result}
       labels={({ datum }) => {
         return `${dayjs(datum?.x).format('DD/MM/YY')}\n confirmed cases = ${

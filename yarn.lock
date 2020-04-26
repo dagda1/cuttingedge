@@ -280,15 +280,19 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cutting/eslint-config@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/@cutting/eslint-config/-/eslint-config-2.1.0.tgz#948b20dec0b795a44e32ae35d5d488465cbb8be4"
-  integrity sha512-UH2xsta+tGqGwjBqHSz+jvfhoMfVVCAouGjhzgzRt8FgMTN2XRkAsr/5g0Q1mQkcMqsXSKbnWCILZ4jSRJPiTA==
+"@cutting/hooks@2.3.2":
+  version "2.3.2"
+  resolved "https://registry.npmjs.org/@cutting/hooks/-/hooks-2.3.2.tgz#f2bc7ecacbd3869e115fee953112fd032cf8f3d3"
+  integrity sha512-DWiI67XxD4HIKyS/8uqD1WryZ5XUa4YoXmcq4WAWQ+GKqFZc9OMr8zWwUJYZW0067px5zl7K9YS/XjeV908dvw==
+  dependencies:
+    "@cutting/util" "2.3.2"
+    react "^16.12.0"
+    react-dom "^16.12.0"
 
-"@cutting/useful-types@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/@cutting/useful-types/-/useful-types-2.1.0.tgz#bc92d68027246fb3133fe065cf08a97e261b39ff"
-  integrity sha512-oR+Kc7sT2ACT6IloKDNJSBRqifExy3J8OKndxPjr0eWWSaLE2DYaj0w97XKNQyoiC47zAX3D8SEPp3Qw/1ryYg==
+"@cutting/util@2.3.2":
+  version "2.3.2"
+  resolved "https://registry.npmjs.org/@cutting/util/-/util-2.3.2.tgz#ee85769df4e315416fa1eeeb222d9d81f235df23"
+  integrity sha512-rz9q9K3BxYvQDIEUzoA3rdGuneZefAYAMPFs76qvcDKbpUMGPO/uRegQSSktN3qIzQTvVsuRy+kr9YHmMfmv9Q==
 
 "@intervolga/optimize-cssnano-plugin@^1.0.6":
   version "1.0.6"

@@ -31,3 +31,8 @@
     }
   }
 }
+
+.legend {
+  @include ml(2);
+  @include mb(2);
+}

@@ -86,6 +86,10 @@ ul li.logo__container {
   color: $active-nav-link-color;
 }
 
+.name {
+  color: inherit;
+}
+
 .expandable {
   display: none;
   position: absolute;

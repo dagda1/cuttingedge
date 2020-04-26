@@ -89,6 +89,10 @@ button {
   }
 }
 
+header {
+  @include pl(1); 
+}
+
 :global #root {
   height: 100%;
   margin: 0 auto;
@@ -96,7 +100,7 @@ button {
   display: flex;
   flex-direction: column;
 
-  @include px(4);
+  @include px(2);
 
   @include mq-l {
     @include px(2);

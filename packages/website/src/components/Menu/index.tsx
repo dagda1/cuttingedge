@@ -31,7 +31,11 @@ export const Menu: React.FC = () => {
             </NavLink>
           </li>
           <li>
-            <Heading level={2}>Paul Cowan</Heading>
+            <Heading level={2}>
+              <NavLink aria-label="home" className={styles.name} to={urls.Home}>
+                Paul Cowan
+              </NavLink>
+            </Heading>
           </li>
           <li className={styles.mobile__button__container}>
             <MobileNavButton onClick={toggleIsExpanded} isActive={expanded} />
