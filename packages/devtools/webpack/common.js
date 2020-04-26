@@ -23,7 +23,7 @@ const getEnvironment = () => {
     staticAssetName,
     isAnalyse,
     isVerbose,
-    isProduction
+    isProduction,
   };
 };
 
@@ -39,8 +39,8 @@ const getEnvVariables = options => {
     {
       'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
       __DEV__: isDevelopment,
-      __BROWSER__: !options.isNode
-    }
+      __BROWSER__: !options.isNode,
+    },
   );
 };
 
@@ -78,33 +78,21 @@ const configureCommon = options => {
     context: process.cwd(),
     output: {
       path: paths.appBuild,
-      publicPath: '/'
+      publicPath: '/',
     },
     resolve: {
       symlinks: false,
       modules: ['node_modules', repoNodeModules].concat(
         // It is guaranteed to exist because we tweak it in `env.js`
-        env.raw.nodePath || path.resolve('.')
+        env.raw.nodePath || path.resolve('.'),
       ),
-      extensions: [
-        '.web.mjs',
-        '.mjs',
-        '.web.js',
-        '.js',
-        '.web.ts',
-        '.ts',
-        '.web.tsx',
-        '.tsx',
-        '.json',
-        '.web.jsx',
-        '.jsx'
-      ],
+      extensions: ['.web.mjs', '.mjs', '.web.js', '.js', '.web.ts', '.ts', '.web.tsx', '.tsx', '.json', '.web.jsx', '.jsx'],
       alias: {
-        'webpack/hot/poll': require.resolve('webpack/hot/poll')
-      }
+        'webpack/hot/poll': require.resolve('webpack/hot/poll'),
+      },
     },
     resolveLoader: {
-      modules: [paths.appNodeModules, paths.ownNodeModules, repoNodeModules].filter(Boolean)
+      modules: [paths.appNodeModules, paths.ownNodeModules, repoNodeModules].filter(Boolean),
     },
     module: {
       strictExportPresence: true,
@@ -128,15 +116,15 @@ const configureCommon = options => {
               /\.ttf$/,
               /\.svg$/,
               /\.csv$/,
-              /\.md$/
+              /\.md$/,
             ],
             loader: 'file-loader',
-            options: { name: staticAssetName, emitFile: isWeb }
+            options: { name: staticAssetName, emitFile: isWeb },
           },
           {
             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff$/, /\.woff2$/, /\.eot$/, /\.eot$/, /\.ttf$/],
             loader: 'url-loader',
-            options: { name: staticAssetName, limit: 10000, emitFile: isWeb }
+            options: { name: staticAssetName, limit: 10000, emitFile: isWeb },
           },
           {
             test: /\.tsx$/,
@@ -148,10 +136,10 @@ const configureCommon = options => {
                   fix: isProduction,
                   emitWarning: isDevelopment,
                   failOnWarning: isProduction,
-                  configFile: paths.esLintConfig
-                }
-              }
-            ]
+                  configFile: paths.esLintConfig,
+                },
+              },
+            ],
           },
           {
             test: /\.tsx?$/,
@@ -160,39 +148,39 @@ const configureCommon = options => {
             options: {
               configFile: paths.tsConfig,
               transpileOnly: true,
-              getCustomTransformers: ssrBuild ? () => ({ before: [loadableTransformer] }) : undefined
-            }
+              getCustomTransformers: ssrBuild ? () => ({ before: [loadableTransformer] }) : undefined,
+            },
           },
           {
             test: /\.csv$/,
             loader: 'csv-loader',
             options: {
               header: true,
-              skipEmptyLines: true
-            }
+              skipEmptyLines: true,
+            },
           },
           {
             test: /\.svg/,
             use: {
               loader: 'svg-url-loader',
-              options: {}
-            }
+              options: {},
+            },
           },
           {
             test: /\.md$/,
             use: [
               {
-                loader: 'html-loader'
+                loader: 'html-loader',
               },
               {
                 loader: 'markdown-loader',
-                options: {}
-              }
-            ]
-          }
+                options: {},
+              },
+            ],
+          },
         ],
-        x => !!x
-      )
+        x => !!x,
+      ),
     },
     plugins: Array.prototype.filter.call(
       [
@@ -202,41 +190,34 @@ const configureCommon = options => {
           loaders: [
             {
               path: 'ts-loader',
-              query: { happyPackMode: true }
-            }
-          ]
+              query: { happyPackMode: true },
+            },
+          ],
         }),
         new webpack.DefinePlugin(env.stringified),
         isDevelopment &&
           new WebpackBar({
             color: isWeb ? '#f56be2' : '#c065f4',
-            name: isWeb ? 'client' : 'server'
+            name: isWeb ? 'client' : 'server',
           }),
         isAnalyse && new BundleAnalyzerPlugin(),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new ForkTsCheckerWebpackPlugin({
           typescript: resolve.sync('typescript', {
-            basedir: repoNodeModules
+            basedir: repoNodeModules,
           }),
           async: true,
           useTypescriptIncrementalApi: true,
           checkSyntacticErrors: true,
           tsconfig: paths.tsConfig,
-          reportFiles: [
-            'src/**/*.{ts,tsx}',
-            '!**/__tests__/**',
-            '!**/?(*.)(spec|test).*',
-            '!**/src/setupProxy.*',
-            '!**/src/setupTests.*'
-          ],
+          reportFiles: ['src/**/*.{ts,tsx}', '!**/__tests__/**', '!**/?(*.)(spec|test).*', '!**/src/setupProxy.*', '!**/src/setupTests.*'],
           watch: paths.appSrc,
           silent: true,
-          formatter: isProduction ? typescriptFormatter : undefined
         }),
-        isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest])
+        isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
       ],
-      Boolean
-    )
+      Boolean,
+    ),
   };
 
   return config;

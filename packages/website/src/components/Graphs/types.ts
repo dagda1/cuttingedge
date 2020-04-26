@@ -1,5 +1,3 @@
-import { useCountryCovidData } from './useCountryCovidData';
-
 // https://www.nationsonline.org/oneworld/country_code_list.htm
 export enum Countries {
   Canada = 'CAN',
@@ -44,8 +42,6 @@ export type DayData = {
   index: number;
   country: CountryData;
 };
-
-export type CovidGraphData = ReturnType<typeof useCountryCovidData>;
 
 export const countryData: CountriesData = {
   [Countries.Canada]: {

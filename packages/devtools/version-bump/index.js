@@ -21,7 +21,9 @@ const main = async () => {
   const packageFiles = getFiles(package.dir, 'package.json');
 
   if (package.version === undefined) {
-    console.log('The package file does not have version property defined?. So, version update cannot be done on this file');
+    console.log(
+      'The package file does not have version property defined?. So, version update cannot be done on this file'
+    );
     return;
   }
 
@@ -36,7 +38,7 @@ const main = async () => {
     type: 'list',
     name: 'value',
     message: 'Bump version:',
-    choices: [`major : ${major}`, `minor : ${minor}`, `patch : ${patch}`, new inquirer.Separator(), 'custom', 'cancel'],
+    choices: [`major : ${major}`, `minor : ${minor}`, `patch : ${patch}`, new inquirer.Separator(), 'custom', 'cancel']
   });
 
   if (choice.value === 'cancel') {
@@ -48,7 +50,7 @@ const main = async () => {
     const custom = await inquirer.prompt({
       type: 'input',
       name: 'value',
-      message: 'Please input the version number of choice:',
+      message: 'Please input the version number of choice:'
     });
 
     if (!versionRegex.test(custom.value)) {
@@ -72,7 +74,7 @@ const main = async () => {
   const confirm = await inquirer.prompt({
     type: 'confirm',
     name: 'value',
-    message: 'Confirm the version update:',
+    message: 'Confirm the version update:'
   });
 
   const updateDsDepVersion = package.name === '@ds/root' ? true : false;

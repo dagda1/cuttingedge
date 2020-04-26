@@ -1,11 +1,4 @@
-import {
-  CountryStats,
-  Countries,
-  DayData,
-  countryData,
-  CountriesData,
-  CountryData,
-} from './types';
+import { CountryStats, DayData, countryData, CountryData } from './types';
 import { useAsync } from 'react-async';
 
 import dayjs from 'dayjs';
