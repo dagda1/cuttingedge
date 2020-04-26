@@ -22,8 +22,7 @@ export const RateOfChange: React.FC = () => {
 
   return (
     <Graph
-      heading="Rate of change"
-      title="Rate of change of confirmed cases"
+      heading="Rate of change of confirmed cases"
       xAxisLabel="Days since first reported death"
       yAxisLabel="Increase in confirmed from previous day"
       result={result}

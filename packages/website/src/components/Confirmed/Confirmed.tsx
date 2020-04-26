@@ -19,7 +19,6 @@ export const Deaths: React.FC = () => {
   return (
     <Graph
       heading="Confirmed Cases"
-      title="Number of confirmed cases (normalised per 100000 people)"
       yAxisLabel="Number of confirmed (per 100000 people)"
       xAxisLabel="days since first reported death"
       result={result}

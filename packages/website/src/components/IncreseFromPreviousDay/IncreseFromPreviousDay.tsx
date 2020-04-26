@@ -20,8 +20,7 @@ export const IncreseFromPreviousDay: React.FC = () => {
 
   return (
     <Graph
-      heading="Increase in confirmed cases"
-      title="Daily Increase in confirmed cases"
+      heading="Daily Increase in confirmed cases"
       xAxisLabel="Days since first reported death"
       yAxisLabel="Increase in confirmed cases from previous day"
       result={result}

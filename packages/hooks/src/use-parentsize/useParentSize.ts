@@ -8,6 +8,7 @@ export interface Dimensions {
 
 export interface UseParentSizeOptions {
   initialDimensions: Dimensions;
+  offset?: Dimensions;
 }
 
 export enum SizeActionTypes {
@@ -21,8 +22,9 @@ export interface SizeAction {
 
 export const useParentSize = (
   ref: RefObject<HTMLElement>,
-  { initialDimensions }: UseParentSizeOptions = {
+  { initialDimensions, offset }: UseParentSizeOptions = {
     initialDimensions: { width: 0, height: 0 },
+    offset: { width: 0, height: 0 },
   },
 ) => {
   // need to use useReducer because useState with setDimensions({ width: //etc })
@@ -76,5 +78,8 @@ export const useParentSize = (
     };
   }, [handleResize, ref]);
 
-  return dimensions;
+  return {
+    width: dimensions.width + offset?.width! || 0,
+    height: dimensions.height + offset?.height! || 0,
+  };
 };

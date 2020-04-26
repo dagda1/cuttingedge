@@ -30,11 +30,10 @@ const styles = require('./Graph.module.scss');
 
 export type GraphProps = {
   result: AsyncState<CountryStats>;
-  title: string;
   xAxisLabel: string;
   yAxisLabel: string;
   labels: (data: any) => string;
-  tickFormat?: (t: any) => any;
+  tickFormat?: (...args: any[]) => any;
   heading: string;
 };
 
@@ -42,16 +41,16 @@ export const Graph: React.FC<GraphProps> = ({
   result,
   yAxisLabel,
   labels,
-  title,
   heading,
-  tickFormat = t => `-   ${dayjs(t).format('DD/MM')}`,
+  tickFormat = (label: string, i: number) =>
+    i % 3 === 0 ? `-   ${dayjs(label).format('DD/MM')}` : '',
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const { width, height } = useParentSize(ref, {
     initialDimensions: { width: 200, height: 200 },
+    offset: { width: 100, height: 0 },
   });
-
   const largeScreen = width > 600;
 
   const location = useLocation();
@@ -98,13 +97,12 @@ export const Graph: React.FC<GraphProps> = ({
             );
           })}
         </ul>
-        <div className={styles.legend}>
+        <div>
           <ResponsiveSVG width={width} height={height}>
             <VictoryLegend
-              title={title}
               x={0}
               y={0}
-              centerTitle
+              centerTitle={largeScreen}
               standalone={false}
               orientation="horizontal"
               itemsPerRow={largeScreen ? 8 : 4}
@@ -125,14 +123,17 @@ export const Graph: React.FC<GraphProps> = ({
           </ResponsiveSVG>
         </div>
         <VictoryChart
-          height={height - 50}
+          height={height}
           width={width}
           containerComponent={<ResponsiveSVG width={width} height={height} />}
           theme={{
             axis: {
               style: {
                 axis: { stroke: AxisColor },
-                tickLabels: { color: AxisColor, fill: AxisColor },
+                tickLabels: {
+                  color: AxisColor,
+                  fill: AxisColor,
+                },
                 grid: { stroke: '#fff', strokeOpacity: 0.2 },
               },
             },
@@ -160,7 +161,6 @@ export const Graph: React.FC<GraphProps> = ({
                 angle: largeScreen ? 45 : 90,
                 verticalAnchor: 'middle',
                 textAnchor: 'start',
-                fontSize: largeScreen ? '12px' : '8px',
               },
             }}
             tickFormat={tickFormat}
