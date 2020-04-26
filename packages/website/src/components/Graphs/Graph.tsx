@@ -13,7 +13,7 @@ import {
 } from 'victory';
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
-import { ResponsiveSVG } from '@cutting/component-library';
+import { ResponsiveSVG, LoadingOverlay } from '@cutting/component-library';
 import {
   Countries,
   countryData,
@@ -49,7 +49,7 @@ export const Graph: React.FC<GraphProps> = ({
 
   const { width, height } = useParentSize(ref, {
     initialDimensions: { width: 200, height: 200 },
-    offset: { width: 100, height: 0 },
+    offset: { width: 100, height: 10 },
   });
   const largeScreen = width > 600;
 
@@ -58,7 +58,7 @@ export const Graph: React.FC<GraphProps> = ({
   if (result.isSettled === false) {
     return (
       <div className={styles.container} ref={ref}>
-        loading.....
+        <LoadingOverlay busy={true} darkMode />
       </div>
     );
   }

@@ -5,3 +5,4 @@ export * from './Label';
 export * from './ErrorLabel';
 export * from './Button';
 export * from './ResponsiveSVG';
+export * from './LoadingIcon';

@@ -1,0 +1,84 @@
+@import '../../../styles/index';
+
+@keyframes fade-bars {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-dots {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.loading-icon {
+  .bar:not(.dark) {
+    fill: $black;
+  }
+
+  .bar.dark{
+    fill: $white;
+  }
+
+  @for $i from 1 through 12 {
+    $fraction: ($i - 1) / 12;
+
+    .bar:nth-child(#{$i}) {
+      animation: fade-bars 1s #{$fraction - 1}s ease infinite;
+      opacity: #{1 - $fraction};
+    }
+  }
+
+  .dot {
+    fill: $primary-blue;
+  }
+
+  @for $i from 1 through 3 {
+    $fraction: ($i - 1) / 3;
+
+    .dot:nth-child(#{$i}) {
+      animation: fade-dots 0.8s #{$fraction - 1}s ease infinite;
+      opacity: #{1 - $fraction};
+    }
+  }
+}
+
+.spinner-overlay {
+  position: fixed;
+  &:not(.dark) {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  text-align: center;
+  z-index: 10000;
+
+  &::before,
+  .spinner {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &::before {
+    content: '';
+    height: 100%;
+    width: 0;
+  }
+
+  h2 {
+    color: $primary-blue;
+  }
+
+  &.dark {
+    background: $black;
+  }
+}
