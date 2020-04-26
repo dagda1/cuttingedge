@@ -8,7 +8,7 @@ export const Deaths: React.FC = () => {
 
   if (data) {
     Object.keys(data).forEach(c => {
-      data[c].data = data[c].data.map((d: any) => ({
+      data[c].data = data[c].result.map((d: any) => ({
         ...d,
         y: (d.y / countryData[c].population) * 100000,
       }));
@@ -17,6 +17,7 @@ export const Deaths: React.FC = () => {
 
   return (
     <Graph
+      heading="Confirmed Cases"
       title="Number of confirmed cases (normalised per 100000 people)"
       yAxisLabel="Number of confirmed (per 100000 people)"
       xAxisLabel="days since first reported death"

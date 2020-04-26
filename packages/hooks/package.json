@@ -28,7 +28,8 @@
   "dependencies": {
     "@cutting/util": "2.3.2",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
     "@cutting/devtools": "2.3.2",

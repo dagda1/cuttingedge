@@ -28,9 +28,13 @@ export type DayStatistics = {
   date: string;
 };
 
-export type Results = {
+export type CountryStats = {
   count: number;
   result: DayStatistics[];
+};
+
+export type Stats = {
+  [country in Countries]: CountryStats;
 };
 
 export type DayData = {

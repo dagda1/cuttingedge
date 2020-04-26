@@ -33,6 +33,7 @@ export type GraphProps = {
   yAxisLabel: string;
   labels: (data: any) => string;
   tickFormat?: (t: any) => any;
+  heading: string;
 };
 
 export const Graph: React.FC<GraphProps> = ({
@@ -40,6 +41,7 @@ export const Graph: React.FC<GraphProps> = ({
   yAxisLabel,
   labels,
   title,
+  heading,
   tickFormat = t => `-   ${dayjs(t).format('DD/MM')}`,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -52,7 +54,7 @@ export const Graph: React.FC<GraphProps> = ({
 
   const location = useLocation();
   return (
-    <ApplicationLayout>
+    <ApplicationLayout heading={heading}>
       <div className={styles.container} ref={ref}>
         {!data ? (
           <div>loading.....</div>

@@ -10,7 +10,7 @@ export const RateOfChange: React.FC = () => {
     Object.keys(data).forEach(c => {
       data[c].data = regression
         .exponential([
-          ...data[c].data.map((d: any, i: number) => {
+          ...data[c].result.map((d: any, i: number) => {
             return [i, d.delta <= 0 ? 1 : d.delta];
           }),
         ])
@@ -18,9 +18,14 @@ export const RateOfChange: React.FC = () => {
     });
   }
 
+  if (!data || isNaN((data as any).CAN.data[0].y)) {
+    return null;
+  }
+
   return (
     <Graph
-      title="Rate of change"
+      heading="Rate of change"
+      title="Rate of change of confirmed cases"
       xAxisLabel="Days since first reported death"
       yAxisLabel="Increase in confirmed from previous day"
       data={data as any}

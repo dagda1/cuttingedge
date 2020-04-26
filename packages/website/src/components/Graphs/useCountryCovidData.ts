@@ -1,5 +1,5 @@
 import {
-  Results,
+  CountryStats,
   Countries,
   DayData,
   countryData,
@@ -17,7 +17,7 @@ dayjs.extend(utc);
 // documenter.getpostman.com/view/2568274/SzS8rjbe?version=latest
 const baseUrl = 'https://covidapi.info/api/v1/country';
 
-const transform = (results: Results, country: CountryData): DayData[] => {
+const transform = (results: CountryStats, country: CountryData): DayData[] => {
   const data = results.result.map((day, i) => {
     return {
       x: (dayjs as any).utc(day.date).format(),
@@ -45,26 +45,32 @@ export interface CountryDataProps {
   startDate?: string;
 }
 
-const getCountriesData = async ({ startDate }: CountryDataProps) => {
-  const headers = { Accept: 'application/json' };
-  const results: any = {};
+const getCountriesData = ({
+  startDate,
+}: CountryDataProps): Promise<CountryStats> => {
+  return new Promise(async resolve => {
+    const headers = { Accept: 'application/json' };
+    const results: Partial<CountryStats> = {};
 
-  for (const country of Object.keys(countryData)) {
-    const result = await fetch(
-      `${baseUrl}/${country.toUpperCase()}/timeseries/${startDate}/${dayjs().format(
-        'YYYY-MM-DD',
-      )}`,
-      { headers },
-    );
+    for (const country of Object.keys(countryData)) {
+      const result = await fetch(
+        `${baseUrl}/${country.toUpperCase()}/timeseries/${startDate}/${dayjs().format(
+          'YYYY-MM-DD',
+        )}`,
+        { headers },
+      );
 
-    results[country] = {
-      data: transform(await result.json(), countryData[country]),
-      color: countryData[country].color,
-      name: countryData[country].longName,
-    };
-  }
+      results[country] = await result.json();
+    }
 
-  return results;
+    resolve(results as CountryStats);
+  });
+};
+
+export type CountriesStats = {
+  data: DayData[];
+  color: string;
+  name: string;
 };
 
 export const useCountryCovidData = (
@@ -74,5 +80,21 @@ export const useCountryCovidData = (
     startDate,
   ]);
 
-  return useAsync(getData);
+  const result = useAsync({ promiseFn: getData });
+
+  if (result.isSettled) {
+    for (const country in result.data) {
+      if (result.data[country].name) {
+        continue;
+      }
+
+      result.data[country] = {
+        result: transform(result.data[country], countryData[country]),
+        color: countryData[country].color,
+        name: countryData[country].longName,
+      };
+    }
+  }
+
+  return result;
 };
