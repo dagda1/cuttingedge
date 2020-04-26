@@ -73,11 +73,7 @@ const main = async () => {
     message: 'Confirm the version update:',
   });
 
-  const updateDsDepVersion = package.name === '@cutting/root' ? true : false;
-
-  return confirm.value
-    ? packageFiles.map(filename => updateVersion(filename, version, updateDsDepVersion))
-    : console.log('version change cancelled');
+  return confirm.value ? packageFiles.map(filename => updateVersion(filename, version, true)) : console.log('version change cancelled');
 };
 
 main();
