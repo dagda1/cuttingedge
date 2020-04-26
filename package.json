@@ -7,6 +7,7 @@
     "build:libs": "cutting each-pkg -l yarn build",
     "test": "CI=true cutting each-pkg yarn test",
     "start": "yarn build && yarn --cwd packages/website/ ssr-start",
+    "publish:all": "NODE_ENV=production cutting each-pkg yarn publish -- --non-interactive --verbose",
     "prettier:js": "prettier --write \"{,!(node_modules)/}**/*.js\" --single-quote --print-width=120"
   },
   "dependencies": {
