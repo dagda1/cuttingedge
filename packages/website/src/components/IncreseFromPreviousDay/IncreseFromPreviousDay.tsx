@@ -5,12 +5,12 @@ import dayjs from 'dayjs';
 import { countryData } from '../Graphs/types';
 
 export const IncreseFromPreviousDay: React.FC = () => {
-  const { data } = useCountryCovidData({ startDate: '2020-03-01' });
+  const result = useCountryCovidData({ startDate: '2020-03-01' });
 
-  if (data) {
-    Object.keys(data).forEach(c => {
-      data[c];
-      data[c].data = data[c].result.map((d: any) => ({
+  if (result.data) {
+    Object.keys(result.data).forEach(c => {
+      const country = result.data![c];
+      country.data = country.result.map((d: any) => ({
         ...d,
         confirmed: d.y,
         y: (d.delta / countryData[c].population) * 100000,
@@ -24,7 +24,7 @@ export const IncreseFromPreviousDay: React.FC = () => {
       title="Daily Increase in confirmed cases"
       xAxisLabel="Days since first reported death"
       yAxisLabel="Increase in confirmed cases from previous day"
-      data={data as any}
+      result={result}
       labels={({ datum }) => {
         return `${dayjs(datum?.x).format('DD/MM/YY')}\n confirmed cases = ${
           datum.confirmed

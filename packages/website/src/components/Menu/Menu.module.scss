@@ -111,56 +111,55 @@ ul li.logo__container {
   }
 }
 
-@media (max-width: $menu-breakpoint) {
-  .expandable.expanded {
+.expandable.expanded {
+  display: block;
+
+  @include py(2);
+
+  ul li {
+    border: 1px solid #fff;
+    @include pt(1);
+    @include pb(2);
+    @include mb(1);
+    @include pl(1);
+    color: #fff;
+  }
+
+  ul li.horizontal {
     display: block;
-
-    @include py(2);
-
-    ul li {
-      border: 1px solid #fff;
-      @include pt(1);
-      @include pb(2);
-      @include mb(1);
-      @include pl(1);
-      color: #fff;
+    &:hover {
+      color: $black;
+      background-color: $white;
     }
-
-    ul li.horizontal {
-      display: block;
+    a {
       &:hover {
         color: $black;
-        background-color: $white;
       }
-      a {
-        &:hover {
-          color: $black;
-        }
 
-        display: block;
-      }
+      display: block;
     }
+  }
 
-  }
+}
+
+ul li.horizontal {
+  display: none;
+}
+
+ul li.menu__mobile__button__container {
+  @include ml(1);
+}
+
+ul li.horizontal.expanded {
+  display: block;
   
-  ul li.horizontal {
-    display: none;
-  }
-  
-  ul li.menu__mobile__button__container {
-    @include ml(1);
-  }
-  
-  ul li.horizontal.expanded {
-    display: block;
-    
-    a {
-      width: 100%;
-      display: inline-block;
-    }
+  a {
+    width: 100%;
+    display: inline-block;
   }
 }
-ul li.mobile{
+
+  ul li.mobile{
   display: block;
 
   @include mq-m {

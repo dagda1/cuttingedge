@@ -27,7 +27,7 @@ import { useLocation } from 'react-router';
 const styles = require('./Graph.module.scss');
 
 export type GraphProps = {
-  data: CovidGraphData;
+  result: CovidGraphData;
   title: string;
   xAxisLabel: string;
   yAxisLabel: string;
@@ -37,7 +37,7 @@ export type GraphProps = {
 };
 
 export const Graph: React.FC<GraphProps> = ({
-  data,
+  result,
   yAxisLabel,
   labels,
   title,
@@ -53,10 +53,11 @@ export const Graph: React.FC<GraphProps> = ({
   const largeScreen = width > 600;
 
   const location = useLocation();
+
   return (
     <ApplicationLayout heading={heading}>
       <div className={styles.container} ref={ref}>
-        {!data ? (
+        {!result?.isSettled ? (
           <div>loading.....</div>
         ) : (
           <>
@@ -158,8 +159,8 @@ export const Graph: React.FC<GraphProps> = ({
                 }}
                 tickFormat={tickFormat}
               />
-              {Object.keys(data).map(k => {
-                const country = data[k];
+              {Object.keys(result.data).map(k => {
+                const country = result.data[k];
                 return (
                   <VictoryGroup
                     key={k}
