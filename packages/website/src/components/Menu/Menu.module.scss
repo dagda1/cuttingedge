@@ -102,12 +102,9 @@ ul li.logo__container {
 .mobile__button__container {
   display: inline-flex;
   justify-content: flex-end;
-  margin-left: 12px;
-  position: relative;
 
-  button {
-    position: absolute;
-    top: -12px;
+  svg {
+    margin-bottom: 0;
   }
 }
 
@@ -144,6 +141,10 @@ ul li.logo__container {
 
 ul li.horizontal {
   display: none;
+
+  @include mq-m {
+    display: inline;
+  }
 }
 
 ul li.menu__mobile__button__container {
@@ -156,13 +157,5 @@ ul li.horizontal.expanded {
   a {
     width: 100%;
     display: inline-block;
-  }
-}
-
-  ul li.mobile{
-  display: block;
-
-  @include mq-m {
-    display: none !important;
   }
 }

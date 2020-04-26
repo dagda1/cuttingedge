@@ -13,8 +13,12 @@
 }
 
 .MobileNavButton {
-  display: none;
+  display: block;
   color: #546e7a;
+
+  @include mq-m {
+    display: none;
+  }
 }
 
 .MobileNavButtonActive {
@@ -28,10 +32,4 @@
 
 .MobileNavButtonIconPath {
   fill: #000;
-}
-
-@media (max-width: $menu-breakpoint) {
-  .MobileNavButton {
-    display: block;
-  }
 }

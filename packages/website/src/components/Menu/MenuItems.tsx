@@ -3,7 +3,6 @@ import { bannerPages } from '../../routes';
 import cs from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { Covid19, Deaths, IncreaseInDeaths } from 'src/urls';
-import { useLocation } from 'react-router';
 
 const styles = require('./Menu.module.scss');
 
@@ -28,7 +27,6 @@ export const MenuItems: React.FC<MenuItemsProps> = ({ collapse }) => (
 );
 
 export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
-  const location = useLocation();
   return (
     <>
       <MenuItems collapse={collapse} />
@@ -43,14 +41,6 @@ export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
           heading: 'COVID-19 Daily increase in confirmed',
         },
       ].map(page => {
-        if (page.path === location.pathname) {
-          return (
-            <li className={styles.selected} key={page.heading}>
-              {page.heading}
-            </li>
-          );
-        }
-
         return (
           <li
             key={page.heading}
