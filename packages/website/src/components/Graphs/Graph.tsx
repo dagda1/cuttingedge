@@ -33,7 +33,8 @@ export type GraphProps = {
   xAxisLabel: string;
   yAxisLabel: string;
   labels: (data: any) => string;
-  tickFormat?: (...args: any[]) => any;
+  xTickFormat?: (...args: any[]) => any;
+  yTickFormat?: (...args: any[]) => any;
   heading: string;
 };
 
@@ -42,8 +43,9 @@ export const Graph: React.FC<GraphProps> = ({
   yAxisLabel,
   labels,
   heading,
-  tickFormat = (label: string, i: number) =>
+  xTickFormat: tickFormat = (label: string, i: number) =>
     i % 3 === 0 ? `-   ${dayjs(label).format('DD/MM')}` : '',
+  yTickFormat = t => t,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -73,10 +75,10 @@ export const Graph: React.FC<GraphProps> = ({
               url: Urls.Covid19,
               text: 'Rate of change',
             },
-            { url: Urls.Deaths, text: 'Total confirmed' },
+            { url: Urls.Deaths, text: 'Total deaths' },
             {
               url: Urls.IncreaseInDeaths,
-              text: 'Daily increase in confirmed',
+              text: 'Daily increase in deaths',
             },
           ].map(u => {
             if (location.pathname === u.url) {
@@ -150,6 +152,7 @@ export const Graph: React.FC<GraphProps> = ({
                 fillOpacity: 0.5,
               },
             }}
+            tickFormat={yTickFormat}
           />
           <VictoryAxis
             orientation={'bottom'}

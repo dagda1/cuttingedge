@@ -90,7 +90,12 @@ button {
 }
 
 header {
-  @include pl(1); 
+  @include pl(1);
+  
+  
+  @include mq-l {
+    padding-left: inherit;
+  }
 }
 
 :global #root {

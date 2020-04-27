@@ -13,7 +13,7 @@ export const RateOfChange: React.FC = () => {
       country.data = regression
         .exponential([
           ...country.result.map((d: any, i: number) => {
-            return [i, d.delta <= 0 ? 1 : d.delta];
+            return [i, d.deltaDeaths <= 0 ? 1 : d.deltaDeaths];
           }),
         ])
         .points.map(([x, y]) => ({ x, y }));
@@ -22,12 +22,12 @@ export const RateOfChange: React.FC = () => {
 
   return (
     <Graph
-      heading="Rate of change of confirmed cases"
+      heading="Rate of change of reported deaths"
       xAxisLabel="Days since first reported death"
-      yAxisLabel="Increase in confirmed from previous day"
+      yAxisLabel="Increase in deaths from previous day"
       result={result}
       labels={({ datum }) => `delta from day before = ${Math.round(datum.y)}`}
-      tickFormat={t => `-   ${t}`}
+      xTickFormat={t => `-   ${t}`}
     />
   );
 };

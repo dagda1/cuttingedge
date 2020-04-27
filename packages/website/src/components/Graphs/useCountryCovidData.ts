@@ -11,19 +11,21 @@ dayjs.extend(utc);
 const baseUrl = 'https://covidapi.info/api/v1/country';
 
 const transform = (results: CountryStats, country: CountryData): DayData[] => {
-  const data = results.result.map((day, i) => {
+  const data = results.result.map(({ date, deaths, ...rest }, i) => {
     return {
-      x: (dayjs as any).utc(day.date).format(),
-      y: day.confirmed,
+      x: (dayjs as any).utc(date).format(),
+      y: deaths,
       index: i,
       country,
+      ...rest,
     };
   });
 
   const result = data.map((d, i) => {
     return {
       ...d,
-      delta: i === 0 ? 0 : d.y - data[i - 1].y,
+      delta: i === 0 ? 0 : d.confirmed - data[i - 1].confirmed,
+      deltaDeaths: i === 0 ? 0 : d.y - data[i - 1].y,
     };
   });
 

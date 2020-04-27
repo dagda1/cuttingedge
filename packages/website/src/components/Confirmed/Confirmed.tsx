@@ -18,12 +18,12 @@ export const Deaths: React.FC = () => {
 
   return (
     <Graph
-      heading="Confirmed Cases"
-      yAxisLabel="Number of confirmed (per 100000 people)"
+      heading="Number of deaths"
+      yAxisLabel="Number of deaths (per 100000 people)"
       xAxisLabel="days since first reported death"
       result={result}
       labels={({ datum }) =>
-        `${dayjs(datum?.x).format('DD/MM/YY')}\n confirmed = ${Math.round(
+        `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths = ${Math.round(
           datum.y,
         )}\n delta from day before = ${datum.delta}`
       }

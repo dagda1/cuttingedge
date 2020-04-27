@@ -29,6 +29,7 @@ path {
   ul li {
     display: inline-block;
     vertical-align: middle;
+    position: relative;
 
     @include mr(3);
 

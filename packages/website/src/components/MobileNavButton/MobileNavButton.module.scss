@@ -15,6 +15,8 @@
 .MobileNavButton {
   display: block;
   color: #546e7a;
+  position: absolute;
+  top: -5px;
 
   @include mq-m {
     display: none;

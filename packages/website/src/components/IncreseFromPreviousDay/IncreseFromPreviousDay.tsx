@@ -12,21 +12,20 @@ export const IncreseFromPreviousDay: React.FC = () => {
       const country = result.data![c];
       country.data = country.result.map((d: any) => ({
         ...d,
-        confirmed: d.y,
-        y: (d.delta / countryData[c].population) * 100000,
+        y: (d.deltaDeaths / countryData[c].population) * 100000,
       }));
     });
   }
 
   return (
     <Graph
-      heading="Daily Increase in confirmed cases"
+      heading="Daily Increase in deaths"
       xAxisLabel="Days since first reported death"
-      yAxisLabel="Increase in confirmed cases from previous day (Normalised per 100000 people)"
+      yAxisLabel="Increase in deaths from previous day (per 100000 people)"
       result={result}
       labels={({ datum }) => {
-        return `${dayjs(datum?.x).format('DD/MM/YY')}\n confirmed cases = ${
-          datum.confirmed
+        return `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths cases = ${
+          datum.deaths
         }\n delta from day before = ${datum.delta}`;
       }}
     />

@@ -35,10 +35,10 @@ export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
           path: Covid19,
           heading: 'COVID-19 Rate of change',
         },
-        { path: Deaths, heading: 'COVID-19 Total confirmed' },
+        { path: Deaths, heading: 'COVID-19 Total deaths' },
         {
           path: IncreaseInDeaths,
-          heading: 'COVID-19 Daily increase in confirmed',
+          heading: 'COVID-19 Daily increase in deaths',
         },
       ].map(page => {
         return (
