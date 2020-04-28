@@ -201,3 +201,11 @@ ul li.horizontal.mobile.close__button{
     }
   }
 }
+
+.no-mobile {
+  display: none !important;
+
+  @include mq-m{
+    display: inline;
+  }
+}

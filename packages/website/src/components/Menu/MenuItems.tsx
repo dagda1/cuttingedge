@@ -13,7 +13,10 @@ export interface MenuItemsProps {
 export const MenuItems: React.FC<MenuItemsProps> = ({ collapse }) => (
   <>
     {bannerPages.map(page => (
-      <li key={page.heading} className={cs(styles.horizontal)}>
+      <li
+        key={page.heading}
+        className={cs(styles.horizontal, { ['no-mobile']: page.noMobile })}
+      >
         <NavLink
           to={page.path}
           activeClassName={styles.active}
