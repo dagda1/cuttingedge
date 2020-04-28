@@ -28,7 +28,14 @@ export const MenuItems: React.FC<MenuItemsProps> = ({ collapse }) => (
 
 export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
   return (
-    <>
+    <div>
+      <li
+        className={cs(styles.horizontal, styles.mobile, styles.close__button)}
+      >
+        <button type="button" onClick={collapse}>
+          X
+        </button>
+      </li>
       <MenuItems collapse={collapse} />
       {[
         {
@@ -56,6 +63,6 @@ export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
           </li>
         );
       })}
-    </>
+    </div>
   );
 };

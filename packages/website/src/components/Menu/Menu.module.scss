@@ -47,6 +47,10 @@ path {
         color: $main-color;
       }
     }
+
+    h2 a {
+      top: 0;
+    }
   }
 }
 
@@ -94,7 +98,7 @@ ul li.logo__container {
 .expandable {
   display: none;
   position: absolute;
-  top: 16rem;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -162,5 +166,38 @@ ul li.horizontal.expanded {
   a {
     width: 100%;
     display: inline-block;
+  }
+}
+
+ul li.horizontal.mobile.close__button{
+  display: flex;
+  justify-content: flex-end;
+  button {
+    margin-right: $spacing-x2;
+    border-radius: 32px;
+    background: #fff;
+    color: #141414;
+    font-size: 18px;
+    height: 32px;
+    left: 12px;
+    top: 8px;
+    transition: none;
+    width: 32px;
+    
+    &:before {
+      position: absolute;
+      -webkit-transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-font-smoothing: antialiased;
+      font-family: "icomoon";
+      font-style: normal;
+      font-variant: normal;
+      font-weight: normal;
+      line-height: 1;
+      text-indent: 0;
+      text-transform: none;
+    }
   }
 }
