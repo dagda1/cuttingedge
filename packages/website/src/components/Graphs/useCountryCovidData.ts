@@ -17,6 +17,7 @@ const transform = (results: CountryStats, country: CountryData): DayData[] => {
       y: deaths,
       index: i,
       country,
+      deaths,
       ...rest,
     };
   });
