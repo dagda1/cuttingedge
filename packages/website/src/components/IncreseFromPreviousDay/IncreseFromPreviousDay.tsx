@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { countryData } from '../Graphs/types';
 
 export const IncreseFromPreviousDay: React.FC = () => {
-  const result = useCountryCovidData({ startDate: '2020-03-01' });
+  const result = useCountryCovidData();
 
   if (result.data) {
     Object.keys(result.data).forEach(c => {

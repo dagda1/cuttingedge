@@ -2,21 +2,20 @@
 
 .MobileNavButton,
 .MobileNavButtonActive {
-  border-radius: 5px;
-  border: 0;
-  background-color: transparent;
-  padding: 0;
-  outline: 0;
-  height: 2.5rem;
-  width: 2.5rem;
-  margin-right: 1rem;
+  border-radius: 32px;
+  font-size: 18px;
+  height: 32px;
+  left: 12px;
+  top: 8px;
+  transition: none;
+  width: 32px;
+  background: transparent;
+  border: none;
 }
 
 .MobileNavButton {
   display: block;
   color: #546e7a;
-  position: absolute;
-  top: -9px;
 
   @include mq-m {
     display: none;

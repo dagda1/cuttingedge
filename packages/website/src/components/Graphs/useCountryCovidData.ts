@@ -34,7 +34,7 @@ const transform = (results: CountryStats, country: CountryData): DayData[] => {
 };
 
 const DefaultStartDate = dayjs()
-  .subtract(30, 'day')
+  .subtract(45, 'day')
   .format('YYYY-MM-DD');
 
 export interface CountryDataProps {

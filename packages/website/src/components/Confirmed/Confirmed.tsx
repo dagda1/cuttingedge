@@ -4,7 +4,7 @@ import Graph from 'src/components/Graphs/Graph';
 import dayjs from 'dayjs';
 
 export const Deaths: React.FC = () => {
-  const result = useCountryCovidData({ startDate: '2020-03-10' });
+  const result = useCountryCovidData();
 
   if (result.data) {
     Object.keys(result.data).forEach(c => {
