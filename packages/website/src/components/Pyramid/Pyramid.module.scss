@@ -72,7 +72,7 @@ $small-base-move: 0 - ($small-apothem - $small-half-base);
   opacity: 0.5;
 
   &:after {
-    content: 'Typescript';
+    content: 'SASS';
   }
 }
 
@@ -99,7 +99,7 @@ $small-base-move: 0 - ($small-apothem - $small-half-base);
   transform: rotateY(180deg) translate3d(0px, 0px, $half-base) rotateX($apex-angle);
 
   &:after {
-    content: 'SASS';
+    content: 'TYPESCRIPT';
   }
 }
 
