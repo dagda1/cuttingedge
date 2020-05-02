@@ -108,10 +108,9 @@ ul li.logo__container {
   padding: 1rem;
 }
 
-.mobile__button__container {
-  display: inline-flex;
-  justify-content: flex-end;
+.mobile__button__container {  
 
+    vertical-align: middle;
   svg {
     margin-bottom: 0;
   }
@@ -157,6 +156,7 @@ ul li.horizontal {
 }
 
 ul li.menu__mobile__button__container {
+  vertical-align: middle;
   @include ml(1);
 }
 
@@ -173,6 +173,9 @@ ul li.horizontal.mobile.close__button{
   display: flex;
   justify-content: flex-end;
   button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
     margin-right: $spacing-x2;
     border-radius: 32px;
     background: #fff;

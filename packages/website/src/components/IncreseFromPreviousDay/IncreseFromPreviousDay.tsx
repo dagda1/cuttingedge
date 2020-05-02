@@ -24,9 +24,10 @@ export const IncreseFromPreviousDay: React.FC = () => {
       yAxisLabel="Increase in deaths from previous day (per 100000 people)"
       result={result}
       labels={({ datum }) => {
+        console.log(datum);
         return `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths cases = ${
           datum.deaths
-        }\n delta from day before = ${datum.delta}`;
+        }\n delta from day before = ${datum.deltaDeaths}`;
       }}
     />
   );

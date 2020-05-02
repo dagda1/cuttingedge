@@ -1,0 +1,51 @@
+{
+  "name": "@cutting/use-cancellable-fetch",
+  "description": "Effortlessly cancellable fetch.",
+  "version": "2.3.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagda1/cuttingedge.git"
+  },
+  "main": "dist/use-cancellable-fetch.js",
+  "umd:main": "lib/use-cancellable-fetch.umd.js",
+  "module": "lib/use-cancellable-fetch.module.js",
+  "browser": {
+    "./lib/use-cancellable-fetch.js": "./lib/use-cancellable-fetch.js",
+    "./lib/use-cancellable-fetch.module.js": "./lib/use-cancellable-fetch.module.js"
+  },
+  "types": "dist/use-cancellable-fetch.d.ts",
+  "typings": "dist/use-cancellable-fetch.d.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "start": "echo no start",
+    "test": "NODE_ENV=test cutting test",
+    "build": "NODE_ENV=production cutting rollup --package-name use-cancellable-fetch",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "@cutting/util": "2.3.3",
+    "invariant": "^2.2.4",
+    "mousetrap": "^1.6.5"
+  },
+  "devDependencies": {
+    "@cutting/devtools": "2.3.3",
+    "@cutting/eslint-config": "2.3.3",
+    "@cutting/useful-types": "2.3.3",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@types/invariant": "^2.2.31",
+    "@types/mousetrap": "^1.6.3"
+  },
+  "keywords": [
+    "hotkeys",
+    "focus",
+    "react",
+    "reactjs",
+    "reactnative",
+    "hooks",
+    "hook",
+    "use-cancellable-fetcch"
+  ]
+}
