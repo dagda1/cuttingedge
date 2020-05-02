@@ -1,4 +1,4 @@
-import { useReducer, Reducer } from 'react';
+import { useReducer } from 'react';
 
 export enum FetchStates {
   Idle = 'idle',
@@ -15,7 +15,7 @@ export type FetchState<D, E = Error> = {
 };
 
 const initialStateCreator = <D, E = Error>(
-  initialData: D = undefined,
+  initialData: D | undefined = undefined,
 ): FetchState<D, E> => ({
   state: FetchStates.Idle,
   data: initialData,
@@ -28,15 +28,16 @@ const cancel = { type: FetchStates.Cancel } as const;
 const error = <E = Error>(error: E) =>
   ({ type: FetchStates.Error, error } as const);
 
-export type FetchActions =
+export type FetchActions<D, E = Error> =
   | typeof loading
-  | ReturnType<typeof success>
+  | { type: FetchStates.Success; data: D }
   | typeof cancel
-  | ReturnType<typeof error>;
+  | { type: FetchStates.Error; error: E };
 
-type FetchReducer<D = any> = Reducer<FetchState<D>, FetchActions>;
-
-function reducer<D>(current: FetchState<D>, action: FetchActions) {
+function reducer<D, E = Error>(
+  current: FetchState<D>,
+  action: FetchActions<D>,
+): FetchState<D> {
   switch (current.state) {
     case FetchStates.Idle:
     case FetchStates.Error:
@@ -80,17 +81,18 @@ function reducer<D>(current: FetchState<D>, action: FetchActions) {
 }
 
 export type UseCancellableFetchOptions<D> = {
-  initialData: D | undefined;
+  initialData: D;
 };
 
-export const useCancellableFetch = <D>(
-  request: RequestInfo,
-  init: RequestInit,
-  options: UseCancellableFetchOptions<D> = { initialData: undefined },
+export const useCancellableFetch = <R, TNext = R>(
+  generatorFn: () => Generator<unknown, R, TNext>,
+  options: UseCancellableFetchOptions<R | undefined> = {
+    initialData: undefined,
+  },
 ) => {
-  const initialState = initialStateCreator<D>(options.initialData);
+  const initialState = initialStateCreator<R>(options.initialData);
 
-  const [state, dispatch] = useReducer(reducer<D>, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return state;
 };
