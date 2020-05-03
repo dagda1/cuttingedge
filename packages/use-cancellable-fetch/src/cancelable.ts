@@ -21,7 +21,7 @@ export class CancellationToken {
   }
 }
 
-type ExtractType<T> = T extends {
+export type ExtractType<T> = T extends {
   [Symbol.iterator](): { next(): { done: true; value: infer U } };
 }
   ? U

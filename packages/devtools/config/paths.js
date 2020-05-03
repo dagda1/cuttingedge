@@ -39,17 +39,16 @@ const nodePaths = (process.env.NODE_PATH || '')
   .filter(folder => !path.isAbsolute(folder))
   .map(resolveApp);
 
-const resolvedNodeModules = ['../node_modules', './node_modules']
-  .filter(m => fs.existsSync(m))
-  .map(m => path.join(process.cwd(), m));
+const resolvedNodeModules = ['../node_modules', './node_modules'].filter(m => fs.existsSync(m)).map(m => path.join(process.cwd(), m));
 
 const libPackages = [
   'packages/util',
   'packages/hooks',
+  'packages/use-cancellable-fetch',
   'packages/component-library',
   'packages/connected-components',
   'packages/use-shortcuts',
-  'packages/react-typed-mousetrap'
+  'packages/react-typed-mousetrap',
 ].map(dep => path.resolve(process.cwd(), dep));
 
 const webAppPackages = ['packages/website'].map(dep => path.resolve(process.cwd(), dep));
@@ -87,5 +86,5 @@ module.exports = {
   libPackages,
   webAppPackages,
   allPackages: [...libPackages, ...webAppPackages],
-  defaultBuildConfigPath: path.join(__dirname, './build.config.js')
+  defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
 };
