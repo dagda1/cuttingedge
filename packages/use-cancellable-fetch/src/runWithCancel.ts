@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-type UnknownArgs = any[];
+import { cancelable, Cancelable } from './cancelable';
 
 export class CancelError extends Error {}
 
@@ -20,17 +20,39 @@ export class CancellationToken {
   }
 }
 
-export const runWithCancel = <R, TNext, Args extends any[] = UnknownArgs>(
-  fn: (...args: Args) => Generator<R, R, TNext>,
-  ...args: Args
+export const runWithCancel = <
+  T,
+  R,
+  N,
+  F extends (...args: any[]) => Generator<T, R, N>
+>(
+  gen: F,
+  ...args: Parameters<F>
 ) => {
-  const gen = fn(...args);
-  const cancellationToken = new CancellationToken();
+  const it = gen(...args);
 
-  const promise = new Promise((resolve, reject) => {
-    if (cancellationToken.cancelled) {
-      return;
-    }
+  return cancelable((resolve, reject, onCancel) => {
+    const onCancelled = (error: Error) => {
+      try {
+        it.throw(error);
+        reject(error);
+      } catch (error) {
+        return reject(error);
+      }
+    };
+
+    const resolved = (res?: any) => {
+      try {
+        const result = it.next(res);
+
+        next(result);
+      } catch (e) {
+        return reject(e);
+      }
+    };
+
+    onCancel(onCancelled);
+    resolved();
 
     const next = ({ value, done }: any) => {
       if (done) {
@@ -40,30 +62,13 @@ export const runWithCancel = <R, TNext, Args extends any[] = UnknownArgs>(
       return value.then(resolved, rejected);
     };
 
-    const rejected = (err: Error) => {
+    const rejected = (err: any) => {
       try {
-        if (err instanceof CancellationToken) {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          next(gen.return());
-        } else {
-          next(gen.throw(err));
-        }
-      } catch (e) {
-        return reject(e);
-      }
-    };
-
-    const resolved = (res: TNext) => {
-      try {
-        const result = gen.next(res);
-
-        next(result);
+        const ret = it.throw(err);
+        next(ret);
       } catch (e) {
         return reject(e);
       }
     };
   });
-
-  return { promise, token: cancellationToken };
 };

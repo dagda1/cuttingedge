@@ -33,7 +33,7 @@ function getUrlParts() {
     port,
     protocol,
     host,
-    urls
+    urls,
   };
 }
 
@@ -65,7 +65,7 @@ const configure = options => {
           'webpack/hot/dev-server',
           require.resolve('../scripts/webpackHotDevClient'),
           ...polyfills,
-          ...entryPoints
+          ...entryPoints,
         ]
       : [...polyfills, ...entryPoints];
   }
@@ -100,10 +100,10 @@ const configure = options => {
           compress: true,
           liveReload: false,
           headers: {
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
           },
           historyApiFallback: {
-            disableDotRule: true
+            disableDotRule: true,
           },
           host,
           https: protocol === 'https',
@@ -114,13 +114,13 @@ const configure = options => {
           port: devServerPort,
           quiet: true,
           watchOptions: {
-            ignored: ignoredFiles(paths.appSrc)
+            ignored: ignoredFiles(paths.appSrc),
           },
           before(app, server) {
             app.use(evalSourceMapMiddleware(server));
             app.use(errorOverlayMiddleware());
           },
-          proxy
+          proxy,
         }
       : {},
     output: {
@@ -128,11 +128,9 @@ const configure = options => {
       publicPath: isDevelopment ? `${protocol}://${host}:${devServerPort}/` : '/',
       pathinfo: isDevelopment,
       filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : isDevelopment && 'static/js/bundle.js',
-      chunkFilename: isProduction
-        ? 'static/js/[name].[chunkhash:8].chunk.js'
-        : isDevelopment && 'static/js/[name].chunk.js',
+      chunkFilename: isProduction ? 'static/js/[name].[chunkhash:8].chunk.js' : isDevelopment && 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
-      hotUpdateChunkFilename: ssrBuild ? undefined : 'hot/hot-update.js'
+      hotUpdateChunkFilename: ssrBuild ? undefined : 'hot/hot-update.js',
     },
     module: {
       rules: [
@@ -142,17 +140,17 @@ const configure = options => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: isDevelopment
-              }
+                hmr: isDevelopment,
+              },
             },
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1
-              }
+                importLoaders: 1,
+              },
             },
-            { loader: 'postcss-loader', options: postcssOptions }
-          ]
+            { loader: 'postcss-loader', options: postcssOptions },
+          ],
         },
         {
           test: sassRegex,
@@ -161,19 +159,19 @@ const configure = options => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: isDevelopment
-              }
+                hmr: isDevelopment,
+              },
             },
             {
               loader: 'css-loader',
               options: {
                 importLoaders: 2,
-                sourceMap: isDevelopment
-              }
+                sourceMap: isDevelopment,
+              },
             },
             { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader' }
-          ]
+            { loader: 'sass-loader' },
+          ],
         },
         {
           test: sassModuleRegex,
@@ -181,8 +179,8 @@ const configure = options => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: isDevelopment
-              }
+                hmr: isDevelopment,
+              },
             },
             {
               loader: 'css-loader',
@@ -190,22 +188,22 @@ const configure = options => {
                 importLoaders: 2,
                 sourceMap: isDevelopment,
                 modules: {
-                  getLocalIdent: getLocalIdent
-                }
-              }
+                  getLocalIdent: getLocalIdent,
+                },
+              },
             },
             { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader', options: sassOptions }
+            { loader: 'sass-loader', options: sassOptions },
           ],
-          sideEffects: true
-        }
-      ].filter(Boolean)
+          sideEffects: true,
+        },
+      ].filter(Boolean),
     },
 
     plugins: [
       ssrBuild &&
         new LoadableWebpackPlugin({
-          writeToDisk: { filename: paths.appBuild }
+          writeToDisk: { filename: paths.appBuild },
         }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
 
@@ -222,16 +220,16 @@ const configure = options => {
             keepClosingSlash: true,
             minifyJS: true,
             minifyCSS: true,
-            minifyURLs: true
-          }
+            minifyURLs: true,
+          },
         }),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new MiniCssExtractPlugin({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined
-      })
-    ].filter(Boolean)
+        chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined,
+      }),
+    ].filter(Boolean),
   });
 
   if (isProduction) {
@@ -243,46 +241,46 @@ const configure = options => {
           new TerserPlugin({
             terserOptions: {
               parse: {
-                ecma: 8
+                ecma: 8,
               },
               compress: {
                 ecma: 5,
                 warnings: false,
                 comparisons: false,
                 inline: 2,
-                dead_code: true
+                dead_code: true,
               },
               mangle: {
-                safari10: true
+                safari10: true,
               },
               output: {
                 ecma: 5,
                 comments: 'all',
-                ascii_only: true
-              }
+                ascii_only: true,
+              },
             },
             parallel: true,
             cache: true,
-            sourceMap: true
+            sourceMap: true,
           }),
           new OptimizeCSSAssetsPlugin({
             cssProcessorOptions: {
               parser: safePostCssParser,
-              map: isDevelopment ? { inline: false, annotation: true } : false
-            }
-          })
+              map: isDevelopment ? { inline: false, annotation: true } : false,
+            },
+          }),
         ],
         splitChunks: ssrBuild
           ? {
               name: 'vendor',
-              chunks: 'initial'
+              chunks: 'initial',
             }
           : {
               chunks: 'all',
-              name: false
+              name: false,
             },
-        runtimeChunk: isStaticBuild
-      }
+        runtimeChunk: isStaticBuild,
+      },
     };
   }
 
