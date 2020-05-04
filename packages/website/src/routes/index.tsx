@@ -79,7 +79,6 @@ export const routable: Page[] = [
     heading: 'COVID-19',
     path: Urls.Covid19,
     component: Graphs,
-    noMobile: true,
     exact: false,
     footerPage: false,
   },

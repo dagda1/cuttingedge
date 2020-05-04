@@ -4,11 +4,11 @@
 export const noop = () => {};
 
 export const isPromise = <T>(obj: any): obj is Promise<T> => {
-  return 'function' == typeof obj.then;
+  return 'function' === typeof obj.then;
 };
 
 export const isGenerator = (obj: any): obj is Generator => {
-  return 'function' == typeof obj.next && 'function' == typeof obj.throw;
+  return 'function' === typeof obj.next && 'function' === typeof obj.throw;
 };
 
 export const isGeneratorFunction = (obj: any): obj is GeneratorFunction => {
@@ -23,5 +23,5 @@ export const isGeneratorFunction = (obj: any): obj is GeneratorFunction => {
 };
 
 export const isObject = (val: any): val is object => {
-  return Object == val.constructor;
+  return Object === val.constructor;
 };

@@ -32,7 +32,7 @@ export type GraphProps = {
   result: AsyncState<CountryStats>;
   xAxisLabel: string;
   yAxisLabel: string;
-  labels: (data: any) => string;
+  labels?: (data: any) => string;
   xTickFormat?: (...args: any[]) => any;
   yTickFormat?: (...args: any[]) => any;
   heading: string;

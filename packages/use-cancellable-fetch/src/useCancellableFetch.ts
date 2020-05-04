@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useReducer } from 'react';
+import { runWithCancel } from './runWithCancel';
+import { UnknownArgs } from './types';
 
 export enum FetchStates {
   Idle = 'idle',
@@ -24,14 +27,14 @@ const initialStateCreator = <D, E = Error>(
 
 const loading = { type: FetchStates.Loading } as const;
 const success = <D>(data: D) => ({ type: FetchStates.Success, data } as const);
-const cancel = { type: FetchStates.Cancel } as const;
+const abort = { type: FetchStates.Cancel } as const;
 const error = <E = Error>(error: E) =>
   ({ type: FetchStates.Error, error } as const);
 
 export type FetchActions<D, E = Error> =
   | typeof loading
   | { type: FetchStates.Success; data: D }
-  | typeof cancel
+  | typeof abort
   | { type: FetchStates.Error; error: E };
 
 function reducer<D, E = Error>(
@@ -80,19 +83,31 @@ function reducer<D, E = Error>(
   }
 }
 
-export type UseCancellableFetchOptions<D> = {
+export type UseCancelableOptions<D> = {
   initialData: D;
+  cancel: Promise<any>;
 };
 
-export const useCancellableFetch = <R, TNext = R>(
-  generatorFn: () => Generator<unknown, R, TNext>,
-  options: UseCancellableFetchOptions<R | undefined> = {
-    initialData: undefined,
-  },
+export const useCancelable = <R, N = R, Args extends any[] = UnknownArgs>(
+  fn: () => Generator<unknown, R, N>,
+  args: Args,
+  cancel: Promise<any>,
 ) => {
-  const initialState = initialStateCreator<R>(options.initialData);
+  const initialState = initialStateCreator<R>();
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  return state;
+  const stop = new Promise(resolve => {
+    cancel.then(reason => {
+      dispatch(abort);
+
+      resolve(reason || 'cancelling operation');
+    });
+  });
+
+  const cancelable = () => {
+    runWithCancel({ fn, args, cancel: stop });
+  };
+
+  return { ...state, run: cancelable };
 };

@@ -7,6 +7,7 @@ export enum Countries {
   Spain = 'ESP',
   Germany = 'DEU',
   USA = 'USA',
+  Sweden = 'SWE',
 }
 
 export type CountryData = {
@@ -74,6 +75,11 @@ export const countryData: CountriesData = {
     longName: 'USA',
     color: '#fff',
     population: 383000000,
+  },
+  [Countries.Sweden]: {
+    longName: 'Sweden',
+    color: '#ffa500',
+    population: 11000000,
   },
   [Countries.GB]: {
     longName: 'UK',
