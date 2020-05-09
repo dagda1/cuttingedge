@@ -13,7 +13,7 @@ render(App);
 if (module.hot) {
   module.hot.accept('./App', () => {
     try {
-      const App = require('./App').default;
+      const App = require('./App').App;
       render(App);
     } catch (e) {
       console.error(e);

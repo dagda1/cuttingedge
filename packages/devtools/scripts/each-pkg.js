@@ -1,5 +1,4 @@
 #! /usr/bin/env node
-/* eslint-disable no-console */
 
 const fs = require('fs');
 const path = require('path');
@@ -12,7 +11,7 @@ function getPackages(packages) {
   return packages
     .filter(pkgPath => fs.lstatSync(pkgPath).isDirectory())
     .map(pkgPath => {
-      let pkg = require(path.join(pkgPath, './package.json'));
+      const pkg = require(path.join(pkgPath, './package.json'));
       return { ...pkg, path: pkgPath };
     });
 }
@@ -28,19 +27,16 @@ function getPackages(packages) {
  */
 function runPkgCmd(cmd, args, pkg) {
   return new Promise((resolve, reject) => {
-    console.log(chalk.blue(pkg.name) + ' ' + chalk.cyan(`${cmd} ${args.join(' ')}`));
+    console.log(chalk.inverse(`${pkg.name} ${cmd} ${args.join(' ')}`));
 
-    let child = spawn(cmd, args, {
+    const child = spawn(cmd, args, {
       stdio: [null, 1, 2],
-      cwd: pkg.path
+      cwd: pkg.path,
     });
 
     child.on('exit', code => {
-      if (code === 0) {
-        resolve();
-      } else {
-        reject(code);
-      }
+      if (code === 0) resolve();
+      else reject(code);
     });
   });
 }
@@ -53,14 +49,24 @@ function runPkgCmd(cmd, args, pkg) {
 program
   .description('Executes the specified command for each package')
   .arguments('<cmd> [args...]')
-  .option('-l, --libs-only', 'only build dependencies')
   .option('-p, --package <name>', 'target a specific package (can be combined with the above)')
   .parse(process.argv)
   .action(function(cmd, args) {
-    const packagePaths = program.libsOnly ? paths.libPackages : paths.allPackages;
+    const pkgs = getPackages(paths.libPackages);
 
-    let pkgs = getPackages(packagePaths);
-
-    pkgs.reduce((p, pkg) => p.then(() => runPkgCmd(cmd, args, pkg)), Promise.resolve()).catch(process.exit);
+    pkgs
+      .reduce(
+        (p, pkg) =>
+          p
+            .then(() => runPkgCmd(cmd, args, pkg))
+            .catch(e => {
+              console.log(chalk.red('------------------------'));
+              console.log(chalk.red(`${pkg.name} failed with ${e}`));
+              console.log(chalk.red('------------------------'));
+              process.exit(1);
+            }),
+        Promise.resolve(),
+      )
+      .catch(process.exit);
   })
   .parse(process.argv);

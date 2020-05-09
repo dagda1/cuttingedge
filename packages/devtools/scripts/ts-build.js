@@ -48,7 +48,7 @@ function runEslint() {
 function runTypeScriptBuild() {
   const buildConfig = require(paths.jsBuildConfigPath).ts;
   const {
-    options: {}
+    options: {},
   } = buildConfig;
 
   fs.emptyDirSync(paths.appBuild);
@@ -83,9 +83,7 @@ function build() {
   try {
     runTypeScriptBuild();
 
-    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg'].map(
-      pattern => `${paths.appSrc}/**/${pattern}`
-    );
+    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json'].map(pattern => `${paths.appSrc}/**/${pattern}`);
 
     copy(patterns, paths.appBuild, err => {
       if (err) {

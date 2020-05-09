@@ -51,7 +51,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
       logger.error('Failed to compile.\n');
       logger.error(err.message || err);
       process.exit(1);
-    }
+    },
   );
 
 function build(previousFileSizes) {
@@ -82,9 +82,7 @@ function build(previousFileSizes) {
         (typeof process.env.CI !== 'string' || process.env.CI.toLowerCase() !== 'false') &&
         clientMessages.warnings.length
       ) {
-        logger.warn(
-          '\nTreating warnings as errors because process.env.CI = true.\nMost CI servers set it automatically.\n'
-        );
+        logger.warn('\nTreating warnings as errors because process.env.CI = true.\nMost CI servers set it automatically.\n');
         return reject(new Error(clientMessages.warnings.join('\n\n')));
       }
 
@@ -93,7 +91,7 @@ function build(previousFileSizes) {
       return resolve({
         stats: clientStats,
         previousFileSizes,
-        warnings: clientMessages.warnings
+        warnings: clientMessages.warnings,
       });
     });
   });

@@ -6,9 +6,8 @@ module.exports.copyPublicFolder = () => {
     return;
   }
 
-  fs.copySync(paths.appPublic, paths.appBuildPublic, {
+  fs.copySync(paths.appPublic, paths.appBuild, {
     dereference: true,
-    recursive: true,
-    filter: file => file !== paths.appHtml
+    filter: file => file !== paths.appHtml,
   });
 };

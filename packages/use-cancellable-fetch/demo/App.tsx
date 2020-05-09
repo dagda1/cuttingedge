@@ -20,7 +20,7 @@ const makeFetchRequest = (fetchDelay: number, name: string) => {
     });
 };
 
-const delay = 200;
+const delay = 1000;
 
 export const App: React.FC = () => {
   const { run, cancel, state } = useCancellable(function*() {
@@ -47,7 +47,6 @@ export const App: React.FC = () => {
                 </label>
                 <input
                   id="delay"
-                  value="300"
                   type="number"
                   placeholder="Fetch delay"
                   step="500"

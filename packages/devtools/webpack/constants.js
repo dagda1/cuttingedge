@@ -7,5 +7,5 @@ module.exports = {
   cssRegex,
   cssModuleRegex,
   sassRegex,
-  sassModuleRegex
+  sassModuleRegex,
 };

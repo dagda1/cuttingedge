@@ -69,8 +69,6 @@ const configureCommon = options => {
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables(options);
 
-  const { ssrBuild } = options;
-
   const config = {
     mode: isDevelopment ? 'development' : 'production',
     bail: isProduction,
@@ -82,11 +80,8 @@ const configureCommon = options => {
     },
     resolve: {
       symlinks: false,
-      modules: ['node_modules', repoNodeModules].concat(
-        // It is guaranteed to exist because we tweak it in `env.js`
-        env.raw.nodePath || path.resolve('.'),
-      ),
-      extensions: ['.web.mjs', '.mjs', '.web.js', '.js', '.web.ts', '.ts', '.web.tsx', '.tsx', '.json', '.web.jsx', '.jsx'],
+      modules: ['node_modules', repoNodeModules].concat(env.raw.nodePath || path.resolve('.')),
+      extensions: ['.web.mjs', '.mjs', '.web.js', '.js', '.web.ts', '.ts', '.web.tsx', '.tsx', '.json', '.web.jsx', '.jsx', '.csv'],
       alias: {
         'webpack/hot/poll': require.resolve('webpack/hot/poll'),
       },
@@ -147,8 +142,12 @@ const configureCommon = options => {
             loader: 'ts-loader',
             options: {
               configFile: paths.tsConfig,
-              transpileOnly: true,
-              getCustomTransformers: ssrBuild ? () => ({ before: [loadableTransformer] }) : undefined,
+              transpileOnly: isDevelopment,
+              experimentalWatchApi: isDevelopment,
+              compilerOptions: {
+                sourceMap: isDevelopment,
+              },
+              getCustomTransformers: { before: [loadableTransformer] },
             },
           },
           {
@@ -201,7 +200,7 @@ const configureCommon = options => {
             name: isWeb ? 'client' : 'server',
           }),
         isAnalyse && new BundleAnalyzerPlugin(),
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
         new ForkTsCheckerWebpackPlugin({
           typescript: resolve.sync('typescript', {
             basedir: repoNodeModules,
@@ -213,6 +212,7 @@ const configureCommon = options => {
           reportFiles: ['src/**/*.{ts,tsx}', '!**/__tests__/**', '!**/?(*.)(spec|test).*', '!**/src/setupProxy.*', '!**/src/setupTests.*'],
           watch: paths.appSrc,
           silent: true,
+          formatter: isProduction ? typescriptFormatter : undefined,
         }),
         isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
       ],

@@ -6,5 +6,5 @@ const dasherize = str => decamelize(str).replace(/[ _]/g, '-');
 
 module.exports = {
   dasherize,
-  decamelize
+  decamelize,
 };

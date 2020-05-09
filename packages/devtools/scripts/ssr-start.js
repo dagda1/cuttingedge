@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 /* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable-next-line @typescript-eslint/no-empty-function */
+
 'use strict';
 
 process.env.NODE_ENV = 'development';
@@ -42,16 +44,16 @@ function main() {
   const serverCompiler = compile(serverConfig);
 
   clientCompiler.plugin('done', () => {
-    serverCompiler.watch(
-      {
-        quiet: true,
-        stats: 'none'
-      },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      stats => {}
-    );
+    serverCompiler.watch({
+      quiet: true,
+      stats: 'none',
+    });
   });
 
+  /**
+   * Create a new instance of Webpack-dev-server for assets only
+   * This will actually run on a different port than the main app.
+   */
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
 
   clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || 3001, err => {

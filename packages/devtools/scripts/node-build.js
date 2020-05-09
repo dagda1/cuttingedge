@@ -1,7 +1,7 @@
 #! /usr/bin/env node
-/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 'use strict';
-
+// Do this as the first thing so that any code reading it knows the right env.
 process.env.NODE_ENV = 'production';
 
 // Makes the script crash on unhandled rejections instead of silently
@@ -20,14 +20,16 @@ const requireRelative = relativePath => require(path.join(__dirname, relativePat
 
 const webpack = require('webpack');
 const fs = require('fs-extra');
-const chalk = require('chalk');
 const paths = require('../config/paths');
-const printErrors = require('./printErrors');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const configureWebpackServer = requireRelative('../webpack/node').configure;
+const merge = require('lodash/merge');
+const logger = require('../scripts/logger');
+const printErrors = require('../scripts/printErrors');
+const chalk = require('chalk');
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
@@ -43,24 +45,21 @@ measureFileSizesBeforeBuild(paths.appBuild)
   .then(
     ({ stats, previousFileSizes, warnings }) => {
       if (warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings.\n'));
-        console.log(warnings.join('\n\n'));
-        console.log(
-          '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
-        );
-        console.log('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
+        logger.warn('Compiled with warnings.\n');
+        logger.warn(warnings.join('\n\n'));
+        logger.warn('\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.');
+        logger.warn('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
       } else {
-        console.log(chalk.green('Compiled successfully.\n'));
+        logger.done(chalk.green('Compiled successfully.\n'));
       }
-      console.log('File sizes after gzip:\n');
+      logger.info('File sizes after gzip:\n');
       printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
-      console.log();
     },
     err => {
       console.log(chalk.red('Failed to compile.\n'));
       console.log((err.message || err) + '\n');
       process.exit(1);
-    }
+    },
   );
 
 function build(previousFileSizes) {
@@ -68,20 +67,20 @@ function build(previousFileSizes) {
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
+  const buildConfig = merge(globalBuildConfig, localBuildConfig);
 
-  let nodeConfig = !!buildConfig.server && configureWebpackServer(buildConfig.node);
-  console.log(chalk.cyan('Creating an optimized production build...'));
-  console.log(chalk.cyan('Compiling client...'));
+  const nodeConfig = !!buildConfig.server && configureWebpackServer(buildConfig.node);
+  logger.info('Creating an optimized production build...');
+  logger.info('Compiling client...');
 
   return new Promise((resolve, reject) => {
     compile(nodeConfig, (err, clientStats) => {
       if (err) {
-        console.dir(err);
-        process.exit(1);
+        logger.error(err);
         reject(err);
         return;
       }
+
       const clientMessages = formatWebpackMessages(clientStats.toJson({}, true));
 
       if (clientMessages.errors.length) {
@@ -94,9 +93,7 @@ function build(previousFileSizes) {
         clientMessages.warnings.length
       ) {
         console.log(
-          chalk.yellow(
-            '\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n'
-          )
+          chalk.yellow('\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n'),
         );
 
         return reject(new Error(clientMessages.warnings.join('\n\n')));
@@ -107,7 +104,7 @@ function build(previousFileSizes) {
       return resolve({
         stats: clientStats,
         previousFileSizes,
-        warnings: clientMessages.warnings
+        warnings: clientMessages.warnings,
       });
     });
   });

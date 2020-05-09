@@ -35,7 +35,7 @@ function usePrettyErrors(transform) {
 // @see https://github.com/facebook/create-react-app/blob/next/packages/react-dev-utils/formatWebpackMessages.js#L112
 const stackTransform = ({ stack = '', ...rest }) => ({
   stack: stack.replace('/build/webpack:', ''),
-  ...rest
+  ...rest,
 });
 
 usePrettyErrors(stackTransform);

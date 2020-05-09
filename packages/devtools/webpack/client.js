@@ -14,6 +14,7 @@ const paths = require('../config/paths');
 const fs = require('fs');
 const TerserPlugin = require('terser-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const sassOptions = require('./sassOptions');
@@ -22,6 +23,8 @@ const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const { getCommitHash } = require('../scripts/git');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -38,7 +41,8 @@ function getUrlParts() {
 }
 
 const configure = options => {
-  const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
+  const { entries, publicDir, proxy, devServer, isStaticBuild, publicPath = '/' } = options;
+  options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
   const { protocol, host, port } = getUrlParts();
 
   options.isNode = false;
@@ -48,7 +52,7 @@ const configure = options => {
 
   const { isDevelopment, isProduction } = getEnvironment();
 
-  const common = configureCommon({ ...options, ssrBuild });
+  const common = configureCommon(options);
 
   const devServerPort = isProduction || isStaticBuild ? port : parseInt(port, 10) + 1;
 
@@ -84,6 +88,8 @@ const configure = options => {
     }, {});
   }
 
+  const commitHash = getCommitHash();
+
   const template = publicDir ? path.join(publicDir, 'index.html') : 'public/index.html';
 
   const templateExists = fs.existsSync(template);
@@ -96,7 +102,7 @@ const configure = options => {
       ? {
           disableHostCheck: true,
           clientLogLevel: 'info',
-          contentBase: paths.appBuild,
+          contentBase: paths.appBuildPublic,
           compress: true,
           liveReload: false,
           headers: {
@@ -107,7 +113,7 @@ const configure = options => {
           },
           host,
           https: protocol === 'https',
-          hotOnly: true,
+          hotOnly: false,
           hot: false,
           noInfo: true,
           overlay: false,
@@ -117,6 +123,10 @@ const configure = options => {
             ignored: ignoredFiles(paths.appSrc),
           },
           before(app, server) {
+            if (fs.existsSync(paths.proxySetup)) {
+              require(paths.proxySetup)(app);
+            }
+
             app.use(evalSourceMapMiddleware(server));
             app.use(errorOverlayMiddleware());
           },
@@ -130,7 +140,6 @@ const configure = options => {
       filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : isDevelopment && 'static/js/bundle.js',
       chunkFilename: isProduction ? 'static/js/[name].[chunkhash:8].chunk.js' : isDevelopment && 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
-      hotUpdateChunkFilename: ssrBuild ? undefined : 'hot/hot-update.js',
     },
     module: {
       rules: [
@@ -151,6 +160,7 @@ const configure = options => {
             },
             { loader: 'postcss-loader', options: postcssOptions },
           ],
+          sideEffects: true,
         },
         {
           test: sassRegex,
@@ -172,6 +182,7 @@ const configure = options => {
             { loader: 'postcss-loader', options: postcssOptions },
             { loader: 'sass-loader' },
           ],
+          sideEffects: true,
         },
         {
           test: sassModuleRegex,
@@ -201,11 +212,12 @@ const configure = options => {
     },
 
     plugins: [
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
       ssrBuild &&
         new LoadableWebpackPlugin({
           writeToDisk: { filename: paths.appBuild },
         }),
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
+      new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl }),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({
@@ -222,12 +234,18 @@ const configure = options => {
             minifyCSS: true,
             minifyURLs: true,
           },
+          templateParameters: {
+            HASH: '<!-- ' + commitHash + ' - ' + new Date().toISOString() + '  -->',
+          },
         }),
+      isProduction && ssrBuild && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new MiniCssExtractPlugin({
         filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
         chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined,
+        ignoreOrder: true,
       }),
     ].filter(Boolean),
   });
@@ -261,7 +279,7 @@ const configure = options => {
             },
             parallel: true,
             cache: true,
-            sourceMap: true,
+            sourceMap: isDevelopment,
           }),
           new OptimizeCSSAssetsPlugin({
             cssProcessorOptions: {
