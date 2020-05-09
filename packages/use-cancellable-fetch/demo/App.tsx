@@ -1,21 +1,17 @@
 import * as React from 'react';
-import { useCancellable, FetchStates } from '../src/useCancelable';
+import { useCancellable, FetchStates } from '../src/useCancellable';
 
 require('./App.module.scss');
 
 const makeFetchRequest = (fetchDelay: number, name: string) => {
   return fetch(`https://slowmo.glitch.me/${fetchDelay}`)
-    .then(r => r.json())
-    .then(response => {
-      console.log(
-        `call ${name} completed successly with response ${JSON.stringify(
-          response,
-        )}`,
-      );
+    .then((r) => r.json())
+    .then((response) => {
+      console.log(`call ${name} completed successly with response ${JSON.stringify(response)}`);
 
       return response;
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('Error in fetching!', err);
     });
 };
@@ -23,7 +19,7 @@ const makeFetchRequest = (fetchDelay: number, name: string) => {
 const delay = 1000;
 
 export const App: React.FC = () => {
-  const { run, cancel, state } = useCancellable(function*() {
+  const { run, cancel, state } = useCancellable(function* () {
     yield makeFetchRequest(delay, 'one');
     yield makeFetchRequest(delay, 'two');
     yield makeFetchRequest(delay, 'three');
@@ -45,14 +41,7 @@ export const App: React.FC = () => {
                 <label htmlFor="delay">
                   <small>API response delay(ms)</small>
                 </label>
-                <input
-                  id="delay"
-                  type="number"
-                  placeholder="Fetch delay"
-                  step="500"
-                  min="0"
-                  max="60000"
-                />
+                <input id="delay" type="number" placeholder="Fetch delay" step="500" min="0" max="60000" />
               </div>
             </div>
             <p>
@@ -66,27 +55,17 @@ export const App: React.FC = () => {
               </small>
             </p>
             <div className="progress margin-bottom">
-              <div
-                id="progress"
-                className="bar secondary striped w-0 text-primary"
-              >
+              <div id="progress" className="bar secondary striped w-0 text-primary">
                 0%
               </div>
             </div>
           </div>
 
           <div>
-            <button
-              onClick={run}
-              disabled={state === FetchStates.Loading}
-              className="btn-secondary btn-small"
-            >
+            <button onClick={run} disabled={state === FetchStates.Loading} className="btn-secondary btn-small">
               DO SHENANIGANS
             </button>
-            <button
-              onClick={() => cancel.resolve('cancelling mofo')}
-              className="btn-danger btn-small"
-            >
+            <button onClick={() => cancel.resolve('cancelling mofo')} className="btn-danger btn-small">
               CANCEL
             </button>
           </div>
