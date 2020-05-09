@@ -1,6 +1,5 @@
 import { useReducer, useCallback } from 'react';
 import { runWithCancel } from './runWithCancel';
-import { Deferred } from './Deferred';
 
 export enum FetchStates {
   Idle = 'idle',

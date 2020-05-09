@@ -1,25 +1,6 @@
 import { Fn } from './types';
 import { noop } from './utils';
 
-export class CancelError extends Error {}
-
-export class CancellationToken {
-  cancelled: boolean;
-
-  throwIfCancelled(reason: string) {
-    if (this.cancelled) {
-      return;
-    }
-
-    this.cancelled = true;
-    throw new CancelError(reason);
-  }
-
-  constructor() {
-    this.cancelled = false;
-  }
-}
-
 export type Cancelable<V> = (resolve: Fn, reject: Fn, onCancel: (c: Fn) => Promise<any>) => void;
 
 export const cancelable = <V>(fn: Cancelable<V>, cancel: Promise<any>) => {
@@ -37,6 +18,7 @@ export const cancelable = <V>(fn: Cancelable<V>, cancel: Promise<any>) => {
     };
 
     const onCancel = (handleCancel: Fn): Promise<any> => {
+      console.log('fannies');
       const maybeHandleCancel = (value: any) => {
         console.log('foook');
         console.log(handleCancel);
@@ -45,11 +27,10 @@ export const cancelable = <V>(fn: Cancelable<V>, cancel: Promise<any>) => {
         }
       };
 
+      console.log(cancel);
       if (!cancel) {
         return Promise.resolve();
       }
-
-      console.log(cancel);
 
       return cancel
         .then(

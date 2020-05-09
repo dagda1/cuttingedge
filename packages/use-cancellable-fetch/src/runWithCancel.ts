@@ -62,7 +62,7 @@ export function runWithCancel<T, R, N>(
 
     const resolved = (res?: any) => {
       try {
-        console.log(res);
+        // console.log(res);
         const result = it.next(res);
 
         next(result);
@@ -117,7 +117,7 @@ function promisify(this: any, obj: any, cancel: Promise<any>): Promise<any> {
   assert(!!obj, 'undefined passed to promisify');
 
   if (isPromise(obj)) {
-    console.log('isPromise');
+    // console.log('isPromise');
     return obj;
   }
 

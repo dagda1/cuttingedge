@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 import { useCancellable, FetchStates } from '../src/useCancellable';
 
@@ -7,7 +8,7 @@ const makeFetchRequest = (fetchDelay: number, name: string) => {
   return fetch(`https://slowmo.glitch.me/${fetchDelay}`)
     .then((r) => r.json())
     .then((response) => {
-      console.log(`call ${name} completed successly with response ${JSON.stringify(response)}`);
+      // console.log(`call ${name} completed successly with response ${JSON.stringify(response)}`);
 
       return response;
     })
