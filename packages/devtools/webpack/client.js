@@ -237,7 +237,7 @@ const configure = (options) => {
           },
         }),
       isProduction && ssrBuild && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.ContextReplacementPlugin(/^\.\/locale$/, /moment$/),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       new MiniCssExtractPlugin({
