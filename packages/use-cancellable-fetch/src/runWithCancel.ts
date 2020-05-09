@@ -1,98 +1,83 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { cancelable } from './cancellable';
 import { assert } from '@cutting/util';
 import { isPromise, isGeneratorFunction, isObject } from './utils';
-import { Fn } from './types';
-
-export class CancelError extends Error {}
-
-export class CancellationToken {
-  cancelled: boolean;
-
-  throwIfCancelled(reason: string) {
-    if (this.cancelled) {
-      return;
-    }
-
-    this.cancelled = true;
-    throw new CancelError(reason);
-  }
-
-  constructor() {
-    this.cancelled = false;
-  }
-}
+import { Fn, UnknownArgs } from './types';
+import { CancelToken } from './cancelToken';
 
 export function runWithCancel<T, R, N>(
   this: any,
   {
     fn,
-    cancel,
   }: {
     fn: Fn;
-    cancel: Promise<any>;
   },
 ) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const ctx = this;
 
-  return cancelable((resolve, reject, onCancel) => {
-    const it = typeof fn === 'function' ? fn.apply(ctx, []) : fn;
+  const { cancel, token } = CancelToken.source();
 
-    const next = ({ value, done }: IteratorResult<T, R>) => {
-      if (done) {
-        return resolve(value);
-      }
+  const runnable = <Args extends any[] = UnknownArgs>(...args: Args) => {
+    return new Promise((resolve, reject) => {
+      const it = typeof fn === 'function' ? fn.apply(ctx, args || []) : fn;
 
-      const promise = promisify(value, cancel);
+      const next = ({ value, done }: IteratorResult<T, R>) => {
+        if (done) {
+          return resolve(value);
+        }
 
-      return promise.then(resolved, rejected);
-    };
+        const promise = promisify(value);
 
-    const onCancelled = (error: Error) => {
-      try {
-        console.log('cancellleeedd');
+        return promise.then(resolved, rejected);
+      };
 
-        it.throw(error);
-        reject(error);
-      } catch (error) {
-        return reject(error);
-      }
-    };
+      const onCancelled = (error: Error) => {
+        try {
+          console.log('cancellleeedd');
 
-    const resolved = (res?: any) => {
-      try {
-        // console.log(res);
-        const result = it.next(res);
+          it.throw(error);
+          reject(error);
+        } catch (error) {
+          return reject(error);
+        }
+      };
 
-        next(result);
-      } catch (e) {
-        return reject(e);
-      }
-    };
+      const resolved = (res?: any) => {
+        try {
+          // console.log(res);
+          const result = it.next(res);
 
-    onCancel(onCancelled);
-    resolved();
+          next(result);
+        } catch (e) {
+          return reject(e);
+        }
+      };
 
-    const rejected = (err: any) => {
-      console.log('should be rejected');
-      try {
-        const ret = it.throw(err);
-        next(ret);
-      } catch (e) {
-        return reject(e);
-      }
-    };
-  }, cancel);
+      // onCancel(onCancelled);
+      resolved();
+
+      const rejected = (err: any) => {
+        console.log('should be rejected');
+        try {
+          const ret = it.throw(err);
+          next(ret);
+        } catch (e) {
+          return reject(e);
+        }
+      };
+    });
+  };
+
+  return { runnable, cancel, token };
 }
 
-export function objectToPromise(this: any, obj: { [key: string]: any }, cancel: Promise<any>) {
+export function objectToPromise(this: any, obj: { [key: string]: any }) {
   const results = { ...obj };
   const keys = Object.keys(obj);
   const promises: Promise<any>[] = [];
 
   for (const key of keys) {
-    const promise = promisify.call(this, obj[key], cancel);
+    const promise = promisify.call(this, obj[key]);
     if (promise && isPromise(promise)) {
       defer(promise, key);
     } else {
@@ -113,7 +98,7 @@ export function objectToPromise(this: any, obj: { [key: string]: any }, cancel: 
   }
 }
 
-function promisify(this: any, obj: any, cancel: Promise<any>): Promise<any> {
+function promisify(this: any, obj: any): Promise<any> {
   assert(!!obj, 'undefined passed to promisify');
 
   if (isPromise(obj)) {
@@ -123,20 +108,20 @@ function promisify(this: any, obj: any, cancel: Promise<any>): Promise<any> {
 
   if (typeof obj === 'function' || isGeneratorFunction(obj)) {
     console.log('is generatorFunction');
-    return runWithCancel.call(this, {
-      fn: obj,
-      cancel,
-    });
+    throw new Error('what do we do here');
+    // return runWithCancel.call(this, {
+    //   fn: obj,
+    // });
   }
 
   if (Array.isArray(obj)) {
     console.log('is array');
-    return Promise.all(obj.map((o) => promisify(o, cancel)));
+    return Promise.all(obj.map((o) => promisify(o)));
   }
 
   if (isObject(obj)) {
     console.log('isArray');
-    return objectToPromise(obj, cancel);
+    return objectToPromise(obj);
   }
 
   return obj;

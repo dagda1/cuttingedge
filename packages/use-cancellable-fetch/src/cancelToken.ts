@@ -56,6 +56,7 @@ export class CancelToken {
   static source(): CancelTokenSource {
     let cancel!: Canceler;
     const token = new CancelToken((c) => {
+      console.log(c);
       cancel = c;
     });
     return {

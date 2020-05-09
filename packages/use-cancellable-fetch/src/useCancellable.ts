@@ -88,16 +88,14 @@ export const useCancellable = <R, N = R>(
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const stop = new Deferred();
-
-  stop.then(() => {
-    console.log('aborting');
-    dispatch(abort);
-  });
+  // stop.then(() => {
+  //   console.log('aborting');
+  //   dispatch(abort);
+  // });
 
   const runner = useCallback(() => {
     dispatch(loading);
-    runWithCancel({ fn, cancel: stop });
+    runWithCancel({ fn });
   }, [fn, stop]);
 
   return { ...state, run: runner, cancel: stop };
