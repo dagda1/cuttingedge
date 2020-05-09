@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "version": "2.3.3",
+  "version": "2.3.4",
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development cutting ssr-start",
@@ -15,10 +15,10 @@
     "serve": "NODE_ENV=production node ./dist/server.js"
   },
   "dependencies": {
-    "@cutting/component-library": "2.3.3",
-    "@cutting/connected-components": "2.3.3",
-    "@cutting/hooks": "2.3.3",
-    "@cutting/util": "2.3.3",
+    "@cutting/component-library": "2.3.4",
+    "@cutting/connected-components": "2.3.4",
+    "@cutting/hooks": "2.3.4",
+    "@cutting/util": "2.3.4",
     "@loadable/component": "^5.12.0",
     "@loadable/server": "^5.12.0",
     "@types/loadable__server": "^5.12.1",
@@ -38,9 +38,9 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "2.3.3",
-    "@cutting/eslint-config": "2.3.3",
-    "@cutting/useful-types": "2.3.3",
+    "@cutting/devtools": "2.3.4",
+    "@cutting/eslint-config": "2.3.4",
+    "@cutting/useful-types": "2.3.4",
     "@loadable/webpack-plugin": "^5.12.0",
     "@testing-library/jest-dom": "^5.7.0",
     "@types/csurf": "^1.9.36",

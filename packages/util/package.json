@@ -1,6 +1,6 @@
 {
   "name": "@cutting/util",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -14,8 +14,8 @@
     "test:ci": "CI=true npm test"
   },
   "devDependencies": {
-    "@cutting/devtools": "2.3.3",
-    "@cutting/eslint-config": "2.3.3",
-    "@cutting/useful-types": "2.3.3"
+    "@cutting/devtools": "2.3.4",
+    "@cutting/eslint-config": "2.3.4",
+    "@cutting/useful-types": "2.3.4"
   }
 }
