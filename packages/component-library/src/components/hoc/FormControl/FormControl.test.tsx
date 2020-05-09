@@ -6,9 +6,7 @@ import { render, RenderResult } from '@testing-library/react';
 
 const FormInput = FormControl(Input);
 
-const wrap = (
-  props?: Partial<FormControlProps<HTMLInputElement>>,
-): RenderResult =>
+const wrap = (props?: Partial<FormControlProps<HTMLInputElement>>): RenderResult =>
   render(<FormInput value={props?.value} label="label" {...props} />);
 
 describe('FormControl', () => {

@@ -43,7 +43,7 @@ export const useShortcuts = <E extends HTMLElement = HTMLElement>({
 
     const shortcutActions = buildShortcuts(shortcutMap);
 
-    shortcutActions.forEach(shortcut => {
+    shortcutActions.forEach((shortcut) => {
       trapper.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
         e.stopPropagation();
 
@@ -58,7 +58,7 @@ export const useShortcuts = <E extends HTMLElement = HTMLElement>({
     shortcuts.push(...shortcutActions);
 
     return (): void => {
-      shortcuts.forEach(shortcut => {
+      shortcuts.forEach((shortcut) => {
         if (shortcut.trapper) {
           shortcut.trapper.unbind(shortcut.keys);
         }

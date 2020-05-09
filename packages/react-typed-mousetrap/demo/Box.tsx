@@ -18,7 +18,7 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
     lineHeight: '100px',
     position: 'absolute',
     top: `${y + index * 120}px`,
-    left: `${x + index * 120}px`
+    left: `${x + index * 120}px`,
   };
 
   const SHIFT = 10;
@@ -41,7 +41,7 @@ export const Box: React.FC<BoxType & BoxProps> = ({ x, y, color, index, onMoveRe
           throw new Error('Unknown action');
       }
     },
-    [index, onMoveRequest, x, y]
+    [index, onMoveRequest, x, y],
   );
 
   return (

@@ -39,7 +39,7 @@ describe('clearArray', () => {
     expect(a).toHaveLength(0);
   });
 
-  it('should not blow up with empty array', () => {
+  it('should not blow up with undefined', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     clearArray(undefined as any);
   });

@@ -37,7 +37,6 @@ export function runWithCancel<T, R, N>(
   const ctx = this;
 
   return cancelable((resolve, reject, onCancel) => {
-    // need to handle args
     const it = typeof fn === 'function' ? fn.apply(ctx, []) : fn;
 
     const next = ({ value, done }: IteratorResult<T, R>) => {
@@ -52,6 +51,8 @@ export function runWithCancel<T, R, N>(
 
     const onCancelled = (error: Error) => {
       try {
+        console.log('cancellleeedd');
+
         it.throw(error);
         reject(error);
       } catch (error) {
@@ -61,6 +62,7 @@ export function runWithCancel<T, R, N>(
 
     const resolved = (res?: any) => {
       try {
+        console.log(res);
         const result = it.next(res);
 
         next(result);
@@ -73,6 +75,7 @@ export function runWithCancel<T, R, N>(
     resolved();
 
     const rejected = (err: any) => {
+      console.log('should be rejected');
       try {
         const ret = it.throw(err);
         next(ret);
@@ -83,11 +86,7 @@ export function runWithCancel<T, R, N>(
   }, cancel);
 }
 
-export function objectToPromise(
-  this: any,
-  obj: { [key: string]: any },
-  cancel: Promise<any>,
-) {
+export function objectToPromise(this: any, obj: { [key: string]: any }, cancel: Promise<any>) {
   const results = { ...obj };
   const keys = Object.keys(obj);
   const promises: Promise<any>[] = [];
@@ -104,10 +103,10 @@ export function objectToPromise(
   return Promise.all(promises).then(() => results);
 
   function defer(promise: Promise<any>, key: string) {
-    // predefine the key in the result
+    console.log('is defer');
     results[key] = undefined;
     promises.push(
-      promise.then(res => {
+      promise.then((res) => {
         results[key] = res;
       }),
     );
@@ -118,10 +117,12 @@ function promisify(this: any, obj: any, cancel: Promise<any>): Promise<any> {
   assert(!!obj, 'undefined passed to promisify');
 
   if (isPromise(obj)) {
+    console.log('isPromise');
     return obj;
   }
 
   if (typeof obj === 'function' || isGeneratorFunction(obj)) {
+    console.log('is generatorFunction');
     return runWithCancel.call(this, {
       fn: obj,
       cancel,
@@ -129,10 +130,12 @@ function promisify(this: any, obj: any, cancel: Promise<any>): Promise<any> {
   }
 
   if (Array.isArray(obj)) {
-    return Promise.all(obj.map(o => promisify(o, cancel)));
+    console.log('is array');
+    return Promise.all(obj.map((o) => promisify(o, cancel)));
   }
 
   if (isObject(obj)) {
+    console.log('isArray');
     return objectToPromise(obj, cancel);
   }
 

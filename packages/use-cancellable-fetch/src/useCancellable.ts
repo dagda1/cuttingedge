@@ -16,20 +16,16 @@ export type FetchState<D, E = Error> = {
   error?: E;
 };
 
-const initialStateCreator = <D, E = Error>(
-  initialData: D | undefined = undefined,
-): FetchState<D, E> => ({
+const initialStateCreator = <D, E = Error>(initialData: D | undefined = undefined): FetchState<D, E> => ({
   state: FetchStates.Idle,
   data: initialData,
   error: undefined,
 });
 
 const loading = { type: FetchStates.Loading } as const;
-export const success = <D>(data: D) =>
-  ({ type: FetchStates.Success, data } as const);
+export const success = <D>(data: D) => ({ type: FetchStates.Success, data } as const);
 const abort = { type: FetchStates.Cancel } as const;
-export const error = <E = Error>(error: E) =>
-  ({ type: FetchStates.Error, error } as const);
+export const error = <E = Error>(error: E) => ({ type: FetchStates.Error, error } as const);
 
 export type FetchActions<D, E = Error> =
   | typeof loading
@@ -37,12 +33,7 @@ export type FetchActions<D, E = Error> =
   | typeof abort
   | { type: FetchStates.Error; error: E };
 
-function reducer<D, E = Error>(
-  current: FetchState<D>,
-  action: FetchActions<D>,
-): FetchState<D> {
-  console.log(current.state);
-  console.log(action);
+function reducer<D, E = Error>(current: FetchState<D>, action: FetchActions<D>): FetchState<D> {
   switch (current.state) {
     case FetchStates.Idle:
     case FetchStates.Error:
@@ -53,9 +44,7 @@ function reducer<D, E = Error>(
             state: FetchStates.Loading,
           };
         default:
-          throw new Error(
-            `Invalid action ${action.type} in state ${current.state}`,
-          );
+          throw new Error(`Invalid action ${action.type} in state ${current.state}`);
       }
     case FetchStates.Loading:
       switch (action.type) {
@@ -81,11 +70,7 @@ function reducer<D, E = Error>(
             state: FetchStates.Cancel,
           };
         default:
-          throw new Error(
-            `Invalid action ${JSON.stringify(action)} in state ${
-              current.state
-            }`,
-          );
+          throw new Error(`Invalid action ${JSON.stringify(action)} in state ${current.state}`);
       }
     default:
       return current;
@@ -111,14 +96,10 @@ export const useCancellable = <R, N = R>(
     dispatch(abort);
   });
 
-  const cancelable = useCallback(() => {
+  const runner = useCallback(() => {
+    dispatch(loading);
     runWithCancel({ fn, cancel: stop });
   }, [fn, stop]);
 
-  const start = useCallback(() => {
-    dispatch(loading);
-    cancelable();
-  }, [cancelable]);
-
-  return { ...state, run: start, cancel: stop };
+  return { ...state, run: runner, cancel: stop };
 };

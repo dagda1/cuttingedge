@@ -49,7 +49,7 @@ app.get('/download', (req, res) => {
   const CVFile = 'paulcowan-cv.pdf';
   const pdfPath = ['', publicDir, 'assets', CVFile].join('/');
 
-  res.status(HttpStatusCode.Ok).download(pdfPath, CVFile, err => {
+  res.status(HttpStatusCode.Ok).download(pdfPath, CVFile, (err) => {
     if (!err) {
       return;
     }
@@ -65,26 +65,19 @@ app.get('/*', async (req, res) => {
   });
 });
 
-const errorHandler = (
-  err: Exception,
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): void => {
+const errorHandler = (err: Exception, req: Request, res: Response, next: NextFunction): void => {
   if (res.headersSent) {
     return next(err);
   }
 
   console.error(err);
 
-  res
-    .status(err.status || HttpStatusCode.InternalServerError)
-    .send(err.message || 'Internal Error');
+  res.status(err.status || HttpStatusCode.InternalServerError).send(err.message || 'Internal Error');
 };
 
 app.use(errorHandler);
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   if (!err) {
     return;
   }

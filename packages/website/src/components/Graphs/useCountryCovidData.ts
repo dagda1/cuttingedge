@@ -33,26 +33,20 @@ const transform = (results: CountryStats, country: CountryData): DayData[] => {
   return result;
 };
 
-const DefaultStartDate = dayjs()
-  .subtract(45, 'day')
-  .format('YYYY-MM-DD');
+const DefaultStartDate = dayjs().subtract(45, 'day').format('YYYY-MM-DD');
 
 export interface CountryDataProps {
   startDate?: string;
 }
 
-const getCountriesData = ({
-  startDate,
-}: CountryDataProps): Promise<CountryStats> => {
-  return new Promise(async resolve => {
+const getCountriesData = ({ startDate }: CountryDataProps): Promise<CountryStats> => {
+  return new Promise(async (resolve) => {
     const headers = { Accept: 'application/json' };
     const results: Partial<CountryStats> = {};
 
     for (const country of Object.keys(countryData)) {
       const result = await fetch(
-        `${baseUrl}/${country.toUpperCase()}/timeseries/${startDate}/${dayjs().format(
-          'YYYY-MM-DD',
-        )}`,
+        `${baseUrl}/${country.toUpperCase()}/timeseries/${startDate}/${dayjs().format('YYYY-MM-DD')}`,
         { headers },
       );
 
@@ -69,12 +63,8 @@ export type CountriesStats = {
   name: string;
 };
 
-export const useCountryCovidData = (
-  { startDate }: CountryDataProps = { startDate: DefaultStartDate },
-) => {
-  const getData = useCallback(() => getCountriesData({ startDate }), [
-    startDate,
-  ]);
+export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDate: DefaultStartDate }) => {
+  const getData = useCallback(() => getCountriesData({ startDate }), [startDate]);
 
   const result = useAsync({ promiseFn: getData });
 

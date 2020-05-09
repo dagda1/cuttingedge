@@ -28,7 +28,7 @@ function runEslint() {
 
   const eslintConfig = findFile(process.cwd(), '.eslintrc.json');
 
-  const args = ` --ext .ts,.tsx --max-warnings 0 ${paths.appSrc} --ignore-pattern *.test.* -c ${eslintConfig} --fix`;
+  const args = ` --ext .ts,.tsx --max-warnings 0 ${paths.appSrc} -c ${eslintConfig} --fix`;
 
   const eslint = exec(`${eslintPath} ${args}`);
 

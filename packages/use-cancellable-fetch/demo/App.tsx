@@ -29,7 +29,6 @@ export const App: React.FC = () => {
     yield makeFetchRequest(delay, 'seven');
   });
 
-  console.log(state);
   return (
     <div id="app">
       <div className="row flex-center">
@@ -45,14 +44,12 @@ export const App: React.FC = () => {
               </div>
             </div>
             <p>
-              <small>
-                Fetch request status:
-                <b>
-                  <span id="fetch-status" className="text-warning">
-                    Idle
-                  </span>
-                </b>
-              </small>
+              Fetch request status:
+              <strong>
+                <span id="fetch-status" className="text-warning">
+                  {state.toUpperCase()}
+                </span>
+              </strong>
             </p>
             <div className="progress margin-bottom">
               <div id="progress" className="bar secondary striped w-0 text-primary">

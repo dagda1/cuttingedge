@@ -41,7 +41,7 @@ const MyEnhancedForm = withFormik({
     setSubmitting(false);
   },
 
-  displayName: 'BasicForm'
+  displayName: 'BasicForm',
 })(MyForm);
 
 export const App: React.FC = () => (

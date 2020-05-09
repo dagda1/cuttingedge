@@ -1,7 +1,6 @@
 import { Fn } from './types';
 import { noop } from './utils';
 
-/* eslint-disable @typescript-eslint/no-use-before-define */
 export class CancelError extends Error {}
 
 export class CancellationToken {
@@ -21,23 +20,7 @@ export class CancellationToken {
   }
 }
 
-export type ExtractType<T> = T extends {
-  [Symbol.iterator](): { next(): { done: true; value: infer U } };
-}
-  ? U
-  : T extends { [Symbol.iterator](): { next(): { done: false } } }
-  ? never
-  : T extends { [Symbol.iterator](): { next(): { value: infer U } } }
-  ? U
-  : T extends { [Symbol.iterator](): any }
-  ? unknown
-  : never;
-
-export type Cancelable<V> = (
-  resolve: Fn,
-  reject: Fn,
-  onCancel: (c: Fn) => Promise<any>,
-) => void;
+export type Cancelable<V> = (resolve: Fn, reject: Fn, onCancel: (c: Fn) => Promise<any>) => void;
 
 export const cancelable = <V>(fn: Cancelable<V>, cancel: Promise<any>) => {
   return new Promise<V>((resolve, reject) => {
@@ -65,6 +48,8 @@ export const cancelable = <V>(fn: Cancelable<V>, cancel: Promise<any>) => {
       if (!cancel) {
         return Promise.resolve();
       }
+
+      console.log(cancel);
 
       return cancel
         .then(

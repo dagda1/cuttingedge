@@ -67,8 +67,8 @@ export const useParentSize = (
       return;
     }
 
-    let resizeObserver: ResizeObserver | null = new ResizeObserver(
-      (entries: ResizeObserverEntry[]) => handleResize(entries),
+    let resizeObserver: ResizeObserver | null = new ResizeObserver((entries: ResizeObserverEntry[]) =>
+      handleResize(entries),
     );
     resizeObserver.observe(ref.current);
 

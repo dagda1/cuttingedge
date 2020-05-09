@@ -9,10 +9,8 @@
     "start": "yarn build && yarn --cwd packages/website/ ssr-start",
     "publish:all": "NODE_ENV=production cutting each-pkg yarn publish -- --non-interactive --verbose",
     "audit-packages": "cutting each-pkg cutting audit",
-    "lint": "cutting each-pkg yarn lint",
-    "lint:fix": "cutting each-pkg yarn lint:fix",
-    "lint:js": "eslint --ext .js . -c ./packages/frontend-common/.eslintrc.json --ignore-path ./.eslintignore --fix",
-    "prettier:js": "prettier --write \"{,!(node_modules)/}**/*.js\" --single-quote --print-width=120"
+    "lint": "yarn run eslint 'packages/**/*.{ts,tsx,js}' -c ./packages/component-library/.eslintrc.json",
+    "lint:fix": "yarn run lint --fix"
   },
   "dependencies": {
     "classnames": "2.2.6",

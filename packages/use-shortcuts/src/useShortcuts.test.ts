@@ -7,7 +7,7 @@ import mousetrap from 'mousetrap';
 import { KeyCode } from './types/keycodes';
 
 const shortcutMap: ShortcutMap = { DO_SOMETHING: 'a' };
-const handler: ShortcutHandler = action => {
+const handler: ShortcutHandler = (action) => {
   switch (action.type) {
     case 'DO_SOMETHING':
       console.log('do something');
@@ -23,7 +23,7 @@ describe('useShortcuts', () => {
   });
 
   it('should create shortcuts with no ref', () => {
-    const { result } = renderHook<UseShortcuts, UseShortcutsResult>(p => useShortcuts(p), {
+    const { result } = renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
       initialProps: { shortcutMap, handler: (): undefined => undefined },
     });
 
@@ -38,7 +38,7 @@ describe('useShortcuts', () => {
 
     const props: UseShortcuts = { shortcutMap, handler, ref: { current: null } };
 
-    const { result, rerender } = renderHook<UseShortcuts, UseShortcutsResult>(p => useShortcuts(p), {
+    const { result, rerender } = renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
       initialProps: { ...props, ref: { current: null } },
     });
 
@@ -68,7 +68,7 @@ describe('useShortcuts', () => {
 
     const props: UseShortcuts = { shortcutMap, handler: fn, ref: { current: null } };
 
-    renderHook<UseShortcuts, UseShortcutsResult>(p => useShortcuts(p), {
+    renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
       initialProps: { ...props, ref: { current: input } },
     });
 
@@ -93,7 +93,7 @@ describe('useShortcuts', () => {
       result: {
         current: { shortcuts },
       },
-    } = renderHook<UseShortcuts, UseShortcutsResult>(p => useShortcuts(p), {
+    } = renderHook<UseShortcuts, UseShortcutsResult>((p) => useShortcuts(p), {
       initialProps: { shortcutMap: combinationShortcutMap, handler },
     });
 

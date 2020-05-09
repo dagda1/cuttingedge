@@ -9,5 +9,5 @@ export enum KeyCode {
   Mod = 'mod', // On Mac this ends up mapping to command whereas on Windows and Linux it maps to ctrl.
   RightArrow = 'right',
   Shift = 'shift',
-  UpArrow = 'up'
+  UpArrow = 'up',
 }

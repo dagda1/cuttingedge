@@ -13,12 +13,12 @@ export const isGenerator = (obj: any): obj is Generator => {
 
 export const isGeneratorFunction = (obj: any): obj is GeneratorFunction => {
   const constructor = obj.constructor;
-  if (!constructor) return false;
-  if (
-    'GeneratorFunction' === constructor.name ||
-    'GeneratorFunction' === constructor.displayName
-  )
+  if (!constructor) {
+    return false;
+  }
+  if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) {
     return true;
+  }
   return isGenerator(constructor.prototype);
 };
 

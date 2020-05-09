@@ -20,12 +20,7 @@ describe('<ExternalLink />', () => {
 
   it('should add aria-label and aria-labelledby attributes', () => {
     const { getByLabelText } = render(
-      <ExternalLink
-        ariaLabel="label"
-        ariaLabelledBy="labelled by"
-        dataSelector="the-a"
-        href="http://blah.com/"
-      >
+      <ExternalLink ariaLabel="label" ariaLabelledBy="labelled by" dataSelector="the-a" href="http://blah.com/">
         Blah
       </ExternalLink>,
     );

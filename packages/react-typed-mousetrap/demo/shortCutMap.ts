@@ -6,5 +6,5 @@ export const shortcutMap: ShortcutMap = {
   MOVE_UP: [KeyCode.UpArrow, 'w'],
   MOVE_DOWN: [KeyCode.DownArrow, 'k'],
   COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
-  SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] }
+  SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] },
 };

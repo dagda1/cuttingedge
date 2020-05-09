@@ -22,10 +22,7 @@ export interface ShortcutAction<T extends string = any> {
   trapper?: MousetrapStatic | MousetrapInstance;
 }
 
-export type ShortcutHandler<T extends string = any> = (
-  action: Action<T>,
-  event: ExtendedKeyboardEvent,
-) => void;
+export type ShortcutHandler<T extends string = any> = (action: Action<T>, event: ExtendedKeyboardEvent) => void;
 
 export type KeyStroke = KeyCode | string;
 
