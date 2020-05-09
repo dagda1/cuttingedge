@@ -113,7 +113,7 @@ const configure = (options) => {
           },
           host,
           https: protocol === 'https',
-          hotOnly: true,
+          hotOnly: false,
           hot: false,
           noInfo: true,
           overlay: false,

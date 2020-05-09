@@ -4,6 +4,6 @@ module.exports = {
   client: {
     entries: { client: paths.appClientIndexJs },
     ssrBuild: true,
-    hotReloading: true
-  }
+    hotReloading: true,
+  },
 };

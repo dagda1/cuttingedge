@@ -26,9 +26,11 @@ getExternals = function (isDevelopment) {
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
         /^@babel/,
-        /^@loadable\/component$/,
-        /^loadable-ts-transformer$/,
         /^@cutting/,
+        /^@loadable\/component$/,
+        /^react$/,
+        /^react-dom$/,
+        /^loadable-ts-transformer$/,
       ].filter((x) => x),
     }),
   ];

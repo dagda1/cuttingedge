@@ -122,19 +122,6 @@ const configureCommon = (options) => {
             options: { name: staticAssetName, limit: 10000, emitFile: isWeb },
           },
           {
-            test: /\.(js|jsx)$/,
-            exclude: /\/node_modules\/core-js\//,
-            use: [
-              {
-                loader: 'babel-loader',
-                options: {
-                  presets: ['@babel/preset-env'],
-                  cacheDirectory: true,
-                },
-              },
-            ],
-          },
-          {
             test: /\.tsx$/,
             enforce: 'pre',
             use: [
@@ -156,9 +143,6 @@ const configureCommon = (options) => {
             options: {
               configFile: paths.tsConfig,
               transpileOnly: isDevelopment,
-              compilerOptions: {
-                sourceMap: isDevelopment,
-              },
               getCustomTransformers: { before: [loadableTransformer] },
             },
           },
