@@ -3,7 +3,6 @@ const fs = require('fs-extra');
 const path = require('path');
 const paths = require('../config/paths');
 const copy = require('copy');
-const chalk = require('chalk');
 const { exec } = require('child_process');
 const { findFile } = require('../config/utils');
 const logger = require('./logger');
@@ -33,10 +32,10 @@ function runEslint() {
 
   const eslint = exec(`${eslintPath} ${args}`);
 
-  eslint.stdout.on('data', data => logger.info(chalk.red(data)));
-  eslint.stderr.on('data', data => logger.error(chalk.red(data)));
+  eslint.stdout.on('data', (data) => logger.info(data));
+  eslint.stderr.on('error', (data) => logger.error(data));
 
-  eslint.on('close', code => {
+  eslint.on('close', (code) => {
     logger.done(`eslint exited with code ${code}`);
 
     if (code !== 0) {
@@ -61,14 +60,14 @@ function runTypeScriptBuild() {
 
   const tscCommand = `${tscPath} ${process.argv.slice(2).join(' ')}`;
 
-  logger.start(chalk.cyan(`running tsc`));
+  logger.start('running tsc');
 
   const tsc = exec(tscCommand);
 
-  tsc.stdout.on('data', data => logger.info(data));
-  tsc.stderr.on('data', data => logger.error(chalk.red(data)));
+  tsc.stdout.on('data', (data) => logger.info(data));
+  tsc.stderr.on('data', (data) => logger.error(data));
 
-  tsc.on('close', code => {
+  tsc.on('close', (code) => {
     logger.done(`tsc exited with code ${code}`);
 
     if (code !== 0) {
@@ -83,9 +82,9 @@ function build() {
   try {
     runTypeScriptBuild();
 
-    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json'].map(pattern => `${paths.appSrc}/**/${pattern}`);
+    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json'].map((pattern) => `${paths.appSrc}/**/${pattern}`);
 
-    copy(patterns, paths.appBuild, err => {
+    copy(patterns, paths.appBuild, (err) => {
       if (err) {
         throw err;
       }

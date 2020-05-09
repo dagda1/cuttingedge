@@ -2,15 +2,15 @@
 
 const fs = require('fs');
 const path = require('path');
-const chalk = require('chalk');
 const program = require('commander');
 const { spawn } = require('child_process');
 const paths = require('../config/paths');
+const logger = require('../scripts/logger');
 
 function getPackages(packages) {
   return packages
-    .filter(pkgPath => fs.lstatSync(pkgPath).isDirectory())
-    .map(pkgPath => {
+    .filter((pkgPath) => fs.lstatSync(pkgPath).isDirectory())
+    .map((pkgPath) => {
       const pkg = require(path.join(pkgPath, './package.json'));
       return { ...pkg, path: pkgPath };
     });
@@ -27,16 +27,19 @@ function getPackages(packages) {
  */
 function runPkgCmd(cmd, args, pkg) {
   return new Promise((resolve, reject) => {
-    console.log(chalk.inverse(`${pkg.name} ${cmd} ${args.join(' ')}`));
+    logger.info(`${pkg.name} ${cmd} ${args.join(' ')}`);
 
     const child = spawn(cmd, args, {
       stdio: [null, 1, 2],
       cwd: pkg.path,
     });
 
-    child.on('exit', code => {
-      if (code === 0) resolve();
-      else reject(code);
+    child.on('exit', (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(code);
+      }
     });
   });
 }
@@ -51,7 +54,7 @@ program
   .arguments('<cmd> [args...]')
   .option('-p, --package <name>', 'target a specific package (can be combined with the above)')
   .parse(process.argv)
-  .action(function(cmd, args) {
+  .action(function (cmd, args) {
     const pkgs = getPackages(paths.libPackages);
 
     pkgs
@@ -59,10 +62,8 @@ program
         (p, pkg) =>
           p
             .then(() => runPkgCmd(cmd, args, pkg))
-            .catch(e => {
-              console.log(chalk.red('------------------------'));
-              console.log(chalk.red(`${pkg.name} failed with ${e}`));
-              console.log(chalk.red('------------------------'));
+            .catch((e) => {
+              logger.error(`${pkg.name} failed with ${e}`);
               process.exit(1);
             }),
         Promise.resolve(),

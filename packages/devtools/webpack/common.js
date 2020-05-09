@@ -69,10 +69,6 @@ const configureCommon = (options) => {
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables(options);
 
-  const { ssrBuild } = options;
-
-  console.log({ ssrBuild });
-
   const config = {
     mode: isDevelopment ? 'development' : 'production',
     bail: isProduction,

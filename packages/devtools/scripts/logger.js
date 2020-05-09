@@ -56,20 +56,22 @@ const write = (type, text, verbose) => {
     console.log();
   }
 
-  if (logObject) console.dir(verbose, { depth: 15 });
+  if (logObject) {
+    console.dir(verbose, { depth: 15 });
+  }
 };
 
 const log = (text = '') => console.log(text);
 
-const start = text => {
+const start = (text) => {
   write('start', text);
 };
 
-const done = text => {
+const done = (text) => {
   write('done', text);
 };
 
-const info = text => {
+const info = (text) => {
   write('info', text);
 };
 

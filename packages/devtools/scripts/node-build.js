@@ -7,7 +7,7 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -16,7 +16,7 @@ const path = require('path');
 // Ensure environment variables are read.
 require('../config/env');
 
-const requireRelative = relativePath => require(path.join(__dirname, relativePath));
+const requireRelative = (relativePath) => require(path.join(__dirname, relativePath));
 
 const webpack = require('webpack');
 const fs = require('fs-extra');
@@ -29,12 +29,12 @@ const configureWebpackServer = requireRelative('../webpack/node').configure;
 const merge = require('lodash/merge');
 const logger = require('../scripts/logger');
 const printErrors = require('../scripts/printErrors');
-const chalk = require('chalk');
+const logger = require('../scripts/logger');
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
-  .then(previousFileSizes => {
+  .then((previousFileSizes) => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
@@ -47,17 +47,17 @@ measureFileSizesBeforeBuild(paths.appBuild)
       if (warnings.length) {
         logger.warn('Compiled with warnings.\n');
         logger.warn(warnings.join('\n\n'));
-        logger.warn('\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.');
-        logger.warn('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
+        logger.warn('nSearch for the keywords to learn more about each warning.');
+        logger.warn('To ignore, add // eslint-disable-next-line to the line before.\n');
       } else {
-        logger.done(chalk.green('Compiled successfully.\n'));
+        logger.done('Compiled successfully.\n');
       }
       logger.info('File sizes after gzip:\n');
       printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
     },
-    err => {
-      console.log(chalk.red('Failed to compile.\n'));
-      console.log((err.message || err) + '\n');
+    (err) => {
+      logger.error('Failed to compile.\n');
+      logger.error(err.message || err);
       process.exit(1);
     },
   );
@@ -92,14 +92,12 @@ function build(previousFileSizes) {
         (typeof process.env.CI !== 'string' || process.env.CI.toLowerCase() !== 'false') &&
         clientMessages.warnings.length
       ) {
-        console.log(
-          chalk.yellow('\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n'),
-        );
+        logger.info('\nTreating warnings as errors because process.env.CI = true.\n' + 'Most CI servers set it automatically.\n');
 
         return reject(new Error(clientMessages.warnings.join('\n\n')));
       }
 
-      console.log(chalk.green('Compiled node successfully.'));
+      logger.info('Compiled node successfully.');
 
       return resolve({
         stats: clientStats,

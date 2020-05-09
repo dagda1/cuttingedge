@@ -3,7 +3,7 @@
 'use strict';
 process.env.NODE_ENV = 'production';
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -11,7 +11,7 @@ const path = require('path');
 
 require('../config/env');
 
-const requireRelative = relativePath => require(path.join(__dirname, relativePath));
+const requireRelative = (relativePath) => require(path.join(__dirname, relativePath));
 
 const webpack = require('webpack');
 const fs = require('fs-extra');
@@ -24,10 +24,9 @@ const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const configureWebpackClient = requireRelative('../webpack/client').configure;
 const { copyPublicFolder } = require('./utils/copy-public-folder');
 const logger = require('../scripts/logger');
-const chalk = require('chalk');
 
 measureFileSizesBeforeBuild(paths.appBuild)
-  .then(previousFileSizes => {
+  .then((previousFileSizes) => {
     fs.emptyDirSync(paths.appBuild);
 
     copyPublicFolder();
@@ -37,17 +36,17 @@ measureFileSizesBeforeBuild(paths.appBuild)
   .then(
     ({ stats, previousFileSizes, warnings }) => {
       if (warnings.length) {
-        logger.warn('Compiled with warnings.\n');
-        logger.warn(warnings.join('\n\n'));
-        logger.warn(`\nSearch for the ${chalk.underline(chalk.yellow('keywords'))} to learn more about each warning.`);
-        logger.warn(`To ignore, add ${chalk.cyan('// eslint-disable-next-line')} to the line before.\n`);
+        logger.info('Compiled with warnings.\n');
+        logger.info(warnings.join('\n\n'));
+        logger.info('\nSearch for the keywords to learn more about each warning.');
+        logger.info('To ignore, add // eslint-disable-next-line to the line before.\n');
       } else {
         logger.done('Compiled successfully.\n');
       }
       logger.info('File sizes after gzip:\n');
       printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
     },
-    err => {
+    (err) => {
       logger.error('Failed to compile.\n');
       logger.error(err.message || err);
       process.exit(1);

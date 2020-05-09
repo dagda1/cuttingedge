@@ -4,6 +4,7 @@ const versionCompare = require('./version-compare');
 const getFiles = require('./get-files');
 const updateVersion = require('./update-version');
 const getPackageInfo = require('./get-package-info');
+const logger = require('../scripts/logger');
 
 const versionBumpTypes = ['major', 'minor', 'patch'];
 
@@ -21,16 +22,16 @@ const main = async () => {
   const packageFiles = getFiles(package.dir, 'package.json');
 
   if (package.version === undefined) {
-    console.log('The package file does not have version property defined?. So, version update cannot be done on this file');
+    logger.warn('The package file does not have version property defined?. So, version update cannot be done on this file');
     return;
   }
 
   //possible upgrade version values
-  const [major, minor, patch] = versionBumpTypes.map(type => bumpVersion(currentVersion, type));
+  const [major, minor, patch] = versionBumpTypes.map((type) => bumpVersion(currentVersion, type));
 
   let version;
 
-  console.log(`The current version number is ${currentVersion}`);
+  logger.warn(`The current version number is ${currentVersion}`);
 
   const choice = await inquirer.prompt({
     type: 'list',
@@ -40,7 +41,7 @@ const main = async () => {
   });
 
   if (choice.value === 'cancel') {
-    console.error('version change cancelled');
+    logger.error('version change cancelled');
     return;
   }
 
@@ -52,13 +53,13 @@ const main = async () => {
     });
 
     if (!versionRegex.test(custom.value)) {
-      console.log('Version number format is incorrect. Please use the correct format');
+      logger.warn('Version number format is incorrect. Please use the correct format');
       return;
     }
 
     const isValid = versionCompare(custom.value.replace(/[-,A-Z]/g, ''), currentVersion.replace(/[-,A-Z]/g, ''));
     if (!isValid) {
-      console.log('Version number can not be reduced');
+      logger.warn('Version number can not be reduced');
       return;
     }
 
@@ -73,7 +74,7 @@ const main = async () => {
     message: 'Confirm the version update:',
   });
 
-  return confirm.value ? packageFiles.map(filename => updateVersion(filename, version, true)) : console.log('version change cancelled');
+  return confirm.value ? packageFiles.map((filename) => updateVersion(filename, version, true)) : logger.warn('version change cancelled');
 };
 
 main();

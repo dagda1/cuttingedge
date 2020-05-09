@@ -8,6 +8,7 @@ const paths = require('../config/paths');
 const fs = require('fs-extra');
 const path = require('path');
 const typescript = require('rollup-plugin-typescript2');
+const logger = require('../scripts/logger');
 
 if (!process.argv.includes('--package-name')) {
   throw new Error('no --package-name switch');
@@ -22,18 +23,18 @@ async function generateBundledModule(inputFile, outputFile, format) {
     throw new Error(`Input file ${inputFile} does not exist`);
   }
 
-  console.log(`Generating ${outputFile} bundle.`);
+  logger.info(`Generating ${outputFile} bundle.`);
 
   const bundle = await rollup({
     input: inputFile,
     // TODO: configure externals etc.
-    external: id => {
-      console.log(id);
+    external: (id) => {
+      logger.info(id);
       return !id.startsWith('.') && !path.isAbsolute(id);
     },
     plugins: [
       resolvePlugin({
-        mainFields: ['module', 'main', 'browser']
+        mainFields: ['module', 'main', 'browser'],
       }),
       typescript({
         typescript: require('typescript'),
@@ -43,14 +44,14 @@ async function generateBundledModule(inputFile, outputFile, format) {
           compilerOptions: {
             sourceMap: true,
             declaration: true,
-            jsx: 'react'
-          }
+            jsx: 'react',
+          },
         },
         tsconfigOverride: {
           compilerOptions: {
-            target: 'es5'
-          }
-        }
+            target: 'es5',
+          },
+        },
       }),
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
@@ -60,13 +61,13 @@ async function generateBundledModule(inputFile, outputFile, format) {
         compress: {
           keep_infinity: true,
           pure_getters: true,
-          passes: 10
+          passes: 10,
         },
         ecma: 5,
-        warnings: true
+        warnings: true,
       }),
-      filesizePlugin()
-    ]
+      filesizePlugin(),
+    ],
   });
 
   await bundle.write({
@@ -74,32 +75,32 @@ async function generateBundledModule(inputFile, outputFile, format) {
     format,
     banner: '/** @cutting - (c) Paul Cowan 2015 - 2019 - MIT Licensed */',
     exports: 'named',
-    name: format === 'umd' ? '@cutting' : undefined
+    name: format === 'umd' ? '@cutting' : undefined,
   });
 
-  console.log(`Generation of ${outputFile} bundle finished.`);
+  logger.info(`Generation of ${outputFile} bundle finished.`);
 }
 
 async function build() {
-  let candidates = [];
+  const candidates = [];
 
-  [packageName, path.join(packageName, 'index'), 'index'].forEach(candidate => {
-    ['.ts', '.tsx'].forEach(fileType => {
+  [packageName, path.join(packageName, 'index'), 'index'].forEach((candidate) => {
+    ['.ts', '.tsx'].forEach((fileType) => {
       candidates.push(path.join(paths.appSrc, `${candidate}${fileType}`));
     });
   });
 
-  let rootFile = candidates.find(candidate => fs.existsSync(candidate));
+  const rootFile = candidates.find((candidate) => fs.existsSync(candidate));
 
-  console.log(rootFile);
+  logger.info(rootFile);
 
   await Promise.all([generateBundledModule(rootFile, path.join(paths.appBuild, `${packageName}.js`), 'cjs')]);
 }
 
-build().catch(e => {
-  console.error(e);
+build().catch((e) => {
+  logger.error(e);
   if (e.frame) {
-    console.error(e.frame);
+    logger.error(e.frame);
   }
   process.exit(1);
 });

@@ -7,7 +7,7 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -16,7 +16,6 @@ require('../config/env');
 
 const webpack = require('webpack');
 const fs = require('fs-extra');
-const chalk = require('chalk');
 const paths = require('../config/paths');
 const printErrors = require('./printErrors');
 const logger = require('./logger');
@@ -31,7 +30,7 @@ const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
 
 measureFileSizesBeforeBuild(paths.appBuildPublic)
-  .then(previousFileSizes => {
+  .then((previousFileSizes) => {
     fs.emptyDirSync(paths.appBuild);
 
     copyPublicFolder();
@@ -42,8 +41,8 @@ measureFileSizesBeforeBuild(paths.appBuildPublic)
     if (warnings.length) {
       logger.info('Compiled with warnings.\n');
       logger.info(warnings.join('\n\n'));
-      logger.info('\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.');
-      logger.info('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
+      logger.info('\nSearch for the keywords to learn more about each warning.');
+      logger.info('To ignore, add // eslint-disable-next-line to the line before.\n');
     } else {
       logger.info('Compiled successfully.\n');
     }
@@ -52,7 +51,7 @@ measureFileSizesBeforeBuild(paths.appBuildPublic)
 
     printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
   })
-  .catch(err => {
+  .catch((err) => {
     logger.error('Failed to compile.\n');
     logger.error((err.message || err) + '\n');
     logger.error(err.stack);

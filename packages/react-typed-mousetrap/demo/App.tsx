@@ -6,7 +6,7 @@ import { Shortcuts } from '../src/components/Shortcuts';
 import { ShortcutMap, KeyCode, Action } from '@cutting/use-shortcuts';
 
 const globalDocumentShortcuts: ShortcutMap = {
-  alert: { combination: [KeyCode.Ctrl, 'a'] }
+  alert: { combination: [KeyCode.Ctrl, 'a'] },
 };
 
 const globalHandler = (action: Action) => {
@@ -19,12 +19,18 @@ const globalHandler = (action: Action) => {
   }
 };
 
-const boxes = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }].map(
+const boxes = [
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+].map(
   (b): Box => {
     // eslint-disable-next-line no-console
     console.log(b);
     return { ...b, color: `hsl(${Math.random() * 360}, 100%, 50%)` };
-  }
+  },
 );
 
 export const App: React.FC = () => {
