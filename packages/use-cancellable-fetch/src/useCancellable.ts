@@ -1,5 +1,7 @@
-import { useReducer, useCallback } from 'react';
-import { runWithCancel } from './runWithCancel';
+import { useReducer, useCallback, useRef, useEffect } from 'react';
+import { makeRunnable } from './runnable';
+import { once } from '@cutting/util';
+import { UnknownArgs } from './types';
 
 export enum FetchStates {
   Idle = 'idle',
@@ -85,18 +87,30 @@ export const useCancellable = <R, N = R>(
   options: UseCancellableOptions<R> = { initialData: undefined },
 ) => {
   const initialState = initialStateCreator<R>(options.initialData);
+  const abortController = useRef<AbortController>(new AbortController());
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // stop.then(() => {
-  //   console.log('aborting');
-  //   dispatch(abort);
-  // });
+  const abortable = useCallback(() => {
+    console.log('yes sir we are cancelling');
+    dispatch(abort);
+  }, []);
 
-  const runner = useCallback(() => {
-    dispatch(loading);
-    runWithCancel({ fn });
-  }, [fn, stop]);
+  useEffect(() => {
+    once(abortController.current.signal, 'abort', abortable);
+  }, [abortable]);
 
-  return { ...state, run: runner, cancel: stop };
+  const { runnable } = makeRunnable({ fn, controller: abortController.current });
+
+  const runner = useCallback(
+    (...args: UnknownArgs) => {
+      dispatch(loading);
+      runnable(...args).then((result) => {
+        dispatch(success(result));
+      });
+    },
+    [runnable],
+  );
+
+  return { ...state, run: runner, abortController: abortController.current };
 };

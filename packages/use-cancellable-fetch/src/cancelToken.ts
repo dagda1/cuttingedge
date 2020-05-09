@@ -1,67 +1,23 @@
-export interface Canceler {
-  (message?: string): void;
-}
-
-export interface CancelExecutor {
-  (cancel: Canceler): void;
-}
-
-interface ResolvePromise {
-  (reason?: Cancel): void;
-}
-
-export class Cancel {
-  message?: string;
-
-  constructor(message?: string) {
-    this.message = message;
-  }
-}
-
-export interface CancelTokenSource {
-  token: CancelToken;
-  cancel: Canceler;
-}
-
-export function isCancel(value: any): boolean {
-  return value instanceof Cancel;
-}
+import { once } from '@cutting/util';
 
 export class CancelToken {
-  promise: Promise<Cancel>;
-  reason?: Cancel;
+  signal: AbortSignal;
+  promise: Promise<any>;
+  reject!: (reason?: any) => void;
 
-  constructor(executor: CancelExecutor) {
-    let resolvePromise: ResolvePromise;
+  constructor(private controller: AbortController) {
+    this.signal = controller.signal;
 
-    this.promise = new Promise<Cancel>((resolve) => {
-      resolvePromise = resolve;
+    this.promise = new Promise<any>((resolve, reject) => {
+      once(this.signal, 'abort', reject);
+      this.reject = reject;
     });
 
-    executor((message) => {
-      if (this.reason) {
-        return;
-      }
-      this.reason = new Cancel(message);
-      resolvePromise(this.reason);
-    });
+    // silence unhandled rejection warnings
+    this.promise.catch((v) => v);
   }
-
-  throwIfRequested() {
-    if (this.reason) {
-      throw this.reason;
-    }
-  }
-
-  static source(): CancelTokenSource {
-    let cancel!: Canceler;
-    const token = new CancelToken((c) => {
-      console.log(c);
-      cancel = c;
-    });
-    return {
-      cancel,
-      token,
-    };
+  abort(reason: any) {
+    this.reject(reason);
+    this.controller.abort();
   }
 }

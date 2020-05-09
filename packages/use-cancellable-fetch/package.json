@@ -25,6 +25,9 @@
     "build": "NODE_ENV=production cutting rollup --package-name use-cancellable-fetch",
     "prepublish": "npm run build"
   },
+  "dependencies": {
+    "@cutting/util": "^2.3.3"
+  },
   "keywords": [
     "hotkeys",
     "focus",

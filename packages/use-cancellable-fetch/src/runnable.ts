@@ -1,26 +1,27 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { assert } from '@cutting/util';
 import { isPromise, isGeneratorFunction, isObject } from './utils';
 import { Fn, UnknownArgs } from './types';
+import { assert } from '@cutting/util';
 import { CancelToken } from './cancelToken';
 
-export function runWithCancel<T, R, N>(
+export function makeRunnable<T, R, N>(
   this: any,
   {
     fn,
+    controller,
   }: {
     fn: Fn;
+    controller: AbortController;
   },
 ) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const ctx = this;
 
-  const { cancel, token } = CancelToken.source();
+  const token = new CancelToken(controller);
 
   const runnable = <Args extends any[] = UnknownArgs>(...args: Args) => {
     return new Promise((resolve, reject) => {
       const it = typeof fn === 'function' ? fn.apply(ctx, args || []) : fn;
-
       const next = ({ value, done }: IteratorResult<T, R>) => {
         if (done) {
           return resolve(value);
@@ -31,16 +32,16 @@ export function runWithCancel<T, R, N>(
         return promise.then(resolved, rejected);
       };
 
-      const onCancelled = (error: Error) => {
+      token.promise.catch((reason) => {
         try {
           console.log('cancellleeedd');
 
-          it.throw(error);
-          reject(error);
+          it.throw(reason);
+          reject(reason);
         } catch (error) {
           return reject(error);
         }
-      };
+      });
 
       const resolved = (res?: any) => {
         try {
@@ -53,7 +54,6 @@ export function runWithCancel<T, R, N>(
         }
       };
 
-      // onCancel(onCancelled);
       resolved();
 
       const rejected = (err: any) => {
@@ -68,7 +68,7 @@ export function runWithCancel<T, R, N>(
     });
   };
 
-  return { runnable, cancel, token };
+  return { runnable };
 }
 
 export function objectToPromise(this: any, obj: { [key: string]: any }) {
