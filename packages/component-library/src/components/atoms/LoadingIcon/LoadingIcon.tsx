@@ -19,7 +19,7 @@ const LoadingIcon: React.FC<LoadingIconProps> = ({ darkMode }) => (
     preserveAspectRatio="xMidYMid"
   >
     <g className={styles.bars}>
-      {range(0, 360, 30).map(angle => (
+      {range(0, 360, 30).map((angle) => (
         <rect
           key={angle}
           x="48.5"
@@ -34,7 +34,7 @@ const LoadingIcon: React.FC<LoadingIconProps> = ({ darkMode }) => (
       ))}
     </g>
     <g className={styles.dots}>
-      {range(40, 70, 10).map(x => (
+      {range(40, 70, 10).map((x) => (
         <circle key={x} cx={x} cy="50" r="3" className={styles.dot} />
       ))}
     </g>

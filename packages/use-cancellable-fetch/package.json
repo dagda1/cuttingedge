@@ -25,19 +25,6 @@
     "build": "NODE_ENV=production cutting rollup --package-name use-cancellable-fetch",
     "prepublish": "npm run build"
   },
-  "dependencies": {
-    "@cutting/util": "2.3.3",
-    "invariant": "^2.2.4",
-    "mousetrap": "^1.6.5"
-  },
-  "devDependencies": {
-    "@cutting/devtools": "2.3.3",
-    "@cutting/eslint-config": "2.3.3",
-    "@cutting/useful-types": "2.3.3",
-    "@testing-library/jest-dom": "^5.1.1",
-    "@types/invariant": "^2.2.31",
-    "@types/mousetrap": "^1.6.3"
-  },
   "keywords": [
     "hotkeys",
     "focus",

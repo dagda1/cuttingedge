@@ -1,12 +1,12 @@
 import React from 'react';
 import { GelItem, GelItemProps } from '.';
-import { render } from '@cutting/devtools/jest/react-testing-overrides';
+import { render } from '@testing-library/react';
 
 const wrap = (props: GelItemProps = {}) =>
   render(
     <GelItem {...props}>
       <span>GelItem</span>
-    </GelItem>
+    </GelItem>,
   );
 
 describe('<GelItem />', () => {

@@ -12,13 +12,9 @@ export interface MenuItemsProps {
 
 export const MenuItems: React.FC<MenuItemsProps> = ({ collapse }) => (
   <>
-    {bannerPages.map(page => (
+    {bannerPages.map((page) => (
       <li key={page.heading} className={styles.horizontal}>
-        <NavLink
-          to={page.path}
-          activeClassName={styles.active}
-          onClick={collapse}
-        >
+        <NavLink to={page.path} activeClassName={styles.active} onClick={collapse}>
           {page.heading}
         </NavLink>
       </li>
@@ -29,9 +25,7 @@ export const MenuItems: React.FC<MenuItemsProps> = ({ collapse }) => (
 export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
   return (
     <div>
-      <li
-        className={cs(styles.horizontal, styles.mobile, styles.close__button)}
-      >
+      <li className={cs(styles.horizontal, styles.mobile, styles.close__button)}>
         <button type="button" onClick={collapse}>
           X
         </button>
@@ -47,17 +41,10 @@ export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
           path: IncreaseInDeaths,
           heading: 'COVID-19 Daily increase in deaths',
         },
-      ].map(page => {
+      ].map((page) => {
         return (
-          <li
-            key={page.heading}
-            className={cs(styles.horizontal, styles.mobile)}
-          >
-            <NavLink
-              to={page.path}
-              activeClassName={styles.active}
-              onClick={collapse}
-            >
+          <li key={page.heading} className={cs(styles.horizontal, styles.mobile)}>
+            <NavLink to={page.path} activeClassName={styles.active} onClick={collapse}>
               {page.heading}
             </NavLink>
           </li>

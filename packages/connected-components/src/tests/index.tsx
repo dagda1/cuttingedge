@@ -1,10 +1,9 @@
 import React, { ReactNode } from 'react';
 import { createMemoryHistory, MemoryHistory } from 'history';
-import { render } from '@cutting/devtools/jest/react-testing-overrides';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { render } from '@testing-library/react';
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const renderWithRouter = (
+export const renderWithRouter: any = (
   ui: ReactNode,
   {
     route = '/',

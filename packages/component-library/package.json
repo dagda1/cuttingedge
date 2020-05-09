@@ -10,14 +10,13 @@
   "license": "MIT",
   "dependencies": {
     "@cutting/util": "2.3.3",
-    "lodash": "^4.17.15",
     "lodash.isobject": "^3.0.2"
   },
   "devDependencies": {
     "@cutting/devtools": "2.3.3",
     "@cutting/eslint-config": "2.3.3",
     "@cutting/useful-types": "2.3.3",
-    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/jest-dom": "^5.7.0",
     "@types/lodash.isobject": "^3.0.6"
   },
   "scripts": {

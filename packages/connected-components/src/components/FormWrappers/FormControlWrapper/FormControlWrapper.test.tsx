@@ -2,9 +2,9 @@
 /* eslint-disable jest/expect-expect */
 import React from 'react';
 import { FormControlWrapperProps, ConnectedFormInput } from '.';
-import { render } from '@cutting/devtools/jest/react-testing-overrides';
+import { render } from '@testing-library/react';
 
-const defaultProps: FormControlWrapperProps = {
+const defaultProps: any = {
   handleSubmit: () => undefined,
   handleBlur: () => undefined,
   handleChange: () => undefined,

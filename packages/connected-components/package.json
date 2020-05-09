@@ -16,8 +16,7 @@
   "dependencies": {
     "@cutting/component-library": "2.3.3",
     "@cutting/util": "2.3.3",
-    "formik": "^1.5.2",
-    "lodash": "^4.17.15"
+    "formik": "^2.1.4"
   },
   "devDependencies": {
     "@cutting/devtools": "2.3.3",

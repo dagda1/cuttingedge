@@ -27,7 +27,7 @@ const getEnvironment = () => {
   };
 };
 
-const getEnvVariables = options => {
+const getEnvVariables = (options) => {
   const { isDevelopment } = getEnvironment();
   delete require.cache[require.resolve('../config/env')];
 
@@ -63,7 +63,7 @@ function findAppNodeModules(current, packageName = 'typescript', tries = 0) {
 
 const repoNodeModules = findAppNodeModules(__dirname);
 
-const configureCommon = options => {
+const configureCommon = (options) => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
@@ -122,6 +122,19 @@ const configureCommon = options => {
             options: { name: staticAssetName, limit: 10000, emitFile: isWeb },
           },
           {
+            test: /\.(js|jsx)$/,
+            exclude: /\/node_modules\/core-js\//,
+            use: [
+              {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env'],
+                  cacheDirectory: true,
+                },
+              },
+            ],
+          },
+          {
             test: /\.tsx$/,
             enforce: 'pre',
             use: [
@@ -143,7 +156,6 @@ const configureCommon = options => {
             options: {
               configFile: paths.tsConfig,
               transpileOnly: isDevelopment,
-              experimentalWatchApi: isDevelopment,
               compilerOptions: {
                 sourceMap: isDevelopment,
               },
@@ -178,7 +190,7 @@ const configureCommon = options => {
             ],
           },
         ],
-        x => !!x,
+        (x) => !!x,
       ),
     },
     plugins: Array.prototype.filter.call(

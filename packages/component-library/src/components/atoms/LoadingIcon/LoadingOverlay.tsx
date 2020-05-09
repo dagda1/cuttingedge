@@ -11,10 +11,7 @@ export interface LoadingOverlayProps {
 
 export const LoadingOverlay = ({ busy, text, darkMode }: LoadingOverlayProps) =>
   busy ? (
-    <div
-      className={cs(styles['spinner-overlay'], { [styles.dark]: darkMode })}
-      data-selector="spinner"
-    >
+    <div className={cs(styles['spinner-overlay'], { [styles.dark]: darkMode })} data-selector="spinner">
       <div className={styles.spinner}>
         <LoadingIcon darkMode={darkMode} />
         {text && <h2>{text}</h2>}

@@ -40,7 +40,7 @@ function getUrlParts() {
   };
 }
 
-const configure = options => {
+const configure = (options) => {
   const { entries, publicDir, proxy, devServer, isStaticBuild, publicPath = '/' } = options;
   options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
   const { protocol, host, port } = getUrlParts();
@@ -113,7 +113,7 @@ const configure = options => {
           },
           host,
           https: protocol === 'https',
-          hotOnly: false,
+          hotOnly: true,
           hot: false,
           noInfo: true,
           overlay: false,
@@ -139,7 +139,7 @@ const configure = options => {
       pathinfo: isDevelopment,
       filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : isDevelopment && 'static/js/bundle.js',
       chunkFilename: isProduction ? 'static/js/[name].[chunkhash:8].chunk.js' : isDevelopment && 'static/js/[name].chunk.js',
-      devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
+      devtoolModuleFilenameTemplate: (info) => path.resolve(info.resourcePath).replace(/\\/g, '/'),
     },
     module: {
       rules: [
@@ -160,7 +160,6 @@ const configure = options => {
             },
             { loader: 'postcss-loader', options: postcssOptions },
           ],
-          sideEffects: true,
         },
         {
           test: sassRegex,
@@ -182,7 +181,6 @@ const configure = options => {
             { loader: 'postcss-loader', options: postcssOptions },
             { loader: 'sass-loader' },
           ],
-          sideEffects: true,
         },
         {
           test: sassModuleRegex,
@@ -212,12 +210,12 @@ const configure = options => {
     },
 
     plugins: [
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
       ssrBuild &&
         new LoadableWebpackPlugin({
           writeToDisk: { filename: paths.appBuild },
         }),
-      new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl }),
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
+      isProduction && new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl }),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({

@@ -14,12 +14,7 @@ import {
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { ResponsiveSVG, LoadingOverlay } from '@cutting/component-library';
-import {
-  Countries,
-  countryData,
-  AxisColor,
-  CountryStats,
-} from '../Graphs/types';
+import { Countries, countryData, AxisColor, CountryStats } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router';
@@ -43,9 +38,8 @@ export const Graph: React.FC<GraphProps> = ({
   yAxisLabel,
   labels,
   heading,
-  xTickFormat: tickFormat = (label: string, i: number) =>
-    i % 3 === 0 ? `-   ${dayjs(label).format('DD/MM')}` : '',
-  yTickFormat = t => t,
+  xTickFormat: tickFormat = (label: string, i: number) => (i % 3 === 0 ? `-   ${dayjs(label).format('DD/MM')}` : ''),
+  yTickFormat = (t) => t,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -80,18 +74,14 @@ export const Graph: React.FC<GraphProps> = ({
               url: Urls.IncreaseInDeaths,
               text: 'Daily increase in deaths',
             },
-          ].map(u => {
+          ].map((u) => {
             if (location.pathname === u.url) {
               return <li key={u.url}>{u.text}</li>;
             }
 
             return (
               <li key={u.url}>
-                <NavLink
-                  activeClassName={styles.active}
-                  to={u.url}
-                  exact={true}
-                >
+                <NavLink activeClassName={styles.active} to={u.url} exact={true}>
                   {u.text}
                 </NavLink>
               </li>
@@ -116,7 +106,7 @@ export const Graph: React.FC<GraphProps> = ({
                   fill: '#fff',
                 },
               }}
-              data={Object.keys(countryData).map(k => ({
+              data={Object.keys(countryData).map((k) => ({
                 name: countryData[k].longName,
                 symbol: { fill: countryData[k].color },
               }))}
@@ -141,9 +131,7 @@ export const Graph: React.FC<GraphProps> = ({
         >
           <VictoryAxis
             dependentAxis
-            label={`${yAxisLabel} up until ${dayjs()
-              .subtract(1, 'day')
-              .format('DD/MM/YYYY')}`}
+            label={`${yAxisLabel} up until ${dayjs().subtract(1, 'day').format('DD/MM/YYYY')}`}
             orientation="left"
             standalone={false}
             style={{
@@ -166,7 +154,7 @@ export const Graph: React.FC<GraphProps> = ({
             }}
             tickFormat={tickFormat}
           />
-          {Object.keys(result.data).map(k => {
+          {Object.keys(result.data).map((k) => {
             assert(result.data?.[k], `No country data ${k}`);
 
             const country = result.data[k];

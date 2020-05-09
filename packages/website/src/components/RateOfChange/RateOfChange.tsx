@@ -7,7 +7,7 @@ export const RateOfChange: React.FC = () => {
   const result = useCountryCovidData({ startDate: '2020-02-01' });
 
   if (result.data) {
-    Object.keys(result.data).forEach(c => {
+    Object.keys(result.data).forEach((c) => {
       const country = result.data![c];
 
       country.data = regression
@@ -26,7 +26,7 @@ export const RateOfChange: React.FC = () => {
       xAxisLabel="Days since first reported death"
       yAxisLabel="Increase in deaths from previous day"
       result={result}
-      xTickFormat={t => `-   ${t}`}
+      xTickFormat={(t) => `-   ${t}`}
     />
   );
 };

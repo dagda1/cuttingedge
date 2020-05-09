@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrap } from '.';
-import { render } from '@cutting/devtools/jest/react-testing-overrides';
+import { render } from '@testing-library/react';
 
 const wrap = (props = { children: <span>span</span> }) => render(<Wrap {...props} />);
 

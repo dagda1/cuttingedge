@@ -27,16 +27,14 @@
   },
   "dependencies": {
     "@cutting/util": "2.3.3",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
     "@cutting/devtools": "2.3.3",
     "@cutting/eslint-config": "2.3.3",
     "@cutting/useful-types": "2.3.3",
-    "@testing-library/jest-dom": "^5.1.1",
-    "@types/invariant": "^2.2.31"
+    "@testing-library/jest-dom": "^5.7.0",
+    "@types/invariant": "^2.2.32"
   },
   "keywords": [
     "hotkeys",

@@ -25,9 +25,10 @@ const initialStateCreator = <D, E = Error>(
 });
 
 const loading = { type: FetchStates.Loading } as const;
-const success = <D>(data: D) => ({ type: FetchStates.Success, data } as const);
+export const success = <D>(data: D) =>
+  ({ type: FetchStates.Success, data } as const);
 const abort = { type: FetchStates.Cancel } as const;
-const error = <E = Error>(error: E) =>
+export const error = <E = Error>(error: E) =>
   ({ type: FetchStates.Error, error } as const);
 
 export type FetchActions<D, E = Error> =
@@ -91,13 +92,13 @@ function reducer<D, E = Error>(
   }
 }
 
-export type UseCancelableOptions<D> = {
+export type UseCancellableOptions<D> = {
   initialData: D | undefined;
 };
 
 export const useCancellable = <R, N = R>(
   fn: () => Generator<unknown, R, N>,
-  options: UseCancelableOptions<R> = { initialData: undefined },
+  options: UseCancellableOptions<R> = { initialData: undefined },
 ) => {
   const initialState = initialStateCreator<R>(options.initialData);
 

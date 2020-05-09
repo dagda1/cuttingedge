@@ -15,12 +15,9 @@ const RateOfChange = loadable(() => import('src/components/RateOfChange'), {
   fallback,
 });
 
-const IncreseFromPreviousDay = loadable(
-  () => import('src/components/IncreseFromPreviousDay'),
-  {
-    fallback,
-  },
-);
+const IncreseFromPreviousDay = loadable(() => import('src/components/IncreseFromPreviousDay'), {
+  fallback,
+});
 
 export const routable: Page[] = [
   {

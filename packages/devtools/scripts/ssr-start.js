@@ -21,8 +21,8 @@ process.noDeprecation = true;
 
 // Capture any --inspect or --inspect-brk flags (with optional values) so that we
 // can pass them when we invoke nodejs
-process.env.INSPECT_BRK = process.argv.find(arg => arg.match(/--inspect-brk(=|$)/)) || '';
-process.env.INSPECT = process.argv.find(arg => arg.match(/--inspect(=|$)/)) || '';
+process.env.INSPECT_BRK = process.argv.find((arg) => arg.match(/--inspect-brk(=|$)/)) || '';
+process.env.INSPECT = process.argv.find((arg) => arg.match(/--inspect(=|$)/)) || '';
 
 function main() {
   fs.emptyDirSync(paths.appBuild);
@@ -44,10 +44,13 @@ function main() {
   const serverCompiler = compile(serverConfig);
 
   clientCompiler.plugin('done', () => {
-    serverCompiler.watch({
-      quiet: true,
-      stats: 'none',
-    });
+    serverCompiler.watch(
+      {
+        quiet: true,
+        stats: 'none',
+      } /* eslint-disable no-unused-vars */,
+      (stats) => {},
+    );
   });
 
   /**
@@ -56,7 +59,7 @@ function main() {
    */
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
 
-  clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || 3001, err => {
+  clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || 3001, (err) => {
     if (err) {
       logger.error(err);
     }
@@ -74,6 +77,4 @@ function compile(config) {
   return compiler;
 }
 
-setPorts()
-  .then(main)
-  .catch(logger.error);
+setPorts().then(main).catch(logger.error);

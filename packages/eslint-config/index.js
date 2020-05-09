@@ -1,6 +1,6 @@
 module.exports = {
   globals: {
-    MyGlobal: true
+    MyGlobal: true,
   },
   parser: '@typescript-eslint/parser',
   extends: [
@@ -8,13 +8,13 @@ module.exports = {
     'plugin:jest/recommended',
     'plugin:jest-formatting/recommended',
     'prettier/@typescript-eslint',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   plugins: ['@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-var-requires': ['off'],
     '@typescript-eslint/explicit-member-accessibility': ['off'],
-    '@typescript-eslint/explicit-function-return-type': ['off'], 
+    '@typescript-eslint/explicit-function-return-type': ['off'],
 
     // TODO: we really should turn this on
     '@typescript-eslint/no-explicit-any': ['off'],
@@ -27,18 +27,20 @@ module.exports = {
     'jest/expect-expect': ['off'],
 
     'no-var': 'warn',
+    'curly': 'error',
+    'eqeqeq': ["error", "always"],
     'prefer-const': 'warn',
     'prettier/prettier': [
       'error',
       {
-        printWidth: 80,
+        printWidth: 120,
         singleQuote: true,
         semi: true,
         tabWidth: 2,
-        trailingComma: 'all'
-      }
+        trailingComma: 'all',
+      },
     ],
-    semi: ['error', 'always']
+    semi: ['error', 'always'],
   },
   overrides: [
     {
@@ -51,11 +53,13 @@ module.exports = {
             singleQuote: true,
             semi: true,
             tabWidth: 2,
-            trailingComma: 'all'
-          }
+            trailingComma: 'all',
+          },
         ],
-        semi: ['error', 'always']
-      }
-    }
-  ]
+        semi: ['error', 'always'],
+        '@typescript-eslint/no-use-before-define': ['off'],
+        '@typescript-eslint/camelcase': ['off'],
+      },
+    },
+  ],
 };

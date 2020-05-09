@@ -92,8 +92,6 @@ export const Routes: React.FC = () => (
   </Switch>
 );
 
-export const bannerPages = routable.filter(
-  p => !p.footerPage && p.path !== Urls.Home,
-);
+export const bannerPages = routable.filter((p) => !p.footerPage && p.path !== Urls.Home);
 
-export const footerPages = routable.filter(p => p.footerPage);
+export const footerPages = routable.filter((p) => p.footerPage);

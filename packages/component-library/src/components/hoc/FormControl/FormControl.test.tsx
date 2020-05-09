@@ -2,11 +2,13 @@
 import React from 'react';
 import { Input } from '../../atoms/Input';
 import { FormControl, FormControlProps } from '.';
-import { render, RenderResult } from '@cutting/devtools/jest/react-testing-overrides';
+import { render, RenderResult } from '@testing-library/react';
 
 const FormInput = FormControl(Input);
 
-const wrap = (props?: Partial<FormControlProps<HTMLInputElement>>): RenderResult =>
+const wrap = (
+  props?: Partial<FormControlProps<HTMLInputElement>>,
+): RenderResult =>
   render(<FormInput value={props?.value} label="label" {...props} />);
 
 describe('FormControl', () => {

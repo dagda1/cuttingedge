@@ -1,2 +1,2 @@
 export { runWithCancel } from './runWithCancel';
-export { useCancellable as useCancelable } from './useCancelable';
+export { useCancellable as useCancelable } from './useCancellable';

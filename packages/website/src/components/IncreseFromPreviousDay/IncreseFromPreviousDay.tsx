@@ -8,7 +8,7 @@ export const IncreseFromPreviousDay: React.FC = () => {
   const result = useCountryCovidData();
 
   if (result.data) {
-    Object.keys(result.data).forEach(c => {
+    Object.keys(result.data).forEach((c) => {
       const country = result.data![c];
       country.data = country.result.map((d: any) => ({
         ...d,
@@ -24,9 +24,9 @@ export const IncreseFromPreviousDay: React.FC = () => {
       yAxisLabel="Increase in deaths from previous day (per 100000 people)"
       result={result}
       labels={({ datum }) => {
-        return `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths cases = ${
-          datum.deaths
-        }\n delta from day before = ${datum.deltaDeaths}`;
+        return `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths cases = ${datum.deaths}\n delta from day before = ${
+          datum.deltaDeaths
+        }`;
       }}
     />
   );

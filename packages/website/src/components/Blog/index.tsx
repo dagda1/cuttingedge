@@ -7,13 +7,9 @@ export const Blog: React.FC = () => (
   <ApplicationLayout heading="My blog posts">
     <p>
       I blog professionally for{' '}
-      <ExternalLink href="https://blog.logrocket.com/author/paulcowan/">
-        Logrocket
-      </ExternalLink>
+      <ExternalLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</ExternalLink>
       .<br />
-      My personal blog is{' '}
-      <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>
-      .
+      My personal blog is <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.
     </p>
     {posts.map((post, i) => (
       <div key={i}>

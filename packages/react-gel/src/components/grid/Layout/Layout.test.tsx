@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, LayoutProps } from '.';
-import { render } from '@cutting/devtools/jest/react-testing-overrides';
+import { render } from '@testing-library/react';
 
 const wrap = (props: LayoutProps & { children?: React.ReactNode } = { children: <span>div</span> }) =>
   render(<Layout {...props}>test</Layout>);

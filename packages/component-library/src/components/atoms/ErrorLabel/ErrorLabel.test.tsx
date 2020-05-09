@@ -1,6 +1,6 @@
 import React from 'react';
 import { ErrorLabel, ErrorProps } from '.';
-import { render } from '@cutting/devtools/jest/react-testing-overrides';
+import { render } from '@testing-library/react';
 
 const wrap = (props: ErrorProps) => render(<ErrorLabel {...props} />);
 
@@ -9,7 +9,7 @@ describe('ErrorLabel', () => {
     const { getByTestId } = wrap({
       id: 'error',
       dataSelector: 'error-selector',
-      errorMessage: 'Error'
+      errorMessage: 'Error',
     });
 
     const label = getByTestId('error-selector') as HTMLLabelElement;

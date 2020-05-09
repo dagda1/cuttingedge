@@ -7,7 +7,7 @@ export const Deaths: React.FC = () => {
   const result = useCountryCovidData();
 
   if (result.data) {
-    Object.keys(result.data).forEach(c => {
+    Object.keys(result.data).forEach((c) => {
       const country = result.data![c];
       country.data = country.result.map((d: any) => ({
         ...d,
@@ -24,9 +24,9 @@ export const Deaths: React.FC = () => {
       xAxisLabel="days since first reported death"
       result={result}
       labels={({ datum }) =>
-        `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths = ${Math.round(
-          datum.deaths,
-        )}\n delta from day before = ${datum.delta}`
+        `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths = ${Math.round(datum.deaths)}\n delta from day before = ${
+          datum.delta
+        }`
       }
     />
   );

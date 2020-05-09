@@ -16,7 +16,7 @@ const { configureCommon, getEnvironment, getEnvVariables } = require('./common')
 
 const port = process.env.PORT;
 
-getExternals = function(isDevelopment) {
+getExternals = function (isDevelopment) {
   return [
     nodeExternals({
       whitelist: [
@@ -29,7 +29,7 @@ getExternals = function(isDevelopment) {
         /^@loadable\/component$/,
         /^loadable-ts-transformer$/,
         /^@cutting/,
-      ].filter(x => x),
+      ].filter((x) => x),
     }),
   ];
 };

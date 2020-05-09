@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ButtonProps } from '.';
-import { render, fireEvent } from '@cutting/devtools/jest/react-testing-overrides';
+import { render, fireEvent } from '@testing-library/react';
 
 const wrap = (props: Partial<ButtonProps> = {}) => render(<Button {...{ children: 'Click Me!', ...props }} />);
 
@@ -31,7 +31,10 @@ describe('Button', () => {
   });
 
   it('should add aria-label and aria-labelledby attributes', () => {
-    const { getByLabelText } = wrap({ ariaLabel: 'label', ariaLabelledBy: 'labelled by' });
+    const { getByLabelText } = wrap({
+      ariaLabel: 'label',
+      ariaLabelledBy: 'labelled by',
+    });
 
     const button = getByLabelText('label') as HTMLButtonElement;
 

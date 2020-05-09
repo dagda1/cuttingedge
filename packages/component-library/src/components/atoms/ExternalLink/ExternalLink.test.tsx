@@ -1,13 +1,13 @@
 import React from 'react';
 import { ExternalLink } from '.';
-import { render } from '@cutting/devtools/jest/react-testing-overrides';
+import { render } from '@testing-library/react';
 
 describe('<ExternalLink />', () => {
   it('should render target and rel props', () => {
     const { getByTestId } = render(
       <ExternalLink dataSelector="the-a" href="http://blah.com/">
         Blah
-      </ExternalLink>
+      </ExternalLink>,
     );
 
     const a = getByTestId('the-a') as HTMLAnchorElement;
@@ -20,9 +20,14 @@ describe('<ExternalLink />', () => {
 
   it('should add aria-label and aria-labelledby attributes', () => {
     const { getByLabelText } = render(
-      <ExternalLink ariaLabel="label" ariaLabelledBy="labelled by" dataSelector="the-a" href="http://blah.com/">
+      <ExternalLink
+        ariaLabel="label"
+        ariaLabelledBy="labelled by"
+        dataSelector="the-a"
+        href="http://blah.com/"
+      >
         Blah
-      </ExternalLink>
+      </ExternalLink>,
     );
 
     const button = getByLabelText('label') as HTMLAnchorElement;

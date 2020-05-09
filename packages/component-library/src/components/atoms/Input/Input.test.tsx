@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from '.';
-import { render, fireEvent } from '@cutting/devtools/jest/react-testing-overrides';
+import { render, fireEvent } from '@testing-library/react';
 
 const wrap = (props = {}) => render(<Input {...props} />);
 

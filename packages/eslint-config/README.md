@@ -1,4 +1,4 @@
-# @cutting eslint-config
+# Cutting eslint-config
 
 This package centralises eslint rules to a common package that can be consumed by other packages.
 
