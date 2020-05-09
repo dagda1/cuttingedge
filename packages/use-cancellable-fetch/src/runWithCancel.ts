@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { cancelable } from './cancelable';
+import { cancelable } from './cancellable';
 import { assert } from '@cutting/util';
 import { isPromise, isGeneratorFunction, isObject } from './utils';
 import { Fn } from './types';
@@ -27,11 +27,9 @@ export function runWithCancel<T, R, N>(
   this: any,
   {
     fn,
-    args,
     cancel,
   }: {
     fn: Fn;
-    args?: Parameters<Fn>;
     cancel: Promise<any>;
   },
 ) {
@@ -39,7 +37,8 @@ export function runWithCancel<T, R, N>(
   const ctx = this;
 
   return cancelable((resolve, reject, onCancel) => {
-    const it = typeof fn === 'function' ? fn.apply(ctx, args || []) : fn;
+    // need to handle args
+    const it = typeof fn === 'function' ? fn.apply(ctx, []) : fn;
 
     const next = ({ value, done }: IteratorResult<T, R>) => {
       if (done) {
@@ -81,7 +80,7 @@ export function runWithCancel<T, R, N>(
         return reject(e);
       }
     };
-  });
+  }, cancel);
 }
 
 export function objectToPromise(
@@ -125,7 +124,6 @@ function promisify(this: any, obj: any, cancel: Promise<any>): Promise<any> {
   if (typeof obj === 'function' || isGeneratorFunction(obj)) {
     return runWithCancel.call(this, {
       fn: obj,
-      args: [],
       cancel,
     });
   }

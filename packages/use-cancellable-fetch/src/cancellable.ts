@@ -39,7 +39,7 @@ export type Cancelable<V> = (
   onCancel: (c: Fn) => Promise<any>,
 ) => void;
 
-export const cancelable = <V>(fn: Cancelable<V>, cancel?: Promise<any>) => {
+export const cancelable = <V>(fn: Cancelable<V>, cancel: Promise<any>) => {
   return new Promise<V>((resolve, reject) => {
     let isSettled = false;
 
@@ -55,6 +55,8 @@ export const cancelable = <V>(fn: Cancelable<V>, cancel?: Promise<any>) => {
 
     const onCancel = (handleCancel: Fn): Promise<any> => {
       const maybeHandleCancel = (value: any) => {
+        console.log('foook');
+        console.log(handleCancel);
         if (!isSettled) {
           handleCancel(value);
         }

@@ -11,6 +11,7 @@ export const Deaths: React.FC = () => {
       const country = result.data![c];
       country.data = country.result.map((d: any) => ({
         ...d,
+        deaths: d.y,
         y: (d.y / countryData[c].population) * 100000,
       }));
     });
@@ -24,7 +25,7 @@ export const Deaths: React.FC = () => {
       result={result}
       labels={({ datum }) =>
         `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths = ${Math.round(
-          datum.y,
+          datum.deaths,
         )}\n delta from day before = ${datum.delta}`
       }
     />

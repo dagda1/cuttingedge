@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useReducer } from 'react';
+import { useReducer, useCallback } from 'react';
 import { runWithCancel } from './runWithCancel';
-import { UnknownArgs } from './types';
+import { Deferred } from './Deferred';
 
 export enum FetchStates {
   Idle = 'idle',
@@ -41,6 +40,8 @@ function reducer<D, E = Error>(
   current: FetchState<D>,
   action: FetchActions<D>,
 ): FetchState<D> {
+  console.log(current.state);
+  console.log(action);
   switch (current.state) {
     case FetchStates.Idle:
     case FetchStates.Error:
@@ -73,9 +74,16 @@ function reducer<D, E = Error>(
             ...current,
             state: FetchStates.Loading,
           };
+        case FetchStates.Cancel:
+          return {
+            ...current,
+            state: FetchStates.Cancel,
+          };
         default:
           throw new Error(
-            `Invalid action ${action.type} in state ${current.state}`,
+            `Invalid action ${JSON.stringify(action)} in state ${
+              current.state
+            }`,
           );
       }
     default:
@@ -84,30 +92,32 @@ function reducer<D, E = Error>(
 }
 
 export type UseCancelableOptions<D> = {
-  initialData: D;
-  cancel: Promise<any>;
+  initialData: D | undefined;
 };
 
-export const useCancelable = <R, N = R, Args extends any[] = UnknownArgs>(
+export const useCancellable = <R, N = R>(
   fn: () => Generator<unknown, R, N>,
-  args: Args,
-  cancel: Promise<any>,
+  options: UseCancelableOptions<R> = { initialData: undefined },
 ) => {
-  const initialState = initialStateCreator<R>();
+  const initialState = initialStateCreator<R>(options.initialData);
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const stop = new Promise(resolve => {
-    cancel.then(reason => {
-      dispatch(abort);
+  const stop = new Deferred();
 
-      resolve(reason || 'cancelling operation');
-    });
+  stop.then(() => {
+    console.log('aborting');
+    dispatch(abort);
   });
 
-  const cancelable = () => {
-    runWithCancel({ fn, args, cancel: stop });
-  };
+  const cancelable = useCallback(() => {
+    runWithCancel({ fn, cancel: stop });
+  }, [fn, stop]);
 
-  return { ...state, run: cancelable };
+  const start = useCallback(() => {
+    dispatch(loading);
+    cancelable();
+  }, [cancelable]);
+
+  return { ...state, run: start, cancel: stop };
 };
