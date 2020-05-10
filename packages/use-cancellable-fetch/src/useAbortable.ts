@@ -1,6 +1,7 @@
-import { useReducer, useCallback, useRef, useEffect } from 'react';
+import { useReducer, useCallback, useRef, useEffect, useMemo } from 'react';
 import { makeRunnable } from './runnable';
 import { once } from '@cutting/util';
+import { usePrevious } from '@cutting/hooks';
 import { UnknownArgs, AbortableState, AbortableStates, AbortableActionTypes, UseAbortableOptions } from './types';
 
 const initialStateCreator = <D>(initialData: D | undefined = undefined): AbortableState<D> => ({
@@ -76,9 +77,7 @@ const identity = <T>(o: T) => o;
 
 const DefaultAbortableOptions: UseAbortableOptions<undefined> = {
   initialData: undefined,
-  onNext: () => undefined,
   onAbort: identity,
-  onError: identity,
 };
 
 export const useAbortable = <T, R, N>(
@@ -86,9 +85,10 @@ export const useAbortable = <T, R, N>(
   options: Partial<UseAbortableOptions<N>> = {},
 ) => {
   const resolvedOptions = { ...DefaultAbortableOptions, ...options } as UseAbortableOptions<N>;
-  const { initialData, onAbort, onError } = resolvedOptions;
+  const { initialData, onAbort } = resolvedOptions;
   const initialState = initialStateCreator<N>(initialData);
   const abortController = useRef<AbortController>(new AbortController());
+  const counter = useRef(0);
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -105,20 +105,42 @@ export const useAbortable = <T, R, N>(
     once(abortController.current.signal, 'abort', abortable);
   }, [abortable]);
 
-  const runnable = makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } });
+  const runnable = useMemo(
+    () => makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [counter.current],
+  );
 
   const runner = useCallback(
     (...args: UnknownArgs) => {
+      console.log(counter.current);
+
       dispatch(loading);
 
       runnable(...args)
         .then((result) => {
           dispatch(success<N>(result));
         })
-        .catch((err) => onError(err));
+        .finally(() => {
+          console.log('heree');
+          counter.current++;
+        });
     },
-    [onError, runnable],
+    [runnable],
   );
 
-  return { ...state, run: runner, reset: resetable, abortController: abortController.current };
+  const runner2 = usePrevious(runner);
+
+  console.log({ r: runner === runner2 });
+
+  return useMemo(
+    () => ({
+      ...state,
+      run: runner,
+      reset: resetable,
+      abortController: abortController.current,
+      counter: counter.current,
+    }),
+    [resetable, runner, state],
+  );
 };

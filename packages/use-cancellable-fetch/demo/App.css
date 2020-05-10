@@ -20,6 +20,15 @@ input {
   margin: 0;
 }
 
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
 #progress {
   transition: width 0.1s linear;
 }

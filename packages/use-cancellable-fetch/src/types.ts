@@ -1,5 +1,7 @@
 export type Fn = (...args: any[]) => any;
 
+export type ObjectType = { [key: string]: any };
+
 export type UnknownArgs = any[];
 
 export enum AbortableStates {
@@ -26,9 +28,7 @@ export type AbortableState<D> = {
 
 export type UseAbortableOptions<D> = {
   initialData: D | undefined;
-  onNext: (value: D) => any;
   onAbort: Fn;
-  onError: Fn;
 };
 
 export type ExtractType<T> = T extends {

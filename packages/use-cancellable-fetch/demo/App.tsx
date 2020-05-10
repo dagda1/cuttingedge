@@ -6,8 +6,11 @@ import cs from 'classnames';
 import { FormInput, Button, ButtonStyle } from '@cutting/component-library';
 
 import './App.css';
+import { AbortError } from '../src/AbortError';
 
 type Expected = { message: string };
+
+const requests = Array.from({ length: 10 }, (_, i) => i + 1);
 
 const makeFetchRequest = (fetchDelay: number, name: string): Promise<Expected> => {
   return fetch(`https://slowmo.glitch.me/${fetchDelay}`)
@@ -17,10 +20,11 @@ const makeFetchRequest = (fetchDelay: number, name: string): Promise<Expected> =
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
-  const [counter, setCounter] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [delay, setDelay] = useState(700);
-  const onNext = useCallback((e: Expected) => {
-    setCounter((n) => (n += 1));
+
+  const processResult = useCallback((e: Expected) => {
+    setProgress((n) => (n += 1));
     setMessages((m) => {
       m.push(`received ${e.message}`);
       return m;
@@ -31,104 +35,104 @@ export const App: React.FC = () => {
     setMessages(['We have aborted', ...messages]);
   }, [messages]);
 
-  const onError = useCallback((err: any) => {
-    setMessages(['oh no we received an error', JSON.stringify(err)]);
-  }, []);
-
-  const { run, state, abortController, reset, ...rest } = useAbortable<Expected, void, Expected>(
+  const { run, state, abortController, reset, counter, ...rest } = useAbortable<Expected, void, Expected>(
     function* () {
-      yield makeFetchRequest(delay, 'one');
-      yield makeFetchRequest(delay, 'two');
-      yield makeFetchRequest(delay, 'three');
-      yield makeFetchRequest(delay, 'four');
-      yield makeFetchRequest(delay, 'five');
-      yield makeFetchRequest(delay, 'six');
-      yield makeFetchRequest(delay, 'seven');
-      yield makeFetchRequest(delay, 'eight');
-      yield makeFetchRequest(delay, 'nine');
-      yield makeFetchRequest(delay, 'ten');
+      const outsideLoop = yield makeFetchRequest(delay, 'outside');
+
+      processResult(outsideLoop);
+
+      try {
+        for (const request of requests) {
+          const result = yield makeFetchRequest(delay, `${request.toString()}`);
+
+          processResult(result);
+        }
+      } catch (err) {
+        if (err instanceof AbortError) {
+          setMessages(['Aborted']);
+          return;
+        }
+        setMessages(['oh no we received an error', err.message]);
+      }
     },
-    { onAbort, onNext, onError },
+    { onAbort },
   );
 
-  return (
-    <div id="app">
-      <div className="row flex-center">
-        <div className="col-12 col">
-          <h1>generator shenanigans</h1>
-          <div>
-            <div>
-              <div className="form-group">
-                <FormInput
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDelay(Number(e.target.value))}
-                  label="API response delay(ms)"
-                  placeholder="Fetch Delay"
-                  type="number"
-                  step="300"
-                  min="0"
-                  max="60000"
-                  value={delay}
-                />
-              </div>
-            </div>
-            <p>
-              Fetch request status:
-              <strong>
-                <span id="fetch-status" className="text-warning">
-                  {state.toUpperCase()}
-                </span>
-              </strong>
-            </p>
-            <div className="progress margin-bottom">
-              <div id="progress" className={cs('bar secondary striped text-primary', `w-${counter * 10}`)}>
-                {counter * 10}%
-              </div>
-            </div>
-          </div>
+  console.log({ counter });
 
-          <div className="button__container">
-            <Button
-              buttonStyle={ButtonStyle.Primary}
-              onClick={() => {
-                if (messages.length > 0) {
-                  setMessages([]);
-                  setCounter(0);
-                }
-                run();
-              }}
-              disabled={state === AbortableStates.Loading}
-            >
-              DO SHENANIGANS
-            </Button>
-            <Button
-              disabled={state !== AbortableStates.Loading}
-              onClick={() => abortController.abort()}
-              buttonStyle={ButtonStyle.Secondary}
-            >
-              CANCEL
-            </Button>
-            <Button
-              disabled={state !== AbortableStates.Aborted}
-              onClick={() => {
-                setTimeout(() => {
-                  reset();
-                  setMessages([]);
-                  setCounter(0);
-                }, 500);
-              }}
-              buttonStyle={ButtonStyle.Inverse}
-            >
-              Reset
-            </Button>
+  return (
+    <div className="container">
+      <div>
+        <h1>generator shenanigans</h1>
+        <p>Open the network tab to check the requests are getting cancelled</p>
+        <div>
+          <div>
+            <div className="form-group">
+              <FormInput
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDelay(Number(e.target.value))}
+                label="API response delay(ms)"
+                placeholder="Fetch Delay"
+                type="number"
+                step="300"
+                min="0"
+                max="60000"
+                value={delay}
+              />
+            </div>
           </div>
-          <ul>
-            {messages.map((m, i) => (
-              <li key={i}>
-                <strong>{m}</strong>
-              </li>
-            ))}
-          </ul>
+          <p>
+            Fetch request status:
+            <strong>
+              <span id="fetch-status" className="text-warning">
+                {state.toUpperCase()}
+              </span>
+            </strong>
+          </p>
+          <div className="progress margin-bottom">
+            <div id="progress" className={cs('bar secondary striped text-primary', `w-${progress * 10}`)}>
+              {progress * 10}%
+            </div>
+          </div>
         </div>
+
+        <div className="button__container">
+          <Button
+            buttonStyle={ButtonStyle.Primary}
+            disabled={state !== AbortableStates.Idle}
+            onClick={() => {
+              setMessages([]);
+              setProgress(0);
+              run();
+            }}
+          >
+            DO SHENANIGANS
+          </Button>
+          <Button
+            disabled={state !== AbortableStates.Loading}
+            onClick={() => abortController.abort()}
+            buttonStyle={ButtonStyle.Secondary}
+          >
+            CANCEL
+          </Button>
+          <Button
+            disabled={state !== AbortableStates.Aborted}
+            onClick={() => {
+              reset();
+              setMessages([]);
+              setProgress(0);
+            }}
+            buttonStyle={ButtonStyle.Inverse}
+          >
+            Reset
+          </Button>
+        </div>
+        <ul>
+          {messages.map((m, i) => (
+            <li key={i}>
+              <strong>{m}</strong>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
