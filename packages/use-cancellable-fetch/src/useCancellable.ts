@@ -100,7 +100,7 @@ export const useCancellable = <R, N = R>(
     once(abortController.current.signal, 'abort', abortable);
   }, [abortable]);
 
-  const { runnable } = makeRunnable({ fn, controller: abortController.current });
+  const runnable = makeRunnable({ fn, controller: abortController.current });
 
   const runner = useCallback(
     (...args: UnknownArgs) => {

@@ -1,2 +1,2 @@
-export { makeRunnable as runWithCancel } from './runnable';
+export { makeRunnable } from './runnable';
 export { useCancellable as useCancelable } from './useCancellable';

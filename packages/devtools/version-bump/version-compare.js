@@ -1,8 +1,8 @@
 const versionCompare = (v1, v2, options) => {
   const lexicographical = options && options.lexicographical;
   const zeroExtend = options && options.zeroExtend;
-  const v1parts = v1.split('.');
-  const v2parts = v2.split('.');
+  let v1parts = v1.split('.');
+  let v2parts = v2.split('.');
 
   function isValidPart(x) {
     return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x);
@@ -13,8 +13,12 @@ const versionCompare = (v1, v2, options) => {
   }
 
   if (zeroExtend) {
-    while (v1parts.length < v2parts.length) v1parts.push('0');
-    while (v2parts.length < v1parts.length) v2parts.push('0');
+    while (v1parts.length < v2parts.length) {
+      v1parts.push('0');
+    }
+    while (v2parts.length < v1parts.length) {
+      v2parts.push('0');
+    }
   }
 
   if (!lexicographical) {
@@ -23,11 +27,11 @@ const versionCompare = (v1, v2, options) => {
   }
 
   for (let i = 0; i < v1parts.length; ++i) {
-    if (v2parts.length == i) {
+    if (v2parts.length === i) {
       return 1;
     }
 
-    if (v1parts[i] == v2parts[i]) {
+    if (v1parts[i] === v2parts[i]) {
       continue;
     } else if (v1parts[i] > v2parts[i]) {
       return 1;
@@ -36,7 +40,7 @@ const versionCompare = (v1, v2, options) => {
     }
   }
 
-  if (v1parts.length != v2parts.length) {
+  if (v1parts.length !== v2parts.length) {
     return 0;
   }
 
