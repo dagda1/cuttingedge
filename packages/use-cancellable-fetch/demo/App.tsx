@@ -1,17 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import { useCancellable, FetchStates } from '../src/useCancellable';
+import { useAbortable } from '../src/useAbortable';
+import { AbortableStates } from '../src/types';
 
 require('./App.module.scss');
 
 const makeFetchRequest = (fetchDelay: number, name: string) => {
   return fetch(`https://slowmo.glitch.me/${fetchDelay}`)
     .then((r) => r.json())
-    .then((response) => {
-      // console.log(`call ${name} completed successly with response ${JSON.stringify(response)}`);
-
-      return response;
-    })
     .catch((err) => {
       console.error('Error in fetching!', err);
     });
@@ -20,7 +16,7 @@ const makeFetchRequest = (fetchDelay: number, name: string) => {
 const delay = 1000;
 
 export const App: React.FC = () => {
-  const { run, cancel, state } = useCancellable(function* () {
+  const { run, state, abortController, ...rest } = useAbortable(function* () {
     yield makeFetchRequest(delay, 'one');
     yield makeFetchRequest(delay, 'two');
     yield makeFetchRequest(delay, 'three');
@@ -29,6 +25,8 @@ export const App: React.FC = () => {
     yield makeFetchRequest(delay, 'six');
     yield makeFetchRequest(delay, 'seven');
   });
+
+  console.log(rest);
 
   return (
     <div id="app">
@@ -60,10 +58,10 @@ export const App: React.FC = () => {
           </div>
 
           <div>
-            <button onClick={run} disabled={state === FetchStates.Loading} className="btn-secondary btn-small">
+            <button onClick={run} disabled={state === AbortableStates.Loading} className="btn-secondary btn-small">
               DO SHENANIGANS
             </button>
-            <button onClick={() => cancel.resolve('cancelling mofo')} className="btn-danger btn-small">
+            <button onClick={() => abortController.abort()} className="btn-danger btn-small">
               CANCEL
             </button>
           </div>

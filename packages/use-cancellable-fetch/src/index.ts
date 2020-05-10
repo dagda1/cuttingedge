@@ -1,2 +1,2 @@
-export { makeRunnable } from './runnable';
-export { useCancellable as useCancelable } from './useCancellable';
+export { useAbortable } from './useAbortable';
+export * from './types';

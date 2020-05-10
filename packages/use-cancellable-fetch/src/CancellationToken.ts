@@ -1,6 +1,6 @@
 import { once } from '@cutting/util';
 
-export class CancelToken {
+export class CancellationToken {
   signal: AbortSignal;
   promise: Promise<any>;
   reject!: (reason?: any) => void;
