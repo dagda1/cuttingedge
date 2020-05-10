@@ -81,16 +81,20 @@ const DefaultAbortableOptions: UseAbortableOptions<undefined> = {
   onError: identity,
 };
 
-export const useAbortable = <T, R, N = R>(
-  fn: () => Generator<T, R, N>,
-  options: Partial<UseAbortableOptions<R>> = {},
+export const useAbortable = <T, R, N>(
+  fn: () => Generator<Promise<T>, R, N>,
+  options: Partial<UseAbortableOptions<N>> = {},
 ) => {
-  const resolvedOptions = { ...DefaultAbortableOptions, ...options } as UseAbortableOptions<R>;
+  const resolvedOptions = { ...DefaultAbortableOptions, ...options } as UseAbortableOptions<N>;
   const { initialData, onAbort, onError } = resolvedOptions;
-  const initialState = initialStateCreator<R>(initialData);
+  const initialState = initialStateCreator<N>(initialData);
   const abortController = useRef<AbortController>(new AbortController());
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const resetable = useCallback(() => {
+    dispatch(reset(initialData));
+  }, [initialData]);
 
   const abortable = useCallback(() => {
     onAbort();
@@ -101,10 +105,6 @@ export const useAbortable = <T, R, N = R>(
     once(abortController.current.signal, 'abort', abortable);
   }, [abortable]);
 
-  const resetable = useCallback(() => {
-    dispatch(reset(initialData));
-  }, [initialData]);
-
   const runnable = makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } });
 
   const runner = useCallback(
@@ -113,7 +113,7 @@ export const useAbortable = <T, R, N = R>(
 
       runnable(...args)
         .then((result) => {
-          dispatch(success<R>(result));
+          dispatch(success<N>(result));
         })
         .catch((err) => onError(err));
     },

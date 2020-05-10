@@ -32,7 +32,8 @@ strong {
   margin-left: 1rem;
 }
 
-:global #root {
+
+#root {
   padding: 2rem;
   height: 100%;
   flex-direction: column;
@@ -47,5 +48,13 @@ strong {
 
 ul {
   padding: 0;
+  color: '#fff';
 }
 
+li {
+  padding: 1rem;
+}
+
+.button__container {
+  display: flex;
+}

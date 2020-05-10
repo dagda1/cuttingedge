@@ -6,14 +6,14 @@ import { CancellationToken } from './CancellationToken';
 
 type MakeRunnableOptions<R> = UseAbortableOptions<R> & { controller: AbortController };
 
-export function makeRunnable<Ret>(
+export function makeRunnable<R>(
   this: any,
   {
     fn,
     options,
   }: {
     fn: Fn | GeneratorFunction;
-    options: MakeRunnableOptions<Ret>;
+    options: MakeRunnableOptions<R>;
   },
 ) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -22,11 +22,10 @@ export function makeRunnable<Ret>(
 
   const token = new CancellationToken(controller);
 
-  return <Args extends any[] = UnknownArgs>(...args: Args): Promise<Ret> => {
-    return new Promise<Ret>((resolve, reject) => {
+  return <Args extends any[] = UnknownArgs>(...args: Args): Promise<R> => {
+    return new Promise<R>((resolve, reject) => {
       const it = typeof fn === 'function' ? fn.apply(ctx, args || []) : fn;
-      const next = ({ value, done }: IteratorResult<Ret, Ret>) => {
-        onNext(value);
+      const next = ({ value, done }: IteratorResult<R, R>) => {
         if (done) {
           return resolve(value);
         }
@@ -37,7 +36,6 @@ export function makeRunnable<Ret>(
       };
 
       token.promise.catch((reason) => {
-        console.log('cancellleeedd');
         try {
           it.throw(reason);
           reject(reason);
@@ -46,11 +44,13 @@ export function makeRunnable<Ret>(
         }
       });
 
-      const resolved = (res?: any) => {
+      const resolved = (res?: R) => {
         try {
-          console.log('received something');
-          console.log(res);
           const result = it.next(res);
+
+          if (res) {
+            onNext(res);
+          }
 
           next(result);
         } catch (e) {
@@ -103,7 +103,6 @@ function promisify<T, R>(this: any, obj: T, options: MakeRunnableOptions<R>): Pr
   assert(!!obj, 'undefined passed to promisify');
 
   if (isPromise<T, R>(obj)) {
-    console.log('isPromise');
     return obj;
   }
 
