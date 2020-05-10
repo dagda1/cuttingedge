@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
-import { useAbortable } from '../src/useAbortable';
-import { AbortableStates, Fn } from '../src/types';
+import { useAbortable, AbortableStates } from '../src';
 import cs from 'classnames';
-import { FormInput, Button, ButtonStyle } from '@cutting/component-library';
-
 import './App.css';
 import { AbortError } from '../src/AbortError';
 
@@ -68,9 +65,12 @@ export const App: React.FC = () => {
         <div>
           <div>
             <div className="form-group">
-              <FormInput
+              <label htmlFor="delay">
+                <small>API response delay(ms)</small>
+              </label>
+              <input
+                id="delay"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDelay(Number(e.target.value))}
-                label="API response delay(ms)"
                 placeholder="Fetch Delay"
                 type="number"
                 step="300"
@@ -96,8 +96,8 @@ export const App: React.FC = () => {
         </div>
 
         <div className="button__container">
-          <Button
-            buttonStyle={ButtonStyle.Primary}
+          <button
+            className="btn-primary"
             disabled={state !== AbortableStates.Idle}
             onClick={() => {
               setMessages([]);
@@ -106,25 +106,25 @@ export const App: React.FC = () => {
             }}
           >
             DO SHENANIGANS
-          </Button>
-          <Button
+          </button>
+          <button
+            className="btn-danger"
             disabled={state !== AbortableStates.Loading}
             onClick={() => abortController.abort()}
-            buttonStyle={ButtonStyle.Secondary}
           >
             CANCEL
-          </Button>
-          <Button
+          </button>
+          <button
+            className="btn-secondary"
             disabled={state !== AbortableStates.Aborted}
             onClick={() => {
               reset();
               setMessages([]);
               setProgress(0);
             }}
-            buttonStyle={ButtonStyle.Inverse}
           >
             Reset
-          </Button>
+          </button>
         </div>
         <ul>
           {messages.map((m, i) => (
