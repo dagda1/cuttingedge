@@ -3,7 +3,7 @@
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const noop = () => {};
 
-export const isPromise = <T>(obj: any): obj is Promise<T> => {
+export const isPromise = <T, R = T>(obj: any): obj is Promise<R> => {
   return 'function' === typeof obj.then;
 };
 

@@ -96,29 +96,28 @@ export function objectToPromise(this: any, obj: { [key: string]: any }, controll
   }
 }
 
-function promisify(this: any, obj: any, controller: AbortController): Promise<any> {
+function promisify<T, R>(this: any, obj: T, controller: AbortController): Promise<R> {
   assert(!!obj, 'undefined passed to promisify');
 
-  if (isPromise(obj)) {
+  if (isPromise<T, R>(obj)) {
     console.log('isPromise');
     return obj;
   }
 
-  if (typeof obj === 'function' || isGeneratorFunction(obj)) {
+  if (isGeneratorFunction(obj)) {
     console.log('is generatorFunction');
-    const { runnable: runner } = makeRunnable({ fn: obj as any, controller });
-    return runner.apply(this, []);
+    return makeRunnable<T, R>({ fn: obj, controller })();
   }
 
   if (Array.isArray(obj)) {
     console.log('is array');
-    return Promise.all(obj.map((o) => promisify(o, controller)));
+    return Promise.all(obj.map((o) => promisify<T, R>(o, controller))) as any;
   }
 
   if (isObject(obj)) {
     console.log('isArray');
-    return objectToPromise(obj, controller);
+    return objectToPromise(obj, controller) as Promise<R>;
   }
 
-  return obj;
+  throw new Error('Unexpected object passed to promisify');
 }
