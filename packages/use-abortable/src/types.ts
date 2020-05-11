@@ -13,7 +13,7 @@ export enum AbortableStates {
 }
 
 export enum AbortableActionTypes {
-  Loading = 'loading',
+  Loading = 'LOADING',
   Success = 'success',
   Abort = 'abort',
   Error = 'errror',

@@ -13,7 +13,7 @@ export const CV: React.FC = () => {
   const viewerUrl = `/pdfjs/web/viewer.html?file=${pdfUrl}&fileName=${CVFile}&openFile=true&download=true&viewBookmark=true`;
 
   return (
-    <ApplicationLayout className={styles.main}>
+    <ApplicationLayout className={styles.main} heading="Paul Cowan CV">
       <div className={styles['pdf-viewer']}>
         <h1>
           <a className={styles.link} href={Urls.Download}>

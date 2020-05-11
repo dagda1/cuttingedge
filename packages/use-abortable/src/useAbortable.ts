@@ -107,8 +107,7 @@ export const useAbortable = <T, R, N>(
 
   const runnable = useMemo(
     () => makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [counter.current],
+    [fn, resolvedOptions],
   );
 
   const runner = useCallback(

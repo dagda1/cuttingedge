@@ -4,10 +4,11 @@ import cs from 'classnames';
 import React, { useRef, useEffect } from 'react';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
-import { useScrollToTop, useDocumentTitle } from '@cutting/hooks';
+import { useScrollToTop } from '@cutting/hooks';
 import { CuttingEdge } from '../../../constants';
 import { useLocation } from 'react-router';
 import { Covid19 } from 'src/urls';
+import { Helmet } from 'react-helmet';
 
 const styles = require('./ApplicationLayout.module.scss');
 
@@ -28,7 +29,6 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
   const root = useRef<HTMLDivElement>(null);
 
   useScrollToTop({ ref: root });
-  useDocumentTitle(heading || CuttingEdge);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -41,6 +41,11 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
 
   return (
     <div className={styles['sr-anchor']} ref={root}>
+      <Helmet>
+        <title>{heading || CuttingEdge}</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Helmet>
       <Header />
       <main className={className}>
         {heading && (
