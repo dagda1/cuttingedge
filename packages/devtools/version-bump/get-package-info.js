@@ -3,9 +3,11 @@ const path = require('path');
 
 const MaxTries = 15;
 const getPackageInfo = (dir, tries = 0) => {
-  if (tries === MaxTries) throw new Error('cannot find root package json file');
+  if (tries === MaxTries) {
+    throw new Error('cannot find root package json file');
+  }
 
-  const file = fs.readdirSync(dir).find(file => file === 'package.json');
+  const file = fs.readdirSync(dir).find((file) => file === 'package.json');
 
   // check if parent dirctory is packages &
   // look for package.json at the root of monolithic repo
