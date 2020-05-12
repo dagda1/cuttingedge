@@ -73,5 +73,8 @@
     "jest/**/*.js",
     "scripts/**/*.js",
     "webpack/**/*.js"
-  ]
+  ],
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^4.1.1"
+  }
 }

@@ -7,7 +7,7 @@ const terserPlugin = require('rollup-plugin-terser').terser;
 const paths = require('../config/paths');
 const fs = require('fs-extra');
 const path = require('path');
-const typescript = require('rollup-plugin-typescript2');
+const typescript = require('@rollup/plugin-typescript');
 const logger = require('../scripts/logger');
 
 if (!process.argv.includes('--package-name')) {
@@ -37,16 +37,7 @@ async function generateBundledModule(inputFile, outputFile, format) {
         mainFields: ['module', 'main', 'browser'],
       }),
       typescript({
-        typescript: require('typescript'),
-        cacheRoot: `./.rts2_cache_${format}`,
         tsconfig: paths.tsConfig,
-        tsconfigDefaults: {
-          compilerOptions: {
-            sourceMap: true,
-            declaration: true,
-            jsx: 'react',
-          },
-        },
         tsconfigOverride: {
           compilerOptions: {
             target: 'es5',
