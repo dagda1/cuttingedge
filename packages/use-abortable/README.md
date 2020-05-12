@@ -1,4 +1,4 @@
-# use-cancellable-fetch
+# use-abortable
 
 
 wip

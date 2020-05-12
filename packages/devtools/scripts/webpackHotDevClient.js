@@ -32,8 +32,10 @@ const serverPort = process.env.PORT
   ? 80
   : 443;
 
+console.log(process.env.SSR);
+
 // the client-side build (webpack-dev-server) is on a different port
-const sockJsPort = !!process.env.SSR ? serverPort + 1 : serverPort;
+const sockJsPort = true ? serverPort + 1 : serverPort;
 
 ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
   // Keep this sync with errorOverlayMiddleware.js
@@ -63,14 +65,14 @@ ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
 // See https://github.com/facebookincubator/create-react-app/issues/3096
 let hadRuntimeError = false;
 ErrorOverlay.startReportingRuntimeErrors({
-  onError: function() {
+  onError: function () {
     hadRuntimeError = true;
   },
   filename: process.env.REACT_BUNDLE_PATH || '/static/js/bundle.js',
 });
 
 if (module.hot && typeof module.hot.dispose === 'function') {
-  module.hot.dispose(function() {
+  module.hot.dispose(function () {
     // TODO: why do we need this?
     ErrorOverlay.stopReportingRuntimeErrors();
   });
@@ -90,7 +92,7 @@ const connection = new SockJS(
 // Unlike WebpackDevServer client, we won't try to reconnect
 // to avoid spamming the console. Disconnect usually happens
 // when developer stops the server.
-connection.onclose = function() {
+connection.onclose = function () {
   if (typeof console !== 'undefined' && typeof console.info === 'function') {
     console.info('The development server has disconnected.\nRefresh the page if necessary.');
   }
@@ -204,7 +206,7 @@ function handleAvailableHash(hash) {
 }
 
 // Handle messages from the server.
-connection.onmessage = function(e) {
+connection.onmessage = function (e) {
   const message = JSON.parse(e.data);
   switch (message.type) {
     case 'hash':
@@ -277,10 +279,10 @@ function tryApplyUpdates(onHotUpdateSuccess) {
   // // Webpack 2 returns a Promise instead of invoking a callback
   if (result && result.then) {
     result.then(
-      function(updatedModules) {
+      function (updatedModules) {
         handleApplyUpdates(null, updatedModules);
       },
-      function(err) {
+      function (err) {
         handleApplyUpdates(err, null);
       },
     );

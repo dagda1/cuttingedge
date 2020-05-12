@@ -68,6 +68,8 @@ export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDat
 
   const result = useAsync({ promiseFn: getData });
 
+  console.log({ error: result.error });
+
   if (result.isSettled) {
     for (const country in result.data) {
       if (result.data[country].name) {

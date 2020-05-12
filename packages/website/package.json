@@ -7,7 +7,7 @@
   "version": "3.0.1",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development cutting ssr-start",
+    "start": "SSR=true NODE_ENV=development cutting ssr-start",
     "debug": "npm start -- --inspect=localhost:9230",
     "build": "NODE_ENV=production cutting ssr-build",
     "test": "NODE_ENV=test cutting test",

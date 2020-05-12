@@ -6,15 +6,15 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "main": "dist/use-cancellable-fetch.js",
-  "umd:main": "lib/use-cancellable-fetch.umd.js",
-  "module": "lib/use-cancellable-fetch.module.js",
+  "main": "dist/use-abortable.js",
+  "umd:main": "lib/use-abortable.umd.js",
+  "module": "lib/use-abortable.module.js",
   "browser": {
-    "./lib/use-cancellable-fetch.js": "./lib/use-cancellable-fetch.js",
-    "./lib/use-cancellable-fetch.module.js": "./lib/use-cancellable-fetch.module.js"
+    "./lib/use-abortable.js": "./lib/use-abortable.js",
+    "./lib/use-abortable.module.js": "./lib/use-abortable.module.js"
   },
-  "types": "dist/use-cancellable-fetch.d.ts",
-  "typings": "dist/use-cancellable-fetch.d.ts",
+  "types": "dist/use-abortable.d.ts",
+  "typings": "dist/use-abortable.d.ts",
   "files": [
     "dist"
   ],
@@ -22,7 +22,7 @@
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting rollup --package-name use-cancellable-fetch",
+    "build": "NODE_ENV=production cutting rollup --package-name use-abortable",
     "prepublish": "npm run build"
   },
   "dependencies": {
