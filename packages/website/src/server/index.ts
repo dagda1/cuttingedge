@@ -8,6 +8,7 @@ import path from 'path';
 import favicon from 'serve-favicon';
 import { Exception } from '../errors/Exception';
 import { contentSecurityPolicy } from 'helmet';
+import noCache from 'nocache';
 
 const referrerPolicy = require('referrer-policy');
 
@@ -20,7 +21,7 @@ const publicDir = path.join(rootDir, isProduction ? 'dist/public' : 'public');
 app.use(express.static(publicDir));
 
 app.use(helmet());
-app.use(helmet.noCache());
+app.use(noCache());
 
 app.use(referrerPolicy({ policy: 'no-referrer' }));
 app.use(helmet.hidePoweredBy());

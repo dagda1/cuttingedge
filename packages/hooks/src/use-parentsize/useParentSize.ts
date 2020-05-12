@@ -61,7 +61,7 @@ export const useParentSize = (
   }, [handleResize, ref]);
 
   return {
-    width: dimensions.width + offset?.width! || 0,
-    height: dimensions.height + offset?.height! || 0,
+    width: dimensions.width + (offset?.width! || 0),
+    height: dimensions.height + (offset?.height! || 0),
   };
 };

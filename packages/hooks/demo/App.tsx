@@ -7,7 +7,6 @@ export const App: React.FC = () => {
   const ref = useRef<HTMLDivElement>();
   const { width, height } = useParentSize(ref);
 
-  console.log({ width, height });
   return (
     <div ref={ref} className={styles.subject}>
       <h1>Hello der</h1>
