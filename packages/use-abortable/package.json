@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-abortable",
   "description": "Abortable effects.",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -26,7 +26,7 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/util": "3.0.1",
+    "@cutting/util": "3.0.2",
     "@xstate/react": "^0.8.1",
     "xstate": "^4.9.1"
   },

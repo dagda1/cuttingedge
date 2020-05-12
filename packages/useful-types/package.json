@@ -1,7 +1,7 @@
 {
   "name": "@cutting/useful-types",
   "description": "Some useful types.",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -19,6 +19,6 @@
     "build": "echo no build"
   },
   "devDependencies": {
-    "@cutting/eslint-config": "3.0.1"
+    "@cutting/eslint-config": "3.0.2"
   }
 }
