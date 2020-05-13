@@ -4,7 +4,7 @@ import Graph from 'src/components/Graphs/Graph';
 import regression from 'regression';
 
 export const RateOfChange: React.FC = () => {
-  const result = useCountryCovidData({ startDate: '2020-02-01' });
+  const result = useCountryCovidData({ startDate: '2020-01-01' });
 
   if (result.data) {
     Object.keys(result.data).forEach((c) => {
