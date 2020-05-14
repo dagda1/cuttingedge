@@ -1,19 +1,11 @@
 #! /usr/bin/env node
 const inquirer = require('inquirer');
-const versionCompare = require('./version-compare');
 const getFiles = require('./get-files');
 const updateVersion = require('./update-version');
 const getPackageInfo = require('./get-package-info');
 const logger = require('../scripts/logger');
 
-const versionBumpTypes = ['major', 'minor', 'patch'];
-
-const bumpVersion = (version, type) => {
-  return version
-    .split('.')
-    .map((factor, i) => (versionBumpTypes[i] === type ? Number(factor.match(/^[0-9]*/)[0]) + 1 : factor))
-    .join('.');
-};
+const semver = require('semver');
 
 const main = async () => {
   const package = getPackageInfo(process.cwd());
@@ -22,16 +14,15 @@ const main = async () => {
   const packageFiles = getFiles(package.dir, 'package.json');
 
   if (package.version === undefined) {
-    logger.warn('The package file does not have version property defined?. So, version update cannot be done on this file');
+    logger.info('The package file does not have version property defined?. So, version update cannot be done on this file');
     return;
   }
 
-  //possible upgrade version values
-  const [major, minor, patch] = versionBumpTypes.map((type) => bumpVersion(currentVersion, type));
+  const major = semver.inc(currentVersion, 'major');
+  const minor = semver.inc(currentVersion, 'minor');
+  const patch = semver.inc(currentVersion, 'patch');
 
-  let version;
-
-  logger.warn(`The current version number is ${currentVersion}`);
+  logger.info(`The current version number is ${currentVersion}`);
 
   const choice = await inquirer.prompt({
     type: 'list',
@@ -41,7 +32,7 @@ const main = async () => {
   });
 
   if (choice.value === 'cancel') {
-    logger.error('version change cancelled');
+    logger.info('version change cancelled');
     return;
   }
 
@@ -53,13 +44,7 @@ const main = async () => {
     });
 
     if (!versionRegex.test(custom.value)) {
-      logger.warn('Version number format is incorrect. Please use the correct format');
-      return;
-    }
-
-    const isValid = versionCompare(custom.value.replace(/[-,A-Z]/g, ''), currentVersion.replace(/[-,A-Z]/g, ''));
-    if (!isValid) {
-      logger.warn('Version number can not be reduced');
+      logger.info('Version number format is incorrect. Please use the correct format');
       return;
     }
 
@@ -74,7 +59,11 @@ const main = async () => {
     message: 'Confirm the version update:',
   });
 
-  return confirm.value ? packageFiles.map((filename) => updateVersion(filename, version, true)) : logger.warn('version change cancelled');
+  const updateDsDepVersion = package.name === '@ds/root' ? true : false;
+
+  return confirm.value
+    ? packageFiles.map((filename) => updateVersion(filename, version, updateDsDepVersion))
+    : logger.info('version change cancelled');
 };
 
 main();

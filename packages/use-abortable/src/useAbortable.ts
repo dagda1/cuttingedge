@@ -122,7 +122,6 @@ export const useAbortable = <T, R, N>(
         })
         .finally(() => {
           console.log('heree');
-          counter.current++;
         });
     },
     [runnable],
