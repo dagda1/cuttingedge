@@ -1,6 +1,5 @@
-import { useReducer, useCallback, useRef, useEffect, useMemo } from 'react';
+import { useReducer, useCallback, useRef, useMemo } from 'react';
 import { makeRunnable } from './runnable';
-import { once } from '@cutting/util';
 import { UnknownArgs, AbortableState, AbortableStates, AbortableActionTypes, UseAbortableOptions } from './types';
 
 const initialStateCreator = <D>(initialData: D | undefined = undefined): AbortableState<D> => ({
@@ -93,40 +92,47 @@ export const useAbortable = <T, R, N>(
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const abortable = useCallback(() => {
-    onAbort();
-    dispatch(abort);
-  }, [onAbort]);
+  const abortable = useCallback(
+    (e: any) => {
+      onAbort(e);
+      dispatch(abort);
+    },
+    [onAbort],
+  );
 
   const resetable = useCallback(() => {
+    abortController.current = new AbortController();
     counter.current = 0;
     dispatch(reset(initialData));
   }, [initialData]);
 
-  useEffect(() => {
-    const signal = abortController.current.signal;
-    signal.addEventListener('abort', abortable);
-
-    return () => {
-      signal.removeEventListener('abort', abortable);
-    };
-  }, [abortable]);
+  const runnable = useMemo(
+    () => makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } }),
+    [fn, resolvedOptions],
+  );
 
   const runner = useCallback(
     (...args: UnknownArgs) => {
       counter.current++;
 
-      const runner = makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } });
-
       dispatch(loading);
 
-      runner(...args)
+      runnable(...args)
         .then((result) => {
+          abortController.current = new AbortController();
+          counter.current = 0;
           dispatch(success<N>(result));
         })
-        .catch((e) => e); // swallow unhandled errors
+        .catch((err) => {
+          if (err.currentTarget === abortController.current.signal) {
+            abortable(err);
+            return;
+          }
+
+          throw err;
+        });
     },
-    [fn, resolvedOptions],
+    [abortable, runnable],
   );
 
   return useMemo(

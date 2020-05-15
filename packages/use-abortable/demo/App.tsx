@@ -45,7 +45,7 @@ export const App: React.FC = () => {
       }
     } catch (err) {
       if (err instanceof AbortError) {
-        setMessages(['Aborted']);
+        setMessages(['We have Aborted']);
         return;
       }
       setMessages(['oh no we received an error', err.message]);

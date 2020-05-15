@@ -8,12 +8,7 @@ export class CancellationToken {
     this.signal = controller.signal;
 
     this.promise = new Promise<any>((_, reject) => {
-      const abort = (e: any) => {
-        console.log(e);
-
-        reject(e);
-      };
-      once(this.signal, 'abort', abort);
+      once(this.signal, 'abort', reject);
     });
 
     // silence unhandled rejection warnings
