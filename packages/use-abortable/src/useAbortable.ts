@@ -1,7 +1,6 @@
 import { useReducer, useCallback, useRef, useEffect, useMemo } from 'react';
 import { makeRunnable } from './runnable';
 import { once } from '@cutting/util';
-import { usePrevious } from '@cutting/hooks';
 import { UnknownArgs, AbortableState, AbortableStates, AbortableActionTypes, UseAbortableOptions } from './types';
 
 const initialStateCreator = <D>(initialData: D | undefined = undefined): AbortableState<D> => ({
@@ -84,7 +83,9 @@ export const useAbortable = <T, R, N>(
   fn: () => Generator<Promise<T>, R, N>,
   options: Partial<UseAbortableOptions<N>> = {},
 ) => {
-  const resolvedOptions = { ...DefaultAbortableOptions, ...options } as UseAbortableOptions<N>;
+  const resolvedOptions = useMemo(() => ({ ...DefaultAbortableOptions, ...options }), [options]) as UseAbortableOptions<
+    N
+  >;
   const { initialData, onAbort } = resolvedOptions;
   const initialState = initialStateCreator<N>(initialData);
   const abortController = useRef<AbortController>(new AbortController());
@@ -92,44 +93,41 @@ export const useAbortable = <T, R, N>(
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const resetable = useCallback(() => {
-    dispatch(reset(initialData));
-  }, [initialData]);
-
   const abortable = useCallback(() => {
     onAbort();
     dispatch(abort);
   }, [onAbort]);
 
-  useEffect(() => {
-    once(abortController.current.signal, 'abort', abortable);
-  }, [abortable]);
+  const resetable = useCallback(() => {
+    counter.current = 0;
+    dispatch(reset(initialData));
+  }, [initialData]);
 
-  const runnable = useMemo(
-    () => makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } }),
-    [fn, resolvedOptions],
-  );
+  useEffect(() => {
+    const signal = abortController.current.signal;
+    signal.addEventListener('abort', abortable);
+
+    return () => {
+      signal.removeEventListener('abort', abortable);
+    };
+  }, [abortable]);
 
   const runner = useCallback(
     (...args: UnknownArgs) => {
-      console.log(counter.current);
+      counter.current++;
+
+      const runner = makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } });
 
       dispatch(loading);
 
-      runnable(...args)
+      runner(...args)
         .then((result) => {
           dispatch(success<N>(result));
         })
-        .finally(() => {
-          console.log('heree');
-        });
+        .catch((e) => e); // swallow unhandled errors
     },
-    [runnable],
+    [fn, resolvedOptions],
   );
-
-  const runner2 = usePrevious(runner);
-
-  console.log({ r: runner === runner2 });
 
   return useMemo(
     () => ({

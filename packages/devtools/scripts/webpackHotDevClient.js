@@ -32,10 +32,8 @@ const serverPort = process.env.PORT
   ? 80
   : 443;
 
-console.log(process.env.SSR);
-
 // the client-side build (webpack-dev-server) is on a different port
-const sockJsPort = true ? serverPort + 1 : serverPort;
+const sockJsPort = !!process.env.SSR ? serverPort + 1 : serverPort;
 
 ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
   // Keep this sync with errorOverlayMiddleware.js

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useAbortable, AbortableStates } from '../src';
 import cs from 'classnames';
 import './App.css';
@@ -29,33 +29,35 @@ export const App: React.FC = () => {
   }, []);
 
   const onAbort = useCallback(() => {
-    setMessages(['We have aborted', ...messages]);
-  }, [messages]);
+    setMessages(['We have aborted']);
+  }, []);
+
+  function* generator() {
+    const outsideLoop = yield makeFetchRequest(delay, 'outside');
+
+    processResult(outsideLoop);
+
+    try {
+      for (const request of requests) {
+        const result = yield makeFetchRequest(delay, `${request.toString()}`);
+
+        processResult(result);
+      }
+    } catch (err) {
+      if (err instanceof AbortError) {
+        setMessages(['Aborted']);
+        return;
+      }
+      setMessages(['oh no we received an error', err.message]);
+    }
+  }
+
+  const options = useMemo(() => ({ onAbort }), [onAbort]);
 
   const { run, state, abortController, reset, counter, ...rest } = useAbortable<Expected, void, Expected>(
-    function* () {
-      const outsideLoop = yield makeFetchRequest(delay, 'outside');
-
-      processResult(outsideLoop);
-
-      try {
-        for (const request of requests) {
-          const result = yield makeFetchRequest(delay, `${request.toString()}`);
-
-          processResult(result);
-        }
-      } catch (err) {
-        if (err instanceof AbortError) {
-          setMessages(['Aborted']);
-          return;
-        }
-        setMessages(['oh no we received an error', err.message]);
-      }
-    },
-    { onAbort },
+    useCallback(generator, [delay, processResult]),
+    options,
   );
-
-  console.log({ counter });
 
   return (
     <div className="container">

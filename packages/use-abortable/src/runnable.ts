@@ -23,6 +23,8 @@ export function makeRunnable<R>(
 
   const token = new CancellationToken(controller);
 
+  console.log(token);
+
   return <Args extends any[] = UnknownArgs>(...args: Args): Promise<R> => {
     return new Promise<R>((resolve, reject) => {
       const it = typeof fn === 'function' ? fn.apply(ctx, args || []) : fn;
@@ -41,9 +43,11 @@ export function makeRunnable<R>(
         try {
           console.log({ reason });
 
-          it.throw(new AbortError('Operation aborted'));
           reject(reason);
+
+          it.throw(new AbortError('Operation aborted'));
         } catch (error) {
+          console.log("don't think it should get there");
           return reject(error);
         }
       });

@@ -18,6 +18,9 @@
     "test": "echo no test",
     "build": "echo no build"
   },
+  "dependencies": {
+    "@cutting/util": "3.0.3"
+  },
   "devDependencies": {
     "@cutting/eslint-config": "3.0.3"
   }
