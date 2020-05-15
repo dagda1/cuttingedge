@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback, useMemo } from 'react';
 import { useAbortable, AbortableStates } from '../src';
 import cs from 'classnames';
@@ -12,7 +11,7 @@ const requests = Array.from({ length: 10 }, (_, i) => i + 1);
 const makeFetchRequest = (fetchDelay: number, name: string): Promise<Expected> => {
   return fetch(`https://slowmo.glitch.me/${fetchDelay}`)
     .then((r) => r.json())
-    .then((r) => ({ message: `received ${name}` }));
+    .then(() => ({ message: `received ${name}` }));
 };
 
 export const App: React.FC = () => {
@@ -54,7 +53,7 @@ export const App: React.FC = () => {
 
   const options = useMemo(() => ({ onAbort }), [onAbort]);
 
-  const { run, state, abortController, reset, counter, ...rest } = useAbortable<Expected, void, Expected>(
+  const { run, state, abortController, reset, counter } = useAbortable<Expected, void, Expected>(
     useCallback(generator, [delay, processResult]),
     options,
   );
@@ -86,7 +85,7 @@ export const App: React.FC = () => {
             Fetch request status:
             <strong>
               <span id="fetch-status" className="text-warning">
-                {state.toUpperCase()}
+                {(state as string).toUpperCase()}
               </span>
             </strong>
           </p>

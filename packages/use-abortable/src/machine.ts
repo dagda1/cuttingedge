@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Machine, StateMachine } from 'xstate';
 import { AbortableStates, AbortableState, AbortableActionTypes } from './types';
 
@@ -14,11 +15,11 @@ export interface AbortableSchema {
   };
 }
 
-const start = { type: 'START' } as const;
-const abort = { type: AbortableActionTypes.Abort } as const;
-const error = (error: any) => ({ type: AbortableActionTypes.Error, error } as const);
-const reset = <D>(initialData: D) => ({ type: AbortableActionTypes.Reset, payload: initialData } as const);
-const success = <D>(data: D) => ({ type: AbortableActionTypes.Success, payload: data } as const);
+export const start = { type: 'START' } as const;
+export const abort = { type: AbortableActionTypes.Abort } as const;
+export const error = (error: any) => ({ type: AbortableActionTypes.Error, error } as const);
+export const reset = <D>(initialData: D) => ({ type: AbortableActionTypes.Reset, payload: initialData } as const);
+export const success = <D>(data: D) => ({ type: AbortableActionTypes.Success, payload: data } as const);
 
 export type AbortableActions<D> =
   | ReturnType<typeof reset>
@@ -68,6 +69,7 @@ export const createAbortableMachine = <D>(): StateMachine<AbortableState<D>, Abo
                 target: AbortableStates.Idle,
                 actions: (_context, event) => {
                   _context = context;
+                  return _context;
                 },
               },
             },
@@ -78,6 +80,7 @@ export const createAbortableMachine = <D>(): StateMachine<AbortableState<D>, Abo
                 target: AbortableStates.Idle,
                 actions: (_context, event) => {
                   _context = context;
+                  return _context;
                 },
               },
             },
