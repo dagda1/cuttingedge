@@ -13,11 +13,12 @@ export enum AbortableStates {
 }
 
 export enum AbortableActionTypes {
+  Start = 'START',
   Loading = 'LOADING',
-  Success = 'success',
-  Abort = 'abort',
-  Error = 'errror',
-  Reset = 'reset',
+  Success = 'SUCCESS',
+  Abort = 'ABORT',
+  Error = 'ERROR',
+  Reset = 'RESET',
 }
 
 export type AbortableState<D> = {
