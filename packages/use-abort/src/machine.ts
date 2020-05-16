@@ -18,15 +18,15 @@ export interface AbortableSchema {
 export const start = { type: AbortableActionTypes.Start } as const;
 export const abort = { type: AbortableActionTypes.Abort } as const;
 export const error = (error: any) => ({ type: AbortableActionTypes.Error, error } as const);
-export const reset = { type: AbortableActionTypes.Reset } as const;
+export const reset = <D>(initialData: D) => ({ type: AbortableActionTypes.Reset, payload: initialData } as const);
 export const success = <D>(data: D) => ({ type: AbortableActionTypes.Success, payload: data } as const);
 
 export type AbortableActions<D> =
-  | typeof reset
+  | typeof start
   | { type: AbortableActionTypes.Success; payload: D } // annoying we cannot use ReturnType<typeof success> but it does not pick up type argument
-  | typeof abort
   | ReturnType<typeof error>
-  | typeof start;
+  | typeof abort
+  | ReturnType<typeof reset>;
 
 export const createAbortableMachine = <D>(): StateMachine<AbortableState<D>, AbortableSchema, AbortableActions<D>> => {
   const context: AbortableState<D> = {

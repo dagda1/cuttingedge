@@ -44,7 +44,7 @@ const resolvedNodeModules = ['../node_modules', './node_modules'].filter((m) => 
 const libPackages = [
   'packages/util',
   'packages/hooks',
-  'packages/use-abortable',
+  'packages/use-abort',
   'packages/component-library',
   'packages/connected-components',
   'packages/use-shortcuts',

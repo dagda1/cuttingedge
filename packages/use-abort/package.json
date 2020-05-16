@@ -1,20 +1,20 @@
 {
-  "name": "@cutting/use-abortable",
+  "name": "@cutting/use-abort",
   "description": "Abortable effects.",
   "version": "3.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "main": "dist/use-abortable.js",
-  "umd:main": "lib/use-abortable.umd.js",
-  "module": "lib/use-abortable.module.js",
+  "main": "dist/use-abort.js",
+  "umd:main": "lib/use-abort.umd.js",
+  "module": "lib/use-abort.module.js",
   "browser": {
-    "./lib/use-abortable.js": "./lib/use-abortable.js",
-    "./lib/use-abortable.module.js": "./lib/use-abortable.module.js"
+    "./lib/use-abort.js": "./lib/use-abort.js",
+    "./lib/use-abort.module.js": "./lib/use-abort.module.js"
   },
-  "types": "dist/use-abortable.d.ts",
-  "typings": "dist/use-abortable.d.ts",
+  "types": "dist/use-abort.d.ts",
+  "typings": "dist/use-abort.d.ts",
   "files": [
     "dist"
   ],
@@ -22,7 +22,7 @@
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting rollup --package-name use-abortable",
+    "build": "NODE_ENV=production cutting rollup --package-name use-abort",
     "prepublish": "npm run build"
   },
   "dependencies": {

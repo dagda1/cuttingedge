@@ -27,7 +27,7 @@ export type AbortableState<D> = {
   error?: any;
 };
 
-export type UseAbortableOptions<D> = {
+export type UseAbortOptions<D> = {
   initialData: D | undefined;
   onAbort: Fn;
 };

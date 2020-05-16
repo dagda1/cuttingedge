@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { isPromise, isGeneratorFunction, isObject } from './utils';
-import { Fn, UnknownArgs, UseAbortableOptions, ObjectType } from './types';
+import { Fn, UnknownArgs, UseAbortOptions, ObjectType } from './types';
 import { assert } from '@cutting/util';
 import { CancellationToken } from './CancellationToken';
 import { AbortError } from './AbortError';
 
-type MakeRunnableOptions<R> = UseAbortableOptions<R> & { controller: AbortController };
+type MakeRunnableOptions<R> = UseAbortOptions<R> & { controller: AbortController };
 
 export function makeRunnable<R>(
   this: any,

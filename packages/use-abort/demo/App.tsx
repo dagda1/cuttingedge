@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { useAbortable, AbortableStates } from '../src';
+import { useAbort, AbortableStates } from '../src';
 import cs from 'classnames';
 import './App.css';
 import { AbortError } from '../src/AbortError';
@@ -53,7 +53,7 @@ export const App: React.FC = () => {
 
   const options = useMemo(() => ({ onAbort }), [onAbort]);
 
-  const { run, state, abortController, reset } = useAbortable<Expected, void, Expected>(
+  const { run, state, abortController, reset } = useAbort<Expected, void, Expected>(
     useCallback(generator, [delay, processResult]),
     options,
   );

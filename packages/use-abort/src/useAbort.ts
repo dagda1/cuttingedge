@@ -1,24 +1,19 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { makeRunnable } from './runnable';
-import { UnknownArgs, UseAbortableOptions } from './types';
+import { UnknownArgs, UseAbortOptions } from './types';
 import { createAbortableMachine, abort, reset, start, success } from './machine';
 
 const identity = <T>(o: T) => o;
 
-const DefaultAbortableOptions: UseAbortableOptions<undefined> = {
+const DefaultAbortableOptions: UseAbortOptions<undefined> = {
   initialData: undefined,
   onAbort: identity,
 };
 
-export const useAbortable = <T, R, N>(
-  fn: () => Generator<Promise<T>, R, N>,
-  options: Partial<UseAbortableOptions<N>> = {},
-) => {
+export const useAbort = <T, R, N>(fn: () => Generator<Promise<T>, R, N>, options: Partial<UseAbortOptions<N>> = {}) => {
   const [current, send] = useMachine(createAbortableMachine());
-  const resolvedOptions = useMemo(() => ({ ...DefaultAbortableOptions, ...options }), [options]) as UseAbortableOptions<
-    N
-  >;
+  const resolvedOptions = useMemo(() => ({ ...DefaultAbortableOptions, ...options }), [options]) as UseAbortOptions<N>;
   const { initialData, onAbort } = resolvedOptions;
   const abortController = useRef<AbortController>(new AbortController());
   const counter = useRef(0);
