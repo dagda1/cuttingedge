@@ -51,11 +51,6 @@ After installing the extension, we need to change some settings of VSCode under:
   }
 ]
 ```
-
-## Prettier
-
-Prettier also has an extension for VSCode, the best version is published by Esben Petersen. link The package will apply the prettier/recommended, but you can override those in your project with a .prettierrc file.
-
 ## What rules are applied
 
 The following sets of rules are implemented in this package:
