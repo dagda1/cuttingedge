@@ -86,7 +86,6 @@ export const createAbortableMachine = <D>(): StateMachine<AbortableState<D>, Abo
           [AbortableActionTypes.Reset]: {
             target: AbortableStates.Idle,
             actions: (_context, event) => {
-              console.log(_context);
               _context = context;
               return _context;
             },

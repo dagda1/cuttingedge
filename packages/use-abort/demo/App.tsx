@@ -58,8 +58,6 @@ export const App: React.FC = () => {
     options,
   );
 
-  console.log(state);
-
   return (
     <div className="container">
       <div>
@@ -119,7 +117,7 @@ export const App: React.FC = () => {
           </button>
           <button
             className="btn-secondary"
-            disabled={state !== AbortableStates.Aborted}
+            disabled={[AbortableStates.Idle, AbortableStates.Loading].includes(state as AbortableStates)}
             onClick={() => {
               reset();
               setMessages([]);
