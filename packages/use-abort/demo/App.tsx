@@ -32,10 +32,6 @@ export const App: React.FC = () => {
   }, []);
 
   function* generator() {
-    const outsideLoop = yield makeFetchRequest(delay, 'outside');
-
-    processResult(outsideLoop);
-
     try {
       for (const request of requests) {
         const result = yield makeFetchRequest(delay, `${request.toString()}`);
