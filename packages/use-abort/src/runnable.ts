@@ -39,9 +39,9 @@ export function makeRunnable<R>(
 
       token.promise.catch((reason) => {
         try {
-          reject(reason);
-
           it.throw(new AbortError('Operation aborted'));
+
+          reject(reason);
         } catch (error) {
           console.log("don't think it should get there");
           return reject(error);

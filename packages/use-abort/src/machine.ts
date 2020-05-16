@@ -5,13 +5,10 @@ import { AbortableStates, AbortableState, AbortableActionTypes } from './types';
 export interface AbortableSchema {
   states: {
     [AbortableStates.Idle]: {};
-    [AbortableStates.Loading]: {
-      states: {
-        [AbortableStates.Succeded]: {};
-        [AbortableStates.Error]: {};
-        [AbortableStates.Aborted]: {};
-      };
-    };
+    [AbortableStates.Loading]: {};
+    [AbortableStates.Succeded]: {};
+    [AbortableStates.Error]: {};
+    [AbortableStates.Aborted]: {};
   };
 }
 
@@ -61,28 +58,37 @@ export const createAbortableMachine = <D>(): StateMachine<AbortableState<D>, Abo
             target: [AbortableStates.Aborted],
           },
         },
-        states: {
-          [AbortableStates.Succeded]: {},
-          [AbortableStates.Error]: {
-            on: {
-              [AbortableActionTypes.Reset]: {
-                target: AbortableStates.Idle,
-                actions: (_context, event) => {
-                  _context = context;
-                  return _context;
-                },
-              },
+      },
+      [AbortableStates.Succeded]: {
+        on: {
+          [AbortableActionTypes.Reset]: {
+            target: AbortableStates.Idle,
+            actions: (_context, event) => {
+              _context = context;
+              return _context;
             },
           },
-          [AbortableStates.Aborted]: {
-            on: {
-              [AbortableActionTypes.Reset]: {
-                target: AbortableStates.Idle,
-                actions: (_context, event) => {
-                  _context = context;
-                  return _context;
-                },
-              },
+        },
+      },
+      [AbortableStates.Error]: {
+        on: {
+          [AbortableActionTypes.Reset]: {
+            target: AbortableStates.Idle,
+            actions: (_context, event) => {
+              _context = context;
+              return _context;
+            },
+          },
+        },
+      },
+      [AbortableStates.Aborted]: {
+        on: {
+          [AbortableActionTypes.Reset]: {
+            target: AbortableStates.Idle,
+            actions: (_context, event) => {
+              console.log(_context);
+              _context = context;
+              return _context;
             },
           },
         },

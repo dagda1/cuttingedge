@@ -32,13 +32,10 @@ export const useAbort = <T, R, N>(fn: () => Generator<Promise<T>, R, N>, options
     send(reset(initialData));
   }, [initialData, send]);
 
-  const runnable = useMemo(
-    () => makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } }),
-    [fn, resolvedOptions],
-  );
-
   const runner = useCallback(
     (...args: UnknownArgs) => {
+      const runnable = makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } });
+
       counter.current++;
 
       send(start);
@@ -58,7 +55,7 @@ export const useAbort = <T, R, N>(fn: () => Generator<Promise<T>, R, N>, options
           throw err;
         });
     },
-    [abortable, runnable, send],
+    [abortable, fn, resolvedOptions, send],
   );
 
   return useMemo(

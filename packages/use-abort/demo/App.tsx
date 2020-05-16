@@ -58,6 +58,8 @@ export const App: React.FC = () => {
     options,
   );
 
+  console.log(state);
+
   return (
     <div className="container">
       <div>
