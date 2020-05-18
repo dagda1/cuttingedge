@@ -48,8 +48,9 @@ function main() {
       {
         quiet: true,
         stats: 'none',
-      } /* eslint-disable no-unused-vars */,
-      (stats) => {},
+      },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      (stats) => ({}),
     );
   });
 

@@ -1,4 +1,4 @@
-const raf = (window.requestAnimationFrame = global.requestAnimationFrame = cb => {
+const raf = (window.requestAnimationFrame = global.requestAnimationFrame = (cb) => {
   setTimeout(cb, 0);
 });
 

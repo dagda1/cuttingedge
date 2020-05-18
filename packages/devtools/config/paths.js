@@ -42,6 +42,8 @@ const nodePaths = (process.env.NODE_PATH || '')
 const resolvedNodeModules = ['../node_modules', './node_modules'].filter((m) => fs.existsSync(m)).map((m) => path.join(process.cwd(), m));
 
 const libPackages = [
+  'packages/eslint-config',
+  'packages/useful-types',
   'packages/util',
   'packages/hooks',
   'packages/use-abort',

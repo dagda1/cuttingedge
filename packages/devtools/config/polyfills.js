@@ -13,8 +13,8 @@ require('whatwg-fetch');
 
 window.requestAnimationFrame =
   window.requestAnimationFrame ||
-  function(callback) {
-    return window.setTimeout(function() {
+  function (callback) {
+    return window.setTimeout(function () {
       callback(+new Date());
     }, 20);
   };

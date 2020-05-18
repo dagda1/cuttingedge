@@ -6,14 +6,14 @@ const paths = require('../config/paths');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const { configureCommon, getEnvironment } = require('./common');
 
-getExternals = function() {
+getExternals = function () {
   const modulesDir = path.resolve(__dirname, '../../../node_modules');
 
   return [
     nodeExternals(),
     nodeExternals({
       modulesDir,
-      whitelist: [/^@cutting/].filter(x => x),
+      whitelist: [/^@cutting/].filter((x) => x),
     }),
   ];
 };

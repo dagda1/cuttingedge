@@ -8,7 +8,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const resolve = require('resolve');
 const fs = require('fs-extra');
 const HappyPack = require('happypack');
-const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const { loadableTransformer } = require('loadable-ts-transformer');
 
 const getEnvironment = () => {

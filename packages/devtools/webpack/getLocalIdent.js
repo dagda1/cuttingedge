@@ -1,9 +1,9 @@
 const path = require('path');
 const { sassModuleRegex } = require('./constants');
 
-const decamelize = str => str.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
+const decamelize = (str) => str.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
 
-const dasherize = str => decamelize(str).replace(/[ _]/g, '-');
+const dasherize = (str) => decamelize(str).replace(/[ _]/g, '-');
 
 module.exports = (loaderContext, localIdentName, localName, options) => {
   if (!options.context) {

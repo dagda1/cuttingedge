@@ -1,6 +1,6 @@
 {
   "name": "@cutting/connected-components",
-  "version": "4.0.0",
+  "version": "3.5.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -14,13 +14,13 @@
     "build": "NODE_ENV=development cutting ts-build"
   },
   "dependencies": {
-    "@cutting/component-library": "4.0.0",
-    "@cutting/util": "4.0.0",
+    "@cutting/component-library": "3.5.0",
+    "@cutting/util": "3.5.0",
     "formik": "^2.1.4"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.0.0",
-    "@cutting/eslint-config": "4.0.0",
-    "@cutting/useful-types": "4.0.0"
+    "@cutting/devtools": "3.5.0",
+    "@cutting/eslint-config": "3.5.0",
+    "@cutting/useful-types": "3.5.0"
   }
 }

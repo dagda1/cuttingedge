@@ -1,6 +1,6 @@
 {
   "name": "cuttingedge",
-  "version": "4.0.0",
+  "version": "3.5.0",
   "private": true,
   "scripts": {
     "build": "cutting each-pkg yarn build",
@@ -9,8 +9,8 @@
     "start": "yarn build && yarn --cwd packages/website/ ssr-start",
     "publish:all": "NODE_ENV=production cutting each-pkg yarn publish -- --non-interactive --verbose",
     "audit-packages": "cutting each-pkg cutting audit",
-    "lint": "yarn run eslint 'packages/**/*.{ts,tsx,js}' -c ./packages/component-library/.eslintrc.json",
-    "lint:fix": "yarn run lint --fix"
+    "lint": "eslint 'packages/**/*.{ts,tsx,js}' -c ./packages/component-library/.eslintrc.json --ignore-path ./.eslintignore --fix",
+    "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix"
   },
   "dependencies": {
     "classnames": "2.2.6",

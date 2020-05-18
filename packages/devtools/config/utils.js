@@ -18,5 +18,5 @@ const findFile = (current, fileName, tries = 0) => {
 };
 
 module.exports = {
-  findFile
+  findFile,
 };

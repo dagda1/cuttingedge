@@ -4,7 +4,7 @@
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -42,8 +42,8 @@ const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
 choosePort(HOST, DEFAULT_PORT)
-  .then(port => {
-    if (port == null) {
+  .then((port) => {
+    if (port === null) {
       logger.error('We have not found a port.');
       return;
     }
@@ -60,7 +60,7 @@ choosePort(HOST, DEFAULT_PORT)
 
     const devServer = new WebpackDevServer(compiler, config.devServer);
 
-    devServer.listen(port, HOST, err => {
+    devServer.listen(port, HOST, (err) => {
       if (err) {
         logger.error(err);
         return;
@@ -72,14 +72,14 @@ choosePort(HOST, DEFAULT_PORT)
       openBrowser(urls.localUrlForBrowser);
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(function(sig) {
-      process.on(sig, function() {
+    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+      process.on(sig, function () {
         devServer.close();
         process.exit();
       });
     });
   })
-  .catch(err => {
+  .catch((err) => {
     if (err && err.message) {
       logger.error(err.message);
     }
