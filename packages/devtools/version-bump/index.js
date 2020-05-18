@@ -59,7 +59,7 @@ const main = async () => {
     message: 'Confirm the version update:',
   });
 
-  const updateDsDepVersion = package.name === '@ds/root' ? true : false;
+  const updateDsDepVersion = package.name === '@cutting/root' ? true : false;
 
   return confirm.value
     ? packageFiles.map((filename) => updateVersion(filename, version, updateDsDepVersion))

@@ -14,11 +14,11 @@
     "test:ci": "CI=true npm test"
   },
   "dependencies": {
-    "@cutting/util": "3.1.0"
+    "@cutting/util": "4.0.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "3.1.0",
-    "@cutting/eslint-config": "3.1.0",
-    "@cutting/useful-types": "3.1.0"
+    "@cutting/devtools": "4.0.0",
+    "@cutting/eslint-config": "4.0.0",
+    "@cutting/useful-types": "4.0.0"
   }
 }
