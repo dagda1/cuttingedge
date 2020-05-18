@@ -27,8 +27,8 @@ module.exports = {
     'jest/expect-expect': ['off'],
 
     'no-var': 'warn',
-    'curly': 'error',
-    'eqeqeq': ["error", "always"],
+    curly: 'error',
+    eqeqeq: ['error', 'always'],
     'prefer-const': 'warn',
     'prettier/prettier': [
       'error',

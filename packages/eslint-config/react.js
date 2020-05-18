@@ -7,11 +7,7 @@ module.exports = {
       jsx: true,
     },
   },
-  extends: [
-    './index',
-    'plugin:react/recommended',
-    'plugin:jsx-a11y/recommended',
-  ],
+  extends: ['./index', 'plugin:react/recommended', 'plugin:jsx-a11y/recommended'],
   settings: {
     react: {
       pragma: 'React',
