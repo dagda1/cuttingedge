@@ -11,9 +11,6 @@
   },
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
-  "scripts": {
-    "build": "echo \"no build\""
-  },
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
@@ -92,6 +89,7 @@
     "webpack/**/*.js"
   ],
   "devDependencies": {
-    "@rollup/plugin-typescript": "^4.1.2"
+    "@rollup/plugin-typescript": "^4.1.2",
+    "@types/chalk": "^2.2.0"
   }
 }

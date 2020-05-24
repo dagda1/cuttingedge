@@ -1272,6 +1272,13 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/chalk@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/@types/chalk/-/chalk-2.2.0.tgz#b7f6e446f4511029ee8e3f43075fb5b73fbaa0ba"
+  integrity sha512-1zzPV9FDe1I/WHhRkf9SNgqtRJWZqrBWgu7JGveuHmmyR9CnAPCie2N/x+iHrgnpYBIcCJWHBoMRv2TRWktsvw==
+  dependencies:
+    chalk "*"
+
 "@types/classnames@^2.2.10":
   version "2.2.10"
   resolved "https://registry.npmjs.org/@types/classnames/-/classnames-2.2.10.tgz#cc658ca319b6355399efc1f5b9e818f1a24bf999"
@@ -2970,14 +2977,6 @@ chalk@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/chalk/-/chalk-3.0.0.tgz#3f73c2bf526591f574cc492c51e2456349f844e4"
   integrity sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==
-  dependencies:
-    ansi-styles "^4.1.0"
-    supports-color "^7.1.0"
-
-chalk@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/chalk/-/chalk-4.0.0.tgz#6e98081ed2d17faab615eb52ac66ec1fe6209e72"
-  integrity sha512-N9oWFcegS0sFr9oh1oz2d7Npos6vNoWW9HvtCg5N1KRFpUhaAhvTv5Y58g880fZaEYSNm3qDz8SU1UrGvp+n7A==
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
