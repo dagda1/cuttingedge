@@ -7,6 +7,7 @@
     "build": "echo \"no build\"",
     "lint": "echo \"no lint\"",
     "lint:fix": "echo \"no lint:fix\"",
+    "test": "echo \"no tests\"",
     "test:ci": "echo \"no tests\""
   },
   "files": [
