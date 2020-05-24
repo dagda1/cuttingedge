@@ -7,7 +7,7 @@
   },
   "bin": {
     "cutting": "./bin/cutting.js",
-    "version-bump": "./version-bump/index.js"
+    "version-bump": "./src/version-bump/index.js"
   },
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
@@ -83,13 +83,12 @@
   },
   "files": [
     "bin/cutting.js",
-    "config/**/*",
-    "jest/**/*.js",
-    "scripts/**/*.js",
-    "webpack/**/*.js"
+    "src/config/**/*",
+    "src/jest/**/*.js",
+    "src/scripts/**/*.js",
+    "src/webpack/**/*.js"
   ],
   "devDependencies": {
-    "@rollup/plugin-typescript": "^4.1.2",
     "@types/chalk": "^2.2.0"
   }
 }

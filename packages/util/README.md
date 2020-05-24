@@ -1,4 +1,4 @@
-# @c2/util
+# @cutting/util
 
 ## Any common functionality applicable to all packages can be found here.
 

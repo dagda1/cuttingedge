@@ -1,14 +1,13 @@
-'use strict';
+import logger from './logger';
 const fs = require('fs-extra');
 const path = require('path');
 const paths = require('../config/paths');
 const copy = require('copy');
 const { exec } = require('child_process');
 const { findFile } = require('../config/utils');
-const logger = require('./logger');
 const MaxTries = 15;
 
-function findExecutable(current, executable, tries = 0) {
+export function findExecutable(current: any, executable: any, tries = 0): any {
   const modulesDir = path.resolve(current, 'node_modules', '.bin', executable);
 
   if (tries === MaxTries) {
@@ -22,7 +21,7 @@ function findExecutable(current, executable, tries = 0) {
   return findExecutable(path.resolve(current, '..'), executable, ++tries);
 }
 
-function runEslint() {
+export function runEslint() {
   logger.start(`Running eslint`);
   const eslintPath = findExecutable(__dirname, 'eslint');
 
@@ -35,7 +34,7 @@ function runEslint() {
   eslint.stdout.on('data', (data) => logger.info(data));
   eslint.stderr.on('data', (data) => logger.error(data));
 
-  eslint.on('close', (code) => {
+  eslint.on('close', (code: any) => {
     logger.done(`eslint exited with code ${code}`);
 
     if (code !== 0) {
@@ -52,7 +51,7 @@ function runTypeScriptBuild() {
 
   fs.emptyDirSync(paths.appBuild);
 
-  process.argv.push('--pretty', true);
+  process.argv.push('--pretty', true.toString().toLocaleLowerCase());
 
   process.argv.push('-p', paths.tsConfig);
 
@@ -64,10 +63,10 @@ function runTypeScriptBuild() {
 
   const tsc = exec(tscCommand);
 
-  tsc.stdout.on('data', (data) => logger.info(data));
-  tsc.stderr.on('data', (data) => logger.error(data));
+  tsc.stdout.on('data', (data: any) => logger.info(data));
+  tsc.stderr.on('data', (data: any) => logger.error(data));
 
-  tsc.on('close', (code) => {
+  tsc.on('close', (code: any) => {
     logger.done(`tsc exited with code ${code}`);
 
     if (code !== 0) {
@@ -82,9 +81,11 @@ function build() {
   try {
     runTypeScriptBuild();
 
-    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json'].map((pattern) => `${paths.appSrc}/**/${pattern}`);
+    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json'].map(
+      (pattern) => `${paths.appSrc}/**/${pattern}`,
+    );
 
-    copy(patterns, paths.appBuild, (err) => {
+    copy(patterns, paths.appBuild, (err: Error) => {
       if (err) {
         throw err;
       }

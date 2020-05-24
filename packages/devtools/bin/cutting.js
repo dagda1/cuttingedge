@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const path = require('path');
 
 const spawn = require('react-dev-utils/crossSpawn');
 const script = process.argv[2];

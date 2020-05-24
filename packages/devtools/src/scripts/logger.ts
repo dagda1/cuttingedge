@@ -110,7 +110,7 @@ const error = (err: string | Error) => {
   }
 };
 
-module.exports = {
+export default {
   log,
   info,
   debug,
