@@ -1,13 +1,14 @@
 import logger from './logger';
-const fs = require('fs-extra');
-const path = require('path');
-const paths = require('../config/paths');
-const copy = require('copy');
-const { exec } = require('child_process');
-const { findFile } = require('../config/utils');
+import fs from 'fs-extra';
+import path from 'path';
+import paths from '../config/paths';
+import copy from 'copy';
+import { exec } from 'child_process';
+import { findFile } from '../config/utils';
+import { config } from '../config/build.config';
 const MaxTries = 15;
 
-export function findExecutable(current: any, executable: any, tries = 0): any {
+export function findExecutable(current: string, executable: string, tries = 0): any {
   const modulesDir = path.resolve(current, 'node_modules', '.bin', executable);
 
   if (tries === MaxTries) {
@@ -44,7 +45,7 @@ export function runEslint() {
 }
 
 function runTypeScriptBuild() {
-  const buildConfig = require(paths.jsBuildConfigPath).ts;
+  const buildConfig = config.ts;
   const {
     options: {},
   } = buildConfig;

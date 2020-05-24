@@ -1,6 +1,6 @@
 const paths = require('./paths');
 
-module.exports = {
+export const config = {
   client: {
     entries: paths.appClientIndexJs,
     hotReloading: true,
@@ -33,4 +33,6 @@ module.exports = {
     publicPath: '/',
     typescriptOptions: {},
   },
-};
+} as const;
+
+export default config;

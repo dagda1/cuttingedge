@@ -1,10 +1,15 @@
 #!/usr/bin/env node
-const path = require('path');
+require('ts-node').register({
+  project: `${__dirname}/../tsconfig.json`,
+  compiler: require.resolve('typescript', { paths: [__dirname] }),
+});
 
 const spawn = require('react-dev-utils/crossSpawn');
 const script = process.argv[2];
 const args = process.argv.slice(3);
 const logger = require('../scripts/logger');
+const script = process.argv[2];
+const args = process.argv.slice(3);
 
 switch (script) {
   case 'ts-build':

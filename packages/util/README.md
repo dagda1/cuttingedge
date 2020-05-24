@@ -5,11 +5,11 @@
 ## build
 
 ```sh
-npm run build
+yarn run build
 ```
 
 ## run tests
 
 ```sh
-npm test
+yarn test
 ```

@@ -1,9 +1,9 @@
 const spawn = require('react-dev-utils/crossSpawn');
-import logger from './scripts/logger';
+const logger = require('../scripts/logger');
 
-export const execute = () => {
-  const script = process.argv[2];
-  const args = process.argv.slice(3);
+export const run = (argv?: string[] | string) => {
+  const script = argv[2];
+  const args = argv.slice(3);
 
   switch (script) {
     case 'ts-build':

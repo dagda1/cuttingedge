@@ -1,8 +1,8 @@
 'use strict';
 
-const paths = require('./paths');
-const fs = require('fs');
-const path = require('path');
+import paths from './paths';
+import path from 'path';
+import fs from 'fs';
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -13,7 +13,12 @@ if (!NODE_ENV) {
 }
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
-const dotenvFiles = [`${paths.dotenv}.${NODE_ENV}.local`, `${paths.dotenv}.${NODE_ENV}`, `${paths.dotenv}.local`, paths.dotenv];
+const dotenvFiles = [
+  `${paths.dotenv}.${NODE_ENV}.local`,
+  `${paths.dotenv}.${NODE_ENV}`,
+  `${paths.dotenv}.local`,
+  paths.dotenv,
+];
 // Load environment variables from .env* files. Suppress warnings using silent
 // if this file is missing. dotenv will never modify any environment variables
 // that have already been set.
@@ -27,7 +32,7 @@ dotenvFiles.forEach((dotenvFile) => {
 });
 
 const appDirectory = fs.realpathSync(process.cwd());
-const nodePath = (process.env.NODE_PATH || '')
+export const nodePath = (process.env.NODE_PATH || '')
   .split(path.delimiter)
   .filter((folder) => folder && !path.isAbsolute(folder))
   .map((folder) => path.resolve(appDirectory, folder))
@@ -37,7 +42,7 @@ const nodePath = (process.env.NODE_PATH || '')
 // injected into the application via DefinePlugin in Webpack configuration.
 const CUTTING = /^CUTTING_/i;
 
-function getClientEnvironment(target, options = {}, additional = {}) {
+export function getClientEnv(target = 'web', options: any = {}, additional = {}) {
   const raw = Object.keys(process.env)
     .filter((key) => CUTTING.test(key))
     .reduce(
@@ -66,6 +71,7 @@ function getClientEnvironment(target, options = {}, additional = {}) {
           WDS_SOCKET_PATH: process.env.WDS_SOCKET_PATH,
           WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT,
           FAST_REFRESH: process.env.FAST_REFRESH || true,
+          nodePath,
         },
         additional,
       ),
@@ -88,8 +94,3 @@ function getClientEnvironment(target, options = {}, additional = {}) {
 
   return { raw, stringified };
 }
-
-module.exports = {
-  getClientEnv: getClientEnvironment,
-  nodePath: nodePath,
-};

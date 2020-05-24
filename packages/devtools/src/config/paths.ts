@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-'use strict';
-
-const path = require('path');
-const fs = require('fs');
+import path from 'path';
+import fs from 'fs';
 
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
+const resolveApp = (relativePath: string) => path.resolve(appDirectory, relativePath);
 
 const getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
 
@@ -15,9 +12,9 @@ const publicUrlOrPath = getPublicUrlOrPath(
   process.env.PUBLIC_URL,
 );
 
-const resolveOwn = (relativePath) => path.resolve(__dirname, '..', relativePath);
+const resolveOwn = (relativePath: string) => path.resolve(__dirname, '..', relativePath);
 
-const requireRelative = (relativePath) => path.resolve(__dirname, relativePath);
+const requireRelative = (relativePath: string) => path.resolve(__dirname, relativePath);
 
 const nodePaths = (process.env.NODE_PATH || '')
   .split(process.platform === 'win32' ? ';' : ':')
@@ -25,7 +22,9 @@ const nodePaths = (process.env.NODE_PATH || '')
   .filter((folder) => !path.isAbsolute(folder))
   .map(resolveApp);
 
-const resolvedNodeModules = ['../node_modules', './node_modules'].filter((m) => fs.existsSync(m)).map((m) => path.join(process.cwd(), m));
+const resolvedNodeModules = ['../node_modules', './node_modules']
+  .filter((m) => fs.existsSync(m))
+  .map((m) => path.join(process.cwd(), m));
 
 const libPackages = [
   'packages/eslint-config',
@@ -42,7 +41,8 @@ const libPackages = [
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));
-module.exports = {
+
+const paths = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
   appBuild: resolveApp('dist'),
@@ -75,3 +75,5 @@ module.exports = {
   tranlationsDir: resolveApp('src/translations'),
   publicUrlOrPath,
 };
+
+export default paths;
