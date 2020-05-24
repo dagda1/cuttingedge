@@ -86,7 +86,7 @@ function build() {
       (pattern) => `${paths.appSrc}/**/${pattern}`,
     );
 
-    copy(patterns, paths.appBuild, (err) => {
+    copy(patterns, paths.appBuild, (err: Error) => {
       if (err) {
         throw err;
       }

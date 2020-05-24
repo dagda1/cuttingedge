@@ -1,29 +1,18 @@
+  
 {
   "compilerOptions": {
-    "allowJs": true,
-    "jsx": "react",
-    "importHelpers": true,
-    "esModuleInterop": true,
-    "outDir": "dist",
-    "declaration": false,
+    "target": "es5",
     "module": "commonjs",
-    "rootDir": "src",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "target": "es2017"
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "lib": ["es2016", "es2016.array.include", "scripthost"],
+    "sourceMap": true,
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "outDir": "./dist",
+    "baseUrl": ".",
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "../../node_modules",
-    "./dist",
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/fixtures", "src/**/*.test.ts"]
 }

@@ -9,6 +9,7 @@
     "start": "yarn build && yarn --cwd packages/website/ ssr-start",
     "publish:all": "NODE_ENV=production cutting each-pkg yarn publish -- --non-interactive --verbose",
     "audit-packages": "cutting each-pkg cutting audit",
+    
     "lint": "eslint 'packages/**/*.{ts,tsx,js}' -c ./packages/component-library/.eslintrc.json --ignore-path ./.eslintignore --fix",
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix"
   },
