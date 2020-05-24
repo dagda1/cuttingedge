@@ -36,7 +36,7 @@ export function runEslint() {
   eslint.stderr.on('data', (data) => logger.error(data));
 
   eslint.on('close', (code: any) => {
-    logger.done(`eslint exited with code ${code}`);
+    logger.done(`eslint exited with code ${code}.`);
 
     if (code !== 0) {
       process.exit(1);

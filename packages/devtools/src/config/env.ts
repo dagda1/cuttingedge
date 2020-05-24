@@ -72,6 +72,8 @@ export function getClientEnv(target = 'web', options: any = {}, additional = {})
           WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT,
           FAST_REFRESH: process.env.FAST_REFRESH || true,
           nodePath,
+          PORT: 0,
+          nodePath,
         },
         additional,
       ),

@@ -42,6 +42,8 @@ const libPackages = [
 
 const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));
 
+const appBuildDirName = 'dist';
+
 const paths = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
