@@ -92,6 +92,7 @@
     "src/webpack/**/*.js"
   ],
   "devDependencies": {
+    "@rollup/plugin-typescript": "^4.1.2",
     "@types/autoprefixer": "^9.7.2",
     "@types/chalk": "^2.2.0",
     "@types/copy": "^0.3.1",
