@@ -20,15 +20,15 @@ switch (script) {
     if (result.signal) {
       if (result.signal === 'SIGKILL') {
         logger.error(
-          'The build failed because the process exited too early. ' +
-            'This probably means the system ran out of memory or someone called ' +
-            '`kill -9` on the process.',
+          `The build failed because the process exited too early.
+           This probably means the system ran out of memory or someone called
+           'kill -9' on the process.`,
         );
       } else if (result.signal === 'SIGTERM') {
         logger.error(
-          'The build failed because the process exited too early. ' +
-            'Someone might have called `kill` or `killall`, or the system could ' +
-            'be shutting down.',
+          `The build failed because the process exited too early.
+           Someone might have called 'kill' or 'killall', or the system could
+           be shutting down.`,
         );
       }
       process.exit(1);
@@ -37,7 +37,7 @@ switch (script) {
     break;
   }
   default:
-    logger.error('Unknown script "' + script + '".');
+    logger.error(`Unknown script "${script}".`);
     logger.error('Perhaps you need to update cutting?');
     break;
 }

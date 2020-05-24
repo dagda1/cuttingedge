@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const { rollup } = require('rollup');
-const resolvePlugin = require('rollup-plugin-node-resolve');
 const filesizePlugin = require('rollup-plugin-filesize');
 const replacePlugin = require('rollup-plugin-replace');
 const terserPlugin = require('rollup-plugin-terser').terser;
@@ -9,6 +8,8 @@ const fs = require('fs-extra');
 const path = require('path');
 const typescript = require('rollup-plugin-typescript2');
 const logger = require('../scripts/logger');
+const resolve = require('@rollup/plugin-node-resolve').default;
+const sourceMaps = require('rollup-plugin-sourcemaps');
 
 if (!process.argv.includes('--package-name')) {
   throw new Error('no --package-name switch');
@@ -33,30 +34,41 @@ async function generateBundledModule(inputFile, outputFile, format) {
       return !id.startsWith('.') && !path.isAbsolute(id);
     },
     plugins: [
-      resolvePlugin({
+      resolve({
         mainFields: ['module', 'main', 'browser'],
+        // defaults + .jsx
+        extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
       }),
       typescript({
         typescript: require('typescript'),
         cacheRoot: `./.rts2_cache_${format}`,
         tsconfig: paths.tsConfig,
+        abortOnError: true,
         tsconfigDefaults: {
           compilerOptions: {
             sourceMap: true,
             declaration: true,
             jsx: 'react',
           },
+          exclude: [
+            '**/*.test.ts',
+            '**/*.test.tsx',
+            // TS defaults below
+            'node_modules',
+            paths.appBuild,
+          ],
         },
         tsconfigOverride: {
           compilerOptions: {
+            sourceMap: true,
             target: 'es5',
           },
         },
       }),
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+      sourceMaps(),
       terserPlugin({
-        sourcemap: true,
         output: { comments: true },
         compress: {
           keep_infinity: true,
@@ -99,8 +111,5 @@ async function build() {
 
 build().catch((e) => {
   logger.error(e);
-  if (e.frame) {
-    logger.error(e.frame);
-  }
   process.exit(1);
 });
