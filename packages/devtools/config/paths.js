@@ -43,6 +43,7 @@ const resolvedNodeModules = ['../node_modules', './node_modules'].filter((m) => 
 
 const libPackages = [
   'packages/eslint-config',
+  'packages/devtools',
   'packages/useful-types',
   'packages/util',
   'packages/hooks',
