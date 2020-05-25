@@ -1,8 +1,8 @@
-const fs = require('fs-extra');
-const path = require('path');
-const paths = require('../../config/paths');
+import fs from 'fs-extra';
+import paths from '../../config/paths';
+import path from 'path';
 
-const copyRecursiveSync = function copyRecursiveSync(src, dest) {
+export const copyRecursiveSync = function copyRecursiveSync(src: string, dest: string) {
   fs.copySync(src, dest);
 
   fs.readdirSync(src)
@@ -13,7 +13,7 @@ const copyRecursiveSync = function copyRecursiveSync(src, dest) {
     });
 };
 
-module.exports.copyPublicFolder = () => {
+export const copyPublicFolder = () => {
   if (!fs.existsSync(paths.appPublic)) {
     return;
   }

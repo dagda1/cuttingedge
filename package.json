@@ -9,7 +9,6 @@
     "start": "yarn build && yarn --cwd packages/website/ ssr-start",
     "publish:all": "NODE_ENV=production cutting each-pkg yarn publish -- --non-interactive --verbose",
     "audit-packages": "cutting each-pkg cutting audit",
-    
     "lint": "eslint 'packages/**/*.{ts,tsx,js}' -c ./packages/component-library/.eslintrc.json --ignore-path ./.eslintignore --fix",
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix"
   },
@@ -30,6 +29,7 @@
     "@types/lodash": "^4.14.150",
     "@types/node": "^13.13.5",
     "@types/react": "^16.9.34",
+    "@types/react-dev-utils": "^9.0.4",
     "@types/react-dom": "^16.9.7",
     "@types/react-router": "^5.1.7",
     "@types/react-router-dom": "^5.1.5",

@@ -90,7 +90,7 @@ const debug = (text: string, data: unknown) => {
   write(LoggerTypes.done, text, data);
 };
 
-const warn = (text: string, data: unknown) => {
+const warn = (text: string, data?: unknown) => {
   write(LoggerTypes.warn, text, data);
 };
 

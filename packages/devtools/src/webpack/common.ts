@@ -33,7 +33,6 @@ const configureCommon = (options) => {
     context: process.cwd(),
     resolve: {
       modules: ['node_modules', repoNodeModules].concat(env.raw.nodePath || path.resolve('.')),
-      extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.jsx', '.csv'],
       alias: {
         'webpack/hot/poll': require.resolve('webpack/hot/poll'),
         'native-url': require.resolve('native-url'),
@@ -86,7 +85,13 @@ const configureCommon = (options) => {
           useTypescriptIncrementalApi: true,
           checkSyntacticErrors: true,
           tsconfig: paths.tsConfig,
-          reportFiles: ['src/**/*.{ts,tsx}', '!**/__tests__/**', '!**/?(*.)(spec|test).*', '!**/src/setupProxy.*', '!**/src/setupTests.*'],
+          reportFiles: [
+            'src/**/*.{ts,tsx}',
+            '!**/__tests__/**',
+            '!**/?(*.)(spec|test).*',
+            '!**/src/setupProxy.*',
+            '!**/src/setupTests.*',
+          ],
           watch: paths.appSrc,
           silent: true,
           formatter: isProduction ? typescriptFormatter : undefined,

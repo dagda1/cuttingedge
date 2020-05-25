@@ -63,7 +63,9 @@ const configure = (options) => {
       publicPath: isDevelopment ? `${protocol}://${host}:${port}/` : '/',
       pathinfo: isDevelopment,
       filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : isDevelopment && 'static/js/bundle.js',
-      chunkFilename: isProduction ? 'static/js/[name].[chunkhash:8].chunk.js' : isDevelopment && 'static/js/[name].chunk.js',
+      chunkFilename: isProduction
+        ? 'static/js/[name].[chunkhash:8].chunk.js'
+        : isDevelopment && 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: (info) => path.resolve(info.resourcePath).replace(/\\/g, '/'),
     },
 
