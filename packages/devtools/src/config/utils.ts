@@ -1,11 +1,9 @@
-'use strict';
-
-const path = require('path');
-const fs = require('fs-extra');
+import path from 'path';
+import fs from 'fs-extra';
 
 const MaxTries = 10;
 
-const findFile = (current, fileName, tries = 0) => {
+export const findFile = (current: string, fileName: string, tries = 0): any => {
   const file = path.resolve(current, fileName);
 
   if (tries === MaxTries) {
@@ -17,8 +15,4 @@ const findFile = (current, fileName, tries = 0) => {
   }
 
   return findFile(path.resolve(current, '..'), fileName, ++tries);
-};
-
-module.exports = {
-  findFile,
 };

@@ -27,8 +27,7 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "noImplicitReturns": true,
-    "removeComments": false,
     "suppressImplicitAnyIndexErrors": true,
+    "removeComments": false
   }
 }

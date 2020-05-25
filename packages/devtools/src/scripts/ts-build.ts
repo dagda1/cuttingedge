@@ -30,7 +30,7 @@ export function runEslint() {
 
   const args = ` --ext .ts,.tsx --max-warnings 0 ${paths.appSrc} --ignore-pattern *.test.* -c ${eslintConfig} --fix`;
 
-  const eslint = exec(`${eslintPath} ${args}`);
+  const eslint = exec(`${eslintPath} ${args}`) as any;
 
   eslint.stdout.on('data', (data) => logger.info(data));
   eslint.stderr.on('data', (data) => logger.error(data));
@@ -62,7 +62,7 @@ function runTypeScriptBuild() {
 
   logger.start(`running tsc`);
 
-  const tsc = exec(tscCommand);
+  const tsc = exec(tscCommand) as any;
 
   tsc.stdout.on('data', (data: any) => logger.info(data));
   tsc.stderr.on('data', (data: any) => logger.error(data));
@@ -86,7 +86,7 @@ function build() {
       (pattern) => `${paths.appSrc}/**/${pattern}`,
     );
 
-    copy(patterns, paths.appBuild, (err: Error) => {
+    copy(patterns, paths.appBuild, (err) => {
       if (err) {
         throw err;
       }

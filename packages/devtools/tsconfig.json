@@ -1,18 +1,16 @@
-  
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "lib": ["es2016", "es2016.array.include", "scripthost"],
-    "sourceMap": true,
-    "declaration": true,
-    "declarationDir": "dist/types",
+    "jsx": "react",
     "outDir": "./dist",
     "baseUrl": ".",
+    "sourceMap": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/fixtures", "src/**/*.test.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }
