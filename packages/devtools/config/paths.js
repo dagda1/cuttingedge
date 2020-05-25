@@ -21,13 +21,13 @@ function ensureSlash(path, needsSlash) {
   }
 }
 
-const getPublicUrl = (appPackageJson) => envPublicUrl || require(appPackageJson).homepage;
+const getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
 
-function getServedPath(appPackageJson) {
-  const publicUrl = getPublicUrl(appPackageJson);
-  const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
-  return ensureSlash(servedUrl, true);
-}
+const publicUrlOrPath = getPublicUrlOrPath(
+  process.env.NODE_ENV === 'development',
+  require(resolveApp('package.json')).homepage,
+  process.env.PUBLIC_URL,
+);
 
 const resolveOwn = (relativePath) => path.resolve(__dirname, '..', relativePath);
 
@@ -76,8 +76,6 @@ module.exports = {
   nodePaths: nodePaths,
   ownPath: resolveOwn('.'),
   ownNodeModules: resolveOwn('node_modules'),
-  publicUrl: getPublicUrl(resolveApp('package.json')),
-  servedPath: getServedPath(resolveApp('package.json')),
   jsBuildConfigPath: requireRelative('./build.config.js'),
   localBuildConfig: resolveApp('./build.config.js'),
   resolvedNodeModules,
@@ -89,4 +87,5 @@ module.exports = {
   webAppPackages,
   allPackages: [...libPackages, ...webAppPackages],
   defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
+  publicUrlOrPath,
 };

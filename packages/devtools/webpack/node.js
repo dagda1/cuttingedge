@@ -1,14 +1,11 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const paths = require('../config/paths');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const { configureCommon, getEnvironment } = require('./common');
 
-getExternals = function () {
-  const modulesDir = path.resolve(__dirname, '../../../node_modules');
-
+getExternals = function (modulesDir) {
   return [
     nodeExternals(),
     nodeExternals({
@@ -21,7 +18,7 @@ getExternals = function () {
 const configure = (options = {}) => {
   const common = configureCommon({ ...options, isWeb: false });
 
-  const { excludeExternals } = options;
+  const { modulesDir } = options;
 
   const { isDevelopment, isProduction } = getEnvironment();
 
@@ -30,7 +27,7 @@ const configure = (options = {}) => {
   const config = merge(common, {
     name: 'api',
     target: 'node',
-    externals: excludeExternals ? getExternals(modulesDir) : undefined,
+    externals: getExternals(modulesDir),
     entry: isDevelopment ? [...entries] : entries,
     devtool: !isDevelopment && 'cheap-module-source-map',
     output: {

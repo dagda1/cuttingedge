@@ -19,9 +19,9 @@
     "build": "echo no build"
   },
   "dependencies": {
-    "@cutting/util": "3.5.1"
+    "@cutting/util": "3.5.2"
   },
   "devDependencies": {
-    "@cutting/eslint-config": "3.5.1"
+    "@cutting/eslint-config": "3.5.2"
   }
 }

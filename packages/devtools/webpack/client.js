@@ -1,15 +1,11 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/camelcase */
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const path = require('path');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const getLocalIdent = require('./getLocalIdent');
 const { configureCommon, getEnvironment } = require('./common');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const postcssOptions = require('./postCssoptions');
 const paths = require('../config/paths');
 const fs = require('fs');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -17,14 +13,17 @@ const safePostCssParser = require('postcss-safe-parser');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const sassOptions = require('./sassOptions');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
+const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
-const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const { getCommitHash } = require('../scripts/git');
+const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+
+const isProfilerEnabled = () => process.argv.includes('--profile');
 
 function getUrlParts() {
   const port = parseInt(process.env.PORT, 10);
@@ -56,22 +55,20 @@ const configure = (options) => {
 
   const devServerPort = isProduction || isStaticBuild ? port : parseInt(port, 10) + 1;
 
+  const sockPort = process.env.WDS_SOCKET_PORT || devServerPort;
+  const sockHost = process.env.WDS_SOCKET_HOST;
+  const sockPath = process.env.WDS_SOCKET_PATH;
+
   let finalEntries;
 
-  const polyfills = ['core-js/stable', 'regenerator-runtime/runtime'];
+  const polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
+
+  const webpackHotDevClient = require.resolve('../scripts/webpackHotDevClient');
 
   if (isStaticBuild) {
     const entryPoints = Array.isArray(entries) ? entries : [entries];
 
-    finalEntries = isDevelopment
-      ? [
-          `webpack-dev-server/client?${protocol}://${host}:${devServerPort}`,
-          'webpack/hot/dev-server',
-          require.resolve('../scripts/webpackHotDevClient'),
-          ...polyfills,
-          ...entryPoints,
-        ]
-      : [...polyfills, ...entryPoints];
+    finalEntries = isDevelopment ? [webpackHotDevClient, ...polyfills, ...entryPoints] : [...polyfills, ...entryPoints];
   }
 
   if (ssrBuild) {
@@ -80,9 +77,7 @@ const configure = (options) => {
       const entryPoints = Array.isArray(enumer[key]) ? enumer[key] : [enumer[key]];
 
       acc[key] =
-        isDevelopment && options.hotReloading
-          ? [require.resolve('../scripts/webpackHotDevClient'), ...polyfills, ...entryPoints]
-          : [...polyfills, ...entryPoints];
+        isDevelopment && options.hotReloading ? [webpackHotDevClient, ...polyfills, ...entryPoints] : [...polyfills, ...entryPoints];
 
       return acc;
     }, {});
@@ -101,8 +96,8 @@ const configure = (options) => {
     devServer: isDevelopment
       ? {
           disableHostCheck: true,
-          clientLogLevel: 'info',
-          contentBase: paths.appBuildPublic,
+          clientLogLevel: 'none',
+          contentBase: paths.appPublic,
           compress: true,
           liveReload: false,
           headers: {
@@ -113,12 +108,17 @@ const configure = (options) => {
           },
           host,
           https: protocol === 'https',
-          hotOnly: false,
-          hot: false,
+          watchContentBase: true,
+          hot: true,
           noInfo: true,
           overlay: false,
-          port: devServerPort,
+          transportMode: 'ws',
+          injectClient: false,
+          sockHost,
+          sockPath,
+          sockPort,
           quiet: true,
+          publicPath: paths.publicUrlOrPath.slice(0, -1),
           watchOptions: {
             ignored: ignoredFiles(paths.appSrc),
           },
@@ -129,6 +129,9 @@ const configure = (options) => {
 
             app.use(evalSourceMapMiddleware(server));
             app.use(errorOverlayMiddleware());
+          },
+          after(app) {
+            app.use(redirectServedPath(paths.publicUrlOrPath));
           },
           proxy,
         }
@@ -141,81 +144,14 @@ const configure = (options) => {
       chunkFilename: isProduction ? 'static/js/[name].[chunkhash:8].chunk.js' : isDevelopment && 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: (info) => path.resolve(info.resourcePath).replace(/\\/g, '/'),
     },
-    module: {
-      rules: [
-        {
-          test: cssRegex,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: isDevelopment,
-              },
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-              },
-            },
-            { loader: 'postcss-loader', options: postcssOptions },
-          ],
-        },
-        {
-          test: sassRegex,
-          exclude: sassModuleRegex,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: isDevelopment,
-              },
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                sourceMap: isDevelopment,
-              },
-            },
-            { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader' },
-          ],
-        },
-        {
-          test: sassModuleRegex,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: isDevelopment,
-              },
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                sourceMap: isDevelopment,
-                modules: {
-                  getLocalIdent: getLocalIdent,
-                },
-              },
-            },
-            { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader', options: sassOptions },
-          ],
-          sideEffects: true,
-        },
-      ].filter(Boolean),
-    },
 
     plugins: [
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
       ssrBuild &&
         new LoadableWebpackPlugin({
           writeToDisk: { filename: paths.appBuild },
         }),
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
-      isProduction && new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl }),
+      new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl }),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({
@@ -232,19 +168,29 @@ const configure = (options) => {
             minifyCSS: true,
             minifyURLs: true,
           },
-          templateParameters: {
-            HASH: '<!-- ' + commitHash + ' - ' + new Date().toISOString() + '  -->',
-          },
         }),
+      new HtmlWebpackPartialsPlugin([
+        {
+          path: path.join(__dirname, './partial.html'),
+          location: 'body',
+          priority: 'low',
+          options: {
+            hash: `${commitHash}-${new Date().toISOString()}`,
+          },
+        },
+      ]),
       isProduction && ssrBuild && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
-      new webpack.ContextReplacementPlugin(/^\.\/locale$/, /moment$/),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      isDevelopment && new ManifestPlugin({ fileName: 'manifest.json' }),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-      new MiniCssExtractPlugin({
-        filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined,
-        ignoreOrder: true,
-      }),
+      isProfilerEnabled() && new webpack.debug.ProfilingPlugin(),
+      isDevelopment &&
+        new ReactRefreshWebpackPlugin({
+          overlay: {
+            sockPort: Number(sockPort),
+          },
+        }),
     ].filter(Boolean),
   });
 
@@ -286,15 +232,9 @@ const configure = (options) => {
             },
           }),
         ],
-        splitChunks: ssrBuild
-          ? {
-              name: 'vendor',
-              chunks: 'initial',
-            }
-          : {
-              chunks: 'all',
-              name: false,
-            },
+        splitChunks: {
+          chunks: 'all',
+        },
         runtimeChunk: isStaticBuild,
       },
     };

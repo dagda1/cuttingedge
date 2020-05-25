@@ -14,14 +14,14 @@
     "build": "NODE_ENV=development cutting ts-build"
   },
   "dependencies": {
-    "@cutting/util": "3.5.1",
+    "@cutting/util": "3.5.2",
     "gel-grid": "^4.0.0",
     "gel-sass-tools": "^1.2.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@cutting/devtools": "3.5.1",
-    "@cutting/eslint-config": "3.5.1",
-    "@cutting/useful-types": "3.5.1"
+    "@cutting/devtools": "3.5.2",
+    "@cutting/eslint-config": "3.5.2",
+    "@cutting/useful-types": "3.5.2"
   }
 }

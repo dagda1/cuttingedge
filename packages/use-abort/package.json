@@ -20,13 +20,13 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
+    "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup --package-name use-abort",
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/util": "3.5.1",
+    "@cutting/util": "3.5.2",
     "@xstate/react": "^0.8.1",
     "xstate": "^4.9.1"
   },

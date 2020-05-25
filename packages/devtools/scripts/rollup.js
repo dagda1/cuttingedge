@@ -28,9 +28,7 @@ async function generateBundledModule(inputFile, outputFile, format) {
 
   const bundle = await rollup({
     input: inputFile,
-    // TODO: configure externals etc.
     external: (id) => {
-      logger.info(id);
       return !id.startsWith('.') && !path.isAbsolute(id);
     },
     plugins: [

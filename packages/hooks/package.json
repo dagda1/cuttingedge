@@ -20,19 +20,19 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "PORT=9999 NODE_ENV=development cutting devserver-start",
+    "start": "FAST_REFRESH=true PORT=9999 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup --package-name hooks",
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/util": "3.5.1",
+    "@cutting/util": "3.5.2",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "3.5.1",
-    "@cutting/eslint-config": "3.5.1",
-    "@cutting/useful-types": "3.5.1",
+    "@cutting/devtools": "3.5.2",
+    "@cutting/eslint-config": "3.5.2",
+    "@cutting/useful-types": "3.5.2",
     "@testing-library/jest-dom": "^5.7.0",
     "@types/invariant": "^2.2.32"
   },

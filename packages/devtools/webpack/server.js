@@ -4,13 +4,7 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const paths = require('../config/paths');
 const StartServerPlugin = require('start-server-webpack-plugin');
-const postcssOptions = require('./postCssoptions');
-const getLocalIdent = require('./getLocalIdent');
-const sassOptions = require('./sassOptions');
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
 
 const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
 
@@ -26,11 +20,9 @@ getExternals = function (isDevelopment) {
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
         /^@babel/,
-        /^@cutting/,
         /^@loadable\/component$/,
-        /^react$/,
-        /^react-dom$/,
         /^loadable-ts-transformer$/,
+        /^@cutting/,
       ].filter((x) => x),
     }),
   ];
@@ -79,81 +71,13 @@ const configure = (options = {}) => {
       publicPath: isDevelopment ? `http://${env.raw.HOST}:${devServerPort}/` : '/',
       libraryTarget: 'commonjs2',
     },
-    module: {
-      rules: [
-        {
-          test: cssRegex,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: isDevelopment,
-              },
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-              },
-            },
-            { loader: 'postcss-loader', options: postcssOptions },
-          ],
-        },
-        {
-          test: sassRegex,
-          exclude: sassModuleRegex,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: isDevelopment,
-              },
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-              },
-            },
-            { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader', options: sassOptions },
-          ],
-        },
-        {
-          test: sassModuleRegex,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: isDevelopment,
-              },
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                modules: {
-                  getLocalIdent: getLocalIdent,
-                },
-              },
-            },
-            { loader: 'postcss-loader', options: postcssOptions },
-            { loader: 'sass-loader', options: sassOptions },
-          ],
-        },
-      ],
-    },
 
     plugins: [
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1,
       }),
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
-      new MiniCssExtractPlugin({
-        filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
-        chunkFilename: isDevelopment ? 'static/css/[id].css' : undefined,
-      }),
       isDevelopment &&
         new StartServerPlugin({
           name: 'server.js',

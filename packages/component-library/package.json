@@ -9,19 +9,19 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/util": "3.5.1",
+    "@cutting/util": "3.5.2",
     "lodash.isobject": "^3.0.2"
   },
   "devDependencies": {
-    "@cutting/devtools": "3.5.1",
-    "@cutting/eslint-config": "3.5.1",
-    "@cutting/useful-types": "3.5.1",
+    "@cutting/devtools": "3.5.2",
+    "@cutting/eslint-config": "3.5.2",
+    "@cutting/useful-types": "3.5.2",
     "@testing-library/jest-dom": "^5.7.0",
     "@types/lodash.isobject": "^3.0.6"
   },
   "scripts": {
     "build": "NODE_ENV=development cutting ts-build",
-    "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
+    "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true npm test",
     "prepublish": "npm run build"

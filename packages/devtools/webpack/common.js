@@ -8,7 +8,12 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const resolve = require('resolve');
 const fs = require('fs-extra');
 const HappyPack = require('happypack');
+const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const { loadableTransformer } = require('loadable-ts-transformer');
+const { cssLoaders } = require('./loaders/css');
+const { cssRegex, sassRegex, sassModuleRegex } = require('./constants');
+const getLocalIdent = require('./getLocalIdent');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -79,13 +84,11 @@ const configureCommon = (options) => {
     },
     resolve: {
       symlinks: false,
-      modules: ['node_modules', repoNodeModules].concat(
-        // It is guaranteed to exist because we tweak it in `env.js`
-        env.raw.nodePath || path.resolve('.'),
-      ),
-      extensions: ['.web.mjs', '.mjs', '.web.js', '.js', '.web.ts', '.ts', '.web.tsx', '.tsx', '.json', '.web.jsx', '.jsx'],
+      modules: ['node_modules', repoNodeModules].concat(env.raw.nodePath || path.resolve('.')),
+      extensions: ['.web.mjs', '.mjs', '.web.js', '.js', '.web.ts', '.ts', '.web.tsx', '.tsx', '.json', '.web.jsx', '.jsx', '.csv'],
       alias: {
         'webpack/hot/poll': require.resolve('webpack/hot/poll'),
+        'native-url': require.resolve('native-url'),
       },
     },
     resolveLoader: {
@@ -124,6 +127,19 @@ const configureCommon = (options) => {
             options: { name: staticAssetName, limit: 10000, emitFile: isWeb },
           },
           {
+            test: /\.(js|jsx|mjs)$/,
+            exclude: /\/node_modules\/core-js\//,
+            use: [
+              {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env'],
+                  cacheDirectory: true,
+                },
+              },
+            ],
+          },
+          {
             test: /\.tsx$/,
             enforce: 'pre',
             use: [
@@ -145,6 +161,10 @@ const configureCommon = (options) => {
             options: {
               configFile: paths.tsConfig,
               transpileOnly: isDevelopment,
+              experimentalWatchApi: isDevelopment,
+              compilerOptions: {
+                sourceMap: isDevelopment,
+              },
               getCustomTransformers: () => ({ before: [loadableTransformer] }),
             },
           },
@@ -175,6 +195,19 @@ const configureCommon = (options) => {
               },
             ],
           },
+          {
+            test: cssRegex,
+            use: cssLoaders(isDevelopment, isNode).filter(Boolean),
+          },
+          {
+            test: sassRegex,
+            exclude: sassModuleRegex,
+            use: [...cssLoaders(isDevelopment, isNode), { loader: 'sass-loader' }].filter(Boolean),
+          },
+          {
+            test: sassModuleRegex,
+            use: [...cssLoaders(isDevelopment, isNode, getLocalIdent), { loader: 'sass-loader' }].filter(Boolean),
+          },
         ],
         (x) => !!x,
       ),
@@ -198,7 +231,7 @@ const configureCommon = (options) => {
             name: isWeb ? 'client' : 'server',
           }),
         isAnalyse && new BundleAnalyzerPlugin(),
-        new webpack.ContextReplacementPlugin(/^\.\/locale$/, /moment$/),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
         new ForkTsCheckerWebpackPlugin({
           typescript: resolve.sync('typescript', {
             basedir: repoNodeModules,
@@ -210,8 +243,14 @@ const configureCommon = (options) => {
           reportFiles: ['src/**/*.{ts,tsx}', '!**/__tests__/**', '!**/?(*.)(spec|test).*', '!**/src/setupProxy.*', '!**/src/setupTests.*'],
           watch: paths.appSrc,
           silent: true,
+          formatter: isProduction ? typescriptFormatter : undefined,
         }),
         isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
+        new MiniCssExtractPlugin({
+          filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
+          chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',
+          ignoreOrder: true,
+        }),
       ],
       Boolean,
     ),
