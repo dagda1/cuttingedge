@@ -1,7 +1,4 @@
 #! /usr/bin/env node
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable-next-line @typescript-eslint/no-empty-function */
-
 'use strict';
 
 process.env.NODE_ENV = 'development';
