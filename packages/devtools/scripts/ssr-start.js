@@ -1,7 +1,4 @@
 #! /usr/bin/env node
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable-next-line @typescript-eslint/no-empty-function */
-
 'use strict';
 
 process.env.NODE_ENV = 'development';
@@ -12,7 +9,6 @@ const devServer = require('webpack-dev-server');
 const printErrors = require('./printErrors');
 const logger = require('./logger');
 const setPorts = require('./setPorts');
-const merge = require('lodash/merge');
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
@@ -35,7 +31,7 @@ function main() {
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = merge(globalBuildConfig, localBuildConfig);
+  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
 
   const clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
   const serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
