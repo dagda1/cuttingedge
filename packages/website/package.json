@@ -8,10 +8,10 @@
   "license": "MIT",
   "scripts": {
     "start": "FAST_REFRESH=true WDS_SOCKET_PORT=3001 SSR=true NODE_ENV=development cutting ssr-start",
-    "debug": "npm start -- --inspect=localhost:9230",
+    "debug": "yarn start -- --inspect=localhost:9230",
     "build": "NODE_ENV=production cutting ssr-build",
     "test": "NODE_ENV=test cutting test",
-    "deploy": "NODE_ENV=production npm run build && ./bin/deploy.sh",
+    "deploy": "NODE_ENV=production yarn run build && ./bin/deploy.sh",
     "serve": "NODE_ENV=production node ./dist/server.js"
   },
   "dependencies": {
