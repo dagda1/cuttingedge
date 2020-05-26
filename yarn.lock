@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/code-frame@7.8.3", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5", "@babel/code-frame@^7.8.3":
+"@babel/code-frame@7.8.3", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.8.3":
   version "7.8.3"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.8.3.tgz#33e25903d7481181534e12ec0a25f16b6fcf419e"
   integrity sha512-a9gxpmdXtZEInkCSHUJDLHZVBgb1QS0jhss4cPP93EW7s+uC5bikET2twEF3KV+7rDblJcmNvTR7VJejqd2C2g==
@@ -784,6 +784,146 @@
   dependencies:
     exec-sh "^0.3.2"
     minimist "^1.2.0"
+
+"@cutting/component-library@3.5.3":
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/@cutting/component-library/-/component-library-3.5.3.tgz#88376ed91aaf8313ef8d306156da4a7457e536f3"
+  integrity sha512-hFB6sOrnS22oBGea6PBWk0wwpgwQQ/P6apf5+F9uareOISrrEfodM/cvNT+KWuRazW8UwHZeAwyIABr36odPpw==
+  dependencies:
+    "@cutting/util" "3.5.3"
+    lodash.isobject "^3.0.2"
+
+"@cutting/connected-components@3.5.3":
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/@cutting/connected-components/-/connected-components-3.5.3.tgz#b9a229b349e6e40bb37d612d641be55e97db7037"
+  integrity sha512-ZG1OZ4ezWa+mf7iiHii9ISE6/8bHo0m+50jNCDahT5unVTybC1uuzSYkssDNwxvUffwOSPl+qAva6OFHQrG8LA==
+  dependencies:
+    "@cutting/component-library" "3.5.3"
+    "@cutting/util" "3.5.3"
+    formik "^2.1.4"
+
+"@cutting/devtools@3.5.3":
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/@cutting/devtools/-/devtools-3.5.3.tgz#bf8261978d713665d5c8c38f2746a50a3d4a9b82"
+  integrity sha512-aMFcXWMDLrs1jgSh9HBcBgwO1iqCvSw3L3w4iqwaDDC1LVqv3xrYVOljiWo1ss/9RBp1SzbqtiplyXaaMk23kg==
+  dependencies:
+    "@babel/core" "^7.9.6"
+    "@babel/preset-env" "^7.9.6"
+    "@intervolga/optimize-cssnano-plugin" "^1.0.6"
+    "@loadable/component" "^5.12.0"
+    "@loadable/webpack-plugin" "^5.12.0"
+    "@pmmmwh/react-refresh-webpack-plugin" "^0.3.2"
+    "@rollup/plugin-node-resolve" "^8.0.0"
+    "@testing-library/jest-dom" "^5.8.0"
+    "@testing-library/react" "^10.0.4"
+    "@testing-library/react-hooks" "^3.2.1"
+    "@types/jest" "^25.2.3"
+    "@types/loadable__component" "^5.10.0"
+    autoprefixer "^9.8.0"
+    babel-loader "^8.1.0"
+    commander "^5.1.0"
+    copy "^0.3.2"
+    core-js "3.6.5"
+    cross-env "^7.0.2"
+    css-hot-loader "^1.4.4"
+    css-loader "^3.5.3"
+    dotenv "^8.2.0"
+    eslint-loader "^4.0.2"
+    extract-css-chunks-webpack-plugin "^4.7.5"
+    file-loader "^6.0.0"
+    fork-ts-checker-webpack-plugin "^4.1.4"
+    fs-extra "^9.0.0"
+    happypack "^5.0.1"
+    html-loader "^1.1.0"
+    html-webpack-partials-plugin "^0.5.6"
+    html-webpack-plugin "^4.3.0"
+    jest "^26.0.1"
+    jest-junit "^10.0.0"
+    markdown-loader "^5.1.0"
+    mini-css-extract-plugin "^0.9.0"
+    native-url "^0.3.1"
+    optimize-css-assets-webpack-plugin "^5.0.3"
+    postcss-flexbugs-fixes "^4.2.1"
+    postcss-loader "^3.0.0"
+    postcss-safe-parser "^4.0.2"
+    prettier "^2.0.5"
+    raf "^3.4.1"
+    react-dev-utils "^10.2.1"
+    react-error-overlay "^6.0.7"
+    react-hooks-testing-library "^0.6.0"
+    react-refresh "^0.8.3"
+    react-test-renderer "^16.13.1"
+    regenerator-runtime "^0.13.5"
+    rollup "^2.10.9"
+    rollup-plugin-filesize "^9.0.0"
+    rollup-plugin-node-resolve "^5.2.0"
+    rollup-plugin-replace "^2.2.0"
+    rollup-plugin-sourcemaps "^0.6.2"
+    rollup-plugin-terser "^6.0.1"
+    rollup-plugin-typescript2 "0.27.1"
+    sass-loader "^8.0.2"
+    source-map-support "^0.5.19"
+    svg-url-loader "^5.0.0"
+    ts-jest "^26.0.0"
+    ts-loader "^7.0.4"
+    url-loader "^4.1.0"
+    webpack "^4.43.0"
+    webpack-bundle-analyzer "^3.8.0"
+    webpack-dev-server "^3.11.0"
+    webpack-manifest-plugin "^2.2.0"
+    webpack-merge "^4.2.2"
+    webpack-node-externals "^1.7.2"
+    webpackbar "^4.0.0"
+    whatwg-fetch "^3.0.0"
+
+"@cutting/eslint-config@3.5.3":
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/@cutting/eslint-config/-/eslint-config-3.5.3.tgz#5f3cb63de6e39fb59f626cc4e2dff8e897eef196"
+  integrity sha512-rno9XUDFtc661gO4kMec/hVPXew944dq0xi2ZH2B2RF/taq/6ukU7UQwAOMJEmSldCOaV6otlGqhLmkYc+BB9w==
+  dependencies:
+    "@typescript-eslint/eslint-plugin" "^2.31.0"
+    "@typescript-eslint/parser" "^2.31.0"
+    babel-eslint "10.1.0"
+    eslint "7.0.0"
+    eslint-config-prettier "6.11.0"
+    eslint-plugin-jest "23.10.0"
+    eslint-plugin-jest-formatting "^1.2.0"
+    eslint-plugin-jsx-a11y "^6.2.3"
+    eslint-plugin-prettier "3.1.3"
+    eslint-plugin-react "^7.19.0"
+    eslint-plugin-react-hooks "^4.0.0"
+    prettier "2.0.5"
+
+"@cutting/hooks@3.5.3":
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/@cutting/hooks/-/hooks-3.5.3.tgz#f36bb0247b65afde666dfc64d0f1ccd6444c5a47"
+  integrity sha512-fzB7ghLDbSFO9rT9O/omL8BsZUg6bEiG8jdZz6tEj/b9ZrHcNZb8WZp4KbmDmedmbMVBr7Qho1TktbJTP0e/gQ==
+  dependencies:
+    "@cutting/util" "3.5.3"
+    resize-observer-polyfill "^1.5.1"
+
+"@cutting/use-shortcuts@3.5.3":
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/@cutting/use-shortcuts/-/use-shortcuts-3.5.3.tgz#04cb248a4c035742a2dd969ecf0f82025fc23abc"
+  integrity sha512-p9TM220BSWmDJLAqeZfe9p8eh22dk3OvV6oF40IRYQIoxDBac41Xi4O+Lk0TY3SBv+Yc7M2mtRc+lzMup1oxrA==
+  dependencies:
+    "@cutting/util" "3.5.3"
+    invariant "^2.2.4"
+    mousetrap "^1.6.5"
+
+"@cutting/useful-types@3.5.3":
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/@cutting/useful-types/-/useful-types-3.5.3.tgz#f3438cc1fe77e0b4f5e56633be6c50ab47cbe819"
+  integrity sha512-VU2v9nxsqCbNbTs6cLzLl1ENyMEYlkVV5dLgAB5DUoXjWzIFZt/NeQy4I53jLv/ZTE8eCaIGDYvT+OtBCYpHnA==
+  dependencies:
+    "@cutting/util" "3.5.3"
+
+"@cutting/util@3.5.3":
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/@cutting/util/-/util-3.5.3.tgz#7861292d5e0b8019fd64b2ac9a38d9c982963676"
+  integrity sha512-n11LAbmSF2pnOZQBY0g3Qy4GsfWmStL4coZyMAQUgYj5Z3obU4S5mhRoqa8FGDF/7UBe2jrbU1S4q5GnI0xiPQ==
+  dependencies:
+    "@cutting/util" "3.5.3"
 
 "@intervolga/optimize-cssnano-plugin@^1.0.6":
   version "1.0.6"
@@ -5343,7 +5483,7 @@ forever-agent@~0.6.1:
   resolved "https://registry.npmjs.org/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
   integrity sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=
 
-fork-ts-checker-webpack-plugin@3.1.1:
+fork-ts-checker-webpack-plugin@3.1.1, fork-ts-checker-webpack-plugin@^4.1.4:
   version "3.1.1"
   resolved "https://registry.npmjs.org/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-3.1.1.tgz#a1642c0d3e65f50c2cc1742e9c0a80f441f86b19"
   integrity sha512-DuVkPNrM12jR41KM2e+N+styka0EgLkTnXmNcXdgOM37vtGeY+oCBK/Jx0hzSeEU6memFCtWb4htrHPMDfwwUQ==
@@ -5351,19 +5491,6 @@ fork-ts-checker-webpack-plugin@3.1.1:
     babel-code-frame "^6.22.0"
     chalk "^2.4.1"
     chokidar "^3.3.0"
-    micromatch "^3.1.10"
-    minimatch "^3.0.4"
-    semver "^5.6.0"
-    tapable "^1.0.0"
-    worker-rpc "^0.1.0"
-
-fork-ts-checker-webpack-plugin@^4.1.4:
-  version "4.1.5"
-  resolved "https://registry.npmjs.org/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-4.1.5.tgz#780d52c65183742d8c885fff42a9ec9ea7006672"
-  integrity sha512-nuD4IDqoOfkEIlS6shhjLGaLBDSNyVJulAlr5lFbPe0saGqlsTo+/HmhtIrs/cNLFtmaudL10byivhxr+Qhh4w==
-  dependencies:
-    "@babel/code-frame" "^7.5.5"
-    chalk "^2.4.1"
     micromatch "^3.1.10"
     minimatch "^3.0.4"
     semver "^5.6.0"
