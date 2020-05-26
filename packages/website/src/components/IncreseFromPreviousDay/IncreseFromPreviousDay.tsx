@@ -10,10 +10,14 @@ export const IncreseFromPreviousDay: React.FC = () => {
   if (result.data) {
     Object.keys(result.data).forEach((c) => {
       const country = result.data![c];
-      country.data = country.result.map((d: any) => ({
-        ...d,
-        y: (d.deltaDeaths / countryData[c].population) * 100000,
-      }));
+      country.data = country.result.map((d: any) => {
+        const delta = (d.deltaDeaths / countryData[c].population) * 100000;
+
+        return {
+          ...d,
+          y: delta <= 0 ? 0 : delta,
+        };
+      });
     });
   }
 

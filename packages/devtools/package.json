@@ -11,6 +11,9 @@
   },
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
+  "scripts": {
+    "build": "echo \"no build\""
+  },
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
