@@ -23,7 +23,14 @@ const merge = require('webpack-merge');
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
+<<<<<<< HEAD
 const configureWebpackNode = require('../webpack/node').configure;
+=======
+<<<<<<<< HEAD:packages/devtools/src/scripts/build.ts
+========
+const configureWebpackNode = require('../webpack/node').configure;
+>>>>>>>> more ts:packages/devtools/scripts/build.ts
+>>>>>>> more ts
 
 export const build = async ({
   buildClient,

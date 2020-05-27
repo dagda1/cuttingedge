@@ -1,8 +1,15 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import postcssOptions from '../postCssoptions';
+<<<<<<< HEAD:packages/devtools/src/webpack/loaders/css.ts
 import { getLocalIdent } from '../getLocalIdent';
 
 const cssLoaders = (isDevelopment: boolean, isNode: boolean, { modules }: { modules: boolean }) => [
+=======
+import { GetLocalIdent } from '../getLocalIdent';
+
+const cssLoaders = (isDevelopment: boolean, isNode: boolean, { modules }: { modules: boolean }) => [
+  isDevelopment && require.resolve('css-hot-loader'),
+>>>>>>> more ts:packages/devtools/src/webpack/loaders/css.ts
   {
     loader: MiniCssExtractPlugin.loader,
     options: {
