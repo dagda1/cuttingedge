@@ -4,8 +4,6 @@ source ./bin/env.sh
 
 echo "building backend"
 
-cp public/favicon.ico dist/public
-
 dcprod build
 
 
