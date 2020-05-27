@@ -4,7 +4,7 @@ source ./bin/env.sh
 
 echo "building backend"
 
-cp public/favicon.ico dist/public
+cp -rf ./public ./dist
 
 dcprod build
 
