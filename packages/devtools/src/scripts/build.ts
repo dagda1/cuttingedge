@@ -6,12 +6,15 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-require('../config/env');
+import '.../config/env';
 
-const fs = require('fs-extra');
-const paths = require('../config/paths');
-const logger = require('./logger');
-const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
+import fs from 'fs-extra';
+import paths from '../config/paths';
+import logger from './logger';
+import FileSizeReporter from 'react-dev-utils/FileSizeReporter';
+import { copyPublicFolder } from './utils/copy-public-folder';
+import { compile } from './webpack/compile';
+
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const { copyPublicFolder } = require('./utils/copy-public-folder');
@@ -22,7 +25,15 @@ const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
 const configureWebpackNode = require('../webpack/node').configure;
 
-module.exports.build = async ({ buildClient, buildServer, buildNode }) => {
+export const build = async ({
+  buildClient,
+  buildServer,
+  buildNode,
+}: {
+  buildClient: boolean;
+  buildServer: boolean;
+  buildNode: boolean;
+}) => {
   logger.start('starting build');
   const globalBuildConfig = require(paths.jsBuildConfigPath);
 

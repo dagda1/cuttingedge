@@ -1,9 +1,8 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const postcssOptions = require('../postCssoptions');
-const { cssRegex, sassRegex, sassModuleRegex } = require('../constants');
-const getLocalIdent = require('../getLocalIdent');
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import postcssOptions from '../postCssoptions';
+import { getLocalIdent } from '../getLocalIdent';
 
-const cssLoaders = (isDevelopment, isNode, { modules }) => [
+const cssLoaders = (isDevelopment: boolean, isNode: boolean, { modules }: { modules: boolean }) => [
   {
     loader: MiniCssExtractPlugin.loader,
     options: {

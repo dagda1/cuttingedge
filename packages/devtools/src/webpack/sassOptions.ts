@@ -1,9 +1,9 @@
-const paths = require('../config/paths');
+import paths from '../config/paths';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = !isDevelopment;
 
-module.exports = {
+const sassOptions = {
   sassOptions: {
     outputStyle: 'expanded',
     sourceMap: isDevelopment,
@@ -12,3 +12,5 @@ module.exports = {
     minimize: isProduction,
   },
 };
+
+export default sassOptions;
