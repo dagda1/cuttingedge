@@ -14,7 +14,6 @@ const logger = require('./logger');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
-const merge = require('lodash/merge');
 const { copyPublicFolder } = require('./utils/copy-public-folder');
 const { compile } = require('./webpack/compile');
 
@@ -27,14 +26,14 @@ module.exports.build = async ({ buildClient, buildServer, buildNode }) => {
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = merge(globalBuildConfig, localBuildConfig);
+  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
 
   const clientConfig = !!buildClient && configureWebpackClient(buildConfig.client);
   const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
   const nodeConfig = !!buildNode && configureWebpackServer(buildConfig.node);
 
   try {
-    const previousFileSizes = await measureFileSizesBeforeBuild(paths.appBuildPublic);
+    const previousFileSizes = await measureFileSizesBeforeBuild(paths.appBuild);
 
     fs.emptyDirSync(paths.appBuild);
 
