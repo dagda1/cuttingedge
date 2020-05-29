@@ -24,7 +24,7 @@ export const RateOfChange: React.FC = () => {
     <Graph
       heading="Rate of change of reported deaths"
       xAxisLabel="Days since first reported death"
-      yAxisLabel="Increase in deaths from previous day"
+      yAxisLabel=""
       result={result}
       xTickFormat={(t) => `-   ${t}`}
     />

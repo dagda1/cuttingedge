@@ -82,7 +82,5 @@ export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDat
     }
   }
 
-  console.log(result);
-
   return result;
 };
