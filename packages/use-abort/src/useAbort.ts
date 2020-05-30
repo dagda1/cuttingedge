@@ -1,6 +1,5 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
-import { makeRunnable } from './runnable';
 import { UnknownArgs, UseAbortOptions } from './types';
 import { createAbortableMachine, abort, reset, start, success } from './machine';
 
