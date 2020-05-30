@@ -4,12 +4,12 @@ import { HaltError, swallowHalt } from '../HaltError';
 
 const HALT = Symbol('halt');
 
-export class IteratorController<R> implements Controller<R> {
-  private promise: Promise<R>;
+export class IteratorController<T> implements Controller<T> {
+  private promise: Promise<T>;
   private haltPromise: Promise<symbol>;
   private resolveHaltPromise!: () => void;
 
-  constructor(private iterator: Iterator<R>) {
+  constructor(private iterator: Iterator<T>) {
     this.haltPromise = new Promise((resolve) => {
       this.resolveHaltPromise = () => {
         resolve(HALT);
@@ -19,9 +19,9 @@ export class IteratorController<R> implements Controller<R> {
     this.promise = this.run();
   }
 
-  private async run(): Promise<R> {
+  private async run(): Promise<T> {
     let didHalt = false;
-    let getNext: () => IteratorResult<R> = () => this.iterator.next();
+    let getNext = () => this.iterator.next();
 
     while (true) {
       const next = getNext();
@@ -33,8 +33,8 @@ export class IteratorController<R> implements Controller<R> {
           return next.value;
         }
       } else {
-        const subTask: Task<R> = new Task(next.value);
-        let result: R | symbol;
+        const subTask = new Task<T>(next.value);
+        let result: T | symbol;
 
         try {
           result = await Promise.race([subTask, this.haltPromise]);
@@ -59,8 +59,8 @@ export class IteratorController<R> implements Controller<R> {
     await this.promise.catch(swallowHalt);
   }
 
-  then<TResult1 = R, TResult2 = never>(
-    onfulfilled?: ((value: R) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+  then<TResult1 = T, TResult2 = never>(
+    onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
     onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
   ): PromiseLike<TResult1 | TResult2> {
     return this.promise.then(onfulfilled, onrejected);

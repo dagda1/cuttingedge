@@ -4,15 +4,15 @@ import { isPromise, isIterator } from '../utils';
 import { PromiseController } from './controller/PromiseController';
 import { IteratorController } from './controller/IteratorController';
 
-export class Task<R> implements PromiseLike<R> {
-  private controller: Controller<R>;
-  private children: Set<Task<never>> = new Set();
-  private promise: Promise<R>;
+export class Task<T> implements PromiseLike<T> {
+  private controller: Controller<T>;
+  private children: Set<Task<any>> = new Set();
+  private promise: Promise<T>;
 
-  constructor(operation: Operation<R>) {
-    if (isPromise(operation)) {
-      this.controller = new PromiseController(operation);
-    } else if (isIterator(operation)) {
+  constructor(operation: Operation<T>) {
+    if (isPromise<T>(operation)) {
+      this.controller = new PromiseController<T>(operation);
+    } else if (isIterator<T>(operation)) {
       this.controller = new IteratorController(operation);
     } else {
       throw new Error(`unkown type of operation: ${operation}`);
@@ -25,7 +25,7 @@ export class Task<R> implements PromiseLike<R> {
     await Promise.all(Array.from(this.children).map((c) => c.halt()));
   }
 
-  private async run(): Promise<R> {
+  private async run(): Promise<T> {
     const result = await this.controller;
 
     await this.haltChildren();
@@ -38,14 +38,14 @@ export class Task<R> implements PromiseLike<R> {
     await this.controller.halt();
   }
 
-  then<TResult1 = R, TResult2 = never>(
-    onfulfilled?: ((value: R) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+  then<TResult1 = T, TResult2 = never>(
+    onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
     onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
   ): PromiseLike<TResult1 | TResult2> {
     return this.promise.then(onfulfilled, onrejected);
   }
 
-  spawn<R>(operation?: Operation<R>): Task<R> {
+  spawn<R>(operation: Operation<R>): Task<R> {
     const child = new Task(operation);
     this.children.add(child);
     return child;
