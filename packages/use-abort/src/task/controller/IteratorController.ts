@@ -1,8 +1,7 @@
 import { Controller } from './controller';
 import { Task } from '../task';
 import { Operation } from '../operation';
-import { isFunction } from '../../utils';
-import { AbortError } from '../../AbortError';
+import { isFunction, throwIfAborted, isPromise } from '../../utils';
 
 export class IteratorController<T, R = T> implements Controller<R> {
   private promise: Promise<R>;
@@ -17,21 +16,21 @@ export class IteratorController<T, R = T> implements Controller<R> {
     }
   }
 
-  private throwIfAborted() {
-    if (this.signal?.aborted) {
-      throw new AbortError();
-    }
-  }
-
   private async run() {
     // TODO: type this thing
     let c: any;
 
     while (1) {
       try {
-        const next: IteratorResult<Operation<T>, Promise<R>> = await this.iterator.next(c);
+        let next: IteratorResult<Operation<T>, Promise<R>>;
 
-        this.throwIfAborted();
+        if (isPromise(this.iterator.next)) {
+          next = await this.iterator.next(c);
+        } else {
+          next = this.iterator.next(c);
+        }
+
+        throwIfAborted(this.signal);
 
         if (next.done) {
           this.returnIterator();

@@ -14,17 +14,17 @@ import {
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { ResponsiveSVG, LoadingOverlay } from '@cutting/component-library';
-import { Countries, countryData, AxisColor, CountryStats } from '../Graphs/types';
+import { Countries, countryData, AxisColor } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router';
-import { AsyncState } from 'react-async';
 import { assert } from '@cutting/util';
+import { CountriesStats } from './useCountryCovidData';
 
 const styles = require('./Graph.module.scss');
 
 export type GraphProps = {
-  result: AsyncState<CountryStats>;
+  result: { isSettled: boolean; data: CountriesStats };
   xAxisLabel: string;
   yAxisLabel: string;
   labels?: (data: any) => string;

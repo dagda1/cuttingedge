@@ -62,16 +62,15 @@ export const useAbort = <T, R = T>(fn: (...args: any[]) => any, options: Partial
     [abortable, fn, send],
   );
 
-  console.log(machine);
-
   return useMemo(
     () => ({
       state: machine.value,
       run: runner,
+      data: machine.context.data,
       reset: resetable,
       abortController: abortController.current,
       counter: counter.current,
     }),
-    [machine.value, resetable, runner],
+    [machine.context.data, machine.value, resetable, runner],
   );
 };

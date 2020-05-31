@@ -1,8 +1,8 @@
 import { CountryStats, DayData, countryData, CountryData } from './types';
-import { useAbort } from '@cutting/use-abort';
+import { useAbort, AbortableStates } from '@cutting/use-abort';
 
 import dayjs from 'dayjs';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 const utc = require('dayjs/plugin/utc');
 
 dayjs.extend(utc);
@@ -66,26 +66,31 @@ export type CountriesStats = {
 export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDate: DefaultStartDate }) => {
   const getData = useCallback(() => getCountriesData({ startDate }), [startDate]);
 
-  const { run, ...rest } = useAbort<CountriesStats>(getData);
+  const { run, state, data, counter } = useAbort<CountriesStats>(getData);
 
-  const result = run();
+  useEffect(() => {
+    run();
+  }, [run]);
 
-  console.log(result);
-  console.log(rest);
+  const isSettled = state === AbortableStates.Succeeded;
 
-  // if (result.isSettled) {
-  //   for (const country in result.data) {
-  //     if (result.data[country].name) {
-  //       continue;
-  //     }
+  console.log(AbortableStates.Succeeded);
 
-  //     result.data[country] = {
-  //       result: transform(result.data[country], countryData[country]),
-  //       color: countryData[country].color,
-  //       name: countryData[country].longName,
-  //     };
-  //   }
-  // }
+  if (isSettled) {
+    for (const country in data) {
+      if (data[country].name) {
+        continue;
+      }
 
-  // return result;
+      data[country] = {
+        result: transform(data[country], countryData[country]),
+        color: countryData[country].color,
+        name: countryData[country].longName,
+      };
+    }
+  }
+
+  console.log({ data, isSettled, counter, state });
+
+  return { data, isSettled };
 };

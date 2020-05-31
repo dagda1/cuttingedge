@@ -1,2 +1,2 @@
 export { useAbort } from './useAbort';
-export * from './types';
+export { AbortableStates, AbortableState } from './types';

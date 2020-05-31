@@ -8,6 +8,7 @@ export const RateOfChange: React.FC = () => {
   if (!__BROWSER__) {
     return null;
   }
+
   const result = useCountryCovidData({ startDate: '2020-01-01' });
 
   if (result.data) {

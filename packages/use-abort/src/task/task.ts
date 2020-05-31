@@ -1,6 +1,6 @@
 import { Controller } from './controller/controller';
 import { Operation } from './operation';
-import { isPromise, isIterator } from '../utils';
+import { isPromise, isIterator, throwIfAborted } from '../utils';
 import { PromiseController } from './controller/PromiseController';
 import { IteratorController } from './controller/IteratorController';
 
@@ -19,11 +19,14 @@ export class Task<T> implements Promise<T> {
     }
 
     this.promise = this.run();
-    this.promise.finally;
   }
 
   private async run(): Promise<T> {
     const result = await this.controller;
+
+    if (this.signal.aborted) {
+      throwIfAborted(this.signal);
+    }
 
     return result;
   }

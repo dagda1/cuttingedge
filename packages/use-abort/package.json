@@ -8,10 +8,6 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "license": "MIT",
   "scripts": {
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
