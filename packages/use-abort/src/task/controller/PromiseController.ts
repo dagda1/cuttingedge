@@ -1,21 +1,17 @@
 import { Controller } from './controller';
-import { HaltError, swallowHalt } from '../HaltError';
+import { once } from '@cutting/util';
 
 export class PromiseController<R> implements Controller<R> {
   private promise: Promise<R>;
   private _reject!: (error: Error) => void;
 
-  constructor(promise: PromiseLike<R>) {
+  constructor(promise: PromiseLike<R>, private signal: AbortSignal) {
     this.promise = new Promise((resolve, reject) => {
       this._reject = reject;
       promise.then(resolve, reject);
     });
-  }
 
-  async halt() {
-    this._reject(new HaltError());
-
-    await this.promise.catch(swallowHalt);
+    once(this.signal, 'abort', this._reject);
   }
 
   then<TResult1 = R, TResult2 = never>(

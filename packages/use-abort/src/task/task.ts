@@ -9,11 +9,11 @@ export class Task<T> implements PromiseLike<T> {
   private children: Set<Task<any>> = new Set();
   private promise: Promise<T>;
 
-  constructor(operation: Operation<T>) {
+  constructor(operation: Operation<T>, private signal: AbortSignal) {
     if (isPromise<T>(operation)) {
-      this.controller = new PromiseController<T>(operation);
+      this.controller = new PromiseController<T>(operation, signal);
     } else if (isIterator<T>(operation)) {
-      this.controller = new IteratorController(operation);
+      this.controller = new IteratorController(operation, signal);
     } else {
       throw new Error(`unkown type of operation: ${operation}`);
     }
@@ -21,21 +21,10 @@ export class Task<T> implements PromiseLike<T> {
     this.promise = this.run();
   }
 
-  private async haltChildren() {
-    await Promise.all(Array.from(this.children).map((c) => c.halt()));
-  }
-
   private async run(): Promise<T> {
     const result = await this.controller;
 
-    await this.haltChildren();
-
     return result;
-  }
-
-  async halt() {
-    await this.haltChildren();
-    await this.controller.halt();
   }
 
   then<TResult1 = T, TResult2 = never>(
@@ -45,8 +34,12 @@ export class Task<T> implements PromiseLike<T> {
     return this.promise.then(onfulfilled, onrejected);
   }
 
+  catch(...args: any[]) {
+    return this.promise.catch(...args);
+  }
+
   spawn<R>(operation: Operation<R>): Task<R> {
-    const child = new Task(operation);
+    const child = new Task(operation, this.signal);
     this.children.add(child);
     return child;
   }

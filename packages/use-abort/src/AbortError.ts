@@ -1,6 +1,6 @@
 export class AbortError extends Error {
-  constructor(m: string) {
-    super(m);
+  constructor() {
+    super('The operation has been aborted.');
 
     Object.setPrototypeOf(this, new.target.prototype);
   }

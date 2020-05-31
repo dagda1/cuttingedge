@@ -49,7 +49,7 @@ export const App: React.FC = () => {
 
   const options = useMemo(() => ({ onAbort }), [onAbort]);
 
-  const { run, state, abortController, reset } = useAbort<Expected, void, Expected>(
+  const { run, state, abortController, reset } = useAbort<Expected, void>(
     useCallback(generator, [delay, processResult]),
     options,
   );

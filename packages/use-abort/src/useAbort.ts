@@ -2,6 +2,8 @@ import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { UnknownArgs, UseAbortOptions } from './types';
 import { createAbortableMachine, abort, reset, start, success } from './machine';
+import { Task } from './task/Task';
+import { isFunction } from './utils';
 
 const identity = <T>(o: T) => o;
 
@@ -10,9 +12,9 @@ const DefaultAbortableOptions: UseAbortOptions<undefined> = {
   onAbort: identity,
 };
 
-export const useAbort = <T, R, N>(fn: () => Generator<Promise<T>, R, N>, options: Partial<UseAbortOptions<N>> = {}) => {
+export const useAbort = <T, R = T>(fn: (...args: any[]) => any, options: Partial<UseAbortOptions<R>> = {}) => {
   const [current, send] = useMachine(createAbortableMachine());
-  const resolvedOptions = useMemo(() => ({ ...DefaultAbortableOptions, ...options }), [options]) as UseAbortOptions<N>;
+  const resolvedOptions = useMemo(() => ({ ...DefaultAbortableOptions, ...options }), [options]) as UseAbortOptions<R>;
   const { initialData, onAbort } = resolvedOptions;
   const abortController = useRef<AbortController>(new AbortController());
   const counter = useRef(0);
@@ -32,29 +34,30 @@ export const useAbort = <T, R, N>(fn: () => Generator<Promise<T>, R, N>, options
   }, [initialData, send]);
 
   const runner = useCallback(
-    (...args: UnknownArgs) => {
-      const runnable = makeRunnable({ fn, options: { ...resolvedOptions, controller: abortController.current } });
+    async (...args: UnknownArgs) => {
+      const signal = abortController.current.signal;
 
       counter.current++;
 
       send(start);
 
-      runnable(...args)
-        .then((result) => {
-          abortController.current = new AbortController();
-          counter.current = 0;
-          send(success<N>(result));
-        })
-        .catch((err) => {
-          if (err.currentTarget === abortController.current.signal) {
-            abortable(err);
-            return;
-          }
+      const it = isFunction(fn) ? fn(...(args || [])) : fn;
 
-          throw err;
-        });
+      try {
+        const result = await new Task<T>(it, signal);
+        abortController.current = new AbortController();
+        counter.current = 0;
+        send(success<T>(result));
+      } catch (err) {
+        if (err.currentTarget === abortController.current.signal) {
+          abortable(err);
+          return;
+        }
+
+        throw err;
+      }
     },
-    [abortable, fn, resolvedOptions, send],
+    [abortable, fn, send],
   );
 
   return useMemo(
