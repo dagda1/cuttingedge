@@ -1,7 +1,7 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { UnknownArgs, UseAbortOptions, AbortableStates, AbortableState } from './types';
-import { createAbortableMachine, abort, reset, start, success, AbortableActions } from './machine';
+import { createAbortableMachine, abort, reset, start, success, error, AbortableActions } from './machine';
 import { Task } from './task/task';
 import { isFunction } from './utils';
 
@@ -19,6 +19,8 @@ export type UseAbortResult<T> = {
   reset: () => void;
   abortController: AbortController;
   counter: number;
+  error: any;
+  isSettled: boolean;
 };
 
 export const useAbort = <T, R = T>(
@@ -46,46 +48,45 @@ export const useAbort = <T, R = T>(
   }, [initialData, send]);
 
   const runner = useCallback(
-    (...args: UnknownArgs) => {
+    async (...args: UnknownArgs) => {
       const signal = abortController.current.signal;
 
       counter.current++;
 
       send(start);
 
-      const it = isFunction(fn) ? fn(...(args || [])) : fn;
+      try {
+        const it = isFunction(fn) ? fn(...(args || [])) : fn;
 
-      new Task<R>(it, signal)
-        .then((result) => {
-          abortController.current = new AbortController();
-          counter.current = 0;
-          send(success<R>(result));
-          return result;
-        })
-        .catch((err) => {
-          console.log(err);
-          if (err.currentTarget === abortController.current.signal) {
-            abortable(err);
-            return;
-          }
+        const result = await new Task<R>(it, signal);
+        abortController.current = new AbortController();
+        counter.current = 0;
+        send(success<R>(result));
+        return result;
+      } catch (err) {
+        if (err.currentTarget === abortController.current.signal) {
+          abortable(err);
+          return;
+        }
 
-          throw err;
-        });
+        send(error(err));
+        return;
+      }
     },
     [abortable, fn, send],
   );
-
-  console.log(machine.value);
 
   return useMemo(
     () => ({
       state: machine.value as AbortableStates,
       run: runner,
       data: machine.context.data,
+      error: machine.context.error,
       reset: resetable,
       abortController: abortController.current,
       counter: counter.current,
+      isSettled: [AbortableStates.Succeded, AbortableStates.Error].includes(machine.value as AbortableStates),
     }),
-    [machine.context.data, machine.value, resetable, runner],
+    [machine.context.data, machine.context.error, machine.value, resetable, runner],
   );
 };

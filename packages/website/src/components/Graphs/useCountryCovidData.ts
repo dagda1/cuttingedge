@@ -8,7 +8,7 @@ const utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
 // documenter.getpostman.com/view/2568274/SzS8rjbe?version=latest
-const baseUrl = 'https://covidapi.info/api/v1/countrysfsdfsd';
+const baseUrl = 'https://covidapi.info/api/v1/country';
 
 const transform = (results: CountryStats, country: CountryData): DayData[] => {
   const data = results.result.map(({ date, deaths, ...rest }, i) => {
@@ -39,22 +39,20 @@ export interface CountryDataProps {
   startDate?: string;
 }
 
-const getCountriesData = ({ startDate }: CountryDataProps): Promise<CountryStats> => {
-  return new Promise(async (resolve) => {
-    const headers = { Accept: 'application/json' };
-    const results: Partial<CountryStats> = {};
+const getCountriesData = async ({ startDate }: CountryDataProps): Promise<CountryStats> => {
+  const headers = { Accept: 'application/json' };
+  const results: Partial<CountryStats> = {};
 
-    for (const country of Object.keys(countryData)) {
-      const result = await fetch(
-        `${baseUrl}/${country.toUpperCase()}/timeseries/${startDate}/${dayjs().format('YYYY-MM-DD')}`,
-        { headers },
-      );
+  for (const country of Object.keys(countryData)) {
+    const result = await fetch(
+      `${baseUrl}/${country.toUpperCase()}/timeseries/${startDate}/${dayjs().format('YYYY-MM-DD')}`,
+      { headers },
+    );
 
-      results[country] = await result.json();
-    }
+    results[country] = await result.json();
+  }
 
-    resolve(results as CountryStats);
-  });
+  return results as CountryStats;
 };
 
 export type CountriesStats = {
@@ -66,13 +64,11 @@ export type CountriesStats = {
 export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDate: DefaultStartDate }) => {
   const getData = useCallback(() => getCountriesData({ startDate }), [startDate]);
 
-  const { run, state, data, counter } = useAbort<CountriesStats>(getData);
+  const { run, state, data, counter, error, isSettled } = useAbort<CountriesStats>(getData);
 
   useEffect(() => {
     run();
   }, [run]);
-
-  const isSettled = state === AbortableStates.Succeded;
 
   if (isSettled) {
     for (const country in data) {
@@ -88,7 +84,7 @@ export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDat
     }
   }
 
-  console.log({ data, isSettled, counter, state });
+  console.log({ data, isSettled, counter, state, error });
 
   return { data, isSettled };
 };

@@ -20,6 +20,10 @@
     "@xstate/react": "^0.8.1",
     "xstate": "^4.9.1"
   },
+  "devDependencies": {
+    "abortcontroller-polyfill": "^1.4.0",
+    "node-fetch": "^2.6.0"
+  },
   "keywords": [
     "hotkeys",
     "focus",

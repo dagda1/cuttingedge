@@ -51,7 +51,7 @@ export const createAbortableMachine = <D>() => {
           [AbortableActionTypes.Error]: {
             target: [AbortableStates.Error],
             actions: (context, event) => {
-              context.error = { ...event.error };
+              context.error = event.error;
             },
           },
           [AbortableActionTypes.Abort]: {

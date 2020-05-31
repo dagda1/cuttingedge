@@ -10,9 +10,6 @@ import { Exception } from '../errors/Exception';
 import { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
 
-(global as any).fetch = require('node-fetch');
-require('abortcontroller-polyfill/dist/polyfill-patch-fetch');
-
 const referrerPolicy = require('referrer-policy');
 
 export const app = express();
@@ -37,7 +34,7 @@ if (isProduction) {
   app.use(
     contentSecurityPolicy({
       directives: {
-        defaultSrc: ["'self'", 'https://covidapi.info/'],
+        defaultSrc: ["'self'", 'https://covidapi.info/', 'https://httpstat.us/'],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
         imgSrc: ["'self'", 'data:'],
