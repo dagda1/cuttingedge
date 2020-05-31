@@ -3,8 +3,12 @@ import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
 import Graph from 'src/components/Graphs/Graph';
 import dayjs from 'dayjs';
 import { countryData } from '../Graphs/types';
+declare const __BROWSER__: any;
 
 export const IncreseFromPreviousDay: React.FC = () => {
+  if (true) {
+    return null;
+  }
   const result = useCountryCovidData();
 
   if (result.data) {

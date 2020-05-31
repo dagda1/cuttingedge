@@ -1,5 +1,5 @@
 import { CountryStats, DayData, countryData, CountryData } from './types';
-import { useAsync } from 'react-async';
+import { useAbort } from '@cutting/use-abort';
 
 import dayjs from 'dayjs';
 import { useCallback } from 'react';
@@ -66,21 +66,26 @@ export type CountriesStats = {
 export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDate: DefaultStartDate }) => {
   const getData = useCallback(() => getCountriesData({ startDate }), [startDate]);
 
-  const result = useAsync({ promiseFn: getData });
+  const { run, ...rest } = useAbort<CountriesStats>(getData);
 
-  if (result.isSettled) {
-    for (const country in result.data) {
-      if (result.data[country].name) {
-        continue;
-      }
+  const result = run();
 
-      result.data[country] = {
-        result: transform(result.data[country], countryData[country]),
-        color: countryData[country].color,
-        name: countryData[country].longName,
-      };
-    }
-  }
+  console.log(result);
+  console.log(rest);
 
-  return result;
+  // if (result.isSettled) {
+  //   for (const country in result.data) {
+  //     if (result.data[country].name) {
+  //       continue;
+  //     }
+
+  //     result.data[country] = {
+  //       result: transform(result.data[country], countryData[country]),
+  //       color: countryData[country].color,
+  //       name: countryData[country].longName,
+  //     };
+  //   }
+  // }
+
+  // return result;
 };

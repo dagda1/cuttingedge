@@ -13,7 +13,7 @@ const DefaultAbortableOptions: UseAbortOptions<undefined> = {
 };
 
 export const useAbort = <T, R = T>(fn: (...args: any[]) => any, options: Partial<UseAbortOptions<R>> = {}) => {
-  const [current, send] = useMachine(createAbortableMachine());
+  const [machine, send] = useMachine(createAbortableMachine());
   const resolvedOptions = useMemo(() => ({ ...DefaultAbortableOptions, ...options }), [options]) as UseAbortOptions<R>;
   const { initialData, onAbort } = resolvedOptions;
   const abortController = useRef<AbortController>(new AbortController());
@@ -34,7 +34,7 @@ export const useAbort = <T, R = T>(fn: (...args: any[]) => any, options: Partial
   }, [initialData, send]);
 
   const runner = useCallback(
-    async (...args: UnknownArgs) => {
+    (...args: UnknownArgs) => {
       const signal = abortController.current.signal;
 
       counter.current++;
@@ -43,31 +43,35 @@ export const useAbort = <T, R = T>(fn: (...args: any[]) => any, options: Partial
 
       const it = isFunction(fn) ? fn(...(args || [])) : fn;
 
-      try {
-        const result = await new Task<T>(it, signal);
-        abortController.current = new AbortController();
-        counter.current = 0;
-        send(success<T>(result));
-      } catch (err) {
-        if (err.currentTarget === abortController.current.signal) {
-          abortable(err);
-          return;
-        }
+      new Task<T>(it, signal)
+        .then((result) => {
+          abortController.current = new AbortController();
+          counter.current = 0;
+          send(success<T>(result));
+          return result;
+        })
+        .catch((err) => {
+          if (err.currentTarget === abortController.current.signal) {
+            abortable(err);
+            return;
+          }
 
-        throw err;
-      }
+          throw err;
+        });
     },
     [abortable, fn, send],
   );
 
+  console.log(machine);
+
   return useMemo(
     () => ({
-      state: current.value,
+      state: machine.value,
       run: runner,
       reset: resetable,
       abortController: abortController.current,
       counter: counter.current,
     }),
-    [current.value, resetable, runner],
+    [machine.value, resetable, runner],
   );
 };

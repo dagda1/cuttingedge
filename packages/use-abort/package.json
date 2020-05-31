@@ -6,15 +6,9 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "main": "dist/use-abort.js",
-  "umd:main": "lib/use-abort.umd.js",
-  "module": "lib/use-abort.module.js",
-  "browser": {
-    "./lib/use-abort.js": "./lib/use-abort.js",
-    "./lib/use-abort.module.js": "./lib/use-abort.module.js"
-  },
-  "types": "dist/use-abort.d.ts",
-  "typings": "dist/use-abort.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -22,7 +16,7 @@
   "scripts": {
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting rollup --package-name use-abort",
+    "build": "NODE_ENV=production cutting ts-build",
     "prepublish": "npm run build"
   },
   "dependencies": {

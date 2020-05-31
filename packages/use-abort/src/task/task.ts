@@ -4,7 +4,7 @@ import { isPromise, isIterator } from '../utils';
 import { PromiseController } from './controller/PromiseController';
 import { IteratorController } from './controller/IteratorController';
 
-export class Task<T> implements PromiseLike<T> {
+export class Task<T> implements Promise<T> {
   private controller: Controller<T>;
   private children: Set<Task<any>> = new Set();
   private promise: Promise<T>;
@@ -19,6 +19,7 @@ export class Task<T> implements PromiseLike<T> {
     }
 
     this.promise = this.run();
+    this.promise.finally;
   }
 
   private async run(): Promise<T> {
@@ -30,13 +31,19 @@ export class Task<T> implements PromiseLike<T> {
   then<TResult1 = T, TResult2 = never>(
     onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
     onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
-  ): PromiseLike<TResult1 | TResult2> {
+  ): Promise<TResult1 | TResult2> {
     return this.promise.then(onfulfilled, onrejected);
   }
 
   catch(...args: any[]) {
     return this.promise.catch(...args);
   }
+
+  finally(onfinally?: (() => void) | undefined | null): Promise<T> {
+    return this.promise.finally(onfinally);
+  }
+
+  [Symbol.toStringTag]: 'Promise';
 
   spawn<R>(operation: Operation<R>): Task<R> {
     const child = new Task(operation, this.signal);

@@ -2,8 +2,12 @@ import React from 'react';
 import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
 import Graph from 'src/components/Graphs/Graph';
 import regression from 'regression';
+declare const __BROWSER__: any;
 
 export const RateOfChange: React.FC = () => {
+  if (!__BROWSER__) {
+    return null;
+  }
   const result = useCountryCovidData({ startDate: '2020-01-01' });
 
   if (result.data) {
