@@ -8,7 +8,7 @@ const utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
 // documenter.getpostman.com/view/2568274/SzS8rjbe?version=latest
-const baseUrl = 'https://covidapi.info/api/v1/country';
+const baseUrl = 'https://covidapi.info/api/v1/countrysfsdfsd';
 
 const transform = (results: CountryStats, country: CountryData): DayData[] => {
   const data = results.result.map(({ date, deaths, ...rest }, i) => {
@@ -72,9 +72,7 @@ export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDat
     run();
   }, [run]);
 
-  const isSettled = state === AbortableStates.Succeeded;
-
-  console.log(AbortableStates.Succeeded);
+  const isSettled = state === AbortableStates.Succeded;
 
   if (isSettled) {
     for (const country in data) {

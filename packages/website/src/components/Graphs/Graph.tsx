@@ -24,7 +24,7 @@ import { CountriesStats } from './useCountryCovidData';
 const styles = require('./Graph.module.scss');
 
 export type GraphProps = {
-  result: { isSettled: boolean; data: CountriesStats };
+  result: { isSettled: boolean; data?: CountriesStats };
   xAxisLabel: string;
   yAxisLabel: string;
   labels?: (data: any) => string;

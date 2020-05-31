@@ -2,12 +2,8 @@ import React from 'react';
 import { useCountryCovidData, countryData } from 'src/components/Graphs';
 import Graph from 'src/components/Graphs/Graph';
 import dayjs from 'dayjs';
-declare const __BROWSER__: any;
 
 export const Deaths: React.FC = () => {
-  if (true) {
-    return null;
-  }
   const result = useCountryCovidData();
 
   if (result.data) {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Machine, StateMachine } from 'xstate';
+import { Machine } from 'xstate';
 import { AbortableStates, AbortableState, AbortableActionTypes } from './types';
 
 export interface AbortableSchema {
@@ -25,14 +25,14 @@ export type AbortableActions<D> =
   | typeof abort
   | ReturnType<typeof reset>;
 
-export const createAbortableMachine = <D>(): StateMachine<AbortableState<D>, AbortableSchema, AbortableActions<D>> => {
+export const createAbortableMachine = <D>() => {
   const context: AbortableState<D> = {
     state: AbortableStates.Idle,
     data: undefined,
     error: undefined,
   };
 
-  const abortableMachine = Machine<AbortableState<D>, AbortableSchema, AbortableActions<D>>({
+  return Machine<AbortableState<D>, AbortableSchema, AbortableActions<D>>({
     id: 'fetchable',
     initial: AbortableStates.Idle,
     context,
@@ -94,6 +94,4 @@ export const createAbortableMachine = <D>(): StateMachine<AbortableState<D>, Abo
       },
     },
   });
-
-  return abortableMachine;
 };

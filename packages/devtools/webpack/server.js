@@ -22,6 +22,7 @@ getExternals = function (isDevelopment) {
         /^@babel/,
         /^@loadable\/component$/,
         /^loadable-ts-transformer$/,
+        /^abort-controller/,
         /^@cutting/,
       ].filter((x) => x),
     }),

@@ -10,6 +10,9 @@ import { Exception } from '../errors/Exception';
 import { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
 
+(global as any).fetch = require('node-fetch');
+require('abortcontroller-polyfill/dist/polyfill-patch-fetch');
+
 const referrerPolicy = require('referrer-policy');
 
 export const app = express();

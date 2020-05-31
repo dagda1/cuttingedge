@@ -23,7 +23,7 @@ export enum AbortableActionTypes {
 
 export type AbortableState<D> = {
   state: AbortableStates;
-  data: D | undefined;
+  data?: D;
   error?: any;
 };
 

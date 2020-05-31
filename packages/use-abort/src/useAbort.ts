@@ -1,7 +1,7 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
-import { UnknownArgs, UseAbortOptions } from './types';
-import { createAbortableMachine, abort, reset, start, success } from './machine';
+import { UnknownArgs, UseAbortOptions, AbortableStates, AbortableState } from './types';
+import { createAbortableMachine, abort, reset, start, success, AbortableActions } from './machine';
 import { Task } from './task/task';
 import { isFunction } from './utils';
 
@@ -12,8 +12,20 @@ const DefaultAbortableOptions: UseAbortOptions<undefined> = {
   onAbort: identity,
 };
 
-export const useAbort = <T, R = T>(fn: (...args: any[]) => any, options: Partial<UseAbortOptions<R>> = {}) => {
-  const [machine, send] = useMachine(createAbortableMachine());
+export type UseAbortResult<T> = {
+  state: AbortableStates;
+  run: (...args: UnknownArgs) => void;
+  data?: T;
+  reset: () => void;
+  abortController: AbortController;
+  counter: number;
+};
+
+export const useAbort = <T, R = T>(
+  fn: (...args: any[]) => any,
+  options: Partial<UseAbortOptions<R>> = {},
+): UseAbortResult<R> => {
+  const [machine, send] = useMachine<AbortableState<R>, AbortableActions<R>>(createAbortableMachine());
   const resolvedOptions = useMemo(() => ({ ...DefaultAbortableOptions, ...options }), [options]) as UseAbortOptions<R>;
   const { initialData, onAbort } = resolvedOptions;
   const abortController = useRef<AbortController>(new AbortController());
@@ -43,14 +55,15 @@ export const useAbort = <T, R = T>(fn: (...args: any[]) => any, options: Partial
 
       const it = isFunction(fn) ? fn(...(args || [])) : fn;
 
-      new Task<T>(it, signal)
+      new Task<R>(it, signal)
         .then((result) => {
           abortController.current = new AbortController();
           counter.current = 0;
-          send(success<T>(result));
+          send(success<R>(result));
           return result;
         })
         .catch((err) => {
+          console.log(err);
           if (err.currentTarget === abortController.current.signal) {
             abortable(err);
             return;
@@ -62,9 +75,11 @@ export const useAbort = <T, R = T>(fn: (...args: any[]) => any, options: Partial
     [abortable, fn, send],
   );
 
+  console.log(machine.value);
+
   return useMemo(
     () => ({
-      state: machine.value,
+      state: machine.value as AbortableStates,
       run: runner,
       data: machine.context.data,
       reset: resetable,
