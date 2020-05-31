@@ -12,5 +12,5 @@ export const isPromise = <T>(x: any): x is PromiseLike<T> => {
 
 export function isIterator<T, R = T>(x: any): x is Iterator<Operation<T>, Promise<R>> {
   // @ts-ignore
-  return isObject(x) && !isFunction(x[Symbol.iterator]) && isFunction(x['next']);
+  return 'function' === typeof x.next && 'function' === typeof x.throw;
 }

@@ -29,7 +29,7 @@ export class IteratorController<T, R = T> implements Controller<R> {
 
     while (1) {
       try {
-        const next: IteratorResult<Operation<T>, Promise<R>> = this.iterator.next(c);
+        const next: IteratorResult<Operation<T>, Promise<R>> = await this.iterator.next(c);
 
         this.throwIfAborted();
 

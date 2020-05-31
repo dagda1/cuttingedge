@@ -2,7 +2,7 @@ import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { UnknownArgs, UseAbortOptions } from './types';
 import { createAbortableMachine, abort, reset, start, success } from './machine';
-import { Task } from './task/Task';
+import { Task } from './task/task';
 import { isFunction } from './utils';
 
 const identity = <T>(o: T) => o;
