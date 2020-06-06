@@ -33,7 +33,7 @@ module.exports.build = async ({ buildClient, buildServer, buildNode }) => {
   const nodeConfig = !!buildNode && configureWebpackServer(buildConfig.node);
 
   try {
-    const previousFileSizes = await measureFileSizesBeforeBuild(paths.appBuild);
+    const previousFileSizes = await measureFileSizesBeforeBuild(paths.appBuildPublic);
 
     fs.emptyDirSync(paths.appBuild);
 

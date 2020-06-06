@@ -61,7 +61,7 @@ export const Graph: React.FC<GraphProps> = ({
   assert(!!result.data, 'No data has been supplied');
 
   return (
-    <ApplicationLayout heading={heading}>
+    <ApplicationLayout heading={heading} showFooter={true}>
       <div className={styles.container} ref={ref}>
         <ul className={styles.links}>
           {[

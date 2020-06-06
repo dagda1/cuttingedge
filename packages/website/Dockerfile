@@ -15,6 +15,8 @@ COPY ./packages/website/package.json .
 
 ADD ./packages/website/.npmrc-deploy /root/.npmrc
 
+RUN npm cache clean --force
+
 RUN npm install --production
 
 RUN mkdir /cutting/tmp

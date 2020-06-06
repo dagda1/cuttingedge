@@ -1,5 +1,5 @@
 import { CountryStats, DayData, countryData, CountryData } from './types';
-import { useAbort, AbortableStates } from '@cutting/use-abort';
+import { useAbort } from '@cutting/use-abort';
 
 import dayjs from 'dayjs';
 import { useCallback, useEffect } from 'react';

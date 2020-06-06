@@ -1,6 +1,6 @@
 {
   "name": "@cutting/react-gel",
-  "version": "3.6.1",
+  "version": "3.7.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -14,14 +14,14 @@
     "build": "NODE_ENV=development cutting ts-build"
   },
   "dependencies": {
-    "@cutting/util": "3.6.1",
+    "@cutting/util": "3.7.0",
     "gel-grid": "^4.0.0",
     "gel-sass-tools": "^1.2.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@cutting/devtools": "3.6.1",
-    "@cutting/eslint-config": "3.6.1",
-    "@cutting/useful-types": "3.6.1"
+    "@cutting/devtools": "3.7.0",
+    "@cutting/eslint-config": "3.7.0",
+    "@cutting/useful-types": "3.7.0"
   }
 }

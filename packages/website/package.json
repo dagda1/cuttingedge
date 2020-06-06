@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "version": "3.6.1",
+  "version": "3.7.0",
   "license": "MIT",
   "scripts": {
     "start": "FAST_REFRESH=true WDS_SOCKET_PORT=3001 SSR=true NODE_ENV=development cutting ssr-start",
@@ -15,11 +15,11 @@
     "serve": "NODE_ENV=production node ./dist/server.js"
   },
   "dependencies": {
-    "@cutting/component-library": "3.6.1",
-    "@cutting/connected-components": "3.6.1",
-    "@cutting/hooks": "3.6.1",
-    "@cutting/use-abort": "3.6.1",
-    "@cutting/util": "3.6.1",
+    "@cutting/component-library": "3.7.0",
+    "@cutting/connected-components": "3.7.0",
+    "@cutting/hooks": "3.7.0",
+    "@cutting/use-abort": "3.7.0",
+    "@cutting/util": "3.7.0",
     "@loadable/server": "^5.12.0",
     "@types/loadable__server": "^5.12.1",
     "body-parser": "^1.19.0",
@@ -38,9 +38,9 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "3.6.1",
-    "@cutting/eslint-config": "3.6.1",
-    "@cutting/useful-types": "3.6.1",
+    "@cutting/devtools": "3.7.0",
+    "@cutting/eslint-config": "3.7.0",
+    "@cutting/useful-types": "3.7.0",
     "@testing-library/jest-dom": "^5.7.0",
     "@types/csurf": "^1.9.36",
     "@types/express": "^4.17.6",

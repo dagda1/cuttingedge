@@ -35,12 +35,12 @@ if (isProduction) {
     contentSecurityPolicy({
       directives: {
         defaultSrc: ["'self'", 'https://covidapi.info/', 'https://www.formlets.com'],
-        scriptSrc: ["'self'"],
+        scriptSrc: ["'self'", 'https://www.googletagmanager.com/'],
         styleSrc: ["'self'"],
         imgSrc: ["'self'", 'data:'],
         fontSrc: ["'self'", 'data:'],
         objectSrc: ["'self'", 'blob:'],
-        frameSrc: ["'self'"],
+        frameSrc: ["'self'", 'https://www.formlets.com'],
       },
     }),
   );

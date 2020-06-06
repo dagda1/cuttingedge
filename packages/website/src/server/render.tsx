@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
-import { HttpStatusCode } from '@cutting/util';
+import { HttpStatusCode, isProduction } from '@cutting/util';
 import { StaticRouter, StaticRouterContext } from 'react-router';
 import { Routes } from '../routes';
 import path from 'path';
@@ -33,6 +33,19 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
 
   const helmet = Helmet.renderStatic();
 
+  const gaScript = isProduction
+    ? `
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146837410-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<%= ga_property_id %>');
+  </script>
+  `
+    : '';
+
   res.status(HttpStatusCode.Ok).send(`
     <!doctype html>
     <html lang="en" ${helmet.htmlAttributes.toString()}>
@@ -41,6 +54,7 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        ${gaScript}
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         ${helmet.link.toString()}
