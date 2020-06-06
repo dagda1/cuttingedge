@@ -49,15 +49,8 @@ body {
   }
   
   &:not(.covid){
-    background-image: url(../images/lightening.jpg);
-    background-repeat: no-repeat;
-    background-position:35%;
-  }
-
-  @include mq-l {
-    background-repeat: no-repeat;
+    background: url(../images/lightening.jpg) no-repeat center center fixed; 
     background-size: cover;
-    background-position: 0;
   }
 
   @include mq-l {
