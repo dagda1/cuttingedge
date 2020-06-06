@@ -34,8 +34,14 @@ if (isProduction) {
   app.use(
     contentSecurityPolicy({
       directives: {
-        defaultSrc: ["'self'", 'https://covidapi.info/', 'https://www.formlets.com'],
-        scriptSrc: ["'self'", 'https://www.googletagmanager.com/'],
+        defaultSrc: ["'self'", 'https://covidapi.info/'],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "'unsafe-eval'",
+          'https://www.googletagmanager.com/',
+          'https://www.formlets.com',
+        ],
         styleSrc: ["'self'"],
         imgSrc: ["'self'", 'data:'],
         fontSrc: ["'self'", 'data:'],
