@@ -14,7 +14,7 @@ export const MenuItems: React.FC<MenuItemsProps> = ({ collapse }) => (
   <>
     {bannerPages.map((page) => (
       <li key={page.heading} className={styles.horizontal}>
-        <NavLink to={page.path} activeClassName={styles.active} onClick={collapse}>
+        <NavLink to={page.path} className={page.className} activeClassName={styles.active} onClick={collapse}>
           {page.heading}
         </NavLink>
       </li>

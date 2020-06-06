@@ -8,3 +8,4 @@ export const TermsOfService = '/terms-of-service';
 export const Covid19 = '/covid-19';
 export const IncreaseInDeaths = '/covid-19/increase-in-deaths';
 export const Deaths = '/covid-19/total-deaths';
+export const ContactMe = '/contact-me';

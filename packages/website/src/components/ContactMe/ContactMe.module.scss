@@ -1,0 +1,11 @@
+@import '../../assets/scss/main';
+
+.container {
+  iframe {
+    height: 100%;
+
+    @include mq-m {
+      height: 70%;
+    }
+  }
+}

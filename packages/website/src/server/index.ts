@@ -34,7 +34,7 @@ if (isProduction) {
   app.use(
     contentSecurityPolicy({
       directives: {
-        defaultSrc: ["'self'", 'https://covidapi.info/', 'https://httpstat.us/'],
+        defaultSrc: ["'self'", 'https://covidapi.info/', 'https://www.formlets.com'],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
         imgSrc: ["'self'", 'data:'],

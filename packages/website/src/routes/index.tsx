@@ -4,6 +4,7 @@ import loadable from '@loadable/component';
 import * as Urls from 'src/urls';
 import { Route, Switch } from 'react-router';
 import { Page } from 'src/types';
+import { ContactMe } from 'src/components/ContactMe';
 
 const fallback = <div>loading....</div>;
 
@@ -81,6 +82,14 @@ export const routable: Page[] = [
     component: Graphs,
     exact: false,
     footerPage: false,
+  },
+  {
+    heading: 'Ask Me!',
+    path: Urls.ContactMe,
+    component: ContactMe,
+    exact: true,
+    footerPage: false,
+    className: 'ask-me',
   },
 ];
 

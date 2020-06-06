@@ -7,4 +7,5 @@ export type Page<P = unknown> = RouteProps & {
   heading: string;
   path: string;
   footerPage?: boolean;
+  className?: string;
 } & P;

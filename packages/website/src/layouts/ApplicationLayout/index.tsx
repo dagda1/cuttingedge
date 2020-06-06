@@ -17,6 +17,7 @@ export interface ApplicationLayoutProps {
   italicise?: boolean;
   center?: boolean;
   className?: 'string';
+  showFooter?: boolean;
 }
 
 export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
@@ -24,6 +25,7 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
   italicise,
   center,
   className,
+  showFooter = true,
   children,
 }) => {
   const root = useRef<HTMLDivElement>(null);
@@ -60,7 +62,7 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
         )}
         {children}
       </main>
-      <Footer />
+      {showFooter && <Footer />}
     </div>
   );
 };
