@@ -1,7 +1,8 @@
+/* eslint-disable jest/no-focused-tests */
 import { buildShortcuts } from './buildShortcuts';
 import { KeyCode } from './types';
 
-describe('buildShortcuts', () => {
+describe.only('buildShortcuts', () => {
   it('should assign 1 key to 1 handler', () => {
     const result = buildShortcuts({
       FIRST: 'a',
@@ -10,7 +11,7 @@ describe('buildShortcuts', () => {
     expect(result).toEqual([{ keys: 'a', action: { type: 'FIRST' } }]);
   });
 
-  it('should build shortCuts from 1 object', () => {
+  it.only('should build shortCuts from 1 object', () => {
     const result = buildShortcuts({
       FIRST: { combination: [KeyCode.Ctrl, 'a'] },
     });
