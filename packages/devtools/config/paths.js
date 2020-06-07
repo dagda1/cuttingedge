@@ -38,6 +38,7 @@ const libPackages = [
   'packages/connected-components',
   'packages/use-shortcuts',
   'packages/react-typed-mousetrap',
+  'packages/graphql-swagger',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));

@@ -1,23 +1,22 @@
-import { ShortcutAction, ShortcutItem, ShortcutMap } from './types';
-import { isPlainObject } from './utils/isPlainObject';
+import { ShortcutAction, ShortcutMap, KeyStroke } from './types';
+import { isCombination, isSequence } from './utils/guards';
 
+function createKeyStrokes(keyStrokes: KeyStroke | KeyStroke[], separator: '+' | ' '): string {
+  const keys = Array.isArray(keyStrokes) ? keyStrokes : [keyStrokes];
+
+  return keys.join(separator);
+}
 export const buildShortcuts = (map: ShortcutMap): ShortcutAction[] => {
   const shortcutActions: ShortcutAction[] = [];
   Object.keys(map).forEach((key) => {
     const shortcut = map[key];
 
-    const createCombination = (shortcut: ShortcutItem): string => {
-      const comboType = Object.keys(shortcut)[0];
-      const comboValues = shortcut[comboType];
-      const keys = Array.isArray(comboValues) ? comboValues : [comboValues];
+    if (isCombination(shortcut)) {
+      const keys = createKeyStrokes(shortcut.combination, '+');
 
-      const seperator = comboType === 'combination' ? '+' : ' ';
-
-      return keys.join(seperator);
-    };
-
-    if (isPlainObject(shortcut)) {
-      const keys = createCombination(shortcut);
+      shortcutActions.push({ keys, action: { type: key } });
+    } else if (isSequence(shortcut)) {
+      const keys = createKeyStrokes(shortcut.sequence, ' ');
 
       shortcutActions.push({ keys, action: { type: key } });
     } else if (Array.isArray(shortcut)) {
@@ -26,7 +25,7 @@ export const buildShortcuts = (map: ShortcutMap): ShortcutAction[] => {
           return element;
         }
 
-        return createCombination(element);
+        return createKeyStrokes(element, ' ');
       });
 
       shortcutActions.push({ keys, action: { type: key } });

@@ -83,14 +83,6 @@ export const routable: Page[] = [
     exact: false,
     footerPage: false,
   },
-  {
-    heading: 'Ask Me!',
-    path: Urls.ContactMe,
-    component: ContactMe,
-    exact: true,
-    footerPage: false,
-    className: 'ask-me',
-  },
 ];
 
 export const Routes: React.FC = () => (
@@ -98,6 +90,7 @@ export const Routes: React.FC = () => (
     {routable.map(({ path, ...rest }) => (
       <Route key={path} path={path} {...rest} />
     ))}
+    <Route path={Urls.ContactMe} component={ContactMe} exact />
   </Switch>
 );
 

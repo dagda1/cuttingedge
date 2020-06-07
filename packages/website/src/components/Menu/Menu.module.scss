@@ -31,10 +31,10 @@ path {
     vertical-align: middle;
     position: relative;
 
-    @include mr(3);
+    &:not(.mobile__button__container):not(:last-of-type) {
+      @include mr(2);
 
-    @include mq-m {
-      &:not(.mobile__button__container) {
+      @include mq-m {
         @include mr(3);
       }
     }
@@ -147,8 +147,8 @@ ul li.logo__container {
 
 }
 
-ul li.horizontal {
-  display: none;
+ul li.horizontal:not(.ask-me) {
+    display: none;
 
   @include mq-m {
     display: inline;
@@ -158,6 +158,7 @@ ul li.horizontal {
 ul li.menu__mobile__button__container {
   vertical-align: middle;
   @include ml(1);
+  @include mr(2);
 }
 
 ul li.horizontal.expanded {
@@ -207,13 +208,19 @@ ul li.horizontal.mobile.close__button{
   }
 }
 
-:global .ask-me {
+.ask-me a {
   background-color: #FF8B45;
   color: #ffffff;
   border-radius: 1rem;
-  padding: 1rem 2rem;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 2rem;
+  top: 0 !important;
+  padding: 1rem;
+  
+  @include mq-m {
+    font-size: 3rem;
+    padding: 1rem 2rem;
+  }
 }
 
 .no-mobile {

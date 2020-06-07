@@ -6,6 +6,7 @@ import * as urls from '../../urls';
 import { MobileNavButton } from '../MobileNavButton';
 import { Cow } from '../Svg';
 import { MenuItems, MobileMenuItems } from './MenuItems';
+import * as Urls from 'src/urls';
 
 const styles = require('./Menu.module.scss');
 
@@ -36,6 +37,11 @@ export const Menu: React.FC = () => {
                 Paul Cowan
               </NavLink>
             </Heading>
+          </li>
+          <li className={cs(styles['ask-me'], styles.horizontal)}>
+            <NavLink to={Urls.ContactMe} activeClassName={styles.active} onClick={collapse}>
+              Ask Me
+            </NavLink>
           </li>
           <li className={styles.mobile__button__container}>
             <MobileNavButton onClick={toggleIsExpanded} isActive={expanded} />

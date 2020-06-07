@@ -34,8 +34,16 @@ export interface Sequence {
   sequence: KeyStroke[];
 }
 
-export type ShortcutItem = KeyStroke | KeyStroke[] | Combination | Sequence;
+export type ShortcutItem<K> = K extends Record<'combination', KeyStroke[]>
+  ? Combination
+  : K extends Record<'sequence', KeyStroke[]>
+  ? Sequence
+  : K extends ArrayLike<KeyStroke>
+  ? KeyStroke[]
+  : K extends string
+  ? KeyStroke
+  : never;
 
 export interface ShortcutMap {
-  [key: string]: ShortcutItem;
+  [key: string]: ShortcutItem<any>;
 }

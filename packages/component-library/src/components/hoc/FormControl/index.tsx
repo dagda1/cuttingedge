@@ -22,6 +22,7 @@ export type FormControlProps<E> = {
   required?: boolean;
   strong?: boolean;
   layoutType?: LayoutType;
+  ['data-selector']?: string;
 } & React.InputHTMLAttributes<E>;
 
 export function FormControl<P, E extends HTMLElement>(
