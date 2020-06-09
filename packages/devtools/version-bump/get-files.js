@@ -6,15 +6,13 @@ const getFiles = (dir, filename) =>
     const name = path.join(dir, file);
     const isDirectory = fs.statSync(name).isDirectory();
 
-    if (!isDirectory) {
-      return name.includes(filename) ? [...files, name] : files;
+    if (isDirectory) {
+      if (name.includes('node_modules')) {
+        return files;
+      }
+      return [...files, ...getFiles(name, filename)];
     }
-
-    if (name.includes('node_modules')) {
-      return files;
-    }
-
-    return [...files, ...getFiles(name, filename)];
+    return name.includes(filename) ? [...files, name] : files;
   }, []);
 
 module.exports = getFiles;

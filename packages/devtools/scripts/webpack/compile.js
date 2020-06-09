@@ -20,7 +20,6 @@ function compile(config, cb) {
 module.exports.compile = (config, type) => {
   return new Promise((resolve, reject) => {
     logger.info(`compiling ${type}`);
-
     compile(config, (err, stats) => {
       if (err) {
         logger.error(err.message);

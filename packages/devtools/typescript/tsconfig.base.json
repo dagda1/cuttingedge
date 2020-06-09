@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "strict": true,
+    "jsx": "react",
+    "outDir": "./dist",
+    "strictNullChecks": false,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "lib": [
+      "es5",
+      "es2015",
+      "es2016",
+      "dom"
+    ],
+    "types": [
+      "node",
+      "@types/jest",
+      "webpack-env",
+      "@ds/frontend-types"
+    ],
+    "typeRoots": [
+      "../../../node_modules/@types"
+    ],
+    "strictFunctionTypes": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "removeComments": false,
+    "checkJs": false,
+    "preserveSymlinks": true,
+    "esModuleInterop": true
+  }
+}

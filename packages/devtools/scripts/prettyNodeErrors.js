@@ -21,7 +21,7 @@ function pretty(error) {
   }
 }
 
-function prettifyErrors(transform) {
+function usePrettyErrors(transform) {
   const { prepareStackTrace } = Error;
 
   Error.prepareStackTrace = (error, trace) => {
@@ -38,4 +38,4 @@ const stackTransform = ({ stack = '', ...rest }) => ({
   ...rest,
 });
 
-prettifyErrors(stackTransform);
+usePrettyErrors(stackTransform);
