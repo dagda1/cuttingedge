@@ -1,15 +1,11 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import postcssOptions from '../postCssoptions';
-<<<<<<< HEAD:packages/devtools/src/webpack/loaders/css.ts
+
 import { getLocalIdent } from '../getLocalIdent';
+import { cssRegex, sassRegex, sassModuleRegex } from '../constants';
 
-const cssLoaders = (isDevelopment: boolean, isNode: boolean, { modules }: { modules: boolean }) => [
-=======
-import { GetLocalIdent } from '../getLocalIdent';
-
-const cssLoaders = (isDevelopment: boolean, isNode: boolean, { modules }: { modules: boolean }) => [
+export const cssLoaders = (isDevelopment: boolean, isNode: boolean, { modules }: { modules: boolean }) => [
   isDevelopment && require.resolve('css-hot-loader'),
->>>>>>> more ts:packages/devtools/src/webpack/loaders/css.ts
   {
     loader: MiniCssExtractPlugin.loader,
     options: {
@@ -32,7 +28,7 @@ const cssLoaders = (isDevelopment: boolean, isNode: boolean, { modules }: { modu
   { loader: 'postcss-loader', options: postcssOptions },
 ];
 
-const createCSSLoaders = ({ isDevelopment, isNode }) => [
+export const createCSSLoaders = ({ isDevelopment, isNode }) => [
   {
     test: cssRegex,
     use: cssLoaders(isDevelopment, isNode, { modules: false }).filter(Boolean),
@@ -47,8 +43,3 @@ const createCSSLoaders = ({ isDevelopment, isNode }) => [
     use: [...cssLoaders(isDevelopment, isNode, { modules: true }), { loader: 'sass-loader' }].filter(Boolean),
   },
 ];
-
-module.exports = {
-  createCSSLoaders,
-  cssLoaders,
-};

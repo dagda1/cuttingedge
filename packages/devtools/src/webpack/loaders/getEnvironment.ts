@@ -1,4 +1,4 @@
-const getEnvironment = () => {
+export const getEnvironment = () => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
   const isProduction = process.env.NODE_ENV === 'production';
   const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : 'static/media/[hash:8].[ext]';
@@ -14,7 +14,7 @@ const getEnvironment = () => {
   };
 };
 
-const getEnvVariables = (options) => {
+export const getEnvVariables = (options) => {
   const { isDevelopment } = getEnvironment();
   delete require.cache[require.resolve('../config/env')];
 
@@ -29,9 +29,4 @@ const getEnvVariables = (options) => {
       __BROWSER__: !options.isNode,
     },
   );
-};
-
-module.exports = {
-  getEnvVariables,
-  getEnvironment,
 };

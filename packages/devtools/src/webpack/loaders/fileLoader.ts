@@ -1,4 +1,4 @@
-const createFileLoader = ({ staticAssetName, isWeb }) => ({
+export const createFileLoader = ({ staticAssetName, isWeb }) => ({
   exclude: [
     /\.html$/,
     /\.jsx?$/,
@@ -23,7 +23,3 @@ const createFileLoader = ({ staticAssetName, isWeb }) => ({
   loader: 'file-loader',
   options: { name: staticAssetName, emitFile: isWeb },
 });
-
-module.exports = {
-  createFileLoader,
-};

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/camelcase */
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 
-const createWebpackOptimisation = ({ optimization, isDevelopment }) => {
+export const createWebpackOptimisation = ({ optimization, isDevelopment }) => {
   return {
     ...optimization,
     ...{
@@ -52,8 +53,4 @@ const createWebpackOptimisation = ({ optimization, isDevelopment }) => {
       },
     },
   };
-};
-
-module.exports = {
-  createWebpackOptimisation,
 };

@@ -1,8 +1,10 @@
-const paths = require('../config/paths');
-const ignoredFiles = require('react-dev-utils/ignoredFiles');
-const fs = require('fs');
-const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
-const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
+
+import paths from '../../config/paths';
+import ignoredFiles from 'react-dev-utils/ignoredFiles';
+import fs from 'fs';
+import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
+import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware';
+import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 
 const createDevServer = ({ protocol, host, sockPort, sockHost, sockPath, proxy }) => {
   return {

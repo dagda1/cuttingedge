@@ -1,4 +1,4 @@
-const createCSVLoader = () => ({
+export const createCSVLoader = () => ({
   test: /\.csv$/,
   loader: 'csv-loader',
   options: {
@@ -6,7 +6,3 @@ const createCSVLoader = () => ({
     skipEmptyLines: true,
   },
 });
-
-module.exports = {
-  createCSVLoader,
-};

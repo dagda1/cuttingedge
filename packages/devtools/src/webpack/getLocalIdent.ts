@@ -7,7 +7,12 @@ const decamelize = (str: string) => str.replace(/([a-z\d])([A-Z])/g, '$1_$2').to
 
 const dasherize = (str: string) => decamelize(str).replace(/[ _]/g, '-');
 
-const getLocalIdent: GetLocalIdent = (loaderContext: any, localIdentName: string, localName: string, options: any) => {
+export const getLocalIdent: GetLocalIdent = (
+  loaderContext: any,
+  localIdentName: string,
+  localName: string,
+  options: any,
+) => {
   if (!options.context) {
     options.context =
       loaderContext.options && typeof loaderContext.options.context === 'string'
@@ -20,5 +25,3 @@ const getLocalIdent: GetLocalIdent = (loaderContext: any, localIdentName: string
 
   return `${prefix}__${localName}`;
 };
-
-export default getLocalIdent;

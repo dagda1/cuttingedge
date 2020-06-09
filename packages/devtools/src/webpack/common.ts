@@ -1,23 +1,24 @@
-const path = require('path');
-const webpack = require('webpack');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const paths = require('../config/paths');
-const WebpackBar = require('webpackbar');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const resolve = require('resolve');
-const HappyPack = require('happypack');
-const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { getEnvironment, getEnvVariables } = require('./getEnvironment');
-const { findAppNodeModules } = require('../util/findNodeModules');
-const { createFileLoader } = require('./loaders/fileLoader');
-const { createUrlLoader } = require('./loaders/urlLoader');
-const { createJsLoader } = require('./loaders/jsLoader');
-const { createTypescriptLoader } = require('./loaders/typescriptLoader');
-const { createCSSLoaders } = require('./loaders/css');
-const { createCSVLoader } = require('./loaders/csvLoader');
-const { createSVGLoader } = require('./loaders/svgLoader');
-const { createMDLoader } = require('./loaders/mdLoader');
+import path from 'path';
+import webpack from 'webpack';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import paths from '../config/paths';
+import WebpackBar from 'webpackbar';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import resolve from 'resolve';
+import HappyPack from 'happypack';
+import typescriptFormatter from 'react-dev-utils/typescriptFormatter';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { getEnvironment, getEnvVariables } from './getEnvironment';
+import { findAppNodeModules } from '../util/findNodeModules';
+import { createFileLoader } from './loaders/fileLoader';
+import { createUrlLoader } from './loaders/urlLoader';
+import { createJsLoader } from './loaders/jsLoader';
+import { createTypescriptLoader } from './loaders/typescriptLoader';
+import { createCSSLoaders } from './loaders/css';
+import { createCSVLoader } from './loaders/csvLoader';
+import { createSVGLoader } from './loaders/svgLoader';
+import { createMDLoader } from './loaders/mdLoader';
+
 const repoNodeModules = findAppNodeModules(__dirname);
 
 const configureCommon = (options) => {
