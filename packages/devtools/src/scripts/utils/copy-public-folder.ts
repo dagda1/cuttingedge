@@ -1,5 +1,5 @@
 import fs from 'fs-extra';
-import paths from '../../config/paths';
+import { paths } from '../../config/paths';
 import path from 'path';
 
 export const copyRecursiveSync = function copyRecursiveSync(src: string, dest: string) {

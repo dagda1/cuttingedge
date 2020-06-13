@@ -1,27 +1,47 @@
-const merge = require('webpack-merge');
-const webpack = require('webpack');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { configureCommon, getEnvironment } = require('./common');
-const paths = require('../config/paths');
-const fs = require('fs');
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
-const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const { getCommitHash } = require('../scripts/git');
-const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const { getUrlParts } = require('./getUrlParts');
-const { createDevServer } = require('./createDevServer');
-const { createWebpackOptimisation } = require('./optimisation/createWebpackOptimisation');
+
+import webpack from 'webpack';
+import path from 'path';
+import merge from 'webpack-merge';
+import { prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { DevServerConfig } from 'src/types/config';
+import { assert } from 'console';
+import { configureCommon, getEnvironment } from './common';
+import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import { paths } from '../config/paths';
+import fs from 'fs';
+import TerserPlugin from 'terser-webpack-plugin';
+import safePostCssParser from 'postcss-safe-parser';
+import InlineChunkHtmlPlugin from 'react-dev-utils/InlineChunkHtmlPlugin';
+import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin';
+import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
+import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
+import ignoredFiles from 'react-dev-utils/ignoredFiles';
+import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
+import { getCommitHash } from '../scripts/git';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import ManifestPlugin from 'webpack-manifest-plugin';
 
 const isProfilerEnabled = () => process.argv.includes('--profile');
 
-const configure = (options) => {
-  const { entries, publicDir, proxy, devServer, isStaticBuild, publicPath = '/' } = options;
+function getUrlParts() {
+  assert(!!process.env.PORT, 'no process.env.PORT set');
+  const port = Number(process.env.PORT);
+  const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+  const host = process.env.HOST || 'localhost';
+  const urls = prepareUrls(protocol, host, port);
+
+  return {
+    port,
+    protocol,
+    host,
+    urls,
+  };
+}
+
+const configure = (options: DevServerConfig) => {
+  const { entries, publicDir, proxy, devServer, isStaticBuild, publicPath = '/' } = { ...options };
   options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
   const { isDevelopment, isProduction } = getEnvironment();
   const { protocol, host, port, sockPort, sockHost, sockPath } = getUrlParts({ isProduction });
@@ -32,6 +52,12 @@ const configure = (options) => {
   const ssrBuild = !isStaticBuild;
 
   const common = configureCommon(options);
+
+  const devServerPort = isProduction || isStaticBuild ? port : port + 1;
+
+  const sockPort = process.env.WDS_SOCKET_PORT || devServerPort;
+  const sockHost = process.env.WDS_SOCKET_HOST;
+  const sockPath = process.env.WDS_SOCKET_PATH;
 
   const polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
 
@@ -128,4 +154,3 @@ const configure = (options) => {
   return config;
 };
 
-module.exports = { configure, getUrlParts };

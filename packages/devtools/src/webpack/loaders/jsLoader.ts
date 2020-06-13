@@ -1,4 +1,4 @@
-const createJsLoader = () => ({
+export const createJsLoader = () => ({
   test: /\.(js|jsx|mjs)$/,
   exclude: /\/node_modules\/core-js\//,
   use: [
@@ -11,7 +11,3 @@ const createJsLoader = () => ({
     },
   ],
 });
-
-module.exports = {
-  createJsLoader,
-};

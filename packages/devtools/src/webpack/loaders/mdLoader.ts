@@ -1,4 +1,4 @@
-const createMDLoader = () => ({
+export const createMDLoader = () => ({
   test: /\.md$/,
   use: [
     {
@@ -10,7 +10,3 @@ const createMDLoader = () => ({
     },
   ],
 });
-
-module.exports = {
-  createMDLoader,
-};

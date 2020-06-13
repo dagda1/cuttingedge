@@ -1,10 +1,11 @@
-const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
-const printErrors = require('../printErrors');
-const webpack = require('webpack');
-const logger = require('../logger');
+import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
+import printErrors from '../printErrors';
+import webpack, { Configuration, Stats } from 'webpack';
+import logger from '../logger';
+import { BuildType } from 'src/types/build';
 
 // Wrap webpack compile in a try catch.
-function compile(config, cb) {
+function compileWebpack(config: Configuration, cb: (err: Error, stats: Stats) => void) {
   let compiler;
   try {
     compiler = webpack(config);
@@ -17,10 +18,10 @@ function compile(config, cb) {
   });
 }
 
-module.exports.compile = (config, type) => {
+export const compile = (config: Configuration, buildType: BuildType): Promise<{ stats: Stats }> => {
   return new Promise((resolve, reject) => {
-    logger.info(`compiling ${type}`);
-    compile(config, (err, stats) => {
+    logger.info(`compiling ${buildType}`);
+    compileWebpack(config, (err, stats) => {
       if (err) {
         logger.error(err.message);
         reject(err);
@@ -32,7 +33,7 @@ module.exports.compile = (config, type) => {
         return reject(new Error(messages.errors.join('\n')));
       }
 
-      logger.done(`Compiled ${type} successfully.`);
+      logger.done(`Compiled ${buildType} successfully.`);
 
       if (messages.warnings.length) {
         logger.warn('Compiled with warnings.');

@@ -1,11 +1,11 @@
 import logger from './logger';
 import fs from 'fs-extra';
 import path from 'path';
-import paths from '../config/paths';
+import { paths } from '../config/paths';
 import copy from 'copy';
 import { exec } from 'child_process';
 import { findFile } from '../config/utils';
-import { config } from '../config/build.config';
+
 const MaxTries = 15;
 
 export function findExecutable(current: string, executable: string, tries = 0): any {
@@ -45,11 +45,6 @@ export function runEslint() {
 }
 
 function runTypeScriptBuild() {
-  const buildConfig = config.ts;
-  const {
-    options: {},
-  } = buildConfig;
-
   fs.emptyDirSync(paths.appBuild);
 
   process.argv.push('--pretty', true.toString().toLocaleLowerCase());

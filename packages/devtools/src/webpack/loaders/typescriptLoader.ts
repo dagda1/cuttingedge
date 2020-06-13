@@ -1,7 +1,15 @@
 const paths = require('../../config/paths');
 const { loadableTransformer } = require('loadable-ts-transformer');
 
-const createTypescriptLoader = ({ isDevelopment, isProduction, isWeb }) => (
+export const createTypescriptLoader = ({
+  isDevelopment,
+  isProduction,
+  isWeb,
+}: {
+  isDevelopment: boolean;
+  isProduction: boolean;
+  isWeb: boolean;
+}) => [
   {
     test: /\.tsx$/,
     enforce: 'pre',
@@ -38,9 +46,5 @@ const createTypescriptLoader = ({ isDevelopment, isProduction, isWeb }) => (
         },
       },
     ].filter(Boolean),
-  }
-);
-
-module.exports = {
-  createTypescriptLoader,
-};
+  },
+];

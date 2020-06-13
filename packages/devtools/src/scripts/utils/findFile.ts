@@ -1,9 +1,9 @@
-const path = require('path');
-const fs = require('fs-extra');
+import path from 'path';
+import fs from 'fs';
 
 const MaxTries = 10;
 
-const findFile = (current, fileName, tries = 0) => {
+const findFile = (current: string, fileName: string, tries = 0): string => {
   const file = path.resolve(current, fileName);
 
   if (tries === MaxTries) {

@@ -1,11 +1,10 @@
-const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
+import { assert } from '@cutting/util';
+import { prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
 
-function getUrlParts({ isProduction }) {
+export const getUrlParts = () => {
   const rawPort = process.env.PORT_DEV || process.env.PORT;
 
-  if (!isProduction && !rawPort) {
-    throw new Error('No port number on PORT or PORT_DEV');
-  }
+  assert(!!rawPort, 'No port number on PORT or PORT_DEV');
 
   const port = Number(rawPort);
   const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
@@ -24,8 +23,4 @@ function getUrlParts({ isProduction }) {
     sockHost,
     sockPath,
   };
-}
-
-module.exports = {
-  getUrlParts,
 };

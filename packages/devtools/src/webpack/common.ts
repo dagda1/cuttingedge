@@ -1,7 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import paths from '../config/paths';
+import { paths } from '../config/paths';
 import WebpackBar from 'webpackbar';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import resolve from 'resolve';
@@ -18,14 +18,15 @@ import { createCSSLoaders } from './loaders/css';
 import { createCSVLoader } from './loaders/csvLoader';
 import { createSVGLoader } from './loaders/svgLoader';
 import { createMDLoader } from './loaders/mdLoader';
+import { DevServerConfig, ServerBuildConfig } from 'src/types/config';
 
 const repoNodeModules = findAppNodeModules(__dirname);
 
-const configureCommon = (options) => {
+export const configureCommon = (options: DevServerConfig | ServerBuildConfig) => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
-  const env = getEnvVariables(options);
+  const env = getEnvVariables({ isNode: !!options.isNode });
 
   const config = {
     mode: isDevelopment ? 'development' : 'production',
@@ -93,7 +94,6 @@ const configureCommon = (options) => {
             '!**/src/setupProxy.*',
             '!**/src/setupTests.*',
           ],
-          watch: paths.appSrc,
           silent: true,
           formatter: isProduction ? typescriptFormatter : undefined,
         }),
@@ -110,5 +110,3 @@ const configureCommon = (options) => {
 
   return config;
 };
-
-module.exports = { configureCommon, getEnvironment, getEnvVariables };

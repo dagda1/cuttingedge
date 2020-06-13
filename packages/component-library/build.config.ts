@@ -1,6 +1,6 @@
 const paths = require('@cutting/devtools/config/paths');
 
-module.exports = {
+export const config: BuildConfig = {
   devServer: {
     entries: paths.devDir,
     publicDir: paths.devDirPublic,
@@ -8,3 +8,5 @@ module.exports = {
     isStaticBuild: true,
   },
 };
+
+export default config;

@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-'use strict';
 process.env.NODE_ENV = 'production';
 
 process.on('unhandledRejection', (err) => {
@@ -9,11 +7,12 @@ process.on('unhandledRejection', (err) => {
 import '.../config/env';
 
 import fs from 'fs-extra';
-import paths from '../config/paths';
+import { paths } from '../config/paths';
 import logger from './logger';
 import FileSizeReporter from 'react-dev-utils/FileSizeReporter';
 import { copyPublicFolder } from './utils/copy-public-folder';
 import { compile } from './webpack/compile';
+import { BuildType } from 'src/types/build';
 
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
@@ -55,15 +54,15 @@ export const build = async ({
     copyPublicFolder();
 
     if (buildNode) {
-      await compile(nodeConfig, 'node');
+      await compile(nodeConfig, BuildType.node);
       logger.done('build finished');
       return;
     }
 
-    const { stats: clientStats } = await compile(clientConfig, 'client');
+    const { stats: clientStats } = await compile(clientConfig, BuildType.client);
 
     if (buildServer) {
-      await compile(serverConfig, 'server');
+      await compile(serverConfig, BuildType.server);
     }
 
     printFileSizesAfterBuild(clientStats, previousFileSizes, publicDir);

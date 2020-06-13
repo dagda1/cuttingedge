@@ -1,11 +1,11 @@
-const merge = require('webpack-merge');
-const webpack = require('webpack');
+import merge from 'webpack-merge';
+import webpack from 'webpack';
 const nodeExternals = require('webpack-node-externals');
 const paths = require('../config/paths');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const { configureCommon, getEnvironment } = require('./common');
 
-getExternals = function (modulesDir) {
+const getExternals = (modulesDir: string) => {
   return [
     nodeExternals(),
     nodeExternals({

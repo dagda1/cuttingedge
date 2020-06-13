@@ -1,6 +1,7 @@
-const paths = require('./paths');
+import { BuildConfig } from 'src/types/config';
+import { paths } from './paths';
 
-export const config = {
+export const config: BuildConfig = {
   client: {
     entries: paths.appClientIndexJs,
     hotReloading: true,
@@ -33,6 +34,4 @@ export const config = {
     publicPath: '/',
     typescriptOptions: {},
   },
-} as const;
-
-export default config;
+};

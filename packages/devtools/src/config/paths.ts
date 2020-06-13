@@ -44,7 +44,7 @@ const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cw
 
 const appBuildDirName = 'dist';
 
-const paths = {
+export const paths = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
   appBuild: resolveApp('dist'),
@@ -77,5 +77,3 @@ const paths = {
   tranlationsDir: resolveApp('src/translations'),
   publicUrlOrPath,
 };
-
-export default paths;
