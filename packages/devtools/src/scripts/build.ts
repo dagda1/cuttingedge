@@ -46,6 +46,8 @@ export const build = async ({
 
   const publicDir = buildServer ? paths.appBuildPublic : paths.appBuild;
 
+  const publicDir = buildServer ? paths.appBuildPublic : paths.appBuild;
+
   try {
     const previousFileSizes = await measureFileSizesBeforeBuild(publicDir);
 
