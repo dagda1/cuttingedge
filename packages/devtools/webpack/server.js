@@ -33,6 +33,7 @@ const configure = (options = {}) => {
   const common = configureCommon({ ...options, isNode: true, ssrBuild: true });
 
   options.isWeb = false;
+
   const { isDevelopment, isProduction } = getEnvironment();
 
   const env = getEnvVariables(options);
@@ -74,10 +75,10 @@ const configure = (options = {}) => {
     },
 
     plugins: [
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1,
       }),
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new webpack.NamedModulesPlugin(),
       isDevelopment &&
         new StartServerPlugin({

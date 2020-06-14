@@ -83,24 +83,8 @@ const warn = (text, data) => {
   write('warn', text, data);
 };
 
-const error = (err) => {
-  if (typeof err === 'string') {
-    write('error', err);
-    return;
-  }
-
-  if (err.message) {
-    write('error', err.message);
-  }
-
-  write('error', err);
-  if (err.stack) {
-    write('error', err.stack);
-  }
-
-  if (err.frame) {
-    write('error', err.frame);
-  }
+const error = (text, err) => {
+  write('error', text, err);
 };
 
 module.exports = {

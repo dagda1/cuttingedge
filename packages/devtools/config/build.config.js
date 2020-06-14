@@ -4,10 +4,12 @@ module.exports = {
   client: {
     entries: paths.appClientIndexJs,
     hotReloading: true,
+    publicPath: '/',
   },
   server: {
     entries: paths.appServerIndexJs,
     filename: 'server.js',
+    bail: true,
     progress: true,
   },
   ts: {
@@ -21,12 +23,14 @@ module.exports = {
   node: {
     entries: paths.appSrc,
     filename: 'index.js',
+    externals: [],
   },
   devServer: {
     entries: paths.appSrc,
     devServer: true,
     isStaticBuild: true,
     publicDir: paths.appPublic,
+    publicPath: '/',
     typescriptOptions: {},
   },
 };

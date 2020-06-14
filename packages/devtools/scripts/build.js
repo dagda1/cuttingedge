@@ -32,8 +32,10 @@ module.exports.build = async ({ buildClient, buildServer, buildNode }) => {
   const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
   const nodeConfig = !!buildNode && configureWebpackServer(buildConfig.node);
 
+  const publicDir = buildServer ? paths.appBuildPublic : paths.appBuild;
+
   try {
-    const previousFileSizes = await measureFileSizesBeforeBuild(paths.appBuildPublic);
+    const previousFileSizes = await measureFileSizesBeforeBuild(publicDir);
 
     fs.emptyDirSync(paths.appBuild);
 
@@ -50,7 +52,7 @@ module.exports.build = async ({ buildClient, buildServer, buildNode }) => {
       await compile(serverConfig, 'server');
     }
 
-    printFileSizesAfterBuild(clientStats, previousFileSizes, paths.appBuild);
+    printFileSizesAfterBuild(clientStats, previousFileSizes, publicDir);
 
     logger.done('build finished');
   } catch (err) {

@@ -28,12 +28,12 @@ function runEslint() {
 
   const eslintConfig = findFile(process.cwd(), '.eslintrc.json');
 
-  const args = ` --ext .ts,.tsx --max-warnings 0 ${paths.appSrc} -c ${eslintConfig} --fix`;
+  const args = ` --ext .ts,.tsx --max-warnings 0 ${paths.appSrc} --ignore-pattern *.test.* -c ${eslintConfig} --fix`;
 
   const eslint = exec(`${eslintPath} ${args}`);
 
   eslint.stdout.on('data', (data) => logger.info(data));
-  eslint.stderr.on('error', (data) => logger.error(data));
+  eslint.stderr.on('data', (data) => logger.error(data));
 
   eslint.on('close', (code) => {
     logger.done(`eslint exited with code ${code}`);
@@ -60,7 +60,7 @@ function runTypeScriptBuild() {
 
   const tscCommand = `${tscPath} ${process.argv.slice(2).join(' ')}`;
 
-  logger.start('running tsc');
+  logger.start(`running tsc`);
 
   const tsc = exec(tscCommand);
 
