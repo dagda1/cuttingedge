@@ -44,6 +44,10 @@ const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cw
 
 const appBuildDirName = 'dist';
 
+const jestConfig = fs.existsSync(resolveApp('jest.config.js'))
+  ? resolveApp('jest.config.js')
+  : path.resolve(__dirname, '../jest/jest.config.js');
+
 export const paths = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
@@ -76,4 +80,5 @@ export const paths = {
   proxySetup: resolveApp('setupProxy.js'),
   tranlationsDir: resolveApp('src/translations'),
   publicUrlOrPath,
+  jestConfig,
 };
