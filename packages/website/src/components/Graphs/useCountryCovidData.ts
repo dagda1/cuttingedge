@@ -10,30 +10,49 @@ dayjs.extend(utc);
 // documenter.getpostman.com/view/2568274/SzS8rjbe?version=latest
 const baseUrl = 'https://covidapi.info/api/v1/country';
 
-const transform = (results: CountryStats, country: CountryData): DayData[] => {
-  const data = results.result.map(({ date, deaths, ...rest }, i) => {
-    return {
-      x: (dayjs as any).utc(date).format(),
-      y: deaths,
-      index: i,
-      country,
-      deaths,
-      ...rest,
-    };
-  });
-
-  const result = data.map((d, i) => {
-    return {
-      ...d,
-      delta: i === 0 ? 0 : d.confirmed - data[i - 1].confirmed,
-      deltaDeaths: i === 0 ? 0 : d.y - data[i - 1].y,
-    };
-  });
-
-  return result;
+export type R = {
+  x: string;
+  y: number;
+  index: number;
+  country: CountryData;
+  deaths: number;
+  confirmed: number;
+  recovered: number;
+  delta: number;
+  deltaDeaths: number;
 };
 
-const DefaultStartDate = dayjs().subtract(45, 'day').format('YYYY-MM-DD');
+const transform = (results: CountryStats, country: CountryData): DayData[] => {
+  const data: R[] = [];
+
+  const added = new Set<string>();
+  results.result.forEach(({ date, deaths, confirmed, ...rest }, i) => {
+    if (!confirmed) {
+      debugger;
+    }
+    if (added.has(date) === false) {
+      data.push({
+        x: date,
+        y: deaths as number,
+        index: i,
+        country,
+        deaths,
+        confirmed,
+        delta: i === 0 ? confirmed : confirmed - data[i - 1].confirmed,
+        deltaDeaths: i === 0 ? 0 : deaths - data[i - 1].y,
+        ...rest,
+      });
+    }
+    added.add(date);
+  });
+
+  console.log(data);
+
+  return data;
+};
+
+// const DefaultStartDate = dayjs().subtract(90, 'day').format('YYYY-MM-DD');
+const DefaultStartDate = '2020-03-17';
 
 export interface CountryDataProps {
   startDate?: string;
@@ -64,7 +83,7 @@ export type CountriesStats = {
 export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDate: DefaultStartDate }) => {
   const getData = useCallback(() => getCountriesData({ startDate }), [startDate]);
 
-  const { run, state, data, counter, error, isSettled } = useAbort<CountriesStats>(getData);
+  const { run, data, isSettled } = useAbort<CountriesStats>(getData);
 
   useEffect(() => {
     run();
@@ -83,8 +102,6 @@ export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDat
       };
     }
   }
-
-  console.log({ data, isSettled, counter, state, error });
 
   return { data, isSettled };
 };

@@ -9,11 +9,13 @@ export const Deaths: React.FC = () => {
   if (result.data) {
     Object.keys(result.data).forEach((c) => {
       const country = result.data![c];
-      country.data = country.result.map((d: any) => ({
-        ...d,
-        deaths: d.y,
-        y: (d.y / countryData[c].population) * 100000,
-      }));
+      country.data = country.result
+        .map((d: any) => ({
+          ...d,
+          deaths: d.y,
+          y: (d.y / countryData[c].population) * 100000,
+        }))
+        .filter((_: any, i: number) => i === 0 || i % 10 === 0 || i === country.result.length - 1);
     });
   }
 
