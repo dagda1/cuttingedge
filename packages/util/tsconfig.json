@@ -6,8 +6,17 @@
     "declaration": true,
     "jsx": "react",
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "../../node_modules",
+    "./dist",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ]
 }

@@ -3,6 +3,7 @@ import { useAbort } from '@cutting/use-abort';
 
 import dayjs from 'dayjs';
 import { useCallback, useEffect } from 'react';
+import { uniqBy } from '@cutting/util';
 const utc = require('dayjs/plugin/utc');
 
 dayjs.extend(utc);
@@ -49,7 +50,9 @@ const getCountriesData = async ({ startDate }: CountryDataProps): Promise<Countr
       { headers },
     );
 
-    results[country] = await result.json();
+    const data = await result.json();
+    data.result = uniqBy(data.result, (a: any) => a.date);
+    results[country] = data;
   }
 
   return results as CountryStats;
@@ -64,7 +67,7 @@ export type CountriesStats = {
 export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDate: DefaultStartDate }) => {
   const getData = useCallback(() => getCountriesData({ startDate }), [startDate]);
 
-  const { run, state, data, counter, error, isSettled } = useAbort<CountriesStats>(getData);
+  const { run, data, isSettled } = useAbort<CountriesStats>(getData);
 
   useEffect(() => {
     run();
@@ -83,8 +86,6 @@ export const useCountryCovidData = ({ startDate }: CountryDataProps = { startDat
       };
     }
   }
-
-  console.log({ data, isSettled, counter, state, error });
 
   return { data, isSettled };
 };
