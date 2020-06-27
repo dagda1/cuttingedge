@@ -18,7 +18,7 @@
       "node",
       "@types/jest",
       "webpack-env",
-      "@ds/frontend-types"
+      "@cutting/useful-types"
     ],
     "typeRoots": [
       "../../../node_modules/@types"

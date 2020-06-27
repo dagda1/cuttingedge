@@ -7,6 +7,9 @@ import { StaticRouter, StaticRouterContext } from 'react-router';
 import { Routes } from '../routes';
 import path from 'path';
 import { Helmet } from 'react-helmet';
+import { GATagManager } from 'src/components/ga-tagmanager';
+
+const gaId = 'UA-146837410-1';
 
 export interface RendererOptions {
   req: Request;
@@ -23,65 +26,36 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
 
   const context: StaticRouterContext = {};
 
-  const html = renderToString(
-    extractor.collectChunks(
-      <StaticRouter location={req.url} context={context}>
-        <Routes />
-      </StaticRouter>,
-    ),
-  );
-
   const helmet = Helmet.renderStatic();
 
-  const gaScript = isProduction
-    ? `
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146837410-1"></script>
-  <script>
-  window.dataLayer = window.dataLayer || [];
-  gtag('js', new Date());
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  const app = (
+    <html lang="en" {...helmet.htmlAttributes.toComponent()}>
+      <head>
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Disclosure Scotland Payments</title>
+        {helmet.meta.toComponent()}
+        {helmet.link.toComponent()}
+        {extractor.getStyleElements()}
+        {isProduction && <GATagManager gaId={gaId} />}
+      </head>
+      <body {...helmet.bodyAttributes.toComponent()}>
+        <div id="root">
+          <StaticRouter location={req.url} context={context}>
+            <Routes />
+          </StaticRouter>
+        </div>
+      </body>
+      {extractor.getScriptElements()}
+    </html>
+  );
 
-  gtag('config', 'UA-146837410-1');
-
-  function insertCallback(parent, funcname, callback, ...args) {
-    let oldFunc = parent[funcname] ? parent[funcname] : function () { }
-    parent[funcname] = function () {
-      oldFunc.apply(this, arguments)
-      return callback(...args)
-    }
-  }
-
-  function notify_analytics(l) {
-    let newPage = l.pathname + l.hash
-     // replace UA-146837410-1 into your id
-     gtag('config', 'UA-146837410-1', { 'page_path': newPage }); 
-   }
-
-   insertCallback(window.history, "pushState", notify_analytics, location)
-   insertCallback(window.history, "replaceState", notify_analytics, location)
-  </script>
-  `
-    : '';
+  const appString = renderToString(extractor.collectChunks(app));
 
   res.status(HttpStatusCode.Ok).send(`
     <!doctype html>
-    <html lang="en" ${helmet.htmlAttributes.toString()}>
-      <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        ${gaScript}
-        ${helmet.title.toString()}
-        ${helmet.meta.toString()}
-        ${helmet.link.toString()}
-        ${extractor.getStyleTags()}   
-      </head>
-      <body ${helmet.bodyAttributes.toString()}>
-        <div id="root">${html}</div>
-        ${extractor.getScriptTags()}
-      </body>
-    </html>
+    ${appString}
   `);
 }

@@ -7,11 +7,13 @@ function getUrlParts({ isProduction }) {
     throw new Error('No port number on PORT or PORT_DEV');
   }
 
-  const port = parseInt(rawPort, 10);
+  const port = Number(rawPort);
   const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
   const host = process.env.HOST || 'localhost';
   const urls = prepareUrls(protocol, host, port);
   const sockPort = process.env.WDS_SOCKET_PORT || port;
+  const sockHost = process.env.WDS_SOCKET_HOST;
+  const sockPath = process.env.WDS_SOCKET_PATH;
 
   return {
     port,
@@ -19,6 +21,8 @@ function getUrlParts({ isProduction }) {
     host,
     urls,
     sockPort,
+    sockHost,
+    sockPath,
   };
 }
 

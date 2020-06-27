@@ -4,7 +4,6 @@ const { cssRegex, sassRegex, sassModuleRegex } = require('../constants');
 const getLocalIdent = require('../getLocalIdent');
 
 const cssLoaders = (isDevelopment, isNode, { modules }) => [
-  isDevelopment && require.resolve('css-hot-loader'),
   {
     loader: MiniCssExtractPlugin.loader,
     options: {

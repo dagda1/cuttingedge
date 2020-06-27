@@ -33,7 +33,6 @@
     "copy": "^0.3.2",
     "core-js": "3.6.5",
     "cross-env": "^7.0.2",
-    "css-hot-loader": "^1.4.4",
     "css-loader": "^3.5.3",
     "dotenv": "^8.2.0",
     "eslint-loader": "^4.0.2",

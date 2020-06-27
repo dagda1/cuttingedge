@@ -5,10 +5,7 @@ const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
 
-const createDevServer = ({ protocol, host, sockPort, proxy }) => {
-  const sockHost = process.env.WDS_SOCKET_HOST;
-  const sockPath = process.env.WDS_SOCKET_PATH;
-
+const createDevServer = ({ protocol, host, sockPort, sockHost, sockPath, proxy }) => {
   return {
     disableHostCheck: true,
     clientLogLevel: 'none',
@@ -19,6 +16,7 @@ const createDevServer = ({ protocol, host, sockPort, proxy }) => {
       'Access-Control-Allow-Origin': '*',
     },
     hot: true,
+    hotOnly: true,
     transportMode: 'ws',
     injectClient: false,
     sockHost,

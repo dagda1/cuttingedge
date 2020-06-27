@@ -1,0 +1,1 @@
+export { GATagManager } from './GATagManger';

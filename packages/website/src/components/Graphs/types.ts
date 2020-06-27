@@ -66,11 +66,6 @@ export const countryData: CountriesData = {
     color: '#FFFF00',
     population: 210000000,
   },
-  [Countries.Spain]: {
-    longName: 'Spain',
-    color: '#00FF00',
-    population: 47000000,
-  },
   [Countries.USA]: {
     longName: 'USA',
     color: '#fff',

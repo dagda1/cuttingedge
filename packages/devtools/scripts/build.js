@@ -16,9 +16,11 @@ const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const { copyPublicFolder } = require('./utils/copy-public-folder');
 const { compile } = require('./webpack/compile');
+const merge = require('webpack-merge');
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
+const configureWebpackNode = require('../webpack/node').configure;
 
 module.exports.build = async ({ buildClient, buildServer, buildNode }) => {
   logger.start('starting build');
@@ -26,11 +28,11 @@ module.exports.build = async ({ buildClient, buildServer, buildNode }) => {
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
-  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
+  const buildConfig = merge(globalBuildConfig, localBuildConfig);
 
   const clientConfig = !!buildClient && configureWebpackClient(buildConfig.client);
   const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
-  const nodeConfig = !!buildNode && configureWebpackServer(buildConfig.node);
+  const nodeConfig = !!buildNode && configureWebpackNode(buildConfig.node);
 
   const publicDir = buildServer ? paths.appBuildPublic : paths.appBuild;
 
@@ -44,6 +46,7 @@ module.exports.build = async ({ buildClient, buildServer, buildNode }) => {
     if (buildNode) {
       await compile(nodeConfig, 'node');
       logger.done('build finished');
+      return;
     }
 
     const { stats: clientStats } = await compile(clientConfig, 'client');

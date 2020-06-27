@@ -49,7 +49,7 @@ const configureCommon = (options) => {
           createFileLoader({ staticAssetName, isWeb }),
           createUrlLoader({ staticAssetName, isWeb }),
           createJsLoader(),
-          createTypescriptLoader({ isDevelopment, isProduction }),
+          createTypescriptLoader({ isDevelopment, isProduction, isWeb }),
           createCSVLoader(),
           createSVGLoader(),
           createMDLoader(),
@@ -104,4 +104,5 @@ const configureCommon = (options) => {
 
   return config;
 };
+
 module.exports = { configureCommon, getEnvironment, getEnvVariables };

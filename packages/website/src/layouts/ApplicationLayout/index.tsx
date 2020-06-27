@@ -43,8 +43,7 @@ export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
 
   return (
     <div className={styles['sr-anchor']} ref={root}>
-      <Helmet>
-        <title>{heading || CuttingEdge}</title>
+      <Helmet title={heading || CuttingEdge}>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Helmet>

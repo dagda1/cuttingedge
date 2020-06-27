@@ -24,7 +24,7 @@ const configure = (options) => {
   const { entries, publicDir, proxy, devServer, isStaticBuild, publicPath = '/' } = options;
   options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
   const { isDevelopment, isProduction } = getEnvironment();
-  const { protocol, host, port, sockPort } = getUrlParts({ isProduction });
+  const { protocol, host, port, sockPort, sockHost, sockPath } = getUrlParts({ isProduction });
 
   options.isNode = false;
   options.isWeb = true;
@@ -57,7 +57,7 @@ const configure = (options) => {
     name: 'client',
     target: 'web',
     entry: finalEntries,
-    devServer: isDevelopment ? createDevServer({ protocol, host, port, sockPort, proxy }) : {},
+    devServer: isDevelopment ? createDevServer({ protocol, host, port, sockPort, sockHost, sockPath, proxy }) : {},
     output: {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath: isDevelopment ? `${protocol}://${host}:${port}/` : '/',
@@ -107,12 +107,20 @@ const configure = (options) => {
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       isProfilerEnabled() && new webpack.debug.ProfilingPlugin(),
-      isDevelopment && new ReactRefreshWebpackPlugin(),
+      isDevelopment &&
+        new ReactRefreshWebpackPlugin({
+          overlay: {
+            sockPort: Number(sockPort),
+            sockPath,
+            sockHost,
+            sockIntegration: 'wds',
+          },
+        }),
     ].filter(Boolean),
   });
 
   if (isProduction) {
-    config.optimization = createWebpackOptimisation({ optimization: config.optimization, isDevelopment });
+    config.optimization = createWebpackOptimisation({ optimization: config.optimization, isDevelopment, ssrBuild });
   }
 
   return config;

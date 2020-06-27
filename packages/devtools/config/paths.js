@@ -42,15 +42,12 @@ const libPackages = [
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));
-
-const appBuildDirName = 'dist';
-
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp(`${appBuildDirName}`),
-  appBuildPublic: resolveApp(`${appBuildDirName}/public`),
-  appManifest: resolveApp(`${appBuildDirName}/loadable-stats.json`),
+  appBuild: resolveApp('dist'),
+  appBuildPublic: resolveApp('dist/public'),
+  appManifest: resolveApp('dist/assets.json'),
   appPublic: resolveApp('public'),
   appNodeModules: resolveApp('node_modules'),
   appSrc: resolveApp('src'),
@@ -58,11 +55,9 @@ module.exports = {
   appServerIndexJs: resolveApp('src'),
   appClientIndexJs: resolveApp('src/client'),
   appSrcIndexJs: './src',
-  testsSetup: resolveApp('src/setupTests.js'),
-  appHtml: resolveApp('public/index.html'),
-  appFavIco: resolveApp('public/favicon.ico'),
-  nodePaths: nodePaths,
   ownPath: resolveOwn('.'),
+  appHtml: resolveApp('public/index.html'),
+  nodePaths: nodePaths,
   ownNodeModules: resolveOwn('node_modules'),
   jsBuildConfigPath: requireRelative('./build.config.js'),
   localBuildConfig: resolveApp('./build.config.js'),
@@ -70,10 +65,13 @@ module.exports = {
   tsConfig: resolveApp('tsconfig.json'),
   devDir: resolveApp('demo'),
   devDirPublic: resolveApp('demo/public'),
-  esLintConfig: resolveApp('.eslintrc.json'),
+  eslintConfig: resolveApp('./.eslint.json'),
   libPackages,
   webAppPackages,
   allPackages: [...libPackages, ...webAppPackages],
   defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
+  jestConfig: path.join(__dirname, '../jest/jest.config.js'),
+  proxySetup: resolveApp('setupProxy.js'),
+  tranlationsDir: resolveApp('src/translations'),
   publicUrlOrPath,
 };
