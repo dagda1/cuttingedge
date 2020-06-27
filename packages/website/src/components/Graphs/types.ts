@@ -4,7 +4,6 @@ export enum Countries {
   Brazil = 'BRA',
   IT = 'ITA',
   GB = 'GBR',
-  Spain = 'ESP',
   Germany = 'DEU',
   USA = 'USA',
   Sweden = 'SWE',

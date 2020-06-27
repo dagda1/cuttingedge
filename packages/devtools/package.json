@@ -1,6 +1,6 @@
 {
   "name": "@cutting/devtools",
-  "version": "3.7.0",
+  "version": "3.9.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -81,6 +81,7 @@
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2",
     "webpackbar": "^4.0.0",
+    "write-file-webpack-plugin": "^4.5.1",
     "whatwg-fetch": "^3.0.0"
   },
   "files": [

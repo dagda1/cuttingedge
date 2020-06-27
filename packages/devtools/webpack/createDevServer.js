@@ -2,7 +2,6 @@ const paths = require('../config/paths');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const fs = require('fs');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
-const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
 
 const createDevServer = ({ protocol, host, sockPort, sockHost, sockPath, proxy }) => {
@@ -39,7 +38,6 @@ const createDevServer = ({ protocol, host, sockPort, sockHost, sockPath, proxy }
     },
     before(app, server) {
       app.use(evalSourceMapMiddleware(server));
-      app.use(errorOverlayMiddleware());
 
       if (fs.existsSync(paths.proxySetup)) {
         require(paths.proxySetup)(app);

@@ -38,7 +38,7 @@ export const Graph: React.FC<GraphProps> = ({
   yAxisLabel,
   labels,
   heading,
-  xTickFormat: tickFormat = (label: string, i: number) => (i % 3 === 0 ? `-   ${dayjs(label).format('DD/MM')}` : ''),
+  xTickFormat: tickFormat = (label: string, i: number) => (i % 15 === 0 ? `-   ${dayjs(label).format('DD/MM')}` : ''),
   yTickFormat = (t) => t,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
