@@ -1,5 +1,5 @@
-require('./raf');
-require('./polyfills');
+import './raf';
+import './polyfills';
 
 const { configure } = require('@testing-library/react');
 

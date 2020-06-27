@@ -1,6 +1,6 @@
 import autoprefixer from 'autoprefixer';
 
-module.exports = {
+const postCssOptions = {
   // Necessary for external CSS imports to work
   // https://github.com/facebookincubator/create-react-app/issues/2677
   ident: 'postcss',
@@ -12,4 +12,6 @@ module.exports = {
       }),
       require('cssnano'),
     ].filter(Boolean),
-};
+} as const;
+
+export default postCssOptions;
