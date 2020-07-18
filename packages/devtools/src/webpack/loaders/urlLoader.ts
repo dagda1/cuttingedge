@@ -3,7 +3,3 @@ export const createUrlLoader = ({ staticAssetName, isWeb }: { staticAssetName: s
   loader: 'url-loader',
   options: { name: staticAssetName, limit: 10000, emitFile: isWeb },
 });
-
-module.exports = {
-  createUrlLoader,
-};

@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'development';
 import fs from 'fs-extra';
-import webpack, { Configuration } from 'webpack';
+import webpack, { Configuration, Compiler } from 'webpack';
 import { paths } from '../config/paths';
 import devServer from 'webpack-dev-server';
 import printErrors from './printErrors';
@@ -14,7 +14,7 @@ import { ServerBuildConfig, DevServerConfig } from 'src/types/config';
 
 (process as any).noDeprecation = true;
 
-function compile(config: Configuration) {
+function compile(config: Configuration): Compiler {
   let compiler;
   try {
     compiler = webpack(config);

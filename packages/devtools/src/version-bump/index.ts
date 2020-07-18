@@ -1,22 +1,29 @@
-#! /usr/bin/env node
-const inquirer = require('inquirer');
-const getFiles = require('./get-files');
-const updateVersion = require('./update-version');
-const getPackageInfo = require('./get-package-info');
-const logger = require('../scripts/logger');
+import inquirer from 'inquirer';
+import { updateVersion } from './update-version';
+import logger from '../scripts/logger';
+import path from 'path';
+import { promisify } from 'util';
+import { getRootPackage } from './get-root-package';
+import globber from 'glob';
+import semver from 'semver';
 
-const semver = require('semver');
+const glob = promisify(globber);
 
 const main = async () => {
-  const package = getPackageInfo(process.cwd());
-  const currentVersion = package.version;
-  const versionRegex = /^(?:(\d*)\.)(?:(\d*)\.)(\*|\d*)?([-(SNAPSHOT|RELEASE)]*)$/;
-  const packageFiles = getFiles(package.dir, 'package.json');
+  logger.start('finding package.json');
 
-  if (package.version === undefined) {
-    logger.info('The package file does not have version property defined?. So, version update cannot be done on this file');
+  const { rootDir, version: currentVersion } = await getRootPackage(process.cwd());
+
+  logger.info(`found root package.json in ${rootDir}`);
+
+  if (currentVersion === undefined) {
+    logger.info(
+      'The package file does not have version property defined?. So, version update cannot be done on this file',
+    );
     return;
   }
+
+  const packageFiles = await glob('**/package.json', { cwd: rootDir, ignore: ['**/node_modules/**'] });
 
   const major = semver.inc(currentVersion, 'major');
   const minor = semver.inc(currentVersion, 'minor');
@@ -36,6 +43,8 @@ const main = async () => {
     return;
   }
 
+  let version: string;
+
   if (choice.value === 'custom') {
     const custom = await inquirer.prompt({
       type: 'input',
@@ -43,7 +52,7 @@ const main = async () => {
       message: 'Please input the version number of choice:',
     });
 
-    if (!versionRegex.test(custom.value)) {
+    if (!semver.valid(custom.value)) {
       logger.info('Version number format is incorrect. Please use the correct format');
       return;
     }
@@ -59,10 +68,8 @@ const main = async () => {
     message: 'Confirm the version update:',
   });
 
-  const updateDsDepVersion = package.name === '@cutting/root' ? true : false;
-
   return confirm.value
-    ? packageFiles.map((filename) => updateVersion(filename, version, updateDsDepVersion))
+    ? packageFiles.map((filename) => updateVersion(path.join(rootDir, filename), currentVersion, version))
     : logger.info('version change cancelled');
 };
 

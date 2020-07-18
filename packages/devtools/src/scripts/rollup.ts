@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable no-console */
 const { rollup } = require('rollup');
 import filesizePlugin from 'rollup-plugin-filesize';
 import replacePlugin from 'rollup-plugin-replace';
-import terserPlugin from 'rollup-plugin-terser';
+import { terser } from 'rollup-plugin-terser';
 import { paths } from '../config/paths';
 import fs from 'fs-extra';
 import path from 'path';
@@ -10,6 +11,7 @@ import typescript from 'rollup-plugin-typescript2';
 import logger from '../scripts/logger';
 import resolve from '@rollup/plugin-node-resolve';
 import sourceMaps from 'rollup-plugin-sourcemaps';
+import { assert } from '@cutting/util';
 
 if (!process.argv.includes('--package-name')) {
   throw new Error('no --package-name switch');
@@ -19,7 +21,7 @@ const packageName = process.argv[3];
 
 fs.removeSync(paths.appBuild);
 
-async function generateBundledModule(inputFile: string, outputFile: string, format) {
+async function generateBundledModule(inputFile: string, outputFile: string, format: string) {
   if (!fs.existsSync(inputFile)) {
     throw new Error(`Input file ${inputFile} does not exist`);
   }
@@ -66,7 +68,7 @@ async function generateBundledModule(inputFile: string, outputFile: string, form
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       sourceMaps(),
-      terserPlugin({
+      terser({
         output: { comments: true },
         compress: {
           keep_infinity: true,
@@ -92,7 +94,7 @@ async function generateBundledModule(inputFile: string, outputFile: string, form
 }
 
 async function build() {
-  const candidates = [];
+  const candidates: string[] = [];
 
   [packageName, path.join(packageName, 'index'), 'index'].forEach((candidate) => {
     ['.ts', '.tsx'].forEach((fileType) => {
@@ -101,6 +103,8 @@ async function build() {
   });
 
   const rootFile = candidates.find((candidate) => fs.existsSync(candidate));
+
+  assert(rootFile, 'No rootFile found for rollup');
 
   logger.info(rootFile);
 
