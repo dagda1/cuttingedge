@@ -34,9 +34,10 @@ var ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 var HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 var isProfilerEnabled = function () { return process.argv.includes('--profile'); };
 exports.configure = function (options) {
-    var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild, _a = options.publicPath, publicPath = _a === void 0 ? '/' : _a;
-    var _b = getEnvironment_1.getEnvironment(), isDevelopment = _b.isDevelopment, isProduction = _b.isProduction;
-    var _c = getUrlParts_1.getUrlParts(), protocol = _c.protocol, host = _c.host, port = _c.port, sockPort = _c.sockPort, sockHost = _c.sockHost, sockPath = _c.sockPath;
+    var _a;
+    var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild, _b = options.publicPath, publicPath = _b === void 0 ? '/' : _b;
+    var _c = getEnvironment_1.getEnvironment(), isDevelopment = _c.isDevelopment, isProduction = _c.isProduction;
+    var _d = getUrlParts_1.getUrlParts(), protocol = _d.protocol, host = _d.host, port = _d.port, sockPort = _d.sockPort, sockHost = _d.sockHost, sockPath = _d.sockPath;
     // TODO: get rid of mutation
     options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
     options.isNode = false;
@@ -120,6 +121,7 @@ exports.configure = function (options) {
         assert_1.assert(config.optimization, 'No optimization in config');
         config.optimization = createWebpackOptimisation_1.createWebpackOptimisation({ optimization: config.optimization, isDevelopment: isDevelopment, ssrBuild: ssrBuild });
     }
+    console.dir((_a = config.module) === null || _a === void 0 ? void 0 : _a.rules[3], { depth: 33 });
     return config;
 };
 //# sourceMappingURL=client.js.map

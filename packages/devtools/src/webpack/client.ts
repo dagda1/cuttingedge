@@ -76,7 +76,7 @@ export const configure = (options: DevServerConfig): Configuration => {
         new LoadableWebpackPlugin({
           writeToDisk: { filename: paths.appBuild },
         }),
-      new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl }),
+      new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl! }),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({
@@ -126,6 +126,8 @@ export const configure = (options: DevServerConfig): Configuration => {
     assert(config.optimization, 'No optimization in config');
     config.optimization = createWebpackOptimisation({ optimization: config.optimization!, isDevelopment, ssrBuild });
   }
+
+  console.dir(config.module?.rules[3], { depth: 33 });
 
   return config;
 };

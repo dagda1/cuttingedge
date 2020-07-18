@@ -58,8 +58,8 @@ exports.configureCommon = function (options) {
             rules: Array.prototype.filter.call(__spreadArrays([
                 fileLoader_1.createFileLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
                 urlLoader_1.createUrlLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
-                jsLoader_1.createJsLoader(),
-                typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isProduction: isProduction }),
+                jsLoader_1.createJsLoader()
+            ], typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isProduction: isProduction }), [
                 csvLoader_1.createCSVLoader(),
                 svgLoader_1.createSVGLoader(),
                 mdLoader_1.createMDLoader()

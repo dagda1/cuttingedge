@@ -7,10 +7,10 @@ import printErrors from './printErrors';
 import logger from './logger';
 import { setPorts } from './setPorts';
 import merge from 'webpack-merge';
-
 import { configure as configureWebpackClient } from '../webpack/client';
 import { configure as configureWebpackServer } from '../webpack/server';
-import { ServerBuildConfig, DevServerConfig } from '../types/config';
+import { BuildConfig } from '../types/config';
+import { config as globalBuildConfig } from '../config/build.config';
 
 (process as any).noDeprecation = true;
 
@@ -37,17 +37,12 @@ function main() {
 
   fs.removeSync(paths.appManifest);
 
-  const globalBuildConfig = require(paths.jsBuildConfigPath);
+  const localBuildConfig = require(paths.localBuildConfig) as BuildConfig;
 
-  const localBuildConfig = require(paths.localBuildConfig);
+  const buildConfig = merge(globalBuildConfig as any, localBuildConfig as any) as any;
 
-  const buildConfig = merge(globalBuildConfig, localBuildConfig) as {
-    server: ServerBuildConfig;
-    client: DevServerConfig;
-  };
-
-  const clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
-  const serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
+  const clientConfig = configureWebpackClient(buildConfig.client);
+  const serverConfig = configureWebpackServer(buildConfig.server);
 
   const clientCompiler = compile(clientConfig);
   const serverCompiler = compile(serverConfig);

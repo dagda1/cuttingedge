@@ -13,7 +13,8 @@ exports.config = {
         entries: paths_1.paths.appServerIndexJs,
         filename: 'server.js',
         bail: true,
-        progress: true,
+        ssrBuild: true,
+        isNode: true,
     },
     ts: {
         tsconfig: paths_1.paths.tsConfig,
@@ -27,6 +28,8 @@ exports.config = {
         entries: paths_1.paths.appSrc,
         filename: 'index.js',
         externals: [],
+        isNode: true,
+        modulesDir: './node_modules',
     },
     devServer: {
         entries: paths_1.paths.appSrc,
@@ -34,7 +37,6 @@ exports.config = {
         isStaticBuild: true,
         publicDir: paths_1.paths.appPublic,
         publicPath: '/',
-        typescriptOptions: {},
     },
 };
 //# sourceMappingURL=build.config.js.map

@@ -12,7 +12,8 @@ export const config: BuildConfig = {
     entries: paths.appServerIndexJs,
     filename: 'server.js',
     bail: true,
-    progress: true,
+    ssrBuild: true,
+    isNode: true,
   },
   ts: {
     tsconfig: paths.tsConfig,
@@ -26,6 +27,8 @@ export const config: BuildConfig = {
     entries: paths.appSrc,
     filename: 'index.js',
     externals: [],
+    isNode: true,
+    modulesDir: './node_modules',
   },
   devServer: {
     entries: paths.appSrc,
@@ -33,6 +36,5 @@ export const config: BuildConfig = {
     isStaticBuild: true,
     publicDir: paths.appPublic,
     publicPath: '/',
-    typescriptOptions: {},
   },
 };

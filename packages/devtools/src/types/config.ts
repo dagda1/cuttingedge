@@ -1,13 +1,7 @@
 import { CompilerOptions } from 'typescript';
 import { ProxyConfigMap } from 'webpack-dev-server';
 
-export type DeepPartial<T> = T extends object ? { [K in keyof T]?: DeepPartial<T[K]> } : T;
-
-export type PickDeepPartial<T, K extends keyof T> = Omit<T, K> & DeepPartial<Pick<T, K>>;
-
-export type OmitDeepPartial<T, K extends keyof T> = Pick<T, K> & DeepPartial<Omit<T, K>>;
-
-export interface FullBuildConfig {
+export interface BuildConfig {
   client: {
     entries: string | string[];
     hotReloading: boolean;
@@ -18,7 +12,6 @@ export interface FullBuildConfig {
     entries: string;
     filename: string;
     bail: boolean;
-    progress: boolean;
     ssrBuild: true;
     isNode: true;
   };
@@ -40,17 +33,14 @@ export interface FullBuildConfig {
     isStaticBuild: boolean;
     publicDir: string;
     publicPath: string;
-    typescriptOptions: CompilerOptions;
-    proxy: ProxyConfigMap;
+    proxy?: ProxyConfigMap;
     isNode?: boolean;
     isWeb?: boolean;
     publicUrl?: string;
   };
 }
 
-export type BuildConfig = OmitDeepPartial<FullBuildConfig, 'client'>;
-
-export type ClientBuildConfig = Pick<FullBuildConfig, 'client'>['client'];
-export type ServerBuildConfig = Pick<FullBuildConfig, 'server'>['server'];
-export type NodeBuildConfig = Pick<FullBuildConfig, 'node'>['node'];
-export type DevServerConfig = Pick<FullBuildConfig, 'devServer'>['devServer'];
+export type ClientBuildConfig = Pick<BuildConfig, 'client'>['client'];
+export type ServerBuildConfig = Pick<BuildConfig, 'server'>['server'];
+export type NodeBuildConfig = Pick<BuildConfig, 'node'>['node'];
+export type DevServerConfig = Pick<BuildConfig, 'devServer'>['devServer'];

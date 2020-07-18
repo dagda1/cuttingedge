@@ -5,35 +5,34 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-require('../config/env').getClientEnv();
-
-import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import clearConsole from 'react-dev-utils/clearConsole';
-import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles';
 import openBrowser from 'react-dev-utils/openBrowser';
 import { paths } from '../config/paths';
-import path from 'path';
 import fs from 'fs';
 import logger from '../scripts/logger';
 import { choosePort, createCompiler, prepareProxy, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
+import webpack from 'webpack';
+import { configure as configureWebpackClient } from '../webpack/client';
+import { config as buildConfig } from '../config/build.config';
+import { assert } from '../assert';
+import { DevServerConfig } from '../types/config';
 
-const configureWebpackClient = require('../webpack/client').configure;
 const isInteractive = process.stdout.isTTY;
 
-const devServerConfig = require(paths.jsBuildConfigPath).devServer;
+const { devServer } = buildConfig;
 
-if (!fs.existsSync(devServerConfig.publicDir)) {
-  devServerConfig.publicDir = paths.devDirPublic;
-  devServerConfig.entries = paths.devDir;
+assert(devServer, 'no devServer node');
+
+assert(devServer.publicDir, 'no publicDir');
+assert(devServer.entries, 'no devServer entries');
+
+if (!fs.existsSync(devServer.publicDir)) {
+  devServer.publicDir = paths.devDirPublic;
+  devServer.entries = paths.devDir;
 }
 
-const config = configureWebpackClient(devServerConfig);
-
-// Warn and crash if required files are missing
-if (!checkRequiredFiles([path.join(devServerConfig.publicDir, 'index.html'), devServerConfig.entries])) {
-  process.exit(1);
-}
+const config = configureWebpackClient(devServer as DevServerConfig);
 
 const DEFAULT_PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
@@ -53,7 +52,7 @@ choosePort(HOST, DEFAULT_PORT)
 
     const proxySetting = require(paths.appPackageJson).proxy;
 
-    config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic, paths.publicUrlOrPath);
+    config.devServer!.proxy = prepareProxy(proxySetting, paths.appPublic, paths.publicUrlOrPath)!;
 
     const devServer = new WebpackDevServer(compiler, config.devServer);
 

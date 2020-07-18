@@ -13,6 +13,7 @@ import FileSizeReporter from 'react-dev-utils/FileSizeReporter';
 import { copyPublicFolder } from './utils/copy-public-folder';
 import { compile } from './webpack/compile';
 import { BuildType } from '../types/build';
+import { config as globalBuildConfig } from '../config/build.config';
 
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
@@ -32,7 +33,6 @@ export const build = async ({
   buildNode: boolean;
 }) => {
   logger.start('starting build');
-  const globalBuildConfig = require(paths.jsBuildConfigPath);
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 

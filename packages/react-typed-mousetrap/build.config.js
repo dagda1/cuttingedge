@@ -1,4 +1,4 @@
-const paths = require('@cutting/devtools/config/paths');
+const { paths } = require('@cutting/devtools/tools/config/paths');
 
 module.exports = {
   devServer: {

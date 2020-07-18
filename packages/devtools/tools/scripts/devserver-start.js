@@ -8,29 +8,27 @@ process.env.NODE_ENV = 'development';
 process.on('unhandledRejection', function (err) {
     throw err;
 });
-require('../config/env').getClientEnv();
-var webpack_1 = __importDefault(require("webpack"));
 var webpack_dev_server_1 = __importDefault(require("webpack-dev-server"));
 var clearConsole_1 = __importDefault(require("react-dev-utils/clearConsole"));
-var checkRequiredFiles_1 = __importDefault(require("react-dev-utils/checkRequiredFiles"));
 var openBrowser_1 = __importDefault(require("react-dev-utils/openBrowser"));
 var paths_1 = require("../config/paths");
-var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var logger_1 = __importDefault(require("../scripts/logger"));
 var WebpackDevServerUtils_1 = require("react-dev-utils/WebpackDevServerUtils");
-var configureWebpackClient = require('../webpack/client').configure;
+var webpack_1 = __importDefault(require("webpack"));
+var client_1 = require("../webpack/client");
+var build_config_1 = require("../config/build.config");
+var assert_1 = require("../assert");
 var isInteractive = process.stdout.isTTY;
-var devServerConfig = require(paths_1.paths.jsBuildConfigPath).devServer;
-if (!fs_1.default.existsSync(devServerConfig.publicDir)) {
-    devServerConfig.publicDir = paths_1.paths.devDirPublic;
-    devServerConfig.entries = paths_1.paths.devDir;
+var devServer = build_config_1.config.devServer;
+assert_1.assert(devServer, 'no devServer node');
+assert_1.assert(devServer.publicDir, 'no publicDir');
+assert_1.assert(devServer.entries, 'no devServer entries');
+if (!fs_1.default.existsSync(devServer.publicDir)) {
+    devServer.publicDir = paths_1.paths.devDirPublic;
+    devServer.entries = paths_1.paths.devDir;
 }
-var config = configureWebpackClient(devServerConfig);
-// Warn and crash if required files are missing
-if (!checkRequiredFiles_1.default([path_1.default.join(devServerConfig.publicDir, 'index.html'), devServerConfig.entries])) {
-    process.exit(1);
-}
+var config = client_1.configure(devServer);
 var DEFAULT_PORT = Number(process.env.PORT) || 3000;
 var HOST = process.env.HOST || '0.0.0.0';
 WebpackDevServerUtils_1.choosePort(HOST, DEFAULT_PORT)

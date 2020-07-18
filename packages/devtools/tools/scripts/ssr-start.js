@@ -14,6 +14,7 @@ var setPorts_1 = require("./setPorts");
 var webpack_merge_1 = __importDefault(require("webpack-merge"));
 var client_1 = require("../webpack/client");
 var server_1 = require("../webpack/server");
+var build_config_1 = require("../config/build.config");
 process.noDeprecation = true;
 function compile(config) {
     var compiler;
@@ -34,11 +35,10 @@ function main() {
     fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
     logger_1.default.start('Compiling...');
     fs_extra_1.default.removeSync(paths_1.paths.appManifest);
-    var globalBuildConfig = require(paths_1.paths.jsBuildConfigPath);
     var localBuildConfig = require(paths_1.paths.localBuildConfig);
-    var buildConfig = webpack_merge_1.default(globalBuildConfig, localBuildConfig);
-    var clientConfig = !!buildConfig.client && client_1.configure(buildConfig.client);
-    var serverConfig = !!buildConfig.server && server_1.configure(buildConfig.server);
+    var buildConfig = webpack_merge_1.default(build_config_1.config, localBuildConfig);
+    var clientConfig = client_1.configure(buildConfig.client);
+    var serverConfig = server_1.configure(buildConfig.server);
     var clientCompiler = compile(clientConfig);
     var serverCompiler = compile(serverConfig);
     clientCompiler.plugin('done', function () {
