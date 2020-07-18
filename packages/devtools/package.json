@@ -102,6 +102,7 @@
     "@types/loadable__server": "^5.12.2",
     "@types/mini-css-extract-plugin": "^0.9.1",
     "@types/mkdirp": "^1.0.1",
+    "@types/node": "^14.0.23",
     "@types/optimize-css-assets-webpack-plugin": "^5.0.1",
     "@types/postcss-safe-parser": "^4.0.0",
     "@types/react-dev-utils": "^9.0.4",
