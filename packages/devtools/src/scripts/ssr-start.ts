@@ -1,19 +1,29 @@
-#! /usr/bin/env node
-'use strict';
-
 process.env.NODE_ENV = 'development';
-const fs = require('fs-extra');
-const webpack = require('webpack');
-const paths = require('../config/paths');
-const devServer = require('webpack-dev-server');
-const printErrors = require('./printErrors');
-const logger = require('./logger');
-const setPorts = require('./setPorts');
+import fs from 'fs-extra';
+import webpack, { Configuration } from 'webpack';
+import { paths } from '../config/paths';
+import devServer from 'webpack-dev-server';
+import printErrors from './printErrors';
+import logger from './logger';
+import { setPorts } from './setPorts';
+import merge from 'webpack-merge';
 
-const configureWebpackClient = require('../webpack/client').configure;
-const configureWebpackServer = require('../webpack/server').configure;
+import { configure as configureWebpackClient } from '../webpack/client';
+import { configure as configureWebpackServer } from '../webpack/server';
+import { ServerBuildConfig, DevServerConfig } from 'src/types/config';
 
-process.noDeprecation = true;
+(process as any).noDeprecation = true;
+
+function compile(config: Configuration) {
+  let compiler;
+  try {
+    compiler = webpack(config);
+  } catch (e) {
+    printErrors('Failed to compile.', [e]);
+    process.exit(1);
+  }
+  return compiler;
+}
 
 // Capture any --inspect or --inspect-brk flags (with optional values) so that we
 // can pass them when we invoke nodejs
@@ -29,9 +39,12 @@ function main() {
 
   const globalBuildConfig = require(paths.jsBuildConfigPath);
 
-  const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
+  const localBuildConfig = require(paths.localBuildConfig);
 
-  const buildConfig = { ...globalBuildConfig, ...localBuildConfig };
+  const buildConfig = merge(globalBuildConfig, localBuildConfig) as {
+    server: ServerBuildConfig;
+    client: DevServerConfig;
+  };
 
   const clientConfig = !!buildConfig.client && configureWebpackClient(buildConfig.client);
   const serverConfig = !!buildConfig.server && configureWebpackServer(buildConfig.server);
@@ -41,10 +54,7 @@ function main() {
 
   clientCompiler.plugin('done', () => {
     serverCompiler.watch(
-      {
-        quiet: true,
-        stats: 'none',
-      },
+      {},
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       (stats) => ({}),
     );
@@ -62,16 +72,4 @@ function main() {
     }
   });
 }
-
-function compile(config) {
-  let compiler;
-  try {
-    compiler = webpack(config);
-  } catch (e) {
-    printErrors('Failed to compile.', [e]);
-    process.exit(1);
-  }
-  return compiler;
-}
-
 setPorts().then(main).catch(logger.error);

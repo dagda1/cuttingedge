@@ -1,10 +1,15 @@
-const fs = require('fs');
-const { getTopFrame, getStackTraceLines, separateMessageFromStack } = require('jest-message-util');
+import fs from 'fs';
+import { getTopFrame, getStackTraceLines, separateMessageFromStack } from 'jest-message-util';
 const { codeFrameColumns } = require('@babel/code-frame');
 
-function pretty(error) {
+type ErrorLike = {
+  message: string;
+  stack: string;
+};
+
+function pretty(error: ErrorLike | Error) {
   const { message, stack } = error;
-  const lines = getStackTraceLines(stack);
+  const lines = getStackTraceLines(stack!);
   const topFrame = getTopFrame(lines);
   const fallback = `${message}${stack}`;
 
@@ -21,7 +26,7 @@ function pretty(error) {
   }
 }
 
-function usePrettyErrors(transform) {
+function usePrettyErrors(transform: (...args: any[]) => ErrorLike) {
   const { prepareStackTrace } = Error;
 
   Error.prepareStackTrace = (error, trace) => {
@@ -38,4 +43,4 @@ const stackTransform = ({ stack = '', ...rest }) => ({
   ...rest,
 });
 
-usePrettyErrors(stackTransform);
+usePrettyErrors(stackTransform as any);

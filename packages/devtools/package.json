@@ -106,12 +106,15 @@
     "@types/postcss-safe-parser": "^4.0.0",
     "@types/react-dev-utils": "^9.0.4",
     "@types/react-devtools": "^3.6.0",
+    "@types/start-server-webpack-plugin": "^2.2.0",
     "@types/terser-webpack-plugin": "^3.0.0",
     "@types/webpack": "^4.41.13",
     "@types/webpack-bundle-analyzer": "^3.8.0",
     "@types/webpack-manifest-plugin": "^2.1.0",
     "@types/webpack-merge": "^4.1.5",
+    "@types/webpack-node-externals": "^1.7.1",
     "@types/webpackbar": "^4.0.0",
+    "@types/write-file-webpack-plugin": "^4.5.0",
     "happypack": "^5.0.1",
     "html-webpack-partials-plugin": "^0.5.6"
   }

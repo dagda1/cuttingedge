@@ -1,13 +1,13 @@
 #! /usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const program = require('commander');
-const { spawn } = require('child_process');
-const paths = require('../config/paths');
-const logger = require('../scripts/logger');
+import fs from 'fs';
+import path from 'path';
+import program from 'commander';
+import { paths } from '../config/paths';
+import logger from '../scripts/logger';
+import { spawn } from 'child_process';
 
-function getPackages(packages) {
+function getPackages(packages: string[]) {
   return packages
     .filter((pkgPath) => fs.lstatSync(pkgPath).isDirectory())
     .map((pkgPath) => {
@@ -25,7 +25,7 @@ function getPackages(packages) {
  * @param {String} pkg.path - package directory path
  * @returns {Promise} resolves or rejects when the process exits
  */
-function runPkgCmd(cmd, args, pkg) {
+function runPkgCmd<A extends any[], P extends { name: string; path: string }>(cmd: string, args: A, pkg: P) {
   return new Promise((resolve, reject) => {
     logger.info(`${pkg.name} ${cmd} ${args.join(' ')}`);
 
@@ -62,7 +62,7 @@ program
         (p, pkg) =>
           p
             .then(() => runPkgCmd(cmd, args, pkg))
-            .catch((e) => {
+            .catch((e: Error) => {
               logger.error(`${pkg.name} failed with ${e}`);
               process.exit(1);
             }),

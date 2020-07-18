@@ -16,7 +16,7 @@ import { createCSSLoaders } from './loaders/css';
 import { createCSVLoader } from './loaders/csvLoader';
 import { createSVGLoader } from './loaders/svgLoader';
 import { createMDLoader } from './loaders/mdLoader';
-import { DevServerConfig, ServerBuildConfig } from 'src/types/config';
+import { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from 'src/types/config';
 import { findAppNodeModules } from 'src/scripts/utils/finders';
 import { Configuration } from 'webpack';
 
@@ -24,7 +24,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
 const repoNodeModules = findAppNodeModules(__dirname);
 
-export const configureCommon = (options: DevServerConfig | ServerBuildConfig): Configuration => {
+export const configureCommon = (options: DevServerConfig | ServerBuildConfig | NodeBuildConfig): Configuration => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();

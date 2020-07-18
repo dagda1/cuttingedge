@@ -1,18 +1,20 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Configuration } from 'webpack';
 import { ServerBuildConfig } from 'src/types/config';
-const merge = require('webpack-merge');
-const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
-const paths = require('../config/paths');
-const StartServerPlugin = require('start-server-webpack-plugin');
-const path = require('path');
+import merge from 'webpack-merge';
+import webpack from 'webpack';
+import nodeExternals, { WhitelistOption } from 'webpack-node-externals';
+import { paths } from '../config/paths';
+import StartServerPlugin from 'start-server-webpack-plugin';
+import path from 'path';
 
-const { configureCommon, getEnvironment, getEnvVariables } = require('./common');
+import { configureCommon } from './common';
+import { getEnvironment, getEnvVariables } from './getEnvironment';
+import { isPlugin } from './guards';
 
 const port = process.env.PORT;
 
-const getExternals = function (isDevelopment: boolean) {
+export const getExternals = function (isDevelopment: boolean) {
   return [
     nodeExternals({
       whitelist: [
@@ -25,12 +27,12 @@ const getExternals = function (isDevelopment: boolean) {
         /^@loadable\/component$/,
         /^loadable-ts-transformer$/,
         /^@cutting/,
-      ].filter((x) => x),
+      ].filter((x) => x) as WhitelistOption[],
     }),
   ];
 };
 
-const configure = (options: ServerBuildConfig): Configuration => {
+export const configure = (options: ServerBuildConfig): Configuration => {
   const common = configureCommon({ ...options, isNode: true, ssrBuild: true });
 
   const { isDevelopment, isProduction } = getEnvironment();
@@ -85,10 +87,8 @@ const configure = (options: ServerBuildConfig): Configuration => {
           name: 'server.js',
           nodeArgs,
         }),
-    ].filter(Boolean),
+    ].filter(isPlugin),
   });
 
   return config;
 };
-
-module.exports = { configure, getExternals };

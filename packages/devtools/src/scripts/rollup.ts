@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
 const { rollup } = require('rollup');
-const filesizePlugin = require('rollup-plugin-filesize');
-const replacePlugin = require('rollup-plugin-replace');
-const terserPlugin = require('rollup-plugin-terser').terser;
-const paths = require('../config/paths');
-const fs = require('fs-extra');
-const path = require('path');
-const typescript = require('rollup-plugin-typescript2');
-const logger = require('../scripts/logger');
-const resolve = require('@rollup/plugin-node-resolve').default;
-const sourceMaps = require('rollup-plugin-sourcemaps');
+import filesizePlugin from 'rollup-plugin-filesize';
+import replacePlugin from 'rollup-plugin-replace';
+import terserPlugin from 'rollup-plugin-terser';
+import { paths } from '../config/paths';
+import fs from 'fs-extra';
+import path from 'path';
+import typescript from 'rollup-plugin-typescript2';
+import logger from '../scripts/logger';
+import resolve from '@rollup/plugin-node-resolve';
+import sourceMaps from 'rollup-plugin-sourcemaps';
 
 if (!process.argv.includes('--package-name')) {
   throw new Error('no --package-name switch');
@@ -19,7 +19,7 @@ const packageName = process.argv[3];
 
 fs.removeSync(paths.appBuild);
 
-async function generateBundledModule(inputFile, outputFile, format) {
+async function generateBundledModule(inputFile: string, outputFile: string, format) {
   if (!fs.existsSync(inputFile)) {
     throw new Error(`Input file ${inputFile} does not exist`);
   }
@@ -28,7 +28,7 @@ async function generateBundledModule(inputFile, outputFile, format) {
 
   const bundle = await rollup({
     input: inputFile,
-    external: (id) => {
+    external: (id: string) => {
       return !id.startsWith('.') && !path.isAbsolute(id);
     },
     plugins: [

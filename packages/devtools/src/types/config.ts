@@ -12,12 +12,14 @@ export interface FullBuildConfig {
     entries: string | string[];
     hotReloading: boolean;
     publicPath: string;
+    isNode: false;
   };
   server: {
     entries: string;
     filename: string;
     bail: boolean;
     progress: boolean;
+    ssrBuild: true;
     isNode: true;
   };
   ts: {
@@ -29,6 +31,8 @@ export interface FullBuildConfig {
     entries: string;
     filename: string;
     externals: string[];
+    modulesDir: string;
+    isNode: true;
   };
   devServer: {
     entries: string;

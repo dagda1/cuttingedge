@@ -1,9 +1,12 @@
 import merge from 'webpack-merge';
-import webpack from 'webpack';
-const nodeExternals = require('webpack-node-externals');
-const paths = require('../config/paths');
-const WriteFilePlugin = require('write-file-webpack-plugin');
-const { configureCommon, getEnvironment } = require('./common');
+import webpack, { Configuration } from 'webpack';
+import { NodeBuildConfig } from 'src/types/config';
+import nodeExternals from 'webpack-node-externals';
+import { paths } from '../config/paths';
+import WriteFilePlugin from 'write-file-webpack-plugin';
+import { configureCommon } from './common';
+import { getEnvironment } from './getEnvironment';
+import { isPlugin } from './guards';
 
 const getExternals = (modulesDir: string) => {
   return [
@@ -15,7 +18,7 @@ const getExternals = (modulesDir: string) => {
   ];
 };
 
-const configure = (options = {}) => {
+export const configure = (options: NodeBuildConfig): Configuration => {
   const common = configureCommon({ ...options, isWeb: false });
 
   const { modulesDir } = options;
@@ -24,7 +27,7 @@ const configure = (options = {}) => {
 
   const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
 
-  const config = merge(common, {
+  const config: Configuration = merge(common, {
     name: 'api',
     target: 'node',
     externals: getExternals(modulesDir),
@@ -41,10 +44,8 @@ const configure = (options = {}) => {
         maxChunks: 1,
       }),
       isProduction && new webpack.optimize.ModuleConcatenationPlugin(),
-    ],
+    ].filter(isPlugin),
   });
 
   return config;
 };
-
-module.exports = { configure };
