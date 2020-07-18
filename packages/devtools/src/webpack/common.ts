@@ -6,10 +6,8 @@ import WebpackBar from 'webpackbar';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import resolve from 'resolve';
 import HappyPack from 'happypack';
-import typescriptFormatter from 'react-dev-utils/typescriptFormatter';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { getEnvironment, getEnvVariables } from './getEnvironment';
-import { findAppNodeModules } from '../util/findNodeModules';
 import { createFileLoader } from './loaders/fileLoader';
 import { createUrlLoader } from './loaders/urlLoader';
 import { createJsLoader } from './loaders/jsLoader';
@@ -19,22 +17,27 @@ import { createCSVLoader } from './loaders/csvLoader';
 import { createSVGLoader } from './loaders/svgLoader';
 import { createMDLoader } from './loaders/mdLoader';
 import { DevServerConfig, ServerBuildConfig } from 'src/types/config';
+import { findAppNodeModules } from 'src/scripts/utils/finders';
+import { Configuration } from 'webpack';
+
+const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
 const repoNodeModules = findAppNodeModules(__dirname);
 
-export const configureCommon = (options: DevServerConfig | ServerBuildConfig) => {
+export const configureCommon = (options: DevServerConfig | ServerBuildConfig): Configuration => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables({ isNode: !!options.isNode });
 
-  const config = {
+  const config: Configuration = {
     mode: isDevelopment ? 'development' : 'production',
     bail: isProduction,
     devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
     context: process.cwd(),
     resolve: {
       modules: ['node_modules', repoNodeModules].concat(env.raw.nodePath || path.resolve('.')),
+      extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.jsx', '.csv'],
       alias: {
         'webpack/hot/poll': require.resolve('webpack/hot/poll'),
         'native-url': require.resolve('native-url'),
@@ -50,7 +53,7 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig) =>
           createFileLoader({ staticAssetName, isWeb }),
           createUrlLoader({ staticAssetName, isWeb }),
           createJsLoader(),
-          createTypescriptLoader({ isDevelopment, isProduction, isWeb }),
+          createTypescriptLoader({ isDevelopment, isProduction }),
           createCSVLoader(),
           createSVGLoader(),
           createMDLoader(),

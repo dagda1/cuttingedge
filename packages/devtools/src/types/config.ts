@@ -1,5 +1,5 @@
 import { CompilerOptions } from 'typescript';
-import { Configuration } from 'webpack-dev-server';
+import { ProxyConfigMap } from 'webpack-dev-server';
 
 export type DeepPartial<T> = T extends object ? { [K in keyof T]?: DeepPartial<T[K]> } : T;
 
@@ -37,7 +37,7 @@ export interface FullBuildConfig {
     publicDir: string;
     publicPath: string;
     typescriptOptions: CompilerOptions;
-    proxy: Pick<Configuration, 'proxy'>;
+    proxy: ProxyConfigMap;
     isNode?: boolean;
     isWeb?: boolean;
     publicUrl?: string;

@@ -1,9 +1,7 @@
-
 import { paths } from '../../config/paths';
 import ignoredFiles from 'react-dev-utils/ignoredFiles';
 import fs from 'fs';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
-import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware';
 import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 import { Configuration, ProxyConfigArray, ProxyConfigMap } from 'webpack-dev-server';
 
@@ -11,29 +9,30 @@ export const createDevServer = ({
   protocol,
   host,
   sockPort,
+  sockHost,
+  sockPath,
   proxy,
 }: {
   protocol: 'http' | 'https';
   host: string;
-  sockPort: string;
+  sockPort: number;
+  sockHost: string;
+  sockPath: string;
   proxy?: ProxyConfigMap | ProxyConfigArray;
 }): Configuration => {
-  const sockHost = process.env.WDS_SOCKET_HOST;
-  const sockPath = process.env.WDS_SOCKET_PATH;
-
-  const devServerConifg: Configuration = {
+  return {
     disableHostCheck: true,
-    clientLogLevel: 'none',
     contentBase: paths.appPublic,
     compress: true,
     liveReload: false,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
+    writeToDisk: true,
     hot: true,
+    inline: true,
     hotOnly: true,
     transportMode: 'ws',
-    injectClient: false,
     sockHost,
     sockPath,
     sockPort,
@@ -41,7 +40,6 @@ export const createDevServer = ({
     quiet: true,
     host,
     https: protocol === 'https',
-    watchContentBase: true,
     noInfo: true,
     overlay: false,
     historyApiFallback: {
@@ -63,6 +61,4 @@ export const createDevServer = ({
       app.use(redirectServedPath(paths.publicUrlOrPath));
     },
   };
-
-  return devServerConifg;
 };

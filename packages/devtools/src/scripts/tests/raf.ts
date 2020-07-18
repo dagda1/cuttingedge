@@ -2,4 +2,4 @@ const raf: any = (window.requestAnimationFrame = (cb: FrameRequestCallback): num
   return setTimeout(cb, 0);
 });
 
-module.exports = raf;
+export default raf;

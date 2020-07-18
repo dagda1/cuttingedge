@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { Configuration } from 'webpack';
+import { ServerBuildConfig } from 'src/types/config';
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
@@ -10,7 +12,7 @@ const { configureCommon, getEnvironment, getEnvVariables } = require('./common')
 
 const port = process.env.PORT;
 
-getExternals = function (isDevelopment) {
+const getExternals = function (isDevelopment: boolean) {
   return [
     nodeExternals({
       whitelist: [
@@ -22,23 +24,20 @@ getExternals = function (isDevelopment) {
         /^@babel/,
         /^@loadable\/component$/,
         /^loadable-ts-transformer$/,
-        /^abort-controller/,
         /^@cutting/,
       ].filter((x) => x),
     }),
   ];
 };
 
-const configure = (options = {}) => {
+const configure = (options: ServerBuildConfig): Configuration => {
   const common = configureCommon({ ...options, isNode: true, ssrBuild: true });
-
-  options.isWeb = false;
 
   const { isDevelopment, isProduction } = getEnvironment();
 
   const env = getEnvVariables(options);
 
-  const devServerPort = isProduction ? port : parseInt(port, 10) + 1;
+  const devServerPort = isProduction ? port : Number(port) + 1;
 
   const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
 
@@ -55,13 +54,14 @@ const configure = (options = {}) => {
     }
   }
 
-  const config = merge(common, {
+  const config: Configuration = merge(common, {
     name: 'server',
     target: 'node',
     watch: isDevelopment,
     externals: getExternals(isDevelopment),
-    watch: isDevelopment,
-    entry: isDevelopment ? [path.join(__dirname, '../scripts/prettyNodeErrors'), 'webpack/hot/poll?300', ...entries] : entries,
+    entry: isDevelopment
+      ? [path.join(__dirname, '../scripts/prettyNodeErrors'), 'webpack/hot/poll?300', ...entries]
+      : entries,
     node: {
       __console: false,
       __dirname: false,

@@ -5,7 +5,6 @@ import { getLocalIdent } from '../getLocalIdent';
 import { cssRegex, sassRegex, sassModuleRegex } from '../constants';
 
 export const cssLoaders = (isDevelopment: boolean, isNode: boolean, { modules }: { modules: boolean }) => [
-  isDevelopment && require.resolve('css-hot-loader'),
   {
     loader: MiniCssExtractPlugin.loader,
     options: {
@@ -28,7 +27,7 @@ export const cssLoaders = (isDevelopment: boolean, isNode: boolean, { modules }:
   { loader: 'postcss-loader', options: postcssOptions },
 ];
 
-export const createCSSLoaders = ({ isDevelopment, isNode }) => [
+export const createCSSLoaders = ({ isDevelopment, isNode }: { isDevelopment: boolean; isNode: boolean }) => [
   {
     test: cssRegex,
     use: cssLoaders(isDevelopment, isNode, { modules: false }).filter(Boolean),

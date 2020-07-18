@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /* eslint-disable @typescript-eslint/camelcase */
 import path from 'path';
-const xml = require('xml');
-const fs = require('fs-extra');
-const mkdirp = require('mkdirp');
-const { ossIndex } = require('../config/paths');
-import { run } from '../util';
+import fs from 'fs-extra';
+import mkdirp from 'mkdirp';
+import { ossIndex } from '../config/paths';
 import program from 'commander';
+import { run } from 'src/scripts/utils/run';
+import logger from 'src/scripts/logger';
 
-const logger = require('../scripts/logger');
+const xml = require('xml');
 
 const LogFailurePrefix = 'ossindex.sonatype.org';
 

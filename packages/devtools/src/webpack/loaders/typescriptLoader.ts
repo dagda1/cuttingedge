@@ -1,14 +1,12 @@
-const paths = require('../../config/paths');
-const { loadableTransformer } = require('loadable-ts-transformer');
+import { paths } from '../../config/paths';
+import { loadableTransformer } from 'loadable-ts-transformer';
 
 export const createTypescriptLoader = ({
   isDevelopment,
   isProduction,
-  isWeb,
 }: {
   isDevelopment: boolean;
   isProduction: boolean;
-  isWeb: boolean;
 }) => [
   {
     test: /\.tsx$/,
@@ -27,21 +25,29 @@ export const createTypescriptLoader = ({
   },
   {
     test: /\.tsx?$/,
-    exclude: /node_modules/,
     use: [
       isDevelopment && {
         loader: 'babel-loader',
-        options: { plugins: isDevelopment && isWeb ? ['react-refresh/babel'] : [] },
+        options: {
+          presets: ['@babel/preset-env'],
+          plugins: [
+            '@babel/plugin-syntax-dynamic-import',
+            [
+              '@babel/plugin-transform-runtime',
+              {
+                regenerator: true,
+              },
+            ],
+            isDevelopment && 'react-refresh/babel',
+          ],
+        },
       },
       {
         loader: 'ts-loader',
         options: {
           configFile: paths.tsConfig,
           transpileOnly: isDevelopment,
-          experimentalWatchApi: isDevelopment,
-          compilerOptions: {
-            sourceMap: isDevelopment,
-          },
+          happyPackMode: isDevelopment,
           getCustomTransformers: () => ({ before: [loadableTransformer] }),
         },
       },

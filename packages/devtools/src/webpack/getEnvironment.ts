@@ -14,19 +14,19 @@ export const getEnvironment = () => {
   };
 };
 
-export const getEnvVariables = (options) => {
+export const getEnvVariables = ({ isNode }: { isNode: boolean }) => {
   const { isDevelopment } = getEnvironment();
   delete require.cache[require.resolve('../config/env')];
 
   const { getClientEnv } = require('../config/env');
 
   return getClientEnv(
-    options.isNode ? 'node' : 'web',
+    isNode ? 'node' : 'web',
     {},
     {
       'process.env.NODE_ENV': isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
       __DEV__: isDevelopment,
-      __BROWSER__: !options.isNode,
+      __BROWSER__: !isNode,
     },
   );
 };

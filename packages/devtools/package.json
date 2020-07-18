@@ -17,9 +17,10 @@
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
+    "@cutting/util": "^3.9.0",
     "@intervolga/optimize-cssnano-plugin": "^1.0.6",
     "@loadable/component": "^5.12.0",
-    "@loadable/webpack-plugin": "^5.12.0",
+    "@loadable/webpack-plugin": "^5.13.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.3.2",
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@testing-library/jest-dom": "^5.8.0",
@@ -81,8 +82,8 @@
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2",
     "webpackbar": "^4.0.0",
-    "write-file-webpack-plugin": "^4.5.1",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0",
+    "write-file-webpack-plugin": "^4.5.1"
   },
   "files": [
     "bin/cutting.js",
@@ -94,21 +95,24 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^4.1.2",
     "@types/autoprefixer": "^9.7.2",
-    "@types/chalk": "^2.2.0",
     "@types/copy": "^0.3.1",
     "@types/fs-extra": "^9.0.1",
     "@types/happypack": "^5.0.0",
     "@types/html-webpack-plugin": "^3.2.3",
+    "@types/loadable__server": "^5.12.2",
     "@types/mini-css-extract-plugin": "^0.9.1",
+    "@types/mkdirp": "^1.0.1",
     "@types/optimize-css-assets-webpack-plugin": "^5.0.1",
     "@types/postcss-safe-parser": "^4.0.0",
     "@types/react-dev-utils": "^9.0.4",
+    "@types/react-devtools": "^3.6.0",
     "@types/terser-webpack-plugin": "^3.0.0",
     "@types/webpack": "^4.41.13",
     "@types/webpack-bundle-analyzer": "^3.8.0",
     "@types/webpack-manifest-plugin": "^2.1.0",
     "@types/webpack-merge": "^4.1.5",
     "@types/webpackbar": "^4.0.0",
-    "happypack": "^5.0.1"
+    "happypack": "^5.0.1",
+    "html-webpack-partials-plugin": "^0.5.6"
   }
 }

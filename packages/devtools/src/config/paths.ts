@@ -42,8 +42,6 @@ const libPackages = [
 
 const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));
 
-const appBuildDirName = 'dist';
-
 const jestConfig = fs.existsSync(resolveApp('jest.config.js'))
   ? resolveApp('jest.config.js')
   : path.resolve(__dirname, '../jest/jest.config.js');
@@ -76,9 +74,9 @@ export const paths = {
   webAppPackages,
   allPackages: [...libPackages, ...webAppPackages],
   defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
-  jestConfig: path.join(__dirname, '../jest/jest.config.js'),
   proxySetup: resolveApp('setupProxy.js'),
   tranlationsDir: resolveApp('src/translations'),
   publicUrlOrPath,
+  eslintConfig: resolveApp('./.eslint.json'),
   jestConfig,
 };

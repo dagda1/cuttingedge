@@ -1,9 +1,18 @@
 /* eslint-disable @typescript-eslint/camelcase */
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const safePostCssParser = require('postcss-safe-parser');
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import safePostCssParser from 'postcss-safe-parser';
+import { Options } from 'webpack';
 
-export const createWebpackOptimisation = ({ optimization, isDevelopment }) => {
+export const createWebpackOptimisation = ({
+  optimization,
+  isDevelopment,
+  ssrBuild,
+}: {
+  optimization: Options.Optimization;
+  isDevelopment: boolean;
+  ssrBuild: boolean;
+}): Options.Optimization => {
   return {
     ...optimization,
     ...{
@@ -42,15 +51,14 @@ export const createWebpackOptimisation = ({ optimization, isDevelopment }) => {
         }),
       ],
       splitChunks: {
-        chunks: 'all',
+        chunks: ssrBuild ? 'async' : 'all',
         name: false,
       },
-      // Keep the runtime chunk separated to enable long term caching
-      // https://twitter.com/wSokra/status/969679223278505985
-      // https://github.com/facebook/create-react-app/issues/5358
-      runtimeChunk: {
-        name: (entrypoint) => `runtime-${entrypoint.name}`,
-      },
+      runtimeChunk: ssrBuild
+        ? false
+        : {
+            name: (entrypoint) => `runtime-${entrypoint.name}`,
+          },
     },
   };
 };

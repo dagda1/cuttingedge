@@ -1,4 +1,4 @@
-export const createFileLoader = ({ staticAssetName, isWeb }) => ({
+export const createFileLoader = ({ staticAssetName, isWeb }: { staticAssetName: string; isWeb: boolean }) => ({
   exclude: [
     /\.html$/,
     /\.jsx?$/,

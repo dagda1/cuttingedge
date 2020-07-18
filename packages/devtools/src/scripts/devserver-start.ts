@@ -1,6 +1,3 @@
-#! /usr/bin/env node
-'use strict';
-
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 
@@ -10,18 +7,18 @@ process.on('unhandledRejection', (err) => {
 
 require('../config/env').getClientEnv();
 
-const configureWebpackClient = require('../webpack/client').configure;
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const clearConsole = require('react-dev-utils/clearConsole');
-const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
-const { choosePort, createCompiler, prepareProxy, prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
-const openBrowser = require('react-dev-utils/openBrowser');
-const paths = require('../config/paths');
-const path = require('path');
-const fs = require('fs');
-const logger = require('../scripts/logger');
+import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
+import clearConsole from 'react-dev-utils/clearConsole';
+import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles';
+import openBrowser from 'react-dev-utils/openBrowser';
+import { paths } from '../config/paths';
+import path from 'path';
+import fs from 'fs';
+import logger from '../scripts/logger';
+import { choosePort, createCompiler, prepareProxy, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
 
+const configureWebpackClient = require('../webpack/client').configure;
 const isInteractive = process.stdout.isTTY;
 
 const devServerConfig = require(paths.jsBuildConfigPath).devServer;

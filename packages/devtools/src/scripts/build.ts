@@ -16,8 +16,6 @@ import { BuildType } from 'src/types/build';
 
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
-const { copyPublicFolder } = require('./utils/copy-public-folder');
-const { compile } = require('./webpack/compile');
 const merge = require('webpack-merge');
 
 const configureWebpackClient = require('../webpack/client').configure;
@@ -43,8 +41,6 @@ export const build = async ({
   const clientConfig = !!buildClient && configureWebpackClient(buildConfig.client);
   const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
   const nodeConfig = !!buildNode && configureWebpackNode(buildConfig.node);
-
-  const publicDir = buildServer ? paths.appBuildPublic : paths.appBuild;
 
   const publicDir = buildServer ? paths.appBuildPublic : paths.appBuild;
 
