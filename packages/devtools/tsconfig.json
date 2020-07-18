@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "jsx": "react",
-    "outDir": "./dist",
+    "outDir": "./tools",
     "baseUrl": ".",
     "sourceMap": true,
     "skipLibCheck": true

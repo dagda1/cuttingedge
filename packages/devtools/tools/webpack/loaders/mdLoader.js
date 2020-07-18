@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createMDLoader = void 0;
+exports.createMDLoader = function () { return ({
+    test: /\.md$/,
+    use: [
+        {
+            loader: 'html-loader',
+        },
+        {
+            loader: 'markdown-loader',
+            options: {},
+        },
+    ],
+}); };
+//# sourceMappingURL=mdLoader.js.map
