@@ -1689,11 +1689,6 @@
     "@types/webpack" "*"
     "@types/webpack-dev-server" "*"
 
-"@types/react-devtools@^3.6.0":
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/@types/react-devtools/-/react-devtools-3.6.0.tgz#662b1757600317f21fb338d33c10c7b68f962fd4"
-  integrity sha512-kEQi3iDGvabvrNoSSvmdcnuR9rQZLUgb+9UbDUcfKkKH5m/c663mXXwpPFTNCaFpVOBlO4yIoqft1hI/KARI2A==
-
 "@types/react-dom@^16.9.7":
   version "16.9.8"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"

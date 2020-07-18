@@ -40,14 +40,12 @@ export const configure = (options: DevServerConfig): Configuration => {
 
   const polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
 
-  const webpackDevClientEntry = require.resolve('../scripts/webpackHotDevClient');
-
   const iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
 
   const finalEntries = Object.keys(iter).reduce((acc, key) => {
     const entryPoints = Array.isArray(iter[key]) ? iter[key] : [iter[key]];
 
-    acc[key] = isDevelopment ? [webpackDevClientEntry, ...polyfills, ...entryPoints] : [...polyfills, ...entryPoints];
+    acc[key] = [...polyfills, ...entryPoints];
 
     return acc;
   }, {});
