@@ -27,8 +27,8 @@ const resolvedNodeModules = ['../node_modules', './node_modules']
   .map((m) => path.join(process.cwd(), m));
 
 const libPackages = [
-  'packages/eslint-config',
   'packages/devtools',
+  'packages/eslint-config',
   'packages/useful-types',
   'packages/util',
   'packages/hooks',

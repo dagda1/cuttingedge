@@ -69,7 +69,7 @@ choosePort(HOST, DEFAULT_PORT)
       openBrowser(urls.localUrlForBrowser);
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+    ['SIGINT', 'SIGTERM'].forEach((sig: any) => {
       process.on(sig, function () {
         devServer.close();
         process.exit();

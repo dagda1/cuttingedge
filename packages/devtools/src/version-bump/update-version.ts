@@ -13,7 +13,8 @@ const copyDependencies = (destination: string, oldVersion: string, version: stri
   }
 
   Object.keys(destination).forEach(
-    (prop) => (destination[prop] = /@ds/g.test(prop) && destination[prop] === oldVersion ? version : destination[prop]),
+    (prop) =>
+      (destination[prop] = /@cutting/g.test(prop) && destination[prop] === oldVersion ? version : destination[prop]),
   );
 };
 

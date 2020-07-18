@@ -17,7 +17,7 @@ import { getUrlParts } from './getUrlParts';
 import { getEnvironment } from './getEnvironment';
 import { createDevServer } from './loaders/createDevServer';
 import { createWebpackOptimisation } from './optimisation/createWebpackOptimisation';
-import { assert } from '@cutting/util';
+import { assert } from '../assert/assert';
 const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');

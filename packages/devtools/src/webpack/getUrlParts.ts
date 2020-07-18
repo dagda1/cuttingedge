@@ -1,4 +1,4 @@
-import { assert } from '@cutting/util';
+import { assert } from '../assert/assert';
 import { prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
 
 export const getUrlParts = () => {

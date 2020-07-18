@@ -11,7 +11,7 @@ import typescript from 'rollup-plugin-typescript2';
 import logger from '../scripts/logger';
 import resolve from '@rollup/plugin-node-resolve';
 import sourceMaps from 'rollup-plugin-sourcemaps';
-import { assert } from '@cutting/util';
+import { assert } from '../assert/assert';
 
 if (!process.argv.includes('--package-name')) {
   throw new Error('no --package-name switch');
