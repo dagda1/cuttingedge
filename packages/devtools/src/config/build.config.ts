@@ -1,4 +1,4 @@
-import { BuildConfig } from 'src/types/config';
+import { BuildConfig } from '../types/config';
 import { paths } from './paths';
 
 export const config: BuildConfig = {

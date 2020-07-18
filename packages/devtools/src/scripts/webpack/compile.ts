@@ -2,7 +2,7 @@ import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
 import printErrors from '../printErrors';
 import webpack, { Configuration, Stats } from 'webpack';
 import logger from '../logger';
-import { BuildType } from 'src/types/build';
+import { BuildType } from '../../types/build';
 
 // Wrap webpack compile in a try catch.
 function compileWebpack(config: Configuration, cb: (err: Error, stats: Stats) => void) {

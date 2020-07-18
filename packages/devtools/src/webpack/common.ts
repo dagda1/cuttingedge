@@ -16,8 +16,8 @@ import { createCSSLoaders } from './loaders/css';
 import { createCSVLoader } from './loaders/csvLoader';
 import { createSVGLoader } from './loaders/svgLoader';
 import { createMDLoader } from './loaders/mdLoader';
-import { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from 'src/types/config';
-import { findAppNodeModules } from 'src/scripts/utils/finders';
+import { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from '../types/config';
+import { findAppNodeModules } from '../scripts/utils/finders';
 import { Configuration } from 'webpack';
 
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');

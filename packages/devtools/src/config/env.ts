@@ -1,7 +1,7 @@
 import { paths } from './paths';
 import path from 'path';
 import fs from 'fs';
-import { Env } from 'src/types/env';
+import { Env } from '../types/env';
 
 delete require.cache[require.resolve('./paths')];
 

@@ -1,6 +1,6 @@
 import merge from 'webpack-merge';
 import webpack, { Configuration } from 'webpack';
-import { NodeBuildConfig } from 'src/types/config';
+import { NodeBuildConfig } from '../types/config';
 import nodeExternals from 'webpack-node-externals';
 import { paths } from '../config/paths';
 import WriteFilePlugin from 'write-file-webpack-plugin';

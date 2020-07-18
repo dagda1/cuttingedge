@@ -10,7 +10,7 @@ import merge from 'webpack-merge';
 
 import { configure as configureWebpackClient } from '../webpack/client';
 import { configure as configureWebpackServer } from '../webpack/server';
-import { ServerBuildConfig, DevServerConfig } from 'src/types/config';
+import { ServerBuildConfig, DevServerConfig } from '../types/config';
 
 (process as any).noDeprecation = true;
 

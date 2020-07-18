@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Configuration } from 'webpack';
-import { ServerBuildConfig } from 'src/types/config';
+import { ServerBuildConfig } from '../types/config';
 import merge from 'webpack-merge';
 import webpack from 'webpack';
 import nodeExternals, { WhitelistOption } from 'webpack-node-externals';

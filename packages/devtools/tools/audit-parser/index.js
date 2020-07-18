@@ -47,8 +47,8 @@ var fs_extra_1 = __importDefault(require("fs-extra"));
 var mkdirp_1 = __importDefault(require("mkdirp"));
 var paths_1 = require("../config/paths");
 var commander_1 = __importDefault(require("commander"));
-var run_1 = require("src/scripts/utils/run");
-var logger_1 = __importDefault(require("src/scripts/logger"));
+var run_1 = require("../scripts/utils/run");
+var logger_1 = __importDefault(require("../scripts/logger"));
 var xml = require('xml');
 var LogFailurePrefix = 'ossindex.sonatype.org';
 function audit(exceptions) {

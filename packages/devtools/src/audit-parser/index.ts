@@ -5,8 +5,8 @@ import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
 import { paths } from '../config/paths';
 import program from 'commander';
-import { run } from 'src/scripts/utils/run';
-import logger from 'src/scripts/logger';
+import { run } from '../scripts/utils/run';
+import logger from '../scripts/logger';
 
 const xml = require('xml');
 

@@ -12,7 +12,7 @@ import logger from './logger';
 import FileSizeReporter from 'react-dev-utils/FileSizeReporter';
 import { copyPublicFolder } from './utils/copy-public-folder';
 import { compile } from './webpack/compile';
-import { BuildType } from 'src/types/build';
+import { BuildType } from '../types/build';
 
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;

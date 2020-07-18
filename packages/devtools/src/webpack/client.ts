@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { DevServerConfig } from 'src/types/config';
+import { DevServerConfig } from '../types/config';
 import { configureCommon } from './common';
 import { paths } from '../config/paths';
 import fs from 'fs';

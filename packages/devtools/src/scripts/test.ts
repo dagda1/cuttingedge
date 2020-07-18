@@ -1,5 +1,5 @@
 import { getClientEnv } from '../config/env';
-import { paths } from 'src/config/paths';
+import { paths } from '../config/paths';
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'test';
