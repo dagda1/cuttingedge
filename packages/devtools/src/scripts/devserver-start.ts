@@ -35,7 +35,7 @@ if (!checkRequiredFiles([path.join(devServerConfig.publicDir, 'index.html'), dev
   process.exit(1);
 }
 
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
+const DEFAULT_PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
 choosePort(HOST, DEFAULT_PORT)
@@ -53,7 +53,7 @@ choosePort(HOST, DEFAULT_PORT)
 
     const proxySetting = require(paths.appPackageJson).proxy;
 
-    config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic);
+    config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic, paths.publicUrlOrPath);
 
     const devServer = new WebpackDevServer(compiler, config.devServer);
 

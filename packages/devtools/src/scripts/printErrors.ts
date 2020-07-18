@@ -1,5 +1,3 @@
-'use strict';
-
 import logger from './logger';
 
 const printErrors = (summary: string, errors: Error[]) => {

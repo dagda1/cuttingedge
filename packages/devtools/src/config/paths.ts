@@ -69,7 +69,6 @@ export const paths = {
   tsConfig: resolveApp('tsconfig.json'),
   devDir: resolveApp('demo'),
   devDirPublic: resolveApp('demo/public'),
-  eslintConfig: resolveApp('./.eslint.json'),
   libPackages,
   webAppPackages,
   allPackages: [...libPackages, ...webAppPackages],
@@ -78,5 +77,6 @@ export const paths = {
   tranlationsDir: resolveApp('src/translations'),
   publicUrlOrPath,
   eslintConfig: resolveApp('./.eslint.json'),
+  ossIndex: resolveApp('ossindex'),
   jestConfig,
 };

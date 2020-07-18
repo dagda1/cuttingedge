@@ -1,5 +1,3 @@
-'use strict';
-
 import logger from '../scripts/logger';
 
 const spawn = require('react-dev-utils/crossSpawn');

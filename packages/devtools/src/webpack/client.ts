@@ -124,7 +124,7 @@ export const configure = (options: DevServerConfig): Configuration => {
 
   if (isProduction) {
     assert(config.optimization, 'No optimization in config');
-    config.optimization = createWebpackOptimisation({ optimization: config.optimization, isDevelopment, ssrBuild });
+    config.optimization = createWebpackOptimisation({ optimization: config.optimization!, isDevelopment, ssrBuild });
   }
 
   return config;

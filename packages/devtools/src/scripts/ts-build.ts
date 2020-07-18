@@ -4,7 +4,7 @@ import path from 'path';
 import { paths } from '../config/paths';
 import copy from 'copy';
 import { exec } from 'child_process';
-import { findFile } from '../config/utils';
+import { findFile } from './utils/finders';
 
 const MaxTries = 15;
 
@@ -32,14 +32,14 @@ export function runEslint() {
 
   const eslint = exec(`${eslintPath} ${args}`) as any;
 
-  eslint.stdout.on('data', (data) => logger.info(data));
-  eslint.stderr.on('data', (data) => logger.error(data));
+  eslint.stdout.on('data', (data: string) => logger.info(data));
+  eslint.stderr.on('data', (data: string) => logger.error(data));
 
   eslint.on('close', (code: any) => {
     logger.done(`eslint exited with code ${code}.`);
 
     if (code !== 0) {
-      process.exit(1);
+      process.exit(code);
     }
   });
 }

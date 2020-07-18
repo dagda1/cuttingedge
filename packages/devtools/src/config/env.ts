@@ -1,5 +1,3 @@
-'use strict';
-
 import { paths } from './paths';
 import path from 'path';
 import fs from 'fs';

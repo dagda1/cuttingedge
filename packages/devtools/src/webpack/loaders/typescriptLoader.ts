@@ -1,5 +1,5 @@
 import { paths } from '../../config/paths';
-import { loadableTransformer } from 'loadable-ts-transformer';
+const { loadableTransformer } = require('loadable-ts-transformer');
 
 export const createTypescriptLoader = ({
   isDevelopment,
@@ -18,7 +18,7 @@ export const createTypescriptLoader = ({
           fix: isProduction,
           emitWarning: isDevelopment,
           failOnWarning: isProduction,
-          configFile: paths.esLintConfig,
+          configFile: paths.eslintConfig,
         },
       },
     ],

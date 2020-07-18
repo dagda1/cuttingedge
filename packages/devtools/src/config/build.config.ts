@@ -6,6 +6,7 @@ export const config: BuildConfig = {
     entries: paths.appClientIndexJs,
     hotReloading: true,
     publicPath: '/',
+    isNode: false,
   },
   server: {
     entries: paths.appServerIndexJs,

@@ -3,7 +3,7 @@
 import path from 'path';
 import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
-import { ossIndex } from '../config/paths';
+import { paths } from '../config/paths';
 import program from 'commander';
 import { run } from 'src/scripts/utils/run';
 import logger from 'src/scripts/logger';
@@ -20,7 +20,7 @@ export async function audit(exceptions: string[]) {
       auditResult = await run('yarn audit --json --level=moderate');
     } catch (err) {
       logger.error(JSON.stringify(err));
-      logger.console.warn('Call to yarnkpg audit has caused an error.  Exiting for now.  Audits caught on next build');
+      logger.warn('Call to yarnkpg audit has caused an error.  Exiting for now.  Audits caught on next build');
 
       process.exit(0);
       return;
@@ -32,7 +32,7 @@ export async function audit(exceptions: string[]) {
       .reverse()
       .filter((a) => {
         if (!a) {
-          logger.error({ a });
+          logger.error(a);
           return false;
         }
 
@@ -152,6 +152,8 @@ export async function audit(exceptions: string[]) {
     }
 
     jsonResults.testsuites.push(testSuite as any);
+
+    const { ossIndex } = paths;
 
     if (!fs.existsSync(ossIndex)) {
       mkdirp(ossIndex);

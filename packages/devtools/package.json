@@ -7,7 +7,7 @@
   },
   "bin": {
     "cutting": "./dist/bin/cutting.js",
-    "version-bump": "./src/version-bump/index.js"
+    "version-bump": "./dist/version-bump/index.js"
   },
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
