@@ -9,10 +9,9 @@ import StartServerPlugin from 'start-server-webpack-plugin';
 import path from 'path';
 
 import { configureCommon } from './common';
-import { getEnvironment, getEnvVariables } from './getEnvironment';
+import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
-
-const port = process.env.PORT;
+import { getUrlParts } from './getUrlParts';
 
 export const getExternals = function (isDevelopment: boolean) {
   return [
@@ -33,13 +32,11 @@ export const getExternals = function (isDevelopment: boolean) {
 };
 
 export const configure = (options: ServerBuildConfig): Configuration => {
-  const common = configureCommon({ ...options, isNode: true, ssrBuild: true });
+  const common = configureCommon({ ...options, isNode: true, ssrBuild: true, isWeb: false });
 
   const { isDevelopment, isProduction } = getEnvironment();
 
-  const env = getEnvVariables(options);
-
-  const devServerPort = isProduction ? port : Number(port) + 1;
+  const { publicPath } = getUrlParts({ ssrBuild: true, isProduction });
 
   const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
 
@@ -72,7 +69,7 @@ export const configure = (options: ServerBuildConfig): Configuration => {
     output: {
       path: paths.appBuild,
       filename: options.filename,
-      publicPath: isDevelopment ? `http://${env.raw.HOST}:${devServerPort}/` : '/',
+      publicPath,
       libraryTarget: 'commonjs2',
     },
 

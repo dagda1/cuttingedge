@@ -53,7 +53,7 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
           createFileLoader({ staticAssetName, isWeb }),
           createUrlLoader({ staticAssetName, isWeb }),
           createJsLoader(),
-          ...createTypescriptLoader({ isDevelopment, isProduction }),
+          ...createTypescriptLoader({ isDevelopment, isProduction, isWeb }),
           createCSVLoader(),
           createSVGLoader(),
           createMDLoader(),

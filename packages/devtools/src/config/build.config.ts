@@ -5,7 +5,6 @@ export const config: BuildConfig = {
   client: {
     entries: paths.appClientIndexJs,
     hotReloading: true,
-    publicPath: '/',
     isNode: false,
   },
   server: {
@@ -35,6 +34,5 @@ export const config: BuildConfig = {
     devServer: true,
     isStaticBuild: true,
     publicDir: paths.appPublic,
-    publicPath: '/',
   },
 };

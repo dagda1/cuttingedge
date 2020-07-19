@@ -24,16 +24,15 @@ const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 const isProfilerEnabled = () => process.argv.includes('--profile');
 
 export const configure = (options: DevServerConfig): Configuration => {
-  const { entries, publicDir, proxy, devServer, isStaticBuild, publicPath = '/' } = options;
+  const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
   const { isDevelopment, isProduction } = getEnvironment();
-  const { protocol, host, port } = getUrlParts();
+  const ssrBuild = !isStaticBuild;
+  const { protocol, host, publicPath } = getUrlParts({ ssrBuild, isProduction });
 
   // TODO: get rid of mutation
   options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
   options.isNode = false;
   options.isWeb = true;
-
-  const ssrBuild = !isStaticBuild;
 
   const common = configureCommon(options);
 
@@ -62,7 +61,7 @@ export const configure = (options: DevServerConfig): Configuration => {
     devServer: isDevelopment ? createDevServer({ protocol, host, proxy }) : {},
     output: {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
-      publicPath: isDevelopment ? `${protocol}://${host}:${port}/` : '/',
+      publicPath,
       pathinfo: isDevelopment,
       filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : 'static/js/bundle.js',
       chunkFilename: isProduction ? 'static/js/[name].[chunkhash:8].chunk.js' : 'static/js/[name].chunk.js',

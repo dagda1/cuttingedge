@@ -33,14 +33,14 @@ var ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 var HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 var isProfilerEnabled = function () { return process.argv.includes('--profile'); };
 exports.configure = function (options) {
-    var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild, _a = options.publicPath, publicPath = _a === void 0 ? '/' : _a;
-    var _b = getEnvironment_1.getEnvironment(), isDevelopment = _b.isDevelopment, isProduction = _b.isProduction;
-    var _c = getUrlParts_1.getUrlParts(), protocol = _c.protocol, host = _c.host, port = _c.port;
+    var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild;
+    var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
+    var ssrBuild = !isStaticBuild;
+    var _b = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _b.protocol, host = _b.host, publicPath = _b.publicPath;
     // TODO: get rid of mutation
     options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
     options.isNode = false;
     options.isWeb = true;
-    var ssrBuild = !isStaticBuild;
     var common = common_1.configureCommon(options);
     var polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
     var iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
@@ -59,7 +59,7 @@ exports.configure = function (options) {
         devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, host: host, proxy: proxy }) : {},
         output: {
             path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic,
-            publicPath: isDevelopment ? protocol + "://" + host + ":" + port + "/" : '/',
+            publicPath: publicPath,
             pathinfo: isDevelopment,
             filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : 'static/js/bundle.js',
             chunkFilename: isProduction ? 'static/js/[name].[chunkhash:8].chunk.js' : 'static/js/[name].chunk.js',

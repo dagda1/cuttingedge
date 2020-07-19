@@ -6,7 +6,6 @@ exports.config = {
     client: {
         entries: paths_1.paths.appClientIndexJs,
         hotReloading: true,
-        publicPath: '/',
         isNode: false,
     },
     server: {
@@ -36,7 +35,6 @@ exports.config = {
         devServer: true,
         isStaticBuild: true,
         publicDir: paths_1.paths.appPublic,
-        publicPath: '/',
     },
 };
 //# sourceMappingURL=build.config.js.map

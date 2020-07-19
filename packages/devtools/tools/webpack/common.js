@@ -59,7 +59,7 @@ exports.configureCommon = function (options) {
                 fileLoader_1.createFileLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
                 urlLoader_1.createUrlLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
                 jsLoader_1.createJsLoader()
-            ], typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isProduction: isProduction }), [
+            ], typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isProduction: isProduction, isWeb: isWeb }), [
                 csvLoader_1.createCSVLoader(),
                 svgLoader_1.createSVGLoader(),
                 mdLoader_1.createMDLoader()

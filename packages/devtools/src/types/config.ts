@@ -5,7 +5,6 @@ export interface BuildConfig {
   client: {
     entries: string | string[];
     hotReloading: boolean;
-    publicPath: string;
     isNode: false;
   };
   server: {
@@ -32,7 +31,6 @@ export interface BuildConfig {
     devServer: boolean;
     isStaticBuild: boolean;
     publicDir: string;
-    publicPath: string;
     proxy?: ProxyConfigMap;
     isNode?: boolean;
     isWeb?: boolean;

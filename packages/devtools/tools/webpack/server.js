@@ -31,7 +31,7 @@ var path_1 = __importDefault(require("path"));
 var common_1 = require("./common");
 var getEnvironment_1 = require("./getEnvironment");
 var guards_1 = require("./guards");
-var port = process.env.PORT;
+var getUrlParts_1 = require("./getUrlParts");
 exports.getExternals = function (isDevelopment) {
     return [
         webpack_node_externals_1.default({
@@ -50,10 +50,9 @@ exports.getExternals = function (isDevelopment) {
     ];
 };
 exports.configure = function (options) {
-    var common = common_1.configureCommon(__assign(__assign({}, options), { isNode: true, ssrBuild: true }));
+    var common = common_1.configureCommon(__assign(__assign({}, options), { isNode: true, ssrBuild: true, isWeb: false }));
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
-    var env = getEnvironment_1.getEnvVariables(options);
-    var devServerPort = isProduction ? port : Number(port) + 1;
+    var publicPath = getUrlParts_1.getUrlParts({ ssrBuild: true, isProduction: isProduction }).publicPath;
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
     var nodeArgs;
     if (isDevelopment) {
@@ -81,7 +80,7 @@ exports.configure = function (options) {
         output: {
             path: paths_1.paths.appBuild,
             filename: options.filename,
-            publicPath: isDevelopment ? "http://" + env.raw.HOST + ":" + devServerPort + "/" : '/',
+            publicPath: publicPath,
             libraryTarget: 'commonjs2',
         },
         plugins: [
