@@ -9,12 +9,14 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.paths = void 0;
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var appDirectory = fs_1.default.realpathSync(process.cwd());
 var resolveApp = function (relativePath) { return path_1.default.resolve(appDirectory, relativePath); };
+var DefaultBuildDir = 'dist';
 var getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
 var publicUrlOrPath = getPublicUrlOrPath(process.env.NODE_ENV === 'development', require(resolveApp('package.json')).homepage, process.env.PUBLIC_URL);
 var resolveOwn = function (relativePath) { return path_1.default.resolve(__dirname, '..', relativePath); };
@@ -44,12 +46,18 @@ var webAppPackages = ['packages/website'].map(function (dep) { return path_1.def
 var jestConfig = fs_1.default.existsSync(resolveApp('jest.config.js'))
     ? resolveApp('jest.config.js')
     : path_1.default.resolve(__dirname, '../jest/jest.config.js');
+var tsConfigPath = resolveApp('tsconfig.json');
+var tsConfig = fs_1.default.existsSync(tsConfigPath)
+    ? require(tsConfigPath)
+    : { compilerOptions: { outDir: undefined } };
+var outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.outDir) || DefaultBuildDir;
+var appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
 exports.paths = {
     dotenv: resolveApp('.env'),
     appPath: resolveApp('.'),
-    appBuild: resolveApp('dist'),
-    appBuildPublic: resolveApp('dist/public'),
-    appManifest: resolveApp('dist/assets.json'),
+    appBuild: appBuild,
+    appBuildPublic: path_1.default.join(appBuild, 'public'),
+    appManifest: path_1.default.join(appBuild, 'loadable-stats.json'),
     appPublic: resolveApp('public'),
     appNodeModules: resolveApp('node_modules'),
     appSrc: resolveApp('src'),
@@ -64,7 +72,7 @@ exports.paths = {
     jsBuildConfigPath: requireRelative('./build.config.js'),
     localBuildConfig: resolveApp('./build.config.js'),
     resolvedNodeModules: resolvedNodeModules,
-    tsConfig: resolveApp('tsconfig.json'),
+    tsConfig: tsConfigPath,
     devDir: resolveApp('demo'),
     devDirPublic: resolveApp('demo/public'),
     libPackages: libPackages,
@@ -74,7 +82,7 @@ exports.paths = {
     proxySetup: resolveApp('setupProxy.js'),
     tranlationsDir: resolveApp('src/translations'),
     publicUrlOrPath: publicUrlOrPath,
-    eslintConfig: resolveApp('./.eslint.json'),
+    eslintConfig: resolveApp('./.eslintrc.json'),
     ossIndex: resolveApp('ossindex'),
     jestConfig: jestConfig,
 };

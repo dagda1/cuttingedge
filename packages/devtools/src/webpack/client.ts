@@ -127,7 +127,5 @@ export const configure = (options: DevServerConfig): Configuration => {
     config.optimization = createWebpackOptimisation({ optimization: config.optimization!, isDevelopment, ssrBuild });
   }
 
-  console.dir(config.module?.rules[3], { depth: 33 });
-
   return config;
 };

@@ -4,6 +4,8 @@ import fs from 'fs';
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath: string) => path.resolve(appDirectory, relativePath);
 
+const DefaultBuildDir = 'dist';
+
 const getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
 
 const publicUrlOrPath = getPublicUrlOrPath(
@@ -46,12 +48,22 @@ const jestConfig = fs.existsSync(resolveApp('jest.config.js'))
   ? resolveApp('jest.config.js')
   : path.resolve(__dirname, '../jest/jest.config.js');
 
+const tsConfigPath = resolveApp('tsconfig.json');
+
+const tsConfig = fs.existsSync(tsConfigPath)
+  ? (require(tsConfigPath) as { compilerOptions: { outDir?: string } })
+  : { compilerOptions: { outDir: undefined } };
+
+const outDir = tsConfig.compilerOptions?.outDir || DefaultBuildDir;
+
+const appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
+
 export const paths = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('dist'),
-  appBuildPublic: resolveApp('dist/public'),
-  appManifest: resolveApp('dist/assets.json'),
+  appBuild,
+  appBuildPublic: path.join(appBuild, 'public'),
+  appManifest: path.join(appBuild, 'loadable-stats.json'),
   appPublic: resolveApp('public'),
   appNodeModules: resolveApp('node_modules'),
   appSrc: resolveApp('src'),
@@ -66,7 +78,7 @@ export const paths = {
   jsBuildConfigPath: requireRelative('./build.config.js'),
   localBuildConfig: resolveApp('./build.config.js'),
   resolvedNodeModules,
-  tsConfig: resolveApp('tsconfig.json'),
+  tsConfig: tsConfigPath,
   devDir: resolveApp('demo'),
   devDirPublic: resolveApp('demo/public'),
   libPackages,
@@ -76,7 +88,7 @@ export const paths = {
   proxySetup: resolveApp('setupProxy.js'),
   tranlationsDir: resolveApp('src/translations'),
   publicUrlOrPath,
-  eslintConfig: resolveApp('./.eslint.json'),
+  eslintConfig: resolveApp('./.eslintrc.json'),
   ossIndex: resolveApp('ossindex'),
   jestConfig,
 };

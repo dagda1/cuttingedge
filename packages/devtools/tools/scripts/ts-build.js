@@ -61,7 +61,8 @@ function runTypeScriptBuild() {
 function build() {
     try {
         runTypeScriptBuild();
-        var patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json'].map(function (pattern) { return paths_1.paths.appSrc + "/**/" + pattern; });
+        var patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json', '*.html'].map(function (pattern) { return paths_1.paths.appSrc + "/**/" + pattern; });
+        console.log(paths_1.paths.appBuild);
         copy_1.default(patterns, paths_1.paths.appBuild, function (err) {
             if (err) {
                 throw err;

@@ -77,7 +77,7 @@ function build() {
   try {
     runTypeScriptBuild();
 
-    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json'].map(
+    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json', '*.html'].map(
       (pattern) => `${paths.appSrc}/**/${pattern}`,
     );
 
