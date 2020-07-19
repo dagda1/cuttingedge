@@ -10,11 +10,11 @@ var paths_1 = require("../config/paths");
 var webpack_dev_server_1 = __importDefault(require("webpack-dev-server"));
 var printErrors_1 = __importDefault(require("./printErrors"));
 var logger_1 = __importDefault(require("./logger"));
-var setPorts_1 = require("./setPorts");
 var webpack_merge_1 = __importDefault(require("webpack-merge"));
 var client_1 = require("../webpack/client");
 var server_1 = require("../webpack/server");
 var build_config_1 = require("../config/build.config");
+var getUrlParts_1 = require("../webpack/getUrlParts");
 process.noDeprecation = true;
 function compile(config) {
     var compiler;
@@ -37,6 +37,7 @@ function main() {
     fs_extra_1.default.removeSync(paths_1.paths.appManifest);
     var localBuildConfig = require(paths_1.paths.localBuildConfig);
     var buildConfig = webpack_merge_1.default(build_config_1.config, localBuildConfig);
+    var port = getUrlParts_1.getUrlParts({ ssrBuild: true, isProduction: false }).port;
     var clientConfig = client_1.configure(buildConfig.client);
     var serverConfig = server_1.configure(buildConfig.server);
     var clientCompiler = compile(clientConfig);
@@ -51,11 +52,12 @@ function main() {
      * This will actually run on a different port than the main app.
      */
     var clientDevServer = new webpack_dev_server_1.default(clientCompiler, clientConfig.devServer);
-    clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || 3001, function (err) {
+    console.log({ port: port });
+    clientDevServer.listen(port, function (err) {
         if (err) {
             logger_1.default.error(err);
         }
     });
 }
-setPorts_1.setPorts().then(main).catch(logger_1.default.error);
+main();
 //# sourceMappingURL=ssr-start.js.map

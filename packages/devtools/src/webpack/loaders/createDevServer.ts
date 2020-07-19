@@ -8,10 +8,14 @@ import { Configuration, ProxyConfigArray, ProxyConfigMap } from 'webpack-dev-ser
 export const createDevServer = ({
   protocol,
   host,
+  sockPort,
   proxy,
+  port,
 }: {
   protocol: 'http' | 'https';
   host: string;
+  port: number;
+  sockPort: number;
   proxy?: ProxyConfigMap | ProxyConfigArray;
 }): Configuration => {
   return {
@@ -22,11 +26,13 @@ export const createDevServer = ({
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
+    port,
     writeToDisk: true,
     hot: true,
     inline: true,
     hotOnly: true,
     transportMode: 'ws',
+    sockPort,
     publicPath: paths.publicUrlOrPath.slice(0, -1),
     quiet: true,
     host,

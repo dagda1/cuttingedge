@@ -27,7 +27,7 @@ export const configure = (options: DevServerConfig): Configuration => {
   const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
   const { isDevelopment, isProduction } = getEnvironment();
   const ssrBuild = !isStaticBuild;
-  const { protocol, host, publicPath } = getUrlParts({ ssrBuild, isProduction });
+  const { protocol, host, publicPath, port, sockPort } = getUrlParts({ ssrBuild, isProduction });
 
   // TODO: get rid of mutation
   options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
@@ -58,7 +58,7 @@ export const configure = (options: DevServerConfig): Configuration => {
     name: 'client',
     target: 'web',
     entry: finalEntries,
-    devServer: isDevelopment ? createDevServer({ protocol, host, proxy }) : {},
+    devServer: isDevelopment ? createDevServer({ protocol, host, sockPort, proxy, port }) : {},
     output: {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,

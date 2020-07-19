@@ -5,6 +5,7 @@ var paths_1 = require("../../config/paths");
 var loadableTransformer = require('loadable-ts-transformer').loadableTransformer;
 exports.createTypescriptLoader = function (_a) {
     var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, isWeb = _a.isWeb;
+    var hot = isDevelopment && isWeb;
     return [
         {
             test: /\.tsx$/,
@@ -24,8 +25,7 @@ exports.createTypescriptLoader = function (_a) {
         {
             test: /\.tsx?$/,
             use: [
-                isDevelopment &&
-                    isWeb && {
+                hot && {
                     loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env'],

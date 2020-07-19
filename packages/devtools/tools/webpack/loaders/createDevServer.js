@@ -10,7 +10,7 @@ var fs_1 = __importDefault(require("fs"));
 var evalSourceMapMiddleware_1 = __importDefault(require("react-dev-utils/evalSourceMapMiddleware"));
 var redirectServedPathMiddleware_1 = __importDefault(require("react-dev-utils/redirectServedPathMiddleware"));
 exports.createDevServer = function (_a) {
-    var protocol = _a.protocol, host = _a.host, proxy = _a.proxy;
+    var protocol = _a.protocol, host = _a.host, sockPort = _a.sockPort, proxy = _a.proxy, port = _a.port;
     return {
         disableHostCheck: true,
         contentBase: paths_1.paths.appPublic,
@@ -19,11 +19,13 @@ exports.createDevServer = function (_a) {
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
+        port: port,
         writeToDisk: true,
         hot: true,
         inline: true,
         hotOnly: true,
         transportMode: 'ws',
+        sockPort: sockPort,
         publicPath: paths_1.paths.publicUrlOrPath.slice(0, -1),
         quiet: true,
         host: host,

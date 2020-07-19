@@ -5,12 +5,12 @@ import { paths } from '../config/paths';
 import devServer from 'webpack-dev-server';
 import printErrors from './printErrors';
 import logger from './logger';
-import { setPorts } from './setPorts';
 import merge from 'webpack-merge';
 import { configure as configureWebpackClient } from '../webpack/client';
 import { configure as configureWebpackServer } from '../webpack/server';
 import { BuildConfig } from '../types/config';
 import { config as globalBuildConfig } from '../config/build.config';
+import { getUrlParts } from '../webpack/getUrlParts';
 
 (process as any).noDeprecation = true;
 
@@ -41,6 +41,8 @@ function main() {
 
   const buildConfig = merge(globalBuildConfig as any, localBuildConfig as any) as any;
 
+  const { port } = getUrlParts({ ssrBuild: true, isProduction: false });
+
   const clientConfig = configureWebpackClient(buildConfig.client);
   const serverConfig = configureWebpackServer(buildConfig.server);
 
@@ -61,10 +63,13 @@ function main() {
    */
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
 
-  clientDevServer.listen((process.env.PORT && parseInt(process.env.PORT) + 1) || 3001, (err) => {
+  console.log({ port });
+
+  clientDevServer.listen(port, (err) => {
     if (err) {
       logger.error(err);
     }
   });
 }
-setPorts().then(main).catch(logger.error);
+
+main();

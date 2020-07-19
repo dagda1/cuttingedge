@@ -6,9 +6,6 @@ export type Env = {
   PUBLIC_PATH: string;
   CI: boolean;
   PUBLIC_URL: string;
-  WDS_SOCKET_HOST?: string;
-  WDS_SOCKET_PATH?: string;
-  WDS_SOCKET_PORT?: string;
   FAST_REFRESH?: boolean;
   nodePath: string;
   PORT: number;

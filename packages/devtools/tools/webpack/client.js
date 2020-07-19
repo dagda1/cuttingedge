@@ -36,7 +36,7 @@ exports.configure = function (options) {
     var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild;
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
     var ssrBuild = !isStaticBuild;
-    var _b = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _b.protocol, host = _b.host, publicPath = _b.publicPath;
+    var _b = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _b.protocol, host = _b.host, publicPath = _b.publicPath, port = _b.port, sockPort = _b.sockPort;
     // TODO: get rid of mutation
     options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
     options.isNode = false;
@@ -56,7 +56,7 @@ exports.configure = function (options) {
         name: 'client',
         target: 'web',
         entry: finalEntries,
-        devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, host: host, proxy: proxy }) : {},
+        devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, host: host, sockPort: sockPort, proxy: proxy, port: port }) : {},
         output: {
             path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic,
             publicPath: publicPath,
