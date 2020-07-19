@@ -10,17 +10,11 @@ export const getUrlParts = () => {
   const protocol = process.env.HTTPS === 'true' ? ('https' as const) : ('http' as const);
   const host = process.env.HOST || 'localhost';
   const urls = prepareUrls(protocol, host, port);
-  const sockPort = Number(process.env.WDS_SOCKET_PORT || port);
-  const sockHost = process.env.WDS_SOCKET_HOST as string;
-  const sockPath = process.env.WDS_SOCKET_PATH as string;
 
   return {
     port,
     protocol,
     host,
     urls,
-    sockPort,
-    sockHost,
-    sockPath,
   };
 };

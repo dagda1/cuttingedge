@@ -23,7 +23,6 @@ var WatchMissingNodeModulesPlugin_1 = __importDefault(require("react-dev-utils/W
 var InterpolateHtmlPlugin_1 = __importDefault(require("react-dev-utils/InterpolateHtmlPlugin"));
 var git_1 = require("../scripts/git");
 var react_refresh_webpack_plugin_1 = __importDefault(require("@pmmmwh/react-refresh-webpack-plugin"));
-var webpack_manifest_plugin_1 = __importDefault(require("webpack-manifest-plugin"));
 var getUrlParts_1 = require("./getUrlParts");
 var getEnvironment_1 = require("./getEnvironment");
 var createDevServer_1 = require("./loaders/createDevServer");
@@ -36,7 +35,7 @@ var isProfilerEnabled = function () { return process.argv.includes('--profile');
 exports.configure = function (options) {
     var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild, _a = options.publicPath, publicPath = _a === void 0 ? '/' : _a;
     var _b = getEnvironment_1.getEnvironment(), isDevelopment = _b.isDevelopment, isProduction = _b.isProduction;
-    var _c = getUrlParts_1.getUrlParts(), protocol = _c.protocol, host = _c.host, port = _c.port, sockPort = _c.sockPort, sockHost = _c.sockHost, sockPath = _c.sockPath;
+    var _c = getUrlParts_1.getUrlParts(), protocol = _c.protocol, host = _c.host, port = _c.port;
     // TODO: get rid of mutation
     options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
     options.isNode = false;
@@ -57,7 +56,7 @@ exports.configure = function (options) {
         name: 'client',
         target: 'web',
         entry: finalEntries,
-        devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, host: host, sockPort: sockPort, sockHost: sockHost, sockPath: sockPath, proxy: proxy }) : {},
+        devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, host: host, proxy: proxy }) : {},
         output: {
             path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic,
             publicPath: isDevelopment ? protocol + "://" + host + ":" + port + "/" : '/',
@@ -101,16 +100,12 @@ exports.configure = function (options) {
             ]),
             isProduction && ssrBuild && new InlineChunkHtmlPlugin_1.default(html_webpack_plugin_1.default, [/runtime-.+[.]js/]),
             new webpack_1.default.IgnorePlugin(/^\.\/locale$/, /moment$/),
-            isDevelopment && new webpack_manifest_plugin_1.default({ fileName: 'manifest.json' }),
             new ModuleNotFoundPlugin(paths_1.paths.appPath),
             isDevelopment && new WatchMissingNodeModulesPlugin_1.default(paths_1.paths.appNodeModules),
             isProfilerEnabled() && new webpack_1.default.debug.ProfilingPlugin(),
             isDevelopment &&
                 new react_refresh_webpack_plugin_1.default({
                     overlay: {
-                        sockPort: Number(sockPort),
-                        sockPath: sockPath,
-                        sockHost: sockHost,
                         sockIntegration: 'wds',
                     },
                 }),

@@ -15,7 +15,7 @@ export const App: React.FC = () => {
     <div className={styles.wrap}>
       <div className={styles.layout}>
         <div className={styles.item}>
-          <Heading level={2}>Radio Group</Heading>
+          <Heading level={2}>Radio Group You shit</Heading>
         </div>
       </div>
       <div className={styles.layout}>

@@ -10,17 +10,11 @@ exports.getUrlParts = function () {
     var protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     var host = process.env.HOST || 'localhost';
     var urls = WebpackDevServerUtils_1.prepareUrls(protocol, host, port);
-    var sockPort = Number(process.env.WDS_SOCKET_PORT || port);
-    var sockHost = process.env.WDS_SOCKET_HOST;
-    var sockPath = process.env.WDS_SOCKET_PATH;
     return {
         port: port,
         protocol: protocol,
         host: host,
         urls: urls,
-        sockPort: sockPort,
-        sockHost: sockHost,
-        sockPath: sockPath,
     };
 };
 //# sourceMappingURL=getUrlParts.js.map

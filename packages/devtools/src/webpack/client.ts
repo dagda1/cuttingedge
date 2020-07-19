@@ -11,7 +11,6 @@ import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModul
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
 import { getCommitHash } from '../scripts/git';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import ManifestPlugin from 'webpack-manifest-plugin';
 import { Configuration } from 'webpack';
 import { getUrlParts } from './getUrlParts';
 import { getEnvironment } from './getEnvironment';
@@ -27,7 +26,7 @@ const isProfilerEnabled = () => process.argv.includes('--profile');
 export const configure = (options: DevServerConfig): Configuration => {
   const { entries, publicDir, proxy, devServer, isStaticBuild, publicPath = '/' } = options;
   const { isDevelopment, isProduction } = getEnvironment();
-  const { protocol, host, port, sockPort, sockHost, sockPath } = getUrlParts();
+  const { protocol, host, port } = getUrlParts();
 
   // TODO: get rid of mutation
   options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
@@ -60,7 +59,7 @@ export const configure = (options: DevServerConfig): Configuration => {
     name: 'client',
     target: 'web',
     entry: finalEntries,
-    devServer: isDevelopment ? createDevServer({ protocol, host, sockPort, sockHost, sockPath, proxy }) : {},
+    devServer: isDevelopment ? createDevServer({ protocol, host, proxy }) : {},
     output: {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath: isDevelopment ? `${protocol}://${host}:${port}/` : '/',
@@ -106,16 +105,12 @@ export const configure = (options: DevServerConfig): Configuration => {
       ]),
       isProduction && ssrBuild && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/]),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      isDevelopment && new ManifestPlugin({ fileName: 'manifest.json' }),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       isProfilerEnabled() && new webpack.debug.ProfilingPlugin(),
       isDevelopment &&
         new ReactRefreshWebpackPlugin({
           overlay: {
-            sockPort: Number(sockPort),
-            sockPath,
-            sockHost,
             sockIntegration: 'wds',
           },
         }),
