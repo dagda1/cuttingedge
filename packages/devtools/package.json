@@ -12,7 +12,8 @@
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run ts-node ./src/scripts/ts-build.ts"
+    "build": "yarn run ts-node ./src/scripts/ts-build.ts",
+    "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js"
   },
   "dependencies": {
     "@babel/core": "^7.9.6",

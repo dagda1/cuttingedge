@@ -53,6 +53,7 @@ exports.configure = function (options) {
     var common = common_1.configureCommon(__assign(__assign({}, options), { isNode: true, ssrBuild: true, isWeb: false }));
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
     var publicPath = getUrlParts_1.getUrlParts({ ssrBuild: true, isProduction: isProduction }).publicPath;
+    console.log({ publicPath: publicPath });
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
     var nodeArgs;
     if (isDevelopment) {

@@ -38,6 +38,8 @@ export const configure = (options: ServerBuildConfig): Configuration => {
 
   const { publicPath } = getUrlParts({ ssrBuild: true, isProduction });
 
+  console.log({ publicPath });
+
   const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
 
   let nodeArgs;

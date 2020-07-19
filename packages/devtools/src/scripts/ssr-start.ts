@@ -63,8 +63,6 @@ function main() {
    */
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
 
-  console.log({ port });
-
   clientDevServer.listen(port, (err) => {
     if (err) {
       logger.error(err);

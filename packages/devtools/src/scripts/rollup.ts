@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable no-console */
-const { rollup } = require('rollup');
+import { rollup } from 'rollup';
 import filesizePlugin from 'rollup-plugin-filesize';
 import replacePlugin from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';

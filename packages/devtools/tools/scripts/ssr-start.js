@@ -52,7 +52,6 @@ function main() {
      * This will actually run on a different port than the main app.
      */
     var clientDevServer = new webpack_dev_server_1.default(clientCompiler, clientConfig.devServer);
-    console.log({ port: port });
     clientDevServer.listen(port, function (err) {
         if (err) {
             logger_1.default.error(err);

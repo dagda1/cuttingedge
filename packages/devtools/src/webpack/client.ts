@@ -111,6 +111,7 @@ export const configure = (options: DevServerConfig): Configuration => {
         new ReactRefreshWebpackPlugin({
           overlay: {
             sockIntegration: 'wds',
+            sockPort,
           },
         }),
     ].filter(Boolean),

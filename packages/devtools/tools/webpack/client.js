@@ -107,6 +107,7 @@ exports.configure = function (options) {
                 new react_refresh_webpack_plugin_1.default({
                     overlay: {
                         sockIntegration: 'wds',
+                        sockPort: sockPort,
                     },
                 }),
         ].filter(Boolean),
