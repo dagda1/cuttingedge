@@ -9,5 +9,5 @@ var fileTransform = {
         return "module.exports = " + JSON.stringify(path_1.default.basename(filename)) + ";";
     },
 };
-exports.default = fileTransform;
+module.exports = fileTransform;
 //# sourceMappingURL=fileTransform.js.map

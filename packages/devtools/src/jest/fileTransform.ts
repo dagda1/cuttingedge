@@ -6,4 +6,4 @@ const fileTransform = {
   },
 };
 
-export default fileTransform;
+module.exports = fileTransform;

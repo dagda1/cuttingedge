@@ -43,9 +43,6 @@ var libPackages = [
     'packages/graphql-swagger',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var webAppPackages = ['packages/website'].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
-var jestConfig = fs_1.default.existsSync(resolveApp('jest.config.js'))
-    ? resolveApp('jest.config.js')
-    : path_1.default.resolve(__dirname, '../jest/jest.config.js');
 var tsConfigPath = resolveApp('tsconfig.json');
 var tsConfig = fs_1.default.existsSync(tsConfigPath)
     ? require(tsConfigPath)
@@ -84,6 +81,6 @@ exports.paths = {
     publicUrlOrPath: publicUrlOrPath,
     eslintConfig: resolveApp('./.eslintrc.json'),
     ossIndex: resolveApp('ossindex'),
-    jestConfig: jestConfig,
+    jestConfig: path_1.default.join(__dirname, '../jest/jest.config.js'),
 };
 //# sourceMappingURL=paths.js.map

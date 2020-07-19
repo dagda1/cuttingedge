@@ -44,10 +44,6 @@ const libPackages = [
 
 const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));
 
-const jestConfig = fs.existsSync(resolveApp('jest.config.js'))
-  ? resolveApp('jest.config.js')
-  : path.resolve(__dirname, '../jest/jest.config.js');
-
 const tsConfigPath = resolveApp('tsconfig.json');
 
 const tsConfig = fs.existsSync(tsConfigPath)
@@ -90,5 +86,5 @@ export const paths = {
   publicUrlOrPath,
   eslintConfig: resolveApp('./.eslintrc.json'),
   ossIndex: resolveApp('ossindex'),
-  jestConfig,
+  jestConfig: path.join(__dirname, '../jest/jest.config.js'),
 };

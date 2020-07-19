@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var cssTransform = {
     process: function () {
         return 'module.exports = {};';
@@ -8,5 +7,5 @@ var cssTransform = {
         return 'cssTransform';
     },
 };
-exports.default = cssTransform;
+module.exports = cssTransform;
 //# sourceMappingURL=cssTransform.js.map

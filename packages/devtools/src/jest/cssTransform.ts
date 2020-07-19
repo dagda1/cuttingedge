@@ -7,4 +7,4 @@ const cssTransform = {
   },
 };
 
-export default cssTransform;
+module.exports = cssTransform;
