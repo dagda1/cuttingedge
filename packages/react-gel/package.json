@@ -17,7 +17,7 @@
     "@cutting/util": "3.9.0",
     "gel-grid": "^4.0.0",
     "gel-sass-tools": "^1.2.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.19"
   },
   "devDependencies": {
     "@cutting/devtools": "3.9.0",
