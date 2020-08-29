@@ -6,7 +6,7 @@ const server = http.createServer(app);
 let currentApp = app;
 
 server.listen(process.env.PORT, () => {
-  console.log(`🚀 started on http://localhost:${process.env.PORT}`);
+  console.log(`🚀 started on http://localhost:3800`);
 });
 
 if (module.hot) {
