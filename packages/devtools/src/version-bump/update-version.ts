@@ -7,18 +7,17 @@ const writeToPackage = <D>(filename: string, data: D) =>
     }
   });
 
-const copyDependencies = (destination: string, oldVersion: string, version: string) => {
+const copyDependencies = (destination: Record<string, unknown>, oldVersion: string, version: string) => {
   if (!destination) {
     return;
   }
 
   Object.keys(destination).forEach(
-    (prop) =>
-      (destination[prop] = /@cutting/g.test(prop) && destination[prop] === oldVersion ? version : destination[prop]),
+    (prop) => (destination[prop] = /@ds/g.test(prop) && destination[prop] === oldVersion ? version : destination[prop]),
   );
 };
 
-export const updateVersion = (filename: string, oldVersion: string, version: string) => {
+export const updateVersion = (filename: string, oldVersion: string, version: string): void => {
   const pkg = require(filename);
 
   pkg.version = version;

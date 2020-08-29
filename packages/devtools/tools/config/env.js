@@ -31,7 +31,9 @@ exports.nodePath = (process.env.NODE_PATH || '')
     .filter(function (folder) { return folder && !path_1.default.isAbsolute(folder); })
     .map(function (folder) { return path_1.default.resolve(appDirectory, folder); })
     .join(path_1.default.delimiter);
-function getClientEnv(target, options, additional) {
+function getClientEnv(target, 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+options, additional) {
     if (target === void 0) { target = 'web'; }
     if (options === void 0) { options = {}; }
     if (additional === void 0) { additional = {}; }
@@ -46,9 +48,9 @@ function getClientEnv(target, options, additional) {
         PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
         CI: !!process.env.CI,
         PUBLIC_URL: options.publicUrl || '',
-        FAST_REFRESH: !!process.env.FAST_REFRESH,
+        FAST_REFRESH: !!process.env.FAST_REFRESH || true,
         nodePath: exports.nodePath,
-        PORT: 0,
+        PORT: Number(process.env.PORT),
     }, additional));
     if (process.env.NODE_ENV === 'development') {
         raw.PORT = Number(process.env.PORT);

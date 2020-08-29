@@ -110,7 +110,7 @@ const error = (err: string | Error) => {
   }
 };
 
-export default {
+export const logger = {
   log,
   info,
   debug,
@@ -118,4 +118,4 @@ export default {
   error,
   start,
   done,
-};
+} as const;

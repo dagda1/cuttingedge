@@ -41,14 +41,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.audit = void 0;
-/* eslint-disable @typescript-eslint/camelcase */
 var path_1 = __importDefault(require("path"));
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var mkdirp_1 = __importDefault(require("mkdirp"));
 var paths_1 = require("../config/paths");
 var commander_1 = __importDefault(require("commander"));
 var run_1 = require("../scripts/utils/run");
-var logger_1 = __importDefault(require("../scripts/logger"));
+var logger_1 = require("../scripts/logger");
 var xml = require('xml');
 var LogFailurePrefix = 'ossindex.sonatype.org';
 function audit(exceptions) {
@@ -69,8 +68,8 @@ function audit(exceptions) {
                     return [3 /*break*/, 4];
                 case 3:
                     err_1 = _g.sent();
-                    logger_1.default.error(JSON.stringify(err_1));
-                    logger_1.default.warn('Call to yarnkpg audit has caused an error.  Exiting for now.  Audits caught on next build');
+                    logger_1.logger.error(JSON.stringify(err_1));
+                    logger_1.logger.warn('Call to yarnkpg audit has caused an error.  Exiting for now.  Audits caught on next build');
                     process.exit(0);
                     return [2 /*return*/];
                 case 4:
@@ -80,7 +79,7 @@ function audit(exceptions) {
                         .reverse()
                         .filter(function (a) {
                         if (!a) {
-                            logger_1.default.error(a);
+                            logger_1.logger.error(a);
                             return false;
                         }
                         return true;
@@ -88,19 +87,19 @@ function audit(exceptions) {
                         .map(function (s) { return JSON.parse(s); }), report = _d[0], vulnerabilities = _d.slice(1);
                     totalDependencies = (_a = report === null || report === void 0 ? void 0 : report.data) === null || _a === void 0 ? void 0 : _a.totalDependencies;
                     if (!totalDependencies) {
-                        logger_1.default.error('Call to Yarn audit has failed.  Exiting for now.  Audits caught on next build');
-                        logger_1.default.error(report);
-                        logger_1.default.error(auditResult);
+                        logger_1.logger.error('Call to Yarn audit has failed.  Exiting for now.  Audits caught on next build');
+                        logger_1.logger.error(report);
+                        logger_1.logger.error(auditResult);
                         process.exit(0);
                     }
                     _e = require(path_1.default.join(process.cwd(), 'package.json')), name_1 = _e.name, version = _e.version;
                     displayName_1 = name_1 + "@" + version;
                     logMessage = "running yarn audit for " + displayName_1;
-                    logger_1.default.info(logMessage);
+                    logger_1.logger.info(logMessage);
                     failures = vulnerabilities.filter(function (vulnerability) {
                         var _a, _b;
                         if (!((_a = vulnerability === null || vulnerability === void 0 ? void 0 : vulnerability.data) === null || _a === void 0 ? void 0 : _a.advisory)) {
-                            logger_1.default.info(typeof vulnerability);
+                            logger_1.logger.info(typeof vulnerability);
                             console.dir(vulnerability);
                         }
                         var advisory = (_b = vulnerability.data) === null || _b === void 0 ? void 0 : _b.advisory;
@@ -109,7 +108,7 @@ function audit(exceptions) {
                         var meetsCrieria = !!severity && exceptions.includes(packageName) === false;
                         if (meetsCrieria) {
                             var logMessage_2 = LogFailurePrefix + " - Found a " + severity + " vulneability for " + packageName + " in " + displayName_1 + " - " + advisory.url;
-                            logger_1.default.error(logMessage_2);
+                            logger_1.logger.error(logMessage_2);
                         }
                         return meetsCrieria;
                     });
@@ -141,8 +140,8 @@ function audit(exceptions) {
                         failure = failures[i];
                         if (!((_c = (_b = failure === null || failure === void 0 ? void 0 : failure.data) === null || _b === void 0 ? void 0 : _b.resolution) === null || _c === void 0 ? void 0 : _c.path)) {
                             logMessage_1 = "irregular json = " + JSON.stringify(failure);
-                            logger_1.default.error('Houston we have a problem.......');
-                            logger_1.default.error(logMessage_1);
+                            logger_1.logger.error('Houston we have a problem.......');
+                            logger_1.logger.error(logMessage_1);
                             process.exit(1);
                         }
                         _f = failure.data, advisory = _f.advisory, recommendation = _f.recommendation, path_2 = _f.resolution.path;
@@ -170,8 +169,10 @@ function audit(exceptions) {
                                 },
                             ],
                         };
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         testSuite.testsuite.push(testCase);
                     }
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     jsonResults.testsuites.push(testSuite);
                     ossIndex = paths_1.paths.ossIndex;
                     if (!fs_extra_1.default.existsSync(ossIndex)) {
@@ -180,12 +181,12 @@ function audit(exceptions) {
                     fs_extra_1.default.emptyDirSync(ossIndex);
                     fs_extra_1.default.writeFileSync(path_1.default.join(ossIndex, 'junitReport.xml'), xml(jsonResults, { indent: '  ', declaration: true }));
                     finalMessage = "audit finished with " + failures.length + " found.";
-                    logger_1.default.done(finalMessage);
+                    logger_1.logger.done(finalMessage);
                     process.exit(0);
                     return [3 /*break*/, 6];
                 case 5:
                     err_2 = _g.sent();
-                    logger_1.default.error(err_2);
+                    logger_1.logger.error(err_2);
                     process.exit(1);
                     return [3 /*break*/, 6];
                 case 6: return [2 /*return*/];

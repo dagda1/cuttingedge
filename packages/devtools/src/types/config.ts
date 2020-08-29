@@ -27,7 +27,7 @@ export interface BuildConfig {
     isNode: true;
   };
   devServer: {
-    entries: string;
+    entries: string | string[] | Record<string, string | string[]>;
     devServer: boolean;
     isStaticBuild: boolean;
     publicDir: string;

@@ -4,7 +4,6 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { paths } from '../config/paths';
 import WebpackBar from 'webpackbar';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import resolve from 'resolve';
 import HappyPack from 'happypack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { getEnvironment, getEnvVariables } from './getEnvironment';
@@ -20,8 +19,6 @@ import { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from '../types/co
 import { findAppNodeModules } from '../scripts/utils/finders';
 import { Configuration } from 'webpack';
 
-const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-
 const repoNodeModules = findAppNodeModules(__dirname);
 
 export const configureCommon = (options: DevServerConfig | ServerBuildConfig | NodeBuildConfig): Configuration => {
@@ -33,7 +30,7 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
   const config: Configuration = {
     mode: isDevelopment ? 'development' : 'production',
     bail: isProduction,
-    devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
+    devtool: 'source-map',
     context: process.cwd(),
     resolve: {
       modules: ['node_modules', repoNodeModules].concat(env.raw.nodePath || path.resolve('.')),
@@ -57,7 +54,7 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
           createCSVLoader(),
           createSVGLoader(),
           createMDLoader(),
-          ...createCSSLoaders({ isDevelopment, isNode }),
+          ...createCSSLoaders({ isDevelopment, isProduction, isNode }),
         ],
         (x) => !!x,
       ),
@@ -75,31 +72,10 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
           ],
         }),
         new webpack.DefinePlugin(env.stringified),
-        isDevelopment &&
-          new WebpackBar({
-            color: isWeb ? '#f56be2' : '#c065f4',
-            name: isWeb ? 'client' : 'server',
-          }),
+        isDevelopment && new WebpackBar(),
         isAnalyse && new BundleAnalyzerPlugin(),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
-        new ForkTsCheckerWebpackPlugin({
-          typescript: resolve.sync('typescript', {
-            basedir: repoNodeModules,
-          }),
-          async: true,
-          useTypescriptIncrementalApi: true,
-          checkSyntacticErrors: true,
-          tsconfig: paths.tsConfig,
-          reportFiles: [
-            'src/**/*.{ts,tsx}',
-            '!**/__tests__/**',
-            '!**/?(*.)(spec|test).*',
-            '!**/src/setupProxy.*',
-            '!**/src/setupTests.*',
-          ],
-          silent: true,
-          formatter: isProduction ? typescriptFormatter : undefined,
-        }),
+        new ForkTsCheckerWebpackPlugin(),
         isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',

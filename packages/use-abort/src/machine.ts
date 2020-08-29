@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Machine } from 'xstate';
 import { AbortableStates, AbortableState, AbortableActionTypes } from './types';

@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createCSSLoaders = exports.cssLoaders = void 0;
 var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
-var postCssoptions_1 = __importDefault(require("../postCssoptions"));
+var createPostCssoptions_1 = require("../createPostCssoptions");
 var getLocalIdent_1 = require("../getLocalIdent");
 var constants_1 = require("../constants");
-exports.cssLoaders = function (isDevelopment, isNode, _a) {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+exports.cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
     var modules = _a.modules;
     return [
         {
@@ -28,7 +29,7 @@ exports.cssLoaders = function (isDevelopment, isNode, _a) {
             loader: 'css-loader',
             options: {
                 importLoaders: isNode ? 1 : 2,
-                sourceMap: isDevelopment,
+                sourceMap: true,
                 modules: modules && getLocalIdent_1.getLocalIdent
                     ? {
                         getLocalIdent: getLocalIdent_1.getLocalIdent,
@@ -36,24 +37,25 @@ exports.cssLoaders = function (isDevelopment, isNode, _a) {
                     : undefined,
             },
         },
-        { loader: 'postcss-loader', options: postCssoptions_1.default },
-    ];
+        isProduction && { loader: 'postcss-loader', options: createPostCssoptions_1.createPostCssOptions() },
+    ].filter(Boolean);
 };
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 exports.createCSSLoaders = function (_a) {
-    var isDevelopment = _a.isDevelopment, isNode = _a.isNode;
+    var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, isNode = _a.isNode;
     return [
         {
             test: constants_1.cssRegex,
-            use: exports.cssLoaders(isDevelopment, isNode, { modules: false }).filter(Boolean),
+            use: exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false }).filter(Boolean),
         },
         {
             test: constants_1.sassRegex,
             exclude: constants_1.sassModuleRegex,
-            use: __spreadArrays(exports.cssLoaders(isDevelopment, isNode, { modules: false }), [{ loader: 'sass-loader' }]).filter(Boolean),
+            use: __spreadArrays(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false }), [{ loader: 'sass-loader' }]).filter(Boolean),
         },
         {
             test: constants_1.sassModuleRegex,
-            use: __spreadArrays(exports.cssLoaders(isDevelopment, isNode, { modules: true }), [{ loader: 'sass-loader' }]).filter(Boolean),
+            use: __spreadArrays(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: true }), [{ loader: 'sass-loader' }]).filter(Boolean),
         },
     ];
 };

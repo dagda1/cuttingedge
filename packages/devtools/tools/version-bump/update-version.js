@@ -16,9 +16,7 @@ var copyDependencies = function (destination, oldVersion, version) {
     if (!destination) {
         return;
     }
-    Object.keys(destination).forEach(function (prop) {
-        return (destination[prop] = /@cutting/g.test(prop) && destination[prop] === oldVersion ? version : destination[prop]);
-    });
+    Object.keys(destination).forEach(function (prop) { return (destination[prop] = /@ds/g.test(prop) && destination[prop] === oldVersion ? version : destination[prop]); });
 };
 exports.updateVersion = function (filename, oldVersion, version) {
     var pkg = require(filename);

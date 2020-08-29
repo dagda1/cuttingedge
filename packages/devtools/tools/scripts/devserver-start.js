@@ -13,7 +13,7 @@ var clearConsole_1 = __importDefault(require("react-dev-utils/clearConsole"));
 var openBrowser_1 = __importDefault(require("react-dev-utils/openBrowser"));
 var paths_1 = require("../config/paths");
 var fs_1 = __importDefault(require("fs"));
-var logger_1 = __importDefault(require("../scripts/logger"));
+var logger_1 = require("../scripts/logger");
 var WebpackDevServerUtils_1 = require("react-dev-utils/WebpackDevServerUtils");
 var webpack_1 = __importDefault(require("webpack"));
 var client_1 = require("../webpack/client");
@@ -34,7 +34,7 @@ var HOST = process.env.HOST || '0.0.0.0';
 WebpackDevServerUtils_1.choosePort(HOST, DEFAULT_PORT)
     .then(function (port) {
     if (port === null) {
-        logger_1.default.error('We have not found a port.');
+        logger_1.logger.error('We have not found a port.');
         return;
     }
     var protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
@@ -47,13 +47,13 @@ WebpackDevServerUtils_1.choosePort(HOST, DEFAULT_PORT)
     var devServer = new webpack_dev_server_1.default(compiler, config.devServer);
     devServer.listen(port, HOST, function (err) {
         if (err) {
-            logger_1.default.error(err);
+            logger_1.logger.error(err);
             return;
         }
         if (isInteractive) {
             clearConsole_1.default();
         }
-        logger_1.default.info('Starting the development server...\n');
+        logger_1.logger.info('Starting the development server...\n');
         openBrowser_1.default(urls.localUrlForBrowser);
     });
     ['SIGINT', 'SIGTERM'].forEach(function (sig) {
@@ -65,7 +65,7 @@ WebpackDevServerUtils_1.choosePort(HOST, DEFAULT_PORT)
 })
     .catch(function (err) {
     if (err && err.message) {
-        logger_1.default.error(err.message);
+        logger_1.logger.error(err.message);
     }
     process.exit(1);
 });

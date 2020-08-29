@@ -1,11 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.run = void 0;
 var child_process_1 = require("child_process");
-var logger_1 = __importDefault(require("../logger"));
+var logger_1 = require("../logger");
 exports.run = function (cmd) {
     return new Promise(function (resolve, reject) {
         var _a;
@@ -18,7 +15,7 @@ exports.run = function (cmd) {
             resolve(result);
         });
         command.on('error', function (err) {
-            logger_1.default.error(err);
+            logger_1.logger.error(err);
             reject(err);
         });
     });

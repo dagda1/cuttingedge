@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
-import merge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { DevServerConfig } from '../types/config';
 import { configureCommon } from './common';
@@ -16,7 +16,7 @@ import { getUrlParts } from './getUrlParts';
 import { getEnvironment } from './getEnvironment';
 import { createDevServer } from './loaders/createDevServer';
 import { createWebpackOptimisation } from './optimisation/createWebpackOptimisation';
-import { assert } from '../assert/assert';
+
 const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
@@ -41,12 +41,13 @@ export const configure = (options: DevServerConfig): Configuration => {
   const iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
 
   const finalEntries = Object.keys(iter).reduce((acc, key) => {
-    const entryPoints = Array.isArray(iter[key]) ? iter[key] : [iter[key]];
+    const value = iter[key];
+    const entryPoints: string[] = typeof value === 'string' ? [value] : value;
 
     acc[key] = [...polyfills, ...entryPoints];
 
     return acc;
-  }, {});
+  }, {} as Record<string, string | string[]>);
 
   const commitHash = getCommitHash();
 
@@ -63,9 +64,12 @@ export const configure = (options: DevServerConfig): Configuration => {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,
       pathinfo: isDevelopment,
-      filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : 'static/js/bundle.js',
-      chunkFilename: isProduction ? 'static/js/[name].[chunkhash:8].chunk.js' : 'static/js/[name].chunk.js',
-      devtoolModuleFilenameTemplate: (info) => path.resolve(info.resourcePath).replace(/\\/g, '/'),
+      filename: isProduction ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle.js',
+      chunkFilename: isProduction ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
+
+      devtoolModuleFilenameTemplate: isProduction
+        ? (info) => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
+        : (info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
 
     plugins: [
@@ -118,7 +122,6 @@ export const configure = (options: DevServerConfig): Configuration => {
   });
 
   if (isProduction) {
-    assert(config.optimization, 'No optimization in config');
     config.optimization = createWebpackOptimisation({ optimization: config.optimization!, isDevelopment, ssrBuild });
   }
 

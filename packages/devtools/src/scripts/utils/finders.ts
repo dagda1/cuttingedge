@@ -16,13 +16,13 @@ export const find = (cwd: string, predicate: (dir: string) => boolean, tries = 0
   return find(path.resolve(cwd, '..'), predicate, ++tries);
 };
 
-export const findFile = (cwd: string, fileName: string) => {
+export const findFile = (cwd: string, fileName: string): string => {
   const dir = find(cwd, (dir) => fs.existsSync(path.resolve(dir, fileName)));
 
   return path.resolve(dir, fileName);
 };
 
-export const findAppNodeModules = (cwd: string, packageName = 'typescript') => {
+export const findAppNodeModules = (cwd: string, packageName = 'typescript'): string => {
   const dir = find(cwd, (dir) => fs.existsSync(path.resolve(dir, ModulesDirName, packageName)));
 
   return path.join(dir, ModulesDirName);

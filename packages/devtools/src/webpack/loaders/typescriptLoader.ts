@@ -1,6 +1,8 @@
 import { paths } from '../../config/paths';
 const { loadableTransformer } = require('loadable-ts-transformer');
+import { Options } from 'ts-loader';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createTypescriptLoader = ({
   isDevelopment,
   isProduction,
@@ -11,6 +13,17 @@ export const createTypescriptLoader = ({
   isWeb: boolean;
 }) => {
   const hot = isDevelopment && isWeb;
+
+  const options: Partial<Options> = {
+    silent: isDevelopment,
+    configFile: paths.tsConfig,
+    transpileOnly: isDevelopment,
+    happyPackMode: isDevelopment,
+    getCustomTransformers: () => ({ before: [loadableTransformer] }),
+    compilerOptions: {
+      sourceMap: true,
+    },
+  };
 
   return [
     {
@@ -50,12 +63,7 @@ export const createTypescriptLoader = ({
         },
         {
           loader: 'ts-loader',
-          options: {
-            configFile: paths.tsConfig,
-            transpileOnly: isDevelopment,
-            happyPackMode: isDevelopment,
-            getCustomTransformers: () => ({ before: [loadableTransformer] }),
-          },
+          options,
         },
       ].filter(Boolean),
     },

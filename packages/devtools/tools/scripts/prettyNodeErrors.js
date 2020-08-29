@@ -59,5 +59,6 @@ var stackTransform = function (_a) {
     var _b = _a.stack, stack = _b === void 0 ? '' : _b, rest = __rest(_a, ["stack"]);
     return (__assign({ stack: stack.replace('/build/webpack:', '') }, rest));
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 usePrettyErrors(stackTransform);
 //# sourceMappingURL=prettyNodeErrors.js.map

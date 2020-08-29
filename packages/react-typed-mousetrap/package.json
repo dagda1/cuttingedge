@@ -28,8 +28,8 @@
     "@cutting/devtools": "3.9.0",
     "@cutting/eslint-config": "3.9.0",
     "@cutting/useful-types": "3.9.0",
-    "@testing-library/jest-dom": "^5.7.0",
-    "@types/invariant": "^2.2.32",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@types/invariant": "^2.2.33",
     "@types/mousetrap": "^1.6.3"
   },
   "keywords": [

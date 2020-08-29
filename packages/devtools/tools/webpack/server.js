@@ -22,7 +22,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configure = exports.getExternals = void 0;
-var webpack_merge_1 = __importDefault(require("webpack-merge"));
+var webpack_merge_1 = require("webpack-merge");
 var webpack_1 = __importDefault(require("webpack"));
 var webpack_node_externals_1 = __importDefault(require("webpack-node-externals"));
 var paths_1 = require("../config/paths");
@@ -35,7 +35,7 @@ var getUrlParts_1 = require("./getUrlParts");
 exports.getExternals = function (isDevelopment) {
     return [
         webpack_node_externals_1.default({
-            whitelist: [
+            allowlist: [
                 isDevelopment ? 'webpack/hot/poll?300' : null,
                 /\.(eot|woff|woff2|ttf|otf)$/,
                 /\.(svg|png|jpg|jpeg|gif|ico)$/,
@@ -44,7 +44,7 @@ exports.getExternals = function (isDevelopment) {
                 /^@babel/,
                 /^@loadable\/component$/,
                 /^loadable-ts-transformer$/,
-                /^@cutting/,
+                /^@ds/,
             ].filter(function (x) { return x; }),
         }),
     ];
@@ -66,7 +66,7 @@ exports.configure = function (options) {
             nodeArgs.push(process.env.INSPECT);
         }
     }
-    var config = webpack_merge_1.default(common, {
+    var config = webpack_merge_1.merge(common, {
         name: 'server',
         target: 'node',
         watch: isDevelopment,

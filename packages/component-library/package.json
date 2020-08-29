@@ -16,7 +16,7 @@
     "@cutting/devtools": "3.9.0",
     "@cutting/eslint-config": "3.9.0",
     "@cutting/useful-types": "3.9.0",
-    "@testing-library/jest-dom": "^5.7.0",
+    "@testing-library/jest-dom": "^5.11.4",
     "@types/lodash.isobject": "^3.0.6"
   },
   "scripts": {

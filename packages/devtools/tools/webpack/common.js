@@ -17,7 +17,6 @@ var fork_ts_checker_webpack_plugin_1 = __importDefault(require("fork-ts-checker-
 var paths_1 = require("../config/paths");
 var webpackbar_1 = __importDefault(require("webpackbar"));
 var webpack_bundle_analyzer_1 = require("webpack-bundle-analyzer");
-var resolve_1 = __importDefault(require("resolve"));
 var happypack_1 = __importDefault(require("happypack"));
 var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
 var getEnvironment_1 = require("./getEnvironment");
@@ -30,7 +29,6 @@ var csvLoader_1 = require("./loaders/csvLoader");
 var svgLoader_1 = require("./loaders/svgLoader");
 var mdLoader_1 = require("./loaders/mdLoader");
 var finders_1 = require("../scripts/utils/finders");
-var typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 var repoNodeModules = finders_1.findAppNodeModules(__dirname);
 exports.configureCommon = function (options) {
     var isNode = !!options.isNode;
@@ -40,7 +38,7 @@ exports.configureCommon = function (options) {
     var config = {
         mode: isDevelopment ? 'development' : 'production',
         bail: isProduction,
-        devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
+        devtool: 'source-map',
         context: process.cwd(),
         resolve: {
             modules: ['node_modules', repoNodeModules].concat(env.raw.nodePath || path_1.default.resolve('.')),
@@ -63,7 +61,7 @@ exports.configureCommon = function (options) {
                 csvLoader_1.createCSVLoader(),
                 svgLoader_1.createSVGLoader(),
                 mdLoader_1.createMDLoader()
-            ], css_1.createCSSLoaders({ isDevelopment: isDevelopment, isNode: isNode })), function (x) { return !!x; }),
+            ], css_1.createCSSLoaders({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode })), function (x) { return !!x; }),
         },
         plugins: Array.prototype.filter.call([
             new happypack_1.default({
@@ -77,31 +75,10 @@ exports.configureCommon = function (options) {
                 ],
             }),
             new webpack_1.default.DefinePlugin(env.stringified),
-            isDevelopment &&
-                new webpackbar_1.default({
-                    color: isWeb ? '#f56be2' : '#c065f4',
-                    name: isWeb ? 'client' : 'server',
-                }),
+            isDevelopment && new webpackbar_1.default(),
             isAnalyse && new webpack_bundle_analyzer_1.BundleAnalyzerPlugin(),
             new webpack_1.default.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
-            new fork_ts_checker_webpack_plugin_1.default({
-                typescript: resolve_1.default.sync('typescript', {
-                    basedir: repoNodeModules,
-                }),
-                async: true,
-                useTypescriptIncrementalApi: true,
-                checkSyntacticErrors: true,
-                tsconfig: paths_1.paths.tsConfig,
-                reportFiles: [
-                    'src/**/*.{ts,tsx}',
-                    '!**/__tests__/**',
-                    '!**/?(*.)(spec|test).*',
-                    '!**/src/setupProxy.*',
-                    '!**/src/setupTests.*',
-                ],
-                silent: true,
-                formatter: isProduction ? typescriptFormatter : undefined,
-            }),
+            new fork_ts_checker_webpack_plugin_1.default(),
             isDevelopment && new webpack_1.default.WatchIgnorePlugin([paths_1.paths.appManifest]),
             new mini_css_extract_plugin_1.default({
                 filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',

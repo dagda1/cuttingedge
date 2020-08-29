@@ -26,13 +26,22 @@ dotenvFiles.forEach((dotenvFile) => {
 });
 
 const appDirectory = fs.realpathSync(process.cwd());
+
 export const nodePath = (process.env.NODE_PATH || '')
   .split(path.delimiter)
   .filter((folder) => folder && !path.isAbsolute(folder))
   .map((folder) => path.resolve(appDirectory, folder))
   .join(path.delimiter);
 
-export function getClientEnv(target = 'web', options: any = {}, additional = {}) {
+export function getClientEnv(
+  target = 'web',
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  options: any = {},
+  additional = {},
+): {
+  raw: Env;
+  stringified: Partial<Env>;
+} {
   const raw: Env = Object.keys(process.env).reduce(
     (env: Env, key) => {
       env[key] = process.env[key];
@@ -48,9 +57,9 @@ export function getClientEnv(target = 'web', options: any = {}, additional = {})
         PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
         CI: !!process.env.CI,
         PUBLIC_URL: options.publicUrl || '',
-        FAST_REFRESH: !!process.env.FAST_REFRESH,
+        FAST_REFRESH: !!process.env.FAST_REFRESH || true,
         nodePath,
-        PORT: 0,
+        PORT: Number(process.env.PORT),
       },
       additional,
     ),

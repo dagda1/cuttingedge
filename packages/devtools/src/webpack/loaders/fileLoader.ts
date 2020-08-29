@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createFileLoader = ({ staticAssetName, isWeb }: { staticAssetName: string; isWeb: boolean }) => ({
   exclude: [
     /\.html$/,

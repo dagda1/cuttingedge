@@ -1,8 +1,21 @@
 import { assert } from '../assert/assert';
-import { prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
+import { prepareUrls, Urls } from 'react-dev-utils/WebpackDevServerUtils';
 
-export const getUrlParts = ({ ssrBuild, isProduction }: { ssrBuild: boolean; isProduction: boolean }) => {
-  const rawPort = process.env.PORT;
+export const getUrlParts = ({
+  ssrBuild,
+  isProduction,
+}: {
+  ssrBuild: boolean;
+  isProduction: boolean;
+}): {
+  readonly port: number;
+  readonly protocol: 'https' | 'http';
+  readonly host: string;
+  readonly urls: Urls;
+  readonly publicPath: string;
+  readonly sockPort: number;
+} => {
+  const rawPort = process.env.PORT || 3000;
 
   assert(!!rawPort, 'No port number on environment variable PORT');
 

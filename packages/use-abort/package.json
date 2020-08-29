@@ -18,10 +18,10 @@
   "dependencies": {
     "@cutting/util": "3.9.0",
     "@xstate/react": "^0.8.1",
-    "xstate": "^4.9.1"
+    "xstate": "^4.13.0"
   },
   "devDependencies": {
-    "abortcontroller-polyfill": "^1.4.0",
+    "abortcontroller-polyfill": "^1.5.0",
     "node-fetch": "^2.6.0"
   },
   "keywords": [

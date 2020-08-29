@@ -47,7 +47,7 @@ process.on('unhandledRejection', function (err) {
 require("../config/env");
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var paths_1 = require("../config/paths");
-var logger_1 = __importDefault(require("./logger"));
+var logger_1 = require("./logger");
 var FileSizeReporter_1 = __importDefault(require("react-dev-utils/FileSizeReporter"));
 var copy_public_folder_1 = require("./utils/copy-public-folder");
 var compile_1 = require("./webpack/compile");
@@ -55,7 +55,7 @@ var build_1 = require("../types/build");
 var build_config_1 = require("../config/build.config");
 var measureFileSizesBeforeBuild = FileSizeReporter_1.default.measureFileSizesBeforeBuild;
 var printFileSizesAfterBuild = FileSizeReporter_1.default.printFileSizesAfterBuild;
-var merge = require('webpack-merge');
+var merge = require('webpack-merge').merge;
 var configureWebpackClient = require('../webpack/client').configure;
 var configureWebpackServer = require('../webpack/server').configure;
 var configureWebpackNode = require('../webpack/node').configure;
@@ -66,7 +66,7 @@ exports.build = function (_a) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    logger_1.default.start('starting build');
+                    logger_1.logger.start('starting build');
                     localBuildConfig = fs_extra_1.default.existsSync(paths_1.paths.localBuildConfig) ? require(paths_1.paths.localBuildConfig) : {};
                     buildConfig = merge(build_config_1.config, localBuildConfig);
                     clientConfig = !!buildClient && configureWebpackClient(buildConfig.client);
@@ -85,7 +85,7 @@ exports.build = function (_a) {
                     return [4 /*yield*/, compile_1.compile(nodeConfig, build_1.BuildType.node)];
                 case 3:
                     _b.sent();
-                    logger_1.default.done('build finished');
+                    logger_1.logger.done('build finished');
                     return [2 /*return*/];
                 case 4: return [4 /*yield*/, compile_1.compile(clientConfig, build_1.BuildType.client)];
                 case 5:
@@ -97,13 +97,13 @@ exports.build = function (_a) {
                     _b.label = 7;
                 case 7:
                     printFileSizesAfterBuild(clientStats, previousFileSizes, publicDir);
-                    logger_1.default.done('build finished');
+                    logger_1.logger.done('build finished');
                     return [3 /*break*/, 9];
                 case 8:
                     err_1 = _b.sent();
-                    logger_1.default.error('Failed to compile.');
-                    logger_1.default.error(err_1.message || err_1);
-                    logger_1.default.error(err_1.stack);
+                    logger_1.logger.error('Failed to compile.');
+                    logger_1.logger.error(err_1.message || err_1);
+                    logger_1.logger.error(err_1.stack);
                     process.exit(1);
                     return [3 /*break*/, 9];
                 case 9: return [2 /*return*/];

@@ -18,7 +18,7 @@ var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
 var commander_1 = __importDefault(require("commander"));
 var paths_1 = require("../config/paths");
-var logger_1 = __importDefault(require("../scripts/logger"));
+var logger_1 = require("../scripts/logger");
 var child_process_1 = require("child_process");
 function getPackages(packages) {
     return packages
@@ -37,9 +37,10 @@ function getPackages(packages) {
  * @param {String} pkg.path - package directory path
  * @returns {Promise} resolves or rejects when the process exits
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function runPkgCmd(cmd, args, pkg) {
     return new Promise(function (resolve, reject) {
-        logger_1.default.info(pkg.name + " " + cmd + " " + args.join(' '));
+        logger_1.logger.info(pkg.name + " " + cmd + " " + args.join(' '));
         var child = child_process_1.spawn(cmd, args, {
             stdio: [null, 1, 2],
             cwd: pkg.path,
@@ -71,7 +72,7 @@ commander_1.default
         return p
             .then(function () { return runPkgCmd(cmd, args, pkg); })
             .catch(function (e) {
-            logger_1.default.error(pkg.name + " failed with " + e);
+            logger_1.logger.error(pkg.name + " failed with " + e);
             process.exit(1);
         });
     }, Promise.resolve())

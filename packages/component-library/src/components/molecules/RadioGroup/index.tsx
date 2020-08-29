@@ -7,6 +7,7 @@ import styles from './RadioGroup.module.scss';
 
 export type RadioOption = RadioProps & { content: React.ReactNode };
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export interface RadioGroupProps<T = {}> {
   legend: string;
   name: string;

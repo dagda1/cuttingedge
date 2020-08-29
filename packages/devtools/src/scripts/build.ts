@@ -8,7 +8,7 @@ import '../config/env';
 
 import fs from 'fs-extra';
 import { paths } from '../config/paths';
-import logger from './logger';
+import { logger } from './logger';
 import FileSizeReporter from 'react-dev-utils/FileSizeReporter';
 import { copyPublicFolder } from './utils/copy-public-folder';
 import { compile } from './webpack/compile';
@@ -17,7 +17,7 @@ import { config as globalBuildConfig } from '../config/build.config';
 
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 
 const configureWebpackClient = require('../webpack/client').configure;
 const configureWebpackServer = require('../webpack/server').configure;
@@ -31,7 +31,7 @@ export const build = async ({
   buildClient: boolean;
   buildServer: boolean;
   buildNode: boolean;
-}) => {
+}): Promise<void> => {
   logger.start('starting build');
 
   const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};

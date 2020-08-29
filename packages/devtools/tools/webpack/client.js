@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.configure = void 0;
 var webpack_1 = __importDefault(require("webpack"));
 var path_1 = __importDefault(require("path"));
-var webpack_merge_1 = __importDefault(require("webpack-merge"));
+var webpack_merge_1 = require("webpack-merge");
 var html_webpack_plugin_1 = __importDefault(require("html-webpack-plugin"));
 var common_1 = require("./common");
 var paths_1 = require("../config/paths");
@@ -27,7 +27,6 @@ var getUrlParts_1 = require("./getUrlParts");
 var getEnvironment_1 = require("./getEnvironment");
 var createDevServer_1 = require("./loaders/createDevServer");
 var createWebpackOptimisation_1 = require("./optimisation/createWebpackOptimisation");
-var assert_1 = require("../assert/assert");
 var LoadableWebpackPlugin = require('@loadable/webpack-plugin');
 var ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 var HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
@@ -45,14 +44,15 @@ exports.configure = function (options) {
     var polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
     var iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
     var finalEntries = Object.keys(iter).reduce(function (acc, key) {
-        var entryPoints = Array.isArray(iter[key]) ? iter[key] : [iter[key]];
+        var value = iter[key];
+        var entryPoints = typeof value === 'string' ? [value] : value;
         acc[key] = __spreadArrays(polyfills, entryPoints);
         return acc;
     }, {});
     var commitHash = git_1.getCommitHash();
     var template = publicDir ? path_1.default.join(publicDir, 'index.html') : 'public/index.html';
     var templateExists = fs_1.default.existsSync(template);
-    var config = webpack_merge_1.default(common, {
+    var config = webpack_merge_1.merge(common, {
         name: 'client',
         target: 'web',
         entry: finalEntries,
@@ -61,9 +61,11 @@ exports.configure = function (options) {
             path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic,
             publicPath: publicPath,
             pathinfo: isDevelopment,
-            filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : 'static/js/bundle.js',
-            chunkFilename: isProduction ? 'static/js/[name].[chunkhash:8].chunk.js' : 'static/js/[name].chunk.js',
-            devtoolModuleFilenameTemplate: function (info) { return path_1.default.resolve(info.resourcePath).replace(/\\/g, '/'); },
+            filename: isProduction ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle.js',
+            chunkFilename: isProduction ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
+            devtoolModuleFilenameTemplate: isProduction
+                ? function (info) { return path_1.default.relative(paths_1.paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'); }
+                : function (info) { return path_1.default.resolve(info.absoluteResourcePath).replace(/\\/g, '/'); },
         },
         plugins: [
             isDevelopment && new webpack_1.default.HotModuleReplacementPlugin(),
@@ -113,7 +115,6 @@ exports.configure = function (options) {
         ].filter(Boolean),
     });
     if (isProduction) {
-        assert_1.assert(config.optimization, 'No optimization in config');
         config.optimization = createWebpackOptimisation_1.createWebpackOptimisation({ optimization: config.optimization, isDevelopment: isDevelopment, ssrBuild: ssrBuild });
     }
     return config;

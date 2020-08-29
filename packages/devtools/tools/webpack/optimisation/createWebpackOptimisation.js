@@ -15,7 +15,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createWebpackOptimisation = void 0;
-/* eslint-disable @typescript-eslint/camelcase */
 var optimize_css_assets_webpack_plugin_1 = __importDefault(require("optimize-css-assets-webpack-plugin"));
 var terser_webpack_plugin_1 = __importDefault(require("terser-webpack-plugin"));
 var postcss_safe_parser_1 = __importDefault(require("postcss-safe-parser"));
@@ -47,7 +46,7 @@ exports.createWebpackOptimisation = function (_a) {
                 },
                 parallel: true,
                 cache: true,
-                sourceMap: isDevelopment,
+                sourceMap: true,
             }),
             new optimize_css_assets_webpack_plugin_1.default({
                 cssProcessorOptions: {

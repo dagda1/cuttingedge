@@ -1,4 +1,4 @@
-import merge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 import webpack, { Configuration } from 'webpack';
 import { NodeBuildConfig } from '../types/config';
 import nodeExternals from 'webpack-node-externals';
@@ -13,7 +13,7 @@ const getExternals = (modulesDir: string) => {
     nodeExternals(),
     nodeExternals({
       modulesDir,
-      whitelist: [/^@cutting/].filter((x) => x),
+      allowlist: [/^@ds/].filter((x) => x),
     }),
   ];
 };
@@ -32,7 +32,7 @@ export const configure = (options: NodeBuildConfig): Configuration => {
     target: 'node',
     externals: getExternals(modulesDir),
     entry: isDevelopment ? [...entries] : entries,
-    devtool: !isDevelopment && 'cheap-module-source-map',
+    devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
     output: {
       path: paths.appBuild,
       filename: options.filename,

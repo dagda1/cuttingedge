@@ -1,4 +1,5 @@
-"use strict";
+#!/usr/bin/env node
+'use strict';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -41,7 +42,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var inquirer_1 = __importDefault(require("inquirer"));
 var update_version_1 = require("./update-version");
-var logger_1 = __importDefault(require("../scripts/logger"));
+var logger_1 = require("../scripts/logger");
 var path_1 = __importDefault(require("path"));
 var util_1 = require("util");
 var get_root_package_1 = require("./get-root-package");
@@ -53,13 +54,13 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                logger_1.default.start('finding package.json');
+                logger_1.logger.start('finding package.json');
                 return [4 /*yield*/, get_root_package_1.getRootPackage(process.cwd())];
             case 1:
                 _a = _b.sent(), rootDir = _a.rootDir, currentVersion = _a.version;
-                logger_1.default.info("found root package.json in " + rootDir);
+                logger_1.logger.info("found root package.json in " + rootDir);
                 if (currentVersion === undefined) {
-                    logger_1.default.info('The package file does not have version property defined?. So, version update cannot be done on this file');
+                    logger_1.logger.info('The package file does not have version property defined?. So, version update cannot be done on this file');
                     return [2 /*return*/];
                 }
                 return [4 /*yield*/, glob('**/package.json', { cwd: rootDir, ignore: ['**/node_modules/**'] })];
@@ -68,7 +69,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 major = semver_1.default.inc(currentVersion, 'major');
                 minor = semver_1.default.inc(currentVersion, 'minor');
                 patch = semver_1.default.inc(currentVersion, 'patch');
-                logger_1.default.info("The current version number is " + currentVersion);
+                logger_1.logger.info("The current version number is " + currentVersion);
                 return [4 /*yield*/, inquirer_1.default.prompt({
                         type: 'list',
                         name: 'value',
@@ -78,7 +79,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
             case 3:
                 choice = _b.sent();
                 if (choice.value === 'cancel') {
-                    logger_1.default.info('version change cancelled');
+                    logger_1.logger.info('version change cancelled');
                     return [2 /*return*/];
                 }
                 if (!(choice.value === 'custom')) return [3 /*break*/, 5];
@@ -90,7 +91,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
             case 4:
                 custom = _b.sent();
                 if (!semver_1.default.valid(custom.value)) {
-                    logger_1.default.info('Version number format is incorrect. Please use the correct format');
+                    logger_1.logger.info('Version number format is incorrect. Please use the correct format');
                     return [2 /*return*/];
                 }
                 version = custom.value;
@@ -107,7 +108,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 confirm = _b.sent();
                 return [2 /*return*/, confirm.value
                         ? packageFiles.map(function (filename) { return update_version_1.updateVersion(path_1.default.join(rootDir, filename), currentVersion, version); })
-                        : logger_1.default.info('version change cancelled')];
+                        : logger_1.logger.info('version change cancelled')];
         }
     });
 }); };

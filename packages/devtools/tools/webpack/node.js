@@ -22,7 +22,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configure = void 0;
-var webpack_merge_1 = __importDefault(require("webpack-merge"));
+var webpack_merge_1 = require("webpack-merge");
 var webpack_1 = __importDefault(require("webpack"));
 var webpack_node_externals_1 = __importDefault(require("webpack-node-externals"));
 var paths_1 = require("../config/paths");
@@ -35,7 +35,7 @@ var getExternals = function (modulesDir) {
         webpack_node_externals_1.default(),
         webpack_node_externals_1.default({
             modulesDir: modulesDir,
-            whitelist: [/^@cutting/].filter(function (x) { return x; }),
+            allowlist: [/^@ds/].filter(function (x) { return x; }),
         }),
     ];
 };
@@ -44,12 +44,12 @@ exports.configure = function (options) {
     var modulesDir = options.modulesDir;
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
-    var config = webpack_merge_1.default(common, {
+    var config = webpack_merge_1.merge(common, {
         name: 'api',
         target: 'node',
         externals: getExternals(modulesDir),
         entry: isDevelopment ? __spreadArrays(entries) : entries,
-        devtool: !isDevelopment && 'cheap-module-source-map',
+        devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
         output: {
             path: paths_1.paths.appBuild,
             filename: options.filename,

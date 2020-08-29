@@ -10,7 +10,7 @@ import clearConsole from 'react-dev-utils/clearConsole';
 import openBrowser from 'react-dev-utils/openBrowser';
 import { paths } from '../config/paths';
 import fs from 'fs';
-import logger from '../scripts/logger';
+import { logger } from '../scripts/logger';
 import { choosePort, createCompiler, prepareProxy, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
 import webpack from 'webpack';
 import { configure as configureWebpackClient } from '../webpack/client';
@@ -68,7 +68,7 @@ choosePort(HOST, DEFAULT_PORT)
       openBrowser(urls.localUrlForBrowser);
     });
 
-    ['SIGINT', 'SIGTERM'].forEach((sig: any) => {
+    ['SIGINT', 'SIGTERM'].forEach((sig) => {
       process.on(sig, function () {
         devServer.close();
         process.exit();

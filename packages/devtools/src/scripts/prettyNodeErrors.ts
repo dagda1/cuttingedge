@@ -26,7 +26,7 @@ function pretty(error: ErrorLike | Error) {
   }
 }
 
-function usePrettyErrors(transform: (...args: any[]) => ErrorLike) {
+function usePrettyErrors(transform: (...args: unknown[]) => ErrorLike) {
   const { prepareStackTrace } = Error;
 
   Error.prepareStackTrace = (error, trace) => {
@@ -43,4 +43,5 @@ const stackTransform = ({ stack = '', ...rest }) => ({
   ...rest,
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 usePrettyErrors(stackTransform as any);

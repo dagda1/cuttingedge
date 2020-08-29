@@ -15,6 +15,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': ['off'],
     '@typescript-eslint/explicit-member-accessibility': ['off'],
     '@typescript-eslint/explicit-function-return-type': ['off'],
+    '@typescript-eslint/explicit-module-boundary-types': ['off'],
 
     // TODO: we really should turn this on
     '@typescript-eslint/no-explicit-any': ['off'],
@@ -22,8 +23,6 @@ module.exports = {
     '@typescript-eslint/no-parameter-properties': ['off'],
 
     'jest/consistent-test-it': ['error', { fn: 'it' }],
-    'jest-formatting/padding-before-test-blocks': 2,
-    'jest-formatting/padding-before-describe-blocks': 2,
     'jest/expect-expect': ['off'],
 
     'no-var': 'warn',

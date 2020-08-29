@@ -3,7 +3,8 @@ import path from 'path';
 import { isMonorepo } from './is-monorepo';
 import { find } from '../scripts/utils/finders';
 
-export const getRootPackage = async (cwd: string) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getRootPackage = async (cwd: string): Promise<any> => {
   const { monorepo } = await isMonorepo();
 
   if (monorepo === false) {

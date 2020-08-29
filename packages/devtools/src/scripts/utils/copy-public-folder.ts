@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import { paths } from '../../config/paths';
 import path from 'path';
 
-export const copyRecursiveSync = function copyRecursiveSync(src: string, dest: string) {
+export const copyRecursiveSync = function copyRecursiveSync(src: string, dest: string): void {
   fs.copySync(src, dest);
 
   fs.readdirSync(src)
@@ -13,7 +13,7 @@ export const copyRecursiveSync = function copyRecursiveSync(src: string, dest: s
     });
 };
 
-export const copyPublicFolder = () => {
+export const copyPublicFolder = (): void => {
   if (!fs.existsSync(paths.appPublic)) {
     return;
   }

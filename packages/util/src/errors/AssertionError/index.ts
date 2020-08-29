@@ -1,1 +1,1 @@
-export class AssertionError extends Error {}
+export { AssertionError } from './AssertionError';

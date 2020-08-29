@@ -39,7 +39,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/* eslint-disable @typescript-eslint/camelcase */
 var rollup_1 = require("rollup");
 var rollup_plugin_filesize_1 = __importDefault(require("rollup-plugin-filesize"));
 var rollup_plugin_replace_1 = __importDefault(require("rollup-plugin-replace"));
@@ -48,7 +47,7 @@ var paths_1 = require("../config/paths");
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var path_1 = __importDefault(require("path"));
 var rollup_plugin_typescript2_1 = __importDefault(require("rollup-plugin-typescript2"));
-var logger_1 = __importDefault(require("../scripts/logger"));
+var logger_1 = require("../scripts/logger");
 var plugin_node_resolve_1 = __importDefault(require("@rollup/plugin-node-resolve"));
 var rollup_plugin_sourcemaps_1 = __importDefault(require("rollup-plugin-sourcemaps"));
 var assert_1 = require("../assert/assert");
@@ -66,7 +65,7 @@ function generateBundledModule(inputFile, outputFile, format) {
                     if (!fs_extra_1.default.existsSync(inputFile)) {
                         throw new Error("Input file " + inputFile + " does not exist");
                     }
-                    logger_1.default.info("Generating " + outputFile + " bundle.");
+                    logger_1.logger.info("Generating " + outputFile + " bundle.");
                     return [4 /*yield*/, rollup_1.rollup({
                             input: inputFile,
                             external: function (id) {
@@ -108,14 +107,13 @@ function generateBundledModule(inputFile, outputFile, format) {
                                 rollup_plugin_replace_1.default({ 'process.env.NODE_ENV': JSON.stringify('production') }),
                                 rollup_plugin_sourcemaps_1.default(),
                                 rollup_plugin_terser_1.terser({
-                                    output: { comments: true },
+                                    format: { comments: true },
                                     compress: {
                                         keep_infinity: true,
                                         pure_getters: true,
                                         passes: 10,
                                     },
                                     ecma: 5,
-                                    warnings: true,
                                 }),
                                 rollup_plugin_filesize_1.default(),
                             ],
@@ -131,7 +129,7 @@ function generateBundledModule(inputFile, outputFile, format) {
                         })];
                 case 2:
                     _a.sent();
-                    logger_1.default.info("Generation of " + outputFile + " bundle finished.");
+                    logger_1.logger.info("Generation of " + outputFile + " bundle finished.");
                     return [2 /*return*/];
             }
         });
@@ -151,7 +149,7 @@ function build() {
                     });
                     rootFile = candidates.find(function (candidate) { return fs_extra_1.default.existsSync(candidate); });
                     assert_1.assert(rootFile, 'No rootFile found for rollup');
-                    logger_1.default.info(rootFile);
+                    logger_1.logger.info(rootFile);
                     return [4 /*yield*/, Promise.all([generateBundledModule(rootFile, path_1.default.join(paths_1.paths.appBuild, packageName + ".js"), 'cjs')])];
                 case 1:
                     _a.sent();
@@ -161,7 +159,7 @@ function build() {
     });
 }
 build().catch(function (e) {
-    logger_1.default.error(e);
+    logger_1.logger.error(e);
     process.exit(1);
 });
 //# sourceMappingURL=rollup.js.map

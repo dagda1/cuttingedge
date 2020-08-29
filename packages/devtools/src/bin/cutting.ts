@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-import logger from '../scripts/logger';
+import { logger } from '../scripts/logger';
 
 const spawn = require('react-dev-utils/crossSpawn');
 const script = process.argv[2];

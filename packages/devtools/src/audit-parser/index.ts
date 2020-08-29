@@ -1,18 +1,17 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/camelcase */
 import path from 'path';
 import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
 import { paths } from '../config/paths';
 import program from 'commander';
 import { run } from '../scripts/utils/run';
-import logger from '../scripts/logger';
+import { logger } from '../scripts/logger';
 
 const xml = require('xml');
 
 const LogFailurePrefix = 'ossindex.sonatype.org';
 
-export async function audit(exceptions: string[]) {
+export async function audit(exceptions: string[]): Promise<void> {
   try {
     let auditResult: string;
 
@@ -55,6 +54,7 @@ export async function audit(exceptions: string[]) {
 
     logger.info(logMessage);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const failures = vulnerabilities.filter((vulnerability: any) => {
       if (!vulnerability?.data?.advisory) {
         logger.info(typeof vulnerability);
@@ -148,9 +148,11 @@ export async function audit(exceptions: string[]) {
         ],
       };
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       testSuite.testsuite.push(testCase as any);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     jsonResults.testsuites.push(testSuite as any);
 
     const { ossIndex } = paths;

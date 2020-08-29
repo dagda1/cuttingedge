@@ -3,6 +3,7 @@ export enum RadioLayout {
   stacked = 'stacked',
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type RadioProps<T = {}> = T & {
   id: string;
   name: string;

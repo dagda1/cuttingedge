@@ -15,6 +15,7 @@ exports.getEnvironment = function () {
         isProduction: isProduction,
     };
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 exports.getEnvVariables = function (_a) {
     var isNode = _a.isNode;
     var isDevelopment = exports.getEnvironment().isDevelopment;

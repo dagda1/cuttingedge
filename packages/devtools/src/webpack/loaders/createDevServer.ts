@@ -29,7 +29,6 @@ export const createDevServer = ({
     port,
     writeToDisk: true,
     hot: true,
-    inline: true,
     hotOnly: true,
     transportMode: 'ws',
     sockPort,

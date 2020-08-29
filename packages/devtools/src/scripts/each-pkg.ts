@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import program from 'commander';
 import { paths } from '../config/paths';
-import logger from '../scripts/logger';
+import { logger } from '../scripts/logger';
 import { spawn } from 'child_process';
 
 function getPackages(packages: string[]) {
@@ -23,6 +23,7 @@ function getPackages(packages: string[]) {
  * @param {String} pkg.path - package directory path
  * @returns {Promise} resolves or rejects when the process exits
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function runPkgCmd<A extends any[], P extends { name: string; path: string }>(cmd: string, args: A, pkg: P) {
   return new Promise((resolve, reject) => {
     logger.info(`${pkg.name} ${cmd} ${args.join(' ')}`);

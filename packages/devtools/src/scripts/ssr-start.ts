@@ -4,14 +4,15 @@ import webpack, { Configuration, Compiler } from 'webpack';
 import { paths } from '../config/paths';
 import devServer from 'webpack-dev-server';
 import printErrors from './printErrors';
-import logger from './logger';
-import merge from 'webpack-merge';
+import { logger } from './logger';
+import { merge } from 'webpack-merge';
 import { configure as configureWebpackClient } from '../webpack/client';
 import { configure as configureWebpackServer } from '../webpack/server';
 import { BuildConfig } from '../types/config';
 import { config as globalBuildConfig } from '../config/build.config';
 import { getUrlParts } from '../webpack/getUrlParts';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (process as any).noDeprecation = true;
 
 function compile(config: Configuration): Compiler {
@@ -29,7 +30,6 @@ function compile(config: Configuration): Compiler {
 // can pass them when we invoke nodejs
 process.env.INSPECT_BRK = process.argv.find((arg) => arg.match(/--inspect-brk(=|$)/)) || '';
 process.env.INSPECT = process.argv.find((arg) => arg.match(/--inspect(=|$)/)) || '';
-
 function main() {
   fs.emptyDirSync(paths.appBuild);
 
@@ -39,6 +39,7 @@ function main() {
 
   const localBuildConfig = require(paths.localBuildConfig) as BuildConfig;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const buildConfig = merge(globalBuildConfig as any, localBuildConfig as any) as any;
 
   const { port } = getUrlParts({ ssrBuild: true, isProduction: false });

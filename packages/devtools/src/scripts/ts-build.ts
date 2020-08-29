@@ -1,14 +1,15 @@
-import logger from './logger';
+import { logger } from './logger';
 import fs from 'fs-extra';
 import path from 'path';
 import { paths } from '../config/paths';
 import copy from 'copy';
 import { exec } from 'child_process';
 import { findFile } from './utils/finders';
+import { assert } from '../assert';
 
 const MaxTries = 15;
 
-export function findExecutable(current: string, executable: string, tries = 0): any {
+export function findExecutable(current: string, executable: string, tries = 0): string {
   const modulesDir = path.resolve(current, 'node_modules', '.bin', executable);
 
   if (tries === MaxTries) {
@@ -22,7 +23,7 @@ export function findExecutable(current: string, executable: string, tries = 0): 
   return findExecutable(path.resolve(current, '..'), executable, ++tries);
 }
 
-export function runEslint() {
+export function runEslint(): void {
   logger.start(`Running eslint`);
   const eslintPath = findExecutable(__dirname, 'eslint');
 
@@ -30,12 +31,14 @@ export function runEslint() {
 
   const args = ` --ext .ts,.tsx --max-warnings 0 ${paths.appSrc} --ignore-pattern *.test.* -c ${eslintConfig} --fix`;
 
-  const eslint = exec(`${eslintPath} ${args}`) as any;
+  const eslint = exec(`${eslintPath} ${args}`);
 
-  eslint.stdout.on('data', (data: string) => logger.info(data));
-  eslint.stderr.on('data', (data: string) => logger.error(data));
+  assert(!!eslint, 'eslint not started');
 
-  eslint.on('close', (code: any) => {
+  eslint.stdout?.on('data', (data: string) => logger.info(data));
+  eslint.stderr?.on('data', (data: string) => logger.error(data));
+
+  eslint.on('close', (code) => {
     logger.done(`eslint exited with code ${code}.`);
 
     if (code !== 0) {
@@ -47,7 +50,9 @@ export function runEslint() {
 function runTypeScriptBuild() {
   fs.emptyDirSync(paths.appBuild);
 
-  process.argv.push('--pretty', true.toString().toLocaleLowerCase());
+  process.argv.push('--pretty', String(true));
+
+  process.argv.push('--sourceMap', String(true));
 
   process.argv.push('-p', paths.tsConfig);
 
@@ -55,14 +60,16 @@ function runTypeScriptBuild() {
 
   const tscCommand = `${tscPath} ${process.argv.slice(2).join(' ')}`;
 
+  logger.info(`running ${tscCommand}`);
+
   logger.start(`running tsc`);
 
-  const tsc = exec(tscCommand) as any;
+  const tsc = exec(tscCommand);
 
-  tsc.stdout.on('data', (data: any) => logger.info(data));
-  tsc.stderr.on('data', (data: any) => logger.error(data));
+  tsc?.stdout?.on('data', (data) => logger.info(data));
+  tsc?.stderr?.on('data', (data) => logger.error(data));
 
-  tsc.on('close', (code: any) => {
+  tsc.on('close', (code) => {
     logger.done(`tsc exited with code ${code}`);
 
     if (code !== 0) {
@@ -77,9 +84,18 @@ function build() {
   try {
     runTypeScriptBuild();
 
-    const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json', '*.html', 'config.js'].map(
-      (pattern) => `${paths.appSrc}/**/${pattern}`,
-    );
+    const patterns = [
+      '*.scss',
+      '*.css',
+      '*.png',
+      '*.jpg',
+      '*.md',
+      '*.svg',
+      '*.json',
+      '*.html',
+      '*.csv',
+      'config.js',
+    ].map((pattern) => `${paths.appSrc}/**/${pattern}`);
 
     copy(patterns, paths.appBuild, (err) => {
       if (err) {

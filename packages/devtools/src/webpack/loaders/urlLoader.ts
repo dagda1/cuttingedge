@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createUrlLoader = ({ staticAssetName, isWeb }: { staticAssetName: string; isWeb: boolean }) => ({
   test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff$/, /\.woff2$/, /\.eot$/, /\.eot$/, /\.ttf$/],
   loader: 'url-loader',

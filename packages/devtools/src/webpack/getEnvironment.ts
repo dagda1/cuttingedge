@@ -1,4 +1,10 @@
-export const getEnvironment = () => {
+export const getEnvironment = (): {
+  isDevelopment: boolean;
+  staticAssetName: string;
+  isAnalyse: boolean;
+  isVerbose: boolean;
+  isProduction: boolean;
+} => {
   const isDevelopment = process.env.NODE_ENV !== 'production';
   const isProduction = process.env.NODE_ENV === 'production';
   const staticAssetName = isDevelopment ? '[path][name].[ext]?[hash:8]' : 'static/media/[hash:8].[ext]';
@@ -14,7 +20,8 @@ export const getEnvironment = () => {
   };
 };
 
-export const getEnvVariables = ({ isNode }: { isNode: boolean }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getEnvVariables = ({ isNode }: { isNode: boolean }): any => {
   const { isDevelopment } = getEnvironment();
   delete require.cache[require.resolve('../config/env')];
 

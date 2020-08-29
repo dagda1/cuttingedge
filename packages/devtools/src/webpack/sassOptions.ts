@@ -6,7 +6,7 @@ const isProduction = !isDevelopment;
 const sassOptions = {
   sassOptions: {
     outputStyle: 'expanded',
-    sourceMap: isDevelopment,
+    sourceMap: true,
     data: '@import "./styles/_overrides.scss";',
     includePaths: [paths.appSrc],
     minimize: isProduction,

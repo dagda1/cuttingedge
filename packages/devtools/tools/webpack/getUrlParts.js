@@ -5,7 +5,7 @@ var assert_1 = require("../assert/assert");
 var WebpackDevServerUtils_1 = require("react-dev-utils/WebpackDevServerUtils");
 exports.getUrlParts = function (_a) {
     var ssrBuild = _a.ssrBuild, isProduction = _a.isProduction;
-    var rawPort = process.env.PORT;
+    var rawPort = process.env.PORT || 3000;
     assert_1.assert(!!rawPort, 'No port number on environment variable PORT');
     var portOffset = ssrBuild && !isProduction ? 1 : 0;
     var port = Number(rawPort) + portOffset;

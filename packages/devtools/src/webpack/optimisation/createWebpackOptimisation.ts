@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import safePostCssParser from 'postcss-safe-parser';
@@ -41,7 +40,7 @@ export const createWebpackOptimisation = ({
           },
           parallel: true,
           cache: true,
-          sourceMap: isDevelopment,
+          sourceMap: true,
         }),
         new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {

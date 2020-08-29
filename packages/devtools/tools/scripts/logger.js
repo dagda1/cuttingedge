@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoggerTypes = void 0;
+exports.logger = exports.LoggerTypes = void 0;
 var chalk_1 = __importDefault(require("chalk"));
 var LoggerTypes;
 (function (LoggerTypes) {
@@ -99,7 +99,7 @@ var error = function (err) {
         write(LoggerTypes.error, err.stack);
     }
 };
-exports.default = {
+exports.logger = {
     log: log,
     info: info,
     debug: debug,

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import { rollup, InternalModuleFormat } from 'rollup';
 import filesizePlugin from 'rollup-plugin-filesize';
 import replacePlugin from 'rollup-plugin-replace';
@@ -7,7 +6,7 @@ import { paths } from '../config/paths';
 import fs from 'fs-extra';
 import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
-import logger from '../scripts/logger';
+import { logger } from '../scripts/logger';
 import resolve from '@rollup/plugin-node-resolve';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { assert } from '../assert/assert';
@@ -68,14 +67,13 @@ async function generateBundledModule(inputFile: string, outputFile: string, form
       replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       sourceMaps(),
       terser({
-        output: { comments: true },
+        format: { comments: true },
         compress: {
           keep_infinity: true,
           pure_getters: true,
           passes: 10,
         },
         ecma: 5,
-        warnings: true,
       }),
       filesizePlugin(),
     ],

@@ -1,6 +1,9 @@
+#!/usr/bin/env node
+'use strict';
+
 import inquirer from 'inquirer';
 import { updateVersion } from './update-version';
-import logger from '../scripts/logger';
+import { logger } from '../scripts/logger';
 import path from 'path';
 import { promisify } from 'util';
 import { getRootPackage } from './get-root-package';

@@ -1,18 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import path from 'path';
 import { sassModuleRegex } from './constants';
+import { dasherize } from '../scripts/utils/string';
 
 export type GetLocalIdent = (loaderContext: any, localIdentName: string, localName: string, options: any) => string;
 
-const decamelize = (str: string) => str.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
-
-const dasherize = (str: string) => decamelize(str).replace(/[ _]/g, '-');
-
-export const getLocalIdent: GetLocalIdent = (
-  loaderContext: any,
-  localIdentName: string,
-  localName: string,
-  options: any,
-) => {
+export const getLocalIdent: GetLocalIdent = (loaderContext: any, _: string, localName: string, options: any) => {
   if (!options.context) {
     options.context =
       loaderContext.options && typeof loaderContext.options.context === 'string'

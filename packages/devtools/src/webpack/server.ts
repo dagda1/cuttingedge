@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Configuration } from 'webpack';
 import { ServerBuildConfig } from '../types/config';
-import merge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 import webpack from 'webpack';
-import nodeExternals, { WhitelistOption } from 'webpack-node-externals';
+import nodeExternals, { AllowlistOption } from 'webpack-node-externals';
 import { paths } from '../config/paths';
 import StartServerPlugin from 'start-server-webpack-plugin';
 import path from 'path';
@@ -13,10 +12,10 @@ import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
 import { getUrlParts } from './getUrlParts';
 
-export const getExternals = function (isDevelopment: boolean) {
+export const getExternals = function (isDevelopment: boolean): webpack.ExternalsFunctionElement[] {
   return [
     nodeExternals({
-      whitelist: [
+      allowlist: [
         isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
@@ -25,8 +24,8 @@ export const getExternals = function (isDevelopment: boolean) {
         /^@babel/,
         /^@loadable\/component$/,
         /^loadable-ts-transformer$/,
-        /^@cutting/,
-      ].filter((x) => x) as WhitelistOption[],
+        /^@ds/,
+      ].filter((x) => x) as AllowlistOption[],
     }),
   ];
 };
