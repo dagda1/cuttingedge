@@ -37,8 +37,9 @@ exports.createTypescriptLoader = function (_a) {
                                     regenerator: true,
                                 },
                             ],
-                            isDevelopment && 'react-refresh/babel',
+                            'react-refresh/babel',
                         ],
+                        sourceType: 'unambiguous',
                     },
                 },
                 {

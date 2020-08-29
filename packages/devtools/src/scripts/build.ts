@@ -4,7 +4,7 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-import '.../config/env';
+import '../config/env';
 
 import fs from 'fs-extra';
 import { paths } from '../config/paths';

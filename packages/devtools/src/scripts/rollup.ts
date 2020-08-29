@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { rollup } from 'rollup';
+import { rollup, InternalModuleFormat } from 'rollup';
 import filesizePlugin from 'rollup-plugin-filesize';
 import replacePlugin from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
@@ -20,7 +20,7 @@ const packageName = process.argv[3];
 
 fs.removeSync(paths.appBuild);
 
-async function generateBundledModule(inputFile: string, outputFile: string, format: string) {
+async function generateBundledModule(inputFile: string, outputFile: string, format: InternalModuleFormat) {
   if (!fs.existsSync(inputFile)) {
     throw new Error(`Input file ${inputFile} does not exist`);
   }

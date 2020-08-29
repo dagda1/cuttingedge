@@ -40,8 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable no-console */
-var rollup = require('rollup').rollup;
+var rollup_1 = require("rollup");
 var rollup_plugin_filesize_1 = __importDefault(require("rollup-plugin-filesize"));
 var rollup_plugin_replace_1 = __importDefault(require("rollup-plugin-replace"));
 var rollup_plugin_terser_1 = require("rollup-plugin-terser");
@@ -68,7 +67,7 @@ function generateBundledModule(inputFile, outputFile, format) {
                         throw new Error("Input file " + inputFile + " does not exist");
                     }
                     logger_1.default.info("Generating " + outputFile + " bundle.");
-                    return [4 /*yield*/, rollup({
+                    return [4 /*yield*/, rollup_1.rollup({
                             input: inputFile,
                             external: function (id) {
                                 return !id.startsWith('.') && !path_1.default.isAbsolute(id);

@@ -44,7 +44,7 @@ process.env.NODE_ENV = 'production';
 process.on('unhandledRejection', function (err) {
     throw err;
 });
-require(".../config/env");
+require("../config/env");
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var paths_1 = require("../config/paths");
 var logger_1 = __importDefault(require("./logger"));
