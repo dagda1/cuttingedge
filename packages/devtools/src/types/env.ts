@@ -8,6 +8,5 @@ export type Env = {
   PUBLIC_URL: string;
   FAST_REFRESH?: boolean;
   nodePath: string;
-  PORT: string | number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } & { [k: string]: any };

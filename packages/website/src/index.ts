@@ -1,11 +1,17 @@
 import { app } from './server';
 import http from 'http';
+import { assert } from '@cutting/util';
+
 const server = http.createServer(app);
 
 let currentApp = app;
 
+console.log(process.env.PORT);
+
+assert(process.env.PORT, 'NO port set');
+
 server.listen(process.env.PORT, () => {
-  console.log(`🚀 started on http://localhost:${process.env.PORT || 3000}`);
+  console.log(`🚀 started on http://localhost:${process.env.PORT}`);
 });
 
 if (module.hot) {

@@ -26,22 +26,13 @@ dotenvFiles.forEach((dotenvFile) => {
 });
 
 const appDirectory = fs.realpathSync(process.cwd());
-
 export const nodePath = (process.env.NODE_PATH || '')
   .split(path.delimiter)
   .filter((folder) => folder && !path.isAbsolute(folder))
   .map((folder) => path.resolve(appDirectory, folder))
   .join(path.delimiter);
 
-export function getClientEnv(
-  target = 'web',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  options: any = {},
-  additional = {},
-): {
-  raw: Env;
-  stringified: Partial<Env>;
-} {
+export function getClientEnv(target = 'web', options: any = {}, additional = {}) {
   const raw: Env = Object.keys(process.env).reduce(
     (env: Env, key) => {
       env[key] = process.env[key];
@@ -57,17 +48,12 @@ export function getClientEnv(
         PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
         CI: !!process.env.CI,
         PUBLIC_URL: options.publicUrl || '',
-        FAST_REFRESH: !!process.env.FAST_REFRESH || true,
+        FAST_REFRESH: !!process.env.FAST_REFRESH,
         nodePath,
-        PORT: Number(process.env.PORT),
       },
       additional,
     ),
   );
-
-  if (process.env.NODE_ENV === 'development') {
-    raw.PORT = Number(process.env.PORT);
-  }
 
   // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = Object.keys(raw).reduce((env: Partial<Env>, key) => {
