@@ -60,8 +60,13 @@ export const configure = (options: ServerBuildConfig): Configuration => {
     watch: isDevelopment,
     externals: getExternals(isDevelopment),
     entry: isDevelopment
-      ? [path.join(__dirname, '../scripts/prettyNodeErrors'), 'webpack/hot/poll?300', ...entries]
-      : entries,
+      ? [
+          'regenerator-runtime/runtime',
+          path.join(__dirname, '../scripts/prettyNodeErrors'),
+          'webpack/hot/poll?300',
+          ...entries,
+        ]
+      : ['regenerator-runtime/runtime', ...entries],
     node: {
       __console: false,
       __dirname: false,

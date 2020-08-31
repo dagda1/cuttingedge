@@ -72,7 +72,11 @@ exports.configure = function (options) {
         watch: isDevelopment,
         externals: exports.getExternals(isDevelopment),
         entry: isDevelopment
-            ? __spreadArrays([path_1.default.join(__dirname, '../scripts/prettyNodeErrors'), 'webpack/hot/poll?300'], entries) : entries,
+            ? __spreadArrays([
+                'regenerator-runtime/runtime',
+                path_1.default.join(__dirname, '../scripts/prettyNodeErrors'),
+                'webpack/hot/poll?300'
+            ], entries) : __spreadArrays(['regenerator-runtime/runtime'], entries),
         node: {
             __console: false,
             __dirname: false,

@@ -20,16 +20,13 @@ const publicDir = path.join(rootDir, isProduction ? 'dist/public' : 'public');
 
 app.use(express.static(publicDir));
 
-app.use(helmet());
-app.use(noCache());
-
-app.use(referrerPolicy({ policy: 'no-referrer' }));
-app.use(helmet.hidePoweredBy());
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
 if (isProduction) {
+  app.use(helmet());
+  app.use(noCache());
+  app.use(referrerPolicy({ policy: 'no-referrer' }));
+  app.use(helmet.hidePoweredBy());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
   app.use(favicon(path.join(publicDir, 'favicon.ico')));
   app.use(
     contentSecurityPolicy({
