@@ -1,13 +1,15 @@
 // https://www.nationsonline.org/oneworld/country_code_list.htm
 export enum Countries {
-  Canada = 'CAN',
+  // Canada = 'CAN',
   Brazil = 'BRA',
   IT = 'ITA',
   GB = 'GBR',
   Spain = 'ESP',
-  Germany = 'DEU',
+  // Germany = 'DEU',
+  France = 'FRA',
   USA = 'USA',
   Sweden = 'SWE',
+  India = 'IND',
 }
 
 export type CountryData = {
@@ -45,17 +47,21 @@ export type DayData = {
 };
 
 export const countryData: CountriesData = {
-  [Countries.Canada]: {
-    longName: 'Canada',
-    color: '#FF0000',
-    population: 38000000,
-  },
-  [Countries.Germany]: {
-    longName: 'Germany',
+  // [Countries.Canada]: {
+  //   longName: 'Canada',
+  //   color: '#FF0000',
+  //   population: 38000000,
+  // },
+  // [Countries.Germany]: {
+  //   longName: 'Germany',
+  //   color: '#9400D3',
+  //   population: 84000000,
+  // },
+  [Countries.France]: {
+    longName: 'France',
     color: '#9400D3',
-    population: 84000000,
+    population: 66900000,
   },
-
   [Countries.IT]: {
     longName: 'Italy',
     color: '#016CD0',
@@ -80,6 +86,11 @@ export const countryData: CountriesData = {
     longName: 'Sweden',
     color: '#ffa500',
     population: 11000000,
+  },
+  [Countries.India]: {
+    longName: 'India',
+    color: '#FF0000',
+    population: 1353000000,
   },
   [Countries.GB]: {
     longName: 'UK',
