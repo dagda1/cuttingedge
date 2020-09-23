@@ -24,7 +24,7 @@ export const getExternals = function (isDevelopment: boolean): webpack.Externals
         /^@babel/,
         /^@loadable\/component$/,
         /^loadable-ts-transformer$/,
-        /^@ds/,
+        /^@cutting/,
       ].filter((x) => x) as AllowlistOption[],
     }),
   ];
