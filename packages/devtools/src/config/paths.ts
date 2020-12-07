@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { findAppNodeModules } from '../scripts/utils/finders';
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath: string) => path.resolve(appDirectory, relativePath);
@@ -24,35 +25,45 @@ const nodePaths = (process.env.NODE_PATH || '')
   .filter((folder) => !path.isAbsolute(folder))
   .map(resolveApp);
 
-const resolvedNodeModules = ['../node_modules', './node_modules']
+const appNodeModules = findAppNodeModules(process.cwd());
+
+const resolvedNodeModules = [appNodeModules, './node_modules']
   .filter((m) => fs.existsSync(m))
-  .map((m) => path.join(process.cwd(), m));
+  .map((m) => path.relative(process.cwd(), m));
 
 const libPackages = [
-  'packages/devtools',
+  'packages/frontend-common',
+  'packages/frontend-types',
+  'packages/nexus-deployer',
   'packages/eslint-config',
-  'packages/useful-types',
-  'packages/util',
+  'packages/frontend-testing',
+  'packages/frontend-util',
+  'packages/translate',
   'packages/hooks',
-  'packages/use-abort',
-  'packages/component-library',
-  'packages/connected-components',
-  'packages/use-shortcuts',
-  'packages/react-typed-mousetrap',
-  'packages/graphql-swagger',
+  'packages/node-util',
+  'packages/frontend-component-library',
+  'packages/frontend-connected-components',
+  'packages/formik-helpers',
+  'packages/frontend-cognito-auth',
+  'packages/static-express-server',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
-const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));
-
 const tsConfigPath = resolveApp('tsconfig.json');
+const testTsConfigPath = resolveApp('tsconfig.test.json');
 
 const tsConfig = fs.existsSync(tsConfigPath)
   ? (require(tsConfigPath) as { compilerOptions: { outDir?: string } })
   : { compilerOptions: { outDir: undefined } };
 
+const testTsConfig = fs.existsSync(testTsConfigPath)
+  ? testTsConfigPath
+  : path.resolve(__dirname, '../../typescript/tsconfig.test.json');
+
 const outDir = tsConfig.compilerOptions?.outDir || DefaultBuildDir;
 
 const appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
+
+const DevFolder = 'dev';
 
 export const paths = {
   dotenv: resolveApp('.env'),
@@ -75,16 +86,16 @@ export const paths = {
   localBuildConfig: resolveApp('./build.config.js'),
   resolvedNodeModules,
   tsConfig: tsConfigPath,
-  devDir: resolveApp('demo'),
-  devDirPublic: resolveApp('demo/public'),
+  devDir: resolveApp(DevFolder),
+  devDirPublic: resolveApp(`${DevFolder}/public`),
   libPackages,
-  webAppPackages,
-  allPackages: [...libPackages, ...webAppPackages],
   defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
   proxySetup: resolveApp('setupProxy.js'),
   tranlationsDir: resolveApp('src/translations'),
   publicUrlOrPath,
   eslintConfig: resolveApp('./.eslintrc.json'),
   ossIndex: resolveApp('ossindex'),
+  ownJestConfig: resolveApp('jest.config.js'),
   jestConfig: path.join(__dirname, '../jest/jest.config.js'),
+  testTsConfig,
 };

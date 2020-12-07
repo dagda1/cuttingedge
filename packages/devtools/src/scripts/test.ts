@@ -1,5 +1,10 @@
+/* eslint-disable jest/no-jest-import */
 import { getClientEnv } from '../config/env';
+import fs from 'fs';
 import { paths } from '../config/paths';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { run } from 'jest';
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'test';
@@ -12,11 +17,8 @@ process.on('unhandledRejection', (err) => {
 
 delete require.cache[require.resolve('../config/env')];
 
-// Ensure environment variables are read.
 getClientEnv();
 
-// eslint-disable-next-line jest/no-jest-import
-const jest = require('jest');
 const argv = process.argv.slice(2);
 
 argv.push('--no-cache');
@@ -26,7 +28,9 @@ if (!process.env.CI && argv.indexOf('--coverage') < 0) {
   argv.push('--watch');
 }
 
-argv.push('--config', paths.jestConfig);
+const config = fs.existsSync(paths.ownJestConfig) ? paths.ownJestConfig : paths.jestConfig;
+
+argv.push('--config', config);
 argv.push('--env', 'jest-environment-jsdom-sixteen');
 argv.push('--rootDir', `${process.cwd()}`);
 
@@ -37,4 +41,4 @@ if (process.env.CI) {
   argv.push('--coverage');
 }
 
-jest.run(argv);
+run(argv);

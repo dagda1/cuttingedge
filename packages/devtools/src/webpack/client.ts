@@ -9,27 +9,29 @@ import fs from 'fs';
 import InlineChunkHtmlPlugin from 'react-dev-utils/InlineChunkHtmlPlugin';
 import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin';
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
-import { getCommitHash } from '../scripts/git';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { Configuration } from 'webpack';
 import { getUrlParts } from './getUrlParts';
 import { getEnvironment } from './getEnvironment';
 import { createDevServer } from './loaders/createDevServer';
 import { createWebpackOptimisation } from './optimisation/createWebpackOptimisation';
-
-const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
-const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
-const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
+import LoadableWebpackPlugin from '@loadable/webpack-plugin';
+import HtmlWebpackPartialsPlugin from 'html-webpack-partials-plugin';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { DuplicatesPlugin } from 'inspectpack/plugin';
 
 const isProfilerEnabled = () => process.argv.includes('--profile');
 
 export const configure = (options: DevServerConfig): Configuration => {
   const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
-  const { isDevelopment, isProduction } = getEnvironment();
+  const { isDevelopment, isProduction, commitHash } = getEnvironment();
   const ssrBuild = !isStaticBuild;
   const { protocol, host, publicPath, port, sockPort } = getUrlParts({ ssrBuild, isProduction });
 
-  // TODO: get rid of mutation
   options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
   options.isNode = false;
   options.isWeb = true;
@@ -49,8 +51,6 @@ export const configure = (options: DevServerConfig): Configuration => {
     return acc;
   }, {} as Record<string, string | string[]>);
 
-  const commitHash = getCommitHash();
-
   const template = publicDir ? path.join(publicDir, 'index.html') : 'public/index.html';
 
   const templateExists = fs.existsSync(template);
@@ -64,21 +64,36 @@ export const configure = (options: DevServerConfig): Configuration => {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,
       pathinfo: isDevelopment,
-      filename: isProduction ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle.js',
-      chunkFilename: isProduction ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
+      filename: isProduction ? 'static/js/[name].[contenthash:8].js' : isDevelopment && 'static/js/bundle.js',
+      library: 'LIB',
+      libraryTarget: 'var',
+      chunkFilename: isProduction
+        ? 'static/js/[name].[contenthash:8].chunk.js'
+        : isDevelopment && 'static/js/[name].chunk.js',
 
       devtoolModuleFilenameTemplate: isProduction
         ? (info) => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
-        : (info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+        : isDevelopment && ((info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+    },
+
+    node: {
+      fs: 'empty',
+      path: 'empty',
+      net: 'empty',
+      tls: 'empty',
     },
 
     plugins: [
+      new DuplicatesPlugin({
+        verbose: true,
+      }),
+      new webpack.HashedModuleIdsPlugin(),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
       ssrBuild &&
         new LoadableWebpackPlugin({
           writeToDisk: { filename: paths.appBuild },
         }),
-      new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl! }),
+      new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl }),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({
@@ -102,7 +117,7 @@ export const configure = (options: DevServerConfig): Configuration => {
           location: 'body',
           priority: 'low',
           options: {
-            hash: `${commitHash}-${new Date().toISOString()}`,
+            hash: commitHash,
           },
         },
       ]),
@@ -122,7 +137,7 @@ export const configure = (options: DevServerConfig): Configuration => {
   });
 
   if (isProduction) {
-    config.optimization = createWebpackOptimisation({ optimization: config.optimization!, isDevelopment, ssrBuild });
+    config.optimization = createWebpackOptimisation({ optimization: config.optimization, isDevelopment, ssrBuild });
   }
 
   return config;

@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const createMDLoader = () => ({
+import { RuleSetRule } from 'webpack';
+
+export const createMDLoader = (): RuleSetRule => ({
   test: /\.md$/,
   use: [
     {

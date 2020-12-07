@@ -1,11 +1,6 @@
-export const createCSVLoader = (): {
-  test: RegExp;
-  loader: string;
-  options: {
-    header: boolean;
-    skipEmptyLines: boolean;
-  };
-} => ({
+import { RuleSetRule } from 'webpack';
+
+export const createCSVLoader = (): RuleSetRule => ({
   test: /\.csv$/,
   loader: 'csv-loader',
   options: {

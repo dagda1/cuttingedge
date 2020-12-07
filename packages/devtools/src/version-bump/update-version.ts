@@ -1,11 +1,4 @@
-import fs from 'fs';
-
-const writeToPackage = <D>(filename: string, data: D) =>
-  fs.writeFile(filename, JSON.stringify(data, null, 2), function (err) {
-    if (err) {
-      throw err;
-    }
-  });
+import { writeToPackage } from '../scripts/write-package';
 
 const copyDependencies = (destination: Record<string, unknown>, oldVersion: string, version: string) => {
   if (!destination) {
@@ -17,12 +10,13 @@ const copyDependencies = (destination: Record<string, unknown>, oldVersion: stri
   );
 };
 
-export const updateVersion = (filename: string, oldVersion: string, version: string): void => {
-  const pkg = require(filename);
+export const updateVersion = async (filename: string, oldVersion: string, version: string): Promise<void> => {
+  const { default: pkg } = await import(filename);
+  const json = { ...pkg };
 
-  pkg.version = version;
+  json.version = version;
 
   copyDependencies(pkg.dependencies, oldVersion, version);
   copyDependencies(pkg.devDependencies, oldVersion, version);
-  writeToPackage(filename, pkg);
+  await writeToPackage(filename, json);
 };

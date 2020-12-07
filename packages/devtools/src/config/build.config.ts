@@ -28,6 +28,7 @@ export const config: BuildConfig = {
     externals: [],
     isNode: true,
     modulesDir: './node_modules',
+    hasShebang: false,
   },
   devServer: {
     entries: paths.appSrc,

@@ -8,11 +8,11 @@ import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
 
-const getExternals = (modulesDir: string) => {
+const getExternals = () => {
   return [
     nodeExternals(),
     nodeExternals({
-      modulesDir,
+      modulesDir: paths.resolvedNodeModules[0],
       allowlist: [/^@ds/].filter((x) => x),
     }),
   ];
@@ -21,8 +21,6 @@ const getExternals = (modulesDir: string) => {
 export const configure = (options: NodeBuildConfig): Configuration => {
   const common = configureCommon({ ...options, isWeb: false });
 
-  const { modulesDir } = options;
-
   const { isDevelopment, isProduction } = getEnvironment();
 
   const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
@@ -30,21 +28,23 @@ export const configure = (options: NodeBuildConfig): Configuration => {
   const config: Configuration = merge(common, {
     name: 'api',
     target: 'node',
-    externals: getExternals(modulesDir),
-    entry: isDevelopment ? [...entries] : entries,
+    externals: getExternals(),
+    entry: entries,
     devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
     output: {
       path: paths.appBuild,
-      filename: options.filename,
-      libraryTarget: 'commonjs2',
+      filename: 'index.cjs',
     },
     plugins: [
       new WriteFilePlugin(),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1,
       }),
-      isProduction && new webpack.optimize.ModuleConcatenationPlugin(),
+      options.hasShebang && new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true }),
     ].filter(isPlugin),
+    optimization: {
+      concatenateModules: isProduction,
+    },
   });
 
   return config;
