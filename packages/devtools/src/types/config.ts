@@ -8,7 +8,7 @@ export interface BuildConfig {
     isNode: false;
   };
   server: {
-    entries: string;
+    entries: string | string[];
     filename: string;
     bail: boolean;
     ssrBuild: true;
@@ -20,11 +20,12 @@ export interface BuildConfig {
     options: CompilerOptions;
   };
   node: {
-    entries: string;
+    entries: string | string[];
     filename: string;
     externals: string[];
     modulesDir: string;
     isNode: true;
+    hasShebang?: boolean;
   };
   devServer: {
     entries: string | string[] | Record<string, string | string[]>;

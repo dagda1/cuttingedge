@@ -50,7 +50,7 @@ var glob_1 = __importDefault(require("glob"));
 var semver_1 = __importDefault(require("semver"));
 var glob = util_1.promisify(glob_1.default);
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, rootDir, currentVersion, packageFiles, major, minor, patch, choice, version, custom, confirm;
+    var _a, rootDir, currentVersion, packageFiles, major, minor, patch, choice, version, custom, confirm, _i, packageFiles_1, pkg, err_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -106,11 +106,38 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 })];
             case 7:
                 confirm = _b.sent();
-                return [2 /*return*/, confirm.value
-                        ? packageFiles.map(function (filename) { return update_version_1.updateVersion(path_1.default.join(rootDir, filename), currentVersion, version); })
-                        : logger_1.logger.info('version change cancelled')];
+                if (!confirm.value) {
+                    logger_1.logger.info('version change cancelled');
+                    return [2 /*return*/];
+                }
+                _i = 0, packageFiles_1 = packageFiles;
+                _b.label = 8;
+            case 8:
+                if (!(_i < packageFiles_1.length)) return [3 /*break*/, 13];
+                pkg = packageFiles_1[_i];
+                _b.label = 9;
+            case 9:
+                _b.trys.push([9, 11, , 12]);
+                return [4 /*yield*/, update_version_1.updateVersion(path_1.default.join(rootDir, pkg), currentVersion, version)];
+            case 10:
+                _b.sent();
+                return [3 /*break*/, 12];
+            case 11:
+                err_1 = _b.sent();
+                logger_1.logger.error(err_1);
+                process.exit(1);
+                return [3 /*break*/, 12];
+            case 12:
+                _i++;
+                return [3 /*break*/, 8];
+            case 13: return [2 /*return*/];
         }
     });
 }); };
-main();
+(function () { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        main();
+        return [2 /*return*/];
+    });
+}); })();
 //# sourceMappingURL=index.js.map

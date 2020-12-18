@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getClientEnv = exports.nodePath = void 0;
-var paths_1 = require("./paths");
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 delete require.cache[require.resolve('./paths')];
@@ -12,19 +11,6 @@ var NODE_ENV = process.env.NODE_ENV;
 if (!NODE_ENV) {
     throw new Error('The NODE_ENV environment variable is required but was not specified.');
 }
-var dotenvFiles = [
-    paths_1.paths.dotenv + "." + NODE_ENV + ".local",
-    paths_1.paths.dotenv + "." + NODE_ENV,
-    paths_1.paths.dotenv + ".local",
-    paths_1.paths.dotenv,
-];
-dotenvFiles.forEach(function (dotenvFile) {
-    if (fs_1.default.existsSync(dotenvFile)) {
-        require('dotenv').config({
-            path: dotenvFile,
-        });
-    }
-});
 var appDirectory = fs_1.default.realpathSync(process.cwd());
 exports.nodePath = (process.env.NODE_PATH || '')
     .split(path_1.default.delimiter)
@@ -46,12 +32,12 @@ function getClientEnv(target, options, additional) {
         PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
         CI: !!process.env.CI,
         PUBLIC_URL: options.publicUrl || '',
-        FAST_REFRESH: !!process.env.FAST_REFRESH,
+        FAST_REFRESH: !!process.env.FAST_REFRESH || true,
         nodePath: exports.nodePath,
     }, additional));
     // Stringify all values so we can feed into Webpack DefinePlugin
     var stringified = Object.keys(raw).reduce(function (env, key) {
-        if (['__DEV__', '__BROWSER__'].includes(key)) {
+        if (['__DEV__', '__BROWSER__', '__COMMIT__'].includes(key)) {
             env[key] = JSON.stringify(raw[key]);
         }
         else {

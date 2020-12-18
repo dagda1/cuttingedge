@@ -14,14 +14,14 @@ import { copyPublicFolder } from './utils/copy-public-folder';
 import { compile } from './webpack/compile';
 import { BuildType } from '../types/build';
 import { config as globalBuildConfig } from '../config/build.config';
-
+import { merge } from 'webpack-merge';
+import { configure as configureWebpackClient } from '../webpack/client';
+import { configure as configureWebpackServer } from '../webpack/server';
+import { configure as configureWebpackNode } from '../webpack/node';
+import { BuildConfig } from '../types/config';
+import { assert } from 'src/assert';
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
-const { merge } = require('webpack-merge');
-
-const configureWebpackClient = require('../webpack/client').configure;
-const configureWebpackServer = require('../webpack/server').configure;
-const configureWebpackNode = require('../webpack/node').configure;
 
 export const build = async ({
   buildClient,
@@ -34,12 +34,13 @@ export const build = async ({
 }): Promise<void> => {
   logger.start('starting build');
 
-  const localBuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
+  const localBuildConfig: BuildConfig = fs.existsSync(paths.localBuildConfig)
+    ? await import(paths.localBuildConfig)
+    : {};
 
-  const buildConfig = merge(globalBuildConfig, localBuildConfig);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const buildConfig = merge(globalBuildConfig as any, localBuildConfig as any) as any;
 
-  const clientConfig = !!buildClient && configureWebpackClient(buildConfig.client);
-  const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
   const nodeConfig = !!buildNode && configureWebpackNode(buildConfig.node);
 
   const publicDir = buildServer ? paths.appBuildPublic : paths.appBuild;
@@ -51,16 +52,24 @@ export const build = async ({
 
     copyPublicFolder();
 
-    if (buildNode) {
+    if (nodeConfig) {
       await compile(nodeConfig, BuildType.node);
-      logger.done('build finished');
+      logger.done('finished building node webpack build');
       return;
     }
+    const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
+    const clientConfig = buildClient && configureWebpackClient({ ...buildConfig.client, isStaticBuild: !buildServer });
+
+    assert(clientConfig, 'clientConfig is not present');
 
     const { stats: clientStats } = await compile(clientConfig, BuildType.client);
 
-    if (buildServer) {
+    logger.done('finished building client webpack build');
+
+    if (serverConfig) {
       await compile(serverConfig, BuildType.server);
+
+      logger.done('finished building server webpack build');
     }
 
     printFileSizesAfterBuild(clientStats, previousFileSizes, publicDir);

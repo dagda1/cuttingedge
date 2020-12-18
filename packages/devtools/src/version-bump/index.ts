@@ -71,9 +71,21 @@ const main = async () => {
     message: 'Confirm the version update:',
   });
 
-  return confirm.value
-    ? packageFiles.map((filename) => updateVersion(path.join(rootDir, filename), currentVersion, version))
-    : logger.info('version change cancelled');
+  if (!confirm.value) {
+    logger.info('version change cancelled');
+    return;
+  }
+
+  for (const pkg of packageFiles) {
+    try {
+      await updateVersion(path.join(rootDir, pkg), currentVersion, version);
+    } catch (err) {
+      logger.error(err);
+      process.exit(1);
+    }
+  }
 };
 
-main();
+(async () => {
+  main();
+})();

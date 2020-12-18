@@ -14,6 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.paths = void 0;
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
+var finders_1 = require("../scripts/utils/finders");
 var appDirectory = fs_1.default.realpathSync(process.cwd());
 var resolveApp = function (relativePath) { return path_1.default.resolve(appDirectory, relativePath); };
 var DefaultBuildDir = 'dist';
@@ -26,9 +27,10 @@ var nodePaths = (process.env.NODE_PATH || '')
     .filter(Boolean)
     .filter(function (folder) { return !path_1.default.isAbsolute(folder); })
     .map(resolveApp);
-var resolvedNodeModules = ['../node_modules', './node_modules']
+var appNodeModules = finders_1.findAppNodeModules(process.cwd());
+var resolvedNodeModules = [appNodeModules, './node_modules']
     .filter(function (m) { return fs_1.default.existsSync(m); })
-    .map(function (m) { return path_1.default.join(process.cwd(), m); });
+    .map(function (m) { return path_1.default.relative(process.cwd(), m); });
 var libPackages = [
     'packages/devtools',
     'packages/eslint-config',
@@ -44,11 +46,16 @@ var libPackages = [
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var webAppPackages = ['packages/website'].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var tsConfigPath = resolveApp('tsconfig.json');
+var testTsConfigPath = resolveApp('tsconfig.test.json');
 var tsConfig = fs_1.default.existsSync(tsConfigPath)
     ? require(tsConfigPath)
     : { compilerOptions: { outDir: undefined } };
+var testTsConfig = fs_1.default.existsSync(testTsConfigPath)
+    ? testTsConfigPath
+    : path_1.default.resolve(__dirname, '../../typescript/tsconfig.test.json');
 var outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.outDir) || DefaultBuildDir;
 var appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
+var DevFolder = 'demo ';
 exports.paths = {
     dotenv: resolveApp('.env'),
     appPath: resolveApp('.'),
@@ -70,8 +77,8 @@ exports.paths = {
     localBuildConfig: resolveApp('./build.config.js'),
     resolvedNodeModules: resolvedNodeModules,
     tsConfig: tsConfigPath,
-    devDir: resolveApp('demo'),
-    devDirPublic: resolveApp('demo/public'),
+    devDir: resolveApp(DevFolder),
+    devDirPublic: resolveApp(DevFolder + "/public"),
     libPackages: libPackages,
     webAppPackages: webAppPackages,
     allPackages: __spreadArrays(libPackages, webAppPackages),
@@ -81,6 +88,8 @@ exports.paths = {
     publicUrlOrPath: publicUrlOrPath,
     eslintConfig: resolveApp('./.eslintrc.json'),
     ossIndex: resolveApp('ossindex'),
+    ownJestConfig: resolveApp('jest.config.js'),
     jestConfig: path_1.default.join(__dirname, '../jest/jest.config.js'),
+    testTsConfig: testTsConfig,
 };
 //# sourceMappingURL=paths.js.map

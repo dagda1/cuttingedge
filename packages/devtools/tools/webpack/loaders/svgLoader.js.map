@@ -1,1 +1,1 @@
-{"version":3,"file":"svgLoader.js","sourceRoot":"","sources":["../../../src/webpack/loaders/svgLoader.ts"],"names":[],"mappings":";;;AAAA,6EAA6E;AAChE,QAAA,eAAe,GAAG,cAAM,OAAA,CAAC;IACpC,IAAI,EAAE,OAAO;IACb,GAAG,EAAE;QACH,MAAM,EAAE,gBAAgB;QACxB,OAAO,EAAE,EAAE;KACZ;CACF,CAAC,EANmC,CAMnC,CAAC"}
+{"version":3,"file":"svgLoader.js","sourceRoot":"","sources":["../../../src/webpack/loaders/svgLoader.ts"],"names":[],"mappings":";;;AAEa,QAAA,eAAe,GAAG,cAAmB,OAAA,CAAC;IACjD,IAAI,EAAE,OAAO;IACb,GAAG,EAAE;QACH,MAAM,EAAE,gBAAgB;QACxB,OAAO,EAAE,EAAE;KACZ;CACF,CAAC,EANgD,CAMhD,CAAC"}

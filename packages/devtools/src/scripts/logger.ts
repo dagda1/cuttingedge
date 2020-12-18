@@ -52,7 +52,7 @@ const write = (type: LoggerTypes, text: string | Error, verbose?: unknown) => {
 
   const logType = logTypes[type];
 
-  textToLog += chalk[logType.bg].black(logType.msg) + ' ' + chalk[logType.text](text);
+  textToLog += `${chalk[logType.bg].black(logType.msg).padEnd(8)} ${chalk[logType.text](text)}`;
 
   if (verbose) {
     if (typeof verbose === 'object') {
@@ -86,8 +86,8 @@ const info = (text: string) => {
   write(LoggerTypes.info, text);
 };
 
-const debug = (text: string, data: unknown) => {
-  write(LoggerTypes.done, text, data);
+const debug = (text: string, data?: unknown) => {
+  write(LoggerTypes.debug, text, data);
 };
 
 const warn = (text: string, data?: unknown) => {
@@ -119,3 +119,5 @@ export const logger = {
   start,
   done,
 } as const;
+
+export default logger;

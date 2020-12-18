@@ -1,10 +1,7 @@
-const cssTransform = {
-  process() {
-    return 'module.exports = {};';
-  },
-  getCacheKey() {
-    return 'cssTransform';
-  },
+export const process = (): string => {
+  return 'module.exports = {};';
 };
 
-module.exports = cssTransform;
+export const getCacheKey = (): string => {
+  return 'cssTransform';
+};

@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const createSVGLoader = () => ({
+import { RuleSetRule } from 'webpack';
+
+export const createSVGLoader = (): RuleSetRule => ({
   test: /\.svg/,
   use: {
     loader: 'svg-url-loader',

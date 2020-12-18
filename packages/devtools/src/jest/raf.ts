@@ -43,10 +43,8 @@ if (!animation.requestAnimationFrame) {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(global as any).requestAnimationFrame = window.requestAnimationFrame =
+global.requestAnimationFrame = window.requestAnimationFrame =
   window.requestAnimationFrame || animation.requestAnimationFrame;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(global as any).cancelAnimationFrame = window.cancelAnimationFrame =
+global.cancelAnimationFrame = window.cancelAnimationFrame =
   window.cancelAnimationFrame || animation.cancelAnimationFrame;

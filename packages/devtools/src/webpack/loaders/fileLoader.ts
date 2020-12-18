@@ -1,5 +1,12 @@
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const createFileLoader = ({ staticAssetName, isWeb }: { staticAssetName: string; isWeb: boolean }) => ({
+import { RuleSetRule } from 'webpack';
+
+export const createFileLoader = ({
+  staticAssetName,
+  isWeb,
+}: {
+  staticAssetName: string;
+  isWeb: boolean;
+}): RuleSetRule => ({
   exclude: [
     /\.html$/,
     /\.jsx?$/,
@@ -20,6 +27,7 @@ export const createFileLoader = ({ staticAssetName, isWeb }: { staticAssetName: 
     /\.md$/,
     /\.js$/,
     /\.mjs$/,
+    /\.cjs$/,
   ],
   loader: 'file-loader',
   options: { name: staticAssetName, emitFile: isWeb },

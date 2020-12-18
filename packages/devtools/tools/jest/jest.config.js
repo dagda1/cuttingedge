@@ -3,18 +3,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
-var mergeWith_1 = __importDefault(require("lodash/mergeWith"));
+var paths_1 = require("../config/paths");
+var fs_extra_1 = __importDefault(require("fs-extra"));
+var logger_1 = __importDefault(require("../scripts/logger"));
 var escapeChars = function (s) {
     if (!s) {
         return '';
     }
     return s.replace(/\./g, ' ');
 };
-// load project-local settings if they exist
-var localSettingsPath = path_1.default.join(process.cwd(), 'jest.config.js');
-var localSettings = fs_1.default.existsSync(localSettingsPath) ? require(localSettingsPath) : {};
+var setupTestsFileName = 'setupTests.ts';
+var setupTestsCandidates = [path_1.default.resolve('.', setupTestsFileName), path_1.default.resolve('src', 'tests', setupTestsFileName)];
+var localSetupTestsFile = setupTestsCandidates.find(fs_extra_1.default.existsSync);
+logger_1.default.debug("found local setup file " + localSetupTestsFile);
 var jestConfig = {
     rootDir: process.cwd(),
     roots: ['<rootDir>', '<rootDir>/src'],
@@ -22,7 +24,7 @@ var jestConfig = {
     globals: {
         __DEV__: true,
         'ts-jest': {
-            tsConfig: path_1.default.resolve(__dirname, '../../typescript/tsconfig.test.json'),
+            tsconfig: paths_1.paths.testTsConfig,
             isolatedModules: true,
         },
     },
@@ -33,26 +35,35 @@ var jestConfig = {
         '!src/**/*.test.*',
         '!src/test/**/*.*',
         '!src/features/**/*.*',
+        '!src/index.ts',
+        '!src/**/constants.*',
     ],
-    setupFilesAfterEnv: [path_1.default.join(__dirname, './setupTests.js'), path_1.default.join(__dirname, './polyfills.js')],
+    setupFilesAfterEnv: [
+        path_1.default.join(__dirname, './polyfills'),
+        '@testing-library/jest-dom/extend-expect',
+        path_1.default.join(__dirname, './setupTests'),
+        localSetupTestsFile,
+    ].filter(Boolean),
     testMatch: [
         '<rootDir>/src/**/__tests__/**/*.ts?(x)',
         '<rootDir>/src/**/?(*.)(spec|test).ts?(x)',
         '<rootDir>/src/**/*.feature',
     ],
-    testEnvironment: 'node',
+    testEnvironment: 'jest-environment-jsdom-sixteen',
     testURL: 'http://localhost',
     transform: {
-        '^.+\\.(ts|tsx)$': 'ts-jest',
+        '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
+        '.(js|jsx)$': require.resolve('babel-jest'),
         '^.+\\.feature$': 'gherkin-jest',
         '^.+\\.css$': path_1.default.join(__dirname, './cssTransform.js'),
         '^.+\\.csv$': path_1.default.join(__dirname, './fileTransform.js'),
         '^(?!.*\\.(js|jsx|css|json)$)': path_1.default.join(__dirname, './fileTransform.js'),
     },
     transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
-    moduleFileExtensions: ['web.js', 'js', 'json', 'web.jsx', 'jsx', 'ts', 'tsx', 'feature', 'csv'],
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'csv', 'node'],
     moduleDirectories: ['node_modules', '../../node_modules'],
     modulePaths: ['<rootDir>', 'src'],
+    resetMocks: true,
     reporters: [
         'default',
         [
@@ -69,7 +80,5 @@ var jestConfig = {
         ],
     ],
 };
-module.exports = mergeWith_1.default(jestConfig, localSettings, function (objValue, srcValue) {
-    return Array.isArray(objValue) ? objValue.concat(srcValue) : undefined;
-});
+exports.default = jestConfig;
 //# sourceMappingURL=jest.config.js.map

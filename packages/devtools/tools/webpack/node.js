@@ -10,13 +10,6 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -30,38 +23,39 @@ var write_file_webpack_plugin_1 = __importDefault(require("write-file-webpack-pl
 var common_1 = require("./common");
 var getEnvironment_1 = require("./getEnvironment");
 var guards_1 = require("./guards");
-var getExternals = function (modulesDir) {
+var getExternals = function () {
     return [
         webpack_node_externals_1.default(),
         webpack_node_externals_1.default({
-            modulesDir: modulesDir,
-            allowlist: [/^@ds/].filter(function (x) { return x; }),
+            modulesDir: paths_1.paths.resolvedNodeModules[0],
+            allowlist: [/^@cutting/].filter(function (x) { return x; }),
         }),
     ];
 };
 exports.configure = function (options) {
     var common = common_1.configureCommon(__assign(__assign({}, options), { isWeb: false }));
-    var modulesDir = options.modulesDir;
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
     var config = webpack_merge_1.merge(common, {
         name: 'api',
         target: 'node',
-        externals: getExternals(modulesDir),
-        entry: isDevelopment ? __spreadArrays(entries) : entries,
+        externals: getExternals(),
+        entry: entries,
         devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
         output: {
             path: paths_1.paths.appBuild,
-            filename: options.filename,
-            libraryTarget: 'commonjs2',
+            filename: 'index.cjs',
         },
         plugins: [
             new write_file_webpack_plugin_1.default(),
             new webpack_1.default.optimize.LimitChunkCountPlugin({
                 maxChunks: 1,
             }),
-            isProduction && new webpack_1.default.optimize.ModuleConcatenationPlugin(),
+            options.hasShebang && new webpack_1.default.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true }),
         ].filter(guards_1.isPlugin),
+        optimization: {
+            concatenateModules: isProduction,
+        },
     });
     return config;
 };

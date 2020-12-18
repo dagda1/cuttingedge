@@ -1,14 +1,42 @@
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const createJsLoader = () => ({
-  test: /\.(js|jsx|mjs)$/,
-  exclude: /\/node_modules\/core-js\//,
-  use: [
-    {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-        cacheDirectory: true,
+import { RuleSetRule } from 'webpack';
+import { paths } from '../../config/paths';
+import { createBabelPresets, createBabelConfig } from '../../scripts/createBabelConfig';
+import { ModuleFormat } from '../../types/moduleFormat';
+
+export const createJsLoader = ({
+  isDevelopment,
+  isProduction,
+  moduleFormat,
+  isNode,
+}: {
+  isDevelopment: boolean;
+  isProduction: boolean;
+  moduleFormat: ModuleFormat;
+  isNode: boolean;
+}): RuleSetRule[] => [
+  {
+    test: /\.(js|jsx|mjs|cjs)$/,
+    include: paths.appSrc,
+    use: [
+      {
+        loader: 'babel-loader',
+        options: createBabelConfig({ isDevelopment, isProduction, moduleFormat, isNode }),
       },
+    ],
+  },
+  {
+    test: /\.(js|mjs|cjs)$/,
+    exclude: /@babel(?:\/|\\{1,2})runtime/,
+    loader: require.resolve('babel-loader'),
+    options: {
+      babelrc: false,
+      configFile: false,
+      compact: false,
+      presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat: 'cjs' }),
+      cacheDirectory: false,
+      cacheCompression: false,
+      sourceMaps: true,
+      inputSourceMap: true,
     },
-  ],
-});
+  },
+];

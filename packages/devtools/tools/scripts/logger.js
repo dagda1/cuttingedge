@@ -50,7 +50,7 @@ var write = function (type, text, verbose) {
     var textToLog = '';
     var logObject = false;
     var logType = logTypes[type];
-    textToLog += chalk_1.default[logType.bg].black(logType.msg) + ' ' + chalk_1.default[logType.text](text);
+    textToLog += chalk_1.default[logType.bg].black(logType.msg).padEnd(8) + " " + chalk_1.default[logType.text](text);
     if (verbose) {
         if (typeof verbose === 'object') {
             logObject = true;
@@ -81,7 +81,7 @@ var info = function (text) {
     write(LoggerTypes.info, text);
 };
 var debug = function (text, data) {
-    write(LoggerTypes.done, text, data);
+    write(LoggerTypes.debug, text, data);
 };
 var warn = function (text, data) {
     write(LoggerTypes.warn, text, data);
@@ -108,4 +108,5 @@ exports.logger = {
     start: start,
     done: done,
 };
+exports.default = exports.logger;
 //# sourceMappingURL=logger.js.map

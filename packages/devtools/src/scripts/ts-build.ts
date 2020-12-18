@@ -2,10 +2,9 @@ import { logger } from './logger';
 import fs from 'fs-extra';
 import path from 'path';
 import { paths } from '../config/paths';
-import copy from 'copy';
 import { exec } from 'child_process';
 import { findFile } from './utils/finders';
-import { assert } from '../assert';
+import { copyAssets } from './copy-assets';
 
 const MaxTries = 15;
 
@@ -32,8 +31,6 @@ export function runEslint(): void {
   const args = ` --ext .ts,.tsx --max-warnings 0 ${paths.appSrc} --ignore-pattern *.test.* -c ${eslintConfig} --fix`;
 
   const eslint = exec(`${eslintPath} ${args}`);
-
-  assert(!!eslint, 'eslint not started');
 
   eslint.stdout?.on('data', (data: string) => logger.info(data));
   eslint.stderr?.on('data', (data: string) => logger.error(data));
@@ -66,8 +63,8 @@ function runTypeScriptBuild() {
 
   const tsc = exec(tscCommand);
 
-  tsc?.stdout?.on('data', (data) => logger.info(data));
-  tsc?.stderr?.on('data', (data) => logger.error(data));
+  tsc.stdout?.on('data', (data) => logger.info(data));
+  tsc.stderr?.on('data', (data) => logger.error(data));
 
   tsc.on('close', (code) => {
     logger.done(`tsc exited with code ${code}`);
@@ -84,24 +81,7 @@ function build() {
   try {
     runTypeScriptBuild();
 
-    const patterns = [
-      '*.scss',
-      '*.css',
-      '*.png',
-      '*.jpg',
-      '*.md',
-      '*.svg',
-      '*.json',
-      '*.html',
-      '*.csv',
-      'config.js',
-    ].map((pattern) => `${paths.appSrc}/**/${pattern}`);
-
-    copy(patterns, paths.appBuild, (err) => {
-      if (err) {
-        throw err;
-      }
-    });
+    copyAssets();
   } catch (e) {
     logger.error(e);
     logger.error(e.stack);

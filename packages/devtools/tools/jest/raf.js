@@ -30,10 +30,8 @@ if (!animation.requestAnimationFrame) {
         };
     }
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 global.requestAnimationFrame = window.requestAnimationFrame =
     window.requestAnimationFrame || animation.requestAnimationFrame;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 global.cancelAnimationFrame = window.cancelAnimationFrame =
     window.cancelAnimationFrame || animation.cancelAnimationFrame;
 //# sourceMappingURL=raf.js.map

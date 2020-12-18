@@ -27,14 +27,15 @@ var webpack_1 = __importDefault(require("webpack"));
 var webpack_node_externals_1 = __importDefault(require("webpack-node-externals"));
 var paths_1 = require("../config/paths");
 var start_server_webpack_plugin_1 = __importDefault(require("start-server-webpack-plugin"));
-var path_1 = __importDefault(require("path"));
 var common_1 = require("./common");
 var getEnvironment_1 = require("./getEnvironment");
 var guards_1 = require("./guards");
 var getUrlParts_1 = require("./getUrlParts");
 exports.getExternals = function (isDevelopment) {
     return [
+        webpack_node_externals_1.default(),
         webpack_node_externals_1.default({
+            modulesDir: paths_1.paths.resolvedNodeModules[0],
             allowlist: [
                 isDevelopment ? 'webpack/hot/poll?300' : null,
                 /\.(eot|woff|woff2|ttf|otf)$/,
@@ -42,10 +43,9 @@ exports.getExternals = function (isDevelopment) {
                 /\.(mp4|mp3|ogg|swf|webp)$/,
                 /\.(css|scss|sass|sss|less)$/,
                 /^@babel/,
-                /^@loadable\/component$/,
-                /^loadable-ts-transformer$/,
-                /^@ds/,
-            ].filter(function (x) { return x; }),
+                /^@loadable/,
+                /^@cutting/,
+            ].filter(Boolean),
         }),
     ];
 };
@@ -53,7 +53,6 @@ exports.configure = function (options) {
     var common = common_1.configureCommon(__assign(__assign({}, options), { isNode: true, ssrBuild: true, isWeb: false }));
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
     var publicPath = getUrlParts_1.getUrlParts({ ssrBuild: true, isProduction: isProduction }).publicPath;
-    console.log({ publicPath: publicPath });
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
     var nodeArgs;
     if (isDevelopment) {
@@ -71,35 +70,27 @@ exports.configure = function (options) {
         target: 'node',
         watch: isDevelopment,
         externals: exports.getExternals(isDevelopment),
-        entry: isDevelopment
-            ? __spreadArrays([
-                'regenerator-runtime/runtime',
-                path_1.default.join(__dirname, '../scripts/prettyNodeErrors'),
-                'webpack/hot/poll?300'
-            ], entries) : __spreadArrays(['regenerator-runtime/runtime'], entries),
-        node: {
-            __console: false,
-            __dirname: false,
-            __filename: false,
-        },
+        entry: isDevelopment ? __spreadArrays(['webpack/hot/poll?300'], entries) : entries,
         output: {
             path: paths_1.paths.appBuild,
             filename: options.filename,
             publicPath: publicPath,
-            libraryTarget: 'commonjs2',
         },
         plugins: [
             new webpack_1.default.optimize.LimitChunkCountPlugin({
                 maxChunks: 1,
             }),
             isDevelopment && new webpack_1.default.HotModuleReplacementPlugin(),
-            isDevelopment && new webpack_1.default.NamedModulesPlugin(),
             isDevelopment &&
                 new start_server_webpack_plugin_1.default({
                     name: 'server.js',
                     nodeArgs: nodeArgs,
                 }),
         ].filter(guards_1.isPlugin),
+        optimization: {
+            minimize: false,
+            namedModules: true,
+        },
     });
     return config;
 };

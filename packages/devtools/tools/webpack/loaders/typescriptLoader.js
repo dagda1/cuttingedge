@@ -2,17 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createTypescriptLoader = void 0;
 var paths_1 = require("../../config/paths");
-var loadableTransformer = require('loadable-ts-transformer').loadableTransformer;
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+var createBabelConfig_1 = require("../../scripts/createBabelConfig");
 exports.createTypescriptLoader = function (_a) {
-    var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, isWeb = _a.isWeb;
-    var hot = isDevelopment && isWeb;
+    var isDevelopment = _a.isDevelopment, isNode = _a.isNode, moduleFormat = _a.moduleFormat;
+    var isProduction = !isDevelopment;
     var options = {
         silent: isDevelopment,
         configFile: paths_1.paths.tsConfig,
         transpileOnly: isDevelopment,
         happyPackMode: isDevelopment,
-        getCustomTransformers: function () { return ({ before: [loadableTransformer] }); },
         compilerOptions: {
             sourceMap: true,
         },
@@ -36,22 +34,9 @@ exports.createTypescriptLoader = function (_a) {
         {
             test: /\.tsx?$/,
             use: [
-                hot && {
+                {
                     loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: [
-                            '@babel/plugin-syntax-dynamic-import',
-                            [
-                                '@babel/plugin-transform-runtime',
-                                {
-                                    regenerator: true,
-                                },
-                            ],
-                            'react-refresh/babel',
-                        ],
-                        sourceType: 'unambiguous',
-                    },
+                    options: createBabelConfig_1.createBabelConfig({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: moduleFormat }),
                 },
                 {
                     loader: 'ts-loader',

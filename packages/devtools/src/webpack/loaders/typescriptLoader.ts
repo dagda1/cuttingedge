@@ -1,25 +1,25 @@
 import { paths } from '../../config/paths';
-const { loadableTransformer } = require('loadable-ts-transformer');
 import { Options } from 'ts-loader';
+import { RuleSetRule } from 'webpack';
+import { createBabelConfig } from '../../scripts/createBabelConfig';
+import { ModuleFormat } from '../../types/moduleFormat';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createTypescriptLoader = ({
   isDevelopment,
-  isProduction,
-  isWeb,
+  isNode,
+  moduleFormat,
 }: {
   isDevelopment: boolean;
-  isProduction: boolean;
-  isWeb: boolean;
-}) => {
-  const hot = isDevelopment && isWeb;
+  isNode: boolean;
+  moduleFormat: ModuleFormat;
+}): RuleSetRule[] => {
+  const isProduction = !isDevelopment;
 
   const options: Partial<Options> = {
     silent: isDevelopment,
     configFile: paths.tsConfig,
     transpileOnly: isDevelopment,
     happyPackMode: isDevelopment,
-    getCustomTransformers: () => ({ before: [loadableTransformer] }),
     compilerOptions: {
       sourceMap: true,
     },
@@ -44,22 +44,9 @@ export const createTypescriptLoader = ({
     {
       test: /\.tsx?$/,
       use: [
-        hot && {
+        {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: [
-              '@babel/plugin-syntax-dynamic-import',
-              [
-                '@babel/plugin-transform-runtime',
-                {
-                  regenerator: true,
-                },
-              ],
-              'react-refresh/babel',
-            ],
-            sourceType: 'unambiguous',
-          },
+          options: createBabelConfig({ isDevelopment, isProduction, isNode, moduleFormat }),
         },
         {
           loader: 'ts-loader',

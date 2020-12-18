@@ -11,7 +11,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configureCommon = void 0;
-var path_1 = __importDefault(require("path"));
 var webpack_1 = __importDefault(require("webpack"));
 var fork_ts_checker_webpack_plugin_1 = __importDefault(require("fork-ts-checker-webpack-plugin"));
 var paths_1 = require("../config/paths");
@@ -28,8 +27,9 @@ var css_1 = require("./loaders/css");
 var csvLoader_1 = require("./loaders/csvLoader");
 var svgLoader_1 = require("./loaders/svgLoader");
 var mdLoader_1 = require("./loaders/mdLoader");
-var finders_1 = require("../scripts/utils/finders");
-var repoNodeModules = finders_1.findAppNodeModules(__dirname);
+var ModuleScopePlugin_1 = __importDefault(require("react-dev-utils/ModuleScopePlugin"));
+var stats_1 = require("./loaders/stats");
+var path_1 = __importDefault(require("path"));
 exports.configureCommon = function (options) {
     var isNode = !!options.isNode;
     var isWeb = !isNode;
@@ -38,26 +38,41 @@ exports.configureCommon = function (options) {
     var config = {
         mode: isDevelopment ? 'development' : 'production',
         bail: isProduction,
-        devtool: 'source-map',
+        devtool: isDevelopment ? 'cheap-module-eval-source-map' : 'source-map',
         context: process.cwd(),
+        stats: stats_1.stats,
+        performance: {
+            hints: false,
+        },
         resolve: {
-            modules: ['node_modules', repoNodeModules].concat(env.raw.nodePath || path_1.default.resolve('.')),
-            extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.jsx', '.csv'],
+            mainFields: isNode ? ['main', 'module', 'browser'] : ['module', 'browser', 'main'],
+            modules: [path_1.default.join(process.cwd(), paths_1.paths.resolvedNodeModules[0]), './node_modules', path_1.default.resolve('.')],
+            extensions: [
+                '.web.mjs',
+                '.mjs',
+                '.esm.js',
+                '.cjs',
+                '.web.js',
+                '.js',
+                '.web.ts',
+                '.ts',
+                '.tsx',
+                '.json',
+                '.jsx',
+                '.csv',
+            ],
             alias: {
                 'webpack/hot/poll': require.resolve('webpack/hot/poll'),
                 'native-url': require.resolve('native-url'),
             },
-        },
-        resolveLoader: {
-            modules: [paths_1.paths.appNodeModules, paths_1.paths.ownNodeModules, repoNodeModules].filter(Boolean),
+            plugins: [new ModuleScopePlugin_1.default(paths_1.paths.appSrc, [paths_1.paths.appPackageJson])],
         },
         module: {
             strictExportPresence: true,
             rules: Array.prototype.filter.call(__spreadArrays([
                 fileLoader_1.createFileLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
-                urlLoader_1.createUrlLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
-                jsLoader_1.createJsLoader()
-            ], typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isProduction: isProduction, isWeb: isWeb }), [
+                urlLoader_1.createUrlLoader({ staticAssetName: staticAssetName, isWeb: isWeb })
+            ], typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }), jsLoader_1.createJsLoader({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }), [
                 csvLoader_1.createCSVLoader(),
                 svgLoader_1.createSVGLoader(),
                 mdLoader_1.createMDLoader()
@@ -76,9 +91,18 @@ exports.configureCommon = function (options) {
             }),
             new webpack_1.default.DefinePlugin(env.stringified),
             isDevelopment && new webpackbar_1.default(),
-            isAnalyse && new webpack_bundle_analyzer_1.BundleAnalyzerPlugin(),
+            isAnalyse &&
+                new webpack_bundle_analyzer_1.BundleAnalyzerPlugin({
+                    defaultSizes: 'gzip',
+                }),
             new webpack_1.default.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
-            new fork_ts_checker_webpack_plugin_1.default(),
+            new fork_ts_checker_webpack_plugin_1.default({
+                typescript: {
+                    enabled: true,
+                    configFile: paths_1.paths.tsConfig,
+                    build: true,
+                },
+            }),
             isDevelopment && new webpack_1.default.WatchIgnorePlugin([paths_1.paths.appManifest]),
             new mini_css_extract_plugin_1.default({
                 filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',

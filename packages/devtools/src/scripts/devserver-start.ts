@@ -37,22 +37,25 @@ const config = configureWebpackClient(devServer as DevServerConfig);
 const DEFAULT_PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
-choosePort(HOST, DEFAULT_PORT)
-  .then((port) => {
+(async () => {
+  try {
+    const port = await choosePort(HOST, DEFAULT_PORT);
+
     if (port === null) {
       logger.error('We have not found a port.');
       return;
     }
+
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-    const appName = require(paths.appPackageJson).name;
+    const pkg = await import(paths.appPackageJson);
+    const { name: appName, proxy: proxySetting } = pkg;
     const urls = prepareUrls(protocol, HOST, port);
-    const useYarn = true;
 
-    const compiler = createCompiler({ webpack, config, appName, urls, useYarn });
+    const compiler = createCompiler({ webpack, config, appName, urls, useYarn: true });
 
-    const proxySetting = require(paths.appPackageJson).proxy;
+    assert(config.devServer, 'no devServer in dev-server-start');
 
-    config.devServer!.proxy = prepareProxy(proxySetting, paths.appPublic, paths.publicUrlOrPath)!;
+    config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic, paths.publicUrlOrPath);
 
     const devServer = new WebpackDevServer(compiler, config.devServer);
 
@@ -74,10 +77,10 @@ choosePort(HOST, DEFAULT_PORT)
         process.exit();
       });
     });
-  })
-  .catch((err) => {
-    if (err && err.message) {
+  } catch (err) {
+    if (err) {
       logger.error(err.message);
     }
     process.exit(1);
-  });
+  }
+})();

@@ -47,6 +47,7 @@
     ]
   },
   "resolutions": {
-    "node-forge": "^0.10.0"
+    "node-forge": "^0.10.0",
+    "terser-webpack-plugin": "4.2.3"
   }
 }

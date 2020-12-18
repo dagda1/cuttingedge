@@ -23,9 +23,8 @@ function getPackages(packages: string[]) {
  * @param {String} pkg.path - package directory path
  * @returns {Promise} resolves or rejects when the process exits
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function runPkgCmd<A extends any[], P extends { name: string; path: string }>(cmd: string, args: A, pkg: P) {
-  return new Promise((resolve, reject) => {
+function runPkgCmd<A extends string[], P extends { name: string; path: string }>(cmd: string, args: A, pkg: P) {
+  return new Promise<void>((resolve, reject) => {
     logger.info(`${pkg.name} ${cmd} ${args.join(' ')}`);
 
     const child = spawn(cmd, args, {

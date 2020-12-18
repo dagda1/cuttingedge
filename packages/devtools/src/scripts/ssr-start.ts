@@ -44,7 +44,7 @@ function main() {
 
   const { port } = getUrlParts({ ssrBuild: true, isProduction: false });
 
-  const clientConfig = configureWebpackClient(buildConfig.client);
+  const clientConfig = configureWebpackClient({ ...buildConfig.client, isStaticBuild: false });
   const serverConfig = configureWebpackServer(buildConfig.server);
 
   const clientCompiler = compile(clientConfig);

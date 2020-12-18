@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createFileLoader = void 0;
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 exports.createFileLoader = function (_a) {
     var staticAssetName = _a.staticAssetName, isWeb = _a.isWeb;
     return ({
@@ -25,6 +24,7 @@ exports.createFileLoader = function (_a) {
             /\.md$/,
             /\.js$/,
             /\.mjs$/,
+            /\.cjs$/,
         ],
         loader: 'file-loader',
         options: { name: staticAssetName, emitFile: isWeb },

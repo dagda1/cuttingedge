@@ -4,6 +4,7 @@ import fs from 'fs';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
 import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 import { Configuration, ProxyConfigArray, ProxyConfigMap } from 'webpack-dev-server';
+import { stats } from './stats';
 
 export const createDevServer = ({
   protocol,
@@ -27,6 +28,7 @@ export const createDevServer = ({
       'Access-Control-Allow-Origin': '*',
     },
     port,
+    clientLogLevel: 'debug',
     writeToDisk: true,
     hot: true,
     hotOnly: true,
@@ -56,5 +58,6 @@ export const createDevServer = ({
     after(app) {
       app.use(redirectServedPath(paths.publicUrlOrPath));
     },
+    stats,
   };
 };

@@ -18,25 +18,24 @@ var html_webpack_plugin_1 = __importDefault(require("html-webpack-plugin"));
 var common_1 = require("./common");
 var paths_1 = require("../config/paths");
 var fs_1 = __importDefault(require("fs"));
-var InlineChunkHtmlPlugin_1 = __importDefault(require("react-dev-utils/InlineChunkHtmlPlugin"));
 var WatchMissingNodeModulesPlugin_1 = __importDefault(require("react-dev-utils/WatchMissingNodeModulesPlugin"));
 var InterpolateHtmlPlugin_1 = __importDefault(require("react-dev-utils/InterpolateHtmlPlugin"));
-var git_1 = require("../scripts/git");
 var react_refresh_webpack_plugin_1 = __importDefault(require("@pmmmwh/react-refresh-webpack-plugin"));
 var getUrlParts_1 = require("./getUrlParts");
 var getEnvironment_1 = require("./getEnvironment");
 var createDevServer_1 = require("./loaders/createDevServer");
 var createWebpackOptimisation_1 = require("./optimisation/createWebpackOptimisation");
-var LoadableWebpackPlugin = require('@loadable/webpack-plugin');
-var ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
-var HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
+var webpack_plugin_1 = __importDefault(require("@loadable/webpack-plugin"));
+var html_webpack_partials_plugin_1 = __importDefault(require("html-webpack-partials-plugin"));
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+var ModuleNotFoundPlugin_1 = __importDefault(require("react-dev-utils/ModuleNotFoundPlugin"));
 var isProfilerEnabled = function () { return process.argv.includes('--profile'); };
 exports.configure = function (options) {
     var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild;
-    var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
+    var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, commitHash = _a.commitHash;
     var ssrBuild = !isStaticBuild;
     var _b = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _b.protocol, host = _b.host, publicPath = _b.publicPath, port = _b.port, sockPort = _b.sockPort;
-    // TODO: get rid of mutation
     options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
     options.isNode = false;
     options.isWeb = true;
@@ -49,7 +48,6 @@ exports.configure = function (options) {
         acc[key] = __spreadArrays(polyfills, entryPoints);
         return acc;
     }, {});
-    var commitHash = git_1.getCommitHash();
     var template = publicDir ? path_1.default.join(publicDir, 'index.html') : 'public/index.html';
     var templateExists = fs_1.default.existsSync(template);
     var config = webpack_merge_1.merge(common, {
@@ -67,13 +65,28 @@ exports.configure = function (options) {
                 ? function (info) { return path_1.default.relative(paths_1.paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'); }
                 : function (info) { return path_1.default.resolve(info.absoluteResourcePath).replace(/\\/g, '/'); },
         },
+        node: {
+            fs: 'empty',
+            path: 'empty',
+            net: 'empty',
+            tls: 'empty',
+        },
         plugins: [
-            isDevelopment && new webpack_1.default.HotModuleReplacementPlugin(),
+            // TODO: will not need this in webpack 5
+            isProduction && new webpack_1.default.HashedModuleIdsPlugin(),
+            isDevelopment &&
+                new react_refresh_webpack_plugin_1.default({
+                    overlay: {
+                        sockIntegration: 'wds',
+                        sockPort: sockPort,
+                    },
+                }),
+            isDevelopment && isStaticBuild && new webpack_1.default.HotModuleReplacementPlugin(),
             ssrBuild &&
-                new LoadableWebpackPlugin({
+                new webpack_plugin_1.default({
                     writeToDisk: { filename: paths_1.paths.appBuild },
                 }),
-            new InterpolateHtmlPlugin_1.default(html_webpack_plugin_1.default, { PUBLIC_URL: options.publicUrl }),
+            isStaticBuild && new InterpolateHtmlPlugin_1.default(html_webpack_plugin_1.default, { PUBLIC_URL: options.publicUrl }),
             (devServer || (isStaticBuild && templateExists)) &&
                 new html_webpack_plugin_1.default({
                     inject: true,
@@ -90,28 +103,21 @@ exports.configure = function (options) {
                         minifyURLs: true,
                     },
                 }),
-            new HtmlWebpackPartialsPlugin([
+            new html_webpack_partials_plugin_1.default([
                 {
                     path: path_1.default.join(__dirname, './partial.html'),
                     location: 'body',
                     priority: 'low',
                     options: {
-                        hash: commitHash + "-" + new Date().toISOString(),
+                        hash: commitHash,
                     },
                 },
             ]),
-            isProduction && ssrBuild && new InlineChunkHtmlPlugin_1.default(html_webpack_plugin_1.default, [/runtime-.+[.]js/]),
+            // TODO: should not need this anymore?
             new webpack_1.default.IgnorePlugin(/^\.\/locale$/, /moment$/),
-            new ModuleNotFoundPlugin(paths_1.paths.appPath),
+            new ModuleNotFoundPlugin_1.default(paths_1.paths.appPath),
             isDevelopment && new WatchMissingNodeModulesPlugin_1.default(paths_1.paths.appNodeModules),
             isProfilerEnabled() && new webpack_1.default.debug.ProfilingPlugin(),
-            isDevelopment &&
-                new react_refresh_webpack_plugin_1.default({
-                    overlay: {
-                        sockIntegration: 'wds',
-                        sockPort: sockPort,
-                    },
-                }),
         ].filter(Boolean),
     });
     if (isProduction) {

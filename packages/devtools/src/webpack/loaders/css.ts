@@ -3,38 +3,37 @@ import { createPostCssOptions } from '../createPostCssoptions';
 
 import { getLocalIdent } from '../getLocalIdent';
 import { cssRegex, sassRegex, sassModuleRegex } from '../constants';
+import { RuleSetRule, NewLoader } from 'webpack';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const cssLoaders = (
   isDevelopment: boolean,
   isProduction: boolean,
   isNode: boolean,
-  { modules }: { modules: boolean },
-) =>
+  { modules, importLoaders }: { modules: boolean; importLoaders: number },
+): NewLoader[] =>
   [
-    {
+    !isNode && {
       loader: MiniCssExtractPlugin.loader,
-      options: {
-        hmr: isDevelopment,
-      },
+      options: {},
     },
     {
       loader: 'css-loader',
       options: {
-        importLoaders: isNode ? 1 : 2,
+        importLoaders,
         sourceMap: true,
-        modules:
-          modules && getLocalIdent
-            ? {
-                getLocalIdent: getLocalIdent,
-              }
-            : undefined,
+        modules: modules
+          ? {
+              getLocalIdent,
+              exportOnlyLocals: isNode,
+              // TODO: we want to enable this for better code splitting
+              // mode: 'pure',
+            }
+          : undefined,
       },
     },
     isProduction && { loader: 'postcss-loader', options: createPostCssOptions() },
-  ].filter(Boolean);
+  ].filter(Boolean) as NewLoader[];
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createCSSLoaders = ({
   isDevelopment,
   isProduction,
@@ -43,22 +42,24 @@ export const createCSSLoaders = ({
   isDevelopment: boolean;
   isProduction: boolean;
   isNode: boolean;
-}) => [
+}): RuleSetRule[] => [
   {
     test: cssRegex,
-    use: cssLoaders(isDevelopment, isProduction, isNode, { modules: false }).filter(Boolean),
+    use: cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
   },
   {
     test: sassRegex,
     exclude: sassModuleRegex,
-    use: [...cssLoaders(isDevelopment, isProduction, isNode, { modules: false }), { loader: 'sass-loader' }].filter(
-      Boolean,
-    ),
+    use: [
+      ...cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 2 }),
+      { loader: 'sass-loader' },
+    ].filter(Boolean),
   },
   {
     test: sassModuleRegex,
-    use: [...cssLoaders(isDevelopment, isProduction, isNode, { modules: true }), { loader: 'sass-loader' }].filter(
-      Boolean,
-    ),
+    use: [
+      ...cssLoaders(isDevelopment, isProduction, isNode, { modules: true, importLoaders: 2 }),
+      { loader: 'sass-loader' },
+    ].filter(Boolean),
   },
 ];

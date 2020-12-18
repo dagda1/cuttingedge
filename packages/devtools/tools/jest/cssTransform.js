@@ -1,11 +1,10 @@
 "use strict";
-var cssTransform = {
-    process: function () {
-        return 'module.exports = {};';
-    },
-    getCacheKey: function () {
-        return 'cssTransform';
-    },
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getCacheKey = exports.process = void 0;
+exports.process = function () {
+    return 'module.exports = {};';
 };
-module.exports = cssTransform;
+exports.getCacheKey = function () {
+    return 'cssTransform';
+};
 //# sourceMappingURL=cssTransform.js.map

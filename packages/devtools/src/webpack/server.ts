@@ -5,8 +5,6 @@ import webpack from 'webpack';
 import nodeExternals, { AllowlistOption } from 'webpack-node-externals';
 import { paths } from '../config/paths';
 import StartServerPlugin from 'start-server-webpack-plugin';
-import path from 'path';
-
 import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
@@ -14,7 +12,9 @@ import { getUrlParts } from './getUrlParts';
 
 export const getExternals = function (isDevelopment: boolean): webpack.ExternalsFunctionElement[] {
   return [
+    nodeExternals(),
     nodeExternals({
+      modulesDir: paths.resolvedNodeModules[0],
       allowlist: [
         isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,
@@ -22,10 +22,9 @@ export const getExternals = function (isDevelopment: boolean): webpack.Externals
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
         /^@babel/,
-        /^@loadable\/component$/,
-        /^loadable-ts-transformer$/,
+        /^@loadable/,
         /^@cutting/,
-      ].filter((x) => x) as AllowlistOption[],
+      ].filter(Boolean) as AllowlistOption[],
     }),
   ];
 };
@@ -36,8 +35,6 @@ export const configure = (options: ServerBuildConfig): Configuration => {
   const { isDevelopment, isProduction } = getEnvironment();
 
   const { publicPath } = getUrlParts({ ssrBuild: true, isProduction });
-
-  console.log({ publicPath });
 
   const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
 
@@ -59,38 +56,27 @@ export const configure = (options: ServerBuildConfig): Configuration => {
     target: 'node',
     watch: isDevelopment,
     externals: getExternals(isDevelopment),
-    entry: isDevelopment
-      ? [
-          'regenerator-runtime/runtime',
-          path.join(__dirname, '../scripts/prettyNodeErrors'),
-          'webpack/hot/poll?300',
-          ...entries,
-        ]
-      : ['regenerator-runtime/runtime', ...entries],
-    node: {
-      __console: false,
-      __dirname: false,
-      __filename: false,
-    },
+    entry: isDevelopment ? ['webpack/hot/poll?300', ...entries] : entries,
     output: {
       path: paths.appBuild,
       filename: options.filename,
       publicPath,
-      libraryTarget: 'commonjs2',
     },
-
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1,
       }),
       isDevelopment && new webpack.HotModuleReplacementPlugin(),
-      isDevelopment && new webpack.NamedModulesPlugin(),
       isDevelopment &&
         new StartServerPlugin({
           name: 'server.js',
           nodeArgs,
         }),
     ].filter(isPlugin),
+    optimization: {
+      minimize: false,
+      namedModules: true,
+    },
   });
 
   return config;

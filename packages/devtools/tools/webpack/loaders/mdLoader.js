@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createMDLoader = void 0;
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 exports.createMDLoader = function () { return ({
     test: /\.md$/,
     use: [

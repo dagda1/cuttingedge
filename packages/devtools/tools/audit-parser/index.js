@@ -1,5 +1,24 @@
 #!/usr/bin/env node
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -48,7 +67,7 @@ var paths_1 = require("../config/paths");
 var commander_1 = __importDefault(require("commander"));
 var run_1 = require("../scripts/utils/run");
 var logger_1 = require("../scripts/logger");
-var xml = require('xml');
+var xml_1 = __importDefault(require("xml"));
 var LogFailurePrefix = 'ossindex.sonatype.org';
 function audit(exceptions) {
     var _a, _b, _c;
@@ -57,7 +76,7 @@ function audit(exceptions) {
         return __generator(this, function (_g) {
             switch (_g.label) {
                 case 0:
-                    _g.trys.push([0, 5, , 6]);
+                    _g.trys.push([0, 6, , 7]);
                     auditResult = void 0;
                     _g.label = 1;
                 case 1:
@@ -92,7 +111,9 @@ function audit(exceptions) {
                         logger_1.logger.error(auditResult);
                         process.exit(0);
                     }
-                    _e = require(path_1.default.join(process.cwd(), 'package.json')), name_1 = _e.name, version = _e.version;
+                    return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(path_1.default.join(process.cwd(), 'package.json'))); })];
+                case 5:
+                    _e = _g.sent(), name_1 = _e.name, version = _e.version;
                     displayName_1 = name_1 + "@" + version;
                     logMessage = "running yarn audit for " + displayName_1;
                     logger_1.logger.info(logMessage);
@@ -179,17 +200,17 @@ function audit(exceptions) {
                         mkdirp_1.default(ossIndex);
                     }
                     fs_extra_1.default.emptyDirSync(ossIndex);
-                    fs_extra_1.default.writeFileSync(path_1.default.join(ossIndex, 'junitReport.xml'), xml(jsonResults, { indent: '  ', declaration: true }));
+                    fs_extra_1.default.writeFileSync(path_1.default.join(ossIndex, 'junitReport.xml'), xml_1.default(jsonResults, { indent: '  ', declaration: true }));
                     finalMessage = "audit finished with " + failures.length + " found.";
                     logger_1.logger.done(finalMessage);
                     process.exit(0);
-                    return [3 /*break*/, 6];
-                case 5:
+                    return [3 /*break*/, 7];
+                case 6:
                     err_2 = _g.sent();
                     logger_1.logger.error(err_2);
                     process.exit(1);
-                    return [3 /*break*/, 6];
-                case 6: return [2 /*return*/];
+                    return [3 /*break*/, 7];
+                case 7: return [2 /*return*/];
             }
         });
     });

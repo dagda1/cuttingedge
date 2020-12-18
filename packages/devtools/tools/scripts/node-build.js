@@ -37,12 +37,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var build_1 = require("./build");
+var copy_assets_1 = require("./copy-assets");
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, build_1.build({ buildClient: false, buildServer: false, buildNode: true })];
             case 1:
                 _a.sent();
+                copy_assets_1.copyAssets();
                 return [2 /*return*/];
         }
     });

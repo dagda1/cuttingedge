@@ -8,10 +8,9 @@ var logger_1 = require("./logger");
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var path_1 = __importDefault(require("path"));
 var paths_1 = require("../config/paths");
-var copy_1 = __importDefault(require("copy"));
 var child_process_1 = require("child_process");
 var finders_1 = require("./utils/finders");
-var assert_1 = require("../assert");
+var copy_assets_1 = require("./copy-assets");
 var MaxTries = 15;
 function findExecutable(current, executable, tries) {
     if (tries === void 0) { tries = 0; }
@@ -32,7 +31,6 @@ function runEslint() {
     var eslintConfig = finders_1.findFile(process.cwd(), '.eslintrc.json');
     var args = " --ext .ts,.tsx --max-warnings 0 " + paths_1.paths.appSrc + " --ignore-pattern *.test.* -c " + eslintConfig + " --fix";
     var eslint = child_process_1.exec(eslintPath + " " + args);
-    assert_1.assert(!!eslint, 'eslint not started');
     (_a = eslint.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) { return logger_1.logger.info(data); });
     (_b = eslint.stderr) === null || _b === void 0 ? void 0 : _b.on('data', function (data) { return logger_1.logger.error(data); });
     eslint.on('close', function (code) {
@@ -54,8 +52,8 @@ function runTypeScriptBuild() {
     logger_1.logger.info("running " + tscCommand);
     logger_1.logger.start("running tsc");
     var tsc = child_process_1.exec(tscCommand);
-    (_a = tsc === null || tsc === void 0 ? void 0 : tsc.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) { return logger_1.logger.info(data); });
-    (_b = tsc === null || tsc === void 0 ? void 0 : tsc.stderr) === null || _b === void 0 ? void 0 : _b.on('data', function (data) { return logger_1.logger.error(data); });
+    (_a = tsc.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) { return logger_1.logger.info(data); });
+    (_b = tsc.stderr) === null || _b === void 0 ? void 0 : _b.on('data', function (data) { return logger_1.logger.error(data); });
     tsc.on('close', function (code) {
         logger_1.logger.done("tsc exited with code " + code);
         if (code !== 0) {
@@ -67,23 +65,7 @@ function runTypeScriptBuild() {
 function build() {
     try {
         runTypeScriptBuild();
-        var patterns = [
-            '*.scss',
-            '*.css',
-            '*.png',
-            '*.jpg',
-            '*.md',
-            '*.svg',
-            '*.json',
-            '*.html',
-            '*.csv',
-            'config.js',
-        ].map(function (pattern) { return paths_1.paths.appSrc + "/**/" + pattern; });
-        copy_1.default(patterns, paths_1.paths.appBuild, function (err) {
-            if (err) {
-                throw err;
-            }
-        });
+        copy_assets_1.copyAssets();
     }
     catch (e) {
         logger_1.logger.error(e);

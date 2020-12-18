@@ -1,4 +1,3 @@
-import path from 'path';
 import webpack from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { paths } from '../config/paths';
@@ -16,10 +15,11 @@ import { createCSVLoader } from './loaders/csvLoader';
 import { createSVGLoader } from './loaders/svgLoader';
 import { createMDLoader } from './loaders/mdLoader';
 import { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from '../types/config';
-import { findAppNodeModules } from '../scripts/utils/finders';
 import { Configuration } from 'webpack';
+import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
+import { stats } from './loaders/stats';
 
-const repoNodeModules = findAppNodeModules(__dirname);
+import path from 'path';
 
 export const configureCommon = (options: DevServerConfig | ServerBuildConfig | NodeBuildConfig): Configuration => {
   const isNode = !!options.isNode;
@@ -30,18 +30,34 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
   const config: Configuration = {
     mode: isDevelopment ? 'development' : 'production',
     bail: isProduction,
-    devtool: 'source-map',
+    devtool: isDevelopment ? 'cheap-module-eval-source-map' : 'source-map',
     context: process.cwd(),
+    stats,
+    performance: {
+      hints: false,
+    },
     resolve: {
-      modules: ['node_modules', repoNodeModules].concat(env.raw.nodePath || path.resolve('.')),
-      extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.jsx', '.csv'],
+      mainFields: isNode ? ['main', 'module', 'browser'] : ['module', 'browser', 'main'],
+      modules: [path.join(process.cwd(), paths.resolvedNodeModules[0]), './node_modules', path.resolve('.')],
+      extensions: [
+        '.web.mjs',
+        '.mjs',
+        '.esm.js',
+        '.cjs',
+        '.web.js',
+        '.js',
+        '.web.ts',
+        '.ts',
+        '.tsx',
+        '.json',
+        '.jsx',
+        '.csv',
+      ],
       alias: {
         'webpack/hot/poll': require.resolve('webpack/hot/poll'),
         'native-url': require.resolve('native-url'),
       },
-    },
-    resolveLoader: {
-      modules: [paths.appNodeModules, paths.ownNodeModules, repoNodeModules].filter(Boolean),
+      plugins: [new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])],
     },
     module: {
       strictExportPresence: true,
@@ -49,8 +65,8 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
         [
           createFileLoader({ staticAssetName, isWeb }),
           createUrlLoader({ staticAssetName, isWeb }),
-          createJsLoader(),
-          ...createTypescriptLoader({ isDevelopment, isProduction, isWeb }),
+          ...createTypescriptLoader({ isDevelopment, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
+          ...createJsLoader({ isDevelopment, isProduction, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
           createCSVLoader(),
           createSVGLoader(),
           createMDLoader(),
@@ -73,9 +89,18 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
         }),
         new webpack.DefinePlugin(env.stringified),
         isDevelopment && new WebpackBar(),
-        isAnalyse && new BundleAnalyzerPlugin(),
+        isAnalyse &&
+          new BundleAnalyzerPlugin({
+            defaultSizes: 'gzip',
+          }),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
-        new ForkTsCheckerWebpackPlugin(),
+        new ForkTsCheckerWebpackPlugin({
+          typescript: {
+            enabled: true,
+            configFile: paths.tsConfig,
+            build: true,
+          },
+        }),
         isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',

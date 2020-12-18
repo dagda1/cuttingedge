@@ -6,8 +6,7 @@ import { paths } from '../config/paths';
 import program from 'commander';
 import { run } from '../scripts/utils/run';
 import { logger } from '../scripts/logger';
-
-const xml = require('xml');
+import xml from 'xml';
 
 const LogFailurePrefix = 'ossindex.sonatype.org';
 
@@ -48,7 +47,7 @@ export async function audit(exceptions: string[]): Promise<void> {
       process.exit(0);
     }
 
-    const { name, version } = require(path.join(process.cwd(), 'package.json'));
+    const { name, version } = await import(path.join(process.cwd(), 'package.json'));
     const displayName = `${name}@${version}`;
     const logMessage = `running yarn audit for ${displayName}`;
 
