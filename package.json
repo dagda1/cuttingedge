@@ -47,8 +47,6 @@
     ]
   },
   "resolutions": {
-    "core-js": "3.6.5",
-    "http-proxy": "1.18.1",
-    "fork-ts-checker-webpack-plugin": "3.1.1"
+    "node-forge": "^0.10.0"
   }
 }

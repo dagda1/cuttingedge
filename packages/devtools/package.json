@@ -129,6 +129,7 @@
     "happypack": "^5.0.1",
     "html-webpack-partials-plugin": "^0.6.0",
     "nocache": "^2.1.0",
+    "node-forge": "^0.10.0",
     "postcss-normalize": "^9.0.0",
     "postcss-preset-env": "^6.7.0",
     "postcss-scss": "^2.1.1",
