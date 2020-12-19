@@ -3,9 +3,6 @@ import { isEmpty } from './isEmpty';
 
 describe('isEmpty', () => {
   it('should return true for empty', () => {
-    expect(isEmpty(true as any)).toBe(true);
-    expect(isEmpty(1)).toBe(true);
-    expect(isEmpty(NaN)).toBe(true);
     expect(isEmpty([])).toBe(true);
     expect(isEmpty({})).toBe(true);
     expect(isEmpty(undefined)).toBe(true);
