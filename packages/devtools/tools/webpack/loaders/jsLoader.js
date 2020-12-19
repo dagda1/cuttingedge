@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createJsLoader = void 0;
 var paths_1 = require("../../config/paths");
 var createBabelConfig_1 = require("../../scripts/createBabelConfig");
-exports.createJsLoader = function (_a) {
+var createJsLoader = function (_a) {
     var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, moduleFormat = _a.moduleFormat, isNode = _a.isNode;
     return [
         {
@@ -33,4 +33,5 @@ exports.createJsLoader = function (_a) {
         },
     ];
 };
+exports.createJsLoader = createJsLoader;
 //# sourceMappingURL=jsLoader.js.map

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createFileLoader = void 0;
-exports.createFileLoader = function (_a) {
+var createFileLoader = function (_a) {
     var staticAssetName = _a.staticAssetName, isWeb = _a.isWeb;
     return ({
         exclude: [
@@ -30,4 +30,5 @@ exports.createFileLoader = function (_a) {
         options: { name: staticAssetName, emitFile: isWeb },
     });
 };
+exports.createFileLoader = createFileLoader;
 //# sourceMappingURL=fileLoader.js.map

@@ -90,7 +90,7 @@ var node_1 = require("../webpack/node");
 var assert_1 = require("src/assert");
 var measureFileSizesBeforeBuild = FileSizeReporter_1.default.measureFileSizesBeforeBuild;
 var printFileSizesAfterBuild = FileSizeReporter_1.default.printFileSizesAfterBuild;
-exports.build = function (_a) {
+var build = function (_a) {
     var buildClient = _a.buildClient, buildServer = _a.buildServer, buildNode = _a.buildNode;
     return __awaiter(void 0, void 0, void 0, function () {
         var localBuildConfig, _b, buildConfig, nodeConfig, publicDir, previousFileSizes, serverConfig, clientConfig, clientStats, err_1;
@@ -155,4 +155,5 @@ exports.build = function (_a) {
         });
     });
 };
+exports.build = build;
 //# sourceMappingURL=build.js.map

@@ -1,114 +1,231 @@
-import { rollup, InternalModuleFormat } from 'rollup';
-import filesizePlugin from 'rollup-plugin-filesize';
-import replacePlugin from 'rollup-plugin-replace';
-import { terser } from 'rollup-plugin-terser';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { rollup } from 'rollup';
 import { paths } from '../config/paths';
 import fs from 'fs-extra';
 import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
-import { logger } from '../scripts/logger';
+import { logger } from './logger';
 import resolve from '@rollup/plugin-node-resolve';
-import sourceMaps from 'rollup-plugin-sourcemaps';
 import { assert } from '../assert/assert';
+import injectProcessEnv from 'rollup-plugin-inject-process-env';
+import babel, { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
+import json from '@rollup/plugin-json';
+import sourceMaps from 'rollup-plugin-sourcemaps';
+import { terser } from 'rollup-plugin-terser';
+import { copyAssets } from './copy-assets';
+import postcss from 'rollup-plugin-postcss';
+import type { ModuleFormat } from '../types/moduleFormat';
+// @ts-ignore
+import md from 'rollup-plugin-md';
+// @ts-ignore
+import svgo from 'rollup-plugin-svgo';
+// @ts-ignore
+import eslint from '@rbnlffl/rollup-plugin-eslint';
+// @ts-ignore
+import url from 'postcss-url';
 
-if (!process.argv.includes('--package-name')) {
-  throw new Error('no --package-name switch');
+import { createBabelConfig } from './createBabelConfig';
+import { safePackageName, writeCjsEntryFile } from '../rollup/helpers';
+import { writeToPackage } from './write-package';
+import { csv } from '../rollup/plugins/csv';
+
+fs.emptyDirSync(paths.appBuild);
+
+export interface BundlerOptions {
+  packageName: string;
+  inputFile: string;
+  moduleFormat: ModuleFormat;
+  env: 'development' | 'production';
 }
 
-const packageName = process.argv[3];
+async function generateBundledModule({ packageName, inputFile, moduleFormat, env }: BundlerOptions) {
+  assert(fs.existsSync(inputFile), `Input file ${inputFile} does not exist`);
 
-fs.removeSync(paths.appBuild);
+  logger.info(`Generating ${packageName} bundle.`);
 
-async function generateBundledModule(inputFile: string, outputFile: string, format: InternalModuleFormat) {
-  if (!fs.existsSync(inputFile)) {
-    throw new Error(`Input file ${inputFile} does not exist`);
-  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { cacheDirectory, ...babelConfig } = createBabelConfig({
+    isDevelopment: false,
+    isProduction: true,
+    isNode: false,
+    moduleFormat,
+  });
 
-  logger.info(`Generating ${outputFile} bundle.`);
+  const minify = moduleFormat === 'cjs' && env === 'production';
 
   const bundle = await rollup({
     input: inputFile,
     external: (id: string) => {
+      if (id === 'babel-plugin-transform-async-to-promises/helpers') {
+        return false;
+      }
+
       return !id.startsWith('.') && !path.isAbsolute(id);
     },
+    treeshake: {
+      moduleSideEffects: false,
+    },
     plugins: [
-      resolve({
-        mainFields: ['module', 'main', 'browser'],
-        // defaults + .jsx
-        extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+      eslint({
+        fix: false,
+        throwOnError: true,
+        throwOnWarning: true,
+        extensions: ['.ts', '.tsx', '.test.ts', '.test.tsx'],
+        filterInclude: 'src/**',
+        filterExclude: ['**/*.scss', '**/*.css', '**/*.md', '**/*.csv', 'dist/**', '**/*.json'],
+        useEslintrc: true,
       }),
+      resolve({
+        mainFields: ['module', 'browser', 'main'],
+        extensions: ['.mjs', '.cjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
+      }),
+      json(),
+      md(),
+      postcss({
+        extract: true,
+        modules: false,
+        autoModules: true,
+        use: ['sass'],
+        plugins: [
+          url({
+            url: 'inline', // enable inline assets using base64 encoding
+            maxSize: 10, // maximum file size to inline (in kilobytes)
+            fallback: 'copy', // fallback method to use if max size is exceeded
+          }),
+        ],
+      }),
+      csv(),
       typescript({
+        clean: true,
         typescript: require('typescript'),
-        cacheRoot: `./.rts2_cache_${format}`,
         tsconfig: paths.tsConfig,
         abortOnError: true,
         tsconfigDefaults: {
           compilerOptions: {
             sourceMap: true,
             declaration: true,
-            jsx: 'react',
+            target: 'esnext',
+            jsx: 'react-jsx',
           },
-          exclude: [
-            '**/*.test.ts',
-            '**/*.test.tsx',
-            // TS defaults below
-            'node_modules',
-            paths.appBuild,
-          ],
+          useTsconfigDeclarationDir: true,
         },
         tsconfigOverride: {
           compilerOptions: {
             sourceMap: true,
-            target: 'es5',
+            target: 'esnext',
           },
         },
       }),
-      replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      replacePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      sourceMaps(),
-      terser({
-        format: { comments: true },
-        compress: {
-          keep_infinity: true,
-          pure_getters: true,
-          passes: 10,
-        },
-        ecma: 5,
+      babel({
+        exclude: /\/node_modules\/(core-js)\//,
+        babelHelpers: 'runtime',
+        ...babelConfig,
+      } as RollupBabelInputPluginOptions),
+      injectProcessEnv({
+        NODE_ENV: env,
       }),
-      filesizePlugin(),
-    ],
+      svgo(),
+      sourceMaps(),
+      minify &&
+        terser({
+          compress: {
+            keep_infinity: true,
+            pure_getters: true,
+            passes: 10,
+          },
+          ecma: 2016,
+          toplevel: moduleFormat === 'cjs',
+          format: {
+            comments: 'all',
+          },
+        }),
+    ].filter(Boolean),
   });
+
+  const pkgName = safePackageName(packageName);
+  const extension = env === 'production' ? 'min.js' : 'js';
+  const fileName = moduleFormat === 'esm' ? `${pkgName}.esm.js` : `${pkgName}.cjs.${env}.${extension}`;
+  const outputFileName = path.join(paths.appBuild, fileName);
+
+  logger.debug(`writing output file ${outputFileName}`);
+
+  logger.debug(minify === true ? 'creating a minified build' : 'creating a non minified build');
 
   await bundle.write({
-    file: outputFile,
-    format,
-    banner: '/** @cutting - (c) Paul Cowan 2015 - 2019 - MIT Licensed */',
+    file: outputFileName,
+    format: moduleFormat,
+    name: packageName,
     exports: 'named',
-    name: format === 'umd' ? '@cutting' : undefined,
+    sourcemap: true,
+    esModule: true,
+    interop: 'default',
+    freeze: false,
+    globals: { react: 'React' },
   });
 
-  logger.info(`Generation of ${outputFile} bundle finished.`);
+  copyAssets();
+
+  logger.info('copying assets');
 }
 
 async function build() {
+  fs.emptyDirSync(paths.appBuild);
+
   const candidates: string[] = [];
 
-  [packageName, path.join(packageName, 'index'), 'index'].forEach((candidate) => {
-    ['.ts', '.tsx'].forEach((fileType) => {
-      candidates.push(path.join(paths.appSrc, `${candidate}${fileType}`));
-    });
-  });
+  const pkgJsonPath = path.join(process.cwd(), 'package.json');
 
-  const rootFile = candidates.find((candidate) => fs.existsSync(candidate));
+  const { default: pkg } = await import(pkgJsonPath);
 
-  assert(rootFile, 'No rootFile found for rollup');
+  const packageName = pkg.name;
 
-  logger.info(rootFile);
+  [packageName, path.join(packageName, 'index'), 'index', path.join('bin', safePackageName(packageName))].forEach(
+    (candidate) => {
+      ['.ts', '.tsx'].forEach((fileType) => {
+        candidates.push(path.join(paths.appSrc, `${candidate}${fileType}`));
+      });
+    },
+  );
 
-  await Promise.all([generateBundledModule(rootFile, path.join(paths.appBuild, `${packageName}.js`), 'cjs')]);
+  const configs: { moduleFormat: ModuleFormat; env: 'development' | 'production' }[] = [
+    { moduleFormat: 'cjs', env: 'development' },
+    { moduleFormat: 'cjs', env: 'production' },
+    { moduleFormat: 'esm', env: 'production' },
+  ];
+
+  const inputFile = candidates.find((candidate) => fs.existsSync(candidate));
+
+  assert(inputFile, 'No rootFile found for rollup');
+
+  logger.start(`using input file ${inputFile}`);
+
+  for (const { moduleFormat, env } of configs) {
+    await generateBundledModule({ packageName, inputFile, moduleFormat, env });
+  }
+
+  await writeCjsEntryFile(packageName);
+
+  logger.info('updating package.json file');
+
+  const pkgJson = { ...pkg };
+
+  const pkgName = safePackageName(packageName);
+
+  pkgJson.main = path.join('dist', 'index.js');
+  const moduleFile = path.join('dist', `${pkgName}.esm.js`);
+  pkgJson.module = moduleFile;
+  pkgJson.browser = moduleFile;
+  pkgJson.type = 'module';
+
+  await writeToPackage(pkgJsonPath, pkgJson);
 }
 
-build().catch((e) => {
-  logger.error(e);
-  process.exit(1);
-});
+(async () => {
+  try {
+    await build();
+    logger.done('finished building');
+  } catch (err) {
+    logger.error(err);
+    process.exit(1);
+  }
+})();

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createTypescriptLoader = void 0;
 var paths_1 = require("../../config/paths");
 var createBabelConfig_1 = require("../../scripts/createBabelConfig");
-exports.createTypescriptLoader = function (_a) {
+var createTypescriptLoader = function (_a) {
     var isDevelopment = _a.isDevelopment, isNode = _a.isNode, moduleFormat = _a.moduleFormat;
     var isProduction = !isDevelopment;
     var options = {
@@ -46,4 +46,5 @@ exports.createTypescriptLoader = function (_a) {
         },
     ];
 };
+exports.createTypescriptLoader = createTypescriptLoader;
 //# sourceMappingURL=typescriptLoader.js.map

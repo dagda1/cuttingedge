@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createMDLoader = void 0;
-exports.createMDLoader = function () { return ({
+var createMDLoader = function () { return ({
     test: /\.md$/,
     use: [
         {
@@ -13,4 +13,5 @@ exports.createMDLoader = function () { return ({
         },
     ],
 }); };
+exports.createMDLoader = createMDLoader;
 //# sourceMappingURL=mdLoader.js.map

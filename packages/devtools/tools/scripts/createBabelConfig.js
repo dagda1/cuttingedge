@@ -13,7 +13,7 @@ var __assign = (this && this.__assign) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createBabelConfig = exports.createBabelPresets = void 0;
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-exports.createBabelPresets = function (_a) {
+var createBabelPresets = function (_a) {
     var isDevelopment = _a.isDevelopment, 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isProduction = _a.isProduction, isNode = _a.isNode, moduleFormat = _a.moduleFormat;
@@ -46,8 +46,9 @@ exports.createBabelPresets = function (_a) {
         ],
     ];
 };
+exports.createBabelPresets = createBabelPresets;
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-exports.createBabelConfig = function (_a) {
+var createBabelConfig = function (_a) {
     var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, isNode = _a.isNode, moduleFormat = _a.moduleFormat;
     var hot = isDevelopment && !isNode;
     return {
@@ -86,4 +87,5 @@ exports.createBabelConfig = function (_a) {
         ].filter(Boolean),
     };
 };
+exports.createBabelConfig = createBabelConfig;
 //# sourceMappingURL=createBabelConfig.js.map

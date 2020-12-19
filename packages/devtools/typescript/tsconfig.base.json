@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
+    "module": "ESNext",
     "strict": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "outDir": "./dist",
-    "strictNullChecks": false,
+    "removeComments": false,
+    "checkJs": false,
+    "preserveSymlinks": true,
+    "esModuleInterop": true,
     "noUnusedLocals": true,
+    "noImplicitAny": true,
     "skipLibCheck": true,
     "downlevelIteration": true,
     "lib": [
@@ -16,18 +21,11 @@
     ],
     "types": [
       "node",
-      "@types/jest",
       "webpack-env",
       "@cutting/useful-types"
     ],
     "typeRoots": [
       "../../../node_modules/@types"
-    ],
-    "strictFunctionTypes": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "removeComments": false,
-    "checkJs": false,
-    "preserveSymlinks": true,
-    "esModuleInterop": true
+    ]
   }
 }

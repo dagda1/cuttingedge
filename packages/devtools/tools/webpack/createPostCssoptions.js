@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createPostCssOptions = void 0;
-exports.createPostCssOptions = function () { return ({
+var createPostCssOptions = function () { return ({
     postcssOptions: {
         ident: 'postcss',
         syntax: 'postcss-scss',
@@ -23,4 +23,5 @@ exports.createPostCssOptions = function () { return ({
         sourceMap: true,
     },
 }); };
+exports.createPostCssOptions = createPostCssOptions;
 //# sourceMappingURL=createPostCssoptions.js.map

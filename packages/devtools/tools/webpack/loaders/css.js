@@ -1,10 +1,23 @@
 "use strict";
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -15,7 +28,7 @@ var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin
 var createPostCssoptions_1 = require("../createPostCssoptions");
 var getLocalIdent_1 = require("../getLocalIdent");
 var constants_1 = require("../constants");
-exports.cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
+var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
     var modules = _a.modules, importLoaders = _a.importLoaders;
     return [
         !isNode && {
@@ -38,7 +51,8 @@ exports.cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
         isProduction && { loader: 'postcss-loader', options: createPostCssoptions_1.createPostCssOptions() },
     ].filter(Boolean);
 };
-exports.createCSSLoaders = function (_a) {
+exports.cssLoaders = cssLoaders;
+var createCSSLoaders = function (_a) {
     var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, isNode = _a.isNode;
     return [
         {
@@ -48,16 +62,17 @@ exports.createCSSLoaders = function (_a) {
         {
             test: constants_1.sassRegex,
             exclude: constants_1.sassModuleRegex,
-            use: __spreadArrays(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 2 }), [
+            use: __spread(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 2 }), [
                 { loader: 'sass-loader' },
             ]).filter(Boolean),
         },
         {
             test: constants_1.sassModuleRegex,
-            use: __spreadArrays(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: true, importLoaders: 2 }), [
+            use: __spread(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: true, importLoaders: 2 }), [
                 { loader: 'sass-loader' },
             ]).filter(Boolean),
         },
     ];
 };
+exports.createCSSLoaders = createCSSLoaders;
 //# sourceMappingURL=css.js.map

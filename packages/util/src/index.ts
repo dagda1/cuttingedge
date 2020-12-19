@@ -4,7 +4,6 @@ export * from './types';
 export * from './services';
 export * from './errors';
 export * from './react';
-export * from './dateparser';
 export { assert } from './assertions/assert';
 export * from './functions';
 export * from './lists';

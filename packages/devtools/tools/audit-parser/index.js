@@ -55,6 +55,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -92,7 +108,7 @@ function audit(exceptions) {
                     process.exit(0);
                     return [2 /*return*/];
                 case 4:
-                    _d = auditResult
+                    _d = __read(auditResult
                         .trim()
                         .split('\n')
                         .reverse()
@@ -103,7 +119,7 @@ function audit(exceptions) {
                         }
                         return true;
                     })
-                        .map(function (s) { return JSON.parse(s); }), report = _d[0], vulnerabilities = _d.slice(1);
+                        .map(function (s) { return JSON.parse(s); })), report = _d[0], vulnerabilities = _d.slice(1);
                     totalDependencies = (_a = report === null || report === void 0 ? void 0 : report.data) === null || _a === void 0 ? void 0 : _a.totalDependencies;
                     if (!totalDependencies) {
                         logger_1.logger.error('Call to Yarn audit has failed.  Exiting for now.  Audits caught on next build');

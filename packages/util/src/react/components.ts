@@ -1,5 +1,5 @@
-import React from 'react';
+import { ComponentType } from 'react';
 
-export function getDisplayName<T>(WrappedComponent: React.ComponentType<T>): string {
+export function getDisplayName<T>(WrappedComponent: ComponentType<T>): string {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }

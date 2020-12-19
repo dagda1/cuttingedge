@@ -4,7 +4,7 @@ exports.getCommitHash = void 0;
 var logger_1 = require("../logger");
 var child_process_1 = require("child_process");
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-exports.getCommitHash = function () {
+var getCommitHash = function () {
     try {
         return child_process_1.execSync('git rev-parse HEAD', { timeout: 1000 }).toString().trim();
     }
@@ -13,4 +13,5 @@ exports.getCommitHash = function () {
         throw err;
     }
 };
+exports.getCommitHash = getCommitHash;
 //# sourceMappingURL=index.js.map

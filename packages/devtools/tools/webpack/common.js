@@ -1,10 +1,23 @@
 "use strict";
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -30,7 +43,7 @@ var mdLoader_1 = require("./loaders/mdLoader");
 var ModuleScopePlugin_1 = __importDefault(require("react-dev-utils/ModuleScopePlugin"));
 var stats_1 = require("./loaders/stats");
 var path_1 = __importDefault(require("path"));
-exports.configureCommon = function (options) {
+var configureCommon = function (options) {
     var isNode = !!options.isNode;
     var isWeb = !isNode;
     var _a = getEnvironment_1.getEnvironment(), isProduction = _a.isProduction, isDevelopment = _a.isDevelopment, staticAssetName = _a.staticAssetName, isAnalyse = _a.isAnalyse;
@@ -69,7 +82,7 @@ exports.configureCommon = function (options) {
         },
         module: {
             strictExportPresence: true,
-            rules: Array.prototype.filter.call(__spreadArrays([
+            rules: Array.prototype.filter.call(__spread([
                 fileLoader_1.createFileLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
                 urlLoader_1.createUrlLoader({ staticAssetName: staticAssetName, isWeb: isWeb })
             ], typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }), jsLoader_1.createJsLoader({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }), [
@@ -113,4 +126,5 @@ exports.configureCommon = function (options) {
     };
     return config;
 };
+exports.configureCommon = configureCommon;
 //# sourceMappingURL=common.js.map

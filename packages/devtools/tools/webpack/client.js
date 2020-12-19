@@ -1,10 +1,23 @@
 "use strict";
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -31,7 +44,7 @@ var html_webpack_partials_plugin_1 = __importDefault(require("html-webpack-parti
 // @ts-ignore
 var ModuleNotFoundPlugin_1 = __importDefault(require("react-dev-utils/ModuleNotFoundPlugin"));
 var isProfilerEnabled = function () { return process.argv.includes('--profile'); };
-exports.configure = function (options) {
+var configure = function (options) {
     var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild;
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, commitHash = _a.commitHash;
     var ssrBuild = !isStaticBuild;
@@ -45,7 +58,7 @@ exports.configure = function (options) {
     var finalEntries = Object.keys(iter).reduce(function (acc, key) {
         var value = iter[key];
         var entryPoints = typeof value === 'string' ? [value] : value;
-        acc[key] = __spreadArrays(polyfills, entryPoints);
+        acc[key] = __spread(polyfills, entryPoints);
         return acc;
     }, {});
     var template = publicDir ? path_1.default.join(publicDir, 'index.html') : 'public/index.html';
@@ -125,4 +138,5 @@ exports.configure = function (options) {
     }
     return config;
 };
+exports.configure = configure;
 //# sourceMappingURL=client.js.map

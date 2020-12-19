@@ -26,7 +26,7 @@ var isModuleCSS = function (module) {
         module.type === "css/extract-chunks" ||
         module.type === "css/extract-css-chunks");
 };
-exports.createWebpackOptimisation = function (_a) {
+var createWebpackOptimisation = function (_a) {
     var optimization = _a.optimization, isDevelopment = _a.isDevelopment;
     return __assign(__assign({}, optimization), {
         minimize: true,
@@ -120,4 +120,5 @@ exports.createWebpackOptimisation = function (_a) {
         },
     });
 };
+exports.createWebpackOptimisation = createWebpackOptimisation;
 //# sourceMappingURL=createWebpackOptimisation.js.map

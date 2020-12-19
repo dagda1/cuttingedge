@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.csv = void 0;
 var pluginutils_1 = require("@rollup/pluginutils");
 var papaparse_1 = __importDefault(require("papaparse"));
-exports.csv = function () {
+var csv = function () {
     var filter = pluginutils_1.createFilter('**/*.csv');
     return {
         name: 'csv',
@@ -25,4 +25,5 @@ exports.csv = function () {
         },
     };
 };
+exports.csv = csv;
 //# sourceMappingURL=csv.js.map

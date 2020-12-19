@@ -44,7 +44,7 @@ var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var MaxTries = 10;
 var ModulesDirName = 'node_modules';
-exports.find = function (cwd, predicate, tries) {
+var find = function (cwd, predicate, tries) {
     if (tries === void 0) { tries = 0; }
     if (tries === MaxTries) {
         throw new Error("cannot find in " + cwd);
@@ -54,7 +54,8 @@ exports.find = function (cwd, predicate, tries) {
     }
     return exports.find(path_1.default.resolve(cwd, '..'), predicate, ++tries);
 };
-exports.findAsync = function (cwd, predicate, tries) {
+exports.find = find;
+var findAsync = function (cwd, predicate, tries) {
     if (tries === void 0) { tries = 0; }
     return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -74,13 +75,16 @@ exports.findAsync = function (cwd, predicate, tries) {
         });
     });
 };
-exports.findFile = function (cwd, fileName) {
+exports.findAsync = findAsync;
+var findFile = function (cwd, fileName) {
     var dir = exports.find(cwd, function (dir) { return fs_1.default.existsSync(path_1.default.resolve(dir, fileName)); });
     return path_1.default.resolve(dir, fileName);
 };
-exports.findAppNodeModules = function (cwd, packageName) {
+exports.findFile = findFile;
+var findAppNodeModules = function (cwd, packageName) {
     if (packageName === void 0) { packageName = 'typescript'; }
     var dir = exports.find(cwd, function (dir) { return fs_1.default.existsSync(path_1.default.resolve(dir, ModulesDirName, packageName)); });
     return path_1.default.join(dir, ModulesDirName);
 };
+exports.findAppNodeModules = findAppNodeModules;
 //# sourceMappingURL=finders.js.map

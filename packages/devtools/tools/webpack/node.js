@@ -32,7 +32,7 @@ var getExternals = function () {
         }),
     ];
 };
-exports.configure = function (options) {
+var configure = function (options) {
     var common = common_1.configureCommon(__assign(__assign({}, options), { isWeb: false }));
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
@@ -59,4 +59,5 @@ exports.configure = function (options) {
     });
     return config;
 };
+exports.configure = configure;
 //# sourceMappingURL=node.js.map

@@ -22,7 +22,7 @@ function compileWebpack(config, cb) {
         cb(err, stats);
     });
 }
-exports.compile = function (config, buildType) {
+var compile = function (config, buildType) {
     return new Promise(function (resolve, reject) {
         logger_1.logger.info("compiling " + buildType);
         compileWebpack(config, function (err, stats) {
@@ -51,4 +51,5 @@ exports.compile = function (config, buildType) {
         });
     });
 };
+exports.compile = compile;
 //# sourceMappingURL=compile.js.map

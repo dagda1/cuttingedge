@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUrlParts = void 0;
 var assert_1 = require("../assert/assert");
 var WebpackDevServerUtils_1 = require("react-dev-utils/WebpackDevServerUtils");
-exports.getUrlParts = function (_a) {
+var getUrlParts = function (_a) {
     var ssrBuild = _a.ssrBuild, isProduction = _a.isProduction;
     var rawPort = process.env.PORT || 3000;
     assert_1.assert(!!rawPort, 'No port number on environment variable PORT');
@@ -23,4 +23,5 @@ exports.getUrlParts = function (_a) {
         sockPort: sockPort,
     };
 };
+exports.getUrlParts = getUrlParts;
 //# sourceMappingURL=getUrlParts.js.map

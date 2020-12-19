@@ -10,7 +10,7 @@ var fs_1 = __importDefault(require("fs"));
 var evalSourceMapMiddleware_1 = __importDefault(require("react-dev-utils/evalSourceMapMiddleware"));
 var redirectServedPathMiddleware_1 = __importDefault(require("react-dev-utils/redirectServedPathMiddleware"));
 var stats_1 = require("./stats");
-exports.createDevServer = function (_a) {
+var createDevServer = function (_a) {
     var protocol = _a.protocol, host = _a.host, sockPort = _a.sockPort, proxy = _a.proxy, port = _a.port;
     return {
         disableHostCheck: true,
@@ -53,4 +53,5 @@ exports.createDevServer = function (_a) {
         stats: stats_1.stats,
     };
 };
+exports.createDevServer = createDevServer;
 //# sourceMappingURL=createDevServer.js.map

@@ -6,7 +6,7 @@ import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 export const Blog: React.FC = () => (
   <ApplicationLayout heading="My blog posts">
     <p>
-      I blog professionally for{' '}
+      I blog professionally for
       <ExternalLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</ExternalLink>
       .<br />
       My personal blog is <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.

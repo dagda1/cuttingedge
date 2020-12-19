@@ -75,7 +75,7 @@ var path_1 = __importDefault(require("path"));
 var is_monorepo_1 = require("./is-monorepo");
 var finders_1 = require("../scripts/utils/finders");
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-exports.getRootPackage = function (cwd) { return __awaiter(void 0, void 0, void 0, function () {
+var getRootPackage = function (cwd) { return __awaiter(void 0, void 0, void 0, function () {
     var monorepo, rootDir, pkgJsonPath, pkg;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -111,4 +111,5 @@ exports.getRootPackage = function (cwd) { return __awaiter(void 0, void 0, void 
         }
     });
 }); };
+exports.getRootPackage = getRootPackage;
 //# sourceMappingURL=get-root-package.js.map

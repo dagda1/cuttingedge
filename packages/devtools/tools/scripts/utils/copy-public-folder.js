@@ -7,7 +7,7 @@ exports.copyPublicFolder = exports.copyRecursiveSync = void 0;
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var paths_1 = require("../../config/paths");
 var path_1 = __importDefault(require("path"));
-exports.copyRecursiveSync = function copyRecursiveSync(src, dest) {
+var copyRecursiveSync = function copyRecursiveSync(src, dest) {
     fs_extra_1.default.copySync(src, dest);
     fs_extra_1.default.readdirSync(src)
         .map(function (name) { return name; })
@@ -16,11 +16,13 @@ exports.copyRecursiveSync = function copyRecursiveSync(src, dest) {
         copyRecursiveSync(path_1.default.join(src, dir), path_1.default.join(dest, dir));
     });
 };
-exports.copyPublicFolder = function () {
+exports.copyRecursiveSync = copyRecursiveSync;
+var copyPublicFolder = function () {
     if (!fs_extra_1.default.existsSync(paths_1.paths.appPublic)) {
         return;
     }
     fs_extra_1.default.mkdirSync(paths_1.paths.appBuildPublic);
     exports.copyRecursiveSync(paths_1.paths.appPublic, paths_1.paths.appBuildPublic);
 };
+exports.copyPublicFolder = copyPublicFolder;
 //# sourceMappingURL=copy-public-folder.js.map

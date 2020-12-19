@@ -1,5 +1,5 @@
-const raf: any = (window.requestAnimationFrame = (cb: FrameRequestCallback): number => {
-  return setTimeout(cb, 0);
+const raf: any = (window.requestAnimationFrame = (cb: FrameRequestCallback) => {
+  return (setTimeout(cb, 0) as unknown) as number;
 });
 
 export default raf;

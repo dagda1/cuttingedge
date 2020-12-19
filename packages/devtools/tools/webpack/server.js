@@ -10,12 +10,25 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -31,7 +44,7 @@ var common_1 = require("./common");
 var getEnvironment_1 = require("./getEnvironment");
 var guards_1 = require("./guards");
 var getUrlParts_1 = require("./getUrlParts");
-exports.getExternals = function (isDevelopment) {
+var getExternals = function (isDevelopment) {
     return [
         webpack_node_externals_1.default(),
         webpack_node_externals_1.default({
@@ -49,7 +62,8 @@ exports.getExternals = function (isDevelopment) {
         }),
     ];
 };
-exports.configure = function (options) {
+exports.getExternals = getExternals;
+var configure = function (options) {
     var common = common_1.configureCommon(__assign(__assign({}, options), { isNode: true, ssrBuild: true, isWeb: false }));
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
     var publicPath = getUrlParts_1.getUrlParts({ ssrBuild: true, isProduction: isProduction }).publicPath;
@@ -70,7 +84,7 @@ exports.configure = function (options) {
         target: 'node',
         watch: isDevelopment,
         externals: exports.getExternals(isDevelopment),
-        entry: isDevelopment ? __spreadArrays(['webpack/hot/poll?300'], entries) : entries,
+        entry: isDevelopment ? __spread(['webpack/hot/poll?300'], entries) : entries,
         output: {
             path: paths_1.paths.appBuild,
             filename: options.filename,
@@ -94,4 +108,5 @@ exports.configure = function (options) {
     });
     return config;
 };
+exports.configure = configure;
 //# sourceMappingURL=server.js.map

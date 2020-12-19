@@ -1,13 +1,12 @@
 {
   "name": "@cutting/hooks",
   "description": "Hooks man, hooks.",
-  "version": "3.9.0",
+  "version": "4.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "main": "dist/hooks.js",
-  "umd:main": "lib/hooks.umd.js",
   "module": "lib/hooks.module.js",
   "browser": {
     "./lib/hooks.js": "./lib/hooks.js",
@@ -26,13 +25,13 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/util": "3.9.0",
+    "@cutting/util": "4.0.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "3.9.0",
-    "@cutting/eslint-config": "3.9.0",
-    "@cutting/useful-types": "3.9.0",
+    "@cutting/devtools": "4.0.0",
+    "@cutting/eslint-config": "4.0.0",
+    "@cutting/useful-types": "4.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@types/invariant": "^2.2.33"
   },

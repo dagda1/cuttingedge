@@ -76,7 +76,7 @@ var copyDependencies = function (destination, oldVersion, version) {
         return (destination[prop] = /@cutting/g.test(prop) && destination[prop] === oldVersion ? version : destination[prop]);
     });
 };
-exports.updateVersion = function (filename, oldVersion, version) { return __awaiter(void 0, void 0, void 0, function () {
+var updateVersion = function (filename, oldVersion, version) { return __awaiter(void 0, void 0, void 0, function () {
     var pkg, json;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -94,4 +94,5 @@ exports.updateVersion = function (filename, oldVersion, version) { return __awai
         }
     });
 }); };
+exports.updateVersion = updateVersion;
 //# sourceMappingURL=update-version.js.map

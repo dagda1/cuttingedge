@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.run = void 0;
 var child_process_1 = require("child_process");
 var logger_1 = require("../logger");
-exports.run = function (cmd) {
+var run = function (cmd) {
     return new Promise(function (resolve, reject) {
         var _a;
         var command = child_process_1.exec("" + cmd);
@@ -20,4 +20,5 @@ exports.run = function (cmd) {
         });
     });
 };
+exports.run = run;
 //# sourceMappingURL=run.js.map

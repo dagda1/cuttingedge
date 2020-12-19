@@ -36,6 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -50,14 +61,15 @@ var glob_1 = __importDefault(require("glob"));
 var semver_1 = __importDefault(require("semver"));
 var glob = util_1.promisify(glob_1.default);
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, rootDir, currentVersion, packageFiles, major, minor, patch, choice, version, custom, confirm, _i, packageFiles_1, pkg, err_1;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var _a, rootDir, currentVersion, packageFiles, major, minor, patch, choice, version, custom, confirm, packageFiles_1, packageFiles_1_1, pkg, err_1, e_1_1;
+    var e_1, _b;
+    return __generator(this, function (_c) {
+        switch (_c.label) {
             case 0:
                 logger_1.logger.start('finding package.json');
                 return [4 /*yield*/, get_root_package_1.getRootPackage(process.cwd())];
             case 1:
-                _a = _b.sent(), rootDir = _a.rootDir, currentVersion = _a.version;
+                _a = _c.sent(), rootDir = _a.rootDir, currentVersion = _a.version;
                 logger_1.logger.info("found root package.json in " + rootDir);
                 if (currentVersion === undefined) {
                     logger_1.logger.info('The package file does not have version property defined?. So, version update cannot be done on this file');
@@ -65,7 +77,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 }
                 return [4 /*yield*/, glob('**/package.json', { cwd: rootDir, ignore: ['**/node_modules/**'] })];
             case 2:
-                packageFiles = _b.sent();
+                packageFiles = _c.sent();
                 major = semver_1.default.inc(currentVersion, 'major');
                 minor = semver_1.default.inc(currentVersion, 'minor');
                 patch = semver_1.default.inc(currentVersion, 'patch');
@@ -77,7 +89,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                         choices: ["major : " + major, "minor : " + minor, "patch : " + patch, new inquirer_1.default.Separator(), 'custom', 'cancel'],
                     })];
             case 3:
-                choice = _b.sent();
+                choice = _c.sent();
                 if (choice.value === 'cancel') {
                     logger_1.logger.info('version change cancelled');
                     return [2 /*return*/];
@@ -89,7 +101,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                         message: 'Please input the version number of choice:',
                     })];
             case 4:
-                custom = _b.sent();
+                custom = _c.sent();
                 if (!semver_1.default.valid(custom.value)) {
                     logger_1.logger.info('Version number format is incorrect. Please use the correct format');
                     return [2 /*return*/];
@@ -98,39 +110,53 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 return [3 /*break*/, 6];
             case 5:
                 version = choice.value.split(':')[1].trim();
-                _b.label = 6;
+                _c.label = 6;
             case 6: return [4 /*yield*/, inquirer_1.default.prompt({
                     type: 'confirm',
                     name: 'value',
                     message: 'Confirm the version update:',
                 })];
             case 7:
-                confirm = _b.sent();
+                confirm = _c.sent();
                 if (!confirm.value) {
                     logger_1.logger.info('version change cancelled');
                     return [2 /*return*/];
                 }
-                _i = 0, packageFiles_1 = packageFiles;
-                _b.label = 8;
+                _c.label = 8;
             case 8:
-                if (!(_i < packageFiles_1.length)) return [3 /*break*/, 13];
-                pkg = packageFiles_1[_i];
-                _b.label = 9;
+                _c.trys.push([8, 15, 16, 17]);
+                packageFiles_1 = __values(packageFiles), packageFiles_1_1 = packageFiles_1.next();
+                _c.label = 9;
             case 9:
-                _b.trys.push([9, 11, , 12]);
-                return [4 /*yield*/, update_version_1.updateVersion(path_1.default.join(rootDir, pkg), currentVersion, version)];
+                if (!!packageFiles_1_1.done) return [3 /*break*/, 14];
+                pkg = packageFiles_1_1.value;
+                _c.label = 10;
             case 10:
-                _b.sent();
-                return [3 /*break*/, 12];
+                _c.trys.push([10, 12, , 13]);
+                return [4 /*yield*/, update_version_1.updateVersion(path_1.default.join(rootDir, pkg), currentVersion, version)];
             case 11:
-                err_1 = _b.sent();
+                _c.sent();
+                return [3 /*break*/, 13];
+            case 12:
+                err_1 = _c.sent();
                 logger_1.logger.error(err_1);
                 process.exit(1);
-                return [3 /*break*/, 12];
-            case 12:
-                _i++;
-                return [3 /*break*/, 8];
-            case 13: return [2 /*return*/];
+                return [3 /*break*/, 13];
+            case 13:
+                packageFiles_1_1 = packageFiles_1.next();
+                return [3 /*break*/, 9];
+            case 14: return [3 /*break*/, 17];
+            case 15:
+                e_1_1 = _c.sent();
+                e_1 = { error: e_1_1 };
+                return [3 /*break*/, 17];
+            case 16:
+                try {
+                    if (packageFiles_1_1 && !packageFiles_1_1.done && (_b = packageFiles_1.return)) _b.call(packageFiles_1);
+                }
+                finally { if (e_1) throw e_1.error; }
+                return [7 /*endfinally*/];
+            case 17: return [2 /*return*/];
         }
     });
 }); };

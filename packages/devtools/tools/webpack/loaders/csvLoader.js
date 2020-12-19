@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createCSVLoader = void 0;
-exports.createCSVLoader = function () { return ({
+var createCSVLoader = function () { return ({
     test: /\.csv$/,
     loader: 'csv-loader',
     options: {
@@ -9,4 +9,5 @@ exports.createCSVLoader = function () { return ({
         skipEmptyLines: true,
     },
 }); };
+exports.createCSVLoader = createCSVLoader;
 //# sourceMappingURL=csvLoader.js.map
