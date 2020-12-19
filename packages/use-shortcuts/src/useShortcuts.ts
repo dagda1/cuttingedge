@@ -1,4 +1,4 @@
-import mousetrap from 'mousetrap';
+import mousetrap, { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
 import { useEffect, useRef } from 'react';
 import { UseShortcuts, ShortcutAction, UseShortcutsResult } from './types';
 import { buildShortcuts } from './buildShortcuts';

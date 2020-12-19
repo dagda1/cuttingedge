@@ -2,19 +2,13 @@
   "name": "@cutting/use-shortcuts",
   "description": "Effortlessly create keyboard shortcuts with this react hook.",
   "version": "4.0.0",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "main": "dist/use-shortcuts.js",
-  "umd:main": "lib/use-shortcuts.umd.js",
-  "module": "lib/use-shortcuts.module.js",
-  "browser": {
-    "./lib/use-shortcuts.js": "./lib/use-shortcuts.js",
-    "./lib/use-shortcuts.module.js": "./lib/use-shortcuts.module.js"
-  },
-  "types": "dist/use-shortcuts.d.ts",
-  "typings": "dist/use-shortcuts.d.ts",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -22,7 +16,7 @@
   "scripts": {
     "start": "echo no start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting rollup --package-name use-shortcuts",
+    "build": "NODE_ENV=production cutting rollup",
     "prepublish": "npm run build"
   },
   "dependencies": {
@@ -47,5 +41,8 @@
     "hooks",
     "hook",
     "use-shortcuts"
-  ]
+  ],
+  "main": "dist/index.js",
+  "module": "dist/use-shortcuts.esm.js",
+  "browser": "dist/use-shortcuts.esm.js"
 }

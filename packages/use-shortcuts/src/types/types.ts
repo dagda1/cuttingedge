@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
 import { KeyCode } from './keycodes';
 
 export interface Action<T extends string = any> {

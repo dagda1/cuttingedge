@@ -2,15 +2,16 @@
   "name": "@cutting/hooks",
   "description": "Hooks man, hooks.",
   "version": "4.0.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dagda1/cuttingedge.git"
-  },
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/hooks.esm.js",
   "browser": "dist/hooks.esm.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagda1/cuttingedge.git"
+  },
   "files": [
     "dist"
   ],
@@ -41,6 +42,5 @@
     "hooks",
     "hook",
     "hooks"
-  ],
-  "type": "module"
+  ]
 }
