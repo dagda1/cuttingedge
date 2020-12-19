@@ -103,7 +103,7 @@ var configureCommon = function (options) {
                 ],
             }),
             new webpack_1.default.DefinePlugin(env.stringified),
-            isDevelopment && new webpackbar_1.default(),
+            isDevelopment && new webpackbar_1.default({ basic: true }),
             isAnalyse &&
                 new webpack_bundle_analyzer_1.BundleAnalyzerPlugin({
                     defaultSizes: 'gzip',

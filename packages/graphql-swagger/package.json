@@ -16,12 +16,10 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@cutting/util": "4.0.0",
-    "@xstate/react": "^0.8.1",
-    "xstate": "^4.9.1"
+    "@cutting/util": "4.0.0"
   },
   "devDependencies": {
-    "abortcontroller-polyfill": "^1.4.0",
+    "abortcontroller-polyfill": "^1.5.0",
     "node-fetch": "^2.6.1"
   },
   "keywords": [

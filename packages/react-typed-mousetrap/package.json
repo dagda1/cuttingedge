@@ -28,9 +28,9 @@
     "@cutting/devtools": "4.0.0",
     "@cutting/eslint-config": "4.0.0",
     "@cutting/useful-types": "4.0.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@types/invariant": "^2.2.33",
-    "@types/mousetrap": "^1.6.3"
+    "@testing-library/jest-dom": "^5.11.6",
+    "@types/invariant": "^2.2.34",
+    "@types/mousetrap": "^1.6.5"
   },
   "keywords": [
     "react-component",

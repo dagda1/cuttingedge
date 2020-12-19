@@ -89,7 +89,8 @@ export const configure = (options: DevServerConfig): Configuration => {
         new LoadableWebpackPlugin({
           writeToDisk: { filename: paths.appBuild },
         }),
-      isStaticBuild && new InterpolateHtmlPlugin(HtmlWebpackPlugin, { PUBLIC_URL: options.publicUrl }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      isStaticBuild && new InterpolateHtmlPlugin(HtmlWebpackPlugin as any, { PUBLIC_URL: options.publicUrl }),
 
       (devServer || (isStaticBuild && templateExists)) &&
         new HtmlWebpackPlugin({

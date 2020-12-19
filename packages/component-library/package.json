@@ -15,7 +15,7 @@
     "@cutting/devtools": "4.0.0",
     "@cutting/eslint-config": "4.0.0",
     "@cutting/useful-types": "4.0.0",
-    "@testing-library/jest-dom": "^5.11.4"
+    "@testing-library/jest-dom": "^5.11.6"
   },
   "scripts": {
     "build": "NODE_ENV=development cutting ts-build",

@@ -99,6 +99,7 @@ var configure = function (options) {
                 new webpack_plugin_1.default({
                     writeToDisk: { filename: paths_1.paths.appBuild },
                 }),
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             isStaticBuild && new InterpolateHtmlPlugin_1.default(html_webpack_plugin_1.default, { PUBLIC_URL: options.publicUrl }),
             (devServer || (isStaticBuild && templateExists)) &&
                 new html_webpack_plugin_1.default({

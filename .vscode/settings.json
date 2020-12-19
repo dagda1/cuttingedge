@@ -32,7 +32,6 @@
     "./packages/util",
     "./packages/react-gel",
     "./packages/component-library",
-    "./packages/connected-components",
     "./packages/react-typed-mousetrap",
     "./packages/useful-types",
     "./packages/use-shortcuts",

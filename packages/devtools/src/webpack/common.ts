@@ -88,7 +88,7 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
           ],
         }),
         new webpack.DefinePlugin(env.stringified),
-        isDevelopment && new WebpackBar(),
+        isDevelopment && new WebpackBar({ basic: true }),
         isAnalyse &&
           new BundleAnalyzerPlugin({
             defaultSizes: 'gzip',

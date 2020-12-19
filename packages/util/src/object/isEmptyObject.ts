@@ -1,4 +1,4 @@
-import isEmpty from 'lodash/isEmpty';
+import { isEmpty } from '@cutting/util';
 import { isDate } from '../date/date';
 import { isNil } from './isNil';
 import { isObject } from './isObject';
