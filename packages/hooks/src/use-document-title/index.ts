@@ -1,1 +1,0 @@
-export { useDocumentTitle } from './useDocumentTitle';

@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useState } from 'react';
-import { usePrevious } from '.';
+import { usePrevious } from './usePrevious';
 
 describe('usePrevious', () => {
   it('should get previous state', () => {

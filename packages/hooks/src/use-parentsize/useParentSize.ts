@@ -8,7 +8,7 @@ export const useParentSize = (
     initialDimensions: { width: 0, height: 0 },
     offset: { width: 0, height: 0 },
   },
-) => {
+): { width: number; height: number } => {
   // need to use useReducer because useState with setDimensions({ width: //etc })
   // causes an infinite re-render as you are setting a new object each time
   function reducer(state: Dimensions, action: SizeAction) {
@@ -61,7 +61,7 @@ export const useParentSize = (
   }, [handleResize, ref]);
 
   return {
-    width: dimensions.width + (offset?.width! || 0),
-    height: dimensions.height + (offset?.height! || 0),
+    width: dimensions.width + (offset?.width || 0),
+    height: dimensions.height + (offset?.height || 0),
   };
 };

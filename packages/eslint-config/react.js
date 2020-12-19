@@ -24,5 +24,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     'react/prop-types': 0,
+    'react/react-in-jsx-scope': 0,
   },
 };

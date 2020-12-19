@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useRef } from 'react';
-import { useParentSize } from '../src/use-parentsize';
+import { useRef } from 'react';
+import { useParentSize } from '../src/use-parentsize/useParentSize';
 
-const styles = require('./global.module.scss');
+import styles from './global.module.scss';
 
 export const App: React.FC = () => {
   const ref = useRef<HTMLDivElement>();
