@@ -1,5 +1,6 @@
-import { isDate } from '../date';
 import isEmpty from 'lodash/isEmpty';
+import { isDate } from '../date/date';
+import { isNil } from './isNil';
 import { isObject } from './isObject';
 
 export const isEmptyObject = <T>(o: T): boolean => {
@@ -16,7 +17,7 @@ export const isEmptyObject = <T>(o: T): boolean => {
       return !isEmptyObject(value);
     }
 
-    return !!value;
+    return !isNil(value);
   });
 
   return result;

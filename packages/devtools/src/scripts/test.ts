@@ -33,6 +33,7 @@ const config = fs.existsSync(paths.ownJestConfig) ? paths.ownJestConfig : paths.
 argv.push('--config', config);
 argv.push('--env', 'jest-environment-jsdom-sixteen');
 argv.push('--rootDir', `${process.cwd()}`);
+argv.push('--useStderr');
 
 if (process.env.CI) {
   argv.push('--ci');
