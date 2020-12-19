@@ -9,15 +9,13 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/util": "4.0.0",
-    "lodash.isobject": "^3.0.2"
+    "@cutting/util": "4.0.0"
   },
   "devDependencies": {
     "@cutting/devtools": "4.0.0",
     "@cutting/eslint-config": "4.0.0",
     "@cutting/useful-types": "4.0.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@types/lodash.isobject": "^3.0.6"
+    "@testing-library/jest-dom": "^5.11.4"
   },
   "scripts": {
     "build": "NODE_ENV=development cutting ts-build",

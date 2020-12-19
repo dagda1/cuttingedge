@@ -5,6 +5,7 @@
     "strict": true,
     "jsx": "react-jsx",
     "outDir": "./dist",
+    "moduleResolution": "node",
     "removeComments": false,
     "checkJs": false,
     "preserveSymlinks": true,

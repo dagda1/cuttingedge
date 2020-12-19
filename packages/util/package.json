@@ -20,5 +20,8 @@
     "@cutting/devtools": "4.0.0",
     "@cutting/eslint-config": "4.0.0",
     "@cutting/useful-types": "4.0.0"
-  }
+  },
+  "module": "dist/util.esm.js",
+  "browser": "dist/util.esm.js",
+  "type": "module"
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import range from 'lodash/range';
 import cs from 'classnames';
 
 const styles = require('./LoadingIcon.module.scss');

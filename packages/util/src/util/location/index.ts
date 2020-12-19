@@ -1,1 +1,0 @@
-export { origin } from './origin';
