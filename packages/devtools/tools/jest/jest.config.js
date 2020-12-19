@@ -54,7 +54,6 @@ var jestConfig = {
     transform: {
         '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
         '.(js|jsx)$': require.resolve('babel-jest'),
-        '^.+\\.feature$': 'gherkin-jest',
         '^.+\\.css$': path_1.default.join(__dirname, './cssTransform.js'),
         '^.+\\.csv$': path_1.default.join(__dirname, './fileTransform.js'),
         '^(?!.*\\.(js|jsx|css|json)$)': path_1.default.join(__dirname, './fileTransform.js'),
@@ -80,5 +79,5 @@ var jestConfig = {
         ],
     ],
 };
-exports.default = jestConfig;
+module.exports = jestConfig;
 //# sourceMappingURL=jest.config.js.map

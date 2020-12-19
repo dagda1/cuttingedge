@@ -75,7 +75,6 @@ const jestConfig: OverridableJestConfig = {
   transform: {
     '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
     '.(js|jsx)$': require.resolve('babel-jest'), // jest's default
-    '^.+\\.feature$': 'gherkin-jest',
     '^.+\\.css$': path.join(__dirname, './cssTransform.js'),
     '^.+\\.csv$': path.join(__dirname, './fileTransform.js'),
     '^(?!.*\\.(js|jsx|css|json)$)': path.join(__dirname, './fileTransform.js'),
@@ -104,4 +103,4 @@ const jestConfig: OverridableJestConfig = {
   ],
 };
 
-export default jestConfig;
+module.exports = jestConfig;

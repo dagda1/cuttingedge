@@ -12,7 +12,7 @@ const getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
 const publicUrlOrPath = getPublicUrlOrPath(
   process.env.NODE_ENV === 'development',
   require(resolveApp('package.json')).homepage,
-  process.env.PUBLIC_URL,
+  process.env.PUBLIC_URL as string,
 );
 
 const resolveOwn = (relativePath: string) => path.resolve(__dirname, '..', relativePath);

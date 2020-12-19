@@ -40,3 +40,5 @@ tsconfig.tsbuildinfo
 test-results
 
 .rts2_cache_*
+
+junit.xml

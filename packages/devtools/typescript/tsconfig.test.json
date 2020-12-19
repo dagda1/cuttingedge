@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "CommonJS",
+    "allowJs": true,
+    "types": [
+      "node",
+      "webpack-env",
+      "@types/jest",
+      "@cutting/useful-types"
+    ]
+  }
+}

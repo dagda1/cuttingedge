@@ -1,4 +1,4 @@
-const raf: any = (window.requestAnimationFrame = (cb: FrameRequestCallback) => {
+const raf = (window.requestAnimationFrame = (cb: FrameRequestCallback) => {
   return (setTimeout(cb, 0) as unknown) as number;
 });
 

@@ -9,7 +9,7 @@ type ErrorLike = {
 
 function pretty(error: ErrorLike | Error) {
   const { message, stack } = error;
-  const lines = getStackTraceLines(stack!);
+  const lines = getStackTraceLines(stack as string);
   const topFrame = getTopFrame(lines);
   const fallback = `${message}${stack}`;
 
