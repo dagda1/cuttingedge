@@ -57,7 +57,7 @@ export const scrollToElement = (
   options: {
     offset: number;
   } = { offset: 0 },
-) => (e?: Event) => {
+) => (e?: Event): void => {
   if (!predicate(e)) {
     return;
   }
@@ -69,7 +69,7 @@ export const scrollToElement = (
 
 const defaultValidatorSelector = '[data-selector="validation-summary"] h2';
 
-export const scrollToValidationError = async (summarySelector: string = defaultValidatorSelector) => {
+export const scrollToValidationError = async (summarySelector: string = defaultValidatorSelector): Promise<void> => {
   try {
     await wait(summarySelector);
   } catch {

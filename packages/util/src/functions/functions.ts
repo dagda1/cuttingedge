@@ -1,12 +1,17 @@
+import { isNil } from '../object/isNil';
+
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export const noop = () => {};
+export const noop = (): void => {};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Fn = (...args: any) => any;
 
-export const thenable = <T>(obj: any): obj is Promise<T> => {
-  return 'function' === typeof obj.then;
+export const thenable = <T extends Record<string, unknown>>(obj: unknown): obj is Promise<T> => {
+  return (
+    typeof !isNil(obj) && typeof obj === 'object' && obj !== null && 'then' in obj && 'function' === typeof obj['then']
+  );
 };
 
-export const isAsyncFunction = <F extends Fn>(f: F) => {
+export const isAsyncFunction = <F extends Fn>(f: F): boolean => {
   if (typeof f !== 'function') {
     return false;
   }

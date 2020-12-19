@@ -10,13 +10,6 @@ describe('wait', () => {
   });
 
   it('should reject and not find if an html element is not found', async () => {
-    let found: HTMLElement | undefined;
-
-    try {
-      found = await wait('#bar');
-    } catch (ex) {
-      // eslint-disable-next-line jest/no-try-expect
-      expect(found).toBeUndefined();
-    }
+    await expect(wait('#bar')).toThrow();
   });
 });

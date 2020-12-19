@@ -35,5 +35,21 @@ describe('object utils', () => {
         }),
       ).toBe(false);
     });
+
+    it('should return false if the only key is a boolean filed with false', () => {
+      expect(
+        isEmptyObject({
+          predicate: false,
+        }),
+      ).toBe(false);
+    });
+
+    it('should return true if the only key with empty string', () => {
+      expect(
+        isEmptyObject({
+          predicate: false,
+        }),
+      ).toBe(false);
+    });
   });
 });

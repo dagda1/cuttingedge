@@ -1,4 +1,4 @@
-export const wait = (selector: string) => {
+export const wait = (selector: string): Promise<HTMLElement> => {
   return new Promise<HTMLElement>((resolve, reject) => {
     const waitForEl = (selector: string, count = 0) => {
       const el = document.querySelector(selector) as HTMLElement;

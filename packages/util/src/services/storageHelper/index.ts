@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 let dataMemory: { [key: string]: any } = {};
 
 export class MemoryStorage {
-  static setItem(key: string, value: any) {
+  static setItem(key: string, value: any): any {
     dataMemory[key] = value;
     return dataMemory[key];
   }

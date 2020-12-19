@@ -1,1 +1,3 @@
-export const isNumber = (n: any) => /^\d+$/g.test(n);
+import { isNil } from '../object/isNil';
+
+export const isNumber = (n: unknown): n is number => !isNil(n) && /^\d+$/g.test((n as string).toString());
