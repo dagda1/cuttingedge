@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
 import { HttpStatusCode, isProduction } from '@cutting/util';

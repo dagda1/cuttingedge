@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Button } from '../../atoms/Button';
 import cs from 'classnames';
 import { Heading } from '../..';

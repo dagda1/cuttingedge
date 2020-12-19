@@ -1,5 +1,4 @@
 import cs from 'classnames';
-import React from 'react';
 import { StandardProps } from '../../../types';
 import styles from './ErrorLabel.module.scss';
 

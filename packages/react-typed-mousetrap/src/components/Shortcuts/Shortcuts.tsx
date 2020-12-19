@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import  useRef } from 'react';
 import cs from 'classnames';
 import invariant from 'invariant';
 import { useShortcuts } from '@cutting/use-shortcuts';

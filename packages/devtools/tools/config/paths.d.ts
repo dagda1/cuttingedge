@@ -1,0 +1,37 @@
+export declare const paths: {
+    dotenv: string;
+    appPath: string;
+    appBuild: string;
+    appBuildPublic: string;
+    appManifest: string;
+    appPublic: string;
+    appNodeModules: string;
+    appSrc: string;
+    appPackageJson: string;
+    appServerIndexJs: string;
+    appClientIndexJs: string;
+    appSrcIndexJs: string;
+    ownPath: string;
+    appHtml: string;
+    nodePaths: string[];
+    ownNodeModules: string;
+    jsBuildConfigPath: string;
+    localBuildConfig: string;
+    resolvedNodeModules: string[];
+    tsConfig: string;
+    devDir: string;
+    devDirPublic: string;
+    libPackages: string[];
+    webAppPackages: string[];
+    allPackages: string[];
+    defaultBuildConfigPath: string;
+    proxySetup: string;
+    tranlationsDir: string;
+    publicUrlOrPath: any;
+    eslintConfig: string;
+    ossIndex: string;
+    ownJestConfig: string;
+    jestConfig: string;
+    testTsConfig: string;
+};
+//# sourceMappingURL=paths.d.ts.map

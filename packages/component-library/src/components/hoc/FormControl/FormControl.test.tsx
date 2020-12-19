@@ -1,5 +1,4 @@
 /* eslint-disable jest/expect-expect */
-import React from 'react';
 import { Input } from '../../atoms/Input';
 import { FormControl, FormControlProps } from '.';
 import { render, RenderResult } from '@testing-library/react';

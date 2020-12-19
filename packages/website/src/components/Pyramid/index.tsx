@@ -1,6 +1,4 @@
-import React from 'react';
-
-const styles = require('./Pyramid.module.scss');
+import styles from './Pyramid.module.scss';
 
 export const Pyramid: React.FC = () => (
   <div className={styles.main}>

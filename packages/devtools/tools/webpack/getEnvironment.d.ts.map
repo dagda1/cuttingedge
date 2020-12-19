@@ -1,0 +1,1 @@
+{"version":3,"file":"getEnvironment.d.ts","sourceRoot":"","sources":["../../src/webpack/getEnvironment.ts"],"names":[],"mappings":"AAIA,QAAA,MAAM,UAAU,QAAkB,CAAC;AAEnC,eAAO,MAAM,cAAc;mBACV,OAAO;qBACL,MAAM;eACZ,OAAO;eACP,OAAO;kBACJ,OAAO;gBACT,MAAM;CAgBnB,CAAC;AAGF,eAAO,MAAM,eAAe;YAA0B,OAAO;;;;CAe5D,CAAC"}

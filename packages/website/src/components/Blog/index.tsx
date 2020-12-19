@@ -1,4 +1,3 @@
-import React from 'react';
 import { posts } from './posts';
 import { Heading, ExternalLink } from '@cutting/component-library';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';

@@ -1,7 +1,6 @@
-declare let __BROWSER__: any;
 import { Heading } from '@cutting/component-library';
 import cs from 'classnames';
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 import { useScrollToTop } from '@cutting/hooks';
@@ -10,7 +9,7 @@ import { useLocation } from 'react-router';
 import { Covid19 } from 'src/urls';
 import { Helmet } from 'react-helmet';
 
-const styles = require('./ApplicationLayout.module.scss');
+import styles from './ApplicationLayout.module.scss';
 
 export interface ApplicationLayoutProps {
   heading?: string;

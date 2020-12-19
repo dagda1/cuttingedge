@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
 import Graph from 'src/components/Graphs/Graph';
 import regression from 'regression';

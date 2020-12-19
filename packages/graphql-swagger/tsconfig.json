@@ -1,11 +1,6 @@
 {
   "extends": "@cutting/devtools/typescript/tsconfig.base.json",
   "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "declaration": true,
-    "jsx": "react",
     "outDir": "dist",
     "rootDir": "./src"
   },

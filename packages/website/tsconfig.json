@@ -3,14 +3,9 @@
   "compilerOptions": {
     "target": "es5",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "jsx": "react",
     "outDir": "./dist",
     "baseUrl": ".",
-    "sourceMap": true,
-    
-    "skipLibCheck": true
+    "sourceMap": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]

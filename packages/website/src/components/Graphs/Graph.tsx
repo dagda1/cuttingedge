@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 // eslint:disable
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useParentSize } from '@cutting/hooks';
 import {
   VictoryChart,
@@ -21,7 +21,7 @@ import { useLocation } from 'react-router';
 import { assert } from '@cutting/util';
 import { CountriesStats } from './useCountryCovidData';
 
-const styles = require('./Graph.module.scss');
+import styles from './Graph.module.scss';
 
 export type GraphProps = {
   result: { isSettled: boolean; data?: CountriesStats };

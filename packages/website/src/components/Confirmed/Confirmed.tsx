@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCountryCovidData, countryData } from 'src/components/Graphs';
 import Graph from 'src/components/Graphs/Graph';
 import dayjs from 'dayjs';

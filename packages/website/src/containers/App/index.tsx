@@ -1,5 +1,5 @@
 require('../../assets/scss/global.module.scss');
-import React from 'react';
+('react');
 import { Routes } from '../../routes';
 import { BrowserRouter as Router } from 'react-router-dom';
 

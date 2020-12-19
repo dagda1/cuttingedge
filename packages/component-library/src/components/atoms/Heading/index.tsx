@@ -1,5 +1,4 @@
 import cs from 'classnames';
-import React from 'react';
 import { Taggable } from '@cutting/util';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {

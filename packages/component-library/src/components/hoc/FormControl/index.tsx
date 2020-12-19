@@ -1,5 +1,5 @@
 import cs from 'classnames';
-import React, { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import { Error } from '../../atoms/ErrorLabel';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';

@@ -1,5 +1,5 @@
 require('./global.module.scss');
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Box, Point } from './types';
 import { Box as MovableBox } from './Box';
 import { Shortcuts } from '../src/components/Shortcuts';

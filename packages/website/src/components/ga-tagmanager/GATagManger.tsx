@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const GATagManager: React.FC<{ gaId: string }> = ({ gaId }) => {
   return (
     <>

@@ -5,9 +5,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
+  "type": "module",
   "files": [
     "dist"
   ],
@@ -15,7 +13,7 @@
   "scripts": {
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=development cutting ts-build",
+    "build": "NODE_ENV=development cutting rollup",
     "prepublish": "npm run build"
   },
   "dependencies": {
@@ -42,5 +40,8 @@
     "hooks",
     "hook",
     "use-shortcuts"
-  ]
+  ],
+  "main": "dist/index.js",
+  "module": "dist/react-typed-mousetrap.esm.js",
+  "browser": "dist/react-typed-mousetrap.esm.js"
 }

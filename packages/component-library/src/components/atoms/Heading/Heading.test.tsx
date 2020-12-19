@@ -1,5 +1,4 @@
-import React from 'react';
-import { Heading, HeadingProps } from '.';
+simport { Heading, HeadingProps } from '.';
 import { render } from '@testing-library/react';
 
 const wrap = (props: HeadingProps = {}) => render(<Heading {...props} />);

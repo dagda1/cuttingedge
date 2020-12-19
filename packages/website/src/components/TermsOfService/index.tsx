@@ -1,4 +1,3 @@
-import React from 'react';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 
 const markdown = require('../../markdown/terms-of-service.md');

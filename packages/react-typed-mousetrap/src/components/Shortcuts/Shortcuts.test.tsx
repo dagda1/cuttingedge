@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
 import { Shortcuts } from './Shortcuts';
 import { render } from '@testing-library/react';
 import { ShortcutMap, KeyCode } from '@cutting/use-shortcuts';

@@ -1,10 +1,9 @@
 import { ExternalLink, Heading } from '@cutting/component-library';
-import React from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
 import { Github } from '../Svg';
 
-const styles = require('./OSS.module.scss');
+import styles from './OSS.module.scss';
 
 export const OSS: React.FC = () => (
   <ApplicationLayout heading="Open Source Contributions">

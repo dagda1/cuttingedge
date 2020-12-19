@@ -14,6 +14,8 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "downlevelIteration": true,
+    "declaration": true,
+    "declarationMap": true,
     "lib": [
       "es5",
       "es2015",

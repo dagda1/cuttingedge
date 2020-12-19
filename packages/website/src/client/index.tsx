@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, Renderer } from 'react-dom';
 import { hydrate } from 'react-dom';
 import { loadableReady } from '@loadable/component';

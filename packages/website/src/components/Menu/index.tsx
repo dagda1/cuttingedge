@@ -1,6 +1,6 @@
 import { Heading } from '@cutting/component-library';
 import cs from 'classnames';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as urls from '../../urls';
 import { MobileNavButton } from '../MobileNavButton';
@@ -8,7 +8,7 @@ import { Cow } from '../Svg';
 import { MenuItems, MobileMenuItems } from './MenuItems';
 import * as Urls from 'src/urls';
 
-const styles = require('./Menu.module.scss');
+import styles from './Menu.module.scss';
 
 export interface MenuState {
   isExpanded: boolean;

@@ -1,7 +1,6 @@
-import React from 'react';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 
-const styles = require('./ContactMe.module.scss');
+import styles from './ContactMe.module.scss';
 
 export const ContactMe: React.FC = () => (
   <ApplicationLayout heading="Let me know how I can help" className={styles.container} showFooter={false}>

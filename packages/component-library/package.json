@@ -18,7 +18,7 @@
     "@testing-library/jest-dom": "^5.11.6"
   },
   "scripts": {
-    "build": "NODE_ENV=development cutting ts-build",
+    "build": "NODE_ENV=development cutting rollup",
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true npm test",

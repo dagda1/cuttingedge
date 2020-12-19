@@ -1,11 +1,13 @@
-import React from 'react';
+import { range } from '@cutting/util';
 import cs from 'classnames';
 
-const styles = require('./LoadingIcon.module.scss');
+import styles from './LoadingIcon.module.scss';
 
 export interface LoadingIconProps {
   darkMode?: boolean;
 }
+
+const angles = [...range(0, 360, 30)];
 
 const LoadingIcon: React.FC<LoadingIconProps> = ({ darkMode }) => (
   <svg
@@ -18,7 +20,7 @@ const LoadingIcon: React.FC<LoadingIconProps> = ({ darkMode }) => (
     preserveAspectRatio="xMidYMid"
   >
     <g className={styles.bars}>
-      {range(0, 360, 30).map((angle) => (
+      {Array.from(angles).map((angle) => (
         <rect
           key={angle}
           x="48.5"

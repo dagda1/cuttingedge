@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
 
@@ -11,8 +10,5 @@ const render = (Component: React.FC) => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    const App = require('./App').default;
-    render(App);
-  });
+  module.hot.accept('./App', () => import('./App').then((m) => render(m.App)));
 }

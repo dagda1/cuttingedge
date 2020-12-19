@@ -1,10 +1,9 @@
-import React from 'react';
 import { bannerPages } from '../../routes';
 import cs from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { Covid19, Deaths, IncreaseInDeaths } from 'src/urls';
 
-const styles = require('./Menu.module.scss');
+import styles from './Menu.module.scss';
 
 export interface MenuItemsProps {
   collapse: () => void;

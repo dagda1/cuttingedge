@@ -1,4 +1,5 @@
-import { useEffect, useCallback, RefObject, useReducer } from 'react';
+import { useEffect, useCallback, useReducer } from 'react';
+import type { RefObject } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { UseParentSizeOptions, Dimensions, SizeAction, SizeActionTypes } from './types';
 

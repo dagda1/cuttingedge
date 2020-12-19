@@ -1,5 +1,5 @@
 import cs from 'classnames';
-import React from 'react';
+('react');
 
 import styles from './Label.module.scss';
 

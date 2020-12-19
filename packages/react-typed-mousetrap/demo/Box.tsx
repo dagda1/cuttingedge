@@ -1,4 +1,5 @@
-import React, { CSSProperties, useCallback } from 'react';
+import { useCallback } from 'react';
+import type { CSSProperties } from 'react';
 import { Point, Box as BoxType } from './types';
 import { Shortcuts } from '../src/components/Shortcuts';
 import { shortcutMap } from './shortCutMap';

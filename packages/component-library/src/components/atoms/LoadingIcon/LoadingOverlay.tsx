@@ -1,15 +1,14 @@
-import React from 'react';
 import LoadingIcon from './LoadingIcon';
 import cs from 'classnames';
 
-const styles = require('./LoadingIcon.module.scss');
+import styles from './LoadingIcon.module.scss';
 export interface LoadingOverlayProps {
   busy: boolean;
   text?: string;
   darkMode?: boolean;
 }
 
-export const LoadingOverlay = ({ busy, text, darkMode }: LoadingOverlayProps) =>
+export const LoadingOverlay = ({ busy, text, darkMode }: LoadingOverlayProps): JSX.Element | null =>
   busy ? (
     <div className={cs(styles['spinner-overlay'], { [styles.dark]: darkMode })} data-selector="spinner">
       <div className={styles.spinner}>

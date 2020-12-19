@@ -1,4 +1,3 @@
-import React from 'react';
 import cs from 'classnames';
 import { RadioProps, RadioSize, RadioLayout, RadioLayoutProps, RadioEventHandlers } from './types';
 
