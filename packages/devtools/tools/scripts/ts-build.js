@@ -44,7 +44,6 @@ exports.runEslint = runEslint;
 function runTypeScriptBuild() {
     var _a, _b;
     fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
-    console.dir(process.argv);
     process.argv.push('-p', paths_1.paths.tsConfig);
     var tscPath = findExecutable(__dirname, 'tsc');
     var tscCommand = tscPath + " " + process.argv.slice(2).join(' ');

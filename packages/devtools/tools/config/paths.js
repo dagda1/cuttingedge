@@ -65,7 +65,7 @@ var testTsConfig = fs_1.default.existsSync(testTsConfigPath)
     : path_1.default.resolve(__dirname, '../../typescript/tsconfig.test.json');
 var outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.outDir) || DefaultBuildDir;
 var appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
-var DevFolder = 'demo ';
+var DevFolder = 'demo';
 exports.paths = {
     dotenv: resolveApp('.env'),
     appPath: resolveApp('.'),

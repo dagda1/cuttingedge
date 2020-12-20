@@ -5,7 +5,11 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
+  "type": "module",
+  "module": "dist/component-library.esm.js",
+  "browser": "dist/component-library.esm.js",
   "main": "dist/index.js",
+  "sideEffects": false,
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
@@ -23,8 +27,5 @@
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true npm test",
     "prepublish": "npm run build"
-  },
-  "module": "dist/component-library.esm.js",
-  "browser": "dist/component-library.esm.js",
-  "type": "module"
+  }
 }

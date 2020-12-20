@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 // eslint:disable
 import { FC, useState } from 'react';
-import { Modal, Heading, FormInput, LayoutType } from '../src/components';
-import { Button, ButtonStyle } from '../src/components/atoms/Button';
+import { Modal, Heading, FormInput } from '../src';
+import { Button } from '../src/components/atoms/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
 
@@ -129,7 +129,7 @@ export const App: FC = () => {
       <div className={styles.layout}>
         <div className={styles.item}>
           <FormInput
-            layoutType={LayoutType.horizontal}
+            layout="horizontal"
             label="Horizontal"
             maxLength={100}
             onKeyDown={(e) => {
@@ -174,7 +174,7 @@ export const App: FC = () => {
       <div className={styles.layout}>
         <div className={styles.item}>
           <div>
-            <Button onClick={() => setModalOpen(true)} buttonStyle={ButtonStyle.Inverse}>
+            <Button onClick={() => setModalOpen(true)} buttonStyle="inverse">
               Open Modal
             </Button>
           </div>

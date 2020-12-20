@@ -12,12 +12,14 @@
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run tsc",
+    "prebuild": "yarn run tsc ",
+    "build": "yarn run cutting ts-build ",
     "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.1",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.12.1",
     "@babel/plugin-proposal-optional-chaining": "^7.12.7",
     "@babel/plugin-transform-regenerator": "^7.12.1",
@@ -25,6 +27,7 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@intervolga/optimize-cssnano-plugin": "^1.0.6",
+    "@loadable/babel-plugin": "^5.13.2",
     "@loadable/component": "^5.14.1",
     "@loadable/webpack-plugin": "^5.14.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
@@ -39,6 +42,9 @@
     "autoprefixer": "^10.1.0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "babel-plugin-annotate-pure-calls": "^0.4.0",
+    "babel-plugin-dev-expression": "^0.2.2",
+    "babel-plugin-macros": "^3.0.1",
     "browserslist": "^4.16.0",
     "commander": "^6.2.1",
     "copy": "^0.3.2",

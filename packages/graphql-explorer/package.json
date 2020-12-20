@@ -8,12 +8,13 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "license": "MIT",
   "scripts": {
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting ts-build",
-    "prepublish": "npm run build"
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@cutting/util": "4.0.0"

@@ -59,7 +59,7 @@ const outDir = tsConfig.compilerOptions?.outDir || DefaultBuildDir;
 
 const appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
 
-const DevFolder = 'demo ';
+const DevFolder = 'demo';
 
 export const paths = {
   dotenv: resolveApp('.env'),

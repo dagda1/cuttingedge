@@ -7,6 +7,10 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
+  "main": "dist/index.js",
+  "module": "dist/use-shortcuts.esm.js",
+  "browser": "dist/use-shortcuts.esm.js",
+  "sideEffects": false,
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "files": [
@@ -41,8 +45,5 @@
     "hooks",
     "hook",
     "use-shortcuts"
-  ],
-  "main": "dist/index.js",
-  "module": "dist/use-shortcuts.esm.js",
-  "browser": "dist/use-shortcuts.esm.js"
+  ]
 }
