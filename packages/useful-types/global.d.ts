@@ -1,4 +1,4 @@
-declare let __DEV__: boolean;
+declare let __BROWSER__: boolean;
 declare let BROWSER: boolean;
 
 declare module '*.module.css' {
@@ -17,6 +17,11 @@ declare module '*.module.sass' {
 }
 
 declare module '*.module.less' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
+
+declare module '*.md' {
   const classes: { [key: string]: string };
   export default classes;
 }

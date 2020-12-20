@@ -1,11 +1,10 @@
 {
-  "extends": "../../../tsconfig.base.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "declaration": true,
     "outDir": "dist",
-    "rootDir": "./src"
+    "rootDir": "."
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]

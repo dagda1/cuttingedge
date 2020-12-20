@@ -1,8 +1,9 @@
+import type { RefObject } from 'react';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
 export interface UseScrollToTopProps<E = HTMLElement> {
-  ref: React.RefObject<E>;
+  ref: RefObject<E>;
 }
 
 export const useScrollToTop = ({ ref }: UseScrollToTopProps): void => {

@@ -1,20 +1,21 @@
+import type { FC, HTMLAttributes } from 'react';
 import cs from 'classnames';
 import { StandardProps } from '../../../types';
 import styles from './ErrorLabel.module.scss';
 
-export type ErrorProps = StandardProps<React.HTMLAttributes<HTMLUListElement>> & {
+export type ErrorProps = StandardProps<HTMLAttributes<HTMLUListElement>> & {
   errorMessage: string;
   dataSelector?: string;
   className?: string;
 };
 
-export const Error: React.FC<ErrorProps> = ({ errorMessage, className, dataSelector = 'form-error' }) => (
+export const Error: FC<ErrorProps> = ({ errorMessage, className, dataSelector = 'form-error' }) => (
   <ul className={cs('current-errors', className, styles.container)}>
     <li data-selector={dataSelector}>{errorMessage}</li>
   </ul>
 );
 
-export const ErrorLabel: React.FC<ErrorProps> = ({ id, ...props }) => (
+export const ErrorLabel: FC<ErrorProps> = ({ id, ...props }) => (
   <div id={id} aria-hidden="false">
     <Error {...props} />
   </div>

@@ -4,8 +4,7 @@
     "target": "es5",
     "module": "ESNext",
     "outDir": "./dist",
-    "baseUrl": ".",
-    "sourceMap": true
+    "baseUrl": "."
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]

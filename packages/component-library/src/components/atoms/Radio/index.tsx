@@ -1,9 +1,10 @@
+import type { FC } from 'react';
 import cs from 'classnames';
 import { RadioProps, RadioSize, RadioLayout, RadioLayoutProps, RadioEventHandlers } from './types';
 
 import styles from './Radio.module.scss';
 
-export const Radio: React.FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
+export const Radio: FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
   id,
   name,
   value,

@@ -1,11 +1,12 @@
+import type { FC, MouseEventHandler } from 'react';
 import styles from './MobileNavButton.module.scss';
 
 export interface MobileNavButtonProps {
-  onClick: React.MouseEventHandler;
+  onClick: MouseEventHandler;
   isActive?: boolean;
 }
 
-export const MobileNavButton: React.FC<MobileNavButtonProps> = ({ onClick, isActive }) => (
+export const MobileNavButton: FC<MobileNavButtonProps> = ({ onClick, isActive }) => (
   <button
     id="mobile-nav"
     aria-label="Open menu button"

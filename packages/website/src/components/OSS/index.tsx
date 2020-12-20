@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { ExternalLink, Heading } from '@cutting/component-library';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
@@ -5,7 +6,7 @@ import { Github } from '../Svg';
 
 import styles from './OSS.module.scss';
 
-export const OSS: React.FC = () => (
+export const OSS: FC = () => (
   <ApplicationLayout heading="Open Source Contributions">
     <div className={styles.container}>
       <Heading level={2}>Community Pull Requests</Heading>

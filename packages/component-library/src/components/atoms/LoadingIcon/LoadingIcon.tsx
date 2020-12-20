@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { range } from '@cutting/util';
 import cs from 'classnames';
 
@@ -9,7 +10,7 @@ export interface LoadingIconProps {
 
 const angles = [...range(0, 360, 30)];
 
-const LoadingIcon: React.FC<LoadingIconProps> = ({ darkMode }) => (
+const LoadingIcon: FC<LoadingIconProps> = ({ darkMode }) => (
   <svg
     data-selector="loading-icon"
     className={styles['loading-icon']}

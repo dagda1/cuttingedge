@@ -1,3 +1,5 @@
+import type { FC, RefObject } from 'react';
+
 export interface Point {
   x: number;
   y: number;
@@ -8,12 +10,12 @@ export interface ResponsiveSVGProps {
   height: number;
   origin?: Point;
   preserveAspectRatio?: string;
-  innerRef?: React.RefObject<SVGSVGElement>;
+  innerRef?: RefObject<SVGSVGElement>;
   className?: string;
   hide?: boolean;
 }
 
-export const ResponsiveSVG: React.FunctionComponent<ResponsiveSVGProps> = ({
+export const ResponsiveSVG: FC<ResponsiveSVGProps> = ({
   height,
   width,
   children,

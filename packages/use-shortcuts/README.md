@@ -19,9 +19,10 @@ yarn add @cutting/use-shortcuts -S
 ## Usage
 
 ```js
+import type { FC } from 'react';
 import { useShortcuts } from '@cutting/use-shortcuts';
 
-const MyCmponent: React.FC = () => {
+const MyCmponent: FC = () => {
   useShortcuts({
     shortcutMap: {
       MOVE_LEFT: 'a',
@@ -45,7 +46,7 @@ In the above example, the `useShortcuts` hook is called and a configurtion objec
 export interface UseShortcuts {
   shortcutMap: ShortcutMap;
   handler: ShortcutHandler;
-  ref?: React.RefObject<HTMLElement>;
+  ref?: RefObject<HTMLElement>;
 }
 ```
 The configuration object has a required property `shortcutMap` which is a key value pair of *actions* that are dispatched when keyboard events are triggered.
@@ -79,7 +80,7 @@ There is a [KeyCode enum](./src/types/keycodes.ts) to help with the special keys
     SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] },
 };
 
-const MyCmponent: React.FC = () => {
+const MyCmponent: FC = () => {
   const handleMove = useCallback(
     (action: keyof typeof shortcutMap) => {
       switch (action) {
@@ -111,7 +112,7 @@ const MyCmponent: React.FC = () => {
 export interface UseShortcuts {
   shortcutMap: ShortcutMap;
   handler: ShortcutHandler;
-  ref?: React.RefObject<HTMLElement>;
+  ref?: RefObject<HTMLElement>;
 }
 ```
 
@@ -119,14 +120,14 @@ export interface UseShortcuts {
 |---|---|
 | shortcutMap  | A key value pair object where the keys are the actions tht get dispatched and the values are the keys that invoke the actions.  |
 | handler  | The function that `useShortcuts` will call with the action keys from the `shortcutMap`   |
-| ref  |an optional `React.RefObject<HTMLElement>` that will have add the keyboard event listeners bound to.  If `ref` is omitted then the event listeners will be added to the document object.   |
+| ref  |an optional `RefObject<HTMLElement>` that will have add the keyboard event listeners bound to.  If `ref` is omitted then the event listeners will be added to the document object.   |
 
 ## adding event listeners to an html element
 
 By default event listeners are added to the `document` object unless the `ref` attribute is supplied in the configuration, in which case the event handlers are added to that element when it is in the DOM:
 
 ```javascript
-export const Comp: React.FC = () => {
+export const Comp: FC = () => {
   const ref = useRef<HTMLInputElement>(null);
   const [text, setText] = useState('');
 

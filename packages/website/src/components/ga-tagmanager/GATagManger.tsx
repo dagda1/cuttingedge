@@ -1,4 +1,6 @@
-export const GATagManager: React.FC<{ gaId: string }> = ({ gaId }) => {
+import type { FC } from 'react';
+
+export const GATagManager: FC<{ gaId: string }> = ({ gaId }) => {
   return (
     <>
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>

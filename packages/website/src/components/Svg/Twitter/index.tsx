@@ -1,4 +1,6 @@
-export const Twitter: React.FC = () => (
+import type { FC } from 'react';
+
+export const Twitter: FC = () => (
   <svg viewBox="0 0 11 9" xmlns="http://www.w3.org/2000/svg">
     <path
       // eslint:disable-next-line

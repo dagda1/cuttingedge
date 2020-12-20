@@ -16,6 +16,7 @@
     "downlevelIteration": true,
     "declaration": true,
     "declarationMap": true,
+    "sourceMap": true,
     "lib": [
       "es5",
       "es2015",

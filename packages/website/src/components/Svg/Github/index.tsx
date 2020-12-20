@@ -1,4 +1,6 @@
-export const Github: React.FC = () => (
+import type { FC } from 'react';
+
+export const Github: FC = () => (
   <svg viewBox="0 0 33 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="github" fill="#fff">

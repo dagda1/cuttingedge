@@ -1,9 +1,10 @@
+import type { FC } from 'react';
 import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
 import Graph from 'src/components/Graphs/Graph';
 import dayjs from 'dayjs';
 import { countryData } from '../Graphs/types';
 
-export const IncreseFromPreviousDay: React.FC = () => {
+export const IncreseFromPreviousDay: FC = () => {
   const result = useCountryCovidData();
 
   if (result.data) {

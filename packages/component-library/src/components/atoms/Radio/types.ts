@@ -1,3 +1,5 @@
+import type { ChangeEventHandler } from 'react';
+
 export enum RadioLayout {
   inline = 'inline',
   stacked = 'stacked',
@@ -12,7 +14,7 @@ export type RadioProps<T = {}> = T & {
 };
 
 export interface RadioEventHandlers {
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 export interface RadioLayoutProps {

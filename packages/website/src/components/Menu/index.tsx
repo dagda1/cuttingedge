@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { Heading } from '@cutting/component-library';
 import cs from 'classnames';
 import { useState } from 'react';
@@ -14,7 +15,7 @@ export interface MenuState {
   isExpanded: boolean;
 }
 
-export const Menu: React.FC = () => {
+export const Menu: FC = () => {
   const [expanded, setExpanded] = useState(false);
 
   const collapse = (): void => setExpanded(false);

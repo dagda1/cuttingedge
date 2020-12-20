@@ -1,11 +1,12 @@
+import type { FC, InputHTMLAttributes } from 'react';
 import cs from 'classnames';
 import styles from './Input.module.scss';
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean;
 }
 
-export const Input: React.FC<InputProps> = ({ invalid, className, required, ...rest }) => (
+export const Input: FC<InputProps> = ({ invalid, className, required, ...rest }) => (
   <input
     autoComplete="off"
     required={required}

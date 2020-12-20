@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { bannerPages } from '../../routes';
 import cs from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -9,7 +10,7 @@ export interface MenuItemsProps {
   collapse: () => void;
 }
 
-export const MenuItems: React.FC<MenuItemsProps> = ({ collapse }) => (
+export const MenuItems: FC<MenuItemsProps> = ({ collapse }) => (
   <>
     {bannerPages.map((page) => (
       <li key={page.heading} className={styles.horizontal}>
@@ -21,7 +22,7 @@ export const MenuItems: React.FC<MenuItemsProps> = ({ collapse }) => (
   </>
 );
 
-export const MobileMenuItems: React.FC<MenuItemsProps> = ({ collapse }) => {
+export const MobileMenuItems: FC<MenuItemsProps> = ({ collapse }) => {
   return (
     <div>
       <li className={cs(styles.horizontal, styles.mobile, styles.close__button)}>

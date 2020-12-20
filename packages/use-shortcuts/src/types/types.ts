@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { RefObject } from 'react';
 import { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
 import { KeyCode } from './keycodes';
 
@@ -9,7 +10,7 @@ export interface Action<T extends string = any> {
 export interface UseShortcuts<E extends HTMLElement = HTMLElement> {
   shortcutMap: ShortcutMap;
   handler: ShortcutHandler;
-  ref?: React.RefObject<E>;
+  ref?: RefObject<E>;
 }
 
 export interface UseShortcutsResult {

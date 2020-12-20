@@ -1,8 +1,9 @@
+import type { FC } from 'react';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 
 import styles from './ContactMe.module.scss';
 
-export const ContactMe: React.FC = () => (
+export const ContactMe: FC = () => (
   <ApplicationLayout heading="Let me know how I can help" className={styles.container} showFooter={false}>
     <script type="text/javascript" src="https://www.formlets.com/static/js/iframeResizer.min.js"></script>
     <iframe

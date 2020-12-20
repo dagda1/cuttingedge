@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { Heading } from '@cutting/component-library';
 import cs from 'classnames';
 import { useRef, useEffect } from 'react';
@@ -19,7 +20,7 @@ export interface ApplicationLayoutProps {
   showFooter?: boolean;
 }
 
-export const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({
+export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
   heading,
   italicise,
   center,

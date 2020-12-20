@@ -1,5 +1,5 @@
+import type { FC } from 'react';
 import cs from 'classnames';
-('react');
 
 import styles from './Label.module.scss';
 
@@ -13,7 +13,7 @@ export interface LabelProps {
   dataSelector?: string;
 }
 
-export const Label: React.FC<LabelProps> = ({
+export const Label: FC<LabelProps> = ({
   id,
   htmlFor,
   invalid,

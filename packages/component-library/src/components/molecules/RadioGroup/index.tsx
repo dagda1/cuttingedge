@@ -1,3 +1,4 @@
+import type { ReactNode, FC, ChangeEvent } from 'react';
 import { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio';
 import { RadioProps, RadioLayoutProps, RadioLayout } from '../../atoms/Radio/types';
@@ -5,7 +6,7 @@ import cs from 'classnames';
 
 import styles from './RadioGroup.module.scss';
 
-export type RadioOption = RadioProps & { content: React.ReactNode };
+export type RadioOption = RadioProps & { content: ReactNode };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export interface RadioGroupProps<T = {}> {
@@ -16,7 +17,7 @@ export interface RadioGroupProps<T = {}> {
   className?: string;
 }
 
-export const RadioGroup: React.FC<RadioGroupProps & RadioLayoutProps> = ({
+export const RadioGroup: FC<RadioGroupProps & RadioLayoutProps> = ({
   legend,
   layout,
   size,
@@ -36,7 +37,7 @@ export const RadioGroup: React.FC<RadioGroupProps & RadioLayoutProps> = ({
   const options = optionsWithIds.current;
 
   const changeHandler = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       const option = optionsWithIds.current.find((o) => o.id === e.target.id);
 
       if (!option) {

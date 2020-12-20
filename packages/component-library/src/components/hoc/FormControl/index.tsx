@@ -1,5 +1,6 @@
 import cs from 'classnames';
-import type { ReactElement } from 'react';
+import type { ReactElement, ReactNode, InputHTMLAttributes, ComponentType, ComponentClass } from 'react';
+import { Component } from 'react';
 import { Error } from '../../atoms/ErrorLabel';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
@@ -12,7 +13,7 @@ export enum LayoutType {
 }
 
 export type FormControlProps<E> = {
-  additionalLabel?: React.ReactNode;
+  additionalLabel?: ReactNode;
   className?: string;
   errorDataSelector?: string;
   errorMessage?: string;
@@ -23,12 +24,10 @@ export type FormControlProps<E> = {
   strong?: boolean;
   layoutType?: LayoutType;
   ['data-selector']?: string;
-} & React.InputHTMLAttributes<E>;
+} & InputHTMLAttributes<E>;
 
-export function FormControl<P, E extends HTMLElement>(
-  Comp: React.ComponentType<P>,
-): React.ComponentClass<FormControlProps<E> & P> {
-  return class FormControlWrapper extends React.Component<FormControlProps<E> & P> {
+export function FormControl<P, E extends HTMLElement>(Comp: ComponentType<P>): ComponentClass<FormControlProps<E> & P> {
+  return class FormControlWrapper extends Component<FormControlProps<E> & P> {
     id?: string;
 
     constructor(props: FormControlProps<E> & P) {

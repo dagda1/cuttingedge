@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { Cow, Github, Twitter } from '../Svg';
 import { footerPages } from '../../routes';
 import { NavLink } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { ExternalLink } from '@cutting/component-library';
 
 import styles from './Footer.module.scss';
 
-export const Footer: React.FC = () => (
+export const Footer: FC = () => (
   <footer role="contentinfo">
     <div className={styles.left}>
       <div className={styles.logo}>

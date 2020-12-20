@@ -26,7 +26,7 @@ export const posts: Post[] = [
   {
     title: 'Frustrations with React Hooks',
     summary:
-      'While the response to Hooks has been overwhelmingly positive, we are going to look at some of the not so popular parts of React..',
+      'While the response to Hooks has been overwhelmingly positive, we are going to look at some of the not so popular parts of React',
     link: 'https://blog.logrocket.com/frustrations-with-react-hooks/',
   },
   {

@@ -1,5 +1,5 @@
+import type { FC } from 'react';
 import loadable from '@loadable/component';
-
 import * as Urls from 'src/urls';
 import { Route, Switch } from 'react-router';
 import { Page } from 'src/types';
@@ -84,7 +84,7 @@ export const routable: Page[] = [
   },
 ];
 
-export const Routes: React.FC = () => (
+export const Routes: FC = () => (
   <Switch>
     {routable.map(({ path, ...rest }) => (
       <Route key={path} path={path} {...rest} />

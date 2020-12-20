@@ -1,8 +1,9 @@
+import type { FC } from 'react';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 
-const markdown = require('../../markdown/privacy.md');
+import markdown from '../../markdown/privacy.md';
 
-export const PrivacyPolicy: React.FC = () => (
+export const PrivacyPolicy: FC = () => (
   <ApplicationLayout heading="Privacy Policy">
     <div dangerouslySetInnerHTML={{ __html: markdown }} />
   </ApplicationLayout>

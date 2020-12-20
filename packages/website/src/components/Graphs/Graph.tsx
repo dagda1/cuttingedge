@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 // eslint:disable
+import type { FC } from 'react';
 import { useRef } from 'react';
 import { useParentSize } from '@cutting/hooks';
 import {
@@ -33,7 +34,7 @@ export type GraphProps = {
   heading: string;
 };
 
-export const Graph: React.FC<GraphProps> = ({
+export const Graph: FC<GraphProps> = ({
   result,
   yAxisLabel,
   labels,

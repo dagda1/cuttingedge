@@ -1,3 +1,4 @@
+import type { FC, DetailedHTMLProps, ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import cs from 'classnames';
 import { identity } from '@cutting/util';
 import { StandardProps } from '../../../types';
@@ -10,15 +11,15 @@ export enum ButtonStyle {
 }
 
 export type ButtonProps = StandardProps<
-  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 > & {
-  onClick?: React.MouseEventHandler;
+  onClick?: MouseEventHandler;
   buttonStyle?: ButtonStyle;
   ariaLabel?: string;
   ariaLabelledBy?: string;
 };
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   onClick,
   className,
   buttonStyle,

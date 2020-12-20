@@ -1,9 +1,10 @@
+import type { FC } from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
 
 export const root = document.getElementById('root');
 
-const render = (Component: React.FC) => {
+const render = (Component: FC) => {
   ReactDOM.render(<Component />, root);
 };
 

@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import { History } from 'history';
@@ -34,7 +35,7 @@ describe('useScrollToTop', () => {
       writable: true,
     });
 
-    const Comp: React.FC = () => {
+    const Comp: FC = () => {
       useScrollToTop({ ref });
       return <h1>Foo</h1>;
     };

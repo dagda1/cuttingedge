@@ -1,11 +1,13 @@
-export interface ExternalLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+import type { FC, AnchorHTMLAttributes } from 'react';
+
+export interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   dataSelector?: string;
   blank?: boolean;
   ariaLabel?: string;
   ariaLabelledBy?: string;
 }
 
-export const ExternalLink: React.FC<ExternalLinkProps> = ({
+export const ExternalLink: FC<ExternalLinkProps> = ({
   className,
   href,
   dataSelector,

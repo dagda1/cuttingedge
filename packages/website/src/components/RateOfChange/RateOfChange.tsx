@@ -1,8 +1,9 @@
+import type { FC } from 'react';
 import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
 import Graph from 'src/components/Graphs/Graph';
 import regression from 'regression';
 
-export const RateOfChange: React.FC = () => {
+export const RateOfChange: FC = () => {
   const result = useCountryCovidData({ startDate: '2020-01-01' });
 
   if (!result) {

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 // eslint:disable
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Modal, Heading, FormInput, LayoutType } from '../src/components';
 import { Button, ButtonStyle } from '../src/components/atoms/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
@@ -8,7 +8,7 @@ import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
 
 import styles from './global.module.scss';
 
-export const App: React.FC = () => {
+export const App: FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (

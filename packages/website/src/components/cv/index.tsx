@@ -1,10 +1,11 @@
+import type { FC } from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import * as Urls from '../../urls';
 
 import styles from './CV.module.scss';
 
 // eslint:disable
-export const CV: React.FC = () => {
+export const CV: FC = () => {
   const CVFile = 'paulcowan-cv.pdf';
 
   const pdfUrl = ['', 'assets', CVFile].join('/');

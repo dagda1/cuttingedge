@@ -1,8 +1,10 @@
+import type { FC } from 'react';
+
 export interface CowProps {
   className?: string;
 }
 
-export const Cow: React.FC<CowProps> = ({ className }) => (
+export const Cow: FC<CowProps> = ({ className }) => (
   <svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"

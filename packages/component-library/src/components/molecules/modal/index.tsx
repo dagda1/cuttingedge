@@ -1,4 +1,5 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, MouseEvent } from 'react';
+import { Component } from 'react';
 import { Button } from '../../atoms/Button';
 import cs from 'classnames';
 import { Heading } from '../..';
@@ -13,12 +14,12 @@ export interface ModalProps {
   openHandler: (open: boolean) => void;
 }
 
-export class Modal extends React.Component<ModalProps> {
+export class Modal extends Component<ModalProps> {
   public static defaultProps = {
     open: false,
   };
 
-  closeModal = (e: React.MouseEvent): void => {
+  closeModal = (e: MouseEvent): void => {
     e.stopPropagation();
     this.props.openHandler(false);
   };
