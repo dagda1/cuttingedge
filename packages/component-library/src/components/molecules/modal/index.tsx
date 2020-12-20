@@ -1,8 +1,8 @@
-import type { ReactNode, MouseEvent } from 'react';
-import { Component } from 'react';
+import { MouseEvent, useCallback } from 'react';
+import type { FC } from 'react';
 import { Button } from '../../atoms/Button';
 import cs from 'classnames';
-import { Heading } from '../..';
+import { Heading } from '../../atoms/Heading';
 
 import styles from './Modal.module.scss';
 
@@ -14,34 +14,33 @@ export interface ModalProps {
   openHandler: (open: boolean) => void;
 }
 
-export class Modal extends Component<ModalProps> {
-  closeModal = (e: MouseEvent): void => {
-    e.stopPropagation();
-    this.props.openHandler(false);
-  };
+export const Modal: FC<ModalProps> = ({ description, heading, footer, open = false, openHandler, children }) => {
+  const closeModal = useCallback(
+    (e: MouseEvent): void => {
+      e.stopPropagation();
+      openHandler(false);
+    },
+    [openHandler],
+  );
 
-  render(): ReactNode {
-    const { description, heading, footer, open = false, children } = this.props;
-
-    return (
-      <div
-        className={cs(styles.dialog, { [styles.open]: open })}
-        role="dialog"
-        aria-labelledby="dialog-title"
-        aria-describedby="dialog-description"
-      >
-        <div className={styles.heading}>
-          <Heading level={2}>{heading}</Heading>
-          <Button onClick={this.closeModal}>
-            <div>x</div>
-          </Button>
-        </div>
-        <p className={styles.description}>{description}</p>
-        <div className={styles.body}>{children}</div>
-        <div className={styles.footer}>
-          <Heading level={2}>{footer}</Heading>
-        </div>
+  return (
+    <div
+      className={cs(styles.dialog, { [styles.open]: open })}
+      role="dialog"
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-description"
+    >
+      <div className={styles.heading}>
+        <Heading level={2}>{heading}</Heading>
+        <Button onClick={closeModal}>
+          <div>x</div>
+        </Button>
       </div>
-    );
-  }
-}
+      <p className={styles.description}>{description}</p>
+      <div className={styles.body}>{children}</div>
+      <div className={styles.footer}>
+        <Heading level={2}>{footer}</Heading>
+      </div>
+    </div>
+  );
+};

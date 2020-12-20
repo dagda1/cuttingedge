@@ -167,12 +167,11 @@ function generateBundledModule(_a) {
                                     extract: true,
                                     modules: false,
                                     autoModules: true,
+                                    sourceMap: true,
                                     use: ['sass'],
                                     plugins: [
                                         postcss_url_1.default({
                                             url: 'inline',
-                                            maxSize: 10,
-                                            fallback: 'copy',
                                         }),
                                     ],
                                 }),

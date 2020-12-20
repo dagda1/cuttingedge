@@ -85,12 +85,11 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
         extract: true,
         modules: false,
         autoModules: true,
+        sourceMap: true,
         use: ['sass'],
         plugins: [
           url({
-            url: 'inline', // enable inline assets using base64 encoding
-            maxSize: 10, // maximum file size to inline (in kilobytes)
-            fallback: 'copy', // fallback method to use if max size is exceeded
+            url: 'inline',
           }),
         ],
       }),

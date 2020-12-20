@@ -23,5 +23,8 @@
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true npm test",
     "prepublish": "npm run build"
-  }
+  },
+  "module": "dist/component-library.esm.js",
+  "browser": "dist/component-library.esm.js",
+  "type": "module"
 }
