@@ -6,7 +6,7 @@ export { Input } from './components/atoms/Input';
 export { Label } from './components/atoms/Label';
 export { ErrorLabel } from './components/atoms/ErrorLabel';
 export { Button } from './components/atoms/Button';
-export { ResponsiveSVG } from './components/atoms/ResponsiveSVG';
+export { ResponsiveSVG } from './components/containers/ResponsiveSVG';
 export { LoadingOverlay } from './components/molecules/LoadingIcon/LoadingOverlay';
 export { FormControl } from './components/hoc/FormControl/';
 export { FormInput } from './components/molecules/FormControl';

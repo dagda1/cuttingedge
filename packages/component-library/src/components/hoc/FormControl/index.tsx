@@ -1,16 +1,12 @@
 import cs from 'classnames';
-import type { ReactElement, ReactNode, InputHTMLAttributes, ComponentType, ComponentClass } from 'react';
-import { Component } from 'react';
+import { FC, ReactNode, InputHTMLAttributes, useRef } from 'react';
 import { Error } from '../../atoms/ErrorLabel';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 
 import styles from './FormControl.module.scss';
 
-export enum LayoutType {
-  vertical = 'vertical',
-  horizontal = 'horizontal',
-}
+export type Layout = 'vertical' | 'horizontal';
 
 export type FormControlProps<E> = {
   additionalLabel?: ReactNode;
@@ -22,76 +18,67 @@ export type FormControlProps<E> = {
   label: string;
   required?: boolean;
   strong?: boolean;
-  layoutType?: LayoutType;
-  ['data-selector']?: string;
+  layout?: Layout;
+  dataSelector?: string;
 } & InputHTMLAttributes<E>;
 
-export function FormControl<P, E extends HTMLElement>(Comp: ComponentType<P>): ComponentClass<FormControlProps<E> & P> {
-  return class FormControlWrapper extends Component<FormControlProps<E> & P> {
-    id?: string;
+export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormControlProps<E> & P> {
+  const FormControlWrapper: FC<FormControlProps<E> & P> = ({
+    id,
+    invalid,
+    name,
+    label,
+    strong,
+    errorDataSelector,
+    errorMessage,
+    className,
+    additionalLabel,
+    highlight,
+    required,
+    dataSelector = 'form-control',
+    layout = 'vertical',
+    ...rest
+  }) => {
+    const internalId = useRef(id || name || prefixId());
 
-    constructor(props: FormControlProps<E> & P) {
-      super(props);
+    const errorId = `${internalId.current}-error`;
 
-      this.id = this.props.id || this.props.name || prefixId();
-    }
-
-    render(): ReactElement {
-      const {
-        invalid,
-        name,
-        label,
-        strong,
-        errorDataSelector,
-        errorMessage,
-        className,
-        additionalLabel,
-        highlight,
-        required,
-        layoutType = LayoutType.vertical,
-        ...rest
-      } = this.props;
-
-      const errorId = `${this.id}-error`;
-
-      return (
-        <div
-          className={cs(styles.input, className, {
-            [styles.highlight]: highlight,
-            [styles.horizontal]: layoutType === LayoutType.horizontal,
-          })}
+    return (
+      <div
+        className={cs(styles.input, className, {
+          [styles.highlight]: highlight,
+          [styles.horizontal]: layout === 'horizontal',
+        })}
+      >
+        <Label
+          id={`${internalId.current}-label`}
+          htmlFor={internalId.current}
+          required={required}
+          strong={strong}
+          dataSelector={`${dataSelector}-label`}
         >
-          <Label
-            id={`${this.id}-label`}
-            htmlFor={this.id}
+          {label}
+          {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
+        </Label>
+        <div className={styles.wrapper}>
+          <Comp
+            id={internalId.current}
+            name={name}
+            invalid={invalid}
             required={required}
-            strong={strong}
-            dataSelector={rest['data-selector'] && `${rest['data-selector']}-label`}
-          >
-            {label}
-            {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
-          </Label>
-          <div className={styles.wrapper}>
-            <Comp
-              id={this.id}
-              name={name}
-              invalid={invalid}
-              required={required}
-              aria-invalid={invalid}
-              aria-describedby={errorId}
-              {...(rest as P)}
-            />
-          </div>
-          <div id={errorId} aria-hidden={!invalid} role="alert">
-            {invalid && errorMessage && (
-              <Error
-                dataSelector={(rest['data-selector'] && `${rest['data-selector']}-error`) || errorDataSelector}
-                errorMessage={errorMessage.toString()}
-              />
-            )}
-          </div>
+            aria-invalid={invalid}
+            aria-describedby={errorId}
+            {...(rest as P)}
+          />
         </div>
-      );
-    }
+        <div id={errorId} aria-hidden={!invalid} role="alert">
+          {invalid && errorMessage && (
+            <Error dataSelector={errorDataSelector || `${dataSelector}-error`} errorMessage={errorMessage.toString()} />
+          )}
+        </div>
+      </div>
+    );
   };
+
+  return FormControlWrapper;
 }

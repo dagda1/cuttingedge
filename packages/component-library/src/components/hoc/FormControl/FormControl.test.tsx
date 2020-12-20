@@ -18,7 +18,7 @@ describe('FormControl', () => {
   it('should render an error state', () => {
     const { getByTestId } = wrap({ invalid: true, errorMessage: 'error' });
 
-    getByTestId('form-error');
+    getByTestId('form-control-error');
   });
 
   it('should be able to tag an error label', () => {
