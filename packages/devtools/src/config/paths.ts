@@ -39,8 +39,7 @@ const libPackages = [
   'packages/hooks',
   'packages/component-library',
   'packages/use-shortcuts',
-  'packages/react-typed-mousetrap',
-  'packages/graphql-swagger',
+  'packages/graphql-explorer',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));

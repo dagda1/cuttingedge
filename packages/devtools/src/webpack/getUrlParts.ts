@@ -1,4 +1,4 @@
-import { assert } from '../assert/assert';
+import { assert } from 'assert-ts';
 import { prepareUrls, Urls } from 'react-dev-utils/WebpackDevServerUtils';
 
 export const getUrlParts = ({

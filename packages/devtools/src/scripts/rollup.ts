@@ -6,7 +6,7 @@ import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
 import { logger } from './logger';
 import resolve from '@rollup/plugin-node-resolve';
-import { assert } from '../assert/assert';
+import { assert } from 'assert-ts';
 import injectProcessEnv from 'rollup-plugin-inject-process-env';
 import babel, { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
@@ -195,7 +195,7 @@ async function build() {
 
   const inputFile = candidates.find((candidate) => fs.existsSync(candidate));
 
-  assert(inputFile, 'No rootFile found for rollup');
+  assert(!!inputFile, 'No rootFile found for rollup');
 
   logger.start(`using input file ${inputFile}`);
 

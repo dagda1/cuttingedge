@@ -99,7 +99,7 @@ var path_1 = __importDefault(require("path"));
 var rollup_plugin_typescript2_1 = __importDefault(require("rollup-plugin-typescript2"));
 var logger_1 = require("./logger");
 var plugin_node_resolve_1 = __importDefault(require("@rollup/plugin-node-resolve"));
-var assert_1 = require("../assert/assert");
+var assert_ts_1 = require("assert-ts");
 var rollup_plugin_inject_process_env_1 = __importDefault(require("rollup-plugin-inject-process-env"));
 var plugin_babel_1 = __importDefault(require("@rollup/plugin-babel"));
 var plugin_json_1 = __importDefault(require("@rollup/plugin-json"));
@@ -127,7 +127,7 @@ function generateBundledModule(_a) {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    assert_1.assert(fs_extra_1.default.existsSync(inputFile), "Input file " + inputFile + " does not exist");
+                    assert_ts_1.assert(fs_extra_1.default.existsSync(inputFile), "Input file " + inputFile + " does not exist");
                     logger_1.logger.info("Generating " + packageName + " bundle.");
                     _b = createBabelConfig_1.createBabelConfig({
                         isDevelopment: false,
@@ -272,7 +272,7 @@ function build() {
                         { moduleFormat: 'esm', env: 'production' },
                     ];
                     inputFile = candidates.find(function (candidate) { return fs_extra_1.default.existsSync(candidate); });
-                    assert_1.assert(inputFile, 'No rootFile found for rollup');
+                    assert_ts_1.assert(!!inputFile, 'No rootFile found for rollup');
                     logger_1.logger.start("using input file " + inputFile);
                     _c.label = 2;
                 case 2:

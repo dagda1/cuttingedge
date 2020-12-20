@@ -19,7 +19,7 @@ import { configure as configureWebpackClient } from '../webpack/client';
 import { configure as configureWebpackServer } from '../webpack/server';
 import { configure as configureWebpackNode } from '../webpack/node';
 import { BuildConfig } from '../types/config';
-import { assert } from 'src/assert';
+import { assert } from 'assert-ts';
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 
@@ -60,7 +60,7 @@ export const build = async ({
     const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
     const clientConfig = buildClient && configureWebpackClient({ ...buildConfig.client, isStaticBuild: !buildServer });
 
-    assert(clientConfig, 'clientConfig is not present');
+    assert(!!clientConfig, 'clientConfig is not present');
 
     const { stats: clientStats } = await compile(clientConfig, BuildType.client);
 

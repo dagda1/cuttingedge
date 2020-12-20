@@ -1,6 +1,6 @@
 import { app } from './server';
 import http from 'http';
-import { assert } from '@cutting/util';
+import { assert } from 'assert-ts';
 
 const server = http.createServer(app);
 
@@ -20,8 +20,9 @@ if (module.hot) {
   module.hot.accept('./server', () => {
     console.log('🔁  HMR Reloading `./server`...');
     server.removeListener('request', currentApp);
-    const newApp = require('./server').app;
-    server.on('request', newApp);
-    currentApp = newApp;
+    import('./server').then((m) => {
+      server.once('request', m.app);
+      currentApp = m.app;
+    });
   });
 }

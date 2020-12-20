@@ -54,8 +54,6 @@
     "react-hooks-testing-library": "^0.6.0",
     "start-server-webpack-plugin": "^2.2.5",
     "stats-webpack-plugin": "^0.7.0",
-    "ts-node": "^9.1.1",
-    "webpack-flush-chunks": "^2.0.3",
     "webpack-hot-server-middleware": "^0.6.1"
   }
 }

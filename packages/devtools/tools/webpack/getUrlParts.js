@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUrlParts = void 0;
-var assert_1 = require("../assert/assert");
+var assert_ts_1 = require("assert-ts");
 var WebpackDevServerUtils_1 = require("react-dev-utils/WebpackDevServerUtils");
 var getUrlParts = function (_a) {
     var ssrBuild = _a.ssrBuild, isProduction = _a.isProduction;
     var rawPort = process.env.PORT || 3000;
-    assert_1.assert(!!rawPort, 'No port number on environment variable PORT');
+    assert_ts_1.assert(!!rawPort, 'No port number on environment variable PORT');
     var portOffset = ssrBuild && !isProduction ? 1 : 0;
     var port = Number(rawPort) + portOffset;
     var protocol = process.env.HTTPS === 'true' ? 'https' : 'http';

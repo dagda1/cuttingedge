@@ -42,7 +42,15 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/devtools",
+      "packages/eslint-config",
+      "packages/useful-types",
+      "packages/util",
+      "packages/hooks",
+      "packages/component-library",
+      "packages/use-shortcuts",
+      "packages/graphql-explorer",
+      "packages/website"
     ]
   },
   "resolutions": {

@@ -87,7 +87,7 @@ var webpack_merge_1 = require("webpack-merge");
 var client_1 = require("../webpack/client");
 var server_1 = require("../webpack/server");
 var node_1 = require("../webpack/node");
-var assert_1 = require("src/assert");
+var assert_ts_1 = require("assert-ts");
 var measureFileSizesBeforeBuild = FileSizeReporter_1.default.measureFileSizesBeforeBuild;
 var printFileSizesAfterBuild = FileSizeReporter_1.default.printFileSizesAfterBuild;
 var build = function (_a) {
@@ -128,7 +128,7 @@ var build = function (_a) {
                 case 7:
                     serverConfig = !!buildServer && server_1.configure(buildConfig.server);
                     clientConfig = buildClient && client_1.configure(__assign(__assign({}, buildConfig.client), { isStaticBuild: !buildServer }));
-                    assert_1.assert(clientConfig, 'clientConfig is not present');
+                    assert_ts_1.assert(!!clientConfig, 'clientConfig is not present');
                     return [4 /*yield*/, compile_1.compile(clientConfig, build_1.BuildType.client)];
                 case 8:
                     clientStats = (_c.sent()).stats;

@@ -9,7 +9,6 @@
  1. [@cutting/devtools](./packages/devtools/README.md) - Common [webpack](https://webpack.js.org/), [jest](https://facebook.github.io/jest/) and npm **scripts**
  2. [@cutting/util](./packages/util/README.md) - Any common functionality applicable to all packages can be found here.
  3. [@cutting/use-shortcuts](./packages/use-shortcuts/README.md) - Effortlessly create keyboard shortcust with this react hook.
- 4. [@cutting/react-typed-mousetrap](./packages/devtools/README.md) - Declaratively manage shortcuts on react components.
  5. [@cutting/component-library](./packages/component-library/README.md) - Common react components that can be shared among all projects.  This ensures consistency in both styling and functionality.  The [atomic design methodology](http://atomicdesign.bradfrost.com/chapter-2/) will be used to add a logical grouping to the component structure.
  7. [@cutting/website](./packages/website/README.md) - Frontend main site code for the [cutting website](http://cutting.**scot**])
 

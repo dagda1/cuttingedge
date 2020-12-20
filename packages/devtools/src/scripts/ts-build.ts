@@ -47,10 +47,7 @@ export function runEslint(): void {
 function runTypeScriptBuild() {
   fs.emptyDirSync(paths.appBuild);
 
-  process.argv.push('--pretty', String(true));
-
-  process.argv.push('--sourceMap', String(true));
-
+  console.dir(process.argv);
   process.argv.push('-p', paths.tsConfig);
 
   const tscPath = findExecutable(__dirname, 'tsc');

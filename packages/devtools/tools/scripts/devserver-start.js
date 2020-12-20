@@ -73,12 +73,12 @@ var WebpackDevServerUtils_1 = require("react-dev-utils/WebpackDevServerUtils");
 var webpack_1 = __importDefault(require("webpack"));
 var client_1 = require("../webpack/client");
 var build_config_1 = require("../config/build.config");
-var assert_1 = require("../assert");
+var assert_ts_1 = require("assert-ts");
 var isInteractive = process.stdout.isTTY;
 var devServer = build_config_1.config.devServer;
-assert_1.assert(devServer, 'no devServer node');
-assert_1.assert(devServer.publicDir, 'no publicDir');
-assert_1.assert(devServer.entries, 'no devServer entries');
+assert_ts_1.assert(devServer, 'no devServer node');
+assert_ts_1.assert(devServer.publicDir, 'no publicDir');
+assert_ts_1.assert(devServer.entries, 'no devServer entries');
 if (!fs_1.default.existsSync(devServer.publicDir)) {
     devServer.publicDir = paths_1.paths.devDirPublic;
     devServer.entries = paths_1.paths.devDir;
@@ -106,7 +106,7 @@ var HOST = process.env.HOST || '0.0.0.0';
                 appName = pkg.name, proxySetting = pkg.proxy;
                 urls_1 = WebpackDevServerUtils_1.prepareUrls(protocol, HOST, port);
                 compiler = WebpackDevServerUtils_1.createCompiler({ webpack: webpack_1.default, config: config, appName: appName, urls: urls_1, useYarn: true });
-                assert_1.assert(config.devServer, 'no devServer in dev-server-start');
+                assert_ts_1.assert(!!config.devServer, 'no devServer in dev-server-start');
                 config.devServer.proxy = WebpackDevServerUtils_1.prepareProxy(proxySetting, paths_1.paths.appPublic, paths_1.paths.publicUrlOrPath);
                 devServer_1 = new webpack_dev_server_1.default(compiler, config.devServer);
                 devServer_1.listen(port, HOST, function (err) {
