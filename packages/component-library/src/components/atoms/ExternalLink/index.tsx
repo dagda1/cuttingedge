@@ -10,7 +10,7 @@ export interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElemen
 export const ExternalLink: FC<ExternalLinkProps> = ({
   className,
   href,
-  dataSelector,
+  dataSelector = 'external-link',
   blank = true,
   children,
   ariaLabel,
@@ -30,7 +30,3 @@ export const ExternalLink: FC<ExternalLinkProps> = ({
     {children}
   </a>
 );
-
-ExternalLink.defaultProps = {
-  dataSelector: 'external-link',
-};

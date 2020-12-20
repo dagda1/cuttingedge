@@ -4,11 +4,7 @@ import { identity } from '@cutting/util';
 import { StandardProps } from '../../../types';
 import styles from './Button.module.scss';
 
-export enum ButtonStyle {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Inverse = 'inverse',
-}
+export type ButtonStyle = 'primary' | 'secondary' | 'inverse';
 
 export type ButtonProps = StandardProps<
   DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
@@ -20,11 +16,11 @@ export type ButtonProps = StandardProps<
 };
 
 export const Button: FC<ButtonProps> = ({
-  onClick,
+  onClick = identity,
   className,
   buttonStyle,
   disabled,
-  type,
+  type = 'button',
   children,
   title,
   ariaLabel,
@@ -32,9 +28,9 @@ export const Button: FC<ButtonProps> = ({
   dataSelector,
   ...rest
 }) => {
-  const primary = buttonStyle === ButtonStyle.Primary;
-  const secondary = buttonStyle === ButtonStyle.Secondary;
-  const inverse = buttonStyle === ButtonStyle.Inverse;
+  const primary = buttonStyle === 'primary';
+  const secondary = buttonStyle === 'secondary';
+  const inverse = buttonStyle === 'inverse';
 
   return (
     <button
@@ -56,9 +52,4 @@ export const Button: FC<ButtonProps> = ({
       {children}
     </button>
   );
-};
-
-Button.defaultProps = {
-  onClick: identity,
-  type: 'button',
 };

@@ -36,7 +36,7 @@ const LoadingIcon: FC<LoadingIconProps> = ({ darkMode }) => (
       ))}
     </g>
     <g className={styles.dots}>
-      {range(40, 70, 10).map((x) => (
+      {angles.map((x) => (
         <circle key={x} cx={x} cy="50" r="3" className={styles.dot} />
       ))}
     </g>

@@ -15,13 +15,8 @@ export const Error: FC<ErrorProps> = ({ errorMessage, className, dataSelector = 
   </ul>
 );
 
-export const ErrorLabel: FC<ErrorProps> = ({ id, ...props }) => (
+export const ErrorLabel: FC<ErrorProps> = ({ id = 'error', dataSelector = 'form-error', ...props }) => (
   <div id={id} aria-hidden="false">
-    <Error {...props} />
+    <Error dataSelector={dataSelector} {...props} />
   </div>
 );
-
-ErrorLabel.defaultProps = {
-  id: 'error',
-  dataSelector: 'form-error',
-};

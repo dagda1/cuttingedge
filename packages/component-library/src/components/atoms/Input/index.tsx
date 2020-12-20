@@ -6,7 +6,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean;
 }
 
-export const Input: FC<InputProps> = ({ invalid, className, required, ...rest }) => (
+export const Input: FC<InputProps> = ({ invalid, className, required, type = 'text', ...rest }) => (
   <input
     autoComplete="off"
     required={required}
@@ -14,12 +14,9 @@ export const Input: FC<InputProps> = ({ invalid, className, required, ...rest })
     className={cs(styles.default, 'form-control', className, {
       [styles.invalid]: invalid,
     })}
+    type={type}
     {...rest}
   />
 );
 
 Input.displayName = 'Input';
-
-Input.defaultProps = {
-  type: 'text',
-};
