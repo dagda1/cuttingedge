@@ -1,6 +1,6 @@
 /* eslint-disable jest/no-focused-tests */
 import { buildShortcuts } from './buildShortcuts';
-import { KeyCode } from './types';
+import { KeyCode } from './types/keycodes';
 
 describe.only('buildShortcuts', () => {
   it('should assign 1 key to 1 handler', () => {

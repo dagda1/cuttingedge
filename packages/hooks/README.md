@@ -15,7 +15,7 @@ yarn add @cutting/hooks
 ## build
 
 ```sh
-npm run build
+yarn build
 ```
 
 ## run tests

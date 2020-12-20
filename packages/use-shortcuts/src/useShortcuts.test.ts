@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import { renderHook } from '@testing-library/react-hooks';
 import { useShortcuts } from './useShortcuts';
-import { ShortcutMap, UseShortcuts, UseShortcutsResult, ShortcutHandler } from './types';
+import { ShortcutMap, UseShortcuts, UseShortcutsResult, ShortcutHandler } from './types/types';
 import mousetrap from 'mousetrap';
 import { KeyCode } from './types/keycodes';
 

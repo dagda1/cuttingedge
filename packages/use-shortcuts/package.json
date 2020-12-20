@@ -21,7 +21,7 @@
     "start": "echo no start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup",
-    "prepublish": "npm run build"
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@cutting/util": "4.0.0",

@@ -47,6 +47,7 @@
       "packages/useful-types",
       "packages/util",
       "packages/hooks",
+      "packages/use-abort",
       "packages/component-library",
       "packages/use-shortcuts",
       "packages/graphql-explorer",

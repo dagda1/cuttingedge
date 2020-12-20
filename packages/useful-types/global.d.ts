@@ -1,5 +1,5 @@
 declare let __BROWSER__: boolean;
-declare let BROWSER: boolean;
+declare let __DEV__: boolean;
 
 declare module '*.module.css' {
   const classes: { [key: string]: string };

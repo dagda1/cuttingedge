@@ -156,7 +156,7 @@ export const Comp: FC = () => {
 ## build
 
 ```sh
-npm run build
+yarn build
 ```
 
 ## run tests

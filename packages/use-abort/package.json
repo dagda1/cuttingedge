@@ -1,0 +1,39 @@
+{
+  "name": "@cutting/use-abort",
+  "description": "Abortable effects.",
+  "version": "4.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagda1/cuttingedge.git"
+  },
+  "type": "module",
+  "module": "dist/util.esm.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "scripts": {
+    "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
+    "test": "NODE_ENV=test cutting test",
+    "build": "NODE_ENV=production cutting ts-build",
+    "prepublish": "yarn build"
+  },
+  "dependencies": {
+    "@cutting/util": "4.0.0",
+    "@xstate/react": "^1.2.0",
+    "xstate": "^4.15.1"
+  },
+  "devDependencies": {
+    "abortcontroller-polyfill": "^1.5.0",
+    "node-fetch": "^2.6.1"
+  },
+  "keywords": [
+    "hotkeys",
+    "focus",
+    "react",
+    "reactjs",
+    "reactnative",
+    "hooks",
+    "hook",
+    "use-cancellable-fetcch"
+  ]
+}

@@ -13,7 +13,7 @@ npm start
 ## build
 
 ```sh
-npm run build
+yarn build
 ```
 
 ## run tests

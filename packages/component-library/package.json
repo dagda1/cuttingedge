@@ -26,6 +26,6 @@
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true npm test",
-    "prepublish": "npm run build"
+    "prepublish": "yarn build"
   }
 }

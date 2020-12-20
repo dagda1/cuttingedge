@@ -1,4 +1,4 @@
-import { clearArray } from '.';
+import { clearArray } from './clearArray';
 
 describe('clearArray', () => {
   it('should clear an array with items', () => {
