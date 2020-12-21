@@ -14,9 +14,9 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-parameter-properties': ['off'],
     '@typescript-eslint/no-namespace': ['off'],
+    '@typescript-eslint/explicit-module-boundary-types': ['error', { allowArgumentsExplicitlyTypedAsAny: true }],
     'jest/consistent-test-it': ['error', { fn: 'it' }],
     'jest/expect-expect': ['off'],
-
     'no-var': 'warn',
     curly: 'error',
     eqeqeq: ['error', 'always'],

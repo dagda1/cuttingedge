@@ -1,10 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-types */
-export type Fn = (...args: unknown[]) => unknown;
-
-export type ObjectType = { [key: string]: unknown };
-
-export type UnknownArgs = unknown[];
-
 export type AbortableStates = 'IDLE' | 'LOADING' | 'SUCCEEDED' | 'ABORTED' | 'ERROR';
 
 export type AbortableActionTypes = 'START' | 'LOADING' | 'SUCCESS' | 'ABORT' | 'ERROR' | 'RESET';

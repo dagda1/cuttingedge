@@ -1,9 +1,9 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
-import { UnknownArgs, UseAbortOptions, AbortableStates, AbortableState, AbortableContext, AbortableSchema } from './types';
 import { createAbortableMachine, abort, reset, start, success, error, AbortableActions } from './machine';
 import { Task } from './task/task';
 import { isFunction } from './utils';
+import { AbortableStates, UnknownArgs, UseAbortOptions } from './types';
 
 const identity = <T>(o: T) => o;
 
@@ -19,7 +19,7 @@ export type UseAbortResult<T> = {
   reset: () => void;
   abortController: AbortController;
   counter: number;
-  error: any;
+  error: Error;
   isSettled: boolean;
 };
 
@@ -87,7 +87,7 @@ export const useAbort = <T, R = T>(
       reset: resetable,
       abortController: abortController.current,
       counter: counter.current,
-      isSettled: [AbortableStates.Succeded, AbortableStates.Error].includes(machine.value as AbortableStates),
+      isSettled: ['SUCCEEDED', 'ERROR'].includes(machine.value),
     }),
     [machine.context.data, machine.context.error, machine.value, resetable, runner],
   );

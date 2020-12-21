@@ -1,10 +1,25 @@
-import { noop, thenable, isAsyncFunction } from './functions';
+import { noop, isFunction, isAsyncFunction, isPromise } from './functions';
 
 describe('functions', () => {
   it('should determine promises', async () => {
-    expect(thenable(noop)).toBe(false);
+    expect(isPromise(noop)).toBe(false);
 
-    expect(thenable(new Promise(() => 1))).toBe(true);
+    expect(isPromise(new Promise(() => 1))).toBe(true);
+  });
+
+  it('should recognise functions', () => {
+    expect(isFunction(() => ({}))).toBe(true);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    expect(isFunction(function () {})).toBe(true);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    expect(isFunction(async () => {})).toBe(true);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    expect(isFunction(function* () {})).toBe(true);
+    expect(isFunction(Math.round)).toBe(true);
+    expect(isFunction(new Date())).toBe(false);
+    expect(isFunction(new (class {})())).toBe(false);
+    expect(isFunction('class A {})')).toBe(false);
+    expect(isFunction(class Any {})).toBe(true);
   });
 
   it('should determine async functions', () => {

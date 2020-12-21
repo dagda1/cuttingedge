@@ -2,7 +2,6 @@ import { Operation } from './task/operation';
 import { AbortError } from './AbortError';
 import { Fn } from './types';
 
-export const isFunction = (x: any): x is Fn => typeof x === 'function';
 
 export const isObject = (x: any): x is Record<string, any> => x !== null && Object(x) === x;
 

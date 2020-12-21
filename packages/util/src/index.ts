@@ -1,6 +1,7 @@
 export type { DeepPartial } from './types/DeepPartial';
 export type { Taggable } from './types/react';
 export type { PageRoute } from './types/routes';
+export type { Fn } from './functions/functions';
 
 export { isDate } from './date/date';
 export { isElementInViewportTop } from './dom/dom';
@@ -21,3 +22,4 @@ export { dasherize, decamelize, padNumber, stripSpaces } from './string';
 export { getDisplayName } from './react/components';
 export { StorageHelper } from './services/storageHelper';
 export { isProduction, isDevelopment, isTest, env, isCI } from './environment';
+export { isFunction, isPromise, isAsyncFunction } from './functions/functions';

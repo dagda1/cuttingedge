@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { Env } from '../types/env';
 import { getClientEnv } from '../config/env';
 import { getCommitHash } from '../scripts/git';
 
@@ -29,7 +29,14 @@ export const getEnvironment = (): {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getEnvVariables = ({ isNode }: { isNode: boolean }) => {
+export const getEnvVariables = ({
+  isNode,
+}: {
+  isNode: boolean;
+}): {
+  raw: Env;
+  stringified: Partial<Env>;
+} => {
   const { isDevelopment } = getEnvironment();
   delete require.cache[require.resolve('../config/env')];
 
