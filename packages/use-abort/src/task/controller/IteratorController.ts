@@ -1,8 +1,9 @@
 import { Controller } from './controller';
 import { Task } from '../task';
 import { Operation } from '../operation';
-import { isFunction, throwIfAborted, isPromise } from '../../utils';
+import { throwIfAborted } from '../../utils';
 import { assert } from 'assert-ts';
+import { isFunction, isPromise } from '@cutting/util';
 
 export class IteratorController<T, R = T> implements Controller<R> {
   private promise: Promise<R>;

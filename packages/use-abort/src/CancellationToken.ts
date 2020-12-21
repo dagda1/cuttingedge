@@ -1,13 +1,13 @@
 import { once } from '@cutting/util';
 
-export class CancellationToken {
+export class CancellationToken<T> {
   signal: AbortSignal;
-  promise: Promise<any>;
+  promise: Promise<T>;
 
   constructor(controller: AbortController) {
     this.signal = controller.signal;
 
-    this.promise = new Promise<any>((_, reject) => {
+    this.promise = new Promise<T>((_, reject) => {
       once(this.signal, 'abort', reject);
     });
 

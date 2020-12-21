@@ -1,3 +1,4 @@
+import { Env } from '../types/env';
 declare const commitHash: string;
 export declare const getEnvironment: () => {
     isDevelopment: boolean;
@@ -7,11 +8,11 @@ export declare const getEnvironment: () => {
     isProduction: boolean;
     commitHash: string;
 };
-export declare const getEnvVariables: ({ isNode }: {
+export declare const getEnvVariables: ({ isNode, }: {
     isNode: boolean;
 }) => {
-    raw: import("../types/env").Env;
-    stringified: Partial<import("../types/env").Env>;
+    raw: Env;
+    stringified: Partial<Env>;
 };
 export {};
 //# sourceMappingURL=getEnvironment.d.ts.map

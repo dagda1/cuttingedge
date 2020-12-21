@@ -1,11 +1,13 @@
 import { Controller } from './controller/controller';
 import { Operation } from './operation';
-import { isPromise, isIterator, throwIfAborted } from '../utils';
+import { isIterator, throwIfAborted } from '../utils';
 import { PromiseController } from './controller/PromiseController';
 import { IteratorController } from './controller/IteratorController';
+import { isPromise } from '@cutting/util';
 
 export class Task<T> implements Promise<T> {
   private controller: Controller<T>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private children: Set<Task<any>> = new Set();
   private promise: Promise<T>;
 

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getEnvVariables = exports.getEnvironment = void 0;
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 var env_1 = require("../config/env");
 var git_1 = require("../scripts/git");
 var commitHash = git_1.getCommitHash();

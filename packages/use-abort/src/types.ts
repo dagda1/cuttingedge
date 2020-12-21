@@ -1,13 +1,9 @@
+import { Fn } from '@cutting/util';
+
 /* eslint-disable @typescript-eslint/ban-types */
 export type AbortableStates = 'IDLE' | 'LOADING' | 'SUCCEEDED' | 'ABORTED' | 'ERROR';
 
 export type AbortableActionTypes = 'START' | 'LOADING' | 'SUCCESS' | 'ABORT' | 'ERROR' | 'RESET';
-
-export type AbortableState<D> = {
-  state: AbortableStates;
-  data?: D;
-  error?: Error;
-};
 
 export type AbortableContext<D> = {
   data?: D;

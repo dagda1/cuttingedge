@@ -2,8 +2,8 @@ import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createAbortableMachine, abort, reset, start, success, error, AbortableActions } from './machine';
 import { Task } from './task/task';
-import { isFunction } from './utils';
-import { AbortableStates, UnknownArgs, UseAbortOptions } from './types';
+import { AbortableContext, AbortableStates, UseAbortOptions } from './types';
+import { Fn, isFunction } from '@cutting/util';
 
 const identity = <T>(o: T) => o;
 
@@ -14,7 +14,7 @@ const DefaultAbortableOptions: UseAbortOptions<undefined> = {
 
 export type UseAbortResult<T> = {
   state: AbortableStates;
-  run: (...args: UnknownArgs) => void;
+  run: (...args: unknown[]) => void;
   data?: T;
   reset: () => void;
   abortController: AbortController;
@@ -23,13 +23,8 @@ export type UseAbortResult<T> = {
   isSettled: boolean;
 };
 
-export const useAbort = <T, R = T>(
-  fn: (...args: any[]) => any,
-  options: Partial<UseAbortOptions<R>> = {},
-): UseAbortResult<R> => {
-  const [machine, send] = useMachine<AbortableContext<D>, AbortableSchema<D>, AbortableActions<D>>(
-    createAbortableMachine(),
-  );
+export const useAbort = <T, R = T>(fn: Fn, options: Partial<UseAbortOptions<R>> = {}): UseAbortResult<R> => {
+  const [machine, send] = useMachine<AbortableContext<T>, AbortableActions<T>>(createAbortableMachine());
   const resolvedOptions = useMemo(() => ({ ...DefaultAbortableOptions, ...options }), [options]) as UseAbortOptions<R>;
   const { initialData, onAbort } = resolvedOptions;
   const abortController = useRef<AbortController>(new AbortController());
@@ -50,7 +45,7 @@ export const useAbort = <T, R = T>(
   }, [initialData, send]);
 
   const runner = useCallback(
-    async (...args: UnknownArgs) => {
+    async (...args: unknown[]) => {
       const signal = abortController.current.signal;
 
       counter.current++;

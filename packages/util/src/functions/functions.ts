@@ -4,9 +4,9 @@ import { isNil } from '../object/isNil';
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const noop = (): void => {};
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Fn = <A, R>(...args: A[]) => R;
+export type Fn = (...args: any) => any;
 
-export const isPromise = <T extends Record<string, unknown>>(obj: unknown): obj is Promise<T> => {
+export const isPromise = <T>(obj: unknown): obj is Promise<T> => {
   return (
     typeof !isNil(obj) && typeof obj === 'object' && obj !== null && 'then' in obj && 'function' === typeof obj['then']
   );
@@ -32,3 +32,6 @@ export const isFunction = (x: any): x is Fn => {
 
   return typeof x === 'function';
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isObject = (x: any): x is Record<string, unknown> => x !== null && Object(x) === x;
