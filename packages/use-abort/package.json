@@ -7,14 +7,14 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "type": "module",
-  "module": "dist/util.esm.js",
+  "module": "dist/use-abort.esm.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting ts-build",
+    "build": "NODE_ENV=production cutting rollup",
     "prepublish": "yarn build"
   },
   "dependencies": {
@@ -35,5 +35,7 @@
     "hooks",
     "hook",
     "use-cancellable-fetcch"
-  ]
+  ],
+  "main": "dist/index.js",
+  "browser": "dist/use-abort.esm.js"
 }
