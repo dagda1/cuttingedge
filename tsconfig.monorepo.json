@@ -1,0 +1,29 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/devtools"
+    },
+    {
+      "path": "./packages/util"
+    },
+    {
+      "path": "./packages/hooks"
+    },
+    {
+      "path": "./packages/use-abort"
+    },
+    {
+      "path": "./packages/component-library"
+    },
+    {
+      "path": "./packages/use-shortcuts"
+    },
+    {
+      "path": "./packages/graphql-explorer"
+    },
+    {
+      "path": "./packages/website"
+    }
+  ]
+}

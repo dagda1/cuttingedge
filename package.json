@@ -23,6 +23,7 @@
       "packages/testing",
       "packages/eslint-config",
       "packages/useful-types",
+      "packages/devtools",
       "packages/util",
       "packages/hooks",
       "packages/use-mathjax",
