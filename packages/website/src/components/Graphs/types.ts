@@ -35,6 +35,7 @@ export type DayData = {
   country: CountryData;
   deltaDeaths: number;
   population: number;
+  deaths: number;
 };
 
 export const countryData: CountriesData = {

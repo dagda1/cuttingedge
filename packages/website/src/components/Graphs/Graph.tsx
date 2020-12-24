@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-// eslint:disable
 import type { FC } from 'react';
 import { useRef } from 'react';
 import { useParentSize } from '@cutting/hooks';
@@ -15,7 +13,7 @@ import {
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { ResponsiveSVG, LoadingOverlay } from '@cutting/component-library';
-import { countryData, AxisColor, Countries } from '../Graphs/types';
+import { countryData, AxisColor, Countries, DayData } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router';
@@ -28,13 +26,10 @@ export type GraphProps = {
   result: { isSettled: boolean; data?: CountriesStats };
   xAxisLabel: string;
   yAxisLabel: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  labels?: (data: any) => string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  xTickFormat?: (...args: any[]) => any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  yTickFormat?: (...args: any[]) => any;
+  xTickFormat?: (label: string, i: number) => string;
+  yTickFormat?: (label: string, i: number) => string;
   heading: string;
+  labels?: ({ datum }: { datum: DayData }) => string;
 };
 
 export const Graph: FC<GraphProps> = ({

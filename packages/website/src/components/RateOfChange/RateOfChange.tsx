@@ -21,7 +21,7 @@ export const RateOfChange: FC = () => {
           ...country.result.map((d: any, i: number) => {
             return [i, d.deltaDeaths <= 0 ? 0.00000000001 : d.deltaDeaths];
           }),
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ] as any)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .points.map(([x, y]) => ({ x, y })) as any;
