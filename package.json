@@ -3,9 +3,8 @@
   "version": "4.0.0",
   "private": true,
   "scripts": {
-    "build": "cutting each-pkg yarn build",
-    "build:libs": "cutting each-pkg -l yarn build",
-    "test": "CI=true cutting each-pkg yarn test",
+    "build": "yarn workspaces run build",
+    "test": "CI=true yarn workspaces run test",
     "start": "yarn build && yarn --cwd packages/website/ ssr-start",
     "publish:all": "NODE_ENV=production cutting each-pkg yarn publish -- --non-interactive --verbose",
     "audit-packages": "cutting each-pkg cutting audit",

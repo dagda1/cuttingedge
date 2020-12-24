@@ -1,9 +1,10 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { ReactElement } from 'react';
-import { render } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
+import { Router } from 'react-router';
+import { createMemoryHistory } from 'history';
 
-export const wrapComponentInReduxForTesting = (ui: ReactElement) => {
+export const wrapComponentInReduxForTesting = (ui: ReactElement): RenderResult => {
   return {
-    ...render(ui),
+    ...render(<Router history={createMemoryHistory()}>{ui}</Router>),
   };
 };

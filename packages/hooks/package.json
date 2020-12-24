@@ -31,8 +31,7 @@
     "@cutting/devtools": "4.0.0",
     "@cutting/eslint-config": "4.0.0",
     "@cutting/useful-types": "4.0.0",
-    "@testing-library/jest-dom": "^5.11.6",
-    "@types/invariant": "^2.2.34"
+    "@testing-library/jest-dom": "^5.11.6"
   },
   "keywords": [
     "hotkeys",

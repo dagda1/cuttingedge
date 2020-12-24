@@ -36,7 +36,9 @@ const setupTestsCandidates = [path.resolve('.', setupTestsFileName), path.resolv
 
 const localSetupTestsFile = setupTestsCandidates.find(fs.existsSync);
 
-logger.debug(`found local setup file ${localSetupTestsFile}`);
+if (localSetupTestsFile) {
+  logger.debug(`found local setup file ${localSetupTestsFile}`);
+}
 
 const jestConfig: OverridableJestConfig = {
   rootDir: process.cwd(),

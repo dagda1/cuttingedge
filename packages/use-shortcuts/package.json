@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@cutting/util": "4.0.0",
-    "invariant": "^2.2.4",
     "mousetrap": "^1.6.5"
   },
   "devDependencies": {
@@ -33,7 +32,6 @@
     "@cutting/eslint-config": "4.0.0",
     "@cutting/useful-types": "4.0.0",
     "@testing-library/jest-dom": "^5.11.6",
-    "@types/invariant": "^2.2.34",
     "@types/mousetrap": "^1.6.5"
   },
   "keywords": [
