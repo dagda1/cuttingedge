@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
 import Graph from 'src/components/Graphs/Graph';
 import regression from 'regression';
+import { Countries } from '../Graphs';
 
 export const RateOfChange: FC = () => {
   const result = useCountryCovidData({ startDate: '2020-01-01' });
@@ -11,17 +12,20 @@ export const RateOfChange: FC = () => {
   }
 
   if (result.data) {
-    Object.keys(result.data).forEach((c) => {
-      const country = result.data![c];
+    for (const c of Object.keys(result.data)) {
+      const country = result.data?.[c as Countries];
 
       country.data = regression
         .exponential([
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ...country.result.map((d: any, i: number) => {
             return [i, d.deltaDeaths <= 0 ? 0.00000000001 : d.deltaDeaths];
           }),
-        ])
-        .points.map(([x, y]) => ({ x, y }));
-    });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ] as any)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .points.map(([x, y]) => ({ x, y })) as any;
+    }
   }
 
   return (

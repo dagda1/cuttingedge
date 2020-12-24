@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { useCountryCovidData, countryData } from 'src/components/Graphs';
+import { useCountryCovidData, countryData, Countries } from 'src/components/Graphs';
 import Graph from 'src/components/Graphs/Graph';
 import dayjs from 'dayjs';
 
@@ -7,14 +7,15 @@ export const Deaths: FC = () => {
   const result = useCountryCovidData();
 
   if (result.data) {
-    Object.keys(result.data).forEach((c) => {
-      const country = result.data![c];
-      country.data = country.result.map((d: any) => ({
+    for (const c of Object.keys(result.data)) {
+      const country = result.data?.[c as Countries];
+
+      country.data = country.result.map((d) => ({
         ...d,
         deaths: d.y,
-        y: (d.y / countryData[c].population) * 100000,
+        y: (d.y / countryData[c as Countries].population) * 100000,
       }));
-    });
+    }
   }
 
   return (

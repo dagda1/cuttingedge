@@ -15,11 +15,11 @@ import {
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { ResponsiveSVG, LoadingOverlay } from '@cutting/component-library';
-import { Countries, countryData, AxisColor } from '../Graphs/types';
+import { countryData, AxisColor, Countries } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router';
-import { assert } from '@cutting/util';
+import { assert } from 'assert-ts';
 import { CountriesStats } from './useCountryCovidData';
 
 import styles from './Graph.module.scss';
@@ -28,8 +28,11 @@ export type GraphProps = {
   result: { isSettled: boolean; data?: CountriesStats };
   xAxisLabel: string;
   yAxisLabel: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   labels?: (data: any) => string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   xTickFormat?: (...args: any[]) => any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   yTickFormat?: (...args: any[]) => any;
   heading: string;
 };
@@ -108,8 +111,8 @@ export const Graph: FC<GraphProps> = ({
                 },
               }}
               data={Object.keys(countryData).map((k) => ({
-                name: countryData[k].longName,
-                symbol: { fill: countryData[k].color },
+                name: countryData[k as Countries].longName,
+                symbol: { fill: countryData[k as Countries].color },
               }))}
             />
           </ResponsiveSVG>
@@ -156,23 +159,23 @@ export const Graph: FC<GraphProps> = ({
             tickFormat={tickFormat}
           />
           {Object.keys(result.data).map((k) => {
-            assert(result.data?.[k], `No country data ${k}`);
+            assert(result.data?.[k as Countries], `No country data ${k}`);
 
-            const country = result.data[k];
+            const country = result.data?.[k as Countries];
             return (
               <VictoryGroup
                 key={k}
-                color={country.color}
+                color={country?.color}
                 labels={labels}
                 labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-                data={country.data}
+                data={country?.data}
               >
                 <VictoryLine
                   style={{
-                    data: { strokeWidth: k === Countries.GB ? 3 : 1 },
+                    data: { strokeWidth: k === 'GB' ? 3 : 1 },
                   }}
                 />
-                <VictoryScatter size={() => (k === Countries.GB ? 5 : 3)} />
+                <VictoryScatter size={() => (k === 'GB' ? 5 : 3)} />
               </VictoryGroup>
             );
           })}

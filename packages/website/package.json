@@ -20,6 +20,7 @@
     "@cutting/util": "4.0.0",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.0",
+    "assert-ts": "^0.3.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "1.4.5",
     "csurf": "^1.11.0",
@@ -33,6 +34,7 @@
     "regression": "^2.0.1",
     "serialize-javascript": "^5.0.1",
     "serve-favicon": "^2.5.0",
+    "url-join": "^4.0.1",
     "victory": "^35.4.3",
     "zlib": "^1.0.5"
   },
@@ -49,6 +51,7 @@
     "@types/regression": "^2.0.0",
     "@types/serialize-javascript": "^5.0.0",
     "@types/serve-favicon": "^2.5.2",
+    "@types/url-join": "^4.0.0",
     "install": "^0.13.0",
     "loadable-ts-transformer": "^1.0.0-alpha.3",
     "nodemon": "^2.0.6",

@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 
 import markdown from '../../markdown/terms-of-service.md';

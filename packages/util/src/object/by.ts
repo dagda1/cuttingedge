@@ -47,7 +47,7 @@ export const countBy = <T>(o: T[], predicate: (o: T) => PropertyReturn): Partial
   return ret;
 };
 
-export const sortBy = <T, R = T>(o: T[], selector: (item: T) => R): T[] => {
+export const sortBy = <T, R>(o: T[], selector: (item: T) => R): T[] => {
   if (isNil(o)) {
     return [];
   }
@@ -64,24 +64,24 @@ export const sortBy = <T, R = T>(o: T[], selector: (item: T) => R): T[] => {
   return result;
 };
 
-export const uniqBy = <T>(o: T[], selector: (item: T) => T): T[] => {
+export const uniqBy = <T, R>(list: T[], selector: (item: T) => R): T[] => {
   const ret: T[] = [];
 
-  const set = new Set<T>();
+  const set = new Set<R>();
 
-  o.forEach((s) => {
-    const value = selector(s);
+  for (const item of list) {
+    const value = selector(item);
 
     if (set.has(value) === false) {
       set.add(value);
-      ret.push(s);
+      ret.push(item);
     }
-  });
+  }
 
   return ret;
 };
 
-export const sortedUniqBy = <T>(o: T[], selector: (item: T) => T): T[] => {
+export const sortedUniqBy = <T, R>(o: T[], selector: (item: T) => R): T[] => {
   return uniqBy(sortBy(o, selector), selector);
 };
 

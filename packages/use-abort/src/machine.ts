@@ -15,21 +15,19 @@ export type AbortableActions<D> =
   | typeof abort
   | ReturnType<typeof reset>;
 
-export const createAbortableMachine = <D>(): StateMachine<
-  AbortableContext<D>,
-  AbortableSchema<D>,
-  AbortableActions<D>
-> => {
-  const context = {
-    state: 'IDLE',
-    data: undefined,
+export const createAbortableMachine = <D>({
+  initialData,
+}: {
+  initialData: D;
+}): StateMachine<AbortableContext<D>, AbortableSchema<D>, AbortableActions<D>> => {
+  const context: AbortableContext<D> = {
+    data: initialData,
     error: undefined,
   } as const;
 
   const machine = Machine<AbortableContext<D>, AbortableSchema<D>, AbortableActions<D>>({
     id: 'fetchable',
     initial: 'IDLE',
-    context,
     states: {
       ['IDLE']: {
         on: { START: 'LOADING' },
@@ -57,10 +55,6 @@ export const createAbortableMachine = <D>(): StateMachine<
         on: {
           ['RESET']: {
             target: 'IDLE',
-            actions: (_context, event) => {
-              _context = context;
-              return _context;
-            },
           },
         },
       },

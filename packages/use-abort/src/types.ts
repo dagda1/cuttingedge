@@ -6,7 +6,7 @@ export type AbortableStates = 'IDLE' | 'LOADING' | 'SUCCEEDED' | 'ABORTED' | 'ER
 export type AbortableActionTypes = 'START' | 'LOADING' | 'SUCCESS' | 'ABORT' | 'ERROR' | 'RESET';
 
 export type AbortableContext<D> = {
-  data?: D;
+  data: D;
   error?: Error;
 };
 

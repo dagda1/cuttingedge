@@ -22,6 +22,6 @@ declare module '*.module.less' {
 }
 
 declare module '*.md' {
-  const classes: { [key: string]: string };
+  const classes: string;
   export default classes;
 }

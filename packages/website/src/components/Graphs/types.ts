@@ -1,16 +1,5 @@
 // https://www.nationsonline.org/oneworld/country_code_list.htm
-export enum Countries {
-  // Canada = 'CAN',
-  Brazil = 'BRA',
-  IT = 'ITA',
-  GB = 'GBR',
-  Spain = 'ESP',
-  // Germany = 'DEU',
-  France = 'FRA',
-  USA = 'USA',
-  Sweden = 'SWE',
-  India = 'IND',
-}
+export type Countries = 'BRA' | 'ITA' | 'GBR' | 'ESP' | 'FRA' | 'USA' | 'SWE' | 'IND';
 
 export type CountryData = {
   longName: string;
@@ -40,59 +29,51 @@ export type Stats = {
 
 export type DayData = {
   delta: number;
-  x: any;
+  x: number | string;
   y: number;
   index: number;
   country: CountryData;
+  deltaDeaths: number;
+  population: number;
 };
 
 export const countryData: CountriesData = {
-  // [Countries.Canada]: {
-  //   longName: 'Canada',
-  //   color: '#FF0000',
-  //   population: 38000000,
-  // },
-  // [Countries.Germany]: {
-  //   longName: 'Germany',
-  //   color: '#9400D3',
-  //   population: 84000000,
-  // },
-  [Countries.France]: {
+  FRA: {
     longName: 'France',
     color: '#9400D3',
     population: 66900000,
   },
-  [Countries.IT]: {
+  ITA: {
     longName: 'Italy',
     color: '#016CD0',
     population: 60000000,
   },
-  [Countries.Brazil]: {
+  BRA: {
     longName: 'Brazil',
     color: '#FFFF00',
     population: 210000000,
   },
-  [Countries.Spain]: {
+  ESP: {
     longName: 'Spain',
     color: '#00FF00',
     population: 47000000,
   },
-  [Countries.USA]: {
+  USA: {
     longName: 'USA',
     color: '#fff',
     population: 383000000,
   },
-  [Countries.Sweden]: {
+  SWE: {
     longName: 'Sweden',
     color: '#ffa500',
     population: 11000000,
   },
-  [Countries.India]: {
+  IND: {
     longName: 'India',
     color: '#FF0000',
-    population: 1353000000,
+    population: 1353000000000,
   },
-  [Countries.GB]: {
+  GBR: {
     longName: 'UK',
     color: 'cyan',
     population: 67000000,

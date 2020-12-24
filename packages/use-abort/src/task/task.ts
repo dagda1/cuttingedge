@@ -1,9 +1,7 @@
-import { Controller } from './controller/controller';
+import type { Controller } from './controller/controller';
+import { controllerFactory } from './controller/controller';
 import { Operation } from './operation';
-import { isIterator, throwIfAborted } from '../utils';
-import { PromiseController } from './controller/PromiseController';
-import { IteratorController } from './controller/IteratorController';
-import { isPromise } from '@cutting/util';
+import { throwIfAborted } from '../utils';
 
 export class Task<T> implements Promise<T> {
   private controller: Controller<T>;
@@ -12,13 +10,7 @@ export class Task<T> implements Promise<T> {
   private promise: Promise<T>;
 
   constructor(operation: Operation<T>, private signal: AbortSignal) {
-    if (isPromise<T>(operation)) {
-      this.controller = new PromiseController<T>(operation, signal);
-    } else if (isIterator<T>(operation)) {
-      this.controller = new IteratorController(operation, signal);
-    } else {
-      throw new Error(`unkown type of operation: ${operation}`);
-    }
+    this.controller = controllerFactory(operation, signal);
 
     this.promise = this.run();
   }

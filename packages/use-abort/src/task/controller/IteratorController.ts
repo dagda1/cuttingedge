@@ -23,7 +23,7 @@ export class IteratorController<T, R = T> implements Controller<R> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let c: any;
 
-    while (1) {
+    while (true) {
       try {
         let next: IteratorResult<Operation<T>, Promise<R>>;
 

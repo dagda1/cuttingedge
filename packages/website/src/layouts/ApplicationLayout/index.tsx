@@ -16,7 +16,7 @@ export interface ApplicationLayoutProps {
   heading?: string;
   italicise?: boolean;
   center?: boolean;
-  className?: 'string';
+  className?: string;
   showFooter?: boolean;
 }
 
