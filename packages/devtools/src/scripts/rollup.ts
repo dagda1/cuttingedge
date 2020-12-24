@@ -157,9 +157,8 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
     exports: 'named',
     sourcemap: true,
     esModule: true,
-    interop: 'default',
+    interop: 'auto',
     freeze: false,
-    globals: { react: 'React' },
   });
 
   copyAssets();
