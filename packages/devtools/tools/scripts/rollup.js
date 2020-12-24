@@ -233,9 +233,8 @@ function generateBundledModule(_a) {
                             exports: 'named',
                             sourcemap: true,
                             esModule: true,
-                            interop: 'default',
+                            interop: 'auto',
                             freeze: false,
-                            globals: { react: 'React' },
                         })];
                 case 2:
                     _c.sent();

@@ -18,7 +18,6 @@ import { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from '../types/co
 import { Configuration } from 'webpack';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import { stats } from './loaders/stats';
-import EslintPlugin from 'eslint-webpack-plugin';
 
 import path from 'path';
 
@@ -87,9 +86,6 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
               query: { happyPackMode: true },
             },
           ],
-        }),
-        new EslintPlugin({
-          fix: isProduction,
         }),
         new webpack.DefinePlugin(env.stringified),
         isDevelopment && new WebpackBar({ basic: true }),

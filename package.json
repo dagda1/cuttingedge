@@ -56,8 +56,8 @@
   },
   "resolutions": {
     "@types/react": "^17.0.0",
+    "@types/webpack": "4.41.21",
     "node-forge": "^0.10.0",
-    "postcss": "^8.2.1",
-    "terser-webpack-plugin": "4.2.3"
+    "postcss": "^8.2.1"
   }
 }
