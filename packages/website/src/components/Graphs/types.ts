@@ -1,5 +1,5 @@
 // https://www.nationsonline.org/oneworld/country_code_list.htm
-export type Countries = 'BRA' | 'ITA' | 'GBR' | 'ESP' | 'FRA' | 'USA' | 'SWE' | 'IND';
+export type Countries = 'BRA' | 'ITA' | 'GBR' | 'ESP' | 'USA' | 'SWE';
 
 export type CountryData = {
   longName: string;
@@ -39,11 +39,6 @@ export type DayData = {
 };
 
 export const countryData: CountriesData = {
-  FRA: {
-    longName: 'France',
-    color: '#9400D3',
-    population: 66900000,
-  },
   ITA: {
     longName: 'Italy',
     color: '#016CD0',
@@ -56,7 +51,7 @@ export const countryData: CountriesData = {
   },
   ESP: {
     longName: 'Spain',
-    color: '#00FF00',
+    color: '#FF0000',
     population: 47000000,
   },
   USA: {
@@ -68,11 +63,6 @@ export const countryData: CountriesData = {
     longName: 'Sweden',
     color: '#ffa500',
     population: 11000000,
-  },
-  IND: {
-    longName: 'India',
-    color: '#FF0000',
-    population: 1353000000000,
   },
   GBR: {
     longName: 'UK',

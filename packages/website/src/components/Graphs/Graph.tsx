@@ -34,7 +34,6 @@ export type GraphProps = {
 
 export const Graph: FC<GraphProps> = ({
   result,
-  yAxisLabel,
   labels,
   heading,
   xTickFormat: tickFormat = (label: string, i: number) => (i % 15 === 0 ? `-   ${dayjs(label).format('DD/MM')}` : ''),
@@ -110,71 +109,73 @@ export const Graph: FC<GraphProps> = ({
                 symbol: { fill: countryData[k as Countries].color },
               }))}
             />
+            <VictoryChart
+              height={largeScreen ? height - 180 : height - 120}
+              width={width}
+              standalone={false}
+              theme={{
+                axis: {
+                  style: {
+                    axis: { stroke: AxisColor },
+                    tickLabels: {
+                      color: AxisColor,
+                      fill: AxisColor,
+                    },
+                    grid: { stroke: '#fff', strokeOpacity: 0.2 },
+                  },
+                },
+              }}
+            >
+              <VictoryAxis
+                dependentAxis
+                orientation="left"
+                standalone={false}
+                style={{
+                  axisLabel: {
+                    fill: AxisColor,
+                    fillOpacity: 0.5,
+                    verticalAnchor: 'start',
+                    textAnchor: 'start',
+                  },
+                }}
+                tickFormat={yTickFormat}
+              />
+              <VictoryAxis
+                orientation={'bottom'}
+                standalone={false}
+                style={{
+                  tickLabels: {
+                    angle: largeScreen ? 45 : 90,
+                    verticalAnchor: 'middle',
+                    textAnchor: 'start',
+                  },
+                }}
+                tickFormat={tickFormat}
+              />
+              {Object.keys(result.data).map((k) => {
+                assert(result.data?.[k as Countries], `No country data ${k}`);
+
+                const country = result.data?.[k as Countries];
+                return (
+                  <VictoryGroup
+                    key={k}
+                    color={country?.color}
+                    labels={labels}
+                    labelComponent={<VictoryTooltip style={{ fontSize: 10 }} renderInPortal={false} />}
+                    data={country?.data}
+                  >
+                    <VictoryLine
+                      style={{
+                        data: { strokeWidth: k === 'GB' ? 3 : 1 },
+                      }}
+                    />
+                    <VictoryScatter size={() => (k === 'GB' ? 5 : 3)} />
+                  </VictoryGroup>
+                );
+              })}
+            </VictoryChart>
           </ResponsiveSVG>
         </div>
-        <VictoryChart
-          height={largeScreen ? height - 180 : height - 120}
-          width={width}
-          theme={{
-            axis: {
-              style: {
-                axis: { stroke: AxisColor },
-                tickLabels: {
-                  color: AxisColor,
-                  fill: AxisColor,
-                },
-                grid: { stroke: '#fff', strokeOpacity: 0.2 },
-              },
-            },
-          }}
-        >
-          <VictoryAxis
-            dependentAxis
-            label={`${yAxisLabel} up until ${dayjs().subtract(1, 'day').format('DD/MM/YYYY')}`}
-            orientation="left"
-            standalone={false}
-            style={{
-              axisLabel: {
-                fill: AxisColor,
-                fillOpacity: 0.5,
-              },
-            }}
-            tickFormat={yTickFormat}
-          />
-          <VictoryAxis
-            orientation={'bottom'}
-            standalone={false}
-            style={{
-              tickLabels: {
-                angle: largeScreen ? 45 : 90,
-                verticalAnchor: 'middle',
-                textAnchor: 'start',
-              },
-            }}
-            tickFormat={tickFormat}
-          />
-          {Object.keys(result.data).map((k) => {
-            assert(result.data?.[k as Countries], `No country data ${k}`);
-
-            const country = result.data?.[k as Countries];
-            return (
-              <VictoryGroup
-                key={k}
-                color={country?.color}
-                labels={labels}
-                labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-                data={country?.data}
-              >
-                <VictoryLine
-                  style={{
-                    data: { strokeWidth: k === 'GB' ? 3 : 1 },
-                  }}
-                />
-                <VictoryScatter size={() => (k === 'GB' ? 5 : 3)} />
-              </VictoryGroup>
-            );
-          })}
-        </VictoryChart>
       </div>
     </ApplicationLayout>
   );

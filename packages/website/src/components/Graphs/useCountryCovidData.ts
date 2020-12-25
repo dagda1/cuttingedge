@@ -91,7 +91,7 @@ export const useCountryCovidData = (
 
   if (isSettled && !!data) {
     for (const country in data) {
-      if (ret[country as Countries].name) {
+      if (!!ret[country as Countries]?.name) {
         continue;
       }
 
