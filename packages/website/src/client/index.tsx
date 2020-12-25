@@ -5,7 +5,7 @@ import { loadableReady } from '@loadable/component';
 
 import { App } from '../containers/App';
 
-const bootstrap = (renderMethod: Renderer, app: FC): void => {
+const bootstrap = (renderMethod: Renderer, Component: FC): void => {
   const root = document.getElementById('root');
 
   if (!root) {
@@ -13,7 +13,7 @@ const bootstrap = (renderMethod: Renderer, app: FC): void => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  renderMethod(app as any, root);
+  renderMethod(<Component />, root);
 };
 
 if (typeof module.hot !== undefined) {
