@@ -3,8 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createPostCssOptions = void 0;
 var createPostCssOptions = function () { return ({
     postcssOptions: {
-        ident: 'postcss',
-        syntax: 'postcss-scss',
+        parser: 'postcss-scss',
         plugins: [
             'postcss-flexbugs-fixes',
             [

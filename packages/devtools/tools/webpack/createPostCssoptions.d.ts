@@ -1,9 +1,8 @@
 export declare const createPostCssOptions: () => {
     postcssOptions: {
-        ident: string;
-        syntax: string;
-        plugins: any[];
+        parser: string;
         sourceMap: boolean;
+        plugins: any[];
     };
 };
 //# sourceMappingURL=createPostCssoptions.d.ts.map

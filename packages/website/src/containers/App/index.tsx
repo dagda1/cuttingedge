@@ -1,4 +1,4 @@
-import '@cutting/component-library/dist/component-library.esm.css';
+import '@cutting/component-library/dist/component-library.cjs.development.css';
 import type { FC } from 'react';
 import { Routes } from '../../routes';
 import { BrowserRouter as Router } from 'react-router-dom';
