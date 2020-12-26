@@ -20,8 +20,8 @@ export const Deaths: FC = () => {
 
   return (
     <Graph
-      heading="Number of deaths"
-      yAxisLabel="Number of deaths (per 100000 people)"
+      heading="Total deaths"
+      yAxisLabel="Total deaths (per 100,000 people)"
       xAxisLabel="days since first reported death"
       result={result}
       labels={({ datum }) =>

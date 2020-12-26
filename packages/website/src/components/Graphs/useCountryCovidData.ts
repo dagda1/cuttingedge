@@ -42,16 +42,20 @@ export interface CountryDataProps {
   startDate: string;
 }
 
+const BreakPoint = 14;
+
 const getCountriesData = async ({ startDate }: CountryDataProps): Promise<Stats> => {
-  const headers = { Accept: 'application/json' };
   const results = {} as Stats;
 
   for (const country of Object.keys(countryData)) {
     const url = urlJoin(baseUrl, country.toUpperCase(), 'timeseries', startDate, dayjs().format('YYYY-MM-DD'));
-    const result = await fetch(url, { headers });
+    const result = await fetch(url, { headers: { Accept: 'application/json' } });
 
     const data = (await result.json()) as CountryStats;
-    data.result = uniqBy(data.result, (a) => a.date);
+
+    data.result = uniqBy(data.result, (a) => a.date).filter(
+      (_, i) => i % BreakPoint === 0 || i === data.result.length - 1,
+    );
     results[country as Countries] = data;
   }
 

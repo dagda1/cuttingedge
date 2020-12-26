@@ -36,11 +36,11 @@ export const MobileMenuItems: FC<MenuItemsProps> = ({ collapse }) => {
           path: Covid19,
           heading: 'COVID-19 Rate of change',
         },
-        { path: Deaths, heading: 'COVID-19 Total deaths' },
         {
           path: IncreaseInDeaths,
           heading: 'COVID-19 Daily increase in deaths',
         },
+        { path: Deaths, heading: 'COVID-19 Total deaths' },
       ].map((page) => {
         return (
           <li key={page.heading} className={cs(styles.horizontal, styles.mobile)}>

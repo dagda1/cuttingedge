@@ -26,7 +26,7 @@ export type GraphProps = {
   result: { isSettled: boolean; data?: CountriesStats };
   xAxisLabel: string;
   yAxisLabel: string;
-  xTickFormat?: (label: string, i: number) => string;
+  xTickFormat?: (label: string, i: number, a: unknown[]) => string;
   yTickFormat?: (label: string, i: number) => string;
   heading: string;
   labels?: ({ datum }: { datum: DayData }) => string;
@@ -34,9 +34,12 @@ export type GraphProps = {
 
 export const Graph: FC<GraphProps> = ({
   result,
+  yAxisLabel,
+
   labels,
   heading,
-  xTickFormat: tickFormat = (label: string, i: number) => (i % 15 === 0 ? `-   ${dayjs(label).format('DD/MM')}` : ''),
+  xTickFormat = (label: string, i: number, a: unknown[]) =>
+    i % 2 === 0 || i === a.length - 1 ? `${dayjs(label).format('DD/MM')}` : '',
   yTickFormat = (t) => t,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -67,11 +70,11 @@ export const Graph: FC<GraphProps> = ({
               url: Urls.Covid19,
               text: 'Rate of change',
             },
-            { url: Urls.Deaths, text: 'Total deaths' },
             {
               url: Urls.IncreaseInDeaths,
               text: 'Daily increase in deaths',
             },
+            { url: Urls.Deaths, text: 'Total deaths' },
           ].map((u) => {
             if (location.pathname === u.url) {
               return <li key={u.url}>{u.text}</li>;
@@ -110,7 +113,7 @@ export const Graph: FC<GraphProps> = ({
               }))}
             />
             <VictoryChart
-              height={largeScreen ? height - 180 : height - 120}
+              height={largeScreen ? height - 150 : height - 0}
               width={width}
               standalone={false}
               theme={{
@@ -128,14 +131,13 @@ export const Graph: FC<GraphProps> = ({
             >
               <VictoryAxis
                 dependentAxis
+                label={`${yAxisLabel} up until ${dayjs().subtract(1, 'day').format('DD/MM/YYYY')}`}
                 orientation="left"
                 standalone={false}
                 style={{
                   axisLabel: {
                     fill: AxisColor,
                     fillOpacity: 0.5,
-                    verticalAnchor: 'start',
-                    textAnchor: 'start',
                   },
                 }}
                 tickFormat={yTickFormat}
@@ -150,7 +152,7 @@ export const Graph: FC<GraphProps> = ({
                     textAnchor: 'start',
                   },
                 }}
-                tickFormat={tickFormat}
+                tickFormat={xTickFormat}
               />
               {Object.keys(result.data).map((k) => {
                 assert(result.data?.[k as Countries], `No country data ${k}`);
@@ -161,15 +163,23 @@ export const Graph: FC<GraphProps> = ({
                     key={k}
                     color={country?.color}
                     labels={labels}
-                    labelComponent={<VictoryTooltip style={{ fontSize: 10 }} renderInPortal={false} />}
+                    labelComponent={
+                      <VictoryTooltip
+                        style={{ fontSize: 15, paddingRight: 4 }}
+                        renderInPortal={false}
+                        constrainToVisibleArea={true}
+                        flyoutWidth={200}
+                      />
+                    }
                     data={country?.data}
                   >
                     <VictoryLine
+                      interpolation="natural"
                       style={{
-                        data: { strokeWidth: k === 'GB' ? 3 : 1 },
+                        data: { strokeWidth: k === 'GBR' ? 4 : 2 },
                       }}
                     />
-                    <VictoryScatter size={() => (k === 'GB' ? 5 : 3)} />
+                    <VictoryScatter size={() => (k === 'GBR' ? 5 : 3)} />
                   </VictoryGroup>
                 );
               })}

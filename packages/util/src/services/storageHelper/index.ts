@@ -32,8 +32,8 @@ export class StorageHelper {
   constructor() {
     try {
       this.storageWindow = window.sessionStorage as Storage;
-      this.storageWindow.setItem('aws.cognito.test-ls', '1');
-      this.storageWindow.removeItem('aws.cognito.test-ls');
+      this.storageWindow.setItem('cutting.test-ls', '1');
+      this.storageWindow.removeItem('cutting.test-ls');
     } catch (exception) {
       this.storageWindow = MemoryStorage;
     }

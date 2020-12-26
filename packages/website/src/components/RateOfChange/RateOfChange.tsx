@@ -3,38 +3,39 @@ import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
 import Graph from 'src/components/Graphs/Graph';
 import regression from 'regression';
 import { Countries } from '../Graphs';
+import dayjs from 'dayjs';
 
 export const RateOfChange: FC = () => {
   const result = useCountryCovidData({ startDate: '2020-01-01' });
 
-  if (!result) {
+  if (!result?.data?.BRA) {
     return null;
   }
 
-  if (result.data) {
-    for (const c of Object.keys(result.data)) {
-      const country = result.data?.[c as Countries];
+  const dates: string[] = result.data['BRA']?.result.map((x) => dayjs(x.x).format('DD/MM'));
 
-      country.data = regression
-        .exponential([
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ...country.result.map((d: any, i: number) => {
-            return [i, d.deltaDeaths <= 0 ? 0.00000000001 : d.deltaDeaths];
-          }),
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ] as any)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .points.map(([x, y]) => ({ x, y })) as any;
-    }
+  for (const c of Object.keys(result.data)) {
+    const country = result.data?.[c as Countries];
+
+    country.data = regression
+      .logarithmic([
+        ...country.result.map((d) => {
+          return [d.index, d.deltaDeaths] as [number, number];
+        }),
+      ])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .points.map(([x, y], i) => ({ x: x - 1, y: i === 0 ? 0 : y < 0 ? 0 : y })) as any;
   }
 
   return (
     <Graph
       heading="Rate of change of reported deaths"
       xAxisLabel="Days since first reported death"
-      yAxisLabel=""
+      yAxisLabel="Daily increase in deaths"
       result={result}
-      xTickFormat={(t) => `-   ${t}`}
+      xTickFormat={(i) => {
+        return dates[Number(i)];
+      }}
     />
   );
 };

@@ -47,11 +47,11 @@ export const IncreseFromPreviousDay: FC = () => {
     <Graph
       heading="Daily Increase in deaths"
       xAxisLabel="Days since first reported death"
-      yAxisLabel="Increase in deaths from previous day (per 100000 people)"
+      yAxisLabel="Increase in deaths from previous day (per 100,000 people)"
       result={result}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       labels={({ datum }) => {
-        return `${dayjs(datum?.x).format('DD/MM/YY')}\n deaths cases = ${datum.deaths}\n delta from day before = ${
+        return `${dayjs(datum?.x).format('DD/MM/YY')}\n total deaths = ${datum.deaths}\n daily increase = ${
           datum.deltaDeaths
         }`;
       }}

@@ -26,7 +26,7 @@ export const routable: Page[] = [
     exact: true,
   },
   {
-    heading: 'Increase in deathss',
+    heading: 'Increase in deaths',
     path: Urls.IncreaseInDeaths,
     component: IncreseFromPreviousDay,
     exact: true,
