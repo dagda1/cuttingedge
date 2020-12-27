@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { rollup } from 'rollup';
+import type { ModuleFormat } from '../types/moduleFormat';
 import { paths } from '../config/paths';
 import fs from 'fs-extra';
 import path from 'path';
@@ -14,9 +15,7 @@ import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
 import { copyAssets } from './copy-assets';
 import postcss from 'rollup-plugin-postcss';
-import type { ModuleFormat } from '../types/moduleFormat';
-// @ts-ignore
-import md from 'rollup-plugin-md';
+import { md } from '@cutting/rollup-plugin-md';
 // @ts-ignore
 import svgo from 'rollup-plugin-svgo';
 // @ts-ignore

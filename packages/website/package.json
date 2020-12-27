@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "version": "4.1.0",
+  "version": "4.2.0",
   "license": "MIT",
   "scripts": {
     "start": "FAST_REFRESH=true PORT=3000 SSR=true NODE_ENV=development cutting ssr-start",
@@ -15,9 +15,9 @@
     "serve": "NODE_ENV=production node ./dist/server.js"
   },
   "dependencies": {
-    "@cutting/component-library": "4.1.0",
-    "@cutting/hooks": "4.1.0",
-    "@cutting/util": "4.1.0",
+    "@cutting/component-library": "4.2.0",
+    "@cutting/hooks": "4.2.0",
+    "@cutting/util": "4.2.0",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.0",
     "assert-ts": "^0.3.0",
@@ -39,9 +39,9 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.1.0",
-    "@cutting/eslint-config": "4.1.0",
-    "@cutting/useful-types": "4.1.0",
+    "@cutting/devtools": "4.2.0",
+    "@cutting/eslint-config": "4.2.0",
+    "@cutting/useful-types": "4.2.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@types/csurf": "^1.11.0",
     "@types/d3": "^6.2.0",
@@ -55,7 +55,6 @@
     "@types/url-join": "^4.0.0",
     "install": "^0.13.0",
     "nodemon": "^2.0.6",
-    "react-hooks-testing-library": "^0.6.0",
     "start-server-webpack-plugin": "^2.2.5"
   }
 }

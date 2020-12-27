@@ -107,8 +107,7 @@ var rollup_plugin_sourcemaps_1 = __importDefault(require("rollup-plugin-sourcema
 var rollup_plugin_terser_1 = require("rollup-plugin-terser");
 var copy_assets_1 = require("./copy-assets");
 var rollup_plugin_postcss_1 = __importDefault(require("rollup-plugin-postcss"));
-// @ts-ignore
-var rollup_plugin_md_1 = __importDefault(require("rollup-plugin-md"));
+var rollup_plugin_md_1 = require("@cutting/rollup-plugin-md");
 // @ts-ignore
 var rollup_plugin_svgo_1 = __importDefault(require("rollup-plugin-svgo"));
 // @ts-ignore
@@ -162,7 +161,7 @@ function generateBundledModule(_a) {
                                     extensions: ['.mjs', '.cjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
                                 }),
                                 plugin_json_1.default(),
-                                rollup_plugin_md_1.default(),
+                                rollup_plugin_md_1.md(),
                                 rollup_plugin_postcss_1.default({
                                     extract: true,
                                     modules: false,

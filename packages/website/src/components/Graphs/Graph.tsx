@@ -45,9 +45,9 @@ export const Graph: FC<GraphProps> = ({
   const legendRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
 
-  const largeScreen = typeof window !== 'undefined' && window.screen.height > 800;
+  const largeScreen = typeof window !== 'undefined' && window.screen.availWidth > 500;
 
-  console.log({ s: typeof window !== 'undefined' && screen.height, largeScreen });
+  console.log({ s: typeof window !== 'undefined' && screen.availWidth, largeScreen });
 
   const { width: legendWdith, height: legendHeight } = useParentSize(legendRef, {
     initialDimensions: { width: 1, height: 1 },
