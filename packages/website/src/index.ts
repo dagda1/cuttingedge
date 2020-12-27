@@ -6,8 +6,6 @@ const server = http.createServer(app);
 
 let currentApp = app;
 
-console.log(process.env.PORT);
-
 assert(process.env.PORT, 'NO port set');
 
 server.listen(process.env.PORT, () => {
@@ -21,8 +19,13 @@ if (module.hot) {
     console.log('🔁  HMR Reloading `./server`...');
     server.removeListener('request', currentApp);
     import('./server').then((m) => {
-      server.once('request', m.app);
-      currentApp = m.app;
+      try {
+        server.on('request', m.app);
+        currentApp = m.app;
+      } catch (err) {
+        console.debug('hot reloading error');
+        console.error(err);
+      }
     });
   });
 }

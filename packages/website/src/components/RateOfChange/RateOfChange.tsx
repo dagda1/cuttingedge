@@ -8,23 +8,21 @@ import dayjs from 'dayjs';
 export const RateOfChange: FC = () => {
   const result = useCountryCovidData({ startDate: '2020-01-01' });
 
-  if (!result?.data?.BRA) {
-    return null;
-  }
+  const dates: string[] = result?.data?.['BRA']?.result.map((x) => dayjs(x.x).format('DD/MM')) || [];
 
-  const dates: string[] = result.data['BRA']?.result.map((x) => dayjs(x.x).format('DD/MM'));
+  if (result.data) {
+    for (const c of Object.keys(result.data)) {
+      const country = result.data?.[c as Countries];
 
-  for (const c of Object.keys(result.data)) {
-    const country = result.data?.[c as Countries];
-
-    country.data = regression
-      .logarithmic([
-        ...country.result.map((d) => {
-          return [d.index, d.deltaDeaths] as [number, number];
-        }),
-      ])
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .points.map(([x, y], i) => ({ x: x - 1, y: i === 0 ? 0 : y < 0 ? 0 : y })) as any;
+      country.data = regression
+        .logarithmic([
+          ...country.result.map((d) => {
+            return [d.index, d.deltaDeaths] as [number, number];
+          }),
+        ])
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .points.map(([x, y], i) => ({ x: x - 1, y: i === 0 ? 0 : y < 0 ? 0 : y })) as any;
+    }
   }
 
   return (

@@ -1,6 +1,8 @@
 @import '../../assets/scss/main';
 
 .container {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   overflow: hidden;
   svg {
@@ -34,4 +36,8 @@
 
 .legend {
   @include ml(2);
+}
+
+.chart {
+  flex: 1;
 }

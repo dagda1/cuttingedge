@@ -9,8 +9,7 @@ import favicon from 'serve-favicon';
 import { Exception } from '../errors/Exception';
 import { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
-
-const referrerPolicy = require('referrer-policy');
+import referrerPolicy from 'referrer-policy';
 
 export const app = express();
 
@@ -46,7 +45,7 @@ if (isProduction) {
           'https://www.formlets.com',
           'https://covidapi.info/',
         ],
-        styleSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
         imgSrc: ["'self'", 'data:', 'https://www.google-analytics.com'],
         fontSrc: ["'self'", 'data:'],
         objectSrc: ["'self'", 'blob:'],

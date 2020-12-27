@@ -9,8 +9,13 @@ import styles from './OSS.module.scss';
 export const OSS: FC = () => (
   <ApplicationLayout heading="Open Source Contributions">
     <div className={styles.container}>
-      <Heading level={2}>Community Pull Requests</Heading>
+      <Heading level={2}>Prominent opens source pull requests</Heading>
       <ul className={styles.community__list}>
+        <li>
+          <ExternalLink href="https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3A%40me+">
+            Very active in Bigtest
+          </ExternalLink>
+        </li>
         <li>
           <ExternalLink href="https://github.com/jaredpalmer/after.js/pulls?q=is%3Apr+author%3Adagda1+is%3Aclosed">
             Numerous commits to afterjs

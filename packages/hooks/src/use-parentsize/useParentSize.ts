@@ -1,7 +1,8 @@
-import { useEffect, useCallback, useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 import type { RefObject } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { UseParentSizeOptions, Dimensions, SizeAction, SizeActionTypes } from './types';
+import { useIsomorphicLayoutEffect } from '../use-isomorphic-layout-effect/useIsomorphicLayoutEffect';
 
 export const useParentSize = (
   ref: RefObject<HTMLElement>,
@@ -31,11 +32,11 @@ export const useParentSize = (
       }
 
       const entry = entries[0];
-      const { width } = dimensions;
+      const { width, height } = dimensions;
       const newWidth = Math.round(entry.contentRect.width);
       const newHeight = Math.round(entry.contentRect.height);
 
-      if (width !== newWidth) {
+      if (width !== newWidth || height !== newHeight) {
         dispatch({
           type: SizeActionTypes.SetSize,
           payload: { width: newWidth, height: newHeight },
@@ -45,7 +46,7 @@ export const useParentSize = (
     [dimensions],
   );
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!ref.current) {
       return;
     }

@@ -32,8 +32,6 @@ path {
     position: relative;
 
     &:not(.mobile__button__container):not(:last-of-type) {
-      @include mr(2);
-
       @include mq-m {
         @include mr(3);
       }
@@ -51,6 +49,10 @@ path {
     h2 a {
       top: 0;
     }
+  }
+
+  div:not(.expanded) ul li {
+    @include mr(2);
   }
 }
 
@@ -178,7 +180,7 @@ ul li.horizontal.mobile.close__button{
   button {
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     margin-right: $spacing-x2;
     border-radius: 32px;
     background: #fff;

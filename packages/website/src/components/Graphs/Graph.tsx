@@ -4,19 +4,18 @@ import { useParentSize } from '@cutting/hooks';
 import {
   VictoryChart,
   VictoryGroup,
+  VictoryLegend,
   VictoryTooltip,
   VictoryLine,
   VictoryScatter,
-  VictoryLegend,
   VictoryAxis,
 } from 'victory';
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
-import { ResponsiveSVG, LoadingOverlay } from '@cutting/component-library';
-import { countryData, AxisColor, Countries, DayData } from '../Graphs/types';
+import { ResponsiveSVG } from '@cutting/component-library';
+import { AxisColor, Countries, DayData, countryData } from '../Graphs/types';
 import * as Urls from 'src/urls';
-import { NavLink } from 'react-router-dom';
-import { useLocation } from 'react-router';
+import { NavLink, useLocation } from 'react-router-dom';
 import { assert } from 'assert-ts';
 import { CountriesStats } from './useCountryCovidData';
 
@@ -42,28 +41,26 @@ export const Graph: FC<GraphProps> = ({
     i % 2 === 0 || i === a.length - 1 ? `${dayjs(label).format('DD/MM')}` : '',
   yTickFormat = (t) => t,
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const { width, height } = useParentSize(ref, {
-    initialDimensions: { width: 200, height: 200 },
-  });
-  const largeScreen = width > 600;
-
   const location = useLocation();
+  const legendRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
 
-  if (result.isSettled === false || width < 200 || height < 450) {
-    return (
-      <div className={styles.container} ref={ref}>
-        <LoadingOverlay busy={true} darkMode />
-      </div>
-    );
-  }
+  const largeScreen = typeof window !== 'undefined' && window.screen.height > 800;
+
+  console.log({ s: typeof window !== 'undefined' && screen.height, largeScreen });
+
+  const { width: legendWdith, height: legendHeight } = useParentSize(legendRef, {
+    initialDimensions: { width: 1, height: 1 },
+  });
+  const { width: chartWidth, height: chartHeight } = useParentSize(chartRef, {
+    initialDimensions: { width: 1, height: 1 },
+  });
 
   assert(!!result.data, 'No data has been supplied');
 
   return (
     <ApplicationLayout heading={heading} showFooter={true}>
-      <div className={styles.container} ref={ref}>
+      <div className={styles.container}>
         <ul className={styles.links}>
           {[
             {
@@ -89,11 +86,13 @@ export const Graph: FC<GraphProps> = ({
             );
           })}
         </ul>
-        <div className={styles.legend}>
-          <ResponsiveSVG width={width} height={height}>
+        <div className={styles.legend} ref={legendRef}>
+          <ResponsiveSVG height={legendHeight} width={legendWdith}>
             <VictoryLegend
               x={0}
-              y={0}
+              y={-10}
+              height={legendHeight}
+              width={legendWdith}
               centerTitle={largeScreen}
               standalone={false}
               orientation="horizontal"
@@ -112,9 +111,13 @@ export const Graph: FC<GraphProps> = ({
                 symbol: { fill: countryData[k as Countries].color },
               }))}
             />
+          </ResponsiveSVG>
+        </div>
+        <div className={styles.chart} ref={chartRef}>
+          <ResponsiveSVG width={chartWidth} height={chartHeight}>
             <VictoryChart
-              height={largeScreen ? height - 150 : height - 0}
-              width={width}
+              width={chartWidth}
+              height={chartHeight}
               standalone={false}
               theme={{
                 axis: {

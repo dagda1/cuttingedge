@@ -6,6 +6,11 @@ export interface Repo {
 
 export const repos: Repo[] = [
   {
+    name: 'bigtest',
+    description: 'Active contributor to bigtest',
+    link: 'https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3A%40me+',
+  },
+  {
     name: 'use-shortcuts',
     description: 'Effortlessly create keyboard shortcuts with this react hook.',
     link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/use-shortcuts',
@@ -19,10 +24,5 @@ export const repos: Repo[] = [
     name: 'cuttingedge',
     description: 'Source code for this site. SSR, code splitting , hot reloading etc....',
     link: 'https://github.com/dagda1/cuttingedge',
-  },
-  {
-    name: 'styled-gel',
-    description: 'Styled-components responsive flexbox grid',
-    link: 'https://github.com/dagda1/styled-gel',
   },
 ];

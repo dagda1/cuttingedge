@@ -7,6 +7,11 @@ export interface Post {
 // eslint:disable
 export const posts: Post[] = [
   {
+    title: 'Put the TypeScript enums and booleans away',
+    summary: 'How discriminated unions or algebraic data types are a better fit for modelling state',
+    link: 'https://blog.logrocket.com/put-the-typescript-enums-and-booleans-away/',
+  },
+  {
     title: 'Act now to make your React website accessible',
     summary:
       'I do not care about the various WCAG 2.x standards. People use these standards as an excuse to do the bare minimum to make...',
