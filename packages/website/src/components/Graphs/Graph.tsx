@@ -12,7 +12,7 @@ import {
 } from 'victory';
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
-import { ResponsiveSVG } from '@cutting/component-library';
+import { LoadingOverlay, ResponsiveSVG } from '@cutting/component-library';
 import { AxisColor, Countries, DayData, countryData } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -26,7 +26,8 @@ export type GraphProps = {
   xAxisLabel: string;
   yAxisLabel: string;
   xTickFormat?: (label: string, i: number, a: unknown[]) => string;
-  yTickFormat?: (label: string, i: number) => string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  yTickFormat?: (tick: any, index: number, ticks: any[]) => string | number;
   heading: string;
   labels?: ({ datum }: { datum: DayData }) => string;
 };
@@ -34,7 +35,6 @@ export type GraphProps = {
 export const Graph: FC<GraphProps> = ({
   result,
   yAxisLabel,
-
   labels,
   heading,
   xTickFormat = (label: string, i: number, a: unknown[]) =>
@@ -47,11 +47,10 @@ export const Graph: FC<GraphProps> = ({
 
   const largeScreen = typeof window !== 'undefined' && window.screen.availWidth > 500;
 
-  console.log({ s: typeof window !== 'undefined' && screen.availWidth, largeScreen });
-
   const { width: legendWdith, height: legendHeight } = useParentSize(legendRef, {
     initialDimensions: { width: 1, height: 1 },
   });
+
   const { width: chartWidth, height: chartHeight } = useParentSize(chartRef, {
     initialDimensions: { width: 1, height: 1 },
   });
@@ -90,7 +89,7 @@ export const Graph: FC<GraphProps> = ({
           <ResponsiveSVG height={legendHeight} width={legendWdith}>
             <VictoryLegend
               x={0}
-              y={-10}
+              y={0}
               height={legendHeight}
               width={legendWdith}
               centerTitle={largeScreen}
@@ -114,80 +113,86 @@ export const Graph: FC<GraphProps> = ({
           </ResponsiveSVG>
         </div>
         <div className={styles.chart} ref={chartRef}>
-          <ResponsiveSVG width={chartWidth} height={chartHeight}>
-            <VictoryChart
-              width={chartWidth}
-              height={chartHeight}
-              standalone={false}
-              theme={{
-                axis: {
-                  style: {
-                    axis: { stroke: AxisColor },
-                    tickLabels: {
-                      color: AxisColor,
-                      fill: AxisColor,
+          {result.isSettled === false ? (
+            <LoadingOverlay busy={true} darkMode />
+          ) : (
+            <ResponsiveSVG width={chartWidth} height={chartHeight}>
+              <VictoryChart
+                width={chartWidth}
+                height={chartHeight}
+                standalone={false}
+                theme={{
+                  axis: {
+                    style: {
+                      axis: { stroke: AxisColor },
+                      tickLabels: {
+                        color: AxisColor,
+                        fill: AxisColor,
+                      },
+                      grid: { stroke: '#fff', strokeOpacity: 0.2 },
                     },
-                    grid: { stroke: '#fff', strokeOpacity: 0.2 },
-                  },
-                },
-              }}
-            >
-              <VictoryAxis
-                dependentAxis
-                label={`${yAxisLabel} up until ${dayjs().subtract(1, 'day').format('DD/MM/YYYY')}`}
-                orientation="left"
-                standalone={false}
-                style={{
-                  axisLabel: {
-                    fill: AxisColor,
-                    fillOpacity: 0.5,
                   },
                 }}
-                tickFormat={yTickFormat}
-              />
-              <VictoryAxis
-                orientation={'bottom'}
-                standalone={false}
-                style={{
-                  tickLabels: {
-                    angle: largeScreen ? 45 : 90,
-                    verticalAnchor: 'middle',
-                    textAnchor: 'start',
-                  },
-                }}
-                tickFormat={xTickFormat}
-              />
-              {Object.keys(result.data).map((k) => {
-                assert(result.data?.[k as Countries], `No country data ${k}`);
+              >
+                <VictoryAxis
+                  dependentAxis
+                  label={`${yAxisLabel} up until ${dayjs().subtract(1, 'day').format('DD/MM/YYYY')}`}
+                  orientation="left"
+                  standalone={false}
+                  style={{
+                    axisLabel: {
+                      fill: AxisColor,
+                      fillOpacity: 0.5,
+                    },
+                  }}
+                  tickFormat={yTickFormat}
+                />
+                <VictoryAxis
+                  orientation={'bottom'}
+                  standalone={false}
+                  style={{
+                    tickLabels: {
+                      angle: largeScreen ? 45 : 90,
+                      verticalAnchor: 'middle',
+                      textAnchor: 'start',
+                    },
+                  }}
+                  tickFormat={xTickFormat}
+                />
+                {Object.keys(result.data).map((k) => {
+                  assert(result.data?.[k as Countries], `No country data ${k}`);
 
-                const country = result.data?.[k as Countries];
-                return (
-                  <VictoryGroup
-                    key={k}
-                    color={country?.color}
-                    labels={labels}
-                    labelComponent={
-                      <VictoryTooltip
-                        style={{ fontSize: 15, paddingRight: 4 }}
-                        renderInPortal={false}
-                        constrainToVisibleArea={true}
-                        flyoutWidth={200}
+                  const country = result.data?.[k as Countries];
+                  return (
+                    <VictoryGroup
+                      key={k}
+                      color={country?.color}
+                      standalone={false}
+                      labels={labels}
+                      labelComponent={
+                        <VictoryTooltip
+                          style={{ fontSize: 15, paddingRight: 4 }}
+                          renderInPortal={false}
+                          constrainToVisibleArea={true}
+                          flyoutWidth={200}
+                        />
+                      }
+                      data={country?.data}
+                    >
+                      <VictoryLine
+                        interpolation="natural"
+                        style={{
+                          data: { strokeWidth: k === 'GBR' ? 4 : 2 },
+                        }}
+                        standalone={false}
                       />
-                    }
-                    data={country?.data}
-                  >
-                    <VictoryLine
-                      interpolation="natural"
-                      style={{
-                        data: { strokeWidth: k === 'GBR' ? 4 : 2 },
-                      }}
-                    />
-                    <VictoryScatter size={() => (k === 'GBR' ? 5 : 3)} />
-                  </VictoryGroup>
-                );
-              })}
-            </VictoryChart>
-          </ResponsiveSVG>
+                      <VictoryScatter standalone={false} size={() => (k === 'GBR' ? 5 : 3)} />
+                    </VictoryGroup>
+                  );
+                })}
+              </VictoryChart>
+            </ResponsiveSVG>
+          )}
         </div>
       </div>
     </ApplicationLayout>

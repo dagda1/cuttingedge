@@ -53,7 +53,6 @@ var libPackages = [
     'packages/component-library',
     'packages/use-shortcuts',
     'packages/use-abort',
-    'packages/graphql-explorer',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var webAppPackages = ['packages/website'].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var tsConfigPath = resolveApp('tsconfig.json');

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "yarn workspaces run build",
     "test": "CI=true yarn workspaces run test",
-    "start": "yarn build && yarn --cwd packages/website/ ssr-start",
+    "start": "yarn build && yarn --cwd packages/website start",
     "publish:all": "NODE_ENV=production cutting each-pkg yarn publish -- --non-interactive --verbose",
     "audit-packages": "cutting each-pkg cutting audit",
     "lint": "eslint 'packages/**/*.{ts,tsx,js}' -c ./packages/component-library/.eslintrc.json --ignore-path ./.eslintignore --fix",
@@ -47,7 +47,6 @@
       "packages/use-abort",
       "packages/component-library",
       "packages/use-shortcuts",
-      "packages/graphql-explorer",
       "packages/website"
     ]
   },

@@ -40,7 +40,6 @@ const libPackages = [
   'packages/component-library',
   'packages/use-shortcuts',
   'packages/use-abort',
-  'packages/graphql-explorer',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));

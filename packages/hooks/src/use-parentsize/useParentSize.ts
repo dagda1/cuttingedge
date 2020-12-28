@@ -11,8 +11,6 @@ export const useParentSize = (
     offset: { width: 0, height: 0 },
   },
 ): { width: number; height: number } => {
-  // need to use useReducer because useState with setDimensions({ width: //etc })
-  // causes an infinite re-render as you are setting a new object each time
   function reducer(state: Dimensions, action: SizeAction) {
     switch (action.type) {
       case SizeActionTypes.SetSize: {

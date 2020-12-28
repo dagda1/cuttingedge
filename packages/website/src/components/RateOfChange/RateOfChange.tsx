@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 export const RateOfChange: FC = () => {
   const result = useCountryCovidData({ startDate: '2020-01-01' });
 
-  const dates: string[] = result?.data?.['BRA']?.result.map((x) => dayjs(x.x).format('DD/MM')) || [];
+  const dates: string[] = result?.data?.USA?.result.map((x) => dayjs(x.x).format('DD/MM')) || [];
 
   if (result.data) {
     for (const c of Object.keys(result.data)) {
@@ -21,7 +21,7 @@ export const RateOfChange: FC = () => {
           }),
         ])
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .points.map(([x, y], i) => ({ x: x - 1, y: i === 0 ? 0 : y < 0 ? 0 : y })) as any;
+        .points.map(([x, y], i) => ({ x: x - 1, y: i <= 0 ? 0 : y })) as any;
     }
   }
 
@@ -34,6 +34,8 @@ export const RateOfChange: FC = () => {
       xTickFormat={(i) => {
         return dates[Number(i)];
       }}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      yTickFormat={() => ''}
     />
   );
 };

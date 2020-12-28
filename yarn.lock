@@ -942,10 +942,10 @@
   resolved "https://registry.npmjs.org/@csstools/normalize.css/-/normalize.css-11.0.1.tgz#31ffab0bff5f4f09551e059359bc1977ac83a974"
   integrity sha512-kUlWZHQkll+lOlYdj7dg8XwziO9WALkfG2dAXLITZMB8gO99CXQBH5W/HleXC3YwWFWXVxe1UClMk/2qsB9oAw==
 
-"@cutting/rollup-plugin-md@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/@cutting/rollup-plugin-md/-/rollup-plugin-md-0.3.0.tgz#fa1cea61ca36aad4a122e37cc29ba71957846f04"
-  integrity sha512-bc0HOm2H0ani+k6qtZoZa5jHtSdnbsjLTR/dcZY1eysOYoHNGeSm9i/tmGEg/c//2fiy2jAt8znqXDwfCyjTUw==
+"@cutting/rollup-plugin-md@0.3.2":
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/@cutting/rollup-plugin-md/-/rollup-plugin-md-0.3.2.tgz#2217243a56370185f46a9fb272caedbe2b591dd8"
+  integrity sha512-pAOuGqBXABiTxKE+aLzFBjTvAila+6rEIIpnJ3bBsu5KhGi9IM3SP4qYfhWQB1wJ1DaIXqKC6mksifv2eIYMJg==
   dependencies:
     "@rollup/pluginutils" "^4.1.0"
     marked "^1.2.7"
@@ -4526,7 +4526,12 @@ cyclist@^1.0.1:
   resolved "https://registry.npmjs.org/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
-d3-array@^1.2.0, d3-array@^2.4.0, d3-array@^2.9.1:
+d3-array@^1.2.0:
+  version "1.2.4"
+  resolved "https://registry.npmjs.org/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
+  integrity sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==
+
+d3-array@^2.4.0:
   version "2.9.1"
   resolved "https://registry.npmjs.org/d3-array/-/d3-array-2.9.1.tgz#f355cc72b46c8649b3f9212029e2d681cb5b9643"
   integrity sha512-Ob7RdOtkqsjx1NWyQHMFLtCSk6/aKTxDdC4ZIolX+O+mDD2RzrsYgAyc0WGAlfYFVELLSilS7w8BtE3PKM8bHg==

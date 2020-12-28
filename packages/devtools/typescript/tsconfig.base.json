@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "removeComments": false,
     "checkJs": false,
+    "isolatedModules": true,
     "preserveSymlinks": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,
@@ -17,6 +18,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "noFallthroughCasesInSwitch": true,
     "lib": [
       "es5",
       "es2015",

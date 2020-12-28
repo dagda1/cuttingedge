@@ -3,12 +3,10 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
     "outDir": "./tools",
     "baseUrl": ".",
-    "sourceMap": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "isolatedModules": false
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]

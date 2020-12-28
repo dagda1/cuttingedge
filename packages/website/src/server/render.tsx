@@ -29,11 +29,14 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
 
   const app = (
     <html lang="en" {...helmet.htmlAttributes.toComponent()}>
-      <head>
+      <head lang="en">
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+        <meta
+          name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0"
+        />
         {helmet.meta.toComponent()}
         {helmet.link.toComponent()}
         {helmet.title.toComponent()}
