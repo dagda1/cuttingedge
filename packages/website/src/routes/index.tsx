@@ -31,7 +31,7 @@ const TermsOfService = loadable(() => import('src/components/TermsOfService'), {
   fallback: <div>Loading...</div>,
 });
 
-const Graphs = loadable(() => import('src/components/Graphs/Landing'), {
+const Graphs = loadable(() => import(/* webpackPrefetch: true */ 'src/components/Graphs/Landing'), {
   fallback: <div>Loading...</div>,
 });
 

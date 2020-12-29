@@ -1,11 +1,13 @@
 {
   "name": "@cutting/util",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "type": "module",
   "module": "dist/util.esm.js",
   "browser": "dist/util.esm.js",
   "main": "dist/index.js",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -18,12 +20,12 @@
     "test:ci": "CI=true npm test"
   },
   "dependencies": {
-    "@cutting/util": "4.2.1",
+    "@cutting/util": "4.3.0",
     "react": "^17.0.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.2.1",
-    "@cutting/eslint-config": "4.2.1",
-    "@cutting/useful-types": "4.2.1"
+    "@cutting/devtools": "4.3.0",
+    "@cutting/eslint-config": "4.3.0",
+    "@cutting/useful-types": "4.3.0"
   }
 }

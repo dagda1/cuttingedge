@@ -159,7 +159,8 @@ export const Graph: FC<GraphProps> = ({
                   }}
                   tickFormat={xTickFormat}
                 />
-                {Object.keys(result.data).map((k) => {
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                {Object.keys(result.data as any).map((k) => {
                   assert(result.data?.[k as Countries], `No country data ${k}`);
 
                   const country = result.data?.[k as Countries];

@@ -12,7 +12,7 @@ export const OSS: FC = () => (
       <Heading level={2}>Prominent opens source pull requests</Heading>
       <ul className={styles.community__list}>
         <li>
-          <ExternalLink href="https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3A%40me+">
+          <ExternalLink href="https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1">
             Very active in Bigtest
           </ExternalLink>
         </li>

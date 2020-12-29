@@ -1,6 +1,6 @@
 {
   "name": "@cutting/component-library",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -9,16 +9,18 @@
   "module": "dist/component-library.esm.js",
   "browser": "dist/component-library.esm.js",
   "main": "dist/index.js",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/util": "4.2.1"
+    "@cutting/util": "4.3.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.2.1",
-    "@cutting/eslint-config": "4.2.1",
-    "@cutting/useful-types": "4.2.1",
+    "@cutting/devtools": "4.3.0",
+    "@cutting/eslint-config": "4.3.0",
+    "@cutting/useful-types": "4.3.0",
     "@testing-library/jest-dom": "^5.11.6"
   },
   "scripts": {
