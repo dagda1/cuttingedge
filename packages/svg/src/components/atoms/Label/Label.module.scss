@@ -1,0 +1,41 @@
+@import '../../../styles/_index.scss';
+
+.default {
+  font-weight: normal;
+  color: $label-default-color;
+  display: block;
+
+  @include mb(1);
+
+  @include mq-m {
+    @include mb(2);
+  }
+}
+
+.invalid {
+  font-weight: bold;
+  color: $label-error-color;
+  &:before {
+    color: $label-error-color;
+  }
+}
+
+.required {
+  &:before {
+    content: '*';
+    margin-right: 0.5rem;
+  }
+}
+
+.strong {
+  &:not(.invalid) {
+    font-weight: bold;
+    color: $label-default-color;
+  }
+}
+
+.double-margin:not(.strong) {
+  @include mq-s {
+    @include mb(3);
+  }
+}

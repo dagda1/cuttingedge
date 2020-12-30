@@ -1,0 +1,19 @@
+@mixin highlight {
+  border-left: 5px solid $highlight-form-control;
+
+  @include pl(1);
+
+  @include mq-m {
+    @include pl(2);
+  }
+
+  @include mq-l {
+    @include pl(3);
+  }
+}
+
+@mixin outline($width, $border-color, $bg-color: $white) {
+  background: $bg-color;
+  border: 0;
+  outline: $width solid $border-color;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@cutting/svg",
+  "version": "4.4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagda1/cuttingedge.git"
+  },
+  "type": "module",
+  "module": "dist/component-library.esm.js",
+  "browser": "dist/component-library.esm.js",
+  "main": "dist/index.js",
+  "sideEffects": [
+    "*.css"
+  ],
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@cutting/util": "4.4.0"
+  },
+  "devDependencies": {
+    "@cutting/devtools": "4.4.0",
+    "@cutting/eslint-config": "4.4.0",
+    "@cutting/useful-types": "4.4.0",
+    "@testing-library/jest-dom": "^5.11.6"
+  },
+  "scripts": {
+    "build": "NODE_ENV=development cutting rollup",
+    "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
+    "test": "NODE_ENV=test cutting test",
+    "test:ci": "CI=true yarn test",
+    "prepublish": "yarn build"
+  }
+}

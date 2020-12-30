@@ -1,0 +1,90 @@
+$mx-rules: 'margin-left', 'margin-right';
+$my-rules: 'margin-top', 'margin-bottom';
+$ml-rules: 'margin-left';
+$mr-rules: 'margin-right';
+$mb-rules: 'margin-bottom';
+$mt-rules: 'margin-top';
+$px-rules: 'padding-left', 'padding-right';
+$py-rules: 'padding-top', 'padding-bottom';
+$pl-rules: 'padding-left';
+$pr-rules: 'padding-right';
+$pb-rules: 'padding-bottom';
+$pt-rules: 'padding-top';
+
+$spacing: 0.625; // 8px
+$unit: rem;
+
+$spacing-x1: #{$spacing}#{$unit} !important;
+$spacing-x2: #{$spacing * 2}#{$unit} !important;
+$spacing-x3: #{$spacing * 3}#{$unit} !important;
+$spacing-x4: #{$spacing * 4}#{$unit} !important;
+$spacing-x5: #{$spacing * 5}#{$unit} !important;
+$spacing-x6: #{$spacing * 6}#{$unit} !important;
+$spacing-x7: #{$spacing * 7}#{$unit} !important;
+$spacing-x8: #{$spacing * 8}#{$unit} !important;
+
+@mixin add-space-rule($rules, $space) {
+  @each $rule in $rules {
+    #{$rule}: #{nth($scale, $space)}#{$unit} !important;
+  }
+}
+
+@mixin m($space) {
+  margin: #{nth($scale, $space)}#{$unit} !important;
+}
+
+@mixin p($space) {
+  padding: #{nth($scale, $space)}#{$unit} !important;
+}
+
+@mixin mx($space) {
+  @include add-space-rule($mx-rules, $space);
+}
+
+@mixin my($space) {
+  @include add-space-rule($my-rules, $space);
+}
+
+@mixin ml($space) {
+  @include add-space-rule($ml-rules, $space);
+}
+
+@mixin mr($space) {
+  @include add-space-rule($mr-rules, $space);
+}
+
+@mixin mt($space) {
+  @include add-space-rule($mt-rules, $space);
+}
+
+@mixin mb($space) {
+  @include add-space-rule($mb-rules, $space);
+}
+
+@mixin px($space) {
+  @include add-space-rule($px-rules, $space);
+}
+
+@mixin py($space) {
+  @include add-space-rule($py-rules, $space);
+}
+
+@mixin pt($space) {
+  @include add-space-rule($pt-rules, $space);
+}
+
+@mixin pt($space) {
+  @include add-space-rule($pt-rules, $space);
+}
+
+@mixin pl($space) {
+  @include add-space-rule($pl-rules, $space);
+}
+
+@mixin pr($space) {
+  @include add-space-rule($pr-rules, $space);
+}
+
+@mixin pb($space) {
+  @include add-space-rule($pb-rules, $space);
+}

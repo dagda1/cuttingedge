@@ -1,0 +1,20 @@
+@import '../../../styles/_index.scss';
+
+.fieldset {
+  border: none;
+  padding: 0;
+
+  legend {
+    @include sr-only;
+  }
+
+  &.stacked {
+    .options__container {
+      flex-direction: column;
+    }
+  }
+}
+
+.options__container {
+  display: flex;
+}

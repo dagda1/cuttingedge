@@ -1,0 +1,47 @@
+@mixin mq-s {
+  @include mq($from: $mobile) {
+    @content;
+  }
+}
+
+@mixin mq-m {
+  @include mq($from: $tablet) {
+    @content;
+  }
+}
+
+@mixin mq-l {
+  @include mq($from: $desktop) {
+    @content;
+  }
+}
+
+@mixin mq-xl {
+  @include mq($from: $widescreen) {
+    @content;
+  }
+}
+
+@mixin mq-s-max {
+  @include mq($until: $mobile) {
+    @content;
+  }
+}
+
+@mixin mq-m-max {
+  @include mq($until: $tablet) {
+    @content;
+  }
+}
+
+@mixin mq-l-max {
+  @include mq($until: $desktop) {
+    @content;
+  }
+}
+
+@mixin mq-xl-max {
+  @include mq($until: $widescreen) {
+    @content;
+  }
+}

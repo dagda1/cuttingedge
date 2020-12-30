@@ -1,6 +1,6 @@
 {
   "name": "cuttingedge",
-  "version": "4.3.0",
+  "version": "4.4.0",
   "private": true,
   "scripts": {
     "build": "yarn workspaces run build",
@@ -46,6 +46,7 @@
       "packages/hooks",
       "packages/use-abort",
       "packages/component-library",
+      "packages/svg",
       "packages/use-shortcuts",
       "packages/website"
     ]

@@ -38,6 +38,7 @@ const libPackages = [
   'packages/util',
   'packages/hooks',
   'packages/component-library',
+  'packages/svg',
   'packages/use-shortcuts',
   'packages/use-abort',
 ].map((dep) => path.resolve(process.cwd(), dep));

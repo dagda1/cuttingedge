@@ -1,0 +1,11 @@
+/* break points */
+$mobile: 30rem !default;
+$tablet: 48rem !default;
+$desktop: 62rem !default;
+$widescreen: 80rem !default;
+
+$form-element-height: 2.5rem !default;
+
+/* be consistent with spacing to avoid random pixel adding. */
+$scale: 0.5, 1, 2, 3;
+$font-size: 1, 1.1875;

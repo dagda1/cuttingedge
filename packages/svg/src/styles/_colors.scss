@@ -1,0 +1,84 @@
+$white: #fff !default;
+$black: #333 !default;
+$primary-blue: #0065bd !default;
+$dark-blue: #00437e !default;
+$light-blue: #d9effc !default;
+$darker-blue: #002d54 !default;
+$lighter-blue: #5f95ce !default;
+$base-grey: #727272 !default;
+$pale-grey: #e3e3e3 !default;
+$light-grey: #ebebeb !default;
+$lighter-grey: #f8f8f8 !default;
+$error-red: #d32205 !default;
+$error-red-tint: #f4e2df !default;
+$validation-green: #4e9d52;
+$validation-green-tint: #edf5ee !default;
+$notification-yellow: #ffb644 !default;
+$light-yellow: #f7f7f4 !default;
+
+$label-default-color: $white !default;
+$label-error-color: $error-red !default;
+
+$em-color: $base-grey;
+
+$btn-disabled-bg: $base-grey !default;
+$btn-disabled-color: $white !default;
+
+$btn-primary-color: $white !default;
+$btn-primary-bg: $primary-blue !default;
+$btn-primary-border: $primary-blue !default;
+$btn-primary-disabled-bg: $lighter-blue !default;
+$btn-primary-disabled-border: $lighter-blue !default;
+$btn-primary-disabled-color: $white !default;
+
+$btn-secondary-color: $white !default;
+$btn-secondary-bg: $dark-blue !default;
+$btn-secondary-border: $primary-blue !default;
+$btn-secondary-disabled-bg: $lighter-blue !default;
+$btn-secondary-disabled-border: $lighter-blue !default;
+$btn-secondary-disabled-color: $white !default;
+
+$form-error-border: $error-red !default;
+
+$input-border-color-focus: $primary-blue !default;
+$input-bg-focus: $light-blue !default;
+$input-border-color: $base-grey !default;
+$input-error-bg: $white !default;
+$input-error-border: $error-red !default;
+
+$checkable-border-bg: $base-grey !default;
+$radio-bg-color: $primary-blue !default;
+$radio-color: $white !default;
+$radio-size-large: 38px;
+$radio-size-small: ($radio-size-large / 2);
+
+$element-focus-color: $notification-yellow !default;
+
+$btn-nav-focus-bg: $lighter-grey !default;
+$btn-nav-focus-color: $black !default;
+$btn-nav-focus-border: $base-grey !default;
+
+$beta-bg: $notification-yellow !default;
+
+$highlight-form-control: $primary-blue !default;
+
+$alert-bg-color: $white !default;
+$alert-error-border-color: $error-red !default;
+$alert-error-color: $error-red !default;
+$alert-success-border-color: $validation-green !default;
+$alert-success-color: $validation-green !default;
+
+$login-layout-color: $light-yellow !default;
+$login-layout-inner: $white;
+
+$cookie-banner-bg: $black !default;
+$cookie-banner-color: $white !default;
+
+$site-banner-bg: $white;
+$banner-bg: $white;
+
+$modal-border-color: $white !default;
+$modal-header-bg: $white !default;
+$modal-header-color: $black !default;
+
+$accessible-outline: #ffbf47 !default;

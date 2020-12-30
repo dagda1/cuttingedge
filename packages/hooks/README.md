@@ -5,10 +5,6 @@ So far just a few hooks.
 ## install 
 
 ```sh
-# npm
-npm i @cutting/hooks
-
-# yarn
 yarn add @cutting/hooks
 ```
 
@@ -21,5 +17,5 @@ yarn build
 ## run tests
 
 ```sh
-npm test
+yarn test
 ```

@@ -1,0 +1,11 @@
+@mixin responsive-font {
+  @include font(1);
+
+  @include mq-m {
+    @include font(2);
+  }
+}
+
+@mixin font($size) {
+  font-size: #{nth($font-size, $size)}rem;
+}

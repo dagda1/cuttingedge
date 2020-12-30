@@ -27,7 +27,7 @@ Add the following lines to your package.json to enable linting and prettier to r
 ```bash
   "scripts": {
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "yarn run lint -- --fix"
   }
 ```
 
