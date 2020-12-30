@@ -14,6 +14,8 @@ export const RateOfChange: FC = () => {
     for (const c of Object.keys(result.data)) {
       const country = result.data?.[c as Countries];
 
+      country.result.shift();
+
       country.data = regression
         .logarithmic([
           ...country.result.map((d) => {

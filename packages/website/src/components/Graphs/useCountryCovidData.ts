@@ -31,8 +31,6 @@ const transform = (results: CountryStats, country: CountryData): DayData[] => {
     };
   });
 
-  result.shift();
-
   return (result as unknown) as DayData[];
 };
 
@@ -53,9 +51,8 @@ const getCountriesData = async ({ startDate }: CountryDataProps): Promise<Stats>
 
     const data = (await result.json()) as CountryStats;
 
-    data.result = uniqBy(data.result, (a) => a.date).filter(
-      (_, i) => i % BreakPoint === 0 || i === data.result.length - 1,
-    );
+    data.result = uniqBy(data.result, (a) => a.date);
+
     results[country as Countries] = data;
   }
 
@@ -99,10 +96,15 @@ export const useCountryCovidData = (
         continue;
       }
 
+      const countryStats = data[country as Countries];
+      const countryDetails = countryData[country as Countries];
+
       ret[country as Countries] = {
-        result: transform(data[country as Countries], countryData[country as Countries]),
-        color: countryData[country as Countries].color,
-        name: countryData[country as Countries].longName,
+        result: transform(countryStats, countryDetails).filter(
+          (_, i) => i % BreakPoint === 0 || i === countryStats.result.length - 1,
+        ),
+        color: countryDetails.color,
+        name: countryDetails.longName,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any;
     }
