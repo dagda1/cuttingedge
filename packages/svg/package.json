@@ -6,8 +6,8 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "type": "module",
-  "module": "dist/component-library.esm.js",
-  "browser": "dist/component-library.esm.js",
+  "module": "dist/svg.esm.js",
+  "browser": "dist/svg.esm.js",
   "main": "dist/index.js",
   "sideEffects": [
     "*.css"

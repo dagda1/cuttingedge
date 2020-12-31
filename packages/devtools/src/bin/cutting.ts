@@ -16,7 +16,7 @@ switch (script) {
   case 'ssr-build':
   case 'rollup':
   case 'test': {
-    const result = spawn.sync('node', [require.resolve('../scripts/' + script)].concat(args), { stdio: 'inherit' });
+    const result = spawn.sync('node', [require.resolve(`../scripts/${script}`)].concat(args), { stdio: 'inherit' });
     if (result.signal) {
       if (result.signal === 'SIGKILL') {
         logger.error(

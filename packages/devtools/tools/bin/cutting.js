@@ -14,7 +14,7 @@ switch (script) {
     case 'ssr-build':
     case 'rollup':
     case 'test': {
-        var result = spawn.sync('node', [require.resolve('../scripts/' + script)].concat(args), { stdio: 'inherit' });
+        var result = spawn.sync('node', [require.resolve("../scripts/" + script)].concat(args), { stdio: 'inherit' });
         if (result.signal) {
             if (result.signal === 'SIGKILL') {
                 logger_1.logger.error("The build failed because the process exited too early.\n           This probably means the system ran out of memory or someone called\n           'kill -9' on the process.");

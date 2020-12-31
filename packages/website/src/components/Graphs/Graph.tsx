@@ -12,7 +12,8 @@ import {
 } from 'victory';
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
-import { LoadingOverlay, ResponsiveSVG } from '@cutting/component-library';
+import { LoadingOverlay } from '@cutting/component-library';
+import { ResponsiveSVG } from '@cutting/svg';
 import { AxisColor, Countries, DayData, countryData } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink, useLocation } from 'react-router-dom';
