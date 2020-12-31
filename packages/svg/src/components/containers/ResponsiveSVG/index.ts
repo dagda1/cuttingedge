@@ -1,1 +1,0 @@
-export { ResponsiveSVG } from './ResponsiveSVG';

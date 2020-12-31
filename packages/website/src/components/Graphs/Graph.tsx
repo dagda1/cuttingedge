@@ -47,13 +47,9 @@ export const Graph: FC<GraphProps> = ({
 
   const largeScreen = typeof window !== 'undefined' && window.screen.availWidth > 500;
 
-  const { width: legendWdith, height: legendHeight } = useParentSize(legendRef, {
-    initialDimensions: { width: 1, height: 1 },
-  });
+  const { width: legendWdith, height: legendHeight } = useParentSize(legendRef);
 
-  const { width: chartWidth, height: chartHeight } = useParentSize(chartRef, {
-    initialDimensions: { width: 1, height: 1 },
-  });
+  const { width: chartWidth, height: chartHeight } = useParentSize(chartRef);
 
   assert(!!result.data, 'No data has been supplied');
 

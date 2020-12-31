@@ -51,6 +51,7 @@ var libPackages = [
     'packages/util',
     'packages/hooks',
     'packages/component-library',
+    'packages/svg',
     'packages/use-shortcuts',
     'packages/use-abort',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });

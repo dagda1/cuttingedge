@@ -7,7 +7,7 @@ import { useIsomorphicLayoutEffect } from '../use-isomorphic-layout-effect/useIs
 export const useParentSize = (
   ref: RefObject<HTMLElement>,
   { initialDimensions, offset }: UseParentSizeOptions = {
-    initialDimensions: { width: 0, height: 0 },
+    initialDimensions: { width: 1, height: 1 },
     offset: { width: 0, height: 0 },
   },
 ): { width: number; height: number } => {
