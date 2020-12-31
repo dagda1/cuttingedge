@@ -15,7 +15,6 @@ export declare const paths: {
     appHtml: string;
     nodePaths: string[];
     ownNodeModules: string;
-    jsBuildConfigPath: string;
     localBuildConfig: string;
     resolvedNodeModules: string[];
     tsConfig: string;
@@ -27,7 +26,7 @@ export declare const paths: {
     defaultBuildConfigPath: string;
     proxySetup: string;
     tranlationsDir: string;
-    publicUrlOrPath: any;
+    publicUrlOrPath: string;
     eslintConfig: string;
     ossIndex: string;
     ownJestConfig: string;

@@ -13,7 +13,7 @@ import {
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { LoadingOverlay } from '@cutting/component-library';
-import { ResponsiveSVG } from '@cutting/svg';
+import { ParentsizeSVG } from '@cutting/svg';
 import { AxisColor, Countries, DayData, countryData } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -83,7 +83,7 @@ export const Graph: FC<GraphProps> = ({
           })}
         </ul>
         <div className={styles.legend} ref={legendRef}>
-          <ResponsiveSVG height={legendHeight} width={legendWdith}>
+          <ParentsizeSVG elementRef={legendRef}>
             <VictoryLegend
               x={0}
               y={0}
@@ -107,13 +107,13 @@ export const Graph: FC<GraphProps> = ({
                 symbol: { fill: countryData[k as Countries].color },
               }))}
             />
-          </ResponsiveSVG>
+          </ParentsizeSVG>
         </div>
         <div className={styles.chart} ref={chartRef}>
           {result.isSettled === false ? (
             <LoadingOverlay busy={true} darkMode />
           ) : (
-            <ResponsiveSVG width={chartWidth} height={chartHeight}>
+            <ParentsizeSVG elementRef={chartRef}>
               <VictoryChart
                 width={chartWidth}
                 height={chartHeight}
@@ -189,7 +189,7 @@ export const Graph: FC<GraphProps> = ({
                   );
                 })}
               </VictoryChart>
-            </ResponsiveSVG>
+            </ParentsizeSVG>
           )}
         </div>
       </div>

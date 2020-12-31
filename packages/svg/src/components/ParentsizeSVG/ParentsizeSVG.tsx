@@ -1,18 +1,23 @@
-import type { FC, RefObject } from 'react';
+import type { PropsWithChildren, RefObject } from 'react';
 import type { UseParentSizeOptions } from '@cutting/hooks';
 import { useParentSize } from '@cutting/hooks';
-import { ResponsiveSVG } from 'src/components/ResponsiveSVG/ResponsiveSVG';
+import { ResponsiveSVG } from '../ResponsiveSVG/ResponsiveSVG';
 
-export type ParentsizeSVGProps<E = HTMLHtmlElement> = UseParentSizeOptions & {
-  ref: RefObject<E>;
+export type ParentsizeSVGProps<E = HTMLElement> = {
+  elementRef: RefObject<E>;
+  options?: Partial<UseParentSizeOptions>;
 };
 
-export const ParentsizeSVG: FC<ParentsizeSVGProps> = ({ ref, children, ...rest }) => {
-  const { width, height } = useParentSize(ref, rest);
+export function ParentsizeSVG<E extends HTMLElement = HTMLElement>({
+  elementRef,
+  children,
+  options = {},
+}: PropsWithChildren<ParentsizeSVGProps<E>>): JSX.Element {
+  const { width, height } = useParentSize(elementRef, options as UseParentSizeOptions);
 
   return (
     <ResponsiveSVG width={width} height={height}>
       {children}
     </ResponsiveSVG>
   );
-};
+}

@@ -1,23 +1,20 @@
 import path from 'path';
 import fs from 'fs';
 import { findAppNodeModules } from '../scripts/utils/finders';
+import getPublicUrlOrPath from 'react-dev-utils/getPublicUrlOrPath';
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath: string) => path.resolve(appDirectory, relativePath);
 
 const DefaultBuildDir = 'dist';
 
-const getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
-
 const publicUrlOrPath = getPublicUrlOrPath(
   process.env.NODE_ENV === 'development',
-  require(resolveApp('package.json')).homepage,
+  undefined,
   process.env.PUBLIC_URL as string,
 );
 
 const resolveOwn = (relativePath: string) => path.resolve(__dirname, '..', relativePath);
-
-const requireRelative = (relativePath: string) => path.resolve(__dirname, relativePath);
 
 const nodePaths = (process.env.NODE_PATH || '')
   .split(process.platform === 'win32' ? ';' : ':')
@@ -79,7 +76,6 @@ export const paths = {
   appHtml: resolveApp('public/index.html'),
   nodePaths: nodePaths,
   ownNodeModules: resolveOwn('node_modules'),
-  jsBuildConfigPath: requireRelative('./build.config.js'),
   localBuildConfig: resolveApp('./build.config.js'),
   resolvedNodeModules,
   tsConfig: tsConfigPath,

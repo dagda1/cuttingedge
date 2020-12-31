@@ -28,13 +28,12 @@ exports.paths = void 0;
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var finders_1 = require("../scripts/utils/finders");
+var getPublicUrlOrPath_1 = __importDefault(require("react-dev-utils/getPublicUrlOrPath"));
 var appDirectory = fs_1.default.realpathSync(process.cwd());
 var resolveApp = function (relativePath) { return path_1.default.resolve(appDirectory, relativePath); };
 var DefaultBuildDir = 'dist';
-var getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
-var publicUrlOrPath = getPublicUrlOrPath(process.env.NODE_ENV === 'development', require(resolveApp('package.json')).homepage, process.env.PUBLIC_URL);
+var publicUrlOrPath = getPublicUrlOrPath_1.default(process.env.NODE_ENV === 'development', undefined, process.env.PUBLIC_URL);
 var resolveOwn = function (relativePath) { return path_1.default.resolve(__dirname, '..', relativePath); };
-var requireRelative = function (relativePath) { return path_1.default.resolve(__dirname, relativePath); };
 var nodePaths = (process.env.NODE_PATH || '')
     .split(process.platform === 'win32' ? ';' : ':')
     .filter(Boolean)
@@ -84,7 +83,6 @@ exports.paths = {
     appHtml: resolveApp('public/index.html'),
     nodePaths: nodePaths,
     ownNodeModules: resolveOwn('node_modules'),
-    jsBuildConfigPath: requireRelative('./build.config.js'),
     localBuildConfig: resolveApp('./build.config.js'),
     resolvedNodeModules: resolvedNodeModules,
     tsConfig: tsConfigPath,
