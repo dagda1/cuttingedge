@@ -1,17 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { FC } from 'react';
-import { useRef } from 'react';
 import { useParentSize } from '../src/use-parentsize/useParentSize';
 
 import styles from './global.module.scss';
 
 export const App: FC = () => {
-  const ref = useRef<HTMLDivElement>();
-  const { width, height } = useParentSize(ref);
+  const { width, height, ref } = useParentSize();
 
   return (
-    <div ref={ref} className={styles.subject}>
-      <h1>Hello der</h1>
+    <div ref={ref} className={styles.parent}>
+      <h1>Parnet</h1>
+      <div className={styles.child} style={{ width, height }}>
+        <h1>Child</h1>
+      </div>
     </div>
   );
 };

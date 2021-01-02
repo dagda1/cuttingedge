@@ -14,8 +14,16 @@ body {
   color: #fff;
 }
 
-.subject{
+.parent{
   border: 1px solid red;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: grey;
+  color: white;
+  font-weight: bold;
 }
 
 *,

@@ -2,8 +2,13 @@
   "extends": "@cutting/devtools/typescript/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "types": [
+      "node",
+      "webpack-env",
+      "@cutting/useful-types",
+      "jest"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

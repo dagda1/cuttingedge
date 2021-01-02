@@ -1,7 +1,6 @@
-import { useCallback, useMemo, useReducer } from 'react';
-import type { RefObject } from 'react';
+import type { UseParentSizeOptions, Dimensions, UseParentSizeResult } from './types';
+import { useCallback, useMemo, useReducer, useRef } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { UseParentSizeOptions, Dimensions, SizeAction, SizeActionTypes } from './types';
 import { useIsomorphicLayoutEffect } from '../use-isomorphic-layout-effect/useIsomorphicLayoutEffect';
 
 const DefaultOptions: UseParentSizeOptions = {
@@ -9,27 +8,31 @@ const DefaultOptions: UseParentSizeOptions = {
   offset: { width: 0, height: 0 },
 };
 
-export const useParentSize = (
-  ref: RefObject<HTMLElement>,
-  options: Partial<UseParentSizeOptions> = {},
-): { width: number; height: number } => {
-  function reducer(state: Dimensions, action: SizeAction) {
+const setSize = ({ width, height }: Dimensions) =>
+  ({
+    type: 'SET_SIZE',
+    payload: { width, height },
+  } as const);
+
+type Actions = ReturnType<typeof setSize>;
+
+export const useParentSize = (options: Partial<UseParentSizeOptions> = {}): UseParentSizeResult => {
+  const ref = useRef<HTMLElement>(null);
+
+  function reducer(state: Dimensions, action: Actions) {
     switch (action.type) {
-      case SizeActionTypes.SetSize: {
-        return { width: action.payload.width, height: action.payload.height };
+      case 'SET_SIZE': {
+        return { ...state, width: action.payload.width, height: action.payload.height };
       }
       default:
         throw new Error('unknown size error');
     }
   }
 
-  const { initialDimensions, offset }: UseParentSizeOptions = useMemo(
-    () => ({
-      initialDimensions: { ...(options?.initialDimensions || DefaultOptions.initialDimensions) },
-      offset: { ...((options?.offset || DefaultOptions.offset) as Dimensions) },
-    }),
-    [options?.initialDimensions, options?.offset],
-  );
+  const { initialDimensions, offset }: UseParentSizeOptions = {
+    initialDimensions: { ...(options?.initialDimensions || DefaultOptions.initialDimensions) },
+    offset: { ...((options?.offset || DefaultOptions.offset) as Dimensions) },
+  };
 
   const [dimensions, dispatch] = useReducer(reducer, initialDimensions);
 
@@ -45,10 +48,7 @@ export const useParentSize = (
       const newHeight = Math.round(entry.contentRect.height);
 
       if (width !== newWidth || height !== newHeight) {
-        dispatch({
-          type: SizeActionTypes.SetSize,
-          payload: { width: newWidth, height: newHeight },
-        });
+        dispatch(setSize({ width: newWidth, height: newHeight }));
       }
     },
     [dimensions],
@@ -62,6 +62,7 @@ export const useParentSize = (
     let resizeObserver: ResizeObserver | null = new ResizeObserver((entries: ResizeObserverEntry[]) =>
       handleResize(entries),
     );
+
     resizeObserver.observe(ref.current);
 
     return () => {
@@ -70,8 +71,12 @@ export const useParentSize = (
     };
   }, [handleResize, ref]);
 
-  return {
-    width: dimensions.width + (offset?.width || 0),
-    height: dimensions.height + (offset?.height || 0),
-  };
+  return useMemo(
+    () => ({
+      width: dimensions.width + (offset?.width || 0),
+      height: dimensions.height + (offset?.height || 0),
+      ref,
+    }),
+    [dimensions.height, dimensions.width, offset?.height, offset?.width],
+  );
 };
