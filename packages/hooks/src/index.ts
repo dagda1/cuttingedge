@@ -1,4 +1,4 @@
-export type { Dimensions, UseParentSizeOptions } from './use-parentsize/types';
+export type { Dimensions } from './use-parentsize/types';
 export { usePrevious } from './use-previous/usePrevious';
 export { useScrollToTop } from './use-scroll-to-top/useScrollToTop';
 export { useParentSize } from './use-parentsize/useParentSize';

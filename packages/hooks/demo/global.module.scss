@@ -1,29 +1,30 @@
 $label-default-color: #fff;
 
 html {
-  height: 100%;
-  font-size: 100%;
 }
 
 body {
-  height: 100%;
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1;
   background-color: #000;
   color: #fff;
+  max-width: 1200px;
+}
+
+:global #root {
+  border: 1px solid green;
 }
 
 .parent{
   border: 1px solid red;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
   background: grey;
   color: white;
   font-weight: bold;
+}
+
+.child {
+  border: 1px solid blue;
 }
 
 *,

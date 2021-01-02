@@ -1,12 +1,7 @@
-import type { UseParentSizeOptions, Dimensions, UseParentSizeResult } from './types';
-import { useCallback, useMemo, useReducer, useRef } from 'react';
+import type { Dimensions, UseParentSizeResult } from './types';
+import { useMemo, useReducer, useRef } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useIsomorphicLayoutEffect } from '../use-isomorphic-layout-effect/useIsomorphicLayoutEffect';
-
-const DefaultOptions: UseParentSizeOptions = {
-  initialDimensions: { width: 1, height: 1 },
-  offset: { width: 0, height: 0 },
-};
 
 const setSize = ({ width, height }: Dimensions) =>
   ({
@@ -16,8 +11,9 @@ const setSize = ({ width, height }: Dimensions) =>
 
 type Actions = ReturnType<typeof setSize>;
 
-export const useParentSize = (options: Partial<UseParentSizeOptions> = {}): UseParentSizeResult => {
+export const useParentSize = (): UseParentSizeResult => {
   const ref = useRef<HTMLElement>(null);
+  const resizeObserverRef = useRef<ResizeObserver | null>();
 
   function reducer(state: Dimensions, action: Actions) {
     switch (action.type) {
@@ -29,16 +25,17 @@ export const useParentSize = (options: Partial<UseParentSizeOptions> = {}): UseP
     }
   }
 
-  const { initialDimensions, offset }: UseParentSizeOptions = {
-    initialDimensions: { ...(options?.initialDimensions || DefaultOptions.initialDimensions) },
-    offset: { ...((options?.offset || DefaultOptions.offset) as Dimensions) },
-  };
+  const [dimensions, dispatch] = useReducer(reducer, { width: 1, height: 1 });
 
-  const [dimensions, dispatch] = useReducer(reducer, initialDimensions);
+  useIsomorphicLayoutEffect(() => {
+    if (!ref.current || !!resizeObserverRef.current) {
+      return;
+    }
 
-  const handleResize = useCallback(
-    (entries: ResizeObserverEntry[]) => {
-      if (!Array.isArray(entries)) {
+    console.log('settting the dawg');
+
+    resizeObserverRef.current = new ResizeObserver((entries) => {
+      if (!Array.isArray(entries) || entries.length !== 1) {
         return;
       }
 
@@ -47,36 +44,30 @@ export const useParentSize = (options: Partial<UseParentSizeOptions> = {}): UseP
       const newWidth = Math.round(entry.contentRect.width);
       const newHeight = Math.round(entry.contentRect.height);
 
+      console.log({ newWidth, newHeight });
+
       if (width !== newWidth || height !== newHeight) {
         dispatch(setSize({ width: newWidth, height: newHeight }));
       }
-    },
-    [dimensions],
-  );
+    });
 
-  useIsomorphicLayoutEffect(() => {
-    if (!ref.current) {
-      return;
-    }
+    resizeObserverRef.current.observe(ref.current);
 
-    let resizeObserver: ResizeObserver | null = new ResizeObserver((entries: ResizeObserverEntry[]) =>
-      handleResize(entries),
-    );
+    // return () => {
+    //   console.log('killing......');
+    //   resizeObserverRef.current?.disconnect();
+    //   resizeObserverRef.current = null;
+    // };
+  }, [ref]);
 
-    resizeObserver.observe(ref.current);
-
-    return () => {
-      resizeObserver?.disconnect();
-      resizeObserver = null;
-    };
-  }, [handleResize, ref]);
+  // console.log({ width: dimensions.width, height: dimensions.height });
 
   return useMemo(
     () => ({
-      width: dimensions.width + (offset?.width || 0),
-      height: dimensions.height + (offset?.height || 0),
+      width: dimensions.width,
+      height: dimensions.height,
       ref,
     }),
-    [dimensions.height, dimensions.width, offset?.height, offset?.width],
+    [dimensions.height, dimensions.width],
   );
 };

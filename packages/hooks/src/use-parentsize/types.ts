@@ -11,8 +11,3 @@ export type UseParentSizeResult = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref: LegacyRef<any> | RefObject<any>;
 };
-
-export interface UseParentSizeOptions {
-  initialDimensions: Dimensions;
-  offset?: Dimensions;
-}
