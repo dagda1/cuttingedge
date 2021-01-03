@@ -26,8 +26,8 @@
   "dependencies": {
     "@cutting/util": "4.4.0",
     "assert-ts": "^0.3.0",
-    "use-debounce": "^5.2.0",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "use-debounce": "^5.2.0"
   },
   "devDependencies": {
     "@cutting/devtools": "4.4.0",

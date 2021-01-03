@@ -25,8 +25,6 @@ export const useParentSize = (debounceDelay = 0): UseParentSizeResult => {
   const resizeObserverRef = useRef<ResizeObserver | null>();
   const [{ width, height }, setDimensions] = useState<Dimensions>({ width: undefined, height: undefined });
   const previousDimensions = useRef<Dimensions>({ width: undefined, height: undefined });
-  const shortCircuit = useRef(0);
-  shortCircuit.current++;
 
   const { callback: debouncedCallback } = useDebouncedCallback(
     (value: Dimensions) => {
@@ -39,11 +37,9 @@ export const useParentSize = (debounceDelay = 0): UseParentSizeResult => {
   );
 
   useLayoutEffect(() => {
-    if (!!resizeObserverRef.current || !ref.current || shortCircuit.current >= 5) {
+    if (!!resizeObserverRef.current || !ref.current) {
       return;
     }
-
-    console.log('creating a new one');
 
     resizeObserverRef.current = new ResizeObserver((entries) => {
       if (!Array.isArray(entries) || entries.length !== 1) {
@@ -51,20 +47,22 @@ export const useParentSize = (debounceDelay = 0): UseParentSizeResult => {
       }
 
       const entry = entries[0];
-      const newWidth = Math.round(entry.contentRect.width) - 2;
-      const newHeight = Math.round(entry.contentRect.height) - 2;
+      const newWidth = Math.round(entry.contentRect.width);
+      const newHeight = Math.round(entry.contentRect.height);
 
-      console.log({
-        previousHeight: previousDimensions.current?.height,
-        newHeight,
-        elHeight: entry.target.getBoundingClientRect().height,
-      });
+      // console.log({
+      //   previousHeight: previousDimensions.current?.height,
+      //   newHeight,
+      //   previousWidth: previousDimensions.current.width,
+      //   newWidth,
+      // });
+
       const newSize = { width: newWidth, height: newHeight };
+
       if (previousDimensions.current?.width !== newWidth || previousDimensions.current?.height !== newHeight) {
         previousDimensions.current.height = newHeight;
         previousDimensions.current.width = newWidth;
         if (isMounted.current) {
-          console.log('bouncy bouncy');
           debouncedCallback(newSize);
         }
       }
@@ -79,14 +77,6 @@ export const useParentSize = (debounceDelay = 0): UseParentSizeResult => {
       }
     };
   }, [debouncedCallback, isMounted]);
-
-  if (shortCircuit.current >= 5) {
-    console.log('circuit breaker.......');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // resizeObserverRef.current?.unobserve(ref.current as any);
-    // resizeObserverRef.current?.disconnect();
-    // resizeObserverRef.current = null;
-  }
 
   return useMemo(
     () => ({
