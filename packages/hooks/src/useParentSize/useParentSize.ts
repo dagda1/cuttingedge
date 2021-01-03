@@ -1,7 +1,7 @@
 import { Dimensions, UseParentSizeResult } from './types';
-import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-// import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';
+import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';
 import { useDebouncedCallback } from 'use-debounce';
 import { useIsMounted } from '../useIsMounted/useIsMounted';
 
@@ -36,7 +36,7 @@ export const useParentSize = (debounceDelay = 0): UseParentSizeResult => {
     },
   );
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!!resizeObserverRef.current || !ref.current) {
       return;
     }
@@ -50,12 +50,12 @@ export const useParentSize = (debounceDelay = 0): UseParentSizeResult => {
       const newWidth = Math.round(entry.contentRect.width);
       const newHeight = Math.round(entry.contentRect.height);
 
-      // console.log({
-      //   previousHeight: previousDimensions.current?.height,
-      //   newHeight,
-      //   previousWidth: previousDimensions.current.width,
-      //   newWidth,
-      // });
+      console.log({
+        previousHeight: previousDimensions.current?.height,
+        newHeight,
+        previousWidth: previousDimensions.current.width,
+        newWidth,
+      });
 
       const newSize = { width: newWidth, height: newHeight };
 
