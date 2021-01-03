@@ -7,8 +7,7 @@
       "node",
       "webpack-env",
       "@cutting/useful-types",
-      "jest",
-      "@welldone-software/why-did-you-render"
+      "jest"
     ]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]

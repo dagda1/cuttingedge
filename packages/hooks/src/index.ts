@@ -1,5 +1,5 @@
-export type { Dimensions } from './use-parentsize/types';
-export { usePrevious } from './use-previous/usePrevious';
-export { useScrollToTop } from './use-scroll-to-top/useScrollToTop';
-export { useParentSize } from './use-parentsize/useParentSize';
-export { useIsomorphicLayoutEffect } from './use-isomorphic-layout-effect/useIsomorphicLayoutEffect';
+export type { Dimensions } from './useParentSize/types';
+export { usePrevious } from './usePrevious/usePrevious';
+export { useScrollToTop } from './useScrollToTop/useScrollToTop';
+export { useParentSize } from './useParentSize/useParentSize';
+export { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';

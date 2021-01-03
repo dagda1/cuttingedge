@@ -24,7 +24,9 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.4.0"
+    "@cutting/util": "4.4.0",
+    "assert-ts": "^0.3.0",
+    "use-debounce": "^5.2.0"
   },
   "devDependencies": {
     "@cutting/devtools": "4.4.0",
