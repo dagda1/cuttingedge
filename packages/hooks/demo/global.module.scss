@@ -1,15 +1,17 @@
 $label-default-color: #fff;
 
 html {
+  height: 100%;
+  font-size: 100%;
 }
 
 body {
+  height: 100%;
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1;
   background-color: #000;
   color: #fff;
-  max-width: 1200px;
 }
 
 :global #root {
@@ -21,6 +23,7 @@ body {
   background: grey;
   color: white;
   font-weight: bold;
+  width: 100%;
 }
 
 .child {
