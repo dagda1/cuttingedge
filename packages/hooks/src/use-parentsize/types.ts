@@ -1,8 +1,8 @@
 import type { LegacyRef, RefObject } from 'react';
 
 export interface Dimensions {
-  width: number;
-  height: number;
+  width: number | undefined;
+  height: number | undefined;
 }
 
 export type UseParentSizeResult = Dimensions & {

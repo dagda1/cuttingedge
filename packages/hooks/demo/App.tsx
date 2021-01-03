@@ -7,9 +7,13 @@ import styles from './global.module.scss';
 export const App: FC = () => {
   const { width, height, ref } = useParentSize();
 
+  console.log('--------------------');
+  console.log(width, height, ref);
+  console.log('--------------------');
+
   return (
     <div ref={ref} className={styles.parent}>
-      <h1>Parnet</h1>
+      <h1>Parent</h1>
       <div className={styles.child} style={{ width, height }}>
         <h1>Child</h1>
       </div>
