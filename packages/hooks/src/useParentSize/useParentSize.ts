@@ -5,20 +5,6 @@ import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect/useIsomo
 import { useDebouncedCallback } from 'use-debounce';
 import { useIsMounted } from '../useIsMounted/useIsMounted';
 
-// const createResizeObserver = () => {
-//   const callbacks: Set<ResizeObserverCallback> = new Set();
-
-//   return {
-//     observer: new ResizeObserver((entries, observer) => {
-//       for (const callback of callbacks) {
-//         callback(entries, observer);
-//       }
-//     }),
-//     subscribe: (callback: ResizeObserverCallback) => callbacks.add(callback),
-//     unsubscribe: (callback: ResizeObserverCallback) => callbacks.delete(callback),
-//   };
-// };
-
 export const useParentSize = (debounceDelay = 0): UseParentSizeResult => {
   const ref = useRef<HTMLElement>(null);
   const isMounted = useIsMounted();
@@ -49,13 +35,6 @@ export const useParentSize = (debounceDelay = 0): UseParentSizeResult => {
       const entry = entries[0];
       const newWidth = Math.round(entry.contentRect.width);
       const newHeight = Math.round(entry.contentRect.height);
-
-      console.log({
-        previousHeight: previousDimensions.current?.height,
-        newHeight,
-        previousWidth: previousDimensions.current.width,
-        newWidth,
-      });
 
       const newSize = { width: newWidth, height: newHeight };
 

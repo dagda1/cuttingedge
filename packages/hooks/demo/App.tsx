@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useEffect, useLayoutEffect } from 'react';
+import { FC } from 'react';
 import { useParentSize } from '../src/useParentSize/useParentSize';
 
 import styles from './global.module.scss';
