@@ -5,6 +5,10 @@ export interface Dimensions {
   height: number | undefined;
 }
 
+export interface UseParentSizeOptions {
+  debounceDelay: number;
+}
+
 export type UseParentSizeResult = Dimensions & {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref: LegacyRef<any> | RefObject<any> | RefCallback<HTMLElement>;

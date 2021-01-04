@@ -1,11 +1,11 @@
-import { Dimensions, UseParentSizeResult } from './types';
+import { Dimensions, UseParentSizeOptions, UseParentSizeResult } from './types';
 import { useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';
+import { useIsomorphicLayoutEffect } from 'react-use';
 import { useDebouncedCallback } from 'use-debounce';
 import { useIsMounted } from '../useIsMounted/useIsMounted';
 
-export const useParentSize = (debounceDelay = 0): UseParentSizeResult => {
+export const useParentSize = ({ debounceDelay = 0 }: Partial<UseParentSizeOptions> = {}): UseParentSizeResult => {
   const ref = useRef<HTMLElement>(null);
   const isMounted = useIsMounted();
   const resizeObserverRef = useRef<ResizeObserver | null>();

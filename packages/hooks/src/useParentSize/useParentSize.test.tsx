@@ -3,25 +3,29 @@ import { UseParentSizeOptions } from './types';
 import { useParentSize } from './useParentSize';
 import { render, screen } from '@testing-library/react';
 
+const scheduler = typeof setImmediate === 'function' ? setImmediate : setTimeout;
+
+// eslint-disable-next-line jest/no-export
+export function flushPromises(): Promise<unknown> {
+  return new Promise((resolve) => {
+    scheduler(resolve, 0);
+  });
+}
+
 const TestComponent: FC<{ options?: UseParentSizeOptions }> = ({ options }) => {
   const renderCountRef = useRef(0);
   const { ref, width, height } = useParentSize(options);
 
+  console.log({ ref, width, height });
+
   renderCountRef.current++;
   return (
     <div
-      // TODO: fix this
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ref={ref as any}
+      ref={ref}
       style={{
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        left: 0,
-        top: 0,
-        background: 'grey',
-        color: 'white',
-        fontWeight: 'bold',
+        display: 'flex',
+        width: '200px',
+        height: '200px',
       }}
     >
       <span data-testid="dimensions">
@@ -35,11 +39,15 @@ const TestComponent: FC<{ options?: UseParentSizeOptions }> = ({ options }) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const wrap = (options: Partial<UseParentSizeOptions> = {}) => render(<TestComponent {...(options as any)} />);
+const wrap = (debounceDelay = 0) => render(<TestComponent options={{ debounceDelay }} />);
 
 describe('useParentSize hook', () => {
-  it('should return dimensions', () => {
-    wrap();
+  it('should return dimensions', async () => {
+    const { rerender } = wrap();
+
+    rerender(<TestComponent options={{ debounceDelay: 0 }} />);
+
+    await flushPromises();
 
     expect(screen.getByTestId('bernard')).toBeDefined();
   });

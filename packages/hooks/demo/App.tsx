@@ -9,10 +9,10 @@ export const App: FC = () => {
   return (
     <>
       <div ref={ref} className={styles.parent}>
-        <h1>Parent</h1>
+        <h1>Subject</h1>
       </div>
       <div className={styles.child} style={{ width, height }}>
-        <h1>Child</h1>
+        <h1>Observer</h1>
       </div>
     </>
   );
