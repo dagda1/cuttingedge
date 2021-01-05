@@ -38,12 +38,13 @@ const TestComponent: FC<{ options?: UseParentSizeOptions }> = ({ options }) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const wrap = (debounceDelay = 0) => render(<TestComponent options={{ debounceDelay }} />);
 
 describe('useParentSize hook', () => {
   it('should return dimensions', async () => {
     const { rerender } = wrap();
+
+    await flushPromises();
 
     rerender(<TestComponent options={{ debounceDelay: 0 }} />);
 

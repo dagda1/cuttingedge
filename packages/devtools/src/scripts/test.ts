@@ -26,6 +26,7 @@ argv.push('--no-cache');
 // Watch unless on CI or in coverage mode
 if (!process.env.CI && argv.indexOf('--coverage') < 0) {
   argv.push('--watch');
+  argv.push('a');
 }
 
 const config = fs.existsSync(paths.ownJestConfig) ? paths.ownJestConfig : paths.jestConfig;

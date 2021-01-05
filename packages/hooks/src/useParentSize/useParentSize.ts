@@ -23,6 +23,7 @@ export const useParentSize = ({ debounceDelay = 0 }: Partial<UseParentSizeOption
   );
 
   useIsomorphicLayoutEffect(() => {
+    console.log('hernam');
     if (!!resizeObserverRef.current || !ref.current) {
       return;
     }
