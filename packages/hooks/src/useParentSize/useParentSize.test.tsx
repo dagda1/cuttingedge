@@ -1,7 +1,6 @@
-import { FC, useRef } from 'react';
-import { UseParentSizeOptions } from './types';
 import { useParentSize } from './useParentSize';
-import { render, screen } from '@testing-library/react';
+import { act } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
 
 const scheduler = typeof setImmediate === 'function' ? setImmediate : setTimeout;
 
@@ -12,44 +11,19 @@ export function flushPromises(): Promise<unknown> {
   });
 }
 
-const TestComponent: FC<{ options?: UseParentSizeOptions }> = ({ options }) => {
-  const renderCountRef = useRef(0);
-  const { ref, width, height } = useParentSize(options);
+it('by default, state defaults every value to -1', async () => {
+  const { result } = renderHook(() => useParentSize());
 
-  console.log({ ref, width, height });
+  await act(async () => {
+    const div = document.createElement('div');
+  });
 
-  renderCountRef.current++;
-  return (
-    <div
-      ref={ref}
-      style={{
-        display: 'flex',
-        width: '200px',
-        height: '200px',
-      }}
-    >
-      <span data-testid="dimensions">
-        {width}x{height}
-      </span>
-      <div>
-        Render Count: <span data-testid="render-count">{renderCountRef.current}</span>
-      </div>
-    </div>
-  );
-};
-
-const wrap = (debounceDelay = 0) => render(<TestComponent options={{ debounceDelay }} />);
-
-describe('useParentSize hook', () => {
-  it('should return dimensions', async () => {
-    const { rerender } = wrap();
-
-    await flushPromises();
-
-    rerender(<TestComponent options={{ debounceDelay: 0 }} />);
-
-    await flushPromises();
-
-    expect(screen.getByTestId('bernard')).toBeDefined();
+  expect(result.current[1]).toMatchObject({
+    width: 0,
+    height: 0,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
   });
 });

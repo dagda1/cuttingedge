@@ -52,7 +52,7 @@ const write = (type: LoggerTypes, text: string | Error, verbose?: unknown) => {
 
   const logType = logTypes[type];
 
-  textToLog += `${chalk[logType.bg].black(logType.msg).padEnd(8)} ${chalk[logType.text](text)}`;
+  textToLog += `${chalk[logType.bg].black(logType.msg.padEnd(8))} ${chalk[logType.text](text)}`;
 
   if (verbose) {
     if (typeof verbose === 'object') {

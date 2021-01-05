@@ -9,7 +9,7 @@ export interface UseParentSizeOptions {
   debounceDelay: number;
 }
 
-export type UseParentSizeResult = Dimensions & {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref: LegacyRef<any> | RefObject<any> | RefCallback<HTMLElement>;
-};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type RefType = LegacyRef<any> | RefObject<any> | RefCallback<HTMLElement>;
+
+export type UseParentSizeResult = Dimensions;

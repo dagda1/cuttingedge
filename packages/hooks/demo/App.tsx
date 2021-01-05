@@ -1,10 +1,11 @@
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import { useParentSize } from '../src/useParentSize/useParentSize';
 
 import styles from './global.module.scss';
 
 export const App: FC = () => {
-  const { width, height, ref } = useParentSize();
+  const ref = useRef<Element>(null);
+  const { width, height } = useParentSize(ref);
 
   return (
     <>

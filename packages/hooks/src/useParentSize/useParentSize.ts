@@ -1,16 +1,22 @@
 import { Dimensions, UseParentSizeOptions, UseParentSizeResult } from './types';
-import { useMemo, useRef, useState } from 'react';
+import { RefObject, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useIsomorphicLayoutEffect } from 'react-use';
 import { useDebouncedCallback } from 'use-debounce';
 import { useIsMounted } from '../useIsMounted/useIsMounted';
+import { isNil } from '@cutting/util';
+import assert from 'assert-ts';
 
-export const useParentSize = ({ debounceDelay = 0 }: Partial<UseParentSizeOptions> = {}): UseParentSizeResult => {
-  const ref = useRef<HTMLElement>(null);
+export const useParentSize = (
+  ref: RefObject<Element>,
+  { debounceDelay = 0 }: Partial<UseParentSizeOptions> = {},
+): UseParentSizeResult => {
   const isMounted = useIsMounted();
   const resizeObserverRef = useRef<ResizeObserver | null>();
   const [{ width, height }, setDimensions] = useState<Dimensions>({ width: undefined, height: undefined });
   const previousDimensions = useRef<Dimensions>({ width: undefined, height: undefined });
+
+  assert(!!ref, 'You must pass a valid ref to useParent');
 
   const { callback: debouncedCallback } = useDebouncedCallback(
     (value: Dimensions) => {
@@ -24,7 +30,7 @@ export const useParentSize = ({ debounceDelay = 0 }: Partial<UseParentSizeOption
 
   useIsomorphicLayoutEffect(() => {
     console.log('hernam');
-    if (!!resizeObserverRef.current || !ref.current) {
+    if (!!resizeObserverRef?.current || isNil(ref.current)) {
       return;
     }
 
@@ -53,16 +59,15 @@ export const useParentSize = ({ debounceDelay = 0 }: Partial<UseParentSizeOption
     const refElement = ref.current;
     return () => {
       if (!!refElement) {
-        resizeObserverRef.current?.unobserve(refElement);
+        resizeObserverRef?.current?.unobserve(refElement);
       }
     };
-  }, [debouncedCallback, isMounted]);
+  }, [debouncedCallback, isMounted, ref]);
 
   return useMemo(
     () => ({
       width,
       height,
-      ref,
     }),
     [height, width],
   );

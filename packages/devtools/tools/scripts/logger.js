@@ -50,7 +50,7 @@ var write = function (type, text, verbose) {
     var textToLog = '';
     var logObject = false;
     var logType = logTypes[type];
-    textToLog += chalk_1.default[logType.bg].black(logType.msg).padEnd(8) + " " + chalk_1.default[logType.text](text);
+    textToLog += chalk_1.default[logType.bg].black(logType.msg.padEnd(8)) + " " + chalk_1.default[logType.text](text);
     if (verbose) {
         if (typeof verbose === 'object') {
             logObject = true;
