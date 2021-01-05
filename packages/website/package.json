@@ -24,6 +24,7 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "1.4.5",
     "csurf": "^1.11.0",
+    "d3-array": "^2.9.1",
     "express": "^4.17.1",
     "global": "^4.4.0",
     "helmet": "4.2.0",

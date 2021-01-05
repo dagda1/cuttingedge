@@ -8,7 +8,7 @@ export const repos: Repo[] = [
   {
     name: 'bigtest',
     description: 'Active contributor to bigtest',
-    link: 'https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3A%40me+',
+    link: 'https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1',
   },
   {
     name: 'use-shortcuts',
