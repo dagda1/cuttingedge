@@ -29,7 +29,6 @@ export const useParentSize = (
   );
 
   useIsomorphicLayoutEffect(() => {
-    console.log('hernam');
     if (!!resizeObserverRef?.current || isNil(ref.current)) {
       return;
     }
