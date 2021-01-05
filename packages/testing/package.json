@@ -1,0 +1,49 @@
+{
+  "name": "@cutting/testing",
+  "description": "A collection of test helpers.",
+  "version": "4.4.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/testing.esm.js",
+  "browser": "dist/testing.esm.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagda1/cuttingedge.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "start": "echo no op",
+    "test": "echo no op",
+    "lint": "eslint {src,tests}/**/*.{ts,tsx}",
+    "lint:fix": "yarn lint --fix",
+    "build": "NODE_ENV=production cutting ts-build",
+    "prepublish": "yarn build"
+  },
+  "dependencies": {
+    "@cutting/util": "4.4.0",
+    "assert-ts": "^0.3.0",
+    "resize-observer-polyfill": "^1.5.1",
+    "use-debounce": "^5.2.0"
+  },
+  "devDependencies": {
+    "@cutting/devtools": "4.4.0",
+    "@cutting/eslint-config": "4.4.0",
+    "@cutting/useful-types": "4.4.0",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@types/jest": "^26.0.19"
+  },
+  "keywords": [
+    "hotkeys",
+    "focus",
+    "react",
+    "reactjs",
+    "reactnative",
+    "testing"
+  ]
+}

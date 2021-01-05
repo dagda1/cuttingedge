@@ -30,6 +30,7 @@ const resolvedNodeModules = [appNodeModules, './node_modules']
 
 const libPackages = [
   'packages/devtools',
+  'packages/testing',
   'packages/eslint-config',
   'packages/useful-types',
   'packages/util',

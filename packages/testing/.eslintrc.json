@@ -1,0 +1,12 @@
+
+{
+  "extends": "@cutting/eslint-config/react",
+  "rules": {
+    "react-hooks/rules-of-hooks": ["error", {
+      "additionalHooks": "(useIsomorphicLayoutEffect)"
+    }],
+    "react-hooks/exhaustive-deps": ["error", {
+      "additionalHooks": "(useIsomorphicLayoutEffect)"
+    }]
+  }
+}

@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@cutting/devtools": "4.4.0",
+    "@cutting/testing": "4.4.0",
     "@cutting/eslint-config": "4.4.0",
     "@cutting/useful-types": "4.4.0",
     "@testing-library/jest-dom": "^5.11.6",
