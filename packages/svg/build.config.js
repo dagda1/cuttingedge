@@ -1,4 +1,4 @@
-import { paths } from '@cutting/devtools/tools/config/paths.js';
+import { paths } from '@cutting/devtools/tools/config/paths';
 
 module.exports = {
   devServer: {

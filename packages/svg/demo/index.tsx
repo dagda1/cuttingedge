@@ -12,6 +12,9 @@ render(App);
 
 if (module.hot) {
   module.hot.accept('./App', () => {
-    import('./App').then((m) => render(m.App));
+    import('./App').then((m) => {
+      console.log(m);
+      render(m.App);
+    });
   });
 }

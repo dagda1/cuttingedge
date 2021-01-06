@@ -109,6 +109,7 @@ export const Graph: FC<GraphProps> = ({
             />
           </ParentsizeSVG>
         </div>
+
         <div className={styles.chart} ref={chartRef}>
           {result.isSettled === false ? (
             <LoadingOverlay busy={true} darkMode />

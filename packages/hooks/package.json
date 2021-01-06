@@ -20,7 +20,7 @@
   "scripts": {
     "start": "FAST_REFRESH=true PORT=9999 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "lint": "eslint {src,tests}/**/*.{ts,tsx}",
+    "lint": "yarn eslint ./src/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
     "build": "NODE_ENV=production cutting rollup",
     "prepublish": "yarn build"

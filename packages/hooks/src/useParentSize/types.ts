@@ -1,12 +1,13 @@
 import type { LegacyRef, RefCallback, RefObject } from 'react';
 
 export interface Dimensions {
-  width: number | undefined;
-  height: number | undefined;
+  width: number;
+  height: number;
 }
 
 export interface UseParentSizeOptions {
   debounceDelay: number;
+  initialValues: Dimensions;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

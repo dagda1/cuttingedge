@@ -1,10 +1,12 @@
 $label-default-color: #fff;
 
-@import '../src/styles/_index.scss';
+@import '@cutting/component-library/src/styles/_index.scss';
 
 html {
+  min-height: 100%;
   height: 100%;
   font-size: 100%;
+  border: 1px solid red;
 }
 
 body {
@@ -14,6 +16,7 @@ body {
   line-height: 1;
   background-color: #000;
   color: #fff;
+  display: flex;
 }
 
 *,
@@ -26,10 +29,27 @@ ul {
   padding: 0;
 }
 
-.container {
-  @include pl(2);
-  @include pr(2);
+:global #root {
+  height: 100%;
+  border: 1px solid green;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
 
-  max-width: 1200px;
+.container {
+  border: 1px solid yellow;
+  background: grey;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  resize: auto;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
 }

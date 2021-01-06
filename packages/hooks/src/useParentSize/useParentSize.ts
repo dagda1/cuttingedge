@@ -7,14 +7,17 @@ import { useIsMounted } from '../useIsMounted/useIsMounted';
 import { isNil } from '@cutting/util';
 import assert from 'assert-ts';
 
-export const useParentSize = (
-  ref: RefObject<Element>,
-  { debounceDelay = 0 }: Partial<UseParentSizeOptions> = {},
+export const useParentSize = <E extends Element>(
+  ref: RefObject<E>,
+  { debounceDelay = 0, initialValues = { width: 1, height: 1 } }: Partial<UseParentSizeOptions> = {},
 ): UseParentSizeResult => {
   const isMounted = useIsMounted();
   const resizeObserverRef = useRef<ResizeObserver | null>();
-  const [{ width, height }, setDimensions] = useState<Dimensions>({ width: undefined, height: undefined });
-  const previousDimensions = useRef<Dimensions>({ width: undefined, height: undefined });
+  const [{ width, height }, setDimensions] = useState<Dimensions>({
+    width: initialValues.width,
+    height: initialValues.height,
+  });
+  const previousDimensions = useRef<Dimensions>({ width: initialValues.width, height: initialValues.height });
 
   assert(!!ref, 'You must pass a valid ref to useParent');
 
