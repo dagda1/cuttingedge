@@ -30,6 +30,7 @@ export const ResponsiveSVG: FC<ResponsiveSVGProps> = ({
 
   return (
     <div
+      data-selector="cutting-svg-container"
       style={{
         position: 'relative',
         overflow: 'visible',
