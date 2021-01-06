@@ -15,10 +15,6 @@ export function ParentsizeSVG<E extends HTMLElement = HTMLElement>({
 }: PropsWithChildren<ParentsizeSVGProps<E>>): JSX.Element | null {
   const { width, height } = useParentSize(elementRef, options);
 
-  if (!width || !height) {
-    return null;
-  }
-
   return (
     <ResponsiveSVG width={width} height={height}>
       {children}

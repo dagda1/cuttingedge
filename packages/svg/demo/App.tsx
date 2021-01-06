@@ -5,20 +5,28 @@ import { useParentSize } from '@cutting/hooks';
 
 export const App: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { width, height } = useParentSize(ref as any);
+  const { width, height } = useParentSize(ref);
 
   return (
     <div className={styles.container} ref={ref}>
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <ResponsiveSVG height={height} width={width}>
-        <rect width="100%" height="100%" fill="red" />
+        <rect
+          x="20%"
+          y="20%"
+          width={height / 2}
+          height={height / 2}
+          rx="20"
+          style={{ fill: '#ff0000', stroke: '#000000', strokeWidth: '2px;' }}
+        />
 
-        <circle cx="150" cy="100" r="80" fill="green" />
-
-        <text x="150" y="125" fontSize="60" textAnchor="middle" fill="white">
-          SVG
-        </text>
+        <rect
+          x="30%"
+          y="30%"
+          width={height / 2}
+          height={height / 2}
+          rx="40"
+          style={{ fill: '#0000ff', stroke: '#000000', strokeWidth: '2px', fillOpacity: 0.7 }}
+        />
       </ResponsiveSVG>
     </div>
   );

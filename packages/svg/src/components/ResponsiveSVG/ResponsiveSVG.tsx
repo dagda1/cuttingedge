@@ -20,13 +20,13 @@ export const ResponsiveSVG: FC<ResponsiveSVGProps> = ({
   width,
   children,
   origin = { x: 0, y: 0 },
-  preserveAspectRatio = 'xMinYMin meet',
+  preserveAspectRatio = 'xMinYMin slice',
   innerRef,
   className,
 }) => {
   const aspect = width / height;
 
-  const adjustedHeight = Math.round(width / aspect);
+  const adjustedHeight = Math.ceil(width / aspect);
 
   return (
     <div
