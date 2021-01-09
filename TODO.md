@@ -1,4 +1,4 @@
-- [ ] Tests and docs for `@cutting/hooks` and `@cutting/svg`.
+- [X] Tests and docs for `@cutting/hooks` and `@cutting/svg`.
 - [ ] Project references
 - [ ] 3 day spike into interactors for react
 - [ ] Graphql-Explorer

@@ -7,12 +7,6 @@ var path_1 = __importDefault(require("path"));
 var paths_1 = require("../config/paths");
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var logger_1 = __importDefault(require("../scripts/logger"));
-var escapeChars = function (s) {
-    if (!s) {
-        return '';
-    }
-    return s.replace(/\./g, ' ');
-};
 var setupTestsFileName = 'setupTests.ts';
 var setupTestsCandidates = [path_1.default.resolve('.', setupTestsFileName), path_1.default.resolve('src', 'tests', setupTestsFileName)];
 var localSetupTestsFile = setupTestsCandidates.find(fs_extra_1.default.existsSync);
@@ -65,21 +59,7 @@ var jestConfig = {
     moduleDirectories: ['node_modules', '../../node_modules'],
     modulePaths: ['<rootDir>', 'src'],
     resetMocks: true,
-    reporters: [
-        'default',
-        [
-            'jest-junit',
-            {
-                classNameTemplate: function (vars) {
-                    return escapeChars(vars.classname);
-                },
-                titleTemplate: function (vars) {
-                    return escapeChars(vars.title);
-                },
-                includeConsoleOutput: Boolean(true).toString(),
-            },
-        ],
-    ],
+    reporters: ['default'],
 };
 module.exports = jestConfig;
 //# sourceMappingURL=jest.config.js.map

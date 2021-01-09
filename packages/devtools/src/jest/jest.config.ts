@@ -22,14 +22,6 @@ export type OverridableJestConfig = Pick<
 > &
   Pick<Config.GlobalConfig, 'coverageDirectory' | 'collectCoverageFrom' | 'coveragePathIgnorePatterns' | 'reporters'>;
 
-const escapeChars = (s: string) => {
-  if (!s) {
-    return '';
-  }
-
-  return s.replace(/\./g, ' ');
-};
-
 const setupTestsFileName = 'setupTests.ts';
 
 const setupTestsCandidates = [path.resolve('.', setupTestsFileName), path.resolve('src', 'tests', setupTestsFileName)];
@@ -88,21 +80,7 @@ const jestConfig: OverridableJestConfig = {
   modulePaths: ['<rootDir>', 'src'],
   resetMocks: true,
 
-  reporters: [
-    'default',
-    [
-      'jest-junit',
-      {
-        classNameTemplate: (vars: { classname: string }): string => {
-          return escapeChars(vars.classname);
-        },
-        titleTemplate: (vars: { title: string }): string => {
-          return escapeChars(vars.title);
-        },
-        includeConsoleOutput: Boolean(true).toString(),
-      },
-    ],
-  ],
+  reporters: ['default'],
 };
 
 module.exports = jestConfig;
