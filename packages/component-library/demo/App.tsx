@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 // eslint:disable
+import './global.css';
 import { FC, useState } from 'react';
 import { Modal, Heading, FormInput } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
-import 'tailwindcss/tailwind.css';
 
 import styles from './global.module.scss';
 
