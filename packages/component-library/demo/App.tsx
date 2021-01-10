@@ -2,9 +2,10 @@
 // eslint:disable
 import { FC, useState } from 'react';
 import { Modal, Heading, FormInput } from '../src';
-import { Button } from '../src/components/atoms/Button';
+import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
+import 'tailwindcss/tailwind.css';
 
 import styles from './global.module.scss';
 
@@ -13,6 +14,17 @@ export const App: FC = () => {
 
   return (
     <div className={styles.wrap}>
+      <div className={styles.layout}>
+        <Heading level={2}>Buttons</Heading>
+      </div>
+      <div>
+        <div className={styles.item}>
+          <Button buttonStyle="primary">Primary</Button>
+          <Button buttonStyle="secondary">Secondary</Button>
+          <Button buttonStyle="inverse">Inverse</Button>
+          <Button buttonStyle="warning">Warning</Button>
+        </div>
+      </div>
       <div className={styles.layout}>
         <div className={styles.item}>
           <Heading level={2}>Radio Group</Heading>

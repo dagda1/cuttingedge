@@ -1,6 +1,6 @@
 import { MouseEvent, useCallback } from 'react';
 import type { FC } from 'react';
-import { Button } from '../../atoms/Button';
+import { Button } from '../../atoms/Button/Button';
 import cs from 'classnames';
 import { Heading } from '../../atoms/Heading';
 
