@@ -11,8 +11,9 @@
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"],
   "references": [
     { "path": "../util" },
-    { "path": "../graphql-explorer" },
     { "path": "../hooks" },
+    { "path": "../component-library" },
+    { "path": "../svg" },
     { "path": "../use-abort"}
   ]
 }

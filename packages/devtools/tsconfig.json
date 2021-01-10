@@ -5,6 +5,7 @@
     "module": "commonjs",
     "outDir": "./tools",
     "baseUrl": ".",
+    "rootDir": "./src",
     "skipLibCheck": true,
     "isolatedModules": false
   },
