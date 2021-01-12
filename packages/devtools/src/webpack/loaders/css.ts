@@ -31,7 +31,7 @@ export const cssLoaders = (
           : undefined,
       },
     },
-    isProduction && { loader: 'postcss-loader', options: createPostCssOptions() },
+    { loader: 'postcss-loader', options: createPostCssOptions({ isProduction }) },
   ].filter(Boolean) as NewLoader[];
 
 export const createCSSLoaders = ({

@@ -48,7 +48,7 @@ var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
                     : undefined,
             },
         },
-        isProduction && { loader: 'postcss-loader', options: createPostCssoptions_1.createPostCssOptions() },
+        { loader: 'postcss-loader', options: createPostCssoptions_1.createPostCssOptions({ isProduction: isProduction }) },
     ].filter(Boolean);
 };
 exports.cssLoaders = cssLoaders;
