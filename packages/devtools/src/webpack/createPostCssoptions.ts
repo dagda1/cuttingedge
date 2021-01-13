@@ -46,7 +46,7 @@ export const createPostCssOptions = ({
     // ],
     // If you comment out the purgecss section, everything works fine.
     // require('@fullhuman/postcss-purgecss')({
-    //   content: ['./src/client/**/*.tsx', './resources/public/index.html'],
+    //   content: [`${paths.appSrc}/**/*/tsx`, paths.appHtml],
     //   extractors: [
     //     {
     //       extractor: TailwindExtractor,

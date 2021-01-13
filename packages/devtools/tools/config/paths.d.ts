@@ -33,5 +33,6 @@ export declare const paths: {
     jestConfig: string;
     testTsConfig: string;
     projectReferences: boolean;
+    tailwindcssConfig: string;
 };
 //# sourceMappingURL=paths.d.ts.map

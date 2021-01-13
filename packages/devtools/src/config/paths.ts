@@ -102,4 +102,5 @@ export const paths = {
   jestConfig: path.join(__dirname, '../jest/jest.config.js'),
   testTsConfig,
   projectReferences: !!tsConfig.references,
+  tailwindcssConfig: path.join(__dirname, '../css/tailwind.config.js'),
 };

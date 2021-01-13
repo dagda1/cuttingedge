@@ -35,7 +35,7 @@ function runEslint() {
     (_b = eslint.stderr) === null || _b === void 0 ? void 0 : _b.on('data', function (data) { return logger_1.logger.error(data); });
     eslint.on('close', function (code) {
         logger_1.logger.done("eslint exited with code " + code + ".");
-        if (code && code !== 0) {
+        if (code !== 0) {
             process.exit(code);
         }
     });
