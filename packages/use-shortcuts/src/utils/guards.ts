@@ -1,22 +1,20 @@
 import { isObject } from '@cutting/util';
-import { Combination, Sequence, ShortcutItem } from '../types/types';
+import { Combination, Sequence } from '../types/types';
 
-export const isCombination = (o: unknown): o is ShortcutItem<Combination> => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isCombination = (o: any): o is Combination<typeof o> => {
   if (!isObject(o)) {
     return false;
   }
 
-  const keys = Object.keys(o);
-
-  return keys.length > 0 && keys[0] === 'combination';
+  return 'combination' in o;
 };
 
-export const isSequence = (o: unknown): o is Sequence => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isSequence = (o: any): o is Sequence<typeof o> => {
   if (!isObject(o)) {
     return false;
   }
 
-  const keys = Object.keys(o);
-
-  return keys.length > 0 && keys[0] === 'sequence';
+  return 'sequence' in o;
 };

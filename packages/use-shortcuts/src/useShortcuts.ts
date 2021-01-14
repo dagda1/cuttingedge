@@ -1,15 +1,15 @@
 import mousetrap, { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
 import { useEffect, useRef } from 'react';
-import { UseShortcuts, ShortcutAction, UseShortcutsResult } from './types/types';
 import { buildShortcuts } from './buildShortcuts';
+import { ShortcutAction, UseShortcuts, UseShortcutsResuls } from './types/types';
 import { clearArray } from './utils/clearArray';
 
-export const useShortcuts = <E extends HTMLElement = HTMLElement>({
+export const useShortcuts = <R extends Record<string, unknown>, E extends HTMLElement = HTMLElement>({
   shortcutMap,
   ref,
   handler,
-}: UseShortcuts<E>): UseShortcutsResult => {
-  const shortcutsRef = useRef<ShortcutAction[]>([]);
+}: UseShortcuts<R, E>): UseShortcutsResuls<R> => {
+  const shortcutsRef = useRef<ShortcutAction<keyof R>[]>([]);
   const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export const useShortcuts = <E extends HTMLElement = HTMLElement>({
 
     const shortcutActions = buildShortcuts(shortcutMap);
 
-    shortcutActions.forEach((shortcut) => {
+    for (const shortcut of shortcutActions) {
       trapper.bind(shortcut.keys, (e: ExtendedKeyboardEvent) => {
         e.stopPropagation();
 
@@ -51,7 +51,7 @@ export const useShortcuts = <E extends HTMLElement = HTMLElement>({
       });
 
       shortcut.trapper = trapper;
-    });
+    }
 
     clearArray(shortcuts);
 

@@ -1,63 +1,34 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-export enum KeyCode {
-  Alt = 'meta',
-  Command = 'command',
-  Ctrl = 'ctrl',
-  DownArrow = 'down',
-  Enter = 'enter',
-  Escape = 'esc',
-  LeftArrow = 'left',
-  Mod = 'mod', // On Mac this ends up mapping to command whereas on Windows and Linux it maps to ctrl.
-  RightArrow = 'right',
-  Shift = 'shift',
-  UpArrow = 'up',
-}
-
-type UnionToTuple<T> = (
-  (T extends any ? (t: T) => T : never) extends infer U
-    ? (U extends any ? (u: U) => any : never) extends (v: infer V) => any
-      ? V
-      : never
-    : never
-) extends (_: any) => infer W
-  ? [...UnionToTuple<Exclude<T, W>>, W]
-  : [];
-
-type KeyStroke = KeyCode | string;
-
-type GetKeys<T extends { combination?: any }> = {
-  [K in keyof T]: K extends 'combination' ? GetKeys<T['combination']> : K;
-};
-
-type ShortcutItem<T> = T extends Record<'combination', KeyStroke | KeyStroke[]>
-  ? { [K in keyof T as 'keys']: GetKeys<T[K]> }
-  : // : K extends Record<'sequence', KeyStroke[]>
-  // ? Sequence
-  // : K extends ArrayLike<KeyStroke>
-  // ? KeyStroke[]
-  T extends string
-  ? KeyStroke
-  : never;
-
-type ShortcutMap<S extends Record<string, unknown>> = {
-  [K in keyof S]: S[K] extends string ? { keys: S[K]; action: { type: K } } : ShortcutItem<S[K]>;
-}[keyof S];
-
+import { useShortcuts } from '@cutting/use-shortcuts';
+import { KeyCode } from '@cutting/use-shortcuts';
 const shortcutMap = {
   FIRST: 'a',
-  COMBINATION_EXAMPLE: { combination: 'f' },
+  SECOND: { combination: 'f' },
+  THIRD: { combination: [KeyCode.Ctrl, 'a'] },
+  FOURTH: { sequence: ['x', 'z'] },
 } as const;
 
-export type CombinationResult = UnionToTuple<ShortcutMap<typeof shortcutMap>>;
-
-declare const o: CombinationResult;
+declare const o = useShortcuts({ shortcutMap });
 
 // $ExpectType "a"
-o[0].keys;
+o.shortcuts[0].keys;
 
 // $ExpectType "FIRST"
-o[0].action.type;
+o.shortcuts[0].action.type;
 
 // $ExpectType "f"
-o[1].keys;
+o.shortcuts[1].keys;
+
+// $ExpectType "SECOND"
+o.shortcuts[1].action.type;
+
+// $ExpectType "ctrl+a"
+o.shortcuts[2].keys;
+
+// $ExpectType "THIRD"
+o.shortcuts[2].action.type;
+
+// $ExpectType "x z"
+o.shortcuts[3].keys;
+
+// $ExpectType "FOURTH"
+o.shortcuts[3].action.type;

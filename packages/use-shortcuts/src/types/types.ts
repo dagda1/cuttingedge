@@ -1,50 +1,33 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { RefObject } from 'react';
 import { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
-import { KeyCode } from './keycodes';
 
-export interface Action<T extends string = any> {
-  type: T;
-}
-
-export interface UseShortcuts<E extends HTMLElement = HTMLElement> {
-  shortcutMap: ShortcutMap;
-  handler: ShortcutHandler;
+export type UseShortcuts<R extends Record<string, unknown>, E extends HTMLElement = HTMLElement> = {
+  shortcutMap: R;
+  handler: ShortcutHandler<keyof R>;
   ref?: RefObject<E>;
-}
+};
 
-export interface UseShortcutsResult {
-  shortcuts: ShortcutAction[];
-}
-
-export interface ShortcutAction<T extends string = any> {
+export interface ShortcutAction<T extends PropertyKey> {
   keys: string | string[];
   action: Action<T>;
   trapper?: MousetrapStatic | MousetrapInstance;
 }
 
-export type ShortcutHandler<T extends string = any> = (action: Action<T>, event: ExtendedKeyboardEvent) => void;
+export type UseShortcutsResuls<R extends Record<string, unknown>> = { shortcuts: ShortcutAction<keyof R>[] };
 
-export type KeyStroke = KeyCode | string;
-
-export interface Combination {
-  combination: KeyStroke[];
+export interface Action<T extends PropertyKey> {
+  type: T;
 }
 
-export interface Sequence {
-  sequence: KeyStroke[];
-}
+export type ShortcutHandler<T extends PropertyKey> = (action: Action<T>, event: ExtendedKeyboardEvent) => void;
 
-export type ShortcutItem<K> = K extends Record<'combination', KeyStroke[]>
-  ? Combination
-  : K extends Record<'sequence', KeyStroke[]>
-  ? Sequence
-  : K extends ArrayLike<KeyStroke>
-  ? KeyStroke[]
-  : K extends string
-  ? KeyStroke
+export type Combinator<T, C extends 'combination' | 'sequence'> = T extends Record<C, string | string[]>
+  ? C extends 'combination' | 'sequence'
+    ? Record<C, string | string[]>
+    : never
   : never;
 
-export interface ShortcutMap {
-  [key: string]: ShortcutItem<any>;
-}
+export type Combination<R> = Combinator<R, 'combination'>;
+export type Sequence<R> = Combinator<R, 'sequence'>;
+
+export type KeyStrokes = string | string[];

@@ -1,14 +1,14 @@
-import { ShortcutAction, ShortcutMap, KeyStroke } from './types/types';
+import { ShortcutAction } from './types/types';
 import { isCombination, isSequence } from './utils/guards';
 
-function createKeyStrokes(keyStrokes: KeyStroke | KeyStroke[], separator: '+' | ' '): string {
+function createKeyStrokes(keyStrokes: string | string[], separator: '+' | ' '): string {
   const keys = Array.isArray(keyStrokes) ? keyStrokes : [keyStrokes];
 
   return keys.join(separator);
 }
-export const buildShortcuts = (map: ShortcutMap): ShortcutAction[] => {
-  const shortcutActions: ShortcutAction[] = [];
-  Object.keys(map).forEach((key) => {
+export const buildShortcuts = <R extends Record<string, unknown>>(map: R): ShortcutAction<keyof R>[] => {
+  const shortcutActions: ShortcutAction<keyof R>[] = [];
+  for (const key of Object.keys(map)) {
     const shortcut = map[key];
 
     if (isCombination(shortcut)) {
@@ -32,9 +32,7 @@ export const buildShortcuts = (map: ShortcutMap): ShortcutAction[] => {
     } else if (typeof shortcut === 'string') {
       shortcutActions.push({ keys: shortcut, action: { type: key } });
     }
-  });
-
-  console.dir(shortcutActions);
+  }
 
   return shortcutActions;
 };
