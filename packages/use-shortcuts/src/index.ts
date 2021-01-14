@@ -11,6 +11,6 @@ export type {
   ShortcutMap,
   Action,
   KeyStroke,
-} from './types';
+} from './types/types';
 export { clearArray } from './utils/clearArray';
 export { isCombination, isSequence } from './utils/guards';

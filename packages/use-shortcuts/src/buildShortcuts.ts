@@ -1,4 +1,4 @@
-import { ShortcutAction, ShortcutMap, KeyStroke } from './types';
+import { ShortcutAction, ShortcutMap, KeyStroke } from './types/types';
 import { isCombination, isSequence } from './utils/guards';
 
 function createKeyStrokes(keyStrokes: KeyStroke | KeyStroke[], separator: '+' | ' '): string {

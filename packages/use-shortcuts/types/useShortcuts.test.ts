@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export enum KeyCode {
   Alt = 'meta',
@@ -13,31 +14,50 @@ export enum KeyCode {
   UpArrow = 'up',
 }
 
+type UnionToTuple<T> = (
+  (T extends any ? (t: T) => T : never) extends infer U
+    ? (U extends any ? (u: U) => any : never) extends (v: infer V) => any
+      ? V
+      : never
+    : never
+) extends (_: any) => infer W
+  ? [...UnionToTuple<Exclude<T, W>>, W]
+  : [];
+
 type KeyStroke = KeyCode | string;
 
-interface Combination {
-  combination: KeyStroke[];
-}
+type GetKeys<T extends { combination?: any }> = {
+  [K in keyof T]: K extends 'combination' ? GetKeys<T['combination']> : K;
+};
 
-type ShortcutItem<K> = K extends Record<'combination', KeyStroke[]>
-  ? Combination
+type ShortcutItem<T> = T extends Record<'combination', KeyStroke | KeyStroke[]>
+  ? { [K in keyof T as 'keys']: GetKeys<T[K]> }
   : // : K extends Record<'sequence', KeyStroke[]>
-    // ? Sequence
-    // : K extends ArrayLike<KeyStroke>
-    // ? KeyStroke[]
-    // : K extends string
-    // ? KeyStroke
-    never;
+  // ? Sequence
+  // : K extends ArrayLike<KeyStroke>
+  // ? KeyStroke[]
+  T extends string
+  ? KeyStroke
+  : never;
 
 type ShortcutMap<S extends Record<string, unknown>> = {
-  [K in keyof S]: ShortcutItem<S[K]>;
-};
+  [K in keyof S]: S[K] extends string ? { keys: S[K]; action: { type: K } } : ShortcutItem<S[K]>;
+}[keyof S];
 
 const shortcutMap = {
-  COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
-};
+  FIRST: 'a',
+  COMBINATION_EXAMPLE: { combination: 'f' },
+} as const;
 
-export type CombinationResult = ShortcutMap<typeof shortcutMap>;
+export type CombinationResult = UnionToTuple<ShortcutMap<typeof shortcutMap>>;
 
-// $ExpectType [ { keys: 'a', action: { type: 'FIRST' } } ]
 declare const o: CombinationResult;
+
+// $ExpectType "a"
+o[0].keys;
+
+// $ExpectType "FIRST"
+o[0].action.type;
+
+// $ExpectType "f"
+o[1].keys;
