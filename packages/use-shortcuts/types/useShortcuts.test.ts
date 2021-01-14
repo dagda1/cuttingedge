@@ -1,11 +1,43 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-const f = (i: number): void => console.log(i);
+export enum KeyCode {
+  Alt = 'meta',
+  Command = 'command',
+  Ctrl = 'ctrl',
+  DownArrow = 'down',
+  Enter = 'enter',
+  Escape = 'esc',
+  LeftArrow = 'left',
+  Mod = 'mod', // On Mac this ends up mapping to command whereas on Windows and Linux it maps to ctrl.
+  RightArrow = 'right',
+  Shift = 'shift',
+  UpArrow = 'up',
+}
 
-// $ExpectType void
-f(1);
+type KeyStroke = KeyCode | string;
 
-// Can also write the assertion on the same line.
-f(2); // $ExpectType void
+interface Combination {
+  combination: KeyStroke[];
+}
 
-// $ExpectError
-f('one');
+type ShortcutItem<K> = K extends Record<'combination', KeyStroke[]>
+  ? Combination
+  : // : K extends Record<'sequence', KeyStroke[]>
+    // ? Sequence
+    // : K extends ArrayLike<KeyStroke>
+    // ? KeyStroke[]
+    // : K extends string
+    // ? KeyStroke
+    never;
+
+type ShortcutMap<S extends Record<string, unknown>> = {
+  [K in keyof S]: ShortcutItem<S[K]>;
+};
+
+const shortcutMap = {
+  COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
+};
+
+export type CombinationResult = ShortcutMap<typeof shortcutMap>;
+
+// $ExpectType [ { keys: 'a', action: { type: 'FIRST' } } ]
+declare const o: CombinationResult;

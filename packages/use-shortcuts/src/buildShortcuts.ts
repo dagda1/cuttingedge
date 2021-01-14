@@ -34,5 +34,7 @@ export const buildShortcuts = (map: ShortcutMap): ShortcutAction[] => {
     }
   });
 
+  console.dir(shortcutActions);
+
   return shortcutActions;
 };
