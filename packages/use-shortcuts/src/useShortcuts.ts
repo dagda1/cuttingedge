@@ -1,15 +1,42 @@
+import type { RefObject } from 'react';
 import mousetrap, { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
 import { useEffect, useRef } from 'react';
-import { UseShortcuts, ShortcutAction, UseShortcutsResult } from './types/types';
+// import { UseShortcuts, ShortcutAction, UseShortcutsResult } from './types/types';
 import { buildShortcuts } from './buildShortcuts';
 import { clearArray } from './utils/clearArray';
+import { Combination, KeyStroke } from './types/types';
+import { KeyCode } from './types/keycodes';
+type ObjectType = Record<string, unknown>;
 
-export const useShortcuts = <E extends HTMLElement = HTMLElement>({
+export type ShortcutItem<K> = K extends Record<'combination', KeyStroke[]>
+  ? Combination
+  : // : K extends Record<'sequence', KeyStroke[]>
+    // ? Sequence
+    // : K extends ArrayLike<KeyStroke>
+    // ? KeyStroke[]
+    // : K extends string
+    // ? KeyStroke
+    never;
+
+type ShortcutMap<S extends Record<string, unknown>> = {
+  [K in keyof S]: ShortcutItem<S[K]>;
+};
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const useShortcuts = <
+  S extends ObjectType = never,
+  E extends HTMLElement = HTMLElement,
+  H extends ObjectType = never
+>({
   shortcutMap,
   ref,
   handler,
-}: UseShortcuts<E>): UseShortcutsResult => {
-  const shortcutsRef = useRef<ShortcutAction[]>([]);
+}: {
+  shortcutMap: ShortcutMap<S>;
+  ref: RefObject<E>;
+  handler: H;
+}) => {
+  const shortcutsRef = useRef<E>([]);
   const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>();
 
   useEffect(() => {

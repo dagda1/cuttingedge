@@ -1,1 +1,1 @@
-{"version":3,"file":"createPostCssoptions.d.ts","sourceRoot":"","sources":["../../src/webpack/createPostCssoptions.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,oBAAoB,QAAO;IAEtC,cAAc,EAAE;QAAE,MAAM,EAAE,MAAM,CAAC;QAAC,SAAS,EAAE,OAAO,CAAC;QAAC,OAAO,EAAE,GAAG,EAAE,CAAA;KAAE,CAAC;CAqBvE,CAAC"}
+{"version":3,"file":"createPostCssoptions.d.ts","sourceRoot":"","sources":["../../src/webpack/createPostCssoptions.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,oBAAoB,QAAO;IACtC,MAAM,EAAE,MAAM,CAAC;IACf,SAAS,EAAE,OAAO,CAAC;IAEnB,OAAO,EAAE,GAAG,EAAE,CAAC;CAmBf,CAAC"}

@@ -4,7 +4,7 @@ import { useParentSize } from '../src/useParentSize/useParentSize';
 import styles from './global.module.scss';
 
 export const App: FC = () => {
-  const ref = useRef<Element>(null);
+  const ref = useRef<HTMLDivElement>();
   const { width, height } = useParentSize(ref);
 
   return (

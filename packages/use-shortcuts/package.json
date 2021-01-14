@@ -18,14 +18,17 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "echo no start",
+    "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup",
     "prepublish": "yarn build"
   },
   "dependencies": {
     "@cutting/util": "4.4.0",
-    "mousetrap": "^1.6.5"
+    "classnames": "^2.2.6",
+    "mousetrap": "^1.6.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@cutting/devtools": "4.4.0",
