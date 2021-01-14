@@ -1,5 +1,5 @@
 import { isObject } from '@cutting/util';
-import { Combination, Sequence, ShortcutItem } from '../types/types';
+import { Combination, Sequence, ShortcutItem } from '../types';
 
 export const isCombination = (o: unknown): o is ShortcutItem<Combination> => {
   if (!isObject(o)) {

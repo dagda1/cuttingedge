@@ -19,6 +19,7 @@
   "license": "MIT",
   "scripts": {
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
+    "test:types": "dtslint types --localTs ../../node_modules/typescript/lib --expectOnly",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup",
     "prepublish": "yarn build"
@@ -35,7 +36,8 @@
     "@cutting/eslint-config": "4.4.0",
     "@cutting/useful-types": "4.4.0",
     "@testing-library/jest-dom": "^5.11.6",
-    "@types/mousetrap": "^1.6.5"
+    "@types/mousetrap": "^1.6.5",
+    "dtslint": "^4.0.6"
   },
   "keywords": [
     "hotkeys",
