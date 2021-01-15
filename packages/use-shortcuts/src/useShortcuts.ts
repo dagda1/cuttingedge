@@ -1,14 +1,14 @@
 import mousetrap, { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
 import { useEffect, useRef } from 'react';
 import { buildShortcuts } from './buildShortcuts';
-import { ShortcutAction, UseShortcuts, UseShortcutsResuls } from './types/types';
+import { ShortcutAction, UseShortcuts, UseShortcutsResults } from './types/types';
 import { clearArray } from './utils/clearArray';
 
 export const useShortcuts = <R extends Record<string, unknown>, E extends HTMLElement = HTMLElement>({
   shortcutMap,
   ref,
   handler,
-}: UseShortcuts<R, E>): UseShortcutsResuls<R> => {
+}: UseShortcuts<R, E>): UseShortcutsResults<R> => {
   const shortcutsRef = useRef<ShortcutAction<keyof R>[]>([]);
   const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>();
 

@@ -13,7 +13,7 @@ export interface ShortcutAction<T extends PropertyKey> {
   trapper?: MousetrapStatic | MousetrapInstance;
 }
 
-export type UseShortcutsResuls<R extends Record<string, unknown>> = { shortcuts: ShortcutAction<keyof R>[] };
+export type UseShortcutsResults<R extends Record<string, unknown>> = { shortcuts: ShortcutAction<keyof R>[] };
 
 export interface Action<T extends PropertyKey> {
   type: T;

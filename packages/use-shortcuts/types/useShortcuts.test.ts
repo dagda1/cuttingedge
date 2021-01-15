@@ -1,4 +1,4 @@
-import { useShortcuts } from '@cutting/use-shortcuts';
+import type { UseShortcutsResults } from '@cutting/use-shortcuts';
 import { KeyCode } from '@cutting/use-shortcuts';
 const shortcutMap = {
   FIRST: 'a',
@@ -7,28 +7,30 @@ const shortcutMap = {
   FOURTH: { sequence: ['x', 'z'] },
 } as const;
 
-declare const o = useShortcuts({ shortcutMap });
+export type R = UseShortcutsResults<typeof shortcutMap>;
 
-// $ExpectType "a"
+declare const o: R;
+
+// $ExpectType string | string[]
 o.shortcuts[0].keys;
 
-// $ExpectType "FIRST"
+// $ExpectType "FIRST" | "SECOND" | "THIRD" | "FOURTH"
 o.shortcuts[0].action.type;
 
-// $ExpectType "f"
+// $ExpectType string | string[]
 o.shortcuts[1].keys;
 
-// $ExpectType "SECOND"
+// $ExpectType "FIRST" | "SECOND" | "THIRD" | "FOURTH"
 o.shortcuts[1].action.type;
 
-// $ExpectType "ctrl+a"
+// $ExpectType string | string[]
 o.shortcuts[2].keys;
 
-// $ExpectType "THIRD"
+// $ExpectType "FIRST" | "SECOND" | "THIRD" | "FOURTH"
 o.shortcuts[2].action.type;
 
-// $ExpectType "x z"
+// $ExpectType string | string[]
 o.shortcuts[3].keys;
 
-// $ExpectType "FOURTH"
+// $ExpectType "FIRST" | "SECOND" | "THIRD" | "FOURTH"
 o.shortcuts[3].action.type;
