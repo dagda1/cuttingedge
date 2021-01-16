@@ -4,7 +4,7 @@ export const shortcutMap1 = {
   MOVE_LEFT: 'a',
   MOVE_RIGHT: 'd',
   MOVE_UP: 'w',
-  MOVE_DOWN: 'k',
+  MOVE_DOWN: 's',
 };
 
 export const shortcutMap2 = {

@@ -6,10 +6,9 @@ export const createPostCssOptions = (): {
 } => ({
   parser: 'postcss-scss',
   plugins: [
-    'postcss-flexbugs-fixes',
+    require('postcss-flexbugs-fixes'),
     [
-      'postcss-preset-env',
-      {
+      require('postcss-preset-env')({
         autoprefixer: {
           flexbox: 'no-2009',
         },
@@ -17,7 +16,7 @@ export const createPostCssOptions = (): {
         features: {
           'custom-properties': false,
         },
-      },
+      }),
     ],
   ],
   sourceMap: true,
