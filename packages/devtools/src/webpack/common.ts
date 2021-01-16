@@ -30,7 +30,7 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
   const config: Configuration = {
     mode: isDevelopment ? 'development' : 'production',
     bail: isProduction,
-    devtool: isDevelopment ? 'cheap-module-eval-source-map' : 'source-map',
+    devtool: 'source-map',
     context: process.cwd(),
     stats,
     performance: {

@@ -4,7 +4,7 @@ import { buildShortcuts } from './buildShortcuts';
 import { ShortcutAction, UseShortcuts, UseShortcutsResults } from './types/types';
 import { clearArray } from './utils/clearArray';
 
-export const useShortcuts = <R extends Record<string, unknown>, E extends HTMLElement = HTMLElement>({
+export const useShortcuts = <R extends Record<PropertyKey, unknown>, E extends HTMLElement = HTMLElement>({
   shortcutMap,
   ref,
   handler,

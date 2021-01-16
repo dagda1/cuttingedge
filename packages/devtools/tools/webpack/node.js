@@ -34,14 +34,14 @@ var getExternals = function () {
 };
 var configure = function (options) {
     var common = common_1.configureCommon(__assign(__assign({}, options), { isWeb: false }));
-    var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
+    var isProduction = getEnvironment_1.getEnvironment().isProduction;
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
     var config = webpack_merge_1.merge(common, {
         name: 'api',
         target: 'node',
         externals: getExternals(),
         entry: entries,
-        devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
+        devtool: 'source-map',
         output: {
             path: paths_1.paths.appBuild,
             filename: 'index.cjs',

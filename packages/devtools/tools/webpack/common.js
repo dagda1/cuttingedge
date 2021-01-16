@@ -51,7 +51,7 @@ var configureCommon = function (options) {
     var config = {
         mode: isDevelopment ? 'development' : 'production',
         bail: isProduction,
-        devtool: isDevelopment ? 'cheap-module-eval-source-map' : 'source-map',
+        devtool: 'source-map',
         context: process.cwd(),
         stats: stats_1.stats,
         performance: {

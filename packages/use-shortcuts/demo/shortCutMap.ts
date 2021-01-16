@@ -1,10 +1,15 @@
-import { ShortcutMap, KeyCode } from '@cutting/use-shortcuts';
+import { KeyCode } from '@cutting/use-shortcuts';
 
-export const shortcutMap: ShortcutMap = {
-  MOVE_LEFT: [KeyCode.LeftArrow, 'a'],
-  MOVE_RIGHT: [KeyCode.RightArrow, 'd'],
-  MOVE_UP: [KeyCode.UpArrow, 'w'],
-  MOVE_DOWN: [KeyCode.DownArrow, 'k'],
-  COMBINATION_EXAMPLE: { combination: [KeyCode.Ctrl, 'f'] },
-  SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] },
+export const shortcutMap1 = {
+  MOVE_LEFT: 'a',
+  MOVE_RIGHT: 'd',
+  MOVE_UP: 'w',
+  MOVE_DOWN: 'k',
+};
+
+export const shortcutMap2 = {
+  MOVE_LEFT: KeyCode.LeftArrow,
+  MOVE_RIGHT: KeyCode.RightArrow,
+  MOVE_UP: KeyCode.UpArrow,
+  MOVE_DOWN: KeyCode.DownArrow,
 };

@@ -11,5 +11,10 @@ const render = (Component: React.FC) => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./App', () => import('./App').then((m) => render(m.App)));
+  module.hot.accept('./App', () =>
+    import('./App').then((m) => {
+      console.dir(m);
+      render(m.App);
+    }),
+  );
 }

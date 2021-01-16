@@ -8,6 +8,7 @@ function createKeyStrokes(keyStrokes: string | string[], separator: '+' | ' '): 
 }
 export const buildShortcuts = <R extends Record<string, unknown>>(map: R): ShortcutAction<keyof R>[] => {
   const shortcutActions: ShortcutAction<keyof R>[] = [];
+
   for (const key of Object.keys(map)) {
     const shortcut = map[key];
 

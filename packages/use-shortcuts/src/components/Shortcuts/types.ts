@@ -1,16 +1,17 @@
-import { FunctionComponent, ComponentClass } from 'react';
-import { UseShortcuts } from '@cutting/use-shortcuts';
+import type { RefObject, FC } from 'react';
+import { ShortcutHandler } from '../../types/types';
 
 export interface ShortcutsProps<
-  TScopedWrapperComponentType = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
-> extends Omit<UseShortcuts, 'ref'> {
+  R extends Record<PropertyKey, unknown>,
+  E extends HTMLElement = HTMLElement,
+  C = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
+> {
   tabIndex?: number;
   className?: string;
   dataSelector?: string;
-  scoped?: boolean;
+  shortcutMap: R;
+  handler: ShortcutHandler<keyof R>;
+  ref?: RefObject<E>;
 
-  ScopedWrapperComponentType?:
-    | FunctionComponent<TScopedWrapperComponentType>
-    | ComponentClass<TScopedWrapperComponentType>
-    | string;
+  ScopedWrapperComponentType?: FC<C> | string;
 }

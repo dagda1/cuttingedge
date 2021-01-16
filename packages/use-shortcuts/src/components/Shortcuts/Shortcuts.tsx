@@ -1,11 +1,10 @@
-import React, { useRef } from 'react';
+import type { PropsWithChildren } from 'react';
+import { useRef } from 'react';
 import cs from 'classnames';
-import { assert } from 'assert-ts';
-import { useShortcuts } from '@cutting/use-shortcuts';
+import { useShortcuts } from '../../useShortcuts';
 import { ShortcutsProps } from './types';
 
-export const Shortcuts: React.FC<ShortcutsProps> = ({
-  scoped = false,
+export function Shortcuts<R extends Record<PropertyKey, unknown>, E extends HTMLElement = HTMLElement>({
   tabIndex = -1,
   ScopedWrapperComponentType = 'div',
   shortcutMap,
@@ -13,7 +12,7 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
   className,
   dataSelector = 'keyboard-shortcuts',
   children,
-}) => {
+}: PropsWithChildren<ShortcutsProps<R, E>>): JSX.Element {
   const ref = useRef<HTMLElement>(null);
 
   useShortcuts({
@@ -21,12 +20,6 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
     handler,
     ref,
   });
-
-  if (!scoped) {
-    return <>{children}</>;
-  }
-
-  assert(!!children, 'If a mousetrap scoped component then there should be child mice.');
 
   return (
     <ScopedWrapperComponentType
@@ -38,4 +31,4 @@ export const Shortcuts: React.FC<ShortcutsProps> = ({
       {children}
     </ScopedWrapperComponentType>
   );
-};
+}

@@ -21,7 +21,7 @@ const getExternals = () => {
 export const configure = (options: NodeBuildConfig): Configuration => {
   const common = configureCommon({ ...options, isWeb: false });
 
-  const { isDevelopment, isProduction } = getEnvironment();
+  const { isProduction } = getEnvironment();
 
   const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
 
@@ -30,7 +30,7 @@ export const configure = (options: NodeBuildConfig): Configuration => {
     target: 'node',
     externals: getExternals(),
     entry: entries,
-    devtool: isDevelopment ? 'cheap-module-source-map' : undefined,
+    devtool: 'source-map',
     output: {
       path: paths.appBuild,
       filename: 'index.cjs',
