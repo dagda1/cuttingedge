@@ -151,7 +151,6 @@
     "nocache": "^2.1.0",
     "node-forge": "^0.10.0",
     "postcss-normalize": "^9.0.0",
-    "postcss-preset-env": "^6.7.0",
     "postcss-scss": "^2.1.1",
     "xml": "^1.0.1"
   }
