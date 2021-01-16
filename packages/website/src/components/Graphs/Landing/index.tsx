@@ -20,20 +20,20 @@ const IncreseFromPreviousDay = loadable(() => import('src/components/IncreseFrom
 
 export const routable: Page[] = [
   {
+    heading: 'Increase in deaths',
+    path: Urls.Covid19,
+    component: IncreseFromPreviousDay,
+    exact: true,
+  },
+  {
     heading: 'Deaths',
     path: Urls.Deaths,
     component: Deaths,
     exact: true,
   },
   {
-    heading: 'Increase in deaths',
-    path: Urls.IncreaseInDeaths,
-    component: IncreseFromPreviousDay,
-    exact: true,
-  },
-  {
     heading: 'Rate of change',
-    path: Urls.Covid19,
+    path: Urls.IncreaseInDeaths,
     component: RateOfChange,
     exact: true,
   },

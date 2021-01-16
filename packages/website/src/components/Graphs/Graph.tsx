@@ -61,11 +61,11 @@ export const Graph: FC<GraphProps> = ({
           {[
             {
               url: Urls.Covid19,
-              text: 'Rate of change',
+              text: 'Daily increase in deaths',
             },
             {
               url: Urls.IncreaseInDeaths,
-              text: 'Daily increase in deaths',
+              text: 'Rate of change',
             },
             { url: Urls.Deaths, text: 'Total deaths' },
           ].map((u) => {
