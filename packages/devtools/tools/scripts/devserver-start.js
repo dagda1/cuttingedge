@@ -109,6 +109,12 @@ var HOST = process.env.HOST || '0.0.0.0';
                     fs_extra_1.default.copyFileSync(path_1.default.join(source, 'index.tsx'), path_1.default.join(paths_1.paths.appSrc, 'index.tsx'));
                     fs_extra_1.default.copyFileSync(path_1.default.join(source, 'App.tsx'), path_1.default.join(paths_1.paths.appSrc, 'App.tsx'));
                     fs_extra_1.default.copyFileSync(path_1.default.join(source, 'global.css'), path_1.default.join(paths_1.paths.appSrc, 'global.css'));
+                    if (!fs_extra_1.default.existsSync(paths_1.paths.tsConfig)) {
+                        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../typescript/tsconfig.json'), path_1.default.join(process.cwd(), 'tsconfig.json'));
+                    }
+                    if (!fs_extra_1.default.existsSync(paths_1.paths.eslintConfig)) {
+                        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../typescript/.eslintrc.json'), path_1.default.join(process.cwd(), '.eslintrc.json'));
+                    }
                 }
                 else {
                     fs_extra_1.default.mkdirSync(paths_1.paths.devDir);

@@ -1,0 +1,10 @@
+{
+  "extends": "@cutting/devtools/typescript/tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
+}
