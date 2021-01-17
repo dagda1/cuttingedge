@@ -5,35 +5,25 @@ import { Route, Switch } from 'react-router';
 import { Page } from 'src/types';
 import { ContactMe } from 'src/components/ContactMe';
 
-const fallback = <div>loading....</div>;
+const fallback = <div>loading.....</div>;
 
-const Home = loadable(() => import('src/components/Home'), {
-  fallback,
-});
+const props = { fallback, ssr: true };
 
-const OSS = loadable(() => import('src/components/OSS'), {
-  fallback,
-});
+const Home = loadable(() => import('src/components/Home'), props);
 
-const Blog = loadable(() => import('src/components/Blog'), {
-  fallback: <div>Loading...</div>,
-});
+const OSS = loadable(() => import('src/components/OSS'), props);
 
-const CV = loadable(() => import('src/components/cv'), {
-  fallback: <div>Loading...</div>,
-});
+const Blog = loadable(() => import('src/components/Blog'), props);
 
-const PrivacyPolicy = loadable(() => import('src/components/PrivacyPolicy'), {
-  fallback: <div>Loading...</div>,
-});
+const CV = loadable(() => import('src/components/cv'), props);
 
-const TermsOfService = loadable(() => import('src/components/TermsOfService'), {
-  fallback: <div>Loading...</div>,
-});
+const PrivacyPolicy = loadable(() => import('src/components/PrivacyPolicy'), props);
 
-const Graphs = loadable(() => import(/* webpackPrefetch: true */ 'src/components/Graphs/Landing'), {
-  fallback: <div>Loading...</div>,
-});
+const TermsOfService = loadable(() => import('src/components/TermsOfService'), props);
+
+const Graphs = loadable(() => import(/* webpackPrefetch: true */ 'src/containers/Graphs/Landing'), props);
+
+const DataViz = loadable(() => import('src/containers/DataViz/DataViz'), props);
 
 /* eslint-disable react/display-name */
 export const routable: Page[] = [
@@ -79,6 +69,13 @@ export const routable: Page[] = [
     heading: 'COVID-19',
     path: Urls.Covid19,
     component: Graphs,
+    exact: false,
+    footerPage: false,
+  },
+  {
+    heading: 'Dataviz',
+    path: Urls.DataViz,
+    component: DataViz,
     exact: false,
     footerPage: false,
   },

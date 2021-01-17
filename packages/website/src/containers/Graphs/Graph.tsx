@@ -14,7 +14,7 @@ import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { LoadingOverlay } from '@cutting/component-library';
 import { ParentsizeSVG } from '@cutting/svg';
-import { AxisColor, Countries, DayData, countryData } from '../Graphs/types';
+import { AxisColor, Countries, DayData, countryData } from './types';
 import * as Urls from 'src/urls';
 import { NavLink, useLocation } from 'react-router-dom';
 import { assert } from 'assert-ts';

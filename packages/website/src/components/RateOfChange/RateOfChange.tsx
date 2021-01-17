@@ -1,8 +1,8 @@
 import type { FC } from 'react';
-import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
-import Graph from 'src/components/Graphs/Graph';
+import { useCountryCovidData } from 'src/containers/Graphs/useCountryCovidData';
+import Graph from 'src/containers/Graphs/Graph';
 import regression from 'regression';
-import { Countries } from '../Graphs';
+import { Countries } from '../../containers/Graphs';
 import dayjs from 'dayjs';
 
 export const RateOfChange: FC = () => {

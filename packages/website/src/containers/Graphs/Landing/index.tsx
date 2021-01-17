@@ -4,18 +4,21 @@ import * as Urls from 'src/urls';
 import { Route, Switch } from 'react-router';
 import { Page } from 'src/types';
 
-const fallback = <div>loading....</div>;
+const fallback = <div>loading.....</div>;
 
 const Deaths = loadable(() => import('src/components/Confirmed'), {
   fallback,
+  ssr: true,
 });
 
 const RateOfChange = loadable(() => import('src/components/RateOfChange'), {
   fallback,
+  ssr: true,
 });
 
 const IncreseFromPreviousDay = loadable(() => import('src/components/IncreseFromPreviousDay'), {
   fallback,
+  ssr: true,
 });
 
 export const routable: Page[] = [

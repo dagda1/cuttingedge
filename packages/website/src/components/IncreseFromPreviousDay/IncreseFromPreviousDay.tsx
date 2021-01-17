@@ -1,8 +1,8 @@
 import type { FC } from 'react';
-import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
-import Graph from 'src/components/Graphs/Graph';
+import { useCountryCovidData } from 'src/containers/Graphs/useCountryCovidData';
+import Graph from 'src/containers/Graphs/Graph';
 import dayjs from 'dayjs';
-import { Countries, CountryData, countryData, DayData } from '../Graphs/types';
+import { Countries, CountryData, countryData, DayData } from '../../containers/Graphs/types';
 import { assert } from 'assert-ts';
 
 type ExtendedCountry = {
