@@ -28,33 +28,50 @@ assert(devServer, 'no devServer node');
 assert(devServer.publicDir, 'no publicDir');
 assert(devServer.entries, 'no devServer entries');
 
-if (!fs.existsSync(devServer.publicDir) && fs.existsSync(paths.devDirPublic)) {
-  devServer.publicDir = paths.devDirPublic;
-  devServer.entries = paths.devDir;
-}
-
-const config = configureWebpackClient(devServer as DevServerConfig);
-
 const DEFAULT_PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
 (async () => {
-  if (!fs.existsSync(devServer.publicDir)) {
-    const { value } = await inquirer.prompt({
-      type: 'confirm',
-      name: 'value',
-      message: 'There is no public index.html etc, should I create one?',
-    });
+  try {
+    if (!fs.existsSync(devServer.publicDir) && !fs.existsSync(paths.devDirPublic)) {
+      const { value } = await inquirer.prompt({
+        type: 'number',
+        name: 'value',
+        message: `There is no public index.html etc, should I create these:
+        
+        1.  In the root
+        2.  In a ./demo directory
+        `,
+      });
 
-    if (!value) {
-      throw new Error('No public index.html to start dev server');
+      if (!value) {
+        throw new Error('No public index.html to start dev server');
+      }
+
+      const source = path.join(__dirname, '../../demo');
+
+      if (Number(value) === 1) {
+        if (!fs.existsSync(paths.appSrc)) {
+          fs.mkdirSync(paths.appSrc);
+        }
+
+        fs.copySync(path.join(source, 'public'), path.join(process.cwd(), 'public'));
+        fs.copyFileSync(path.join(source, 'index.tsx'), path.join(paths.appSrc, 'index.tsx'));
+        fs.copyFileSync(path.join(source, 'App.tsx'), path.join(paths.appSrc, 'App.tsx'));
+        fs.copyFileSync(path.join(source, 'global.css'), path.join(paths.appSrc, 'global.css'));
+      } else {
+        fs.mkdirSync(paths.devDir);
+        fs.copySync(source, path.join(process.cwd(), 'demo'));
+      }
     }
 
-    fs.mkdirSync(paths.devDir);
-    fs.copySync(path.join(__dirname, '../../demo'), path.join(process.cwd(), 'demo'));
-  }
+    if (!fs.existsSync(devServer.publicDir) && fs.existsSync(paths.devDirPublic)) {
+      devServer.publicDir = paths.devDirPublic;
+      devServer.entries = paths.devDir;
+    }
 
-  try {
+    const config = configureWebpackClient(devServer as DevServerConfig);
+
     const port = await choosePort(HOST, DEFAULT_PORT);
 
     if (port === null) {
@@ -73,9 +90,11 @@ const HOST = process.env.HOST || '0.0.0.0';
 
     config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic, paths.publicUrlOrPath);
 
-    const devServer = new WebpackDevServer(compiler, config.devServer);
+    console.dir();
 
-    devServer.listen(port, HOST, (err) => {
+    const server = new WebpackDevServer(compiler, config.devServer);
+
+    server.listen(port, HOST, (err) => {
       if (err) {
         logger.error(err);
         return;
@@ -89,7 +108,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 
     ['SIGINT', 'SIGTERM'].forEach((sig) => {
       process.on(sig, function () {
-        devServer.close();
+        server.close();
         process.exit();
       });
     });

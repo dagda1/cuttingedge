@@ -81,34 +81,46 @@ var devServer = build_config_1.config.devServer;
 assert_ts_1.assert(devServer, 'no devServer node');
 assert_ts_1.assert(devServer.publicDir, 'no publicDir');
 assert_ts_1.assert(devServer.entries, 'no devServer entries');
-if (!fs_extra_1.default.existsSync(devServer.publicDir) && fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)) {
-    devServer.publicDir = paths_1.paths.devDirPublic;
-    devServer.entries = paths_1.paths.devDir;
-}
-var config = client_1.configure(devServer);
 var DEFAULT_PORT = Number(process.env.PORT) || 3000;
 var HOST = process.env.HOST || '0.0.0.0';
 (function () { return __awaiter(void 0, void 0, void 0, function () {
-    var value, port, protocol, pkg, appName, proxySetting, urls_1, compiler, devServer_1, err_1;
+    var value, source, config, port, protocol, pkg, appName, proxySetting, urls_1, compiler, server_1, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                if (!!fs_extra_1.default.existsSync(devServer.publicDir)) return [3 /*break*/, 2];
+                _a.trys.push([0, 5, , 6]);
+                if (!(!fs_extra_1.default.existsSync(devServer.publicDir) && !fs_extra_1.default.existsSync(paths_1.paths.devDirPublic))) return [3 /*break*/, 2];
                 return [4 /*yield*/, inquirer_1.default.prompt({
-                        type: 'confirm',
+                        type: 'number',
                         name: 'value',
-                        message: 'There is no public index.html etc, should I create one?',
+                        message: "There is no public index.html etc, should I create these:\n        \n        1.  In the root\n        2.  In a ./demo directory\n        ",
                     })];
             case 1:
                 value = (_a.sent()).value;
                 if (!value) {
                     throw new Error('No public index.html to start dev server');
                 }
-                fs_extra_1.default.mkdirSync(paths_1.paths.devDir);
-                fs_extra_1.default.copySync(path_1.default.join(__dirname, '../../demo'), path_1.default.join(process.cwd(), 'demo'));
+                source = path_1.default.join(__dirname, '../../demo');
+                if (Number(value) === 1) {
+                    if (!fs_extra_1.default.existsSync(paths_1.paths.appSrc)) {
+                        fs_extra_1.default.mkdirSync(paths_1.paths.appSrc);
+                    }
+                    fs_extra_1.default.copySync(path_1.default.join(source, 'public'), path_1.default.join(process.cwd(), 'public'));
+                    fs_extra_1.default.copyFileSync(path_1.default.join(source, 'index.tsx'), path_1.default.join(paths_1.paths.appSrc, 'index.tsx'));
+                    fs_extra_1.default.copyFileSync(path_1.default.join(source, 'App.tsx'), path_1.default.join(paths_1.paths.appSrc, 'App.tsx'));
+                    fs_extra_1.default.copyFileSync(path_1.default.join(source, 'global.css'), path_1.default.join(paths_1.paths.appSrc, 'global.css'));
+                }
+                else {
+                    fs_extra_1.default.mkdirSync(paths_1.paths.devDir);
+                    fs_extra_1.default.copySync(source, path_1.default.join(process.cwd(), 'demo'));
+                }
                 _a.label = 2;
             case 2:
-                _a.trys.push([2, 5, , 6]);
+                if (!fs_extra_1.default.existsSync(devServer.publicDir) && fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)) {
+                    devServer.publicDir = paths_1.paths.devDirPublic;
+                    devServer.entries = paths_1.paths.devDir;
+                }
+                config = client_1.configure(devServer);
                 return [4 /*yield*/, WebpackDevServerUtils_1.choosePort(HOST, DEFAULT_PORT)];
             case 3:
                 port = _a.sent();
@@ -125,8 +137,9 @@ var HOST = process.env.HOST || '0.0.0.0';
                 compiler = WebpackDevServerUtils_1.createCompiler({ webpack: webpack_1.default, config: config, appName: appName, urls: urls_1, useYarn: true });
                 assert_ts_1.assert(!!config.devServer, 'no devServer in dev-server-start');
                 config.devServer.proxy = WebpackDevServerUtils_1.prepareProxy(proxySetting, paths_1.paths.appPublic, paths_1.paths.publicUrlOrPath);
-                devServer_1 = new webpack_dev_server_1.default(compiler, config.devServer);
-                devServer_1.listen(port, HOST, function (err) {
+                console.dir();
+                server_1 = new webpack_dev_server_1.default(compiler, config.devServer);
+                server_1.listen(port, HOST, function (err) {
                     if (err) {
                         logger_1.logger.error(err);
                         return;
@@ -139,7 +152,7 @@ var HOST = process.env.HOST || '0.0.0.0';
                 });
                 ['SIGINT', 'SIGTERM'].forEach(function (sig) {
                     process.on(sig, function () {
-                        devServer_1.close();
+                        server_1.close();
                         process.exit();
                     });
                 });
