@@ -1,7 +1,7 @@
 {
   "name": "@cutting/testing",
   "description": "A collection of test helpers.",
-  "version": "4.5.0",
+  "version": "4.6.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/testing.esm.js",
@@ -26,15 +26,15 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.5.0",
+    "@cutting/util": "4.6.0",
     "assert-ts": "^0.3.0",
     "resize-observer-polyfill": "^1.5.1",
     "use-debounce": "^5.2.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.5.0",
-    "@cutting/eslint-config": "4.5.0",
-    "@cutting/useful-types": "4.5.0",
+    "@cutting/devtools": "4.6.0",
+    "@cutting/eslint-config": "4.6.0",
+    "@cutting/useful-types": "4.6.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@types/jest": "^26.0.19"
   },

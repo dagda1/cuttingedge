@@ -1,0 +1,40 @@
+html {
+  height: 100%;
+  font-size: 100%;
+}
+
+body {
+  height: 100%;
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1;
+  background-color: #000;
+  color: #fff;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box !important;
+}
+
+ul {
+  padding: 0;
+}
+
+.wrap {
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+
+  max-width: 1008px;
+  margin: 0 auto;
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  text-align: left;
+  flex-flow: row wrap;
+}
+
