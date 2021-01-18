@@ -3,7 +3,7 @@ import { paths } from './paths';
 
 export const config: BuildConfig = {
   client: {
-    entries: paths.appClientIndexJs,
+    entries: paths.appSrc,
     hotReloading: true,
     isNode: false,
   },

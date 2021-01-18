@@ -4,7 +4,7 @@ exports.config = void 0;
 var paths_1 = require("./paths");
 exports.config = {
     client: {
-        entries: paths_1.paths.appClientIndexJs,
+        entries: paths_1.paths.appSrc,
         hotReloading: true,
         isNode: false,
     },

@@ -1,7 +1,7 @@
 {
   "name": "@cutting/graphql-explorer",
   "description": "Swagger for graphql.....init",
-  "version": "4.7.0",
+  "version": "4.8.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -17,7 +17,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.7.0"
+    "@cutting/util": "4.8.0"
   },
   "devDependencies": {
     "abortcontroller-polyfill": "^1.5.0",
