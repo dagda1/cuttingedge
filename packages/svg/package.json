@@ -26,7 +26,7 @@
     "@cutting/testing": "4.9.0",
     "@cutting/eslint-config": "4.9.0",
     "@cutting/useful-types": "4.9.0",
-    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/jest-dom": "^5.11.9",
     "typescript": "^4.1.3"
   },
   "scripts": {
