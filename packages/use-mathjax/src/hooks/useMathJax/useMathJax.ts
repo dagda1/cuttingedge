@@ -1,11 +1,12 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useMemo } from 'react';
 import { useMathJaxContext } from '../../provider/Provider/Provider';
 
 export interface UseMathJax {
-  elements?: HTMLElement[];
+  elements?: HTMLElement | HTMLElement[];
 }
 
 export const useMathJax = ({ elements }: UseMathJax): void => {
+  const boxed = useMemo(() => (Array.isArray(elements) ? elements : [elements]), [elements]) as HTMLElement[];
   const mathJaxContext = useMathJaxContext();
 
   useLayoutEffect(() => {
@@ -13,8 +14,8 @@ export const useMathJax = ({ elements }: UseMathJax): void => {
       return;
     }
 
-    if (elements?.length && elements.every((x) => !!x)) {
-      mathJaxContext.Typeset(...elements);
+    if (boxed?.length && boxed.every((x) => !!x)) {
+      mathJaxContext.Typeset(...boxed);
     }
-  }, [elements, mathJaxContext]);
+  }, [boxed, mathJaxContext]);
 };
