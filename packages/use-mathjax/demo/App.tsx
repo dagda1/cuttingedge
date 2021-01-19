@@ -1,5 +1,5 @@
 import { FC, StrictMode, useEffect, useRef } from 'react';
-import { useMathJaxContext, MathJaxWrapper } from '../src/useMathJax/Provider';
+import { useMathJaxContext, MathJaxProvider } from '../src/provider/useMathjax/Provider';
 import './global.css';
 
 export const Maths: FC = () => {
@@ -33,9 +33,9 @@ export const Maths: FC = () => {
 export const App: FC = () => {
   return (
     <StrictMode>
-      <MathJaxWrapper>
+      <MathJaxProvider>
         <Maths />
-      </MathJaxWrapper>
+      </MathJaxProvider>
     </StrictMode>
   );
 };

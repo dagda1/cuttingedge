@@ -2,7 +2,7 @@ import { FC, ReactElement, useLayoutEffect, useState } from 'react';
 import { browserAdaptor } from 'mathjax3/mathjax3/adaptors/browserAdaptor';
 import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
 import { MathDocument } from 'mathjax3/mathjax3/core/MathDocument';
-import { createStrictContext } from '../createStrictContext';
+import { createStrictContext } from '../../createStrictContext';
 import { MathJax } from 'mathjax3';
 import { TeX } from 'mathjax3/mathjax3/input/tex.js';
 import { SVG } from 'mathjax3/mathjax3/output/svg.js';
@@ -15,19 +15,19 @@ export interface MathDoc {
   Typeset: (...elements: HTMLElement[]) => void;
 }
 
-export interface MathJaxProviderProps {
+export interface ProviderProps {
   mathDocument: MathDoc;
 }
 
-export interface MathJaxWrapperProps {
+export interface MathJaxProviderProps {
   loader?: ReactElement;
 }
 
 RegisterHTMLHandler(browserAdaptor());
 
-export const [MathJaxProvider, useMathJaxContext] = createStrictContext<MathDoc>();
+export const [Provider, useMathJaxContext] = createStrictContext<MathDoc>();
 
-export const MathJaxWrapper: FC<MathJaxWrapperProps> = ({ loader = <div>...loading</div>, children }) => {
+export const MathJaxProvider: FC<MathJaxProviderProps> = ({ loader = <div>...loading</div>, children }) => {
   const [mathDocument, setMathDocument] = useState<MathDoc>();
   useLayoutEffect(() => {
     const html = MathJax.document(document, {
@@ -63,5 +63,5 @@ export const MathJaxWrapper: FC<MathJaxWrapperProps> = ({ loader = <div>...loadi
     return loader;
   }
 
-  return <MathJaxProvider value={mathDocument}>{children}</MathJaxProvider>;
+  return <Provider value={mathDocument}>{children}</Provider>;
 };
