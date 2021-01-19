@@ -5,10 +5,8 @@ import { MathDocument } from 'mathjax3/mathjax3/core/MathDocument';
 import { createStrictContext } from '../createStrictContext';
 import { MathJax } from 'mathjax3';
 import { TeX } from 'mathjax3/mathjax3/input/tex.js';
-import { CHTML } from 'mathjax3/mathjax3/output/chtml.js';
+import { SVG } from 'mathjax3/mathjax3/output/svg.js';
 import { AllPackages } from 'mathjax3/mathjax3/input/tex/AllPackages';
-
-export const DefaultFontUrl = 'https://cdn.rawgit.com/mathjax/mathjax-v3/3.0.0-beta.3/mathjax2/css';
 
 export interface MathDoc {
   version: string;
@@ -22,28 +20,25 @@ export interface MathJaxProviderProps {
 }
 
 export interface MathJaxWrapperProps {
-  loader: ReactElement;
-  fontURL: string;
+  loader?: ReactElement;
 }
 
 RegisterHTMLHandler(browserAdaptor());
 
 export const [MathJaxProvider, useMathJaxContext] = createStrictContext<MathDoc>();
 
-export const MathJaxWrapper: FC<MathJaxWrapperProps> = ({
-  fontURL = DefaultFontUrl,
-  loader = <div>...loading</div>,
-  children,
-}) => {
+export const MathJaxWrapper: FC<MathJaxWrapperProps> = ({ loader = <div>...loading</div>, children }) => {
   const [mathDocument, setMathDocument] = useState<MathDoc>();
   useLayoutEffect(() => {
     const html = MathJax.document(document, {
       InputJax: new TeX({
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)'],
+        ],
         packages: AllPackages,
       }),
-      OutputJax: new CHTML({
-        fontURL,
-      }),
+      OutputJax: new SVG({}),
     });
 
     const mathJax = {
@@ -62,7 +57,7 @@ export const MathJaxWrapper: FC<MathJaxWrapperProps> = ({
     };
 
     setMathDocument(mathJax);
-  }, [fontURL]);
+  }, []);
 
   if (!mathDocument) {
     return loader;
