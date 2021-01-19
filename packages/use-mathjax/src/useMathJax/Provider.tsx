@@ -1,38 +1,45 @@
-import { FC, useState } from 'react';
-import { createContext, useContext, useEffect } from 'react';
-import { MathJax } from 'mathjax3';
-import { TeX } from 'mathjax3/mathjax3/input/tex.js';
-import { CHTML } from 'mathjax3/mathjax3/output/chtml.js';
+import { FC, ReactElement, useLayoutEffect, useState } from 'react';
 import { browserAdaptor } from 'mathjax3/mathjax3/adaptors/browserAdaptor';
 import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
 import { MathDocument } from 'mathjax3/mathjax3/core/MathDocument';
+import { createStrictContext } from '../createStrictContext';
+import { MathJax } from 'mathjax3';
+import { TeX } from 'mathjax3/mathjax3/input/tex.js';
+import { CHTML } from 'mathjax3/mathjax3/output/chtml.js';
+import { AllPackages } from 'mathjax3/mathjax3/input/tex/AllPackages';
 
-type MathDoc = {
+export const DefaultFontUrl = 'https://cdn.rawgit.com/mathjax/mathjax-v3/3.0.0-beta.3/mathjax2/css';
+
+export interface MathDoc {
   version: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   html: MathDocument<any, any, any>;
   Typeset: (...elements: HTMLElement[]) => void;
-};
+}
 
-const MathJaxContext = createContext<MathDoc | undefined>(undefined);
+export interface MathJaxProviderProps {
+  mathDocument: MathDoc;
+}
 
-export const DefaultFontUrl = 'https://cdn.rawgit.com/mathjax/mathjax-v3/3.0.0-beta.1/mathjax2/css';
-
-export type MathJaxProviderProps = { fontURL?: string };
+export interface MathJaxWrapperProps {
+  loader: ReactElement;
+  fontURL: string;
+}
 
 RegisterHTMLHandler(browserAdaptor());
 
-export const MathJaxProvider: FC<MathJaxProviderProps> = ({ fontURL = DefaultFontUrl, children }): JSX.Element => {
-  const [mathDocument, setMathDocument] = useState<MathDoc>();
+export const [MathJaxProvider, useMathJaxContext] = createStrictContext<MathDoc>();
 
-  useEffect(() => {
+export const MathJaxWrapper: FC<MathJaxWrapperProps> = ({
+  fontURL = DefaultFontUrl,
+  loader = <div>...loading</div>,
+  children,
+}) => {
+  const [mathDocument, setMathDocument] = useState<MathDoc>();
+  useLayoutEffect(() => {
     const html = MathJax.document(document, {
       InputJax: new TeX({
-        inlineMath: [
-          ['$', '$'],
-          ['\\(', '\\)'],
-        ],
-        packages: ['base', 'ams', 'noundefined', 'newcommand', 'boldsymbol'],
+        packages: AllPackages,
       }),
       OutputJax: new CHTML({
         fontURL,
@@ -57,7 +64,9 @@ export const MathJaxProvider: FC<MathJaxProviderProps> = ({ fontURL = DefaultFon
     setMathDocument(mathJax);
   }, [fontURL]);
 
-  return <MathJaxContext.Provider value={mathDocument}>{children}</MathJaxContext.Provider>;
-};
+  if (!mathDocument) {
+    return loader;
+  }
 
-export const useMathJaxContext = (): MathDoc | undefined => useContext(MathJaxContext);
+  return <MathJaxProvider value={mathDocument}>{children}</MathJaxProvider>;
+};
