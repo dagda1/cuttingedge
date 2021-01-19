@@ -33,6 +33,7 @@ export const MathJaxProvider: FC = ({ children }) => {
           ['$', '$'],
           ['\\(', '\\)'],
         ],
+        processEscapes: true,
         packages: AllPackages,
       }),
       OutputJax: new SVG({ displayAlign: 'left' }),

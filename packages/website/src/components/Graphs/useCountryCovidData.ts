@@ -1,10 +1,11 @@
-import { CountryStats, DayData, countryData, CountryData, Stats, Countries } from './types';
+import { CountryStats, DayData, countryData, CountryData, Stats, Countries, DayStatistics } from './types';
 import { useAbort } from '@cutting/use-abort';
 import dayjs from 'dayjs';
 import { useCallback, useEffect } from 'react';
 import { uniqBy } from '@cutting/util';
 import utc from 'dayjs/plugin/utc';
 import urlJoin from 'url-join';
+import fetchJsonp from 'fetch-jsonp';
 
 dayjs.extend(utc);
 
@@ -42,10 +43,38 @@ export interface CountryDataProps {
 
 const BreakPoint = 14;
 
+export const getScotishData = async (): Promise<DayStatistics[]> => {
+  const response = await fetchJsonp(
+    'https://www.opendata.nhs.scot/api/3/action/datastore_search?resource_id=287fc645-4352-4477-9c8c-55bc054b7e76&limit=30000',
+  );
+
+  const data = await response.json();
+
+  const results: DayStatistics[] = [];
+
+  for (const record of data.result.records) {
+    const rawDate = record.Date.toString();
+    const date = `${rawDate.substr(0, 4)}-${rawDate.substr(4, 2)}-${rawDate.substr(6, 2)}`;
+
+    results.push({
+      date,
+      deaths: record.Deaths,
+      recovered: 0,
+      confirmed: record.CumulativeCases,
+    });
+  }
+
+  return results;
+};
+
 const getCountriesData = async ({ startDate }: CountryDataProps): Promise<Stats> => {
   const results = {} as Stats;
 
   for (const country of Object.keys(countryData)) {
+    if (country === 'SCO') {
+      continue;
+    }
+
     const url = urlJoin(baseUrl, country.toUpperCase(), 'timeseries', startDate, dayjs().format('YYYY-MM-DD'));
     const result = await fetch(url, { headers: { Accept: 'application/json' } });
 
@@ -55,6 +84,17 @@ const getCountriesData = async ({ startDate }: CountryDataProps): Promise<Stats>
 
     results[country as Countries] = data;
   }
+
+  const scotsData = await getScotishData();
+
+  const recognisedDates = results.GBR.result.map((x) => x.date);
+
+  const normalisedScotsData = scotsData.filter((d) => recognisedDates.includes(d.date));
+
+  results.SCO = {
+    count: normalisedScotsData.length,
+    result: normalisedScotsData,
+  };
 
   return results;
 };

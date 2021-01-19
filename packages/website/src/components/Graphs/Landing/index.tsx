@@ -18,10 +18,20 @@ const IncreseFromPreviousDay = loadable(() => import('src/components/IncreseFrom
   fallback,
 });
 
+const DailyIncreaseUk = loadable(() => import('src/components/DailyIncreaseUk'), {
+  fallback,
+});
+
 export const routable: Page[] = [
   {
-    heading: 'Increase in deaths',
+    heading: 'Daily Increase In UK deaths',
     path: Urls.Covid19,
+    component: DailyIncreaseUk,
+    exact: true,
+  },
+  {
+    heading: 'Increase in deaths',
+    path: Urls.IncreaseInDeaths,
     component: IncreseFromPreviousDay,
     exact: true,
   },
@@ -33,7 +43,7 @@ export const routable: Page[] = [
   },
   {
     heading: 'Rate of change',
-    path: Urls.IncreaseInDeaths,
+    path: Urls.RateOfChange,
     component: RateOfChange,
     exact: true,
   },

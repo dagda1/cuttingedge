@@ -13,7 +13,7 @@ import {
 import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { LoadingOverlay } from '@cutting/component-library';
-import { ParentsizeSVG } from '@cutting/svg';
+import { ResponsiveSVG } from '@cutting/svg';
 import { AxisColor, Countries, DayData, countryData } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -61,10 +61,14 @@ export const Graph: FC<GraphProps> = ({
           {[
             {
               url: Urls.Covid19,
-              text: 'Daily increase in deaths',
+              text: 'Daily increase in deaths (UK)',
             },
             {
               url: Urls.IncreaseInDeaths,
+              text: 'Daily increase in deaths (world)',
+            },
+            {
+              url: Urls.RateOfChange,
               text: 'Rate of change',
             },
             { url: Urls.Deaths, text: 'Total deaths' },
@@ -83,7 +87,7 @@ export const Graph: FC<GraphProps> = ({
           })}
         </ul>
         <div className={styles.legend} ref={legendRef}>
-          <ParentsizeSVG elementRef={legendRef}>
+          <ResponsiveSVG height={legendHeight} width={legendWdith}>
             <VictoryLegend
               x={0}
               y={0}
@@ -107,14 +111,14 @@ export const Graph: FC<GraphProps> = ({
                 symbol: { fill: countryData[k as Countries].color },
               }))}
             />
-          </ParentsizeSVG>
+          </ResponsiveSVG>
         </div>
 
         <div className={styles.chart} ref={chartRef}>
           {result.isSettled === false ? (
             <LoadingOverlay busy={true} darkMode />
           ) : (
-            <ParentsizeSVG elementRef={chartRef}>
+            <ResponsiveSVG width={chartWidth} height={chartHeight}>
               <VictoryChart
                 width={chartWidth}
                 height={chartHeight}
@@ -190,7 +194,7 @@ export const Graph: FC<GraphProps> = ({
                   );
                 })}
               </VictoryChart>
-            </ParentsizeSVG>
+            </ResponsiveSVG>
           )}
         </div>
       </div>

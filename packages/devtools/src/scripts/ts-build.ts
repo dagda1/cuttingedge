@@ -39,7 +39,7 @@ export function runEslint(): void {
     logger.done(`eslint exited with code ${code}.`);
 
     if (code !== 0) {
-      process.exit(code);
+      process.exit(code as number);
     }
   });
 }

@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
 import Graph from 'src/components/Graphs/Graph';
 import dayjs from 'dayjs';
-import { Countries, CountryData, countryData, DayData } from '../Graphs/types';
+import { Countries, CountryData, DayData } from '../Graphs/types';
 import { assert } from 'assert-ts';
 
 type ExtendedCountry = {
@@ -17,27 +17,25 @@ type ExtendedCountry = {
     index: number;
     country: CountryData;
     deltaDeaths: number;
-    population: number;
   }[];
 };
 
-export const IncreseFromPreviousDay: FC = () => {
+export const DailyIncreaseUk: FC = () => {
   const result = useCountryCovidData();
 
-  if (result.data) {
-    for (const c of Object.keys(result.data)) {
-      const country: ExtendedCountry = result.data?.[c as Countries];
+  if (result.data?.GBR) {
+    const countries = {
+      GBR: result.data.GBR,
+      SCO: result.data.SCO,
+    };
+    for (const c of Object.keys(countries)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const country: ExtendedCountry = (countries as any)?.[c as Countries];
       assert(!!country, `no country found for ${c}`);
       country.data = country.result.map((d) => {
-        const delta = (d.deltaDeaths / countryData[c as Countries].population) * 100000;
-
-        if (isNaN(delta)) {
-          console.log({ d, c, country, delta });
-        }
-
         return {
           ...d,
-          y: delta <= 0 ? 0 : delta,
+          y: d.deltaDeaths <= 0 ? 0 : d.deltaDeaths,
         };
       });
     }
@@ -45,9 +43,9 @@ export const IncreseFromPreviousDay: FC = () => {
 
   return (
     <Graph
-      heading="Daily Increase in deaths"
+      heading="Daily Increase in UK and Scotland deaths"
       xAxisLabel="Days since first reported death"
-      yAxisLabel="Increase in deaths from previous day (per 100,000 people)"
+      yAxisLabel="Increase in deaths from previous day"
       result={result}
       labels={({ datum }) => {
         return `${dayjs(datum?.x).format('DD/MM/YY')}\n total deaths = ${datum.deaths}\n daily increase = ${
