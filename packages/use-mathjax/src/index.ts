@@ -1,3 +1,2 @@
-export type { Dimensions, UseParentSizeOptions, UseParentSizeResult } from './useParentSize/types';
-export { useScrollToTop } from './useScrollToTop/useScrollToTop';
-export { useParentSize } from './useParentSize/useParentSize';
+export { useMathJax } from './hooks/useMathJax/useMathJax';
+export { MathJax } from './components/MathJax/MathJax';

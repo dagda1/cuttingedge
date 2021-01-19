@@ -1,4 +1,4 @@
-import { FC, ReactElement, useLayoutEffect, useState } from 'react';
+import { FC, useLayoutEffect, useState } from 'react';
 import { browserAdaptor } from 'mathjax3/mathjax3/adaptors/browserAdaptor';
 import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
 import { MathDocument } from 'mathjax3/mathjax3/core/MathDocument';
@@ -8,7 +8,7 @@ import { TeX } from 'mathjax3/mathjax3/input/tex.js';
 import { SVG } from 'mathjax3/mathjax3/output/svg.js';
 import { AllPackages } from 'mathjax3/mathjax3/input/tex/AllPackages';
 
-export interface MathDoc {
+interface MathDoc {
   version: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   html: MathDocument<any, any, any>;
@@ -19,16 +19,13 @@ export interface ProviderProps {
   mathDocument: MathDoc;
 }
 
-export interface MathJaxProviderProps {
-  loader?: ReactElement;
-}
-
 RegisterHTMLHandler(browserAdaptor());
 
-export const [Provider, useMathJaxContext] = createStrictContext<MathDoc>();
+export const [Provider, useMathJaxContext] = createStrictContext<MathDoc | undefined>({ strict: false });
 
-export const MathJaxProvider: FC<MathJaxProviderProps> = ({ loader = <div>...loading</div>, children }) => {
+export const MathJaxProvider: FC = ({ children }) => {
   const [mathDocument, setMathDocument] = useState<MathDoc>();
+
   useLayoutEffect(() => {
     const html = MathJax.document(document, {
       InputJax: new TeX({
@@ -38,7 +35,7 @@ export const MathJaxProvider: FC<MathJaxProviderProps> = ({ loader = <div>...loa
         ],
         packages: AllPackages,
       }),
-      OutputJax: new SVG({}),
+      OutputJax: new SVG({ displayAlign: 'left' }),
     });
 
     const mathJax = {
@@ -58,10 +55,6 @@ export const MathJaxProvider: FC<MathJaxProviderProps> = ({ loader = <div>...loa
 
     setMathDocument(mathJax);
   }, []);
-
-  if (!mathDocument) {
-    return loader;
-  }
 
   return <Provider value={mathDocument}>{children}</Provider>;
 };

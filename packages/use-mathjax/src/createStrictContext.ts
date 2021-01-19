@@ -5,14 +5,15 @@ export function createStrictContext<T>(
   options: {
     errorMessage?: string;
     name?: string;
-  } = {},
+    strict?: boolean;
+  } = { strict: true },
 ): [Provider<T>, () => T] {
   const Context = createContext<T | undefined>(undefined);
   Context.displayName = options.name;
 
   function useThisContext() {
     const context = useContext(Context);
-    if (context === undefined) {
+    if (options.strict && context === undefined) {
       throw new Error(options.errorMessage || `${options.name || ''} Context Provider is missing`);
     }
 

@@ -1,6 +1,6 @@
 # @cutting/use-mathjax
 
-WIP
+A React component and hook to easily load MathJax version 3 Text content.
 
 ## usage
 
@@ -10,14 +10,3 @@ WIP
 yarn add @cutting/use-mathjax
 ```
 
-## build
-
-```sh
-yarn build
-```
-
-## run tests
-
-```sh
-yarn test
-```

@@ -1,30 +1,30 @@
-import { FC, StrictMode, useEffect, useRef } from 'react';
-import { useMathJaxContext, MathJaxProvider } from '../src/provider/useMathjax/Provider';
+import { FC, StrictMode, useRef } from 'react';
+import { MathJaxProvider } from '../src/provider/Provider/Provider';
+import { useMathJax } from '../src/hooks/useMathJax/useMathJax';
 import './global.css';
+import { MathJax } from '../src/components/MathJax/MathJax';
 
 export const Maths: FC = () => {
   const ref = useRef<HTMLParagraphElement>();
-  const context = useMathJaxContext();
+  useMathJax({ elements: [ref.current] });
 
-  useEffect(() => {
-    context.Typeset(ref.current);
-  }, [context]);
   return (
     <>
       <h1>useMathJax</h1>
-      <div>
+      <h2>direct use with the hook useMathJax</h2>
+      <div ref={ref}>
         <p
           className="math"
-          ref={ref}
           dangerouslySetInnerHTML={{
             __html: `
-            When \\(a \\ne 0\\), 
-            there are two solutions to \\(ax^2 + bx + c = 0\\) 
-            and they are
             $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$
           `,
           }}
         ></p>
+        <h2>Or with the MathJax component</h2>
+        <MathJax html={`$$\\int x^2dx$$`} />
+        <MathJax html={`$$\\frac{5\\pi}4$$`} />
+        <MathJax html={`$$\\frac{3\\pi}2$$`} />
       </div>
     </>
   );
