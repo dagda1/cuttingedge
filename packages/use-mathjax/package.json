@@ -1,11 +1,8 @@
 {
-  "name": "@cutting/hooks",
-  "description": "Hooks man, hooks.",
+  "name": "@cutting/use-mathjax",
+  "description": "easily load .",
   "version": "4.9.0",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/hooks.esm.js",
-  "browser": "dist/hooks.esm.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
@@ -28,6 +25,8 @@
   "dependencies": {
     "@cutting/util": "4.9.0",
     "assert-ts": "^0.3.0",
+    "mathjax": "3",
+    "mathjax3": "^3.0.0-beta.4",
     "react-use": "^15.3.4",
     "resize-observer-polyfill": "^1.5.1",
     "use-debounce": "^5.2.0"
@@ -37,7 +36,8 @@
     "@cutting/eslint-config": "4.9.0",
     "@cutting/useful-types": "4.9.0",
     "@testing-library/jest-dom": "^5.11.6",
-    "@types/jest": "^26.0.19"
+    "@types/jest": "^26.0.19",
+    "@types/mathjax": "^0.0.36"
   },
   "keywords": [
     "hotkeys",

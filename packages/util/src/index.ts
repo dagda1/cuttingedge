@@ -1,6 +1,6 @@
 export type { DeepPartial } from './types/DeepPartial';
 export type { Taggable } from './types/react';
-export type { PageRoute } from './types/routes';
+export type { Page } from './types/routes';
 export type { Fn } from './functions/functions';
 
 export { isDate } from './date/date';

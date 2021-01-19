@@ -35,6 +35,7 @@ const libPackages = [
   'packages/useful-types',
   'packages/util',
   'packages/hooks',
+  'packages/use-mathjax',
   'packages/component-library',
   'packages/svg',
   'packages/use-shortcuts',

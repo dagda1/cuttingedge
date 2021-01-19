@@ -1,4 +1,5 @@
 import type { FC, RefObject } from 'react';
+import { PreserveAspectRatio } from 'src/types/types';
 
 export interface Point {
   x: number;
@@ -9,7 +10,7 @@ export interface ResponsiveSVGProps {
   width: number;
   height: number;
   origin?: Point;
-  preserveAspectRatio?: string;
+  preserveAspectRatio?: PreserveAspectRatio;
   innerRef?: RefObject<SVGSVGElement>;
   className?: string;
   hide?: boolean;
@@ -20,7 +21,7 @@ export const ResponsiveSVG: FC<ResponsiveSVGProps> = ({
   width,
   children,
   origin = { x: 0, y: 0 },
-  preserveAspectRatio = 'xMinYMin slice',
+  preserveAspectRatio = 'xMaxYMid meet',
   innerRef,
   className,
 }) => {

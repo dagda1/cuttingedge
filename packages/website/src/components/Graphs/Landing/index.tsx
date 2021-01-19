@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import loadable from '@loadable/component';
 import * as Urls from 'src/urls';
 import { Route, Switch } from 'react-router';
-import { Page } from 'src/types';
+import type { Page } from '@cutting/util';
 
 const fallback = <div>loading....</div>;
 

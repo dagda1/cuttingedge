@@ -13,16 +13,16 @@ export const App: FC = () => {
         <rect
           x="20%"
           y="20%"
-          width={height / 2}
+          width={width / 2}
           height={height / 2}
           rx="20"
-          style={{ fill: '#ff0000', stroke: '#000000', strokeWidth: '2px;' }}
+          style={{ fill: '#ff0000', stroke: '#000000', strokeWidth: '2px' }}
         />
 
         <rect
           x="30%"
           y="30%"
-          width={height / 2}
+          width={width / 2}
           height={height / 2}
           rx="40"
           style={{ fill: '#0000ff', stroke: '#000000', strokeWidth: '2px', fillOpacity: 0.7 }}

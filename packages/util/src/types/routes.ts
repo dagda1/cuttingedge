@@ -1,9 +1,9 @@
-import type { ComponentType } from 'react';
+import type { RouteProps } from 'react-router';
+import { EmptyObject } from './object';
 
-export interface PageRoute {
-  url?: string;
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  component: ComponentType<any>;
-  heading?: string;
-  exact?: boolean;
-}
+export type Page<P = EmptyObject> = RouteProps & {
+  heading: string;
+  path: string;
+  footerPage?: boolean;
+  className?: string;
+} & P;

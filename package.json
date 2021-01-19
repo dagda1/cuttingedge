@@ -1,6 +1,6 @@
 {
   "name": "cuttingedge",
-  "version": "4.8.0",
+  "version": "4.9.0",
   "private": true,
   "scripts": {
     "build": "yarn workspaces run build",
@@ -43,6 +43,7 @@
       "packages/useful-types",
       "packages/util",
       "packages/hooks",
+      "packages/use-mathjax",
       "packages/use-abort",
       "packages/component-library",
       "packages/svg",
