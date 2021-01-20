@@ -1,9 +1,8 @@
 # @cutting/use-mathjax
 
-A React component and hook to easily load [MathJax version 3](https://github.com/mathjax/MathJax-src) Text content.
+A React component and hook to easily load [MathJax version 3](https://github.com/mathjax/MathJax-src) Tex content.
 
 
-![how to use both the mathjax hook and component](./mathjax.png)
 
 ## install 
 
@@ -29,16 +28,18 @@ export const App: FC = () => {
 };
 ```
 
-## useMathJax
+## useMathJax hook
 
 ```ts
 import { useMathJax, MathJaxProvider } from '@cutting/use-mathjax';
 
 const Maths = () => {
-  useMathJax({ elements: document.querySelector('.math') });
+  const ref = useRef<HTMLParagraphElement>();
+  useMathJax({ elements: ref });
 
   return (
-    <p
+    <p 
+      ref={ref}
       className="math"
       dangerouslySetInnerHTML={{
         __html: `
@@ -60,9 +61,11 @@ export const App: FC = () => {
 };
 ```
 
+![math notation rendered with useMathJax hook](./img/eq1.png)
+
 `useMathJax` takes a configuration object with a fields property that points to an element of an array of elements with MathJax markup.
 
-## MathJax
+## MathJax component
 
 ```ts
 import { MathJax, MathJaxProvider } from '@cutting/use-mathjax';
@@ -87,5 +90,7 @@ export const App: FC = () => {
   );
 };
 ```
+
+![math notation rendered with MathJax component](./img/eq2.png)
 
 The `MathJax` component takes an `html` string prop of MathJax markup.
