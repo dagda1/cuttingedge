@@ -24,8 +24,11 @@ export const DailyIncreaseUk: FC = () => {
   const result = useCountryCovidData();
 
   if (result.data?.GBR) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    delete result.data.GBR;
+
     const countries = {
-      GBR: result.data.GBR,
       SCO: result.data.SCO,
     };
     for (const c of Object.keys(countries)) {
@@ -43,12 +46,12 @@ export const DailyIncreaseUk: FC = () => {
 
   return (
     <Graph
-      heading="Daily Increase in UK and Scotland deaths"
+      heading="Daily Increase in Scottish deaths"
       xAxisLabel="Days since first reported death"
       yAxisLabel="Increase in deaths from previous day"
       result={result}
       labels={({ datum }) => {
-        return `${dayjs(datum?.x).format('DD/MM/YY')}\n total deaths = ${datum.deaths}\n daily increase = ${
+        return `${dayjs(datum?.x).format('DD/M  M/YY')}\n total deaths = ${datum.deaths}\n daily increase = ${
           datum.deltaDeaths
         }`;
       }}

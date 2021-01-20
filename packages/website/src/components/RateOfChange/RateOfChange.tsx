@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 export const RateOfChange: FC = () => {
   const result = useCountryCovidData({ startDate: '2020-01-01' });
 
-  const dates: string[] = result?.data?.USA?.result.map((x) => dayjs(x.x).format('DD/MM')) || [];
+  const dates: string[] = result?.data?.GBR?.result.map((x) => dayjs(x.x).format('DD/MM')) || [];
 
   if (result.data) {
     for (const c of Object.keys(result.data)) {

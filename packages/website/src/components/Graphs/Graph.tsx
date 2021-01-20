@@ -61,11 +61,11 @@ export const Graph: FC<GraphProps> = ({
           {[
             {
               url: Urls.Covid19,
-              text: 'Daily increase in deaths (UK)',
+              text: 'Daily increase in deaths (Scotland)',
             },
             {
               url: Urls.IncreaseInDeaths,
-              text: 'Daily increase in deaths (world)',
+              text: 'Daily increase in deaths (UK)',
             },
             {
               url: Urls.RateOfChange,
@@ -106,10 +106,17 @@ export const Graph: FC<GraphProps> = ({
                   fill: '#fff',
                 },
               }}
-              data={Object.keys(countryData).map((k) => ({
-                name: countryData[k as Countries].longName,
-                symbol: { fill: countryData[k as Countries].color },
-              }))}
+              data={Object.keys(countryData)
+                .filter((k) => {
+                  if (location.pathname !== Urls.Covid19) {
+                    return true;
+                  }
+                  return ['SCO'].includes(k);
+                })
+                .map((k) => ({
+                  name: countryData[k as Countries].longName,
+                  symbol: { fill: countryData[k as Countries].color },
+                }))}
             />
           </ResponsiveSVG>
         </div>
@@ -185,11 +192,11 @@ export const Graph: FC<GraphProps> = ({
                       <VictoryLine
                         interpolation="natural"
                         style={{
-                          data: { strokeWidth: k === 'GBR' ? 4 : 2 },
+                          data: { strokeWidth: ['SCO'].includes(k) ? 7 : 2 },
                         }}
                         standalone={false}
                       />
-                      <VictoryScatter standalone={false} size={() => (k === 'GBR' ? 5 : 3)} />
+                      <VictoryScatter standalone={false} size={() => (['SCO'].includes(k) ? 7 : 3)} />
                     </VictoryGroup>
                   );
                 })}

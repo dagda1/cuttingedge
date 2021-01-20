@@ -34,11 +34,11 @@ export const MobileMenuItems: FC<MenuItemsProps> = ({ collapse }) => {
       {[
         {
           path: Covid19,
-          heading: 'COVID-19 Daily increase in UK deaths',
+          heading: 'COVID-19 Daily increase in Scottish deaths',
         },
         {
           path: IncreaseInDeaths,
-          heading: 'COVID-19 Daily increase in deaths',
+          heading: 'COVID-19 Daily increase in UK deaths',
         },
         {
           path: RateOfChange,

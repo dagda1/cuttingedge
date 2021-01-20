@@ -140,9 +140,10 @@ export const useCountryCovidData = (
       const countryDetails = countryData[country as Countries];
 
       ret[country as Countries] = {
-        result: transform(countryStats, countryDetails).filter(
-          (_, i) => i % BreakPoint === 0 || i === countryStats.result.length - 1,
-        ),
+        result: transform(countryStats, countryDetails).filter((d, i) => {
+          const diff = dayjs().diff(dayjs(d.x), 'd');
+          return diff <= 10 || i % BreakPoint === 0 || i === countryStats.result.length - 1;
+        }),
         color: countryDetails.color,
         name: countryDetails.longName,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

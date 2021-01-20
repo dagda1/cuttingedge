@@ -24,7 +24,7 @@ const DailyIncreaseUk = loadable(() => import('src/components/DailyIncreaseUk'),
 
 export const routable: Page[] = [
   {
-    heading: 'Daily Increase In UK deaths',
+    heading: 'Daily Increase In Scottish deaths',
     path: Urls.Covid19,
     component: DailyIncreaseUk,
     exact: true,
