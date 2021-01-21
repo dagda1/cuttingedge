@@ -1,3 +1,4 @@
+import type { ParsedCommandLine } from 'typescript';
 import path from 'path';
 import fs from 'fs';
 import { findAppNodeModules } from '../scripts/utils/finders';
@@ -47,8 +48,13 @@ const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cw
 const tsConfigPath = resolveApp('tsconfig.json');
 const testTsConfigPath = resolveApp('tsconfig.test.json');
 
-const tsConfig = fs.existsSync(tsConfigPath)
-  ? (require(tsConfigPath) as { compilerOptions: { outDir?: string } })
+type OurCompilerOptions = {
+  compilerOptions: Partial<Pick<ParsedCommandLine['options'], 'outDir'>>;
+  references?: ParsedCommandLine['projectReferences'];
+};
+
+const tsConfig: OurCompilerOptions = fs.existsSync(tsConfigPath)
+  ? (require(tsConfigPath) as OurCompilerOptions)
   : { compilerOptions: { outDir: undefined } };
 
 const testTsConfig = fs.existsSync(testTsConfigPath)
@@ -95,4 +101,5 @@ export const paths = {
   ownJestConfig: resolveApp('jest.config.js'),
   jestConfig: path.join(__dirname, '../jest/jest.config.js'),
   testTsConfig,
+  projectReferences: !!tsConfig.references,
 };

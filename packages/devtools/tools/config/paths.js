@@ -102,5 +102,6 @@ exports.paths = {
     ownJestConfig: resolveApp('jest.config.js'),
     jestConfig: path_1.default.join(__dirname, '../jest/jest.config.js'),
     testTsConfig: testTsConfig,
+    projectReferences: !!tsConfig.references,
 };
 //# sourceMappingURL=paths.js.map

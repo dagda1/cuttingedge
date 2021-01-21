@@ -20,6 +20,7 @@ export const createTypescriptLoader = ({
     configFile: paths.tsConfig,
     transpileOnly: isDevelopment,
     happyPackMode: isDevelopment,
+    projectReferences: paths.projectReferences,
     compilerOptions: {
       sourceMap: true,
     },

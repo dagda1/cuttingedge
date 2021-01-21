@@ -11,6 +11,7 @@ var createTypescriptLoader = function (_a) {
         configFile: paths_1.paths.tsConfig,
         transpileOnly: isDevelopment,
         happyPackMode: isDevelopment,
+        projectReferences: paths_1.paths.projectReferences,
         compilerOptions: {
             sourceMap: true,
         },

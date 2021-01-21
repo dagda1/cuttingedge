@@ -4,6 +4,11 @@
     "outDir": "./dist",
     "baseUrl": "."
   },
+  "references": [
+    { "path": "../util" },
+    { "path": "../hooks" },
+    { "path": "../component-library" }
+  ],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

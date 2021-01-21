@@ -32,5 +32,6 @@ export declare const paths: {
     ownJestConfig: string;
     jestConfig: string;
     testTsConfig: string;
+    projectReferences: boolean;
 };
 //# sourceMappingURL=paths.d.ts.map
