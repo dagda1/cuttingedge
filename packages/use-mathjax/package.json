@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-mathjax",
   "description": "easily load .",
-  "version": "4.10.0",
+  "version": "4.11.0",
   "type": "module",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
@@ -23,15 +23,15 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.10.0",
+    "@cutting/util": "4.11.0",
     "assert-ts": "^0.3.0",
     "mathjax": "3",
     "mathjax3": "^3.0.0-beta.4"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.10.0",
-    "@cutting/eslint-config": "4.10.0",
-    "@cutting/useful-types": "4.10.0",
+    "@cutting/devtools": "4.11.0",
+    "@cutting/eslint-config": "4.11.0",
+    "@cutting/useful-types": "4.11.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@types/jest": "^26.0.19",
     "@types/mathjax": "^0.0.36",
