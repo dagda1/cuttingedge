@@ -1,5 +1,5 @@
 import type { FC, RefObject } from 'react';
-import { PreserveAspectRatio } from 'src/types/types';
+import { PreserveAspectRatio } from '../../types/types';
 
 export interface Point {
   x: number;

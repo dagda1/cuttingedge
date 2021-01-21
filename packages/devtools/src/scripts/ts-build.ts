@@ -45,8 +45,6 @@ export function runEslint(): void {
 }
 
 function runTypeScriptBuild() {
-  fs.emptyDirSync(paths.appBuild);
-
   if (paths.projectReferences) {
     process.argv.push('--build');
   } else {
@@ -72,14 +70,13 @@ function runTypeScriptBuild() {
     if (code !== 0) {
       process.exit(1);
     }
-
-    runEslint();
   });
 }
 
 function build() {
   try {
     runTypeScriptBuild();
+    runEslint();
 
     copyAssets();
   } catch (e) {
