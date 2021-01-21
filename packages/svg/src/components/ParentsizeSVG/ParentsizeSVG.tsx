@@ -1,4 +1,4 @@
-import type { PropsWithChildren, RefObject } from 'react';
+import { PropsWithChildren, RefObject } from 'react';
 import type { UseParentSizeOptions } from '@cutting/hooks';
 import { useParentSize } from '@cutting/hooks';
 import { ResponsiveSVG } from '../ResponsiveSVG/ResponsiveSVG';
@@ -12,7 +12,7 @@ export function ParentsizeSVG<E extends HTMLElement>({
   elementRef,
   children,
   options = { debounceDelay: 500 },
-}: PropsWithChildren<ParentsizeSVGProps<E>>): JSX.Element {
+}: PropsWithChildren<ParentsizeSVGProps<E>>): JSX.Element | null {
   const { width, height } = useParentSize(elementRef, options);
 
   return (

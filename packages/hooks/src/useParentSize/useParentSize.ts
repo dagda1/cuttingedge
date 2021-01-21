@@ -31,8 +31,15 @@ export const useParentSize = <E extends Element>(
     },
   );
 
+  const refElement = ref.current;
+
   useIsomorphicLayoutEffect(() => {
-    if (!!resizeObserverRef?.current || isNil(ref.current)) {
+    if (isNil(refElement)) {
+      setDimensions({ width, height });
+      return;
+    }
+
+    if (!!resizeObserverRef?.current) {
       return;
     }
 
@@ -56,15 +63,14 @@ export const useParentSize = <E extends Element>(
       }
     });
 
-    resizeObserverRef.current.observe(ref.current);
+    resizeObserverRef.current.observe(refElement);
 
-    const refElement = ref.current;
     return () => {
       if (!!refElement) {
         resizeObserverRef?.current?.unobserve(refElement);
       }
     };
-  }, [debouncedCallback, isMounted, ref]);
+  }, [debouncedCallback, height, isMounted, refElement, width]);
 
   return useMemo(
     () => ({

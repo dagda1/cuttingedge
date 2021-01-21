@@ -1,11 +1,11 @@
-import type { FC } from 'react';
+import { FC } from 'react';
 import { useRef } from 'react';
 import styles from './global.module.scss';
 import { ParentsizeSVG } from '../src/components/ParentsizeSVG/ParentsizeSVG';
 
 export const App: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  console.dir({ ref });
+
   return (
     <div className={styles.container} ref={ref}>
       <ParentsizeSVG elementRef={ref}>

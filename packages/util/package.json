@@ -1,6 +1,6 @@
 {
   "name": "@cutting/util",
-  "version": "4.9.0",
+  "version": "4.10.0",
   "type": "module",
   "module": "dist/util.esm.js",
   "browser": "dist/util.esm.js",
@@ -20,13 +20,13 @@
     "test:ci": "CI=true yarn test"
   },
   "dependencies": {
-    "@cutting/util": "4.9.0",
+    "@cutting/util": "4.10.0",
     "react": "^17.0.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.9.0",
-    "@cutting/eslint-config": "4.9.0",
-    "@cutting/useful-types": "4.9.0",
+    "@cutting/devtools": "4.10.0",
+    "@cutting/eslint-config": "4.10.0",
+    "@cutting/useful-types": "4.10.0",
     "typescript": "^4.1.3"
   }
 }
