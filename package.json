@@ -30,10 +30,10 @@
       "packages/devtools",
       "packages/util",
       "packages/hooks",
-      "packages/use-mathjax",
       "packages/use-abort",
       "packages/component-library",
       "packages/svg",
+      "packages/use-mathjax",
       "packages/use-shortcuts",
       "packages/website"
     ]

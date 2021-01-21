@@ -8,11 +8,14 @@
     "sourceMap": true,
     "paths": {
       "@cutting/devtools": ["packages/devtools/src"],
+      "@cutting/testing": ["packages/testing/src"],
       "@cutting/util": ["packages/util/src"],
       "@cutting/hooks": ["packages/hooks/src"],
       "@cutting/use-abort": ["packages/use-abort/src"],
       "@cutting/component-library": ["packages/component-library/src"],
+      "@cutting/svg": ["packages/svg/src"],
       "@cutting/use-shortcuts": ["packages/use-shortcuts/src"],
+      "@cutting/use-mathjax": ["packages/use-mathjax/src"],
       "@cutting/graphql-explorer": ["packages/graphql-explorer/src"],
       "@cutting/website": ["packages/website/src"]
     }

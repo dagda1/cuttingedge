@@ -1,12 +1,13 @@
 {
-  "extends": "@cutting/devtools/typescript/tsconfig.base.json",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "target": "es5",
-    "module": "ESNext",
     "outDir": "./dist",
-    "baseUrl": ".",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "baseUrl": "."
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["../../node_modules", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
+  "references": [
+    { "path": "../util" }
+  ]
 }

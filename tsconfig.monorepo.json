@@ -5,6 +5,9 @@
       "path": "./packages/devtools"
     },
     {
+      "path": "./packages/testing"
+    },
+    {
       "path": "./packages/util"
     },
     {
@@ -17,10 +20,16 @@
       "path": "./packages/component-library"
     },
     {
+      "path": "./packages/svg"
+    },
+    {
       "path": "./packages/use-shortcuts"
     },
     {
       "path": "./packages/graphql-explorer"
+    },
+    {
+      "path": "./packages/use-mathjax"
     },
     {
       "path": "./packages/website"
