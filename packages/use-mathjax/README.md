@@ -1,6 +1,6 @@
 # @cutting/use-mathjax
 
-A React component and hook to easily load [MathJax version 3](https://github.com/mathjax/MathJax-src) Tex content.
+A React component `<MathJax />` and a `useMathJax` hook to easily load [MathJax version 3](https://github.com/mathjax/MathJax-src) Tex content.
 
 
 
@@ -12,7 +12,7 @@ yarn add @cutting/use-mathjax
 
 ## MathJaxProvider
 
-Both `useMathJax` and `MathJax` will fail if the current component is not a descendant of the `MathJaxProvider`:
+Both the `useMathJax` hook and the `MathJax` component will fail if the current component is not a descendant of the `MathJaxProvider`:
 
 ```ts
 export { MathJaxProvider } from '@cutting/use-mathjax';

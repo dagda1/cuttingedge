@@ -1,20 +1,19 @@
-import { FC, useRef } from 'react';
+import type { FC } from 'react';
+import { useRef } from 'react';
 import styles from './global.module.scss';
-import { ResponsiveSVG } from '../src/components/ResponsiveSVG/ResponsiveSVG';
-import { useParentSize } from '@cutting/hooks';
+import { ParentsizeSVG } from '../src/components/ParentsizeSVG/ParentsizeSVG';
 
 export const App: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { width, height } = useParentSize(ref);
-
+  console.dir({ ref });
   return (
     <div className={styles.container} ref={ref}>
-      <ResponsiveSVG height={height} width={width}>
+      <ParentsizeSVG elementRef={ref}>
         <rect
           x="20%"
           y="20%"
-          width={width / 2}
-          height={height / 2}
+          width={'50%'}
+          height={'50%'}
           rx="20"
           style={{ fill: '#ff0000', stroke: '#000000', strokeWidth: '2px' }}
         />
@@ -22,12 +21,12 @@ export const App: FC = () => {
         <rect
           x="30%"
           y="30%"
-          width={width / 2}
-          height={height / 2}
+          width={'50%'}
+          height={'50%'}
           rx="40"
           style={{ fill: '#0000ff', stroke: '#000000', strokeWidth: '2px', fillOpacity: 0.7 }}
         />
-      </ResponsiveSVG>
+      </ParentsizeSVG>
     </div>
   );
 };
