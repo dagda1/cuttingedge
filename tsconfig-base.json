@@ -1,7 +1,6 @@
 {
   "extends": "@cutting/devtools/typescript/tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "composite": true,
     "declaration": true,
     "declarationMap": true,

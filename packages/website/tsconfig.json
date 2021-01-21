@@ -1,10 +1,10 @@
 {
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "module": "ESNext",
     "outDir": "./dist",
-    "baseUrl": ".",
     "rootDir": "./src"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

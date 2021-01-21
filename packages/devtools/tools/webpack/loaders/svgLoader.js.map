@@ -1,1 +1,0 @@
-{"version":3,"file":"svgLoader.js","sourceRoot":"","sources":["../../../src/webpack/loaders/svgLoader.ts"],"names":[],"mappings":";;;AAEO,IAAM,eAAe,GAAG,cAAmB,OAAA,CAAC;IACjD,IAAI,EAAE,OAAO;IACb,GAAG,EAAE;QACH,MAAM,EAAE,gBAAgB;QACxB,OAAO,EAAE,EAAE;KACZ;CACF,CAAC,EANgD,CAMhD,CAAC;AANU,QAAA,eAAe,mBAMzB"}

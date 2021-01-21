@@ -1,6 +1,7 @@
 {
   "extends": "@cutting/devtools/typescript/tsconfig.test.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "./dist",
     "rootDir": "./src",
     "suppressImplicitAnyIndexErrors": true

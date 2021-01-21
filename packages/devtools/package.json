@@ -12,8 +12,8 @@
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "scripts": {
-    "prebuild": "yarn run tsc",
-    "build": "yarn run tsc",
+    "prebuild": "tsc --build",
+    "build": "cutting ts-build",
     "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test"
   },
