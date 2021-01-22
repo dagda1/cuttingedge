@@ -66,13 +66,8 @@
 
 .secondary {
   @include btn-secondary;
-  line-height: 18px;
 
   width: 100%;
-
-  @include mq-s {
-    width: auto;
-  }
 
   &:hover,
   &:focus {
@@ -100,5 +95,11 @@
     color: $btn-nav-focus-color;
     border: 1px solid $btn-nav-focus-border;
   }
+}
+
+.warning {
+  background-color: $btn-warning-bg;
+  border: 1px solid $btn-warning-border;
+  color: $btn-warning-color;
 }
 

@@ -38,6 +38,13 @@ $btn-secondary-disabled-bg: $lighter-blue !default;
 $btn-secondary-disabled-border: $lighter-blue !default;
 $btn-secondary-disabled-color: $white !default;
 
+$btn-warning-color: $white !default;
+$btn-warning-bg: $error-red !default;
+$btn-warning-border: $error-red !default;
+$btn-warning-disabled-bg: $error-red-tint !default;
+$btn-warning-disabled-border: $error-red-tint !default;
+$btn-warning-disabled-color: $white !default;
+
 $form-error-border: $error-red !default;
 
 $input-border-color-focus: $primary-blue !default;

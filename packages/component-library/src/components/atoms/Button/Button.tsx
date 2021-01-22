@@ -2,7 +2,7 @@ import type { FC, DetailedHTMLProps, ButtonHTMLAttributes, MouseEventHandler } f
 import cs from 'classnames';
 import { identity } from '@cutting/util';
 import { StandardProps } from '../../../types';
-// import styles from './Button.module.scss';
+import styles from './Button.module.scss';
 
 export type ButtonStyle = 'primary' | 'secondary' | 'inverse' | 'warning';
 
@@ -26,30 +26,11 @@ export const Button: FC<ButtonProps> = ({
   dataSelector,
   ...rest
 }) => {
-  // const primary = buttonStyle === 'primary';
-  // const secondary = buttonStyle === 'secondary';
-  // const inverse = buttonStyle === 'inverse';
-
-  console.dir(className, buttonStyle);
-
   return (
     <button
-      // className={cs(className, styles.default, {
-      //   [styles.disabled]: disabled,
-      //   [styles.inverse]: inverse,
-      //   [styles.primary]: primary,
-      //   [styles.secondary]: secondary,
-      // })}
-      className={cs(
-        className,
-        'bg-blue-500',
-        'hover:bg-blue-700',
-        'text-white',
-        'font-bold',
-        'py-2',
-        'px-4',
-        'rounded',
-      )}
+      className={cs(className, styles.default, {
+        [styles[(buttonStyle as string) || 'primary']]: true,
+      })}
       type={type}
       onClick={onClick}
       disabled={disabled}

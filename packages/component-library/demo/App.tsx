@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 // eslint:disable
-import './global.css';
+// import './global.css';
 import { FC, useState } from 'react';
 import { Modal, Heading, FormInput } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
@@ -17,11 +17,17 @@ export const App: FC = () => {
       <div className={styles.layout}>
         <Heading level={2}>Buttons</Heading>
       </div>
-      <div>
+      <div className={styles.layout}>
         <div className={styles.item}>
           <Button buttonStyle="primary">Primary</Button>
+        </div>
+        <div className={styles.item}>
           <Button buttonStyle="secondary">Secondary</Button>
+        </div>
+        <div className={styles.item}>
           <Button buttonStyle="inverse">Inverse</Button>
+        </div>
+        <div className={styles.item}>
           <Button buttonStyle="warning">Warning</Button>
         </div>
       </div>
