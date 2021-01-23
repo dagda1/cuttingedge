@@ -31,6 +31,10 @@ assert(devServer.entries, 'no devServer entries');
 const DEFAULT_PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
+enum UserDirectoryChoice {
+  root = 1,
+  demo = 2,
+}
 (async () => {
   try {
     if (!fs.existsSync(devServer.publicDir) && !fs.existsSync(paths.devDirPublic)) {
@@ -50,7 +54,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 
       const source = path.join(__dirname, '../../demo');
 
-      if (Number(value) === 1) {
+      if (Number(value) === UserDirectoryChoice.root) {
         if (!fs.existsSync(paths.appSrc)) {
           fs.mkdirSync(paths.appSrc);
         }
@@ -73,7 +77,7 @@ const HOST = process.env.HOST || '0.0.0.0';
             path.join(process.cwd(), '.eslintrc.json'),
           );
         }
-      } else {
+      } else if (Number(value) === UserDirectoryChoice.demo) {
         fs.mkdirSync(paths.devDir);
         fs.copySync(source, path.join(process.cwd(), 'demo'));
       }
@@ -103,8 +107,6 @@ const HOST = process.env.HOST || '0.0.0.0';
     assert(!!config.devServer, 'no devServer in dev-server-start');
 
     config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic, paths.publicUrlOrPath);
-
-    console.dir();
 
     const server = new WebpackDevServer(compiler, config.devServer);
 
