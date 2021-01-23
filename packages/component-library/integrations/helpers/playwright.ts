@@ -2,12 +2,10 @@ import playwright from 'playwright';
 import http from 'http';
 import path from 'path';
 import handler from 'serve-handler';
+import { Closeable, PlaywrightBrowser } from '../types/types';
 
-const PORT = 1122;
-
-type Close = { close: (err?: Error) => void };
-
-function createServer(options: { port: number }): Promise<Close> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function createServer(options: { port: number }): Promise<Closeable> {
   const { port } = options;
   const server = http.createServer((request, response) => {
     return handler(request, response, { public: path.join(process.cwd(), './demo/public') });
@@ -32,7 +30,7 @@ function createServer(options: { port: number }): Promise<Close> {
   });
 }
 
-async function createBrowser() {
+export async function createBrowser(): Promise<PlaywrightBrowser> {
   const browser = await playwright.chromium.launch();
 
   return {
@@ -45,16 +43,3 @@ async function createBrowser() {
     close: () => browser.close(),
   };
 }
-
-export async function run(): Promise<void> {
-  const [server, browser] = await Promise.all([createServer({ port: PORT }), createBrowser()]);
-  try {
-  } finally {
-    await Promise.all([browser.close(), server.close()]);
-  }
-}
-
-run().catch((error) => {
-  console.error('test: ', error);
-  process.exit(1);
-});

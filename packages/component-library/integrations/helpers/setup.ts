@@ -5,15 +5,18 @@ import webpack from 'webpack';
 import { assert } from 'assert-ts';
 import WebpackDevServer from 'webpack-dev-server';
 import ora from 'ora';
-import { run } from './run';
-
-const PORT = Number(process.env.PORT) || 1122;
+import { createBrowser } from './playwright';
+import { PlaywrightBrowser } from '../types/types';
 
 const cwd = path.join(process.cwd(), 'integrations');
 
-const publicDir = path.join(cwd, 'public');
+let server: WebpackDevServer;
+let browser: PlaywrightBrowser;
 
-const setup = async (): Promise<void> => {
+export const setup = async (): Promise<void> => {
+  const PORT = Number(process.env.PORT) || 1122;
+
+  const publicDir = path.join(cwd, 'public');
   try {
     assert(fs.existsSync(publicDir), `${publicDir} does not exist`);
     const config = configure({ entries: [''], isStaticBuild: true, publicDir, devServer: true });
@@ -23,11 +26,11 @@ const setup = async (): Promise<void> => {
     const compiler = webpack(config);
 
     const compilerHooks = new Promise((resolve, reject) => {
-      compiler.hooks.watchRun.tapAsync('jest-puppeeter-react', (_, callback) => {
+      compiler.hooks.watchRun.tapAsync('@bigtest/playright', (_, callback) => {
         spinner.start('Waiting for webpack build to succeed...');
         callback();
       });
-      compiler.hooks.done.tapAsync('jest-puppeeter-react', (stats, callback) => {
+      compiler.hooks.done.tapAsync('@bigtest/playright', (stats, callback) => {
         if (stats.hasErrors()) {
           spinner.fail('Webpack build failed');
           reject(stats);
@@ -39,7 +42,7 @@ const setup = async (): Promise<void> => {
       });
     });
 
-    const server = new WebpackDevServer(compiler, {
+    server = new WebpackDevServer(compiler, {
       noInfo: true,
       disableHostCheck: true,
       stats: 'minimal',
@@ -55,7 +58,7 @@ const setup = async (): Promise<void> => {
       return;
     }
 
-    await run();
+    browser = await createBrowser();
   } catch (err) {
     if (err) {
       console.error(err);
@@ -64,4 +67,13 @@ const setup = async (): Promise<void> => {
   }
 };
 
-setup();
+export const teardown = (): void => {
+  try {
+    server?.close();
+    browser?.close();
+  } catch (err) {
+    console.error(err);
+
+    process.exit(1);
+  }
+};
