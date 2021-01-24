@@ -45,7 +45,10 @@ export const createTypescriptLoader = ({
     },
     {
       test: /\.tsx?$/,
-      exclude: /\/node_modules\//,
+      exclude: {
+        test: /node_modules/,
+        not: [/^@babel/, /^@loadable/, /^@cutting/],
+      },
       use: [
         {
           loader: 'babel-loader',

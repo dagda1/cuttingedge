@@ -12,7 +12,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createBabelConfig = exports.createBabelPresets = void 0;
-var getCacheIdentifier_1 = require("src/webpack/loaders/getCacheIdentifier");
+var getCacheIdentifier_1 = require("../webpack/loaders/getCacheIdentifier");
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 var createBabelPresets = function (_a) {
     var isDevelopment = _a.isDevelopment, 

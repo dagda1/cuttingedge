@@ -102,7 +102,7 @@ export const configureCommon = (
           typescript: {
             enabled: true,
             configFile: paths.tsConfig,
-            build: true,
+            build: paths.projectReferences,
           },
         }),
         isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
