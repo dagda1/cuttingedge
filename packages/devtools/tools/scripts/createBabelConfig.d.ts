@@ -16,6 +16,7 @@ export declare const createBabelConfig: ({ isDevelopment, isProduction, isNode, 
     configFile: boolean;
     presets: any[][];
     cacheDirectory: boolean;
+    cacheIdentifier: string;
     sourceType: string;
     plugins: (string | false | (string | RuntimeOptions)[] | (string | {
         loose: boolean;

@@ -29,8 +29,8 @@ export const getExternals = function (isDevelopment: boolean): webpack.Externals
   ];
 };
 
-export const configure = (options: ServerBuildConfig): Configuration => {
-  const common = configureCommon({ ...options, isNode: true, ssrBuild: true, isWeb: false });
+export const configure = (options: ServerBuildConfig, overrides: Partial<Configuration> = {}): Configuration => {
+  const common = configureCommon({ ...options, isNode: true, ssrBuild: true, isWeb: false }, overrides);
 
   const { isDevelopment, isProduction } = getEnvironment();
 
@@ -51,7 +51,7 @@ export const configure = (options: ServerBuildConfig): Configuration => {
     }
   }
 
-  const config: Configuration = merge(common, {
+  const config: Configuration = merge(common, overrides, {
     name: 'server',
     target: 'node',
     watch: isDevelopment,

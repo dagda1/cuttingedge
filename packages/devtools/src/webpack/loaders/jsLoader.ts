@@ -2,6 +2,7 @@ import { RuleSetRule } from 'webpack';
 import { paths } from '../../config/paths';
 import { createBabelPresets, createBabelConfig } from '../../scripts/createBabelConfig';
 import { ModuleFormat } from '../../types/moduleFormat';
+import { getCacheIdentifier } from './getCacheIdentifier';
 
 export const createJsLoader = ({
   isDevelopment,
@@ -33,7 +34,8 @@ export const createJsLoader = ({
       configFile: false,
       compact: false,
       presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat: 'cjs' }),
-      cacheDirectory: false,
+      cacheDirectory: true,
+      cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
       cacheCompression: false,
       sourceMaps: true,
       inputSourceMap: true,

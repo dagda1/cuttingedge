@@ -30,6 +30,7 @@ export const createTypescriptLoader = ({
     {
       test: /\.tsx$/,
       enforce: 'pre',
+      exclude: /\/node_modules\//,
       use: [
         {
           loader: 'eslint-loader',
@@ -44,6 +45,7 @@ export const createTypescriptLoader = ({
     },
     {
       test: /\.tsx?$/,
+      exclude: /\/node_modules\//,
       use: [
         {
           loader: 'babel-loader',

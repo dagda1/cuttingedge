@@ -63,8 +63,9 @@ var getExternals = function (isDevelopment) {
     ];
 };
 exports.getExternals = getExternals;
-var configure = function (options) {
-    var common = common_1.configureCommon(__assign(__assign({}, options), { isNode: true, ssrBuild: true, isWeb: false }));
+var configure = function (options, overrides) {
+    if (overrides === void 0) { overrides = {}; }
+    var common = common_1.configureCommon(__assign(__assign({}, options), { isNode: true, ssrBuild: true, isWeb: false }), overrides);
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
     var publicPath = getUrlParts_1.getUrlParts({ ssrBuild: true, isProduction: isProduction }).publicPath;
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
@@ -79,7 +80,7 @@ var configure = function (options) {
             nodeArgs.push(process.env.INSPECT);
         }
     }
-    var config = webpack_merge_1.merge(common, {
+    var config = webpack_merge_1.merge(common, overrides, {
         name: 'server',
         target: 'node',
         watch: isDevelopment,

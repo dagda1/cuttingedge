@@ -42,13 +42,14 @@ var svgLoader_1 = require("./loaders/svgLoader");
 var mdLoader_1 = require("./loaders/mdLoader");
 var ModuleScopePlugin_1 = __importDefault(require("react-dev-utils/ModuleScopePlugin"));
 var stats_1 = require("./loaders/stats");
+var webpack_merge_1 = require("webpack-merge");
 var path_1 = __importDefault(require("path"));
-var configureCommon = function (options) {
+var configureCommon = function (options, overrides) {
     var isNode = !!options.isNode;
     var isWeb = !isNode;
     var _a = getEnvironment_1.getEnvironment(), isProduction = _a.isProduction, isDevelopment = _a.isDevelopment, staticAssetName = _a.staticAssetName, isAnalyse = _a.isAnalyse;
     var env = getEnvironment_1.getEnvVariables({ isNode: !!options.isNode });
-    var config = {
+    var config = webpack_merge_1.merge(overrides, {
         mode: isDevelopment ? 'development' : 'production',
         bail: isProduction,
         devtool: 'source-map',
@@ -123,7 +124,7 @@ var configureCommon = function (options) {
                 ignoreOrder: true,
             }),
         ], Boolean),
-    };
+    });
     return config;
 };
 exports.configureCommon = configureCommon;

@@ -32,8 +32,9 @@ var getExternals = function () {
         }),
     ];
 };
-var configure = function (options) {
-    var common = common_1.configureCommon(__assign(__assign({}, options), { isWeb: false }));
+var configure = function (options, overrides) {
+    if (overrides === void 0) { overrides = {}; }
+    var common = common_1.configureCommon(__assign(__assign({}, options), { isWeb: false }), overrides);
     var isProduction = getEnvironment_1.getEnvironment().isProduction;
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
     var config = webpack_merge_1.merge(common, {
@@ -41,7 +42,6 @@ var configure = function (options) {
         target: 'node',
         externals: getExternals(),
         entry: entries,
-        devtool: 'source-map',
         output: {
             path: paths_1.paths.appBuild,
             filename: 'index.cjs',

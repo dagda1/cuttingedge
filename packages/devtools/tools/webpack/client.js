@@ -44,7 +44,8 @@ var html_webpack_partials_plugin_1 = __importDefault(require("html-webpack-parti
 // @ts-ignore
 var ModuleNotFoundPlugin_1 = __importDefault(require("react-dev-utils/ModuleNotFoundPlugin"));
 var isProfilerEnabled = function () { return process.argv.includes('--profile'); };
-var configure = function (options) {
+var configure = function (options, overrides) {
+    if (overrides === void 0) { overrides = {}; }
     var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild;
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, commitHash = _a.commitHash;
     var ssrBuild = !isStaticBuild;
@@ -52,7 +53,7 @@ var configure = function (options) {
     options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
     options.isNode = false;
     options.isWeb = true;
-    var common = common_1.configureCommon(options);
+    var common = common_1.configureCommon(options, overrides);
     var polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
     var iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
     var finalEntries = Object.keys(iter).reduce(function (acc, key) {
@@ -63,7 +64,7 @@ var configure = function (options) {
     }, {});
     var template = publicDir ? path_1.default.join(publicDir, 'index.html') : 'public/index.html';
     var templateExists = fs_1.default.existsSync(template);
-    var config = webpack_merge_1.merge(common, {
+    var config = webpack_merge_1.merge(common, overrides, {
         name: 'client',
         target: 'web',
         entry: finalEntries,

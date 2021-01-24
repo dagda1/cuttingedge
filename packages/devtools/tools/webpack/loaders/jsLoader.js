@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createJsLoader = void 0;
 var paths_1 = require("../../config/paths");
 var createBabelConfig_1 = require("../../scripts/createBabelConfig");
+var getCacheIdentifier_1 = require("./getCacheIdentifier");
 var createJsLoader = function (_a) {
     var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, moduleFormat = _a.moduleFormat, isNode = _a.isNode;
     return [
@@ -25,7 +26,8 @@ var createJsLoader = function (_a) {
                 configFile: false,
                 compact: false,
                 presets: createBabelConfig_1.createBabelPresets({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: 'cjs' }),
-                cacheDirectory: false,
+                cacheDirectory: true,
+                cacheIdentifier: getCacheIdentifier_1.getCacheIdentifier({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: moduleFormat }),
                 cacheCompression: false,
                 sourceMaps: true,
                 inputSourceMap: true,

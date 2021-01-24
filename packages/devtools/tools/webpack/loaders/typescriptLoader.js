@@ -20,6 +20,7 @@ var createTypescriptLoader = function (_a) {
         {
             test: /\.tsx$/,
             enforce: 'pre',
+            exclude: /\/node_modules\//,
             use: [
                 {
                     loader: 'eslint-loader',
@@ -34,6 +35,7 @@ var createTypescriptLoader = function (_a) {
         },
         {
             test: /\.tsx?$/,
+            exclude: /\/node_modules\//,
             use: [
                 {
                     loader: 'babel-loader',

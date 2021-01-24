@@ -15,8 +15,9 @@ export default {
       isolatedModules: true,
     },
   },
-  setupFilesAfterEnv: [path.join(cwd, 'setup.ts')],
-  transform: {  
+  globalSetup: path.join(cwd, 'setup.ts'),
+  globalTeardown: path.join(cwd, 'teardown.ts'),
+  transform: {
     '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
     '.(js|jsx)$': require.resolve('babel-jest'), // jest's default
   },

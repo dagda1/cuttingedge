@@ -30,6 +30,7 @@ export const setup = async (): Promise<void> => {
         spinner.start('Waiting for webpack build to succeed...');
         callback();
       });
+
       compiler.hooks.done.tapAsync('@bigtest/playright', (stats, callback) => {
         if (stats.hasErrors()) {
           spinner.fail('Webpack build failed');

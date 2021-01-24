@@ -18,16 +18,20 @@ import { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from '../types/co
 import { Configuration } from 'webpack';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import { stats } from './loaders/stats';
+import { merge } from 'webpack-merge';
 
 import path from 'path';
 
-export const configureCommon = (options: DevServerConfig | ServerBuildConfig | NodeBuildConfig): Configuration => {
+export const configureCommon = (
+  options: DevServerConfig | ServerBuildConfig | NodeBuildConfig,
+  overrides: Partial<Configuration>,
+): Configuration => {
   const isNode = !!options.isNode;
   const isWeb = !isNode;
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables({ isNode: !!options.isNode });
 
-  const config: Configuration = {
+  const config: Configuration = merge(overrides, {
     mode: isDevelopment ? 'development' : 'production',
     bail: isProduction,
     devtool: 'source-map',
@@ -110,7 +114,7 @@ export const configureCommon = (options: DevServerConfig | ServerBuildConfig | N
       ],
       Boolean,
     ),
-  };
+  });
 
   return config;
 };

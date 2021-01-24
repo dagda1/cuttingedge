@@ -18,8 +18,8 @@ const getExternals = () => {
   ];
 };
 
-export const configure = (options: NodeBuildConfig): Configuration => {
-  const common = configureCommon({ ...options, isWeb: false });
+export const configure = (options: NodeBuildConfig, overrides: Partial<Configuration> = {}): Configuration => {
+  const common = configureCommon({ ...options, isWeb: false }, overrides);
 
   const { isProduction } = getEnvironment();
 
@@ -30,7 +30,6 @@ export const configure = (options: NodeBuildConfig): Configuration => {
     target: 'node',
     externals: getExternals(),
     entry: entries,
-    devtool: 'source-map',
     output: {
       path: paths.appBuild,
       filename: 'index.cjs',

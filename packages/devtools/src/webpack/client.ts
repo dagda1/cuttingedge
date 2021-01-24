@@ -22,7 +22,7 @@ import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
 
 const isProfilerEnabled = () => process.argv.includes('--profile');
 
-export const configure = (options: DevServerConfig): Configuration => {
+export const configure = (options: DevServerConfig, overrides: Partial<Configuration> = {}): Configuration => {
   const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
   const { isDevelopment, isProduction, commitHash } = getEnvironment();
   const ssrBuild = !isStaticBuild;
@@ -32,7 +32,7 @@ export const configure = (options: DevServerConfig): Configuration => {
   options.isNode = false;
   options.isWeb = true;
 
-  const common = configureCommon(options);
+  const common = configureCommon(options, overrides);
 
   const polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
 
@@ -51,7 +51,7 @@ export const configure = (options: DevServerConfig): Configuration => {
 
   const templateExists = fs.existsSync(template);
 
-  const config: Configuration = merge(common, {
+  const config: Configuration = merge(common, overrides, {
     name: 'client',
     target: 'web',
     entry: finalEntries,
