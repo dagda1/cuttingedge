@@ -6,3 +6,11 @@ export type PlaywrightBrowser = {
   openPage: (url: string) => Promise<Page>;
   close: () => Promise<void>;
 };
+
+export type RenderOptions = {
+  viewport: {
+    width: number;
+    height: number;
+    deviceScaleFactor: number;
+  };
+};

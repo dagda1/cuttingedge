@@ -114,7 +114,7 @@ var configureCommon = function (options, overrides) {
                 typescript: {
                     enabled: true,
                     configFile: paths_1.paths.tsConfig,
-                    build: true,
+                    build: paths_1.paths.projectReferences,
                 },
             }),
             isDevelopment && new webpack_1.default.WatchIgnorePlugin([paths_1.paths.appManifest]),

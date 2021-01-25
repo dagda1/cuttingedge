@@ -43,7 +43,7 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
   logger.info(`Generating ${packageName} bundle.`);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { cacheDirectory, ...babelConfig } = createBabelConfig({
+  const { ...babelConfig } = createBabelConfig({
     isDevelopment: false,
     isProduction: true,
     isNode: false,
@@ -94,7 +94,6 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
       }),
       csv(),
       typescript({
-        clean: true,
         typescript: require('typescript'),
         tsconfig: paths.tsConfig,
         abortOnError: true,

@@ -7,6 +7,7 @@ import WriteFilePlugin from 'write-file-webpack-plugin';
 import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
+import type { DeepPartial } from '@cutting/util';
 
 const getExternals = () => {
   return [
@@ -18,7 +19,7 @@ const getExternals = () => {
   ];
 };
 
-export const configure = (options: NodeBuildConfig, overrides: Partial<Configuration> = {}): Configuration => {
+export const configure = (options: NodeBuildConfig, overrides: DeepPartial<Configuration> = {}): Configuration => {
   const common = configureCommon({ ...options, isWeb: false }, overrides);
 
   const { isProduction } = getEnvironment();

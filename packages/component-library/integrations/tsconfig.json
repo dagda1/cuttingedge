@@ -2,6 +2,16 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDir": "."
+    "rootDirs": ["../src", "."],
+    "outDir": "./dist",
+    "allowJs": true,
+    "types": [
+      "node",
+      "webpack-env",
+      "@types/jest",
+      "jest-playwright-preset",
+      "expect-playwright",
+      "@cutting/useful-types"
+    ]
   }
 }

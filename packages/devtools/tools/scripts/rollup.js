@@ -122,18 +122,18 @@ fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
 function generateBundledModule(_a) {
     var packageName = _a.packageName, inputFile = _a.inputFile, moduleFormat = _a.moduleFormat, env = _a.env;
     return __awaiter(this, void 0, void 0, function () {
-        var _b, cacheDirectory, babelConfig, minify, bundle, pkgName, extension, fileName, outputFileName;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var babelConfig, minify, bundle, pkgName, extension, fileName, outputFileName;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     assert_ts_1.assert(fs_extra_1.default.existsSync(inputFile), "Input file " + inputFile + " does not exist");
                     logger_1.logger.info("Generating " + packageName + " bundle.");
-                    _b = createBabelConfig_1.createBabelConfig({
+                    babelConfig = __rest(createBabelConfig_1.createBabelConfig({
                         isDevelopment: false,
                         isProduction: true,
                         isNode: false,
                         moduleFormat: moduleFormat,
-                    }), cacheDirectory = _b.cacheDirectory, babelConfig = __rest(_b, ["cacheDirectory"]);
+                    }), []);
                     minify = moduleFormat === 'cjs' && env === 'production';
                     return [4 /*yield*/, rollup_1.rollup({
                             input: inputFile,
@@ -176,7 +176,6 @@ function generateBundledModule(_a) {
                                 }),
                                 csv_1.csv(),
                                 rollup_plugin_typescript2_1.default({
-                                    clean: true,
                                     typescript: require('typescript'),
                                     tsconfig: paths_1.paths.tsConfig,
                                     abortOnError: true,
@@ -218,7 +217,7 @@ function generateBundledModule(_a) {
                             ].filter(Boolean),
                         })];
                 case 1:
-                    bundle = _c.sent();
+                    bundle = _b.sent();
                     pkgName = helpers_1.safePackageName(packageName);
                     extension = env === 'production' ? 'min.js' : 'js';
                     fileName = moduleFormat === 'esm' ? pkgName + ".esm.js" : pkgName + ".cjs." + env + "." + extension;
@@ -236,7 +235,7 @@ function generateBundledModule(_a) {
                             freeze: false,
                         })];
                 case 2:
-                    _c.sent();
+                    _b.sent();
                     copy_assets_1.copyAssets();
                     logger_1.logger.info('copying assets');
                     return [2 /*return*/];

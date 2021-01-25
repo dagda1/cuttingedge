@@ -5,21 +5,38 @@ import webpack from 'webpack';
 import { assert } from 'assert-ts';
 import WebpackDevServer from 'webpack-dev-server';
 import ora from 'ora';
-import { createBrowser } from './playwright';
-import { PlaywrightBrowser } from '../types/types';
+import globby from 'globby';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { globalSetup, globalTeardown } from 'jest-playwright-preset';
+import type { Config as JestConfig } from '@jest/types';
 
-const cwd = path.join(process.cwd(), 'integrations');
+const cwd = process.cwd();
+const entryFilesDir = path.join(cwd, 'webpack');
+const publicDir = path.join(cwd, 'public');
 
 let server: WebpackDevServer;
-let browser: PlaywrightBrowser;
 
-export const setup = async (): Promise<void> => {
+export const setup = async (jestConfig: JestConfig.GlobalConfig): Promise<void> => {
+  assert(fs.existsSync(publicDir), `${publicDir} does not exist`);
+
   const PORT = Number(process.env.PORT) || 1122;
 
-  const publicDir = path.join(cwd, 'public');
   try {
-    assert(fs.existsSync(publicDir), `${publicDir} does not exist`);
-    const config = configure({ entries: [''], isStaticBuild: true, publicDir, devServer: true });
+    const testFiles = await globby(`${cwd}/**/*.browser.(ts|tsx)`);
+
+    assert(testFiles.length > 0, `no test files found in ${cwd}`);
+
+    const config = configure({
+      entries: [
+        path.join(entryFilesDir, 'add-jest-to-window'),
+        ...testFiles,
+        path.join(entryFilesDir, 'ready-browser'),
+      ],
+      isStaticBuild: true,
+      publicDir,
+      devServer: true,
+    });
 
     const spinner = ora({ color: 'yellow', stream: process.stdout });
 
@@ -59,7 +76,7 @@ export const setup = async (): Promise<void> => {
       return;
     }
 
-    browser = await createBrowser();
+    await globalSetup(jestConfig);
   } catch (err) {
     if (err) {
       console.error(err);
@@ -68,10 +85,10 @@ export const setup = async (): Promise<void> => {
   }
 };
 
-export const teardown = (): void => {
+export const teardown = async (jestConfig: JestConfig.GlobalConfig): Promise<void> => {
   try {
     server?.close();
-    browser?.close();
+    await globalTeardown(jestConfig);
   } catch (err) {
     console.error(err);
 

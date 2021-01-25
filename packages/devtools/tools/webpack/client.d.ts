@@ -1,4 +1,5 @@
 import { DevServerConfig } from '../types/config';
 import { Configuration } from 'webpack';
-export declare const configure: (options: DevServerConfig, overrides?: Partial<Configuration>) => Configuration;
+import type { DeepPartial } from '@cutting/util';
+export declare const configure: (options: DevServerConfig, overrides?: DeepPartial<Configuration>) => Configuration;
 //# sourceMappingURL=client.d.ts.map

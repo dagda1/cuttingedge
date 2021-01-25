@@ -19,10 +19,11 @@ import HtmlWebpackPartialsPlugin from 'html-webpack-partials-plugin';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
+import type { DeepPartial } from '@cutting/util';
 
 const isProfilerEnabled = () => process.argv.includes('--profile');
 
-export const configure = (options: DevServerConfig, overrides: Partial<Configuration> = {}): Configuration => {
+export const configure = (options: DevServerConfig, overrides: DeepPartial<Configuration> = {}): Configuration => {
   const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
   const { isDevelopment, isProduction, commitHash } = getEnvironment();
   const ssrBuild = !isStaticBuild;

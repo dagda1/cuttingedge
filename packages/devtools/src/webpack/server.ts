@@ -9,6 +9,7 @@ import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
 import { getUrlParts } from './getUrlParts';
+import type { DeepPartial } from '@cutting/util';
 
 export const getExternals = function (isDevelopment: boolean): webpack.ExternalsFunctionElement[] {
   return [
@@ -29,7 +30,7 @@ export const getExternals = function (isDevelopment: boolean): webpack.Externals
   ];
 };
 
-export const configure = (options: ServerBuildConfig, overrides: Partial<Configuration> = {}): Configuration => {
+export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Configuration> = {}): Configuration => {
   const common = configureCommon({ ...options, isNode: true, ssrBuild: true, isWeb: false }, overrides);
 
   const { isDevelopment, isProduction } = getEnvironment();

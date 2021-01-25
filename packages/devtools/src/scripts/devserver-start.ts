@@ -124,6 +124,7 @@ enum UserDirectoryChoice {
 
     ['SIGINT', 'SIGTERM'].forEach((sig) => {
       process.on(sig, function () {
+        ``;
         server.close();
         process.exit();
       });
