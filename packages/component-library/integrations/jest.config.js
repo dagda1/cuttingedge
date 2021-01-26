@@ -27,7 +27,14 @@ const jestConfig = {
       launchOptions: {
         headless: false,
       },
-      connectOptions: {},
+      connectOptions: {
+        chromium: {
+          wsEndpoint: 'ws://chrome.proxy.com:4444',
+        },
+        firefox: {
+          wsEndpoint: 'ws://firefox.proxy.com:4444',
+        },
+      },
       contextOptions: {
         viewport: {
           width: 800,
