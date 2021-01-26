@@ -5,13 +5,11 @@
   "type": "commonjs",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/jest-playwright-react.esm.js",
-  "browser": "dist/jest-playwright-react.esm.js",
   "scripts": {
     "test": "jest",
     "lint": "yarn eslint ./src/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
-    "build": "NODE_ENV=production cutting rollup",
+    "build": "NODE_ENV=production cutting ts-build",
     "prepublish": "yarn build"
   },
   "dependencies": {

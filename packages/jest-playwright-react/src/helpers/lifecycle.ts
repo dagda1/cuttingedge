@@ -12,7 +12,7 @@ import { globalSetup, globalTeardown } from 'jest-playwright-preset';
 import type { Config as JestConfig } from '@jest/types';
 import { port } from '../constants';
 
-const cwd = process.cwd();
+const cwd = path.resolve(__dirname, '../..');
 const entryFilesDir = path.join(cwd, 'webpack');
 const publicDir = path.join(cwd, 'public');
 

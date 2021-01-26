@@ -1,9 +1,9 @@
 import { BrowserType, GenericBrowser, JestPlaywrightConfig, WsEndpointType } from 'jest-playwright-preset';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { PlaywrightRunner } from 'jest-playwright-preset/lib/PlaywrightRunner';
+import PlaywrightRunner from 'jest-playwright-preset/lib/PlaywrightRunner';
 
-export class PlaywrightReactRunner extends PlaywrightRunner {
+export default class PlaywrightReactRunner extends PlaywrightRunner {
   async launchServer(
     config: JestPlaywrightConfig,
     wsEndpoint: WsEndpointType,

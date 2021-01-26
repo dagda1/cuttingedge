@@ -48,19 +48,20 @@ const tsConfigPath = resolveApp('tsconfig.json');
 const testTsConfigPath = resolveApp('tsconfig.test.json');
 
 type OurCompilerOptions = {
-  compilerOptions: Partial<Pick<ParsedCommandLine['options'], 'outDir'>>;
+  compilerOptions: Partial<Pick<ParsedCommandLine['options'], 'outDir'> & { module?: string }>;
   references?: ParsedCommandLine['projectReferences'];
 };
 
 const tsConfig: OurCompilerOptions = fs.existsSync(tsConfigPath)
   ? (require(tsConfigPath) as OurCompilerOptions)
-  : { compilerOptions: { outDir: undefined } };
+  : { compilerOptions: { outDir: undefined, module: undefined } };
 
 const testTsConfig = fs.existsSync(testTsConfigPath)
   ? testTsConfigPath
   : path.resolve(__dirname, '../../typescript/tsconfig.test.json');
 
 const outDir = tsConfig.compilerOptions?.outDir || DefaultBuildDir;
+const isCommonJs = tsConfig.compilerOptions?.module?.toLowerCase() === 'commonjs';
 
 const appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
 
@@ -100,4 +101,5 @@ export const paths = {
   testTsConfig,
   projectReferences: !!tsConfig.references,
   tailwindcssConfig: path.join(__dirname, '../css/tailwind.config.js'),
+  isCommonJS: isCommonJs,
 };

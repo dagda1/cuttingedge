@@ -5,6 +5,7 @@
     "module": "commonjs",
     "rootDir": "./src",
     "outDir": "./dist",
+    "allowJs": true,
     "types": [
       "node",
       "webpack-env",
