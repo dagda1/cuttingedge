@@ -2,9 +2,8 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDirs": ["../src", "."],
+    "rootDir": "./src",
     "outDir": "./dist",
-    "allowJs": true,
     "types": [
       "node",
       "webpack-env",

@@ -9,6 +9,9 @@
     "skipLibCheck": true,
     "isolatedModules": false
   },
+  "references": [
+    { "path": "../util" }
+  ],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
 }

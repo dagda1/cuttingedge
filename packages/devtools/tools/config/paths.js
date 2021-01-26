@@ -1,24 +1,4 @@
 "use strict";
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (this && this.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -52,11 +32,11 @@ var libPackages = [
     'packages/hooks',
     'packages/use-mathjax',
     'packages/component-library',
+    'packages/jest-playwright-react',
     'packages/svg',
     'packages/use-shortcuts',
     'packages/use-abort',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
-var webAppPackages = ['packages/website'].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var tsConfigPath = resolveApp('tsconfig.json');
 var testTsConfigPath = resolveApp('tsconfig.test.json');
 var tsConfig = fs_1.default.existsSync(tsConfigPath)
@@ -91,8 +71,6 @@ exports.paths = {
     devDir: resolveApp(DevFolder),
     devDirPublic: resolveApp(DevFolder + "/public"),
     libPackages: libPackages,
-    webAppPackages: webAppPackages,
-    allPackages: __spread(libPackages, webAppPackages),
     defaultBuildConfigPath: path_1.default.join(__dirname, './build.config.js'),
     proxySetup: resolveApp('setupProxy.js'),
     tranlationsDir: resolveApp('src/translations'),

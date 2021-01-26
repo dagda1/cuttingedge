@@ -4,7 +4,7 @@ import { DeepPartial, isNil } from '@cutting/util';
 import { RenderOptions } from '../types/types';
 import merge from 'deepmerge';
 
-const DefaultRenderOptions: RenderOptions = { viewport: { width: 600, height: 800, deviceScaleFactor: 1 } };
+const DefaultRenderOptions: RenderOptions = { viewport: { width: 600, height: 800 } };
 
 export const render = async (reactElement: ReactElement, options: DeepPartial<RenderOptions> = {}): Promise<void> => {
   const testName = window.__path.join(' ');

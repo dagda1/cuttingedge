@@ -21,8 +21,6 @@ export declare const paths: {
     devDir: string;
     devDirPublic: string;
     libPackages: string[];
-    webAppPackages: string[];
-    allPackages: string[];
     defaultBuildConfigPath: string;
     proxySetup: string;
     tranlationsDir: string;

@@ -38,12 +38,11 @@ const libPackages = [
   'packages/hooks',
   'packages/use-mathjax',
   'packages/component-library',
+  'packages/jest-playwright-react',
   'packages/svg',
   'packages/use-shortcuts',
   'packages/use-abort',
 ].map((dep) => path.resolve(process.cwd(), dep));
-
-const webAppPackages = ['packages/website'].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');
 const testTsConfigPath = resolveApp('tsconfig.test.json');
@@ -90,8 +89,6 @@ export const paths = {
   devDir: resolveApp(DevFolder),
   devDirPublic: resolveApp(`${DevFolder}/public`),
   libPackages,
-  webAppPackages,
-  allPackages: [...libPackages, ...webAppPackages],
   defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
   proxySetup: resolveApp('setupProxy.js'),
   tranlationsDir: resolveApp('src/translations'),

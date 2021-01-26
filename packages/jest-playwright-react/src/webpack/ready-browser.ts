@@ -1,16 +1,18 @@
 import { createElement } from 'react';
 import ReactDOM from 'react-dom';
+import type { ReactElement } from 'react';
 
 const search = window.location.search;
 const urlParams = new URLSearchParams(window.location.search);
 const currentTest = urlParams.get('testPreview') || urlParams.get('test');
 
-console.log({ h: urlParams.has('test') });
+// console.log({ h: urlParams.has('test') });
 
-throw new Error('fuck');
+// throw new Error('fuck');
 
 if (urlParams.has('test')) {
-  const testName = decodeURIComponent(search.match(/\?test=([^&]+)/i)[1]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const testName = decodeURIComponent((search.match(/\?test=([^&]+)/i) as any)[1]);
 
   const component =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,7 +36,16 @@ if (urlParams.has('test')) {
 
   containerWrapper.appendChild(container);
 
-  const applyTest = ({ path, reactNode, viewport }, position = 0, result = {}) => {
+  const applyTest = (
+    {
+      path,
+      reactNode,
+      viewport,
+    }: { path: string[]; reactNode: ReactElement; viewport: { width: number; height: number } },
+    position = 0,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    result: any = {},
+  ) => {
     const pathEntry = path[position];
 
     if (!result[pathEntry] && position < path.length) {
@@ -58,21 +69,22 @@ if (urlParams.has('test')) {
     };
   };
 
-  const updateContainer = (reactNode, viewport, title) => {
+  const updateContainer = (reactNode: ReactElement, viewport: { width: number; height: number }, title: string) => {
     container.style.setProperty('height', viewport.height + 'px');
     container.style.setProperty('width', viewport.width + 'px');
     container.src = [location.origin, '?test=', title].join('');
     document.title = 'Preview: ' + title;
   };
 
-  const detailsBlockEntries = (element, values) => {
+  const detailsBlockEntries = (element: HTMLElement, values: Record<PropertyKey, unknown>) => {
     Object.entries(values)
       .sort(([a], [b]) => a.localeCompare(b))
       .map(createDetailsBlock)
       .forEach((entry) => element.appendChild(entry));
   };
 
-  const createDetailsBlock = ([key, values]) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const createDetailsBlock = ([key, values]: any[]) => {
     let details;
     if (!values.__reactNode) {
       details = document.createElement('details');
@@ -123,7 +135,7 @@ if (urlParams.has('test')) {
 
   // build an object to easily create a hierarchical structure
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const tests = Object.entries((window as any).__tests)
+  const tests: any = Object.entries((window as any).__tests)
     .map(([, t]) => t)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .reduce((acc, { path, reactNode, viewport }: any) => {

@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import PlaywrightEnvironment from 'jest-playwright-preset/lib/PlaywrightEnvironment';
 
 class PlaywrightReactEnvironment extends PlaywrightEnvironment {

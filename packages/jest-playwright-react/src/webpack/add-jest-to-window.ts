@@ -12,12 +12,14 @@ if (!window.Proxy) {
   throw new Error('The environment needs to support window.Proxy!');
 }
 
-const makeShrugger = () => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const makeShrugger = (): any => {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const functionMock = () => {};
   return new Proxy(functionMock, {
     apply: () => makeShrugger(), // if called as function
-    get: (target, name) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    get: (target: any, name) => {
       // if trying to get property
       if (name in target) {
         return target[name];
@@ -32,7 +34,7 @@ const shrugger = makeShrugger();
 window.jest = shrugger;
 window.page = shrugger;
 
-const notImplementedYet = (name) => () => {
+const notImplementedYet = (name: string) => () => {
   throw new Error(`${name} is not supported yet in jest-puppeteer-react`);
 };
 
@@ -47,8 +49,8 @@ window.__tests = {}; // 'Button should render': <button>hi</button>
 const SUPPORTED_PLACEHOLDERS = /%[sdifjoOp%]/g;
 const PRETTY_PLACEHOLDER = '%p';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const applyRestParams = (params, test) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const applyRestParams = (...params: any[]) => {
   // if (params.length < test.length) return done => test(...params, done);
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -56,13 +58,17 @@ const applyRestParams = (params, test) => {
   return () => it(...params);
 };
 
-const getPrettyIndexes = (placeholders) =>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getPrettyIndexes = (placeholders: any) =>
   placeholders.reduce(
-    (indexes, placeholder, index) => (placeholder === PRETTY_PLACEHOLDER ? indexes.concat(index) : indexes),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (indexes: any, placeholder: any, index: any) =>
+      placeholder === PRETTY_PLACEHOLDER ? indexes.concat(index) : indexes,
     [],
   );
 
-const arrayFormat = (title, ...args) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const arrayFormat = (title: string, ...args: any[]) => {
   const placeholders = title.match(SUPPORTED_PLACEHOLDERS) || [];
   const prettyIndexes = getPrettyIndexes(placeholders);
 
@@ -86,10 +92,13 @@ const arrayFormat = (title, ...args) => {
   return format(prettyTitle, ...remainingArgs.slice(0, placeholders.length - prettyIndexes.length));
 };
 
-const each = (cb) => (...args) => {
-  return (title, testFun) => {
-    const table = args[0].every(Array.isArray) ? args[0] : args[0].map((entry) => [entry]);
-    return table.forEach((row) => cb(arrayFormat(title, ...row), applyRestParams(row, testFun)));
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const each = (cb: any) => (...args: any[]) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (title: string, testFun: any) => {
+    const table = args[0].every(Array.isArray) ? args[0] : args[0].map((entry: unknown) => [entry]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return table.forEach((row: any) => cb(arrayFormat(title, ...row), applyRestParams(row, testFun)));
   };
 };
 

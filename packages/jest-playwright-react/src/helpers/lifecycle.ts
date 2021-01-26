@@ -10,6 +10,7 @@ import globby from 'globby';
 // @ts-ignore
 import { globalSetup, globalTeardown } from 'jest-playwright-preset';
 import type { Config as JestConfig } from '@jest/types';
+import { port } from '../constants';
 
 const cwd = process.cwd();
 const entryFilesDir = path.join(cwd, 'webpack');
@@ -20,23 +21,30 @@ let server: WebpackDevServer;
 export const setup = async (jestConfig: JestConfig.GlobalConfig): Promise<void> => {
   assert(fs.existsSync(publicDir), `${publicDir} does not exist`);
 
-  const PORT = Number(process.env.PORT) || 1122;
-
   try {
     const testFiles = await globby(`${cwd}/**/*.browser.(ts|tsx)`);
 
     assert(testFiles.length > 0, `no test files found in ${cwd}`);
 
-    const config = configure({
-      entries: [
-        path.join(entryFilesDir, 'add-jest-to-window'),
-        ...testFiles,
-        path.join(entryFilesDir, 'ready-browser'),
-      ],
-      isStaticBuild: true,
-      publicDir,
-      devServer: true,
-    });
+    const config = configure(
+      {
+        entries: [
+          path.join(entryFilesDir, 'add-jest-to-window'),
+          ...testFiles,
+          path.join(entryFilesDir, 'ready-browser'),
+        ],
+        isStaticBuild: true,
+        publicDir,
+        devServer: true,
+      },
+      {
+        resolve: {
+          alias: {
+            '@cutting/jest-playwright-react': path.resolve(__dirname, '../webpack/render-browser'),
+          },
+        },
+      },
+    );
 
     const spinner = ora({ color: 'yellow', stream: process.stdout });
 
@@ -67,8 +75,8 @@ export const setup = async (jestConfig: JestConfig.GlobalConfig): Promise<void> 
       ...(config.devServer || {}),
     });
 
-    console.debug(`starting webpack-dev-server on port ${PORT}`);
-    server.listen(PORT);
+    console.debug(`starting webpack-dev-server on port ${port}`);
+    server.listen(port);
 
     try {
       await compilerHooks;
