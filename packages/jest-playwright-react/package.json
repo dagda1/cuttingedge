@@ -2,9 +2,11 @@
   "name": "@cutting/jest-playwright-react",
   "version": "0.1.0",
   "description": "render a react component into the browser",
-  "type": "module",
-  "module": "dist/index.js",
+  "type": "commonjs",
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/jest-playwright-react.esm.js",
+  "browser": "dist/jest-playwright-react.esm.js",
   "scripts": {
     "test": "jest",
     "lint": "yarn eslint ./src/**/*.{ts,tsx}",

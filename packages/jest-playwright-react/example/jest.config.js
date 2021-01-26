@@ -1,7 +1,12 @@
-import jestConfig from '../jest.config';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const jestConfig = require('../jest.config.js');
+const path = require('path');
+
+const cwd = process.cwd();
+
 const tsConfig = path.join(cwd, 'tsconfig.json');
 
-export default {
+module.exports = {
   ...jestConfig,
   rootDir: cwd,
   roots: ['<rootDir>', '<rootDir>/test'],

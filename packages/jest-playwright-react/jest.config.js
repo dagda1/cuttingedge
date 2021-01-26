@@ -1,11 +1,11 @@
-import path from 'path';
-import config from '@cutting/devtools/tools/jest/jest.config.js';
-import { JestPlaywrightConfig } from 'jest-playwright-preset';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+const config = require('@cutting/devtools/tools/jest/jest.config.js');
 
-const cwd = process.cwd();
+const cwd = __dirname;
 const tsConfig = path.join(cwd, 'tsconfig.json');
 
-const jestPlayWrigthOptions: JestPlaywrightConfig = {
+const jestPlayWrigthOptions = {
   launchType: 'SERVER',
   launchOptions: {
     headless: false,
@@ -39,15 +39,15 @@ const jestConfig = {
       isolatedModules: true,
     },
   },
-  globalSetup: path.join(cwd, 'setup.ts'),
-  globalTeardown: path.join(cwd, 'teardown.ts'),
+  globalSetup: path.join(cwd, './setup.js'),
+  globalTeardown: path.join(cwd, './teardown.js'),
   testMatch: ['<rootDir>/test/**/*.ts?(x)'],
-  testEnvironment: path.join(cwd, './runner/runner.ts'),
-  testRunner: 'jest-circus/runner',
+  testEnvironment: 'jest-playwright-preset',
+  testRunner: path.join(cwd, './runner.js'),
   setupFilesAfterEnv: ['expect-playwright', 'jest-playwright-preset/lib/extends.js'],
   testEnvironmentOptions: {
     'jest-playwright': jestPlayWrigthOptions,
   },
 };
 
-export default jestConfig;
+module.exports = jestConfig;
