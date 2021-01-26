@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "rootDirs": ["../src", "."],
@@ -13,5 +13,9 @@
       "expect-playwright",
       "@cutting/useful-types"
     ]
-  }
+  },
+  "references": [
+    { "path": "../util" },
+    { "path": "../component-library" }
+  ]
 }

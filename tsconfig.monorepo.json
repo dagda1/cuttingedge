@@ -20,6 +20,9 @@
       "path": "./packages/component-library"
     },
     {
+      "path": "./packages/jest-playwright-react"
+    },
+    {
       "path": "./packages/svg"
     },
     {
