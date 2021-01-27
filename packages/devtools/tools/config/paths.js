@@ -81,7 +81,6 @@ exports.paths = {
     jestConfig: path_1.default.join(__dirname, '../jest/jest.config.js'),
     testTsConfig: testTsConfig,
     projectReferences: !!tsConfig.references,
-    tailwindcssConfig: path_1.default.join(__dirname, '../css/tailwind.config.js'),
     isCommonJS: isCommonJs,
 };
 //# sourceMappingURL=paths.js.map

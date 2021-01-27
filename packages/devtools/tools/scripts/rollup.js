@@ -115,7 +115,6 @@ var rollup_plugin_eslint_1 = __importDefault(require("@rbnlffl/rollup-plugin-esl
 // @ts-ignore
 var postcss_url_1 = __importDefault(require("postcss-url"));
 // @ts-ignore
-var tailwindcss_1 = __importDefault(require("tailwindcss"));
 var autoprefixer_1 = __importDefault(require("autoprefixer"));
 var createBabelConfig_1 = require("./createBabelConfig");
 var helpers_1 = require("../rollup/helpers");
@@ -175,7 +174,6 @@ function generateBundledModule(_a) {
                                     plugins: [
                                         postcss_import_1.default(),
                                         autoprefixer_1.default(),
-                                        tailwindcss_1.default(paths_1.paths.tailwindcssConfig),
                                         // env === 'production' &&
                                         //   purgecss({
                                         //     content: [paths.appHtml, './src/**/*.tsx'],

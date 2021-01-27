@@ -23,7 +23,6 @@ import eslint from '@rbnlffl/rollup-plugin-eslint';
 // @ts-ignore
 import url from 'postcss-url';
 // @ts-ignore
-import tailwind from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
 import { createBabelConfig } from './createBabelConfig';
@@ -93,7 +92,6 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
         plugins: [
           postcssImport(),
           autoprefixer(),
-          tailwind(paths.tailwindcssConfig),
           // env === 'production' &&
           //   purgecss({
           //     content: [paths.appHtml, './src/**/*.tsx'],
