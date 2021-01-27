@@ -25,10 +25,8 @@
     "@cutting/eslint-config": "4.13.0",
     "@cutting/useful-types": "4.13.0",
     "@testing-library/jest-dom": "^5.11.9",
-    "@types/format-util": "^1.0.1",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "format-util": "^1.0.5",
     "serve-handler": "^6.1.3",
     "typescript": "^4.1.3"
   },

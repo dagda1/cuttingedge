@@ -38,7 +38,6 @@ const libPackages = [
   'packages/hooks',
   'packages/use-mathjax',
   'packages/component-library',
-  'packages/jest-playwright-react',
   'packages/svg',
   'packages/use-shortcuts',
   'packages/use-abort',

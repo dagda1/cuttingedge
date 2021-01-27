@@ -33,7 +33,6 @@
       "packages/hooks",
       "packages/use-abort",
       "packages/component-library",
-      "packages/jest-playwright-react",
       "packages/svg",
       "packages/use-mathjax",
       "packages/use-shortcuts",
