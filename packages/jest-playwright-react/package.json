@@ -1,9 +1,10 @@
 {
   "name": "@cutting/jest-playwright-react",
-  "version": "0.1.0",
+  "version": "4.13.0",
   "description": "render a react component into the browser",
   "type": "commonjs",
   "license": "MIT",
+  "browser": "dist/index.js",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",

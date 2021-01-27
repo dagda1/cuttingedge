@@ -10,10 +10,6 @@ export default class PlaywrightReactRunner extends PlaywrightRunner {
     browser: BrowserType,
     instance: GenericBrowser,
   ): Promise<WsEndpointType> {
-    console.dir(config);
-    console.dir(wsEndpoint);
-    console.dir(instance);
-
     return super.launchServer(config, wsEndpoint, browser, instance);
   }
 }

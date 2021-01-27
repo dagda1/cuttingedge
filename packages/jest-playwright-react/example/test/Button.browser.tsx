@@ -4,9 +4,8 @@ import { render } from '@cutting/jest-playwright-react';
 
 describe('<Button />', () => {
   test('renders a button', async () => {
-    await render(<Button buttonStyle="primary">Primary</Button>, {
-      viewport: { width: 100, height: 100 },
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await render(<Button buttonStyle="primary">Primary</Button>, {} as any);
 
     expect(true).toBe(true);
   });

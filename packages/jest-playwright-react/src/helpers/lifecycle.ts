@@ -11,9 +11,10 @@ import globby from 'globby';
 import { globalSetup, globalTeardown } from 'jest-playwright-preset';
 import type { Config as JestConfig } from '@jest/types';
 import { port } from '../constants';
+import os from 'os';
 
 const cwd = path.resolve(__dirname, '../..');
-const entryFilesDir = path.join(cwd, 'webpack');
+const entryFilesDir = path.join(cwd, 'dist', 'webpack');
 const publicDir = path.join(cwd, 'public');
 
 let server: WebpackDevServer;
@@ -25,6 +26,12 @@ export const setup = async (jestConfig: JestConfig.GlobalConfig): Promise<void> 
     const testFiles = await globby(`${cwd}/**/*.browser.(ts|tsx)`);
 
     assert(testFiles.length > 0, `no test files found in ${cwd}`);
+
+    console.dir([
+      path.join(entryFilesDir, 'add-jest-to-window'),
+      ...testFiles,
+      path.join(entryFilesDir, 'ready-browser'),
+    ]);
 
     const config = configure(
       {
@@ -40,11 +47,13 @@ export const setup = async (jestConfig: JestConfig.GlobalConfig): Promise<void> 
       {
         resolve: {
           alias: {
-            '@cutting/jest-playwright-react': path.resolve(__dirname, '../webpack/render-browser'),
+            '@cutting/jest-playwright-react': path.resolve(__dirname, '../webpack/ready-browser'),
           },
         },
       },
     );
+
+    console.dir(config.resolve?.alias);
 
     const spinner = ora({ color: 'yellow', stream: process.stdout });
 
@@ -59,7 +68,8 @@ export const setup = async (jestConfig: JestConfig.GlobalConfig): Promise<void> 
       compiler.hooks.done.tapAsync('@bigtest/playright', (stats, callback) => {
         if (stats.hasErrors()) {
           spinner.fail('Webpack build failed');
-          reject(stats);
+          const json = stats.toJson();
+          reject(json.errors.join(os.EOL + os.EOL));
         } else {
           spinner.succeed('Webpack build finished');
           resolve(stats);
@@ -78,11 +88,7 @@ export const setup = async (jestConfig: JestConfig.GlobalConfig): Promise<void> 
     console.debug(`starting webpack-dev-server on port ${port}`);
     server.listen(port);
 
-    try {
-      await compilerHooks;
-    } catch (e) {
-      return;
-    }
+    await compilerHooks;
 
     await globalSetup(jestConfig);
   } catch (err) {

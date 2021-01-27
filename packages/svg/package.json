@@ -1,6 +1,6 @@
 {
   "name": "@cutting/svg",
-  "version": "4.12.0",
+  "version": "4.13.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -15,17 +15,17 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/util": "4.12.0",
-    "@cutting/hooks": "4.12.0",
+    "@cutting/util": "4.13.0",
+    "@cutting/hooks": "4.13.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.12.0",
-    "@cutting/testing": "4.12.0",
-    "@cutting/eslint-config": "4.12.0",
-    "@cutting/useful-types": "4.12.0",
+    "@cutting/devtools": "4.13.0",
+    "@cutting/testing": "4.13.0",
+    "@cutting/eslint-config": "4.13.0",
+    "@cutting/useful-types": "4.13.0",
     "@testing-library/jest-dom": "^5.11.9",
     "typescript": "^4.1.3"
   },

@@ -10,12 +10,7 @@ const jestPlayWrigthOptions = {
   launchOptions: {
     headless: false,
   },
-  connectOptions: {
-    chromium: {
-      wsEndpoint: 'ws://chrome.proxy.com:4444',
-    },
-    wsEndpoint: 'ws://chrome.proxy.com:4444',
-  },
+  connectOptions: {},
   contextOptions: {
     viewport: {
       width: 800,
@@ -43,11 +38,13 @@ const jestConfig = {
   globalTeardown: path.join(cwd, './teardown.js'),
   testMatch: ['<rootDir>/test/**/*.ts?(x)'],
   testEnvironment: 'jest-playwright-preset',
-  testRunner: path.join(cwd, './runner.js'),
+  runner: path.join(cwd, './runner.js'),
+  testRunner: 'jest-circus/runner',
   setupFilesAfterEnv: ['expect-playwright', 'jest-playwright-preset/lib/extends.js'],
   testEnvironmentOptions: {
     'jest-playwright': jestPlayWrigthOptions,
   },
+  useStderr: true,
 };
 
 module.exports = jestConfig;

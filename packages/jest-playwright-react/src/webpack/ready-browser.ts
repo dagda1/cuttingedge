@@ -70,8 +70,8 @@ if (urlParams.has('test')) {
   };
 
   const updateContainer = (reactNode: ReactElement, viewport: { width: number; height: number }, title: string) => {
-    container.style.setProperty('height', viewport.height + 'px');
-    container.style.setProperty('width', viewport.width + 'px');
+    container.style.setProperty('height', `${viewport.height}px`);
+    container.style.setProperty('width', `${viewport.width}px`);
     container.src = [location.origin, '?test=', title].join('');
     document.title = 'Preview: ' + title;
   };

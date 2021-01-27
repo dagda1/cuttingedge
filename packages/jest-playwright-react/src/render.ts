@@ -19,16 +19,16 @@ export async function render(_, options: JestPlaywrightConfig) {
   page.on('console', (msg) => {
     console.log(`event "console" from "${currentTestName}"`);
 
-    const msgType = msg.type();
-    const msgText = msg.text();
-    const consoleLogType =
-      msgType === 'warning'
-        ? 'warn'
-        : ['error', 'log', 'debug', 'dir', 'info', 'trace'].includes(msgType)
-        ? msgType
-        : 'log';
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (console as any)[consoleLogType](msgText);
+    // const msgType = msg.type();
+    // const msgText = msg.text();
+    // const consoleLogType =
+    //   msgType === 'warning'
+    //     ? 'warn'
+    //     : ['error', 'log', 'debug', 'dir', 'info', 'trace'].includes(msgType)
+    //     ? msgType
+    //     : 'log';
+    // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // (console as any)[consoleLogType](msgText);
   });
 
   page.on('pageerror', (msg) => {
