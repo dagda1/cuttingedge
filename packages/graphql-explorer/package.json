@@ -13,24 +13,47 @@
   "scripts": {
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting ts-build",
+    "build": "NODE_ENV=production cutting static-build",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.13.0"
+    "@cutting/component-library": "4.13.0",
+    "@cutting/hooks": "4.13.0",
+    "@cutting/svg": "4.13.0",
+    "@cutting/util": "4.13.0",
+    "@loadable/component": "^5.14.1",
+    "@loadable/server": "^5.14.0",
+    "assert-ts": "^0.3.0",
+    "classnames": "^2.2.6",
+    "dayjs": "^1.9.7",
+    "helmet": "4.2.0",
+    "history": "^4.10.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "5.2.0",
+    "url-join": "^4.0.1"
   },
   "devDependencies": {
-    "abortcontroller-polyfill": "^1.5.0",
-    "node-fetch": "^2.6.1"
+    "@cutting/devtools": "4.13.0",
+    "@cutting/eslint-config": "4.13.0",
+    "@cutting/useful-types": "4.13.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@types/classnames": "^2.2.11",
+    "@types/history": "^4.7.8",
+    "@types/loadable__server": "^5.12.3",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-helmet": "^6.1.0",
+    "@types/react-router": "^5.1.8",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/url-join": "^4.0.0",
+    "typescript": "^4.1.3"
   },
   "keywords": [
-    "hotkeys",
-    "focus",
+    "graphql",
+    "dataviz",
     "react",
-    "reactjs",
-    "reactnative",
-    "hooks",
-    "hook",
-    "use-cancellable-fetcch"
+    "reactjs"
   ]
 }
