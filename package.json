@@ -36,6 +36,7 @@
       "packages/svg",
       "packages/use-mathjax",
       "packages/use-shortcuts",
+      "packages/graphql-explorer",
       "packages/website"
     ]
   },

@@ -32,6 +32,9 @@
       "path": "./packages/use-mathjax"
     },
     {
+      "path": "./packages/graphql-exporer"
+    },
+    {
       "path": "./packages/website"
     }
   ]

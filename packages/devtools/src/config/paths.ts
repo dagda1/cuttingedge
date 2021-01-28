@@ -41,6 +41,7 @@ const libPackages = [
   'packages/svg',
   'packages/use-shortcuts',
   'packages/use-abort',
+  'packages/graphql-explorer',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');
