@@ -28,13 +28,14 @@ var createPostCssOptions = function (_a) {
     isProduction = _a.isProduction;
     return ({
         sourceMap: true,
-        ident: 'postcss',
-        parser: 'postcss-scss',
-        plugins: [
-            require('postcss-import'),
-            require('tailwindcss')(paths_1.paths.tailwindcssConfig),
-            require('autoprefixer'),
-        ].filter(Boolean),
+        postcssOptions: {
+            parser: 'postcss-scss',
+            plugins: [
+                'postcss-import',
+                'autoprefixer',
+                require('tailwindcss')(paths_1.paths.tailwindcssConfig),
+            ].filter(Boolean),
+        },
     });
 };
 exports.createPostCssOptions = createPostCssOptions;

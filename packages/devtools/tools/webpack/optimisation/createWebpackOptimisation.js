@@ -15,11 +15,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createWebpackOptimisation = void 0;
-var optimize_css_assets_webpack_plugin_1 = __importDefault(require("optimize-css-assets-webpack-plugin"));
 var terser_webpack_plugin_1 = __importDefault(require("terser-webpack-plugin"));
-var postcss_safe_parser_1 = __importDefault(require("postcss-safe-parser"));
 var crypto_1 = __importDefault(require("crypto"));
 var path_1 = __importDefault(require("path"));
+var css_minimizer_webpack_plugin_1 = __importDefault(require("css-minimizer-webpack-plugin"));
 var FRAMEWORK_BUNDLES = ['react', 'react-dom'];
 var isModuleCSS = function (module) {
     return (module.type === "css/mini-extract" ||
@@ -27,7 +26,7 @@ var isModuleCSS = function (module) {
         module.type === "css/extract-css-chunks");
 };
 var createWebpackOptimisation = function (_a) {
-    var optimization = _a.optimization, isDevelopment = _a.isDevelopment;
+    var optimization = _a.optimization;
     return __assign(__assign({}, optimization), {
         minimize: true,
         minimizer: [
@@ -52,11 +51,9 @@ var createWebpackOptimisation = function (_a) {
                     },
                 },
             }),
-            new optimize_css_assets_webpack_plugin_1.default({
-                cssProcessorOptions: {
-                    parser: postcss_safe_parser_1.default,
-                    map: isDevelopment ? { inline: false, annotation: true } : false,
-                },
+            new css_minimizer_webpack_plugin_1.default({
+                sourceMap: true,
+                parallel: true,
             }),
         ],
         splitChunks: {

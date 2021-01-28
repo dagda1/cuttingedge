@@ -4,9 +4,10 @@ export declare class TailwindExtractor {
 export declare const createPostCssOptions: ({ isProduction, }: {
     isProduction: boolean;
 }) => {
-    parser: string;
-    ident: string;
     sourceMap: boolean;
-    plugins: any[];
+    postcssOptions: {
+        parser: string;
+        plugins: any[];
+    };
 };
 //# sourceMappingURL=createPostCssoptions.d.ts.map

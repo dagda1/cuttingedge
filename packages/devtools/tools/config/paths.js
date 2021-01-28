@@ -2,7 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.paths = void 0;
 var path_1 = __importDefault(require("path"));
@@ -40,11 +40,12 @@ var tsConfigPath = resolveApp('tsconfig.json');
 var testTsConfigPath = resolveApp('tsconfig.test.json');
 var tsConfig = fs_1.default.existsSync(tsConfigPath)
     ? require(tsConfigPath)
-    : { compilerOptions: { outDir: undefined } };
+    : { compilerOptions: { outDir: undefined, module: undefined } };
 var testTsConfig = fs_1.default.existsSync(testTsConfigPath)
     ? testTsConfigPath
     : path_1.default.resolve(__dirname, '../../typescript/tsconfig.test.json');
 var outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.outDir) || DefaultBuildDir;
+var isCommonJs = ((_c = (_b = tsConfig.compilerOptions) === null || _b === void 0 ? void 0 : _b.module) === null || _c === void 0 ? void 0 : _c.toLowerCase()) === 'commonjs';
 var appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
 var DevFolder = 'demo';
 exports.paths = {
@@ -81,5 +82,6 @@ exports.paths = {
     testTsConfig: testTsConfig,
     projectReferences: !!tsConfig.references,
     tailwindcssConfig: path_1.default.join(__dirname, '../css/tailwind.config.js'),
+    isCommonJS: isCommonJs,
 };
 //# sourceMappingURL=paths.js.map

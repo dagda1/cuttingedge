@@ -114,10 +114,14 @@ var rollup_plugin_svgo_1 = __importDefault(require("rollup-plugin-svgo"));
 var rollup_plugin_eslint_1 = __importDefault(require("@rbnlffl/rollup-plugin-eslint"));
 // @ts-ignore
 var postcss_url_1 = __importDefault(require("postcss-url"));
+// @ts-ignore
+var tailwindcss_1 = __importDefault(require("tailwindcss"));
+var autoprefixer_1 = __importDefault(require("autoprefixer"));
 var createBabelConfig_1 = require("./createBabelConfig");
 var helpers_1 = require("../rollup/helpers");
 var write_package_1 = require("./write-package");
 var csv_1 = require("../rollup/plugins/csv");
+var postcss_import_1 = __importDefault(require("postcss-import"));
 fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
 function generateBundledModule(_a) {
     var packageName = _a.packageName, inputFile = _a.inputFile, moduleFormat = _a.moduleFormat, env = _a.env;
@@ -169,6 +173,14 @@ function generateBundledModule(_a) {
                                     sourceMap: true,
                                     use: ['sass'],
                                     plugins: [
+                                        postcss_import_1.default(),
+                                        autoprefixer_1.default(),
+                                        tailwindcss_1.default(paths_1.paths.tailwindcssConfig),
+                                        // env === 'production' &&
+                                        //   purgecss({
+                                        //     content: [paths.appHtml, './src/**/*.tsx'],
+                                        //     defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+                                        //   }),
                                         postcss_url_1.default({
                                             url: 'inline',
                                         }),

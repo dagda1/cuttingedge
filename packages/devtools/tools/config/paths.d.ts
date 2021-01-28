@@ -32,5 +32,6 @@ export declare const paths: {
     testTsConfig: string;
     projectReferences: boolean;
     tailwindcssConfig: string;
+    isCommonJS: boolean;
 };
 //# sourceMappingURL=paths.d.ts.map

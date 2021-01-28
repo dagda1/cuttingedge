@@ -1,10 +1,9 @@
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
-import safePostCssParser from 'postcss-safe-parser';
 import { Options } from 'webpack';
 import crypto from 'crypto';
 import path from 'path';
 import webpack from 'webpack';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 const FRAMEWORK_BUNDLES = ['react', 'react-dom'];
 
@@ -18,7 +17,6 @@ const isModuleCSS = (module: { type: string }): boolean => {
 
 export const createWebpackOptimisation = ({
   optimization,
-  isDevelopment,
 }: {
   optimization?: Options.Optimization;
   isDevelopment: boolean;
@@ -50,11 +48,9 @@ export const createWebpackOptimisation = ({
             },
           },
         }),
-        new OptimizeCSSAssetsPlugin({
-          cssProcessorOptions: {
-            parser: safePostCssParser,
-            map: isDevelopment ? { inline: false, annotation: true } : false,
-          },
+        new CssMinimizerPlugin({
+          sourceMap: true,
+          parallel: true,
         }),
       ],
       splitChunks: {

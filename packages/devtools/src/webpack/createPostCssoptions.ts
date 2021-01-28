@@ -21,38 +21,40 @@ export const createPostCssOptions = ({
 }: {
   isProduction: boolean;
 }): {
-  parser: string;
-  ident: string;
   sourceMap: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  plugins: any[];
+  postcssOptions: {
+    parser: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    plugins: any[];
+  };
 } => ({
   sourceMap: true,
-  ident: 'postcss',
-  parser: 'postcss-scss',
-  plugins: [
-    require('postcss-import'),
-    require('tailwindcss')(paths.tailwindcssConfig),
-    require('autoprefixer'),
-    // isProduction && require('postcss-flexbugs-fixes'),
-    // [
-    //   require('postcss-preset-env'),
-    //   {
-    //     autoprefixer: {
-    //       flexbox: 'no-2009',
-    //     },
-    //     stage: 3,
-    //   },
-    // ],
-    // If you comment out the purgecss section, everything works fine.
-    // require('@fullhuman/postcss-purgecss')({
-    //   content: [`${paths.appSrc}/**/*/tsx`, paths.appHtml],
-    //   extractors: [
-    //     {
-    //       extractor: TailwindExtractor,
-    //       extensions: ['html', 'tsx'],
-    //     },
-    //   ],
-    // }),
-  ].filter(Boolean),
+  postcssOptions: {
+    parser: 'postcss-scss',
+    plugins: [
+      'postcss-import',
+      'autoprefixer',
+      require('tailwindcss')(paths.tailwindcssConfig),
+      // isProduction && require('postcss-flexbugs-fixes'),
+      // [
+      //   require('postcss-preset-env'),
+      //   {
+      //     autoprefixer: {
+      //       flexbox: 'no-2009',
+      //     },
+      //     stage: 3,
+      //   },
+      // ],
+      // If you comment out the purgecss section, everything works fine.
+      // require('@fullhuman/postcss-purgecss')({
+      //   content: [`${paths.appSrc}/**/*/tsx`, paths.appHtml],
+      //   extractors: [
+      //     {
+      //       extractor: TailwindExtractor,
+      //       extensions: ['html', 'tsx'],
+      //     },
+      //   ],
+      // }),
+    ].filter(Boolean),
+  },
 });

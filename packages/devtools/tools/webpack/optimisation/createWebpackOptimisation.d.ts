@@ -1,5 +1,5 @@
 import { Options } from 'webpack';
-export declare const createWebpackOptimisation: ({ optimization, isDevelopment, }: {
+export declare const createWebpackOptimisation: ({ optimization, }: {
     optimization?: Options.Optimization | undefined;
     isDevelopment: boolean;
     ssrBuild: boolean;

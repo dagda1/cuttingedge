@@ -162,7 +162,6 @@ var UserDirectoryChoice;
                 });
                 ['SIGINT', 'SIGTERM'].forEach(function (sig) {
                     process.on(sig, function () {
-                        "";
                         server_1.close();
                         process.exit();
                     });

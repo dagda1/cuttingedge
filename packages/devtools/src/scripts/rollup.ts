@@ -22,11 +22,15 @@ import svgo from 'rollup-plugin-svgo';
 import eslint from '@rbnlffl/rollup-plugin-eslint';
 // @ts-ignore
 import url from 'postcss-url';
+// @ts-ignore
+import tailwind from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 import { createBabelConfig } from './createBabelConfig';
 import { safePackageName, writeCjsEntryFile } from '../rollup/helpers';
 import { writeToPackage } from './write-package';
 import { csv } from '../rollup/plugins/csv';
+import postcssImport from 'postcss-import';
 
 fs.emptyDirSync(paths.appBuild);
 
@@ -87,6 +91,14 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
         sourceMap: true,
         use: ['sass'],
         plugins: [
+          postcssImport(),
+          autoprefixer(),
+          tailwind(paths.tailwindcssConfig),
+          // env === 'production' &&
+          //   purgecss({
+          //     content: [paths.appHtml, './src/**/*.tsx'],
+          //     defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+          //   }),
           url({
             url: 'inline',
           }),
