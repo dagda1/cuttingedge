@@ -1,9 +1,20 @@
+<<<<<<< HEAD
+=======
+/* eslint-disable no-console */
+// eslint:disable
+// import './global.css';
+>>>>>>> 0b78c7e7... revert postcss config
 import { FC } from 'react';
 import { Heading, FormInput } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
+<<<<<<< HEAD
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
+=======
+
+import './global.css';
+>>>>>>> 0b78c7e7... revert postcss config
 import styles from './global.module.scss';
 
 export const App: FC = () => {
@@ -112,6 +123,7 @@ export const App: FC = () => {
             />
           </div>
         </div>
+<<<<<<< HEAD
         <div className={styles.layout}>
           <div className={styles.item}>
             <Heading level={2}>Input</Heading>
@@ -158,5 +170,9 @@ export const App: FC = () => {
         </div>
       </div>
     </ApplicationLayout>
+=======
+      </div>
+    </div>
+>>>>>>> 0b78c7e7... revert postcss config
   );
 };
