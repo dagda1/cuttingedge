@@ -19,7 +19,10 @@ $light-yellow: #f7f7f4 !default;
 $label-default-color: $white !default;
 $label-error-color: $error-red !default;
 
-$em-color: $base-grey;
+$em-color: $base-grey !default;
+
+$body-bg-color: $black !default;
+$body-color: $white !default;
 
 $btn-disabled-bg: $base-grey !default;
 $btn-disabled-color: $white !default;
@@ -83,9 +86,5 @@ $cookie-banner-color: $white !default;
 
 $site-banner-bg: $white;
 $banner-bg: $white;
-
-$modal-border-color: $white !default;
-$modal-header-bg: $white !default;
-$modal-header-color: $black !default;
 
 $accessible-outline: #ffbf47 !default;

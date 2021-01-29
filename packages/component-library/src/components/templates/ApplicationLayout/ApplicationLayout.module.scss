@@ -1,0 +1,53 @@
+@import '../../../styles/index';
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box !important;
+}
+
+html {
+  font-size: 100%;
+}
+
+html, body {
+  height: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: $body-font-family;
+  background-color: $body-bg-color;
+  color: $body-color;
+}
+
+ul {
+  padding: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+:global #root {
+  height: 100%;
+  margin: 0 auto;
+  max-width: $desktop !important;
+  display: flex;
+  flex-direction: column;
+
+  @include px(2);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
