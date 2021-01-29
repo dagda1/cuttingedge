@@ -9,5 +9,5 @@ export { Button } from './components/atoms/Button/Button';
 export { LoadingOverlay } from './components/molecules/LoadingIcon/LoadingOverlay';
 export { FormControl } from './components/hoc/FormControl/';
 export { FormInput } from './components/molecules/FormControl';
-export { Modal } from './components/molecules/modal';
 export { RadioGroup } from './components/molecules/RadioGroup';
+export { ApplicationLayout } from './components/templates/ApplicationLayout/ApplicationLayout';
