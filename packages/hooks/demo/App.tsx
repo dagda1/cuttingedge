@@ -10,7 +10,7 @@ export const App: FC = () => {
   const { width, height } = useParentSize(ref);
 
   return (
-    <ApplicationLayout>
+    <ApplicationLayout heading="@cutting/hooks">
       <div ref={ref} className={styles.parent}>
         <h1>Subject</h1>
       </div>

@@ -4,7 +4,8 @@
     "target": "es5",
     "module": "commonjs",
     "outDir": "dist",
-    "rootDirs": [".", "../src"]
+    "rootDir": "."
   },
-  "include": ["./**/*.ts", "./**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
 }
