@@ -12,7 +12,6 @@ export const useParentSize = <E extends Element>(
   { debounceDelay = 0, initialValues = { width: 1, height: 1 } }: Partial<UseParentSizeOptions> = {},
 ): UseParentSizeResult => {
   const isMounted = useIsMounted();
-  const resizeObserverRef = useRef<ResizeObserver | null>();
   const [{ width, height }, setDimensions] = useState<Dimensions>({
     width: initialValues.width,
     height: initialValues.height,
@@ -39,11 +38,7 @@ export const useParentSize = <E extends Element>(
       return;
     }
 
-    if (!!resizeObserverRef?.current) {
-      return;
-    }
-
-    resizeObserverRef.current = new ResizeObserver((entries) => {
+    const resizeObserver = new ResizeObserver((entries) => {
       if (!Array.isArray(entries) || entries.length !== 1) {
         return;
       }
@@ -63,11 +58,11 @@ export const useParentSize = <E extends Element>(
       }
     });
 
-    resizeObserverRef.current.observe(refElement);
+    resizeObserver.observe(refElement);
 
     return () => {
       if (!!refElement) {
-        resizeObserverRef?.current?.unobserve(refElement);
+        resizeObserver?.unobserve(refElement);
       }
     };
   }, [debouncedCallback, height, isMounted, refElement, width]);

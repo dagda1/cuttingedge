@@ -1,3 +1,4 @@
+import '@cutting/component-library/dist/component-library.cjs.development.css';
 import { FC, useRef } from 'react';
 import { useParentSize } from '../src/useParentSize/useParentSize';
 import { ApplicationLayout } from '@cutting/component-library';

@@ -1,6 +1,5 @@
-import type { FC } from 'react';
-import React from 'react';
 import ReactDOM from 'react-dom';
+import type { FC } from 'react';
 import { App } from './App';
 
 export const root = document.getElementById('root');

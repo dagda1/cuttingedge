@@ -29,8 +29,8 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
   heading,
   className,
   innerRef,
-  Header = <div className={styles.hidden}>Header</div>,
-  Footer = <div className={styles.hidden}>Footer</div>,
+  Header = <header className={styles.hidden}>Header</header>,
+  Footer = <footer className={styles.hidden}>Footer</footer>,
   children,
 }) => {
   return (
