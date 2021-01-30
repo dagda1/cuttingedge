@@ -7,7 +7,6 @@ const sassOptions = {
   sassOptions: {
     outputStyle: 'expanded',
     sourceMap: true,
-    data: '@import "./styles/_overrides.scss";',
     includePaths: [paths.appSrc],
     minimize: isProduction,
   },

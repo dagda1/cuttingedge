@@ -1,36 +1,11 @@
 @import 'main';
 
-@font-face {
-  font-family: 'GeosansLight';
-  src: url('../fonts/GeosansLight/GeosansLight.ttf');
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box !important;
-}
-
 html {
-  font-family: 'GeosansLight';
-  font-size: 62.5%;
   overflow-y: scroll;
-  min-height: 100%;
-  height: 100%;
-}
-
-html,
-body {
-  color: $main-color;
-  line-height: 1.5;
-  font-weight: 400;
 }
 
 :global body {
-  height: 100%;
-  margin: 0;
-  font-size: 190%;
-  background-color: $main-bg-color;
+  background-color: $base-bg-color;
 
   &.covid {
     h1 {
@@ -52,34 +27,6 @@ body {
     background: url(../images/lightening.jpg) no-repeat center center fixed; 
     background-size: cover;
   }
-
-  @include mq-l {
-    font-size: 190%;
-  }
-}
-
-ul {
-  margin-top: 0;
-  padding-left: 0;
-  list-style: none;
-}
-
-a {
-  color: $link-color;
-  text-decoration: none;
-}
-
-a,
-button {
-  &:hover {
-    color: $main-color;
-  }
-
-  &:focus, &:focus h2 {
-    @include accessible-outline;
-    color: $black;
-    outline: none;
-  }
 }
 
 header {
@@ -88,25 +35,5 @@ header {
   
   @include mq-l {
     padding-left: inherit;
-  }
-}
-
-:global #root {
-  height: 100%;
-  margin: 0 auto;
-  max-width: $desktop-max-width !important;
-  display: flex;
-  flex-direction: column;
-
-  @include px(2);
-
-  @include mq-l {
-    @include px(2);
-  }
-
-  > div {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
   }
 }

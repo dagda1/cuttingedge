@@ -41,11 +41,11 @@
     transition: all 0.2s ease;
     padding: 20px;
     height: 270px;
-    $color: $main-color;
+    $color: $base-color;
     width: 100%;
 
     &:hover {
-      border-color: $main-color;
+      border-color: $base-color;
     }
   }
 

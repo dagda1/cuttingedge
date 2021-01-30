@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'GeosansLight';
+  src: url('src/assets/fonts/GeosansLight/GeosansLight.ttf');
+}
+
+$base-font-family: GeosansLight !default;
+$link-color: purple !default;
+$active-nav-link-color: #fff !default;

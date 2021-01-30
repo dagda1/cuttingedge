@@ -1,7 +1,11 @@
+import '@cutting/component-library/dist/component-library.cjs.development.css';
 import { FC } from 'react';
-
-import './global.css';
+import { ApplicationLayout } from '@cutting/component-library';
 
 export const App: FC = () => {
-  return <h1>Demo app</h1>;
+  return (
+    <ApplicationLayout>
+      <section>Main Content</section>
+    </ApplicationLayout>
+  );
 };

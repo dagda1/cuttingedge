@@ -9,6 +9,7 @@ import { CuttingEdge } from 'src/constants';
 import { useLocation } from 'react-router';
 import { Covid19 } from 'src/urls';
 import { Helmet } from 'react-helmet';
+import { ApplicationLayoutWithRouterScroll } from '@cutting/component-library';
 
 import styles from './ApplicationLayout.module.scss';
 
@@ -42,14 +43,9 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
   }, [pathname]);
 
   return (
-    <div className={styles['sr-anchor']} ref={root}>
-      <Helmet title={heading || CuttingEdge}>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-      </Helmet>
-      <Header />
-      <main className={className}>
-        {heading && (
+    <ApplicationLayoutWithRouterScroll
+      heading={
+        heading && (
           <Heading
             className={cs({
               [styles.italic]: italicise,
@@ -58,10 +54,20 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
           >
             {heading}
           </Heading>
-        )}
-        {children}
-      </main>
-      {showFooter && <Footer />}
-    </div>
+        )
+      }
+      Header={
+        <>
+          <Helmet title={heading || CuttingEdge}>
+            <meta charSet="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+          </Helmet>
+          <Header />
+        </>
+      }
+      Footer={showFooter ? <Footer /> : undefined}
+    >
+      <main className={className}>{children}</main>
+    </ApplicationLayoutWithRouterScroll>
   );
 };

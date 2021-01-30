@@ -15,14 +15,15 @@ $validation-green: #4e9d52;
 $validation-green-tint: #edf5ee !default;
 $notification-yellow: #ffb644 !default;
 $light-yellow: #f7f7f4 !default;
+$light-orange: #ffbf47;
 
 $label-default-color: $white !default;
 $label-error-color: $error-red !default;
 
 $em-color: $base-grey !default;
 
-$body-bg-color: $black !default;
-$body-color: $white !default;
+$base-bg-color: $black !default;
+$base-color: $white !default;
 
 $btn-disabled-bg: $base-grey !default;
 $btn-disabled-color: $white !default;
@@ -59,7 +60,7 @@ $input-error-border: $error-red !default;
 $checkable-border-bg: $base-grey !default;
 $radio-bg-color: $primary-blue !default;
 $radio-color: $white !default;
-$radio-size-large: 38px;
+$radio-size-large: 38px !default;
 $radio-size-small: ($radio-size-large / 2);
 
 $element-focus-color: $notification-yellow !default;
@@ -79,12 +80,15 @@ $alert-success-border-color: $validation-green !default;
 $alert-success-color: $validation-green !default;
 
 $login-layout-color: $light-yellow !default;
-$login-layout-inner: $white;
+$login-layout-inner: $white !default;
 
 $cookie-banner-bg: $black !default;
 $cookie-banner-color: $white !default;
 
-$site-banner-bg: $white;
-$banner-bg: $white;
+$site-banner-bg: $white !default;
+$banner-bg: $white !default;
 
-$accessible-outline: #ffbf47 !default;
+$link-color: $white !default;
+$link-focus-color: $light-orange !default;
+
+$accessible-outline: $light-orange !default;

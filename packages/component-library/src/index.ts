@@ -10,4 +10,7 @@ export { LoadingOverlay } from './components/molecules/LoadingIcon/LoadingOverla
 export { FormControl } from './components/hoc/FormControl/';
 export { FormInput } from './components/molecules/FormControl';
 export { RadioGroup } from './components/molecules/RadioGroup';
-export { ApplicationLayout } from './components/templates/ApplicationLayout/ApplicationLayout';
+export {
+  ApplicationLayout,
+  ApplicationLayoutWithRouterScroll,
+} from './components/templates/ApplicationLayout/ApplicationLayout';

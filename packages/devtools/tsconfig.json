@@ -10,7 +10,8 @@
     "isolatedModules": false
   },
   "references": [
-    { "path": "../util" }
+    { "path": "../util" },
+    { "path": "../component-library" }
   ],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]

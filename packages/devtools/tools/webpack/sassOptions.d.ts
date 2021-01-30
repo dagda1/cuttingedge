@@ -2,7 +2,6 @@ declare const sassOptions: {
     sassOptions: {
         outputStyle: string;
         sourceMap: boolean;
-        data: string;
         includePaths: string[];
         minimize: boolean;
     };

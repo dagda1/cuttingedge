@@ -1,19 +1,5 @@
 $label-default-color: #fff;
 
-html {
-  height: 100%;
-  font-size: 100%;
-}
-
-body {
-  height: 100%;
-  box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
-  line-height: 1;
-  background-color: #000;
-  color: #fff;
-}
-
 :global #root {
   border: 1px solid green;
 }
@@ -37,10 +23,4 @@ body {
   background-color: white;
   color: black;
   border: 1px solid blue;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box !important;
 }

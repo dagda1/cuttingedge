@@ -1,39 +1,54 @@
-import type { FC, ReactElement } from 'react';
+import type { FC, ReactElement, RefObject } from 'react';
 import { Heading } from '../../atoms/Heading';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
 
 import styles from './ApplicationLayout.module.scss';
+import { isNil } from '@cutting/util';
 
 export interface ApplicationLayoutProps {
-  heading?: string;
+  heading?: string | JSX.Element;
   italicise?: boolean;
   center?: boolean;
   className?: string;
   Footer?: ReactElement;
   Header?: ReactElement;
+  innerRef?: RefObject<HTMLElement>;
 }
+
+const ApplicationLayoutHeading: FC<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
+  if (isNil(heading)) {
+    return null;
+  }
+
+  return typeof heading === 'string' ? <Heading>{heading}</Heading> : heading;
+};
 
 export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
   heading,
   className,
+  innerRef,
   Header = <div className={styles.hidden}>Header</div>,
   Footer = <div className={styles.hidden}>Footer</div>,
   children,
 }) => {
-  const root = useRef<HTMLDivElement>(null);
-
-  useScrollToTop({ ref: root });
-
   return (
     <>
       {Header}
-      <main className={cs(className)} ref={root}>
-        {heading && <Heading>{heading}</Heading>}
+      <main className={cs(className)} ref={innerRef}>
+        <ApplicationLayoutHeading heading={heading} />
         {children}
       </main>
       {Footer}
     </>
   );
+};
+
+export const ApplicationLayoutWithRouterScroll: FC<Omit<ApplicationLayoutProps, 'innerRef'>> = (props) => {
+  const root = useRef<HTMLDivElement>(null);
+
+  useScrollToTop({ ref: root });
+
+  return <ApplicationLayout {...props} innerRef={root} />;
 };

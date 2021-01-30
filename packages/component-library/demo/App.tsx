@@ -1,18 +1,12 @@
-/* eslint-disable no-console */
-// eslint:disable
-// import './global.css';
 import { FC } from 'react';
-import type { History } from 'history';
-import { createBrowserHistory } from 'history';
 import { Heading, FormInput } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
-import { Router, Route } from 'react-router-dom';
 import styles from './global.module.scss';
 
-const MainApp: FC = () => {
+export const App: FC = () => {
   return (
     <ApplicationLayout heading="@cutting/component-library">
       <div className={styles.wrap}>
@@ -164,17 +158,5 @@ const MainApp: FC = () => {
         </div>
       </div>
     </ApplicationLayout>
-  );
-};
-
-interface AppProps {
-  history?: History;
-}
-
-export const App: FC<AppProps> = ({ history = createBrowserHistory() }) => {
-  return (
-    <Router history={history}>
-      <Route path="/" component={MainApp} />
-    </Router>
   );
 };
