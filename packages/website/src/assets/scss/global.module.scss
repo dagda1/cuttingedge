@@ -1,11 +1,15 @@
 @import 'main';
 
-html {
-  overflow-y: scroll;
+@font-face {
+  font-family: 'GeosansLight';
+  src: url('../fonts/GeosansLight/GeosansLight.ttf');
 }
 
+
 :global body {
+  font-family: GeosansLight;
   background-color: $base-bg-color;
+  font-size: 19px;
 
   &.covid {
     h1 {
@@ -27,9 +31,14 @@ html {
     background: url(../images/lightening.jpg) no-repeat center center fixed; 
     background-size: cover;
   }
+
+  a {
+    color: $link-color;
+    text-decoration: none;
+  }
 }
 
-header {
+:global header {
   @include pl(1);
   
   

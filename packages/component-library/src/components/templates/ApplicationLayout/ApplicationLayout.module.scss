@@ -9,7 +9,6 @@
 html {
   margin: 0;
   padding: 0;
-  -webkit-font-smoothing: antialiased;
 }
 
 html, body {
@@ -74,6 +73,5 @@ ul {
 }
 
 a {
-  color: $link-color;
   text-decoration: none;
 }
