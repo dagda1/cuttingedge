@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-shortcuts",
   "description": "Effortlessly create keyboard shortcuts with this react hook.",
-  "version": "4.13.0",
+  "version": "4.14.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -26,16 +26,16 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.13.0",
+    "@cutting/util": "4.14.0",
     "classnames": "^2.2.6",
     "mousetrap": "^1.6.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.13.0",
-    "@cutting/eslint-config": "4.13.0",
-    "@cutting/useful-types": "4.13.0",
+    "@cutting/devtools": "4.14.0",
+    "@cutting/eslint-config": "4.14.0",
+    "@cutting/useful-types": "4.14.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@types/classnames": "^2.2.11",
     "@types/mousetrap": "^1.6.5",
