@@ -1,0 +1,13 @@
+export declare class TailwindExtractor {
+    static extract(content: string): string[];
+}
+export declare const createPostCssOptions: ({ isProduction, }: {
+    isProduction: boolean;
+}) => {
+    sourceMap: boolean;
+    postcssOptions: {
+        parser: string;
+        plugins: any[];
+    };
+};
+//# sourceMappingURL=createPostCssoptions.d.ts.map

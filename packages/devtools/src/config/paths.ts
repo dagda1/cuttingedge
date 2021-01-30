@@ -100,4 +100,5 @@ export const paths = {
   testTsConfig,
   projectReferences: !!tsConfig.references,
   isCommonJS: isCommonJs,
+  tailwindcssConfig: path.join(__dirname, '../css/tailwind.config.js'),
 };

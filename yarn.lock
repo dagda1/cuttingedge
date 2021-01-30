@@ -932,6 +932,16 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@cutting/component-library@4.11.0":
+  version "4.11.0"
+  resolved "https://registry.npmjs.org/@cutting/component-library/-/component-library-4.11.0.tgz#23c0c8a5524c90074643d461fc23d944fa6c4157"
+  integrity sha512-TaQoe7B9UeqgnA3fwmXNl1IMXKMyqdXIqnYi3Qav2iJiddttHQJ6sGT49FQB8ChBaAH7+lxEoiY4aU8xG/aEYg==
+  dependencies:
+    "@cutting/util" "4.11.0"
+    classnames "^2.2.6"
+    react "^17.0.1"
+    react-dom "^17.0.1"
+
 "@cutting/rollup-plugin-md@0.3.2":
   version "0.3.2"
   resolved "https://registry.npmjs.org/@cutting/rollup-plugin-md/-/rollup-plugin-md-0.3.2.tgz#2217243a56370185f46a9fb272caedbe2b591dd8"
@@ -940,6 +950,14 @@
     "@rollup/pluginutils" "^4.1.0"
     marked "^1.2.7"
     rollup "^2.35.1"
+
+"@cutting/util@4.11.0":
+  version "4.11.0"
+  resolved "https://registry.npmjs.org/@cutting/util/-/util-4.11.0.tgz#3614410c658b03c6c9e2ae87c3e96ba9c658e2a5"
+  integrity sha512-YH/ISotg78mzVlAkfcsSu1cWYATVaLZ+qzcqmyobU0jSgdJd/BvEbmaPIXxF01jSXw6ocsB0j82HzZvTpBnfzA==
+  dependencies:
+    "@cutting/util" "4.11.0"
+    react "^17.0.1"
 
 "@definitelytyped/header-parser@latest":
   version "0.0.66"
