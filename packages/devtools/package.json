@@ -37,6 +37,7 @@
     "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.0.1",
+    "@tailwindcss/postcss7-compat": "^2.0.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "^3.7.0",
@@ -102,6 +103,7 @@
     "source-map-support": "^0.5.19",
     "start-server-webpack-plugin": "^2.2.5",
     "svg-url-loader": "^7.1.1",
+    "tailwindcss": "2.0.1-compat",
     "terser-webpack-plugin": "^4.2.3",
     "ts-jest": "^26.4.4",
     "ts-loader": "^8.0.14",
@@ -123,8 +125,8 @@
     "css/**/*.*"
   ],
   "devDependencies": {
-    "@types/autoprefixer": "^9.7.2",
     "@cutting/component-library": "4.14.0",
+    "@types/autoprefixer": "^9.7.2",
     "@types/babel__plugin-transform-runtime": "^7.9.1",
     "@types/babel__preset-env": "^7.9.1",
     "@types/copy": "^0.3.1",

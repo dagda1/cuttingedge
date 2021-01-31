@@ -1,0 +1,1 @@
+{"version":3,"file":"stats.js","sourceRoot":"","sources":["../../../src/webpack/loaders/stats.ts"],"names":[],"mappings":";;;AAEa,QAAA,KAAK,GAAkB;IAClC,MAAM,EAAE,KAAK;IACb,QAAQ,EAAE,KAAK;IACf,MAAM,EAAE,KAAK;IACb,IAAI,EAAE,KAAK;IACX,OAAO,EAAE,KAAK;IACd,UAAU,EAAE,KAAK;IACjB,OAAO,EAAE,KAAK;IACd,OAAO,EAAE,KAAK;IACd,QAAQ,EAAE,IAAI;IACd,MAAM,EAAE,IAAI;IACZ,WAAW,EAAE,KAAK;CACnB,CAAC"}
