@@ -63,7 +63,6 @@ process.env.NODE_ENV = 'development';
 process.on('unhandledRejection', function (err) {
     throw err;
 });
-var inquirer_1 = __importDefault(require("inquirer"));
 var webpack_dev_server_1 = __importDefault(require("webpack-dev-server"));
 var clearConsole_1 = __importDefault(require("react-dev-utils/clearConsole"));
 var openBrowser_1 = __importDefault(require("react-dev-utils/openBrowser"));
@@ -75,7 +74,7 @@ var client_1 = require("../webpack/client");
 var build_config_1 = require("../config/build.config");
 var assert_ts_1 = require("assert-ts");
 var fs_extra_1 = __importDefault(require("fs-extra"));
-var path_1 = __importDefault(require("path"));
+var createScaffold_1 = require("./createScaffold");
 var isInteractive = process.stdout.isTTY;
 var devServer = build_config_1.config.devServer;
 assert_ts_1.assert(devServer, 'no devServer node');
@@ -83,60 +82,22 @@ assert_ts_1.assert(devServer.publicDir, 'no publicDir');
 assert_ts_1.assert(devServer.entries, 'no devServer entries');
 var DEFAULT_PORT = Number(process.env.PORT) || 3000;
 var HOST = process.env.HOST || '0.0.0.0';
-var UserDirectoryChoice;
-(function (UserDirectoryChoice) {
-    UserDirectoryChoice[UserDirectoryChoice["root"] = 1] = "root";
-    UserDirectoryChoice[UserDirectoryChoice["demo"] = 2] = "demo";
-})(UserDirectoryChoice || (UserDirectoryChoice = {}));
 (function () { return __awaiter(void 0, void 0, void 0, function () {
-    var value, source, config, port, protocol, pkg, appName, proxySetting, urls_1, compiler, server_1, err_1;
+    var config, port, protocol, pkg, appName, proxySetting, urls_1, compiler, server_1, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 5, , 6]);
-                if (!(!fs_extra_1.default.existsSync(devServer.publicDir) && !fs_extra_1.default.existsSync(paths_1.paths.devDirPublic))) return [3 /*break*/, 2];
-                return [4 /*yield*/, inquirer_1.default.prompt({
-                        type: 'number',
-                        name: 'value',
-                        message: "There is no public index.html etc, should I create these:\n        \n        1.  In the root\n        2.  In a ./demo directory\n        ",
-                    })];
-            case 1:
-                value = (_a.sent()).value;
-                if (!value) {
-                    throw new Error('No public index.html to start dev server');
+                _a.trys.push([0, 3, , 4]);
+                if (!fs_extra_1.default.existsSync(devServer.publicDir) && !fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)) {
+                    createScaffold_1.scaffold();
                 }
-                source = path_1.default.join(__dirname, '../../demo');
-                if (Number(value) === UserDirectoryChoice.root) {
-                    if (!fs_extra_1.default.existsSync(paths_1.paths.appSrc)) {
-                        fs_extra_1.default.mkdirSync(paths_1.paths.appSrc);
-                    }
-                    fs_extra_1.default.copySync(path_1.default.join(source, 'public'), path_1.default.join(process.cwd(), 'public'));
-                    fs_extra_1.default.copyFileSync(path_1.default.join(source, 'index.tsx'), path_1.default.join(paths_1.paths.appSrc, 'index.tsx'));
-                    fs_extra_1.default.copyFileSync(path_1.default.join(source, 'App.tsx'), path_1.default.join(paths_1.paths.appSrc, 'App.tsx'));
-                    fs_extra_1.default.copyFileSync(path_1.default.join(source, 'global.css'), path_1.default.join(paths_1.paths.appSrc, 'global.css'));
-                }
-                else if (Number(value) === UserDirectoryChoice.demo) {
-                    fs_extra_1.default.mkdirSync(paths_1.paths.devDir);
-                    fs_extra_1.default.copySync(source, path_1.default.join(process.cwd(), 'demo'));
-                }
-                if (!fs_extra_1.default.existsSync(paths_1.paths.tsConfig)) {
-                    fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../typescript/tsconfig.json'), paths_1.paths.tsConfig);
-                }
-                if (!fs_extra_1.default.existsSync(paths_1.paths.eslintConfig)) {
-                    fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../typescript/.eslintrc.json'), path_1.default.join(paths_1.paths.eslintConfig));
-                }
-                if (!fs_extra_1.default.existsSync(paths_1.paths.gitIgnore)) {
-                    fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../init/.gitignore'), paths_1.paths.gitIgnore);
-                }
-                _a.label = 2;
-            case 2:
                 if (!fs_extra_1.default.existsSync(devServer.publicDir) && fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)) {
                     devServer.publicDir = paths_1.paths.devDirPublic;
                     devServer.entries = paths_1.paths.devDir;
                 }
                 config = client_1.configure(devServer);
                 return [4 /*yield*/, WebpackDevServerUtils_1.choosePort(HOST, DEFAULT_PORT)];
-            case 3:
+            case 1:
                 port = _a.sent();
                 if (port === null) {
                     logger_1.logger.error('We have not found a port.');
@@ -144,7 +105,7 @@ var UserDirectoryChoice;
                 }
                 protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
                 return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(paths_1.paths.appPackageJson)); })];
-            case 4:
+            case 2:
                 pkg = _a.sent();
                 appName = pkg.name, proxySetting = pkg.proxy;
                 urls_1 = WebpackDevServerUtils_1.prepareUrls(protocol, HOST, port);
@@ -169,15 +130,15 @@ var UserDirectoryChoice;
                         process.exit();
                     });
                 });
-                return [3 /*break*/, 6];
-            case 5:
+                return [3 /*break*/, 4];
+            case 3:
                 err_1 = _a.sent();
                 if (err_1) {
                     logger_1.logger.error(err_1.message);
                 }
                 process.exit(1);
-                return [3 /*break*/, 6];
-            case 6: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); })();

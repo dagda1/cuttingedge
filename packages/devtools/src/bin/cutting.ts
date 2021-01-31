@@ -13,15 +13,17 @@ switch (script) {
   case 'audit':
     command = '../audit-parser/index.js';
     break;
-  case 'rollup':
-  case 'devserver-start':
   case 'each-pkg':
-  case 'test':
-  case 'ts-build':
-  case 'static-build':
+  case 'devserver-start':
+  case 'init':
   case 'node-build':
+  case 'rollup':
+  case 'scaffold':
   case 'ssr-build':
-  case 'ssr-start': {
+  case 'ssr-start':
+  case 'static-build':
+  case 'test':
+  case 'ts-build': {
     command = `../scripts/${script}`;
     break;
   }

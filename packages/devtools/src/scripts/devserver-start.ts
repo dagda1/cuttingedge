@@ -4,7 +4,6 @@ process.env.NODE_ENV = 'development';
 process.on('unhandledRejection', (err) => {
   throw err;
 });
-import inquirer from 'inquirer';
 import WebpackDevServer from 'webpack-dev-server';
 import clearConsole from 'react-dev-utils/clearConsole';
 import openBrowser from 'react-dev-utils/openBrowser';
@@ -17,7 +16,7 @@ import { config as buildConfig } from '../config/build.config';
 import { assert } from 'assert-ts';
 import { DevServerConfig } from '../types/config';
 import fs from 'fs-extra';
-import path from 'path';
+import { scaffold } from './createScaffold';
 
 const isInteractive = process.stdout.isTTY;
 
@@ -31,54 +30,10 @@ assert(devServer.entries, 'no devServer entries');
 const DEFAULT_PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
-enum UserDirectoryChoice {
-  root = 1,
-  demo = 2,
-}
 (async () => {
   try {
     if (!fs.existsSync(devServer.publicDir) && !fs.existsSync(paths.devDirPublic)) {
-      const { value } = await inquirer.prompt({
-        type: 'number',
-        name: 'value',
-        message: `There is no public index.html etc, should I create these:
-        
-        1.  In the root
-        2.  In a ./demo directory
-        `,
-      });
-
-      if (!value) {
-        throw new Error('No public index.html to start dev server');
-      }
-
-      const source = path.join(__dirname, '../../demo');
-
-      if (Number(value) === UserDirectoryChoice.root) {
-        if (!fs.existsSync(paths.appSrc)) {
-          fs.mkdirSync(paths.appSrc);
-        }
-
-        fs.copySync(path.join(source, 'public'), path.join(process.cwd(), 'public'));
-        fs.copyFileSync(path.join(source, 'index.tsx'), path.join(paths.appSrc, 'index.tsx'));
-        fs.copyFileSync(path.join(source, 'App.tsx'), path.join(paths.appSrc, 'App.tsx'));
-        fs.copyFileSync(path.join(source, 'global.css'), path.join(paths.appSrc, 'global.css'));
-      } else if (Number(value) === UserDirectoryChoice.demo) {
-        fs.mkdirSync(paths.devDir);
-        fs.copySync(source, path.join(process.cwd(), 'demo'));
-      }
-
-      if (!fs.existsSync(paths.tsConfig)) {
-        fs.copyFileSync(path.join(__dirname, '../../typescript/tsconfig.json'), paths.tsConfig);
-      }
-
-      if (!fs.existsSync(paths.eslintConfig)) {
-        fs.copyFileSync(path.join(__dirname, '../../typescript/.eslintrc.json'), path.join(paths.eslintConfig));
-      }
-
-      if (!fs.existsSync(paths.gitIgnore)) {
-        fs.copyFileSync(path.join(__dirname, '../../init/.gitignore'), paths.gitIgnore);
-      }
+      scaffold();
     }
 
     if (!fs.existsSync(devServer.publicDir) && fs.existsSync(paths.devDirPublic)) {

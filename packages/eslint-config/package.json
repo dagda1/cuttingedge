@@ -1,6 +1,6 @@
 {
   "name": "@cutting/eslint-config",
-  "version": "4.16.0",
+  "version": "4.18.0",
   "description": "Cutting eslint configuration definition",
   "main": "index.js",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "react"
   ],
   "dependencies": {
-    "@cutting/useful-types": "4.16.0",
+    "@cutting/useful-types": "4.18.0",
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.10.0",
