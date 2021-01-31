@@ -114,16 +114,19 @@ var UserDirectoryChoice;
                     fs_extra_1.default.copyFileSync(path_1.default.join(source, 'index.tsx'), path_1.default.join(paths_1.paths.appSrc, 'index.tsx'));
                     fs_extra_1.default.copyFileSync(path_1.default.join(source, 'App.tsx'), path_1.default.join(paths_1.paths.appSrc, 'App.tsx'));
                     fs_extra_1.default.copyFileSync(path_1.default.join(source, 'global.css'), path_1.default.join(paths_1.paths.appSrc, 'global.css'));
-                    if (!fs_extra_1.default.existsSync(paths_1.paths.tsConfig)) {
-                        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../typescript/tsconfig.json'), path_1.default.join(process.cwd(), 'tsconfig.json'));
-                    }
-                    if (!fs_extra_1.default.existsSync(paths_1.paths.eslintConfig)) {
-                        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../typescript/.eslintrc.json'), path_1.default.join(process.cwd(), '.eslintrc.json'));
-                    }
                 }
                 else if (Number(value) === UserDirectoryChoice.demo) {
                     fs_extra_1.default.mkdirSync(paths_1.paths.devDir);
                     fs_extra_1.default.copySync(source, path_1.default.join(process.cwd(), 'demo'));
+                }
+                if (!fs_extra_1.default.existsSync(paths_1.paths.tsConfig)) {
+                    fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../typescript/tsconfig.json'), paths_1.paths.tsConfig);
+                }
+                if (!fs_extra_1.default.existsSync(paths_1.paths.eslintConfig)) {
+                    fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../typescript/.eslintrc.json'), path_1.default.join(paths_1.paths.eslintConfig));
+                }
+                if (!fs_extra_1.default.existsSync(paths_1.paths.gitIgnore)) {
+                    fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../init/.gitignore'), paths_1.paths.gitIgnore);
                 }
                 _a.label = 2;
             case 2:

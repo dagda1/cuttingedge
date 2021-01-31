@@ -1,6 +1,6 @@
 {
   "name": "@cutting/devtools",
-  "version": "4.15.0",
+  "version": "4.16.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -118,14 +118,15 @@
     "write-file-webpack-plugin": "^4.5.1"
   },
   "files": [
-    "bin/cutting.js",
+    "bin/**/*.*",
+    "css/**/*.*",
+    "init/**/*.*",
     "tools/**/*.js",
-    "typescript/**/*.json",
-    "css/**/*.*"
+    "typescript/**/*.*"
   ],
   "devDependencies": {
     "@types/autoprefixer": "^9.7.2",
-    "@cutting/component-library": "4.15.0",
+    "@cutting/component-library": "4.16.0",
     "@types/babel__plugin-transform-runtime": "^7.9.1",
     "@types/babel__preset-env": "^7.9.1",
     "@types/copy": "^0.3.1",

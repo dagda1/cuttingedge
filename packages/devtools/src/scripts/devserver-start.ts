@@ -63,23 +63,21 @@ enum UserDirectoryChoice {
         fs.copyFileSync(path.join(source, 'index.tsx'), path.join(paths.appSrc, 'index.tsx'));
         fs.copyFileSync(path.join(source, 'App.tsx'), path.join(paths.appSrc, 'App.tsx'));
         fs.copyFileSync(path.join(source, 'global.css'), path.join(paths.appSrc, 'global.css'));
-
-        if (!fs.existsSync(paths.tsConfig)) {
-          fs.copyFileSync(
-            path.join(__dirname, '../../typescript/tsconfig.json'),
-            path.join(process.cwd(), 'tsconfig.json'),
-          );
-        }
-
-        if (!fs.existsSync(paths.eslintConfig)) {
-          fs.copyFileSync(
-            path.join(__dirname, '../../typescript/.eslintrc.json'),
-            path.join(process.cwd(), '.eslintrc.json'),
-          );
-        }
       } else if (Number(value) === UserDirectoryChoice.demo) {
         fs.mkdirSync(paths.devDir);
         fs.copySync(source, path.join(process.cwd(), 'demo'));
+      }
+
+      if (!fs.existsSync(paths.tsConfig)) {
+        fs.copyFileSync(path.join(__dirname, '../../typescript/tsconfig.json'), paths.tsConfig);
+      }
+
+      if (!fs.existsSync(paths.eslintConfig)) {
+        fs.copyFileSync(path.join(__dirname, '../../typescript/.eslintrc.json'), path.join(paths.eslintConfig));
+      }
+
+      if (!fs.existsSync(paths.gitIgnore)) {
+        fs.copyFileSync(path.join(__dirname, '../../init/.gitignore'), paths.gitIgnore);
       }
     }
 
