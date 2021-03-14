@@ -28,9 +28,7 @@
     "focus",
     "react",
     "reactjs",
-    "reactnative",
-    "hooks",
-    "hook",
-    "use-cancellable-fetcch"
+    "graphql",
+    "dataviz"
   ]
 }

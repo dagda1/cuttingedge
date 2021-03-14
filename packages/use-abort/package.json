@@ -39,7 +39,7 @@
     "reactnative",
     "hooks",
     "hook",
-    "use-cancellable-fetcch"
+    "use-cancellable-fetch"
   ],
   "main": "dist/index.js",
   "browser": "dist/use-abort.esm.js"
