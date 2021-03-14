@@ -13,7 +13,7 @@
   "scripts": {
     "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting ts-build",
+    "build": "NODE_ENV=production cutting static-build",
     "prepublish": "yarn build"
   },
   "dependencies": {
