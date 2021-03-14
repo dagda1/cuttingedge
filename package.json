@@ -4,15 +4,15 @@
   "private": true,
   "scripts": {
     "build": "yarn workspaces run build",
-    "build:tsc": "tsc --build ./tsconfig.monorepo.json",
-    "clean:tsbuild": "find .  \\( -name node_modules -o -name dir2 -o -path name \\) -prune -false -o -name 'dist'  -exec rm -rf {} + -o -name '*.tsbuildinfo'  -exec rm -rf {} +",
+    "build:tsc": "tsc -b ./tsconfig.packages.json",
+    "clean:tsbuild": "yarn build:tsc -- --clean && find . \\( -name node_modules -o -name dir2 -o -path name \\) -prune -false -o -name 'dist' -type d   -exec rm -rf {} +",
     "test": "CI=true yarn workspaces run test",
     "start": "yarn build && yarn --cwd packages/website start",
     "publish:all": "NODE_ENV=production cutting each-pkg yarn publish -- --non-interactive --verbose",
     "audit-packages": "cutting each-pkg cutting audit",
     "lint": "eslint 'packages/**/*.{ts,tsx,js}' -c ./packages/component-library/.eslintrc.json --ignore-path ./.eslintignore --fix",
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix",
-    "watch": "yarn build:tsc && yarn tsc -b ./tsconfig.monorepo.json --watch"
+    "watch": "yarn build:tsc && yarn tsc -b ./tsconfig.packages.json --watch"
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
@@ -36,6 +36,7 @@
       "packages/svg",
       "packages/use-mathjax",
       "packages/use-shortcuts",
+      "packages/graphql-explorer",
       "packages/website"
     ]
   },
