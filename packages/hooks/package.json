@@ -18,7 +18,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "FAST_REFRESH=true PORT=9999 NODE_ENV=development cutting devserver-start",
+    "start": "PORT=9999 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "lint": "yarn eslint ./src/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",

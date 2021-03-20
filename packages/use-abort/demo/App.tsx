@@ -3,16 +3,17 @@ import { useAbort, AbortableStates } from '../src';
 import cs from 'classnames';
 import './App.css';
 import { AbortError } from '../src/AbortError';
+import { range } from '@cutting/util';
+import { FetchRequest } from '../src/useAbort';
 
 type Expected = { message: string };
 
 const requests = Array.from({ length: 10 }, (_, i) => i + 1);
 
-const makeFetchRequest = (fetchDelay: number, name: string): Promise<Expected> => {
-  return fetch(`https://slowmo.glitch.me/${fetchDelay}`)
-    .then((r) => r.json())
-    .then(() => ({ message: `received ${name}` }));
-};
+const makeFetchRequest = (fetchDelay: number, name: string): FetchRequest<Expected> => ({
+  request: `https://slowmo.glitch.me/${fetchDelay}`,
+  onSuccess:() => console.log({ message: `received ${name}` })
+});
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -49,10 +50,9 @@ export const App: React.FC = () => {
 
   const options = useMemo(() => ({ onAbort }), [onAbort]);
 
-  const { run, state, abortController, reset } = useAbort<Expected, void>(
-    useCallback(generator, [delay, processResult]),
-    options,
-  );
+  const fetchRequests = Array.from(range(0, 10)).map((n) => makeFetchRequest(delay, `${n}`));
+
+  const { run, state, abortController, reset } = useAbort<Expected>(());
 
   return (
     <div className="container">

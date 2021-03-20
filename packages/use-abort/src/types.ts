@@ -38,6 +38,8 @@ export interface AbortableSchema<D> {
 export type UseAbortOptions<D> = {
   initialData: D | undefined;
   onAbort: Fn;
+  onSuccess: (d: D) => void;
+  
 };
 
 export type ExtractType<T> = T extends {

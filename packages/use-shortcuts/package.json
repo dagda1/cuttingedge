@@ -18,7 +18,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
+    "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test:types": "dtslint types --localTs ../../node_modules/typescript/lib --expectOnly",
     "test:unit": "NODE_ENV=test cutting test a",
     "test": "CI=true yarn test:unit && yarn test:types",

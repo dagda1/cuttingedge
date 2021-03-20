@@ -12,14 +12,16 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
+    "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting rollup",
-    "prepublish": "yarn build"
+    "build": "NODE_ENV=production cutting rollup"
   },
   "dependencies": {
     "@cutting/util": "4.21.0",
+    "@effection/core": "=2.0.0-preview.4",
+    "@effection/node": "=1.0.0-preview.4",
     "@xstate/react": "^1.2.0",
+    "effection": "=2.0.0-preview.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "xstate": "^4.15.1"

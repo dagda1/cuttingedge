@@ -11,7 +11,7 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "start": "FAST_REFRESH=true PORT=8888 NODE_ENV=development cutting devserver-start",
+    "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting static-build",
     "prepublish": "yarn build"
