@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { useAbort, AbortableStates } from '../src';
+import { useAbort } from '../src';
 import cs from 'classnames';
 import './App.css';
 import { AbortError } from '../src/AbortError';
 import { range } from '@cutting/util';
-import { FetchRequest } from '../src/useAbort';
+import { FetchRequest, FetchJob } from '../src/types';
+import { Runnable } from '../src/types';
+import {v4} from 'uuid';
 
 type Expected = { message: string };
 
@@ -14,6 +16,23 @@ const makeFetchRequest = (fetchDelay: number, name: string): FetchRequest<Expect
   request: `https://slowmo.glitch.me/${fetchDelay}`,
   onSuccess:() => console.log({ message: `received ${name}` })
 });
+
+export function createFetchJob <T>(): Runnable<FetchJob<T>> {
+  return {
+    run(scope) {
+      const fetchJob: FetchJob<T> = {
+        uuid: v4(),
+        fetchRequests: []
+      }
+
+      scope.spawn(function * () {
+        
+      })
+
+      return fetchJob;
+    }
+  }
+}
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -95,7 +114,7 @@ export const App: React.FC = () => {
         <div className="button__container">
           <button
             className="btn-primary"
-            disabled={state !== AbortableStates.Idle}
+            disabled={state !== 'IDLE'}
             onClick={() => {
               setMessages([]);
               setProgress(0);
@@ -106,14 +125,14 @@ export const App: React.FC = () => {
           </button>
           <button
             className="btn-danger"
-            disabled={state !== AbortableStates.Loading}
+            disabled={state !== 'LOADING'}
             onClick={() => abortController.abort()}
           >
             CANCEL
           </button>
           <button
             className="btn-secondary"
-            disabled={[AbortableStates.Idle, AbortableStates.Loading].includes(state as AbortableStates)}
+            disabled={['IDLE', 'LOADING'].includes(state as AbortableStates)}
             onClick={() => {
               reset();
               setMessages([]);

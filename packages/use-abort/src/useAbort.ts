@@ -1,26 +1,12 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createAbortableMachine, abort, reset, start, success, error } from './machine';
-import { AbortableStates, UseAbortOptions } from './types';
+import { FetchState, FetchOptions, AddFetch } from './types';
 import { identity } from '@cutting/util';
-import { run } from '@effection/core';
-
-const ContentTypeMap = {
-  json: 'application/json',
-  text: 'application/plain',
-} as const;
-
-export type FetchRequest<T> = {
-  request: RequestInfo;
-  init?: RequestInit;
-  onSuccess?: (t?: T) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onError?: (e: any) => void;
-  contentType?: 'json' | 'text';
-};
+import { run } from 'effection';
 
 export type UseAbortResult<T> = {
-  state: AbortableStates;
+  state: FetchState<T>;
   run: (...args: unknown[]) => void;
   data?: T;
   reset: () => void;
@@ -30,10 +16,7 @@ export type UseAbortResult<T> = {
   isSettled: boolean;
 };
 
-export const useAbort = <T>(
-  fetchRequests: FetchRequest<T> | FetchRequest<T>[],
-  { initialData = undefined, onAbort = identity }: Partial<UseAbortOptions<T>> = {},
-): UseAbortResult<T> => {
+export const useAbort = <T>(addFetch: AddFetch, { onAbort, initialData }: FetchOptions<T>): UseAbortResult<T> => {
   const [machine, send] = useMachine(createAbortableMachine({ initialData }));
   const abortController = useRef<AbortController>(new AbortController());
   const counter = useRef(0);
@@ -60,8 +43,6 @@ export const useAbort = <T>(
     counter.current++;
 
     send(start);
-
-    const results = 
 
     try {
       const result = run(function* (scope) {
@@ -90,7 +71,7 @@ export const useAbort = <T>(
       send(error(err));
       return;
     }
-  }, [abortable, fn, send]);
+  }, [abortable, requests, send]);
 
   const result: UseAbortResult<ReturnType<typeof fn>> = useMemo(
     () => ({
