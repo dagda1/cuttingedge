@@ -16,7 +16,7 @@ export function fetcher<T>(): Effect<Record<string, FetchJob<T>>> {
     };
 }
 
-export function createEffects<T>(atom: Slice<FetchState>): Runnable<void> {
+export function createEffects<T>(atom: Slice<FetchState<T>>): Runnable<void> {
   return {
     run(scope) {
       scope.spawn(map(atom.slice('jobs'), fetcher()));

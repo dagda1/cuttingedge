@@ -1,7 +1,6 @@
 import type { Operation, Task } from 'effection';
 import { Fn } from '@cutting/util';
 import { Slice } from '@effection/atom/dist';
-import { FetchClient } from './context/FetchProvider';
 
 export type AbortableContext<D> = {
   data: D;
@@ -59,11 +58,16 @@ export interface FetchJob<T> {
 }
 
 export interface FetchState<T> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   jobs: Record<string, FetchJob<T>>;
 }
 
-export type AddFetch = <T>(fetcher: FetchClient, job: FetchJob<T>) => FetchClient;
+export interface FetchClient<T> {
+  atom: Slice<FetchState<T>>;
+  scope: Task;
+  addFetchRequest(info: RequestInfo, options: RequestInit & FetchOptions<T>): FetchClient<T>;
+}
+
+export type AddFetch = <T>(fetcher: FetchClient<T>) => FetchClient<T>;
 
 export interface FetchOptions<T> {
   initialData?: T | undefined;

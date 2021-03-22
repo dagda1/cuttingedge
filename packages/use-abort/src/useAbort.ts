@@ -16,12 +16,13 @@ export type UseAbortResult<T> = {
   isSettled: boolean;
 };
 
-export const useAbort = <T>(addFetch: AddFetch, { onAbort, initialData }: FetchOptions<T>): UseAbortResult<T> => {
+export const useAbort = <T>(
+  addFetch: AddFetch,
+  { onAbort = identity, initialData }: FetchOptions<T> = {},
+): UseAbortResult<T> => {
   const [machine, send] = useMachine(createAbortableMachine({ initialData }));
   const abortController = useRef<AbortController>(new AbortController());
   const counter = useRef(0);
-
-  const requests = Array.isArray(fetchRequests) ? fetchRequests : [fetchRequests];
 
   const abortable = useCallback(
     (e: Error) => {
@@ -75,7 +76,7 @@ export const useAbort = <T>(addFetch: AddFetch, { onAbort, initialData }: FetchO
 
   const result: UseAbortResult<ReturnType<typeof fn>> = useMemo(
     () => ({
-      state: machine.value as AbortableStates,
+      state: machine.value,
       run: runner,
       data: machine.context.data,
       error: machine.context.error,

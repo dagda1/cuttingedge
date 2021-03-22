@@ -6,7 +6,7 @@ import { AbortError } from '../src/AbortError';
 import { range } from '@cutting/util';
 import { FetchRequest, FetchJob } from '../src/types';
 import { Runnable } from '../src/types';
-import {v4} from 'uuid';
+import { v4 } from 'uuid';
 
 type Expected = { message: string };
 
@@ -14,30 +14,28 @@ const requests = Array.from({ length: 10 }, (_, i) => i + 1);
 
 const makeFetchRequest = (fetchDelay: number, name: string): FetchRequest<Expected> => ({
   request: `https://slowmo.glitch.me/${fetchDelay}`,
-  onSuccess:() => console.log({ message: `received ${name}` })
+  onSuccess: () => console.log({ message: `received ${name}` }),
 });
 
-export function createFetchJob <T>(): Runnable<FetchJob<T>> {
+export function createFetchJob<T>(): Runnable<FetchJob<T>> {
   return {
     run(scope) {
       const fetchJob: FetchJob<T> = {
         uuid: v4(),
-        fetchRequests: []
-      }
+        fetchRequests: [],
+      };
 
-      scope.spawn(function * () {
-        
-      })
+      scope.spawn(function* () {});
 
       return fetchJob;
-    }
-  }
+    },
+  };
 }
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
-  const [delay, setDelay] = useState(700);
+  const [delay, setDelay] = useState(100);
 
   const processResult = useCallback((e: Expected) => {
     setProgress((n) => (n += 1));
@@ -67,11 +65,18 @@ export const App: React.FC = () => {
     }
   }
 
-  const options = useMemo(() => ({ onAbort }), [onAbort]);
+  const { run, state, abortController, reset } = useAbort<Expected>((fetchClient) => {
+    for (const i of range(0, 10)) {
+      fetchClient.addFetchRequest(`https://slowmo.glitch.me/${delay}`, {
+        onSuccess: (d) => console.log(`received number ${i} with ${JSON.stringify(d)}`),
+        onAbort: () => console.log(`aborted on ${i}`),
+      });
+    }
 
-  const fetchRequests = Array.from(range(0, 10)).map((n) => makeFetchRequest(delay, `${n}`));
-
-  const { run, state, abortController, reset } = useAbort<Expected>(());
+    return fetchClient;
+  }, {
+    onE
+  });
 
   return (
     <div className="container">
@@ -123,11 +128,7 @@ export const App: React.FC = () => {
           >
             DO SHENANIGANS
           </button>
-          <button
-            className="btn-danger"
-            disabled={state !== 'LOADING'}
-            onClick={() => abortController.abort()}
-          >
+          <button className="btn-danger" disabled={state !== 'LOADING'} onClick={() => abortController.abort()}>
             CANCEL
           </button>
           <button
