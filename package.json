@@ -1,6 +1,6 @@
 {
   "name": "cuttingedge",
-  "version": "4.20.1",
+  "version": "4.21.0",
   "private": true,
   "scripts": {
     "build": "yarn workspaces run build",
@@ -26,6 +26,7 @@
       "packages/devtools",
       "packages/testing",
       "packages/eslint-config",
+      "packages/tsconfig",
       "packages/useful-types",
       "packages/devtools",
       "packages/util",

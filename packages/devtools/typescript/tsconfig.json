@@ -1,5 +1,5 @@
 {
-  "extends": "@cutting/devtools/typescript/tsconfig.base.json",
+  "extends": "@cutting/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "./dist",

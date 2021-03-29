@@ -1,6 +1,6 @@
 {
   "name": "@cutting/component-library",
-  "version": "4.20.1",
+  "version": "4.21.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -15,16 +15,16 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/hooks": "4.20.1",
-    "@cutting/util": "4.20.1",
+    "@cutting/hooks": "4.21.0",
+    "@cutting/util": "4.21.0",
     "classnames": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.20.1",
-    "@cutting/eslint-config": "4.20.1",
-    "@cutting/useful-types": "4.20.1",
+    "@cutting/devtools": "4.21.0",
+    "@cutting/eslint-config": "4.21.0",
+    "@cutting/useful-types": "4.21.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",

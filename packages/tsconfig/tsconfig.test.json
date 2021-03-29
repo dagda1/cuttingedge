@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "@cutting/tsconfig",
   "compilerOptions": {
     "target": "ES5",
     "module": "CommonJS",

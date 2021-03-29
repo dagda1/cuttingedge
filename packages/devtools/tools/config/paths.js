@@ -27,6 +27,7 @@ var libPackages = [
     'packages/devtools',
     'packages/testing',
     'packages/eslint-config',
+    'packages/tsconfig',
     'packages/useful-types',
     'packages/util',
     'packages/hooks',
@@ -37,7 +38,7 @@ var libPackages = [
     'packages/use-abort',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var tsConfigPath = resolveApp('tsconfig.json');
-var testTsConfigPath = resolveApp('tsconfig.test.json');
+var testTsConfigPath = require.resolve('@cutting/tsconfig/tsconfig.test.json');
 var tsConfig = fs_1.default.existsSync(tsConfigPath)
     ? require(tsConfigPath)
     : { compilerOptions: { outDir: undefined, module: undefined } };

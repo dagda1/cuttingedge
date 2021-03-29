@@ -33,6 +33,7 @@ const libPackages = [
   'packages/devtools',
   'packages/testing',
   'packages/eslint-config',
+  'packages/tsconfig',
   'packages/useful-types',
   'packages/util',
   'packages/hooks',
@@ -44,7 +45,7 @@ const libPackages = [
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');
-const testTsConfigPath = resolveApp('tsconfig.test.json');
+const testTsConfigPath = require.resolve('@cutting/tsconfig/tsconfig.test.json');
 
 type OurCompilerOptions = {
   compilerOptions: Partial<Pick<ParsedCommandLine['options'], 'outDir'> & { module?: string }>;
