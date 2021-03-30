@@ -14,6 +14,9 @@
       "path": "./packages/hooks"
     },
     {
+      "path": "./packages/use-operation"
+    },
+    {
       "path": "./packages/use-abort"
     },
     {

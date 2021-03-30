@@ -34,6 +34,7 @@ var libPackages = [
     'packages/use-mathjax',
     'packages/component-library',
     'packages/svg',
+    'packages/use-operation',
     'packages/use-shortcuts',
     'packages/use-abort',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });

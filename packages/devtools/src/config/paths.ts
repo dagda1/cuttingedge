@@ -40,6 +40,7 @@ const libPackages = [
   'packages/use-mathjax',
   'packages/component-library',
   'packages/svg',
+  'packages/use-operation',
   'packages/use-shortcuts',
   'packages/use-abort',
 ].map((dep) => path.resolve(process.cwd(), dep));

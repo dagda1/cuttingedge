@@ -1,6 +1,6 @@
 {
-  "name": "@cutting/use-abort",
-  "description": "Abortable effects.",
+  "name": "@cutting/use-operation",
+  "description": "Wrapper around effection.",
   "version": "4.21.0",
   "repository": {
     "type": "git",
@@ -19,12 +19,10 @@
   "dependencies": {
     "@cutting/util": "4.21.0",
     "@effection/node": "=2.0.0-preview.7",
-    "@xstate/react": "^1.2.0",
     "effection": "=2.0.0-preview.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "uuid": "^8.3.2",
-    "xstate": "^4.15.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
