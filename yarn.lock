@@ -987,6 +987,17 @@
     tar "^2.2.2"
     tar-stream "^2.1.4"
 
+"@effection/atom@=2.0.0-preview.5":
+  version "2.0.0-preview.5"
+  resolved "https://registry.npmjs.org/@effection/atom/-/atom-2.0.0-preview.5.tgz#e830cab5e42ba4a537e9aefbcb538f79cb3fabb4"
+  integrity sha512-GzUfDCRxc0T2OWVlicUxpeec1oN8kiITgctatpEY6sWMCDf6ITGc3tTHQZGzpD5ZMVtOA5sVgumoGTR4u0ypAQ==
+  dependencies:
+    "@effection/core" "2.0.0-preview.6"
+    "@effection/subscription" "2.0.0-preview.6"
+    assert-ts "^0.2.2"
+    fp-ts "^2.8.2"
+    monocle-ts "^2.3.3"
+
 "@effection/channel@2.0.0-preview.6":
   version "2.0.0-preview.6"
   resolved "https://registry.npmjs.org/@effection/channel/-/channel-2.0.0-preview.6.tgz#526859964f599377c1a0ffa9e2c1c613d7ecc121"
@@ -3084,6 +3095,11 @@ assert-plus@1.0.0, assert-plus@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/assert-plus/-/assert-plus-1.0.0.tgz#f12e0f3c5d77b0b1cdd9146942e4e96c1e4dd525"
   integrity sha1-8S4PPF13sLHN2RRpQuTpbB5N1SU=
+
+assert-ts@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.npmjs.org/assert-ts/-/assert-ts-0.2.2.tgz#afaa987cce8ef8c653d07032f562f8350ec9723f"
+  integrity sha512-aoktTqvPejI9G0+wNOomh44acAJ/KMp4YAw5yW3tM1MESxEBuAlWdBG3Q9QGV6YMv7pEfzor8822B5WinXcmPg==
 
 assert-ts@^0.3.0:
   version "0.3.0"
@@ -6395,6 +6411,11 @@ forwarded@~0.1.2:
   resolved "https://registry.npmjs.org/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
+fp-ts@^2.8.2:
+  version "2.9.5"
+  resolved "https://registry.npmjs.org/fp-ts/-/fp-ts-2.9.5.tgz#6690cd8b76b84214a38fc77cbbbd04a38f86ea90"
+  integrity sha512-MiHrA5teO6t8zKArE3DdMPT/Db6v2GUt5yfWnhBTrrsVfeCJUUnV6sgFvjGNBKDmEMqVwRFkEePL7wPwqrLKKA==
+
 fragment-cache@^0.2.1:
   version "0.2.1"
   resolved "https://registry.npmjs.org/fragment-cache/-/fragment-cache-0.2.1.tgz#4290fad27f13e89be7f33799c6bc5a0abfff0d19"
@@ -9399,6 +9420,11 @@ moment@^2.22.1:
   version "2.29.1"
   resolved "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+
+monocle-ts@^2.3.3:
+  version "2.3.9"
+  resolved "https://registry.npmjs.org/monocle-ts/-/monocle-ts-2.3.9.tgz#037d8a14f72dfd5ce6928c8730de1f0e504da94d"
+  integrity sha512-X5ppMOPAQV/BeENhPpEI0hJelXMoNVtHlTVk89ugZL7ZvK6JtBDFW/762aq1MOzCCaBAFlxGz1Wmxa0DW7tshQ==
 
 mousetrap@^1.6.5:
   version "1.6.5"

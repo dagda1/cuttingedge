@@ -4,6 +4,9 @@ import { createAbortableMachine, abort, reset, start, success, error } from './m
 import { FetchState, FetchOptions, AddFetch } from './types';
 import { identity } from '@cutting/util';
 import { run } from 'effection';
+import { useOperation } from '@cutting/use-operation';
+import { Runnable } from 'effection';
+import { useFetchContext } from './context/FetchProvider';
 
 export type UseAbortResult<T> = {
   state: FetchState<T>;
@@ -22,6 +25,7 @@ export const useAbort = <T>(
 ): UseAbortResult<T> => {
   const [machine, send] = useMachine(createAbortableMachine({ initialData }));
   const abortController = useRef<AbortController>(new AbortController());
+  const fetchClient = useFetchContext()
   const counter = useRef(0);
 
   const abortable = useCallback(
@@ -39,8 +43,6 @@ export const useAbort = <T>(
   }, [initialData, send]);
 
   const runner = useCallback(() => {
-    const signal = abortController.current.signal;
-
     counter.current++;
 
     send(start);
@@ -72,7 +74,7 @@ export const useAbort = <T>(
       send(error(err));
       return;
     }
-  }, [abortable, requests, send]);
+  }, [abortable, send]);
 
   const result: UseAbortResult<ReturnType<typeof fn>> = useMemo(
     () => ({

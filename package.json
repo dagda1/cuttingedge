@@ -31,6 +31,7 @@
       "packages/devtools",
       "packages/util",
       "packages/hooks",
+      "packages/use-operation",
       "packages/use-abort",
       "packages/component-library",
       "packages/svg",

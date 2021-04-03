@@ -1,44 +1,19 @@
-import type { FetchState, Runnable } from '../types';
-import type { Slice } from '@effection/atom';
-import { FC, useEffect, useState } from 'react';
-import { Task } from 'effection';
+import { FC, useContext } from 'react';
 import { createAtom } from '@effection/atom';
 import { createContext } from 'react';
-import { createEffects } from 'src/effects/create-effects';
+import { FetchJob, FetchState } from 'src/types';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const atom = createAtom({ jobs: {} as Record<string, FetchJob<any>> });
 
+const FetchContext = createContext<FetchState>({
+  atom,
+});
 
-export function createFetchClient<T>(): Runnable<FetchClient<T>> {
-  return {
-    run(scope) {
-      const atom = createAtom({ jobs: {} });
-
-      createEffects(atom);
-
-      return {
-        scope,
-        atom,
-      };
-    },
-  };
+export function useFetchContext(): FetchState {
+  return useContext(FetchContext);
 }
 
-const FetchContext = createContext<FetchClient<unknown> | undefined>(undefined);
-
-export function useFetchContext<T>(): FetchClient<T> {}
-
 export const FetchProvider: FC = ({ children }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [fetchClient, setFetchClient] = useState<FetchClient<any>>();
-
-  useEffect(() => {
-    if (!!fetchClient) {
-      return;
-    }
-  }, []);
-
-  if (typeof fetchClient === 'undefined') {
-    return null;
-  }
-  return <FetchContext.Provider value={fetchClient}>{children}</FetchContext.Provider>;
+  return <FetchContext.Provider value={{ atom }}>{children}</FetchContext.Provider>;
 };

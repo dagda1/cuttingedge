@@ -7,7 +7,7 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "type": "module",
-  "module": "dist/use-abort.esm.js",
+  "module": "dist/use-operation.esm.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
@@ -43,5 +43,5 @@
     "use-cancellable-fetch"
   ],
   "main": "dist/index.js",
-  "browser": "dist/use-abort.esm.js"
+  "browser": "dist/use-operation.esm.js"
 }

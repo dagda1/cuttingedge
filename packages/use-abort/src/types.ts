@@ -57,17 +57,15 @@ export interface FetchJob<T> {
   fetchRequests: FetchRequest<T>[];
 }
 
-export interface FetchState<T> {
-  jobs: Record<string, FetchJob<T>>;
+export interface FetchState {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  atom: Slice<{ jobs: Record<string, FetchJob<any>> }>;
 }
 
-export interface FetchClient<T> {
-  atom: Slice<FetchState<T>>;
-  scope: Task;
-  addFetchRequest(info: RequestInfo, options: RequestInit & FetchOptions<T>): FetchClient<T>;
-}
+// addFetchRequest(info: RequestInfo, options: RequestInit & FetchOptions<T>): FetchContext<T>;
+// scope: Task;
 
-export type AddFetch = <T>(fetcher: FetchClient<T>) => FetchClient<T>;
+export type AddFetch = <T>(fetcher: FetchContext<T>) => FetchContext<T>;
 
 export interface FetchOptions<T> {
   initialData?: T | undefined;

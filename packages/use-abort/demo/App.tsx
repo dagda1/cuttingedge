@@ -17,21 +17,6 @@ const makeFetchRequest = (fetchDelay: number, name: string): FetchRequest<Expect
   onSuccess: () => console.log({ message: `received ${name}` }),
 });
 
-export function createFetchJob<T>(): Runnable<FetchJob<T>> {
-  return {
-    run(scope) {
-      const fetchJob: FetchJob<T> = {
-        uuid: v4(),
-        fetchRequests: [],
-      };
-
-      scope.spawn(function* () {});
-
-      return fetchJob;
-    },
-  };
-}
-
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
@@ -49,34 +34,38 @@ export const App: React.FC = () => {
     setMessages(['We have aborted']);
   }, []);
 
-  function* generator() {
-    try {
-      for (const request of requests) {
-        const result = yield makeFetchRequest(delay, `${request.toString()}`);
+  // function* generator() {
+  //   try {
+  //     for (const request of requests) {
+  //       const result = yield makeFetchRequest(delay, `${request.toString()}`);
 
-        processResult(result);
+  //       processResult(result);
+  //     }
+  //   } catch (err) {
+  //     if (err instanceof AbortError) {
+  //       setMessages(['We have Aborted']);
+  //       return;
+  //     }
+  //     setMessages(['oh no we received an error', err.message]);
+  //   }
+  // }
+
+  const { run, state, abortController, reset } = useAbort<Expected>(
+    (fetchClient) => {
+      for (const i of range(0, 10)) {
+        fetchClient.addFetchRequest(`https://slowmo.glitch.me/${delay}`, {
+          onSuccess: (d) => console.log(`received number ${i} with ${JSON.stringify(d)}`),
+          onAbort: () => console.log(`aborted on ${i}`),
+        });
       }
-    } catch (err) {
-      if (err instanceof AbortError) {
-        setMessages(['We have Aborted']);
-        return;
-      }
-      setMessages(['oh no we received an error', err.message]);
-    }
-  }
 
-  const { run, state, abortController, reset } = useAbort<Expected>((fetchClient) => {
-    for (const i of range(0, 10)) {
-      fetchClient.addFetchRequest(`https://slowmo.glitch.me/${delay}`, {
-        onSuccess: (d) => console.log(`received number ${i} with ${JSON.stringify(d)}`),
-        onAbort: () => console.log(`aborted on ${i}`),
-      });
-    }
-
-    return fetchClient;
-  }, {
-    onE
-  });
+      return fetchClient;
+    },
+    {
+      onSuccess: (d) => console.log(`global success with ${d}`),
+      onAbort: () => console.log('global abort handler'),
+    },
+  );
 
   return (
     <div className="container">
