@@ -1,32 +1,38 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createAbortableMachine, abort, reset, start, success, error } from './machine';
-import { FetchState, FetchOptions, AddFetch } from './types';
-import { identity } from '@cutting/util';
+import { AbortableStates, AddFetch, ContentType, UseAbortOptions, UseAbortResult } from './types';
 import { run } from 'effection';
-import { useOperation } from '@cutting/use-operation';
-import { Runnable } from 'effection';
-import { useFetchContext } from './context/FetchProvider';
+import { createFetchClient } from './client/fetch-client';
+import { fetch as nativeFetch } from 'cross-fetch';
+import { identity } from '@cutting/util';
 
-export type UseAbortResult<T> = {
-  state: FetchState<T>;
-  run: (...args: unknown[]) => void;
-  data?: T;
-  reset: () => void;
-  abortController: AbortController;
-  counter: number;
-  error?: Error;
-  isSettled: boolean;
-};
+function getDefaultAccumulator<T>(initialData?: T) {
+  if (Array.isArray(initialData)) {
+    return (a: T) => {
+      initialData.push(a);
+      return initialData;
+    };
+  }
+
+  return identity;
+}
+
+const noOp = () => void 0;
 
 export const useAbort = <T>(
   addFetch: AddFetch,
-  { onAbort = identity, initialData }: FetchOptions<T> = {},
+  { accumulator, initialData, onSuccess = identity, onError = noOp, onAbort = noOp }: UseAbortOptions<T>,
 ): UseAbortResult<T> => {
   const [machine, send] = useMachine(createAbortableMachine({ initialData }));
   const abortController = useRef<AbortController>(new AbortController());
-  const fetchClient = useFetchContext()
   const counter = useRef(0);
+
+  let fetchClient = createFetchClient(abortController.current);
+
+  const acc = accumulator ?? getDefaultAccumulator(initialData);
+
+  fetchClient = addFetch(fetchClient);
 
   const abortable = useCallback(
     (e: Error) => {
@@ -43,47 +49,59 @@ export const useAbort = <T>(
   }, [initialData, send]);
 
   const runner = useCallback(() => {
-    counter.current++;
-
     send(start);
 
-    try {
-      const result = run(function* (scope) {
-        for (const { request, init = {}, onSuccess = identity, onError = identity, contentType = 'json' } of requests) {
+    counter.current++;
+
+    console.log(`running ${counter.current}`);
+
+    let result: T | T[];
+
+    run(function* (scope) {
+      try {
+        for (const {
+          fetch: { request, init, contentType, onSuccess, onError },
+        } of fetchClient.jobs) {
           scope.ensure(() => abortController.current.abort());
 
-          init.signal = abortController.current.signal;
+          const response: Response & Body = yield nativeFetch(request, init);
 
-          const response: Response = yield fetch(request, init);
+          if (!response.ok) {
+            const status = `we are not ok, ${response.status}: ${response.statusText}`;
+            console.log(status);
+            onError(new Error(status));
+            throw new Error(status);
+          }
 
-          const result: T = yield response[contentType]();
+          result = acc(yield response[contentType as ContentType]());
 
           onSuccess(result);
         }
-      });
-      abortController.current = new AbortController();
-      counter.current = 0;
-      send(success<T | T[]>(result));
-      return result;
-    } catch (err) {
-      if (err.currentTarget === abortController.current.signal) {
-        abortable(err);
+
+        send(success<T | T[]>(result));
+        onSuccess(result as T | T[]);
+      } catch (err) {
+        if (abortController.current.signal.aborted) {
+          abortable(err);
+          return;
+        }
+        send(error(err));
+        onError(err);
         return;
+      } finally {
+        console.log(`completed in a ${machine.value}`);
       }
+    });
+  }, [abortable, acc, fetchClient.jobs, machine.value, onError, onSuccess, send]);
 
-      send(error(err));
-      return;
-    }
-  }, [abortable, send]);
-
-  const result: UseAbortResult<ReturnType<typeof fn>> = useMemo(
+  const result: UseAbortResult<T> = useMemo(
     () => ({
-      state: machine.value,
+      state: machine.value as AbortableStates,
       run: runner,
-      data: machine.context.data,
+      data: machine.context.data as T | T[],
       error: machine.context.error,
       reset: resetable,
-      abortController: abortController.current,
+      abort: () => abortController.current.abort(),
       counter: counter.current,
       isSettled: ['SUCCEEDED', 'ERROR'].includes(machine.value as AbortableStates),
     }),

@@ -1,10 +1,9 @@
-import type { Slice } from '@effection/atom';
-import type { Runnable, FetchState, FetchJob } from '../types';
+import type { Runnable, FetchJob, FetchContext } from '../types';
 import { Effect, map } from './effects';
 
 export function fetcher<T>(): Effect<Record<string, FetchJob<T>>> {
   return (slice) =>
-    function* (scope) {
+    function* () {
       try {
         const jobs = slice.get();
 
@@ -16,10 +15,11 @@ export function fetcher<T>(): Effect<Record<string, FetchJob<T>>> {
     };
 }
 
-export function createEffects<T>(atom: Slice<FetchState<T>>): Runnable<void> {
+export function createEffects(atom: FetchContext['atom']): Runnable<void> {
   return {
     run(scope) {
-      scope.spawn(map(atom.slice('jobs'), fetcher()));
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      scope.spawn(map(atom.slice('jobs'), fetcher() as any));
     },
   };
 }

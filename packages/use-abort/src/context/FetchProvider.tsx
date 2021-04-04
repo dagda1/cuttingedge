@@ -1,19 +1,19 @@
 import { FC, useContext } from 'react';
 import { createAtom } from '@effection/atom';
 import { createContext } from 'react';
-import { FetchJob, FetchState } from 'src/types';
+import { FetchJob, FetchContext } from 'src/types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const atom = createAtom({ jobs: {} as Record<string, FetchJob<any>> });
+const atom = createAtom({ jobs: {} as Record<string, FetchJob> });
 
-const FetchContext = createContext<FetchState>({
+const Context = createContext<FetchContext>({
   atom,
 });
 
-export function useFetchContext(): FetchState {
-  return useContext(FetchContext);
+export function useFetchContext(): FetchContext {
+  return useContext(Context);
 }
 
 export const FetchProvider: FC = ({ children }) => {
-  return <FetchContext.Provider value={{ atom }}>{children}</FetchContext.Provider>;
+  return <Context.Provider value={{ atom }}>{children}</Context.Provider>;
 };

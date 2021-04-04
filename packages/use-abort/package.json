@@ -22,6 +22,7 @@
     "@effection/atom": "=2.0.0-preview.5",
     "@effection/node": "=2.0.0-preview.7",
     "@xstate/react": "^1.2.0",
+    "cross-fetch": "^3.1.4",
     "effection": "=2.0.0-preview.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

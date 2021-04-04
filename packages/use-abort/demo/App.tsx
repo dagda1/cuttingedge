@@ -1,21 +1,11 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useAbort } from '../src';
 import cs from 'classnames';
 import './App.css';
-import { AbortError } from '../src/AbortError';
 import { range } from '@cutting/util';
-import { FetchRequest, FetchJob } from '../src/types';
-import { Runnable } from '../src/types';
-import { v4 } from 'uuid';
+import { AbortableStates } from '../src/types';
 
 type Expected = { message: string };
-
-const requests = Array.from({ length: 10 }, (_, i) => i + 1);
-
-const makeFetchRequest = (fetchDelay: number, name: string): FetchRequest<Expected> => ({
-  request: `https://slowmo.glitch.me/${fetchDelay}`,
-  onSuccess: () => console.log({ message: `received ${name}` }),
-});
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -30,40 +20,37 @@ export const App: React.FC = () => {
     });
   }, []);
 
-  const onAbort = useCallback(() => {
-    setMessages(['We have aborted']);
-  }, []);
-
-  // function* generator() {
-  //   try {
-  //     for (const request of requests) {
-  //       const result = yield makeFetchRequest(delay, `${request.toString()}`);
-
-  //       processResult(result);
-  //     }
-  //   } catch (err) {
-  //     if (err instanceof AbortError) {
-  //       setMessages(['We have Aborted']);
-  //       return;
-  //     }
-  //     setMessages(['oh no we received an error', err.message]);
-  //   }
-  // }
-
-  const { run, state, abortController, reset } = useAbort<Expected>(
+  const { run, state, abort, reset } = useAbort<Expected>(
     (fetchClient) => {
-      for (const i of range(0, 10)) {
+      for (const i of range(0, 9)) {
         fetchClient.addFetchRequest(`https://slowmo.glitch.me/${delay}`, {
-          onSuccess: (d) => console.log(`received number ${i} with ${JSON.stringify(d)}`),
-          onAbort: () => console.log(`aborted on ${i}`),
+          onSuccess: () => {
+            processResult({ message: `we have received ${i}` });
+          },
+          onError(e) {
+            console.log(`scoped error`);
+            console.error(e);
+          },
         });
       }
 
       return fetchClient;
     },
     {
-      onSuccess: (d) => console.log(`global success with ${d}`),
-      onAbort: () => console.log('global abort handler'),
+      initialData: [],
+      onSuccess: (d) => {
+        console.log(`global success`);
+        console.log({ d });
+      },
+      onAbort: (e) => {
+        console.log(e);
+        setMessages(['We have aborted']);
+      },
+      onError: (e) => {
+        console.log('in global error handler');
+        console.error(e);
+        console.log(e.message);
+      },
     },
   );
 
@@ -117,7 +104,7 @@ export const App: React.FC = () => {
           >
             DO SHENANIGANS
           </button>
-          <button className="btn-danger" disabled={state !== 'LOADING'} onClick={() => abortController.abort()}>
+          <button className="btn-danger" disabled={state !== 'LOADING'} onClick={() => abort()}>
             CANCEL
           </button>
           <button

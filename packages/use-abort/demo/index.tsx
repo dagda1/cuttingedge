@@ -13,6 +13,7 @@ render(App);
 if (module.hot) {
   module.hot.accept('./App', () => {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const App = require('./App').App;
       render(App);
     } catch (e) {

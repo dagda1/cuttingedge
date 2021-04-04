@@ -1,5 +1,4 @@
 import type { Operation, Task } from 'effection';
-import { Fn } from '@cutting/util';
 import { Slice } from '@effection/atom/dist';
 
 export type AbortableContext<D> = {
@@ -7,11 +6,11 @@ export type AbortableContext<D> = {
   error?: Error;
 };
 
-export type FetchStates<T, E = Error> =
+export type FetchStates<T> =
   | { type: 'IDLE' }
   | { type: 'LOADING' }
   | { type: 'SUCCEEDED'; data: T }
-  | { type: 'ERROR'; error: E };
+  | { type: 'ERROR'; error: Error };
 
 /* eslint-disable @typescript-eslint/ban-types */
 export interface AbortableSchema<D> {
@@ -36,46 +35,76 @@ export interface AbortableSchema<D> {
     };
     ['ABORTED']: {};
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AbortableStates = keyof AbortableSchema<any>['states'];
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AbortableActionTypes = FetchStates<any>['type'];
 
 export interface Runnable<T> {
   run(scope: Task): T;
 }
 
-export interface FetchRequest<T> {
+export type ContentType = 'json' | 'text';
+export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
+
+export type ContentTypeMap = `application/${ContentType}`;
+
+type FetchOptions<T> = {
+  onSuccess?: (t?: T | T[]) => void;
+  onError?: (e: Error) => void;
+  onAbort?: (e: Error) => void;
+  method?: Methods;
+  contentType?: ContentType;
+  accumulator?: (a: T) => T;
+  initialData?: T | T[];
+};
+
+export type UseAbortOptions<T> = Omit<FetchOptions<T>, 'method' | 'contentType'>;
+
+export type FetchRequest<T> = {
   request: RequestInfo;
   init?: RequestInit;
-  onSuccess?: (t?: T) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onError?: (e: any) => void;
-  contentType?: 'json' | 'text';
-}
+} & Required<Omit<FetchOptions<T>, 'method' | 'accumulator'>>;
 
-export interface FetchJob<T> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface FetchJob<T = any> {
   uuid: string;
-  fetchRequests: FetchRequest<T>[];
+  fetch: Omit<FetchRequest<T>, 'onAbort'>;
 }
 
-export interface FetchState {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  atom: Slice<{ jobs: Record<string, FetchJob<any>> }>;
+export interface FetchContext {
+  atom: Slice<{ jobs: Record<string, FetchJob> }>;
 }
 
-// addFetchRequest(info: RequestInfo, options: RequestInit & FetchOptions<T>): FetchContext<T>;
-// scope: Task;
-
-export type AddFetch = <T>(fetcher: FetchContext<T>) => FetchContext<T>;
-
-export interface FetchOptions<T> {
-  initialData?: T | undefined;
-  onAbort?: Fn;
-  onSuccess?: (d: T) => void;
+export interface FetchClient {
+  jobs: FetchJob[];
+  addFetchRequest(
+    this: FetchClient,
+    info: RequestInfo,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    options: RequestInit & Omit<FetchOptions<any>, 'onAbort'>,
+  ): FetchClient;
 }
+
+export type AddFetch = (fetcher: FetchClient) => FetchClient;
 
 export interface Effect<A> {
   (slice: Slice<A>): Operation<void>;
 }
+
+export type UseAbortResult<T> = {
+  state: AbortableStates;
+  run: (...args: unknown[]) => void;
+  data?: T | T[];
+  reset: () => void;
+  abort: () => void;
+  counter: number;
+  error?: Error;
+  isSettled: boolean;
+};
 
 export type ExtractType<T> = T extends {
   [Symbol.iterator](): { next(): { done: true; value: infer U } };
