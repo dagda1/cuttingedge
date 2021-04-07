@@ -1,7 +1,7 @@
 import type { Runnable, FetchJob, FetchContext } from '../types';
 import { Effect, map } from './effects';
 
-export function fetcher<T>(): Effect<Record<string, FetchJob<T>>> {
+export function fetcher<D, R>(): Effect<Record<string, FetchJob<D, R>>> {
   return (slice) =>
     function* () {
       try {

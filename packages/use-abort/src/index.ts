@@ -1,5 +1,6 @@
 declare const __BROWSER__: boolean;
 
+export type { AddFetch, FetchClient, FetchJob, UseAbortOptions, UseAbortResult } from './types';
 export { useAbort } from './useAbort';
 
 if (!__BROWSER__) {

@@ -23,17 +23,15 @@ type ExtendedCountry = {
 export const DailyIncreaseUk: FC = () => {
   const result = useCountryCovidData();
 
-  if (result.data?.GBR) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    delete result.data.GBR;
-
+  if (typeof result.data?.SCO !== 'undefined') {
     const countries = {
       SCO: result.data.SCO,
     };
+
     for (const c of Object.keys(countries)) {
+      const countryCode = c as Countries;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const country: ExtendedCountry = (countries as any)?.[c as Countries];
+      const country: ExtendedCountry = (countries as any)?.[countryCode];
       assert(!!country, `no country found for ${c}`);
       country.data = country.result.map((d) => {
         return {

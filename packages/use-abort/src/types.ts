@@ -52,53 +52,56 @@ export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
 
 export type ContentTypeMap = `application/${ContentType}`;
 
-type FetchOptions<T> = {
-  onSuccess?: (t?: T | T[]) => void;
+type FetchOptions<D, R> = {
+  onSuccess?: (t?: R) => void;
   onError?: (e: Error) => void;
   onAbort?: (e: Error) => void;
   method?: Methods;
   contentType?: ContentType;
-  accumulator?: (a: T) => T;
-  initialData?: T | T[];
+  accumulator?: (initialData: R, current: D, request?: RequestInfo) => R;
+  initialData?: R;
 };
 
-export type UseAbortOptions<T> = Omit<FetchOptions<T>, 'method' | 'contentType'>;
+export type UseAbortOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'contentType'> & {
+  fetchType?: 'fetch' | 'fetchJsonp';
+  executeOnload?: boolean;
+};
 
-export type FetchRequest<T> = {
+export type FetchRequest<D, R> = {
   request: RequestInfo;
   init?: RequestInit;
-} & Required<Omit<FetchOptions<T>, 'method' | 'accumulator'>>;
+} & Required<Omit<FetchOptions<D, R>, 'method' | 'accumulator'>>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface FetchJob<T = any> {
+export interface FetchJob<D, R> {
   uuid: string;
-  fetch: Omit<FetchRequest<T>, 'onAbort'>;
+  fetch: Omit<FetchRequest<D, R>, 'onAbort'>;
 }
 
 export interface FetchContext {
-  atom: Slice<{ jobs: Record<string, FetchJob> }>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  atom: Slice<{ jobs: Record<string, FetchJob<any, any>> }>;
 }
 
-export interface FetchClient {
-  jobs: FetchJob[];
+export interface FetchClient<D, R = D> {
+  jobs: FetchJob<D, R>[];
   addFetchRequest(
-    this: FetchClient,
+    this: FetchClient<D, R>,
     info: RequestInfo,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    options: RequestInit & Omit<FetchOptions<any>, 'onAbort'>,
-  ): FetchClient;
+    options?: RequestInit & Omit<FetchOptions<any, any>, 'onAbort'>,
+  ): FetchClient<D, R>;
 }
 
-export type AddFetch = (fetcher: FetchClient) => FetchClient;
+export type AddFetch<D, R> = (fetcher: FetchClient<D, R>) => FetchClient<D, R>;
 
 export interface Effect<A> {
   (slice: Slice<A>): Operation<void>;
 }
 
-export type UseAbortResult<T> = {
+export type UseAbortResult<D> = {
   state: AbortableStates;
   run: (...args: unknown[]) => void;
-  data?: T | T[];
+  data?: D;
   reset: () => void;
   abort: () => void;
   counter: number;

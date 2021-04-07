@@ -82,4 +82,23 @@ export const countryData: CountriesData = {
     population: 67000000,
   },
 };
+
+export type CountriesStats = {
+  [key in Countries]: {
+    result: DayData[];
+    color: string;
+    name: string;
+    population: number;
+    data: {
+      y: number;
+      delta: number;
+      x: string | number;
+      index: number;
+      country: CountryData;
+      deltaDeaths: number;
+      population: number;
+    }[];
+  };
+};
+
 export const AxisColor = '#fff';

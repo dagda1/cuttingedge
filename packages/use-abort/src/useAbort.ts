@@ -1,10 +1,11 @@
-import { useCallback, useRef, useMemo } from 'react';
+import { useCallback, useRef, useMemo, useEffect } from 'react';
 import { useMachine } from '@xstate/react';
 import { createAbortableMachine, abort, reset, start, success, error } from './machine';
 import { AbortableStates, AddFetch, ContentType, UseAbortOptions, UseAbortResult } from './types';
 import { run } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
+import fetchJsonp from 'fetch-jsonp';
 import { identity } from '@cutting/util';
 
 function getDefaultAccumulator<T>(initialData?: T) {
@@ -20,19 +21,35 @@ function getDefaultAccumulator<T>(initialData?: T) {
 
 const noOp = () => void 0;
 
-export const useAbort = <T>(
-  addFetch: AddFetch,
-  { accumulator, initialData, onSuccess = identity, onError = noOp, onAbort = noOp }: UseAbortOptions<T>,
-): UseAbortResult<T> => {
+export const useAbort = <D, R>(
+  addFetch: AddFetch<D, R> | string | string[],
+  {
+    accumulator,
+    initialData,
+    onSuccess = identity,
+    onError = console.error,
+    onAbort = noOp,
+    fetchType = 'fetch',
+    executeOnload = false,
+  }: UseAbortOptions<D, R> = {},
+): UseAbortResult<R> => {
   const [machine, send] = useMachine(createAbortableMachine({ initialData }));
   const abortController = useRef<AbortController>(new AbortController());
   const counter = useRef(0);
 
-  let fetchClient = createFetchClient(abortController.current);
+  let fetchClient = createFetchClient<D, R>(abortController.current);
 
   const acc = accumulator ?? getDefaultAccumulator(initialData);
 
-  fetchClient = addFetch(fetchClient);
+  if (typeof addFetch === 'string') {
+    fetchClient.addFetchRequest(addFetch);
+  } else if (Array.isArray(addFetch)) {
+    for (const url of addFetch) {
+      fetchClient.addFetchRequest(url);
+    }
+  } else if (typeof addFetch === 'function') {
+    fetchClient = addFetch(fetchClient);
+  }
 
   const abortable = useCallback(
     (e: Error) => {
@@ -42,6 +59,8 @@ export const useAbort = <T>(
     [onAbort, send],
   );
 
+  const accumulated = useRef(initialData);
+
   const resetable = useCallback(() => {
     abortController.current = new AbortController();
     counter.current = 0;
@@ -49,13 +68,11 @@ export const useAbort = <T>(
   }, [initialData, send]);
 
   const runner = useCallback(() => {
-    send(start);
-
     counter.current++;
 
-    console.log(`running ${counter.current}`);
+    send(start);
 
-    let result: T | T[];
+    console.log(`running ${counter.current}`);
 
     run(function* (scope) {
       try {
@@ -64,22 +81,24 @@ export const useAbort = <T>(
         } of fetchClient.jobs) {
           scope.ensure(() => abortController.current.abort());
 
-          const response: Response & Body = yield nativeFetch(request, init);
+          const fetcher = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
+
+          const response: Response & Body = yield fetcher(request as string, init);
 
           if (!response.ok) {
             const status = `we are not ok, ${response.status}: ${response.statusText}`;
-            console.log(status);
             onError(new Error(status));
             throw new Error(status);
           }
 
-          result = acc(yield response[contentType as ContentType]());
+          const data: D = yield response[contentType as ContentType]();
+          accumulated.current = acc(accumulated.current as R, data, request);
 
-          onSuccess(result);
+          onSuccess(accumulated.current);
         }
 
-        send(success<T | T[]>(result));
-        onSuccess(result as T | T[]);
+        send(success(accumulated.current));
+        onSuccess(accumulated.current);
       } catch (err) {
         if (abortController.current.signal.aborted) {
           abortable(err);
@@ -92,21 +111,27 @@ export const useAbort = <T>(
         console.log(`completed in a ${machine.value}`);
       }
     });
-  }, [abortable, acc, fetchClient.jobs, machine.value, onError, onSuccess, send]);
+  }, [send, onSuccess, fetchClient.jobs, fetchType, acc, onError, abortable, machine.value]);
 
-  const result: UseAbortResult<T> = useMemo(
+  const result: UseAbortResult<R> = useMemo(
     () => ({
       state: machine.value as AbortableStates,
       run: runner,
-      data: machine.context.data as T | T[],
+      data: accumulated.current || initialData,
       error: machine.context.error,
       reset: resetable,
       abort: () => abortController.current.abort(),
       counter: counter.current,
       isSettled: ['SUCCEEDED', 'ERROR'].includes(machine.value as AbortableStates),
     }),
-    [machine.context.data, machine.context.error, machine.value, resetable, runner],
+    [machine.context.error, machine.value, resetable, runner, initialData],
   );
+
+  useEffect(() => {
+    if (executeOnload && run) {
+      runner();
+    }
+  }, [executeOnload, machine.value, runner]);
 
   return result;
 };
