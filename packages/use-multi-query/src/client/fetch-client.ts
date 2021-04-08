@@ -1,8 +1,5 @@
 import type { FetchClient } from '../types';
-import { identity } from '@cutting/util';
 import { v4 } from 'uuid';
-
-const noOp = () => void 0;
 
 export const createFetchClient = <D, R>(abortController: AbortController): FetchClient<D, R> => {
   const fetchClient: FetchClient<D, R> = {
@@ -10,7 +7,7 @@ export const createFetchClient = <D, R>(abortController: AbortController): Fetch
     addFetchRequest(
       this: FetchClient<D, R>,
       info,
-      { initialData, onError = noOp, onSuccess = identity, contentType = 'json', method = 'GET', ...rest } = {},
+      { initialData, onQueryError, onQuerySuccess, contentType = 'json', method = 'GET', ...rest } = {},
     ) {
       fetchClient.jobs.push({
         uuid: v4(),
@@ -26,8 +23,8 @@ export const createFetchClient = <D, R>(abortController: AbortController): Fetch
           },
           contentType,
           initialData,
-          onError,
-          onSuccess,
+          onQueryError: onQueryError as (e: Error) => void,
+          onQuerySuccess: onQuerySuccess as (t?: D) => void,
         },
       });
 

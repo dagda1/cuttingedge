@@ -2,21 +2,20 @@ import { useCallback, useRef, useMemo, useEffect } from 'react';
 import { useMachine } from '@xstate/react';
 import { createMultiQueryMachine, abort, reset, start, success, error } from './machine';
 import { MultiQueryStates, AddFetch, ContentType, UseAbortOptions, UseAbortResult } from './types';
-import { run } from 'effection';
+import { run, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import { identity } from '@cutting/util';
+import { assert } from 'assert-ts';
 
-function getDefaultAccumulator<T>(initialData?: T) {
+function getDefaultAccumulator<D, R>(initialData?: R): Pick<UseAbortOptions<D, R>, 'accumulator'>['accumulator'] {
   if (Array.isArray(initialData)) {
-    return (a: T) => {
-      initialData.push(a);
-      return initialData;
-    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (initialData: R, current: D) => ([...(initialData as any), current] as unknown) as R;
   }
 
-  return identity;
+  return (_: R, current: D) => (current as unknown) as R;
 }
 
 const noOp = () => void 0;
@@ -29,13 +28,16 @@ export const useMultiQuery = <D, R>(
     onSuccess = identity,
     onError = console.error,
     onAbort = noOp,
+    onQuerySuccess: parentOnQuerySuccess = identity,
+    onQueryError: parentOnQueryError = noOp,
     fetchType = 'fetch',
-    executeOnload = false,
+    executeOnload = true,
   }: UseAbortOptions<D, R> = {},
 ): UseAbortResult<R> => {
   const [machine, send] = useMachine(createMultiQueryMachine({ initialData }));
   const abortController = useRef<AbortController>(new AbortController());
   const counter = useRef(0);
+  const task = useRef<Task>();
 
   let fetchClient = createFetchClient<D, R>(abortController.current);
 
@@ -51,7 +53,7 @@ export const useMultiQuery = <D, R>(
     fetchClient = addFetch(fetchClient);
   }
 
-  const MultiQuery = useCallback(
+  const abortable = useCallback(
     (e: Error) => {
       onAbort(e);
       send(abort);
@@ -72,12 +74,16 @@ export const useMultiQuery = <D, R>(
 
     send(start);
 
-    console.log(`running ${counter.current}`);
-
-    run(function* (scope) {
+    task.current = run(function* (scope) {
       try {
         for (const {
-          fetch: { request, init, contentType, onSuccess, onError },
+          fetch: {
+            request,
+            init,
+            contentType,
+            onQuerySuccess = parentOnQuerySuccess,
+            onQueryError = parentOnQueryError,
+          },
         } of fetchClient.jobs) {
           scope.ensure(() => abortController.current.abort());
 
@@ -87,21 +93,24 @@ export const useMultiQuery = <D, R>(
 
           if (!response.ok) {
             const status = `we are not ok, ${response.status}: ${response.statusText}`;
-            onError(new Error(status));
+            onQueryError(new Error(status));
             throw new Error(status);
           }
 
           const data: D = yield response[contentType as ContentType]();
+
+          assert(typeof acc !== 'undefined', `no accumulator function present`);
+
           accumulated.current = acc(accumulated.current as R, data, request);
 
-          onSuccess(accumulated.current);
+          onQuerySuccess(data);
         }
 
         send(success(accumulated.current));
         onSuccess(accumulated.current);
       } catch (err) {
         if (abortController.current.signal.aborted) {
-          MultiQuery(err);
+          abortable(err);
           return;
         }
         send(error(err));
@@ -111,7 +120,18 @@ export const useMultiQuery = <D, R>(
         console.log(`completed in a ${machine.value}`);
       }
     });
-  }, [send, onSuccess, fetchClient.jobs, fetchType, acc, onError, MultiQuery, machine.value]);
+  }, [
+    send,
+    onSuccess,
+    fetchClient.jobs,
+    fetchType,
+    acc,
+    onError,
+    abortable,
+    machine.value,
+    parentOnQueryError,
+    parentOnQuerySuccess,
+  ]);
 
   const result: UseAbortResult<R> = useMemo(
     () => ({
@@ -122,15 +142,21 @@ export const useMultiQuery = <D, R>(
       reset: resetable,
       abort: () => abortController.current.abort(),
       counter: counter.current,
-      isSettled: ['SUCCEEDED', 'ERROR'].includes(machine.value as MultiQueryStates),
     }),
     [machine.context.error, machine.value, resetable, runner, initialData],
   );
 
   useEffect(() => {
-    if (executeOnload && run) {
+    if (executeOnload && typeof runner !== 'undefined') {
       runner();
     }
+
+    return () => {
+      if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as MultiQueryStates)) {
+        console.dir('halting');
+        task.current?.halt();
+      }
+    };
   }, [executeOnload, machine.value, runner]);
 
   return result;

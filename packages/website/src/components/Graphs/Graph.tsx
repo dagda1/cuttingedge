@@ -22,7 +22,7 @@ import { assert } from 'assert-ts';
 import styles from './Graph.module.scss';
 
 export type GraphProps = {
-  result: { isSettled: boolean; data?: CountriesResult };
+  result: { data?: CountriesResult };
   xAxisLabel: string;
   yAxisLabel: string;
   xTickFormat?: (label: string, i: number, a: unknown[]) => string;
@@ -119,7 +119,7 @@ export const Graph: FC<GraphProps> = ({
         </div>
 
         <div className={styles.chart} ref={chartRef}>
-          {result.isSettled === false ? (
+          {typeof result?.data === 'undefined' ? (
             <LoadingOverlay busy={true} darkMode />
           ) : (
             <ResponsiveSVG width={chartWidth} height={chartHeight}>

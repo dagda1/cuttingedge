@@ -45,7 +45,7 @@ export const BreakPoint = 14;
 
 export const useCountryCovidData = (
   { startDate }: CountryDataProps = { startDate: DefaultStartDate },
-): { data: CountriesResult | undefined; isSettled: boolean } => {
+): { data: CountriesResult | undefined } => {
   const [finalData, seetFinalData] = useState<CountriesResult>();
 
   const urls = Object.keys(countryData)
@@ -124,6 +124,5 @@ export const useCountryCovidData = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.GBR?.data?.length, scotsData?.SCO?.data?.length]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return { data: finalData, isSettled: !!finalData };
+  return { data: finalData };
 };

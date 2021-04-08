@@ -1,82 +1,92 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useMultiQuery } from '../src';
 import cs from 'classnames';
 import './App.css';
-import { range } from '@cutting/util';
 import { MultiQueryStates } from '../src/types';
-
-type Expected = { message: string };
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
-  const [delay, setDelay] = useState(100);
 
-  const processResult = useCallback((e: Expected) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const processResult = ({ delay }) => {
     setProgress((n) => (n += 1));
     setMessages((m) => {
-      m.push(`received ${e.message}`);
+      m.push(`received message ${delay}`);
       return m;
     });
-  }, []);
+  };
 
-  const { run, state, abort, reset } = useMultiQuery<Expected>(
-    (fetchClient) => {
-      for (const i of range(0, 9)) {
-        fetchClient.addFetchRequest(`https://slowmo.glitch.me/${delay}`, {
-          onSuccess: () => {
-            processResult({ message: `we have received ${i}` });
-          },
-          onError(e) {
-            console.log(`scoped error`);
-            console.error(e);
-          },
-        });
-      }
+  // one hit wonder
+  // const { run, state, abort, reset } = useMultiQuery(`https://slowmo.glitch.me/10000`);
 
-      return fetchClient;
-    },
+  const { run, state, abort, reset } = useMultiQuery(
+    [
+      `https://slowmo.glitch.me/100`,
+      `https://slowmo.glitch.me/200`,
+      `https://slowmo.glitch.me/300`,
+      `https://slowmo.glitch.me/300`,
+      `https://slowmo.glitch.me/400`,
+      `https://slowmo.glitch.me/500`,
+      `https://slowmo.glitch.me/600`,
+      `https://slowmo.glitch.me/700`,
+      `https://slowmo.glitch.me/800`,
+      `https://slowmo.glitch.me/900`,
+      `https://slowmo.glitch.me/1000`,
+    ],
     {
+      executeOnload: false,
+      onQuerySuccess: processResult,
       initialData: [],
-      onSuccess: (d) => {
-        console.log(`global success`);
-        console.log({ d });
+      onSuccess: () => {
+        console.log(`We did it`);
       },
-      onAbort: (e) => {
-        console.log(e);
+      onAbort: () => {
         setMessages(['We have aborted']);
       },
       onError: (e) => {
         console.log('in global error handler');
-        console.error(e);
-        console.log(e.message);
+        console.error(e.message);
       },
     },
   );
 
+  // const { run, state, abort, reset } = useMultiQuery(
+  //   (fetchClient) => {
+  //     for (const i of [...Array.from({ length: 10 }).keys()]) {
+  //       fetchClient.addFetchRequest(`https://slowmo.glitch.me/${(i + 1) * 100}`, {
+  //         onQuerySuccess: processResult,
+  //         onQueryError(e) {
+  //           console.log(`scoped error`);
+  //           console.error(e);
+  //         },
+  //       });
+  //     }
+
+  //     return fetchClient;
+  //   },
+  //   {
+  //     executeOnload: false,
+  //     initialData: [],
+  //     onSuccess: () => {
+  //       console.log(`We did it`);
+  //     },
+  //     onAbort: () => {
+  //       setMessages(['We have aborted']);
+  //     },
+  //     onError: (e) => {
+  //       console.log('in global error handler');
+  //       console.error(e.message);
+  //     },
+  //   },
+  // );
+
   return (
     <div className="container">
       <div>
-        <h1>generator shenanigans</h1>
-        <p>Open the network tab to check the requests are getting cancelled</p>
+        <h1>use-multi-query</h1>
+        <p>Open the network tab and press cancel to check the requests are getting cancelled</p>
         <div>
-          <div>
-            <div className="form-group">
-              <label htmlFor="delay">
-                <small>API response delay(ms)</small>
-              </label>
-              <input
-                id="delay"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDelay(Number(e.target.value))}
-                placeholder="Fetch Delay"
-                type="number"
-                step="300"
-                min="0"
-                max="60000"
-                value={delay}
-              />
-            </div>
-          </div>
           <p>
             Fetch request status:
             <strong>
@@ -102,7 +112,7 @@ export const App: React.FC = () => {
               run();
             }}
           >
-            DO SHENANIGANS
+            DO IT
           </button>
           <button className="btn-danger" disabled={state !== 'LOADING'} onClick={() => abort()}>
             CANCEL

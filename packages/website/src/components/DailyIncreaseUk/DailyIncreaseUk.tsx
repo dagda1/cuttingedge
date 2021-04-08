@@ -34,7 +34,7 @@ export const DailyIncreaseUk: FC = () => {
       heading="Daily Increase in Scottish deaths"
       xAxisLabel="Days since first reported death"
       yAxisLabel="Increase in deaths from previous day"
-      result={{ isSettled: true, data: countries as CountriesResult }}
+      result={{ data: countries as CountriesResult }}
       labels={({ datum }) => {
         return `${dayjs(datum?.x).format('DD/M  M/YY')}\n total deaths = ${datum.deaths}\n daily increase = ${
           datum.deltaDeaths

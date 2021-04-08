@@ -10,7 +10,8 @@ export type FetchStates<T> =
   | { type: 'IDLE' }
   | { type: 'LOADING' }
   | { type: 'SUCCEEDED'; data: T }
-  | { type: 'ERROR'; error: Error };
+  | { type: 'ERROR'; error: Error }
+  | { type: 'ABORTED'; error: Error };
 
 /* eslint-disable @typescript-eslint/ban-types */
 export interface MultiQuerySchema<D> {
@@ -52,19 +53,23 @@ export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
 
 export type ContentTypeMap = `application/${ContentType}`;
 
+export type Accumulator<D, R> = (initialData: R, current: D, request?: RequestInfo) => R;
+
 type FetchOptions<D, R> = {
-  onSuccess?: (t?: R) => void;
-  onError?: (e: Error) => void;
-  onAbort?: (e: Error) => void;
   method?: Methods;
   contentType?: ContentType;
   accumulator?: (initialData: R, current: D, request?: RequestInfo) => R;
   initialData?: R;
+  onQueryError?: (e: Error) => void;
+  onQuerySuccess?: (t?: D) => void;
 };
 
 export type UseAbortOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'contentType'> & {
   fetchType?: 'fetch' | 'fetchJsonp';
+  onSuccess?: (t?: R) => void;
   executeOnload?: boolean;
+  onError?: (e: Error) => void;
+  onAbort?: (e: Error) => void;
 };
 
 export type FetchRequest<D, R> = {
@@ -106,7 +111,6 @@ export type UseAbortResult<D> = {
   abort: () => void;
   counter: number;
   error?: Error;
-  isSettled: boolean;
 };
 
 export type ExtractType<T> = T extends {
