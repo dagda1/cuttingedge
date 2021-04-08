@@ -1,7 +1,5 @@
 // https://www.nationsonline.org/oneworld/country_code_list.htm
-// export type Countries = 'BRA' | 'ITA' | 'GBR' | 'USA' | 'SWE' | 'FRA' | 'SCO';
-
-export type Countries = 'GBR' | 'SCO';
+export type Countries = 'ITA' | 'GBR' | 'USA' | 'SWE' | 'FRA' | 'SCO' | 'ESP' | 'DEU';
 
 export type CountryData = {
   longName: string;
@@ -21,7 +19,6 @@ export type DayStatistics = {
 };
 
 export type CountryStats = {
-  count: number;
   result: DayStatistics[];
 };
 
@@ -40,65 +37,56 @@ export type DayData = {
   deaths: number;
 };
 
+export type CountryResult = { color: string; name: string; data: DayData[] };
+
+export type CountriesResult = Record<Countries, CountryResult>;
+
 export const countryData: CountriesData = {
-  // FRA: {
-  //   longName: 'France',
-  //   color: 'pink',
-  //   population: 67000000,
-  // },
-  // ITA: {
-  //   longName: 'Italy',
-  //   color: 'purple',
-  //   population: 60000000,
-  // },
+  DEU: {
+    longName: 'Germany',
+    color: '#038D44',
+    population: 83000000,
+  },
+  FRA: {
+    longName: 'France',
+    color: 'pink',
+    population: 67000000,
+  },
+  ITA: {
+    longName: 'Italy',
+    color: '#016CD0',
+    population: 60000000,
+  },
   // BRA: {
   //   longName: 'Brazil',
   //   color: '#FEDF00',
   //   population: 210000000,
   // },
-  // USA: {
-  //   longName: 'USA',
-  //   color: '#BF0A30',
-  //   population: 383000000,
-  // },
-  // SWE: {
-  //   longName: 'Sweden',
-  //   color: '#038D44',
-  //   population: 11000000,
-  // },
+  USA: {
+    longName: 'USA',
+    color: '#BF0A30',
+    population: 383000000,
+  },
+  SWE: {
+    longName: 'Sweden',
+    color: '#FEDF00',
+    population: 11000000,
+  },
   SCO: {
     longName: 'Scotland',
     color: '#2C67B7',
     population: 5550000,
   },
-  // ESP: {
-  //   longName: 'Spain',
-  //   color: 'purple',
-  //   population: 47000000,
-  // },
+  ESP: {
+    longName: 'Spain',
+    color: '#00FF00',
+    population: 47000000,
+  },
   GBR: {
     longName: 'UK',
     color: '#fff',
     population: 67000000,
   },
-};
-
-export type CountriesStats = {
-  [key in Countries]: {
-    result: DayData[];
-    color: string;
-    name: string;
-    population: number;
-    data: {
-      y: number;
-      delta: number;
-      x: string | number;
-      index: number;
-      country: CountryData;
-      deltaDeaths: number;
-      population: number;
-    }[];
-  };
 };
 
 export const AxisColor = '#fff';

@@ -11,7 +11,7 @@ export const Deaths: FC = () => {
       const countryCode = c as Countries;
       const country = result.data?.[countryCode];
 
-      country.data = country.result.map((d) => ({
+      country.data = country.data.map((d) => ({
         ...d,
         deaths: d.y,
         y: (d.y / countryData[countryCode].population) * 100000,

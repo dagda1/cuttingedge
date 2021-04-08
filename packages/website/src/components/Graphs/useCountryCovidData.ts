@@ -1,4 +1,4 @@
-import { CountryStats, DayData, CountryData, CountriesStats, countryData, Countries, DayStatistics } from './types';
+import { CountryStats, DayData, CountryData, countryData, Countries, DayStatistics, CountriesResult } from './types';
 import { useAbort } from '@cutting/use-abort';
 import dayjs from 'dayjs';
 import { uniqBy } from '@cutting/util';
@@ -45,14 +45,14 @@ export const BreakPoint = 14;
 
 export const useCountryCovidData = (
   { startDate }: CountryDataProps = { startDate: DefaultStartDate },
-): { data: CountriesStats | undefined; isSettled: boolean } => {
-  const [finalData, seetFinalData] = useState<CountriesStats>();
+): { data: CountriesResult | undefined; isSettled: boolean } => {
+  const [finalData, seetFinalData] = useState<CountriesResult>();
 
   const urls = Object.keys(countryData)
     .filter((c) => c !== 'SCO')
     .map((c) => urlJoin(baseUrl, c.toUpperCase(), 'timeseries', startDate, dayjs().format('YYYY-MM-DD')));
 
-  const { data } = useAbort<CountryStats, CountriesStats>(urls, {
+  const { data } = useAbort<CountryStats, CountriesResult>(urls, {
     accumulator: (acc, current, info) => {
       current.result = uniqBy(current.result, (a) => a.date);
 
@@ -63,30 +63,29 @@ export const useCountryCovidData = (
       const countryDetails = countryData[country];
 
       acc[country] = {
-        result: transform(current, countryDetails).filter((d, i) => {
+        data: transform(current, countryDetails).filter((d, i) => {
           const diff = dayjs().diff(dayjs(d.x), 'd');
           return diff <= 10 || i % BreakPoint === 0;
         }),
         color: countryDetails.color,
         name: countryDetails.longName,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any;
+      };
 
       return acc;
     },
-    initialData: {} as CountriesStats,
+    initialData: {} as CountriesResult,
     executeOnload: true,
   });
 
   const { data: scotsData } = useAbort<
     { result: { records: { Deaths: number; CumulativeCases: number; Date: string }[] } },
-    CountriesStats
+    CountriesResult
   >(
     'https://www.opendata.nhs.scot/api/3/action/datastore_search?resource_id=287fc645-4352-4477-9c8c-55bc054b7e76&limit=1000&sort=Date%20desc',
     {
       fetchType: 'fetchJsonp',
       executeOnload: true,
-      initialData: {} as CountriesStats,
+      initialData: {} as CountriesResult,
       accumulator: (acc, current) => {
         const scotlandStats: DayStatistics[] = [];
         for (const record of current.result.records.reverse()) {
@@ -102,11 +101,10 @@ export const useCountryCovidData = (
         }
 
         acc.SCO = {
-          result: transform({ count: scotlandStats.length, result: scotlandStats }, countryData.SCO),
+          data: transform({ result: scotlandStats }, countryData.SCO),
           color: countryData.SCO.color,
           name: countryData.SCO.longName,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } as any;
+        };
 
         return acc;
       },
@@ -114,17 +112,17 @@ export const useCountryCovidData = (
   );
 
   useEffect(() => {
-    if (!!finalData || !scotsData?.SCO?.result?.length || !data?.GBR?.result?.length) {
+    if (!!finalData || !scotsData?.SCO?.data?.length || !data?.GBR?.data?.length) {
       return;
     }
 
-    const recognisedDates = data?.GBR?.result.map((x) => x.x) || [];
+    const recognisedDates = data?.GBR?.data.map((x) => x.x) || [];
 
-    scotsData.SCO.result = scotsData.SCO.result.filter((d) => recognisedDates.includes(d.x));
+    scotsData.SCO.data = scotsData.SCO.data.filter((d) => recognisedDates.includes(d.x));
 
     seetFinalData({ ...data, ...scotsData });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data?.GBR?.result?.length, scotsData?.SCO?.result?.length]);
+  }, [data?.GBR?.data?.length, scotsData?.SCO?.data?.length]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return { data: finalData, isSettled: !!finalData };

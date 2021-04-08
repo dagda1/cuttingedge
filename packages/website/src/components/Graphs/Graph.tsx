@@ -14,7 +14,7 @@ import dayjs from 'dayjs';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { LoadingOverlay } from '@cutting/component-library';
 import { ResponsiveSVG } from '@cutting/svg';
-import { AxisColor, Countries, DayData, countryData, CountriesStats } from '../Graphs/types';
+import { AxisColor, Countries, DayData, countryData, CountriesResult } from '../Graphs/types';
 import * as Urls from 'src/urls';
 import { NavLink, useLocation } from 'react-router-dom';
 import { assert } from 'assert-ts';
@@ -22,7 +22,7 @@ import { assert } from 'assert-ts';
 import styles from './Graph.module.scss';
 
 export type GraphProps = {
-  result: { isSettled: boolean; data?: CountriesStats };
+  result: { isSettled: boolean; data?: CountriesResult };
   xAxisLabel: string;
   yAxisLabel: string;
   xTickFormat?: (label: string, i: number, a: unknown[]) => string;
