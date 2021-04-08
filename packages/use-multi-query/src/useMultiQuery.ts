@@ -116,22 +116,9 @@ export const useMultiQuery = <D, R>(
         send(error(err));
         onError(err);
         return;
-      } finally {
-        console.log(`completed in a ${machine.value}`);
       }
     });
-  }, [
-    send,
-    onSuccess,
-    fetchClient.jobs,
-    fetchType,
-    acc,
-    onError,
-    abortable,
-    machine.value,
-    parentOnQueryError,
-    parentOnQuerySuccess,
-  ]);
+  }, [send, onSuccess, fetchClient.jobs, fetchType, acc, onError, abortable, parentOnQueryError, parentOnQuerySuccess]);
 
   const result: UseAbortResult<R> = useMemo(
     () => ({
@@ -153,7 +140,6 @@ export const useMultiQuery = <D, R>(
 
     return () => {
       if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as MultiQueryStates)) {
-        console.dir('halting');
         task.current?.halt();
       }
     };
