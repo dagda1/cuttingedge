@@ -32,7 +32,7 @@
       "packages/util",
       "packages/hooks",
       "packages/use-operation",
-      "packages/use-abort",
+      "packages/use-multi-query",
       "packages/component-library",
       "packages/svg",
       "packages/use-mathjax",

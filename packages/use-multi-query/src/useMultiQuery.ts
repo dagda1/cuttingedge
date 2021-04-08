@@ -1,7 +1,7 @@
 import { useCallback, useRef, useMemo, useEffect } from 'react';
 import { useMachine } from '@xstate/react';
-import { createAbortableMachine, abort, reset, start, success, error } from './machine';
-import { AbortableStates, AddFetch, ContentType, UseAbortOptions, UseAbortResult } from './types';
+import { createMultiQueryMachine, abort, reset, start, success, error } from './machine';
+import { MultiQueryStates, AddFetch, ContentType, UseAbortOptions, UseAbortResult } from './types';
 import { run } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
@@ -21,7 +21,7 @@ function getDefaultAccumulator<T>(initialData?: T) {
 
 const noOp = () => void 0;
 
-export const useAbort = <D, R>(
+export const useMultiQuery = <D, R>(
   addFetch: AddFetch<D, R> | string | string[],
   {
     accumulator,
@@ -33,7 +33,7 @@ export const useAbort = <D, R>(
     executeOnload = false,
   }: UseAbortOptions<D, R> = {},
 ): UseAbortResult<R> => {
-  const [machine, send] = useMachine(createAbortableMachine({ initialData }));
+  const [machine, send] = useMachine(createMultiQueryMachine({ initialData }));
   const abortController = useRef<AbortController>(new AbortController());
   const counter = useRef(0);
 
@@ -51,7 +51,7 @@ export const useAbort = <D, R>(
     fetchClient = addFetch(fetchClient);
   }
 
-  const abortable = useCallback(
+  const MultiQuery = useCallback(
     (e: Error) => {
       onAbort(e);
       send(abort);
@@ -101,7 +101,7 @@ export const useAbort = <D, R>(
         onSuccess(accumulated.current);
       } catch (err) {
         if (abortController.current.signal.aborted) {
-          abortable(err);
+          MultiQuery(err);
           return;
         }
         send(error(err));
@@ -111,18 +111,18 @@ export const useAbort = <D, R>(
         console.log(`completed in a ${machine.value}`);
       }
     });
-  }, [send, onSuccess, fetchClient.jobs, fetchType, acc, onError, abortable, machine.value]);
+  }, [send, onSuccess, fetchClient.jobs, fetchType, acc, onError, MultiQuery, machine.value]);
 
   const result: UseAbortResult<R> = useMemo(
     () => ({
-      state: machine.value as AbortableStates,
+      state: machine.value as MultiQueryStates,
       run: runner,
       data: accumulated.current || initialData,
       error: machine.context.error,
       reset: resetable,
       abort: () => abortController.current.abort(),
       counter: counter.current,
-      isSettled: ['SUCCEEDED', 'ERROR'].includes(machine.value as AbortableStates),
+      isSettled: ['SUCCEEDED', 'ERROR'].includes(machine.value as MultiQueryStates),
     }),
     [machine.context.error, machine.value, resetable, runner, initialData],
   );

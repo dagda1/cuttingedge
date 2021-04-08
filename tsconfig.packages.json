@@ -17,7 +17,7 @@
       "path": "./packages/use-operation"
     },
     {
-      "path": "./packages/use-abort"
+      "path": "./packages/use-multi-query"
     },
     {
       "path": "./packages/component-library"

@@ -36,7 +36,7 @@ var libPackages = [
     'packages/svg',
     'packages/use-operation',
     'packages/use-shortcuts',
-    'packages/use-abort',
+    'packages/use-multi-query',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var tsConfigPath = resolveApp('tsconfig.json');
 var testTsConfigPath = require.resolve('@cutting/tsconfig/tsconfig.test.json');

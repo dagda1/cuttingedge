@@ -42,7 +42,7 @@ const libPackages = [
   'packages/svg',
   'packages/use-operation',
   'packages/use-shortcuts',
-  'packages/use-abort',
+  'packages/use-multi-query',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');

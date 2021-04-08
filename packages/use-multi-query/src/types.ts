@@ -1,7 +1,7 @@
 import type { Operation, Task } from 'effection';
 import { Slice } from '@effection/atom/dist';
 
-export type AbortableContext<D> = {
+export type MultiQueryContext<D> = {
   data: D;
   error?: Error;
 };
@@ -13,7 +13,7 @@ export type FetchStates<T> =
   | { type: 'ERROR'; error: Error };
 
 /* eslint-disable @typescript-eslint/ban-types */
-export interface AbortableSchema<D> {
+export interface MultiQuerySchema<D> {
   states: {
     ['IDLE']: {};
     ['LOADING']: {
@@ -38,10 +38,10 @@ export interface AbortableSchema<D> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AbortableStates = keyof AbortableSchema<any>['states'];
+export type MultiQueryStates = keyof MultiQuerySchema<any>['states'];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AbortableActionTypes = FetchStates<any>['type'];
+export type MultiQueryActionTypes = FetchStates<any>['type'];
 
 export interface Runnable<T> {
   run(scope: Task): T;
@@ -99,7 +99,7 @@ export interface Effect<A> {
 }
 
 export type UseAbortResult<D> = {
-  state: AbortableStates;
+  state: MultiQueryStates;
   run: (...args: unknown[]) => void;
   data?: D;
   reset: () => void;

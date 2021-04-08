@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import { useAbort } from '../src';
+import { useMultiQuery } from '../src';
 import cs from 'classnames';
 import './App.css';
 import { range } from '@cutting/util';
-import { AbortableStates } from '../src/types';
+import { MultiQueryStates } from '../src/types';
 
 type Expected = { message: string };
 
@@ -20,7 +20,7 @@ export const App: React.FC = () => {
     });
   }, []);
 
-  const { run, state, abort, reset } = useAbort<Expected>(
+  const { run, state, abort, reset } = useMultiQuery<Expected>(
     (fetchClient) => {
       for (const i of range(0, 9)) {
         fetchClient.addFetchRequest(`https://slowmo.glitch.me/${delay}`, {
@@ -109,7 +109,7 @@ export const App: React.FC = () => {
           </button>
           <button
             className="btn-secondary"
-            disabled={['IDLE', 'LOADING'].includes(state as AbortableStates)}
+            disabled={['IDLE', 'LOADING'].includes(state as MultiQueryStates)}
             onClick={() => {
               reset();
               setMessages([]);
