@@ -24,6 +24,8 @@ export const Button: FC<ButtonProps> = ({
   children,
   title,
   dataSelector,
+  ariaLabel,
+  ariaLabelledBy,
   ...rest
 }) => {
   return (
@@ -36,6 +38,8 @@ export const Button: FC<ButtonProps> = ({
       disabled={disabled}
       title={title}
       data-selector={dataSelector}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
       {...rest}
     >
       {children}

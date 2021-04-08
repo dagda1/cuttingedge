@@ -6,6 +6,6 @@
     "outDir": "dist",
     "rootDir": "."
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": ["./**/*.test.ts", "./**/*.test.tsx"],
 }
