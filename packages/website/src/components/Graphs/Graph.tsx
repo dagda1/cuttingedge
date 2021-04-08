@@ -51,8 +51,6 @@ export const Graph: FC<GraphProps> = ({
 
   const { width: chartWidth, height: chartHeight } = useParentSize(chartRef, { debounceDelay: 50 });
 
-  assert(!!result.data, 'No data has been supplied');
-
   return (
     <ApplicationLayout heading={heading} showFooter={true}>
       <div className={styles.container}>

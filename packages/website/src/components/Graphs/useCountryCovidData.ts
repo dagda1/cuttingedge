@@ -5,6 +5,7 @@ import { uniqBy } from '@cutting/util';
 import utc from 'dayjs/plugin/utc';
 import urlJoin from 'url-join';
 import assert from 'assert-ts';
+import { useEffect, useState } from 'react';
 
 dayjs.extend(utc);
 
@@ -23,18 +24,13 @@ export const transform = (results: CountryStats, country: CountryData): DayData[
     };
   });
 
-  const result = data
-    .map((d, i) => {
-      return {
-        ...d,
-        delta: i === 0 ? 0 : d.confirmed - data[i - 1].confirmed,
-        deltaDeaths: i === 0 ? 0 : d.y - data[i - 1].y,
-      };
-    })
-    .filter((d, i) => {
-      const diff = dayjs().diff(dayjs(d.x), 'd');
-      return diff <= 10 || i % BreakPoint === 0 || i === data.length - 1;
-    });
+  const result = data.map((d, i) => {
+    return {
+      ...d,
+      delta: i === 0 ? 0 : d.confirmed - data[i - 1].confirmed,
+      deltaDeaths: i === 0 ? 0 : d.y - data[i - 1].y,
+    };
+  });
 
   return (result as unknown) as DayData[];
 };
@@ -50,11 +46,13 @@ export const BreakPoint = 14;
 export const useCountryCovidData = (
   { startDate }: CountryDataProps = { startDate: DefaultStartDate },
 ): { data: CountriesStats | undefined; isSettled: boolean } => {
+  const [finalData, seetFinalData] = useState<CountriesStats>();
+
   const urls = Object.keys(countryData)
     .filter((c) => c !== 'SCO')
     .map((c) => urlJoin(baseUrl, c.toUpperCase(), 'timeseries', startDate, dayjs().format('YYYY-MM-DD')));
 
-  const { data, isSettled } = useAbort<CountryStats, CountriesStats>(urls, {
+  const { data } = useAbort<CountryStats, CountriesStats>(urls, {
     accumulator: (acc, current, info) => {
       current.result = uniqBy(current.result, (a) => a.date);
 
@@ -65,7 +63,10 @@ export const useCountryCovidData = (
       const countryDetails = countryData[country];
 
       acc[country] = {
-        result: transform(current, countryDetails),
+        result: transform(current, countryDetails).filter((d, i) => {
+          const diff = dayjs().diff(dayjs(d.x), 'd');
+          return diff <= 10 || i % BreakPoint === 0;
+        }),
         color: countryDetails.color,
         name: countryDetails.longName,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -77,19 +78,18 @@ export const useCountryCovidData = (
     executeOnload: true,
   });
 
-  // const recognisedDates = data?.GBR.result.map((x) => x.x);
-
-  const { data: scotsData, isSettled: isScotsSettled } = useAbort(
-    'https://www.opendata.nhs.scot/api/3/action/datastore_search?resource_id=287fc645-4352-4477-9c8c-55bc054b7e76&limit=30000',
+  const { data: scotsData } = useAbort<
+    { result: { records: { Deaths: number; CumulativeCases: number; Date: string }[] } },
+    CountriesStats
+  >(
+    'https://www.opendata.nhs.scot/api/3/action/datastore_search?resource_id=287fc645-4352-4477-9c8c-55bc054b7e76&limit=1000&sort=Date%20desc',
     {
       fetchType: 'fetchJsonp',
       executeOnload: true,
-      initialData: {},
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      accumulator: (acc: any, current: any) => {
+      initialData: {} as CountriesStats,
+      accumulator: (acc, current) => {
         const scotlandStats: DayStatistics[] = [];
-        // const recognisedDates = results.GBR.result.map((x) => x.date);
-        for (const record of current.result.records) {
+        for (const record of current.result.records.reverse()) {
           const rawDate = record.Date.toString();
           const date = `${rawDate.substr(0, 4)}-${rawDate.substr(4, 2)}-${rawDate.substr(6, 2)}`;
 
@@ -101,22 +101,31 @@ export const useCountryCovidData = (
           });
         }
 
-        const scotland = countryData.SCO;
-
         acc.SCO = {
-          result: transform({ count: scotlandStats.length, result: scotlandStats }, scotland),
-          color: scotland.color,
-          name: scotland.longName,
-        };
+          result: transform({ count: scotlandStats.length, result: scotlandStats }, countryData.SCO),
+          color: countryData.SCO.color,
+          name: countryData.SCO.longName,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any;
 
         return acc;
       },
     },
   );
 
-  const merged = { ...data, ...scotsData };
+  useEffect(() => {
+    if (!!finalData || !scotsData?.SCO?.result?.length || !data?.GBR?.result?.length) {
+      return;
+    }
 
-  console.dir({ merged });
+    const recognisedDates = data?.GBR?.result.map((x) => x.x) || [];
 
-  return { data: merged, isSettled: isSettled || isScotsSettled };
+    scotsData.SCO.result = scotsData.SCO.result.filter((d) => recognisedDates.includes(d.x));
+
+    seetFinalData({ ...data, ...scotsData });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data?.GBR?.result?.length, scotsData?.SCO?.result?.length]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return { data: finalData, isSettled: !!finalData };
 };
