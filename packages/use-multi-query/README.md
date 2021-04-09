@@ -1,16 +1,14 @@
 # use-multi-query
 
-## WHY!!!!!!!!!!!!!!!!!!! 
+## For crying out loud, why have you created yet another `react-query` or `use-query` or `use-fetch` clone? Are you serious?
 
-> For crying out loud, why have you created yet another `react-query` or `use-query` or `use-fetch` clone? Are you serious?
-
-Yes, because I am frustrated with what is out there.
+Yes, because I am frustrated with what is out there.  - Packages like [react-query](https://github.com/tannerlinsley/react-query/blob/master/examples/basic/src/index.js#L41) and [swr](https://github.com/vercel/swr) are excellent but they are so ridiculously complicated when all I want to do is to call an endpoint.  I need to spend time to get know these packages when all I want to do is to give a function a url and I am good to go.
 
 Here are my reasons.
 
 - Because there is still way too much setup and config in any `useQueryXXX` query thningy that I have tried.
 
-- [react-query](https://github.com/tannerlinsley/react-query/blob/master/examples/basic/src/index.js#L41) is excellent, but I still have to provide the code to use `axios` or `fetch` or whatever.
+- Packages like [react-query](https://github.com/tannerlinsley/react-query/blob/master/examples/basic/src/index.js#L41) and [swr](https://github.com/vercel/swr) are excellent, but I still have to provide the code to use `axios` or `fetch` or whatever.  There is a lot to learn and configure for something that should be simple.  It is also becoming bloated and I do not know what half of what it does.
 
 - I want to run more than one query.
 
@@ -34,7 +32,7 @@ Here is the simplest form of using `use-multi-query`:
 const { state, data } = useMultiQuery(`https://slowmo.glitch.me/10000`);
 ```
 
-There are no contradictory `isLoading`, `isSucceeded`, `isError` boolean variables and instead, a `state` string union is returned from `useMultiQuery` that has the following mutually exclusive values:
+There are no contradictory `isLoading`, `isSucceeded`, `isError` boolean variables and instead, a `state` string union is returned from `useMultiQuery` that has the following mutually exclusive values:`
 
 ```ts
 type state = 'IDLE' | 'LOADING' | 'SUCCEEDED' | 'ERROR' | 'ABORTED';

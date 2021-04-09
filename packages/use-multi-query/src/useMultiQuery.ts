@@ -110,7 +110,7 @@ export const useMultiQuery = <D, R>(
         onSuccess(accumulated.current);
       } catch (err) {
         if (abortController.current.signal.aborted) {
-          abortable(err);
+          abortable(new AbortError());
           return;
         }
         send(error(err));
