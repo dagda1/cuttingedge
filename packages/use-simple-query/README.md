@@ -1,4 +1,4 @@
-# use-multi-query
+# use-simple-query
 
 ## For crying out loud, why have you created yet another `react-query` or `use-query` or `use-fetch` clone? Are you serious?
 
@@ -18,30 +18,32 @@ Here are my reasons.
 
 ```bash
 # npm
-npm install @cutting/use-multi-query
+npm install @cutting/use-simple-query
 
 # yarn
-yarn add @cutting/use-multi-query -S
+yarn add @cutting/use-simple-query -S
 ```
 
 So far, I have resisted the urge to use the react context in favour of simplicity.
 
-Here is the simplest form of using `use-multi-query`:
+Here is the simplest form of using `use-simple-query`:
 
 ```ts
-const { state, data } = useMultiQuery(`https://slowmo.glitch.me/10000`);
+const { data } = useSimpleQuery(`https://slowmo.glitch.me/10000`);
 ```
 
-There are no contradictory `isLoading`, `isSucceeded`, `isError` boolean variables and instead, a `state` string union is returned from `useMultiQuery` that has the following mutually exclusive values:`
+There are no contradictory `isLoading`, `isSucceeded`, `isError` boolean variables and instead, a `state` string union is returned from `useSimpleQuery` that has the following mutually exclusive values:`
 
 ```ts
-type state = 'IDLE' | 'LOADING' | 'SUCCEEDED' | 'ERROR' | 'ABORTED';
+const { data, state } = useSimpleQuery(`https://slowmo.glitch.me/10000`);
+
+// type State = 'IDLE' | 'LOADING' | 'SUCCEEDED' | 'ERROR' | 'ABORTED';
 ```
 
 `state` can only be one thing, and you can query it to find the current state of play.
 
 ```ts
-const { state, data } = useMultiQuery(`https://slowmo.glitch.me/10000`);
+const { state, data } = useSimpleQuery(`https://slowmo.glitch.me/10000`);
 
 if (state === 'SUCCEEDED') {
   console.log(data);
@@ -55,9 +57,9 @@ if (state === 'SUCCEEDED') {
 Give me a URL and, I will do the rest.  I am personally sick of endless configuration when all I want to do is this:
 
 ```ts
-const { state, data } = useMultiQuery(`https://slowmo.glitch.me/10000`);
+const { data } = useSimpleQuery(`https://slowmo.glitch.me/10000`);
 
-if (state === 'SUCCEEDED') {
+if (typeof data !== 'undefined') {
   console.log(data);
 }
 ```
@@ -65,7 +67,7 @@ if (state === 'SUCCEEDED') {
 or if you want to invoke the query in a button click handler, then you can do something like this:
 
 ```ts
-const { run, state, abort, reset } = useMultiQuery(`https://slowmo.glitch.me/10000`, { executeOnload: false });
+const { run, state, abort, reset } = useSimpleQuery(`https://slowmo.glitch.me/10000`, { executeOnload: false });
 
 ...
   <button
@@ -83,8 +85,6 @@ const { run, state, abort, reset } = useMultiQuery(`https://slowmo.glitch.me/100
   </button>
 ```
 
-Is one query a multi-query?  In this context....most definitely.
-
 ### Multi Queries
 
 I wrote this package because I could not find anything that did multi-queries and had abort functionality. 
@@ -94,7 +94,7 @@ There are a couple of ways of executing multi queries.
 Just load up the URLs into an array and optionally use some of the handlers:
 
 ```ts
-const { state, abort, reset } = useMultiQuery(
+const { state, abort, reset } = useSimpleQuery(
   [
     `https://slowmo.glitch.me/100`,
     `https://slowmo.glitch.me/200`,
@@ -134,7 +134,7 @@ const { state, abort, reset } = useMultiQuery(
 Alternatively, `userMultiQuery` can take a builder function where you add jobs to the `fetchClient`.
 
 ```ts
-const { state, abort, data } = useMultiQuery(
+const { state, abort, data } = useSimpleQuery(
   (fetchClient) => {
     for (const i of [...Array.from({ length: 10 }).keys()]) {
       fetchClient.addFetchRequest(`https://slowmo.glitch.me/${(i + 1) * 100}`, {

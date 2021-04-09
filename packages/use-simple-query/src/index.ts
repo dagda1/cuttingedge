@@ -1,7 +1,7 @@
 declare const __BROWSER__: boolean;
 
 export type { AddFetch, FetchClient, FetchJob, UseAbortOptions, UseAbortResult } from './types';
-export { useMultiQuery } from './useMultiQuery';
+export { useSimpleQuery } from './useSimpleQuery';
 
 if (!__BROWSER__) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

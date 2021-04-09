@@ -8,6 +8,7 @@ import { fetch as nativeFetch } from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import { identity } from '@cutting/util';
 import { assert } from 'assert-ts';
+import { AbortError } from './AbortError';
 
 function getDefaultAccumulator<D, R>(initialData?: R): Pick<UseAbortOptions<D, R>, 'accumulator'>['accumulator'] {
   if (Array.isArray(initialData)) {
@@ -20,7 +21,7 @@ function getDefaultAccumulator<D, R>(initialData?: R): Pick<UseAbortOptions<D, R
 
 const noOp = () => void 0;
 
-export const useMultiQuery = <D, R>(
+export const useSimpleQuery = <D, R>(
   addFetch: AddFetch<D, R> | string | string[],
   {
     accumulator,

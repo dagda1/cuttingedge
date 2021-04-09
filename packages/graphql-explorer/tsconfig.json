@@ -12,6 +12,6 @@
     { "path": "../hooks" },
     { "path": "../component-library" },
     { "path": "../svg" },
-    { "path": "../use-multi-query"}
+    { "path": "../use-simple-query"}
   ]
 }

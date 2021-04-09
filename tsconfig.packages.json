@@ -17,7 +17,7 @@
       "path": "./packages/use-operation"
     },
     {
-      "path": "./packages/use-multi-query"
+      "path": "./packages/use-simple-query"
     },
     {
       "path": "./packages/component-library"

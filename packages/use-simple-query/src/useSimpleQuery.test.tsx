@@ -1,4 +1,4 @@
-import { useMultiQuery } from './useMultiQuery';
+import { useSimpleQuery } from './useSimpleQuery';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
@@ -26,7 +26,7 @@ const server = setupServer(
   }),
 );
 
-describe('useMultiQuery', () => {
+describe('useSimpleQuery', () => {
   beforeAll(() => server.listen());
 
   afterEach(() => server.resetHandlers());
@@ -35,7 +35,7 @@ describe('useMultiQuery', () => {
 
   describe('single query', () => {
     it('should successfully run a single query', async () => {
-      const { result, waitForNextUpdate } = renderHook(() => useMultiQuery(`http://localhost:3000/single`));
+      const { result, waitForNextUpdate } = renderHook(() => useSimpleQuery(`http://localhost:3000/single`));
 
       expect(result.current.state).toBe('LOADING');
 
@@ -47,7 +47,7 @@ describe('useMultiQuery', () => {
 
     it('should successfully run a single query on demand', async () => {
       const { result, waitForNextUpdate } = renderHook(() =>
-        useMultiQuery(`http://localhost:3000/single`, { executeOnload: false }),
+        useSimpleQuery(`http://localhost:3000/single`, { executeOnload: false }),
       );
 
       expect(result.current.state).toBe('IDLE');
@@ -66,7 +66,7 @@ describe('useMultiQuery', () => {
 
     describe('single accumulation', () => {
       it('should accumulate a single value with default accumulator', async () => {
-        const { result, waitForNextUpdate } = renderHook(() => useMultiQuery(`http://localhost:3000/singles/1`));
+        const { result, waitForNextUpdate } = renderHook(() => useSimpleQuery(`http://localhost:3000/singles/1`));
 
         await waitForNextUpdate();
 
@@ -78,7 +78,7 @@ describe('useMultiQuery', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useMultiQuery<{ id: string }, { id?: string; name: string }>(`http://localhost:3000/singles/1`, {
+          useSimpleQuery<{ id: string }, { id?: string; name: string }>(`http://localhost:3000/singles/1`, {
             accumulator: (acc, curr) => ({ ...acc, ...curr }),
             initialData: { name: 'bob' },
             onSuccess,
@@ -107,7 +107,7 @@ describe('useMultiQuery', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useMultiQuery(
+          useSimpleQuery(
             [`http://localhost:3000/multi/1`, `http://localhost:3000/multi/2`, `http://localhost:3000/multi/3`],
             {
               initialData: [],
@@ -138,7 +138,7 @@ describe('useMultiQuery', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useMultiQuery(
+          useSimpleQuery(
             (fetchClient) => {
               for (const i of [...Array.from({ length: 3 }).keys()]) {
                 fetchClient.addFetchRequest(`http://localhost:3000/multi/${(i + 1) * 100}`, {
@@ -180,7 +180,7 @@ describe('useMultiQuery', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useMultiQuery(
+          useSimpleQuery(
             (fetchClient) => {
               fetchClient.addFetchRequest('http://localhost:3000/multiply/1/2', {
                 method: 'POST',
