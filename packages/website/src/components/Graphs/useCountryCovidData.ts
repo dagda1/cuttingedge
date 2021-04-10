@@ -73,7 +73,7 @@ export const useCountryCovidData = (
 
       return acc;
     },
-    initialData: {} as CountriesResult,
+    initialState: {} as CountriesResult,
     executeOnMount: true,
   });
 
@@ -85,7 +85,7 @@ export const useCountryCovidData = (
     {
       fetchType: 'fetchJsonp',
       executeOnMount: true,
-      initialData: {} as CountriesResult,
+      initialState: {} as CountriesResult,
       accumulator: (acc, current) => {
         const scotlandStats: DayStatistics[] = [];
         for (const record of current.result.records.reverse()) {

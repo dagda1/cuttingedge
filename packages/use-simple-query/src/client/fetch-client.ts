@@ -14,7 +14,7 @@ export const createFetchClient = <D, R>(
     addFetchRequest(
       this: FetchClient<D, R>,
       info,
-      { initialData, onQueryError, onQuerySuccess, contentType = 'json', method = 'GET', ...rest } = {},
+      { initialState, onQueryError, onQuerySuccess, contentType = 'json', method = 'GET', ...rest } = {},
     ) {
       const key = getJobKey(info);
       if (this.jobs.find((j) => j.key === key)) {
@@ -36,7 +36,7 @@ export const createFetchClient = <D, R>(
             ...rest,
           },
           contentType,
-          initialData,
+          initialState,
           onQueryError: onQueryError as (e: Error) => void,
           onQuerySuccess: onQuerySuccess as (t?: D) => void,
         },

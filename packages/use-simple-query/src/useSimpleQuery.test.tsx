@@ -30,6 +30,14 @@ const server = setupServer(
 
     return res(ctx.json({ answer }));
   }),
+
+  rest.get('http://localhost:3000/error', (req, res, ctx) => {
+    return res(ctx.status(500, 'server error'));
+  }),
+
+  rest.get('http://localhost:3000/abortable', (req, rest, ctx) => {
+    ctx.delay('infinite');
+  }),
 );
 
 describe('useSimpleQuery', () => {
@@ -53,12 +61,14 @@ describe('useSimpleQuery', () => {
       const onQuerySuccess = jest.fn();
       const onSuccess = jest.fn();
       const onError = jest.fn();
+      const onAbort = jest.fn();
 
       const { result, waitFor } = renderHook(() =>
         useSimpleQuery(`http://localhost:3000/single`, {
           onError,
           onSuccess,
           onQuerySuccess,
+          onAbort,
         }),
       );
 
@@ -69,6 +79,7 @@ describe('useSimpleQuery', () => {
       expect(onError).not.toHaveBeenCalled();
       expect(result.current.state).toBe('SUCCEEDED');
       expect(result.current.data).toEqual({ greeting: 'hello there' });
+      expect(onAbort).not.toBeCalled();
     });
 
     it('should successfully run a single query on demand', async () => {
@@ -106,7 +117,7 @@ describe('useSimpleQuery', () => {
         const { result, waitForNextUpdate } = renderHook(() =>
           useSimpleQuery<{ id: string }, { id?: string; name: string }>(`http://localhost:3000/singles/1`, {
             accumulator: (acc, curr) => ({ ...acc, ...curr }),
-            initialData: { name: 'bob' },
+            initialState: { name: 'bob' },
             onSuccess,
             onError,
           }),
@@ -123,6 +134,78 @@ describe('useSimpleQuery', () => {
         expect(onError).not.toHaveBeenCalled();
       });
     });
+
+    describe('single errors', () => {
+      it('should return an error object', async () => {
+        const onSuccess = jest.fn();
+        const onError = jest.fn();
+
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useSimpleQuery(`http://localhost:3000/error`, {
+            onSuccess,
+            onError,
+          }),
+        );
+
+        expect(result.current.state).toBe('LOADING');
+
+        await waitForNextUpdate();
+
+        expect(result.current.state).toBe('ERROR');
+
+        expect(result.current.error).toBeInstanceOf(Error);
+
+        expect(onSuccess).not.toHaveBeenCalled();
+        expect(onError).toHaveBeenCalled();
+      });
+    });
+
+    describe('single abort', () => {
+      it('should abort a single call', async () => {
+        const onSuccess = jest.fn();
+        const onError = jest.fn();
+        const onAbort = jest.fn();
+
+        const { result } = renderHook(() =>
+          useSimpleQuery(`http://localhost:3000/abortable`, {
+            onSuccess,
+            onError,
+            onAbort,
+          }),
+        );
+
+        expect(result.current.state).toBe('LOADING');
+
+        await act(async () => {
+          result.current.abort();
+        });
+
+        expect(result.current.state).toBe('ABORTED');
+
+        expect(onAbort).toHaveBeenCalled();
+        expect(onSuccess).not.toHaveBeenCalled();
+        expect(onError).not.toHaveBeenCalled();
+      });
+    });
+
+    describe.only('should reset', () => {
+      it('should reset', async () => {
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useSimpleQuery(`http://localhost:3000/single`, { onError: console.error }),
+        );
+
+        await waitForNextUpdate();
+
+        expect(result.current.state).toBe('SUCCEEDED');
+        expect(result.current.data).toEqual({ greeting: 'hello there' });
+
+        await act(async () => {
+          result.current.reset();
+        });
+
+        expect(result.current.state).toBe('READY');
+      });
+    });
   });
 
   describe('multi Query', () => {
@@ -136,7 +219,7 @@ describe('useSimpleQuery', () => {
           useSimpleQuery(
             [`http://localhost:3000/multi/1`, `http://localhost:3000/multi/2`, `http://localhost:3000/multi/3`],
             {
-              initialData: [],
+              initialState: [],
               onQuerySuccess,
               onSuccess,
               onError,
@@ -176,7 +259,7 @@ describe('useSimpleQuery', () => {
               return fetchClient;
             },
             {
-              initialData: [],
+              initialState: [],
               onQuerySuccess,
               onSuccess,
               onError,
@@ -228,7 +311,7 @@ describe('useSimpleQuery', () => {
               return fetchClient;
             },
             {
-              initialData: [],
+              initialState: [],
               onQuerySuccess,
               onSuccess,
               onError,
@@ -265,7 +348,7 @@ describe('useSimpleQuery', () => {
           useSimpleQuery<{ answer: number }, number>(
             ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
             {
-              initialData: 0,
+              initialState: 0,
               accumulator: (acc, current) => acc + current.answer,
               onQuerySuccess,
               onSuccess,
@@ -293,6 +376,104 @@ describe('useSimpleQuery', () => {
         expect(onError).not.toHaveBeenCalled();
 
         expect(result.current.data).toBe(12);
+      });
+    });
+
+    describe('multiple query error', () => {
+      it('should stop the chain when an error occurrs', async () => {
+        const onQuerySuccess = jest.fn();
+        const onQueryError = jest.fn();
+        const onError = jest.fn();
+        const onSuccess = jest.fn();
+
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useSimpleQuery<{ answer: number }, number>(
+            [
+              'http://localhost:3000/single',
+              'http://localhost:3000/single',
+              'http://localhost:3000/error',
+              'http://localhost:3000/single',
+            ],
+            {
+              executeOnMount: false,
+              initialState: 0,
+              onQuerySuccess,
+              onQueryError,
+              onSuccess,
+              onError,
+            },
+          ),
+        );
+
+        await act(async () => {
+          result.current.run();
+        });
+
+        expect(result.current.state).toBe('LOADING');
+
+        await waitForNextUpdate();
+
+        expect(result.current.state).toBe('ERROR');
+
+        expect(result.current.error).toBeInstanceOf(Error);
+
+        expect(result.current.data).toBeUndefined();
+        expect(onQuerySuccess).toHaveBeenCalled();
+        expect(onSuccess).not.toBeCalled();
+        expect(onError).toHaveBeenCalled();
+        expect(onQueryError).toHaveBeenCalled();
+      });
+    });
+
+    describe('multiple query abort', () => {
+      it('should stop the chain when an error occurrs', async () => {
+        const onQuerySuccess = jest.fn();
+        const onQueryError = jest.fn();
+        const onError = jest.fn();
+        const onSuccess = jest.fn();
+        const onAbort = jest.fn();
+
+        const { result } = renderHook(() =>
+          useSimpleQuery<{ answer: number }, number>(
+            [
+              'http://localhost:3000/single',
+              'http://localhost:3000/single',
+              'http://localhost:3000/abortable',
+              'http://localhost:3000/single',
+            ],
+            {
+              executeOnMount: false,
+              initialState: 0,
+              onQuerySuccess,
+              onQueryError,
+              onSuccess,
+              onError,
+              onAbort,
+            },
+          ),
+        );
+
+        await act(async () => {
+          result.current.run();
+        });
+
+        expect(result.current.state).toBe('LOADING');
+
+        await act(async () => {
+          result.current.abort();
+        });
+
+        expect(result.current.state).toBe('ABORTED');
+
+        expect(onAbort).toHaveBeenCalled();
+
+        expect(result.current.error).not.toBeDefined();
+        expect(result.current.data).not.toBeDefined();
+
+        expect(onQuerySuccess).not.toHaveBeenCalled();
+        expect(onSuccess).not.toBeCalled();
+        expect(onError).not.toHaveBeenCalled();
+        expect(onQueryError).not.toHaveBeenCalled();
       });
     });
   });

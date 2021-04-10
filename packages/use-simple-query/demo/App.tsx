@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSimpleQuery } from '../src';
 import cs from 'classnames';
 import './App.css';
+import { QueryStates } from '../src/types';
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -34,7 +35,7 @@ export const App: React.FC = () => {
       `https://slowmo.glitch.me/1000`,
     ],
     {
-      initialData: [],
+      initialState: [],
       executeOnMount: false,
       onQuerySuccess: processResult,
       onSuccess: (d) => {
@@ -67,7 +68,7 @@ export const App: React.FC = () => {
   //   },
   //   {
   //     executeOnMount: false,
-  //     initialData: [],
+  //     initialState: [],
   //     onSuccess: () => {
   //       console.log(`We did it`);
   //     },
@@ -119,7 +120,7 @@ export const App: React.FC = () => {
           </button>
           <button
             className="btn-secondary"
-            disabled={['READY', 'LOADING'].includes(state as MultiQueryStates)}
+            disabled={['READY', 'LOADING'].includes(state as QueryStates)}
             onClick={() => {
               reset();
               setMessages([]);

@@ -16,7 +16,7 @@ export const useSimpleQuery = <D, R>(
   addFetch: string | string[] | AddFetch<D, R>,
   {
     accumulator,
-    initialData,
+    initialState,
     onSuccess = identity,
     onError = console.error,
     onAbort = noOp,
@@ -26,13 +26,13 @@ export const useSimpleQuery = <D, R>(
     executeOnMount = true,
   }: UseQueryOptions<D, R> = {},
 ): QueryResult<R> => {
-  const [machine, send] = useMachine(createQueryMachine({ initialData }));
+  const [machine, send] = useMachine(createQueryMachine({ initialState }));
   const abortController = useRef<AbortController>(new AbortController());
   const fetchClient = useRef(createFetchClient<D, R>(addFetch, abortController.current));
   const counter = useRef(0);
   const task = useRef<Task>();
 
-  const acc = accumulator ?? getDefaultAccumulator(initialData);
+  const acc = accumulator ?? getDefaultAccumulator(initialState);
 
   const abortable = useCallback(
     (e: Error) => {
@@ -42,13 +42,18 @@ export const useSimpleQuery = <D, R>(
     [onAbort, send],
   );
 
-  const accumulated = useRef(initialData);
+  const accumulated = useRef(initialState);
 
   const resetable = useCallback(() => {
-    abortController.current = new AbortController();
-    counter.current = 0;
-    send(reset(initialData));
-  }, [initialData, send]);
+    try {
+      console.trace('herman');
+      abortController.current = new AbortController();
+      counter.current = 0;
+      send(reset(initialState));
+    } catch (err) {
+      console.error(err);
+    }
+  }, [initialState, send]);
 
   const runner = useCallback(() => {
     send(start);
@@ -97,6 +102,7 @@ export const useSimpleQuery = <D, R>(
         send(success(accumulated.current));
         onSuccess(accumulated.current);
       } catch (err) {
+        console.error(err);
         if (abortController.current.signal.aborted) {
           abortable(new AbortError());
           return;

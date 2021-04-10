@@ -53,13 +53,13 @@ export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
 
 export type ContentTypeMap = `application/${ContentType}`;
 
-export type Accumulator<D, R> = (initialData: R, current: D, request?: RequestInfo) => R;
+export type Accumulator<D, R> = (initialState: R, current: D, request?: RequestInfo) => R;
 
 type FetchOptions<D, R> = {
   method?: Methods;
   contentType?: ContentType;
-  accumulator?: (initialData: R, current: D, request?: RequestInfo) => R;
-  initialData?: R;
+  accumulator?: (initialState: R, current: D, request?: RequestInfo) => R;
+  initialState?: R;
   onQueryError?: (e: Error) => void;
   onQuerySuccess?: (t?: D) => void;
 };

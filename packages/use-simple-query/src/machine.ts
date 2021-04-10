@@ -5,7 +5,7 @@ import { QueryContext, QuerySchema } from './types';
 export const start = { type: 'START' } as const;
 export const abort = { type: 'ABORT' } as const;
 export const error = (error: Error) => ({ type: 'ERROR', error } as const);
-export const reset = <D>(initialData: D) => ({ type: 'RESET', payload: initialData } as const);
+export const reset = <D>(initialState: D) => ({ type: 'RESET', payload: initialState } as const);
 export const success = <D>(data: D) => ({ type: 'SUCCESS', payload: data } as const);
 
 export type QueryActions<D> =
@@ -16,12 +16,12 @@ export type QueryActions<D> =
   | ReturnType<typeof reset>;
 
 export const createQueryMachine = <D>({
-  initialData,
+  initialState,
 }: {
-  initialData: D;
+  initialState: D;
 }): StateMachine<QueryContext<D>, QuerySchema<D>, QueryActions<D>> => {
   const context: QueryContext<D> = {
-    data: initialData,
+    data: initialState,
     error: undefined,
   } as const;
 
