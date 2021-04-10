@@ -1,7 +1,7 @@
-import { useCallback, useRef, useMemo, useEffect } from 'react';
+import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
-import { createMultiQueryMachine, abort, reset, start, success, error } from './machine';
-import { MultiQueryStates, AddFetch, ContentType, UseAbortOptions, UseAbortResult } from './types';
+import { createQueryMachine, abort, reset, start, success, error } from './machine';
+import { QueryStates, AddFetch, ContentType, UseQueryOptions, QueryResult } from './types';
 import { run, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
@@ -9,20 +9,11 @@ import fetchJsonp from 'fetch-jsonp';
 import { identity } from '@cutting/util';
 import { assert } from 'assert-ts';
 import { AbortError } from './AbortError';
-
-function getDefaultAccumulator<D, R>(initialData?: R): Pick<UseAbortOptions<D, R>, 'accumulator'>['accumulator'] {
-  if (Array.isArray(initialData)) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (initialData: R, current: D) => ([...(initialData as any), current] as unknown) as R;
-  }
-
-  return (_: R, current: D) => (current as unknown) as R;
-}
-
-const noOp = () => void 0;
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
+import { getDefaultAccumulator, noOp } from './default-accumulator';
 
 export const useSimpleQuery = <D, R>(
-  addFetch: AddFetch<D, R> | string | string[],
+  addFetch: string | string[] | AddFetch<D, R>,
   {
     accumulator,
     initialData,
@@ -32,27 +23,16 @@ export const useSimpleQuery = <D, R>(
     onQuerySuccess: parentOnQuerySuccess = identity,
     onQueryError: parentOnQueryError = noOp,
     fetchType = 'fetch',
-    executeOnload = true,
-  }: UseAbortOptions<D, R> = {},
-): UseAbortResult<R> => {
-  const [machine, send] = useMachine(createMultiQueryMachine({ initialData }));
+    executeOnMount = true,
+  }: UseQueryOptions<D, R> = {},
+): QueryResult<R> => {
+  const [machine, send] = useMachine(createQueryMachine({ initialData }));
   const abortController = useRef<AbortController>(new AbortController());
+  const fetchClient = useRef(createFetchClient<D, R>(addFetch, abortController.current));
   const counter = useRef(0);
   const task = useRef<Task>();
 
-  let fetchClient = createFetchClient<D, R>(abortController.current);
-
   const acc = accumulator ?? getDefaultAccumulator(initialData);
-
-  if (typeof addFetch === 'string') {
-    fetchClient.addFetchRequest(addFetch);
-  } else if (Array.isArray(addFetch)) {
-    for (const url of addFetch) {
-      fetchClient.addFetchRequest(url);
-    }
-  } else if (typeof addFetch === 'function') {
-    fetchClient = addFetch(fetchClient);
-  }
 
   const abortable = useCallback(
     (e: Error) => {
@@ -71,21 +51,25 @@ export const useSimpleQuery = <D, R>(
   }, [initialData, send]);
 
   const runner = useCallback(() => {
-    counter.current++;
-
     send(start);
 
     task.current = run(function* (scope) {
+      counter.current++;
+
       try {
-        for (const {
-          fetch: {
-            request,
-            init,
-            contentType,
-            onQuerySuccess = parentOnQuerySuccess,
-            onQueryError = parentOnQueryError,
-          },
-        } of fetchClient.jobs) {
+        for (const job of fetchClient.current.jobs) {
+          const {
+            fetch: {
+              request,
+              init,
+              contentType,
+              onQuerySuccess = parentOnQuerySuccess,
+              onQueryError = parentOnQueryError,
+            },
+          } = job;
+
+          job.state = 'LOADING';
+
           scope.ensure(() => abortController.current.abort());
 
           const fetcher = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
@@ -93,10 +77,13 @@ export const useSimpleQuery = <D, R>(
           const response: Response & Body = yield fetcher(request as string, init);
 
           if (!response.ok) {
+            job.state = 'ERROR';
             const status = `we are not ok, ${response.status}: ${response.statusText}`;
             onQueryError(new Error(status));
             throw new Error(status);
           }
+
+          job.state = 'SUCCEEDED';
 
           const data: D = yield response[contentType as ContentType]();
 
@@ -119,32 +106,31 @@ export const useSimpleQuery = <D, R>(
         return;
       }
     });
-  }, [send, onSuccess, fetchClient.jobs, fetchType, acc, onError, abortable, parentOnQueryError, parentOnQuerySuccess]);
+  }, [send, onSuccess, parentOnQuerySuccess, parentOnQueryError, fetchType, acc, onError, abortable]);
 
-  const result: UseAbortResult<R> = useMemo(
-    () => ({
-      state: machine.value as MultiQueryStates,
-      run: runner,
-      data: accumulated.current || initialData,
-      error: machine.context.error,
-      reset: resetable,
-      abort: () => abortController.current.abort(),
-      counter: counter.current,
-    }),
-    [machine.context.error, machine.value, resetable, runner, initialData],
-  );
-
-  useEffect(() => {
-    if (executeOnload && typeof runner !== 'undefined') {
+  useIsomorphicLayoutEffect(() => {
+    if (executeOnMount && typeof runner !== 'undefined' && machine.value === 'READY') {
       runner();
     }
 
     return () => {
-      if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as MultiQueryStates)) {
+      if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as QueryStates)) {
         task.current?.halt();
       }
     };
-  }, [executeOnload, machine.value, runner]);
+  }, [executeOnMount, machine.value, runner]);
+
+  const result: QueryResult<R> = useMemo(
+    () => ({
+      state: machine.value as QueryStates,
+      run: runner,
+      data: machine.context.data,
+      error: machine.context.error,
+      reset: resetable,
+      abort: () => abortController.current.abort(),
+    }),
+    [machine.value, machine.context.data, machine.context.error, runner, resetable],
+  );
 
   return result;
 };

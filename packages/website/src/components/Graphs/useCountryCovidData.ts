@@ -74,7 +74,7 @@ export const useCountryCovidData = (
       return acc;
     },
     initialData: {} as CountriesResult,
-    executeOnload: true,
+    executeOnMount: true,
   });
 
   const { data: scotsData } = useSimpleQuery<
@@ -84,7 +84,7 @@ export const useCountryCovidData = (
     'https://www.opendata.nhs.scot/api/3/action/datastore_search?resource_id=287fc645-4352-4477-9c8c-55bc054b7e76&limit=1000&sort=Date%20desc',
     {
       fetchType: 'fetchJsonp',
-      executeOnload: true,
+      executeOnMount: true,
       initialData: {} as CountriesResult,
       accumulator: (acc, current) => {
         const scotlandStats: DayStatistics[] = [];

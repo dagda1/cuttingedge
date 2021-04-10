@@ -24,6 +24,12 @@ const server = setupServer(
 
     return res(ctx.json({ answer }));
   }),
+
+  rest.get('http://localhost:3000/add/:left/:right', (req, res, ctx) => {
+    const answer = Number(req.params.left) + Number(req.params.right);
+
+    return res(ctx.json({ answer }));
+  }),
 );
 
 describe('useSimpleQuery', () => {
@@ -35,22 +41,42 @@ describe('useSimpleQuery', () => {
 
   describe('single query', () => {
     it('should successfully run a single query', async () => {
-      const { result, waitForNextUpdate } = renderHook(() => useSimpleQuery(`http://localhost:3000/single`));
+      const { result, waitFor } = renderHook(() => useSimpleQuery(`http://localhost:3000/single`));
 
-      expect(result.current.state).toBe('LOADING');
+      await waitFor(() => typeof result.current.data !== 'undefined');
 
-      await waitForNextUpdate();
+      expect(result.current.state).toBe('SUCCEEDED');
+      expect(result.current.data).toEqual({ greeting: 'hello there' });
+    });
 
+    it('should only call handlers once', async () => {
+      const onQuerySuccess = jest.fn();
+      const onSuccess = jest.fn();
+      const onError = jest.fn();
+
+      const { result, waitFor } = renderHook(() =>
+        useSimpleQuery(`http://localhost:3000/single`, {
+          onError,
+          onSuccess,
+          onQuerySuccess,
+        }),
+      );
+
+      await waitFor(() => typeof result.current.data !== 'undefined');
+
+      expect(onQuerySuccess).toHaveBeenCalledTimes(1);
+      expect(onSuccess).toHaveBeenCalled();
+      expect(onError).not.toHaveBeenCalled();
       expect(result.current.state).toBe('SUCCEEDED');
       expect(result.current.data).toEqual({ greeting: 'hello there' });
     });
 
     it('should successfully run a single query on demand', async () => {
       const { result, waitForNextUpdate } = renderHook(() =>
-        useSimpleQuery(`http://localhost:3000/single`, { executeOnload: false }),
+        useSimpleQuery(`http://localhost:3000/single`, { executeOnMount: false }),
       );
 
-      expect(result.current.state).toBe('IDLE');
+      expect(result.current.state).toBe('READY');
 
       await act(async () => {
         result.current.run();
@@ -171,15 +197,14 @@ describe('useSimpleQuery', () => {
       });
     });
 
-    // eslint-disable-next-line jest/no-focused-tests
-    describe.only('multi accumulation', () => {
+    describe('multi accumulation', () => {
       it('should accumulate values with default accumulator', async () => {
         const onQuerySuccess = jest.fn();
         const onQueryError = jest.fn();
         const onSuccess = jest.fn();
         const onError = jest.fn();
 
-        const { result, waitForNextUpdate } = renderHook(() =>
+        const { result, waitFor } = renderHook(() =>
           useSimpleQuery(
             (fetchClient) => {
               fetchClient.addFetchRequest('http://localhost:3000/multiply/1/2', {
@@ -207,9 +232,54 @@ describe('useSimpleQuery', () => {
               onQuerySuccess,
               onSuccess,
               onError,
+              executeOnMount: false,
             },
           ),
         );
+
+        expect(result.current.state).toBe('READY');
+
+        await act(async () => {
+          result.current.run();
+        });
+
+        expect(result.current.state).toBe('LOADING');
+
+        await waitFor(() => result.current.data.length === 3, { timeout: 50000 });
+
+        expect(result.current.state).toBe('SUCCEEDED');
+
+        expect(onQuerySuccess).toBeCalledTimes(3);
+        expect(onQueryError).not.toHaveBeenCalled();
+        expect(onSuccess).toHaveBeenCalled();
+        expect(onError).not.toHaveBeenCalled();
+      });
+
+      it('should accumulate values with custom accumulator', async () => {
+        const onQuerySuccess = jest.fn();
+        const onQueryError = jest.fn();
+        const onError = jest.fn();
+        const onSuccess = jest.fn();
+
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useSimpleQuery<{ answer: number }, number>(
+            ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
+            {
+              initialData: 0,
+              accumulator: (acc, current) => acc + current.answer,
+              onQuerySuccess,
+              onSuccess,
+              onError,
+              executeOnMount: false,
+            },
+          ),
+        );
+
+        expect(result.current.state).toBe('READY');
+
+        await act(async () => {
+          result.current.run();
+        });
 
         expect(result.current.state).toBe('LOADING');
 
@@ -217,14 +287,12 @@ describe('useSimpleQuery', () => {
 
         expect(result.current.state).toBe('SUCCEEDED');
 
-        console.dir(result.current.data);
-
+        expect(result.current.data).toEqual(12);
         expect(onQuerySuccess).toBeCalledTimes(3);
         expect(onQueryError).not.toHaveBeenCalled();
-        expect(onSuccess).toHaveBeenCalled();
         expect(onError).not.toHaveBeenCalled();
 
-        expect(result.current.data).toEqual([{ answer: 2 }, { answer: 6 }, { answer: 12 }]);
+        expect(result.current.data).toBe(12);
       });
     });
   });

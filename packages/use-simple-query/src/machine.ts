@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Machine, StateMachine } from 'xstate';
-import { MultiQueryContext, MultiQuerySchema } from './types';
+import { QueryContext, QuerySchema } from './types';
 
 export const start = { type: 'START' } as const;
 export const abort = { type: 'ABORT' } as const;
@@ -8,28 +8,28 @@ export const error = (error: Error) => ({ type: 'ERROR', error } as const);
 export const reset = <D>(initialData: D) => ({ type: 'RESET', payload: initialData } as const);
 export const success = <D>(data: D) => ({ type: 'SUCCESS', payload: data } as const);
 
-export type MultiQueryActions<D> =
+export type QueryActions<D> =
   | typeof start
   | ReturnType<typeof success>
   | ReturnType<typeof error>
   | typeof abort
   | ReturnType<typeof reset>;
 
-export const createMultiQueryMachine = <D>({
+export const createQueryMachine = <D>({
   initialData,
 }: {
   initialData: D;
-}): StateMachine<MultiQueryContext<D>, MultiQuerySchema<D>, MultiQueryActions<D>> => {
-  const context: MultiQueryContext<D> = {
+}): StateMachine<QueryContext<D>, QuerySchema<D>, QueryActions<D>> => {
+  const context: QueryContext<D> = {
     data: initialData,
     error: undefined,
   } as const;
 
-  const machine = Machine<MultiQueryContext<D>, MultiQuerySchema<D>, MultiQueryActions<D>>({
+  const machine = Machine<QueryContext<D>, QuerySchema<D>, QueryActions<D>>({
     id: 'fetchable',
-    initial: 'IDLE',
+    initial: 'READY',
     states: {
-      ['IDLE']: {
+      ['READY']: {
         on: { START: 'LOADING' },
       },
       ['LOADING']: {
@@ -54,14 +54,14 @@ export const createMultiQueryMachine = <D>({
       ['SUCCEEDED']: {
         on: {
           ['RESET']: {
-            target: 'IDLE',
+            target: 'READY',
           },
         },
       },
       ['ERROR']: {
         on: {
           ['RESET']: {
-            target: 'IDLE',
+            target: 'READY',
             actions: (_context, event) => {
               _context = context;
               return _context;
@@ -72,7 +72,7 @@ export const createMultiQueryMachine = <D>({
       ['ABORTED']: {
         on: {
           ['RESET']: {
-            target: 'IDLE',
+            target: 'READY',
             actions: (_context, event) => {
               _context = context;
               return _context;

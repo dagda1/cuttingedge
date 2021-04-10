@@ -1,6 +1,6 @@
 declare const __BROWSER__: boolean;
 
-export type { AddFetch, FetchClient, FetchJob, UseAbortOptions, UseAbortResult } from './types';
+export type { AddFetch, FetchClient, FetchJob, UseQueryOptions, QueryResult } from './types';
 export { useSimpleQuery } from './useSimpleQuery';
 
 if (!__BROWSER__) {

@@ -1,22 +1,22 @@
 import type { Operation, Task } from 'effection';
 import { Slice } from '@effection/atom/dist';
 
-export type MultiQueryContext<D> = {
+export type QueryContext<D> = {
   data: D;
   error?: Error;
 };
 
 export type FetchStates<T> =
-  | { type: 'IDLE' }
+  | { type: 'READY' }
   | { type: 'LOADING' }
   | { type: 'SUCCEEDED'; data: T }
   | { type: 'ERROR'; error: Error }
   | { type: 'ABORTED'; error: Error };
 
 /* eslint-disable @typescript-eslint/ban-types */
-export interface MultiQuerySchema<D> {
+export interface QuerySchema<D> {
   states: {
-    ['IDLE']: {};
+    ['READY']: {};
     ['LOADING']: {
       states: {
         ['SUCCESS']: {
@@ -39,10 +39,10 @@ export interface MultiQuerySchema<D> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type MultiQueryStates = keyof MultiQuerySchema<any>['states'];
+export type QueryStates = keyof QuerySchema<any>['states'];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type MultiQueryActionTypes = FetchStates<any>['type'];
+export type QueryActionTypes = FetchStates<any>['type'];
 
 export interface Runnable<T> {
   run(scope: Task): T;
@@ -64,10 +64,10 @@ type FetchOptions<D, R> = {
   onQuerySuccess?: (t?: D) => void;
 };
 
-export type UseAbortOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'contentType'> & {
+export type UseQueryOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'contentType'> & {
   fetchType?: 'fetch' | 'fetchJsonp';
   onSuccess?: (t?: R) => void;
-  executeOnload?: boolean;
+  executeOnMount?: boolean;
   onError?: (e: Error) => void;
   onAbort?: (e: Error) => void;
 };
@@ -79,6 +79,8 @@ export type FetchRequest<D, R> = {
 
 export interface FetchJob<D, R> {
   uuid: string;
+  key: string;
+  state: QueryStates;
   fetch: Omit<FetchRequest<D, R>, 'onAbort'>;
 }
 
@@ -103,13 +105,12 @@ export interface Effect<A> {
   (slice: Slice<A>): Operation<void>;
 }
 
-export type UseAbortResult<D> = {
-  state: MultiQueryStates;
+export type QueryResult<D> = {
+  state: QueryStates;
   run: (...args: unknown[]) => void;
   data?: D;
   reset: () => void;
   abort: () => void;
-  counter: number;
   error?: Error;
 };
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSimpleQuery } from '../src';
 import cs from 'classnames';
 import './App.css';
-import { MultiQueryStates } from '../src/types';
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -35,10 +34,11 @@ export const App: React.FC = () => {
       `https://slowmo.glitch.me/1000`,
     ],
     {
-      executeOnload: false,
-      onQuerySuccess: processResult,
       initialData: [],
-      onSuccess: () => {
+      executeOnMount: false,
+      onQuerySuccess: processResult,
+      onSuccess: (d) => {
+        console.log(d);
         console.log(`We did it`);
       },
       onAbort: () => {
@@ -66,7 +66,7 @@ export const App: React.FC = () => {
   //     return fetchClient;
   //   },
   //   {
-  //     executeOnload: false,
+  //     executeOnMount: false,
   //     initialData: [],
   //     onSuccess: () => {
   //       console.log(`We did it`);
@@ -105,7 +105,7 @@ export const App: React.FC = () => {
         <div className="button__container">
           <button
             className="btn-primary"
-            disabled={state !== 'IDLE'}
+            disabled={state !== 'READY'}
             onClick={() => {
               setMessages([]);
               setProgress(0);
@@ -119,7 +119,7 @@ export const App: React.FC = () => {
           </button>
           <button
             className="btn-secondary"
-            disabled={['IDLE', 'LOADING'].includes(state as MultiQueryStates)}
+            disabled={['READY', 'LOADING'].includes(state as MultiQueryStates)}
             onClick={() => {
               reset();
               setMessages([]);
