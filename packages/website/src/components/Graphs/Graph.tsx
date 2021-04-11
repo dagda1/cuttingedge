@@ -62,7 +62,7 @@ export const Graph: FC<GraphProps> = ({
             },
             {
               url: Urls.IncreaseInDeaths,
-              text: 'Daily increase in deaths (UK)',
+              text: 'Daily increase in deaths (World)',
             },
             {
               url: Urls.RateOfChange,

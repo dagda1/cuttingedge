@@ -188,16 +188,19 @@ describe('useSimpleQuery', () => {
       });
     });
 
-    describe.only('should reset', () => {
+    describe('should reset', () => {
       it('should reset', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
-          useSimpleQuery(`http://localhost:3000/single`, { onError: console.error }),
+          useSimpleQuery(`http://localhost:3000/single`, { executeOnMount: false }),
         );
+
+        await act(async () => {
+          result.current.run();
+        });
 
         await waitForNextUpdate();
 
         expect(result.current.state).toBe('SUCCEEDED');
-        expect(result.current.data).toEqual({ greeting: 'hello there' });
 
         await act(async () => {
           result.current.reset();

@@ -8,7 +8,6 @@ import { fetch as nativeFetch } from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import { identity } from '@cutting/util';
 import { assert } from 'assert-ts';
-import { AbortError } from './AbortError';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
 
@@ -45,19 +44,13 @@ export const useSimpleQuery = <D, R>(
   const accumulated = useRef(initialState);
 
   const resetable = useCallback(() => {
-    try {
-      console.trace('herman');
-      abortController.current = new AbortController();
-      counter.current = 0;
-      send(reset(initialState));
-    } catch (err) {
-      console.error(err);
-    }
+    abortController.current = new AbortController();
+    counter.current = 0;
+    send(reset(initialState));
   }, [initialState, send]);
 
   const runner = useCallback(() => {
     send(start);
-
     task.current = run(function* (scope) {
       counter.current++;
 
@@ -102,9 +95,8 @@ export const useSimpleQuery = <D, R>(
         send(success(accumulated.current));
         onSuccess(accumulated.current);
       } catch (err) {
-        console.error(err);
-        if (abortController.current.signal.aborted) {
-          abortable(new AbortError());
+        if (err?.name === 'AbortError') {
+          abortable(err);
           return;
         }
         send(error(err));

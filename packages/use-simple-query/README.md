@@ -1,22 +1,4 @@
 # use-simple-query
-## Getting started
-
-```bash
-npm install @cutting/use-simple-query
-```
-Here is the simplest form of using `use-simple-query`:
-
-```ts
-import { useSimpleQuery } from '@cutting/use-simple-query';
-
-const { data } = useSimpleQuery(`/api/users/1`);
-
-if (typeof data !== 'undefined') {
-  console.log(data);
-}
-```
-
-Now for the why....
 
 ## For crying out loud, why have you created yet another `react-query` or `use-query` or `use-fetch` clone? Are you serious?
 
@@ -211,9 +193,24 @@ if( typeof data !== 'undefined') {
 
 WARNING! The operations should be [commutative](https://www.mathsisfun.com/associative-commutative-distributive.html) because there is no guarantee when the async functions will return. 
 
-## API
+## Getting started
+
+```bash
+npm install @cutting/use-simple-query
+```
+Here is the simplest form of using `use-simple-query`:
+
+```ts
+import { useSimpleQuery } from '@cutting/use-simple-query';
+
+const { data } = useSimpleQuery(`/api/users/1`);
+
+if (typeof data !== 'undefined') {
+  console.log(data);
+}
+```
 
 ## TODO
 
 - retry logic
-- add a compare function when checking
+- global configuration via context

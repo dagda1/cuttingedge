@@ -38,7 +38,7 @@ export const MobileMenuItems: FC<MenuItemsProps> = ({ collapse }) => {
         },
         {
           path: IncreaseInDeaths,
-          heading: 'COVID-19 Daily increase in UK deaths',
+          heading: 'COVID-19 Daily increase in World deaths',
         },
         {
           path: RateOfChange,
