@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Machine, StateMachine } from 'xstate';
-import { QueryContext, QuerySchema } from './types';
+import { FetcherContext, FetcherSchema } from './types';
 
 export const start = { type: 'START' } as const;
 export const abort = { type: 'ABORT' } as const;
@@ -19,13 +19,13 @@ export const createQueryMachine = <D>({
   initialState,
 }: {
   initialState: D;
-}): StateMachine<QueryContext<D>, QuerySchema<D>, QueryActions<D>> => {
-  const context: QueryContext<D> = {
+}): StateMachine<FetcherContext<D>, FetcherSchema<D>, QueryActions<D>> => {
+  const context: FetcherContext<D> = {
     data: initialState,
     error: undefined,
   } as const;
 
-  const machine = Machine<QueryContext<D>, QuerySchema<D>, QueryActions<D>>({
+  const machine = Machine<FetcherContext<D>, FetcherSchema<D>, QueryActions<D>>({
     id: 'fetchable',
     initial: 'READY',
     states: {

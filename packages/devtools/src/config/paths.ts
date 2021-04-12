@@ -42,7 +42,7 @@ const libPackages = [
   'packages/svg',
   'packages/use-operation',
   'packages/use-shortcuts',
-  'packages/use-simple-query',
+  'packages/react-fetcher',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');

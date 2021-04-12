@@ -1,5 +1,5 @@
 import { CountryStats, DayData, CountryData, countryData, Countries, DayStatistics, CountriesResult } from './types';
-import { useSimpleQuery } from '@cutting/use-simple-query';
+import { useFetcher } from '@cutting/react-fetcher';
 import dayjs from 'dayjs';
 import { uniqBy } from '@cutting/util';
 import utc from 'dayjs/plugin/utc';
@@ -52,7 +52,7 @@ export const useCountryCovidData = (
     .filter((c) => c !== 'SCO')
     .map((c) => urlJoin(baseUrl, c.toUpperCase(), 'timeseries', startDate, dayjs().format('YYYY-MM-DD')));
 
-  const { data } = useSimpleQuery<CountryStats, CountriesResult>(urls, {
+  const { data } = useFetcher<CountryStats, CountriesResult>(urls, {
     accumulator: (acc, current, info) => {
       current.result = uniqBy(current.result, (a) => a.date);
 
@@ -77,7 +77,7 @@ export const useCountryCovidData = (
     executeOnMount: true,
   });
 
-  const { data: scotsData } = useSimpleQuery<
+  const { data: scotsData } = useFetcher<
     { result: { records: { Deaths: number; CumulativeCases: number; Date: string }[] } },
     CountriesResult
   >(

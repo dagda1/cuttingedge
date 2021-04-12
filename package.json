@@ -32,7 +32,7 @@
       "packages/util",
       "packages/hooks",
       "packages/use-operation",
-      "packages/use-simple-query",
+      "packages/react-fetcher",
       "packages/component-library",
       "packages/svg",
       "packages/use-mathjax",

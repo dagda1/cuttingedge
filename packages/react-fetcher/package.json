@@ -1,5 +1,5 @@
 {
-  "name": "@cutting/use-simple-query",
+  "name": "@cutting/react-fetcher",
   "description": "MultiQuery effects.",
   "version": "4.21.0",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "type": "module",
-  "module": "dist/use-simple-query.esm.js",
+  "module": "dist/react-fetcher.esm.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
@@ -50,5 +50,5 @@
     "use-cancellable-fetch"
   ],
   "main": "dist/index.js",
-  "browser": "dist/use-simple-query.esm.js"
+  "browser": "dist/react-fetcher.esm.js"
 }

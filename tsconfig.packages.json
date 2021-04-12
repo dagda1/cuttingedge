@@ -17,7 +17,7 @@
       "path": "./packages/use-operation"
     },
     {
-      "path": "./packages/use-simple-query"
+      "path": "./packages/react-fetcher"
     },
     {
       "path": "./packages/component-library"

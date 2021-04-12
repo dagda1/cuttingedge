@@ -1,8 +1,8 @@
-import { UseQueryOptions } from './types';
+import { UseFetcherOptions } from './types';
 
 export function getDefaultAccumulator<D, R>(
   initialState?: R,
-): Pick<UseQueryOptions<D, R>, 'accumulator'>['accumulator'] {
+): Pick<UseFetcherOptions<D, R>, 'accumulator'>['accumulator'] {
   if (Array.isArray(initialState)) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (initialState: R, current: D) => ([...(initialState as any), current] as unknown) as R;

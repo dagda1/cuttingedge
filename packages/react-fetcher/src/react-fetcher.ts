@@ -1,7 +1,7 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createQueryMachine, abort, reset, start, success, error } from './machine';
-import { QueryStates, AddFetch, ContentType, UseQueryOptions, QueryResult } from './types';
+import { FetcherStates, AddFetch, ContentType, UseFetcherOptions, QueryResult } from './types';
 import { run, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
@@ -11,7 +11,7 @@ import { assert } from 'assert-ts';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
 
-export const useSimpleQuery = <D, R>(
+export const useFetcher = <D, R>(
   addFetch: string | string[] | AddFetch<D, R>,
   {
     accumulator,
@@ -23,7 +23,7 @@ export const useSimpleQuery = <D, R>(
     onQueryError: parentOnQueryError = noOp,
     fetchType = 'fetch',
     executeOnMount = true,
-  }: UseQueryOptions<D, R> = {},
+  }: UseFetcherOptions<D, R> = {},
 ): QueryResult<R> => {
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
   const abortController = useRef<AbortController>(new AbortController());
@@ -112,7 +112,7 @@ export const useSimpleQuery = <D, R>(
     }
 
     return () => {
-      if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as QueryStates)) {
+      if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as FetcherStates)) {
         task.current?.halt();
       }
     };
@@ -120,7 +120,7 @@ export const useSimpleQuery = <D, R>(
 
   const result: QueryResult<R> = useMemo(
     () => ({
-      state: machine.value as QueryStates,
+      state: machine.value as FetcherStates,
       run: runner,
       data: machine.context.data,
       error: machine.context.error,

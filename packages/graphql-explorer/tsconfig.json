@@ -12,6 +12,6 @@
     { "path": "../hooks" },
     { "path": "../component-library" },
     { "path": "../svg" },
-    { "path": "../use-simple-query"}
+    { "path": "../react-fetcher"}
   ]
 }

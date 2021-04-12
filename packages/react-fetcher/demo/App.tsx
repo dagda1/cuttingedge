@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSimpleQuery } from '../src';
+import { useFetcher } from '../src';
 import cs from 'classnames';
 import './App.css';
 import { QueryStates } from '../src/types';
@@ -18,9 +18,9 @@ export const App: React.FC = () => {
   };
 
   // one hit wonder
-  // const { run, state, abort, reset } = useSimpleQuery(`https://slowmo.glitch.me/10000`);
+  // const { run, state, abort, reset } = useFetcher(`https://slowmo.glitch.me/10000`);
 
-  const { run, state, abort, reset } = useSimpleQuery(
+  const { run, state, abort, reset } = useFetcher(
     [
       `https://slowmo.glitch.me/100`,
       `https://slowmo.glitch.me/200`,
@@ -52,7 +52,7 @@ export const App: React.FC = () => {
     },
   );
 
-  // const { run, state, abort, reset } = useSimpleQuery(
+  // const { run, state, abort, reset } = useFetcher(
   //   (fetchClient) => {
   //     for (const i of [...Array.from({ length: 10 }).keys()]) {
   //       fetchClient.addFetchRequest(`https://slowmo.glitch.me/${(i + 1) * 100}`, {
@@ -85,7 +85,7 @@ export const App: React.FC = () => {
   return (
     <div className="container">
       <div>
-        <h1>use-simple-query</h1>
+        <h1>react-fetcher</h1>
         <p>Open the network tab and press cancel to check the requests are getting cancelled</p>
         <div>
           <p>

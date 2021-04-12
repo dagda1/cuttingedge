@@ -1,4 +1,4 @@
-import { useSimpleQuery } from './useSimpleQuery';
+import { useFetcher } from './useFetcher';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
@@ -40,7 +40,7 @@ const server = setupServer(
   }),
 );
 
-describe('useSimpleQuery', () => {
+describe('useFetcher', () => {
   beforeAll(() => server.listen());
 
   afterEach(() => server.resetHandlers());
@@ -49,7 +49,7 @@ describe('useSimpleQuery', () => {
 
   describe('single query', () => {
     it('should successfully run a single query', async () => {
-      const { result, waitFor } = renderHook(() => useSimpleQuery(`http://localhost:3000/single`));
+      const { result, waitFor } = renderHook(() => useFetcher(`http://localhost:3000/single`));
 
       await waitFor(() => typeof result.current.data !== 'undefined');
 
@@ -64,7 +64,7 @@ describe('useSimpleQuery', () => {
       const onAbort = jest.fn();
 
       const { result, waitFor } = renderHook(() =>
-        useSimpleQuery(`http://localhost:3000/single`, {
+        useFetcher(`http://localhost:3000/single`, {
           onError,
           onSuccess,
           onQuerySuccess,
@@ -84,7 +84,7 @@ describe('useSimpleQuery', () => {
 
     it('should successfully run a single query on demand', async () => {
       const { result, waitForNextUpdate } = renderHook(() =>
-        useSimpleQuery(`http://localhost:3000/single`, { executeOnMount: false }),
+        useFetcher(`http://localhost:3000/single`, { executeOnMount: false }),
       );
 
       expect(result.current.state).toBe('READY');
@@ -103,7 +103,7 @@ describe('useSimpleQuery', () => {
 
     describe('single accumulation', () => {
       it('should accumulate a single value with default accumulator', async () => {
-        const { result, waitForNextUpdate } = renderHook(() => useSimpleQuery(`http://localhost:3000/singles/1`));
+        const { result, waitForNextUpdate } = renderHook(() => useFetcher(`http://localhost:3000/singles/1`));
 
         await waitForNextUpdate();
 
@@ -115,7 +115,7 @@ describe('useSimpleQuery', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useSimpleQuery<{ id: string }, { id?: string; name: string }>(`http://localhost:3000/singles/1`, {
+          useFetcher<{ id: string }, { id?: string; name: string }>(`http://localhost:3000/singles/1`, {
             accumulator: (acc, curr) => ({ ...acc, ...curr }),
             initialState: { name: 'bob' },
             onSuccess,
@@ -141,7 +141,7 @@ describe('useSimpleQuery', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useSimpleQuery(`http://localhost:3000/error`, {
+          useFetcher(`http://localhost:3000/error`, {
             onSuccess,
             onError,
           }),
@@ -167,7 +167,7 @@ describe('useSimpleQuery', () => {
         const onAbort = jest.fn();
 
         const { result } = renderHook(() =>
-          useSimpleQuery(`http://localhost:3000/abortable`, {
+          useFetcher(`http://localhost:3000/abortable`, {
             onSuccess,
             onError,
             onAbort,
@@ -191,7 +191,7 @@ describe('useSimpleQuery', () => {
     describe('should reset', () => {
       it('should reset', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
-          useSimpleQuery(`http://localhost:3000/single`, { executeOnMount: false }),
+          useFetcher(`http://localhost:3000/single`, { executeOnMount: false }),
         );
 
         await act(async () => {
@@ -219,7 +219,7 @@ describe('useSimpleQuery', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useSimpleQuery(
+          useFetcher(
             [`http://localhost:3000/multi/1`, `http://localhost:3000/multi/2`, `http://localhost:3000/multi/3`],
             {
               initialState: [],
@@ -250,7 +250,7 @@ describe('useSimpleQuery', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useSimpleQuery(
+          useFetcher(
             (fetchClient) => {
               for (const i of [...Array.from({ length: 3 }).keys()]) {
                 fetchClient.addFetchRequest(`http://localhost:3000/multi/${(i + 1) * 100}`, {
@@ -291,7 +291,7 @@ describe('useSimpleQuery', () => {
         const onError = jest.fn();
 
         const { result, waitFor } = renderHook(() =>
-          useSimpleQuery(
+          useFetcher(
             (fetchClient) => {
               fetchClient.addFetchRequest('http://localhost:3000/multiply/1/2', {
                 method: 'POST',
@@ -348,7 +348,7 @@ describe('useSimpleQuery', () => {
         const onSuccess = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useSimpleQuery<{ answer: number }, number>(
+          useFetcher<{ answer: number }, number>(
             ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
             {
               initialState: 0,
@@ -390,7 +390,7 @@ describe('useSimpleQuery', () => {
         const onSuccess = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useSimpleQuery<{ answer: number }, number>(
+          useFetcher<{ answer: number }, number>(
             [
               'http://localhost:3000/single',
               'http://localhost:3000/single',
@@ -437,7 +437,7 @@ describe('useSimpleQuery', () => {
         const onAbort = jest.fn();
 
         const { result } = renderHook(() =>
-          useSimpleQuery<{ answer: number }, number>(
+          useFetcher<{ answer: number }, number>(
             [
               'http://localhost:3000/single',
               'http://localhost:3000/single',

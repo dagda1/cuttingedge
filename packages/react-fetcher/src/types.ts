@@ -1,7 +1,7 @@
 import type { Operation, Task } from 'effection';
 import { Slice } from '@effection/atom/dist';
 
-export type QueryContext<D> = {
+export type FetcherContext<D> = {
   data: D;
   error?: Error;
 };
@@ -14,7 +14,7 @@ export type FetchStates<T> =
   | { type: 'ABORTED'; error: Error };
 
 /* eslint-disable @typescript-eslint/ban-types */
-export interface QuerySchema<D> {
+export interface FetcherSchema<D> {
   states: {
     ['READY']: {};
     ['LOADING']: {
@@ -39,10 +39,10 @@ export interface QuerySchema<D> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type QueryStates = keyof QuerySchema<any>['states'];
+export type FetcherStates = keyof FetcherSchema<any>['states'];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type QueryActionTypes = FetchStates<any>['type'];
+export type FetcherActionTypes = FetchStates<any>['type'];
 
 export interface Runnable<T> {
   run(scope: Task): T;
@@ -64,7 +64,7 @@ type FetchOptions<D, R> = {
   onQuerySuccess?: (t?: D) => void;
 };
 
-export type UseQueryOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'contentType'> & {
+export type UseFetcherOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'contentType'> & {
   fetchType?: 'fetch' | 'fetchJsonp';
   onSuccess?: (t?: R) => void;
   executeOnMount?: boolean;
@@ -80,7 +80,7 @@ export type FetchRequest<D, R> = {
 export interface FetchJob<D, R> {
   uuid: string;
   key: string;
-  state: QueryStates;
+  state: FetcherStates;
   fetch: Omit<FetchRequest<D, R>, 'onAbort'>;
 }
 
@@ -106,7 +106,7 @@ export interface Effect<A> {
 }
 
 export type QueryResult<D> = {
-  state: QueryStates;
+  state: FetcherStates;
   run: (...args: unknown[]) => void;
   data?: D;
   reset: () => void;

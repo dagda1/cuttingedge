@@ -1,7 +1,7 @@
 declare const __BROWSER__: boolean;
 
-export type { AddFetch, FetchClient, FetchJob, UseQueryOptions, QueryResult } from './types';
-export { useSimpleQuery } from './useSimpleQuery';
+export type { AddFetch, FetchClient, FetchJob, UseFetcherOptions, QueryResult } from './types';
+export { useFetcher } from './react-fetcher';
 
 if (!__BROWSER__) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
