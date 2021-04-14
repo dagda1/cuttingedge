@@ -5,6 +5,9 @@
       "path": "./packages/devtools"
     },
     {
+      "path": "./packages/the-watcher"
+    },
+    {
       "path": "./packages/testing"
     },
     {

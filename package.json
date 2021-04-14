@@ -34,6 +34,7 @@
       "packages/react-fetcher",
       "packages/component-library",
       "packages/svg",
+      "packages/the-watcher",
       "packages/use-mathjax",
       "packages/use-shortcuts",
       "packages/graphql-explorer",
