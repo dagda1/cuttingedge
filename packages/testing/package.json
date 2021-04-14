@@ -23,7 +23,7 @@
     "lint": "eslint {src,tests}/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
     "build": "NODE_ENV=production cutting ts-build",
-    "prepublish": "yarn build"
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@cutting/util": "4.21.0",

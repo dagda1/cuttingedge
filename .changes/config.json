@@ -1,0 +1,152 @@
+{
+  "gitSiteUrl": "https://github.com/dagda1/cuttingedge/",
+  "pkgManagers": {
+    "javascript": {
+      "version": true,
+      "getPublishedVersion": "npm view ${ pkg.pkg } version",
+      "publish": [
+        {
+          "command": "npm publish --access public",
+          "dryRunCommand": "echo publish here"
+        }
+      ]
+    }
+  },
+  "packages": {
+    "@cutting/component-library": {
+      "path": "./packages/component-library",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/hooks",
+        "@cutting/util",
+        "@cutting/devtools",
+        "@cutting/eslint-config",
+        "@cutting/useful-types"
+      ]
+    },
+    "@cutting/devtools": {
+      "path": "./packages/devtools",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/component-library"
+      ]
+    },
+    "@cutting/eslint-config": {
+      "path": "./packages/eslint-config",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/useful-types"
+      ]
+    },
+    "@cutting/graphql-explorer": {
+      "path": "./packages/graphql-explorer",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/util"
+      ]
+    },
+    "@cutting/hooks": {
+      "path": "./packages/hooks",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/util",
+        "@cutting/component-library",
+        "@cutting/devtools",
+        "@cutting/eslint-config",
+        "@cutting/useful-types"
+      ]
+    },
+    "@cutting/react-fetcher": {
+      "path": "./packages/react-fetcher",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/use-operation",
+        "@cutting/util"
+      ]
+    },
+    "@cutting/svg": {
+      "path": "./packages/svg",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/util",
+        "@cutting/hooks",
+        "@cutting/devtools",
+        "@cutting/testing",
+        "@cutting/eslint-config",
+        "@cutting/useful-types"
+      ]
+    },
+    "@cutting/testing": {
+      "path": "./packages/testing",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/util",
+        "@cutting/devtools",
+        "@cutting/eslint-config",
+        "@cutting/useful-types"
+      ]
+    },
+    "@cutting/tsconfig": {
+      "path": "./packages/tsconfig",
+      "manager": "javascript"
+    },
+    "@cutting/use-mathjax": {
+      "path": "./packages/use-mathjax",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/util",
+        "@cutting/devtools",
+        "@cutting/eslint-config",
+        "@cutting/useful-types"
+      ]
+    },
+    "@cutting/use-operation": {
+      "path": "./packages/use-operation",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/util"
+      ]
+    },
+    "@cutting/use-shortcuts": {
+      "path": "./packages/use-shortcuts",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/util",
+        "@cutting/devtools",
+        "@cutting/eslint-config",
+        "@cutting/useful-types"
+      ]
+    },
+    "@cutting/useful-types": {
+      "path": "./packages/useful-types",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/util",
+        "@cutting/eslint-config"
+      ]
+    },
+    "@cutting/util": {
+      "path": "./packages/util",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/util",
+        "@cutting/devtools",
+        "@cutting/eslint-config",
+        "@cutting/useful-types"
+      ]
+    },
+    "@cutting/website": {
+      "path": "./packages/website",
+      "manager": "javascript",
+      "dependencies": [
+        "@cutting/component-library",
+        "@cutting/hooks",
+        "@cutting/svg",
+        "@cutting/util",
+        "@cutting/devtools",
+        "@cutting/eslint-config",
+        "@cutting/useful-types"
+      ]
+    }
+  }
+}

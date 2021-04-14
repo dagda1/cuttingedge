@@ -20,7 +20,7 @@
     "lint": "yarn eslint ./src/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
     "build": "NODE_ENV=production cutting rollup",
-    "prepublish": "yarn build"
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@cutting/util": "4.21.0",

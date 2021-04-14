@@ -1,7 +1,7 @@
 {
   "name": "@cutting/react-fetcher",
-  "description": "MultiQuery effects.",
-  "version": "4.21.0",
+  "description": "A simpler use-fetch or use-query or whatever.",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -14,10 +14,10 @@
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting rollup"
+    "build": "NODE_ENV=production cutting rollup",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@cutting/use-operation": "4.21.0",
     "@cutting/util": "4.21.0",
     "@effection/atom": "=2.0.0-preview.5",
     "@effection/node": "=2.0.0-preview.7",
