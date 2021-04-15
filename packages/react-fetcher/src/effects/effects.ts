@@ -1,5 +1,5 @@
 import { Slice } from '@effection/atom';
-import { Operation } from 'effection';
+import { Operation, Task } from 'effection';
 
 export interface Effect<A> {
   (slice: Slice<A>): Operation<void>;
