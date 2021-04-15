@@ -4,6 +4,7 @@
   "description": "Run and watch commands concurrently",
   "main": "dist/index.js",
   "license": "MIT",
+  "bin": "./dist/watcher.js",
   "scripts": {
     "start": "PORT=9999 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
@@ -14,5 +15,8 @@
   },
   "module": "dist/the-watcher.esm.js",
   "browser": "dist/the-watcher.esm.js",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "commander": "^6.2.1"
+  }
 }
