@@ -1,3 +1,4 @@
+import { expect, it, describe } from '@jest/globals';
 import { Heading, HeadingProps } from '.';
 import { render } from '@testing-library/react';
 

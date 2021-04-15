@@ -1,4 +1,5 @@
 import { flatten, flattenDeep } from './lists';
+import { expect, it, describe } from '@jest/globals';
 
 describe('flatten', () => {
   it('should flatten', () => {

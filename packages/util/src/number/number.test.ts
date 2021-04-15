@@ -1,4 +1,5 @@
 import { isNumber } from '.';
+import { expect, it, describe } from '@jest/globals';
 
 describe('isNumber', () => {
   it('should test for number', () => {

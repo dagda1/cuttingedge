@@ -101,7 +101,7 @@ export const configureCommon = (
         new ForkTsCheckerWebpackPlugin({
           typescript: {
             enabled: true,
-            configFile: paths.tsConfig,
+            configFile: isProduction ? paths.tsConfigProduction : paths.tsConfig,
             build: paths.projectReferences,
           },
         }),

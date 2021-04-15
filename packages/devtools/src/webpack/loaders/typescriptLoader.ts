@@ -17,7 +17,7 @@ export const createTypescriptLoader = ({
 
   const options: Partial<Options> = {
     silent: isDevelopment,
-    configFile: paths.tsConfig,
+    configFile: isProduction ? paths.tsConfigProduction : paths.tsConfig,
     transpileOnly: isDevelopment,
     happyPackMode: isDevelopment,
     projectReferences: paths.projectReferences,

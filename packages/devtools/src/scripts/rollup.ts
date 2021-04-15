@@ -40,6 +40,8 @@ export interface BundlerOptions {
   env: 'development' | 'production';
 }
 
+logger.debug(`using tsconfig ${paths.tsConfigProduction}`);
+
 async function generateBundledModule({ packageName, inputFile, moduleFormat, env }: BundlerOptions) {
   assert(fs.existsSync(inputFile), `Input file ${inputFile} does not exist`);
 
@@ -105,7 +107,7 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
       csv(),
       typescript({
         typescript: require('typescript'),
-        tsconfig: paths.tsConfig,
+        tsconfig: paths.tsConfigProduction,
         abortOnError: true,
         tsconfigDefaults: {
           compilerOptions: {

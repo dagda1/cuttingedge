@@ -1,4 +1,4 @@
-/* eslint-disable jest/no-focused-tests */
+import { describe, it, expect } from '@jest/globals';
 import { buildShortcuts } from './buildShortcuts';
 import { KeyCode } from './types/keycodes';
 

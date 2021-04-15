@@ -1,7 +1,8 @@
-import { useFetcher } from './useFetcher';
+import { expect, it, describe, beforeAll, afterEach, afterAll, jest } from '@jest/globals';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
+import { useFetcher } from './react-fetcher';
 
 const server = setupServer(
   rest.get('http://localhost:3000/multi/:id', (req, res, ctx) => {
@@ -331,7 +332,7 @@ describe('useFetcher', () => {
 
         expect(result.current.state).toBe('LOADING');
 
-        await waitFor(() => result.current.data.length === 3, { timeout: 50000 });
+        await waitFor(() => result.current.data?.length === 3, { timeout: 50000 });
 
         expect(result.current.state).toBe('SUCCEEDED');
 

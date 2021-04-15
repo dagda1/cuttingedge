@@ -6,8 +6,7 @@
     "rootDir": "./src"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
   "references": [
-    { "path": "../util" }
+    { "path": "../util/tsconfig.dist.json" }
   ]
 }

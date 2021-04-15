@@ -1,11 +1,10 @@
-/* eslint-disable jest/no-focused-tests */
 import { pickBy, countBy, sortBy, sortedUniqBy, uniqBy, groupBy } from './by';
-import { isNumber } from 'util';
+import { expect, it, describe } from '@jest/globals';
 
 describe('by', () => {
   describe('pickBy', function () {
     it('should work with func', () => {
-      expect(pickBy({ a: 1, b: '2', c: 3 }, isNumber)).toEqual({ a: 1, c: 3 });
+      expect(pickBy({ a: 1, b: '2', c: 3 }, (n) => typeof n === 'number')).toEqual({ a: 1, c: 3 });
     });
   });
 
@@ -95,7 +94,8 @@ describe('by', () => {
         },
       ];
 
-      expect(groupBy(array, (row) => row.key)).toEqual({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect(groupBy(array, (row) => (row as any).key)).toEqual({
         'Address.anchorPostcodeFinder': [{ key: 'Address.anchorPostcodeFinder', value: 'Postcode lookup' }],
         'Cookies.ariaLabel': [
           { key: 'Cookies.ariaLabel', value: 'Close this notification' },

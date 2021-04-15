@@ -8,7 +8,7 @@ var createTypescriptLoader = function (_a) {
     var isProduction = !isDevelopment;
     var options = {
         silent: isDevelopment,
-        configFile: paths_1.paths.tsConfig,
+        configFile: isProduction ? paths_1.paths.tsConfigProduction : paths_1.paths.tsConfig,
         transpileOnly: isDevelopment,
         happyPackMode: isDevelopment,
         projectReferences: paths_1.paths.projectReferences,

@@ -1,3 +1,4 @@
+import { expect, it, describe } from '@jest/globals';
 import { NotFoundError } from './NotFoundError';
 
 describe('NotFoundError', () => {

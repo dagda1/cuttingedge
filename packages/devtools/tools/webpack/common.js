@@ -113,7 +113,7 @@ var configureCommon = function (options, overrides) {
             new fork_ts_checker_webpack_plugin_1.default({
                 typescript: {
                     enabled: true,
-                    configFile: paths_1.paths.tsConfig,
+                    configFile: isProduction ? paths_1.paths.tsConfigProduction : paths_1.paths.tsConfig,
                     build: paths_1.paths.projectReferences,
                 },
             }),

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
+import { describe, it, expect, afterEach, jest } from '@jest/globals';
 import { renderHook } from '@testing-library/react-hooks';
 import { useShortcuts } from './useShortcuts';
 import { ShortcutHandler } from './types/types';
@@ -34,7 +34,7 @@ describe('useShortcuts', () => {
   });
 
   it('should create shortcuts with a ref and not create multiple event handlers', () => {
-    const ref = { current: document.body };
+    const ref: { current: any } = { current: document.body };
 
     const props = { shortcutMap, handler, ref: { current: null } };
 

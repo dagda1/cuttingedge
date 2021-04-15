@@ -11,6 +11,7 @@ var paths_1 = require("../config/paths");
 var child_process_1 = require("child_process");
 var finders_1 = require("./utils/finders");
 var copy_assets_1 = require("./copy-assets");
+var isProduction = process.env.NODE_ENV === 'production';
 var MaxTries = 15;
 function findExecutable(current, executable, tries) {
     if (tries === void 0) { tries = 0; }
@@ -47,7 +48,7 @@ function runTypeScriptBuild() {
         process.argv.push('--build');
     }
     else {
-        process.argv.push('-p', paths_1.paths.tsConfig);
+        process.argv.push('-p', isProduction ? paths_1.paths.tsConfigProduction : paths_1.paths.tsConfig);
     }
     var tscPath = findExecutable(__dirname, 'tsc');
     var tscCommand = tscPath + " " + process.argv.slice(2).join(' ');

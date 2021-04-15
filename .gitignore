@@ -35,6 +35,7 @@ lcov.info
 coverage
 
 tsconfig.tsbuildinfo
+tsconfig.dist.tsbuildinfo
 test-results
 
 .rts2_cache_*

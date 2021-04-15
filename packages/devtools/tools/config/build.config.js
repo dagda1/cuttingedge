@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.config = void 0;
 var paths_1 = require("./paths");
+var isProduction = process.env.NODE_ENV === 'production';
 exports.config = {
     client: {
         entries: paths_1.paths.appSrc,
@@ -16,7 +17,7 @@ exports.config = {
         isNode: true,
     },
     ts: {
-        tsconfig: paths_1.paths.tsConfig,
+        tsconfig: isProduction ? paths_1.paths.tsConfigProduction : paths_1.paths.tsConfig,
         src: ['src/**/*.ts', 'src/**/*.tsx'],
         options: {
             verbose: true,

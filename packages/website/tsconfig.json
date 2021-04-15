@@ -8,12 +8,11 @@
     "rootDir": "./src"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
   "references": [
-    { "path": "../util" },
-    { "path": "../hooks" },
-    { "path": "../component-library" },
-    { "path": "../svg" },
-    { "path": "../react-fetcher"}
+    { "path": "../util/tsconfig.dist.json" },
+    { "path": "../hooks/tsconfig.dist.json" },
+    { "path": "../component-library/tsconfig.dist.json" },
+    { "path": "../svg/tsconfig.dist.json" },
+    { "path": "../react-fetcher/tsconfig.dist.json" }
   ]
 }

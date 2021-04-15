@@ -1,8 +1,10 @@
+import { expect, it, describe } from '@jest/globals';
 import { isEmptyObject } from './isEmptyObject';
 
 describe('isEmptyObject', () => {
   it('should return true for undefined', () => {
-    expect(isEmptyObject(undefined)).toBe(true);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(isEmptyObject(undefined as any)).toBe(true);
   });
 
   it('should return true for empty hash', () => {

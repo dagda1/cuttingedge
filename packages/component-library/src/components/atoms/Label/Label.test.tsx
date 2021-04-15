@@ -1,5 +1,6 @@
 import { Label, LabelProps } from '.';
 import { render } from '@testing-library/react';
+import { expect, it, describe } from '@jest/globals';
 
 const wrap = (props: LabelProps = {}) => render(<Label {...props}>label</Label>);
 

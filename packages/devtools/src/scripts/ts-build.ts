@@ -6,6 +6,8 @@ import { exec } from 'child_process';
 import { findFile } from './utils/finders';
 import { copyAssets } from './copy-assets';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const MaxTries = 15;
 
 export function findExecutable(current: string, executable: string, tries = 0): string {
@@ -48,7 +50,7 @@ function runTypeScriptBuild() {
   if (paths.projectReferences) {
     process.argv.push('--build');
   } else {
-    process.argv.push('-p', paths.tsConfig);
+    process.argv.push('-p', isProduction ? paths.tsConfigProduction : paths.tsConfig);
   }
 
   const tscPath = findExecutable(__dirname, 'tsc');

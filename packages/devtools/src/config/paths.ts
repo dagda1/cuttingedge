@@ -47,6 +47,7 @@ const libPackages = [
 
 const tsConfigPath = resolveApp('tsconfig.json');
 const testTsConfigPath = require.resolve('@cutting/tsconfig/tsconfig.test.json');
+const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 
 type OurCompilerOptions = {
   compilerOptions: Partial<Pick<ParsedCommandLine['options'], 'outDir'> & { module?: string }>;
@@ -56,6 +57,8 @@ type OurCompilerOptions = {
 const tsConfig: OurCompilerOptions = fs.existsSync(tsConfigPath)
   ? (require(tsConfigPath) as OurCompilerOptions)
   : { compilerOptions: { outDir: undefined, module: undefined } };
+
+const tsConfigProduction = fs.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
 
 const testTsConfig = fs.existsSync(testTsConfigPath)
   ? testTsConfigPath
@@ -88,6 +91,7 @@ export const paths = {
   localBuildConfig: resolveApp('./build.config.js'),
   resolvedNodeModules,
   tsConfig: tsConfigPath,
+  tsConfigProduction,
   devDir: resolveApp(DevFolder),
   devDirPublic: resolveApp(`${DevFolder}/public`),
   libPackages,

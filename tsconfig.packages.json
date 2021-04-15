@@ -8,34 +8,34 @@
       "path": "./packages/testing"
     },
     {
-      "path": "./packages/util"
+      "path": "./packages/util/tsconfig.dist.json"
     },
     {
-      "path": "./packages/hooks"
+      "path": "./packages/hooks/tsconfig.dist.json"
     },
     {
-      "path": "./packages/use-operation"
+      "path": "./packages/use-operation/tsconfig.dist.json"
     },
     {
-      "path": "./packages/react-fetcher"
+      "path": "./packages/react-fetcher/tsconfig.dist.json"
     },
     {
-      "path": "./packages/component-library"
+      "path": "./packages/component-library/tsconfig.dist.json"
     },
     {
-      "path": "./packages/svg"
+      "path": "./packages/svg/tsconfig.dist.json"
     },
     {
-      "path": "./packages/use-shortcuts"
+      "path": "./packages/use-shortcuts/tsconfig.dist.json"
     },
     {
-      "path": "./packages/graphql-explorer"
+      "path": "./packages/graphql-explorer/tsconfig.dist.json"
     },
     {
-      "path": "./packages/use-mathjax"
+      "path": "./packages/use-mathjax/tsconfig.dist.json"
     },
     {
-      "path": "./packages/website"
+      "path": "./packages/website/tsconfig.dist.json"
     }
   ]
 }

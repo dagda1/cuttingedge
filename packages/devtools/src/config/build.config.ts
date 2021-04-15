@@ -1,6 +1,8 @@
 import { BuildConfig } from '../types/config';
 import { paths } from './paths';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export const config: BuildConfig = {
   client: {
     entries: paths.appSrc,
@@ -15,7 +17,7 @@ export const config: BuildConfig = {
     isNode: true,
   },
   ts: {
-    tsconfig: paths.tsConfig,
+    tsconfig: isProduction ? paths.tsConfigProduction : paths.tsConfig,
     src: ['src/**/*.ts', 'src/**/*.tsx'],
     options: {
       verbose: true,

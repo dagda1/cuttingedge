@@ -40,9 +40,11 @@ var libPackages = [
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var tsConfigPath = resolveApp('tsconfig.json');
 var testTsConfigPath = require.resolve('@cutting/tsconfig/tsconfig.test.json');
+var tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 var tsConfig = fs_1.default.existsSync(tsConfigPath)
     ? require(tsConfigPath)
     : { compilerOptions: { outDir: undefined, module: undefined } };
+var tsConfigProduction = fs_1.default.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
 var testTsConfig = fs_1.default.existsSync(testTsConfigPath)
     ? testTsConfigPath
     : path_1.default.resolve(__dirname, '../../typescript/tsconfig.test.json');
@@ -70,6 +72,7 @@ exports.paths = {
     localBuildConfig: resolveApp('./build.config.js'),
     resolvedNodeModules: resolvedNodeModules,
     tsConfig: tsConfigPath,
+    tsConfigProduction: tsConfigProduction,
     devDir: resolveApp(DevFolder),
     devDirPublic: resolveApp(DevFolder + "/public"),
     libPackages: libPackages,

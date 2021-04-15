@@ -1,4 +1,5 @@
 import { noop, isFunction, isAsyncFunction, isPromise } from './functions';
+import { expect, it, describe } from '@jest/globals';
 
 describe('functions', () => {
   it('should determine promises', async () => {

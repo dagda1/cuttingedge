@@ -1,3 +1,4 @@
+import { expect, it, describe } from '@jest/globals';
 import { ExternalLink } from '.';
 import { render } from '@testing-library/react';
 
