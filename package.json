@@ -42,10 +42,12 @@
     ]
   },
   "resolutions": {
+    "@effection/atom": "=2.0.0-preview.8",
+    "@effection/node": "=2.0.0-preview.10",
     "@types/react": "^17.0.0",
     "@types/webpack": "4.41.21",
     "d3-array": "^2.4.0",
-    "effection": "=2.0.0-preview.7",
+    "effection": "=2.0.0-preview.10",
     "node-forge": "^0.10.0",
     "postcss": "^7.0.35"
   }

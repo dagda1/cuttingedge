@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@cutting/util": "4.21.0",
-    "@effection/node": "=2.0.0-preview.7",
-    "effection": "=2.0.0-preview.7",
+    "@effection/node": "=2.0.0-preview.10",
+    "effection": "=2.0.0-preview.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "uuid": "^8.3.2"

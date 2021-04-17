@@ -176,16 +176,18 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
   logger.info('copying assets');
 }
 
-async function build() {
-  fs.emptyDirSync(paths.appBuild);
+const getInputFile = (packageName: string): string => {
+  if (process.argv[2] === '--input-file') {
+    const file = path.resolve(process.argv[3]);
+
+    assert(fs.existsSync(file), `no file found at ${file}`);
+
+    logger.start(`using input file ${file}`);
+
+    return file;
+  }
 
   const candidates: string[] = [];
-
-  const pkgJsonPath = path.join(process.cwd(), 'package.json');
-
-  const { default: pkg } = await import(pkgJsonPath);
-
-  const packageName = pkg.name;
 
   [packageName, path.join(packageName, 'index'), 'index', path.join('bin', safePackageName(packageName))].forEach(
     (candidate) => {
@@ -195,17 +197,31 @@ async function build() {
     },
   );
 
-  const configs: { moduleFormat: ModuleFormat; env: 'development' | 'production' }[] = [
-    { moduleFormat: 'cjs', env: 'development' },
-    { moduleFormat: 'cjs', env: 'production' },
-    { moduleFormat: 'esm', env: 'production' },
-  ];
-
   const inputFile = candidates.find((candidate) => fs.existsSync(candidate));
 
   assert(!!inputFile, 'No rootFile found for rollup');
 
   logger.start(`using input file ${inputFile}`);
+
+  return inputFile;
+};
+
+async function build() {
+  fs.emptyDirSync(paths.appBuild);
+
+  const pkgJsonPath = path.join(process.cwd(), 'package.json');
+
+  const { default: pkg } = await import(pkgJsonPath);
+
+  const packageName = pkg.name;
+
+  const inputFile = getInputFile(packageName);
+
+  const configs: { moduleFormat: ModuleFormat; env: 'development' | 'production' }[] = [
+    { moduleFormat: 'cjs', env: 'development' },
+    { moduleFormat: 'cjs', env: 'production' },
+    { moduleFormat: 'esm', env: 'production' },
+  ];
 
   for (const { moduleFormat, env } of configs) {
     await generateBundledModule({ packageName, inputFile, moduleFormat, env });

@@ -1,12 +1,17 @@
 {
   "name": "@cutting/the-watcher",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Run and watch commands concurrently",
   "main": "dist/index.js",
   "license": "MIT",
-  "bin": "./dist/watcher.js",
+  "bin": {
+    "watcher": "./dist/watcher.js"
+  },
+  "files": [
+    "bin/**/*.*"
+  ],
   "scripts": {
-    "start": "PORT=9999 NODE_ENV=development cutting devserver-start",
+    "start": "echo no op",
     "test": "NODE_ENV=test cutting test",
     "lint": "yarn eslint ./src/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",

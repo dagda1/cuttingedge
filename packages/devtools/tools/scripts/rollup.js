@@ -254,33 +254,43 @@ function generateBundledModule(_a) {
         });
     });
 }
+var getInputFile = function (packageName) {
+    if (process.argv[2] === '--input-file') {
+        var file = path_1.default.resolve(process.argv[3]);
+        assert_ts_1.assert(fs_extra_1.default.existsSync(file), "no file found at " + file);
+        logger_1.logger.start("using input file " + file);
+        return file;
+    }
+    var candidates = [];
+    [packageName, path_1.default.join(packageName, 'index'), 'index', path_1.default.join('bin', helpers_1.safePackageName(packageName))].forEach(function (candidate) {
+        ['.ts', '.tsx'].forEach(function (fileType) {
+            candidates.push(path_1.default.join(paths_1.paths.appSrc, "" + candidate + fileType));
+        });
+    });
+    var inputFile = candidates.find(function (candidate) { return fs_extra_1.default.existsSync(candidate); });
+    assert_ts_1.assert(!!inputFile, 'No rootFile found for rollup');
+    logger_1.logger.start("using input file " + inputFile);
+    return inputFile;
+};
 function build() {
     return __awaiter(this, void 0, void 0, function () {
-        var candidates, pkgJsonPath, pkg, packageName, configs, inputFile, configs_1, configs_1_1, _a, moduleFormat, env, e_1_1, pkgJson, pkgName, moduleFile;
+        var pkgJsonPath, pkg, packageName, inputFile, configs, configs_1, configs_1_1, _a, moduleFormat, env, e_1_1, pkgJson, pkgName, moduleFile;
         var e_1, _b;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
                     fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
-                    candidates = [];
                     pkgJsonPath = path_1.default.join(process.cwd(), 'package.json');
                     return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(pkgJsonPath)); })];
                 case 1:
                     pkg = (_c.sent()).default;
                     packageName = pkg.name;
-                    [packageName, path_1.default.join(packageName, 'index'), 'index', path_1.default.join('bin', helpers_1.safePackageName(packageName))].forEach(function (candidate) {
-                        ['.ts', '.tsx'].forEach(function (fileType) {
-                            candidates.push(path_1.default.join(paths_1.paths.appSrc, "" + candidate + fileType));
-                        });
-                    });
+                    inputFile = getInputFile(packageName);
                     configs = [
                         { moduleFormat: 'cjs', env: 'development' },
                         { moduleFormat: 'cjs', env: 'production' },
                         { moduleFormat: 'esm', env: 'production' },
                     ];
-                    inputFile = candidates.find(function (candidate) { return fs_extra_1.default.existsSync(candidate); });
-                    assert_ts_1.assert(!!inputFile, 'No rootFile found for rollup');
-                    logger_1.logger.start("using input file " + inputFile);
                     _c.label = 2;
                 case 2:
                     _c.trys.push([2, 7, 8, 9]);
