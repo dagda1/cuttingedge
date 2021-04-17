@@ -53,6 +53,7 @@ var jestConfig = {
         '^.+\\.css$': path_1.default.join(__dirname, './cssTransform.js'),
         '^.+\\.csv$': path_1.default.join(__dirname, './fileTransform.js'),
         '^(?!.*\\.(js|jsx|css|json)$)': path_1.default.join(__dirname, './fileTransform.js'),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     },
     transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'csv', 'node'],

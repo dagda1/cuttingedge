@@ -15,9 +15,10 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spread = (this && this.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -83,14 +84,14 @@ var configureCommon = function (options, overrides) {
         },
         module: {
             strictExportPresence: true,
-            rules: Array.prototype.filter.call(__spread([
+            rules: Array.prototype.filter.call(__spreadArray(__spreadArray(__spreadArray(__spreadArray([
                 fileLoader_1.createFileLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
                 urlLoader_1.createUrlLoader({ staticAssetName: staticAssetName, isWeb: isWeb })
-            ], typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }), jsLoader_1.createJsLoader({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }), [
+            ], __read(typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }))), __read(jsLoader_1.createJsLoader({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }))), [
                 csvLoader_1.createCSVLoader(),
                 svgLoader_1.createSVGLoader(),
                 mdLoader_1.createMDLoader()
-            ], css_1.createCSSLoaders({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode })), function (x) { return !!x; }),
+            ]), __read(css_1.createCSSLoaders({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode }))), function (x) { return !!x; }),
         },
         plugins: Array.prototype.filter.call([
             new happypack_1.default({

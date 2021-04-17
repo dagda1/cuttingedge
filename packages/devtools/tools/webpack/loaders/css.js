@@ -15,9 +15,10 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spread = (this && this.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -44,6 +45,8 @@ var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
                     ? {
                         getLocalIdent: getLocalIdent_1.getLocalIdent,
                         exportOnlyLocals: isNode,
+                        // TODO: we want to enable this for better code splitting
+                        // mode: 'pure',
                     }
                     : undefined,
             },
@@ -62,13 +65,13 @@ var createCSSLoaders = function (_a) {
         {
             test: constants_1.sassRegex,
             exclude: constants_1.sassModuleRegex,
-            use: __spread(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 2 }), [
+            use: __spreadArray(__spreadArray([], __read(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 2 }))), [
                 { loader: 'sass-loader' },
             ]).filter(Boolean),
         },
         {
             test: constants_1.sassModuleRegex,
-            use: __spread(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: true, importLoaders: 2 }), [
+            use: __spreadArray(__spreadArray([], __read(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: true, importLoaders: 2 }))), [
                 { loader: 'sass-loader' },
             ]).filter(Boolean),
         },

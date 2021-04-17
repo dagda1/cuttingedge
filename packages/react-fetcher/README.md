@@ -134,13 +134,13 @@ const { state, abort, reset } = useFetcher(
 </button>
 ```
 
-Alternatively, `userMultiQuery` can take a builder function where you add jobs to the `fetchClient`.
+Alternatively, `useFetcher` can take a builder function that provides a `fetchClient` object with an `addFetchRequest` function.
 
 ```ts
 const { state, abort, data } = useFetcher(
   (fetchClient) => {
     for (const i of [...Array.from({ length: 10 }).keys()]) {
-      fetchClient.addFetchRequest(`/api/users/$i + 1) * 100}`, {
+      fetchClient.addFetchRequest(`/api/users/${i + 1}`, {
         onQuerySuccess: (d) => console.log('you can add a different handler for each query'),
         onQueryError(e) {
           console.log(`scoped error handler`);

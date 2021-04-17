@@ -122,7 +122,7 @@ var write_package_1 = require("./write-package");
 var csv_1 = require("../rollup/plugins/csv");
 var postcss_import_1 = __importDefault(require("postcss-import"));
 fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
-logger_1.logger.warn("using tsconfig " + paths_1.paths.tsConfigProduction);
+logger_1.logger.debug("using tsconfig " + paths_1.paths.tsConfigProduction);
 function generateBundledModule(_a) {
     var packageName = _a.packageName, inputFile = _a.inputFile, moduleFormat = _a.moduleFormat, env = _a.env;
     return __awaiter(this, void 0, void 0, function () {
