@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "license": "MIT",
   "bin": {
-    "watcher": "./dist/watcher.js"
+    "watcher": "./bin/watcher.js"
   },
   "files": [
     "bin/**/*.*"
@@ -15,13 +15,13 @@
     "test": "NODE_ENV=test cutting test",
     "lint": "yarn eslint ./src/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
-    "build": "NODE_ENV=production cutting rollup",
+    "build": "NODE_ENV=production cutting ts-build",
     "prepublish": "yarn build"
   },
-  "module": "dist/the-watcher.esm.js",
-  "browser": "dist/the-watcher.esm.js",
-  "type": "module",
   "dependencies": {
     "commander": "^6.2.1"
+  },
+  "devDependencies": {
+    "ts-node": "^9.1.1"
   }
 }

@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useFetcher } from '../src';
 import cs from 'classnames';
 import './App.css';
-import { QueryStates } from '../src/types';
+import { FetcherStates } from '../src/types';
+
+console.log('herman');
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -52,36 +54,6 @@ export const App: React.FC = () => {
     },
   );
 
-  // const { run, state, abort, reset } = useFetcher(
-  //   (fetchClient) => {
-  //     for (const i of [...Array.from({ length: 10 }).keys()]) {
-  //       fetchClient.addFetchRequest(`https://slowmo.glitch.me/${(i + 1) * 100}`, {
-  //         onQuerySuccess: processResult,
-  //         onQueryError(e) {
-  //           console.log(`scoped error`);
-  //           console.error(e);
-  //         },
-  //       });
-  //     }
-
-  //     return fetchClient;
-  //   },
-  //   {
-  //     executeOnMount: false,
-  //     initialState: [],
-  //     onSuccess: () => {
-  //       console.log(`We did it`);
-  //     },
-  //     onAbort: () => {
-  //       setMessages(['We have aborted']);
-  //     },
-  //     onError: (e) => {
-  //       console.log('in global error handler');
-  //       console.error(e.message);
-  //     },
-  //   },
-  // );
-
   return (
     <div className="container">
       <div>
@@ -120,7 +92,7 @@ export const App: React.FC = () => {
           </button>
           <button
             className="btn-secondary"
-            disabled={['READY', 'LOADING'].includes(state as QueryStates)}
+            disabled={['READY', 'LOADING'].includes(state as FetcherStates)}
             onClick={() => {
               reset();
               setMessages([]);

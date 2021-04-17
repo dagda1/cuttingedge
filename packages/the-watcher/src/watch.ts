@@ -1,25 +1,7 @@
 import { Operation, Stream } from 'effection';
 import type { Process } from '@effection/node';
-import { exec, daemon, StdIO } from '@effection/node';
+import { exec } from '@effection/node';
 import { sleep } from 'effection';
-
-export function buildAndRun(delay: number): Operation<void> {
-  return function* (scope) {
-    try {
-      yield executeAndOut('clean');
-      yield executeAndOut('build');
-      yield sleep(delay);
-
-      const server: StdIO = daemon('node dist/start.js').run(scope);
-      scope.spawn(writeOut(server.stdout, process.stdout));
-      scope.spawn(writeOut(server.stderr, process.stderr));
-    } catch (err) {
-      console.error(err);
-    }
-
-    yield;
-  };
-}
 
 function writeOut(channel: Stream<string>, out: NodeJS.WriteStream): Operation<undefined> {
   return channel.forEach(function (data) {
@@ -35,11 +17,27 @@ function writeOut(channel: Stream<string>, out: NodeJS.WriteStream): Operation<u
   });
 }
 
-function executeAndOut(command: string): Operation<void> {
+function executeAndOut(command: string, cwd: string): Operation<void> {
   return function* (task) {
-    const p: Process = exec(`npm run ${command}`).run(task);
+    const p: Process = exec(`${command}`, { cwd }).run(task);
     task.spawn(writeOut(p.stdout, process.stdout));
     task.spawn(writeOut(p.stderr, process.stderr));
     yield p.expect();
+  };
+}
+
+export function buildAndRun(pkgCommand: string, command: string, cwd: string, delay = 500): Operation<void> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  return function* (scope) {
+    try {
+      yield executeAndOut(command, cwd);
+      yield sleep(delay);
+
+      yield executeAndOut(pkgCommand, process.cwd());
+    } catch (err) {
+      console.error(err);
+    }
+
+    yield;
   };
 }

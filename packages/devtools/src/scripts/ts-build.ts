@@ -57,7 +57,7 @@ function runTypeScriptBuild() {
 
   const tscCommand = `${tscPath} ${process.argv.slice(2).join(' ')}`;
 
-  logger.info(`running ${tscCommand}`);
+  logger.info(`running ${path.basename(tscCommand)}, in ${process.cwd()}`);
 
   logger.start(`running tsc`);
 
