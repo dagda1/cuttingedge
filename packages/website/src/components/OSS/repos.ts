@@ -6,9 +6,9 @@ export interface Repo {
 
 export const repos: Repo[] = [
   {
-    name: 'bigtest',
-    description: 'Active contributor to bigtest',
-    link: 'https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1',
+    name: '@cutting/react-fetcher',
+    description: 'The useQuery I needed',
+    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/react-fetcher',
   },
   {
     name: 'use-shortcuts',
@@ -16,13 +16,13 @@ export const repos: Repo[] = [
     link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/use-shortcuts',
   },
   {
-    name: '@cutting/hooks',
-    description: 'Useful reusable hooks',
-    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/hooks',
+    name: 'use-mathjax',
+    description: 'easy mathjax in react',
+    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/use-mathjax',
   },
   {
-    name: 'cuttingedge',
-    description: 'Source code for this site. SSR, code splitting , hot reloading etc....',
-    link: 'https://github.com/dagda1/cuttingedge',
+    name: 'bigtest',
+    description: 'Active contributor to bigtest',
+    link: 'https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1',
   },
 ];

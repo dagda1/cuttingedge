@@ -1,6 +1,6 @@
 {
   "name": "@cutting/use-mathjax",
-  "description": "easily load .",
+  "description": "easy mathjax in react.",
   "version": "4.21.0",
   "type": "module",
   "types": "dist/index.d.ts",

@@ -179,7 +179,7 @@ If the `initialState` field is an array, then `useFetcher` will append the resul
 
 ```ts
 const { data } = useFetcher(
-  [ 'http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3' ],
+  [ '/add/1/1', '/add/2/2', '/add/3/3' ],
   {
     initialState: []
   },
@@ -197,7 +197,7 @@ You can supply an `accumulator` function that executes each time a remote query 
 
 ```ts
 const { data } = useFetcher(
-  [ 'http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3' ],
+  [ '/add/1/1', '/add/2/2', '/add/3/3' ],
   {
     initialState: 0,
     accumulator: (acc, current) => acc + current.answer,
@@ -219,12 +219,10 @@ By default `react-fetcher` will retry any request that returns a non 2xx range r
 The `retryAttempts` and `retryDelay` properties can configure this differently:
 
 ```ts
-const { data, error } = 
-useFetcher(`http://localhost:3000/flaky-connection`, {
-            executeOnMount: false,
-            retryAttempts: 5,
-            retryDelay: 1000,
-          })
+const { data, error } = useFetcher(`/flaky-connection`, {
+  retryAttempts: 5,
+  retryDelay: 1000,
+});
 ```
 
 ## TODO

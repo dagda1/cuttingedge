@@ -52,7 +52,7 @@ function runTypeScriptBuild() {
     }
     var tscPath = findExecutable(__dirname, 'tsc');
     var tscCommand = tscPath + " " + process.argv.slice(2).join(' ');
-    logger_1.logger.info("running " + path_1.default.basename(tscCommand) + ", in " + process.cwd());
+    logger_1.logger.info("running " + path_1.default.basename(tscCommand) + ", in " + path_1.default.dirname(process.cwd()));
     logger_1.logger.start("running tsc");
     var tsc = child_process_1.exec(tscCommand);
     (_a = tsc.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) { return logger_1.logger.info(data); });
