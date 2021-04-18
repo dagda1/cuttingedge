@@ -258,7 +258,7 @@ var getInputFile = function (packageName) {
     if (process.argv[2] === '--input-file') {
         var file = path_1.default.resolve(process.argv[3]);
         assert_ts_1.assert(fs_extra_1.default.existsSync(file), "no file found at " + file);
-        logger_1.logger.start("using input file " + file);
+        logger_1.logger.start("using input file " + path_1.default.dirname(file));
         return file;
     }
     var candidates = [];

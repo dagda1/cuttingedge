@@ -62,7 +62,6 @@ type FetchOptions<D, R> = {
   initialState?: R;
   onQueryError?: (e: Error) => void;
   onQuerySuccess?: (t?: D) => void;
-  retryAttempts?: number;
 };
 
 export type UseFetcherOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'contentType'> & {
@@ -71,6 +70,8 @@ export type UseFetcherOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'conte
   executeOnMount?: boolean;
   onError?: (e: Error) => void;
   onAbort?: (e: Error) => void;
+  retryAttempts?: number;
+  retryDelay?: number;
 };
 
 export type FetchRequest<D, R> = {

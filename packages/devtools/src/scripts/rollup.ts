@@ -182,7 +182,7 @@ const getInputFile = (packageName: string): string => {
 
     assert(fs.existsSync(file), `no file found at ${file}`);
 
-    logger.start(`using input file ${file}`);
+    logger.start(`using input file ${path.dirname(file)}`);
 
     return file;
   }

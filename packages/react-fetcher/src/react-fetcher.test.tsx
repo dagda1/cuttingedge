@@ -43,9 +43,7 @@ const server = setupServer(
   }),
 
   rest.get('http://localhost:3000/flaky-connection', (req, res, ctx) => {
-    console.dir({ times });
-
-    if (times < 3) {
+    if (times < 5) {
       times++;
       return res(ctx.status(500, 'server error'));
     }
@@ -228,11 +226,14 @@ describe('useFetcher', () => {
       });
     });
 
-    // eslint-disable-next-line jest/no-focused-tests
-    describe.only('retry', () => {
+    describe('retry', () => {
       it('should retry a failing query', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher(`http://localhost:3000/flaky-connection`, { executeOnMount: false }),
+          useFetcher(`http://localhost:3000/flaky-connection`, {
+            executeOnMount: false,
+            retryAttempts: 5,
+            retryDelay: 200,
+          }),
         );
 
         await act(async () => {

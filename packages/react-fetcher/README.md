@@ -211,9 +211,24 @@ if( typeof data !== 'undefined') {
 
 WARNING! The operations should be [commutative](https://www.mathsisfun.com/associative-commutative-distributive.html) because there is no guarantee when the async functions will return. 
 
+
+## Retrying
+
+By default `react-fetcher` will retry any request that returns a non 2xx range response 3 times with a 500ms delay.
+
+The `retryAttempts` and `retryDelay` properties can configure this differently:
+
+```ts
+const { data, error } = 
+useFetcher(`http://localhost:3000/flaky-connection`, {
+            executeOnMount: false,
+            retryAttempts: 5,
+            retryDelay: 1000,
+          })
+```
+
 ## TODO
 
-- retry logic
 - graphql
 - allow processing of results in order if required
 - global configuration via context

@@ -2,7 +2,7 @@ import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createQueryMachine, abort, reset, start, success, error } from './machine';
 import { FetcherStates, AddFetch, ContentType, UseFetcherOptions, QueryResult } from './types';
-import { run, Task } from 'effection';
+import { run, sleep, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
@@ -24,6 +24,7 @@ export const useFetcher = <D, R>(
     fetchType = 'fetch',
     executeOnMount = true,
     retryAttempts = 3,
+    retryDelay = 500,
   }: UseFetcherOptions<D, R> = {},
 ): QueryResult<R> => {
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
@@ -31,7 +32,7 @@ export const useFetcher = <D, R>(
   const fetchClient = useRef(createFetchClient<D, R>(addFetch, abortController.current));
   const counter = useRef(0);
   const task = useRef<Task>();
-  const retries = useRef(retryAttempts);
+  const retries = useRef(0);
 
   const acc = accumulator ?? getDefaultAccumulator(initialState);
 
@@ -67,6 +68,7 @@ export const useFetcher = <D, R>(
               onQueryError = parentOnQueryError,
             },
           } = job;
+          retries.current = retryAttempts;
 
           job.state = 'LOADING';
 
@@ -74,7 +76,15 @@ export const useFetcher = <D, R>(
 
           const fetcher = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
 
-          const response: Response & Body = yield fetcher(request as string, init);
+          let response: Response & Body = yield fetcher(request as string, init);
+
+          while (!response.ok && retries.current > 0) {
+            yield sleep(retryDelay);
+            --retries.current;
+            console.log(`request failed, ${response.status}: ${response.statusText} -- retrying`);
+            console.log(`retry attempts left ${retries.current}`);
+            response = yield fetcher(request as string, init);
+          }
 
           if (!response.ok) {
             job.state = 'ERROR';
@@ -106,7 +116,18 @@ export const useFetcher = <D, R>(
         return;
       }
     });
-  }, [send, onSuccess, parentOnQuerySuccess, parentOnQueryError, fetchType, acc, onError, abortable]);
+  }, [
+    send,
+    onSuccess,
+    parentOnQuerySuccess,
+    parentOnQueryError,
+    retryAttempts,
+    fetchType,
+    acc,
+    retryDelay,
+    onError,
+    abortable,
+  ]);
 
   useIsomorphicLayoutEffect(() => {
     if (executeOnMount && typeof runner !== 'undefined' && machine.value === 'READY') {
