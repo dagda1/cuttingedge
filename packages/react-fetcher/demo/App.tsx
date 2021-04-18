@@ -4,8 +4,6 @@ import cs from 'classnames';
 import './App.css';
 import { FetcherStates } from '../src/types';
 
-console.log('herman');
-
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);

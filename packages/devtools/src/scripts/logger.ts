@@ -36,7 +36,7 @@ const logTypes: LoggerType = {
   },
   start: {
     bg: 'bgBlue',
-    msg: ' WAIT ',
+    msg: ' START ',
     text: 'blue',
   },
   done: {

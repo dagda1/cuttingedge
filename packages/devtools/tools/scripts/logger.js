@@ -37,7 +37,7 @@ var logTypes = {
     },
     start: {
         bg: 'bgBlue',
-        msg: ' WAIT ',
+        msg: ' START ',
         text: 'blue',
     },
     done: {
