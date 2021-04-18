@@ -4,6 +4,8 @@ import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useFetcher } from './react-fetcher';
 
+let times = 0;
+
 const server = setupServer(
   rest.get('http://localhost:3000/multi/:id', (req, res, ctx) => {
     const id = req.params.id;
@@ -39,12 +41,26 @@ const server = setupServer(
   rest.get('http://localhost:3000/abortable', (req, rest, ctx) => {
     ctx.delay('infinite');
   }),
+
+  rest.get('http://localhost:3000/flaky-connection', (req, res, ctx) => {
+    console.dir({ times });
+
+    if (times < 3) {
+      times++;
+      return res(ctx.status(500, 'server error'));
+    }
+
+    return res(ctx.json({ ok: true }));
+  }),
 );
 
 describe('useFetcher', () => {
   beforeAll(() => server.listen());
 
-  afterEach(() => server.resetHandlers());
+  afterEach(() => {
+    times = 0;
+    server.resetHandlers();
+  });
 
   afterAll(() => server.close());
 
@@ -145,6 +161,7 @@ describe('useFetcher', () => {
           useFetcher(`http://localhost:3000/error`, {
             onSuccess,
             onError,
+            retryAttempts: 0,
           }),
         );
 
@@ -208,6 +225,24 @@ describe('useFetcher', () => {
         });
 
         expect(result.current.state).toBe('READY');
+      });
+    });
+
+    // eslint-disable-next-line jest/no-focused-tests
+    describe.only('retry', () => {
+      it('should retry a failing query', async () => {
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useFetcher(`http://localhost:3000/flaky-connection`, { executeOnMount: false }),
+        );
+
+        await act(async () => {
+          result.current.run();
+        });
+
+        await waitForNextUpdate();
+
+        expect(result.current.error).toBeUndefined();
+        expect(result.current.state).toBe('SUCCEEDED');
       });
     });
   });
@@ -405,6 +440,7 @@ describe('useFetcher', () => {
               onQueryError,
               onSuccess,
               onError,
+              retryAttempts: 0,
             },
           ),
         );

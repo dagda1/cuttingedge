@@ -23,6 +23,7 @@ export const useFetcher = <D, R>(
     onQueryError: parentOnQueryError = noOp,
     fetchType = 'fetch',
     executeOnMount = true,
+    retryAttempts = 3,
   }: UseFetcherOptions<D, R> = {},
 ): QueryResult<R> => {
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
@@ -30,6 +31,7 @@ export const useFetcher = <D, R>(
   const fetchClient = useRef(createFetchClient<D, R>(addFetch, abortController.current));
   const counter = useRef(0);
   const task = useRef<Task>();
+  const retries = useRef(retryAttempts);
 
   const acc = accumulator ?? getDefaultAccumulator(initialState);
 

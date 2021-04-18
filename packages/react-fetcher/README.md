@@ -21,7 +21,7 @@ if (typeof data !== 'undefined') {
 
 Yes, because I am frustrated with what is out there.  
 
-Packages like [react-query](https://github.com/tannerlinsley/react-query/blob/master/examples/basic/src/index.js#L41) are excellent, but they are so ridiculously complicated when all I want to do is to call an endpoint.  I need to spend time learning how to configure a React context and a whole bunch of other stuff when all I want to do is give a function a URL and, I am good to go.
+Packages like [react-query](https://github.com/tannerlinsley/react-query/blob/master/examples/basic/src/index.js#L41) are excellent, but they are becoming quite bloated and complicated when all I want to do is to call an endpoint.  I need to spend time learning how to configure a custom React context and a whole bunch of other stuff when all I want to do is give a function a URL and, I am good to go.
 
 Here are some other annoyances:
 
@@ -29,7 +29,7 @@ Here are some other annoyances:
 
 - Give me intelligent defaults. I think there is still way too much setup and config in any `useQueryXXX` or `useFetchXXX` thingy that I have tried.  JavaScript/Typescript has descended into a sea of endless configuration which means I have to understand everything intimately to use it.
 
-- Packages like [react-query](https://github.com/tannerlinsley/react-query/blob/master/examples/basic/src/index.js#L41) are excellent, but I still have to provide the code to use `axios` or `fetch` or whatever, surely the whole point of using a package like this is to abstract all that stuff away.
+- Packages like [react-query](https://github.com/tannerlinsley/react-query/blob/master/examples/basic/src/index.js#L41) are excellent, but I still have to provide the code to use `axios` or `fetch` or whatever, surely the whole point of using a package like this is to abstract all that stuff away.  This package uses [cross-fetch](https://www.npmjs.com/package/cross-fetch) and you cannot change this.  I am hoping that you do not need to.
 
 - I want `abort` to be a first-class citizen and not left up to me to get my hands dirty with `AbortControllers`.
 
@@ -57,7 +57,7 @@ I could go on, but I will leave it there for now....
 
 ### One hit wonder
 
-Give me a URL the framework will do the rest.  I am personally sick of endless configuration when all I want to do is this:
+Give me a URL the framework will do the rest.  I am personally weary of endless configuration when all I want to do is this:
 
 ```ts
 const { data } = useFetcher(`/api/users/1`);
@@ -90,7 +90,7 @@ const { run, state, abort, reset } = useFetcher(`/api/users/1`, { executeOnMount
 
 ### Multi Queries
 
-I wrote this package because I could not find anything that did multi-queries and had abort functionality. 
+I wrote this package because I could not find anything that did multi-queries and had first class abort functionality. 
 
 There are a couple of ways of executing multi queries.
 
@@ -214,5 +214,6 @@ WARNING! The operations should be [commutative](https://www.mathsisfun.com/assoc
 ## TODO
 
 - retry logic
+- graphql
 - allow processing of results in order if required
 - global configuration via context

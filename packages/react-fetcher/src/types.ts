@@ -62,6 +62,7 @@ type FetchOptions<D, R> = {
   initialState?: R;
   onQueryError?: (e: Error) => void;
   onQuerySuccess?: (t?: D) => void;
+  retryAttempts?: number;
 };
 
 export type UseFetcherOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'contentType'> & {
