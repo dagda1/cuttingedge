@@ -3,8 +3,7 @@ import loadable from '@loadable/component';
 import * as Urls from 'src/urls';
 import { Route, Switch } from 'react-router';
 import type { Page } from '@cutting/util';
-
-const fallback = <div>loading....</div>;
+import { fallback } from 'src/components/Fallback/Fallback';
 
 const Deaths = loadable(() => import('src/components/Confirmed'), {
   fallback,

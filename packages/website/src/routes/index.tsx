@@ -16,23 +16,27 @@ const OSS = loadable(() => import('src/components/OSS'), {
 });
 
 const Blog = loadable(() => import('src/components/Blog'), {
-  fallback: <div>Loading...</div>,
+  fallback,
 });
 
 const CV = loadable(() => import('src/components/cv'), {
-  fallback: <div>Loading...</div>,
+  fallback,
 });
 
 const PrivacyPolicy = loadable(() => import('src/components/PrivacyPolicy'), {
-  fallback: <div>Loading...</div>,
+  fallback,
 });
 
 const TermsOfService = loadable(() => import('src/components/TermsOfService'), {
-  fallback: <div>Loading...</div>,
+  fallback,
 });
 
 const Graphs = loadable(() => import(/* webpackPrefetch: true */ 'src/components/Graphs/Landing'), {
-  fallback: <div>Loading...</div>,
+  fallback,
+});
+
+const Viz = loadable(() => import('src/containers/Viz/Viz').then((m) => m.Viz), {
+  fallback,
 });
 
 /* eslint-disable react/display-name */
@@ -79,6 +83,13 @@ export const routable: Page[] = [
     heading: 'COVID-19',
     path: Urls.Covid19,
     component: Graphs,
+    exact: false,
+    footerPage: false,
+  },
+  {
+    heading: 'Viz',
+    path: Urls.Viz,
+    component: Viz,
     exact: false,
     footerPage: false,
   },

@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { ExternalLink, Heading } from '@cutting/component-library';
-import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
 import { Github } from '../Svg';
 
