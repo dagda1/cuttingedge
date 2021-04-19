@@ -32,6 +32,7 @@ export type GraphProps = {
   labels?: ({ datum }: { datum: DayData }) => string;
 };
 
+
 export const Graph: FC<GraphProps> = ({
   result,
   yAxisLabel,
