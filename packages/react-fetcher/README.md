@@ -14,6 +14,7 @@
 - [Retries](#Retries)
 - [Timeout](#Timeout)
 - [API](#API)
+- [Typescript](#Typescript)
 - [TODO](#TODO)
 
 ## Getting started
@@ -313,6 +314,10 @@ const { state, abort, reset, run } = useFetcher(
 | onError | callback that is called with the error in the event of a failed query |
 | onQuerySuccess | everytime a query resolves, this function is called with the result of the fetch query. | no op|
 | onQueryError | handler for individual query errors | no op|
+
+## Typescript
+
+
 
 ## TODO
 

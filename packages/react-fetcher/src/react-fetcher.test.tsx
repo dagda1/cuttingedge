@@ -80,7 +80,7 @@ describe('useFetcher', () => {
     it('should successfully run a single query', async () => {
       const { result, waitFor } = renderHook(() => useFetcher(`http://localhost:3000/single`));
 
-      await waitFor(() => typeof result.current.data !== 'undefined');
+      await waitFor(() => result.current.state === 'SUCCEEDED' && typeof result.current.data !== 'undefined');
 
       expect(result.current.state).toBe('SUCCEEDED');
       expect(result.current.data).toEqual({ greeting: 'hello there' });

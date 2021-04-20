@@ -1,8 +1,8 @@
 import type { Operation, Task } from 'effection';
 import { Slice } from '@effection/atom/dist';
 
-export type FetcherContext<D> = {
-  data: D;
+export type FetcherContext<A> = {
+  data: A;
   error?: Error;
 };
 
@@ -14,13 +14,13 @@ export type FetchStates<T> =
   | { type: 'ABORTED'; error: Error };
 
 /* eslint-disable @typescript-eslint/ban-types */
-export interface FetcherSchema<D> {
+export interface FetcherSchema<A> {
   states: {
     ['READY']: {};
     ['LOADING']: {
       states: {
         ['SUCCESS']: {
-          context: { payload: D };
+          context: { payload: A };
         };
         ['ERROR']: {};
         ['ABORT']: {};
@@ -53,18 +53,18 @@ export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
 
 export type ContentTypeMap = `application/${ContentType}`;
 
-export type Accumulator<D, R> = (initialState: R, current: D, request?: RequestInfo) => R;
+export type Accumulator<A, R> = (initialState: R, current: A, request?: RequestInfo) => R;
 
-type FetchOptions<D, R> = {
+type FetchOptions<A, R> = {
   method?: Methods;
   contentType?: ContentType;
-  accumulator?: (initialState: R, current: D, request?: RequestInfo) => R;
+  accumulator?: (initialState: R, current: A, request?: RequestInfo) => R;
   initialState?: R;
   onQueryError?: (e: Error) => void;
-  onQuerySuccess?: (t?: D) => void;
+  onQuerySuccess?: (t?: A) => void;
 };
 
-export type UseFetcherOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'contentType'> & {
+export type UseFetcherOptions<A, R> = Omit<FetchOptions<A, R>, 'method' | 'contentType'> & {
   fetchType?: 'fetch' | 'fetchJsonp';
   onSuccess?: (t?: R) => void;
   executeOnMount?: boolean;
@@ -75,16 +75,16 @@ export type UseFetcherOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'conte
   timeout?: number;
 };
 
-export type FetchRequest<D, R> = {
+export type FetchRequest<A, R> = {
   request: RequestInfo;
   init?: RequestInit;
-} & Required<Omit<FetchOptions<D, R>, 'method' | 'accumulator'>>;
+} & Required<Omit<FetchOptions<A, R>, 'method' | 'accumulator'>>;
 
-export interface FetchJob<D, R> {
+export interface FetchJob<A, R> {
   uuid: string;
   key: string;
   state: FetcherStates;
-  fetch: Omit<FetchRequest<D, R>, 'onAbort'>;
+  fetch: Omit<FetchRequest<A, R>, 'onAbort'>;
 }
 
 export interface FetchContext {
@@ -92,31 +92,68 @@ export interface FetchContext {
   atom: Slice<{ jobs: Record<string, FetchJob<any, any>> }>;
 }
 
-export interface FetchClient<D, R = D> {
-  jobs: FetchJob<D, R>[];
+export interface FetchClient<A, R = A> {
+  jobs: FetchJob<A, R>[];
   addFetchRequest(
-    this: FetchClient<D, R>,
+    this: FetchClient<A, R>,
     info: RequestInfo,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     options?: RequestInit & Omit<FetchOptions<any, any>, 'onAbort'>,
-  ): FetchClient<D, R>;
+  ): FetchClient<A, R>;
 }
 
-export type AddFetch<D, R> = (fetcher: FetchClient<D, R>) => FetchClient<D, R>;
+export type AddFetch<A, R> = (fetcher: FetchClient<A, R>) => FetchClient<A, R>;
 
 export interface Effect<A> {
   (slice: Slice<A>): Operation<void>;
 }
 
-export type QueryResult<D> = {
-  state: FetcherStates;
-  run: (...args: unknown[]) => void;
-  data?: D;
-  reset: () => void;
-  abort: () => void;
-  error?: Error;
-  counter?: number;
-};
+export type QueryResult<A> =
+  | {
+      state: 'READY';
+      run: (...args: unknown[]) => void;
+      reset: () => void;
+      abort: () => void;
+      data: undefined;
+      error: undefined;
+      counter?: number;
+    }
+  | {
+      state: 'LOADING';
+      run: (...args: unknown[]) => void;
+      reset: () => void;
+      abort: () => void;
+      data: undefined;
+      error: undefined;
+      counter?: number;
+    }
+  | {
+      state: 'SUCCEEDED';
+      data: A;
+      run: (...args: unknown[]) => void;
+      reset: () => void;
+      abort: () => void;
+      error: undefined;
+      counter?: number;
+    }
+  | {
+      state: 'ERROR';
+      error: Error;
+      data: undefined;
+      run: (...args: unknown[]) => void;
+      reset: () => void;
+      abort: () => void;
+      counter?: number;
+    }
+  | {
+      state: 'ABORTED';
+      error: undefined;
+      data: undefined;
+      run: (...args: unknown[]) => void;
+      reset: () => void;
+      abort: () => void;
+      counter?: number;
+    };
 
 export type ExtractType<T> = T extends {
   [Symbol.iterator](): { next(): { done: true; value: infer U } };

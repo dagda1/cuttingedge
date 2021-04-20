@@ -5,14 +5,14 @@ const getJobKey = (info: RequestInfo) => {
   return JSON.stringify(info);
 };
 
-export const createFetchClient = <D, R>(
-  addFetch: string | string[] | AddFetch<D, R>,
+export const createFetchClient = <A, R>(
+  addFetch: string | string[] | AddFetch<A, R>,
   abortController: AbortController,
-): FetchClient<D, R> => {
-  let fetchClient: FetchClient<D, R> = {
+): FetchClient<A, R> => {
+  let fetchClient: FetchClient<A, R> = {
     jobs: [],
     addFetchRequest(
-      this: FetchClient<D, R>,
+      this: FetchClient<A, R>,
       info,
       { initialState, onQueryError, onQuerySuccess, contentType = 'json', method = 'GET', ...rest } = {},
     ) {
@@ -38,7 +38,7 @@ export const createFetchClient = <D, R>(
           contentType,
           initialState,
           onQueryError: onQueryError as (e: Error) => void,
-          onQuerySuccess: onQuerySuccess as (t?: D) => void,
+          onQuerySuccess: onQuerySuccess as (t?: A) => void,
         },
       });
 

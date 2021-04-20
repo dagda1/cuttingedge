@@ -11,8 +11,8 @@ import { assert } from 'assert-ts';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
 
-export function useFetcher<D, R>(
-  addFetch: string | string[] | AddFetch<D, R>,
+export function useFetcher<A, R>(
+  addFetch: string | string[] | AddFetch<A, R>,
   {
     accumulator,
     initialState,
@@ -26,11 +26,11 @@ export function useFetcher<D, R>(
     retryAttempts = 3,
     retryDelay = 500,
     timeout = 5000,
-  }: UseFetcherOptions<D, R> = {},
+  }: UseFetcherOptions<A, R> = {},
 ): QueryResult<R> {
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
   const abortController = useRef<AbortController>(new AbortController());
-  const fetchClient = useRef(createFetchClient<D, R>(addFetch, abortController.current));
+  const fetchClient = useRef(createFetchClient<A, R>(addFetch, abortController.current));
   const counter = useRef(0);
   const task = useRef<Task>();
   const retries = useRef(0);
@@ -117,7 +117,7 @@ jobTimeout is currently ${timeout} and there are ${fetchClient.current.jobs.leng
 
           job.state = 'SUCCEEDED';
 
-          const data: D = yield response[contentType as ContentType]();
+          const data: A = yield response[contentType as ContentType]();
 
           assert(typeof acc !== 'undefined', `no accumulator function present`);
 
@@ -164,17 +164,66 @@ jobTimeout is currently ${timeout} and there are ${fetchClient.current.jobs.leng
     };
   }, [executeOnMount, machine.value, runner]);
 
-  const result: QueryResult<R> = useMemo(
-    () => ({
-      state: machine.value as FetcherStates,
-      run: runner,
-      data: machine.context.data,
-      error: machine.context.error,
-      reset: resetable,
-      abort: () => abortController.current.abort(),
-    }),
-    [machine.value, machine.context.data, machine.context.error, runner, resetable],
-  );
+  const aborter = useCallback(() => abortController.current.abort(), []);
+
+  const result: QueryResult<R> = useMemo(() => {
+    switch (machine.value as FetcherStates) {
+      case 'READY':
+        return {
+          state: 'READY',
+          run: runner,
+          reset: resetable,
+          abort: aborter,
+          data: undefined,
+          error: undefined,
+          counter: counter.current,
+        };
+      case 'LOADING':
+        return {
+          state: 'LOADING',
+          run: runner,
+          reset: resetable,
+          abort: aborter,
+          data: undefined,
+          error: undefined,
+          counter: counter.current,
+        };
+      case 'SUCCEEDED':
+        return {
+          state: 'SUCCEEDED',
+          run: runner,
+          reset: resetable,
+          abort: aborter,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          data: machine.context.data as any,
+          error: undefined,
+          counter: counter.current,
+        };
+      case 'ERROR':
+        return {
+          state: 'ERROR',
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          error: machine.context.error as any,
+          data: undefined,
+          run: runner,
+          reset: resetable,
+          abort: aborter,
+          counter: counter.current,
+        };
+      case 'ABORTED':
+        return {
+          state: 'ABORTED',
+          data: undefined,
+          error: undefined,
+          run: runner,
+          reset: resetable,
+          abort: aborter,
+          counter: counter.current,
+        };
+      default:
+        throw new Error(`unknown state ${machine.value}`);
+    }
+  }, [machine.value, machine.context.data, machine.context.error, runner, resetable, aborter]);
 
   return result;
 }
