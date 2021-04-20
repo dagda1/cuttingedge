@@ -1,4 +1,4 @@
-import { expect, it, describe, beforeAll, afterEach, afterAll, jest } from '@jest/globals';
+import { expect, it, describe, beforeEach, beforeAll, afterEach, afterAll, jest } from '@jest/globals';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
@@ -6,6 +6,8 @@ import { useFetcher } from './react-fetcher';
 import { flushPromises } from '@cutting/testing';
 
 let times = 0;
+
+const pause = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 const server = setupServer(
   rest.get('http://localhost:3000/multi/:id', (req, res, ctx) => {
@@ -52,8 +54,8 @@ const server = setupServer(
     return res(ctx.json({ ok: true }));
   }),
 
-  rest.get('http://localhost:3000/long-request', (req, res, ctx) => {
-    ctx.delay(1200);
+  rest.get('http://localhost:3000/long-request', async (req, res, ctx) => {
+    await pause(100);
 
     return res(ctx.json({ ok: true }));
   }),
@@ -61,6 +63,11 @@ const server = setupServer(
 
 describe('useFetcher', () => {
   beforeAll(() => server.listen());
+
+  beforeEach(() => {
+    jest.clearAllTimers();
+    jest.useRealTimers();
+  });
 
   afterEach(() => {
     times = 0;
@@ -264,7 +271,7 @@ describe('useFetcher', () => {
           useFetcher(`http://localhost:3000/long-request`, {
             executeOnMount: false,
             retryAttempts: 0,
-            jobTimeout: 500,
+            timeout: 500,
             onSuccess,
             onError,
             onAbort,
@@ -285,14 +292,12 @@ describe('useFetcher', () => {
         expect(onError).not.toHaveBeenCalled();
       });
 
-      it('should should complete if request completes before timeout', async () => {
-        jest.useRealTimers();
+      it('should complete if request completes before timeout', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
           useFetcher(`http://localhost:3000/long-request`, {
             executeOnMount: false,
             retryAttempts: 0,
-            jobTimeout: 10,
-            onError: (e) => e,
+            timeout: 300,
           }),
         );
 
@@ -575,6 +580,76 @@ describe('useFetcher', () => {
         expect(onError).not.toHaveBeenCalled();
         expect(onQueryError).not.toHaveBeenCalled();
       });
+    });
+  });
+
+  describe('multi timeout timeout', () => {
+    it('should should abort if request times out', async () => {
+      const onSuccess = jest.fn();
+      const onError = jest.fn();
+      const onAbort = jest.fn();
+      const onQuerySuccess = jest.fn();
+
+      jest.useFakeTimers();
+      const { result, waitForNextUpdate } = renderHook(() =>
+        useFetcher([`http://localhost:3000/single`, `http://localhost:3000/long-request`], {
+          executeOnMount: false,
+          retryAttempts: 0,
+          timeout: 150,
+          onQuerySuccess,
+          onSuccess,
+          onError,
+          onAbort,
+        }),
+      );
+
+      await act(async () => {
+        result.current.run();
+        await flushPromises();
+      });
+
+      await act(async () => {
+        jest.advanceTimersByTime(210);
+        await waitForNextUpdate();
+      });
+
+      expect(result.current.state).toBe('ABORTED');
+
+      expect(onAbort).toHaveBeenCalled();
+      expect(onSuccess).not.toHaveBeenCalled();
+      expect(onError).not.toHaveBeenCalled();
+    });
+
+    it('should should complete if request completes before timeout', async () => {
+      const onSuccess = jest.fn();
+      const onError = jest.fn();
+      const onAbort = jest.fn();
+      const onQuerySuccess = jest.fn();
+
+      const { result, waitForNextUpdate } = renderHook(() =>
+        useFetcher(['http://localhost:3000/single', 'http://localhost:3000/long-request'], {
+          executeOnMount: false,
+          retryAttempts: 0,
+          onQuerySuccess,
+          onSuccess,
+          onError,
+          onAbort,
+          timeout: 300,
+        }),
+      );
+
+      await act(async () => {
+        result.current.run();
+      });
+
+      await waitForNextUpdate();
+
+      expect(result.current.state).toBe('SUCCEEDED');
+
+      expect(onQuerySuccess).toHaveBeenCalled();
+      expect(onAbort).not.toHaveBeenCalled();
+      expect(onSuccess).toHaveBeenCalled();
+      expect(onError).not.toHaveBeenCalled();
     });
   });
 });

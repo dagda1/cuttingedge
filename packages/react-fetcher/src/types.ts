@@ -72,7 +72,7 @@ export type UseFetcherOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'conte
   onAbort?: (e: Error) => void;
   retryAttempts?: number;
   retryDelay?: number;
-  jobTimeout?: number;
+  timeout?: number;
 };
 
 export type FetchRequest<D, R> = {

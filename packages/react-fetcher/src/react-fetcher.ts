@@ -11,8 +11,6 @@ import { assert } from 'assert-ts';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
 
-const isTest = process.env.NODE_ENV === 'test';
-
 export function useFetcher<D, R>(
   addFetch: string | string[] | AddFetch<D, R>,
   {
@@ -27,7 +25,7 @@ export function useFetcher<D, R>(
     executeOnMount = true,
     retryAttempts = 3,
     retryDelay = 500,
-    jobTimeout,
+    timeout = 5000,
   }: UseFetcherOptions<D, R> = {},
 ): QueryResult<R> {
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
@@ -36,7 +34,7 @@ export function useFetcher<D, R>(
   const counter = useRef(0);
   const task = useRef<Task>();
   const retries = useRef(0);
-  const timeout = useRef(jobTimeout ? jobTimeout : undefined);
+  const timeoutRef = useRef(timeout ? timeout : undefined);
 
   const acc = accumulator ?? getDefaultAccumulator(initialState);
 
@@ -73,19 +71,19 @@ export function useFetcher<D, R>(
             },
           } = job;
 
-          timeout.current = jobTimeout ? jobTimeout : undefined;
+          timeoutRef.current = timeout ? timeout : undefined;
 
           scope.spawn<void>(function* () {
-            if (typeof timeout.current !== 'number') {
+            if (typeof timeoutRef.current !== 'number') {
               return;
             }
 
-            yield sleep(timeout.current as number);
+            yield sleep(timeoutRef.current as number);
 
             console.log(
               `
-Fetch jobs did not complete in ${timeout.current}ms.
-jobTimeout is currently ${jobTimeout} and there are ${fetchClient.current.jobs.length} jobs`,
+Fetch jobs did not complete in ${timeoutRef.current}ms.
+jobTimeout is currently ${timeout} and there are ${fetchClient.current.jobs.length} jobs`,
             );
 
             abortController.current.abort();
@@ -105,17 +103,14 @@ jobTimeout is currently ${jobTimeout} and there are ${fetchClient.current.jobs.l
             yield sleep(retryDelay);
             --retries.current;
 
-            if (!isTest) {
-              console.log(`request failed, ${response.status}: ${response.statusText} -- retrying`);
-              console.log(`retry attempts left ${retries.current}`);
-            }
+            console.log(`request failed, ${response.status}: ${response.statusText} -- retrying`);
+            console.log(`retry attempts left ${retries.current}`);
 
             response = yield fetcher(request as string, init);
           }
 
           if (!response.ok) {
             job.state = 'ERROR';
-            const status = `we are not ok, ${response.status}: ${response.statusText}`;
             onQueryError(new Error(status));
             throw new Error(status);
           }
@@ -145,7 +140,7 @@ jobTimeout is currently ${jobTimeout} and there are ${fetchClient.current.jobs.l
     });
   }, [
     send,
-    jobTimeout,
+    timeout,
     onSuccess,
     parentOnQuerySuccess,
     parentOnQueryError,
