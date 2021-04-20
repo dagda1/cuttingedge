@@ -49,6 +49,7 @@ export const App: React.FC = () => {
         console.log('in global error handler');
         console.error(e.message);
       },
+      jobTimeout: 1000,
     },
   );
 

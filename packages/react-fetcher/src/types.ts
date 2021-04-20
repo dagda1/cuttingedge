@@ -72,6 +72,7 @@ export type UseFetcherOptions<D, R> = Omit<FetchOptions<D, R>, 'method' | 'conte
   onAbort?: (e: Error) => void;
   retryAttempts?: number;
   retryDelay?: number;
+  jobTimeout?: number;
 };
 
 export type FetchRequest<D, R> = {
@@ -114,6 +115,7 @@ export type QueryResult<D> = {
   reset: () => void;
   abort: () => void;
   error?: Error;
+  counter?: number;
 };
 
 export type ExtractType<T> = T extends {

@@ -3,6 +3,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useFetcher } from './react-fetcher';
+import { flushPromises } from '@cutting/testing';
 
 let times = 0;
 
@@ -47,6 +48,12 @@ const server = setupServer(
       times++;
       return res(ctx.status(500, 'server error'));
     }
+
+    return res(ctx.json({ ok: true }));
+  }),
+
+  rest.get('http://localhost:3000/long-request', (req, res, ctx) => {
+    ctx.delay(1200);
 
     return res(ctx.json({ ok: true }));
   }),
@@ -243,6 +250,58 @@ describe('useFetcher', () => {
         await waitForNextUpdate();
 
         expect(result.current.error).toBeUndefined();
+        expect(result.current.state).toBe('SUCCEEDED');
+      });
+    });
+
+    describe('timeout', () => {
+      it('should should abort if request times out', async () => {
+        const onSuccess = jest.fn();
+        const onError = jest.fn();
+        const onAbort = jest.fn();
+        jest.useFakeTimers();
+        const { result } = renderHook(() =>
+          useFetcher(`http://localhost:3000/long-request`, {
+            executeOnMount: false,
+            retryAttempts: 0,
+            jobTimeout: 500,
+            onSuccess,
+            onError,
+            onAbort,
+          }),
+        );
+
+        await act(async () => {
+          result.current.run();
+          jest.runOnlyPendingTimers();
+        });
+
+        await flushPromises();
+
+        expect(result.current.state).toBe('ABORTED');
+
+        expect(onAbort).toHaveBeenCalled();
+        expect(onSuccess).not.toHaveBeenCalled();
+        expect(onError).not.toHaveBeenCalled();
+      });
+
+      it('should should complete if request completes before timeout', async () => {
+        jest.useRealTimers();
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useFetcher(`http://localhost:3000/long-request`, {
+            executeOnMount: false,
+            retryAttempts: 0,
+            jobTimeout: 10,
+            onError: (e) => e,
+          }),
+        );
+
+        await act(async () => {
+          result.current.run();
+        });
+
+        await waitForNextUpdate();
+
         expect(result.current.state).toBe('SUCCEEDED');
       });
     });

@@ -33,6 +33,8 @@ Here are some other annoyances:
 
 - I want `abort` to be a first-class citizen and not left up to me to get my hands dirty with `AbortControllers`.
 
+- I want an adjustable timeout, queries should not be allowed to run forever. I don't want to have to roll my own logic.
+
 - I want to run more than one query.
 
 - I don't want to deal with cache keys.  The framework should handle this.

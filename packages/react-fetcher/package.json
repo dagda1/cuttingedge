@@ -1,7 +1,7 @@
 {
   "name": "@cutting/react-fetcher",
   "description": "A simpler use-fetch or use-query or whatever.",
-  "version": "0.1.0",
+  "version": "0.1.0-beta",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -31,6 +31,7 @@
     "xstate": "^4.15.1"
   },
   "devDependencies": {
+    "@cutting/testing": "4.21.0",
     "@cutting/the-watcher": "0.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
