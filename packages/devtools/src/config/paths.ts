@@ -42,7 +42,7 @@ const libPackages = [
   'packages/svg',
   'packages/use-operation',
   'packages/use-shortcuts',
-  'packages/react-fetcher',
+  'packages/react-abortable-fetch',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');

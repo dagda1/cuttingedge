@@ -1,16 +1,16 @@
 import { FC, useContext } from 'react';
 import { createAtom } from '@effection/atom';
 import { createContext } from 'react';
-import { FetchJob, FetchContext } from '../types';
+import { FetchJob, FetchAtomContext } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const atom = createAtom({ jobs: {} as Record<string, FetchJob<any, any>> });
 
-const Context = createContext<FetchContext>({
+const Context = createContext<FetchAtomContext>({
   atom,
 });
 
-export function useFetchContext(): FetchContext {
+export function useFetchContext(): FetchAtomContext {
   return useContext(Context);
 }
 

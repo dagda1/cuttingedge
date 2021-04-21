@@ -6,9 +6,9 @@ export interface Repo {
 
 export const repos: Repo[] = [
   {
-    name: '@cutting/react-fetcher',
+    name: '@cutting/react-abortable-fetch',
     description: 'The useQuery I needed',
-    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/react-fetcher',
+    link: 'https://github.com/dagda1/cuttingedge/tree/master/packages/react-abortable-fetch',
   },
   {
     name: 'use-shortcuts',

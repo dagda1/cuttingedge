@@ -56,8 +56,8 @@
         "@cutting/useful-types"
       ]
     },
-    "@cutting/react-fetcher": {
-      "path": "./packages/react-fetcher",
+    "@cutting/react-abortable-fetch": {
+      "path": "./packages/react-abortable-fetch",
       "manager": "javascript",
       "dependencies": [
         "@cutting/use-operation",

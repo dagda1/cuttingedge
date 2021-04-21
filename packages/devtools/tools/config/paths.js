@@ -36,7 +36,7 @@ var libPackages = [
     'packages/svg',
     'packages/use-operation',
     'packages/use-shortcuts',
-    'packages/react-fetcher',
+    'packages/react-abortable-fetch',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var tsConfigPath = resolveApp('tsconfig.json');
 var testTsConfigPath = require.resolve('@cutting/tsconfig/tsconfig.test.json');

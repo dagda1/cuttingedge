@@ -2,7 +2,7 @@ import { expect, it, describe, beforeEach, beforeAll, afterEach, afterAll, jest 
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useFetcher } from './react-fetcher';
+import { useFetch } from './react-abortable-fetch';
 import { flushPromises } from '@cutting/testing';
 
 let times = 0;
@@ -61,7 +61,7 @@ const server = setupServer(
   }),
 );
 
-describe('useFetcher', () => {
+describe('useFetch', () => {
   beforeAll(() => server.listen());
 
   beforeEach(() => {
@@ -78,7 +78,7 @@ describe('useFetcher', () => {
 
   describe('single query', () => {
     it('should successfully run a single query', async () => {
-      const { result, waitFor } = renderHook(() => useFetcher(`http://localhost:3000/single`));
+      const { result, waitFor } = renderHook(() => useFetch(`http://localhost:3000/single`));
 
       await waitFor(() => result.current.state === 'SUCCEEDED' && typeof result.current.data !== 'undefined');
 
@@ -93,7 +93,7 @@ describe('useFetcher', () => {
       const onAbort = jest.fn();
 
       const { result, waitFor } = renderHook(() =>
-        useFetcher(`http://localhost:3000/single`, {
+        useFetch(`http://localhost:3000/single`, {
           onError,
           onSuccess,
           onQuerySuccess,
@@ -113,7 +113,7 @@ describe('useFetcher', () => {
 
     it('should successfully run a single query on demand', async () => {
       const { result, waitForNextUpdate } = renderHook(() =>
-        useFetcher(`http://localhost:3000/single`, { executeOnMount: false }),
+        useFetch(`http://localhost:3000/single`, { executeOnMount: false }),
       );
 
       expect(result.current.state).toBe('READY');
@@ -132,7 +132,7 @@ describe('useFetcher', () => {
 
     describe('single accumulation', () => {
       it('should accumulate a single value with default accumulator', async () => {
-        const { result, waitForNextUpdate } = renderHook(() => useFetcher(`http://localhost:3000/singles/1`));
+        const { result, waitForNextUpdate } = renderHook(() => useFetch(`http://localhost:3000/singles/1`));
 
         await waitForNextUpdate();
 
@@ -144,7 +144,7 @@ describe('useFetcher', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher<{ id: string }, { id?: string; name: string }>(`http://localhost:3000/singles/1`, {
+          useFetch<{ id: string }, { id?: string; name: string }>(`http://localhost:3000/singles/1`, {
             accumulator: (acc, curr) => ({ ...acc, ...curr }),
             initialState: { name: 'bob' },
             onSuccess,
@@ -170,7 +170,7 @@ describe('useFetcher', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher(`http://localhost:3000/error`, {
+          useFetch(`http://localhost:3000/error`, {
             onSuccess,
             onError,
             retryAttempts: 0,
@@ -197,7 +197,7 @@ describe('useFetcher', () => {
         const onAbort = jest.fn();
 
         const { result } = renderHook(() =>
-          useFetcher(`http://localhost:3000/abortable`, {
+          useFetch(`http://localhost:3000/abortable`, {
             onSuccess,
             onError,
             onAbort,
@@ -221,7 +221,7 @@ describe('useFetcher', () => {
     describe('should reset', () => {
       it('should reset', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher(`http://localhost:3000/single`, { executeOnMount: false }),
+          useFetch(`http://localhost:3000/single`, { executeOnMount: false }),
         );
 
         await act(async () => {
@@ -243,7 +243,7 @@ describe('useFetcher', () => {
     describe('retry', () => {
       it('should retry a failing query', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher(`http://localhost:3000/flaky-connection`, {
+          useFetch(`http://localhost:3000/flaky-connection`, {
             executeOnMount: false,
             retryAttempts: 5,
             retryDelay: 200,
@@ -268,7 +268,7 @@ describe('useFetcher', () => {
         const onAbort = jest.fn();
         jest.useFakeTimers();
         const { result } = renderHook(() =>
-          useFetcher(`http://localhost:3000/long-request`, {
+          useFetch(`http://localhost:3000/long-request`, {
             executeOnMount: false,
             retryAttempts: 0,
             timeout: 500,
@@ -294,7 +294,7 @@ describe('useFetcher', () => {
 
       it('should complete if request completes before timeout', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher(`http://localhost:3000/long-request`, {
+          useFetch(`http://localhost:3000/long-request`, {
             executeOnMount: false,
             retryAttempts: 0,
             timeout: 300,
@@ -320,7 +320,7 @@ describe('useFetcher', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher(
+          useFetch(
             [`http://localhost:3000/multi/1`, `http://localhost:3000/multi/2`, `http://localhost:3000/multi/3`],
             {
               initialState: [],
@@ -351,7 +351,7 @@ describe('useFetcher', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher(
+          useFetch(
             (fetchClient) => {
               for (const i of [...Array.from({ length: 3 }).keys()]) {
                 fetchClient.addFetchRequest(`http://localhost:3000/multi/${(i + 1) * 100}`, {
@@ -392,7 +392,7 @@ describe('useFetcher', () => {
         const onError = jest.fn();
 
         const { result, waitFor } = renderHook(() =>
-          useFetcher(
+          useFetch(
             (fetchClient) => {
               fetchClient.addFetchRequest('http://localhost:3000/multiply/1/2', {
                 method: 'POST',
@@ -449,7 +449,7 @@ describe('useFetcher', () => {
         const onSuccess = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher<{ answer: number }, number>(
+          useFetch<{ answer: number }, number>(
             ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
             {
               initialState: 0,
@@ -491,7 +491,7 @@ describe('useFetcher', () => {
         const onSuccess = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetcher<{ answer: number }, number>(
+          useFetch<{ answer: number }, number>(
             [
               'http://localhost:3000/single',
               'http://localhost:3000/single',
@@ -539,7 +539,7 @@ describe('useFetcher', () => {
         const onAbort = jest.fn();
 
         const { result } = renderHook(() =>
-          useFetcher<{ answer: number }, number>(
+          useFetch<{ answer: number }, number>(
             [
               'http://localhost:3000/single',
               'http://localhost:3000/single',
@@ -592,7 +592,7 @@ describe('useFetcher', () => {
 
       jest.useFakeTimers();
       const { result, waitForNextUpdate } = renderHook(() =>
-        useFetcher([`http://localhost:3000/single`, `http://localhost:3000/long-request`], {
+        useFetch([`http://localhost:3000/single`, `http://localhost:3000/long-request`], {
           executeOnMount: false,
           retryAttempts: 0,
           timeout: 150,
@@ -627,7 +627,7 @@ describe('useFetcher', () => {
       const onQuerySuccess = jest.fn();
 
       const { result, waitForNextUpdate } = renderHook(() =>
-        useFetcher(['http://localhost:3000/single', 'http://localhost:3000/long-request'], {
+        useFetch(['http://localhost:3000/single', 'http://localhost:3000/long-request'], {
           executeOnMount: false,
           retryAttempts: 0,
           onQuerySuccess,

@@ -1,13 +1,13 @@
 {
-  "name": "@cutting/react-fetcher",
+  "name": "@cutting/react-abortable-fetch",
   "description": "A simpler use-fetch or use-query or whatever.",
   "version": "0.1.0-beta",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dagda1/cuttingedge.git"
+    "url": "https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch"
   },
   "type": "module",
-  "module": "dist/react-fetcher.esm.js",
+  "module": "dist/react-abortable-fetch.esm.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
@@ -52,5 +52,5 @@
     "use-cancellable-fetch"
   ],
   "main": "dist/index.js",
-  "browser": "dist/react-fetcher.esm.js"
+  "browser": "dist/react-abortable-fetch.esm.js"
 }

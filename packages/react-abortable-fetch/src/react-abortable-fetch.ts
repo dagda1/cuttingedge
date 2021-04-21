@@ -1,22 +1,22 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createQueryMachine, abort, reset, start, success, error } from './machine';
-import { FetcherStates, Builder, ContentType, UseFetcherOptions, QueryResult } from './types';
+import { FetchStates, Builder, ContentType, useFetchOptions, QueryResult } from './types';
 import { run, sleep, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import { identity } from '@cutting/util';
 import { assert } from 'assert-ts';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
+import { useIsomorphicLayoutEffect } from './use-isomorphic-layout-effect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
 
-export function useFetcher<A, R = A>(url: string, options?: UseFetcherOptions<A, R>): QueryResult<R>;
-export function useFetcher<A, R = A>(urls: string[], options?: UseFetcherOptions<A, R>): QueryResult<R>;
-export function useFetcher<A, R = A>(builder: Builder<A, R>, options?: UseFetcherOptions<A, R>): QueryResult<R>;
-export function useFetcher<A, R = A>(
+export function useFetch<A, R = A>(url: string, options?: useFetchOptions<A, R>): QueryResult<R>;
+export function useFetch<A, R = A>(urls: string[], options?: useFetchOptions<A, R>): QueryResult<R>;
+export function useFetch<A, R = A>(builder: Builder<A, R>, options?: useFetchOptions<A, R>): QueryResult<R>;
+export function useFetch<A, R = A>(
   builderOrUrls: Builder<A, R> | string | string[],
-  options: UseFetcherOptions<A, R> = {},
+  options: useFetchOptions<A, R> = {},
 ): QueryResult<R> {
   const {
     accumulator,
@@ -100,9 +100,9 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
 
           scope.ensure(() => abortController.current.abort());
 
-          const fetcher = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
+          const fetch = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
 
-          let response: Response & Body = yield fetcher(request as string, init);
+          let response: Response & Body = yield fetch(request as string, init);
 
           while (!response.ok && retries.current > 0) {
             yield sleep(retryDelay);
@@ -111,7 +111,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
             console.log(`request failed, ${response.status}: ${response.statusText} -- retrying`);
             console.log(`retry attempts left ${retries.current}`);
 
-            response = yield fetcher(request as string, init);
+            response = yield fetch(request as string, init);
           }
 
           if (!response.ok) {
@@ -163,7 +163,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
     }
 
     return () => {
-      if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as FetcherStates)) {
+      if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as FetchStates)) {
         task.current?.halt();
       }
     };
@@ -172,7 +172,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
   const aborter = useCallback(() => abortController.current.abort(), []);
 
   const result: QueryResult<R> = useMemo(() => {
-    switch (machine.value as FetcherStates) {
+    switch (machine.value as FetchStates) {
       case 'READY':
         return {
           state: 'READY',

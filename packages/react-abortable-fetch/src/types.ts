@@ -1,12 +1,12 @@
 import type { Operation, Task } from 'effection';
 import { Slice } from '@effection/atom/dist';
 
-export type FetcherContext<A> = {
+export type FetchContext<A> = {
   data: A;
   error?: Error;
 };
 
-export type FetchStates<T> =
+export type FetchActions<T> =
   | { type: 'READY' }
   | { type: 'LOADING' }
   | { type: 'SUCCEEDED'; data: T }
@@ -14,7 +14,7 @@ export type FetchStates<T> =
   | { type: 'ABORTED'; error: Error };
 
 /* eslint-disable @typescript-eslint/ban-types */
-export interface FetcherSchema<A> {
+export interface FetchSchema<A> {
   states: {
     ['READY']: {};
     ['LOADING']: {
@@ -39,10 +39,10 @@ export interface FetcherSchema<A> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type FetcherStates = keyof FetcherSchema<any>['states'];
+export type FetchStates = keyof FetchSchema<any>['states'];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type FetcherActionTypes = FetchStates<any>['type'];
+export type FetchActionTypes = FetchActions<any>['type'];
 
 export interface Runnable<T> {
   run(scope: Task): T;
@@ -64,7 +64,7 @@ type FetchOptions<A, R> = {
   onQuerySuccess?: (t?: A) => void;
 };
 
-export type UseFetcherOptions<A, R> = Omit<FetchOptions<A, R>, 'method' | 'contentType'> & {
+export type useFetchOptions<A, R> = Omit<FetchOptions<A, R>, 'method' | 'contentType'> & {
   fetchType?: 'fetch' | 'fetchJsonp';
   onSuccess?: (t?: R) => void;
   executeOnMount?: boolean;
@@ -83,11 +83,11 @@ export type FetchRequest<A, R> = {
 export interface FetchJob<A, R> {
   uuid: string;
   key: string;
-  state: FetcherStates;
+  state: FetchStates;
   fetch: Omit<FetchRequest<A, R>, 'onAbort'>;
 }
 
-export interface FetchContext {
+export interface FetchAtomContext {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   atom: Slice<{ jobs: Record<string, FetchJob<any, any>> }>;
 }
@@ -102,7 +102,7 @@ export interface FetchClient<A, R = A> {
   ): FetchClient<A, R>;
 }
 
-export type Builder<A, R> = (fetcher: FetchClient<A, R>) => FetchClient<A, R>;
+export type Builder<A, R> = (fetch: FetchClient<A, R>) => FetchClient<A, R>;
 
 export interface Effect<A> {
   (slice: Slice<A>): Operation<void>;

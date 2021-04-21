@@ -1,23 +1,22 @@
-# @cutting/react-fetcher
+# @cutting/react-abortable-fetch
 
 ## Quick Start
-<br/>
 <details><summary><h3<b>Show instructions</b></h3></summary>
 
-Here is the simplest form of using `react-fetcher`:
+Here is the simplest form of using `react-abortable-fetch`:
 
 ```sh
 # npm
-npm install @cutting/react-fetcher
+npm install @cutting/react-abortable-fetch
 
 # yarn
-yarn add @cutting/react-fetcher
+yarn add @cutting/react-abortable-fetch
 ```
 
 ```ts
-import { useFetcher } from '@cutting/react-fetcher';
+import { useFetch } from '@cutting/react-abortable-fetch';
 
-const { data, error, state } = useFetcher(`/api/users/1`);
+const { data, error, state } = useFetch(`/api/users/1`);
 
 if (state === 'LOADING') {
   return <div>loading...</div>
@@ -31,7 +30,6 @@ return <SomeComponent data={data}/>
 ```
 
 </details>
-<br/>
 
 ## Table of contents
 
@@ -99,7 +97,7 @@ I could go on, but I will leave it there for now....
 Give me a URL and the framework will do the rest.  I am personally weary of endless configuration when all I want to do is this:
 
 ```ts
-const { data, error } = useFetcher(`/api/users/1`);
+const { data, error } = useFetch(`/api/users/1`);
 
 if (typeof data !== 'undefined') {
   console.log(data);
@@ -109,7 +107,7 @@ if (typeof data !== 'undefined') {
 or if you want to invoke the query in a button click handler, then you can do this:
 
 ```ts
-const { run, state } = useFetcher(`/api/users/1`, { executeOnMount: false });
+const { run, state } = useFetch(`/api/users/1`, { executeOnMount: false });
 
 return (
   <button
@@ -132,7 +130,7 @@ There are a couple of ways of executing multi queries.
 Just load up the URLs into an array and optionally use some of the handlers:
 
 ```ts
-const { state, abort, reset } = useFetcher(
+const { state, abort, reset } = useFetch(
   [
     `/api/users/1`,
     `/api/users/2`,
@@ -171,10 +169,10 @@ const { state, abort, reset } = useFetcher(
 
 ## Builder Syntax
 
-Alternatively, `useFetcher` can take a builder function that provides a `fetchClient` object with an `addFetchRequest` function.
+Alternatively, `useFetch` can take a builder function that provides a `fetchClient` object with an `addFetchRequest` function.
 
 ```ts
-const { state, abort, data } = useFetcher(
+const { state, abort, data } = useFetch(
   (fetchClient) => {
     for (const i of [...Array.from({ length: 10 }).keys()]) {
       fetchClient.addFetchRequest(`/api/users/${i + 1}`, {
@@ -207,15 +205,15 @@ const { state, abort, data } = useFetcher(
 
 ### Accumulation
 
-When executing multiple queries, think of `useFetcher` like a [reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) or a [fold](https://wiki.haskell.org/Fold) function.
+When executing multiple queries, think of `useFetch` like a [reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) or a [fold](https://wiki.haskell.org/Fold) function.
 
 
 ### Default accumulation
 
-If the `initialState` field is an array, then `useFetcher` will append the result of each async fetch onto the `initialState`.
+If the `initialState` field is an array, then `useFetch` will append the result of each async fetch onto the `initialState`.
 
 ```ts
-const { data } = useFetcher(
+const { data } = useFetch(
   [ '/add/1/1', '/add/2/2', '/add/3/3' ],
   {
     initialState: []
@@ -233,7 +231,7 @@ You can supply an `accumulator` function that executes each time a remote query 
 
 
 ```ts
-const { data } = useFetcher(
+const { data } = useFetch(
   [ '/add/1/1', '/add/2/2', '/add/3/3' ],
   {
     initialState: 0,
@@ -251,12 +249,12 @@ WARNING! The operations should be [commutative](https://www.mathsisfun.com/assoc
 
 ## Retries
 
-By default `react-fetcher` will retry any request that returns a non 2xx range response 3 times with a 500ms delay.
+By default `react-abortable-fetch` will retry any request that returns a non 2xx range response 3 times with a 500ms delay.
 
 The `retryAttempts` and `retryDelay` properties can configure this differently:
 
 ```ts
-const { data, error } = useFetcher(`/flaky-connection`, {
+const { data, error } = useFetch(`/flaky-connection`, {
   retryAttempts: 5,
   retryDelay: 1000,
 });
@@ -274,7 +272,7 @@ By default each fetch request has a `timeout` property of `200000ms` to complete
 <details><summary><h3<b>Example</b></h3></summary>
 
 ```ts
-const { state, abort, reset, run } = useFetcher(
+const { state, abort, reset, run } = useFetch(
   [ '/add/1/1', '/add/2/2', '/add/3/3' ],
   {
     initialState: 0,
@@ -308,7 +306,7 @@ const { state, abort, reset, run } = useFetcher(
 | accumulator | function that can be used to transform the result of every query.   | [default-accumulator.ts](./src/default-accumulator.ts)
 | method | http verb, GET, POST, PUT or DELETE etc. | GET |
 | executeOnMount | whether or not the remote fetch executes after the DOM paint event | a controversial `true` |
-| fetchType | which fetcher to call, either fetch or fetchJsonp.  Will either call [cross-fetch]() or [fetch-jsonp](https://www.npmjs.com/package/fetch-jsonp) | fetch |
+| fetchType | which fetch to call.  The default `fetch` will use [cross-fetch](https://www.npmjs.com/package/cross-fetch) or [fetch-jsonp](https://www.npmjs.com/package/fetch-jsonp). | fetch |
 | retryAttempts | how many times a fetch operation will be retried | 3 |
 | retryDelay | the time in `ms` between each retry in the event of a fail | 500 |
 | timeout | The length of time each request is allowed to run without a response before aborting | 5000ms |
@@ -319,21 +317,21 @@ const { state, abort, reset, run } = useFetcher(
 
 ## Typescript
 
-The `useFetcher` function signature looks like this:
+The `useFetch` function signature looks like this:
 
 ```ts
-export function useFetcher<A, R = A>(url: string, options?: UseFetcherOptions<A, R>): QueryResult<R>;
-export function useFetcher<A, R = A>(urls: string[], options?: UseFetcherOptions<A, R>): QueryResult<R>;
-export function useFetcher<A, R = A>(builder: Builder<A, R>, options?: UseFetcherOptions<A, R>): QueryResult<R>;
+export function useFetch<A, R = A>(url: string, options?: useFetchOptions<A, R>): QueryResult<R>;
+export function useFetch<A, R = A>(urls: string[], options?: useFetchOptions<A, R>): QueryResult<R>;
+export function useFetch<A, R = A>(builder: Builder<A, R>, options?: useFetchOptions<A, R>): QueryResult<R>;
 ```
 
 - `A` is the type for the data that is returned from a fetcg request.  
 
-- `R` is the type for the end result of a `useFetcher` operation. `R` will default to `A` if it is not explicitly set.
+- `R` is the type for the end result of a `useFetch` operation. `R` will default to `A` if it is not explicitly set.
   Consider the example below where the data returned from of an individual fetch is `{ answer: number }` but the end result of applying the accumlator function to all the requests is a `number` type.
 
   ```ts
-  const { data } = useFetcher<{ answer: number }, number>(
+  const { data } = useFetch<{ answer: number }, number>(
     ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
     {
       initialState: 0,
@@ -347,10 +345,10 @@ export function useFetcher<A, R = A>(builder: Builder<A, R>, options?: UseFetche
 
 ### Type inference
 
-`useFetcher` will infer the `A` type from the `initialState` field if this property has been set
+`useFetch` will infer the `A` type from the `initialState` field if this property has been set
 
 ```ts
-const { data } = useFetcher(
+const { data } = useFetch(
   ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
   {
     initialState: 0, 
@@ -365,7 +363,7 @@ const { data } = useFetcher(
 If `initialState` is an empty array then adding a simple type assertion will type the data type `A`
 
 ```ts
-const { data } = useFetcher(
+const { data } = useFetch(
   ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
   {
     initialState: [] as { answer: number }[], 

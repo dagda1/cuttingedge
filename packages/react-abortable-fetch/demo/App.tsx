@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useFetcher } from '../src';
+import { useFetch } from '../src';
 import cs from 'classnames';
 import './App.css';
-import { FetcherStates } from '../src/types';
+import { fetchStates } from '../src/types';
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -18,9 +18,9 @@ export const App: React.FC = () => {
   };
 
   // simple
-  // const { run, state, abort, reset } = useFetcher(`https://slowmo.glitch.me/10000`);
+  // const { run, state, abort, reset } = useFetch(`https://slowmo.glitch.me/10000`);
 
-  const { run, state, abort, reset } = useFetcher(
+  const { run, state, abort, reset } = useFetch(
     [
       `https://slowmo.glitch.me/100`,
       `https://slowmo.glitch.me/200`,
@@ -56,7 +56,7 @@ export const App: React.FC = () => {
   return (
     <div className="container">
       <div>
-        <h1>react-fetcher</h1>
+        <h1>react-abortable-fetch</h1>
         <p>Open the network tab and press cancel to check the requests are getting cancelled</p>
         <div>
           <p>
@@ -91,7 +91,7 @@ export const App: React.FC = () => {
           </button>
           <button
             className="btn-secondary"
-            disabled={['READY', 'LOADING'].includes(state as FetcherStates)}
+            disabled={['READY', 'LOADING'].includes(state as fetchStates)}
             onClick={() => {
               reset();
               setMessages([]);

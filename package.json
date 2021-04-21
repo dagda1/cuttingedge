@@ -32,7 +32,7 @@
       "packages/util",
       "packages/hooks",
       "packages/use-operation",
-      "packages/react-fetcher",
+      "packages/react-abortable-fetch",
       "packages/component-library",
       "packages/svg",
       "packages/the-watcher",
@@ -43,8 +43,6 @@
     ]
   },
   "resolutions": {
-    "@effection/atom": "=2.0.0-preview.8",
-    "@effection/node": "=2.0.0-preview.10",
     "@types/react": "^17.0.0",
     "@types/webpack": "4.41.21",
     "d3-array": "^2.4.0",

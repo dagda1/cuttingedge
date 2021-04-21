@@ -1,7 +1,7 @@
 declare const __BROWSER__: boolean;
 
-export type { Builder, FetchClient, FetchJob, UseFetcherOptions, QueryResult } from './types';
-export { useFetcher } from './react-fetcher';
+export type { Builder, FetchClient, FetchJob, useFetchOptions, QueryResult } from './types';
+export { useFetch } from './react-abortable-fetch';
 
 if (!__BROWSER__) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

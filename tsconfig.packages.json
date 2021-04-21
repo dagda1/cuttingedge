@@ -20,7 +20,7 @@
       "path": "./packages/use-operation/tsconfig.dist.json"
     },
     {
-      "path": "./packages/react-fetcher/tsconfig.dist.json"
+      "path": "./packages/react-abortable-fetch/tsconfig.dist.json"
     },
     {
       "path": "./packages/component-library/tsconfig.dist.json"

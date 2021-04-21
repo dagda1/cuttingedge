@@ -1,5 +1,5 @@
 import { CountryStats, DayData, CountryData, countryData, Countries, DayStatistics, CountriesResult } from './types';
-import { useFetcher } from '@cutting/react-fetcher';
+import { useFetch } from '@cutting/react-abortable-fetch';
 import dayjs from 'dayjs';
 import { uniqBy } from '@cutting/util';
 import utc from 'dayjs/plugin/utc';
@@ -46,13 +46,13 @@ export const BreakPoint = 14;
 export const useCountryCovidData = (
   { startDate }: CountryDataProps = { startDate: DefaultStartDate },
 ): { data: CountriesResult | undefined } => {
-  const [finalData, seetFinalData] = useState<CountriesResult>();
+  const [finalData, setFinalData] = useState<CountriesResult>();
 
   const urls = Object.keys(countryData)
     .filter((c) => c !== 'SCO')
     .map((c) => urlJoin(baseUrl, c.toUpperCase(), 'timeseries', startDate, dayjs().format('YYYY-MM-DD')));
 
-  const { data } = useFetcher<CountryStats, CountriesResult>(urls, {
+  const { data } = useFetch<CountryStats, CountriesResult>(urls, {
     accumulator: (acc, current, info) => {
       current.result = uniqBy(current.result, (a) => a.date);
 
@@ -77,7 +77,7 @@ export const useCountryCovidData = (
     executeOnMount: true,
   });
 
-  const { data: scotsData } = useFetcher<
+  const { data: scotsData } = useFetch<
     { result: { records: { Deaths: number; CumulativeCases: number; Date: string }[] } },
     CountriesResult
   >(
@@ -120,7 +120,7 @@ export const useCountryCovidData = (
 
     scotsData.SCO.data = scotsData.SCO.data.filter((d) => recognisedDates.includes(d.x));
 
-    seetFinalData({ ...data, ...scotsData });
+    setFinalData({ ...data, ...scotsData });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.GBR?.data?.length, scotsData?.SCO?.data?.length]);
 

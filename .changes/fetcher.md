@@ -1,5 +1,5 @@
 ---
-"@cutting/react-fetcher": minor
+"@cutting/react-abortable-fetch": minor
 ---
 
-The first release of react-fetcher.
+The first release of react-abortable-fetch.
