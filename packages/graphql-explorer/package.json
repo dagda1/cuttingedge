@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@cutting/devtools": "4.21.0",
-    "abortcontroller-polyfill": "^1.5.0",
+    "abortcontroller-polyfill": "^1.7.1",
     "eslint-loader": "^4.0.2",
     "node-fetch": "^2.6.1"
   },

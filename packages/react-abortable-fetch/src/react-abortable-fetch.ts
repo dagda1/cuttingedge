@@ -8,7 +8,7 @@ import { fetch as nativeFetch } from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import { identity } from '@cutting/util';
 import { assert } from 'assert-ts';
-import { useIsomorphicLayoutEffect } from './use-isomorphic-layout-effect';
+import { useIsomorphicLayoutEffect } from './hooks/use-Isomorphic-layout-effect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
 
 export function useFetch<A, R = A>(url: string, options?: useFetchOptions<A, R>): QueryResult<R>;

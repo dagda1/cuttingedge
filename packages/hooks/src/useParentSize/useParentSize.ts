@@ -20,7 +20,7 @@ export const useParentSize = <E extends Element>(
 
   assert(!!ref, 'You must pass a valid ref to useParent');
 
-  const { callback: debouncedCallback } = useDebouncedCallback(
+  const debouncedCallback = useDebouncedCallback(
     (value: Dimensions) => {
       setDimensions(value);
     },

@@ -17,8 +17,8 @@
   "dependencies": {
     "@cutting/util": "4.21.0",
     "@cutting/hooks": "4.21.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
@@ -26,7 +26,7 @@
     "@cutting/testing": "4.21.0",
     "@cutting/eslint-config": "4.21.0",
     "@cutting/useful-types": "4.21.0",
-    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/jest-dom": "^5.11.10",
     "typescript": "^4.2.4"
   },
   "scripts": {

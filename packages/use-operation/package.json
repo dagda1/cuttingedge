@@ -21,15 +21,15 @@
     "@cutting/util": "4.21.0",
     "@effection/node": "=2.0.0-preview.10",
     "effection": "=2.0.0-preview.10",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
     "@types/uuid": "^8.3.0",
-    "abortcontroller-polyfill": "^1.5.0",
+    "abortcontroller-polyfill": "^1.7.1",
     "node-fetch": "^2.6.1",
     "typescript": "^4.2.4"
   },

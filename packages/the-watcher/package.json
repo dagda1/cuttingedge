@@ -19,7 +19,9 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "commander": "^6.2.1"
+    "@effection/node": "=2.0.0-preview.10",
+    "commander": "^7.2.0",
+    "effection": "=2.0.0-preview.10"
   },
   "devDependencies": {
     "ts-node": "^9.1.1"

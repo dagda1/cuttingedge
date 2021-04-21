@@ -5,6 +5,7 @@ import { createMemoryHistory } from 'history';
 
 export const wrapComponentInReduxForTesting = (ui: ReactElement): RenderResult => {
   return {
-    ...render(<Router history={createMemoryHistory()}>{ui}</Router>),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...render(<Router history={createMemoryHistory() as any}>{ui}</Router>),
   };
 };

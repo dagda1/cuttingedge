@@ -50,7 +50,8 @@ function main() {
   const clientCompiler = compile(clientConfig);
   const serverCompiler = compile(serverConfig);
 
-  clientCompiler.plugin('done', () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (clientCompiler as any).plugin('done', () => {
     serverCompiler.watch(
       {},
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
