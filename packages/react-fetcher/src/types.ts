@@ -102,7 +102,7 @@ export interface FetchClient<A, R = A> {
   ): FetchClient<A, R>;
 }
 
-export type AddFetch<A, R> = (fetcher: FetchClient<A, R>) => FetchClient<A, R>;
+export type Builder<A, R> = (fetcher: FetchClient<A, R>) => FetchClient<A, R>;
 
 export interface Effect<A> {
   (slice: Slice<A>): Operation<void>;

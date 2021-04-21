@@ -415,7 +415,7 @@ describe('useFetcher', () => {
               return fetchClient;
             },
             {
-              initialState: [],
+              initialState: [] as { answer: number }[],
               onQuerySuccess,
               onSuccess,
               onError,

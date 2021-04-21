@@ -17,7 +17,7 @@ export const App: React.FC = () => {
     });
   };
 
-  // one hit wonder
+  // simple
   // const { run, state, abort, reset } = useFetcher(`https://slowmo.glitch.me/10000`);
 
   const { run, state, abort, reset } = useFetcher(
@@ -49,7 +49,7 @@ export const App: React.FC = () => {
         console.log('in global error handler');
         console.error(e.message);
       },
-      timeout: 1000,
+      timeout: 50000,
     },
   );
 

@@ -1,6 +1,6 @@
 declare const __BROWSER__: boolean;
 
-export type { AddFetch, FetchClient, FetchJob, UseFetcherOptions, QueryResult } from './types';
+export type { Builder, FetchClient, FetchJob, UseFetcherOptions, QueryResult } from './types';
 export { useFetcher } from './react-fetcher';
 
 if (!__BROWSER__) {

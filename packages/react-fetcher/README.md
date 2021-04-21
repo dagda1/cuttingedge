@@ -1,23 +1,6 @@
 # @cutting/react-fetcher
 
-## Table of contents
-
-- [Getting Started](#Getting-Started)
-- [In the Name of Oden, Why?](#Why)
-- [Examples](#Examples)
-  - [Basic](#Simple-but-nice)
-  - [Multi Queries](#Multi-Queries)
-  - [Builder Syntax](#Builder-Syntax)
-- [Accumulation](#Accumulation)
-  - [Default Accumulation](#Default-accumulation)
-  - [Custom Accumulator Function](#Custom-accumlator-function)
-- [Retries](#Retries)
-- [Timeout](#Timeout)
-- [API](#API)
-- [Typescript](#Typescript)
-- [TODO](#TODO)
-
-## Getting started
+## Quick Start
 <br/>
 <details><summary><h3<b>Show instructions</b></h3></summary>
 
@@ -34,15 +17,38 @@ yarn add @cutting/react-fetcher
 ```ts
 import { useFetcher } from '@cutting/react-fetcher';
 
-const { data, error } = useFetcher(`/api/users/1`);
+const { data, error, state } = useFetcher(`/api/users/1`);
 
-if (typeof data !== 'undefined') {
-  console.log(data);
+if (state === 'LOADING') {
+  return <div>loading...</div>
 }
+
+if (error) {
+  return <div>Houston, we have a problem</dov>
+}
+
+return <SomeComponent data={data}/>
 ```
 
 </details>
 <br/>
+
+## Table of contents
+
+- [In the Name of Oden, Why?](#Why)
+- [Examples](#Examples)
+  - [Basic](#Simple-but-nice)
+  - [Multi Queries](#Multi-Queries)
+  - [Builder Syntax](#Builder-Syntax)
+- [Accumulation](#Accumulation)
+  - [Default Accumulation](#Default-accumulation)
+  - [Custom Accumulator Function](#Custom-accumlator-function)
+- [Retries](#Retries)
+- [Timeout](#Timeout)
+- [API](#API)
+- [Typescript](#Typescript)
+  - [Type inference](#Type-inference)
+- [TODO](#TODO)
 
 ## Why
 
@@ -103,9 +109,9 @@ if (typeof data !== 'undefined') {
 or if you want to invoke the query in a button click handler, then you can do this:
 
 ```ts
-const { run, state, abort, reset } = useFetcher(`/api/users/1`, { executeOnMount: false });
+const { run, state } = useFetcher(`/api/users/1`, { executeOnMount: false });
 
-...
+return (
   <button
     disabled={state !== 'READY'}
     onClick={() => {
@@ -114,11 +120,7 @@ const { run, state, abort, reset } = useFetcher(`/api/users/1`, { executeOnMount
   >
     DO IT
   </button>
-
-  // Aborting is a first class citizen!!!!!
-  <button onClick={() => abort()}>
-    CANCEL
-  </button>
+);
 ```
 
 ### Multi Queries
@@ -240,7 +242,7 @@ const { data } = useFetcher(
 );
 
 if( typeof data !== 'undefined') {
-  console.log(`the grand total is ${result}`),  // the grand total is 12
+  console.log(`the grand total is ${data}`),  // the grand total is 12
 }
 ```
 
@@ -262,7 +264,7 @@ const { data, error } = useFetcher(`/flaky-connection`, {
 
 ## Timeout
 
-By default each fetch request has a `timeout` property of `5000ms` to complete before timing out.
+By default each fetch request has a `timeout` property of `200000ms` to complete before timing out.
 
 ## API
 
@@ -317,6 +319,65 @@ const { state, abort, reset, run } = useFetcher(
 
 ## Typescript
 
+The `useFetcher` function signature looks like this:
+
+```ts
+export function useFetcher<A, R = A>(url: string, options?: UseFetcherOptions<A, R>): QueryResult<R>;
+export function useFetcher<A, R = A>(urls: string[], options?: UseFetcherOptions<A, R>): QueryResult<R>;
+export function useFetcher<A, R = A>(builder: Builder<A, R>, options?: UseFetcherOptions<A, R>): QueryResult<R>;
+```
+
+- `A` is the type for the data that is returned from a fetcg request.  
+
+- `R` is the type for the end result of a `useFetcher` operation. `R` will default to `A` if it is not explicitly set.
+  Consider the example below where the data returned from of an individual fetch is `{ answer: number }` but the end result of applying the accumlator function to all the requests is a `number` type.
+
+  ```ts
+  const { data } = useFetcher<{ answer: number }, number>(
+    ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
+    {
+      initialState: 0,
+      accumulator: (acc, current) => acc + current.answer,  // current is type { answer: number }
+    }
+
+    if ( data ) {
+      console.log(typeof data); // number
+    }
+  ```
+
+### Type inference
+
+`useFetcher` will infer the `A` type from the `initialState` field if this property has been set
+
+```ts
+const { data } = useFetcher(
+  ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
+  {
+    initialState: 0, 
+  }
+
+
+  if ( data ) {
+    console.log(typeof data); // number
+  }
+```
+
+If `initialState` is an empty array then adding a simple type assertion will type the data type `A`
+
+```ts
+const { data } = useFetcher(
+  ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
+  {
+    initialState: [] as { answer: number }[], 
+  }
+
+
+  if ( data ) {
+    for (const question of data) {  // data is typed as array of { answer: number }
+      console.log(question.answer);
+    }
+  }
+```
 
 
 ## TODO
@@ -326,4 +387,4 @@ const { state, abort, reset, run } = useFetcher(
 - load more
 - graphql
 - allow processing of results in order if required
-- global configuration via context (if I must )
+- global configuration via context (still do not want to do this)

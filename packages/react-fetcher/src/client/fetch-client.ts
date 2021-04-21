@@ -1,4 +1,4 @@
-import type { AddFetch, FetchClient } from '../types';
+import type { Builder, FetchClient } from '../types';
 import { v4 } from 'uuid';
 
 const getJobKey = (info: RequestInfo) => {
@@ -6,7 +6,7 @@ const getJobKey = (info: RequestInfo) => {
 };
 
 export const createFetchClient = <A, R>(
-  addFetch: string | string[] | AddFetch<A, R>,
+  addFetch: string | string[] | Builder<A, R>,
   abortController: AbortController,
 ): FetchClient<A, R> => {
   let fetchClient: FetchClient<A, R> = {

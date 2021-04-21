@@ -1,7 +1,7 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createQueryMachine, abort, reset, start, success, error } from './machine';
-import { FetcherStates, AddFetch, ContentType, UseFetcherOptions, QueryResult } from './types';
+import { FetcherStates, Builder, ContentType, UseFetcherOptions, QueryResult } from './types';
 import { run, sleep, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
@@ -11,9 +11,14 @@ import { assert } from 'assert-ts';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
 
-export function useFetcher<A, R>(
-  addFetch: string | string[] | AddFetch<A, R>,
-  {
+export function useFetcher<A, R = A>(url: string, options?: UseFetcherOptions<A, R>): QueryResult<R>;
+export function useFetcher<A, R = A>(urls: string[], options?: UseFetcherOptions<A, R>): QueryResult<R>;
+export function useFetcher<A, R = A>(builder: Builder<A, R>, options?: UseFetcherOptions<A, R>): QueryResult<R>;
+export function useFetcher<A, R = A>(
+  builderOrUrls: Builder<A, R> | string | string[],
+  options: UseFetcherOptions<A, R> = {},
+): QueryResult<R> {
+  const {
     accumulator,
     initialState,
     onSuccess = identity,
@@ -25,16 +30,16 @@ export function useFetcher<A, R>(
     executeOnMount = true,
     retryAttempts = 3,
     retryDelay = 500,
-    timeout = 5000,
-  }: UseFetcherOptions<A, R> = {},
-): QueryResult<R> {
+    timeout = 200000,
+  } = options;
+
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
   const abortController = useRef<AbortController>(new AbortController());
-  const fetchClient = useRef(createFetchClient<A, R>(addFetch, abortController.current));
+  const fetchClient = useRef(createFetchClient<A, R>(builderOrUrls, abortController.current));
   const counter = useRef(0);
   const task = useRef<Task>();
   const retries = useRef(0);
-  const timeoutRef = useRef(timeout ? timeout : undefined);
+  const timeoutRef = useRef<number | undefined>(timeout ?? undefined);
 
   const acc = accumulator ?? getDefaultAccumulator(initialState);
 
@@ -82,8 +87,8 @@ export function useFetcher<A, R>(
 
             console.log(
               `
-Fetch jobs did not complete in ${timeoutRef.current}ms.
-jobTimeout is currently ${timeout} and there are ${fetchClient.current.jobs.length} jobs`,
+Request ${request} did not complete in ${timeoutRef.current}ms.
+timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length} jobs`,
             );
 
             abortController.current.abort();
