@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFetch } from '../src';
 import cs from 'classnames';
 import './App.css';
-import { fetchStates } from '../src/types';
+import { FetchStates } from '../src/types';
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -49,14 +49,13 @@ export const App: React.FC = () => {
         console.log('in global error handler');
         console.error(e.message);
       },
-      timeout: 50000,
     },
   );
 
   return (
     <div className="container">
       <div>
-        <h1>react-abortable-fetch</h1>
+        <h1>Multi request fetch with abort</h1>
         <p>Open the network tab and press cancel to check the requests are getting cancelled</p>
         <div>
           <p>
@@ -84,14 +83,14 @@ export const App: React.FC = () => {
               run();
             }}
           >
-            DO IT
+            START
           </button>
           <button className="btn-danger" disabled={state !== 'LOADING'} onClick={() => abort()}>
             CANCEL
           </button>
           <button
             className="btn-secondary"
-            disabled={['READY', 'LOADING'].includes(state as fetchStates)}
+            disabled={['READY', 'LOADING'].includes(state as FetchStates)}
             onClick={() => {
               reset();
               setMessages([]);

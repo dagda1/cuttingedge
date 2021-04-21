@@ -30,12 +30,12 @@ export function useFetch<A, R = A>(
     executeOnMount = true,
     retryAttempts = 3,
     retryDelay = 500,
-    timeout = 200000,
+    timeout = 60000,
   } = options;
 
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
-  const abortController = useRef<AbortController>(new AbortController());
-  const fetchClient = useRef(createFetchClient<A, R>(builderOrUrls, abortController.current));
+  let abortController = useMemo(() => new AbortController(), []);
+  const fetchClient = useRef(createFetchClient<A, R>(builderOrUrls, abortController));
   const counter = useRef(0);
   const task = useRef<Task>();
   const retries = useRef(0);
@@ -51,18 +51,25 @@ export function useFetch<A, R = A>(
     [onAbort, send],
   );
 
-  const accumulated = useRef(initialState);
+  const aborter = useCallback(() => {
+    console.log(`aborting at ${machine.value}`);
+    abortController.abort();
+  }, [abortController, machine.value]);
 
   const resetable = useCallback(() => {
-    abortController.current = new AbortController();
     counter.current = 0;
     send(reset(initialState));
+    task.current?.halt();
   }, [initialState, send]);
 
+  const accumulated = useRef(initialState);
+
+  abortController = new AbortController();
   const runner = useCallback(() => {
-    send(start);
     task.current = run(function* (scope) {
-      counter.current++;
+      counter.current += 1;
+      send(start);
+      console.log(`counter at ${counter.current}, state = ${machine.value}`);
 
       try {
         for (const job of fetchClient.current.jobs) {
@@ -91,14 +98,22 @@ Request ${request} did not complete in ${timeoutRef.current}ms.
 timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length} jobs`,
             );
 
-            abortController.current.abort();
+            abortController.abort();
           });
 
           retries.current = retryAttempts;
 
           job.state = 'LOADING';
 
-          scope.ensure(() => abortController.current.abort());
+          scope.ensure(() => {
+            if (abortController.signal.aborted) {
+              console.log('already aborted');
+              return;
+            }
+
+            console.log('calling abort');
+            abortController.abort();
+          });
 
           const fetch = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
 
@@ -108,7 +123,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
             yield sleep(retryDelay);
             --retries.current;
 
-            console.log(`request failed, ${response.status}: ${response.statusText} -- retrying`);
+            console.log(`request ${request} failed, ${response.status}: ${response.statusText} -- retrying`);
             console.log(`retry attempts left ${retries.current}`);
 
             response = yield fetch(request as string, init);
@@ -134,12 +149,14 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
         send(success(accumulated.current));
         onSuccess(accumulated.current);
       } catch (err) {
+        console.error(err);
         if (err?.name === 'AbortError') {
           abortable(err);
           return;
         }
-        send(error(err));
+
         onError(err);
+        send(error(err));
         return;
       }
     });
@@ -155,6 +172,8 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
     retryDelay,
     onError,
     abortable,
+    machine.value,
+    abortController,
   ]);
 
   useIsomorphicLayoutEffect(() => {
@@ -164,12 +183,10 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
 
     return () => {
       if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as FetchStates)) {
-        task.current?.halt();
+        // task.current?.halt();
       }
     };
   }, [executeOnMount, machine.value, runner]);
-
-  const aborter = useCallback(() => abortController.current.abort(), []);
 
   const result: QueryResult<R> = useMemo(() => {
     switch (machine.value as FetchStates) {

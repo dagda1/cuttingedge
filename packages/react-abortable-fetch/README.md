@@ -262,7 +262,7 @@ const { data, error } = useFetch(`/flaky-connection`, {
 
 ## Timeout
 
-By default each fetch request has a `timeout` property of `200000ms` to complete before timing out.
+By default each fetch request has a `timeout` property of `30000ms` to complete before timing out.
 
 ## API
 

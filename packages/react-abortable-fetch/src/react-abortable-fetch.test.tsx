@@ -5,7 +5,7 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import { useFetch } from './react-abortable-fetch';
 import { flushPromises } from '@cutting/testing';
 
-let times = 0;
+let times = 1;
 
 const pause = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
@@ -70,7 +70,7 @@ describe('useFetch', () => {
   });
 
   afterEach(() => {
-    times = 0;
+    times = 1;
     server.resetHandlers();
   });
 
@@ -242,11 +242,21 @@ describe('useFetch', () => {
 
     describe('retry', () => {
       it('should retry a failing query', async () => {
+        const onSuccess = jest.fn();
+        const onError = jest.fn();
+        const onAbort = jest.fn();
+        const onQueryError = jest.fn();
+        const onQuerySuccess = jest.fn();
         const { result, waitForNextUpdate } = renderHook(() =>
           useFetch(`http://localhost:3000/flaky-connection`, {
             executeOnMount: false,
             retryAttempts: 5,
             retryDelay: 200,
+            onSuccess,
+            onError,
+            onAbort,
+            onQueryError,
+            onQuerySuccess,
           }),
         );
 
