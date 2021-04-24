@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.3.1]
+
+- Remove **BROWSER** field.
+  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
+
 ## \[0.3.0]
 
 - Rename of react-abortable-fetch
