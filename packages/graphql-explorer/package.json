@@ -26,6 +26,9 @@
     "eslint-loader": "^4.0.2",
     "node-fetch": "^2.6.1"
   },
+  "volta": {
+    "extends": "../../package.json"
+  },
   "keywords": [
     "hotkeys",
     "focus",

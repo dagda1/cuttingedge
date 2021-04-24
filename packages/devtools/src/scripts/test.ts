@@ -31,7 +31,7 @@ if (!process.env.CI && argv.indexOf('--coverage') < 0) {
 const config = fs.existsSync(paths.ownJestConfig) ? paths.ownJestConfig : paths.jestConfig;
 
 argv.push('--config', config);
-argv.push('--env', 'jest-environment-jsdom-sixteen');
+argv.push('--env', 'jsdom');
 argv.push('--rootDir', `${process.cwd()}`);
 argv.push('--useStderr');
 

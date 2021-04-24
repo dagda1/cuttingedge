@@ -34,8 +34,8 @@ export function useFetch<A, R = A>(
   } = options;
 
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
-  let abortController = useMemo(() => new AbortController(), []);
-  const fetchClient = useRef(createFetchClient<A, R>(builderOrUrls, abortController));
+  const abortController = useRef(new AbortController());
+  const fetchClient = useRef(createFetchClient<A, R>(builderOrUrls, abortController.current));
   const counter = useRef(0);
   const task = useRef<Task>();
   const retries = useRef(0);
@@ -53,8 +53,9 @@ export function useFetch<A, R = A>(
 
   const aborter = useCallback(() => {
     console.log(`aborting at ${machine.value}`);
-    abortController.abort();
-  }, [abortController, machine.value]);
+    abortController.current.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [abortController.current, machine.value]);
 
   const resetable = useCallback(() => {
     counter.current = 0;
@@ -64,12 +65,10 @@ export function useFetch<A, R = A>(
 
   const accumulated = useRef(initialState);
 
-  abortController = new AbortController();
   const runner = useCallback(() => {
     task.current = run(function* (scope) {
       counter.current += 1;
       send(start);
-      console.log(`counter at ${counter.current}, state = ${machine.value}`);
 
       try {
         for (const job of fetchClient.current.jobs) {
@@ -98,22 +97,12 @@ Request ${request} did not complete in ${timeoutRef.current}ms.
 timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length} jobs`,
             );
 
-            abortController.abort();
+            abortController.current.abort();
           });
 
           retries.current = retryAttempts;
 
           job.state = 'LOADING';
-
-          scope.ensure(() => {
-            if (abortController.signal.aborted) {
-              console.log('already aborted');
-              return;
-            }
-
-            console.log('calling abort');
-            abortController.abort();
-          });
 
           const fetch = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
 
@@ -149,7 +138,6 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
         send(success(accumulated.current));
         onSuccess(accumulated.current);
       } catch (err) {
-        console.error(err);
         if (err?.name === 'AbortError') {
           abortable(err);
           return;
@@ -158,6 +146,8 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
         onError(err);
         send(error(err));
         return;
+      } finally {
+        abortController.current.abort();
       }
     });
   }, [
@@ -172,7 +162,6 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
     retryDelay,
     onError,
     abortable,
-    machine.value,
     abortController,
   ]);
 

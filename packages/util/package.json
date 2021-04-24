@@ -23,6 +23,9 @@
     "@cutting/util": "4.21.0",
     "react": "^17.0.1"
   },
+  "volta": {
+    "extends": "../../package.json"
+  },
   "devDependencies": {
     "@cutting/devtools": "4.21.0",
     "@cutting/eslint-config": "4.21.0",

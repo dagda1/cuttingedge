@@ -40,7 +40,7 @@ export interface BundlerOptions {
   env: 'development' | 'production';
 }
 
-logger.debug(`using tsconfig ${paths.tsConfigProduction}`);
+logger.debug(`using tsconfig ${path.dirname(paths.tsConfigProduction)}`);
 
 async function generateBundledModule({ packageName, inputFile, moduleFormat, env }: BundlerOptions) {
   assert(fs.existsSync(inputFile), `Input file ${inputFile} does not exist`);
@@ -155,10 +155,6 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
   const extension = env === 'production' ? 'min.js' : 'js';
   const fileName = moduleFormat === 'esm' ? `${pkgName}.esm.js` : `${pkgName}.cjs.${env}.${extension}`;
   const outputFileName = path.join(paths.appBuild, fileName);
-
-  logger.debug(`writing output file ${outputFileName}`);
-
-  logger.debug(minify === true ? 'creating a minified build' : 'creating a non minified build');
 
   await bundle.write({
     file: outputFileName,

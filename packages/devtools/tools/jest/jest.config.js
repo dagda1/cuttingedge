@@ -45,7 +45,7 @@ var jestConfig = {
         '<rootDir>/src/**/?(*.)(spec|test).ts?(x)',
         '<rootDir>/src/**/*.feature',
     ],
-    testEnvironment: 'jest-environment-jsdom-sixteen',
+    testEnvironment: 'jsdom',
     testURL: 'http://localhost',
     transform: {
         '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),

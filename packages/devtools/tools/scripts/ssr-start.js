@@ -44,7 +44,6 @@ function compile(config) {
 process.env.INSPECT_BRK = process.argv.find(function (arg) { return arg.match(/--inspect-brk(=|$)/); }) || '';
 process.env.INSPECT = process.argv.find(function (arg) { return arg.match(/--inspect(=|$)/); }) || '';
 function main() {
-    var _a;
     fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
     logger_1.logger.start('Compiling...');
     fs_extra_1.default.removeSync(paths_1.paths.appManifest);
@@ -56,10 +55,6 @@ function main() {
     var serverConfig = server_1.configure(buildConfig.server);
     var clientCompiler = compile(clientConfig);
     var serverCompiler = compile(serverConfig);
-    console.log('-------------------------');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    console.dir((_a = clientCompiler) === null || _a === void 0 ? void 0 : _a.plugin);
-    console.log('-------------------------');
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     clientCompiler.plugin('done', function () {
         serverCompiler.watch({}, 

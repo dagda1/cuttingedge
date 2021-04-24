@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@cutting/util": "4.21.0",
-    "@effection/node": "=2.0.0-preview.10",
-    "effection": "=2.0.0-preview.10",
+    "@effection/node": "=2.0.0-preview.11",
+    "effection": "=2.0.0-preview.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "uuid": "^8.3.2"
@@ -43,6 +43,9 @@
     "hook",
     "use-cancellable-fetch"
   ],
+  "volta": {
+    "extends": "../../package.json"
+  },
   "main": "dist/index.js",
   "browser": "dist/use-operation.esm.js"
 }

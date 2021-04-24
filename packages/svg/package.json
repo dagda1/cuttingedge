@@ -35,5 +35,8 @@
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test",
     "prepublishOnly": "yarn build"
+  },
+  "volta": {
+    "extends": "../../package.json"
   }
 }

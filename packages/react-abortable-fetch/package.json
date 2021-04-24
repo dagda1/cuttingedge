@@ -19,11 +19,11 @@
   },
   "dependencies": {
     "@cutting/util": "4.21.0",
-    "@effection/atom": "=2.0.0-preview.3",
-    "@effection/node": "=1.0.1",
+    "@effection/atom": "=2.0.0-preview.9",
+    "@effection/node": "=2.0.0-preview.11",
     "@xstate/react": "^1.3.2",
     "cross-fetch": "^3.1.4",
-    "effection": "=2.0.0-preview.10",
+    "effection": "=2.0.0-preview.11",
     "fetch-jsonp": "^1.1.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -50,6 +50,9 @@
     "hook",
     "use-cancellable-fetch"
   ],
+  "volta": {
+    "extends": "../../package.json"
+  },
   "main": "dist/index.js",
   "browser": "dist/react-abortable-fetch.esm.js"
 }

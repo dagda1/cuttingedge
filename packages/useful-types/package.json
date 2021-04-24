@@ -18,6 +18,9 @@
     "test": "echo no test",
     "build": "echo no build"
   },
+  "volta": {
+    "extends": "../../package.json"
+  },
   "dependencies": {
     "@cutting/util": "4.21.0"
   },

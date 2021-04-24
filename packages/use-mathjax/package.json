@@ -50,5 +50,8 @@
   ],
   "main": "dist/index.js",
   "module": "dist/use-mathjax.esm.js",
-  "browser": "dist/use-mathjax.esm.js"
+  "browser": "dist/use-mathjax.esm.js",
+  "volta": {
+    "extends": "../../package.json"
+  }
 }
