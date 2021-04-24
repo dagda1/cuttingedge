@@ -49,6 +49,10 @@
     "@types/react": "^17.0.0",
     "@types/webpack": "4.41.21",
     "d3-array": "^2.4.0",
+    "effection": "=2.0.0-preview.11",
+    "@effection/node": "=2.0.0-preview.11",
+    "covector/effection": "^1.0.0",
+    "covector/@effection/node": "^1.0.1",
     "node-forge": "^0.10.0",
     "postcss": "^7.0.35",
     "ssri": "8.0.1"
