@@ -1,7 +1,7 @@
 {
   "name": "@cutting/react-abortable-fetch",
   "description": "A simpler use-fetch or use-query or whatever.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch"
@@ -18,6 +18,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
+    "abortcontroller-polyfill": "^1.7.1",
     "@cutting/util": "4.21.0",
     "@effection/atom": "=2.0.0-preview.9",
     "@effection/node": "=2.0.0-preview.11",
@@ -35,7 +36,6 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@types/uuid": "^8.3.0",
-    "abortcontroller-polyfill": "^1.7.1",
     "msw": "^0.28.2",
     "node-fetch": "^2.6.1",
     "typescript": "^4.2.4"

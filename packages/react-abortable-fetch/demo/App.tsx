@@ -3,44 +3,62 @@ import { useFetch } from '../src';
 import cs from 'classnames';
 import './App.css';
 import { FetchStates } from '../src/types';
+import { assert } from 'assert-ts';
+
+interface Product {
+  data: {
+    id: string;
+    name: string;
+    year: number;
+    color: string;
+    pantone_value: string;
+    support: {
+      url: string;
+      text: string;
+    };
+  };
+}
+
+type Result = Pick<Product['data'], 'id' | 'name' | 'year'>;
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const processResult = ({ delay }) => {
-    setProgress((n) => (n += 1));
-    setMessages((m) => {
-      m.push(`received message ${delay}`);
-      return m;
-    });
-  };
-
   // simple
   // const { run, state, abort, reset } = useFetch(`https://slowmo.glitch.me/10000`);
-
-  const { run, state, abort, reset } = useFetch(
+  const { run, state, abort, reset } = useFetch<Result[], Product>(
     [
-      `https://slowmo.glitch.me/100`,
-      `https://slowmo.glitch.me/200`,
-      `https://slowmo.glitch.me/300`,
-      `https://slowmo.glitch.me/300`,
-      `https://slowmo.glitch.me/400`,
-      `https://slowmo.glitch.me/500`,
-      `https://slowmo.glitch.me/600`,
-      `https://slowmo.glitch.me/700`,
-      `https://slowmo.glitch.me/800`,
-      `https://slowmo.glitch.me/900`,
-      `https://slowmo.glitch.me/1000`,
+      'https://reqres.in/api/products/1?delay=1',
+      'https://reqres.in/api/products/2?delay=1',
+      'https://reqres.in/api/products/3?delay=1',
+      'https://reqres.in/api/products/4?delay=1',
+      'https://reqres.in/api/products/5?delay=1',
+      'https://reqres.in/api/products/6?delay=1',
+      'https://reqres.in/api/products/7?delay=1',
+      'https://reqres.in/api/products/8?delay=1',
+      'https://reqres.in/api/products/9?delay=1',
+      'https://reqres.in/api/products/10?delay=1',
     ],
     {
       initialState: [],
       executeOnMount: false,
-      onQuerySuccess: processResult,
-      onSuccess: (d) => {
-        console.log(d);
-        console.log(`We did it`);
+      accumulator(acc, current) {
+        acc.push({ id: current.data.id, name: current.data.name, year: current.data.year });
+        return acc;
+      },
+      onQuerySuccess(product) {
+        assert(!!product, `no product in onQuerySuccess`);
+
+        setProgress((n) => (n += 1));
+        setMessages((m) => {
+          m.push(`received product ${product.data.name}`);
+          return m;
+        });
+      },
+      onSuccess: (result) => {
+        console.log(result);
+        console.log(`Downloaded ${result?.length} products`);
       },
       onAbort: () => {
         console.trace('herman');
@@ -56,7 +74,18 @@ export const App: React.FC = () => {
   return (
     <div className="container">
       <div>
-        <h1>Multi request fetch with abort</h1>
+        <h1>Multi request fetch with abort (and much more)</h1>
+        <h2>
+          Checkout the{' '}
+          <a
+            href="https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch"
+            target="_blank"
+            rel="noreferrer"
+          >
+            repo
+          </a>
+          .
+        </h2>
         <p>Open the network tab and press cancel to check the requests are getting cancelled</p>
         <div>
           <p>

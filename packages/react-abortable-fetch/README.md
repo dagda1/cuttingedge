@@ -29,6 +29,8 @@ if (error) {
 return <SomeComponent data={data}/>
 ```
 
+Here is a [codesandbox](https://codesandbox.io/s/lucid-sun-fke9y?file=/src/App.tsx) with a more complex example.
+
 </details>
 
 ## Table of contents
@@ -320,9 +322,9 @@ const { state, abort, reset, run } = useFetch(
 The `useFetch` function signature looks like this:
 
 ```ts
-export function useFetch<A, R = A>(url: string, options?: useFetchOptions<A, R>): QueryResult<R>;
-export function useFetch<A, R = A>(urls: string[], options?: useFetchOptions<A, R>): QueryResult<R>;
-export function useFetch<A, R = A>(builder: Builder<A, R>, options?: useFetchOptions<A, R>): QueryResult<R>;
+export function useFetch<R, T>(url: string, options?: useFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T>(urls: string[], options?: useFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T>(builder: Builder<R, T>, options?: useFetchOptions<R, T>): QueryResult<R>;
 ```
 
 - `A` is the type for the data that is returned from a fetcg request.  

@@ -144,7 +144,7 @@ describe('useFetch', () => {
         const onError = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetch<{ id: string }, { id?: string; name: string }>(`http://localhost:3000/singles/1`, {
+          useFetch<{ id?: string; name: string }, { id: string }>(`http://localhost:3000/singles/1`, {
             accumulator: (acc, curr) => ({ ...acc, ...curr }),
             initialState: { name: 'bob' },
             onSuccess,
@@ -459,7 +459,7 @@ describe('useFetch', () => {
         const onSuccess = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetch<{ answer: number }, number>(
+          useFetch<number, { answer: number }>(
             ['http://localhost:3000/add/1/1', 'http://localhost:3000/add/2/2', 'http://localhost:3000/add/3/3'],
             {
               initialState: 0,
@@ -501,7 +501,7 @@ describe('useFetch', () => {
         const onSuccess = jest.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetch<{ answer: number }, number>(
+          useFetch<number, { answer: number }>(
             [
               'http://localhost:3000/single',
               'http://localhost:3000/single',
@@ -549,7 +549,7 @@ describe('useFetch', () => {
         const onAbort = jest.fn();
 
         const { result } = renderHook(() =>
-          useFetch<{ answer: number }, number>(
+          useFetch<number, { answer: number }>(
             [
               'http://localhost:3000/single',
               'http://localhost:3000/single',

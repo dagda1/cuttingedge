@@ -1,4 +1,14 @@
-export type { Builder, FetchClient, FetchJob, useFetchOptions, QueryResult } from './types';
+export type {
+  Builder,
+  FetchClient,
+  FetchJob,
+  UseFetchOptions,
+  QueryResult,
+  FetchStates,
+  FetchActionTypes,
+  ContentType,
+  Accumulator,
+} from './types';
 export { useFetch } from './react-abortable-fetch';
 
 if (typeof window === 'undefined') {

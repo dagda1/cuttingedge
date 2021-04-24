@@ -1,8 +1,8 @@
 import type { Operation, Task } from 'effection';
 import { Slice } from '@effection/atom/dist';
 
-export type FetchContext<A> = {
-  data: A;
+export type FetchContext<T> = {
+  data: T;
   error?: Error;
 };
 
@@ -14,13 +14,13 @@ export type FetchActions<T> =
   | { type: 'ABORTED'; error: Error };
 
 /* eslint-disable @typescript-eslint/ban-types */
-export interface FetchSchema<A> {
+export interface FetchSchema<T> {
   states: {
     ['READY']: {};
     ['LOADING']: {
       states: {
         ['SUCCESS']: {
-          context: { payload: A };
+          context: { payload: T };
         };
         ['ERROR']: {};
         ['ABORT']: {};
@@ -53,18 +53,23 @@ export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
 
 export type ContentTypeMap = `application/${ContentType}`;
 
-export type Accumulator<A, R> = (initialState: R, current: A, request?: RequestInfo) => R;
+export type Accumulator<R, T> = (initialState: R, current: T, request?: RequestInfo) => R;
 
-type FetchOptions<A, R> = {
+type FetchOptions<R, T> = {
   method?: Methods;
-  contentType?: ContentType;
-  accumulator?: (initialState: R, current: A, request?: RequestInfo) => R;
   initialState?: R;
+  contentType?: ContentType;
+  // accumulator?: (initialState: R, current: T, request?: RequestInfo) => R;
+  accumulator?: T extends undefined
+    ? R extends Array<infer U>
+      ? (initialState: R, current: U, request?: RequestInfo) => R
+      : (initialState: R, current: R, request?: RequestInfo) => R
+    : (initialState: R, current: T, request?: RequestInfo) => R;
   onQueryError?: (e: Error) => void;
-  onQuerySuccess?: (t?: A) => void;
+  onQuerySuccess?: (t?: T) => void;
 };
 
-export type useFetchOptions<A, R> = Omit<FetchOptions<A, R>, 'method' | 'contentType'> & {
+export type UseFetchOptions<R, T> = Omit<FetchOptions<R, T>, 'method' | 'contentType'> & {
   fetchType?: 'fetch' | 'fetchJsonp';
   onSuccess?: (t?: R) => void;
   executeOnMount?: boolean;
@@ -75,16 +80,16 @@ export type useFetchOptions<A, R> = Omit<FetchOptions<A, R>, 'method' | 'content
   timeout?: number;
 };
 
-export type FetchRequest<A, R> = {
+export type FetchRequest<R, T> = {
   request: RequestInfo;
   init?: RequestInit;
-} & Required<Omit<FetchOptions<A, R>, 'method' | 'accumulator'>>;
+} & Required<Omit<FetchOptions<R, T>, 'method' | 'accumulator'>>;
 
-export interface FetchJob<A, R> {
+export interface FetchJob<R, T> {
   uuid: string;
   key: string;
   state: FetchStates;
-  fetch: Omit<FetchRequest<A, R>, 'onAbort'>;
+  fetch: Omit<FetchRequest<R, T>, 'onAbort'>;
 }
 
 export interface FetchAtomContext {
@@ -92,17 +97,17 @@ export interface FetchAtomContext {
   atom: Slice<{ jobs: Record<string, FetchJob<any, any>> }>;
 }
 
-export interface FetchClient<A, R = A> {
-  jobs: FetchJob<A, R>[];
+export interface FetchClient<R, T> {
+  jobs: FetchJob<R, T>[];
   addFetchRequest(
-    this: FetchClient<A, R>,
+    this: FetchClient<R, T>,
     info: RequestInfo,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     options?: RequestInit & Omit<FetchOptions<any, any>, 'onAbort'>,
-  ): FetchClient<A, R>;
+  ): FetchClient<R, T>;
 }
 
-export type Builder<A, R> = (fetch: FetchClient<A, R>) => FetchClient<A, R>;
+export type Builder<R, T> = (fetch: FetchClient<R, T>) => FetchClient<R, T>;
 
 export interface Effect<A> {
   (slice: Slice<A>): Operation<void>;
