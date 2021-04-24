@@ -43,6 +43,7 @@ export const App: React.FC = () => {
         console.log(`We did it`);
       },
       onAbort: () => {
+        console.trace('herman');
         setMessages(['We have aborted']);
       },
       onError: (e) => {

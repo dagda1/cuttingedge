@@ -40,7 +40,7 @@ export interface BundlerOptions {
   env: 'development' | 'production';
 }
 
-logger.debug(`using tsconfig ${path.dirname(paths.tsConfigProduction)}`);
+logger.debug(`using  ${path.basename(paths.tsConfigProduction)}`);
 
 async function generateBundledModule({ packageName, inputFile, moduleFormat, env }: BundlerOptions) {
   assert(fs.existsSync(inputFile), `Input file ${inputFile} does not exist`);
@@ -168,8 +168,6 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
   });
 
   copyAssets();
-
-  logger.info('copying assets');
 }
 
 const getInputFile = (packageName: string): string => {
@@ -177,8 +175,6 @@ const getInputFile = (packageName: string): string => {
     const file = path.resolve(process.argv[3]);
 
     assert(fs.existsSync(file), `no file found at ${file}`);
-
-    logger.start(`using input file ${path.dirname(file)}`);
 
     return file;
   }
@@ -197,7 +193,7 @@ const getInputFile = (packageName: string): string => {
 
   assert(!!inputFile, 'No rootFile found for rollup');
 
-  logger.start(`using input file ${inputFile}`);
+  logger.start(`using input file ${path.basename(inputFile)} for ${packageName}`);
 
   return inputFile;
 };

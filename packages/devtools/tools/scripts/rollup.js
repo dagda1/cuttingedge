@@ -122,7 +122,7 @@ var write_package_1 = require("./write-package");
 var csv_1 = require("../rollup/plugins/csv");
 var postcss_import_1 = __importDefault(require("postcss-import"));
 fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
-logger_1.logger.debug("using tsconfig " + path_1.default.dirname(paths_1.paths.tsConfigProduction));
+logger_1.logger.debug("using  " + path_1.default.basename(paths_1.paths.tsConfigProduction));
 function generateBundledModule(_a) {
     var packageName = _a.packageName, inputFile = _a.inputFile, moduleFormat = _a.moduleFormat, env = _a.env;
     return __awaiter(this, void 0, void 0, function () {
@@ -246,7 +246,6 @@ function generateBundledModule(_a) {
                 case 2:
                     _b.sent();
                     copy_assets_1.copyAssets();
-                    logger_1.logger.info('copying assets');
                     return [2 /*return*/];
             }
         });
@@ -256,7 +255,6 @@ var getInputFile = function (packageName) {
     if (process.argv[2] === '--input-file') {
         var file = path_1.default.resolve(process.argv[3]);
         assert_ts_1.assert(fs_extra_1.default.existsSync(file), "no file found at " + file);
-        logger_1.logger.start("using input file " + path_1.default.dirname(file));
         return file;
     }
     var candidates = [];
@@ -267,7 +265,7 @@ var getInputFile = function (packageName) {
     });
     var inputFile = candidates.find(function (candidate) { return fs_extra_1.default.existsSync(candidate); });
     assert_ts_1.assert(!!inputFile, 'No rootFile found for rollup');
-    logger_1.logger.start("using input file " + inputFile);
+    logger_1.logger.start("using input file " + path_1.default.basename(inputFile) + " for " + packageName);
     return inputFile;
 };
 function build() {

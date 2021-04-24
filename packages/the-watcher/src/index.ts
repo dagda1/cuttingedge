@@ -38,15 +38,21 @@ program
         let proc: Task = scope.spawn(buildAndRun(buildCommand, cwd));
 
         proc.halt();
-        yield onEmit<[string, string]>(watcher, 'all').forEach(async function ([, file]) {
-          await sleep(10);
+        yield onEmit<[string, string]>(watcher, 'all').forEach(function* ([, file]) {
+          yield sleep(10);
           const dir = path.dirname(path.join(rootPackage, file));
-          const nearestPackage = await findIO(dir, hasPackageJson);
+          const nearestPackage = yield findIO(dir, hasPackageJson);
+
+          if (cwd === process.cwd()) {
+            logger.debug(`in current cwd ${path.basename(cwd)} so skipping.`);
+            return;
+          }
 
           logger.debug(`
-${path.basename(file)} changed
+          ${path.basename(file)} changed
+          
+          calling ${buildCommand} in ${path.dirname(file)}`);
 
-calling build in ${path.dirname(file)}`);
           proc = scope.spawn(buildAndRun(buildCommand, nearestPackage));
         });
       } finally {

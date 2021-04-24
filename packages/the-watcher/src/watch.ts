@@ -2,7 +2,6 @@ import { Operation, Stream } from 'effection';
 import type { Process } from '@effection/node';
 import { exec } from '@effection/node';
 import { sleep } from 'effection';
-import logger from '@cutting/devtools/tools/scripts/logger';
 
 function writeOut(channel: Stream<string>, out: NodeJS.WriteStream): Operation<undefined> {
   return channel.forEach(function (data) {
@@ -31,11 +30,6 @@ export function buildAndRun(command: string, cwd: string, delay = 500): Operatio
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return function* (scope) {
     try {
-      if (cwd === process.cwd()) {
-        logger.debug(`in current cwd so skipping.`);
-        return;
-      }
-
       yield sleep(delay);
       yield executeAndOut(command, cwd);
     } catch (err) {

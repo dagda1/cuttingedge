@@ -58,10 +58,12 @@ export function useFetch<A, R = A>(
   }, [abortController.current, machine.value]);
 
   const resetable = useCallback(() => {
-    counter.current = 0;
-    send(reset(initialState));
     task.current?.halt();
-  }, [initialState, send]);
+    counter.current = 0;
+    abortController.current = new AbortController();
+    fetchClient.current = createFetchClient<A, R>(builderOrUrls, abortController.current);
+    send(reset(initialState));
+  }, [builderOrUrls, initialState, send]);
 
   const accumulated = useRef(initialState);
 
