@@ -45,8 +45,6 @@ logger.debug(`using  ${path.basename(paths.tsConfigProduction)}`);
 async function generateBundledModule({ packageName, inputFile, moduleFormat, env }: BundlerOptions) {
   assert(fs.existsSync(inputFile), `Input file ${inputFile} does not exist`);
 
-  logger.info(`Generating ${packageName} bundle.`);
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { ...babelConfig } = createBabelConfig({
     isDevelopment: false,
@@ -215,13 +213,13 @@ async function build() {
     { moduleFormat: 'esm', env: 'production' },
   ];
 
+  logger.info(`Generating ${packageName} bundle.`);
+
   for (const { moduleFormat, env } of configs) {
     await generateBundledModule({ packageName, inputFile, moduleFormat, env });
   }
 
   await writeCjsEntryFile(packageName);
-
-  logger.info('updating package.json file');
 
   const pkgJson = { ...pkg };
 

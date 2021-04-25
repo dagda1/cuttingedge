@@ -131,7 +131,6 @@ function generateBundledModule(_a) {
             switch (_b.label) {
                 case 0:
                     assert_ts_1.assert(fs_extra_1.default.existsSync(inputFile), "Input file " + inputFile + " does not exist");
-                    logger_1.logger.info("Generating " + packageName + " bundle.");
                     babelConfig = __rest(createBabelConfig_1.createBabelConfig({
                         isDevelopment: false,
                         isProduction: true,
@@ -287,6 +286,7 @@ function build() {
                         { moduleFormat: 'cjs', env: 'production' },
                         { moduleFormat: 'esm', env: 'production' },
                     ];
+                    logger_1.logger.info("Generating " + packageName + " bundle.");
                     _c.label = 2;
                 case 2:
                     _c.trys.push([2, 7, 8, 9]);
@@ -316,7 +316,6 @@ function build() {
                 case 9: return [4 /*yield*/, helpers_1.writeCjsEntryFile(packageName)];
                 case 10:
                     _c.sent();
-                    logger_1.logger.info('updating package.json file');
                     pkgJson = __assign({}, pkg);
                     pkgName = helpers_1.safePackageName(packageName);
                     pkgJson.main = path_1.default.join('dist', 'index.js');

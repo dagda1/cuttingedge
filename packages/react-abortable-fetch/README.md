@@ -132,35 +132,52 @@ There are a couple of ways of executing multi queries.
 Just load up the URLs into an array and optionally use some of the handlers:
 
 ```ts
-const { state, abort, reset } = useFetch(
-  [
-    `/api/users/1`,
-    `/api/users/2`,
-    `/api/users/3`,
-    `/api/users/3`,
-    `/api/users/4`,
-    `/api/users/5`,
-    `/api/users/6`,
-    `/api/users/7`,
-    `/api/users/8`,
-    `/api/users/9`,
-    `/api/users/10`,
-  ],
-  {
-    initialState: [],
-    onQuerySuccess: (d) => console.log('optional handler that gets called when a single query has completed successfully'),
-    onSuccess: () => {
-      console.log(`optional overall onSuccess handler`);
-    },
-    onAbort: () => {
-      console.log('optional onAbort' )
-    },
-    onError: (e) => {
-      console.log('optional onError handler');
-      console.error(e.message);
-    },
-  },
-);
+  const { run, data, state, abort, reset } = useFetch<Result[], Product>(
+    [
+      "https://reqres.in/api/products/1?delay=1",
+      "https://reqres.in/api/products/2?delay=1",
+      "https://reqres.in/api/products/3?delay=1",
+      "https://reqres.in/api/products/4?delay=1",
+      "https://reqres.in/api/products/5?delay=1",
+      "https://reqres.in/api/products/6?delay=1",
+      "https://reqres.in/api/products/7?delay=1",
+      "https://reqres.in/api/products/8?delay=1",
+      "https://reqres.in/api/products/9?delay=1",
+      "https://reqres.in/api/products/10?delay=1"
+    ],
+    {
+      initialState: [],
+      executeOnMount: false,
+      accumulator(acc, current) {
+        acc.push({
+          id: current.data.id,
+          name: current.data.name,
+          year: current.data.year
+        });
+        return acc;
+      },
+      onQuerySuccess(product) {
+        assert(!!product, `no product in onQuerySuccess`);
+
+        setProgress((n) => (n += 1));
+        setMessages((m) => {
+          m.push(`received product ${product.data.name}`);
+          return m;
+        });
+      },
+      onSuccess: (result) => {
+        console.log(result);
+        console.log(`Downloaded ${result?.length} products`);
+      },
+      onAbort: () => {
+        setMessages(["We have aborted"]);
+      },
+      onError: (e) => {
+        console.log("in global error handler");
+        console.error(e.message);
+      }
+    }
+  );
 
 ---
 // Now we really need abort

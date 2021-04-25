@@ -19,17 +19,14 @@
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test"
   },
-  "dependencies": {
-    "@cutting/util": "4.21.0",
-    "react": "^17.0.1"
-  },
-  "volta": {
-    "extends": "../../package.json"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@cutting/devtools": "4.21.0",
     "@cutting/eslint-config": "4.21.0",
     "@cutting/useful-types": "4.21.0",
     "typescript": "^4.2.4"
+  },
+  "volta": {
+    "extends": "../../package.json"
   }
 }

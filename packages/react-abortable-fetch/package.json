@@ -7,6 +7,8 @@
     "url": "https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch"
   },
   "type": "module",
+  "main": "dist/index.js",
+  "browser": "dist/react-abortable-fetch.esm.js",
   "module": "dist/react-abortable-fetch.esm.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
@@ -26,8 +28,6 @@
     "cross-fetch": "^3.1.4",
     "effection": "=2.0.0-preview.11",
     "fetch-jsonp": "^1.1.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "uuid": "^8.3.2",
     "xstate": "^4.18.0"
   },
@@ -38,7 +38,13 @@
     "@types/uuid": "^8.3.0",
     "msw": "^0.28.2",
     "node-fetch": "^2.6.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "typescript": "^4.2.4"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "keywords": [
     "hotkeys",
@@ -52,7 +58,5 @@
   ],
   "volta": {
     "extends": "../../package.json"
-  },
-  "main": "dist/index.js",
-  "browser": "dist/react-abortable-fetch.esm.js"
+  }
 }
