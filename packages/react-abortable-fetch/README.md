@@ -33,6 +33,13 @@ Here is a [codesandbox](https://codesandbox.io/s/lucid-sun-fke9y?file=/src/App.t
 
 </details>
 
+## codesandboxes
+
+- [Simple example](https://codesandbox.io/s/react-abortable-fetch-forked-i55r6?file=/src/App.tsx)
+- [Simple example with click handler](https://codesandbox.io/s/react-abortable-fetch-forked-28i4e?file=/src/App.tsx)
+- [multi-query and abortable example](https://codesandbox.io/s/react-abortable-fetch-forked-zbxcn?file=/src/App.tsx)
+- [multi-query and accumulation example](https://codesandbox.io/s/react-abortable-fetch-forked-rs2y9?file=/src/App.tsx)
+
 ## Table of contents
 
 - [In the Name of Oden, Why?](#Why)
@@ -47,6 +54,7 @@ Here is a [codesandbox](https://codesandbox.io/s/lucid-sun-fke9y?file=/src/App.t
 - [Timeout](#Timeout)
 - [API](#API)
 - [Typescript](#Typescript)
+- [codesandboxes](#codesandboxes)
   - [Type inference](#Type-inference)
 - [TODO](#TODO)
 
@@ -96,7 +104,10 @@ I could go on, but I will leave it there for now....
 
 ### Simple but nice
 
+
 Give me a URL and the framework will do the rest.  I am personally weary of endless configuration when all I want to do is this:
+
+[codesandbox](https://codesandbox.io/s/react-abortable-fetch-forked-i55r6?file=/src/App.tsx)
 
 ```ts
 const { data, error } = useFetch(`/api/users/1`);
@@ -107,6 +118,8 @@ if (typeof data !== 'undefined') {
 ```
 
 or if you want to invoke the query in a button click handler, then you can do this:
+
+[codesandbox](https://codesandbox.io/s/react-abortable-fetch-forked-28i4e?file=/src/App.tsx)
 
 ```ts
 const { run, state } = useFetch(`/api/users/1`, { executeOnMount: false });
@@ -124,6 +137,8 @@ return (
 ```
 
 ### Multi Queries
+
+[codesandbox](https://codesandbox.io/s/react-abortable-fetch-forked-zbxcn?file=/src/App.tsx)
 
 I wrote this package because I could not find anything that did multi-queries and had first class abort functionality. 
 
@@ -246,6 +261,8 @@ if (typeof data !== 'undefined') {
 
 ### Custom accumlator function
 
+- [codesandbox](https://codesandbox.io/s/react-abortable-fetch-forked-rs2y9?file=/src/App.tsx)
+
 You can supply an `accumulator` function that executes each time a remote query resolves.  You can build up the final result in this accumulator function.
 
 
@@ -281,7 +298,7 @@ const { data, error } = useFetch(`/flaky-connection`, {
 
 ## Timeout
 
-By default each fetch request has a `timeout` property of `30000ms` to complete before timing out.
+By default each fetch request has a generous default `timeout` property of `180000ms` to complete before timing out.
 
 ## API
 
@@ -399,7 +416,8 @@ const { data } = useFetch(
 
 ## TODO
 
-- polling
+- progress
+- fetch client outside of react
 - pagination
 - load more
 - graphql

@@ -1,9 +1,15 @@
 # Changelog
 
-## \[0.3.1]
+## \[0.5.0]
 
-- Remove **BROWSER** field.
-  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
+- Add codesandbox links to README
+  - [9ec9f754](https://github.com/dagda1/cuttingedge/commit/9ec9f7545b471d29fa563dc94f9257e5a015bd40) fix aborable typing on 2021-04-24
+  - [24ae108d](https://github.com/dagda1/cuttingedge/commit/24ae108dfcf9b4209038070390eec31227b31a41) fix tests on 2021-04-25
+
+## \[0.4.0]
+
+- Better type inference.
+  - [9ec9f754](https://github.com/dagda1/cuttingedge/commit/9ec9f7545b471d29fa563dc94f9257e5a015bd40) fix aborable typing on 2021-04-24
 
 ## \[0.3.0]
 

@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "start": "echo no op",
-    "test": "NODE_ENV=test cutting test",
+    "test": "echo no op",
     "lint": "yarn eslint ./src/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
     "build": "NODE_ENV=production cutting ts-build",

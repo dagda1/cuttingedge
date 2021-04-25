@@ -30,7 +30,7 @@ export function useFetch<R, T = undefined>(
     executeOnMount = true,
     retryAttempts = 3,
     retryDelay = 500,
-    timeout = 60000,
+    timeout = 180000,
   } = options;
 
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
