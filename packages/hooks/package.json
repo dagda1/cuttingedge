@@ -26,7 +26,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.21.1",
+    "@cutting/util": "4.22.0",
     "assert-ts": "^0.3.2",
     "history": "^5.0.0",
     "react-use": "^17.2.3",
@@ -34,10 +34,10 @@
     "use-debounce": "^6.0.1"
   },
   "devDependencies": {
-    "@cutting/component-library": "4.21.1",
-    "@cutting/devtools": "4.21.1",
-    "@cutting/eslint-config": "4.21.1",
-    "@cutting/useful-types": "4.21.1",
+    "@cutting/component-library": "4.22.0",
+    "@cutting/devtools": "4.22.0",
+    "@cutting/eslint-config": "4.22.0",
+    "@cutting/useful-types": "4.22.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/jest": "^26.0.22",
     "@types/history": "^4.7.8",
