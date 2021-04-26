@@ -52,7 +52,7 @@ export const useCountryCovidData = (
     .filter((c) => c !== 'SCO')
     .map((c) => urlJoin(baseUrl, c.toUpperCase(), 'timeseries', startDate, dayjs().format('YYYY-MM-DD')));
 
-  const { data } = useFetch<CountryStats, CountriesResult>(urls, {
+  const { data } = useFetch<CountriesResult, CountryStats>(urls, {
     accumulator: (acc, current, info) => {
       current.result = uniqBy(current.result, (a) => a.date);
 
@@ -78,8 +78,8 @@ export const useCountryCovidData = (
   });
 
   const { data: scotsData } = useFetch<
-    { result: { records: { Deaths: number; CumulativeCases: number; Date: string }[] } },
-    CountriesResult
+    CountriesResult,
+    { result: { records: { Deaths: number; CumulativeCases: number; Date: string }[] } }
   >(
     'https://www.opendata.nhs.scot/api/3/action/datastore_search?resource_id=287fc645-4352-4477-9c8c-55bc054b7e76&limit=1000&sort=Date%20desc',
     {

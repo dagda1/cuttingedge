@@ -46,6 +46,8 @@ logger.debug(`using  ${path.basename(paths.tsConfigProduction)}`);
 async function generateBundledModule({ packageName, inputFile, moduleFormat, env }: BundlerOptions) {
   assert(fs.existsSync(inputFile), `Input file ${inputFile} does not exist`);
 
+  const minify = env === 'production';
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { ...babelConfig } = createBabelConfig({
     isDevelopment: false,
@@ -53,8 +55,6 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
     isNode: false,
     moduleFormat,
   });
-
-  const minify = moduleFormat === 'cjs' && env === 'production';
 
   const bundle = await rollup({
     input: inputFile,
@@ -69,11 +69,6 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
       moduleSideEffects: false,
     },
     plugins: [
-      analyze({
-        summaryOnly: true,
-        hideDeps: true,
-        skipFormatted: false,
-      }),
       eslint({
         fix: false,
         throwOnError: true,
@@ -139,19 +134,8 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
       }),
       svgo(),
       sourceMaps(),
-      minify &&
-        terser({
-          compress: {
-            keep_infinity: true,
-            pure_getters: true,
-            passes: 10,
-          },
-          ecma: 2016,
-          toplevel: moduleFormat === 'cjs',
-          format: {
-            comments: 'all',
-          },
-        }),
+      minify && terser(),
+      analyze({ summaryOnly: true, showExports: false, hideDeps: false }),
     ].filter(Boolean),
   });
 
@@ -159,6 +143,8 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
   const extension = env === 'production' ? 'min.js' : 'js';
   const fileName = moduleFormat === 'esm' ? `${pkgName}.esm.js` : `${pkgName}.cjs.${env}.${extension}`;
   const outputFileName = path.join(paths.appBuild, fileName);
+
+  logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
 
   await bundle.write({
     file: outputFileName,
@@ -216,6 +202,7 @@ async function build() {
   const configs: { moduleFormat: ModuleFormat; env: 'development' | 'production' }[] = [
     { moduleFormat: 'cjs', env: 'development' },
     { moduleFormat: 'cjs', env: 'production' },
+    { moduleFormat: 'esm', env: 'development' },
     { moduleFormat: 'esm', env: 'production' },
   ];
 

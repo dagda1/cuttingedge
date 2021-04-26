@@ -1,5 +1,15 @@
 # Changelog
 
+## \[0.8.0]
+
+- reset accumulated after each run.
+  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
+
+## \[0.7.0]
+
+- Remove hard react dependency
+  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
+
 ## \[0.5.1]
 
 - Add useIsMounted to the exports

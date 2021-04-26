@@ -40,6 +40,7 @@ export function useFetch<R, T = undefined>(
   const task = useRef<Task>();
   const retries = useRef(0);
   const timeoutRef = useRef<number | undefined>(timeout ?? undefined);
+  const accumulated = useRef(initialState);
 
   const acc = accumulator ?? getDefaultAccumulator(initialState);
 
@@ -62,10 +63,9 @@ export function useFetch<R, T = undefined>(
     counter.current = 0;
     abortController.current = new AbortController();
     fetchClient.current = createFetchClient<R, T>(builderOrUrls, abortController.current);
+    accumulated.current = initialState;
     send(reset(initialState));
   }, [builderOrUrls, initialState, send]);
-
-  const accumulated = useRef(initialState);
 
   const runner = useCallback(() => {
     task.current = run(function* (scope) {

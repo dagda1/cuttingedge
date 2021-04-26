@@ -127,18 +127,18 @@ logger_1.logger.debug("using  " + path_1.default.basename(paths_1.paths.tsConfig
 function generateBundledModule(_a) {
     var packageName = _a.packageName, inputFile = _a.inputFile, moduleFormat = _a.moduleFormat, env = _a.env;
     return __awaiter(this, void 0, void 0, function () {
-        var babelConfig, minify, bundle, pkgName, extension, fileName, outputFileName;
+        var minify, babelConfig, bundle, pkgName, extension, fileName, outputFileName;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     assert_ts_1.assert(fs_extra_1.default.existsSync(inputFile), "Input file " + inputFile + " does not exist");
+                    minify = env === 'production';
                     babelConfig = __rest(createBabelConfig_1.createBabelConfig({
                         isDevelopment: false,
                         isProduction: true,
                         isNode: false,
                         moduleFormat: moduleFormat,
                     }), []);
-                    minify = moduleFormat === 'cjs' && env === 'production';
                     return [4 /*yield*/, rollup_1.rollup({
                             input: inputFile,
                             external: function (id) {
@@ -151,11 +151,6 @@ function generateBundledModule(_a) {
                                 moduleSideEffects: false,
                             },
                             plugins: [
-                                rollup_plugin_analyzer_1.default({
-                                    summaryOnly: true,
-                                    hideDeps: true,
-                                    skipFormatted: false,
-                                }),
                                 rollup_plugin_eslint_1.default({
                                     fix: false,
                                     throwOnError: true,
@@ -217,19 +212,8 @@ function generateBundledModule(_a) {
                                 }),
                                 rollup_plugin_svgo_1.default(),
                                 rollup_plugin_sourcemaps_1.default(),
-                                minify &&
-                                    rollup_plugin_terser_1.terser({
-                                        compress: {
-                                            keep_infinity: true,
-                                            pure_getters: true,
-                                            passes: 10,
-                                        },
-                                        ecma: 2016,
-                                        toplevel: moduleFormat === 'cjs',
-                                        format: {
-                                            comments: 'all',
-                                        },
-                                    }),
+                                minify && rollup_plugin_terser_1.terser(),
+                                rollup_plugin_analyzer_1.default({ summaryOnly: true, showExports: false, hideDeps: false }),
                             ].filter(Boolean),
                         })];
                 case 1:
@@ -238,6 +222,7 @@ function generateBundledModule(_a) {
                     extension = env === 'production' ? 'min.js' : 'js';
                     fileName = moduleFormat === 'esm' ? pkgName + ".esm.js" : pkgName + ".cjs." + env + "." + extension;
                     outputFileName = path_1.default.join(paths_1.paths.appBuild, fileName);
+                    logger_1.logger.info("writing " + path_1.default.basename(outputFileName) + " for " + packageName);
                     return [4 /*yield*/, bundle.write({
                             file: outputFileName,
                             format: moduleFormat,
@@ -290,6 +275,7 @@ function build() {
                     configs = [
                         { moduleFormat: 'cjs', env: 'development' },
                         { moduleFormat: 'cjs', env: 'production' },
+                        { moduleFormat: 'esm', env: 'development' },
                         { moduleFormat: 'esm', env: 'production' },
                     ];
                     logger_1.logger.info("Generating " + packageName + " bundle.");

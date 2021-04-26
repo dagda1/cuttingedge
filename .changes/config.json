@@ -26,10 +26,7 @@
     },
     "@cutting/devtools": {
       "path": "./packages/devtools",
-      "manager": "javascript",
-      "dependencies": [
-        "@cutting/component-library"
-      ]
+      "manager": "javascript"
     },
     "@cutting/eslint-config": {
       "path": "./packages/eslint-config",
@@ -42,7 +39,8 @@
       "path": "./packages/graphql-explorer",
       "manager": "javascript",
       "dependencies": [
-        "@cutting/util"
+        "@cutting/util",
+        "@cutting/devtools"
       ]
     },
     "@cutting/hooks": {
@@ -60,8 +58,8 @@
       "path": "./packages/react-abortable-fetch",
       "manager": "javascript",
       "dependencies": [
-        "@cutting/use-operation",
-        "@cutting/util"
+        "@cutting/util",
+        "@cutting/testing"
       ]
     },
     "@cutting/svg": {
@@ -85,6 +83,10 @@
         "@cutting/eslint-config",
         "@cutting/useful-types"
       ]
+    },
+    "@cutting/the-watcher": {
+      "path": "./packages/the-watcher",
+      "manager": "javascript"
     },
     "@cutting/tsconfig": {
       "path": "./packages/tsconfig",
@@ -129,7 +131,6 @@
       "path": "./packages/util",
       "manager": "javascript",
       "dependencies": [
-        "@cutting/util",
         "@cutting/devtools",
         "@cutting/eslint-config",
         "@cutting/useful-types"
@@ -141,6 +142,7 @@
       "dependencies": [
         "@cutting/component-library",
         "@cutting/hooks",
+        "@cutting/react-abortable-fetch",
         "@cutting/svg",
         "@cutting/util",
         "@cutting/devtools",

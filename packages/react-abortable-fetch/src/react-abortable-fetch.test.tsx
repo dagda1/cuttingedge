@@ -221,7 +221,7 @@ describe('useFetch', () => {
     describe('should reset', () => {
       it('should reset', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetch(`http://localhost:3000/single`, { executeOnMount: false }),
+          useFetch(`http://localhost:3000/single`, { executeOnMount: false, initialState: 42 }),
         );
 
         await act(async () => {
