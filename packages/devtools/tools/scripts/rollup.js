@@ -116,6 +116,7 @@ var rollup_plugin_eslint_1 = __importDefault(require("@rbnlffl/rollup-plugin-esl
 var postcss_url_1 = __importDefault(require("postcss-url"));
 // @ts-ignore
 var autoprefixer_1 = __importDefault(require("autoprefixer"));
+var rollup_plugin_analyzer_1 = __importDefault(require("rollup-plugin-analyzer"));
 var createBabelConfig_1 = require("./createBabelConfig");
 var helpers_1 = require("../rollup/helpers");
 var write_package_1 = require("./write-package");
@@ -150,6 +151,11 @@ function generateBundledModule(_a) {
                                 moduleSideEffects: false,
                             },
                             plugins: [
+                                rollup_plugin_analyzer_1.default({
+                                    summaryOnly: true,
+                                    hideDeps: true,
+                                    skipFormatted: false,
+                                }),
                                 rollup_plugin_eslint_1.default({
                                     fix: false,
                                     throwOnError: true,

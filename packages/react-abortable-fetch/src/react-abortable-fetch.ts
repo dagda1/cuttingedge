@@ -175,7 +175,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
 
     return () => {
       if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as FetchStates)) {
-        // task.current?.halt();
+        task.current?.halt();
       }
     };
   }, [executeOnMount, machine.value, runner]);

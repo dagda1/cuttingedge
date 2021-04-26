@@ -24,6 +24,7 @@ import eslint from '@rbnlffl/rollup-plugin-eslint';
 import url from 'postcss-url';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
+import analyze from 'rollup-plugin-analyzer';
 
 import { createBabelConfig } from './createBabelConfig';
 import { safePackageName, writeCjsEntryFile } from '../rollup/helpers';
@@ -68,6 +69,11 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
       moduleSideEffects: false,
     },
     plugins: [
+      analyze({
+        summaryOnly: true,
+        hideDeps: true,
+        skipFormatted: false,
+      }),
       eslint({
         fix: false,
         throwOnError: true,

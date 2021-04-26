@@ -61,7 +61,6 @@ export const App: React.FC = () => {
         console.log(`Downloaded ${result?.length} products`);
       },
       onAbort: () => {
-        console.trace('herman');
         setMessages(['We have aborted']);
       },
       onError: (e) => {
