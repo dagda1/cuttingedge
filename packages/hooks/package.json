@@ -1,7 +1,7 @@
 {
   "name": "@cutting/hooks",
   "description": "Hooks man, hooks.",
-  "version": "4.21.0",
+  "version": "4.22.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/hooks.esm.js",
@@ -26,19 +26,18 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.21.0",
+    "@cutting/util": "4.21.1",
     "assert-ts": "^0.3.2",
     "history": "^5.0.0",
-    "react": "^17.0.2",
     "react-use": "^17.2.3",
     "resize-observer-polyfill": "^1.5.1",
     "use-debounce": "^6.0.1"
   },
   "devDependencies": {
-    "@cutting/component-library": "4.21.0",
-    "@cutting/devtools": "4.21.0",
-    "@cutting/eslint-config": "4.21.0",
-    "@cutting/useful-types": "4.21.0",
+    "@cutting/component-library": "4.21.1",
+    "@cutting/devtools": "4.21.1",
+    "@cutting/eslint-config": "4.21.1",
+    "@cutting/useful-types": "4.21.1",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/jest": "^26.0.22",
     "@types/history": "^4.7.8",

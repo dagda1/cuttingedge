@@ -1,5 +1,11 @@
 # Changelog
 
+## \[0.5.1]
+
+- Add useIsMounted to the exports
+  - Bumped due to a bump in @cutting/util.
+  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
+
 ## \[0.5.0]
 
 - Add codesandbox links to README
