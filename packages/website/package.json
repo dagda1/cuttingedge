@@ -17,9 +17,9 @@
   "dependencies": {
     "@cutting/component-library": "4.23.0",
     "@cutting/hooks": "4.23.0",
-    "@cutting/react-abortable-fetch": "0.7.0",
+    "@cutting/react-abortable-fetch": "0.8.0",
     "@cutting/svg": "4.23.0",
-    "@cutting/util": "4.23.0",
+    "@cutting/util": "4.23.2",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",
     "assert-ts": "^0.3.2",

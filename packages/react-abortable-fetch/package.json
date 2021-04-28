@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "abortcontroller-polyfill": "^1.7.1",
-    "@cutting/util": "4.23.0",
+    "@cutting/util": "4.23.2",
     "@effection/atom": "=2.0.0-preview.9",
     "@effection/node": "=2.0.0-preview.11",
     "@xstate/react": "^1.3.2",

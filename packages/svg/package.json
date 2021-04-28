@@ -15,7 +15,7 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/util": "4.23.0",
+    "@cutting/util": "4.23.2",
     "@cutting/hooks": "4.23.0",
     "resize-observer-polyfill": "^1.5.1"
   },

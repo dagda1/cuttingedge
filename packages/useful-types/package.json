@@ -22,7 +22,7 @@
     "extends": "../../package.json"
   },
   "dependencies": {
-    "@cutting/util": "4.23.0"
+    "@cutting/util": "4.23.1"
   },
   "devDependencies": {
     "@cutting/eslint-config": "4.23.0"

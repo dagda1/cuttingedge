@@ -26,7 +26,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.23.0",
+    "@cutting/util": "4.23.2",
     "assert-ts": "^0.3.2",
     "resize-observer-polyfill": "^1.5.1",
     "use-debounce": "^6.0.1"

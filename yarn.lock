@@ -959,22 +959,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cutting/react-abortable-fetch@0.6.0":
-  version "0.6.0"
-  resolved "https://registry.npmjs.org/@cutting/react-abortable-fetch/-/react-abortable-fetch-0.6.0.tgz#260ed89ab66e5c210c43b5e310300d60d579d0d8"
-  integrity sha512-fvBrtBsn6C6c9ErgnT79VzJtAF6DK/7uqY4DH8I6iupDCh6kw6DUoNK1lCt9MWSBqFnG7HLmcs7rxrWWqrmIQA==
-  dependencies:
-    "@cutting/util" "4.22.0"
-    "@effection/atom" "=2.0.0-preview.9"
-    "@effection/node" "=2.0.0-preview.11"
-    "@xstate/react" "^1.3.2"
-    abortcontroller-polyfill "^1.7.1"
-    cross-fetch "^3.1.4"
-    effection "=2.0.0-preview.11"
-    fetch-jsonp "^1.1.3"
-    uuid "^8.3.2"
-    xstate "^4.18.0"
-
 "@cutting/rollup-plugin-md@0.5.0":
   version "0.5.0"
   resolved "https://registry.npmjs.org/@cutting/rollup-plugin-md/-/rollup-plugin-md-0.5.0.tgz#f75025b51ab09c598b755f7f2bfb229a6bf12e6e"
@@ -984,10 +968,10 @@
     marked "^2.0.3"
     rollup "^2.38.0"
 
-"@cutting/util@4.22.0":
-  version "4.22.0"
-  resolved "https://registry.npmjs.org/@cutting/util/-/util-4.22.0.tgz#4a8e51943c0a72d6b86a5635ef54745e13e41ae3"
-  integrity sha512-S3i/52EJS76DBE4Rb11+YVo9FXrFy9Q6xGVLbEIYCpV8PxUQyDligUGk3VoIXpVMuc4w7BUxc/pfFO9oKKEuhg==
+"@cutting/util@4.23.1":
+  version "4.23.1"
+  resolved "https://registry.npmjs.org/@cutting/util/-/util-4.23.1.tgz#42c6bd28792d2b1bd8bc6fed5a538dc61ac9baf2"
+  integrity sha512-/MXhLoGOh8ZjmEk8nYJQg3U05KVWYWRlzY8bQL3GCDCeZzMOMb2Dboz/RGxuAjd/DZRRwlnj5VPsgzuZ5YqVVA==
 
 "@definitelytyped/header-parser@latest":
   version "0.0.80"
