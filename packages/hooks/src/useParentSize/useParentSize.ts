@@ -52,7 +52,7 @@ export const useParentSize = <E extends Element>(
       if (previousDimensions.current?.width !== newWidth || previousDimensions.current?.height !== newHeight) {
         previousDimensions.current.height = newHeight;
         previousDimensions.current.width = newWidth;
-        if (isMounted.current) {
+        if (isMounted) {
           debouncedCallback(newSize);
         }
       }

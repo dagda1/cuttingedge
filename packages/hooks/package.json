@@ -28,7 +28,7 @@
   "dependencies": {
     "@cutting/util": "4.23.2",
     "assert-ts": "^0.3.2",
-    "history": "^5.0.0",
+    "history": "^4.10.1",
     "react-use": "^17.2.3",
     "resize-observer-polyfill": "^1.5.1",
     "use-debounce": "^6.0.1"
