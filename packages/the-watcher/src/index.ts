@@ -43,7 +43,7 @@ program
           const dir = path.dirname(path.join(rootPackage, file));
           const nearestPackage = yield findIO(dir, hasPackageJson);
 
-          if (cwd === process.cwd()) {
+          if (cwd === nearestPackage) {
             logger.debug(`in current cwd ${path.basename(cwd)} so skipping.`);
             return;
           }

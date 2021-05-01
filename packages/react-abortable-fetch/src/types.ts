@@ -70,11 +70,12 @@ type FetchOptions<R, T> = {
 };
 
 export type UseFetchOptions<R, T> = Omit<FetchOptions<R, T>, 'method' | 'contentType'> & {
-  fetchType?: 'fetch' | 'fetchJsonp';
-  onSuccess?: (t?: R) => void;
   executeOnMount?: boolean;
-  onError?: (e: Error) => void;
+  // TODO: add graphql
+  fetchType?: 'fetch' | 'fetchJsonp';
   onAbort?: (e: Error) => void;
+  onError?: (e: Error) => void;
+  onSuccess?: (t?: R) => void;
   retryAttempts?: number;
   retryDelay?: number;
   timeout?: number;

@@ -11,7 +11,7 @@ export type ParentsizeSVGProps<E extends HTMLElement> = {
 export function ParentsizeSVG<E extends HTMLElement>({
   elementRef,
   children,
-  options = { debounceDelay: 500 },
+  options = { debounceDelay: 50 },
   ...rest
 }: PropsWithChildren<ParentsizeSVGProps<E>>): JSX.Element | null {
   const { width, height } = useParentSize(elementRef, options);

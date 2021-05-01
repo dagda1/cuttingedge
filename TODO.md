@@ -1,5 +1,0 @@
-- [X] Tests and docs for `@cutting/hooks` and `@cutting/svg`.
-- [ ] Refactor component library to gov.uk design system.
-- [ ] 3 day spike into interactors for react
-- [ ] Graphql-Explorer
-- [ ] Project references

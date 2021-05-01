@@ -7,7 +7,7 @@ import './App.module.scss';
 export const App: FC = () => {
   return (
     <ApplicationLayout heading="@cutting/graphql-explorer">
-      <Explorer />
+      <Explorer gatewayUrl="https://localhost:4000/graphql" />
     </ApplicationLayout>
   );
 };
