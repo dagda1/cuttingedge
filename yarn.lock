@@ -968,15 +968,6 @@
     marked "^2.0.3"
     rollup "^2.38.0"
 
-"@cutting/the-watcher@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/@cutting/the-watcher/-/the-watcher-0.1.0.tgz#9c76a3264befe9d16c86b27dcc194318053ef22f"
-  integrity sha512-Ib3OWKVPCqtt9fWCntWR9WAUh8z8vxZs+rJTXwBQVe5So792X1gXDoZ0HdgE/P3ett4Cjgfj9DcmBNaFkc7IXQ==
-  dependencies:
-    "@effection/node" "=2.0.0-preview.11"
-    commander "^7.2.0"
-    effection "=2.0.0-preview.11"
-
 "@cutting/util@4.23.1":
   version "4.23.1"
   resolved "https://registry.npmjs.org/@cutting/util/-/util-4.23.1.tgz#42c6bd28792d2b1bd8bc6fed5a538dc61ac9baf2"

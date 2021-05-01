@@ -31,8 +31,7 @@ import { safePackageName, writeCjsEntryFile } from '../rollup/helpers';
 import { writeToPackage } from './write-package';
 import { csv } from '../rollup/plugins/csv';
 import postcssImport from 'postcss-import';
-
-fs.emptyDirSync(paths.appBuild);
+import { emptyBuildDir } from './empty-build-dir';
 
 export interface BundlerOptions {
   packageName: string;
@@ -189,7 +188,7 @@ const getInputFile = (packageName: string): string => {
 };
 
 async function build() {
-  fs.emptyDirSync(paths.appBuild);
+  emptyBuildDir();
 
   const pkgJsonPath = path.join(process.cwd(), 'package.json');
 

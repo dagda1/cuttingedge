@@ -26,6 +26,7 @@ var client_1 = require("../webpack/client");
 var server_1 = require("../webpack/server");
 var build_config_1 = require("../config/build.config");
 var getUrlParts_1 = require("../webpack/getUrlParts");
+var empty_build_dir_1 = require("./empty-build-dir");
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 process.noDeprecation = true;
 function compile(config) {
@@ -44,7 +45,7 @@ function compile(config) {
 process.env.INSPECT_BRK = process.argv.find(function (arg) { return arg.match(/--inspect-brk(=|$)/); }) || '';
 process.env.INSPECT = process.argv.find(function (arg) { return arg.match(/--inspect(=|$)/); }) || '';
 function main() {
-    fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
+    empty_build_dir_1.emptyBuildDir();
     logger_1.logger.start('Compiling...');
     fs_extra_1.default.removeSync(paths_1.paths.appManifest);
     var localBuildConfig = require(paths_1.paths.localBuildConfig);

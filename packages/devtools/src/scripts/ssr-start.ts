@@ -11,6 +11,7 @@ import { configure as configureWebpackServer } from '../webpack/server';
 import { BuildConfig } from '../types/config';
 import { config as globalBuildConfig } from '../config/build.config';
 import { getUrlParts } from '../webpack/getUrlParts';
+import { emptyBuildDir } from './empty-build-dir';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (process as any).noDeprecation = true;
@@ -31,7 +32,7 @@ function compile(config: Configuration): Compiler {
 process.env.INSPECT_BRK = process.argv.find((arg) => arg.match(/--inspect-brk(=|$)/)) || '';
 process.env.INSPECT = process.argv.find((arg) => arg.match(/--inspect(=|$)/)) || '';
 function main() {
-  fs.emptyDirSync(paths.appBuild);
+  emptyBuildDir();
 
   logger.start('Compiling...');
 

@@ -88,6 +88,7 @@ var client_1 = require("../webpack/client");
 var server_1 = require("../webpack/server");
 var node_1 = require("../webpack/node");
 var assert_ts_1 = require("assert-ts");
+var empty_build_dir_1 = require("./empty-build-dir");
 var measureFileSizesBeforeBuild = FileSizeReporter_1.default.measureFileSizesBeforeBuild;
 var printFileSizesAfterBuild = FileSizeReporter_1.default.printFileSizesAfterBuild;
 var build = function (_a) {
@@ -117,7 +118,7 @@ var build = function (_a) {
                     return [4 /*yield*/, measureFileSizesBeforeBuild(publicDir)];
                 case 5:
                     previousFileSizes = _c.sent();
-                    fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
+                    empty_build_dir_1.emptyBuildDir();
                     copy_public_folder_1.copyPublicFolder();
                     if (!nodeConfig) return [3 /*break*/, 7];
                     return [4 /*yield*/, compile_1.compile(nodeConfig, build_1.BuildType.node)];

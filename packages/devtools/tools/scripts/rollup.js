@@ -122,7 +122,7 @@ var helpers_1 = require("../rollup/helpers");
 var write_package_1 = require("./write-package");
 var csv_1 = require("../rollup/plugins/csv");
 var postcss_import_1 = __importDefault(require("postcss-import"));
-fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
+var empty_build_dir_1 = require("./empty-build-dir");
 logger_1.logger.debug("using  " + path_1.default.basename(paths_1.paths.tsConfigProduction));
 function generateBundledModule(_a) {
     var packageName = _a.packageName, inputFile = _a.inputFile, moduleFormat = _a.moduleFormat, env = _a.env;
@@ -265,7 +265,7 @@ function build() {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
+                    empty_build_dir_1.emptyBuildDir();
                     pkgJsonPath = path_1.default.join(process.cwd(), 'package.json');
                     return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(pkgJsonPath)); })];
                 case 1:

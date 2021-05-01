@@ -20,6 +20,7 @@ import { configure as configureWebpackServer } from '../webpack/server';
 import { configure as configureWebpackNode } from '../webpack/node';
 import { BuildConfig } from '../types/config';
 import { assert } from 'assert-ts';
+import { emptyBuildDir } from './empty-build-dir';
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 
@@ -48,7 +49,7 @@ export const build = async ({
   try {
     const previousFileSizes = await measureFileSizesBeforeBuild(publicDir);
 
-    fs.emptyDirSync(paths.appBuild);
+    emptyBuildDir();
 
     copyPublicFolder();
 

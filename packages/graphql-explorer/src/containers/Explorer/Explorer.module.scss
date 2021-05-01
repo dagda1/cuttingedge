@@ -1,8 +1,10 @@
 @import '../../assets/scss/main';
 
-.container {
 
+.container {
+  border: 1px solid green;
+  
   svg {
     border: 1px solid red;
   }
-}
+} 

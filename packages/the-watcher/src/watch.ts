@@ -19,7 +19,7 @@ function writeOut(channel: Stream<string>, out: NodeJS.WriteStream): Operation<u
 
 function executeAndOut(command: string, cwd: string): Operation<void> {
   return function* (task) {
-    const p: Process = exec(`${command}`, { cwd }).run(task);
+    const p: Process = exec(`${command}`, { cwd, env: { ...process.env, WATCHING: true.toString() } }).run(task);
     task.spawn(writeOut(p.stdout, process.stdout));
     task.spawn(writeOut(p.stderr, process.stderr));
     yield p.expect();
