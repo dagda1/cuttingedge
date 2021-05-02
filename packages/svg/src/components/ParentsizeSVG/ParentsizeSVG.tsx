@@ -5,34 +5,36 @@ import { ResponsiveSVG, ResponsiveSVGProps } from '../ResponsiveSVG/ResponsiveSV
 
 export type ParentsizeSVGProps<E extends HTMLElement> = {
   elementRef: RefObject<E>;
-  options?: Partial<UseParentSizeOptions>;
+  options?: Partial<UseParentSizeOptions> & { style?: CSSProperties };
 } & Partial<Omit<ResponsiveSVGProps, 'innerRef' | 'height' | 'height'>>;
 
-export const defaultStyles: CSSProperties = {
+export const DefaultStyle: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
-  flex: '1',
+  flexGrow: 1,
+  flexShrink: 1,
+  flexBasis: '0%',
   overflow: 'hidden',
 } as const;
 
 export function ParentsizeSVG<E extends HTMLElement>({
   elementRef,
   children,
-  options = { debounceDelay: 50 },
+  options: { debounceDelay = 50, style = DefaultStyle, ...optionsRest } = {},
   ...rest
 }: PropsWithChildren<ParentsizeSVGProps<E>>): JSX.Element | null {
-  const { width, height } = useParentSize(elementRef, options);
+  const { width, height } = useParentSize(elementRef, { debounceDelay, ...optionsRest });
 
   useEffect(() => {
     if (!elementRef.current) {
       return;
     }
 
-    for (const [key, value] of Object.entries(defaultStyles)) {
+    for (const [key, value] of Object.entries(style)) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       elementRef.current.style[key as any] = value;
     }
-  }, [elementRef]);
+  }, [elementRef, style]);
 
   return (
     <ResponsiveSVG width={width} height={height} {...rest}>

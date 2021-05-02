@@ -1,11 +1,14 @@
-export type PreserveAspectRatio =
-  | 'xMidYMid meet'
-  | 'xMinYMid meet'
-  | 'xMaxYMid meet'
-  | 'xMidYMin slice'
-  | 'xMidYMid slice'
-  | 'xMidYMax slice'
-  | 'xMidYMin meet'
-  | 'xMidYMax meet'
-  | 'xMinYMid slice'
-  | 'xMaxYMid slice';
+export type PreserveAspectRatioAlignment =
+  | 'xMinYMin'
+  | 'xMidYMin'
+  | 'xMaxYMin'
+  | 'xMinYMid'
+  | 'xMidYMid'
+  | 'xMaxYMid'
+  | 'xMinYMax'
+  | 'xMidYMax'
+  | 'xMaxYMax';
+
+export type MeetOrSlice = 'meet' | 'slice';
+
+export type PreserveAspectRatio = `${PreserveAspectRatioAlignment} ${MeetOrSlice}`;

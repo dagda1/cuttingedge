@@ -44,10 +44,8 @@ export const useParentSize = <E extends Element>(
       }
 
       const entry = entries[0];
-      console.log(entry.contentRect);
       const newWidth = Math.round(entry.contentRect.width);
       const newHeight = Math.round(entry.contentRect.height);
-      console.log({ newHeight, newWidth });
 
       const newSize = { width: newWidth, height: newHeight };
 
