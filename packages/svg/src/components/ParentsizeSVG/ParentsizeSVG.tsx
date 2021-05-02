@@ -3,9 +3,14 @@ import type { UseParentSizeOptions } from '@cutting/hooks';
 import { useParentSize } from '@cutting/hooks';
 import { ResponsiveSVG, ResponsiveSVGProps } from '../ResponsiveSVG/ResponsiveSVG';
 
+type Align = 'none' | 'center';
+
 export type ParentsizeSVGProps<E extends HTMLElement> = {
   elementRef: RefObject<E>;
-  options?: Partial<UseParentSizeOptions> & { style?: CSSProperties };
+  style?: CSSProperties;
+  align?: Align;
+  scale?: number;
+  options?: Partial<UseParentSizeOptions>;
 } & Partial<Omit<ResponsiveSVGProps, 'innerRef' | 'height' | 'height'>>;
 
 export const DefaultStyle: CSSProperties = {
@@ -20,7 +25,10 @@ export const DefaultStyle: CSSProperties = {
 export function ParentsizeSVG<E extends HTMLElement>({
   elementRef,
   children,
-  options: { debounceDelay = 50, style = DefaultStyle, ...optionsRest } = {},
+  style = DefaultStyle,
+  scale = 1,
+  align = 'none',
+  options: { debounceDelay = 50, ...optionsRest } = {},
   ...rest
 }: PropsWithChildren<ParentsizeSVGProps<E>>): JSX.Element | null {
   const { width, height } = useParentSize(elementRef, { debounceDelay, ...optionsRest });
@@ -36,9 +44,12 @@ export function ParentsizeSVG<E extends HTMLElement>({
     }
   }, [elementRef, style]);
 
+  const transform =
+    align === 'center' ? `translate(${width / 2},${height / 2 - 20}) scale(${scale})` : `0,0) scale(${scale})`;
+
   return (
     <ResponsiveSVG width={width} height={height} {...rest}>
-      {children}
+      <g transform={transform}>{children}</g>
     </ResponsiveSVG>
   );
 }

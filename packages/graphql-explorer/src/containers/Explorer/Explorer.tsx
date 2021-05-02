@@ -12,7 +12,7 @@ export const Explorer: FC<ExplorerProps> = () => {
   return (
     <>
       <div className={styles.container} ref={ref}>
-        <ParentsizeSVG elementRef={ref} preserveAspectRatio="xMidYMin slice">
+        <ParentsizeSVG elementRef={ref} align="center">
           <circle fill="#fff" x={12} y={20} r={200} />
         </ParentsizeSVG>
       </div>
