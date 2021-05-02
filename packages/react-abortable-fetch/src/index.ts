@@ -1,7 +1,7 @@
 export type {
   Builder,
   FetchClient,
-  FetchJob,
+  FetchTask,
   UseFetchOptions,
   QueryResult,
   FetchStates,

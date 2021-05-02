@@ -55,11 +55,12 @@ export type ContentTypeMap = `application/${ContentType}`;
 
 export type Accumulator<R, T> = (initialState: R, current: T, request?: RequestInfo) => R;
 
+export type FetchRequestInfo = { url: string } & Omit<RequestInit, 'signal'>;
+
 type FetchOptions<R, T> = {
   method?: Methods;
   initialState?: R;
   contentType?: ContentType;
-  // accumulator?: (initialState: R, current: T, request?: RequestInfo) => R;
   accumulator?: T extends undefined
     ? R extends Array<infer U>
       ? (initialState: R, current: U, request?: RequestInfo) => R
@@ -86,7 +87,7 @@ export type FetchRequest<R, T> = {
   init?: RequestInit;
 } & Required<Omit<FetchOptions<R, T>, 'method' | 'accumulator'>>;
 
-export interface FetchJob<R, T> {
+export interface FetchTask<R, T> {
   uuid: string;
   key: string;
   state: FetchStates;
@@ -95,14 +96,14 @@ export interface FetchJob<R, T> {
 
 export interface FetchAtomContext {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  atom: Slice<{ jobs: Record<string, FetchJob<any, any>> }>;
+  atom: Slice<{ jobs: Record<string, FetchTask<any, any>> }>;
 }
 
 export interface FetchClient<R, T> {
-  jobs: FetchJob<R, T>[];
+  jobs: FetchTask<R, T>[];
   addFetchRequest(
     this: FetchClient<R, T>,
-    info: RequestInfo,
+    info: string | FetchRequestInfo,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     options?: RequestInit & Omit<FetchOptions<any, any>, 'onAbort'>,
   ): FetchClient<R, T>;

@@ -1,14 +1,17 @@
-import type { Builder, FetchClient } from '../types';
+import type { Builder, FetchClient, FetchRequestInfo } from '../types';
 import { v4 } from 'uuid';
 
-const getJobKey = (info: RequestInfo) => {
+const getJobKey = (info: string | FetchRequestInfo) => {
   return JSON.stringify(info);
 };
 
-export const createFetchClient = <R, T>(
-  addFetch: string | string[] | Builder<R, T>,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isRequestInfo = (o: any): o is FetchRequestInfo => Array.isArray(o) === false && typeof o !== 'function';
+
+export function createFetchClient<R, T>(
+  builderOrRequestInfos: string | string[] | FetchRequestInfo | FetchRequestInfo[] | Builder<R, T>,
   abortController: AbortController,
-): FetchClient<R, T> => {
+): FetchClient<R, T> {
   let fetchClient: FetchClient<R, T> = {
     jobs: [],
     addFetchRequest(
@@ -17,8 +20,19 @@ export const createFetchClient = <R, T>(
       { initialState, onQueryError, onQuerySuccess, contentType = 'json', method = 'GET', ...rest } = {},
     ) {
       const key = getJobKey(info);
+
       if (this.jobs.find((j) => j.key === key)) {
         return this;
+      }
+
+      let url: string;
+      let init: RequestInit;
+
+      if (typeof info === 'string') {
+        url = info;
+        init = {};
+      } else {
+        ({ url, ...init } = info);
       }
 
       this.jobs.push({
@@ -26,7 +40,7 @@ export const createFetchClient = <R, T>(
         key,
         state: 'READY',
         fetch: {
-          request: info,
+          request: url,
           init: {
             signal: abortController.signal,
             method,
@@ -34,6 +48,7 @@ export const createFetchClient = <R, T>(
               'Content-Type': `application/${contentType}`,
             },
             ...rest,
+            ...init,
           },
           contentType,
           initialState,
@@ -46,15 +61,15 @@ export const createFetchClient = <R, T>(
     },
   };
 
-  if (typeof addFetch === 'string') {
-    fetchClient.addFetchRequest(addFetch);
-  } else if (Array.isArray(addFetch)) {
-    for (const url of addFetch) {
-      fetchClient.addFetchRequest(url);
+  if (isRequestInfo(builderOrRequestInfos)) {
+    fetchClient.addFetchRequest(builderOrRequestInfos);
+  } else if (Array.isArray(builderOrRequestInfos)) {
+    for (const fetchRequestInfo of builderOrRequestInfos) {
+      fetchClient.addFetchRequest(fetchRequestInfo);
     }
-  } else if (typeof addFetch === 'function') {
-    fetchClient = addFetch(fetchClient);
+  } else if (typeof builderOrRequestInfos === 'function') {
+    fetchClient = builderOrRequestInfos(fetchClient);
   }
 
   return fetchClient;
-};
+}

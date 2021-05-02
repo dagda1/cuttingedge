@@ -139,6 +139,15 @@ describe('useFetch', () => {
         expect(result.current.data).toEqual({ id: '1' });
       });
 
+      it('should have simple post api', async () => {
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useFetch({ url: `http://localhost:3000/multiply/7/6`, method: 'POST' }),
+        );
+        await waitForNextUpdate();
+
+        expect(result.current.data).toEqual({ answer: 42 });
+      });
+
       it('should transform a value', async () => {
         const onSuccess = jest.fn();
         const onError = jest.fn();
@@ -351,6 +360,39 @@ describe('useFetch', () => {
         expect(onSuccess).toHaveBeenCalled();
         expect(onError).not.toHaveBeenCalled();
       });
+    });
+
+    it('should successfully run a multi FetchRequestInfo query', async () => {
+      const onQuerySuccess = jest.fn();
+      const onSuccess = jest.fn();
+      const onError = jest.fn();
+
+      const { result, waitForNextUpdate } = renderHook(() =>
+        useFetch(
+          [
+            { url: `http://localhost:3000/multiply/1/1`, method: 'POST' },
+            { url: `http://localhost:3000/multiply/2/2`, method: 'POST' },
+            { url: `http://localhost:3000/multiply/3/3`, method: 'POST' },
+          ],
+          {
+            initialState: [],
+            onQuerySuccess,
+            onSuccess,
+            onError,
+          },
+        ),
+      );
+
+      expect(result.current.state).toBe('LOADING');
+
+      await waitForNextUpdate();
+
+      expect(result.current.state).toBe('SUCCEEDED');
+
+      expect(onQuerySuccess).toHaveBeenCalled();
+      expect(onSuccess).toHaveBeenCalled();
+      expect(onError).not.toHaveBeenCalled();
+      expect(result.current.data).toEqual([{ answer: 1 }, { answer: 4 }, { answer: 9 }]);
     });
 
     describe('builder syntax', () => {

@@ -7,4 +7,12 @@
   svg {
     border: 1px solid red;
   }
-} 
+}
+
+.error {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+}

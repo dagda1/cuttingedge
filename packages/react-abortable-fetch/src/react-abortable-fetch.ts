@@ -1,7 +1,7 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createQueryMachine, abort, reset, start, success, error } from './machine';
-import { FetchStates, Builder, ContentType, UseFetchOptions, QueryResult } from './types';
+import { FetchStates, Builder, ContentType, UseFetchOptions, QueryResult, FetchRequestInfo } from './types';
 import { run, sleep, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
@@ -10,12 +10,21 @@ import { identity } from '@cutting/util';
 import { assert } from 'assert-ts';
 import { useIsomorphicLayoutEffect } from './hooks/use-Isomorphic-layout-effect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
+import { ResponseError } from './errors/errors';
 
 export function useFetch<R, T = undefined>(url: string, options?: UseFetchOptions<R, T>): QueryResult<R>;
 export function useFetch<R, T = undefined>(urls: string[], options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = undefined>(
+  fetchRequestInfo: FetchRequestInfo,
+  options?: UseFetchOptions<R, T>,
+): QueryResult<R>;
+export function useFetch<R, T = undefined>(
+  fetchRequestInfo: FetchRequestInfo[],
+  options?: UseFetchOptions<R, T>,
+): QueryResult<R>;
 export function useFetch<R, T = undefined>(builder: Builder<R, T>, options?: UseFetchOptions<R, T>): QueryResult<R>;
 export function useFetch<R, T = undefined>(
-  builderOrUrls: Builder<R, T> | string | string[],
+  builderOrRequestInfos: string | string[] | FetchRequestInfo | FetchRequestInfo[] | Builder<R, T>,
   options: UseFetchOptions<R, T> = {},
 ): QueryResult<R> {
   const {
@@ -35,7 +44,7 @@ export function useFetch<R, T = undefined>(
 
   const [machine, send] = useMachine(createQueryMachine({ initialState }));
   const abortController = useRef(new AbortController());
-  const fetchClient = useRef(createFetchClient<R, T>(builderOrUrls, abortController.current));
+  const fetchClient = useRef(createFetchClient<R, T>(builderOrRequestInfos, abortController.current));
   const counter = useRef(0);
   const task = useRef<Task>();
   const retries = useRef(0);
@@ -62,10 +71,10 @@ export function useFetch<R, T = undefined>(
     task.current?.halt();
     counter.current = 0;
     abortController.current = new AbortController();
-    fetchClient.current = createFetchClient<R, T>(builderOrUrls, abortController.current);
+    fetchClient.current = createFetchClient<R, T>(builderOrRequestInfos, abortController.current);
     accumulated.current = initialState;
     send(reset(initialState));
-  }, [builderOrUrls, initialState, send]);
+  }, [builderOrRequestInfos, initialState, send]);
 
   const runner = useCallback(() => {
     task.current = run(function* (scope) {
@@ -122,8 +131,9 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
 
           if (!response.ok) {
             job.state = 'ERROR';
-            onQueryError(new Error(status));
-            throw new Error(status);
+            const responseError = new ResponseError(response.statusText, response.status, null);
+            onQueryError(responseError);
+            throw responseError;
           }
 
           job.state = 'SUCCEEDED';
