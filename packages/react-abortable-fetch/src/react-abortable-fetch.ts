@@ -14,9 +14,7 @@ import { ResponseError } from './errors/errors';
 
 type UseFetchArgs<R, T> = string | string[] | FetchRequestInfo | FetchRequestInfo[] | Builder<R, T>;
 
-type ExtractArgs<Args extends UseFetchArgs<R, T>, R, T> = Args extends Fn
-  ? Builder<R, T>
-  : Args extends { url: string }
+type ExtractArgs<Args extends UseFetchArgs<R, T>, R, T> = Args extends { url: string }
   ? FetchRequestInfo
   : Args extends string
   ? string
@@ -24,16 +22,18 @@ type ExtractArgs<Args extends UseFetchArgs<R, T>, R, T> = Args extends Fn
   ? string[]
   : Args extends { url: string }[]
   ? FetchRequestInfo[]
+  : Args extends Fn
+  ? Builder<R, T>
   : never;
 
-export function useFetch<R, T = R>(fetchRequestInfo: FetchRequestInfo, options?: UseFetchOptions<R, T>): QueryResult<R>;
 export function useFetch<R, T = R>(url: string, options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = R>(urls: string[], options?: UseFetchOptions<R, T>): QueryResult<R>;
 export function useFetch<R, T = R>(
   fetchRequestInfo: FetchRequestInfo[],
   options?: UseFetchOptions<R, T>,
 ): QueryResult<R>;
-export function useFetch<R, T = R>(urls: string[], options?: UseFetchOptions<R, T>): QueryResult<R>;
 export function useFetch<R, T = R>(builder: Builder<R, T>, options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = R>(fetchRequestInfo: FetchRequestInfo, options?: UseFetchOptions<R, T>): QueryResult<R>;
 export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
   builderOrRequestInfos: ExtractArgs<Args, R, T>,
   options: UseFetchOptions<R, T> = {},

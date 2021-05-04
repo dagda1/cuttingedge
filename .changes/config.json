@@ -39,8 +39,10 @@
       "path": "./packages/graphql-explorer",
       "manager": "javascript",
       "dependencies": [
+        "@cutting/react-abortable-fetch",
         "@cutting/util",
-        "@cutting/devtools"
+        "@cutting/devtools",
+        "@cutting/the-watcher"
       ]
     },
     "@cutting/hooks": {

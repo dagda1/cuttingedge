@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 
 export const emptyBuildDir = (): void => {
   if (process.env.WATCHING !== 'true') {
-    logger.warn(`deleting the contents of the build directory ${paths.appBuild}`);
+    logger.warn(`emptying dist ${paths.appBuild}`);
     fs.emptyDirSync(paths.appBuild);
   } else {
     logger.warn(`WATCHING so not deleting build directory`);

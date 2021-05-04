@@ -1,22 +1,5 @@
 # Changelog
 
-## \[0.8.0]
-
-- reset accumulated after each run.
-  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
-
-## \[0.7.0]
-
-- Remove hard react dependency
-  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
-
-## \[0.5.1]
-
-- Add useIsMounted to the exports
-  - Bumped due to a bump in @cutting/util.
-  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
-
-## \[0.5.0]
 
 - Add codesandbox links to README
   - [9ec9f754](https://github.com/dagda1/cuttingedge/commit/9ec9f7545b471d29fa563dc94f9257e5a015bd40) fix aborable typing on 2021-04-24

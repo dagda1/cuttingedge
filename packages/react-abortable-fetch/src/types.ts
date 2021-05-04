@@ -1,4 +1,4 @@
-import type { Operation, Task } from 'effection';
+import type { Task } from 'effection';
 
 export type FetchContext<T> = {
   data: T;

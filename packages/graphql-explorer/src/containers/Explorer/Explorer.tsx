@@ -18,10 +18,10 @@ export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
       body: JSON.stringify({ query: getIntrospectionQuery() }, null, 2),
     },
     {
-      initialState: {},
-      accumulator(acc: unknown, data: unknown) {
+      initialState: {} as SimplifiedIntrospection,
+      accumulator(acc, data) {
         console.log({ acc, data });
-        return data;
+        return acc;
       },
     },
   );

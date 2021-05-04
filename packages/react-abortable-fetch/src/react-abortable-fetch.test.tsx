@@ -59,6 +59,10 @@ const server = setupServer(
 
     return res(ctx.json({ ok: true }));
   }),
+
+  rest.get('http://localhost:3000/graphql', (req, res, ctx) => {
+    return res(ctx.json({ a: 3 }));
+  }),
 );
 
 describe('useFetch', () => {
@@ -141,7 +145,7 @@ describe('useFetch', () => {
 
       it('should have simple post api', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetch<{ answer: string }>({
+          useFetch({
             url: `http://localhost:3000/multiply/7/6`,
             method: 'POST',
           }),
