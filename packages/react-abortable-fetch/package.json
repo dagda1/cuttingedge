@@ -1,7 +1,7 @@
 {
   "name": "@cutting/react-abortable-fetch",
   "description": "A simpler use-fetch or use-query or whatever.",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch"
@@ -22,7 +22,6 @@
   "dependencies": {
     "abortcontroller-polyfill": "^1.7.1",
     "@cutting/util": "4.23.2",
-    "@effection/atom": "=2.0.0-preview.9",
     "@effection/node": "=2.0.0-preview.11",
     "@xstate/react": "^1.3.2",
     "cross-fetch": "^3.1.4",

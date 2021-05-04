@@ -3,13 +3,28 @@ import { ParentsizeSVG } from '@cutting/svg';
 import styles from './Explorer.module.scss';
 import { useFetch } from '@cutting/react-abortable-fetch';
 import { LoadingOverlay } from '@cutting/component-library';
+import { getIntrospectionQuery, IntrospectionSchema } from 'graphql';
+import { SimplifiedIntrospection } from '../../types';
 
 export interface ExplorerProps {
   gatewayUrl: string;
 }
 
 export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
-  const { data, error, state } = useFetch(gatewayUrl, { executeOnMount: true, method });
+  const { data, error, state } = useFetch<SimplifiedIntrospection, IntrospectionSchema>(
+    {
+      url: gatewayUrl,
+      method: 'POST',
+      body: JSON.stringify({ query: getIntrospectionQuery() }, null, 2),
+    },
+    {
+      initialState: {},
+      accumulator(acc: unknown, data: unknown) {
+        console.log({ acc, data });
+        return data;
+      },
+    },
+  );
   const ref = useRef<HTMLDivElement>(null);
 
   if (state === 'LOADING') {
@@ -17,6 +32,7 @@ export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
   }
 
   if (state === 'ERROR') {
+    console.log(error);
     return (
       <div className={styles.error}>
         <h2>{error?.message}</h2>
@@ -24,7 +40,7 @@ export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
     );
   }
 
-  console.log(data, error);
+  console.log({ data });
 
   return (
     <>

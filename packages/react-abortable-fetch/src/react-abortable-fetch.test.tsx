@@ -141,7 +141,10 @@ describe('useFetch', () => {
 
       it('should have simple post api', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
-          useFetch({ url: `http://localhost:3000/multiply/7/6`, method: 'POST' }),
+          useFetch<{ answer: string }>({
+            url: `http://localhost:3000/multiply/7/6`,
+            method: 'POST',
+          }),
         );
         await waitForNextUpdate();
 

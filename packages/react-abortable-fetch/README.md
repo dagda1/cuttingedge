@@ -124,6 +124,9 @@ or if you want to invoke the query in a button click handler, then you can do th
 ```ts
 const { run, state } = useFetch(`/api/users/1`, { executeOnMount: false });
 
+// or use a combination of Request and RequestInfo
+// const { run, state } = useFetch({url: `/api/users/1`, method: 'POST'}, { executeOnMount: false });
+
 return (
   <button
     disabled={state !== 'READY'}
@@ -135,6 +138,8 @@ return (
   </button>
 );
 ```
+
+or 
 
 ### Multi Queries
 
@@ -160,6 +165,12 @@ Just load up the URLs into an array and optionally use some of the handlers:
       "https://reqres.in/api/products/9?delay=1",
       "https://reqres.in/api/products/10?delay=1"
     ],
+    // or use a combination of Request and RequestInfo
+    // const { run, data, state, abort, reset } = useFetch<Result[], Product>(
+    // [
+    //  {url: "https://reqres.in/api/products/1?delay=1", method: 'POST'}
+    //  {url: "https://reqres.in/api/products/1?delay=2", method: 'POST'}
+    //  etc.
     {
       initialState: [],
       executeOnMount: false,
@@ -356,9 +367,21 @@ const { state, abort, reset, run } = useFetch(
 The `useFetch` function signature looks like this:
 
 ```ts
-export function useFetch<R, T>(url: string, options?: useFetchOptions<R, T>): QueryResult<R>;
-export function useFetch<R, T>(urls: string[], options?: useFetchOptions<R, T>): QueryResult<R>;
-export function useFetch<R, T>(builder: Builder<R, T>, options?: useFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = undefined>(url: string, options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = undefined>(urls: string[], options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = undefined>(
+  fetchRequestInfo: FetchRequestInfo,
+  options?: UseFetchOptions<R, T>,
+): QueryResult<R>;
+export function useFetch<R, T = undefined>(
+  fetchRequestInfo: FetchRequestInfo[],
+  options?: UseFetchOptions<R, T>,
+): QueryResult<R>;
+export function useFetch<R, T = undefined>(builder: Builder<R, T>, options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = undefined>(
+  builderOrRequestInfos: string | string[] | FetchRequestInfo | FetchRequestInfo[] | Builder<R, T>,
+  options: UseFetchOptions<R, T> = {},
+): QueryResult<R> {
 ```
 
 - `A` is the type for the data that is returned from a fetcg request.  

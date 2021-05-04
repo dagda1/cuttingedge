@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@cutting/devtools": "4.23.0",
-    "@cutting/react-abortable-fetch": "0.8.0",
+    "@cutting/react-abortable-fetch": "0.9.0",
     "@cutting/the-watcher": "0.2.0",
     "abortcontroller-polyfill": "^1.7.1",
     "eslint-loader": "^4.0.2",

@@ -6,25 +6,36 @@ import { run, sleep, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
-import { identity } from '@cutting/util';
+import { Fn, identity } from '@cutting/util';
 import { assert } from 'assert-ts';
 import { useIsomorphicLayoutEffect } from './hooks/use-Isomorphic-layout-effect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
 import { ResponseError } from './errors/errors';
 
-export function useFetch<R, T = undefined>(url: string, options?: UseFetchOptions<R, T>): QueryResult<R>;
-export function useFetch<R, T = undefined>(urls: string[], options?: UseFetchOptions<R, T>): QueryResult<R>;
-export function useFetch<R, T = undefined>(
-  fetchRequestInfo: FetchRequestInfo,
-  options?: UseFetchOptions<R, T>,
-): QueryResult<R>;
-export function useFetch<R, T = undefined>(
+type UseFetchArgs<R, T> = string | string[] | FetchRequestInfo | FetchRequestInfo[] | Builder<R, T>;
+
+type ExtractArgs<Args extends UseFetchArgs<R, T>, R, T> = Args extends Fn
+  ? Builder<R, T>
+  : Args extends { url: string }
+  ? FetchRequestInfo
+  : Args extends string
+  ? string
+  : Args extends string[]
+  ? string[]
+  : Args extends { url: string }[]
+  ? FetchRequestInfo[]
+  : never;
+
+export function useFetch<R, T = R>(fetchRequestInfo: FetchRequestInfo, options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = R>(url: string, options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = R>(
   fetchRequestInfo: FetchRequestInfo[],
   options?: UseFetchOptions<R, T>,
 ): QueryResult<R>;
-export function useFetch<R, T = undefined>(builder: Builder<R, T>, options?: UseFetchOptions<R, T>): QueryResult<R>;
-export function useFetch<R, T = undefined>(
-  builderOrRequestInfos: string | string[] | FetchRequestInfo | FetchRequestInfo[] | Builder<R, T>,
+export function useFetch<R, T = R>(urls: string[], options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<R, T = R>(builder: Builder<R, T>, options?: UseFetchOptions<R, T>): QueryResult<R>;
+export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
+  builderOrRequestInfos: ExtractArgs<Args, R, T>,
   options: UseFetchOptions<R, T> = {},
 ): QueryResult<R> {
   const {

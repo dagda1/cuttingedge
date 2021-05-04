@@ -1,5 +1,4 @@
 import type { Operation, Task } from 'effection';
-import { Slice } from '@effection/atom/dist';
 
 export type FetchContext<T> = {
   data: T;
@@ -94,11 +93,6 @@ export interface FetchTask<R, T> {
   fetch: Omit<FetchRequest<R, T>, 'onAbort'>;
 }
 
-export interface FetchAtomContext {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  atom: Slice<{ jobs: Record<string, FetchTask<any, any>> }>;
-}
-
 export interface FetchClient<R, T> {
   jobs: FetchTask<R, T>[];
   addFetchRequest(
@@ -110,10 +104,6 @@ export interface FetchClient<R, T> {
 }
 
 export type Builder<R, T> = (fetch: FetchClient<R, T>) => FetchClient<R, T>;
-
-export interface Effect<A> {
-  (slice: Slice<A>): Operation<void>;
-}
 
 export type QueryResult<A> =
   | {
