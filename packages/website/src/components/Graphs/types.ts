@@ -1,5 +1,5 @@
 // https://www.nationsonline.org/oneworld/country_code_list.htm
-export type Countries = 'ITA' | 'GBR' | 'USA' | 'SWE' | 'FRA' | 'SCO' | 'DEU';
+export type Countries = 'ITA' | 'GBR' | 'USA' | 'SWE' | 'SCO' | 'TUR';
 
 export type CountryData = {
   longName: string;
@@ -42,16 +42,21 @@ export type CountryResult = { color: string; name: string; data: DayData[] };
 export type CountriesResult = Record<Countries, CountryResult>;
 
 export const countryData: CountriesData = {
-  DEU: {
-    longName: 'Germany',
+  // DEU: {
+  //   longName: 'Germany',
+  //   color: '#038D44',
+  //   population: 83000000,
+  // },
+  TUR: {
+    longName: 'Turkey',
     color: '#038D44',
-    population: 83000000,
+    population: 82000000,
   },
-  FRA: {
-    longName: 'France',
-    color: 'pink',
-    population: 67000000,
-  },
+  // FRA: {
+  //   longName: 'France',
+  //   color: 'pink',
+  //   population: 67000000,
+  // },
   ITA: {
     longName: 'Italy',
     color: '#99ccff',
