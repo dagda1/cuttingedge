@@ -6,6 +6,10 @@ export type PartialShallow<T> = {
 
 export type PropertyReturn = string | number | symbol;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const keyBy = <T, K extends keyof T & PropertyKey>(array: T[], key: K) =>
+  (array || []).reduce((r, x) => ({ ...r, [key ? x[key as PropertyKey] : x]: x }), {});
+
 export const pickBy = <T>(
   o: T,
   predicate: <K extends keyof T>(value: T[K]) => PropertyReturn | boolean,

@@ -1,4 +1,4 @@
-import { pickBy, countBy, sortBy, sortedUniqBy, uniqBy, groupBy } from './by';
+import { pickBy, countBy, sortBy, sortedUniqBy, uniqBy, groupBy, keyBy } from './by';
 import { expect, it, describe } from '@jest/globals';
 
 describe('by', () => {
@@ -108,6 +108,20 @@ describe('by', () => {
           },
         ],
       });
+    });
+  });
+
+  describe('keyBy', () => {
+    it('should keyBy', () => {
+      expect(
+        keyBy(
+          [
+            { id: 'a1', title: 'abc' },
+            { id: 'b2', title: 'def' },
+          ],
+          'id',
+        ),
+      ).toEqual({ a1: { id: 'a1', title: 'abc' }, b2: { id: 'b2', title: 'def' } });
     });
   });
 });

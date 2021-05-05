@@ -1,5 +1,11 @@
 import type { FC } from 'react';
-import { buildClientSchema, IntrospectionQuery, introspectionFromSchema, lexicographicSortSchema } from 'graphql';
+import {
+  buildClientSchema,
+  IntrospectionQuery,
+  introspectionFromSchema,
+  lexicographicSortSchema,
+  IntrospectionSchema,
+} from 'graphql';
 import { useRef } from 'react';
 import { getIntrospectionQuery } from 'graphql';
 import { ParentsizeSVG } from '@cutting/svg';
@@ -11,6 +17,10 @@ import { SimplifiedIntrospection } from '../../types';
 export interface ExplorerProps {
   gatewayUrl: string;
 }
+
+const simplifySchema = (schema: IntrospectionSchema) => {
+  console.log(schema.types);
+};
 
 export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
   const { error, state } = useFetch<SimplifiedIntrospection, { data: IntrospectionQuery }>(
@@ -24,7 +34,10 @@ export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
       accumulator(acc, { data }) {
         const schema = lexicographicSortSchema(buildClientSchema(data));
         const introspection = introspectionFromSchema(schema);
-        console.log(introspection);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const simplifiedSchema = simplifySchema(introspection.__schema);
         return acc;
       },
     },
