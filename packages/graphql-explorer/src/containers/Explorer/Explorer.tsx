@@ -1,9 +1,11 @@
-import { FC, useRef } from 'react';
+import type { FC } from 'react';
+import { buildClientSchema, IntrospectionQuery, introspectionFromSchema, lexicographicSortSchema } from 'graphql';
+import { useRef } from 'react';
+import { getIntrospectionQuery } from 'graphql';
 import { ParentsizeSVG } from '@cutting/svg';
 import styles from './Explorer.module.scss';
 import { useFetch } from '@cutting/react-abortable-fetch';
 import { LoadingOverlay } from '@cutting/component-library';
-import { getIntrospectionQuery, IntrospectionSchema } from 'graphql';
 import { SimplifiedIntrospection } from '../../types';
 
 export interface ExplorerProps {
@@ -11,7 +13,7 @@ export interface ExplorerProps {
 }
 
 export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
-  const { data, error, state } = useFetch<SimplifiedIntrospection, IntrospectionSchema>(
+  const { error, state } = useFetch<SimplifiedIntrospection, { data: IntrospectionQuery }>(
     {
       url: gatewayUrl,
       method: 'POST',
@@ -19,8 +21,10 @@ export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
     },
     {
       initialState: {} as SimplifiedIntrospection,
-      accumulator(acc, data) {
-        console.log({ acc, data });
+      accumulator(acc, { data }) {
+        const schema = lexicographicSortSchema(buildClientSchema(data));
+        const introspection = introspectionFromSchema(schema);
+        console.log(introspection);
         return acc;
       },
     },
@@ -40,12 +44,10 @@ export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
     );
   }
 
-  console.log({ data });
-
   return (
     <>
       <div className={styles.container} ref={ref}>
-        <ParentsizeSVG elementRef={ref}>
+        <ParentsizeSVG elementRef={ref} align="center">
           <circle fill="#fff" x={12} y={20} r={200} />
         </ParentsizeSVG>
       </div>
