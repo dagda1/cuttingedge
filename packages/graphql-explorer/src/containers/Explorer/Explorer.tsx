@@ -18,10 +18,6 @@ export interface ExplorerProps {
   gatewayUrl: string;
 }
 
-const simplifySchema = (schema: IntrospectionSchema) => {
-  console.log(schema.types);
-};
-
 export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
   const { error, state } = useFetch<SimplifiedIntrospection, { data: IntrospectionQuery }>(
     {
