@@ -6,10 +6,7 @@ path {
 
 .full {
   display: flex;
-
-  @include mq-m {
-    justify-content: flex-start
-  }
+  justify-content: center;
 }
 
 .container {
@@ -51,8 +48,12 @@ path {
     }
   }
 
-  div:not(.expanded) ul li {
-    @include mr(2);
+  div:not(.expanded):not(.contact) ul li {
+    @include mr(1);
+    
+    @include mq-l {
+      @include mr(2);
+    }
   }
 }
 
@@ -215,11 +216,12 @@ ul li.horizontal.mobile.close__button{
   color: #ffffff;
   border-radius: 1rem;
   font-weight: bold;
-  font-size: 2rem;
-  top: 0 !important;
-  padding: 1rem;
+  font-size: 1.25rem;
+  padding: .5rem;
   
   @include mq-m {
+    top: 0 !important;
+    font-size: 2rem;
     padding: 1rem 2rem;
   }
 }

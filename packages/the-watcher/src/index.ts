@@ -39,10 +39,9 @@ program
 
         proc.halt();
         yield onEmit<[string, string]>(watcher, 'all').forEach(function* ([, file]) {
-          logger.debug('triggered');
+          logger.debug(`triggered by ${path.dirname(file)}`);
           yield sleep(1000);
 
-          logger.debug('actually doing it');
           const dir = path.dirname(path.join(rootPackage, file));
           const nearestPackage = yield findIO(dir, hasPackageJson);
 

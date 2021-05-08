@@ -41,7 +41,7 @@ export const Menu: FC = () => {
           </li>
           <li className={cs(styles['contact'], styles.horizontal)}>
             <NavLink to={Urls.ContactMe} activeClassName={styles.active} onClick={collapse}>
-              Ask Me
+              Contact
             </NavLink>
           </li>
           <li className={styles.mobile__button__container}>
