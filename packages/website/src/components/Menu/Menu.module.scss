@@ -149,7 +149,7 @@ ul li.logo__container {
 
 }
 
-ul li.horizontal:not(.ask-me) {
+ul li.horizontal:not(.contact) {
     display: none;
 
   @include mq-m {
@@ -210,7 +210,7 @@ ul li.horizontal.mobile.close__button{
   }
 }
 
-.ask-me a {
+.contact a {
   background-color: #FF8B45;
   color: #ffffff;
   border-radius: 1rem;
