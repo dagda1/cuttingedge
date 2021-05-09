@@ -35,7 +35,7 @@ const Graphs = loadable(() => import(/* webpackPrefetch: true */ 'src/components
   fallback,
 });
 
-const Viz = loadable(() => import('src/containers/Viz/Viz').then((m) => m.Viz), {
+const Viz = loadable(() => import('src/containers/Viz/Viz'), {
   fallback,
 });
 
