@@ -21,7 +21,9 @@ var copyPublicFolder = function () {
     if (!fs_extra_1.default.existsSync(paths_1.paths.appPublic)) {
         return;
     }
-    fs_extra_1.default.mkdirSync(paths_1.paths.appBuildPublic);
+    if (!fs_extra_1.default.existsSync(paths_1.paths.appBuildPublic)) {
+        fs_extra_1.default.mkdirSync(paths_1.paths.appBuildPublic);
+    }
     exports.copyRecursiveSync(paths_1.paths.appPublic, paths_1.paths.appBuildPublic);
 };
 exports.copyPublicFolder = copyPublicFolder;

@@ -1,6 +1,18 @@
 @import '../../assets/scss/main';
 
+$stroke-color: $white;
+$stroke-width: 2;
+
 .main {
   flex: 1;
   border: 1px solid red;
+}
+
+.main circle, .hypotenuse {
+  stroke: $stroke-color;
+  stroke-width: $stroke-width;
+}
+
+.unit-cirle {
+  fill: none;
 }

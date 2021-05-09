@@ -28,6 +28,7 @@
     "cookie-parser": "1.4.5",
     "csurf": "^1.11.0",
     "d3-array": "^2.12.1",
+    "d3-scale": "^3.3.0",
     "dayjs": "^1.10.4",
     "express": "^4.17.1",
     "global": "^4.4.0",
