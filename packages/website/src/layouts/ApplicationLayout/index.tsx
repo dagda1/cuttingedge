@@ -44,6 +44,7 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
 
   return (
     <ApplicationLayoutWithRouterScroll
+      className={className}
       heading={
         heading && (
           <Heading
@@ -67,7 +68,7 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
       }
       Footer={showFooter ? <Footer /> : undefined}
     >
-      <main className={className}>{children}</main>
+      <>{children}</>
     </ApplicationLayoutWithRouterScroll>
   );
 };
