@@ -15,7 +15,6 @@ const Default = () => <Redirect to={Urls.Sine} />;
 
 export const Viz: FC = () => {
   const { path: currentPath } = useRouteMatch();
-  console.log(currentPath);
   return (
     <>
       <Switch>

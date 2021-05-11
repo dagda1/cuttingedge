@@ -8,11 +8,23 @@ $stroke-width: 2;
   border: 1px solid red;
 }
 
-.main circle, .hypotenuse, .opposite, .adjacent, .joining-line {
+.main circle, .hypotenuse, .opposite, .adjacent, .joining-line, .axis-line, .sine, .ray {
   stroke: $stroke-color;
   stroke-width: $stroke-width;
 }
 
+.ray {
+  stroke-opacity: 0.5;
+}
+
+.axis {
+  stroke: $stroke-color;
+}
+
 .unit-cirle, .dot, .axis-dot, .vertical-guide {
   fill-opacity: 0.1;
+}
+
+.sine {
+  fill: none;
 }
