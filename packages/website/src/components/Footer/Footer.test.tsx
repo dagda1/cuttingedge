@@ -1,5 +1,6 @@
 import { Footer } from '.';
 import { wrapComponentInReduxForTesting } from '../../tests';
+import { describe, it, expect } from '@jest/globals';
 
 describe('<Footer />', () => {
   it('should render footer', () => {
