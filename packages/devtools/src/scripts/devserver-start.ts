@@ -65,6 +65,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 
     server.listen(port, HOST, (err) => {
       if (err) {
+        console.error(err);
         logger.error(err);
         return;
       }
@@ -83,6 +84,7 @@ const HOST = process.env.HOST || '0.0.0.0';
     });
   } catch (err) {
     if (err) {
+      console.error(err);
       logger.error(err.message);
     }
     process.exit(1);

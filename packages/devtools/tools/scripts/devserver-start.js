@@ -115,6 +115,7 @@ var HOST = process.env.HOST || '0.0.0.0';
                 server_1 = new webpack_dev_server_1.default(compiler, config.devServer);
                 server_1.listen(port, HOST, function (err) {
                     if (err) {
+                        console.error(err);
                         logger_1.logger.error(err);
                         return;
                     }
@@ -134,6 +135,7 @@ var HOST = process.env.HOST || '0.0.0.0';
             case 3:
                 err_1 = _a.sent();
                 if (err_1) {
+                    console.error(err_1);
                     logger_1.logger.error(err_1.message);
                 }
                 process.exit(1);
