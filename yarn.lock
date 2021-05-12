@@ -1012,7 +1012,7 @@
 
 "@effection/channel@^1.0.0":
   version "1.0.0"
-  resolved "https://registry.npmjs.org/@effection/channel/-/channel-1.0.0.tgz#6f41e210d3bf88298784f6716a074d834246e381"
+  resolved "https://registry.yarnpkg.com/@effection/channel/-/channel-1.0.0.tgz#6f41e210d3bf88298784f6716a074d834246e381"
   integrity sha512-uMzvWqGxWu9pBMEHKk/NqPuL4sg1Fg4W2nsdv14yn+y7JXl1lTAFMk0t8prwnZCLMGEew1NxwwdnFiD9Q6Mrhw==
   dependencies:
     "@effection/events" "^1.0.0"
@@ -1034,7 +1034,7 @@
 
 "@effection/events@^1.0.0":
   version "1.0.0"
-  resolved "https://registry.npmjs.org/@effection/events/-/events-1.0.0.tgz#4430ed538377bf04a5efd7c3b6d40a7b4e2b0607"
+  resolved "https://registry.yarnpkg.com/@effection/events/-/events-1.0.0.tgz#4430ed538377bf04a5efd7c3b6d40a7b4e2b0607"
   integrity sha512-IiQLoGktVBucpCGqWInhT35a7oMeeelIK7XmWTm/35D8ViL2KBLNH700gGcXe6pAQAR0NZghbTQf1s25nt/I4w==
   dependencies:
     "@effection/subscription" "^1.0.0"
@@ -1055,7 +1055,7 @@
 
 "@effection/node@^1.0.1":
   version "1.0.1"
-  resolved "https://registry.npmjs.org/@effection/node/-/node-1.0.1.tgz#ea37041046a592b1f02ca397810c6c811806948e"
+  resolved "https://registry.yarnpkg.com/@effection/node/-/node-1.0.1.tgz#ea37041046a592b1f02ca397810c6c811806948e"
   integrity sha512-mbgpMeLhyLYcVFgInOWnXNb1DPC3ZnijIVdA+VFfa9tnzUuUP0ZpeAVMgdMcaclx1pD4f/WPmCCV93w37O/66Q==
   dependencies:
     "@effection/channel" "^1.0.0"
@@ -1075,7 +1075,7 @@
 
 "@effection/subscription@^1.0.0":
   version "1.0.0"
-  resolved "https://registry.npmjs.org/@effection/subscription/-/subscription-1.0.0.tgz#331cc08f8ebc5a09be705532d93d4d308e31ff44"
+  resolved "https://registry.yarnpkg.com/@effection/subscription/-/subscription-1.0.0.tgz#331cc08f8ebc5a09be705532d93d4d308e31ff44"
   integrity sha512-Uldp70Yv/i8vbP+f7vr7U14YMT7iZUm8yrsWKcNUCGOypM8kCPXX3ihtvJ+P3ZpFShecfFQQpjblIVaBEkx37g==
   dependencies:
     effection "^1.0.0"
@@ -2272,9 +2272,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@>=16.9.0", "@types/react@^17.0.0", "@types/react@^17.0.3":
-  version "17.0.4"
-  resolved "https://registry.npmjs.org/@types/react/-/react-17.0.4.tgz#a67c6f7a460d2660e950d9ccc1c2f18525c28220"
-  integrity sha512-onz2BqScSFMoTRdJUZUDD/7xrusM8hBA2Fktk2qgaTYPCgPvWnDEgkrOs8hhPUf2jfcIXkJ5yK6VfYormJS3Jw==
+  version "17.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.5.tgz#3d887570c4489011f75a3fc8f965bf87d09a1bea"
+  integrity sha512-bj4biDB9ZJmGAYTWSKJly6bMr4BLUiBrx9ujiJEoP9XIDY9CTaPGxE5QWN/1WjpPLzYF7/jRNnV2nNxNe970sw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -11144,9 +11144,9 @@ postcss-value-parser@^4.0.2, postcss-value-parser@^4.1.0:
   resolved "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.1.0.tgz#443f6a20ced6481a2bda4fa8532a6e55d789a2cb"
   integrity sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
 
-"postcss@5 - 7", postcss@6.0.1, postcss@7.0.2, postcss@^6.0.1, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.26, postcss@^7.0.27, postcss@^7.0.32, postcss@^7.0.35, postcss@^7.0.5, postcss@^7.0.6, postcss@^8.2.1:
+"postcss@5 - 7", postcss@6.0.1, postcss@7.0.2, postcss@^6.0.1, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.26, postcss@^7.0.27, postcss@^7.0.32, postcss@^7.0.35, postcss@^7.0.5, postcss@^7.0.6, postcss@^8.2.1, postcss@^8.2.10:
   version "7.0.35"
-  resolved "https://registry.npmjs.org/postcss/-/postcss-7.0.35.tgz#d2be00b998f7f211d8a276974079f2e92b970e24"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.35.tgz#d2be00b998f7f211d8a276974079f2e92b970e24"
   integrity sha512-3QT8bBJeX/S5zKTTjTCIjRF3If4avAT6kqxcASlTWEtAFCb9NH0OUxNDfgZSWdP5fJnBYCMEWkIFfWeugjzYMg==
   dependencies:
     chalk "^2.4.2"
