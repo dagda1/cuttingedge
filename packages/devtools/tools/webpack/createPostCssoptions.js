@@ -1,5 +1,4 @@
 "use strict";
-// import postcssNormalize from 'postcss-normalize';
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createPostCssOptions = void 0;
 var createPostCssOptions = function (_a) {
@@ -11,7 +10,12 @@ var createPostCssOptions = function (_a) {
             sourceMap: true,
             ident: 'postcss',
             parser: 'postcss-scss',
-            plugins: [require('postcss-import'), require('autoprefixer'), require('postcss-flexbugs-fixes')],
+            plugins: [
+                require('postcss-import'),
+                require('postcss-url'),
+                require('autoprefixer'),
+                require('postcss-flexbugs-fixes'),
+            ],
         },
     });
 };
