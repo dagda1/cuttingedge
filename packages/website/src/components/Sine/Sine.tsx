@@ -22,10 +22,10 @@ const Sine: FC = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const animate = useCallback((time: number) => dispatch({ type: 'TICK', payload: { radius, firstX, time } }), [
-    firstX,
-    radius,
-  ]);
+  const animate = useCallback(
+    (time: number) => dispatch({ type: 'TICK', payload: { radius, firstX, time, xAxisScale } }),
+    [firstX, radius, xAxisScale],
+  );
 
   useEffect(() => {
     tickFrame.current = requestAnimationFrame(animate.bind(state.time));

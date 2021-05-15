@@ -84,7 +84,7 @@ export const getScales = ({
   };
 };
 
-type SineActions = { type: 'TICK'; payload: { radius: number; firstX: number; time: number } };
+type SineActions = { type: 'TICK'; payload: { radius: number; firstX: number; time: number; xAxisScale: SineLinear } };
 
 const MarkerWidth = 5;
 
@@ -123,7 +123,7 @@ export const initialState = {
 export const reducer: Reducer<typeof initialState, SineActions> = (state, action) => {
   switch (action.type) {
     case 'TICK':
-      const { radius, firstX } = action.payload;
+      const { radius, firstX, xAxisScale } = action.payload;
 
       const sine = range(0, 54)
         .map((x) => (x * 10) / 85)
@@ -154,7 +154,7 @@ export const reducer: Reducer<typeof initialState, SineActions> = (state, action
         },
         axisDot: {
           ...state.axisDot,
-          cx: radius,
+          cx: xAxisScale(state.xIncrement),
         },
         dot: {
           ...state.dot,
@@ -165,6 +165,7 @@ export const reducer: Reducer<typeof initialState, SineActions> = (state, action
           from: { x: firstX, y: state.joiningLine.from.y },
         },
         time: (state.time += increase),
+        xIncrement: state.xIncrement > Math.PI * 2 ? increase : state.xIncrement + increase,
         sine,
         rays,
       };
