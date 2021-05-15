@@ -17,7 +17,7 @@ export const createJsLoader = ({
 }): RuleSetRule[] => [
   {
     test: /\.(js|jsx|mjs|cjs)$/,
-    include: paths.appSrc,
+    include: [paths.appSrc],
     use: [
       {
         loader: 'babel-loader',

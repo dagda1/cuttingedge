@@ -23,13 +23,13 @@ export const PiMap = {
 export type PiMapKeys = keyof typeof PiMap;
 
 const radians = [
-  { value: Math.PI / 4, label: '$\\frac' + '{\\pi}4$' },
-  { value: Math.PI / 2, label: '$\\frac' + '{\\pi}2$' },
-  { value: (3 * Math.PI) / 4, label: '$\\frac' + '{3\\pi}4$' },
+  { value: Math.PI / 4, label: '$\\frac{\\pi}4$' },
+  { value: Math.PI / 2, label: '$\\frac{\\pi}2$' },
+  { value: (3 * Math.PI) / 4, label: '$\\frac{3\\pi}4$' },
   { value: Math.PI, label: '$\\pi$' },
-  { value: (5 * Math.PI) / 4, label: '$\\frac' + '{5\\pi}4$' },
-  { value: (3 * Math.PI) / 2, label: '$\\frac' + '{3\\pi}2$' },
-  { value: (7 * Math.PI) / 4, label: '$\\frac' + '{7\\pi}4$' },
+  { value: (5 * Math.PI) / 4, label: '$\\frac{5\\pi}4$' },
+  { value: (3 * Math.PI) / 2, label: '$\\frac{3\\pi}2$' },
+  { value: (7 * Math.PI) / 4, label: '$\\frac{7\\pi}4$' },
   { value: 2 * Math.PI, label: '${2\\pi}$' },
 ];
 
@@ -99,7 +99,7 @@ export const initialState = {
   opposite: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
   adjacent: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
   dot: { cx: 0, cy: 0, r: MarkerWidth },
-  verticalGuide: { cx: 0, cy: 0, r: MarkerWidth },
+  verticalDot: { cx: 0, cy: 0, r: MarkerWidth },
   joiningLine: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
   axisDot: { cx: 0, cy: 0, r: MarkerWidth },
   sine: [
@@ -123,13 +123,19 @@ export const initialState = {
 export const reducer: Reducer<typeof initialState, SineActions> = (state, action) => {
   switch (action.type) {
     case 'TICK':
+      const newTime = state.time + increase;
+      const newXIncrement = state.xIncrement > Math.PI * 2 ? increase : state.xIncrement + increase + increase;
+
       const { radius, firstX, xAxisScale } = action.payload;
 
       const sine = range(0, 54)
         .map((x) => (x * 10) / 85)
         .map((x) => {
-          return { x: x, y: -Math.sin(x - state.time) };
+          return { x: x, y: -Math.sin(x - newTime) };
         });
+
+      const dx = radius * Math.cos(newTime);
+      const dy = radius * -Math.sin(newTime); // counter-clockwise
 
       const rays = radians.map(({ value, label }) => {
         const offsetX = 0; //value > Math.PI / 2 && value < (3 * Math.PI) / 2 ? -20 : -5;
@@ -154,17 +160,35 @@ export const reducer: Reducer<typeof initialState, SineActions> = (state, action
         },
         axisDot: {
           ...state.axisDot,
-          cx: xAxisScale(state.xIncrement),
+          cx: xAxisScale(newXIncrement),
         },
         dot: {
-          ...state.dot,
-          r: radius,
+          cx: dx,
+          cy: dy,
+          r: MarkerWidth,
         },
         joiningLine: {
           ...state.joiningLine,
           from: { x: firstX, y: state.joiningLine.from.y },
         },
-        time: (state.time += increase),
+        hypotenuse: {
+          ...state.hypotenuse,
+          to: { x: dx, y: dy },
+        },
+        opposite: {
+          ...state.opposite,
+          from: { x: dx, y: dy },
+          to: { x: dx, y: 0 },
+        },
+        adjacent: {
+          ...state.adjacent,
+          from: { x: dx, y: 0 },
+        },
+        verticalDot: {
+          ...state.verticalDot,
+          cy: dy,
+        },
+        time: newTime,
         xIncrement: state.xIncrement > Math.PI * 2 ? increase : state.xIncrement + increase,
         sine,
         rays,

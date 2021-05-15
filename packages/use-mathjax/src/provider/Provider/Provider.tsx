@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { browserAdaptor } from 'mathjax3/mathjax3/adaptors/browserAdaptor';
 import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
 import { MathDocument } from 'mathjax3/mathjax3/core/MathDocument';
@@ -7,6 +7,7 @@ import { MathJax } from 'mathjax3';
 import { TeX } from 'mathjax3/mathjax3/input/tex.js';
 import { SVG } from 'mathjax3/mathjax3/output/svg.js';
 import { AllPackages } from 'mathjax3/mathjax3/input/tex/AllPackages';
+import { useIsomorphicLayoutEffect } from 'react-use';
 
 interface MathDoc {
   version: string;
@@ -19,14 +20,16 @@ export interface ProviderProps {
   mathDocument: MathDoc;
 }
 
-RegisterHTMLHandler(browserAdaptor());
+if (typeof window !== 'undefined') {
+  RegisterHTMLHandler(browserAdaptor());
+}
 
 export const [Provider, useMathJaxContext] = createStrictContext<MathDoc | undefined>({ strict: false });
 
 export const MathJaxProvider: FC = ({ children }) => {
   const [mathDocument, setMathDocument] = useState<MathDoc>();
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const html = MathJax.document(document, {
       InputJax: new TeX({
         inlineMath: [

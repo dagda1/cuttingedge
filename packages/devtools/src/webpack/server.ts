@@ -22,6 +22,7 @@ export const getExternals = function (isDevelopment: boolean): webpack.Externals
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
+        /^mathjax3/,
         /^@babel/,
         /^@loadable/,
         /^@cutting/,

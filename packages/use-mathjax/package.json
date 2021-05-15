@@ -25,8 +25,7 @@
   "dependencies": {
     "@cutting/util": "4.23.2",
     "assert-ts": "^0.3.2",
-    "mathjax": "3",
-    "mathjax3": "^3.0.0-beta.4"
+    "mathjax": "3"
   },
   "devDependencies": {
     "@cutting/devtools": "4.23.0",

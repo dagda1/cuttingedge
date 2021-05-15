@@ -53,18 +53,18 @@ export const Maths: FC = () => {
 `}
         </SyntaxHighlighter>
         <h2>Or with the MathJax component</h2>
-        <MathJax html={`$$\\int x^2dx$$`} />
-        <MathJax html={`$$\\frac{5\\pi}4$$`} />
-        <MathJax html={`$$\\frac{3\\pi}2$$`} />
+        <MathJax expr={`$$\\int x^2dx$$`} />
+        <MathJax expr={`$$\\frac{5\\pi}4$$`} />
+        <MathJax expr={`$$\\frac{3\\pi}2$$`} />
         <SyntaxHighlighter language="javascript" style={docco}>
           {`
 import { MathJax } from '@cutting/use-mathjax';
 //
 //
 //
-        <MathJax html={\`$$\\int x^2dx$$\`} />
-        <MathJax html={\`$$\\frac{5\\pi}4$$\`} />
-        <MathJax html={\`$$\\frac{3\\pi}2$$\`} />
+        <MathJax expr={\`$$\\int x^2dx$$\`} />
+        <MathJax expr={\`$$\\frac{5\\pi}4$$\`} />
+        <MathJax expr={\`$$\\frac{3\\pi}2$$\`} />
           `}
         </SyntaxHighlighter>
       </div>

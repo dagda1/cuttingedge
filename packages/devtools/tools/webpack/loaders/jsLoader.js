@@ -9,7 +9,7 @@ var createJsLoader = function (_a) {
     return [
         {
             test: /\.(js|jsx|mjs|cjs)$/,
-            include: paths_1.paths.appSrc,
+            include: [paths_1.paths.appSrc],
             use: [
                 {
                     loader: 'babel-loader',

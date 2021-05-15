@@ -6,7 +6,7 @@ import { useParentSize } from '@cutting/hooks';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { LinePath } from '@visx/shape';
 import { curveMonotoneX } from '@visx/curve';
-import { Text } from '@visx/text';
+import { SVGMathJax } from '@cutting/use-mathjax';
 
 import styles from './Sine.module.scss';
 import { getScales, reducer, initialState, xTickValues, PiMap, PiMapKeys } from './utils';
@@ -29,12 +29,10 @@ const Sine: FC = () => {
 
   useEffect(() => {
     tickFrame.current = requestAnimationFrame(animate.bind(state.time));
-
     return () => {
       if (!tickFrame.current) {
         return;
       }
-
       cancelAnimationFrame(tickFrame.current);
     };
   }, [animate, firstX, radius, state.time]);
@@ -49,7 +47,7 @@ const Sine: FC = () => {
             {state.rays.map(({ cosX, sinY, label, offsetX, offsetY }) => (
               <React.Fragment key={label}>
                 <Group transform={`translate(${offsetX}, ${offsetY})`}>
-                  <Text className={styles.ray}>{label}</Text>
+                  <SVGMathJax expr={label} />
                 </Group>
                 <Line className={styles.ray} from={{ x: 0, y: 0 }} to={{ x: cosX, y: sinY }} />
               </React.Fragment>
@@ -60,7 +58,7 @@ const Sine: FC = () => {
             <Line className={styles.opposite} {...state.opposite} />
             <Line className={styles.adjacent} {...state.adjacent} />
             <circle className={styles.dot} {...state.dot} />
-            <circle className={styles['vertical-guide']} {...state.verticalGuide} />
+            <circle className={styles['vertical-guide']} {...state.verticalDot} />
             <Line className={styles['joining-line']} {...state.joiningLine} />
             <circle className={styles['axis-dot']} {...state.axisDot} />
             {expanded && (

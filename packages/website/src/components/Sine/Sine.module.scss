@@ -12,6 +12,12 @@ $stroke-width: 2;
   stroke-width: $stroke-width;
 }
 
+.main circle {
+  &:not(.unit-circle) {
+    fill: $stroke-color;
+  }
+}
+
 .ray {
   stroke-opacity: 0.5;
 }
@@ -20,8 +26,8 @@ $stroke-width: 2;
   stroke: $stroke-color;
 }
 
-.unit-cirle, .dot, .axis-dot, .vertical-guide {
-  fill-opacity: 0.1;
+.unit-cirle {
+  fill-opacity: 0;
 }
 
 .sine {
