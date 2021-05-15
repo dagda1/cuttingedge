@@ -101,7 +101,9 @@ export const initialState = {
   dot: { cx: 0, cy: 0, r: MarkerWidth },
   verticalDot: { cx: 0, cy: 0, r: MarkerWidth },
   joiningLine: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
-  axisDot: { cx: 0, cy: 0, r: MarkerWidth },
+  // TODO: fix axisDot
+  // axisDot: { cx: 0, cy: 0, r: MarkerWidth },
+  axisDot: { cx: 0, cy: 0, r: 0 },
   sine: [
     {
       x: 0,
@@ -124,15 +126,13 @@ export const reducer: Reducer<typeof initialState, SineActions> = (state, action
   switch (action.type) {
     case 'TICK':
       const newTime = state.time + increase;
-      const newXIncrement = state.xIncrement > Math.PI * 2 ? increase : state.xIncrement + increase + increase;
+      const newXIncrement = state.xIncrement > Math.PI * 2 ? increase : state.xIncrement + increase;
 
-      const { radius, firstX, xAxisScale } = action.payload;
+      const { radius, firstX } = action.payload;
 
       const sine = range(0, 54)
         .map((x) => (x * 10) / 85)
-        .map((x) => {
-          return { x: x, y: -Math.sin(x - newTime) };
-        });
+        .map((x) => ({ x, y: -Math.sin(x - newTime) }));
 
       const dx = radius * Math.cos(newTime);
       const dy = radius * -Math.sin(newTime); // counter-clockwise
@@ -158,10 +158,11 @@ export const reducer: Reducer<typeof initialState, SineActions> = (state, action
           ...state.unitCircle,
           r: radius,
         },
-        axisDot: {
-          ...state.axisDot,
-          cx: xAxisScale(newXIncrement),
-        },
+        // TODO: fix axisDot
+        // axisDot: {
+        //   ...state.axisDot,
+        //   cx: xAxisScale(newXIncrement),
+        // },
         dot: {
           cx: dx,
           cy: dy,
@@ -189,7 +190,7 @@ export const reducer: Reducer<typeof initialState, SineActions> = (state, action
           cy: dy,
         },
         time: newTime,
-        xIncrement: state.xIncrement > Math.PI * 2 ? increase : state.xIncrement + increase,
+        xIncrement: newXIncrement,
         sine,
         rays,
       };
