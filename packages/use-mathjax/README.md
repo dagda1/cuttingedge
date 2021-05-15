@@ -1,8 +1,8 @@
 # @cutting/use-mathjax
 
-A React component `<MathJax />` and a `useMathJax` hook to easily load [MathJax version 3](https://github.com/mathjax/MathJax-src) Tex content.
+React components `<MathJax />`, `<SVGMathJax>` and a `useMathJax` hook to easily load [MathJax version 3](https://github.com/mathjax/MathJax-src) Tex content.
 
-
+A real working demo is [here](https://cutting.scot/viz/sine) which is why I wrote this component.
 
 ## install 
 
@@ -73,9 +73,9 @@ import { MathJax, MathJaxProvider } from '@cutting/use-mathjax';
 const Maths = () => {
   return (
     <>
-      <MathJax html={`$$\\int x^2dx$$`} />
-      <MathJax html={`$$\\frac{5\\pi}4$$`} />
-      <MathJax html={`$$\\frac{3\\pi}2$$`} />
+      <MathJax expr={`$$\\int x^2dx$$`} />
+      <MathJax expr={`$$\\frac{5\\pi}4$$`} />
+      <MathJax expr={`$$\\frac{3\\pi}2$$`} />
     </>
   )
 }
@@ -93,4 +93,4 @@ export const App: FC = () => {
 
 ![math notation rendered with MathJax component](./img/eq2.png)
 
-The `MathJax` component takes an `html` string prop of MathJax markup.
+The `MathJax` component takes an `expr` string prop of MathJax markup.

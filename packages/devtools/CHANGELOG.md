@@ -1,6 +1,6 @@
-# Changelog
+# @cutting/devtools
 
-## \[4.23.0]
+## 4.24.0
+### Minor Changes
 
-- Remove hard react dependency
-  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
+- Add nested Mathax svg support

@@ -1,6 +1,8 @@
-# Changelog
+# @cutting/component-library
 
-## \[4.23.0]
+## 4.23.2
+### Patch Changes
 
-- Remove hard react dependency
-  - [](https://github.com/dagda1/cuttingedge/commit/undefined)  on undefined
+- Updated dependencies [undefined]
+  - @cutting/util@4.24.0
+  - @cutting/hooks@4.24.1
