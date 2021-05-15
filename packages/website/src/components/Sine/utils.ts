@@ -138,8 +138,8 @@ export const reducer: Reducer<typeof initialState, SineActions> = (state, action
       const dy = radius * -Math.sin(newTime); // counter-clockwise
 
       const rays = radians.map(({ value, label }) => {
-        const offsetX = 0; //value > Math.PI / 2 && value < (3 * Math.PI) / 2 ? -20 : -5;
-        const offsetY = 0; // value > 0 && value < Math.PI ? -35 : 0;
+        const offsetX = value > Math.PI / 2 && value < (3 * Math.PI) / 2 ? -20 : -5;
+        const offsetY = value > 0 && value < Math.PI ? -35 : 0;
         const cosX = radius * Math.cos(value);
         const sinY = radius * -Math.sin(value);
 

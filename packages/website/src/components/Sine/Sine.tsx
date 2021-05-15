@@ -10,6 +10,7 @@ import { SVGMathJax } from '@cutting/use-mathjax';
 
 import styles from './Sine.module.scss';
 import { getScales, reducer, initialState, xTickValues, PiMap, PiMapKeys } from './utils';
+import { BottomAxis } from './BottomAxis';
 
 const Sine: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -80,6 +81,7 @@ const Sine: FC = () => {
                     axisClassName={styles.axis}
                     axisLineClassName={styles['axis-line']}
                     tickStroke="#fff"
+                    tickComponent={BottomAxis}
                   />
                 </Group>
                 <LinePath<{ x: number; y: number }>
