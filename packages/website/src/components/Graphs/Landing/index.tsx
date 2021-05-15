@@ -5,13 +5,13 @@ import { Route, Switch } from 'react-router';
 import type { Page } from '@cutting/util';
 import { fallback } from 'src/components/Fallback/Fallback';
 
-const Deaths = loadable(() => import('src/components/Confirmed'), {
-  fallback,
-});
+// const Deaths = loadable(() => import('src/components/Confirmed'), {
+//   fallback,
+// });
 
-const RateOfChange = loadable(() => import('src/components/RateOfChange'), {
-  fallback,
-});
+// const RateOfChange = loadable(() => import('src/components/RateOfChange'), {
+//   fallback,
+// });
 
 const IncreseFromPreviousDay = loadable(() => import('src/components/IncreseFromPreviousDay'), {
   fallback,
@@ -34,18 +34,18 @@ export const routable: Page[] = [
     component: IncreseFromPreviousDay,
     exact: true,
   },
-  {
-    heading: 'Deaths',
-    path: Urls.Deaths,
-    component: Deaths,
-    exact: true,
-  },
-  {
-    heading: 'Rate of change',
-    path: Urls.RateOfChange,
-    component: RateOfChange,
-    exact: true,
-  },
+  // {
+  //   heading: 'Deaths',
+  //   path: Urls.Deaths,
+  //   component: Deaths,
+  //   exact: true,
+  // },
+  // {
+  //   heading: 'Rate of change',
+  //   path: Urls.RateOfChange,
+  //   component: RateOfChange,
+  //   exact: true,
+  // },
 ];
 
 export const Landing: FC = () => (

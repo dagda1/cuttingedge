@@ -1,5 +1,5 @@
 // https://www.nationsonline.org/oneworld/country_code_list.htm
-export type Countries = 'ITA' | 'GBR' | 'USA' | 'SWE' | 'SCO' | 'TUR';
+export type Countries = 'ITA' | 'GBR' | 'USA' | 'SWE' | 'SCO' | 'TUR' | 'IND';
 
 export type CountryData = {
   longName: string;
@@ -67,6 +67,11 @@ export const countryData: CountriesData = {
   //   color: '#FEDF00',
   //   population: 210000000,
   // },
+  IND: {
+    longName: 'India',
+    color: '#964B00',
+    population: 1366000000,
+  },
   USA: {
     longName: 'USA',
     color: '#BF0A30',

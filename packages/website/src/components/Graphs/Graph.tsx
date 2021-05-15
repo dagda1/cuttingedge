@@ -64,11 +64,11 @@ export const Graph: FC<GraphProps> = ({
               url: Urls.IncreaseInDeaths,
               text: 'Daily increase in deaths (World)',
             },
-            {
-              url: Urls.RateOfChange,
-              text: 'Rate of change',
-            },
-            { url: Urls.Deaths, text: 'Total deaths' },
+            // {
+            //   url: Urls.RateOfChange,
+            //   text: 'Rate of change',
+            // },
+            // { url: Urls.Deaths, text: 'Total deaths' },
           ].map((u) => {
             if (location.pathname === u.url) {
               return <li key={u.url}>{u.text}</li>;
