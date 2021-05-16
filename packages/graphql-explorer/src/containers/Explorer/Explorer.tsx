@@ -1,43 +1,44 @@
 import type { FC } from 'react';
-import {
-  buildClientSchema,
-  IntrospectionQuery,
-  introspectionFromSchema,
-  lexicographicSortSchema,
-  IntrospectionSchema,
-} from 'graphql';
+import { buildClientSchema, IntrospectionQuery, introspectionFromSchema, lexicographicSortSchema } from 'graphql';
 import { useRef } from 'react';
 import { getIntrospectionQuery } from 'graphql';
 import { ParentsizeSVG } from '@cutting/svg';
 import styles from './Explorer.module.scss';
 import { useFetch } from '@cutting/react-abortable-fetch';
 import { LoadingOverlay } from '@cutting/component-library';
-import { SimplifiedIntrospection } from '../../types';
+import { SimplifiedIntrospectionWithIds } from '../../types';
+import { getSchema } from '../../introspection/get-schema';
+import { getTypeGraph } from '../../introspection/get-type-graph';
 
 export interface ExplorerProps {
   gatewayUrl: string;
 }
 
 export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
-  const { error, state } = useFetch<SimplifiedIntrospection, { data: IntrospectionQuery }>(
+  const { data, error, state } = useFetch<{ schema: SimplifiedIntrospectionWithIds }, { data: IntrospectionQuery }>(
     {
       url: gatewayUrl,
       method: 'POST',
       body: JSON.stringify({ query: getIntrospectionQuery() }, null, 2),
     },
     {
-      initialState: {} as SimplifiedIntrospection,
-      accumulator(acc, { data }) {
-        const schema = lexicographicSortSchema(buildClientSchema(data));
-        const introspection = introspectionFromSchema(schema);
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const simplifiedSchema = simplifySchema(introspection.__schema);
-        return acc;
+      initialState: { schema: {} as SimplifiedIntrospectionWithIds },
+      accumulator(_, { data }) {
+        const introspectionSchema = lexicographicSortSchema(buildClientSchema(data));
+        const introspection = introspectionFromSchema(introspectionSchema);
+        const schema = getSchema(introspection.__schema);
+
+        const typeGraph = getTypeGraph(schema, 'Query');
+
+        return { schema, typeGraph };
       },
     },
   );
+
+  if (data) {
+    console.dir(data);
+  }
+
   const ref = useRef<HTMLDivElement>(null);
 
   if (state === 'LOADING') {

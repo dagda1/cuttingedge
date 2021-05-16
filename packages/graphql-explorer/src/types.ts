@@ -57,3 +57,31 @@ export type SimplifiedIntrospection = {
   mutationType: string | null;
   subscriptionType: string | null;
 };
+
+export type SimplifiedTypeWithIDs = SimplifiedTypeBase & {
+  id: string;
+  fields?: {
+    [name: string]: SimplifiedField<SimplifiedTypeWithIDs>;
+  };
+  interfaces?: {
+    id: string;
+    type: SimplifiedTypeWithIDs;
+  }[];
+  derivedTypes?: {
+    id: string;
+    type: SimplifiedTypeWithIDs;
+  }[];
+  possibleTypes?: {
+    id: string;
+    type: SimplifiedTypeWithIDs;
+  }[];
+};
+
+export type SimplifiedIntrospectionWithIds = {
+  types: {
+    [typeName: string]: SimplifiedTypeWithIDs;
+  };
+  queryType: SimplifiedTypeWithIDs;
+  mutationType: SimplifiedTypeWithIDs | null;
+  subscriptionType: SimplifiedTypeWithIDs | null;
+};
