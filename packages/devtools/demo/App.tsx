@@ -1,5 +1,5 @@
 import '@cutting/component-library/dist/component-library.cjs.development.css';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { ApplicationLayout } from '@cutting/component-library';
 
 const Header = <header>Header</header>;

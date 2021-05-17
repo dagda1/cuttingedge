@@ -1,5 +1,5 @@
 import type { Page } from '@cutting/util';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router';
 import * as Urls from 'src/urls';
 import loadable from '@loadable/component';

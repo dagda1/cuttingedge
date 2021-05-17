@@ -23,7 +23,7 @@ The `ParentsizeSVG` component takes an `elementRef` prop that should point to a 
 ## usage
 
 ```ts
-import { FC } from 'react';
+import type { FC } from 'react';
 import { useRef } from 'react';
 import { ParentsizeSVG } from '@cutting/svg';
 

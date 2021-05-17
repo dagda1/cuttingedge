@@ -40,7 +40,7 @@ export interface UseParentSizeOptions {
 - `initialValues` - initially, the `ref` will be `null` and no `width` or `height` values can be returned until it is mounted.  The `initialValues` option can return a specific `width` and `height` value until the `ref` actually references a valid DOM node.  e.g. `const { width, height } = useParentSize(ref, { width: 100, height: 50})`;
 
 ```ts
-import { FC } from 'react';
+import type { FC } from 'react';
 import { useRef } from 'react';
 import type { UseParentSizeOptions } from '@cutting/hooks';
 
