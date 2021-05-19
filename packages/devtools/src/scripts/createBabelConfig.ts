@@ -1,7 +1,7 @@
 import { Options as PresetOptions } from '@babel/preset-env';
 import { Options as RuntimeOptions } from '@babel/plugin-transform-runtime';
 import { ModuleFormat } from '../types/moduleFormat';
-import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
+// import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createBabelPresets = ({
@@ -66,8 +66,8 @@ export const createBabelConfig = ({
     babelrc: false,
     configFile: false,
     presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat }),
-    cacheDirectory: true,
-    cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
+    // cacheDirectory: true,
+    // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
     sourceType: 'unambiguous',
     plugins: [
       'babel-plugin-macros',

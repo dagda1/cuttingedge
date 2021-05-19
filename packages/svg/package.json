@@ -5,7 +5,6 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "type": "module",
   "module": "dist/svg.esm.js",
   "browser": "dist/svg.esm.js",
   "main": "dist/index.js",

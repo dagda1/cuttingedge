@@ -5,7 +5,6 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "type": "module",
   "module": "dist/component-library.esm.js",
   "browser": "dist/component-library.esm.js",
   "main": "dist/index.js",
