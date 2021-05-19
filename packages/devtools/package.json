@@ -124,6 +124,7 @@
     "typescript/**/*.*"
   ],
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
     "@types/autoprefixer": "^10.2.0",
     "@types/babel__plugin-transform-runtime": "^7.9.1",
     "@types/babel__preset-env": "^7.9.1",

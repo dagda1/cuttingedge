@@ -76,6 +76,27 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
 var __values = (this && this.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
@@ -117,12 +138,14 @@ var postcss_url_1 = __importDefault(require("postcss-url"));
 // @ts-ignore
 var autoprefixer_1 = __importDefault(require("autoprefixer"));
 var rollup_plugin_analyzer_1 = __importDefault(require("rollup-plugin-analyzer"));
+var plugin_commonjs_1 = __importDefault(require("@rollup/plugin-commonjs"));
 var createBabelConfig_1 = require("./createBabelConfig");
 var helpers_1 = require("../rollup/helpers");
 var write_package_1 = require("./write-package");
 var csv_1 = require("../rollup/plugins/csv");
 var postcss_import_1 = __importDefault(require("postcss-import"));
 var empty_build_dir_1 = require("./empty-build-dir");
+var core_1 = require("@babel/core");
 logger_1.logger.debug("using  " + path_1.default.basename(paths_1.paths.tsConfigProduction));
 function generateBundledModule(_a) {
     var packageName = _a.packageName, inputFile = _a.inputFile, moduleFormat = _a.moduleFormat, env = _a.env;
@@ -163,6 +186,10 @@ function generateBundledModule(_a) {
                                 plugin_node_resolve_1.default({
                                     mainFields: ['module', 'browser', 'main'],
                                     extensions: ['.mjs', '.cjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
+                                }),
+                                plugin_commonjs_1.default({
+                                    // use a regex to make sure to include eventual hoisted packages
+                                    include: moduleFormat === 'umd' ? /\/node_modules\// : /\/regenerator-runtime\//,
                                 }),
                                 plugin_json_1.default(),
                                 rollup_plugin_md_1.md(),
@@ -206,13 +233,23 @@ function generateBundledModule(_a) {
                                         },
                                     },
                                 }),
-                                plugin_babel_1.default(__assign({ exclude: /\/node_modules\/(core-js)\//, babelHelpers: 'runtime' }, babelConfig)),
+                                plugin_babel_1.default(__assign(__assign({ exclude: /\/node_modules\/(core-js)\//, babelHelpers: 'runtime' }, babelConfig), { extensions: __spreadArray(__spreadArray([], __read(core_1.DEFAULT_EXTENSIONS)), ['ts', 'tsx']) })),
                                 rollup_plugin_inject_process_env_1.default({
                                     NODE_ENV: env,
                                 }),
                                 rollup_plugin_svgo_1.default(),
                                 rollup_plugin_sourcemaps_1.default(),
-                                minify && rollup_plugin_terser_1.terser(),
+                                minify &&
+                                    rollup_plugin_terser_1.terser({
+                                        output: { comments: false },
+                                        compress: {
+                                            keep_infinity: true,
+                                            pure_getters: true,
+                                            passes: 10,
+                                        },
+                                        ecma: 5,
+                                        toplevel: moduleFormat === 'cjs',
+                                    }),
                                 rollup_plugin_analyzer_1.default({ summaryOnly: true, showExports: false, hideDeps: false }),
                             ].filter(Boolean),
                         })];
@@ -220,7 +257,7 @@ function generateBundledModule(_a) {
                     bundle = _b.sent();
                     pkgName = helpers_1.safePackageName(packageName);
                     extension = env === 'production' ? 'min.js' : 'js';
-                    fileName = moduleFormat === 'esm' ? pkgName + ".esm.js" : pkgName + ".cjs." + env + "." + extension;
+                    fileName = moduleFormat === 'umd' ? pkgName + ".umd.js" : 'esm' ? pkgName + ".esm.js" : pkgName + ".cjs." + env + "." + extension;
                     outputFileName = path_1.default.join(paths_1.paths.appBuild, fileName);
                     logger_1.logger.info("writing " + path_1.default.basename(outputFileName) + " for " + packageName);
                     return [4 /*yield*/, bundle.write({
@@ -229,7 +266,7 @@ function generateBundledModule(_a) {
                             name: packageName,
                             exports: 'named',
                             sourcemap: true,
-                            esModule: true,
+                            esModule: moduleFormat !== 'umd',
                             interop: 'auto',
                             freeze: false,
                         })];
@@ -277,6 +314,7 @@ function build() {
                         { moduleFormat: 'cjs', env: 'production' },
                         { moduleFormat: 'esm', env: 'development' },
                         { moduleFormat: 'esm', env: 'production' },
+                        { moduleFormat: 'umd', env: 'production' },
                     ];
                     logger_1.logger.info("Generating " + packageName + " bundle.");
                     _c.label = 2;
@@ -313,10 +351,11 @@ function build() {
                     pkgJson.main = path_1.default.join('dist', 'index.js');
                     moduleFile = path_1.default.join('dist', pkgName + ".esm.js");
                     pkgJson.module = moduleFile;
-                    pkgJson.browser = moduleFile;
-                    pkgJson.type = 'module';
+                    pkgJson.browser = path_1.default.join('dist', pkgName + ".umd.js");
+                    // pkgJson.type = 'module';
                     return [4 /*yield*/, write_package_1.writeToPackage(pkgJsonPath, pkgJson)];
                 case 11:
+                    // pkgJson.type = 'module';
                     _c.sent();
                     return [2 /*return*/];
             }

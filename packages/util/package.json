@@ -1,7 +1,6 @@
 {
   "name": "@cutting/util",
   "version": "4.24.0",
-  "type": "module",
   "module": "dist/util.esm.js",
   "browser": "dist/util.esm.js",
   "main": "dist/index.js",

@@ -25,13 +25,14 @@ import url from 'postcss-url';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
 import analyze from 'rollup-plugin-analyzer';
-
+import commonjs from '@rollup/plugin-commonjs';
 import { createBabelConfig } from './createBabelConfig';
 import { safePackageName, writeCjsEntryFile } from '../rollup/helpers';
 import { writeToPackage } from './write-package';
 import { csv } from '../rollup/plugins/csv';
 import postcssImport from 'postcss-import';
 import { emptyBuildDir } from './empty-build-dir';
+import { DEFAULT_EXTENSIONS } from '@babel/core';
 
 export interface BundlerOptions {
   packageName: string;
@@ -81,6 +82,10 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
         mainFields: ['module', 'browser', 'main'],
         extensions: ['.mjs', '.cjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
       }),
+      commonjs({
+        // use a regex to make sure to include eventual hoisted packages
+        include: moduleFormat === 'umd' ? /\/node_modules\// : /\/regenerator-runtime\//,
+      }),
       json(),
       md(),
       postcss({
@@ -127,20 +132,32 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
         exclude: /\/node_modules\/(core-js)\//,
         babelHelpers: 'runtime',
         ...babelConfig,
+        extensions: [...DEFAULT_EXTENSIONS, 'ts', 'tsx'],
       } as RollupBabelInputPluginOptions),
       injectProcessEnv({
         NODE_ENV: env,
       }),
       svgo(),
       sourceMaps(),
-      minify && terser(),
+      minify &&
+        terser({
+          output: { comments: false },
+          compress: {
+            keep_infinity: true,
+            pure_getters: true,
+            passes: 10,
+          },
+          ecma: 5,
+          toplevel: moduleFormat === 'cjs',
+        }),
       analyze({ summaryOnly: true, showExports: false, hideDeps: false }),
     ].filter(Boolean),
   });
 
   const pkgName = safePackageName(packageName);
   const extension = env === 'production' ? 'min.js' : 'js';
-  const fileName = moduleFormat === 'esm' ? `${pkgName}.esm.js` : `${pkgName}.cjs.${env}.${extension}`;
+  const fileName =
+    moduleFormat === 'umd' ? `${pkgName}.umd.js` : 'esm' ? `${pkgName}.esm.js` : `${pkgName}.cjs.${env}.${extension}`;
   const outputFileName = path.join(paths.appBuild, fileName);
 
   logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
@@ -151,7 +168,7 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
     name: packageName,
     exports: 'named',
     sourcemap: true,
-    esModule: true,
+    esModule: moduleFormat !== 'umd',
     interop: 'auto',
     freeze: false,
   });
@@ -203,6 +220,7 @@ async function build() {
     { moduleFormat: 'cjs', env: 'production' },
     { moduleFormat: 'esm', env: 'development' },
     { moduleFormat: 'esm', env: 'production' },
+    { moduleFormat: 'umd', env: 'production' },
   ];
 
   logger.info(`Generating ${packageName} bundle.`);
@@ -220,8 +238,7 @@ async function build() {
   pkgJson.main = path.join('dist', 'index.js');
   const moduleFile = path.join('dist', `${pkgName}.esm.js`);
   pkgJson.module = moduleFile;
-  pkgJson.browser = moduleFile;
-  pkgJson.type = 'module';
+  pkgJson.browser = path.join('dist', `${pkgName}.umd.js`);
 
   await writeToPackage(pkgJsonPath, pkgJson);
 }

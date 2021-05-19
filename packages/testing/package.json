@@ -2,7 +2,6 @@
   "name": "@cutting/testing",
   "description": "A collection of test helpers.",
   "version": "4.23.1",
-  "type": "module",
   "main": "dist/index.js",
   "module": "dist/testing.esm.js",
   "browser": "dist/testing.esm.js",

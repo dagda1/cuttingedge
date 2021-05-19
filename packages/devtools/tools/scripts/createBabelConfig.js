@@ -12,7 +12,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createBabelConfig = exports.createBabelPresets = void 0;
-var getCacheIdentifier_1 = require("../webpack/loaders/getCacheIdentifier");
+// import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 var createBabelPresets = function (_a) {
     var isDevelopment = _a.isDevelopment, 
@@ -37,6 +37,7 @@ var createBabelPresets = function (_a) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         };
     }
+    console.dir({ presetOptions: presetOptions });
     return [
         ['@babel/preset-env', __assign({}, presetOptions)],
         [
@@ -57,8 +58,8 @@ var createBabelConfig = function (_a) {
         babelrc: false,
         configFile: false,
         presets: exports.createBabelPresets({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: moduleFormat }),
-        cacheDirectory: true,
-        cacheIdentifier: getCacheIdentifier_1.getCacheIdentifier({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: moduleFormat }),
+        // cacheDirectory: true,
+        // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
         sourceType: 'unambiguous',
         plugins: [
             'babel-plugin-macros',

@@ -2,7 +2,6 @@
   "name": "@cutting/hooks",
   "description": "Hooks man, hooks.",
   "version": "4.24.1",
-  "type": "module",
   "main": "dist/index.js",
   "module": "dist/hooks.esm.js",
   "browser": "dist/hooks.esm.js",
