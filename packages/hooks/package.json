@@ -4,7 +4,7 @@
   "version": "4.24.1",
   "main": "dist/index.js",
   "module": "dist/hooks.esm.js",
-  "browser": "dist/hooks.esm.js",
+  "browser": "dist/hooks.umd.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "sideEffects": false,

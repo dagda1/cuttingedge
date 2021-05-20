@@ -50,5 +50,5 @@
     "extends": "../../package.json"
   },
   "main": "dist/index.js",
-  "browser": "dist/use-operation.esm.js"
+  "browser": "dist/use-operation.umd.js"
 }

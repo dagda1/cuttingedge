@@ -8,7 +8,7 @@
   },
   "main": "dist/index.js",
   "module": "dist/use-shortcuts.esm.js",
-  "browser": "dist/use-shortcuts.esm.js",
+  "browser": "dist/use-shortcuts.umd.js",
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",

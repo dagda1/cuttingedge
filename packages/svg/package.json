@@ -6,7 +6,7 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "module": "dist/svg.esm.js",
-  "browser": "dist/svg.esm.js",
+  "browser": "dist/svg.umd.js",
   "main": "dist/index.js",
   "sideEffects": [
     "*.css"

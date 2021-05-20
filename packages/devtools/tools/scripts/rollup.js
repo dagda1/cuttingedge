@@ -352,10 +352,8 @@ function build() {
                     moduleFile = path_1.default.join('dist', pkgName + ".esm.js");
                     pkgJson.module = moduleFile;
                     pkgJson.browser = path_1.default.join('dist', pkgName + ".umd.js");
-                    // pkgJson.type = 'module';
                     return [4 /*yield*/, write_package_1.writeToPackage(pkgJsonPath, pkgJson)];
                 case 11:
-                    // pkgJson.type = 'module';
                     _c.sent();
                     return [2 /*return*/];
             }
