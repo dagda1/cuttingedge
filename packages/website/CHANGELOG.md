@@ -1,5 +1,19 @@
 # @cutting/website
 
+## 4.24.3
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/use-mathjax@4.24.3
+
+## 4.24.2
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/use-mathjax@4.24.2
+
 ## 4.24.1
 
 ### Patch Changes

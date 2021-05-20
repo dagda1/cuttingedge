@@ -1,5 +1,17 @@
 # @cutting/use-mathjax
 
+## 4.24.3
+
+### Patch Changes
+
+- move dep
+
+## 4.24.2
+
+### Patch Changes
+
+- Add react-use dep to use-mathjax
+
 ## 4.24.1
 
 ### Patch Changes
