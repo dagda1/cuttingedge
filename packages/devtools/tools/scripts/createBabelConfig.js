@@ -37,7 +37,6 @@ var createBabelPresets = function (_a) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         };
     }
-    console.dir({ presetOptions: presetOptions });
     return [
         ['@babel/preset-env', __assign({}, presetOptions)],
         [

@@ -1,7 +1,7 @@
 {
   "name": "@cutting/react-abortable-fetch",
   "description": "A simpler use-fetch or use-query or whatever.",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch"
@@ -23,6 +23,7 @@
     "@cutting/util": "4.24.0",
     "@effection/node": "=2.0.0-preview.11",
     "@xstate/react": "^1.3.2",
+    "assert-ts": "^0.3.3",
     "cross-fetch": "^3.1.4",
     "effection": "=2.0.0-preview.11",
     "fetch-jsonp": "^1.1.3",
