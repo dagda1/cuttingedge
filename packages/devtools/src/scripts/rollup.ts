@@ -156,8 +156,9 @@ async function generateBundledModule({ packageName, inputFile, moduleFormat, env
 
   const pkgName = safePackageName(packageName);
   const extension = env === 'production' ? 'min.js' : 'js';
-  const fileName =
-    moduleFormat === 'umd' ? `${pkgName}.umd.js` : 'esm' ? `${pkgName}.esm.js` : `${pkgName}.cjs.${env}.${extension}`;
+  const fileName = ['esm', 'umd'].includes(moduleFormat)
+    ? `${pkgName}.${moduleFormat}.js`
+    : `${pkgName}.cjs.${env}.${extension}`;
   const outputFileName = path.join(paths.appBuild, fileName);
 
   logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
@@ -218,7 +219,6 @@ async function build() {
   const configs: { moduleFormat: ModuleFormat; env: 'development' | 'production' }[] = [
     { moduleFormat: 'cjs', env: 'development' },
     { moduleFormat: 'cjs', env: 'production' },
-    { moduleFormat: 'esm', env: 'development' },
     { moduleFormat: 'esm', env: 'production' },
     { moduleFormat: 'umd', env: 'production' },
   ];

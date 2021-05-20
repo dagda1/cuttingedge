@@ -1,4 +1,4 @@
-import '@cutting/component-library/dist/component-library.cjs.development.css';
+import '@cutting/component-library/dist/component-library.cjs.production.min.css';
 import type { FC } from 'react';
 import { Explorer } from 'src/containers/Explorer/Explorer';
 import { ApplicationLayout } from '@cutting/component-library';

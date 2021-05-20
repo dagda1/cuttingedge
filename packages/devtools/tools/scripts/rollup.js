@@ -257,7 +257,9 @@ function generateBundledModule(_a) {
                     bundle = _b.sent();
                     pkgName = helpers_1.safePackageName(packageName);
                     extension = env === 'production' ? 'min.js' : 'js';
-                    fileName = moduleFormat === 'umd' ? pkgName + ".umd.js" : 'esm' ? pkgName + ".esm.js" : pkgName + ".cjs." + env + "." + extension;
+                    fileName = ['esm', 'umd'].includes(moduleFormat)
+                        ? pkgName + "." + moduleFormat + ".js"
+                        : pkgName + ".cjs." + env + "." + extension;
                     outputFileName = path_1.default.join(paths_1.paths.appBuild, fileName);
                     logger_1.logger.info("writing " + path_1.default.basename(outputFileName) + " for " + packageName);
                     return [4 /*yield*/, bundle.write({
@@ -312,7 +314,6 @@ function build() {
                     configs = [
                         { moduleFormat: 'cjs', env: 'development' },
                         { moduleFormat: 'cjs', env: 'production' },
-                        { moduleFormat: 'esm', env: 'development' },
                         { moduleFormat: 'esm', env: 'production' },
                         { moduleFormat: 'umd', env: 'production' },
                     ];
