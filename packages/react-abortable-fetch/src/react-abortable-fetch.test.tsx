@@ -4,7 +4,6 @@ import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useFetch } from './react-abortable-fetch';
 import { flushPromises } from '@cutting/testing';
-import { fetch as nativeFetch } from 'cross-fetch';
 
 let times = 1;
 
@@ -115,7 +114,7 @@ describe('useFetch', () => {
 
   afterAll(() => server.close());
 
-  describe.only('nested', () => {
+  describe('nested', () => {
     type Vendor = {
       id: number;
       name: string;
@@ -123,24 +122,30 @@ describe('useFetch', () => {
     };
 
     it('should accumulate nested queries', async () => {
+      const onSuccess = jest.fn();
+      const onError = jest.fn();
+      const onAbort = jest.fn();
+
       const { result, waitFor } = renderHook(() =>
         useFetch<Vendor[], typeof vendors>('http://localhost:3000/vendors', {
           executeOnMount: false,
-          accumulator: async (acc, vendors, { fetcher }: { fetcher: typeof nativeFetch }) => {
-            const result: Vendor[] = [];
-
-            for (const vendor of vendors.data) {
+          onSuccess,
+          onError,
+          onAbort,
+          initialState: [],
+          accumulator: async (acc, v, { fetcher }) => {
+            for (const vendor of v.data) {
               const request = await fetcher(`http://localhost:3000/vendors/${vendor.id}/items`);
 
               const items = await request.json();
 
-              result.push({
+              acc.push({
                 ...vendor,
                 ...items,
               });
             }
 
-            return result;
+            return acc;
           },
         }),
       );
@@ -156,6 +161,11 @@ describe('useFetch', () => {
         { id: 2, name: 'johns', vendorId: 2, items: [{ id: 20, name: "John's item" }] },
         { id: 3, name: 'janets', vendorId: 3, items: [{ id: 30, name: "Janet's item" }] },
       ]);
+
+      expect(onSuccess).toHaveBeenCalled();
+      expect(onError).not.toHaveBeenCalled();
+      expect(result.current.state).toBe('SUCCEEDED');
+      expect(onAbort).not.toBeCalled();
     });
   });
 

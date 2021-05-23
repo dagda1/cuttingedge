@@ -61,20 +61,20 @@ export interface AccumulationContext {
   fetcher: typeof nativeFetch | typeof fetchJsonp;
 }
 
+export type Accumulator<R, T> = T extends undefined
+  ? R extends Array<infer U>
+    ? (initialState: R, current: U, context: AccumulationContext) => R | Promise<R>
+    : (initialState: R, current: T, context: AccumulationContext) => R | Promise<R>
+  : (initialState: R, current: T, context: AccumulationContext) => R | Promise<R>;
+
 type FetchOptions<R, T> = {
   method?: Methods;
   initialState?: R;
   contentType?: ContentType;
-  accumulator?: T extends undefined
-    ? R extends Array<infer U>
-      ? (initialState: R, current: U, context: AccumulationContext) => R
-      : (initialState: R, current: T, context: AccumulationContext) => R
-    : (initialState: R, current: T, context: AccumulationContext) => R;
+  accumulator?: Accumulator<R, T>;
   onQueryError?: (e: Error) => void;
   onQuerySuccess?: (t?: T) => void;
 };
-
-export type Accumulator<R, T> = Pick<FetchOptions<R, T>, 'accumulator'>['accumulator'];
 
 export type UseFetchOptions<R, T> = Omit<FetchOptions<R, T>, 'method' | 'contentType'> & {
   executeOnMount?: boolean;
