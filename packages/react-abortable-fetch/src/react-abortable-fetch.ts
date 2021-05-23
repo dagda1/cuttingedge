@@ -6,7 +6,7 @@ import { run, sleep, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import { fetch as nativeFetch } from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
-import { Fn, identity, isAsyncFunction } from '@cutting/util';
+import { Fn, identity, isPromise } from '@cutting/util';
 import { assert } from 'assert-ts';
 import { useIsomorphicLayoutEffect } from './hooks/use-Isomorphic-layout-effect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';
@@ -153,13 +153,10 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
 
           assert(typeof acc !== 'undefined', `no accumulator function present`);
 
-          if (isAsyncFunction(acc)) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            accumulated.current = yield acc(accumulated.current as R, data as any, { request, fetcher }) as Promise<R>;
-          } else {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            accumulated.current = acc(accumulated.current as R, data as any, { request, fetcher }) as R;
-          }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const result = acc(accumulated.current as R, data as any, { request, fetcher }) as Promise<R>;
+
+          accumulated.current = isPromise(result) ? yield result : result;
 
           onQuerySuccess(data);
         }
