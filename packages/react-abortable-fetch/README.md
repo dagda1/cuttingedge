@@ -50,6 +50,7 @@ Here is a [codesandbox](https://codesandbox.io/s/lucid-sun-fke9y?file=/src/App.t
 - [Accumulation](#Accumulation)
   - [Default Accumulation](#Default-accumulation)
   - [Custom Accumulator Function](#Custom-accumlator-function)
+ - [Nested Queries](#Nested-Queries)
 - [Retries](#Retries)
 - [Timeout](#Timeout)
 - [API](#API)
@@ -293,6 +294,48 @@ if( typeof data !== 'undefined') {
 
 WARNING! The operations should be [commutative](https://www.mathsisfun.com/associative-commutative-distributive.html) because there is no guarantee when the async functions will return. 
 
+## Nested-Queries
+
+[codesandbox](https://codesandbox.io/s/react-abortable-nested-example-vry72)
+
+A common scenario is to run one or more async request with the results of the first request.  The [Accumulation][#Accumulation] function can also run async and an `AccumulationContext` is supplied to the accumulator function as the 3rd argument.
+
+```ts
+useFetch<Vendor[], typeof vendors>('http://localhost:3000/vendors', {
+  executeOnMount: false,
+  onSuccess,
+  onError,
+  onAbort,
+  initialState: [],
+  accumulator: async (acc, v, { fetcher }) => {
+    for (const vendor of v.data) {
+      const request = await fetcher(`http://localhost:3000/vendors/${vendor.id}/items`);
+
+      const items = await request.json();
+
+      acc.push({
+        ...vendor,
+        ...items,
+      });
+    }
+
+    return acc;
+  },
+}),
+```
+
+The `AccumulationContext` has a `fetcher` field that is the `fetch` object that you can run queries against.
+
+The `AccumulationContext` has the following fields:
+
+```ts
+export interface AccumulationContext {
+  request: RequestInfo;
+  fetcher: typeof nativeFetch | typeof fetchJsonp;
+}
+```
+
+[codesandbox](https://codesandbox.io/s/react-abortable-nested-example-vry72)
 
 ## Retries
 
