@@ -126,9 +126,9 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
 
           job.state = 'LOADING';
 
-          const fetch = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
+          const fetcher = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
 
-          let response: Response & Body = yield fetch(request as string, init);
+          let response: Response & Body = yield fetcher(request as string, init);
 
           while (!response.ok && retries.current > 0) {
             yield sleep(retryDelay);
@@ -137,7 +137,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
             console.log(`request ${request} failed, ${response.status}: ${response.statusText} -- retrying`);
             console.log(`retry attempts left ${retries.current}`);
 
-            response = yield fetch(request as string, init);
+            response = yield fetcher(request as string, init);
           }
 
           if (!response.ok) {
@@ -154,7 +154,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
           assert(typeof acc !== 'undefined', `no accumulator function present`);
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          accumulated.current = acc(accumulated.current as R, data as any, request);
+          accumulated.current = yield acc(accumulated.current as R, data as any, { request, fetcher });
 
           onQuerySuccess(data);
         }

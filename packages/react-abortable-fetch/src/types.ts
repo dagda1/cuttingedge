@@ -1,4 +1,6 @@
 import type { Task } from 'effection';
+import { fetch as nativeFetch } from 'cross-fetch';
+import fetchJsonp from 'fetch-jsonp';
 
 export type FetchContext<T> = {
   data: T;
@@ -52,9 +54,12 @@ export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
 
 export type ContentTypeMap = `application/${ContentType}`;
 
-export type Accumulator<R, T> = (initialState: R, current: T, request?: RequestInfo) => R;
-
 export type FetchRequestInfo = { url: string } & Omit<RequestInit, 'signal'>;
+
+export interface AccumulationContext {
+  request: RequestInfo;
+  fetcher: typeof nativeFetch | typeof fetchJsonp;
+}
 
 type FetchOptions<R, T> = {
   method?: Methods;
@@ -62,12 +67,14 @@ type FetchOptions<R, T> = {
   contentType?: ContentType;
   accumulator?: T extends undefined
     ? R extends Array<infer U>
-      ? (initialState: R, current: U, request?: RequestInfo) => R
-      : (initialState: R, current: R, request?: RequestInfo) => R
-    : (initialState: R, current: T, request?: RequestInfo) => R;
+      ? (initialState: R, current: U, context: AccumulationContext) => R
+      : (initialState: R, current: T, context: AccumulationContext) => R
+    : (initialState: R, current: T, context: AccumulationContext) => R;
   onQueryError?: (e: Error) => void;
   onQuerySuccess?: (t?: T) => void;
 };
+
+export type Accumulator<R, T> = Pick<FetchOptions<R, T>, 'accumulator'>['accumulator'];
 
 export type UseFetchOptions<R, T> = Omit<FetchOptions<R, T>, 'method' | 'contentType'> & {
   executeOnMount?: boolean;

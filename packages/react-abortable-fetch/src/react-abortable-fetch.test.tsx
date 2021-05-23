@@ -4,10 +4,19 @@ import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useFetch } from './react-abortable-fetch';
 import { flushPromises } from '@cutting/testing';
+import { fetch as nativeFetch } from 'cross-fetch';
 
 let times = 1;
 
 const pause = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
+const vendors = {
+  data: [
+    { id: 1, name: 'bobs' },
+    { id: 2, name: 'johns' },
+    { id: 3, name: 'janets' },
+  ],
+};
 
 const server = setupServer(
   rest.get('http://localhost:3000/multi/:id', (req, res, ctx) => {
@@ -63,6 +72,32 @@ const server = setupServer(
   rest.get('http://localhost:3000/graphql', (req, res, ctx) => {
     return res(ctx.json({ a: 3 }));
   }),
+
+  rest.get('http://localhost:3000/vendors', (req, res, ctx) => {
+    return res(ctx.json(vendors));
+  }),
+
+  rest.get('http://localhost:3000/vendors/:id/items', (req, res, ctx) => {
+    const data = [
+      {
+        vendorId: 1,
+        items: [{ id: 10, name: "Bob's item" }],
+      },
+      {
+        vendorId: 2,
+        items: [{ id: 20, name: "John's item" }],
+      },
+      {
+        vendorId: 3,
+        items: [{ id: 30, name: "Janet's item" }],
+      },
+    ];
+
+    const vendorId = Number(req.params.id);
+
+    const items = data.find((d) => d.vendorId === vendorId);
+    return res(ctx.json(items));
+  }),
 );
 
 describe('useFetch', () => {
@@ -79,6 +114,50 @@ describe('useFetch', () => {
   });
 
   afterAll(() => server.close());
+
+  describe.only('nested', () => {
+    type Vendor = {
+      id: number;
+      name: string;
+      items: { id: number; name: string }[];
+    };
+
+    it('should accumulate nested queries', async () => {
+      const { result, waitFor } = renderHook(() =>
+        useFetch<Vendor[], typeof vendors>('http://localhost:3000/vendors', {
+          executeOnMount: false,
+          accumulator: async (acc, vendors, { fetcher }: { fetcher: typeof nativeFetch }) => {
+            const result: Vendor[] = [];
+
+            for (const vendor of vendors.data) {
+              const request = await fetcher(`http://localhost:3000/vendors/${vendor.id}/items`);
+
+              const items = await request.json();
+
+              result.push({
+                ...vendor,
+                ...items,
+              });
+            }
+
+            return result;
+          },
+        }),
+      );
+
+      await act(async () => {
+        result.current.run();
+      });
+
+      await waitFor(() => result.current.data?.length === 3);
+
+      expect(result.current.data).toEqual([
+        { id: 1, name: 'bobs', vendorId: 1, items: [{ id: 10, name: "Bob's item" }] },
+        { id: 2, name: 'johns', vendorId: 2, items: [{ id: 20, name: "John's item" }] },
+        { id: 3, name: 'janets', vendorId: 3, items: [{ id: 30, name: "Janet's item" }] },
+      ]);
+    });
+  });
 
   describe('single query', () => {
     it('should successfully run a single query', async () => {
