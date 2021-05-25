@@ -150,7 +150,7 @@ var commander_1 = __importDefault(require("commander"));
 var rollup_plugin_visualizer_1 = require("rollup-plugin-visualizer");
 logger_1.logger.debug("using " + path_1.default.basename(paths_1.paths.tsConfigProduction));
 function generateBundledModule(_a) {
-    var packageName = _a.packageName, entryFile = _a.entryFile, moduleFormat = _a.moduleFormat, env = _a.env, vizualize = _a.vizualize;
+    var packageName = _a.packageName, entryFile = _a.entryFile, moduleFormat = _a.moduleFormat, env = _a.env, vizualize = _a.vizualize, analyze = _a.analyze;
     return __awaiter(this, void 0, void 0, function () {
         var minify, babelConfig, bundle, pkgName, extension, fileName, outputFileName;
         return __generator(this, function (_b) {
@@ -247,8 +247,8 @@ function generateBundledModule(_a) {
                                         ecma: 5,
                                         toplevel: moduleFormat === 'cjs',
                                     }),
-                                rollup_plugin_analyzer_1.default({ summaryOnly: true, showExports: false, hideDeps: false }),
-                                !!vizualize && rollup_plugin_visualizer_1.visualizer({ open: true, gzipSize: true }),
+                                analyze && rollup_plugin_analyzer_1.default({ summaryOnly: true, showExports: false, hideDeps: false }),
+                                vizualize && rollup_plugin_visualizer_1.visualizer({ open: true, gzipSize: true }),
                             ].filter(Boolean),
                         })];
                 case 1:
@@ -295,7 +295,7 @@ var getInputFile = function (packageName, inputFileOverride) {
     return inputFile;
 };
 function build(_a) {
-    var vizualize = _a.vizualize, inputFile = _a.inputFile;
+    var vizualize = _a.vizualize, analyze = _a.analyze, inputFile = _a.inputFile;
     return __awaiter(this, void 0, void 0, function () {
         var pkgJsonPath, pkg, packageName, entryFile, configs, configs_1, configs_1_1, _b, moduleFormat, env, e_1_1, pkgJson, pkgName, moduleFile;
         var e_1, _c;
@@ -324,7 +324,7 @@ function build(_a) {
                 case 3:
                     if (!!configs_1_1.done) return [3 /*break*/, 6];
                     _b = configs_1_1.value, moduleFormat = _b.moduleFormat, env = _b.env;
-                    return [4 /*yield*/, generateBundledModule({ packageName: packageName, entryFile: entryFile, moduleFormat: moduleFormat, env: env, vizualize: vizualize })];
+                    return [4 /*yield*/, generateBundledModule({ packageName: packageName, entryFile: entryFile, moduleFormat: moduleFormat, env: env, vizualize: vizualize, analyze: analyze })];
                 case 4:
                     _d.sent();
                     _d.label = 5;
@@ -362,17 +362,18 @@ function build(_a) {
 commander_1.default
     .description('execute a rollup build')
     .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)
+    .option('-a, --analyze', 'analyze the bundle', false)
     .option('-i, --input-file <path>', 'the entry file')
     .parse(process.argv)
     .action(function (_a) {
-    var vizualize = _a.vizualize, inputFile = _a.inputFile;
+    var vizualize = _a.vizualize, inputFile = _a.inputFile, analyze = _a.analyze;
     return __awaiter(this, void 0, void 0, function () {
         var err_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, build({ vizualize: vizualize, inputFile: inputFile })];
+                    return [4 /*yield*/, build({ vizualize: vizualize, inputFile: inputFile, analyze: analyze })];
                 case 1:
                     _b.sent();
                     logger_1.logger.done('finished building');

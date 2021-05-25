@@ -24,7 +24,7 @@ import eslint from '@rbnlffl/rollup-plugin-eslint';
 import url from 'postcss-url';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
-import analyze from 'rollup-plugin-analyzer';
+import analyzer from 'rollup-plugin-analyzer';
 import commonjs from '@rollup/plugin-commonjs';
 import { createBabelConfig } from './createBabelConfig';
 import { safePackageName, writeCjsEntryFile } from '../rollup/helpers';
@@ -42,11 +42,19 @@ export interface BundlerOptions {
   moduleFormat: ModuleFormat;
   env: 'development' | 'production';
   vizualize: boolean;
+  analyze: boolean;
 }
 
 logger.debug(`using ${path.basename(paths.tsConfigProduction)}`);
 
-async function generateBundledModule({ packageName, entryFile, moduleFormat, env, vizualize }: BundlerOptions) {
+async function generateBundledModule({
+  packageName,
+  entryFile,
+  moduleFormat,
+  env,
+  vizualize,
+  analyze,
+}: BundlerOptions) {
   assert(fs.existsSync(entryFile), `Input file ${entryFile} does not exist`);
 
   const minify = env === 'production';
@@ -148,8 +156,8 @@ async function generateBundledModule({ packageName, entryFile, moduleFormat, env
           ecma: 5,
           toplevel: moduleFormat === 'cjs',
         }),
-      analyze({ summaryOnly: true, showExports: false, hideDeps: false }),
-      !!vizualize && visualizer({ open: true, gzipSize: true }),
+      analyze && analyzer({ summaryOnly: true, showExports: false, hideDeps: false }),
+      vizualize && visualizer({ open: true, gzipSize: true }),
     ].filter(Boolean),
   });
 
@@ -202,7 +210,11 @@ const getInputFile = (packageName: string, inputFileOverride?: string): string =
   return inputFile;
 };
 
-async function build({ vizualize, inputFile }: Pick<BundlerOptions, 'vizualize'> & { inputFile?: string }) {
+async function build({
+  vizualize,
+  analyze,
+  inputFile,
+}: Pick<BundlerOptions, 'vizualize' | 'analyze'> & { inputFile?: string }) {
   emptyBuildDir();
 
   const pkgJsonPath = path.join(process.cwd(), 'package.json');
@@ -223,7 +235,7 @@ async function build({ vizualize, inputFile }: Pick<BundlerOptions, 'vizualize'>
   logger.info(`Generating ${packageName} bundle.`);
 
   for (const { moduleFormat, env } of configs) {
-    await generateBundledModule({ packageName, entryFile, moduleFormat, env, vizualize });
+    await generateBundledModule({ packageName, entryFile, moduleFormat, env, vizualize, analyze });
   }
 
   await writeCjsEntryFile(packageName);
@@ -243,11 +255,12 @@ async function build({ vizualize, inputFile }: Pick<BundlerOptions, 'vizualize'>
 program
   .description('execute a rollup build')
   .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)
+  .option('-a, --analyze', 'analyze the bundle', false)
   .option('-i, --input-file <path>', 'the entry file')
   .parse(process.argv)
-  .action(async function ({ vizualize, inputFile }) {
+  .action(async function ({ vizualize, inputFile, analyze }) {
     try {
-      await build({ vizualize, inputFile });
+      await build({ vizualize, inputFile, analyze });
 
       logger.done('finished building');
     } catch (err) {
