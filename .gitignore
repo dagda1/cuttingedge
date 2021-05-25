@@ -41,3 +41,5 @@ test-results
 .rts2_cache_*
 
 junitReport.xml
+
+stats.html

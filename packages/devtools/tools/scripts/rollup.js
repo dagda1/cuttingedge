@@ -146,15 +146,17 @@ var csv_1 = require("../rollup/plugins/csv");
 var postcss_import_1 = __importDefault(require("postcss-import"));
 var empty_build_dir_1 = require("./empty-build-dir");
 var core_1 = require("@babel/core");
-logger_1.logger.debug("using  " + path_1.default.basename(paths_1.paths.tsConfigProduction));
+var commander_1 = __importDefault(require("commander"));
+var rollup_plugin_visualizer_1 = require("rollup-plugin-visualizer");
+logger_1.logger.debug("using " + path_1.default.basename(paths_1.paths.tsConfigProduction));
 function generateBundledModule(_a) {
-    var packageName = _a.packageName, inputFile = _a.inputFile, moduleFormat = _a.moduleFormat, env = _a.env;
+    var packageName = _a.packageName, entryFile = _a.entryFile, moduleFormat = _a.moduleFormat, env = _a.env, vizualize = _a.vizualize;
     return __awaiter(this, void 0, void 0, function () {
         var minify, babelConfig, bundle, pkgName, extension, fileName, outputFileName;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    assert_ts_1.assert(fs_extra_1.default.existsSync(inputFile), "Input file " + inputFile + " does not exist");
+                    assert_ts_1.assert(fs_extra_1.default.existsSync(entryFile), "Input file " + entryFile + " does not exist");
                     minify = env === 'production';
                     babelConfig = __rest(createBabelConfig_1.createBabelConfig({
                         isDevelopment: false,
@@ -163,7 +165,7 @@ function generateBundledModule(_a) {
                         moduleFormat: moduleFormat,
                     }), []);
                     return [4 /*yield*/, rollup_1.rollup({
-                            input: inputFile,
+                            input: entryFile,
                             external: function (id) {
                                 if (id === 'babel-plugin-transform-async-to-promises/helpers') {
                                     return false;
@@ -202,11 +204,6 @@ function generateBundledModule(_a) {
                                     plugins: [
                                         postcss_import_1.default(),
                                         autoprefixer_1.default(),
-                                        // env === 'production' &&
-                                        //   purgecss({
-                                        //     content: [paths.appHtml, './src/**/*.tsx'],
-                                        //     defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
-                                        //   }),
                                         postcss_url_1.default({
                                             url: 'inline',
                                         }),
@@ -251,6 +248,7 @@ function generateBundledModule(_a) {
                                         toplevel: moduleFormat === 'cjs',
                                     }),
                                 rollup_plugin_analyzer_1.default({ summaryOnly: true, showExports: false, hideDeps: false }),
+                                !!vizualize && rollup_plugin_visualizer_1.visualizer({ open: true, gzipSize: true }),
                             ].filter(Boolean),
                         })];
                 case 1:
@@ -280,11 +278,10 @@ function generateBundledModule(_a) {
         });
     });
 }
-var getInputFile = function (packageName) {
-    if (process.argv[2] === '--input-file') {
-        var file = path_1.default.resolve(process.argv[3]);
-        assert_ts_1.assert(fs_extra_1.default.existsSync(file), "no file found at " + file);
-        return file;
+var getInputFile = function (packageName, inputFileOverride) {
+    if (inputFileOverride) {
+        assert_ts_1.assert(fs_extra_1.default.existsSync(inputFileOverride), "no --input-file found at " + inputFileOverride);
+        return inputFileOverride;
     }
     var candidates = [];
     [packageName, path_1.default.join(packageName, 'index'), 'index', path_1.default.join('bin', helpers_1.safePackageName(packageName))].forEach(function (candidate) {
@@ -297,20 +294,21 @@ var getInputFile = function (packageName) {
     logger_1.logger.start("using input file " + path_1.default.basename(inputFile) + " for " + packageName);
     return inputFile;
 };
-function build() {
+function build(_a) {
+    var vizualize = _a.vizualize, inputFile = _a.inputFile;
     return __awaiter(this, void 0, void 0, function () {
-        var pkgJsonPath, pkg, packageName, inputFile, configs, configs_1, configs_1_1, _a, moduleFormat, env, e_1_1, pkgJson, pkgName, moduleFile;
-        var e_1, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var pkgJsonPath, pkg, packageName, entryFile, configs, configs_1, configs_1_1, _b, moduleFormat, env, e_1_1, pkgJson, pkgName, moduleFile;
+        var e_1, _c;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
                 case 0:
                     empty_build_dir_1.emptyBuildDir();
                     pkgJsonPath = path_1.default.join(process.cwd(), 'package.json');
                     return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(pkgJsonPath)); })];
                 case 1:
-                    pkg = (_c.sent()).default;
+                    pkg = (_d.sent()).default;
                     packageName = pkg.name;
-                    inputFile = getInputFile(packageName);
+                    entryFile = getInputFile(packageName, inputFile);
                     configs = [
                         { moduleFormat: 'cjs', env: 'development' },
                         { moduleFormat: 'cjs', env: 'production' },
@@ -318,35 +316,35 @@ function build() {
                         { moduleFormat: 'umd', env: 'production' },
                     ];
                     logger_1.logger.info("Generating " + packageName + " bundle.");
-                    _c.label = 2;
+                    _d.label = 2;
                 case 2:
-                    _c.trys.push([2, 7, 8, 9]);
+                    _d.trys.push([2, 7, 8, 9]);
                     configs_1 = __values(configs), configs_1_1 = configs_1.next();
-                    _c.label = 3;
+                    _d.label = 3;
                 case 3:
                     if (!!configs_1_1.done) return [3 /*break*/, 6];
-                    _a = configs_1_1.value, moduleFormat = _a.moduleFormat, env = _a.env;
-                    return [4 /*yield*/, generateBundledModule({ packageName: packageName, inputFile: inputFile, moduleFormat: moduleFormat, env: env })];
+                    _b = configs_1_1.value, moduleFormat = _b.moduleFormat, env = _b.env;
+                    return [4 /*yield*/, generateBundledModule({ packageName: packageName, entryFile: entryFile, moduleFormat: moduleFormat, env: env, vizualize: vizualize })];
                 case 4:
-                    _c.sent();
-                    _c.label = 5;
+                    _d.sent();
+                    _d.label = 5;
                 case 5:
                     configs_1_1 = configs_1.next();
                     return [3 /*break*/, 3];
                 case 6: return [3 /*break*/, 9];
                 case 7:
-                    e_1_1 = _c.sent();
+                    e_1_1 = _d.sent();
                     e_1 = { error: e_1_1 };
                     return [3 /*break*/, 9];
                 case 8:
                     try {
-                        if (configs_1_1 && !configs_1_1.done && (_b = configs_1.return)) _b.call(configs_1);
+                        if (configs_1_1 && !configs_1_1.done && (_c = configs_1.return)) _c.call(configs_1);
                     }
                     finally { if (e_1) throw e_1.error; }
                     return [7 /*endfinally*/];
                 case 9: return [4 /*yield*/, helpers_1.writeCjsEntryFile(packageName)];
                 case 10:
-                    _c.sent();
+                    _d.sent();
                     pkgJson = __assign({}, pkg);
                     pkgName = helpers_1.safePackageName(packageName);
                     pkgJson.main = path_1.default.join('dist', 'index.js');
@@ -355,30 +353,39 @@ function build() {
                     pkgJson.browser = path_1.default.join('dist', pkgName + ".umd.js");
                     return [4 /*yield*/, write_package_1.writeToPackage(pkgJsonPath, pkgJson)];
                 case 11:
-                    _c.sent();
+                    _d.sent();
                     return [2 /*return*/];
             }
         });
     });
 }
-(function () { return __awaiter(void 0, void 0, void 0, function () {
-    var err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, build()];
-            case 1:
-                _a.sent();
-                logger_1.logger.done('finished building');
-                return [3 /*break*/, 3];
-            case 2:
-                err_1 = _a.sent();
-                logger_1.logger.error(err_1);
-                process.exit(1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
+commander_1.default
+    .description('execute a rollup build')
+    .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)
+    .option('-i, --input-file <path>', 'the entry file')
+    .parse(process.argv)
+    .action(function (_a) {
+    var vizualize = _a.vizualize, inputFile = _a.inputFile;
+    return __awaiter(this, void 0, void 0, function () {
+        var err_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, build({ vizualize: vizualize, inputFile: inputFile })];
+                case 1:
+                    _b.sent();
+                    logger_1.logger.done('finished building');
+                    return [3 /*break*/, 3];
+                case 2:
+                    err_1 = _b.sent();
+                    logger_1.logger.error(err_1);
+                    process.exit(1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
     });
-}); })();
+})
+    .parse(process.argv);
 //# sourceMappingURL=rollup.js.map
