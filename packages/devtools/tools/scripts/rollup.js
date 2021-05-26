@@ -137,7 +137,6 @@ var rollup_plugin_eslint_1 = __importDefault(require("@rbnlffl/rollup-plugin-esl
 var postcss_url_1 = __importDefault(require("postcss-url"));
 // @ts-ignore
 var autoprefixer_1 = __importDefault(require("autoprefixer"));
-var rollup_plugin_analyzer_1 = __importDefault(require("rollup-plugin-analyzer"));
 var plugin_commonjs_1 = __importDefault(require("@rollup/plugin-commonjs"));
 var createBabelConfig_1 = require("./createBabelConfig");
 var helpers_1 = require("../rollup/helpers");
@@ -148,6 +147,7 @@ var empty_build_dir_1 = require("./empty-build-dir");
 var core_1 = require("@babel/core");
 var commander_1 = __importDefault(require("commander"));
 var rollup_plugin_visualizer_1 = require("rollup-plugin-visualizer");
+var rollup_plugin_size_snapshot_1 = require("rollup-plugin-size-snapshot");
 logger_1.logger.debug("using " + path_1.default.basename(paths_1.paths.tsConfigProduction));
 function generateBundledModule(_a) {
     var packageName = _a.packageName, entryFile = _a.entryFile, moduleFormat = _a.moduleFormat, env = _a.env, vizualize = _a.vizualize, analyze = _a.analyze;
@@ -176,6 +176,7 @@ function generateBundledModule(_a) {
                                 moduleSideEffects: false,
                             },
                             plugins: [
+                                analyze && rollup_plugin_size_snapshot_1.sizeSnapshot(),
                                 rollup_plugin_eslint_1.default({
                                     fix: false,
                                     throwOnError: true,
@@ -235,7 +236,6 @@ function generateBundledModule(_a) {
                                     NODE_ENV: env,
                                 }),
                                 rollup_plugin_svgo_1.default(),
-                                rollup_plugin_sourcemaps_1.default(),
                                 minify &&
                                     rollup_plugin_terser_1.terser({
                                         output: { comments: false },
@@ -247,8 +247,14 @@ function generateBundledModule(_a) {
                                         ecma: 5,
                                         toplevel: moduleFormat === 'cjs',
                                     }),
-                                analyze && rollup_plugin_analyzer_1.default({ summaryOnly: true, showExports: false, hideDeps: false }),
-                                vizualize && rollup_plugin_visualizer_1.visualizer({ open: true, gzipSize: true }),
+                                rollup_plugin_sourcemaps_1.default(),
+                                vizualize &&
+                                    moduleFormat === 'esm' &&
+                                    rollup_plugin_visualizer_1.visualizer({
+                                        open: true,
+                                        sourcemap: true,
+                                        template: 'sunburst',
+                                    }),
                             ].filter(Boolean),
                         })];
                 case 1:

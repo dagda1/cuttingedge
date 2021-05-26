@@ -24,7 +24,6 @@ import eslint from '@rbnlffl/rollup-plugin-eslint';
 import url from 'postcss-url';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
-import analyzer from 'rollup-plugin-analyzer';
 import commonjs from '@rollup/plugin-commonjs';
 import { createBabelConfig } from './createBabelConfig';
 import { safePackageName, writeCjsEntryFile } from '../rollup/helpers';
@@ -35,6 +34,7 @@ import { emptyBuildDir } from './empty-build-dir';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import program from 'commander';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 export interface BundlerOptions {
   packageName: string;
@@ -80,6 +80,7 @@ async function generateBundledModule({
       moduleSideEffects: false,
     },
     plugins: [
+      analyze && sizeSnapshot(),
       eslint({
         fix: false,
         throwOnError: true,
@@ -144,7 +145,6 @@ async function generateBundledModule({
         NODE_ENV: env,
       }),
       svgo(),
-      sourceMaps(),
       minify &&
         terser({
           output: { comments: false },
@@ -156,8 +156,14 @@ async function generateBundledModule({
           ecma: 5,
           toplevel: moduleFormat === 'cjs',
         }),
-      analyze && analyzer({ summaryOnly: true, showExports: false, hideDeps: false }),
-      vizualize && visualizer({ open: true, gzipSize: true }),
+      sourceMaps(),
+      vizualize &&
+        moduleFormat === 'esm' &&
+        visualizer({
+          open: true,
+          sourcemap: true,
+          template: 'sunburst',
+        }),
     ].filter(Boolean),
   });
 

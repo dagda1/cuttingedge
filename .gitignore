@@ -43,3 +43,5 @@ test-results
 junitReport.xml
 
 stats.html
+stats.json
+.size-snapshot.json

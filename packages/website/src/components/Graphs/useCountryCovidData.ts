@@ -53,12 +53,12 @@ export const useCountryCovidData = (
     .map((c) => urlJoin(baseUrl, c.toUpperCase(), 'timeseries', startDate, dayjs().format('YYYY-MM-DD')));
 
   const { data } = useFetch<CountriesResult, CountryStats>(urls, {
-    accumulator: (acc, current, info) => {
+    accumulator: (acc, current, { request }) => {
       current.result = uniqBy(current.result, (a) => a.date);
 
-      assert(typeof info === 'string', `unexpected info ${info}`);
+      assert(typeof request === 'string', `unexpected request in accumulation context ${request}`);
 
-      const country = info.split('/')[6] as Countries;
+      const country = request.split('/')[6] as Countries;
 
       const countryDetails = countryData[country];
 

@@ -26,7 +26,7 @@ switch (script) {
     }
     default:
         logger_1.logger.info("Unknown script " + script + ".");
-        logger_1.logger.info('Perhaps you need to update ds?');
+        logger_1.logger.info('Perhaps you need to update cutting?');
         break;
 }
 var result = spawn.sync('node', [require.resolve(command)].concat(args), {

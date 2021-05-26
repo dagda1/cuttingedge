@@ -29,7 +29,7 @@ switch (script) {
   }
   default:
     logger.info(`Unknown script ${script}.`);
-    logger.info('Perhaps you need to update ds?');
+    logger.info('Perhaps you need to update cutting?');
     break;
 }
 
