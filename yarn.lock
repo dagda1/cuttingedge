@@ -1187,47 +1187,47 @@
     tar "^2.2.2"
     tar-stream "^2.1.4"
 
-"@effection/channel@2.0.0-preview.10":
+"@effection/channel@2.0.0-preview.13":
+  version "2.0.0-preview.13"
+  resolved "https://registry.npmjs.org/@effection/channel/-/channel-2.0.0-preview.13.tgz#78cc328b6999c595a2a6e5f61eaad1b27946deab"
+  integrity sha512-zcuehTKpDditZ1jxVOyziq4AtegnR0RUO7HW5gYUXh6t9Q6CjsUYzLuUgBwcYClyLdyP3VJfJrLCmX2FW5/bUA==
+  dependencies:
+    "@effection/core" "2.0.0-preview.10"
+    "@effection/events" "2.0.0-preview.11"
+    "@effection/subscription" "2.0.0-preview.12"
+
+"@effection/core@2.0.0-preview.10":
   version "2.0.0-preview.10"
-  resolved "https://registry.npmjs.org/@effection/channel/-/channel-2.0.0-preview.10.tgz#641ee48c7047094abf695cffd53bdff7992db1c6"
-  integrity sha512-Qak3Ycl2rNKfjimez6503Cchxfas2vJv+YyKNzNEjXOyrH8mgSorBFYcla7iCN0TQPtFnd9rPcfWuewjQ3aYkA==
-  dependencies:
-    "@effection/core" "2.0.0-preview.8"
-    "@effection/events" "2.0.0-preview.8"
-    "@effection/subscription" "2.0.0-preview.9"
+  resolved "https://registry.npmjs.org/@effection/core/-/core-2.0.0-preview.10.tgz#935b5d833d581e853cb6e05adde3dbe5222200b9"
+  integrity sha512-f7iBwXGhL/DcLB8qd8m9un5NGWEjw8xJycIMVLMjClez0+6+78kZchZH8RsdTUBQIjQFRQ8idmIdQu2dQ0akyw==
 
-"@effection/core@2.0.0-preview.8":
-  version "2.0.0-preview.8"
-  resolved "https://registry.npmjs.org/@effection/core/-/core-2.0.0-preview.8.tgz#edcb6f142cad20ac285e97ad71e5dabba5f27fec"
-  integrity sha512-OmHOH809DpQBl5ZcdewHG7/20CSeXOcOKE9sZxb4QLX8g+iNRVyfULce+Nl6B7i0Ll7SWuKbYARxb38+RshyTw==
-
-"@effection/events@2.0.0-preview.8":
-  version "2.0.0-preview.8"
-  resolved "https://registry.npmjs.org/@effection/events/-/events-2.0.0-preview.8.tgz#daa0a3e7c688e598a83faf8c3e6491f9e83ef87b"
-  integrity sha512-+aC+UqCfk/sOShghclPGP7vsrrIiVmwO7TgytxLZkuzmSxzoUPurDwTySeb/ATEYhSoor++rogEd9G7TA8Fr9Q==
-  dependencies:
-    "@effection/core" "2.0.0-preview.8"
-    "@effection/subscription" "2.0.0-preview.9"
-
-"@effection/node@=2.0.0-preview.11":
+"@effection/events@2.0.0-preview.11":
   version "2.0.0-preview.11"
-  resolved "https://registry.npmjs.org/@effection/node/-/node-2.0.0-preview.11.tgz#3b95fc6e9260359cef01dbcaccec2271e342192e"
-  integrity sha512-li8/YpaNlIU6H7Hp7376hkSQg2iky/kcIST+ZTpuZ1Rz1OVWk4zHSQh0kXjCwIKy/vNinRY+gokSFc7TCYzAHw==
+  resolved "https://registry.npmjs.org/@effection/events/-/events-2.0.0-preview.11.tgz#7c6ffd37aebf1c336f57bd615acac8c5a9b71a3b"
+  integrity sha512-XsUWfYb5R8mkb/jHJGDBf7SOyr2sCTKQ/wjUoHO+/DvfSpdsP862juNIB480XozWX85BJ/BieFgkeSu1E2wU/Q==
   dependencies:
-    "@effection/channel" "2.0.0-preview.10"
-    "@effection/core" "2.0.0-preview.8"
-    "@effection/events" "2.0.0-preview.8"
-    "@effection/subscription" "2.0.0-preview.9"
+    "@effection/core" "2.0.0-preview.10"
+    "@effection/subscription" "2.0.0-preview.12"
+
+"@effection/node@2.0.0-preview.14":
+  version "2.0.0-preview.14"
+  resolved "https://registry.npmjs.org/@effection/node/-/node-2.0.0-preview.14.tgz#c0c310442bdb43e8f4cefccd4d37955a333f81e9"
+  integrity sha512-cooePrl2m3L+bSfronXnOoa9ChOZg8sfCV2ipj5tIVZtMfpUDMLHlC1yrpFywqgt2Kr51N2q4g9wQzr7qjBABQ==
+  dependencies:
+    "@effection/channel" "2.0.0-preview.13"
+    "@effection/core" "2.0.0-preview.10"
+    "@effection/events" "2.0.0-preview.11"
+    "@effection/subscription" "2.0.0-preview.12"
     cross-spawn "^7.0.3"
     ctrlc-windows "^1.0.3"
     shellwords "^0.1.1"
 
-"@effection/subscription@2.0.0-preview.9":
-  version "2.0.0-preview.9"
-  resolved "https://registry.npmjs.org/@effection/subscription/-/subscription-2.0.0-preview.9.tgz#bef3ebe4cdaa611617b80c2935e4448851dc5afa"
-  integrity sha512-a4ivnwgIQauDwfELaH7XDUHAQ+ti6mRLNwPn0pUX1QDru/FViHCaWXwdnZbKabV7KhMC0zBW0zEYTT9U9ANy4w==
+"@effection/subscription@2.0.0-preview.12":
+  version "2.0.0-preview.12"
+  resolved "https://registry.npmjs.org/@effection/subscription/-/subscription-2.0.0-preview.12.tgz#6b8ff5aa3963f2548bff494d9efd1bc599709796"
+  integrity sha512-G+mclNzIy0Umjsa+pRNze+V8New4Vzp3VrU/Hd15Zsqtq0xyiQKRwqnt0YZBWDMCp0FO7+d/FZVoZ3/w3Z3vxA==
   dependencies:
-    "@effection/core" "2.0.0-preview.8"
+    "@effection/core" "2.0.0-preview.10"
 
 "@eslint/eslintrc@^0.4.0":
   version "0.4.0"
@@ -5937,15 +5937,15 @@ ee-first@1.1.1:
   resolved "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-effection@=2.0.0-preview.11:
-  version "2.0.0-preview.11"
-  resolved "https://registry.npmjs.org/effection/-/effection-2.0.0-preview.11.tgz#96dc57034e9ae7c151805bdc4ca2f2df02c26021"
-  integrity sha512-zEzqcHHkHGVTvN5PkdDYwTH5Um60v/J0Or0yGemSgbAmG3w2Q+rcmJzx0VRtdtiVXbvEM0s9f6kMN+RvjQSH5w==
+effection@2.0.0-preview.14, effection@=2.0.0-preview.11:
+  version "2.0.0-preview.14"
+  resolved "https://registry.npmjs.org/effection/-/effection-2.0.0-preview.14.tgz#f2a9ce8a9699c718d9933756af262589891e252a"
+  integrity sha512-1zC5tbr68vKtuKWd4bhV+3YfCwvKKru04F7vM5iQ3kPLlUIKyCiTfhQxTYYjFPSVjzwwNN72vi2p+tO11Vlrkg==
   dependencies:
-    "@effection/channel" "2.0.0-preview.10"
-    "@effection/core" "2.0.0-preview.8"
-    "@effection/events" "2.0.0-preview.8"
-    "@effection/subscription" "2.0.0-preview.9"
+    "@effection/channel" "2.0.0-preview.13"
+    "@effection/core" "2.0.0-preview.10"
+    "@effection/events" "2.0.0-preview.11"
+    "@effection/subscription" "2.0.0-preview.12"
 
 electron-to-chromium@^1.3.564, electron-to-chromium@^1.3.719:
   version "1.3.720"
