@@ -61,11 +61,13 @@ describe('useParentSize', () => {
       ref.current = document.createElement('div');
     });
 
-    const { result } = renderHook(() => useParentSize(ref, { transformFunc: ({width, height}) => ({width: width / 2, height: height /2}) }));
+    const { result } = renderHook(() =>
+      useParentSize(ref, { transformFunc: ({ width, height }) => ({ width: width / 2, height: height / 2 }) }),
+    );
 
     expect(result.current).toEqual({
       width: 100,
       height: 100,
     });
-  })
+  });
 });
