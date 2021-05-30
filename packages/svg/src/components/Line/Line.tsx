@@ -1,11 +1,6 @@
 import type { FC } from 'react';
 import cx from 'classnames';
-import { AddSVGProps } from '../../types/types';
-
-interface Point {
-  x?: number;
-  y?: number;
-}
+import { AddSVGProps, Point } from '../../types/types';
 
 export type LineProps = {
   className?: string;

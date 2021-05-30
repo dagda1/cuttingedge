@@ -1,0 +1,26 @@
+$label-default-color: #fff;
+
+:global #root {
+  border: 1px solid green;
+}
+
+.parent, .child{
+  border: 1px solid red;
+  background: grey;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  resize: auto;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+
+.child {
+  background-color: white;
+  color: black;
+  border: 1px solid blue;
+}

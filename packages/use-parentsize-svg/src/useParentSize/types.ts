@@ -8,6 +8,7 @@ export interface Dimensions {
 export interface UseParentSizeOptions {
   debounceDelay: number;
   initialValues: Dimensions;
+  transformFunc?: ({ width, height }: Dimensions) => Dimensions;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

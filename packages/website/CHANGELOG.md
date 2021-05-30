@@ -1,5 +1,12 @@
 # @cutting/website
 
+## 4.24.6
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/svg@4.25.0
+
 ## 4.24.5
 
 ### Patch Changes

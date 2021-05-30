@@ -1,15 +1,19 @@
 import { Dimensions, UseParentSizeOptions, UseParentSizeResult } from './types';
-import { RefObject, useMemo, useRef, useState } from 'react';
+import { RefObject, useCallback, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useIsomorphicLayoutEffect } from 'react-use';
 import { useDebouncedCallback } from 'use-debounce';
 import { useIsMounted } from '../useIsMounted/useIsMounted';
-import { isNil } from '@cutting/util';
+import { identity, isNil } from '@cutting/util';
 import assert from 'assert-ts';
 
 export const useParentSize = <E extends Element>(
   ref: RefObject<E>,
-  { debounceDelay = 0, initialValues = { width: 1, height: 1 } }: Partial<UseParentSizeOptions> = {},
+  {
+    debounceDelay = 0,
+    initialValues = { width: 1, height: 1 },
+    transformFunc = identity,
+  }: Partial<UseParentSizeOptions> = {},
 ): UseParentSizeResult => {
   const isMounted = useIsMounted();
   const [{ width, height }, setDimensions] = useState<Dimensions>({
@@ -17,6 +21,8 @@ export const useParentSize = <E extends Element>(
     height: initialValues.height,
   });
   const previousDimensions = useRef<Dimensions>({ width: initialValues.width, height: initialValues.height });
+
+  const transformer = useCallback(transformFunc, [transformFunc]);
 
   assert(!!ref, 'You must pass a valid ref to useParent');
 
@@ -68,10 +74,11 @@ export const useParentSize = <E extends Element>(
   }, [debouncedCallback, height, isMounted, refElement, width]);
 
   return useMemo(
-    () => ({
-      width,
-      height,
-    }),
-    [height, width],
+    () =>
+      transformer({
+        width,
+        height,
+      }),
+    [height, transformer, width],
   );
 };
