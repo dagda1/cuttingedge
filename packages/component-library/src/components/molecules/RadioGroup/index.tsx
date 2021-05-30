@@ -1,7 +1,7 @@
 import type { ReactNode, FC, ChangeEvent } from 'react';
 import { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio';
-import { RadioProps, RadioLayoutProps, RadioLayout } from '../../atoms/Radio/types';
+import { RadioProps, RadioLayoutProps } from '../../atoms/Radio/types';
 import cs from 'classnames';
 
 import styles from './RadioGroup.module.scss';
@@ -54,7 +54,7 @@ export const RadioGroup: FC<RadioGroupProps & RadioLayoutProps> = ({
   return (
     <fieldset
       className={cs(styles.fieldset, {
-        [styles.stacked]: layout === RadioLayout.stacked,
+        [styles.stacked]: layout === 'stacked',
       })}
     >
       <legend>{legend}</legend>

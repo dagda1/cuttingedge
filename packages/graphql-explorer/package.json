@@ -22,7 +22,7 @@
     "graphql": "^15.5.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.24.1",
+    "@cutting/devtools": "4.25.0",
     "@cutting/the-watcher": "0.2.1",
     "abortcontroller-polyfill": "^1.7.1",
     "eslint-loader": "^4.0.2",

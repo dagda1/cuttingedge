@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.26.0
+
+### Minor Changes
+
+- fix babel warning
+
 ## 4.25.0
 
 ### Minor Changes

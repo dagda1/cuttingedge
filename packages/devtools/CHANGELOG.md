@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.25.0
+
+### Minor Changes
+
+- fix babel warning
+
 ## 4.24.1
 
 ### Patch Changes

@@ -1,5 +1,31 @@
 # @cutting/component-library
 
+## 4.24.3
+
+### Patch Changes
+
+- fix babel warning
+- Updated dependencies [undefined]
+  - @cutting/hooks@4.26.0
+
+## 4.24.2
+
+### Patch Changes
+
+- Add innerRef to input
+
+## 4.24.1
+
+### Patch Changes
+
+- Add RadioGroupProps to export
+
+## 4.24.0
+
+### Minor Changes
+
+- Remove enums from component-library
+
 ## 4.23.4
 
 ### Patch Changes

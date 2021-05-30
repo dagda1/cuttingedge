@@ -2,7 +2,6 @@ import type { FC } from 'react';
 import { Heading, FormInput } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
-import { RadioSize, RadioLayout } from '../src/components/atoms/Radio/types';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
 import styles from './global.module.scss';
 
@@ -39,8 +38,8 @@ export const App: FC = () => {
             <RadioGroup
               legend="large stacked"
               name="large-stacked"
-              layout={RadioLayout.stacked}
-              size={RadioSize.large}
+              layout={'stacked'}
+              size={'large'}
               options={[
                 {
                   value: 'off',
@@ -57,8 +56,8 @@ export const App: FC = () => {
           <div className={styles.item}>
             <RadioGroup
               name="small-stacked"
-              layout={RadioLayout.stacked}
-              size={RadioSize.small}
+              layout={'stacked'}
+              size={'small'}
               legend="small stacked"
               options={[
                 {
@@ -76,8 +75,8 @@ export const App: FC = () => {
           <div className={styles.item}>
             <RadioGroup
               name="large-inline"
-              layout={RadioLayout.inline}
-              size={RadioSize.large}
+              layout={'inline'}
+              size={'large'}
               legend="large inline"
               options={[
                 {
@@ -95,8 +94,8 @@ export const App: FC = () => {
           <div className={styles.item}>
             <RadioGroup
               name="small-inline"
-              layout={RadioLayout.inline}
-              size={RadioSize.small}
+              layout={'inline'}
+              size={'small'}
               legend="small inline"
               options={[
                 {

@@ -1,9 +1,6 @@
 import type { ChangeEventHandler } from 'react';
 
-export enum RadioLayout {
-  inline = 'inline',
-  stacked = 'stacked',
-}
+export type RadioLayout = 'inline' | 'stacked';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type RadioProps<T = {}> = T & {
@@ -22,7 +19,4 @@ export interface RadioLayoutProps {
   size: RadioSize;
 }
 
-export enum RadioSize {
-  small = 'small',
-  large = 'large',
-}
+export type RadioSize = 'small' | 'large';
