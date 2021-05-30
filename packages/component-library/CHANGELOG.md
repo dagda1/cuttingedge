@@ -1,5 +1,12 @@
 # @cutting/component-library
 
+## 4.23.4
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/hooks@4.25.0
+
 ## 4.23.3
 
 ### Patch Changes

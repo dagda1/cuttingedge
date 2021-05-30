@@ -1,5 +1,15 @@
 # @cutting/website
 
+## 4.24.7
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/hooks@4.25.0
+  - @cutting/use-parentsize-svg@1.1.0
+  - @cutting/component-library@4.23.4
+  - @cutting/svg@4.25.1
+
 ## 4.24.6
 
 ### Patch Changes

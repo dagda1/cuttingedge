@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-parentsize-svg",
   "description": "Sizes an SVG document to the containing parent using the resize-observer.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "module": "dist/use-parentsize-svg.esm.js",
   "browser": "dist/use-parentsize-svg.umd.js",
@@ -33,7 +33,7 @@
     "use-debounce": "^6.0.1"
   },
   "devDependencies": {
-    "@cutting/component-library": "4.23.3",
+    "@cutting/component-library": "4.23.4",
     "@cutting/devtools": "4.24.1",
     "@cutting/eslint-config": "4.23.1",
     "@cutting/useful-types": "4.22.2",

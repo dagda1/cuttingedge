@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.25.0
+
+### Minor Changes
+
+- move useParentSize into its own package use-parentsize-svg
+
 ## 4.24.2
 
 ### Patch Changes
