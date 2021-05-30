@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import cs from 'classnames';
-import { RadioProps, RadioSize, RadioLayout, RadioLayoutProps, RadioEventHandlers } from './types';
+import { RadioProps, RadioLayoutProps, RadioEventHandlers } from './types';
 
 import styles from './Radio.module.scss';
 
@@ -16,10 +16,10 @@ export const Radio: FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
 }) => (
   <div
     className={cs(styles.container, {
-      [styles.large]: size === RadioSize.large,
-      [styles.small]: size === RadioSize.small,
-      [styles.stacked]: layout === RadioLayout.stacked,
-      [styles.inline]: layout === RadioLayout.inline,
+      [styles.large]: size === 'large',
+      [styles.small]: size === 'small',
+      [styles.stacked]: layout === 'stacked',
+      [styles.inline]: layout === 'inline',
     })}
   >
     <input id={id} name={name} type="radio" value={value} onChange={onChange} checked={checked} />

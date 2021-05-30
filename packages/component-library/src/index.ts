@@ -1,4 +1,5 @@
 export type { StandardProps } from './types';
+export type { RadioGroupProps } from './components/molecules/RadioGroup';
 
 export { Heading } from './components/atoms/Heading';
 export { ExternalLink } from './components/atoms/ExternalLink';

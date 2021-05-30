@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 4.24.1
+
+### Patch Changes
+
+- Add RadioGroupProps to export
+
+## 4.24.0
+
+### Minor Changes
+
+- Remove enums from component-library
+
 ## 4.23.4
 
 ### Patch Changes
