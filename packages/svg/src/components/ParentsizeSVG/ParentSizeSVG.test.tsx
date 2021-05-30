@@ -1,7 +1,7 @@
 import { describe, it, expect } from '@jest/globals';
 import type { FC } from 'react';
 import { render, screen } from '@testing-library/react';
-import { useParentSize } from '@cutting/hooks';
+import { useParentSize } from '@cutting/use-parentsize-svg';
 import { useRef } from 'react';
 import { ParentsizeSVG } from './ParentsizeSVG';
 

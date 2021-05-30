@@ -39,7 +39,11 @@ export interface UseParentSizeOptions {
 - `initialValues` - initially, the `ref` will be `null` and no `width` or `height` values can be returned until it is mounted.  The `initialValues` option can return a specific `width` and `height` value until the `ref` actually references a valid DOM node.  e.g. `const { width, height } = useParentSize(ref, { width: 100, height: 50})`;
 
   Default is `{ width: 1, height: 1}`
-- `transformFunc` optional function to transform the results, default `x => x`;
+- `transformFunc` optional function to transform the results, e.g. to halve the size of the parent
+  ```ts
+  transformFunc: ({width, height}) => ({width: width / 2, height: height /2})
+  ```
+  Default is identity, `(x) => x`
 
 ```ts
 import type { FC } from 'react';

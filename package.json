@@ -33,6 +33,7 @@
       "packages/devtools",
       "packages/util",
       "packages/hooks",
+      "packages/use-parentsize-svg",
       "packages/use-operation",
       "packages/react-abortable-fetch",
       "packages/component-library",

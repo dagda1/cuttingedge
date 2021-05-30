@@ -17,6 +17,9 @@
       "path": "./packages/hooks/tsconfig.dist.json"
     },
     {
+      "path": "./packages/use-parentsize-svg/tsconfig.dist.json"
+    },
+    {
       "path": "./packages/use-operation/tsconfig.dist.json"
     },
     {

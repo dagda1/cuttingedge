@@ -52,7 +52,20 @@ describe('useParentSize', () => {
     });
   });
 
-  it('should apply transformation', () => {
-    
+  it('should apply transformation', async () => {
+    const ref: { current: null | HTMLDivElement } = { current: null };
+
+    resize(200, 200);
+
+    await act(async () => {
+      ref.current = document.createElement('div');
+    });
+
+    const { result } = renderHook(() => useParentSize(ref, { transformFunc: ({width, height}) => ({width: width / 2, height: height /2}) }));
+
+    expect(result.current).toEqual({
+      width: 100,
+      height: 100,
+    });
   })
 });

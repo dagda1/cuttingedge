@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@cutting/util": "4.24.1",
-    "@cutting/hooks": "4.24.2",
+    "@cutting/use-parentsize-svg": "1.0.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {

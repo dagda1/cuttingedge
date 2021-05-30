@@ -17,6 +17,7 @@
       "@cutting/svg": ["packages/svg/src"],
       "@cutting/use-shortcuts": ["packages/use-shortcuts/src"],
       "@cutting/use-mathjax": ["packages/use-mathjax/src"],
+      "@cutting/use-parentsize-svg": ["packages/use-parentsize-svg/src"],
       "@cutting/graphql-explorer": ["packages/graphql-explorer/src"],
       "@cutting/website": ["packages/website/src"]
     }

@@ -36,6 +36,7 @@ const libPackages = [
   'packages/tsconfig',
   'packages/useful-types',
   'packages/util',
+  'packages/use-parentsize-svg',
   'packages/hooks',
   'packages/use-mathjax',
   'packages/component-library',

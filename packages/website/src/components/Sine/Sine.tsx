@@ -2,7 +2,7 @@ import React, { FC, useCallback, useEffect, useMemo, useReducer } from 'react';
 import { useRef } from 'react';
 import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { ResponsiveSVG, Group, Line } from '@cutting/svg';
-import { useParentSize } from '@cutting/hooks';
+import { useParentSize } from '@cutting/use-parentsize-svg';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { LinePath } from '@visx/shape';
 import { curveMonotoneX } from '@visx/curve';
