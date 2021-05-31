@@ -2,7 +2,7 @@ import { describe, it, expect } from '@jest/globals';
 import type { FC } from 'react';
 import { render, screen } from '@testing-library/react';
 import { resize } from '@cutting/testing/dist/ResizeObserver';
-import { useParentSize } from '@cutting/use-parentsize-svg';
+import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { ResponsiveSVG } from './ResponsiveSVG';
 

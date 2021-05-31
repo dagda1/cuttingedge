@@ -10,7 +10,7 @@
 
 ### Minor Changes
 
-- move useParentSize into its own package use-parentsize-svg
+- move useParentSize into its own package use-get-parent-size
 
 ## 4.24.2
 
