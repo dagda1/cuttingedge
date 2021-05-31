@@ -30,7 +30,7 @@ var libPackages = [
     'packages/tsconfig',
     'packages/useful-types',
     'packages/util',
-    'packages/use-parentsize-svg',
+    'packages/use-get-parent-size',
     'packages/hooks',
     'packages/use-mathjax',
     'packages/component-library',

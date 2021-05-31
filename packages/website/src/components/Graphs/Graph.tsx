@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useRef } from 'react';
-import { useParentSize } from '@cutting/use-parentsize-svg';
+import { useParentSize } from '@cutting/use-get-parent-size';
 import {
   VictoryChart,
   VictoryGroup,

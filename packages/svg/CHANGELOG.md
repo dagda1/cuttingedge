@@ -5,7 +5,7 @@
 ### Patch Changes
 
 - Updated dependencies [undefined]
-  - @cutting/use-parentsize-svg@1.1.0
+  - @cutting/use-get-parent-size@1.1.0
 
 ## 4.25.0
 

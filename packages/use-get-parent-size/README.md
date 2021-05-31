@@ -1,16 +1,16 @@
 # @cutting/use-parent - reusable react hooks for reusable things
 
-[![npm version](https://img.shields.io/npm/v/@cutting/use-parentsize-svg.svg)](https://www.npmjs.com/package/@cutting/use-parentsize-svg)
+[![npm version](https://img.shields.io/npm/v/@cutting/use-get-parent-size.svg)](https://www.npmjs.com/package/@cutting/use-get-parent-size)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## install 
 
 ```sh
-yarn add @cutting/use-parentsize-svg
+yarn add @cutting/use-get-parent-size
 
 # or
 
-npm install @cutting/use-parentsize-svg
+npm install @cutting/use-get-parent-size
 ```
 
 ## useParentSize
@@ -48,7 +48,7 @@ export interface UseParentSizeOptions {
 ```ts
 import type { FC } from 'react';
 import { useRef } from 'react';
-import type { UseParentSizeOptions } from '@cutting/use-parentsize-svg';
+import type { UseParentSizeOptions } from '@cutting/use-get-parent-size';
 
 export const ResponsiveSVG: FC = ({
   children
