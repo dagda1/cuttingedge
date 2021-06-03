@@ -4,7 +4,7 @@ import { ShortcutHandler } from '../../types/types';
 export interface ShortcutsProps<
   R extends Record<PropertyKey, unknown>,
   E extends HTMLElement = HTMLElement,
-  C = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
+  C = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
 > {
   tabIndex?: number;
   className?: string;

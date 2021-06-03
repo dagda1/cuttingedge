@@ -1,1 +1,5 @@
-export const uniqueId = ((counter) => (str = '') => `${str}${++counter}`)(0);
+export const uniqueId = (
+  (counter) =>
+  (str = '') =>
+    `${str}${++counter}`
+)(0);

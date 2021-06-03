@@ -7,7 +7,7 @@ describe('string', () => {
     expect(capitalize('foo bar')).toBe('Foo bar');
   });
 
-  test.each`
+  it.each`
     subject             | expected | message
     ${null}             | ${''}    | ${'null should be empty string'}
     ${' a b c '}        | ${'abc'} | ${'remove leading spaces'}

@@ -16,10 +16,10 @@ const Sine: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef);
   const tickFrame = useRef<number>();
-  const { initialX, initialY, firstX, radius, xAxisScale, yAxisScale } = useMemo(() => getScales({ width, height }), [
-    width,
-    height,
-  ]);
+  const { initialX, initialY, firstX, radius, xAxisScale, yAxisScale } = useMemo(
+    () => getScales({ width, height }),
+    [width, height],
+  );
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -77,7 +77,7 @@ const Sine: FC = () => {
                   <AxisBottom
                     scale={xAxisScale}
                     tickValues={xTickValues}
-                    tickFormat={(x) => `$${PiMap[(x as unknown) as PiMapKeys]}$`}
+                    tickFormat={(x) => `$${PiMap[x as unknown as PiMapKeys]}$`}
                     axisClassName={styles.axis}
                     axisLineClassName={styles['axis-line']}
                     tickStroke="#fff"

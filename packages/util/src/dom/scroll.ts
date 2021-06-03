@@ -51,21 +51,23 @@ function doScrolling(element: string, duration: number, options: { offset: numbe
   });
 }
 
-export const scrollToElement = (
-  selector: string,
-  predicate: (e?: Event) => true = () => true,
-  options: {
-    offset: number;
-  } = { offset: 0 },
-) => (e?: Event): void => {
-  if (!predicate(e)) {
-    return;
-  }
+export const scrollToElement =
+  (
+    selector: string,
+    predicate: (e?: Event) => true = () => true,
+    options: {
+      offset: number;
+    } = { offset: 0 },
+  ) =>
+  (e?: Event): void => {
+    if (!predicate(e)) {
+      return;
+    }
 
-  setTimeout(() => {
-    doScrolling(selector, 1000, options);
-  });
-};
+    setTimeout(() => {
+      doScrolling(selector, 1000, options);
+    });
+  };
 
 const defaultValidatorSelector = '[data-selector="validation-summary"] h2';
 

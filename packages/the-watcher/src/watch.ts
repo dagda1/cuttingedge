@@ -17,7 +17,11 @@ function writeOut(channel: Stream<string>, out: NodeJS.WriteStream) {
 }
 
 function* executeAndOut(command: string, cwd: string): Operation<void> {
-  const { stdout, stderr, expect: expecting } = yield exec(`yarn ${command}`, {
+  const {
+    stdout,
+    stderr,
+    expect: expecting,
+  } = yield exec(`yarn ${command}`, {
     cwd,
     env: { ...process.env, WATCHING: true.toString() },
   });

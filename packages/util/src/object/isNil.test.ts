@@ -2,7 +2,7 @@ import { expect, test, describe } from '@jest/globals';
 import { isNil } from './isNil';
 
 describe('isNil', () => {
-  test.each`
+  it.each`
     subject              | expected | message
     ${isNil(undefined)}  | ${true}  | ${'undefined'}
     ${isNil(null)}       | ${true}  | ${'null'}

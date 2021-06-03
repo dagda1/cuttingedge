@@ -32,7 +32,7 @@ export const transform = (results: CountryStats, country: CountryData): DayData[
     };
   });
 
-  return (result as unknown) as DayData[];
+  return result as unknown as DayData[];
 };
 
 const DefaultStartDate = '2020-03-01'; //;dayjs().subtract(45, 'day').format('YYYY-MM-DD');
