@@ -19,6 +19,7 @@ import { Configuration } from 'webpack';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import { stats } from './loaders/stats';
 import { merge } from 'webpack-merge';
+import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 
 import path from 'path';
 
@@ -106,6 +107,7 @@ export const configureCommon = (
           },
         }),
         isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
+        new VanillaExtractPlugin(),
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
           chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',

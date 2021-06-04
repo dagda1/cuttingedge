@@ -1,6 +1,7 @@
 import type { FC, InputHTMLAttributes, RefObject } from 'react';
 import cs from 'classnames';
 import styles from './Input.module.scss';
+import { atoms } from '../../../style/sprinkles';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean;
