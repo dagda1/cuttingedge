@@ -42,6 +42,7 @@ var svgLoader_1 = require("./loaders/svgLoader");
 var mdLoader_1 = require("./loaders/mdLoader");
 var ModuleScopePlugin_1 = __importDefault(require("react-dev-utils/ModuleScopePlugin"));
 var webpack_merge_1 = require("webpack-merge");
+var webpack_plugin_1 = require("@vanilla-extract/webpack-plugin");
 var path_1 = __importDefault(require("path"));
 var assetsLoader_1 = require("./loaders/assetsLoader");
 var image_minimizer_webpack_plugin_1 = __importDefault(require("image-minimizer-webpack-plugin"));
@@ -168,6 +169,8 @@ var configureCommon = function (options, overrides) {
                     ],
                 },
             }),
+            isDevelopment && new webpack_1.default.WatchIgnorePlugin([paths_1.paths.appManifest]),
+            new webpack_plugin_1.VanillaExtractPlugin(),
             new mini_css_extract_plugin_1.default({
                 filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
                 chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',

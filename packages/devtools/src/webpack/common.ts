@@ -17,6 +17,7 @@ import { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from '../types/co
 import { Configuration } from 'webpack';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import { merge } from 'webpack-merge';
+import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import path from 'path';
 import { createAssetsLoader } from './loaders/assetsLoader';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
@@ -155,6 +156,7 @@ export const configureCommon = (
             ],
           },
         }),
+        new VanillaExtractPlugin(),
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
           chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',

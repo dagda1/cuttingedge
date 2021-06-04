@@ -20,6 +20,10 @@
   "dependencies": {
     "@cutting/hooks": "4.28.2",
     "@cutting/util": "4.27.2",
+    "@vanilla-extract/babel-plugin": "^1.0.0",
+    "@vanilla-extract/css": "^1.0.0",
+    "@vanilla-extract/sprinkles": "^0.4.2",
+    "@vanilla-extract/webpack-plugin": "^1.0.0",
     "assert-ts": "^0.3.2",
     "classnames": "^2.3.1"
   },

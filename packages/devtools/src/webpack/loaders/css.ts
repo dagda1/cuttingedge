@@ -1,6 +1,5 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { createPostCssOptions } from '../createPostCssoptions';
-
 import { getLocalIdent } from '../getLocalIdent';
 import { cssRegex, sassRegex, sassModuleRegex } from '../constants';
 import { RuleSetRule } from 'webpack';
