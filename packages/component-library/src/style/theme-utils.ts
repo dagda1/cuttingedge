@@ -1,6 +1,7 @@
+import omit from 'lodash/omit';
+import isEqual from 'lodash/isEqual';
 import { StyleRule } from '@vanilla-extract/css';
 import { Properties, SimplePseudos } from 'csstype';
-import { isEqual, omit } from '@cutting/util';
 
 export const breakpoints = {
   mobile: 0,
@@ -55,7 +56,7 @@ export const responsiveStyle = ({ mobile, tablet, desktop }: ResponsiveStyle): S
 
 export const mapToProperty =
   <Property extends keyof Properties<string | number>>(property: Property, breakpoint?: Breakpoint) =>
-  (value: string | number): typeof breakpoint | StyleRule => {
+  (value: string | number): StyleRule | typeof styleRule => {
     const styleRule = { [property]: value };
 
     return breakpoint ? responsiveStyle({ [breakpoint]: styleRule }) : styleRule;

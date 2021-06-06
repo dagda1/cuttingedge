@@ -52,6 +52,10 @@ export const createCSSLoaders = ({
   isNode: boolean;
 }): RuleSetRule[] => [
   {
+    test: /\.vanilla\.css$/i,
+    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+  },
+  {
     test: cssRegex,
     use: cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
   },
