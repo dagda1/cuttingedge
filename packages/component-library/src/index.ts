@@ -3,7 +3,7 @@ export type { RadioGroupProps } from './components/molecules/RadioGroup';
 
 export { Heading } from './components/atoms/Heading';
 export { ExternalLink } from './components/atoms/ExternalLink';
-export { Input } from './components/atoms/Input';
+export { Input } from './components/atoms/Input/Input';
 export { Label } from './components/atoms/Label';
 export { ErrorLabel } from './components/atoms/ErrorLabel';
 export { Button } from './components/atoms/Button/Button';
