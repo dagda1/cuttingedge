@@ -1,6 +1,13 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 let dataMemory: { [key: string]: any } = {};
+
+interface Storage {
+  readonly length: number;
+  clear(): void;
+  getItem(key: string): string | null;
+  removeItem(key: string): void;
+  setItem(key: string, value: string): void;
+}
 
 export class MemoryStorage {
   static setItem(key: string, value: any): any {
@@ -8,15 +15,15 @@ export class MemoryStorage {
     return dataMemory[key];
   }
 
-  static getItem(key: string) {
+  static getItem(key: string): any {
     return Object.prototype.hasOwnProperty.call(dataMemory, key) ? dataMemory[key] : undefined;
   }
 
-  static removeItem(key: string) {
+  static removeItem(key: string): boolean {
     return delete dataMemory[key];
   }
 
-  static clear() {
+  static clear(): typeof dataMemory {
     dataMemory = {};
     return dataMemory;
   }
@@ -26,12 +33,35 @@ export class MemoryStorage {
   }
 }
 
-export class StorageHelper {
+type StorageType = 'sessionStorage' | 'localStorage';
+
+export class StorageHelper implements Storage {
   private storageWindow: Storage;
 
-  constructor() {
+  getItem(key: string): string | null {
+    return this.getStorage().getItem(key);
+  }
+
+  setItem(key: string, value: string): void {
+    this.getStorage().setItem(key, value);
+  }
+
+  removeItem(key: string): void {
+    this.getStorage().removeItem(key);
+  }
+
+  clear(): void {
+    this.getStorage().clear();
+  }
+
+  get length(): number {
+    return this.getStorage().length;
+  }
+
+  constructor(storageType: StorageType) {
     try {
-      this.storageWindow = window.sessionStorage as Storage;
+      localStorage;
+      this.storageWindow = window[storageType];
       this.storageWindow.setItem('cutting.test-ls', '1');
       this.storageWindow.removeItem('cutting.test-ls');
     } catch (exception) {
@@ -39,9 +69,7 @@ export class StorageHelper {
     }
   }
 
-  getStorage() {
+  getStorage(): Storage {
     return this.storageWindow;
   }
 }
-
-export const storageHelper = new StorageHelper();
