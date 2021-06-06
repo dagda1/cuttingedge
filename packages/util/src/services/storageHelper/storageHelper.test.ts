@@ -3,7 +3,7 @@ import { expect, it, describe } from '@jest/globals';
 
 describe('storageHelper', () => {
   it('should set and remove on real storage', () => {
-    const storage = new StorageHelper().getStorage();
+    const storage = new StorageHelper('sessionStorage');
 
     storage.setItem('foo', 'bar');
 
