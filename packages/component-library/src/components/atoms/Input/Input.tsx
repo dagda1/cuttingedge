@@ -1,6 +1,6 @@
 import type { FC, InputHTMLAttributes, RefObject } from 'react';
 import cs from 'classnames';
-import styles from './Input.module.scss';
+import * as styles from './Input.css';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean;
@@ -12,7 +12,7 @@ export const Input: FC<InputProps> = ({ invalid, className, required, innerRef, 
     autoComplete="off"
     required={required}
     aria-required={required}
-    className={cs(styles.default, 'form-control', className, {
+    className={cs(styles.input, 'form-control', className, {
       [styles.invalid]: invalid,
     })}
     type={type}
