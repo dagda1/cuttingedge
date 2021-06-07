@@ -1,5 +1,6 @@
 import { StorageHelper } from '@cutting/util';
 import { useEffect, useState, createContext, useContext, FC } from 'react';
+import { Button } from 'src/components/atoms/Button/Button';
 import * as styles from './ColorModeToggle.css';
 
 type ColorMode = 'dark' | 'light';
@@ -31,9 +32,7 @@ export const ColorModeProvider: FC = ({ children }) => {
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(c);
 
-    try {
-      storageHelper.setItem(themeKey, c);
-    } catch (e) {}
+    storageHelper.setItem(themeKey, c);
   };
 
   return (
@@ -52,15 +51,12 @@ export const ColorModeToggle: FC = () => {
   const { colorMode, setColorMode } = useContext(ColorModeContext);
 
   return (
-    <Box
-      component="button"
-      padding={{ desktop: 'small' }}
-      cursor="pointer"
+    <Button
       className={styles.root}
-      title="Toggle colour mode"
+      buttonStyle="primary"
       onClick={() => setColorMode(colorMode === 'light' ? 'dark' : 'light')}
     >
       &nbsp;
-    </Box>
+    </Button>
   );
 };

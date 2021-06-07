@@ -1,26 +1,16 @@
-import { createTheme, createThemeContract, createGlobalTheme } from '@vanilla-extract/css';
+import { createGlobalTheme } from '@vanilla-extract/css';
 import { palette } from './palette.css';
 
 const grid = 4;
 const px = (value: string | number) => `${value}px`;
 
-export const formControlVars = createThemeContract({
-  formControl: {
-    height: null,
-    width: null,
-    padding: null,
-  },
-});
-
-export const darkTheme = createTheme(formControlVars, {
-  formControl: {
-    height: '2.5rem',
-    width: '100%',
-    padding: '6px 12px',
-  },
-});
-
 export const vars = createGlobalTheme(':root', {
+  fonts: {
+    brand: 'Shrikhand, "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
+    heading: '"DM Sans", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
+    body: '-apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif',
+    code: 'MonoLisa, "Roboto Mono", Menlo, monospace',
+  },
   grid: px(grid),
   contentWidth: {
     xsmall: px(480),
@@ -41,6 +31,11 @@ export const vars = createGlobalTheme(':root', {
   weight: {
     regular: '400',
     strong: '700',
+  },
+  formControl: {
+    height: '2.5rem',
+    width: '100%',
+    padding: '5px',
   },
   palette: palette,
 });
