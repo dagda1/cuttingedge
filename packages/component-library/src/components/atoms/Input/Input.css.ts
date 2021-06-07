@@ -4,6 +4,7 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes.css';
 
 export const inputVars = createThemeContract({
+  bgColor: null,
   borderColor: null,
   borderColorFocus: null,
   borderColorInvalid: null,
@@ -15,6 +16,7 @@ export const inputVars = createThemeContract({
 });
 
 export const [themeClass, themeVars] = createTheme({
+  bg: palette.white,
   borderColor: palette.trueGray900,
   borderColorFocus: palette.blue700,
   borderColorInvalid: palette.redError,
@@ -22,21 +24,20 @@ export const [themeClass, themeVars] = createTheme({
   borderWidth: '1px',
   borderWidthFocus: '2px',
   borderWidthOutline: '3px',
-  bfFocus: palette.blue100,
+  bgFocus: palette.blue100,
   bgInvalid: palette.redError,
   outlineFocusColor: palette.yellow400,
 });
 
 const base = style({
   ...vars.formControl,
+  background: themeVars.bg,
   border: `${themeVars.borderWidth} solid ${themeVars.borderColor}`,
-  selectors: {
-    [`&:focus &`]: {
-      background: themeVars.bfFocus,
-      border: `${themeVars.borderWidthFocus} solid ${themeVars.borderColorFocus}`,
-      outline: `${themeVars.borderWidthOutline} solid ${themeVars.outlineFocusColor}`,
-    },
-  },
+  // [`:focus`]: {
+  //   background: themeVars.bgFocus,
+  //   border: `${themeVars.borderWidthFocus} solid ${themeVars.borderColorFocus}`,
+  //   outline: `${themeVars.borderWidthOutline} solid ${themeVars.outlineFocusColor}`,
+  // },
 });
 
 export const input = composeStyles(base);
@@ -46,10 +47,8 @@ export const invalid = composeStyles(
   style({
     background: themeVars.bgInvalid,
     borderColor: themeVars.borderColorInvalid,
-    selectors: {
-      [`&:focus &`]: {
-        borderColor: themeVars.borderColorFocus,
-      },
-    },
+    // [`:focus`]: {
+    //   borderColor: themeVars.borderColorFocus,
+    // },
   }),
 );
