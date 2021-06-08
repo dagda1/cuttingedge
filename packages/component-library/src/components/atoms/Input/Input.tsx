@@ -9,7 +9,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input: FC<InputProps> = ({ invalid, className, required, innerRef, type = 'text', ...rest }) => (
   <input
-    autoComplete="off"
     required={required}
     aria-required={required}
     className={cs(styles.input, 'form-control', className, {

@@ -159,7 +159,6 @@ export const configureCommon = (
         new VanillaExtractPlugin(),
         new VanillaExtractPlugin({
           test: /\.css\.ts$/,
-          outputCss: true,
         }),
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',

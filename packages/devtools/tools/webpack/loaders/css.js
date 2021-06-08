@@ -60,6 +60,10 @@ var createCSSLoaders = function (_a) {
     var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, isNode = _a.isNode;
     return [
         {
+            test: /\.vanilla\.css$/i,
+            use: [mini_css_extract_plugin_1.default.loader, 'css-loader'],
+        },
+        {
             test: constants_1.cssRegex,
             use: exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
         },

@@ -1,41 +1,10 @@
-html {
-  height: 100%;
-  font-size: 100%;
-}
-
-body {
-  height: 100%;
-  box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
-  line-height: 1;
-  background-color: #000;
-  color: #fff;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box !important;
-}
-
-
-ul {
-  padding: 0;
-}
-
-#root {
-  padding-left: 2rem;
-  padding-right: 2rem;
-
-
-  max-width: 1008px;
-  margin: 0 auto;
-}
-
-.layout {
-  display: flex;
-  flex: 1;
-  text-align: left;
-  flex-flow: row wrap;
-}
-
+html { height: 100%; font-size: 100%; }
+body { height: 100%; box-sizing: border-box; font-family: Helvetica, Arial, sans-serif; line-height: 1; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); }
+*, ::before, ::after { box-sizing: border-box !important; }
+ul { padding: 0px; }
+#root { padding-left: 2rem; padding-right: 2rem; max-width: 1008px; margin: 0px auto; }
+.layout { display: flex; flex: 1 1 0%; text-align: left; flex-flow: row wrap; }
+:root { --fonts-brand__1xcr4gg0: Shrikhand, "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif; --fonts-heading__1xcr4gg1: "DM Sans", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif; --fonts-body__1xcr4gg2: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif; --fonts-code__1xcr4gg3: MonoLisa, "Roboto Mono", Menlo, monospace; --grid__1xcr4gg4: 4px; --contentWidth-xsmall__1xcr4gg5: 480px; --contentWidth-small__1xcr4gg6: 600px; --contentWidth-standard__1xcr4gg7: 740px; --contentWidth-large__1xcr4gg8: 1350px; --spacing-none__1xcr4gg9: 0; --spacing-xsmall__1xcr4gga: 4px; --spacing-small__1xcr4ggb: 8px; --spacing-medium__1xcr4ggc: 12px; --spacing-large__1xcr4ggd: 20px; --spacing-xlarge__1xcr4gge: 32px; --spacing-xxlarge__1xcr4ggf: 48px; --spacing-xxxlarge__1xcr4ggg: 96px; --weight-regular__1xcr4ggh: 400; --weight-strong__1xcr4ggi: 700; --formControl-height__1xcr4ggj: 2.5rem; --formControl-width__1xcr4ggk: 100%; --formControl-padding__1xcr4ggl: 5px; --palette-white__1xcr4ggm: #fff; --palette-black__1xcr4ggn: #0e0e10; --palette-red__1xcr4ggo: #ef4444; --palette-red600__1xcr4ggp: #dc2626; --palette-redError__1xcr4ggq: #dc2626; --palette-yellow50__1xcr4ggr: #fefce8; --palette-yellow100__1xcr4ggs: #fef9c3; --palette-yellow200__1xcr4ggt: #fef08a; --palette-yellow300__1xcr4ggu: #fde047; --palette-yellow400__1xcr4ggv: #facc15; --palette-yellow500__1xcr4ggw: #eab308; --palette-yellow600__1xcr4ggx: #ca8a04; --palette-yellow700__1xcr4ggy: #a16207; --palette-yellow800__1xcr4ggz: #854d0e; --palette-yellow900__1xcr4gg10: #713f12; --palette-green200__1xcr4gg11: #a7f3d0; --palette-green300__1xcr4gg12: #6ee7b7; --palette-green400__1xcr4gg13: #34d399; --palette-green500__1xcr4gg14: #10b981; --palette-coolGray50__1xcr4gg15: #f9fafb; --palette-coolGray100__1xcr4gg16: #f3f4f6; --palette-coolGray200__1xcr4gg17: #e5e7eb; --palette-coolGray300__1xcr4gg18: #d1d5db; --palette-coolGray400__1xcr4gg19: #9ca3af; --palette-coolGray500__1xcr4gg1a: #6b7280; --palette-coolGray600__1xcr4gg1b: #4b5563; --palette-coolGray700__1xcr4gg1c: #374151; --palette-coolGray800__1xcr4gg1d: #1f2937; --palette-coolGray900__1xcr4gg1e: #111827; --palette-trueGray50__1xcr4gg1f: #fafafa; --palette-trueGray100__1xcr4gg1g: #f5f5f5; --palette-trueGray200__1xcr4gg1h: #e5e5e5; --palette-trueGray300__1xcr4gg1i: #d4d4d4; --palette-trueGray400__1xcr4gg1j: #a3a3a3; --palette-trueGray500__1xcr4gg1k: #737373; --palette-trueGray600__1xcr4gg1l: #525252; --palette-trueGray700__1xcr4gg1m: #404040; --palette-trueGray800__1xcr4gg1n: #262626; --palette-trueGray900__1xcr4gg1o: #171717; --palette-gray50__1xcr4gg1p: #fafafa; --palette-gray100__1xcr4gg1q: #f4f4f5; --palette-gray200__1xcr4gg1r: #e4e4e7; --palette-gray300__1xcr4gg1s: #d4d4d8; --palette-gray400__1xcr4gg1t: #a1a1aa; --palette-gray500__1xcr4gg1u: #71717a; --palette-gray600__1xcr4gg1v: #52525b; --palette-gray700__1xcr4gg1w: #3f3f46; --palette-gray800__1xcr4gg1x: #27272a; --palette-gray900__1xcr4gg1y: #18181b; --palette-teal50__1xcr4gg1z: #f0fdfa; --palette-teal100__1xcr4gg20: #ccfbf1; --palette-teal200__1xcr4gg21: #99f6e4; --palette-teal300__1xcr4gg22: #5eead4; --palette-teal400__1xcr4gg23: #2dd4bf; --palette-teal500__1xcr4gg24: #14b8a6; --palette-teal600__1xcr4gg25: #0d9488; --palette-teal700__1xcr4gg26: #0f766e; --palette-teal800__1xcr4gg27: #115e59; --palette-teal900__1xcr4gg28: #134e4a; --palette-blue50__1xcr4gg29: #f0f9ff; --palette-blue100__1xcr4gg2a: #e0f2fe; --palette-blue200__1xcr4gg2b: #bae6fd; --palette-blue300__1xcr4gg2c: #7dd3fc; --palette-blue400__1xcr4gg2d: #38bdf8; --palette-blue500__1xcr4gg2e: #0ea5e9; --palette-blue600__1xcr4gg2f: #0284c7; --palette-blue700__1xcr4gg2g: #0369a1; --palette-blue800__1xcr4gg2h: #075985; --palette-blue900__1xcr4gg2i: #0c4a6e; }
+.Input_themeClass__1is1gb80 { --bg__1is1gb81: #fff; --borderColor__1is1gb82: #171717; --borderColorFocus__1is1gb83: #0369a1; --borderColorInvalid__1is1gb84: #dc2626; --borderFocusColorinvalid__1is1gb85: #0369a1; --borderWidth__1is1gb86: 1px; --borderWidthFocus__1is1gb87: 2px; --borderWidthOutline__1is1gb88: 3px; --bgFocus__1is1gb89: #e0f2fe; --bgInvalid__1is1gb8a: #dc2626; --outlineFocusColor__1is1gb8b: #facc15; }
+.Input_base__1is1gb8c { height: var(--formControl-height__1xcr4ggj); width: var(--formControl-width__1xcr4ggk); padding: var(--formControl-padding__1xcr4ggl); background: var(--bg__1is1gb81); border: var(--borderWidth__1is1gb86) solid var(--borderColor__1is1gb82); }
+.Input__1is1gb8d { background: var(--bgInvalid__1is1gb8a); border-color: var(--borderColorInvalid__1is1gb84); }
