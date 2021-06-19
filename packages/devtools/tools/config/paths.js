@@ -48,7 +48,6 @@ var tsConfig = fs_1.default.existsSync(tsConfigPath)
     : { compilerOptions: { outDir: undefined, module: undefined } };
 var tsConfigProduction = fs_1.default.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
 var testTsConfig = [testTsConfigPath, monorRepoTestTsConfigPath].find(fs_1.default.existsSync);
-console.dir({ testTsConfig: testTsConfig });
 var outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.outDir) || DefaultBuildDir;
 var isCommonJs = ((_c = (_b = tsConfig.compilerOptions) === null || _b === void 0 ? void 0 : _b.module) === null || _c === void 0 ? void 0 : _c.toLowerCase()) === 'commonjs';
 var appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
@@ -74,6 +73,7 @@ exports.paths = {
     resolvedNodeModules: resolvedNodeModules,
     tsConfig: tsConfigPath,
     tsConfigProduction: tsConfigProduction,
+    testTsConfig: testTsConfig,
     devDir: resolveApp(DevFolder),
     devDirPublic: resolveApp(DevFolder + "/public"),
     libPackages: libPackages,
@@ -87,7 +87,6 @@ exports.paths = {
     ossIndex: resolveApp('ossindex'),
     ownJestConfig: resolveApp('jest.config.js'),
     jestConfig: path_1.default.join(__dirname, '../jest/jest.config.js'),
-    testTsConfig: testTsConfig,
     projectReferences: !!tsConfig.references,
     isCommonJS: isCommonJs,
 };

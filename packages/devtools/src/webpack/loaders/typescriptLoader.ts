@@ -3,7 +3,6 @@ import { Options } from 'ts-loader';
 import { RuleSetRule } from 'webpack';
 import { createBabelConfig } from '../../scripts/createBabelConfig';
 import { ModuleFormat } from '../../types/moduleFormat';
-import fs from 'fs';
 
 export const createTypescriptLoader = ({
   isDevelopment,
