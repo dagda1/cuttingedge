@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.26.0
+
+### Minor Changes
+
+- Allow testTsConfig to be undefined
+
 ## 4.25.0
 
 ### Minor Changes

@@ -41,14 +41,14 @@ var libPackages = [
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var tsConfigPath = resolveApp('tsconfig.json');
 var testTsConfigPath = require.resolve('@cutting/tsconfig/tsconfig.test.json');
+var monorRepoTestTsConfigPath = path_1.default.resolve(__dirname, '../../typescript/tsconfig.test.json');
 var tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 var tsConfig = fs_1.default.existsSync(tsConfigPath)
     ? require(tsConfigPath)
     : { compilerOptions: { outDir: undefined, module: undefined } };
 var tsConfigProduction = fs_1.default.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
-var testTsConfig = fs_1.default.existsSync(testTsConfigPath)
-    ? testTsConfigPath
-    : path_1.default.resolve(__dirname, '../../typescript/tsconfig.test.json');
+var testTsConfig = [testTsConfigPath, monorRepoTestTsConfigPath].find(fs_1.default.existsSync);
+console.dir({ testTsConfig: testTsConfig });
 var outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.outDir) || DefaultBuildDir;
 var isCommonJs = ((_c = (_b = tsConfig.compilerOptions) === null || _b === void 0 ? void 0 : _b.module) === null || _c === void 0 ? void 0 : _c.toLowerCase()) === 'commonjs';
 var appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);

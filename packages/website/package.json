@@ -53,7 +53,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.25.0",
+    "@cutting/devtools": "4.26.0",
     "@cutting/eslint-config": "4.23.1",
     "@cutting/useful-types": "4.22.2",
     "@testing-library/jest-dom": "^5.11.10",

@@ -48,6 +48,7 @@ const libPackages = [
 
 const tsConfigPath = resolveApp('tsconfig.json');
 const testTsConfigPath = require.resolve('@cutting/tsconfig/tsconfig.test.json');
+const monorRepoTestTsConfigPath = path.resolve(__dirname, '../../typescript/tsconfig.test.json');
 const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 
 type OurCompilerOptions = {
@@ -61,9 +62,7 @@ const tsConfig: OurCompilerOptions = fs.existsSync(tsConfigPath)
 
 const tsConfigProduction = fs.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
 
-const testTsConfig = fs.existsSync(testTsConfigPath)
-  ? testTsConfigPath
-  : path.resolve(__dirname, '../../typescript/tsconfig.test.json');
+const testTsConfig = [testTsConfigPath, monorRepoTestTsConfigPath].find(fs.existsSync);
 
 const outDir = tsConfig.compilerOptions?.outDir || DefaultBuildDir;
 const isCommonJs = tsConfig.compilerOptions?.module?.toLowerCase() === 'commonjs';
@@ -93,6 +92,7 @@ export const paths = {
   resolvedNodeModules,
   tsConfig: tsConfigPath,
   tsConfigProduction,
+  testTsConfig,
   devDir: resolveApp(DevFolder),
   devDirPublic: resolveApp(`${DevFolder}/public`),
   libPackages,
@@ -106,7 +106,6 @@ export const paths = {
   ossIndex: resolveApp('ossindex'),
   ownJestConfig: resolveApp('jest.config.js'),
   jestConfig: path.join(__dirname, '../jest/jest.config.js'),
-  testTsConfig,
   projectReferences: !!tsConfig.references,
   isCommonJS: isCommonJs,
 };

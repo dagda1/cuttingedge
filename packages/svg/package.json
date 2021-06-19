@@ -19,7 +19,7 @@
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.25.0",
+    "@cutting/devtools": "4.26.0",
     "@cutting/testing": "4.23.2",
     "@cutting/eslint-config": "4.23.1",
     "@cutting/useful-types": "4.22.2",
