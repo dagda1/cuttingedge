@@ -13,7 +13,7 @@
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting static-build",
+    "build": "NODE_ENV=production cutting rollup",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
@@ -43,5 +43,7 @@
     "reactjs",
     "graphql",
     "dataviz"
-  ]
+  ],
+  "module": "dist/graphql-explorer.esm.js",
+  "browser": "dist/graphql-explorer.umd.js"
 }
