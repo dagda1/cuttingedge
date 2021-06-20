@@ -61,10 +61,19 @@ var createCSSLoaders = function (_a) {
     return [
         {
             test: /\.vanilla\.css$/i,
-            use: [mini_css_extract_plugin_1.default.loader, 'css-loader'],
+            use: [
+                mini_css_extract_plugin_1.default.loader,
+                {
+                    loader: require.resolve('css-loader'),
+                    options: {
+                        url: false,
+                    },
+                },
+            ],
         },
         {
             test: constants_1.cssRegex,
+            exclude: /\.vanilla\.css$/i,
             use: exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
         },
         {

@@ -165,6 +165,7 @@ export const configureCommon = (
           chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',
           ignoreOrder: true,
         }),
+        new VanillaExtractPlugin(),
       ],
       Boolean,
     ),
