@@ -107,14 +107,12 @@ export const configureCommon = (
           },
         }),
         isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
-        new VanillaExtractPlugin({
-          test: /\.css\.ts$/,
-        }),
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
           chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',
           ignoreOrder: true,
         }),
+        new VanillaExtractPlugin(),
       ],
       Boolean,
     ),

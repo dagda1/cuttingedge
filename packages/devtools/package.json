@@ -78,7 +78,6 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^14.0.2",
     "postcss-loader": "^4.2.0",
-    "postcss-normalize": "9.0.0",
     "postcss-safe-parser": "^5.0.2",
     "postcss-scss": "^4.0.0",
     "postcss-url": "^10.1.3",
