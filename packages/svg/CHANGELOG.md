@@ -1,5 +1,14 @@
 # @cutting/svg
 
+## 4.26.1
+
+### Patch Changes
+
+- fix postcss vulnerabilities
+- Updated dependencies
+  - @cutting/use-get-parent-size@1.2.1
+  - @cutting/util@4.24.2
+
 ## 4.26.0
 
 ### Minor Changes
@@ -8,14 +17,14 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/use-get-parent-size@1.2.0
 
 ## 4.25.1
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/use-get-parent-size@1.1.0
 
 ## 4.25.0
@@ -29,7 +38,7 @@
 ### Patch Changes
 
 - Fix babel issues and include a umd build for browser
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/hooks@4.24.2
   - @cutting/util@4.24.1
 
@@ -41,6 +50,6 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/util@4.24.0
   - @cutting/hooks@4.24.1

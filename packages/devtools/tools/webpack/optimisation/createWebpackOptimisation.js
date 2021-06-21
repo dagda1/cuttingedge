@@ -18,7 +18,7 @@ exports.createWebpackOptimisation = void 0;
 var terser_webpack_plugin_1 = __importDefault(require("terser-webpack-plugin"));
 var crypto_1 = __importDefault(require("crypto"));
 var path_1 = __importDefault(require("path"));
-var css_minimizer_webpack_plugin_1 = __importDefault(require("css-minimizer-webpack-plugin"));
+// import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 var FRAMEWORK_BUNDLES = ['react', 'react-dom'];
 var isModuleCSS = function (module) {
     return (module.type === "css/mini-extract" ||
@@ -51,10 +51,10 @@ var createWebpackOptimisation = function (_a) {
                     },
                 },
             }),
-            new css_minimizer_webpack_plugin_1.default({
-                sourceMap: true,
-                parallel: true,
-            }),
+            // new CssMinimizerPlugin({
+            //   sourceMap: true,
+            //   parallel: true,
+            // }),
         ],
         splitChunks: {
             chunks: 'all',

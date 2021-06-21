@@ -1,6 +1,6 @@
 {
   "name": "@cutting/the-watcher",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Run and watch commands concurrently",
   "main": "dist/index.js",
   "license": "MIT",

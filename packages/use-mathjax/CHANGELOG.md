@@ -1,5 +1,13 @@
 # @cutting/use-mathjax
 
+## 4.24.4
+
+### Patch Changes
+
+- fix postcss vulnerabilities
+- Updated dependencies
+  - @cutting/util@4.24.2
+
 ## 4.24.3
 
 ### Patch Changes
@@ -17,7 +25,7 @@
 ### Patch Changes
 
 - Fix babel issues and include a umd build for browser
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/util@4.24.1
 
 ## 4.24.0
@@ -28,5 +36,5 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/util@4.24.0

@@ -1,11 +1,20 @@
 # @cutting/component-library
 
+## 4.24.4
+
+### Patch Changes
+
+- fix postcss vulnerabilities
+- Updated dependencies
+  - @cutting/hooks@4.26.1
+  - @cutting/util@4.24.2
+
 ## 4.24.3
 
 ### Patch Changes
 
 - fix babel warning
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/hooks@4.26.0
 
 ## 4.24.2
@@ -30,7 +39,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/hooks@4.25.0
 
 ## 4.23.3
@@ -38,7 +47,7 @@
 ### Patch Changes
 
 - Fix babel issues and include a umd build for browser
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/hooks@4.24.2
   - @cutting/util@4.24.1
 
@@ -46,6 +55,6 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/util@4.24.0
   - @cutting/hooks@4.24.1
