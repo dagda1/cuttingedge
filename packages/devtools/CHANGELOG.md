@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.26.1
+
+### Patch Changes
+
+- fix postcss vulnerabilities
+
 ## 4.26.0
 
 ### Minor Changes

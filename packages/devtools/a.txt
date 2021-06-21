@@ -1,2 +1,0 @@
-yarn run v1.22.0
-$ /Users/paulcowan/projects/cuttingedge/node_modules/.bin/eslint 'src/**/*.{ts,tsx,js}' --fix --debug

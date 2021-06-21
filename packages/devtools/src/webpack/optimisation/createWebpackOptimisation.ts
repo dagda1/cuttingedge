@@ -3,7 +3,7 @@ import { Options } from 'webpack';
 import crypto from 'crypto';
 import path from 'path';
 import webpack from 'webpack';
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+// import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 const FRAMEWORK_BUNDLES = ['react', 'react-dom'];
 
@@ -48,10 +48,10 @@ export const createWebpackOptimisation = ({
             },
           },
         }),
-        new CssMinimizerPlugin({
-          sourceMap: true,
-          parallel: true,
-        }),
+        // new CssMinimizerPlugin({
+        //   sourceMap: true,
+        //   parallel: true,
+        // }),
       ],
       splitChunks: {
         chunks: 'all',

@@ -1,7 +1,7 @@
 {
   "name": "@cutting/graphql-explorer",
   "description": "Swagger for graphql.....init",
-  "version": "4.22.7",
+  "version": "4.23.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -17,13 +17,13 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@cutting/react-abortable-fetch": "0.11.0",
-    "@cutting/util": "4.24.1",
+    "@cutting/react-abortable-fetch": "0.12.0",
+    "@cutting/util": "4.25.0",
     "graphql": "^15.5.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.26.0",
-    "@cutting/the-watcher": "0.2.1",
+    "@cutting/devtools": "4.27.0",
+    "@cutting/the-watcher": "0.3.0",
     "abortcontroller-polyfill": "^1.7.1",
     "node-fetch": "^2.6.1",
     "react": "^17.0.2",
