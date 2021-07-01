@@ -1,7 +1,7 @@
 import { createTheme, composeStyles } from '@vanilla-extract/css';
 import { palette } from '../../../style/palette.css';
 import { style } from '@vanilla-extract/css';
-import { vars } from '../../../style/themes.css';
+import { vars } from 'src/style/themes/vars.css';
 
 export const [themeClass, themeVars] = createTheme({
   bg: palette.white,
