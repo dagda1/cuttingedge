@@ -11,7 +11,7 @@ type FontSizeText = {
 export type TextDefinition = Record<TextBreakpoint, FontSizeText>;
 type FontWeight = 'regular' | 'medium' | 'strong';
 
-export interface BraidTokens {
+export interface Tokens {
   name: string;
   displayName: string;
   typography: {

@@ -3,7 +3,6 @@ import {
   RequiredConditionalValue,
   createAtomicStyles,
   createAtomsFn,
-  createMapValueFn,
   createNormalizeValueFn,
 } from '@vanilla-extract/sprinkles';
 
@@ -59,4 +58,3 @@ export type RequiredResponsiveValue<Value extends string | number> = RequiredCon
 >;
 
 export const normalizeResponsiveValue = createNormalizeValueFn(responsiveAtomicStyles);
-export const mapResponsiveValue = createMapValueFn(responsiveAtomicStyles);

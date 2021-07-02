@@ -3,7 +3,7 @@ import mapValues from 'lodash/mapValues';
 import { FontMetrics, getCapHeight } from 'capsize';
 
 import { getAccessibleVariant, getLightVariant, isLight } from '../utils';
-import { BraidTokens, TextDefinition } from './token-type';
+import { Tokens, TextDefinition } from './token-type';
 import { buildValues } from '../hooks/typography/capsize/prebuilt';
 
 const px = (v: string | number) => `${v}px`;
@@ -66,26 +66,26 @@ const fontSizeToCapHeight = (grid: number, definition: TextDefinition, fontMetri
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const makeVanillaTheme = (braidTokens: BraidTokens) => {
+export const makeVanillaTheme = (tokens: Tokens) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { name, displayName, ...tokens } = braidTokens;
+  const { name, displayName, ...rest } = tokens;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { webFont, ...typography } = tokens.typography;
-  const { foreground, background } = tokens.color;
+  const { webFont, ...typography } = rest.typography;
+  const { foreground, background } = rest.color;
 
   const getInlineFieldSize = (size: 'standard' | 'small') => {
-    const scale = (typography.text[size].mobile.rows * tokens.grid) / 42;
-    return px(tokens.grid * Math.round(tokens.touchableSize * scale));
+    const scale = (typography.text[size].mobile.rows * rest.grid) / 42;
+    return px(rest.grid * Math.round(rest.touchableSize * scale));
   };
 
   const resolvedTokens = {
-    space: mapValues(tokens.space, (sp) => px(sp * tokens.grid)),
-    touchableSize: px(tokens.touchableSize * tokens.grid),
-    grid: px(tokens.grid),
-    borderRadius: tokens.border.radius,
-    borderColor: tokens.border.color,
-    borderWidth: mapValues(tokens.border.width, px),
-    contentWidth: mapValues(tokens.contentWidth, px),
+    space: mapValues(rest.space, (sp) => px(sp * rest.grid)),
+    touchableSize: px(rest.touchableSize * rest.grid),
+    grid: px(rest.grid),
+    borderRadius: rest.border.radius,
+    borderColor: rest.border.color,
+    borderWidth: mapValues(rest.border.width, px),
+    contentWidth: mapValues(rest.contentWidth, px),
     foregroundColor: foreground,
     backgroundColor: {
       ...background,
@@ -104,24 +104,24 @@ export const makeVanillaTheme = (braidTokens: BraidTokens) => {
     },
     fontFamily: typography.fontFamily,
     fontMetrics: mapValues(typography.fontMetrics, String),
-    textSize: mapValues(tokens.typography.text, (definition) =>
-      fontSizeToCapHeight(tokens.grid, definition, typography.fontMetrics),
+    textSize: mapValues(rest.typography.text, (definition) =>
+      fontSizeToCapHeight(rest.grid, definition, typography.fontMetrics),
     ),
     textWeight: mapValues(typography.fontWeight, String),
-    headingLevel: mapValues(tokens.typography.heading.level, (definition) =>
-      fontSizeToCapHeight(tokens.grid, definition, typography.fontMetrics),
+    headingLevel: mapValues(rest.typography.heading.level, (definition) =>
+      fontSizeToCapHeight(rest.grid, definition, typography.fontMetrics),
     ),
     headingWeight: {
-      weak: String(tokens.typography.fontWeight[tokens.typography.heading.weight.weak]),
-      regular: String(tokens.typography.fontWeight[tokens.typography.heading.weight.regular]),
+      weak: String(rest.typography.fontWeight[rest.typography.heading.weight.weak]),
+      regular: String(rest.typography.fontWeight[rest.typography.heading.weight.regular]),
     },
     inlineFieldSize: {
       standard: getInlineFieldSize('standard'),
       small: getInlineFieldSize('small'),
     },
-    transition: tokens.transitions,
-    transform: tokens.transforms,
-    shadow: tokens.shadows,
+    transition: rest.transitions,
+    transform: rest.transforms,
+    shadow: rest.shadows,
     formControl: {
       height: '2.5rem',
       width: '100%',
