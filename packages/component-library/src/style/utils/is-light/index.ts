@@ -15,7 +15,7 @@ const getLinearGradientColors = (color: string) => {
 
   return gradients[0].colorStops.map(({ type, value }) => {
     if (typeof value !== 'string') {
-      throw new Error('Gradient parsing in Braid currently only supports hex/literal values');
+      throw new Error('Gradient parsing only supports hex/literal values');
     }
 
     return `${type === 'hex' ? '#' : ''}${value}`;

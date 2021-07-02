@@ -9,11 +9,6 @@ export const base = style({
   font: 'inherit',
   verticalAlign: 'baseline',
   WebkitTapHighlightColor: 'transparent',
-  selectors: {
-    [`[data-braid-hidefocusrings] &`]: {
-      outline: 'none',
-    },
-  },
 });
 
 // HTML5 display-role reset for older browsers

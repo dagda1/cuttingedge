@@ -9,15 +9,14 @@ export const markResetImported = (): void => {
 export const ensureResetImported = (): void => {
   if (!resetImported) {
     throw new Error(dedent`
-      Braid components imported before reset.
+      something imported before reset.
 
-      Make sure to import the Braid reset module before importing any components. 
+      Make sure to import the reset module before importing any components. 
       This ensures the CSS reset does not override the component styles. 
     
       e.g.
 
-      import 'braid-design-system/reset'; // <-- Must be first
-      import { BraidProvider, Box } from 'braid-design-system';
+      import '@cutting/component-library/tools/style/reset'; // <-- Must be first
     `);
   }
 };

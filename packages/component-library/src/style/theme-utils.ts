@@ -5,7 +5,7 @@ import { Style } from './types';
 type RequiredTokens = { breakpoint: Record<Breakpoint, number> };
 type StyleWithoutMediaQueries = Exclude<Style['@media'], undefined>[string];
 
-interface ResponsiveStyle {
+export interface ResponsiveStyle {
   mobile?: StyleWithoutMediaQueries;
   tablet?: StyleWithoutMediaQueries;
   desktop?: StyleWithoutMediaQueries;

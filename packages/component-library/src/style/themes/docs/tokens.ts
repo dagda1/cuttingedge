@@ -1,5 +1,5 @@
 import { rgba } from 'polished';
-import { BraidTokens } from '../token-type';
+import { Tokens } from '../token-type';
 
 const formAccent = '#0049bd';
 const critical = '#ef0036';
@@ -16,7 +16,7 @@ const linkVisited = 'DarkViolet';
 const secondary = '#757575';
 const neutral = '#c0c0c0';
 
-export const tokens: BraidTokens = {
+export const tokens: Tokens = {
   name: 'docs',
   displayName: 'Docs',
   typography: {
