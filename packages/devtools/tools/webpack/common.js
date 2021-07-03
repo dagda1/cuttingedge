@@ -175,7 +175,9 @@ var configureCommon = function (options, overrides) {
                 chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',
                 ignoreOrder: true,
             }),
-            new webpack_plugin_1.VanillaExtractPlugin(),
+            new webpack_plugin_1.VanillaExtractPlugin({
+                allowRuntime: true,
+            }),
         ], Boolean),
     });
     return config;
