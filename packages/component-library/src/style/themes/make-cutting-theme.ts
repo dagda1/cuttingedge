@@ -6,6 +6,9 @@ import { getLightVariant, isLight } from '../utils';
 import { breakpoints } from '../breakpoints';
 import { makeThemeUtils } from '../theme-utils';
 import { Tokens, TextDefinition } from './token-type';
+import { createTheme } from '@vanilla-extract/css';
+import { vars } from './vars.css';
+import { makeVanillaTheme } from './make-vanilla-theme';
 
 const fontSizeToCapHeight = (definition: TextDefinition, fontMetrics: FontMetrics) => {
   const { mobile, tablet } = definition;
@@ -140,8 +143,8 @@ const makeRuntimeTokens = (tokens: TreatTheme) => ({
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function makeTheme(tokens: Tokens) {
   const decoratedTokens = decorateTokens(tokens);
-
   return {
+    theme: createTheme(vars, makeVanillaTheme(tokens)),
     ...makeRuntimeTokens(decoratedTokens),
   };
 }
