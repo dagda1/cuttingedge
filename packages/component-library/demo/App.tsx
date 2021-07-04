@@ -5,7 +5,7 @@ import { Heading, FormInput } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
-import { defaultTheme } from '../src/style/themes/themes.css';
+import { defaultTheme } from '../src/style/themes/default/default.css';
 
 export const App: FC = () => {
   return (

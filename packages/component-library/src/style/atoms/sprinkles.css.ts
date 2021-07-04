@@ -1,4 +1,5 @@
 import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles';
+import { palette } from '../palette.css';
 import { vars } from '../themes/vars.css';
 
 const responsiveStyles = createAtomicStyles({
@@ -42,8 +43,8 @@ const colorModeStyles = createAtomicStyles({
   },
   defaultCondition: 'lightMode',
   properties: {
-    color: vars.color,
-    background: vars.color,
+    color: palette,
+    background: palette,
   },
 });
 
