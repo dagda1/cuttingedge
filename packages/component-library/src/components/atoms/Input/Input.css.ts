@@ -1,25 +1,10 @@
-import { createTheme, composeStyles } from '@vanilla-extract/css';
-import { palette } from '../../../style/palette.css';
 import { style } from '@vanilla-extract/css';
-import { vars } from 'src/style/themes/vars.css';
-
-export const [themeClass, themeVars] = createTheme({
-  bg: palette.white,
-  borderColor: palette.trueGray900,
-  borderColorFocus: palette.blue700,
-  borderColorInvalid: palette.redError,
-  borderFocusColorinvalid: palette.blue700,
-  borderWidth: '1px',
-  borderWidthFocus: '2px',
-  borderWidthOutline: '3px',
-  bgFocus: palette.blue100,
-  bgInvalid: palette.redError,
-  outlineFocusColor: palette.yellow400,
-});
+import { vars } from '../../../style/themes/vars.css';
+import { defaultThemeVars } from '../../../style/themes';
 
 const base = style({
   ...vars.formControl,
-  background: themeVars.bg,
+  background: defaultThemeVars.inputBg,
   border: `${themeVars.borderWidth} solid ${themeVars.borderColor}`,
   ':focus': {
     background: themeVars.bgFocus,

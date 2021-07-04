@@ -5,12 +5,10 @@ import { Heading, FormInput } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
-import { ThemeProvider } from '../src/style/theme-provider/theme-provider';
-import { defaultTheme } from '../src/style/themes/cutting-theme.css';
 
 export const App: FC = () => {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    
       <ApplicationLayout heading="@cutting/component-library">
         <div className={styles.wrap}>
           <div className={styles.layout}>

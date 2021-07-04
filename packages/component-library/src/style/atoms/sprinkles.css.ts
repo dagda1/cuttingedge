@@ -1,60 +1,50 @@
-import {
-  ConditionalValue,
-  RequiredConditionalValue,
-  createAtomicStyles,
-  createAtomsFn,
-  createNormalizeValueFn,
-} from '@vanilla-extract/sprinkles';
+import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles';
+import { vars } from '../themes/vars.css';
 
-import { breakpoints, breakpointNames } from '../breakpoints';
-import { responsiveProperties, unresponsiveProperties, pseudoProperties } from './atomic-properties';
-
-const unresponsiveAtomicStyles = createAtomicStyles({
-  properties: unresponsiveProperties,
-});
-
-const pseudoAtomicStyles = createAtomicStyles({
-  defaultCondition: false,
-  conditions: {
-    active: {
-      selector: '&:active',
-    },
-  },
-  properties: pseudoProperties,
-});
-
-const responsiveAtomicStyles = createAtomicStyles({
-  defaultCondition: 'mobile',
+const responsiveStyles = createAtomicStyles({
   conditions: {
     mobile: {},
-    tablet: {
-      '@media': `screen and (min-width: ${breakpoints.tablet}px)`,
-    },
-    desktop: {
-      '@media': `screen and (min-width: ${breakpoints.desktop}px)`,
-    },
+    tablet: { '@media': 'screen and (min-width: 768px)' },
+    desktop: { '@media': 'screen and (min-width: 1024px)' },
   },
-  responsiveArray: breakpointNames,
-  properties: responsiveProperties,
+  defaultCondition: 'mobile',
+  properties: {
+    display: ['none', 'flex'],
+    flexDirection: ['row', 'column'],
+    alignItems: ['stretch', 'flex-start', 'center', 'flex-end'],
+    justifyContent: ['stretch', 'flex-start', 'center', 'flex-end'],
+    gap: vars.space,
+    paddingTop: vars.space,
+    paddingBottom: vars.space,
+    paddingLeft: vars.space,
+    paddingRight: vars.space,
+    width: ['100vw'],
+    height: ['100vh'],
+    borderRadius: vars.borderRadius,
+    fontFamily: vars.fontFamily,
+    fontSize: vars.fontSize,
+    lineHeight: vars.lineHeight,
+    textAlign: ['center'],
+  },
   shorthands: {
-    padding: ['paddingBottom', 'paddingTop', 'paddingLeft', 'paddingRight'],
-    paddingY: ['paddingTop', 'paddingBottom'],
+    padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
     paddingX: ['paddingLeft', 'paddingRight'],
-    margin: ['marginBottom', 'marginTop', 'marginLeft', 'marginRight'],
-    marginY: ['marginTop', 'marginBottom'],
-    marginX: ['marginLeft', 'marginRight'],
+    paddingY: ['paddingTop', 'paddingBottom'],
+    placeItems: ['alignItems', 'justifyContent'],
+    typeSize: ['fontSize', 'lineHeight'],
   },
 });
 
-export const sprinkles = createAtomsFn(unresponsiveAtomicStyles, responsiveAtomicStyles, pseudoAtomicStyles);
+const colorModeStyles = createAtomicStyles({
+  conditions: {
+    lightMode: {},
+    darkMode: { '@media': '(prefers-color-scheme: dark)' },
+  },
+  defaultCondition: 'lightMode',
+  properties: {
+    color: vars.color,
+    background: vars.color,
+  },
+});
 
-export type OptionalResponsiveValue<Value extends string | number> = ConditionalValue<
-  typeof responsiveAtomicStyles,
-  Value
->;
-export type RequiredResponsiveValue<Value extends string | number> = RequiredConditionalValue<
-  typeof responsiveAtomicStyles,
-  Value
->;
-
-export const normalizeResponsiveValue = createNormalizeValueFn(responsiveAtomicStyles);
+export const atoms = createAtomsFn(responsiveStyles, colorModeStyles);
