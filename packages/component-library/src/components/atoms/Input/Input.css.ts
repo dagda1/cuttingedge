@@ -2,14 +2,15 @@ import { composeStyles, style } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes/vars.css';
 
 const base = style({
-  height: vars.input.height,
-  width: vars.input.width,
-  padding: vars.input.padding,
-  border: `${vars.input.borderWidth} solid ${vars.input.borderColor}`,
+  height: vars.inlineFieldSize.standard,
+  width: vars.width.input,
+  padding: vars.space['1x'],
+  border: `${vars.borderWidth.standard} solid ${vars.borderColor.standard}`,
   ':focus': {
-    background: vars.input.focus.bg,
-    border: `${vars.input.focus.borderWidth} solid ${vars.input.focus.borderColor}`,
-    outline: `${vars.outlineWidth} solid ${vars.outlineColor}`,
+    background: vars.backgroundColor.focus,
+    borderWidth: vars.borderWidth.large,
+    ...vars.accessibility.visibleFocus,
+    boxShadow: 'inset 0 0 0 2px',
   },
 });
 
@@ -18,9 +19,7 @@ export const input = composeStyles(base);
 export const invalid = composeStyles(
   base,
   style({
-    borderColor: vars.input.invalid.borderColor,
-    ':focus': {
-      borderColor: vars.input.focus.borderColor,
-    },
+    borderWidth: vars.borderWidth.large,
+    borderColor: vars.borderColor.invalid,
   }),
 );
