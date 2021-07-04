@@ -1,5 +1,5 @@
 import { createThemeContract } from '@vanilla-extract/css';
-import { makeVanillaTheme } from './make-vanilla-theme';
+import { makeTheme } from './make-theme';
 import { tokens } from './tokens';
 
-export const vars = createThemeContract(makeVanillaTheme(tokens));
+export const vars = createThemeContract(makeTheme(tokens));

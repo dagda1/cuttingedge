@@ -11,7 +11,10 @@ const borderRadiusScale = createScale(1.5, 4);
 export const colors = {
   primary: palette.blue700,
   error: palette.redError,
-  notification: palette.yellow300,
+  notification: palette.yellow400,
+  link: palette.trueGray900,
+  linkHover: palette.white,
+  linkVisited: palette.trueGray700,
 };
 
 export const accessibility = {
@@ -63,26 +66,54 @@ export const tokens = {
     '4x': lineHeightScale(4),
     '5x': lineHeightScale(5),
   },
-  ...accessibility,
-  input: {
-    borderWidth: '1px',
-    borderColor: palette.trueGray900,
-    height: '2.5rem',
-    width: '100%',
-    padding: '5px',
-    focus: {
-      borderWidth: '2px',
-      borderColor: colors.primary,
-      bg: palette.blue100,
+  color: {
+    foreground: {
+      link: colors.link,
+      linkHover: colors.linkHover,
+      linkVisited: colors.linkVisited,
+      primary: palette.blue700,
+      secondary: palette.blue900,
     },
-    invalid: {
-      borderWidth: '2px',
-      borderColor: colors.error,
+    background: {
+      body: palette.black,
+      input: palette.white,
+      focus: colors.primary,
     },
   },
-  colors: {
-    white: '#fff',
-    black: '#000',
+  typography: {
+    fontFamily: 'Courier, monospace',
+    webFont: null,
+    fontWeight: {
+      regular: 400,
+      medium: 500,
+      strong: 700,
+    },
+  },
+  ...accessibility,
+  grid: 4,
+  border: {
+    radius: {
+      standard: '8px',
+    },
+    width: {
+      standard: 1,
+      large: 2,
+    },
+    color: {
+      standard: palette.trueGray900,
+      invalid: colors.error,
+      focus: colors.primary,
+    },
+  },
+  width: {
+    input: '100%',
+  },
+  accessibility: {
+    outlineWidth: '3px',
+    elementFocusColor: colors.notification,
+    accessibleOutlineColor: colors.notification,
+    outlineOffset: '0',
+    linkFocusColor: palette.black,
   },
 };
 
