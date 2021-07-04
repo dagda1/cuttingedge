@@ -1,5 +1,6 @@
-import { isEqual, omit } from 'lodash';
+import { isEqual, omit } from '@cutting/util';
 import { StyleRule } from '@vanilla-extract/css';
+import { assert } from 'assert-ts';
 import { breakpoints } from './breakpoints';
 
 type CSSProps = Omit<StyleRule, '@media' | '@supports'>;
@@ -23,7 +24,8 @@ interface ResponsiveStyle {
 }
 
 export const responsiveStyle = ({ mobile, tablet, desktop }: ResponsiveStyle): StyleRule => {
-  const mobileStyles = omit(mobile, '@media');
+  assert(!!mobile, '');
+  const mobileStyles = omit(mobile, '@media' as keyof CSSProps);
 
   const tabletStyles = !tablet || isEqual(tablet, mobileStyles) ? null : tablet;
 
