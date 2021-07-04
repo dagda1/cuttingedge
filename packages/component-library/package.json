@@ -27,6 +27,7 @@
     "assert-ts": "^0.3.2",
     "capsize": "^2.0.0",
     "classnames": "^2.3.1",
+    "deepmerge": "^4.2.2",
     "csstype": "^3.0.8",
     "dedent": "^0.7.0",
     "gradient-parser": "^1.0.2",

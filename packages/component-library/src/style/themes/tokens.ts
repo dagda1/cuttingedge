@@ -12,13 +12,7 @@ export const colors = {
   primary: palette.blue700,
   error: palette.redError,
   notification: palette.yellow300,
-} as const;
-
-const formControl = {
-  height: '2.5rem',
-  width: '100%',
-  padding: '5px',
-} as const;
+};
 
 export const accessibility = {
   elementFocusColor: colors.notification,
@@ -26,7 +20,7 @@ export const accessibility = {
   outlineOffset: '0',
   linkBg: colors.notification,
   outlineColor: colors.notification,
-} as const;
+};
 
 export const tokens = {
   space: {
@@ -71,10 +65,11 @@ export const tokens = {
   },
   ...accessibility,
   input: {
-    bg: palette.white,
     borderWidth: '1px',
     borderColor: palette.trueGray900,
-    ...formControl,
+    height: '2.5rem',
+    width: '100%',
+    padding: '5px',
     focus: {
       borderWidth: '2px',
       borderColor: colors.primary,
@@ -85,4 +80,10 @@ export const tokens = {
       borderColor: colors.error,
     },
   },
-} as const;
+  colors: {
+    white: '#fff',
+    black: '#000',
+  },
+};
+
+export type Tokens = typeof tokens;
