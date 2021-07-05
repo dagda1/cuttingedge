@@ -1,53 +1,67 @@
+import { mapValues } from '@cutting/util';
 import {
-  ConditionalValue,
-  RequiredConditionalValue,
   createAtomicStyles,
   createAtomsFn,
   createMapValueFn,
   createNormalizeValueFn,
+  ConditionalValue,
 } from '@vanilla-extract/sprinkles';
+import { breakpoints } from '../breakpoints';
+import { vars } from '../themes/vars.css';
 
-import { breakpoints, breakpointNames } from '../breakpoints';
-import { responsiveProperties, unresponsiveProperties } from './atomic-properties';
-
-const unresponsiveAtomicStyles = createAtomicStyles({
-  properties: unresponsiveProperties,
-});
-
-const responsiveAtomicStyles = createAtomicStyles({
+const responsiveStyles = createAtomicStyles({
+  conditions: mapValues(breakpoints, (bp) => (bp === 0 ? {} : { '@media': `screen and (min-width: ${bp}px)` })),
   defaultCondition: 'mobile',
-  conditions: {
-    mobile: {},
-    tablet: {
-      '@media': `screen and (min-width: ${breakpoints.tablet}px)`,
-    },
-    desktop: {
-      '@media': `screen and (min-width: ${breakpoints.desktop}px)`,
-    },
+  properties: {
+    position: ['absolute', 'relative', 'fixed'],
+    display: ['none', 'block', 'inline', 'inline-block', 'flex'],
+    alignItems: ['flex-start', 'center', 'flex-end'],
+    justifyContent: ['flex-start', 'center', 'flex-end', 'space-between'],
+    flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'],
+    paddingTop: vars.space,
+    paddingBottom: vars.space,
+    paddingLeft: vars.space,
+    paddingRight: vars.space,
+    marginTop: vars.space,
+    marginBottom: vars.space,
+    marginLeft: vars.space,
+    marginRight: vars.space,
+    pointerEvents: ['none', 'auto'],
+    opacity: [0, 1],
+    textAlign: ['left', 'center'],
   },
-  responsiveArray: breakpointNames,
-  properties: responsiveProperties,
   shorthands: {
-    padding: ['paddingBottom', 'paddingTop', 'paddingLeft', 'paddingRight'],
-    paddingY: ['paddingTop', 'paddingBottom'],
+    padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
     paddingX: ['paddingLeft', 'paddingRight'],
-    margin: ['marginBottom', 'marginTop', 'marginLeft', 'marginRight'],
-    marginY: ['marginTop', 'marginBottom'],
+    paddingY: ['paddingTop', 'paddingBottom'],
+    margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
     marginX: ['marginLeft', 'marginRight'],
+    marginY: ['marginTop', 'marginBottom'],
   },
 });
 
-export const sprinkles = createAtomsFn(unresponsiveAtomicStyles, responsiveAtomicStyles);
-
-export type OptionalResponsiveValue<Value extends string | number> = ConditionalValue<
-  typeof responsiveAtomicStyles,
-  Value
->;
-export type RequiredResponsiveValue<Value extends string | number> = RequiredConditionalValue<
-  typeof responsiveAtomicStyles,
-  Value
->;
-
-export const normalizeResponsiveValue = createNormalizeValueFn(responsiveAtomicStyles);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const mapResponsiveValue = createMapValueFn(responsiveAtomicStyles) as any;
+export const mapResponsiveValue = createMapValueFn(responsiveStyles) as any;
+export const normalizeResponsiveValue = createNormalizeValueFn(responsiveStyles);
+
+export type ResponsiveValue<Value extends string | number> = ConditionalValue<typeof responsiveStyles, Value>;
+
+const unresponsiveStyles = createAtomicStyles({
+  properties: {
+    flexWrap: ['wrap', 'nowrap'],
+    top: [0],
+    bottom: [0],
+    left: [0],
+    right: [0],
+    flexShrink: [0],
+    flexGrow: [0, 1],
+    zIndex: [-1, 0, 1],
+    width: { full: '100%' },
+    borderRadius: vars.borderRadius,
+    cursor: ['pointer'],
+  },
+});
+
+export const atoms = createAtomsFn(responsiveStyles, unresponsiveStyles);
+
+export type Atoms = Parameters<typeof atoms>[0];
