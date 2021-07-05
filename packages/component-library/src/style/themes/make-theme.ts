@@ -1,12 +1,13 @@
-import { mapValues } from '@cutting/util';
-
+import { DeepPartial, mapValues } from '@cutting/util';
 import { Tokens } from './tokens';
+import { tokens as defaultTokens } from './tokens';
+import deepmerge from 'deepmerge';
 
 const px = (v: string | number) => `${v}px`;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const makeTheme = (customTokens: Tokens) => {
-  const { ...tokens } = customTokens;
+export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
+  const { ...tokens } = deepmerge(defaultTokens, customTokens) as Tokens;
   const { ...typography } = tokens.typography;
   const { foreground, background } = tokens.color;
 

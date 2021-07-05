@@ -3019,6 +3019,20 @@
     dedent "^0.7.0"
     deep-object-diff "^1.1.0"
 
+"@vanilla-extract/css@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@vanilla-extract/css/-/css-1.1.0.tgz#436ceb348aacecbe6646d86aa17e81b3aaef5573"
+  integrity sha512-tvoHwhBq/jlnE0ayt7LLGFljBvdgeuRaa3vCffzqedsAxNQVcBb4FAlU8HokeSnp+eofqYiHyHytme0807ar0A==
+  dependencies:
+    "@emotion/hash" "^0.8.0"
+    "@vanilla-extract/private" "^1.0.0"
+    chalk "^4.1.1"
+    css-what "^5.0.1"
+    cssesc "^3.0.0"
+    csstype "^3.0.7"
+    dedent "^0.7.0"
+    deep-object-diff "^1.1.0"
+
 "@vanilla-extract/integration@^1.0.0":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@vanilla-extract/integration/-/integration-1.0.1.tgz#48ebe910f29b0da88e9876286f4d0b658a6f27ae"
@@ -3038,15 +3052,15 @@
   resolved "https://registry.npmjs.org/@vanilla-extract/private/-/private-1.0.0.tgz#10711c4481decd2f9a2f19cb85dcee60eff3f75c"
   integrity sha512-NS/Dqenj1Fd9fX1qWz4nFP6hefbTJIpQYLgKQsJBQonJ/E0QYiYtTJ1oeUh7vpoW0ojVuuRdA1URbKb7MCJ4JA==
 
-"@vanilla-extract/sprinkles@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.npmjs.org/@vanilla-extract/sprinkles/-/sprinkles-0.4.2.tgz#bd79165b37ccd82664d3ddec3cf6f46a362bea05"
-  integrity sha512-xGfKPSJiCf3rnRkV9+mwzJuvs11tnN7+scNEZ20G023gRWDB6IODf8gaB8SxBhH03zJG/Xp2R8HViEDp9BzpvA==
+"@vanilla-extract/sprinkles@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.npmjs.org/@vanilla-extract/sprinkles/-/sprinkles-0.4.3.tgz#dfc6f25b1311aba64a482f11009c146887a4191a"
+  integrity sha512-IiqHQLemhdTacOsNBB4o3iKwGIBD/jwODeBAbdwxiledpKupX59LR6RXFGSskr+5RYbK8Q1o/d4Qn3m88lij/w==
 
-"@vanilla-extract/webpack-plugin@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@vanilla-extract/webpack-plugin/-/webpack-plugin-1.0.0.tgz#c809447ac526c6b964be6ccd9fb133939e447cca"
-  integrity sha512-KUanRvmFzzfAUey8jyUH3FFSRCmxmbT9GJxjT8M5InTxj7Jprkm1xl+hTpSx1r69J4rI94zYXYRvWHcWl/L2ow==
+"@vanilla-extract/webpack-plugin@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@vanilla-extract/webpack-plugin/-/webpack-plugin-1.0.3.tgz#765c27a644c5f9a3356c50036a88e8cc004088f1"
+  integrity sha512-lU68fxYa+AtBcWlSzGVR7tinoOBy77iqUdHhU66O8rFp2NAySQBSUDpuMvd96gRmDNP3o5kq7B4tJvnMWzMEuA==
   dependencies:
     "@vanilla-extract/integration" "^1.0.0"
     chalk "^4.1.1"
