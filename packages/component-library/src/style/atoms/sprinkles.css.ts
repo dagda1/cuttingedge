@@ -1,54 +1,20 @@
-import { createAtomicStyles, createAtomsFn, createMapValueFn } from '@vanilla-extract/sprinkles';
-import { vars } from '../themes/vars.css';
+import {
+  ConditionalValue,
+  RequiredConditionalValue,
+  createAtomicStyles,
+  createAtomsFn,
+  createMapValueFn,
+  createNormalizeValueFn,
+} from '@vanilla-extract/sprinkles';
 
-export const responsiveAtomicStyles = {
-  display: {
-    none: 'none',
-    block: 'block',
-    inline: 'inline',
-    inlineBlock: 'inline-block',
-    flex: 'flex',
-  },
-  position: ['relative', 'absolute', 'fixed'],
-  borderRadius: {
-    none: '0px',
-    ...vars.borderRadius,
-  },
-  paddingTop: space,
-  paddingBottom: space,
-  paddingRight: space,
-  paddingLeft: space,
-  marginTop: space,
-  marginBottom: space,
-  marginRight: space,
-  marginLeft: space,
-  alignItems: {
-    flexStart: 'flex-start',
-    center: 'center',
-    flexEnd: 'flex-end',
-  },
-  justifyContent: {
-    flexStart: 'flex-start',
-    center: 'center',
-    flexEnd: 'flex-end',
-    spaceBetween: 'space-between',
-  },
-  flexDirection: {
-    row: 'row',
-    rowReverse: 'row-reverse',
-    column: 'column',
-    columnReverse: 'column-reverse',
-  },
-  flexWrap: {
-    wrap: 'wrap',
-    nowrap: 'nowrap',
-  },
-  flexShrink: [0],
-  flexGrow: [0, 1],
-  textAlign: ['left', 'center', 'right'],
-} as const;
+import { breakpoints, breakpointNames } from '../breakpoints';
+import { responsiveProperties, unresponsiveProperties } from './atomic-properties';
 
-const responsiveStyles = createAtomicStyles({
+const unresponsiveAtomicStyles = createAtomicStyles({
+  properties: unresponsiveProperties,
+});
+
+const responsiveAtomicStyles = createAtomicStyles({
   defaultCondition: 'mobile',
   conditions: {
     mobile: {},
@@ -71,4 +37,17 @@ const responsiveStyles = createAtomicStyles({
   },
 });
 
-export const mapResponsiveValue = createMapValueFn(responsiveAtomicStyles);
+export const sprinkles = createAtomsFn(unresponsiveAtomicStyles, responsiveAtomicStyles);
+
+export type OptionalResponsiveValue<Value extends string | number> = ConditionalValue<
+  typeof responsiveAtomicStyles,
+  Value
+>;
+export type RequiredResponsiveValue<Value extends string | number> = RequiredConditionalValue<
+  typeof responsiveAtomicStyles,
+  Value
+>;
+
+export const normalizeResponsiveValue = createNormalizeValueFn(responsiveAtomicStyles);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const mapResponsiveValue = createMapValueFn(responsiveAtomicStyles) as any;

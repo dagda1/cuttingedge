@@ -2,7 +2,6 @@ import { vars } from '../themes/vars.css';
 
 const sizes = {
   full: '100%',
-  touchable: vars.touchableSize,
 };
 
 const space = {
@@ -11,29 +10,8 @@ const space = {
 } as const;
 
 const boxShadow = {
-  ...vars.shadow,
-  outlineFocus: `0 0 0 ${vars.borderWidth.large} ${vars.borderColor.focus}`,
-  borderField: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.field}`,
-  borderStandard: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.standard}`,
-  borderStandardInverted: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.standardInverted}`,
-  borderCritical: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.critical}`,
-  borderCriticalLarge: `inset 0 0 0 ${vars.borderWidth.large} ${vars.borderColor.critical}`,
-  borderCaution: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.caution}`,
-  borderPositive: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.positive}`,
-  borderInfo: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.info}`,
-  borderPromote: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.promote}`,
-  borderFormHover: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.formHover}`,
-  borderFormAccent: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.formAccent}`,
-  borderFormAccentLarge: `inset 0 0 0 ${vars.borderWidth.large} ${vars.borderColor.formAccent}`,
-  borderBrandAccentLarge: `inset 0 0 0 ${vars.borderWidth.large} ${vars.borderColor.brandAccent}`,
-  borderStandardInvertedLarge: `inset 0 0 0 ${vars.borderWidth.large} ${vars.borderColor.standardInverted}`,
+  borderField: `inset 0 0 0 ${vars.borderWidth.large}`,
 };
-
-export const pseudoProperties = {
-  transform: vars.transform,
-} as const;
-
-export type PseudoProperties = keyof typeof pseudoProperties;
 
 export const unresponsiveProperties = {
   background: vars.backgroundColor,
@@ -64,8 +42,6 @@ export const unresponsiveProperties = {
   minWidth: {
     0: '0%',
   },
-  maxWidth: vars.contentWidth,
-  transition: vars.transition,
 } as const;
 
 export type UnresponsiveProperties = keyof typeof unresponsiveProperties;

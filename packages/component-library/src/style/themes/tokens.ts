@@ -77,7 +77,7 @@ export const tokens = {
     background: {
       body: palette.black,
       input: palette.white,
-      focus: colors.primary,
+      focus: palette.blue100,
     },
   },
   typography: {
