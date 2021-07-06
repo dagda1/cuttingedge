@@ -111,7 +111,7 @@
     "url-loader": "^4.1.1",
     "webpack": "^4.46.0",
     "webpack-bundle-analyzer": "^4.3.0",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.2",
     "webpack-node-externals": "^2.5.2",
     "webpackbar": "^5.0.0-3",

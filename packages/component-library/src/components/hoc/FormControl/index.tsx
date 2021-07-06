@@ -5,6 +5,7 @@ import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 
 import styles from './FormControl.module.scss';
+import { FontWeight } from '../../../style/themes/make-theme';
 
 export type Layout = 'vertical' | 'horizontal';
 
@@ -17,7 +18,7 @@ export type FormControlProps<E> = {
   invalid?: boolean;
   label: string;
   required?: boolean;
-  strong?: boolean;
+  fontWeight?: FontWeight;
   layout?: Layout;
   dataSelector?: string;
 } & InputHTMLAttributes<E>;
@@ -28,13 +29,13 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
     invalid,
     name,
     label,
-    strong,
     errorDataSelector,
     errorMessage,
     className,
     additionalLabel,
     highlight,
     required,
+    fontWeight = 'strong',
     dataSelector = 'form-control',
     layout = 'vertical',
     ...rest
@@ -54,7 +55,7 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
           id={`${internalId.current}-label`}
           htmlFor={internalId.current}
           required={required}
-          strong={strong}
+          fontWeight={fontWeight}
           dataSelector={`${dataSelector}-label`}
         >
           {label}

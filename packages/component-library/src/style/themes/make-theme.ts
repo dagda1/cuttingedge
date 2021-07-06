@@ -1,5 +1,5 @@
 import { DeepPartial, mapValues } from '@cutting/util';
-import { Tokens } from './tokens';
+import type { Tokens } from './tokens';
 import { tokens as defaultTokens } from './tokens';
 import deepmerge from 'deepmerge';
 
@@ -20,7 +20,9 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
       ...background,
     },
     fontFamily: typography.fontFamily,
-    textWeight: mapValues(typography.fontWeight, String),
+    fontWeight: mapValues(typography.fontWeight, String),
+    fontSize: tokens.fontSize,
+    lineHeight: tokens.lineHeight,
     inlineFieldSize: {
       standard: '2.5rem',
       small: '1.25rem',
@@ -46,7 +48,12 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         outline: `${tokens.accessibility.outlineWidth} solid ${tokens.accessibility.accessibleOutlineColor}`,
       },
     },
+    invalid: {
+      color: tokens.color.foreground.error,
+    },
   } as const;
 
   return resolvedTokens;
 };
+
+export type FontWeight = keyof ReturnType<typeof makeTheme>['fontWeight'];
