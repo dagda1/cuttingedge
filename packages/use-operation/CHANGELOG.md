@@ -1,5 +1,12 @@
 # @cutting/use-operation
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [96c1f3d4fabbdad9315c8325a5951a9bcca2b0d8]
+  - @cutting/util@4.26.0
+
 ## 0.2.3
 
 ### Patch Changes

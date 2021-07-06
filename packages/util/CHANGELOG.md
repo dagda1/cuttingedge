@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.26.0
+
+### Minor Changes
+
+- Add omit and mapValues to util and add ES2019 to tsconfig
+
 ## 4.24.2
 
 ### Patch Changes

@@ -24,3 +24,6 @@ export { StorageHelper } from './services/storageHelper';
 export { isProduction, isDevelopment, isTest, env, isCI } from './environment';
 export { isFunction, isPromise, isAsyncFunction } from './functions/functions';
 export { unique } from './object/unique';
+export { omit } from './object/omit';
+export { isEqual } from './object/is-equal';
+export { mapValues } from './object/map-values';

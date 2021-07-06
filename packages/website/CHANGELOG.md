@@ -1,5 +1,18 @@
 # @cutting/website
 
+## 4.25.1
+
+### Patch Changes
+
+- Updated dependencies [96c1f3d4fabbdad9315c8325a5951a9bcca2b0d8]
+  - @cutting/util@4.26.0
+  - @cutting/component-library@4.25.1
+  - @cutting/hooks@4.27.1
+  - @cutting/react-abortable-fetch@0.12.1
+  - @cutting/svg@4.27.1
+  - @cutting/use-get-parent-size@1.3.1
+  - @cutting/use-mathjax@4.25.1
+
 ## 4.24.13
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.24.1
+
+### Patch Changes
+
+- @cutting/useful-types@4.23.1
+
 ## 4.23.2
 
 ### Patch Changes
