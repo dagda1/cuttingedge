@@ -138,7 +138,7 @@ export const App: FC = () => {
           </div>
           <div className={styles.item}>
             <FormInput
-              strong={false}
+              fontWeight="normal"
               label="This is a really, really, really, really, really, really, really, really, really, really long bit of text"
             />
           </div>

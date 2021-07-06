@@ -47,9 +47,6 @@ export const tokens = {
     '5x': borderRadiusScale(5),
     full: '99999px',
   },
-  fontFamily: {
-    body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-  },
   fontSize: {
     '0x': fontSizeScale(0),
     '1x': fontSizeScale(1),
@@ -73,6 +70,7 @@ export const tokens = {
       linkVisited: colors.linkVisited,
       primary: palette.blue700,
       secondary: palette.blue900,
+      error: colors.error,
     },
     background: {
       body: palette.black,
@@ -81,7 +79,7 @@ export const tokens = {
     },
   },
   typography: {
-    fontFamily: 'Courier, monospace',
+    fontFamily: 'Times',
     webFont: null,
     fontWeight: {
       regular: 400,

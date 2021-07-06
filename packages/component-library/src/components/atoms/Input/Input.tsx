@@ -11,7 +11,7 @@ export const Input: FC<InputProps> = ({ invalid, className, required, innerRef, 
   <input
     required={required}
     aria-required={required}
-    className={cs(styles.input, 'form-control', className, {
+    className={cs(styles.base, 'form-control', className, {
       [styles.invalid]: invalid,
     })}
     type={type}

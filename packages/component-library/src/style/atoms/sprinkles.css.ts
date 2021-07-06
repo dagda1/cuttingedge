@@ -29,14 +29,15 @@ const responsiveStyles = createAtomicStyles({
     pointerEvents: ['none', 'auto'],
     opacity: [0, 1],
     textAlign: ['left', 'center'],
+    fontSize: vars.fontSize,
+    lineHeight: vars.lineHeight,
   },
   shorthands: {
     padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
     paddingX: ['paddingLeft', 'paddingRight'],
     paddingY: ['paddingTop', 'paddingBottom'],
-    margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
-    marginX: ['marginLeft', 'marginRight'],
-    marginY: ['marginTop', 'marginBottom'],
+    placeItems: ['alignItems', 'justifyContent'],
+    typeSize: ['fontSize', 'lineHeight'],
   },
 });
 

@@ -1,7 +1,7 @@
-import { composeStyles, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes/vars.css';
 
-const base = style({
+export const base = style({
   height: vars.inlineFieldSize.standard,
   width: vars.width.input,
   padding: vars.space['1x'],
@@ -14,12 +14,7 @@ const base = style({
   },
 });
 
-export const input = composeStyles(base);
-
-export const invalid = composeStyles(
-  base,
-  style({
-    borderWidth: vars.borderWidth.large,
-    borderColor: vars.borderColor.invalid,
-  }),
-);
+export const invalid = style({
+  borderWidth: vars.borderWidth.large,
+  borderColor: vars.borderColor.invalid,
+});
