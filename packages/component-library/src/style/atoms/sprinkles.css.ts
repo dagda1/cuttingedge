@@ -18,6 +18,7 @@ const responsiveStyles = createAtomicStyles({
     alignItems: ['flex-start', 'center', 'flex-end'],
     justifyContent: ['flex-start', 'center', 'flex-end', 'space-between'],
     flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'],
+    flexWrap: ['nowrap', 'wrap', 'wrap-reverse'],
     paddingTop: vars.space,
     paddingBottom: vars.space,
     paddingLeft: vars.space,
@@ -31,11 +32,15 @@ const responsiveStyles = createAtomicStyles({
     textAlign: ['left', 'center'],
     fontSize: vars.fontSize,
     lineHeight: vars.lineHeight,
+    fontWeight: vars.fontWeight,
   },
   shorthands: {
-    padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
-    paddingX: ['paddingLeft', 'paddingRight'],
+    padding: ['paddingBottom', 'paddingTop', 'paddingLeft', 'paddingRight'],
     paddingY: ['paddingTop', 'paddingBottom'],
+    paddingX: ['paddingLeft', 'paddingRight'],
+    margin: ['marginBottom', 'marginTop', 'marginLeft', 'marginRight'],
+    marginY: ['marginTop', 'marginBottom'],
+    marginX: ['marginLeft', 'marginRight'],
     placeItems: ['alignItems', 'justifyContent'],
     typeSize: ['fontSize', 'lineHeight'],
   },
@@ -49,7 +54,6 @@ export type ResponsiveValue<Value extends string | number> = ConditionalValue<ty
 
 const unresponsiveStyles = createAtomicStyles({
   properties: {
-    flexWrap: ['wrap', 'nowrap'],
     top: [0],
     bottom: [0],
     left: [0],

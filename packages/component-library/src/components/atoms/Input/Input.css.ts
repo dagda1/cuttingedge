@@ -1,10 +1,10 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes/vars.css';
 
-export const base = style({
+export const root = style({
   height: vars.inlineFieldSize.standard,
   width: vars.width.input,
-  padding: vars.space['1x'],
+  padding: vars.space['2x'],
   border: `${vars.borderWidth.standard} solid ${vars.borderColor.standard}`,
   ':focus': {
     background: vars.backgroundColor.focus,

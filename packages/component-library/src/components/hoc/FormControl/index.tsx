@@ -3,8 +3,7 @@ import { FC, ReactNode, InputHTMLAttributes, useRef } from 'react';
 import { Error } from '../../atoms/ErrorLabel';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
-
-import styles from './FormControl.module.scss';
+import * as styles from './FormControl.css';
 import { FontWeight } from '../../../style/themes/make-theme';
 
 export type Layout = 'vertical' | 'horizontal';
@@ -33,7 +32,6 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
     errorMessage,
     className,
     additionalLabel,
-    highlight,
     required,
     fontWeight = 'strong',
     dataSelector = 'form-control',
@@ -46,10 +44,11 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
 
     return (
       <div
-        className={cs(styles.input, className, {
-          [styles.highlight]: highlight,
-          [styles.horizontal]: layout === 'horizontal',
-        })}
+        className={cs(styles.root, { [styles.horizontal]: layout === 'horizontal' }, className)}
+        // className={cs(styles.input, className, {
+        //   [styles.highlight]: highlight,
+        //   [styles.horizontal]: layout === 'horizontal',
+        // })}
       >
         <Label
           id={`${internalId.current}-label`}
@@ -57,6 +56,7 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
           required={required}
           fontWeight={fontWeight}
           dataSelector={`${dataSelector}-label`}
+          className={styles.horizontalLabel}
         >
           {label}
           {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
@@ -72,7 +72,7 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
             {...(rest as P)}
           />
         </div>
-        <div id={errorId} aria-hidden={!invalid} role="alert">
+        <div id={errorId} className={styles.horizontalErrorLabel} aria-hidden={!invalid} role="alert">
           {invalid && errorMessage && (
             <Error dataSelector={errorDataSelector || `${dataSelector}-error`} errorMessage={errorMessage.toString()} />
           )}

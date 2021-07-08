@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import cs from 'classnames';
-// import { atoms } from '../../../style/atoms/sprinkles.css';
 import * as styles from './Label.css';
 import { FontWeight } from '../../../style/themes/make-theme';
 
@@ -14,37 +13,24 @@ export interface LabelProps {
   dataSelector?: string;
 }
 
-console.log(styles.invalid);
-
 export const Label: FC<LabelProps> = ({
   id,
   htmlFor,
-  // invalid,
+  invalid,
   required,
-  // className,
+  className,
+  fontWeight,
   children,
   dataSelector,
-  // fontWeight,
 }) => (
   <label
     htmlFor={htmlFor}
     id={id}
-    className={cs(
-      styles.base,
-      // className,
-      // atoms({
-      //   typeSize: {
-      //     mobile: '1x',
-      //     tablet: '2x',
-      //     desktop: '5x',
-      //   },
-      //   marginBottom: {
-      //     mobile: '1x',
-      //     tablet: '2x',
-      //   },
-      // }),
-      { [styles.required]: required },
-    )}
+    className={cs(styles.root, className, {
+      [styles.invalid]: invalid,
+      [styles.required]: required,
+      [styles.strong]: fontWeight === 'strong',
+    })}
     data-selector={dataSelector}
   >
     {children}

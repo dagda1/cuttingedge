@@ -7,11 +7,11 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   innerRef?: RefObject<HTMLInputElement>;
 }
 
-export const Input: FC<InputProps> = ({ invalid, className, required, innerRef, type = 'text', ...rest }) => (
+export const Input: FC<InputProps> = ({ required, className, invalid, innerRef, type = 'text', ...rest }) => (
   <input
     required={required}
     aria-required={required}
-    className={cs(styles.base, 'form-control', className, {
+    className={cs(styles.root, className, {
       [styles.invalid]: invalid,
     })}
     type={type}

@@ -126,7 +126,7 @@ var configureCommon = function (options, overrides) {
                 ignoreOrder: true,
             }),
             new webpack_plugin_1.VanillaExtractPlugin({
-                allowRuntime: true,
+                outputCss: true,
             }),
         ], Boolean),
     });
