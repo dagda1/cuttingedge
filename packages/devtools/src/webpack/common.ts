@@ -166,7 +166,7 @@ export const configureCommon = (
           ignoreOrder: true,
         }),
         new VanillaExtractPlugin({
-          allowRuntime: true,
+          outputCss: true,
         }),
       ],
       Boolean,

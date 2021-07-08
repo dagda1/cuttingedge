@@ -1,12 +1,9 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '../../../style/themes/vars.css';
+import { vars } from 'src/style/themes/vars.css';
 
-export const base = style({
+export const root = style({
   display: 'block',
-  '::before': {
-    content: '*',
-    color: 'red',
-  },
+  fontWeight: vars.fontWeight.regular,
 });
 
 export const invalid = style({
@@ -17,9 +14,12 @@ export const invalid = style({
 });
 
 export const required = style({
-  color: 'green',
+  '::before': {
+    content: "'*'",
+    marginRight: vars.space['2x'],
+  },
 });
 
-export const bold = style({
+export const strong = style({
   fontWeight: vars.fontWeight.strong,
 });

@@ -3033,6 +3033,20 @@
     dedent "^0.7.0"
     deep-object-diff "^1.1.0"
 
+"@vanilla-extract/css@^1.2.0":
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/@vanilla-extract/css/-/css-1.2.3.tgz#1db483f6a92a666d493cdce91feaed59fb37353c"
+  integrity sha512-khzCBgxHk8fYvTuHbQ349ewKhSQ9qwjUC8RPHM0287ZJubFQCL9wMv/a0+3aKbtUYN3rG5dLW5lGDXJE28tS+g==
+  dependencies:
+    "@emotion/hash" "^0.8.0"
+    "@vanilla-extract/private" "^1.0.1"
+    chalk "^4.1.1"
+    css-what "^5.0.1"
+    cssesc "^3.0.0"
+    csstype "^3.0.7"
+    dedent "^0.7.0"
+    deep-object-diff "^1.1.0"
+
 "@vanilla-extract/integration@^1.0.0":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@vanilla-extract/integration/-/integration-1.0.1.tgz#48ebe910f29b0da88e9876286f4d0b658a6f27ae"
@@ -3047,15 +3061,46 @@
     javascript-stringify "^2.0.1"
     lodash "^4.17.21"
 
+"@vanilla-extract/integration@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@vanilla-extract/integration/-/integration-1.1.0.tgz#7a766608327ffad25896b8d509b9acae07ccbcbc"
+  integrity sha512-VzDodGcoPv8loAyqIPya+UuFOr2c6D4rJ4uhIe4hms94FXZ+0qxPOXvFs7PNamt83M1zkInIj+0kEAHFC1D1gg==
+  dependencies:
+    "@vanilla-extract/css" "^1.2.0"
+    chalk "^4.1.1"
+    dedent "^0.7.0"
+    esbuild "^0.11.16"
+    eval "^0.1.6"
+    find-up "^5.0.0"
+    javascript-stringify "^2.0.1"
+    lodash "^4.17.21"
+
 "@vanilla-extract/private@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@vanilla-extract/private/-/private-1.0.0.tgz#10711c4481decd2f9a2f19cb85dcee60eff3f75c"
   integrity sha512-NS/Dqenj1Fd9fX1qWz4nFP6hefbTJIpQYLgKQsJBQonJ/E0QYiYtTJ1oeUh7vpoW0ojVuuRdA1URbKb7MCJ4JA==
 
+"@vanilla-extract/private@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@vanilla-extract/private/-/private-1.0.1.tgz#c9479cebea7e7fbb07a1fe5b5c988a8753ef04ed"
+  integrity sha512-ABrFJGSmF7a1M+eDTsIeAErPhIeRyBY3ypyLQPc4bUVEK1mvF7F2gx4fTP81pm12bkS0GhjSJtM854lcPWhB+w==
+
 "@vanilla-extract/sprinkles@^0.4.3":
   version "0.4.3"
   resolved "https://registry.npmjs.org/@vanilla-extract/sprinkles/-/sprinkles-0.4.3.tgz#dfc6f25b1311aba64a482f11009c146887a4191a"
   integrity sha512-IiqHQLemhdTacOsNBB4o3iKwGIBD/jwODeBAbdwxiledpKupX59LR6RXFGSskr+5RYbK8Q1o/d4Qn3m88lij/w==
+
+"@vanilla-extract/webpack-plugin@^1.0.0":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@vanilla-extract/webpack-plugin/-/webpack-plugin-1.1.0.tgz#9761dbfeb24271c6ca541fca311551413a79462e"
+  integrity sha512-HOcW7TYipzIBor+HruGW96fW9suWA5fgSHdsxngROm/F7AUk6SjAk/AOFD6kq4CLIG33d6ZryjRSPjb9STrfxw==
+  dependencies:
+    "@vanilla-extract/integration" "^1.1.0"
+    chalk "^4.1.1"
+    debug "^4.3.1"
+    loader-utils "^2.0.0"
+    lodash "^4.17.21"
+    virtual-resource-loader "^1.0.0"
 
 "@vanilla-extract/webpack-plugin@^1.0.3":
   version "1.0.3"
