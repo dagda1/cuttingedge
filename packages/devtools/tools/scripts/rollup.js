@@ -304,7 +304,7 @@ var getInputFile = function (packageName, inputFileOverride) {
 function build(_a) {
     var vizualize = _a.vizualize, analyze = _a.analyze, inputFile = _a.inputFile;
     return __awaiter(this, void 0, void 0, function () {
-        var pkgJsonPath, pkg, packageName, entryFile, configs, configs_1, configs_1_1, _b, moduleFormat, env, e_1_1, pkgJson, pkgName, moduleFile;
+        var pkgJsonPath, pkg, packageName, entryFile, configs, configs_1, configs_1_1, _b, moduleFormat, env, e_1_1, pkgJson, pkgName, buildDir, commonjsFile, esmFile, umdFile, dtsFile;
         var e_1, _c;
         return __generator(this, function (_d) {
             switch (_d.label) {
@@ -354,10 +354,26 @@ function build(_a) {
                     _d.sent();
                     pkgJson = __assign({}, pkg);
                     pkgName = helpers_1.safePackageName(packageName);
-                    pkgJson.main = path_1.default.join('dist', 'index.js');
-                    moduleFile = path_1.default.join('dist', pkgName + ".esm.js");
-                    pkgJson.module = moduleFile;
-                    pkgJson.browser = path_1.default.join('dist', pkgName + ".umd.js");
+                    buildDir = path_1.default.basename(paths_1.paths.appBuild);
+                    commonjsFile = path_1.default.join(buildDir, 'index.js');
+                    pkgJson.main = commonjsFile;
+                    esmFile = path_1.default.join(buildDir, pkgName + ".esm.js");
+                    pkgJson.module = esmFile;
+                    umdFile = path_1.default.join(buildDir, pkgName + ".umd.js");
+                    pkgJson.browser = umdFile;
+                    dtsFile = path_1.default.join(buildDir, "index.d.ts");
+                    pkgJson.types = dtsFile;
+                    pkgJson.type = 'module';
+                    pkgJson.exports = {
+                        import: "./" + esmFile,
+                        require: "./" + commonjsFile,
+                        default: "./" + umdFile,
+                    };
+                    pkgJson.typesVersions = {
+                        '*': {
+                            '*': [buildDir + "/*", buildDir + "/*/index.d.ts"],
+                        },
+                    };
                     return [4 /*yield*/, write_package_1.writeToPackage(pkgJsonPath, pkgJson)];
                 case 11:
                     _d.sent();

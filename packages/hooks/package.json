@@ -63,5 +63,17 @@
     "hooks",
     "hook",
     "hooks"
-  ]
+  ],
+  "exports": {
+    "import": "./dist/hooks.esm.js",
+    "require": "./dist/index.js",
+    "default": "./dist/hooks.umd.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/index.d.ts"
+      ]
+    }
+  }
 }
