@@ -1,5 +1,11 @@
 # @cutting/the-watcher
 
+## 0.4.0
+
+### Minor Changes
+
+- upgrade to new exports
+
 ## 0.2.2
 
 ### Patch Changes

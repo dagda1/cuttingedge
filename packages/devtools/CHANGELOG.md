@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.28.0
+
+### Minor Changes
+
+- upgrade to new exports
+
 ## 4.26.1
 
 ### Patch Changes

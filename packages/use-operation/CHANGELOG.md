@@ -1,5 +1,16 @@
 # @cutting/use-operation
 
+## 0.4.0
+
+### Minor Changes
+
+- upgrade to new exports
+
+### Patch Changes
+
+- Updated dependencies
+  - @cutting/util@4.27.0
+
 ## 0.3.1
 
 ### Patch Changes
