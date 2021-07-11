@@ -6,10 +6,10 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch"
   },
-  "main": "dist/index.js",
-  "browser": "dist/react-abortable-fetch.umd.js",
-  "module": "dist/react-abortable-fetch.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "browser": "dist/umd/react-abortable-fetch.umd.js",
+  "module": "dist/esm/react-abortable-fetch.esm.js",
+  "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
@@ -60,5 +60,17 @@
   },
   "msw": {
     "workerDirectory": "demo/public"
+  },
+  "exports": {
+    "import": "./dist/esm/react-abortable-fetch.esm.js",
+    "require": "./dist/cjs/index.js",
+    "browser": "./dist/umd/react-abortable-fetch.umd.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
   }
 }

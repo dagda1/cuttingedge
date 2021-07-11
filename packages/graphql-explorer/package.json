@@ -6,8 +6,8 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
@@ -44,6 +44,18 @@
     "graphql",
     "dataviz"
   ],
-  "module": "dist/graphql-explorer.esm.js",
-  "browser": "dist/graphql-explorer.umd.js"
+  "module": "dist/esm/graphql-explorer.esm.js",
+  "browser": "dist/umd/graphql-explorer.umd.js",
+  "exports": {
+    "import": "./dist/esm/graphql-explorer.esm.js",
+    "require": "./dist/cjs/index.js",
+    "browser": "./dist/umd/graphql-explorer.umd.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
+  }
 }

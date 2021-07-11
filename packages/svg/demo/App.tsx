@@ -1,4 +1,4 @@
-import '@cutting/component-library/dist/component-library.cjs.production.min.css';
+import '@cutting/component-library/dist/esm/component-library.esm.css';
 import type { FC } from 'react';
 import { useRef } from 'react';
 import { ApplicationLayout } from '@cutting/component-library';

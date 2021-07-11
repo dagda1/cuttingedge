@@ -1,4 +1,4 @@
-import '@cutting/component-library/dist/component-library.cjs.production.min.css';
+import '@cutting/component-library/dist/esm/component-library.esm.css';
 import { FC, useRef } from 'react';
 import { useScrollToTop } from '../src/useScrollToTop/useScrollToTop';
 import { ApplicationLayout } from '@cutting/component-library';

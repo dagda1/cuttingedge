@@ -2,7 +2,7 @@
   "name": "@cutting/use-mathjax",
   "description": "easy mathjax in react.",
   "version": "4.25.1",
-  "types": "dist/index.d.ts",
+  "types": "dist/esm/index.d.ts",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "repository": {
@@ -54,10 +54,22 @@
     "hook",
     "hooks"
   ],
-  "main": "dist/index.js",
-  "module": "dist/use-mathjax.esm.js",
-  "browser": "dist/use-mathjax.umd.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/use-mathjax.esm.js",
+  "browser": "dist/umd/use-mathjax.umd.js",
   "volta": {
     "extends": "../../package.json"
+  },
+  "exports": {
+    "import": "./dist/esm/use-mathjax.esm.js",
+    "require": "./dist/cjs/index.js",
+    "browser": "./dist/umd/use-mathjax.umd.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
   }
 }

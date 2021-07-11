@@ -5,13 +5,13 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "module": "dist/svg.esm.js",
-  "browser": "dist/svg.umd.js",
-  "main": "dist/index.js",
+  "module": "dist/esm/svg.esm.js",
+  "browser": "dist/umd/svg.umd.js",
+  "main": "dist/cjs/index.js",
   "sideEffects": [
     "*.css"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "dependencies": {
     "@cutting/util": "4.26.0",
@@ -41,5 +41,17 @@
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "exports": {
+    "import": "./dist/esm/svg.esm.js",
+    "require": "./dist/cjs/index.js",
+    "browser": "./dist/umd/svg.umd.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
   }
 }

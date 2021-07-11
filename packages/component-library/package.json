@@ -5,13 +5,13 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "module": "dist/component-library.esm.js",
-  "browser": "dist/component-library.umd.js",
-  "main": "dist/index.js",
+  "module": "dist/esm/component-library.esm.js",
+  "browser": "dist/umd/component-library.umd.js",
+  "main": "dist/cjs/index.js",
   "sideEffects": [
     "*.css"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "dependencies": {
     "@cutting/hooks": "4.27.1",
@@ -45,5 +45,17 @@
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test",
     "prepublishOnly": "yarn build"
+  },
+  "exports": {
+    "import": "./dist/esm/component-library.esm.js",
+    "require": "./dist/cjs/index.js",
+    "browser": "./dist/umd/component-library.umd.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
   }
 }
