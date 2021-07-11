@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.25.0
+
+### Minor Changes
+
+- upgrade to new exports
+
 ## 4.24.0
 
 ### Minor Changes

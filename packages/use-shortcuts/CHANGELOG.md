@@ -1,5 +1,16 @@
 # @cutting/use-shortcuts
 
+## 4.25.0
+
+### Minor Changes
+
+- upgrade to new exports
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/util@4.27.0
+
 ## 4.24.1
 
 ### Patch Changes

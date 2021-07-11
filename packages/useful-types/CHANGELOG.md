@@ -1,5 +1,16 @@
 # @cutting/useful-types
 
+## 4.24.0
+
+### Minor Changes
+
+- upgrade to new exports
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/util@4.27.0
+
 ## 4.23.1
 
 ### Patch Changes

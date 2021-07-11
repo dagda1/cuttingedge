@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 4.26.0
+
+### Minor Changes
+
+- upgrade to new exports
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/hooks@4.28.0
+  - @cutting/util@4.27.0
+
 ## 4.25.1
 
 ### Patch Changes

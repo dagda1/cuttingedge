@@ -1,5 +1,17 @@
 # @cutting/graphql-explorer
 
+## 4.24.0
+
+### Minor Changes
+
+- upgrade to new exports
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/react-abortable-fetch@0.13.0
+  - @cutting/util@4.27.0
+
 ## 4.23.1
 
 ### Patch Changes

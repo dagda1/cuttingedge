@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.27.0
+
+### Minor Changes
+
+- upgrade to new exports
+
 ## 4.26.0
 
 ### Minor Changes

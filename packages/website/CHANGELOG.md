@@ -1,5 +1,22 @@
 # @cutting/website
 
+## 4.26.0
+
+### Minor Changes
+
+- upgrade to new exports
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/component-library@4.26.0
+  - @cutting/hooks@4.28.0
+  - @cutting/react-abortable-fetch@0.13.0
+  - @cutting/svg@4.28.0
+  - @cutting/use-get-parent-size@1.4.0
+  - @cutting/use-mathjax@4.26.0
+  - @cutting/util@4.27.0
+
 ## 4.25.1
 
 ### Patch Changes
