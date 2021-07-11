@@ -1,9 +1,6 @@
 {
   "name": "@cutting/util",
   "version": "4.26.0",
-  "module": "dist/util.esm.js",
-  "browser": "dist/util.umd.js",
-  "main": "dist/index.js",
   "sideEffects": [
     "*.css"
   ],
@@ -11,8 +8,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "type": "module",
-  "types": "dist/index.d.ts",
+  "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=development cutting rollup",
@@ -29,16 +25,18 @@
   "volta": {
     "extends": "../../package.json"
   },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/util.esm.js",
+  "browser": "dist/umd/util.umd.js",
   "exports": {
-    "import": "./dist/util.esm.js",
-    "require": "./dist/index.js",
-    "default": "./dist/util.umd.js"
+    "import": "./dist/esm/util.esm.js",
+    "require": "./dist/cjs/index.js",
+    "browser": "./dist/umd/util.umd.js"
   },
   "typesVersions": {
     "*": {
       "*": [
-        "dist/*",
-        "dist/*/index.d.ts"
+        "dist/esm/index.d.ts"
       ]
     }
   }

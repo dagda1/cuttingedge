@@ -1,0 +1,1 @@
+{"version":3,"file":"raf.d.ts","sourceRoot":"","sources":["../../packages/devtools/src/jest/raf.ts"],"names":[],"mappings":"AAAA,UAAU,eAAe;IAEvB,CAAC,GAAG,EAAE,MAAM,GAAG,GAAG,CAAC;CACpB;AAED,QAAA,MAAM,SAAS,EAAE;IACf,qBAAqB,CAAC,QAAQ,EAAE,oBAAoB,GAAG,MAAM,CAAC;IAC9D,oBAAoB,CAAC,EAAE,EAAE,MAAM,GAAG,IAAI,CAAC;CAIxC,CAAC"}

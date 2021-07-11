@@ -1,0 +1,1 @@
+{"version":3,"file":"getUrlParts.d.ts","sourceRoot":"","sources":["../../packages/devtools/src/webpack/getUrlParts.ts"],"names":[],"mappings":"AACA,OAAO,EAAe,IAAI,EAAE,MAAM,uCAAuC,CAAC;AAE1E,eAAO,MAAM,WAAW;cAIZ,OAAO;kBACH,OAAO;;mBAEN,MAAM;uBACF,OAAO,GAAG,MAAM;mBACpB,MAAM;mBACN,IAAI;yBACE,MAAM;uBACR,MAAM;CAuB1B,CAAC"}

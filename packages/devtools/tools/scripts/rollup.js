@@ -173,7 +173,7 @@ function generateBundledModule(_a) {
                                 return !id.startsWith('.') && !path_1.default.isAbsolute(id);
                             },
                             treeshake: {
-                                preset: 'smallest',
+                                propertyReadSideEffects: false,
                             },
                             plugins: [
                                 analyze && rollup_plugin_size_snapshot_1.sizeSnapshot(),
@@ -265,7 +265,7 @@ function generateBundledModule(_a) {
                     fileName = ['esm', 'umd'].includes(moduleFormat)
                         ? pkgName + "." + moduleFormat + ".js"
                         : pkgName + ".cjs." + env + "." + extension;
-                    outputFileName = path_1.default.join(paths_1.paths.appBuild, fileName);
+                    outputFileName = path_1.default.join(paths_1.paths.appBuild, moduleFormat, fileName);
                     logger_1.logger.info("writing " + path_1.default.basename(outputFileName) + " for " + packageName);
                     return [4 /*yield*/, bundle.write({
                             file: outputFileName,
@@ -276,6 +276,7 @@ function generateBundledModule(_a) {
                             esModule: moduleFormat !== 'umd',
                             interop: 'auto',
                             freeze: false,
+                            globals: { react: 'React' },
                         })];
                 case 2:
                     _b.sent();
@@ -355,23 +356,22 @@ function build(_a) {
                     pkgJson = __assign({}, pkg);
                     pkgName = helpers_1.safePackageName(packageName);
                     buildDir = path_1.default.basename(paths_1.paths.appBuild);
-                    commonjsFile = path_1.default.join(buildDir, 'index.js');
+                    commonjsFile = path_1.default.join(buildDir, 'cjs', 'index.js');
                     pkgJson.main = commonjsFile;
-                    esmFile = path_1.default.join(buildDir, pkgName + ".esm.js");
+                    esmFile = path_1.default.join(buildDir, 'esm', pkgName + ".esm.js");
                     pkgJson.module = esmFile;
-                    umdFile = path_1.default.join(buildDir, pkgName + ".umd.js");
+                    umdFile = path_1.default.join(buildDir, 'umd', pkgName + ".umd.js");
                     pkgJson.browser = umdFile;
-                    dtsFile = path_1.default.join(buildDir, "index.d.ts");
+                    dtsFile = path_1.default.join(buildDir, 'esm', "index.d.ts");
                     pkgJson.types = dtsFile;
-                    pkgJson.type = 'module';
                     pkgJson.exports = {
                         import: "./" + esmFile,
                         require: "./" + commonjsFile,
-                        default: "./" + umdFile,
+                        browser: "./" + umdFile,
                     };
                     pkgJson.typesVersions = {
                         '*': {
-                            '*': [buildDir + "/*", buildDir + "/*/index.d.ts"],
+                            '*': ["" + dtsFile],
                         },
                     };
                     return [4 /*yield*/, write_package_1.writeToPackage(pkgJsonPath, pkgJson)];

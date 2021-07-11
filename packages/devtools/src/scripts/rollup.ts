@@ -77,7 +77,7 @@ async function generateBundledModule({
       return !id.startsWith('.') && !path.isAbsolute(id);
     },
     treeshake: {
-      preset: 'smallest',
+      propertyReadSideEffects: false,
     },
     plugins: [
       analyze && sizeSnapshot(),
@@ -186,6 +186,7 @@ async function generateBundledModule({
     esModule: moduleFormat !== 'umd',
     interop: 'auto',
     freeze: false,
+    globals: { react: 'React' },
   });
 
   copyAssets();
@@ -262,10 +263,8 @@ async function build({
   const umdFile = path.join(buildDir, 'umd', `${pkgName}.umd.js`);
   pkgJson.browser = umdFile;
 
-  const dtsFile = path.join(buildDir, `index.d.ts`);
+  const dtsFile = path.join(buildDir, 'esm', `index.d.ts`);
   pkgJson.types = dtsFile;
-
-  pkgJson.type = 'module';
 
   pkgJson.exports = {
     import: `./${esmFile}`,
@@ -275,7 +274,7 @@ async function build({
 
   pkgJson.typesVersions = {
     '*': {
-      '*': [`${buildDir}/*`, `${buildDir}/*`],
+      '*': [`${dtsFile}`],
     },
   };
 

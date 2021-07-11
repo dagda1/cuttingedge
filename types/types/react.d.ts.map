@@ -1,0 +1,1 @@
+{"version":3,"file":"react.d.ts","sourceRoot":"","sources":["../../packages/util/src/types/react.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,iBAAiB,EAAE,cAAc,EAAE,EAAE,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAEnF,oBAAY,QAAQ,CAAC,MAAM,GAAG,iBAAiB,CAAC,cAAc,CAAC,WAAW,CAAC,EAAE,WAAW,CAAC,IACrF,EAAE,CAAC,MAAM,CAAC,GACV,cAAc,CAAC,MAAM,CAAC,GACtB,MAAM,CAAC"}

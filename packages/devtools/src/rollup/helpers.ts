@@ -17,5 +17,5 @@ export const writeCjsEntryFile = (name: string): Promise<void> => {
   }
   `;
 
-  return fs.outputFile(path.join(paths.appBuild, 'index.js'), contents);
+  return fs.outputFile(path.join(paths.appBuild, 'cjs', 'index.js'), contents);
 };
