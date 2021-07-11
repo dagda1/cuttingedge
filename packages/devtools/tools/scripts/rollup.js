@@ -173,7 +173,7 @@ function generateBundledModule(_a) {
                                 return !id.startsWith('.') && !path_1.default.isAbsolute(id);
                             },
                             treeshake: {
-                                moduleSideEffects: false,
+                                preset: 'smallest',
                             },
                             plugins: [
                                 analyze && rollup_plugin_size_snapshot_1.sizeSnapshot(),
@@ -252,6 +252,7 @@ function generateBundledModule(_a) {
                                     moduleFormat === 'esm' &&
                                     rollup_plugin_visualizer_1.visualizer({
                                         open: true,
+                                        gzipSize: true,
                                         sourcemap: true,
                                         template: 'sunburst',
                                     }),

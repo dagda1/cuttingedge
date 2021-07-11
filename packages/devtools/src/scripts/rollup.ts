@@ -77,7 +77,7 @@ async function generateBundledModule({
       return !id.startsWith('.') && !path.isAbsolute(id);
     },
     treeshake: {
-      moduleSideEffects: false,
+      preset: 'smallest',
     },
     plugins: [
       analyze && sizeSnapshot(),
@@ -161,6 +161,7 @@ async function generateBundledModule({
         moduleFormat === 'esm' &&
         visualizer({
           open: true,
+          gzipSize: true,
           sourcemap: true,
           template: 'sunburst',
         }),
