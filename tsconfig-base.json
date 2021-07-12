@@ -5,7 +5,6 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "declarationDir": "./dist/types",
     "paths": {
       "@cutting/devtools": ["packages/devtools/src"],
       "@cutting/the-watcher": ["packages/the-watcher"],

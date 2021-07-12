@@ -1488,7 +1488,7 @@
   dependencies:
     "@babel/plugin-syntax-dynamic-import" "^7.7.4"
 
-"@loadable/component@^5.14.1":
+"@loadable/component@^5.14.1", "@loadable/component@^5.15.0":
   version "5.15.0"
   resolved "https://registry.npmjs.org/@loadable/component/-/component-5.15.0.tgz#48b9524237be553f48b158f8c9152593f3f3fded"
   integrity sha512-g63rQzypPOZi0BeGsK4ST2MYhsFR+i7bhL8k/McUoWDNMDuTTdUlQ2GACKxqh5sI/dNC/6nVoPrycMnSylnAgQ==
@@ -1504,7 +1504,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@loadable/webpack-plugin@^5.14.2":
+"@loadable/webpack-plugin@^5.15.0":
   version "5.15.0"
   resolved "https://registry.npmjs.org/@loadable/webpack-plugin/-/webpack-plugin-5.15.0.tgz#2e8cb749faef79d958cb72761dbda6f3c25c6ff1"
   integrity sha512-6eKaEqjGiMuMiazzVopbyMHrUflUkTOd29nUHaUmmbdo6FTGo+VqdBZ4Y1dvkEaa/b6NjkPTKbLdVmZvHVx2jg==
