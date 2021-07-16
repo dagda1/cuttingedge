@@ -3019,13 +3019,13 @@
     dedent "^0.7.0"
     deep-object-diff "^1.1.0"
 
-"@vanilla-extract/css@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/@vanilla-extract/css/-/css-1.1.0.tgz#436ceb348aacecbe6646d86aa17e81b3aaef5573"
-  integrity sha512-tvoHwhBq/jlnE0ayt7LLGFljBvdgeuRaa3vCffzqedsAxNQVcBb4FAlU8HokeSnp+eofqYiHyHytme0807ar0A==
+"@vanilla-extract/css@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@vanilla-extract/css/-/css-1.1.1.tgz#353a330434b8975f38bf4ddaa49ba2332491c272"
+  integrity sha512-5dzFpruVkWAvm7bYMPFeH0MRcqbNNDBzLatYyfTRPLksw1Oc9uOs9g1L0y18NRf5Gufps1XZ2uwwbT7uX79PYA==
   dependencies:
     "@emotion/hash" "^0.8.0"
-    "@vanilla-extract/private" "^1.0.0"
+    "@vanilla-extract/private" "^1.0.1"
     chalk "^4.1.1"
     css-what "^5.0.1"
     cssesc "^3.0.0"
