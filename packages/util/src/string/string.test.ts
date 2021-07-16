@@ -1,5 +1,5 @@
 import { padNumber, stripSpaces, capitalize } from './index';
-import { expect, it, describe, test } from '@jest/globals';
+import { expect, it, describe } from '@jest/globals';
 
 describe('string', () => {
   it('capitalize - should have first char uppercase', () => {

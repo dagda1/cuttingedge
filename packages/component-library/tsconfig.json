@@ -2,10 +2,9 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "noEmit": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts", "test/**/*.tsx"],
   "references": [
     { "path": "../hooks/tsconfig.dist.json" },
     { "path": "../util/tsconfig.dist.json" }

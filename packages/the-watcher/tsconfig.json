@@ -2,14 +2,11 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "dist",
-    "rootDir": "./src",
-    "module": "CommonJS"
+    "noEmit": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.test.ts"],
   "references": [
-    { "path": "../devtools"},
     { "path": "../util/tsconfig.dist.json" }
   ]
 }

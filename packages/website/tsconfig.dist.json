@@ -1,4 +1,17 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/esm",
+    "rootDir": "./src",
+    "noEmit": false
+  },
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
+  "references": [
+    { "path": "../util/tsconfig.dist.json" },
+    { "path": "../hooks/tsconfig.dist.json" },
+    { "path": "../component-library/tsconfig.dist.json" },
+    { "path": "../svg/tsconfig.dist.json" },
+    { "path": "../react-abortable-fetch/tsconfig.dist.json" }
+  ]
 }

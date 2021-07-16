@@ -2,13 +2,12 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "noEmit": true
   },
   "references": [
     { "path": "../util/tsconfig.dist.json" },
     { "path": "../hooks/tsconfig.dist.json" },
-    { "path": "../component-library" }
+    { "path": "../component-library/tsconfig.dist.json" }
   ],
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
