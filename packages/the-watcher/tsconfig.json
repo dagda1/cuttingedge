@@ -9,7 +9,6 @@
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.test.ts"],
   "references": [
-    { "path": "../devtools"},
     { "path": "../util/tsconfig.dist.json" }
   ]
 }

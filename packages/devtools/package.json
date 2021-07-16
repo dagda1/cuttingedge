@@ -108,7 +108,7 @@
     "terser-webpack-plugin": "^4.2.3",
     "ts-jest": "^26.4.4",
     "ts-loader": "^8.0.14",
-    "typescript": "^4.3.2",
+    
     "url-loader": "^4.1.1",
     "webpack": "^4.46.0",
     "webpack-bundle-analyzer": "^4.3.0",
@@ -163,7 +163,7 @@
     "dashdash": "^2.0.0",
     "nocache": "^2.1.0",
     "node-forge": "^0.10.0",
-    "typescript": "^4.3.2",
+    "typescript": "^4.3.5",
     "xml": "^1.0.1"
   },
   "volta": {

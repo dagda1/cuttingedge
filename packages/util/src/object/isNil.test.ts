@@ -1,4 +1,4 @@
-import { expect, test, describe } from '@jest/globals';
+import { expect, describe, it } from '@jest/globals';
 import { isNil } from './isNil';
 
 describe('isNil', () => {
