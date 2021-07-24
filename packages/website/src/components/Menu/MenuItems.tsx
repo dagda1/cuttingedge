@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { bannerPages } from '../../routes';
 import cs from 'classnames';
 import { NavLink } from 'react-router-dom';
-import { Covid19, Deaths, IncreaseInDeaths } from 'src/urls';
+import { Covid19, IncreaseInDeaths } from 'src/urls';
 
 import styles from './Menu.module.scss';
 
@@ -40,7 +40,6 @@ export const MobileMenuItems: FC<MenuItemsProps> = ({ collapse }) => {
           path: IncreaseInDeaths,
           heading: 'COVID-19 Daily increase in World deaths',
         },
-        { path: Deaths, heading: 'COVID-19 Total deaths' },
       ].map((page) => {
         return (
           <li key={page.heading} className={cs(styles.horizontal, styles.mobile)}>

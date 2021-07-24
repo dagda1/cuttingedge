@@ -11,7 +11,6 @@
   "browser": "dist/umd/use-shortcuts.umd.js",
   "sideEffects": false,
   "types": "dist/esm/index.d.ts",
-  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],

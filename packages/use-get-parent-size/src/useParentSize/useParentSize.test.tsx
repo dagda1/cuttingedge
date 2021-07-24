@@ -1,7 +1,7 @@
 import { expect, it, describe } from '@jest/globals';
 import { act } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
-import { resize } from '@cutting/testing/dist/ResizeObserver';
+import { resize } from '@cutting/testing';
 import { useParentSize } from './useParentSize';
 
 describe('useParentSize', () => {

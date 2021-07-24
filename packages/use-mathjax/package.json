@@ -3,7 +3,6 @@
   "description": "easy mathjax in react.",
   "version": "4.26.0",
   "types": "dist/esm/index.d.ts",
-  "typings": "dist/index.d.ts",
   "sideEffects": false,
   "repository": {
     "type": "git",
@@ -33,7 +32,7 @@
     "@cutting/eslint-config": "4.25.0",
     "@cutting/useful-types": "4.24.0",
     "@testing-library/jest-dom": "^5.11.10",
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^26.0.24",
     "@types/mathjax": "^0.0.36",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

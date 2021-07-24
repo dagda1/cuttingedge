@@ -1,12 +1,17 @@
 {
-  "extends": "../../tsconfig-base.json",
+  "extends": "@cutting/tsconfig/tsconfig.test.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "noEmit": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
     "suppressImplicitAnyIndexErrors": true
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx"
+  ],
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
   ]
 }

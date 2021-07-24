@@ -2,10 +2,10 @@
   "name": "@cutting/testing",
   "description": "A collection of test helpers.",
   "version": "4.25.0",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/testing.esm.js",
-  "browser": "dist/umd/testing.umd.js",
-  "types": "dist/esm/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/testing.esm.js",
+  "browser": "dist/testing.esm.js",
+  "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "repository": {
@@ -21,7 +21,7 @@
     "test": "echo no op",
     "lint": "eslint {src,tests}/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
-    "build": "NODE_ENV=production cutting rollup",
+    "build": "NODE_ENV=production cutting ts-build",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
@@ -36,7 +36,7 @@
     "@cutting/useful-types": "4.24.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/jest": "^26.0.22",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.2"
   },
   "keywords": [
     "hotkeys",
@@ -48,17 +48,5 @@
   ],
   "volta": {
     "extends": "../../package.json"
-  },
-  "exports": {
-    "import": "./dist/esm/testing.esm.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/testing.umd.js"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "dist/esm/index.d.ts"
-      ]
-    }
   }
 }

@@ -20,6 +20,7 @@ module.exports = {
     curly: 'error',
     eqeqeq: ['error', 'always'],
     'prefer-const': 'warn',
+    'no-jest-import': ['off'],
     'prettier/prettier': [
       'error',
       {
