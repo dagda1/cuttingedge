@@ -45,6 +45,7 @@ export const createWebpackOptimisation = ({
               ecma: 5,
               comments: 'all',
               ascii_only: true,
+              safari10: true,
             },
           },
         }),

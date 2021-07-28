@@ -92,6 +92,7 @@ var configure = function (options, overrides) {
             path: paths_1.paths.appBuild,
             filename: options.filename,
             publicPath: publicPath,
+            libraryTarget: 'commonjs2',
         },
         plugins: [
             new webpack_1.default.optimize.LimitChunkCountPlugin({

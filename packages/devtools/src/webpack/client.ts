@@ -62,6 +62,10 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
       publicPath,
       pathinfo: isDevelopment,
       filename: isProduction ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle.js',
+      library: '_N_E',
+      libraryTarget: 'assign',
+      hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
+      hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
       chunkFilename: isProduction ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: isProduction
         ? (info) => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')

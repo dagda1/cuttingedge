@@ -75,6 +75,10 @@ var configure = function (options, overrides) {
             publicPath: publicPath,
             pathinfo: isDevelopment,
             filename: isProduction ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle.js',
+            library: '_N_E',
+            libraryTarget: 'assign',
+            hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
+            hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
             chunkFilename: isProduction ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
             devtoolModuleFilenameTemplate: isProduction
                 ? function (info) { return path_1.default.relative(paths_1.paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'); }
