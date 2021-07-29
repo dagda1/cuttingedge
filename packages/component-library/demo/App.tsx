@@ -159,32 +159,37 @@ export const App: FC = () => {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <FormInput width="width2" label="width 2" />
+            <FormInput width="width2" label="2 characters width" />
           </div>
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <FormInput width="width3" label="width 3" />
+            <FormInput width="width3" label="3 characters width" />
           </div>
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <FormInput width="width4" label="width 4" />
+            <FormInput width="width4" label="4 characters width" />
           </div>
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <FormInput width="width5" label="width 5" />
+            <FormInput width="width5" label="5 characters width" />
           </div>
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <FormInput width="width10" label="width 10" />
+            <FormInput width="width10" label="10 characters width" />
           </div>
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <FormInput width="width20" label="width 20" />
+            <FormInput width="width20" label="20 characters width" />
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <FormInput width="width30" label="30 characters width" />
           </div>
         </div>
       </div>

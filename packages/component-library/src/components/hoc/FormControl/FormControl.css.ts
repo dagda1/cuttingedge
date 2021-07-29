@@ -1,6 +1,6 @@
 import { composeStyles, style, globalStyle } from '@vanilla-extract/css';
-import { responsiveStyle } from 'src/style/responsive-style';
-import { vars } from 'src/style/themes/vars.css';
+import { responsiveStyle } from '../../../style/responsive-style';
+import { vars } from '../../../style/themes/vars.css';
 import { atoms } from '../../../style/atoms/sprinkles.css';
 
 export const root = composeStyles(
@@ -68,6 +68,10 @@ export const width20 = style({
 
 export const width30 = style({
   maxWidth: vars.inputWidth.width30,
+});
+
+export const width100 = style({
+  maxWidth: vars.inputWidth.width100,
 });
 
 export const horizontalErrorLabel = style(

@@ -38,18 +38,16 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
     fontWeight = 'strong',
     dataSelector = 'form-control',
     layout = 'vertical',
-    width = 'width30',
+    width = 'width100',
     ...rest
   }) => {
     const internalId = useRef(id || name || prefixId());
 
     const errorId = `${internalId.current}-error`;
 
-    console.log(`${width} ${styles[width]}`);
-
     return (
       <div
-        className={cs(styles.root, { [styles.horizontal]: layout === 'horizontal' }, className, styles[width])}
+        className={cs(styles.root, { [styles.horizontal]: layout === 'horizontal' }, className)}
         // className={cs(styles.input, className, {
         //   [styles.highlight]: highlight,
         //   [styles.horizontal]: layout === 'horizontal',
@@ -73,6 +71,7 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
             required={required}
             aria-invalid={invalid}
             aria-describedby={errorId}
+            className={styles[width]}
             {...(rest as P)}
           />
         </div>

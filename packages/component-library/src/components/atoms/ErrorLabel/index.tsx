@@ -1,7 +1,7 @@
 import type { FC, HTMLAttributes } from 'react';
 import cs from 'classnames';
 import { StandardProps } from '../../../types';
-import styles from './ErrorLabel.module.scss';
+import * as styles from './ErrorLabel.css';
 
 export type ErrorProps = StandardProps<HTMLAttributes<HTMLUListElement>> & {
   errorMessage: string;
@@ -10,7 +10,7 @@ export type ErrorProps = StandardProps<HTMLAttributes<HTMLUListElement>> & {
 };
 
 export const Error: FC<ErrorProps> = ({ errorMessage, className, dataSelector = 'form-error' }) => (
-  <ul className={cs('current-errors', className, styles.container)}>
+  <ul className={cs('current-errors', className, styles.root)}>
     <li data-selector={dataSelector}>{errorMessage}</li>
   </ul>
 );

@@ -52,9 +52,10 @@ export const tokens = {
     width3: '7.2ex',
     width4: '9ex',
     width5: '10.8ex',
-    width10: '20ex + 3ex',
-    width20: '38ex + 3ex',
-    width30: '56ex + 3ex',
+    width10: '23ex',
+    width20: '41ex',
+    width30: '62ex',
+    width100: '59ex + 3ex',
   },
   fontSize: {
     '0x': fontSizeScale(0),
