@@ -1,4 +1,4 @@
-import { composeStyles, style } from '@vanilla-extract/css';
+import { composeStyles, style, globalStyle } from '@vanilla-extract/css';
 import { responsiveStyle } from 'src/style/responsive-style';
 import { vars } from 'src/style/themes/vars.css';
 import { atoms } from '../../../style/atoms/sprinkles.css';
@@ -16,19 +16,6 @@ export const root = composeStyles(
   }),
 );
 
-export const horizontalRoot = style(
-  responsiveStyle({
-    mobile: {
-      display: 'flex',
-    },
-    tablet: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      alignItems: 'center',
-    },
-  }),
-);
-
 export const wrapper = style(
   responsiveStyle({
     mobile: {},
@@ -41,32 +28,47 @@ export const wrapper = style(
 export const horizontal = style(
   responsiveStyle({
     mobile: {
+      display: 'flex',
       marginTop: vars.space['2x'],
       marginBottom: vars.space['2x'],
     },
     tablet: {
-      marginTop: vars.space['4x'],
-      marginBottom: vars.space['4x'],
       flexDirection: 'row',
       flexWrap: 'wrap',
       alignItems: 'center',
-      flex: 1,
+      marginTop: vars.space['4x'],
+      marginBottom: vars.space['4x'],
     },
   }),
 );
 
-export const horizontalLabel = style(
-  responsiveStyle({
-    mobile: {},
-    tablet: {
-      selectors: {
-        [`${horizontal} &`]: {
-          marginRight: vars.space['2x'],
-        },
-      },
-    },
-  }),
-);
+export const width2 = style({
+  maxWidth: vars.inputWidth.width2,
+});
+
+export const width3 = style({
+  maxWidth: vars.inputWidth.width3,
+});
+
+export const width4 = style({
+  maxWidth: vars.inputWidth.width4,
+});
+
+export const width5 = style({
+  maxWidth: vars.inputWidth.width5,
+});
+
+export const width10 = style({
+  maxWidth: vars.inputWidth.width10,
+});
+
+export const width20 = style({
+  maxWidth: vars.inputWidth.width20,
+});
+
+export const width30 = style({
+  maxWidth: vars.inputWidth.width30,
+});
 
 export const horizontalErrorLabel = style(
   responsiveStyle({
@@ -80,6 +82,10 @@ export const horizontalErrorLabel = style(
     },
   }),
 );
+
+globalStyle(`.${root.split(' ').join('.')}.${horizontal} label`, {
+  marginRight: vars.space['1x'],
+});
 
 export const highlight = 'highlight';
 export const label__additional = 'label__additional';

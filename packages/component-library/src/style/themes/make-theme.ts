@@ -33,6 +33,9 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     width: {
       ...tokens.width,
     },
+    inputWidth: {
+      ...tokens.inputWidth,
+    },
     accessibility: {
       visibleFocus: {
         outline: `${tokens.accessibility.outlineWidth} solid ${tokens.accessibility.elementFocusColor}`,

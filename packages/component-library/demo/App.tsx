@@ -157,6 +157,36 @@ export const App: FC = () => {
             />
           </div>
         </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <FormInput width="width2" label="width 2" />
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <FormInput width="width3" label="width 3" />
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <FormInput width="width4" label="width 4" />
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <FormInput width="width5" label="width 5" />
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <FormInput width="width10" label="width 10" />
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <FormInput width="width20" label="width 20" />
+          </div>
+        </div>
       </div>
     </ApplicationLayout>
   );

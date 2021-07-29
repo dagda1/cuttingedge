@@ -47,6 +47,15 @@ export const tokens = {
     '5x': borderRadiusScale(5),
     full: '99999px',
   },
+  inputWidth: {
+    width2: '5.4ex',
+    width3: '7.2ex',
+    width4: '9ex',
+    width5: '10.8ex',
+    width10: '20ex + 3ex',
+    width20: '38ex + 3ex',
+    width30: '56ex + 3ex',
+  },
   fontSize: {
     '0x': fontSizeScale(0),
     '1x': fontSizeScale(1),

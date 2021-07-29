@@ -5,6 +5,7 @@ import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
 import { FontWeight } from '../../../style/themes/make-theme';
+import { tokens } from '../../../style/themes/tokens';
 
 export type Layout = 'vertical' | 'horizontal';
 
@@ -20,6 +21,7 @@ export type FormControlProps<E> = {
   fontWeight?: FontWeight;
   layout?: Layout;
   dataSelector?: string;
+  width?: keyof typeof tokens['inputWidth'];
 } & InputHTMLAttributes<E>;
 
 export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormControlProps<E> & P> {
@@ -36,15 +38,18 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
     fontWeight = 'strong',
     dataSelector = 'form-control',
     layout = 'vertical',
+    width = 'width30',
     ...rest
   }) => {
     const internalId = useRef(id || name || prefixId());
 
     const errorId = `${internalId.current}-error`;
 
+    console.log(`${width} ${styles[width]}`);
+
     return (
       <div
-        className={cs(styles.root, { [styles.horizontal]: layout === 'horizontal' }, className)}
+        className={cs(styles.root, { [styles.horizontal]: layout === 'horizontal' }, className, styles[width])}
         // className={cs(styles.input, className, {
         //   [styles.highlight]: highlight,
         //   [styles.horizontal]: layout === 'horizontal',
@@ -56,7 +61,6 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
           required={required}
           fontWeight={fontWeight}
           dataSelector={`${dataSelector}-label`}
-          className={styles.horizontalLabel}
         >
           {label}
           {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
