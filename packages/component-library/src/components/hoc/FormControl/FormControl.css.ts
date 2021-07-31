@@ -88,7 +88,7 @@ export const horizontalErrorLabel = style(
 );
 
 globalStyle(`.${root.split(' ').join('.')}.${horizontal} label`, {
-  marginRight: vars.space['1x'],
+  marginRight: vars.space['2x'],
 });
 
 export const highlight = 'highlight';
