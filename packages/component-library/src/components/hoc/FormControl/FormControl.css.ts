@@ -87,7 +87,7 @@ export const horizontalErrorLabel = style(
   }),
 );
 
-globalStyle(`.${root.split(' ').join('.')}.${horizontal} label`, {
+globalStyle(`.${root}.${horizontal} label`, {
   marginRight: vars.space['2x'],
 });
 

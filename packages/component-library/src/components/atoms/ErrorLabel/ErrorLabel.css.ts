@@ -1,8 +1,9 @@
 import { globalStyle, style } from '@vanilla-extract/css';
+import { responsiveFont } from 'src/style/typography/typography.css';
 import { vars } from '../../../style/themes/vars.css';
 
 export const root = style({
-  fontSize: vars.fontSize['1x'],
+  ...responsiveFont(),
   lineHeight: vars.lineHeight['4x'],
   color: vars.foregroundColor.error,
   fontWeight: vars.fontWeight.regular,

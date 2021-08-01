@@ -4,7 +4,6 @@ import { palette } from '../palette.css';
 const createScale = (ratio: number, base: number) => (steps: number) => `${modularScale(steps, base, ratio)}px`;
 
 const spaceScale = createScale(1.4, 4);
-const fontSizeScale = createScale(1.3, 16);
 const lineHeightScale = createScale(1.25, 24);
 const borderRadiusScale = createScale(1.5, 4);
 
@@ -57,14 +56,6 @@ export const tokens = {
     width30: '62ex',
     width100: '59ex + 3ex',
   },
-  fontSize: {
-    '0x': fontSizeScale(0),
-    '1x': fontSizeScale(1),
-    '2x': fontSizeScale(2),
-    '3x': fontSizeScale(3),
-    '4x': fontSizeScale(4),
-    '5x': fontSizeScale(5),
-  },
   lineHeight: {
     '0x': lineHeightScale(0),
     '1x': lineHeightScale(1),
@@ -89,12 +80,50 @@ export const tokens = {
     },
   },
   typography: {
-    fontFamily: 'Times',
+    fonts: {
+      heading: '"DM Sans", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
+      body: 'Times',
+      code: 'MonoLisa, "Roboto Mono", Menlo, monospace',
+    },
     webFont: null,
     fontWeight: {
       regular: 400,
       medium: 500,
       strong: 700,
+    },
+    headings: {
+      h1: {
+        mobile: 2,
+        tablet: 2,
+        desktop: 3,
+      },
+      h2: {
+        mobile: 1.5,
+        tablet: 1.5,
+        desktop: 2.25,
+      },
+      h3: {
+        mobile: 1.125,
+        tablet: 1.125,
+        desktop: 1.5,
+      },
+      h4: {
+        mobile: 1,
+        tablet: 1,
+        desktop: 1.1875,
+      },
+    },
+    text: {
+      body: {
+        mobile: 1,
+        tablet: 1,
+        desktop: 1,
+      },
+      paragraph: {
+        mobile: 1,
+        tablet: 1,
+        desktop: 1.1875,
+      },
     },
   },
   ...accessibility,

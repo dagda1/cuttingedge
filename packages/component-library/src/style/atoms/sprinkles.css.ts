@@ -30,7 +30,7 @@ const responsiveStyles = createAtomicStyles({
     pointerEvents: ['none', 'auto'],
     opacity: [0, 1],
     textAlign: ['left', 'center'],
-    fontSize: vars.fontSize,
+    fontSize: vars.text.body,
     lineHeight: vars.lineHeight,
     fontWeight: vars.fontWeight,
   },

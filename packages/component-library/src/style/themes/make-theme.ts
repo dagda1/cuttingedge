@@ -3,12 +3,34 @@ import type { Tokens } from './tokens';
 import { tokens as defaultTokens } from './tokens';
 import deepmerge from 'deepmerge';
 
-const px = (v: string | number) => `${v}px`;
+const scaleCreator = (scale: 'px' | 'rem') => (v: string | number) => `${v}${scale}`;
+
+const px = scaleCreator('px');
+const rem = scaleCreator('rem');
+
+type Convert<P, O> = { [K in keyof P]: { [K1 in keyof P[K]]: O } };
+
+type Responsive = {
+  mobile: number;
+  tablet: number;
+  desktop: number;
+};
+
+const convertToRem = <K extends keyof Tokens['typography']['headings'] | keyof Tokens['typography']['text']>(
+  o: Record<K, Responsive>,
+) =>
+  Object.keys(o).reduce((acc, curr) => {
+    const key = curr as keyof typeof o;
+    const current = o[key];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    acc[key] = mapValues(current, rem as any);
+
+    return acc;
+  }, {} as Convert<typeof o, string>);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
   const { ...tokens } = deepmerge(defaultTokens, customTokens) as Tokens;
-  const { ...typography } = tokens.typography;
   const { foreground, background } = tokens.color;
 
   const resolvedTokens = {
@@ -19,9 +41,16 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     backgroundColor: {
       ...background,
     },
-    fontFamily: typography.fontFamily,
-    fontWeight: mapValues(typography.fontWeight, String),
-    fontSize: tokens.fontSize,
+    fonts: {
+      ...tokens.typography.fonts,
+    },
+    headings: {
+      ...convertToRem(tokens.typography.headings),
+    },
+    text: {
+      ...convertToRem(tokens.typography.text),
+    },
+    fontWeight: mapValues(tokens.typography.fontWeight, String),
     lineHeight: tokens.lineHeight,
     inlineFieldSize: {
       standard: '2.5rem',
