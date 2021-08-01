@@ -16,17 +16,21 @@ type Responsive = {
   desktop: number;
 };
 
-const convertToRem = <K extends keyof Tokens['typography']['headings'] | keyof Tokens['typography']['text']>(
+const convertTypography = <K extends keyof Tokens['typography']['headings'] | keyof Tokens['typography']['text']>(
   o: Record<K, Responsive>,
+  f: (a: string | number) => string,
 ) =>
   Object.keys(o).reduce((acc, curr) => {
     const key = curr as keyof typeof o;
     const current = o[key];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    acc[key] = mapValues(current, rem as any);
+    acc[key] = mapValues(current, f as any);
 
     return acc;
   }, {} as Convert<typeof o, string>);
+
+const ratio = 1.5;
+const getLineHeight = (fontSize: number | string) => String(Number(fontSize) * ratio);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
@@ -43,15 +47,14 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     },
     fonts: {
       ...tokens.typography.fonts,
+      headings: convertTypography(tokens.typography.headings, rem),
+      text: convertTypography(tokens.typography.text, rem),
     },
-    headings: {
-      ...convertToRem(tokens.typography.headings),
-    },
-    text: {
-      ...convertToRem(tokens.typography.text),
+    lineHeight: {
+      headings: convertTypography(tokens.typography.headings, getLineHeight),
+      text: convertTypography(tokens.typography.text, getLineHeight),
     },
     fontWeight: mapValues(tokens.typography.fontWeight, String),
-    lineHeight: tokens.lineHeight,
     inlineFieldSize: {
       standard: '2.5rem',
       small: '1.25rem',

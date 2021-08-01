@@ -4,11 +4,10 @@ import { vars } from '../../../style/themes/vars.css';
 
 export const root = style({
   ...responsiveFont(),
-  lineHeight: vars.lineHeight['4x'],
   color: vars.foregroundColor.error,
   fontWeight: vars.fontWeight.regular,
-  marginTop: vars.space['2x'],
-  marginBottom: vars.space['2x'],
+  marginTop: vars.space['1x'],
+  marginBottom: vars.space['1x'],
   marginLeft: 0,
   listStyle: 'none',
 });

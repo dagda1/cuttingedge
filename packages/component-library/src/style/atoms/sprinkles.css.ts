@@ -30,8 +30,6 @@ const responsiveStyles = createAtomicStyles({
     pointerEvents: ['none', 'auto'],
     opacity: [0, 1],
     textAlign: ['left', 'center'],
-    fontSize: vars.text.body,
-    lineHeight: vars.lineHeight,
     fontWeight: vars.fontWeight,
   },
   shorthands: {
@@ -42,7 +40,6 @@ const responsiveStyles = createAtomicStyles({
     marginY: ['marginTop', 'marginBottom'],
     marginX: ['marginLeft', 'marginRight'],
     placeItems: ['alignItems', 'justifyContent'],
-    typeSize: ['fontSize', 'lineHeight'],
   },
 });
 

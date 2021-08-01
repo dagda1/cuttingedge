@@ -1,10 +1,8 @@
-import { modularScale } from 'polished';
+import { modularScale, rem } from 'polished';
 import { palette } from '../palette.css';
 
 const createScale = (ratio: number, base: number) => (steps: number) => `${modularScale(steps, base, ratio)}px`;
 
-const spaceScale = createScale(1.4, 4);
-const lineHeightScale = createScale(1.25, 24);
 const borderRadiusScale = createScale(1.5, 4);
 
 export const colors = {
@@ -24,18 +22,19 @@ export const accessibility = {
   outlineColor: colors.notification,
 };
 
+const spacing = [5, 10, 15, 20, 25, 30, 40, 50, 60] as const;
+
+type ScaleKeys<A extends readonly unknown[]> = `${keyof A & `${number}`}x`;
+
+type SpaceKeys = ScaleKeys<typeof spacing>;
+
 export const tokens = {
   space: {
     none: '0',
-    '0x': spaceScale(0),
-    '1x': spaceScale(1),
-    '2x': spaceScale(2),
-    '3x': spaceScale(3),
-    '4x': spaceScale(4),
-    '5x': spaceScale(5),
-    '6x': spaceScale(6),
-    '7x': spaceScale(7),
-    '8x': spaceScale(8),
+    ...spacing.reduce((acc, curr, i) => {
+      acc[`${i}x` as SpaceKeys] = rem(curr);
+      return acc;
+    }, {} as Record<SpaceKeys, string>),
   },
   borderRadius: {
     '0x': borderRadiusScale(0),
@@ -55,14 +54,11 @@ export const tokens = {
     width20: '41ex',
     width30: '62ex',
     width100: '59ex + 3ex',
-  },
-  lineHeight: {
-    '0x': lineHeightScale(0),
-    '1x': lineHeightScale(1),
-    '2x': lineHeightScale(2),
-    '3x': lineHeightScale(3),
-    '4x': lineHeightScale(4),
-    '5x': lineHeightScale(5),
+    widthQuarter: '25%',
+    widthThird: '33.33%',
+    widthHalf: '50%',
+    widthTwoThirds: '66.66%',
+    widthThreeQuarters: '75%',
   },
   color: {
     foreground: {

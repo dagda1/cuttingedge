@@ -75,7 +75,7 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
             {...(rest as P)}
           />
         </div>
-        <div id={errorId} className={styles.horizontalErrorLabel} aria-hidden={!invalid} role="alert">
+        <div id={errorId} aria-hidden={!invalid} role="alert">
           {invalid && errorMessage && (
             <Error dataSelector={errorDataSelector || `${dataSelector}-error`} errorMessage={errorMessage.toString()} />
           )}

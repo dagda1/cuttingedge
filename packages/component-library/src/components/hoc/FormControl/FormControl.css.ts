@@ -13,6 +13,14 @@ export const root = composeStyles(
     font: 'inherit',
     fontFamily: 'inherit',
     fontSize: 'inherit',
+    ...responsiveStyle({
+      mobile: {
+        marginBottom: vars.space['3x'],
+      },
+      tablet: {
+        marginBottom: vars.space['5x'],
+      },
+    }),
   }),
 );
 
@@ -29,15 +37,13 @@ export const horizontal = style(
   responsiveStyle({
     mobile: {
       display: 'flex',
-      marginTop: vars.space['2x'],
-      marginBottom: vars.space['2x'],
+      marginTop: vars.space['3x'],
     },
     tablet: {
       flexDirection: 'row',
       flexWrap: 'wrap',
       alignItems: 'center',
-      marginTop: vars.space['4x'],
-      marginBottom: vars.space['4x'],
+      marginTop: vars.space['6x'],
     },
   }),
 );
@@ -74,21 +80,40 @@ export const width100 = style({
   maxWidth: vars.inputWidth.width100,
 });
 
-export const horizontalErrorLabel = style(
-  responsiveStyle({
-    mobile: {},
-    tablet: {
-      selectors: {
-        [`${horizontal} &`]: {
-          width: '100%',
-        },
-      },
-    },
-  }),
-);
+export const widthQuarter = style({
+  width: vars.inputWidth.widthQuarter,
+});
+
+export const widthThird = style({
+  width: vars.inputWidth.widthThird,
+});
+
+export const widthHalf = style({
+  width: vars.inputWidth.widthHalf,
+});
+
+export const widthTwoThirds = style({
+  width: vars.inputWidth.widthTwoThirds,
+});
+
+export const widthThreeQuarters = style({
+  width: vars.inputWidth.widthThreeQuarters,
+});
+
+export const Full = style({
+  width: vars.inputWidth.width100,
+});
+
+globalStyle(`.${root} label`, {
+  marginBottom: vars.space['0x'],
+});
 
 globalStyle(`.${root}.${horizontal} label`, {
-  marginRight: vars.space['2x'],
+  marginRight: vars.space['1x'],
+});
+
+globalStyle(`.${root} [role=alert]`, {
+  width: '100%',
 });
 
 export const highlight = 'highlight';
