@@ -105,7 +105,7 @@ export const Full = style({
 });
 
 globalStyle(`.${root} label`, {
-  marginBottom: vars.space['0x'],
+  marginBottom: vars.space['1x'],
 });
 
 globalStyle(`.${root}.${horizontal} label`, {

@@ -1,49 +1,40 @@
-import { modularScale, rem } from 'polished';
+import { rem } from 'polished';
 import { palette } from '../palette.css';
 
-const createScale = (ratio: number, base: number) => (steps: number) => `${modularScale(steps, base, ratio)}px`;
-
-const borderRadiusScale = createScale(1.5, 4);
-
 export const colors = {
-  primary: palette.blue700,
+  primary: palette.green800,
+  secondary: palette.gray100,
   error: palette.redError,
   notification: palette.yellow400,
-  link: palette.trueGray900,
-  linkHover: palette.white,
-  linkVisited: palette.trueGray700,
 };
-
-export const accessibility = {
-  elementFocusColor: colors.notification,
-  outlineWidth: '3px',
-  outlineOffset: '0',
-  linkBg: colors.notification,
-  outlineColor: colors.notification,
-};
-
-const spacing = [5, 10, 15, 20, 25, 30, 40, 50, 60] as const;
 
 type ScaleKeys<A extends readonly unknown[]> = `${keyof A & `${number}`}x`;
 
+const spacing = [4, 8, 12, 16, 20, 24, 36] as const;
 type SpaceKeys = ScaleKeys<typeof spacing>;
+
+const borderRadius = [1, 2, 4, 8, 16, 32] as const;
+type BorderRadiusKeys = ScaleKeys<typeof borderRadius>;
+
+const fontWeight = {
+  regular: 400,
+  medium: 500,
+  strong: 700,
+} as const;
 
 export const tokens = {
   space: {
     none: '0',
     ...spacing.reduce((acc, curr, i) => {
-      acc[`${i}x` as SpaceKeys] = rem(curr);
+      acc[`${i + 1}x` as SpaceKeys] = rem(curr);
       return acc;
     }, {} as Record<SpaceKeys, string>),
   },
   borderRadius: {
-    '0x': borderRadiusScale(0),
-    '1x': borderRadiusScale(1),
-    '2x': borderRadiusScale(2),
-    '3x': borderRadiusScale(3),
-    '4x': borderRadiusScale(4),
-    '5x': borderRadiusScale(5),
-    full: '99999px',
+    ...borderRadius.reduce((acc, curr, i) => {
+      acc[`${i + 1}x` as BorderRadiusKeys] = `${curr}px`;
+      return acc;
+    }, {} as Record<BorderRadiusKeys, string>),
   },
   inputWidth: {
     width2: '5.4ex',
@@ -62,12 +53,11 @@ export const tokens = {
   },
   color: {
     foreground: {
-      link: colors.link,
-      linkHover: colors.linkHover,
-      linkVisited: colors.linkVisited,
-      primary: palette.blue700,
-      secondary: palette.blue900,
+      link: palette.trueGray900,
+      linkHover: palette.white,
+      linkVisited: palette.trueGray700,
       error: colors.error,
+      body: palette.black,
     },
     background: {
       body: palette.black,
@@ -77,15 +67,13 @@ export const tokens = {
   },
   typography: {
     fonts: {
-      heading: '"DM Sans", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
-      body: 'Times',
+      heading: '"GDS Transport",arial,sans-serif',
+      body: '"GDS Transport",arial,sans-serif',
       code: 'MonoLisa, "Roboto Mono", Menlo, monospace',
     },
     webFont: null,
     fontWeight: {
-      regular: 400,
-      medium: 500,
-      strong: 700,
+      ...fontWeight,
     },
     headings: {
       h1: {
@@ -122,7 +110,6 @@ export const tokens = {
       },
     },
   },
-  ...accessibility,
   grid: 4,
   border: {
     radius: {
@@ -147,6 +134,44 @@ export const tokens = {
     accessibleOutlineColor: colors.notification,
     outlineOffset: '0',
     linkFocusColor: palette.black,
+  },
+  links: {
+    textDecoration: 'none',
+  },
+  buttons: {
+    primary: {
+      borderWidth: '2px',
+      borderColor: 'transparent',
+      hoverBackgroundColor: colors.primary,
+      backgroundColor: palette.green800,
+      color: palette.white,
+      marginTop: 0,
+      padding: '8px 10px 7px',
+      fontWeight: fontWeight.regular,
+      boxShadowColor: palette.gray900,
+    },
+    secondary: {
+      borderWidth: '2px',
+      borderColor: 'transparent',
+      backgroundColor: colors.secondary,
+      hoverBackgroundColor: colors.primary,
+      color: palette.black,
+      marginTop: 0,
+      padding: '8px 10px 7px',
+      fontWeight: fontWeight.regular,
+      boxShadowColor: palette.trueGray400,
+    },
+    warning: {
+      borderWidth: '2px',
+      borderColor: 'transparent',
+      backgroundColor: colors.error,
+      hoverBackgroundColor: colors.primary,
+      color: palette.white,
+      marginTop: 0,
+      padding: '8px 10px 7px',
+      fontWeight: fontWeight.regular,
+      boxShadowColor: palette.orange900,
+    },
   },
 };
 

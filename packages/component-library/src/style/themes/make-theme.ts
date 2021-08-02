@@ -30,7 +30,7 @@ const convertTypography = <K extends keyof Tokens['typography']['headings'] | ke
   }, {} as Convert<typeof o, string>);
 
 const ratio = 1.5;
-const getLineHeight = (fontSize: number | string) => String(Number(fontSize) * ratio);
+const getLineHeight = (fontSize: number | string) => rem(Number(fontSize) * ratio);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
@@ -45,8 +45,10 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     backgroundColor: {
       ...background,
     },
-    fonts: {
+    fontFamily: {
       ...tokens.typography.fonts,
+    },
+    fonts: {
       headings: convertTypography(tokens.typography.headings, rem),
       text: convertTypography(tokens.typography.text, rem),
     },
@@ -85,6 +87,32 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     },
     invalid: {
       color: tokens.color.foreground.error,
+    },
+    links: {
+      ...tokens.links,
+    },
+    buttons: {
+      primary: {
+        border: `${tokens.buttons.primary.borderWidth} solid ${tokens.buttons.primary.borderWidth}`,
+        backgroundColor: tokens.buttons.primary.backgroundColor,
+        color: tokens.buttons.primary.color,
+        padding: tokens.buttons.primary.padding,
+        boxShadow: `0 2px 0 ${tokens.buttons.primary.boxShadowColor}`,
+      },
+      secondary: {
+        border: `${tokens.buttons.secondary.borderWidth} solid ${tokens.buttons.secondary.borderWidth}`,
+        backgroundColor: tokens.buttons.secondary.backgroundColor,
+        color: tokens.buttons.secondary.color,
+        padding: tokens.buttons.secondary.padding,
+        boxShadow: `0 2px 0 ${tokens.buttons.secondary.boxShadowColor}`,
+      },
+      warning: {
+        border: `${tokens.buttons.warning.borderWidth} solid ${tokens.buttons.warning.borderWidth}`,
+        backgroundColor: tokens.buttons.warning.backgroundColor,
+        color: tokens.buttons.warning.color,
+        padding: tokens.buttons.secondary.padding,
+        boxShadow: `0 2px 0 ${tokens.buttons.warning.boxShadowColor}`,
+      },
     },
   } as const;
 

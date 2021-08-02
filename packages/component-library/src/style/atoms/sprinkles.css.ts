@@ -1,4 +1,3 @@
-import { mapValues } from '@cutting/util';
 import {
   createAtomicStyles,
   createAtomsFn,
@@ -10,7 +9,11 @@ import { breakpoints } from '../breakpoints';
 import { vars } from '../themes/vars.css';
 
 const responsiveStyles = createAtomicStyles({
-  conditions: mapValues(breakpoints, (bp) => (bp === 0 ? {} : { '@media': `screen and (min-width: ${bp}px)` })),
+  conditions: {
+    mobile: {},
+    tablet: { '@media': `screen and (min-width: ${breakpoints.tablet}rem)` },
+    desktop: { '@media': `screen and (min-width: ${breakpoints.desktop}rem)` },
+  },
   defaultCondition: 'mobile',
   properties: {
     position: ['absolute', 'relative', 'fixed'],
@@ -19,6 +22,9 @@ const responsiveStyles = createAtomicStyles({
     justifyContent: ['flex-start', 'center', 'flex-end', 'space-between'],
     flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'],
     flexWrap: ['nowrap', 'wrap', 'wrap-reverse'],
+    flex: ['auto', '1', '1 1', '1 0 auto'],
+    gap: vars.space,
+    borderRadius: vars.borderRadius,
     paddingTop: vars.space,
     paddingBottom: vars.space,
     paddingLeft: vars.space,
@@ -27,6 +33,7 @@ const responsiveStyles = createAtomicStyles({
     marginBottom: vars.space,
     marginLeft: vars.space,
     marginRight: vars.space,
+    fontFamily: vars.fontFamily,
     pointerEvents: ['none', 'auto'],
     opacity: [0, 1],
     textAlign: ['left', 'center'],

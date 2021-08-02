@@ -1,5 +1,5 @@
 import '../src/style/reset';
-import styles from './global.module.scss';
+import * as styles from './global.css';
 import type { FC } from 'react';
 import { Heading, FormInput } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
@@ -13,6 +13,19 @@ export const App: FC = () => {
       <div className={styles.wrap}>
         <div className={styles.layout}>
           <div className={styles.item}>
+            <Heading level={2}>Headings</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level={1}>H1</Heading>
+            <Heading level={2}>H2</Heading>
+            <Heading level={3}>H3</Heading>
+            <Heading level={4}>H4</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
             <Heading level={2}>Buttons</Heading>
           </div>
         </div>
@@ -24,10 +37,29 @@ export const App: FC = () => {
             <Button buttonStyle="secondary">Secondary</Button>
           </div>
           <div className={styles.item}>
-            <Button buttonStyle="inverse">Inverse</Button>
+            <Button buttonStyle="warning">Warning</Button>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level={2}>Disabled Buttons</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Button disabled buttonStyle="primary">
+              Primary
+            </Button>
           </div>
           <div className={styles.item}>
-            <Button buttonStyle="warning">Warning</Button>
+            <Button disabled buttonStyle="secondary">
+              Secondary
+            </Button>
+          </div>
+          <div className={styles.item}>
+            <Button disabled buttonStyle="warning">
+              Warning
+            </Button>
           </div>
         </div>
         <div className={styles.layout}>
@@ -155,66 +187,6 @@ export const App: FC = () => {
               invalid
               errorMessage="foo bar"
             />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="width2" label="2 characters width" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="width3" label="3 characters width" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="width4" label="4 characters width" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="width5" label="5 characters width" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="width10" label="10 characters width" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="width20" label="20 characters width" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="width30" label="30 characters width" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="widthQuarter" label="25%" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="widthThird" label="33%" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="widthHalf" label="50%" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="widthTwoThirds" label="66%" />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <FormInput width="widthThreeQuarters" label="75%" />
           </div>
         </div>
       </div>

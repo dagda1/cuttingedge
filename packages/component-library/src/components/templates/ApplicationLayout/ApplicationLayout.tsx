@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
 
-import styles from './ApplicationLayout.module.scss';
+import * as styles from './ApplicationLayout.css';
 import { isNil } from '@cutting/util';
 
 export interface ApplicationLayoutProps {

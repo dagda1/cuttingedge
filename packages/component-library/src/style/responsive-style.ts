@@ -1,6 +1,5 @@
 import { isEqual, omit } from '@cutting/util';
 import { StyleRule } from '@vanilla-extract/css';
-import { assert } from 'assert-ts';
 import { breakpoints } from './breakpoints';
 
 type CSSProps = Omit<StyleRule, '@media' | '@supports'>;
@@ -9,7 +8,7 @@ const makeMediaQuery = (breakpoint: keyof typeof breakpoints) => (styles: CSSPro
   !styles || Object.keys(styles).length === 0
     ? {}
     : {
-        [`screen and (min-width: ${breakpoints[breakpoint]}px)`]: styles,
+        [`screen and (min-width: ${breakpoints[breakpoint]}rem)`]: styles,
       };
 
 const mediaQuery = {
@@ -24,8 +23,7 @@ interface ResponsiveStyle {
 }
 
 export const responsiveStyle = ({ mobile, tablet, desktop }: ResponsiveStyle): StyleRule => {
-  assert(!!mobile, '');
-  const mobileStyles = omit(mobile, '@media' as keyof CSSProps);
+  const mobileStyles = typeof mobile === 'undefined' ? {} : omit(mobile, '@media' as keyof CSSProps);
 
   const tabletStyles = !tablet || isEqual(tablet, mobileStyles) ? null : tablet;
 

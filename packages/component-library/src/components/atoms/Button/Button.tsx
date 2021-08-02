@@ -2,9 +2,7 @@ import type { FC, DetailedHTMLProps, ButtonHTMLAttributes, MouseEventHandler } f
 import cs from 'classnames';
 import { identity } from '@cutting/util';
 import { StandardProps } from '../../../types';
-import styles from './Button.module.scss';
-
-export type ButtonStyle = 'primary' | 'secondary' | 'inverse' | 'warning';
+import { root, buttons, ButtonStyle, disabled as disabledStyle } from './Button.css';
 
 export type ButtonProps = StandardProps<
   DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
@@ -18,7 +16,7 @@ export type ButtonProps = StandardProps<
 export const Button: FC<ButtonProps> = ({
   onClick = identity,
   className,
-  buttonStyle,
+  buttonStyle = 'primary',
   disabled,
   type = 'button',
   children,
@@ -30,9 +28,7 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={cs(className, styles.default, {
-        [styles[(buttonStyle as string) || 'primary']]: true,
-      })}
+      className={cs(className, root, buttons[buttonStyle], { [disabledStyle]: disabled })}
       type={type}
       onClick={onClick}
       disabled={disabled}

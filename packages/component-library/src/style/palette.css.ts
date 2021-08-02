@@ -2,7 +2,7 @@ import colors from 'tailwindcss/colors';
 
 export const palette = {
   white: '#fff',
-  black: '#0e0e10',
+  black: '#0b0c0c',
 
   red: colors.red['500'],
   red600: colors.red['600'],
@@ -23,6 +23,8 @@ export const palette = {
   green300: colors.emerald['300'],
   green400: colors.emerald['400'],
   green500: colors.emerald['500'],
+  green800: colors.emerald['800'],
+  green900: colors.emerald['900'],
 
   coolGray50: colors.coolGray['50'],
   coolGray100: colors.coolGray['100'],
@@ -78,4 +80,15 @@ export const palette = {
   blue700: colors.lightBlue['700'],
   blue800: colors.lightBlue['800'],
   blue900: colors.lightBlue['900'],
+
+  orange50: colors.orange['50'],
+  orange100: colors.orange['100'],
+  orange200: colors.orange['200'],
+  orange300: colors.orange['300'],
+  orange400: colors.orange['400'],
+  orange500: colors.orange['500'],
+  orange600: colors.orange['600'],
+  orange700: colors.orange['700'],
+  orange800: colors.orange['800'],
+  orange900: colors.orange['900'],
 };

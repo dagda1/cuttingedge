@@ -1,8 +1,8 @@
 import { expect, it, describe } from '@jest/globals';
-import { ErrorLabel, ErrorProps } from '.';
+import { ErrorMessage, ErrorProps } from '.';
 import { render } from '@testing-library/react';
 
-const wrap = (props: ErrorProps) => render(<ErrorLabel {...props} />);
+const wrap = (props: ErrorProps) => render(<ErrorMessage {...props} />);
 
 describe('ErrorLabel', () => {
   it('should tag custom data-selector', () => {

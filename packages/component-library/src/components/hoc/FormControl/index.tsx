@@ -1,11 +1,11 @@
 import cs from 'classnames';
 import { FC, ReactNode, InputHTMLAttributes, useRef } from 'react';
-import { Error } from '../../atoms/ErrorLabel';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
 import { FontWeight } from '../../../style/themes/make-theme';
 import { tokens } from '../../../style/themes/tokens';
+import { ErrorMessage } from '../../../components/atoms/ErrorMessage';
 
 export type Layout = 'vertical' | 'horizontal';
 
@@ -63,6 +63,14 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
           {label}
           {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
         </Label>
+        <div id={errorId} aria-hidden={!invalid} role="alert">
+          {invalid && errorMessage && (
+            <ErrorMessage
+              dataSelector={errorDataSelector || `${dataSelector}-error`}
+              errorMessage={errorMessage.toString()}
+            />
+          )}
+        </div>
         <div className={styles.wrapper}>
           <Comp
             id={internalId.current}
@@ -74,11 +82,6 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
             className={styles[width]}
             {...(rest as P)}
           />
-        </div>
-        <div id={errorId} aria-hidden={!invalid} role="alert">
-          {invalid && errorMessage && (
-            <Error dataSelector={errorDataSelector || `${dataSelector}-error`} errorMessage={errorMessage.toString()} />
-          )}
         </div>
       </div>
     );
