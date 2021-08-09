@@ -1,6 +1,6 @@
 import type { ReactNode, FC, ChangeEvent } from 'react';
 import { useState, useRef, useCallback } from 'react';
-import { Radio } from '../../atoms/Radio';
+import { Radio } from '../../atoms/Radio/Radio';
 import { RadioProps, RadioLayoutProps } from '../../atoms/Radio/types';
 import cs from 'classnames';
 

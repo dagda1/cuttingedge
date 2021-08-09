@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import cs from 'classnames';
 import { RadioProps, RadioLayoutProps, RadioEventHandlers } from './types';
 
-import styles from './Radio.module.scss';
+import * as styles from './Radio.css';
 
 export const Radio: FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
   id,
@@ -15,7 +15,7 @@ export const Radio: FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
   size,
 }) => (
   <div
-    className={cs(styles.container, {
+    className={cs(styles.item, {
       [styles.large]: size === 'large',
       [styles.small]: size === 'small',
       [styles.stacked]: layout === 'stacked',
