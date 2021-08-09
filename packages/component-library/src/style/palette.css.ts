@@ -6,6 +6,8 @@ export const palette = {
 
   red: colors.red['500'],
   red600: colors.red['600'],
+  red700: colors.red['700'],
+  red800: colors.red['800'],
   redError: colors.red['600'],
 
   yellow50: colors.yellow['50'],

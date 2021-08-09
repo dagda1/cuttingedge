@@ -6,6 +6,7 @@ import { responsiveStyle } from '../../../style/responsive-style';
 export const root = style({
   ...responsiveFont(),
   cursor: 'pointer',
+  touchAction: 'manipulation',
   ...responsiveStyle({
     mobile: {
       width: '100%',
@@ -14,6 +15,18 @@ export const root = style({
       width: 'auto',
     },
   }),
+  ':active': {
+    top: '2px',
+  },
+  ':focus': {
+    borderColor: vars.accessibility.accessibleOutline.backgroundColor,
+    color: vars.foregroundColor.body,
+    backgroundColor: vars.accessibility.accessibleOutline.backgroundColor,
+    boxShadow: `0 2px 0 ${vars.foregroundColor.body}`,
+  },
+  ':focus-visible': {
+    outline: '3px solid transparent',
+  },
 });
 
 export const primary: StyleRule = {

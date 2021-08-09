@@ -63,9 +63,10 @@ globalStyle('h2,h3,h4', {
   marginBottom: vars.space['2x'],
 });
 
-globalStyle('a:focus,a:focus h2,button:focus,button:focus h2', {
+globalStyle('a:focus,a:focus h2', {
   ...vars.accessibility.accessibleOutline,
   color: vars.foregroundColor.body,
+  boxShadow: 'initial',
 });
 
 export const hidden = style({

@@ -97,21 +97,30 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         backgroundColor: tokens.buttons.primary.backgroundColor,
         color: tokens.buttons.primary.color,
         padding: tokens.buttons.primary.padding,
-        boxShadow: `0 2px 0 ${tokens.buttons.primary.boxShadowColor}`,
+        boxShadow: `0 2px 0 ${tokens.buttons.primary.boxShadowColor} !important`,
+        ':hover': {
+          backgroundColor: tokens.buttons.primary.focusColor,
+        },
       },
       secondary: {
         border: `${tokens.buttons.secondary.borderWidth} solid ${tokens.buttons.secondary.borderWidth}`,
         backgroundColor: tokens.buttons.secondary.backgroundColor,
         color: tokens.buttons.secondary.color,
         padding: tokens.buttons.secondary.padding,
-        boxShadow: `0 2px 0 ${tokens.buttons.secondary.boxShadowColor}`,
+        boxShadow: `0 2px 0 ${tokens.buttons.secondary.boxShadowColor} !important`,
+        ':hover': {
+          backgroundColor: tokens.buttons.secondary.focusColor,
+        },
       },
       warning: {
         border: `${tokens.buttons.warning.borderWidth} solid ${tokens.buttons.warning.borderWidth}`,
         backgroundColor: tokens.buttons.warning.backgroundColor,
         color: tokens.buttons.warning.color,
         padding: tokens.buttons.secondary.padding,
-        boxShadow: `0 2px 0 ${tokens.buttons.warning.boxShadowColor}`,
+        boxShadow: `0 2px 0 ${tokens.buttons.warning.boxShadowColor} !important`,
+        ':hover': {
+          backgroundColor: tokens.buttons.warning.focusColor,
+        },
       },
     },
   } as const;
