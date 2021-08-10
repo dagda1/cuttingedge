@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, StyleRule } from '@vanilla-extract/css';
 
 export const visuallyHidden = style({
   position: 'absolute',
@@ -12,3 +12,14 @@ export const visuallyHidden = style({
   border: '0',
   whiteSpace: 'nowrap',
 });
+
+export const screenReaderOnly: StyleRule = {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  padding: 0,
+  margin: '-1px',
+  overflow: 'hidden',
+  clip: 'rect(0, 0, 0, 0)',
+  border: '0',
+};

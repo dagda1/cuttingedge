@@ -5,7 +5,7 @@ import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
 import { FontWeight } from '../../../style/themes/make-theme';
 import { tokens } from '../../../style/themes/tokens';
-import { ErrorMessage } from '../../../components/atoms/ErrorMessage';
+import { ErrorMessage } from '../../atoms/ErrorMessage/ErrorMessage';
 
 export type Layout = 'vertical' | 'horizontal';
 

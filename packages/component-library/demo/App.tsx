@@ -3,7 +3,7 @@ import * as styles from './global.css';
 import type { FC } from 'react';
 import { Heading, FormInput } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
-import { RadioGroup } from '../src/components/molecules/RadioGroup';
+import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
 import { defaultTheme } from '../src/style/themes/default/default.css';
 

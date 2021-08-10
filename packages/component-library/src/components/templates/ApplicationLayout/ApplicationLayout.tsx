@@ -1,5 +1,5 @@
 import type { FC, ReactElement, RefObject } from 'react';
-import { Heading } from '../../atoms/Heading';
+import { Heading } from '../../atoms/Heading/Heading';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';

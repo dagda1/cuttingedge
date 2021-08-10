@@ -4,7 +4,7 @@ import { Radio } from '../../atoms/Radio/Radio';
 import { RadioProps, RadioLayoutProps } from '../../atoms/Radio/types';
 import cs from 'classnames';
 
-import styles from './RadioGroup.module.scss';
+import * as styles from './RadioGroup.css';
 
 export type RadioOption = RadioProps & { content: ReactNode };
 

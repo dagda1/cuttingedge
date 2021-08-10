@@ -13,18 +13,21 @@ export const Radio: FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
   layout,
   onChange,
   size,
-}) => (
-  <div
-    className={cs(styles.item, {
-      [styles.large]: size === 'large',
-      [styles.small]: size === 'small',
-      [styles.stacked]: layout === 'stacked',
-      [styles.inline]: layout === 'inline',
-    })}
-  >
-    <input id={id} name={name} type="radio" value={value} onChange={onChange} checked={checked} />
-    <label htmlFor={id}>
-      <div className={styles.content}>{children}</div>
-    </label>
-  </div>
-);
+}) => {
+  console.log({ checked });
+  return (
+    <div
+      className={cs(styles.item, {
+        [styles.large]: size === 'large',
+        [styles.small]: size === 'small',
+        [styles.stacked]: layout === 'stacked',
+        [styles.inline]: layout === 'inline',
+      })}
+    >
+      <input id={id} name={name} type="radio" value={value} onChange={onChange} checked={checked} />
+      <label htmlFor={id}>
+        <div className={styles.content}>{children}</div>
+      </label>
+    </div>
+  );
+};

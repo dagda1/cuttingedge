@@ -1,5 +1,5 @@
 import { expect, it, describe } from '@jest/globals';
-import { Heading, HeadingProps } from '.';
+import { Heading, HeadingProps } from './Heading';
 import { render } from '@testing-library/react';
 
 const wrap = (props: HeadingProps = {}) => render(<Heading {...props} />);

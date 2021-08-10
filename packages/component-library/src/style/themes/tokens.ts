@@ -176,6 +176,12 @@ export const tokens = {
       boxShadowColor: palette.orange900,
     },
   },
+  radios: {
+    regular: {
+      width: rem(44),
+      height: rem(44),
+    },
+  },
 };
 
 export type Tokens = typeof tokens;

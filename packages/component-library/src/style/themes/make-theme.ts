@@ -123,6 +123,9 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         },
       },
     },
+    radios: {
+      ...tokens.radios,
+    },
   } as const;
 
   return resolvedTokens;
