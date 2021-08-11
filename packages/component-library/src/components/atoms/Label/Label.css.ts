@@ -6,6 +6,7 @@ export const root = style({
   ...responsiveFont(),
   display: 'block',
   fontWeight: vars.fontWeight.regular,
+  lineHeight: '1.31579',
 });
 
 export const invalid = style({

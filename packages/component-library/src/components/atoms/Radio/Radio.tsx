@@ -25,9 +25,7 @@ export const Radio: FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
       })}
     >
       <input id={id} name={name} type="radio" value={value} onChange={onChange} checked={checked} />
-      <label htmlFor={id}>
-        <div className={styles.content}>{children}</div>
-      </label>
+      <label htmlFor={id}>{children}</label>
     </div>
   );
 };

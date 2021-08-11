@@ -5,8 +5,8 @@ import { responsiveFont } from '../../../style/typography/typography.css';
 export const item = style({
   position: 'relative',
   fontWeight: vars.fontWeight.regular,
-  lineHeight: '1.25',
-  display: 'block',
+  display: 'flex',
+  alignItems: 'center',
   minHeight: '40px',
   marginBottom: '10px',
   paddingLeft: '40px',
@@ -22,7 +22,17 @@ globalStyle(`${item} input`, {
   width: vars.radios.regular.width,
   height: vars.radios.regular.height,
   margin: 0,
-  opacity: 0,
+  // opacity: 0,
+});
+
+globalStyle(`${item} label`, {
+  ...responsiveFont(),
+  fontWeight: vars.fontWeight.regular,
+  paddingLeft: vars.space['1x'],
+  display: 'inline-block',
+  touchAction: 'manipulation',
+  boxSizing: 'border-box',
+  zIndex: 1,
 });
 
 globalStyle(`${item} label:before`, {
@@ -35,6 +45,7 @@ globalStyle(`${item} label:before`, {
   border: '2px solid currentColor',
   borderRadius: '50%',
   background: 'transparent',
+  // transform: 'scale(0.5)',
 });
 
 globalStyle(`${item} label:after`, {
@@ -45,23 +56,23 @@ globalStyle(`${item} label:after`, {
   width: '0',
   height: '0',
   borderRadius: '50%',
+  border: '10px solid currentColor',
   background: 'currentColor',
+  // transform: 'scale(0.5)',
+});
+
+globalStyle(`${item} input:focus + label:before`, {
+  borderWidth: '4px',
+  boxShadow: `0 0 0 4px ${vars.accessibility.accessibleOutline.backgroundColor} !important`,
 });
 
 globalStyle(`${item} input:checked + label:after`, {
-  border: '10px solid black',
-});
-
-globalStyle(`${item} label`, {
-  padding: '8px 15px 5px',
-  display: 'inline-block',
+  border: '10px solid currentColor',
 });
 
 export const small = style({});
 export const large = style({});
 export const stacked = style({});
 export const inline = style({});
-export const content = style({
-  ...responsiveFont(),
-  fontWeight: vars.fontWeight.regular,
-});
+
+globalStyle(`${item} label`, {});
