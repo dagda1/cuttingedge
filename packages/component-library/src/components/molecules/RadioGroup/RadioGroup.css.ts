@@ -9,5 +9,7 @@ export const fieldset = style({
 globalStyle(`${fieldset} legend`, {
   ...screenReaderOnly,
 });
-export const stacked = style({});
-export const options__container = style({});
+
+export const inline = style({
+  display: 'flex',
+});

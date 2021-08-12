@@ -52,13 +52,13 @@ export const RadioGroup: FC<RadioGroupProps & RadioLayoutProps> = ({
   );
 
   return (
-    <fieldset
-      className={cs(styles.fieldset, {
-        [styles.stacked]: layout === 'stacked',
-      })}
-    >
+    <fieldset className={styles.fieldset}>
       <legend>{legend}</legend>
-      <div className={cs(styles.options__container, className)}>
+      <div
+        className={cs(className, {
+          [styles.inline]: layout === 'inline',
+        })}
+      >
         {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
         {options.map(({ id, checked, name, content, ...option }) => {
           return (

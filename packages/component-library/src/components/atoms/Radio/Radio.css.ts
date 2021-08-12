@@ -1,4 +1,4 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle, style, composeStyles } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes/vars.css';
 import { responsiveFont } from '../../../style/typography/typography.css';
 
@@ -22,7 +22,7 @@ globalStyle(`${item} input`, {
   width: vars.radios.regular.width,
   height: vars.radios.regular.height,
   margin: 0,
-  // opacity: 0,
+  opacity: 0,
 });
 
 globalStyle(`${item} label`, {
@@ -45,7 +45,6 @@ globalStyle(`${item} label:before`, {
   border: '2px solid currentColor',
   borderRadius: '50%',
   background: 'transparent',
-  // transform: 'scale(0.5)',
 });
 
 globalStyle(`${item} label:after`, {
@@ -58,7 +57,6 @@ globalStyle(`${item} label:after`, {
   borderRadius: '50%',
   border: '10px solid currentColor',
   background: 'currentColor',
-  // transform: 'scale(0.5)',
 });
 
 globalStyle(`${item} input:focus + label:before`, {
@@ -70,9 +68,14 @@ globalStyle(`${item} input:checked + label:after`, {
   border: '10px solid currentColor',
 });
 
-export const small = style({});
-export const large = style({});
-export const stacked = style({});
-export const inline = style({});
+export const small = composeStyles(item);
 
-globalStyle(`${item} label`, {});
+globalStyle(`${small} label:before,${small} label:after`, {
+  transform: 'scale(0.5)',
+});
+
+export const inline = composeStyles(item);
+
+globalStyle(`${inline}:not(${small}) label`, {
+  marginRight: vars.space['2x'],
+});
