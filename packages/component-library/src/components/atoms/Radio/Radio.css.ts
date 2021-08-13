@@ -55,7 +55,6 @@ globalStyle(`${item} label:after`, {
   width: '0',
   height: '0',
   borderRadius: '50%',
-  border: '10px solid currentColor',
   background: 'currentColor',
 });
 

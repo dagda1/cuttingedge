@@ -34,6 +34,7 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
     errorMessage,
     className,
     additionalLabel,
+    highlight,
     required,
     fontWeight = 'strong',
     dataSelector = 'form-control',
@@ -45,9 +46,15 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
 
     const errorId = `${internalId.current}-error`;
 
+    console.dir(highlight);
+
     return (
       <div
-        className={cs(styles.root, { [styles.horizontal]: layout === 'horizontal' }, className)}
+        className={cs(
+          styles.root,
+          { [styles.horizontal]: layout === 'horizontal', [styles.error]: invalid, [styles.highlight]: highlight },
+          className,
+        )}
         // className={cs(styles.input, className, {
         //   [styles.highlight]: highlight,
         //   [styles.horizontal]: layout === 'horizontal',

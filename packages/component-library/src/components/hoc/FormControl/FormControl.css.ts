@@ -24,6 +24,16 @@ export const root = composeStyles(
   }),
 );
 
+export const error = style({
+  paddingLeft: vars.space['3x'],
+  borderLeft: `5px solid ${vars.foregroundColor.error}`,
+});
+
+export const highlight = style({
+  paddingLeft: vars.space['3x'],
+  borderLeft: `5px solid ${vars.buttons.primary.backgroundColor}`,
+});
+
 export const wrapper = style(
   responsiveStyle({
     mobile: {},
@@ -116,5 +126,4 @@ globalStyle(`.${root} [role=alert]`, {
   width: '100%',
 });
 
-export const highlight = 'highlight';
 export const label__additional = 'label__additional';
