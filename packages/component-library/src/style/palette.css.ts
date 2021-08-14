@@ -72,6 +72,17 @@ export const palette = {
   teal800: colors.teal['800'],
   teal900: colors.teal['900'],
 
+  lightBlue50: colors.lightBlue['50'],
+  lightBlue100: colors.lightBlue['100'],
+  lightBlue200: colors.lightBlue['200'],
+  lightBlue300: colors.lightBlue['300'],
+  lightBlue400: colors.lightBlue['400'],
+  lightBlue500: colors.lightBlue['500'],
+  lightBlue600: colors.lightBlue['600'],
+  lightBlue700: colors.lightBlue['700'],
+  lightBlue800: colors.lightBlue['800'],
+  lightBlue900: colors.lightBlue['900'],
+
   blue50: colors.lightBlue['50'],
   blue100: colors.lightBlue['100'],
   blue200: colors.lightBlue['200'],

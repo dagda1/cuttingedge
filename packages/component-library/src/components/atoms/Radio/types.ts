@@ -1,13 +1,14 @@
-import type { ChangeEventHandler } from 'react';
+import type { ChangeEventHandler, PropsWithChildren } from 'react';
 
 export type RadioLayout = 'inline' | 'stacked';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type RadioProps<T = {}> = T & {
-  id: string;
-  name: string;
+export type RadioValueType = string | ReadonlyArray<string> | number;
+
+export type RadioProps<V extends RadioValueType> = {
+  id?: string;
+  name?: string;
   checked?: boolean;
-  value: string | string | number;
+  value: V;
 };
 
 export interface RadioEventHandlers {

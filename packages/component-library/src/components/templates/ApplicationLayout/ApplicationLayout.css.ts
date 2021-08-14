@@ -2,14 +2,10 @@ import { globalStyle, style } from '@vanilla-extract/css';
 import { rem } from 'polished';
 import { breakpoints } from '../../../style/breakpoints';
 import { vars } from '../../../style/themes/vars.css';
-import { responsiveHeadingFont } from '../../../style/typography/typography.css';
+import { responsiveFont, responsiveHeadingFont } from '../../../style/typography/typography.css';
 
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
-});
-
-globalStyle('html', {
-  // border: '5px solid black',
 });
 
 globalStyle('html, body', {
@@ -19,12 +15,16 @@ globalStyle('html, body', {
 });
 
 globalStyle('body', {
+  textSizeAdjust: '100%',
+  background: vars.backgroundColor.body,
+});
+
+export const body = style({
   fontFamily: vars.fontFamily.body,
   fontWeight: vars.fontWeight.regular,
   backgroundColor: vars.backgroundColor.body,
   color: vars.foregroundColor.body,
   margin: 0,
-  // border: '10px solid red',
 });
 
 globalStyle('#root', {
@@ -36,7 +36,6 @@ globalStyle('#root', {
   height: 'fit-content',
   paddingTop: vars.space['2x'],
   paddingBottom: vars.space['2x'],
-  // border: '10px solid blue',
 });
 
 globalStyle('main', {
@@ -45,7 +44,6 @@ globalStyle('main', {
   flex: '1 0 auto',
   paddingRight: vars.space['2x'],
   paddingLeft: vars.space['2x'],
-  // border: '15px solid yellow',
 });
 
 globalStyle('h1', responsiveHeadingFont('h1'));
@@ -59,8 +57,8 @@ globalStyle('h1', {
 });
 
 globalStyle('h2,h3,h4', {
-  marginTop: vars.space['2x'],
-  marginBottom: vars.space['2x'],
+  marginTop: vars.space['4x'],
+  marginBottom: vars.space['3x'],
 });
 
 globalStyle('a:focus,a:focus h2', {
@@ -81,5 +79,22 @@ globalStyle('ul', {
 });
 
 globalStyle('a', {
-  textDecoration: vars.links.textDecoration,
+  ...responsiveFont(),
+  textDecoration: vars.links.decoration.link,
+  color: vars.links.color.link,
+  textUnderlineOffset: '.1em',
+  lineHeight: vars.links.lineHeight,
+});
+
+globalStyle('a:focus', {
+  ...vars.accessibility.linkFocus,
+});
+
+globalStyle('a:active', {
+  color: vars.links.color.active,
+});
+
+globalStyle('a:hover,a:focus', {
+  color: vars.links.color.hover,
+  textDecorationThickness: `max(3px, .1875rem, .12em)`,
 });

@@ -7,7 +7,7 @@ export const root = style({
   height: vars.inlineFieldSize.standard,
   width: vars.width.input,
   padding: vars.space['1x'],
-  border: `${vars.borderWidth.standard} solid ${vars.borderColor.standard}`,
+  border: `1px solid ${vars.borderColor.standard}`,
   ':focus': {
     background: vars.backgroundColor.focus,
     borderWidth: vars.borderWidth.large,

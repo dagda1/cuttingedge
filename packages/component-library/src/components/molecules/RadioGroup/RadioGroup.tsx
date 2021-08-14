@@ -1,32 +1,35 @@
-import type { ReactNode, FC, ChangeEvent } from 'react';
+import type { ReactNode, ChangeEvent } from 'react';
 import { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio/Radio';
-import { RadioProps, RadioLayoutProps } from '../../atoms/Radio/types';
+import { RadioProps, RadioLayoutProps, RadioValueType } from '../../atoms/Radio/types';
 import cs from 'classnames';
 
 import * as styles from './RadioGroup.css';
 
-export type RadioOption = RadioProps & { content: ReactNode };
+export type RadioOption<V extends RadioValueType> = RadioProps<V> & { content: ReactNode };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export interface RadioGroupProps<T = {}> {
+type LegendMode = 'screen-reader-only' | 'visible';
+
+export interface RadioGroupProps<V extends RadioValueType> {
   legend: string;
+  legendMode?: LegendMode;
   name: string;
-  options: (Omit<RadioOption, 'name' | 'id'> & Partial<Pick<RadioOption, 'id'>>)[];
-  onChange?: (option: RadioProps<T>) => void;
+  options: RadioOption<V>[];
+  onChange?: (option: RadioProps<V>) => void;
   className?: string;
 }
 
-export const RadioGroup: FC<RadioGroupProps & RadioLayoutProps> = ({
+export function RadioGroup<V extends RadioValueType>({
   legend,
+  legendMode = 'screen-reader-only',
   layout,
   size,
   name,
   options: radioOptions,
   onChange,
   className,
-}) => {
-  const optionsWithIds = useRef<RadioOption[]>(
+}: RadioGroupProps<V> & RadioLayoutProps): JSX.Element {
+  const optionsWithIds = useRef<RadioOption<V>[]>(
     radioOptions.map((o, index) => ({
       ...o,
       name,
@@ -40,6 +43,7 @@ export const RadioGroup: FC<RadioGroupProps & RadioLayoutProps> = ({
     (e: ChangeEvent<HTMLInputElement>) => {
       const option = optionsWithIds.current.find((o) => o.id === e.target.id);
 
+      console.log(option);
       if (!option) {
         throw new Error(`could not find option in RadioGroup changeHandler`);
       }
@@ -53,7 +57,9 @@ export const RadioGroup: FC<RadioGroupProps & RadioLayoutProps> = ({
 
   return (
     <fieldset className={styles.fieldset}>
-      <legend>{legend}</legend>
+      <legend className={cs(styles.legend, { [styles.srOnlyLegend]: legendMode === 'screen-reader-only' })}>
+        {legend}
+      </legend>
       <div
         className={cs(className, {
           [styles.inline]: layout === 'inline',
@@ -79,4 +85,4 @@ export const RadioGroup: FC<RadioGroupProps & RadioLayoutProps> = ({
       </div>
     </fieldset>
   );
-};
+}

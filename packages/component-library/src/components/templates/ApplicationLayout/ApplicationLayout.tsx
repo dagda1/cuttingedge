@@ -36,7 +36,7 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
   return (
     <>
       {Header}
-      <main className={cs(className)} ref={innerRef}>
+      <main className={cs(styles.body, className)} ref={innerRef}>
         <ApplicationLayoutHeading heading={heading} />
         {children}
       </main>

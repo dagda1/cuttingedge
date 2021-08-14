@@ -36,6 +36,9 @@ export const tokens = {
       return acc;
     }, {} as Record<BorderRadiusKeys, string>),
   },
+  colors: {
+    ...colors,
+  },
   inputWidth: {
     width2: '5.4ex',
     width3: '7.2ex',
@@ -60,7 +63,7 @@ export const tokens = {
       body: palette.black,
     },
     background: {
-      body: palette.black,
+      body: palette.white,
       input: palette.white,
       focus: palette.blue100,
     },
@@ -69,7 +72,6 @@ export const tokens = {
     fonts: {
       heading: '"GDS Transport",arial,sans-serif',
       body: '"GDS Transport",arial,sans-serif',
-      code: 'MonoLisa, "Roboto Mono", Menlo, monospace',
     },
     webFont: null,
     fontWeight: {
@@ -134,11 +136,26 @@ export const tokens = {
     accessibleOutlineColor: colors.notification,
     outlineOffset: '0',
     linkFocusColor: palette.black,
+    boxShadowColor: palette.black,
   },
   links: {
-    textDecoration: 'none',
+    lineHeight: '1.31579',
+    color: {
+      link: palette.lightBlue700,
+      hover: palette.lightBlue900,
+      active: palette.black,
+    },
+    decoration: {
+      link: 'underline',
+    },
   },
   buttons: {
+    textTransform: 'none',
+    fontWeight: String(fontWeight.regular),
+    width: {
+      mobile: '100%',
+      tablet: 'auto',
+    },
     primary: {
       borderWidth: '2px',
       borderColor: 'transparent',
@@ -177,6 +194,8 @@ export const tokens = {
     },
   },
   radios: {
+    borderWidth: '2px',
+    borderColor: palette.black,
     regular: {
       width: rem(44),
       height: rem(44),

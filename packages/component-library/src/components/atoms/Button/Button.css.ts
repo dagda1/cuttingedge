@@ -6,13 +6,16 @@ import { responsiveStyle } from '../../../style/responsive-style';
 export const root = style({
   ...responsiveFont(),
   cursor: 'pointer',
+  textTransform: vars.buttons.textTransform,
+  fontWeight: vars.buttons.fontWeight,
   touchAction: 'manipulation',
+  marginBottom: vars.space['5x'],
   ...responsiveStyle({
     mobile: {
-      width: '100%',
+      width: vars.buttons.width.mobile,
     },
     tablet: {
-      width: 'auto',
+      width: vars.buttons.width.tablet,
     },
   }),
   ':active': {
@@ -22,10 +25,10 @@ export const root = style({
     borderColor: vars.accessibility.accessibleOutline.backgroundColor,
     color: vars.foregroundColor.body,
     backgroundColor: vars.accessibility.accessibleOutline.backgroundColor,
-    boxShadow: `0 2px 0 ${vars.foregroundColor.body}`,
   },
   ':focus-visible': {
     outline: '3px solid transparent',
+    boxShadow: `0 2px 0 ${vars.foregroundColor.body}`,
   },
 });
 

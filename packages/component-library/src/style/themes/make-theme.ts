@@ -48,6 +48,9 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     fontFamily: {
       ...tokens.typography.fonts,
     },
+    colors: {
+      ...tokens.colors,
+    },
     fonts: {
       headings: convertTypography(tokens.typography.headings, rem),
       text: convertTypography(tokens.typography.text, rem),
@@ -76,9 +79,14 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         outlineOffset: tokens.accessibility.outlineOffset,
       },
       linkFocus: {
-        backgroundColor: tokens.accessibility.elementFocusColor,
-        outline: `${tokens.accessibility.outlineWidth} solid ${tokens.accessibility.elementFocusColor}`,
+        outline: `3px solid transparent`,
         color: tokens.accessibility.linkFocusColor,
+        backgroundColor: tokens.accessibility.elementFocusColor,
+        boxShadow: `0 -2px #fd0, 0 4px ${tokens.accessibility.boxShadowColor}`,
+        textDecoration: `none`,
+        // backgroundColor: ,
+        // outline: `${tokens.accessibility.outlineWidth} solid ${tokens.accessibility.elementFocusColor}`,
+        // color: tokens.accessibility.linkFocusColor,
       },
       accessibleOutline: {
         backgroundColor: tokens.accessibility.accessibleOutlineColor,
@@ -92,6 +100,11 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
       ...tokens.links,
     },
     buttons: {
+      textTransform: tokens.buttons.textTransform,
+      fontWeight: tokens.buttons.fontWeight,
+      width: {
+        ...tokens.buttons.width,
+      },
       primary: {
         border: `${tokens.buttons.primary.borderWidth} solid ${tokens.buttons.primary.borderWidth}`,
         backgroundColor: tokens.buttons.primary.backgroundColor,

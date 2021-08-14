@@ -1,10 +1,10 @@
-import type { FC } from 'react';
+import type { ReactNode } from 'react';
 import cs from 'classnames';
-import { RadioProps, RadioLayoutProps, RadioEventHandlers } from './types';
+import { RadioProps, RadioLayoutProps, RadioEventHandlers, RadioValueType } from './types';
 
 import * as styles from './Radio.css';
 
-export const Radio: FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
+export function Radio<V extends RadioValueType>({
   id,
   name,
   value,
@@ -13,14 +13,16 @@ export const Radio: FC<RadioProps & RadioEventHandlers & RadioLayoutProps> = ({
   layout,
   onChange,
   size,
-}) => (
-  <div
-    className={cs(styles.item, {
-      [styles.small]: size === 'small',
-      [styles.inline]: layout === 'inline',
-    })}
-  >
-    <input id={id} name={name} type="radio" value={value} onChange={onChange} checked={checked} />
-    <label htmlFor={id}>{children}</label>
-  </div>
-);
+}: RadioProps<V> & RadioEventHandlers & RadioLayoutProps & { children: ReactNode }): JSX.Element {
+  return (
+    <div
+      className={cs(styles.item, {
+        [styles.small]: size === 'small',
+        [styles.inline]: layout === 'inline',
+      })}
+    >
+      <input id={id} name={name} type="radio" value={value} onChange={onChange} checked={checked} />
+      <label htmlFor={id}>{children}</label>
+    </div>
+  );
+}
