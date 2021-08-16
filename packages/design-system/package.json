@@ -10,6 +10,7 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=development cutting rollup",
+    "lint": "yarn eslint ./src/**/*.{ts} --fix",
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test",
@@ -26,5 +27,12 @@
         "dist/esm/index.d.ts"
       ]
     }
+  },
+  "types": "dist/esm/index.d.ts",
+  "dependencies": {
+    "@vanilla-extract/babel-plugin": "^1.0.1",
+    "@vanilla-extract/css": "^1.2.1",
+    "@vanilla-extract/sprinkles": "^1.0.0",
+    "@vanilla-extract/webpack-plugin": "^1.1.0"
   }
 }

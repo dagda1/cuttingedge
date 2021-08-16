@@ -1,5 +1,5 @@
 import { DeepPartial } from '@cutting/util';
-import { palette } from 'src/style/palette.css';
+import { palette } from '../../palette.css';
 import { Tokens } from '../tokens';
 
 const colors = {

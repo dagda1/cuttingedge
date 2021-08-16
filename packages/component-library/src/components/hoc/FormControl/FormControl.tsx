@@ -4,7 +4,7 @@ import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
 import { FontWeight } from '@cutting/design-system';
-import { tokens } from '@cutting/design-system';
+import { vars } from '@cutting/design-system';
 import { ErrorMessage } from '../../atoms/ErrorMessage/ErrorMessage';
 
 export type Layout = 'vertical' | 'horizontal';
@@ -21,7 +21,7 @@ export type FormControlProps<E> = {
   fontWeight?: FontWeight;
   layout?: Layout;
   dataSelector?: string;
-  width?: keyof typeof tokens['inputWidth'];
+  width?: keyof typeof vars.inputWidth;
 } & InputHTMLAttributes<E>;
 
 export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormControlProps<E> & P> {
