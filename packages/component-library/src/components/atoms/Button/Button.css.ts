@@ -1,7 +1,7 @@
 import { style, StyleRule, styleVariants } from '@vanilla-extract/css';
-import { responsiveFont } from '../../../style/typography/typography.css';
-import { vars } from '../../../style/themes/vars.css';
-import { responsiveStyle } from '../../../style/responsive-style';
+import { responsiveFont } from '@cutting/design-system';
+import { vars } from '@cutting/design-system';
+import { responsiveStyle } from '@cutting/design-system';
 
 export const root = style({
   ...responsiveFont(),

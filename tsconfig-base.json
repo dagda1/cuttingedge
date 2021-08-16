@@ -13,6 +13,7 @@
       "@cutting/hooks": ["packages/hooks/src"],
       "@cutting/use-operation": ["packages/use-operation/src"],
       "@cutting/react-abortable-fetch": ["packages/react-abortable-fetch/src"],
+      "@cutting/design-system": ["packages/react-abortable-fetch/src"],
       "@cutting/component-library": ["packages/component-library/src"],
       "@cutting/svg": ["packages/svg/src"],
       "@cutting/use-shortcuts": ["packages/use-shortcuts/src"],

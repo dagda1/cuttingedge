@@ -1,7 +1,7 @@
 import { composeStyles, style, globalStyle } from '@vanilla-extract/css';
-import { responsiveStyle } from '../../../style/responsive-style';
-import { vars } from '../../../style/themes/vars.css';
-import { atoms } from '../../../style/atoms/sprinkles.css';
+import { responsiveStyle } from '@cutting/design-system';
+import { vars } from '@cutting/design-system';
+import { atoms } from '@cutting/design-system';
 
 export const root = composeStyles(
   atoms({

@@ -39,6 +39,7 @@ const libPackages = [
   'packages/use-get-parent-size',
   'packages/hooks',
   'packages/use-mathjax',
+  'packages/design-system',
   'packages/component-library',
   'packages/svg',
   'packages/use-operation',

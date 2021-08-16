@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/esm",
+    "rootDir": "./src",
+    "noEmit": false
+  },
+  "references": [
+    { "path": "../hooks/tsconfig.dist.json" },
+    { "path": "../util/tsconfig.dist.json" }
+  ]
+}

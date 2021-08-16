@@ -1,0 +1,30 @@
+{
+  "name": "@cutting/design-system",
+  "version": "0.1.0",
+  "description": "design tokens for frontend components",
+  "module": "dist/esm/design-system.esm.js",
+  "browser": "dist/umd/design-system.umd.js",
+  "main": "dist/cjs/index.js",
+  "repository": "https://github.com/dagda1/cutting",
+  "author": "paul.cowan@cutting.scot",
+  "license": "MIT",
+  "scripts": {
+    "build": "NODE_ENV=development cutting rollup",
+    "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
+    "test": "NODE_ENV=test cutting test",
+    "test:ci": "CI=true yarn test",
+    "prepublishOnly": "yarn build"
+  },
+  "exports": {
+    "import": "./dist/esm/design-system.esm.js",
+    "require": "./dist/cjs/index.js",
+    "browser": "./dist/umd/design-system.umd.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
+  }
+}

@@ -3,8 +3,8 @@ import { FC, ReactNode, InputHTMLAttributes, useRef } from 'react';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
-import { FontWeight } from '../../../style/themes/make-theme';
-import { tokens } from '../../../style/themes/tokens';
+import { FontWeight } from '@cutting/design-system';
+import { tokens } from '@cutting/design-system';
 import { ErrorMessage } from '../../atoms/ErrorMessage/ErrorMessage';
 
 export type Layout = 'vertical' | 'horizontal';
