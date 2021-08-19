@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import program from 'commander';
+import { createCommand } from 'commander';
 import { paths } from '../config/paths';
 import { logger } from '../scripts/logger';
 import { spawn } from 'child_process';
@@ -41,6 +41,8 @@ function runPkgCmd<A extends string[], P extends { name: string; path: string }>
     });
   });
 }
+
+const program = createCommand('each-pkg');
 
 /**
  * Executes a command for each package, optionally filtered by changed

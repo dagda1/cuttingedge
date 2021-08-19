@@ -145,7 +145,7 @@ var csv_1 = require("../rollup/plugins/csv");
 var postcss_import_1 = __importDefault(require("postcss-import"));
 var empty_build_dir_1 = require("./empty-build-dir");
 var core_1 = require("@babel/core");
-var commander_1 = __importDefault(require("commander"));
+var commander_1 = require("commander");
 var rollup_plugin_visualizer_1 = require("rollup-plugin-visualizer");
 var rollup_plugin_size_snapshot_1 = require("rollup-plugin-size-snapshot");
 logger_1.logger.debug("using " + path_1.default.basename(paths_1.paths.tsConfigProduction));
@@ -382,7 +382,8 @@ function build(_a) {
         });
     });
 }
-commander_1.default
+var program = commander_1.createCommand('rollup');
+program
     .description('execute a rollup build')
     .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)
     .option('-a, --analyze', 'analyze the bundle', false)

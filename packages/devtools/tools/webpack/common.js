@@ -42,9 +42,15 @@ var csvLoader_1 = require("./loaders/csvLoader");
 var svgLoader_1 = require("./loaders/svgLoader");
 var mdLoader_1 = require("./loaders/mdLoader");
 var ModuleScopePlugin_1 = __importDefault(require("react-dev-utils/ModuleScopePlugin"));
-var stats_1 = require("./loaders/stats");
 var webpack_merge_1 = require("webpack-merge");
 var path_1 = __importDefault(require("path"));
+var reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
+var reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
+var babelRuntimeEntryHelpers = require.resolve('@babel/runtime/helpers/esm/assertThisInitialized');
+var babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator');
+var reactRefreshOverlay = require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay');
+var reactRefreshRuntimeUtils = require.resolve('@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js');
+var miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
 var configureCommon = function (options, overrides) {
     var isNode = !!options.isNode;
     var isWeb = !isNode;
@@ -55,7 +61,6 @@ var configureCommon = function (options, overrides) {
         bail: isProduction,
         devtool: 'source-map',
         context: process.cwd(),
-        stats: stats_1.stats,
         performance: {
             hints: false,
         },
@@ -80,7 +85,24 @@ var configureCommon = function (options, overrides) {
                 'webpack/hot/poll': require.resolve('webpack/hot/poll'),
                 'native-url': require.resolve('native-url'),
             },
-            plugins: [new ModuleScopePlugin_1.default(paths_1.paths.appSrc, [paths_1.paths.appPackageJson])],
+            plugins: [
+                // Prevents users from importing files from outside of src/ (or node_modules/).
+                // This often causes confusion because we only process files within src/ with babel.
+                // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
+                // please link the files into your node_modules/ and let module-resolution kick in.
+                // Make sure your source files are compiled, as they will not be processed in any way.
+                new ModuleScopePlugin_1.default(paths_1.paths.appSrc, [
+                    paths_1.paths.appPackageJson,
+                    reactRefreshRuntimeEntry,
+                    reactRefreshWebpackPluginRuntimeEntry,
+                    babelRuntimeEntryHelpers,
+                    babelRuntimeRegenerator,
+                    reactRefreshOverlay,
+                    reactRefreshRuntimeUtils,
+                    miniCssHot,
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                ]),
+            ],
         },
         module: {
             strictExportPresence: true,
@@ -118,7 +140,7 @@ var configureCommon = function (options, overrides) {
                     build: paths_1.paths.projectReferences,
                 },
             }),
-            isDevelopment && new webpack_1.default.WatchIgnorePlugin([paths_1.paths.appManifest]),
+            isDevelopment && new webpack_1.default.WatchIgnorePlugin({ paths: [paths_1.paths.appManifest] }),
             new mini_css_extract_plugin_1.default({
                 filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
                 chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',

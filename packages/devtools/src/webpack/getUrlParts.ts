@@ -26,6 +26,7 @@ export const getUrlParts = ({
   const host = process.env.HOST || 'localhost';
   const urls = prepareUrls(protocol, host, port);
   const sockPort = Number(port);
+
   const publicPath = isProduction ? '/' : `${protocol}://${host}:${port}/`;
 
   return {

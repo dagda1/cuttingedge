@@ -8,6 +8,7 @@ var formatWebpackMessages_1 = __importDefault(require("react-dev-utils/formatWeb
 var printErrors_1 = __importDefault(require("../printErrors"));
 var webpack_1 = __importDefault(require("webpack"));
 var logger_1 = require("../logger");
+var assert_ts_1 = require("assert-ts");
 // Wrap webpack compile in a try catch.
 function compileWebpack(config, cb) {
     var compiler;
@@ -31,7 +32,8 @@ var compile = function (config, buildType) {
                 reject(err);
                 return;
             }
-            var messages = formatWebpackMessages_1.default(stats.toJson({}, true));
+            assert_ts_1.assert(typeof stats !== 'undefined', "no stats in compile");
+            var messages = formatWebpackMessages_1.default(stats.toJson({}));
             if (messages.errors.length) {
                 return reject(new Error(messages.errors.join('\n')));
             }

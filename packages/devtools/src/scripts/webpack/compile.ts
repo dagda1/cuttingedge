@@ -3,9 +3,10 @@ import printErrors from '../printErrors';
 import webpack, { Configuration, Stats } from 'webpack';
 import { logger } from '../logger';
 import { BuildType } from '../../types/build';
+import { assert } from 'assert-ts';
 
 // Wrap webpack compile in a try catch.
-function compileWebpack(config: Configuration, cb: (err: Error, stats: Stats) => void) {
+function compileWebpack(config: Configuration, cb: (err?: Error, stats?: Stats) => void) {
   let compiler;
   try {
     compiler = webpack(config);
@@ -27,7 +28,10 @@ export const compile = (config: Configuration, buildType: BuildType): Promise<{ 
         reject(err);
         return;
       }
-      const messages = formatWebpackMessages(stats.toJson({}, true));
+
+      assert(typeof stats !== 'undefined', `no stats in compile`);
+
+      const messages = formatWebpackMessages(stats.toJson({}));
 
       if (messages.errors.length) {
         return reject(new Error(messages.errors.join('\n')));

@@ -1,8 +1,7 @@
 import TerserPlugin from 'terser-webpack-plugin';
-import { Options } from 'webpack';
+import { Chunk } from 'webpack';
 import crypto from 'crypto';
 import path from 'path';
-import webpack from 'webpack';
 // import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 const FRAMEWORK_BUNDLES = ['react', 'react-dom'];
@@ -18,10 +17,12 @@ const isModuleCSS = (module: { type: string }): boolean => {
 export const createWebpackOptimisation = ({
   optimization,
 }: {
-  optimization?: Options.Optimization;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  optimization?: any;
   isDevelopment: boolean;
   ssrBuild: boolean;
-}): Options.Optimization => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}): any => {
   return {
     ...optimization,
     ...{
@@ -98,12 +99,13 @@ export const createWebpackOptimisation = ({
             reuseExistingChunk: true,
           },
           shared: {
-            name(module, chunks) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            name(module: any, chunks: any) {
               return (
                 crypto
                   .createHash('sha1')
                   .update(
-                    chunks.reduce((acc: string, chunk: webpack.compilation.Chunk) => {
+                    chunks.reduce((acc: string, chunk: Chunk) => {
                       return acc + chunk.name;
                     }, ''),
                   )

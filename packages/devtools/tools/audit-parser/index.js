@@ -80,7 +80,7 @@ var path_1 = __importDefault(require("path"));
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var mkdirp_1 = __importDefault(require("mkdirp"));
 var paths_1 = require("../config/paths");
-var commander_1 = __importDefault(require("commander"));
+var commander_1 = require("commander");
 var run_1 = require("../scripts/utils/run");
 var logger_1 = require("../scripts/logger");
 var xml_1 = __importDefault(require("xml"));
@@ -232,7 +232,8 @@ function audit(exceptions) {
     });
 }
 exports.audit = audit;
-commander_1.default
+var program = commander_1.createCommand('audit-parser');
+program
     .description('run yarn audit against the yarn.lock file in current cwd')
     .helpOption('-h, --help', 'show help')
     .option('-e, --exceptions', 'a list of packages to ignore, i.e. angular 1.3 in bpm should be the only one')
@@ -249,5 +250,5 @@ commander_1.default
         });
     });
 });
-commander_1.default.parse(process.argv);
+program.parse(process.argv);
 //# sourceMappingURL=index.js.map

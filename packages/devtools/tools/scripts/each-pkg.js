@@ -16,7 +16,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
-var commander_1 = __importDefault(require("commander"));
+var commander_1 = require("commander");
 var paths_1 = require("../config/paths");
 var logger_1 = require("../scripts/logger");
 var child_process_1 = require("child_process");
@@ -54,12 +54,13 @@ function runPkgCmd(cmd, args, pkg) {
         });
     });
 }
+var program = commander_1.createCommand('each-pkg');
 /**
  * Executes a command for each package, optionally filtered by changed
  * or new packages. Explicity providing a package name is also
  * supported in conjunction with the changed and new options.
  */
-commander_1.default
+program
     .description('Executes the specified command for each package')
     .arguments('<cmd> [args...]')
     .option('-p, --package <name>', 'target a specific package (can be combined with the above)')

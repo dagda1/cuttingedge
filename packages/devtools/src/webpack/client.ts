@@ -9,7 +9,6 @@ import fs from 'fs';
 import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin';
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import { Configuration } from 'webpack';
 import { getUrlParts } from './getUrlParts';
 import { getEnvironment } from './getEnvironment';
 import { createDevServer } from './loaders/createDevServer';
@@ -20,6 +19,7 @@ import HtmlWebpackPartialsPlugin from 'html-webpack-partials-plugin';
 // @ts-ignore
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
 import type { DeepPartial } from '@cutting/util';
+import { Configuration } from 'webpack';
 
 const isProfilerEnabled = () => process.argv.includes('--profile');
 
@@ -27,7 +27,7 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
   const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
   const { isDevelopment, isProduction, commitHash } = getEnvironment();
   const ssrBuild = !isStaticBuild;
-  const { protocol, host, publicPath, port, sockPort } = getUrlParts({ ssrBuild, isProduction });
+  const { protocol, publicPath, port, sockPort } = getUrlParts({ ssrBuild, isProduction });
 
   options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
   options.isNode = false;
@@ -56,7 +56,7 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
     name: 'client',
     target: 'web',
     entry: finalEntries,
-    devServer: isDevelopment ? createDevServer({ protocol, host, sockPort, proxy, port }) : {},
+    devServer: isDevelopment ? createDevServer({ protocol, sockPort, proxy, port }) : {},
     output: {
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,
@@ -64,24 +64,17 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
       filename: isProduction ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle.js',
       library: '_N_E',
       libraryTarget: 'assign',
-      hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
-      hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
+      hotUpdateChunkFilename: 'static/js/[id].[contenthash].hot-update.js',
+      hotUpdateMainFilename: 'static/js/[contenthash].hot-update.json',
       chunkFilename: isProduction ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
       devtoolModuleFilenameTemplate: isProduction
-        ? (info) => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
-        : (info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
-    },
-
-    node: {
-      fs: 'empty',
-      path: 'empty',
-      net: 'empty',
-      tls: 'empty',
+        ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (info: any) => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
+        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (info: any) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
 
     plugins: [
-      // TODO: will not need this in webpack 5
-      isProduction && new webpack.HashedModuleIdsPlugin(),
       isDevelopment &&
         new ReactRefreshWebpackPlugin({
           overlay: {
@@ -124,7 +117,10 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
         },
       ]),
       // TODO: should not need this anymore?
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/,
+      }),
       new ModuleNotFoundPlugin(paths.appPath),
       isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       isProfilerEnabled() && new webpack.debug.ProfilingPlugin(),

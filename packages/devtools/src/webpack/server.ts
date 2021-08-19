@@ -11,7 +11,8 @@ import { isPlugin } from './guards';
 import { getUrlParts } from './getUrlParts';
 import type { DeepPartial } from '@cutting/util';
 
-export const getExternals = function (isDevelopment: boolean): webpack.ExternalsFunctionElement[] {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getExternals = function (isDevelopment: boolean): any {
   return [
     nodeExternals(),
     nodeExternals({
@@ -78,7 +79,6 @@ export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Con
     ].filter(isPlugin),
     optimization: {
       minimize: false,
-      namedModules: true,
     },
   });
 

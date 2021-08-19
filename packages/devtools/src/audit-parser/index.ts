@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
 import { paths } from '../config/paths';
-import {createCommand} from 'commander';
+import { createCommand } from 'commander';
 import { run } from '../scripts/utils/run';
 import { logger } from '../scripts/logger';
 import xml from 'xml';
@@ -174,7 +174,7 @@ export async function audit(exceptions: string[]): Promise<void> {
   }
 }
 
-const program = createCommand();
+const program = createCommand('audit-parser');
 
 program
   .description('run yarn audit against the yarn.lock file in current cwd')

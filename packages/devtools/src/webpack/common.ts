@@ -17,10 +17,16 @@ import { createMDLoader } from './loaders/mdLoader';
 import { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from '../types/config';
 import { Configuration } from 'webpack';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
-import { stats } from './loaders/stats';
 import { merge } from 'webpack-merge';
-
 import path from 'path';
+
+const reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
+const reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
+const babelRuntimeEntryHelpers = require.resolve('@babel/runtime/helpers/esm/assertThisInitialized');
+const babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator');
+const reactRefreshOverlay = require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay');
+const reactRefreshRuntimeUtils = require.resolve('@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js');
+const miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
 
 export const configureCommon = (
   options: DevServerConfig | ServerBuildConfig | NodeBuildConfig,
@@ -36,7 +42,6 @@ export const configureCommon = (
     bail: isProduction,
     devtool: 'source-map',
     context: process.cwd(),
-    stats,
     performance: {
       hints: false,
     },
@@ -61,7 +66,24 @@ export const configureCommon = (
         'webpack/hot/poll': require.resolve('webpack/hot/poll'),
         'native-url': require.resolve('native-url'),
       },
-      plugins: [new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])],
+      plugins: [
+        // Prevents users from importing files from outside of src/ (or node_modules/).
+        // This often causes confusion because we only process files within src/ with babel.
+        // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
+        // please link the files into your node_modules/ and let module-resolution kick in.
+        // Make sure your source files are compiled, as they will not be processed in any way.
+        new ModuleScopePlugin(paths.appSrc, [
+          paths.appPackageJson,
+          reactRefreshRuntimeEntry,
+          reactRefreshWebpackPluginRuntimeEntry,
+          babelRuntimeEntryHelpers,
+          babelRuntimeRegenerator,
+          reactRefreshOverlay,
+          reactRefreshRuntimeUtils,
+          miniCssHot,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ]) as any,
+      ],
     },
     module: {
       strictExportPresence: true,
@@ -105,7 +127,7 @@ export const configureCommon = (
             build: paths.projectReferences,
           },
         }),
-        isDevelopment && new webpack.WatchIgnorePlugin([paths.appManifest]),
+        isDevelopment && new webpack.WatchIgnorePlugin({ paths: [paths.appManifest] }),
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
           chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',

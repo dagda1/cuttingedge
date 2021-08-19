@@ -32,7 +32,7 @@ import { csv } from '../rollup/plugins/csv';
 import postcssImport from 'postcss-import';
 import { emptyBuildDir } from './empty-build-dir';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
-import program from 'commander';
+import { createCommand } from 'commander';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
@@ -280,6 +280,8 @@ async function build({
 
   await writeToPackage(pkgJsonPath, pkgJson);
 }
+
+const program = createCommand('rollup');
 
 program
   .description('execute a rollup build')

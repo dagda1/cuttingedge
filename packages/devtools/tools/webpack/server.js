@@ -45,6 +45,7 @@ var common_1 = require("./common");
 var getEnvironment_1 = require("./getEnvironment");
 var guards_1 = require("./guards");
 var getUrlParts_1 = require("./getUrlParts");
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 var getExternals = function (isDevelopment) {
     return [
         webpack_node_externals_1.default(),
@@ -107,7 +108,6 @@ var configure = function (options, overrides) {
         ].filter(guards_1.isPlugin),
         optimization: {
             minimize: false,
-            namedModules: true,
         },
     });
     return config;

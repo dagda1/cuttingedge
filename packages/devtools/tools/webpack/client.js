@@ -50,7 +50,7 @@ var configure = function (options, overrides) {
     var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild;
     var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, commitHash = _a.commitHash;
     var ssrBuild = !isStaticBuild;
-    var _b = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _b.protocol, host = _b.host, publicPath = _b.publicPath, port = _b.port, sockPort = _b.sockPort;
+    var _b = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _b.protocol, publicPath = _b.publicPath, port = _b.port, sockPort = _b.sockPort;
     options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
     options.isNode = false;
     options.isWeb = true;
@@ -69,7 +69,7 @@ var configure = function (options, overrides) {
         name: 'client',
         target: 'web',
         entry: finalEntries,
-        devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, host: host, sockPort: sockPort, proxy: proxy, port: port }) : {},
+        devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, sockPort: sockPort, proxy: proxy, port: port }) : {},
         output: {
             path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic,
             publicPath: publicPath,
@@ -77,22 +77,16 @@ var configure = function (options, overrides) {
             filename: isProduction ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle.js',
             library: '_N_E',
             libraryTarget: 'assign',
-            hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
-            hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
+            hotUpdateChunkFilename: 'static/js/[id].[contenthash].hot-update.js',
+            hotUpdateMainFilename: 'static/js/[contenthash].hot-update.json',
             chunkFilename: isProduction ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
             devtoolModuleFilenameTemplate: isProduction
-                ? function (info) { return path_1.default.relative(paths_1.paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'); }
-                : function (info) { return path_1.default.resolve(info.absoluteResourcePath).replace(/\\/g, '/'); },
-        },
-        node: {
-            fs: 'empty',
-            path: 'empty',
-            net: 'empty',
-            tls: 'empty',
+                ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    function (info) { return path_1.default.relative(paths_1.paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'); }
+                : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    function (info) { return path_1.default.resolve(info.absoluteResourcePath).replace(/\\/g, '/'); },
         },
         plugins: [
-            // TODO: will not need this in webpack 5
-            isProduction && new webpack_1.default.HashedModuleIdsPlugin(),
             isDevelopment &&
                 new react_refresh_webpack_plugin_1.default({
                     overlay: {
@@ -134,7 +128,10 @@ var configure = function (options, overrides) {
                 },
             ]),
             // TODO: should not need this anymore?
-            new webpack_1.default.IgnorePlugin(/^\.\/locale$/, /moment$/),
+            new webpack_1.default.IgnorePlugin({
+                resourceRegExp: /^\.\/locale$/,
+                contextRegExp: /moment$/,
+            }),
             new ModuleNotFoundPlugin_1.default(paths_1.paths.appPath),
             isDevelopment && new WatchMissingNodeModulesPlugin_1.default(paths_1.paths.appNodeModules),
             isProfilerEnabled() && new webpack_1.default.debug.ProfilingPlugin(),

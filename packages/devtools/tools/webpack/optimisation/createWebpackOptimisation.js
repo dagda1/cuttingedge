@@ -100,6 +100,7 @@ var createWebpackOptimisation = function (_a) {
                     reuseExistingChunk: true,
                 },
                 shared: {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     name: function (module, chunks) {
                         return (crypto_1.default
                             .createHash('sha1')

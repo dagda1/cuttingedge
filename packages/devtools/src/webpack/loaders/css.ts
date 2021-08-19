@@ -3,14 +3,22 @@ import { createPostCssOptions } from '../createPostCssoptions';
 
 import { getLocalIdent } from '../getLocalIdent';
 import { cssRegex, sassRegex, sassModuleRegex } from '../constants';
-import { RuleSetRule, NewLoader } from 'webpack';
+import { RuleSetRule } from 'webpack';
+
+interface LoaderItem {
+  loader: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  options: any;
+  ident?: string;
+  type?: string;
+}
 
 export const cssLoaders = (
   isDevelopment: boolean,
   isProduction: boolean,
   isNode: boolean,
   { modules, importLoaders }: { modules: boolean; importLoaders: number },
-): NewLoader[] =>
+): LoaderItem[] =>
   [
     !isNode && {
       loader: MiniCssExtractPlugin.loader,
@@ -32,7 +40,7 @@ export const cssLoaders = (
       },
     },
     { loader: 'postcss-loader', options: createPostCssOptions({ isProduction }) },
-  ].filter(Boolean) as NewLoader[];
+  ].filter(Boolean) as LoaderItem[];
 
 export const createCSSLoaders = ({
   isDevelopment,
