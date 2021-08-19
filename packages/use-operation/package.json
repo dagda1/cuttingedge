@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@cutting/util": "4.27.0",
-    "@effection/node": "2.0.0-preview.14",
-    "effection": "2.0.0-preview.14",
+    "@effection/node": "2.0.0-beta.12",
+    "effection": "2.0.0-beta.12",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
