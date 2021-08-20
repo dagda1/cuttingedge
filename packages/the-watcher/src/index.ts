@@ -1,5 +1,5 @@
 import type { Task } from 'effection';
-import program from 'commander';
+import { createCommand } from 'commander';
 import { watch } from 'chokidar';
 import { findIO, isMonorepo } from './utils/io';
 import { main } from '@effection/node';
@@ -12,6 +12,8 @@ import fs from 'fs';
 export const hasPackageJson = async (p: string): Promise<boolean> => fs.existsSync(path.join(p, 'package.json'));
 
 const cwd = process.cwd();
+
+const program = createCommand('the-watcher');
 
 program
   .description('Watch for file changes, find the nearest package.json file and call build.')

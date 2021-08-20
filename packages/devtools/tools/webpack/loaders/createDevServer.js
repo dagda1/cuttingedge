@@ -12,7 +12,7 @@ var redirectServedPathMiddleware_1 = __importDefault(require("react-dev-utils/re
 var noopServiceWorkerMiddleware_1 = __importDefault(require("react-dev-utils/noopServiceWorkerMiddleware"));
 var createDevServer = function (_a) {
     var _b, _c;
-    var protocol = _a.protocol, _d = _a.host, host = _d === void 0 ? 'local-ip' : _d, sockPort = _a.sockPort, proxy = _a.proxy, port = _a.port;
+    var protocol = _a.protocol, _d = _a.host, host = _d === void 0 ? '0.0.0.0' : _d, sockPort = _a.sockPort, proxy = _a.proxy, port = _a.port;
     var sockPath = process.env.WDS_SOCKET_PATH || '/ws';
     var sockHost = ((_b = process.env.WDS_SOCKET_HOST) !== null && _b !== void 0 ? _b : typeof window !== 'undefined') ? (_c = window.location) === null || _c === void 0 ? void 0 : _c.hostname : 'localhost';
     return {

@@ -77,8 +77,8 @@ var configure = function (options, overrides) {
             filename: isProduction ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle.js',
             library: '_N_E',
             libraryTarget: 'assign',
-            hotUpdateChunkFilename: 'static/js/[id].[contenthash].hot-update.js',
-            hotUpdateMainFilename: 'static/js/[contenthash].hot-update.json',
+            hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
+            hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
             chunkFilename: isProduction ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
             devtoolModuleFilenameTemplate: isProduction
                 ? // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -8,7 +8,7 @@ import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddle
 
 export const createDevServer = ({
   protocol,
-  host = 'local-ip',
+  host = '0.0.0.0',
   sockPort,
   proxy,
   port,

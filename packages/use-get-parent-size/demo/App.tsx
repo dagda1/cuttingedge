@@ -1,4 +1,4 @@
-import '@cutting/component-library/dist/esm/component-library.esm.css';
+import '@cutting/component-library/styles.css';
 import { FC, useRef } from 'react';
 import { useParentSize } from '../src/useParentSize/useParentSize';
 import { ApplicationLayout } from '@cutting/component-library';
