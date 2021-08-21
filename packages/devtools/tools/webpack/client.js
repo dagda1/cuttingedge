@@ -32,7 +32,6 @@ var html_webpack_plugin_1 = __importDefault(require("html-webpack-plugin"));
 var common_1 = require("./common");
 var paths_1 = require("../config/paths");
 var fs_1 = __importDefault(require("fs"));
-var WatchMissingNodeModulesPlugin_1 = __importDefault(require("react-dev-utils/WatchMissingNodeModulesPlugin"));
 var InterpolateHtmlPlugin_1 = __importDefault(require("react-dev-utils/InterpolateHtmlPlugin"));
 var react_refresh_webpack_plugin_1 = __importDefault(require("@pmmmwh/react-refresh-webpack-plugin"));
 var getUrlParts_1 = require("./getUrlParts");
@@ -133,7 +132,6 @@ var configure = function (options, overrides) {
                 contextRegExp: /moment$/,
             }),
             new ModuleNotFoundPlugin_1.default(paths_1.paths.appPath),
-            isDevelopment && new WatchMissingNodeModulesPlugin_1.default(paths_1.paths.appNodeModules),
             isProfilerEnabled() && new webpack_1.default.debug.ProfilingPlugin(),
         ].filter(Boolean),
     });

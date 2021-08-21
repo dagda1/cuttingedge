@@ -81,6 +81,11 @@ var configureCommon = function (options, overrides) {
                 '.jsx',
                 '.csv',
             ],
+            fallback: {
+                http: require.resolve('stream-http'),
+                https: require.resolve('https-browserify'),
+                stream: require.resolve('stream-browserify'),
+            },
             alias: {
                 'webpack/hot/poll': require.resolve('webpack/hot/poll'),
                 'native-url': require.resolve('native-url'),

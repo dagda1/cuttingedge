@@ -25,7 +25,6 @@
     "@cutting/devtools": "4.28.0",
     "@cutting/the-watcher": "0.4.0",
     "abortcontroller-polyfill": "^1.7.1",
-    "node-fetch": "^2.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },

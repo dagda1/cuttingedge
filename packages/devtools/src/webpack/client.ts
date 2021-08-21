@@ -6,7 +6,6 @@ import { DevServerConfig } from '../types/config';
 import { configureCommon } from './common';
 import { paths } from '../config/paths';
 import fs from 'fs';
-import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin';
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { getUrlParts } from './getUrlParts';
@@ -122,7 +121,6 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
         contextRegExp: /moment$/,
       }),
       new ModuleNotFoundPlugin(paths.appPath),
-      isDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       isProfilerEnabled() && new webpack.debug.ProfilingPlugin(),
     ].filter(Boolean),
   });

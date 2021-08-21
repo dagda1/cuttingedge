@@ -3,7 +3,7 @@ import { paths } from '../config/paths';
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = !isDevelopment;
 
-const sassOptions = {
+export const sassOptions = {
   sassOptions: {
     outputStyle: 'expanded',
     sourceMap: true,
@@ -11,5 +11,3 @@ const sassOptions = {
     minimize: isProduction,
   },
 };
-
-export default sassOptions;

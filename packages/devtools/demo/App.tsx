@@ -1,4 +1,4 @@
-import '@cutting/component-library/dist/esm/component-library.cjs.development.css';
+import '@cutting/component-library/dist/esm/component-library.esm.css';
 import type { FC } from 'react';
 import { ApplicationLayout } from '@cutting/component-library';
 

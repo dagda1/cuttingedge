@@ -31,7 +31,7 @@ export const compile = (config: Configuration, buildType: BuildType): Promise<{ 
 
       assert(typeof stats !== 'undefined', `no stats in compile`);
 
-      const messages = formatWebpackMessages(stats.toJson({}));
+      const messages = formatWebpackMessages(stats.toJson({ all: false, warnings: true, errors: true }));
 
       if (messages.errors.length) {
         return reject(new Error(messages.errors.join('\n')));

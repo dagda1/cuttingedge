@@ -250,12 +250,15 @@ async function build({
 
   const pkgJson = { ...pkg };
 
+  if (typeof pkgJson.exports !== 'undefined') {
+    return;
+  }
+
   const pkgName = safePackageName(packageName);
 
   const buildDir = path.basename(paths.appBuild);
 
   const commonjsFile = path.join(buildDir, 'cjs', 'index.js');
-  pkgJson.main = commonjsFile;
 
   const esmFile = path.join(buildDir, 'esm', `${pkgName}.esm.js`);
   pkgJson.module = esmFile;

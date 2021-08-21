@@ -1,6 +1,6 @@
 $label-default-color: #fff;
 
-@import '@cutting/component-library/src/styles/_index.scss';
+@import '@cutting/component-library/dist/styles/_index.scss';
 :global #root {
   border: 1px solid green;
 }

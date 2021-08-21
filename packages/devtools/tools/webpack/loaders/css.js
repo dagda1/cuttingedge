@@ -29,6 +29,7 @@ var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin
 var createPostCssoptions_1 = require("../createPostCssoptions");
 var getLocalIdent_1 = require("../getLocalIdent");
 var constants_1 = require("../constants");
+var paths_1 = require("../../config/paths");
 var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
     var modules = _a.modules, importLoaders = _a.importLoaders;
     return [
@@ -72,7 +73,17 @@ var createCSSLoaders = function (_a) {
         {
             test: constants_1.sassModuleRegex,
             use: __spreadArray(__spreadArray([], __read(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: true, importLoaders: 2 }))), [
-                { loader: 'sass-loader' },
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        sassOptions: {
+                            outputStyle: 'expanded',
+                            sourceMap: true,
+                            includePaths: [paths_1.paths.appSrc],
+                            minimize: isProduction,
+                        },
+                    },
+                },
             ]).filter(Boolean),
         },
     ];

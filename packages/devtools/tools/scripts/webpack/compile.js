@@ -33,7 +33,7 @@ var compile = function (config, buildType) {
                 return;
             }
             assert_ts_1.assert(typeof stats !== 'undefined', "no stats in compile");
-            var messages = formatWebpackMessages_1.default(stats.toJson({}));
+            var messages = formatWebpackMessages_1.default(stats.toJson({ all: false, warnings: true, errors: true }));
             if (messages.errors.length) {
                 return reject(new Error(messages.errors.join('\n')));
             }

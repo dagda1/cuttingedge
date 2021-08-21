@@ -4,6 +4,7 @@ import { createPostCssOptions } from '../createPostCssoptions';
 import { getLocalIdent } from '../getLocalIdent';
 import { cssRegex, sassRegex, sassModuleRegex } from '../constants';
 import { RuleSetRule } from 'webpack';
+import { paths } from '../../config/paths';
 
 interface LoaderItem {
   loader: string;
@@ -67,7 +68,17 @@ export const createCSSLoaders = ({
     test: sassModuleRegex,
     use: [
       ...cssLoaders(isDevelopment, isProduction, isNode, { modules: true, importLoaders: 2 }),
-      { loader: 'sass-loader' },
+      {
+        loader: 'sass-loader',
+        options: {
+          sassOptions: {
+            outputStyle: 'expanded',
+            sourceMap: true,
+            includePaths: [paths.appSrc],
+            minimize: isProduction,
+          },
+        },
+      },
     ].filter(Boolean),
   },
 ];

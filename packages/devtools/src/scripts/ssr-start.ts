@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'development';
 import fs from 'fs-extra';
-import webpack, { Configuration, Compiler } from 'webpack';
+import webpack, { Configuration, Compiler, Watching } from 'webpack';
 import { paths } from '../config/paths';
 import devServer from 'webpack-dev-server';
 import printErrors from './printErrors';
@@ -31,46 +31,72 @@ function compile(config: Configuration): Compiler {
 // can pass them when we invoke nodejs
 process.env.INSPECT_BRK = process.argv.find((arg) => arg.match(/--inspect-brk(=|$)/)) || '';
 process.env.INSPECT = process.argv.find((arg) => arg.match(/--inspect(=|$)/)) || '';
+
 function main() {
-  emptyBuildDir();
+  return new Promise<void>((resolve) => {
+    emptyBuildDir();
 
-  logger.start('Compiling...');
+    logger.start('Compiling...');
 
-  fs.removeSync(paths.appManifest);
+    fs.removeSync(paths.appManifest);
 
-  const localBuildConfig = require(paths.localBuildConfig) as BuildConfig;
+    const localBuildConfig = require(paths.localBuildConfig) as BuildConfig;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const buildConfig = merge(globalBuildConfig as any, localBuildConfig as any) as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const buildConfig = merge(globalBuildConfig as any, localBuildConfig as any) as any;
 
-  const { port } = getUrlParts({ ssrBuild: true, isProduction: false });
+    const { port } = getUrlParts({ ssrBuild: true, isProduction: false });
 
-  const clientConfig = configureWebpackClient({ ...buildConfig.client, isStaticBuild: false });
-  const serverConfig = configureWebpackServer(buildConfig.server);
+    const clientConfig = configureWebpackClient({ ...buildConfig.client, isStaticBuild: false });
+    const serverConfig = configureWebpackServer(buildConfig.server);
 
-  const clientCompiler = compile(clientConfig);
-  const serverCompiler = compile(serverConfig);
+    const clientCompiler = compile(clientConfig);
+    const serverCompiler = compile(serverConfig);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (clientCompiler as any).plugin('done', () => {
-    serverCompiler.watch(
-      {},
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      (stats) => ({}),
-    );
-  });
+    let watching: Watching;
 
-  /**
-   * Create a new instance of Webpack-dev-server for assets only
-   * This will actually run on a different port than the main app.
-   */
-  const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
+    clientCompiler.hooks.done.tap('cutting', () => {
+      watching = serverCompiler.watch(
+        {},
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        (stats) => ({}),
+      );
+    });
 
-  clientDevServer.listen(port, (err) => {
-    if (err) {
-      logger.error(err);
-    }
+    /**
+     * Create a new instance of Webpack-dev-server for assets only
+     * This will actually run on a different port than the main app.
+     */
+    const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
+
+    clientDevServer.listen(port, (err) => {
+      if (err) {
+        logger.error(err);
+      }
+    });
+
+    ['SIGINT', 'SIGTERM'].forEach((sig) => {
+      process.on(sig, () => {
+        if (clientDevServer) {
+          clientDevServer.close();
+        }
+        if (watching) {
+          watching.close((err, result) => {
+            if (err) {
+              logger.error(err);
+              process.exit(1);
+            }
+
+            console.dir({ result });
+          });
+        }
+      });
+    });
+
+    resolve();
   });
 }
 
-main();
+(async () => {
+  await main();
+})();

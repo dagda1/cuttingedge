@@ -354,10 +354,12 @@ function build(_a) {
                 case 10:
                     _d.sent();
                     pkgJson = __assign({}, pkg);
+                    if (typeof pkgJson.exports !== 'undefined') {
+                        return [2 /*return*/];
+                    }
                     pkgName = helpers_1.safePackageName(packageName);
                     buildDir = path_1.default.basename(paths_1.paths.appBuild);
                     commonjsFile = path_1.default.join(buildDir, 'cjs', 'index.js');
-                    pkgJson.main = commonjsFile;
                     esmFile = path_1.default.join(buildDir, 'esm', pkgName + ".esm.js");
                     pkgJson.module = esmFile;
                     umdFile = path_1.default.join(buildDir, 'umd', pkgName + ".umd.js");
