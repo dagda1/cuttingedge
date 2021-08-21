@@ -40,7 +40,9 @@ var webpack_merge_1 = require("webpack-merge");
 var webpack_1 = __importDefault(require("webpack"));
 var webpack_node_externals_1 = __importDefault(require("webpack-node-externals"));
 var paths_1 = require("../config/paths");
-var start_server_webpack_plugin_1 = __importDefault(require("start-server-webpack-plugin"));
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+var razzle_start_server_webpack_plugin_1 = __importDefault(require("razzle-start-server-webpack-plugin"));
 var common_1 = require("./common");
 var getEnvironment_1 = require("./getEnvironment");
 var guards_1 = require("./guards");
@@ -94,6 +96,9 @@ var configure = function (options, overrides) {
             filename: options.filename,
             publicPath: publicPath,
             libraryTarget: 'commonjs2',
+            library: {
+                type: 'commonjs2',
+            },
         },
         plugins: [
             new webpack_1.default.optimize.LimitChunkCountPlugin({
@@ -101,7 +106,7 @@ var configure = function (options, overrides) {
             }),
             isDevelopment && new webpack_1.default.HotModuleReplacementPlugin(),
             isDevelopment &&
-                new start_server_webpack_plugin_1.default({
+                new razzle_start_server_webpack_plugin_1.default({
                     name: 'server.js',
                     nodeArgs: nodeArgs,
                 }),

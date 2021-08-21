@@ -74,7 +74,7 @@ export const createCSSLoaders = ({
           sassOptions: {
             outputStyle: 'expanded',
             sourceMap: true,
-            includePaths: [paths.appSrc],
+            includePaths: [paths.appSrc, ...paths.resolvedNodeModules],
             minimize: isProduction,
           },
         },

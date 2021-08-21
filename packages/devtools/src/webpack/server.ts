@@ -4,7 +4,9 @@ import { merge } from 'webpack-merge';
 import webpack from 'webpack';
 import nodeExternals, { AllowlistOption } from 'webpack-node-externals';
 import { paths } from '../config/paths';
-import StartServerPlugin from 'start-server-webpack-plugin';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import StartServerPlugin from 'razzle-start-server-webpack-plugin';
 import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
@@ -65,6 +67,9 @@ export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Con
       filename: options.filename,
       publicPath,
       libraryTarget: 'commonjs2',
+      library: {
+        type: 'commonjs2',
+      },
     },
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({

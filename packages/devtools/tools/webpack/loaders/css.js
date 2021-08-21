@@ -79,7 +79,7 @@ var createCSSLoaders = function (_a) {
                         sassOptions: {
                             outputStyle: 'expanded',
                             sourceMap: true,
-                            includePaths: [paths_1.paths.appSrc],
+                            includePaths: __spreadArray([paths_1.paths.appSrc], __read(paths_1.paths.resolvedNodeModules)),
                             minimize: isProduction,
                         },
                     },

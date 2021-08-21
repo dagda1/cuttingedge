@@ -11372,6 +11372,11 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
+razzle-start-server-webpack-plugin@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.npmjs.org/razzle-start-server-webpack-plugin/-/razzle-start-server-webpack-plugin-4.0.6.tgz#cf3687653813073d79a059015984b791b22e9e41"
+  integrity sha512-koPnhE28dT+MwwOdNQivxCSnYZAoS+PchTTJ/VDrESjkDdZRlYHd4v57fIPoyx3dlYxf7+Mmz4N0KhDCA4+2xA==
+
 rc@^1.2.8:
   version "1.2.8"
   resolved "https://registry.npmjs.org/rc/-/rc-1.2.8.tgz#cd924bf5200a075b83c188cd6b9e211b7fc0d3ed"
