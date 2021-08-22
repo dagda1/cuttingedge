@@ -19,6 +19,7 @@ import { Configuration } from 'webpack';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import { merge } from 'webpack-merge';
 import path from 'path';
+import { createAssetsLoader } from './loaders/assets-loader';
 
 const reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
 const reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
@@ -96,6 +97,7 @@ export const configureCommon = (
         [
           createFileLoader({ staticAssetName, isWeb }),
           createUrlLoader({ staticAssetName, isWeb }),
+          createAssetsLoader(),
           ...createTypescriptLoader({ isDevelopment, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
           ...createJsLoader({ isDevelopment, isProduction, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
           createCSVLoader(),

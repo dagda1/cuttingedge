@@ -116,12 +116,11 @@ function main() {
                     clientDevServer.close();
                 }
                 if (watching) {
-                    watching.close(function (err, result) {
+                    watching.close(function (err) {
                         if (err) {
                             logger_1.logger.error(err);
                             process.exit(1);
                         }
-                        console.dir({ result: result });
                     });
                 }
             });

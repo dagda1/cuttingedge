@@ -7,7 +7,7 @@ export const createUrlLoader = ({
   staticAssetName: string;
   isWeb: boolean;
 }): RuleSetRule => ({
-  test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff$/, /\.woff2$/, /\.eot$/, /\.eot$/, /\.ttf$/],
+  test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
   loader: 'url-loader',
   options: { name: staticAssetName, limit: 10000, emitFile: isWeb },
 });
