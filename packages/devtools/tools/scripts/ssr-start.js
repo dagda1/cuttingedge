@@ -82,7 +82,7 @@ process.env.INSPECT_BRK = process.argv.find(function (arg) { return arg.match(/-
 process.env.INSPECT = process.argv.find(function (arg) { return arg.match(/--inspect(=|$)/); }) || '';
 function main() {
     return new Promise(function (resolve) {
-        empty_build_dir_1.emptyBuildDir();
+        var _a;
         logger_1.logger.start('Compiling...');
         fs_extra_1.default.removeSync(paths_1.paths.appManifest);
         var localBuildConfig = require(paths_1.paths.localBuildConfig);
@@ -103,8 +103,9 @@ function main() {
          * Create a new instance of Webpack-dev-server for assets only
          * This will actually run on a different port than the main app.
          */
-        var clientDevServer = new webpack_dev_server_1.default(clientCompiler, clientConfig.devServer);
-        clientDevServer.listen(port, function (err) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        var clientDevServer = new webpack_dev_server_1.default(clientConfig.devServer, clientCompiler);
+        clientDevServer.listen(port, (_a = clientConfig.devServer) === null || _a === void 0 ? void 0 : _a.host, function (err) {
             if (err) {
                 logger_1.logger.error(err);
             }
@@ -131,7 +132,9 @@ function main() {
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, main()];
+            case 0:
+                empty_build_dir_1.emptyBuildDir();
+                return [4 /*yield*/, main()];
             case 1:
                 _a.sent();
                 return [2 /*return*/];

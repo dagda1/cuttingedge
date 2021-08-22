@@ -1,8 +1,16 @@
 @import 'main';
 
 @font-face {
-  font-family: 'GeosansLight';
-  src: url('../fonts/GeosansLight/GeosansLight.ttf');
+    font-family: 'GeosansLight';
+    src: url('../fonts/GeosansLight/GeosansLight.eot');
+    src: url('../fonts/GeosansLight/GeosansLight.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/GeosansLight/GeosansLight.woff2') format('woff2'),
+        url('../fonts/GeosansLight/GeosansLight.woff') format('woff'),
+        url('../fonts/GeosansLight/GeosansLight.ttf') format('truetype'),
+        url('../fonts/GeosansLight/GeosansLight.svg#GeosansLight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
 }
 
 

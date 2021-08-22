@@ -34,8 +34,6 @@ process.env.INSPECT = process.argv.find((arg) => arg.match(/--inspect(=|$)/)) ||
 
 function main() {
   return new Promise<void>((resolve) => {
-    emptyBuildDir();
-
     logger.start('Compiling...');
 
     fs.removeSync(paths.appManifest);
@@ -67,9 +65,10 @@ function main() {
      * Create a new instance of Webpack-dev-server for assets only
      * This will actually run on a different port than the main app.
      */
-    const clientDevServer = new devServer(clientCompiler, clientConfig.devServer);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const clientDevServer = new devServer(clientConfig.devServer as any, clientCompiler as any);
 
-    clientDevServer.listen(port, (err) => {
+    clientDevServer.listen(port, clientConfig.devServer?.host as string, (err) => {
       if (err) {
         logger.error(err);
       }
@@ -98,5 +97,7 @@ function main() {
 }
 
 (async () => {
+  emptyBuildDir();
+
   await main();
 })();
