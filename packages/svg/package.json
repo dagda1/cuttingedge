@@ -9,7 +9,8 @@
   "browser": "dist/umd/svg.umd.js",
   "main": "dist/cjs/index.js",
   "sideEffects": [
-    "*.css"
+    "**/*.css",
+    "**/*.scss"
   ],
   "types": "dist/esm/index.d.ts",
   "license": "MIT",

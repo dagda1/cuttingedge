@@ -5,7 +5,7 @@ import { Pyramid } from '../Pyramid';
 import styles from './Home.module.scss';
 
 export const Home: FC = () => (
-  <ApplicationLayout heading="Frontend developer, cutting-edge solutions" italicise center>
+  <ApplicationLayout heading="Frontend developer, total" italicise center>
     <div className={styles.main}>
       <Pyramid />
     </div>

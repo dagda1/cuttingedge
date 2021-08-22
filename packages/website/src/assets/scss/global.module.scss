@@ -16,7 +16,7 @@
 
 :global body {
   font-family: 'GeosansLight' !important;
-  background-color: $base-bg-color;
+  background-color: $base-bg-color !important;
   font-size: 19px;
 
   &.covid {

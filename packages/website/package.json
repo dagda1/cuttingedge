@@ -14,6 +14,10 @@
     "deploy": "NODE_ENV=production yarn run build && ./bin/deploy.sh",
     "serve": "NODE_ENV=production node ./dist/server.js"
   },
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
   "dependencies": {
     "@cutting/component-library": "4.26.0",
     "@cutting/hooks": "4.28.0",

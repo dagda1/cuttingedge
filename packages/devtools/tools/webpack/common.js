@@ -34,7 +34,6 @@ var happypack_1 = __importDefault(require("happypack"));
 var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
 var getEnvironment_1 = require("./getEnvironment");
 var fileLoader_1 = require("./loaders/fileLoader");
-var urlLoader_1 = require("./loaders/urlLoader");
 var jsLoader_1 = require("./loaders/jsLoader");
 var typescriptLoader_1 = require("./loaders/typescriptLoader");
 var css_1 = require("./loaders/css");
@@ -44,7 +43,8 @@ var mdLoader_1 = require("./loaders/mdLoader");
 var ModuleScopePlugin_1 = __importDefault(require("react-dev-utils/ModuleScopePlugin"));
 var webpack_merge_1 = require("webpack-merge");
 var path_1 = __importDefault(require("path"));
-var assets_loader_1 = require("./loaders/assets-loader");
+var assetsLoader_1 = require("./loaders/assetsLoader");
+var image_minimizer_webpack_plugin_1 = __importDefault(require("image-minimizer-webpack-plugin"));
 var reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
 var reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
 var babelRuntimeEntryHelpers = require.resolve('@babel/runtime/helpers/esm/assertThisInitialized');
@@ -113,9 +113,8 @@ var configureCommon = function (options, overrides) {
         module: {
             strictExportPresence: true,
             rules: Array.prototype.filter.call(__spreadArray(__spreadArray(__spreadArray(__spreadArray([
-                fileLoader_1.createFileLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
-                urlLoader_1.createUrlLoader({ staticAssetName: staticAssetName, isWeb: isWeb }),
-                assets_loader_1.createAssetsLoader()
+                fileLoader_1.createFileLoader({ isWeb: isWeb, staticAssetName: staticAssetName }),
+                assetsLoader_1.createAssetsLoader()
             ], __read(typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }))), __read(jsLoader_1.createJsLoader({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }))), [
                 csvLoader_1.createCSVLoader(),
                 svgLoader_1.createSVGLoader(),
@@ -148,6 +147,27 @@ var configureCommon = function (options, overrides) {
                 },
             }),
             isDevelopment && new webpack_1.default.WatchIgnorePlugin({ paths: [paths_1.paths.appManifest] }),
+            new image_minimizer_webpack_plugin_1.default({
+                minimizerOptions: {
+                    // Lossless optimization with custom option
+                    // Feel free to experiment with options for better result for you
+                    plugins: [
+                        ['gifsicle', { interlaced: true }],
+                        ['jpegtran', { progressive: true }],
+                        ['optipng', { optimizationLevel: 5 }],
+                        [
+                            'svgo',
+                            {
+                                plugins: [
+                                    {
+                                        removeViewBox: false,
+                                    },
+                                ],
+                            },
+                        ],
+                    ],
+                },
+            }),
             new mini_css_extract_plugin_1.default({
                 filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
                 chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',

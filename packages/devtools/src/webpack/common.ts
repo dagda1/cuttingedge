@@ -7,7 +7,6 @@ import HappyPack from 'happypack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { getEnvironment, getEnvVariables } from './getEnvironment';
 import { createFileLoader } from './loaders/fileLoader';
-import { createUrlLoader } from './loaders/urlLoader';
 import { createJsLoader } from './loaders/jsLoader';
 import { createTypescriptLoader } from './loaders/typescriptLoader';
 import { createCSSLoaders } from './loaders/css';
@@ -19,7 +18,8 @@ import { Configuration } from 'webpack';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import { merge } from 'webpack-merge';
 import path from 'path';
-import { createAssetsLoader } from './loaders/assets-loader';
+import { createAssetsLoader } from './loaders/assetsLoader';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 
 const reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
 const reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
@@ -95,8 +95,7 @@ export const configureCommon = (
       strictExportPresence: true,
       rules: Array.prototype.filter.call(
         [
-          createFileLoader({ staticAssetName, isWeb }),
-          createUrlLoader({ staticAssetName, isWeb }),
+          createFileLoader({ isWeb, staticAssetName }),
           createAssetsLoader(),
           ...createTypescriptLoader({ isDevelopment, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
           ...createJsLoader({ isDevelopment, isProduction, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
@@ -135,6 +134,27 @@ export const configureCommon = (
           },
         }),
         isDevelopment && new webpack.WatchIgnorePlugin({ paths: [paths.appManifest] }),
+        new ImageMinimizerPlugin({
+          minimizerOptions: {
+            // Lossless optimization with custom option
+            // Feel free to experiment with options for better result for you
+            plugins: [
+              ['gifsicle', { interlaced: true }],
+              ['jpegtran', { progressive: true }],
+              ['optipng', { optimizationLevel: 5 }],
+              [
+                'svgo',
+                {
+                  plugins: [
+                    {
+                      removeViewBox: false,
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        }),
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
           chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',

@@ -53,22 +53,17 @@
     "npm": "7.20.0"
   },
   "resolutions": {
+    "@effection/core": "2.0.0-package-json-version-import.1629635798385",
     "@effection/node": "2.0.0-beta.12",
     "@types/react": "^17.0.0",
     "@types/webpack": "^5.28.0",
     "browserslist": "^4.16.5",
     "commander": "^8.1.0",
-    "css-what": "^5.0.1",
     "d3-array": "^2.4.0",
     "d3-scale": "^3.3.0",
     "d3-time": "^2.1.1",
     "effection": "2.0.0-beta.12",
-    "glob-parent": "^5.1.2",
-    "lodash": "^4.17.21",
-    "node-forge": "^0.10.0",
     "normalize-url": "^7.0.1",
-    "ssri": "8.0.1",
-    "trim-newlines": "^3.0.1",
     "url-parse": "^1.5.3"
   },
   "dependencies": {}
