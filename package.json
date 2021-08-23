@@ -21,6 +21,8 @@
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "normalize-url": "^7.0.1",
+    "postcss-loader": "^6.1.1",
+    "postcss-scss": "^4.0.0",
     "ssri": "8.0.1",
     "trim-newlines": "^4.0.2",
     "typescript": "^4.3.5",
@@ -65,7 +67,8 @@
     "d3-time": "^2.1.1",
     "effection": "2.0.0-beta.12",
     "normalize-url": "^7.0.1",
-    "url-parse": "^1.5.3"
+    "url-parse": "^1.5.3",
+    "webpack": "^5.50.0"
   },
   "dependencies": {}
 }

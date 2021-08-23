@@ -1,7 +1,7 @@
 import { composeStyles, style } from '@vanilla-extract/css';
 import { rem } from 'polished';
-import { atoms } from '../src/style/atoms/sprinkles.css';
-import { vars } from '../src/style/themes/vars.css';
+import { atoms } from '@cutting/design-system/sprinkles.css';
+import { vars } from '@cutting/design-system/themes/vars.css';
 
 export const wrap = composeStyles(
   style({
@@ -31,7 +31,7 @@ export const item = composeStyles(
     },
     flex: {
       mobile: 'auto',
-      tablet: '1',
+      tablet: '1 0 auto',
     },
   }),
 );

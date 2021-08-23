@@ -17,12 +17,53 @@
     "prepublishOnly": "yarn build"
   },
   "exports": {
-    "import": "./dist/esm/design-system.esm.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/design-system.umd.js"
+    ".": {
+      "import": "./dist/esm/design-system.esm.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./sprinkles.css.js": {
+      "import": "./dist/esm/atoms/sprinkles.css.js",
+      "require": "./dist/cjs/atoms/sprinkles.css.js"
+    },
+    "./palette.css.js": {
+      "import": "./dist/esm/palette.css.js",
+      "require": "./dist/esm/palette.css.js"
+    },
+    "./accessibility.css.js": {
+      "import": "./dist/esm/accessibility.css.js",
+      "require": "./dist/cjs/accessibility.css.js"
+    },
+    "./typography.css.js": {
+      "import": "./dist/esm/typography/typography.css.js",
+      "require": "./dist/esm/typography/typography.css.js"
+    },
+    "./themes/default.css.js": {
+      "import": "./dist/esm/themes/default/default.css.js",
+      "require": "./dist/cjs/themes/default/default.css.js"
+    },
+    "./themes/cutting.css.js": {
+      "import": "./dist/esm/themes/cutting/cutting.css.js",
+      "require": "./dist/cjs/themes/cutting/cutting.css.js"
+    },
+    "./themes/vars.css.js": {
+      "import": "./dist/esm/themes/vars.css.js",
+      "require": "./dist/cjs/themes/vars.css.js"
+    },
+    "./reset.css.js": {
+      "import": "./dist/esm/reset/reset.css.js",
+      "require": "./dist/cjs/reset/reset.css.js"
+    }
   },
   "typesVersions": {
     "*": {
+      "./sprinkles.css.js": ["./dist/esm/atoms/sprinkles.css.d.ts"],
+      "./palette.css.js": ["./dist/esm/palette.css.d.ts"],
+      "./accessibility.css.js": ["./dist/esm/accessibility.css.d.ts"],
+      "./typography.css.js": ["./dist/esm/typography/typography.css.d.ts"],
+      "./themes/default.css.js": ["./dist/esm/themes/default/default.css.d.ts"],
+      "./themes/cutting.css.js": ["./dist/esm/themes/cutting/cutting.css.d.ts"],
+      "./themes/vars.css.js": ["./dist/esm/themes/vars.css.d.ts"],
+      "./reset.css.js": ["./dist/esm/reset.css.d.ts"],
       "*": [
         "dist/esm/index.d.ts"
       ]
@@ -31,8 +72,12 @@
   "types": "dist/esm/index.d.ts",
   "dependencies": {
     "@vanilla-extract/babel-plugin": "^1.0.1",
-    "@vanilla-extract/css": "^1.2.1",
-    "@vanilla-extract/sprinkles": "^1.0.0",
-    "@vanilla-extract/webpack-plugin": "^1.1.0"
+    "@vanilla-extract/css": "^1.2.3",
+    "@vanilla-extract/sprinkles": "^1.1.1",
+    "@vanilla-extract/webpack-plugin": "^1.1.0",
+    "tailwindcss": "^2.2.7"
+  },
+  "devDependencies": {
+    "@types/tailwindcss": "^2.2.1"
   }
 }

@@ -156,17 +156,14 @@ export const configureCommon = (
             ],
           },
         }),
-        new VanillaExtractPlugin(),
         new VanillaExtractPlugin({
           test: /\.css\.ts$/,
+          outputCss: true,
         }),
         new MiniCssExtractPlugin({
           filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
           chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',
           ignoreOrder: true,
-        }),
-        new VanillaExtractPlugin({
-          outputCss: true,
         }),
       ],
       Boolean,

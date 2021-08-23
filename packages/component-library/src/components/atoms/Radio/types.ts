@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, PropsWithChildren } from 'react';
+import type { ChangeEventHandler } from 'react';
 
 export type RadioLayout = 'inline' | 'stacked';
 

@@ -141,8 +141,8 @@ export const tokens = {
   links: {
     lineHeight: '1.31579',
     color: {
-      link: palette.lightBlue700,
-      hover: palette.lightBlue900,
+      link: palette.sky700,
+      hover: palette.sky900,
       active: palette.black,
     },
     decoration: {

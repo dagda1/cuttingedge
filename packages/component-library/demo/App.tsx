@@ -1,12 +1,11 @@
-import '../src/style/reset';
 import * as styles from './global.css';
 import React, { FC, useState } from 'react';
 import { Heading, FormInput, ExternalLink } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
-import { defaultTheme } from '../src/style/themes/default/default.css';
-import { cuttingTheme } from '../src/style/themes/cutting/cutting.css';
+import { defaultTheme } from '@cutting/design-system/themes/default.css';
+import { cuttingTheme } from '@cutting/design-system/themes/cutting.css';
 
 const AvailableThemes = { defaultTheme, cuttingTheme } as const;
 
@@ -14,8 +13,6 @@ type Theme = keyof typeof AvailableThemes;
 
 export const App: FC = () => {
   const [theme, setTheme] = useState<Theme>('defaultTheme');
-
-  console.log(theme);
 
   return (
     <ApplicationLayout className={AvailableThemes[theme]} heading="@cutting/component-library">
