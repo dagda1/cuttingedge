@@ -1,5 +1,23 @@
 # @cutting/svg
 
+## 4.28.2
+
+### Patch Changes
+
+- eslint peerDependencies
+- Updated dependencies
+  - @cutting/use-get-parent-size@1.4.2
+  - @cutting/util@4.27.2
+
+## 4.28.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/use-get-parent-size@1.4.1
+  - @cutting/util@4.27.1
+
 ## 4.28.0
 
 ### Minor Changes

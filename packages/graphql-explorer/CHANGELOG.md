@@ -1,5 +1,22 @@
 # @cutting/graphql-explorer
 
+## 4.24.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @cutting/util@4.27.2
+  - @cutting/react-abortable-fetch@0.13.2
+
+## 4.24.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/react-abortable-fetch@0.13.1
+  - @cutting/util@4.27.1
+
 ## 4.24.0
 
 ### Minor Changes

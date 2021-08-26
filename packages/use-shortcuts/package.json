@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-shortcuts",
   "description": "Effortlessly create keyboard shortcuts with this react hook.",
-  "version": "4.25.0",
+  "version": "4.25.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -24,14 +24,14 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.27.0",
+    "@cutting/util": "4.27.2",
     "classnames": "^2.3.1",
     "mousetrap": "^1.6.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.28.0",
-    "@cutting/eslint-config": "4.25.0",
-    "@cutting/useful-types": "4.24.0",
+    "@cutting/devtools": "4.28.1",
+    "@cutting/eslint-config": "4.25.3",
+    "@cutting/useful-types": "4.24.2",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/mousetrap": "^1.6.7",
     "dtslint": "^4.0.9",

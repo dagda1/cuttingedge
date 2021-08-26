@@ -1,6 +1,6 @@
 {
   "name": "@cutting/eslint-config",
-  "version": "4.25.0",
+  "version": "4.25.3",
   "description": "Cutting eslint configuration definition",
   "main": "index.js",
   "license": "MIT",
@@ -27,11 +27,11 @@
     "react"
   ],
   "dependencies": {
-    "@cutting/useful-types": "4.24.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@cutting/useful-types": "4.24.2",
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
-    "babel-eslint": "10.1.0",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^24.3.6",
@@ -41,6 +41,21 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@babel/eslint-parser": ">= 7.15.x",
+    "@types/webpack-env": ">= 1.16.x",
+    "@typescript-eslint/eslint-plugin": ">= 4.22.x",
+    "@typescript-eslint/parser": ">= 4.22.x",
+    "eslint": ">= 7.27.x",
+    "eslint-config-prettier": ">= 8.3.x",
+    "eslint-plugin-jest": ">= 24.3.x",
+    "eslint-plugin-jest-formatting": ">= 3.0.x",
+    "eslint-plugin-jsx-a11y": ">= 6.4.x",
+    "eslint-plugin-prettier": ">= 3.4.x",
+    "eslint-plugin-react": ">= 7.24.x",
+    "eslint-plugin-react-hooks": ">= 4.2.x",
+    "prettier": ">= 2.3.x"
   },
   "volta": {
     "extends": "../../package.json"

@@ -1,5 +1,21 @@
 # @cutting/use-shortcuts
 
+## 4.25.2
+
+### Patch Changes
+
+- eslint peerDependencies
+- Updated dependencies
+  - @cutting/util@4.27.2
+
+## 4.25.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/util@4.27.1
+
 ## 4.25.0
 
 ### Minor Changes
