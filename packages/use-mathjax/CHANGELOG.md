@@ -1,5 +1,13 @@
 # @cutting/use-mathjax
 
+## 4.26.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/util@4.27.1
+
 ## 4.26.0
 
 ### Minor Changes

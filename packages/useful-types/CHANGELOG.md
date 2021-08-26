@@ -1,5 +1,13 @@
 # @cutting/useful-types
 
+## 4.24.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/util@4.27.1
+
 ## 4.24.0
 
 ### Minor Changes

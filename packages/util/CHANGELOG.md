@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.27.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+
 ## 4.27.0
 
 ### Minor Changes

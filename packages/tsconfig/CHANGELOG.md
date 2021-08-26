@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.25.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+
 ## 4.25.0
 
 ### Minor Changes

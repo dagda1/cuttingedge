@@ -1,5 +1,13 @@
 # @cutting/hooks
 
+## 4.28.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/util@4.27.1
+
 ## 4.28.0
 
 ### Minor Changes

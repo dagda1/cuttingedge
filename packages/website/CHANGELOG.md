@@ -1,5 +1,19 @@
 # @cutting/website
 
+## 4.26.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/component-library@4.26.1
+  - @cutting/hooks@4.28.1
+  - @cutting/react-abortable-fetch@0.13.1
+  - @cutting/svg@4.28.1
+  - @cutting/use-get-parent-size@1.4.1
+  - @cutting/use-mathjax@4.26.1
+  - @cutting/util@4.27.1
+
 ## 4.26.0
 
 ### Minor Changes

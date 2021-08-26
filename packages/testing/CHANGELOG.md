@@ -1,5 +1,13 @@
 # @cutting/testing
 
+## 4.25.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/util@4.27.1
+
 ## 4.25.0
 
 ### Minor Changes

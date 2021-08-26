@@ -1,5 +1,13 @@
 # @cutting/use-operation
 
+## 0.4.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/util@4.27.1
+
 ## 0.4.0
 
 ### Minor Changes

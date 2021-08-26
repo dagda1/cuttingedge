@@ -1,5 +1,13 @@
 # @cutting/eslint-config
 
+## 4.25.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+- Updated dependencies
+  - @cutting/useful-types@4.24.1
+
 ## 4.25.0
 
 ### Minor Changes

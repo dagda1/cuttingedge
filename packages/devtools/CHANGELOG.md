@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.28.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+
 ## 4.28.0
 
 ### Minor Changes

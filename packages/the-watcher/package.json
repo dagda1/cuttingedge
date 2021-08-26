@@ -1,6 +1,6 @@
 {
   "name": "@cutting/the-watcher",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Run and watch commands concurrently",
   "main": "dist/index.js",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "effection": "2.0.0-beta.12"
   },
   "devDependencies": {
-    "@cutting/devtools": "^4.28.0",
+    "@cutting/devtools": "^4.28.1",
     "ts-node": "^9.1.1"
   },
   "volta": {

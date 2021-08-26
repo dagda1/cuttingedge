@@ -1,5 +1,11 @@
 # @cutting/the-watcher
 
+## 0.4.1
+
+### Patch Changes
+
+- upgrade to webpack 5
+
 ## 0.4.0
 
 ### Minor Changes
