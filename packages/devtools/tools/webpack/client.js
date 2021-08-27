@@ -58,7 +58,7 @@ var getFileName_1 = require("./getFileName");
 var isProfilerEnabled = function () { return process.argv.includes('--profile'); };
 var configure = function (options, overrides) {
     if (overrides === void 0) { overrides = {}; }
-    var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild, _a = options.isLibrary, isLibrary = _a === void 0 ? false : _a;
+    var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild, _a = options.isPackage, isPackage = _a === void 0 ? false : _a;
     var _b = getEnvironment_1.getEnvironment(), isDevelopment = _b.isDevelopment, isProduction = _b.isProduction, commitHash = _b.commitHash;
     var ssrBuild = !isStaticBuild;
     var _c = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _c.protocol, publicPath = _c.publicPath, port = _c.port, sockPort = _c.sockPort;
@@ -76,14 +76,14 @@ var configure = function (options, overrides) {
     }, {});
     var template = publicDir ? path_1.default.join(publicDir, 'index.html') : 'public/index.html';
     var templateExists = fs_1.default.existsSync(template);
-    var jsFile = getFileName_1.getFileName({ isProduction: isProduction, isLibrary: isLibrary, isMainChunk: true, fileType: 'js' }) + ".js";
-    var jsChunkFile = getFileName_1.getFileName({ isProduction: isProduction, isLibrary: isLibrary, isMainChunk: false, fileType: 'js' }) + ".js";
+    var jsFile = getFileName_1.getFileName({ isProduction: isProduction, isPackage: isPackage, isMainChunk: true, fileType: 'js' }) + ".js";
+    var jsChunkFile = getFileName_1.getFileName({ isProduction: isProduction, isPackage: isPackage, isMainChunk: false, fileType: 'js' }) + ".js";
     var config = webpack_merge_1.merge(common, overrides, {
         name: 'client',
         target: 'web',
         entry: finalEntries,
         devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, sockPort: sockPort, proxy: proxy, port: port }) : {},
-        output: __assign(__assign({ path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic, publicPath: publicPath, pathinfo: isDevelopment, filename: jsFile, hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js', hotUpdateMainFilename: 'static/js/[hash].hot-update.json', chunkFilename: jsChunkFile }, (isLibrary
+        output: __assign(__assign({ globalObject: isPackage ? 'this' : undefined, path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic, publicPath: publicPath, pathinfo: isDevelopment, filename: jsFile, hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js', hotUpdateMainFilename: 'static/js/[hash].hot-update.json', chunkFilename: jsChunkFile }, (isPackage
             ? {
                 libraryTarget: 'umd',
                 libraryExport: 'default',
@@ -142,10 +142,18 @@ var configure = function (options, overrides) {
             new ModuleNotFoundPlugin_1.default(paths_1.paths.appPath),
             isProfilerEnabled() && new webpack_1.default.debug.ProfilingPlugin(),
         ].filter(Boolean),
+        stats: {
+            colors: true,
+            preset: 'errors_only',
+            timings: isDevelopment,
+            errors: true,
+        },
+        infrastructureLogging: {
+            level: 'verbose',
+        },
     });
-    if (isProduction) {
-        config.optimization = createWebpackOptimisation_1.createWebpackOptimisation({ optimization: config.optimization, isDevelopment: isDevelopment, ssrBuild: ssrBuild });
-    }
+    config.optimization = createWebpackOptimisation_1.createWebpackOptimisation({ optimization: config.optimization, isProduction: isProduction, isPackage: isPackage });
+    console.dir({ o: config.output }, { depth: 333 });
     return config;
 };
 exports.configure = configure;

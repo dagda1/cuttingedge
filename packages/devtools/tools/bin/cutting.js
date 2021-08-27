@@ -19,6 +19,7 @@ switch (script) {
     case 'ssr-build':
     case 'ssr-start':
     case 'static-build':
+    case 'package-build':
     case 'test':
     case 'ts-build': {
         command = "../scripts/" + script;

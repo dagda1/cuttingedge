@@ -4,8 +4,8 @@ import { Heading, FormInput, ExternalLink } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
-import { defaultTheme } from '@cutting/design-system/src/themes/default/default.css';
-import { cuttingTheme } from '@cutting/design-system/src/themes/cutting/cutting.css';
+import { defaultTheme } from '@cutting/design-system';
+import { cuttingTheme } from '@cutting/design-system';
 
 const AvailableThemes = { defaultTheme, cuttingTheme } as const;
 

@@ -4,22 +4,22 @@ import { safePackageName } from '../rollup/helpers';
 export const getFileName = ({
   isMainChunk,
   fileType,
-  isLibrary,
+  isPackage,
   isProduction,
 }: {
   isMainChunk: boolean;
   fileType: 'js' | 'css';
-  isLibrary: boolean;
+  isPackage: boolean;
   isProduction: boolean;
 }): string => {
   const packageInfo = require(paths.appPackageJson);
   const pkgName = safePackageName(packageInfo.name);
 
-  if (isLibrary && isMainChunk) {
+  if (isPackage && isMainChunk) {
     return pkgName;
   }
 
-  const prefix = isLibrary ? '' : `static/${fileType}/`;
+  const prefix = isPackage ? '' : `static/${fileType}/`;
 
   // The client file mask is set to just name in start/dev mode as contenthash
   // is not supported for hot reloading. It can also cause non

@@ -61,13 +61,13 @@ var configureCommon = function (options, overrides) {
     var env = getEnvironment_1.getEnvVariables({ isNode: !!options.isNode });
     var cssFile = getFileName_1.getFileName({
         isProduction: isProduction,
-        isLibrary: !!(options === null || options === void 0 ? void 0 : options.isLibrary),
+        isPackage: !!(options === null || options === void 0 ? void 0 : options.isPackage),
         isMainChunk: true,
         fileType: 'css',
     }) + ".css";
     var cssChunkFile = getFileName_1.getFileName({
         isProduction: isProduction,
-        isLibrary: !!(options === null || options === void 0 ? void 0 : options.isLibrary),
+        isPackage: !!(options === null || options === void 0 ? void 0 : options.isPackage),
         isMainChunk: false,
         fileType: 'css',
     }) + ".css";

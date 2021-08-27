@@ -42,13 +42,13 @@ export const configureCommon = (
 
   const cssFile = `${getFileName({
     isProduction,
-    isLibrary: !!options?.isLibrary,
+    isPackage: !!options?.isPackage,
     isMainChunk: true,
     fileType: 'css',
   })}.css`;
   const cssChunkFile = `${getFileName({
     isProduction,
-    isLibrary: !!options?.isLibrary,
+    isPackage: !!options?.isPackage,
     isMainChunk: false,
     fileType: 'css',
   })}.css`;

@@ -6,7 +6,7 @@ export interface BuildConfig {
     entries: string | string[];
     hotReloading: boolean;
     isNode: false;
-    isLibrary?: boolean;
+    isPackage?: boolean;
   };
   server: {
     entries: string | string[];
@@ -14,7 +14,7 @@ export interface BuildConfig {
     bail: boolean;
     ssrBuild: true;
     isNode: true;
-    isLibrary?: boolean;
+    isPackage?: boolean;
   };
   ts: {
     tsconfig: string;
@@ -28,7 +28,7 @@ export interface BuildConfig {
     modulesDir: string;
     isNode: true;
     hasShebang?: boolean;
-    isLibrary?: boolean;
+    isPackage?: boolean;
   };
   devServer: {
     entries: string | string[] | Record<string, string | string[]>;
@@ -39,7 +39,7 @@ export interface BuildConfig {
     isNode?: boolean;
     isWeb?: boolean;
     publicUrl?: string;
-    isLibrary?: boolean;
+    isPackage?: boolean;
   };
 }
 

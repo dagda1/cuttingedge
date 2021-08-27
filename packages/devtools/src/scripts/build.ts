@@ -63,7 +63,7 @@ export const build = async ({
     const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
     const clientConfig =
       buildClient &&
-      configureWebpackClient({ ...buildConfig.client, isLibrary: !!buildPackge, isStaticBuild: !buildServer });
+      configureWebpackClient({ ...buildConfig.client, isPackage: !!buildPackge, isStaticBuild: !buildServer });
 
     assert(!!clientConfig, 'clientConfig is not present');
 

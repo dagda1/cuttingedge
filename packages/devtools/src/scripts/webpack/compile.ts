@@ -15,6 +15,7 @@ function compileWebpack(config: Configuration, cb: (err?: Error, stats?: Stats) 
     process.exit(1);
   }
   compiler.run((err, stats) => {
+    console.error(err);
     cb(err, stats);
   });
 }

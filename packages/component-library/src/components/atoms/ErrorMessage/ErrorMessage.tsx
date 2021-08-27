@@ -2,7 +2,7 @@ import type { FC, HTMLAttributes } from 'react';
 import cs from 'classnames';
 import { StandardProps } from '../../../types';
 import * as styles from './ErrorMessage.css';
-import { visuallyHidden } from '@cutting/design-system/src/accessibility.css';
+import { visuallyHidden } from '@cutting/design-system';
 
 export type ErrorProps = StandardProps<HTMLAttributes<HTMLUListElement>> & {
   errorMessage: string;

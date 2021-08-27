@@ -129,7 +129,7 @@ var build = function (_a) {
                 case 7:
                     serverConfig = !!buildServer && server_1.configure(buildConfig.server);
                     clientConfig = buildClient &&
-                        client_1.configure(__assign(__assign({}, buildConfig.client), { isLibrary: !!buildPackge, isStaticBuild: !buildServer }));
+                        client_1.configure(__assign(__assign({}, buildConfig.client), { isPackage: !!buildPackge, isStaticBuild: !buildServer }));
                     assert_ts_1.assert(!!clientConfig, 'clientConfig is not present');
                     return [4 /*yield*/, compile_1.compile(clientConfig, build_1.BuildType.client)];
                 case 8:

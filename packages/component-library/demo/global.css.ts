@@ -1,7 +1,7 @@
 import { composeStyles, style } from '@vanilla-extract/css';
 import { rem } from 'polished';
-import { atoms } from '@cutting/design-system/src/atoms/sprinkles.css';
-import { vars } from '@cutting/design-system/src/themes/vars.css';
+import { atoms } from '@cutting/design-system';
+import { vars } from '@cutting/design-system';
 
 export const wrap = composeStyles(
   style({

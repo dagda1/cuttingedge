@@ -1,5 +1,5 @@
 export type { FontWeight } from './themes/make-theme';
-export { responsiveFont, responsiveHeadingFont } from './typography/typography.css';
+export { responsiveFont, responsiveHeadingFont } from './typography/typography';
 export { responsiveStyle } from './responsive-style';
 export { atoms } from './atoms/sprinkles.css';
 export { vars } from './themes/vars.css';

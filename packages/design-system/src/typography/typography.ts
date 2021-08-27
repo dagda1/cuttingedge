@@ -19,7 +19,7 @@ export const responsiveFont = (): StyleRule => {
         lineHeight: vars.lineHeight.text.paragraph.desktop,
       },
     }),
-  };
+  };  
 };
 
 export const responsiveHeadingFont = (heading: keyof typeof vars.fonts.headings): StyleRule => {

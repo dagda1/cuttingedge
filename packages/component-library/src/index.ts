@@ -1,3 +1,4 @@
+import 'node-self';
 export type { StandardProps } from './types';
 export type { RadioGroupProps } from './components/molecules/RadioGroup/RadioGroup';
 

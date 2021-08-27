@@ -20,6 +20,7 @@ function compileWebpack(config, cb) {
         process.exit(1);
     }
     compiler.run(function (err, stats) {
+        console.error(err);
         cb(err, stats);
     });
 }

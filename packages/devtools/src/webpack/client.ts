@@ -24,7 +24,7 @@ import { getFileName } from './getFileName';
 const isProfilerEnabled = () => process.argv.includes('--profile');
 
 export const configure = (options: DevServerConfig, overrides: DeepPartial<Configuration> = {}): Configuration => {
-  const { entries, publicDir, proxy, devServer, isStaticBuild, isLibrary = false } = options;
+  const { entries, publicDir, proxy, devServer, isStaticBuild, isPackage = false } = options;
   const { isDevelopment, isProduction, commitHash } = getEnvironment();
   const ssrBuild = !isStaticBuild;
   const { protocol, publicPath, port, sockPort } = getUrlParts({ ssrBuild, isProduction });
@@ -52,8 +52,8 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
 
   const templateExists = fs.existsSync(template);
 
-  const jsFile = `${getFileName({ isProduction, isLibrary, isMainChunk: true, fileType: 'js' })}.js`;
-  const jsChunkFile = `${getFileName({ isProduction, isLibrary, isMainChunk: false, fileType: 'js' })}.js`;
+  const jsFile = `${getFileName({ isProduction, isPackage, isMainChunk: true, fileType: 'js' })}.js`;
+  const jsChunkFile = `${getFileName({ isProduction, isPackage, isMainChunk: false, fileType: 'js' })}.js`;
 
   const config: Configuration = merge(common, overrides, {
     name: 'client',
@@ -61,6 +61,7 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
     entry: finalEntries,
     devServer: isDevelopment ? createDevServer({ protocol, sockPort, proxy, port }) : {},
     output: {
+      globalObject: isPackage ? 'this' : undefined,
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,
       pathinfo: isDevelopment,
@@ -68,7 +69,7 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
       hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
       hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
       chunkFilename: jsChunkFile,
-      ...(isLibrary
+      ...(isPackage
         ? {
             libraryTarget: 'umd',
             libraryExport: 'default',
@@ -130,11 +131,19 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
       new ModuleNotFoundPlugin(paths.appPath),
       isProfilerEnabled() && new webpack.debug.ProfilingPlugin(),
     ].filter(Boolean),
+    stats: {
+      colors: true,
+      preset: 'errors_only',
+      timings: isDevelopment,
+      errors: true,
+    },
+    infrastructureLogging: {
+      level: 'verbose',
+    },
   });
 
-  if (isProduction) {
-    config.optimization = createWebpackOptimisation({ optimization: config.optimization, isDevelopment, ssrBuild });
-  }
+  config.optimization = createWebpackOptimisation({ optimization: config.optimization, isProduction, isPackage });
 
+  console.dir({ o: config.output }, { depth: 333 });
   return config;
 };

@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '@cutting/design-system/src/themes/vars.css';
-import { screenReaderOnly } from '@cutting/design-system/src/accessibility.css';
-import { responsiveFont } from '@cutting/design-system/src/typography/typography.css';
+import { vars } from '@cutting/design-system';
+import { screenReaderOnly } from '@cutting/design-system';
+import { responsiveFont } from '@cutting/design-system';
 
 export const fieldset = style({
   border: 'none',

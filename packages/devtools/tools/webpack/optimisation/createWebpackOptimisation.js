@@ -26,40 +26,15 @@ var isModuleCSS = function (module) {
         module.type === "css/extract-css-chunks");
 };
 var createWebpackOptimisation = function (_a) {
-    var optimization = _a.optimization, _b = _a.isLibrary, isLibrary = _b === void 0 ? false : _b;
-    return isLibrary
-        ? {}
-        : __assign(__assign({}, optimization), {
-            minimize: true,
-            minimizer: [
-                new terser_webpack_plugin_1.default({
-                    terserOptions: {
-                        parse: {
-                            ecma: 2015,
-                        },
-                        compress: {
-                            ecma: 5,
-                            comparisons: false,
-                            inline: 2,
-                            dead_code: true,
-                        },
-                        mangle: {
-                            safari10: true,
-                        },
-                        output: {
-                            ecma: 5,
-                            comments: 'all',
-                            ascii_only: true,
-                            safari10: true,
-                        },
-                    },
-                }),
-                // new CssMinimizerPlugin({
-                //   sourceMap: true,
-                //   parallel: true,
-                // }),
-            ],
-            splitChunks: {
+    var optimization = _a.optimization, isProduction = _a.isProduction, isPackage = _a.isPackage;
+    return (__assign(__assign({}, optimization), {
+        minimize: isProduction,
+        concatenateModules: isProduction,
+        emitOnErrors: isProduction,
+        minimizer: [new terser_webpack_plugin_1.default({ extractComments: false })],
+        splitChunks: isPackage
+            ? {}
+            : {
                 chunks: 'all',
                 automaticNameDelimiter: '-',
                 maxSize: 245760,
@@ -119,7 +94,7 @@ var createWebpackOptimisation = function (_a) {
                 maxInitialRequests: 25,
                 minSize: 20000,
             },
-        });
+    }));
 };
 exports.createWebpackOptimisation = createWebpackOptimisation;
 //# sourceMappingURL=createWebpackOptimisation.js.map
