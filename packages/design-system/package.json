@@ -2,74 +2,19 @@
   "name": "@cutting/design-system",
   "version": "0.1.0",
   "description": "design tokens for frontend components",
-  "module": "dist/esm/design-system.esm.js",
-  "browser": "dist/umd/design-system.umd.js",
-  "main": "dist/cjs/index.js",
+  "module": "src/index.ts",
+  "main": "src/index.ts",
   "repository": "https://github.com/dagda1/cutting",
   "author": "paul.cowan@cutting.scot",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=development cutting rollup",
+    "build": "NODE_ENV=development cutting node-build",
     "lint": "yarn eslint ./src/**/*.{ts} --fix",
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test",
     "prepublishOnly": "yarn build"
   },
-  "exports": {
-    ".": {
-      "import": "./dist/esm/design-system.esm.js",
-      "require": "./dist/cjs/index.js"
-    },
-    "./sprinkles.css.js": {
-      "import": "./dist/esm/atoms/sprinkles.css.js",
-      "require": "./dist/cjs/atoms/sprinkles.css.js"
-    },
-    "./palette.css.js": {
-      "import": "./dist/esm/palette.css.js",
-      "require": "./dist/esm/palette.css.js"
-    },
-    "./accessibility.css.js": {
-      "import": "./dist/esm/accessibility.css.js",
-      "require": "./dist/cjs/accessibility.css.js"
-    },
-    "./typography.css.js": {
-      "import": "./dist/esm/typography/typography.css.js",
-      "require": "./dist/esm/typography/typography.css.js"
-    },
-    "./themes/default.css.js": {
-      "import": "./dist/esm/themes/default/default.css.js",
-      "require": "./dist/cjs/themes/default/default.css.js"
-    },
-    "./themes/cutting.css.js": {
-      "import": "./dist/esm/themes/cutting/cutting.css.js",
-      "require": "./dist/cjs/themes/cutting/cutting.css.js"
-    },
-    "./themes/vars.css.js": {
-      "import": "./dist/esm/themes/vars.css.js",
-      "require": "./dist/cjs/themes/vars.css.js"
-    },
-    "./reset.css.js": {
-      "import": "./dist/esm/reset/reset.css.js",
-      "require": "./dist/cjs/reset/reset.css.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "./sprinkles.css.js": ["./dist/esm/atoms/sprinkles.css.d.ts"],
-      "./palette.css.js": ["./dist/esm/palette.css.d.ts"],
-      "./accessibility.css.js": ["./dist/esm/accessibility.css.d.ts"],
-      "./typography.css.js": ["./dist/esm/typography/typography.css.d.ts"],
-      "./themes/default.css.js": ["./dist/esm/themes/default/default.css.d.ts"],
-      "./themes/cutting.css.js": ["./dist/esm/themes/cutting/cutting.css.d.ts"],
-      "./themes/vars.css.js": ["./dist/esm/themes/vars.css.d.ts"],
-      "./reset.css.js": ["./dist/esm/reset.css.d.ts"],
-      "*": [
-        "dist/esm/index.d.ts"
-      ]
-    }
-  },
-  "types": "dist/esm/index.d.ts",
   "dependencies": {
     "@vanilla-extract/babel-plugin": "^1.0.1",
     "@vanilla-extract/css": "^1.2.3",
@@ -78,6 +23,7 @@
     "tailwindcss": "^2.2.7"
   },
   "devDependencies": {
+    "@cutting/devtools": "4.28.1",
     "@types/tailwindcss": "^2.2.1"
   }
 }

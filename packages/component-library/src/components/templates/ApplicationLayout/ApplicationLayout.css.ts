@@ -1,8 +1,8 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { rem } from 'polished';
 import { breakpoints } from '@cutting/design-system';
-import { vars } from '@cutting/design-system/themes/vars.css';
-import { responsiveFont, responsiveHeadingFont } from '@cutting/design-system/typography.css';
+import { vars } from '@cutting/design-system/src/themes/vars.css';
+import { responsiveFont, responsiveHeadingFont } from '@cutting/design-system/src/typography/typography.css';
 
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',

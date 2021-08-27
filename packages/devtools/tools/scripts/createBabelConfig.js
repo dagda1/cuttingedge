@@ -88,8 +88,8 @@ var createBabelConfig = function (_a) {
             '@loadable/babel-plugin',
             '@babel/plugin-proposal-optional-chaining',
             '@babel/plugin-proposal-nullish-coalescing-operator',
+            '@vanilla-extract/babel-plugin',
             hot && require.resolve('react-refresh/babel'),
-            require.resolve('@vanilla-extract/babel-plugin'),
         ].filter(Boolean),
     };
 };

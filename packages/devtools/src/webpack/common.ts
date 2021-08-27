@@ -21,6 +21,7 @@ import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import path from 'path';
 import { createAssetsLoader } from './loaders/assetsLoader';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
+import { getFileName } from './getFileName';
 
 const reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
 const reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
@@ -38,6 +39,19 @@ export const configureCommon = (
   const isWeb = !isNode;
   const { isProduction, isDevelopment, staticAssetName, isAnalyse } = getEnvironment();
   const env = getEnvVariables({ isNode: !!options.isNode });
+
+  const cssFile = `${getFileName({
+    isProduction,
+    isLibrary: !!options?.isLibrary,
+    isMainChunk: true,
+    fileType: 'css',
+  })}.css`;
+  const cssChunkFile = `${getFileName({
+    isProduction,
+    isLibrary: !!options?.isLibrary,
+    isMainChunk: false,
+    fileType: 'css',
+  })}.css`;
 
   const config: Configuration = merge(overrides, {
     mode: isDevelopment ? 'development' : 'production',
@@ -161,8 +175,8 @@ export const configureCommon = (
           outputCss: true,
         }),
         new MiniCssExtractPlugin({
-          filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
-          chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',
+          filename: cssFile,
+          chunkFilename: cssChunkFile,
           ignoreOrder: true,
         }),
       ],

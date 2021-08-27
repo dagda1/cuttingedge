@@ -19,11 +19,12 @@ import HtmlWebpackPartialsPlugin from 'html-webpack-partials-plugin';
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
 import type { DeepPartial } from '@cutting/util';
 import { Configuration } from 'webpack';
+import { getFileName } from './getFileName';
 
 const isProfilerEnabled = () => process.argv.includes('--profile');
 
 export const configure = (options: DevServerConfig, overrides: DeepPartial<Configuration> = {}): Configuration => {
-  const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
+  const { entries, publicDir, proxy, devServer, isStaticBuild, isLibrary = false } = options;
   const { isDevelopment, isProduction, commitHash } = getEnvironment();
   const ssrBuild = !isStaticBuild;
   const { protocol, publicPath, port, sockPort } = getUrlParts({ ssrBuild, isProduction });
@@ -51,6 +52,9 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
 
   const templateExists = fs.existsSync(template);
 
+  const jsFile = `${getFileName({ isProduction, isLibrary, isMainChunk: true, fileType: 'js' })}.js`;
+  const jsChunkFile = `${getFileName({ isProduction, isLibrary, isMainChunk: false, fileType: 'js' })}.js`;
+
   const config: Configuration = merge(common, overrides, {
     name: 'client',
     target: 'web',
@@ -60,22 +64,22 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,
       pathinfo: isDevelopment,
-      filename: isProduction ? 'static/js/[name].[contenthash:8].js' : 'static/js/[name].js',
-      library: {
-        type: 'var',
-        name: 'client',
-      },
-      libraryTarget: 'var',
+      filename: jsFile,
       hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
       hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
-      chunkFilename: isProduction ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
+      chunkFilename: jsChunkFile,
+      ...(isLibrary
+        ? {
+            libraryTarget: 'umd',
+            libraryExport: 'default',
+          }
+        : {}),
       devtoolModuleFilenameTemplate: isProduction
         ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (info: any) => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
         : // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (info: any) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
-
     plugins: [
       isDevelopment &&
         new ReactRefreshWebpackPlugin({

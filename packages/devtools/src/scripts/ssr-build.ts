@@ -1,5 +1,5 @@
 import { build } from './build';
 
 (async () => {
-  await build({ buildClient: true, buildServer: true, buildNode: false });
+  await build({ buildClient: true, buildServer: true, buildNode: false, buildPackge: false });
 })();

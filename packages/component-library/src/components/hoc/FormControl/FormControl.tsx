@@ -4,7 +4,7 @@ import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
 import { FontWeight } from '@cutting/design-system';
-import { vars } from '@cutting/design-system/themes/vars.css';
+import { vars } from '@cutting/design-system/src/themes/vars.css';
 import { ErrorMessage } from '../../atoms/ErrorMessage/ErrorMessage';
 
 export type Layout = 'vertical' | 'horizontal';

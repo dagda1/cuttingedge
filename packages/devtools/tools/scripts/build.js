@@ -92,7 +92,7 @@ var empty_build_dir_1 = require("./empty-build-dir");
 var measureFileSizesBeforeBuild = FileSizeReporter_1.default.measureFileSizesBeforeBuild;
 var printFileSizesAfterBuild = FileSizeReporter_1.default.printFileSizesAfterBuild;
 var build = function (_a) {
-    var buildClient = _a.buildClient, buildServer = _a.buildServer, buildNode = _a.buildNode;
+    var buildClient = _a.buildClient, buildServer = _a.buildServer, buildPackge = _a.buildPackge, buildNode = _a.buildNode;
     return __awaiter(void 0, void 0, void 0, function () {
         var localBuildConfig, _b, buildConfig, nodeConfig, publicDir, previousFileSizes, serverConfig, clientConfig, clientStats, err_1;
         return __generator(this, function (_c) {
@@ -128,7 +128,8 @@ var build = function (_a) {
                     return [2 /*return*/];
                 case 7:
                     serverConfig = !!buildServer && server_1.configure(buildConfig.server);
-                    clientConfig = buildClient && client_1.configure(__assign(__assign({}, buildConfig.client), { isStaticBuild: !buildServer }));
+                    clientConfig = buildClient &&
+                        client_1.configure(__assign(__assign({}, buildConfig.client), { isLibrary: !!buildPackge, isStaticBuild: !buildServer }));
                     assert_ts_1.assert(!!clientConfig, 'clientConfig is not present');
                     return [4 /*yield*/, compile_1.compile(clientConfig, build_1.BuildType.client)];
                 case 8:

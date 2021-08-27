@@ -1,7 +1,7 @@
 import { composeStyles, style } from '@vanilla-extract/css';
-import { responsiveFont } from '@cutting/design-system/typography.css';
-import { vars } from '@cutting/design-system/themes/vars.css';
-import { atoms } from '@cutting/design-system/sprinkles.css';
+import { responsiveFont } from '@cutting/design-system/src/typography/typography.css';
+import { vars } from '@cutting/design-system/src/themes/vars.css';
+import { atoms } from '@cutting/design-system/src/atoms/sprinkles.css';
 
 export const root = composeStyles(
   atoms({

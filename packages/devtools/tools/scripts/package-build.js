@@ -40,11 +40,11 @@ var build_1 = require("./build");
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, build_1.build({ buildClient: true, buildServer: false, buildNode: false, buildPackge: false })];
+            case 0: return [4 /*yield*/, build_1.build({ buildClient: true, buildServer: false, buildNode: false, buildPackge: true })];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
         }
     });
 }); })();
-//# sourceMappingURL=static-build.js.map
+//# sourceMappingURL=package-build.js.map

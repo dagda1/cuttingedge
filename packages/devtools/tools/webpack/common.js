@@ -46,6 +46,7 @@ var webpack_plugin_1 = require("@vanilla-extract/webpack-plugin");
 var path_1 = __importDefault(require("path"));
 var assetsLoader_1 = require("./loaders/assetsLoader");
 var image_minimizer_webpack_plugin_1 = __importDefault(require("image-minimizer-webpack-plugin"));
+var getFileName_1 = require("./getFileName");
 var reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
 var reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
 var babelRuntimeEntryHelpers = require.resolve('@babel/runtime/helpers/esm/assertThisInitialized');
@@ -58,6 +59,18 @@ var configureCommon = function (options, overrides) {
     var isWeb = !isNode;
     var _a = getEnvironment_1.getEnvironment(), isProduction = _a.isProduction, isDevelopment = _a.isDevelopment, staticAssetName = _a.staticAssetName, isAnalyse = _a.isAnalyse;
     var env = getEnvironment_1.getEnvVariables({ isNode: !!options.isNode });
+    var cssFile = getFileName_1.getFileName({
+        isProduction: isProduction,
+        isLibrary: !!(options === null || options === void 0 ? void 0 : options.isLibrary),
+        isMainChunk: true,
+        fileType: 'css',
+    }) + ".css";
+    var cssChunkFile = getFileName_1.getFileName({
+        isProduction: isProduction,
+        isLibrary: !!(options === null || options === void 0 ? void 0 : options.isLibrary),
+        isMainChunk: false,
+        fileType: 'css',
+    }) + ".css";
     var config = webpack_merge_1.merge(overrides, {
         mode: isDevelopment ? 'development' : 'production',
         bail: isProduction,
@@ -174,8 +187,8 @@ var configureCommon = function (options, overrides) {
                 outputCss: true,
             }),
             new mini_css_extract_plugin_1.default({
-                filename: isDevelopment ? 'static/css/[name].css' : 'static/css/[name].[chunkhash:8].css',
-                chunkFilename: isDevelopment ? 'static/css/[id].css' : 'static/css/[id].[contenthash].css',
+                filename: cssFile,
+                chunkFilename: cssChunkFile,
                 ignoreOrder: true,
             }),
         ], Boolean),

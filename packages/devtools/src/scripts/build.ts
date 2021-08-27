@@ -27,10 +27,12 @@ const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 export const build = async ({
   buildClient,
   buildServer,
+  buildPackge,
   buildNode,
 }: {
   buildClient: boolean;
   buildServer: boolean;
+  buildPackge: boolean;
   buildNode: boolean;
 }): Promise<void> => {
   logger.start('starting build');
@@ -59,7 +61,9 @@ export const build = async ({
       return;
     }
     const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
-    const clientConfig = buildClient && configureWebpackClient({ ...buildConfig.client, isStaticBuild: !buildServer });
+    const clientConfig =
+      buildClient &&
+      configureWebpackClient({ ...buildConfig.client, isLibrary: !!buildPackge, isStaticBuild: !buildServer });
 
     assert(!!clientConfig, 'clientConfig is not present');
 
