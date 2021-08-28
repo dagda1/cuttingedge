@@ -41,7 +41,6 @@
       "packages/use-get-parent-size",
       "packages/use-operation",
       "packages/react-abortable-fetch",
-      "packages/design-system",
       "packages/component-library",
       "packages/svg",
       "packages/the-watcher",

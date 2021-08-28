@@ -1,6 +1,6 @@
 import { globalStyle, style, composeStyles } from '@vanilla-extract/css';
-import { vars } from '@cutting/design-system';
-import { responsiveFont } from '@cutting/design-system';
+import { vars } from '../../../style/themes/vars.css';
+import { responsiveFont } from '../../../style/typography/typography';
 
 export const item = style({
   position: 'relative',

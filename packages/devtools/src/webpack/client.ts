@@ -37,6 +37,8 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
 
   const polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
 
+  console.dir({ entries });
+
   const iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
 
   const finalEntries = Object.keys(iter).reduce((acc, key) => {
@@ -57,22 +59,25 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
 
   const config: Configuration = merge(common, overrides, {
     name: 'client',
-    target: 'web',
-    entry: finalEntries,
+    target: isPackage ? 'node' : 'web',
+    entry: isPackage ? entries : finalEntries,
     devServer: isDevelopment ? createDevServer({ protocol, sockPort, proxy, port }) : {},
     output: {
-      globalObject: isPackage ? 'this' : undefined,
+      globalObject: 'this',
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,
       pathinfo: isDevelopment,
       filename: jsFile,
-      hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
-      hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
+      hotUpdateChunkFilename: isPackage ? undefined : 'static/js/[id].[hash].hot-update.js',
+      hotUpdateMainFilename: isPackage ? undefined : 'static/js/[hash].hot-update.json',
       chunkFilename: jsChunkFile,
       ...(isPackage
         ? {
-            libraryTarget: 'umd',
-            libraryExport: 'default',
+            library: {
+              export: 'default',
+              name: 'LIB',
+              type: 'umd',
+            },
           }
         : {}),
       devtoolModuleFilenameTemplate: isProduction
@@ -144,6 +149,5 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
 
   config.optimization = createWebpackOptimisation({ optimization: config.optimization, isProduction, isPackage });
 
-  console.dir({ o: config.output }, { depth: 333 });
   return config;
 };

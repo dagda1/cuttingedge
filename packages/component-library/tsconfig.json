@@ -6,7 +6,6 @@
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts", "test/**/*.tsx"],
   "references": [
-    { "path": "../design-system/tsconfig.dist.json" },
     { "path": "../hooks/tsconfig.dist.json" },
     { "path": "../util/tsconfig.dist.json" }
   ]

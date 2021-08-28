@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import cs from 'classnames';
 import * as styles from './Label.css';
-import { FontWeight } from '@cutting/design-system';
+import { FontWeight } from '../../../style/themes/make-theme';
 
 export interface LabelProps {
   id?: string;

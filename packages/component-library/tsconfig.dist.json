@@ -7,7 +7,6 @@
     "noEmit": false
   },
   "references": [
-    { "path": "../design-system/tsconfig.dist.json" },
     { "path": "../hooks/tsconfig.dist.json" },
     { "path": "../util/tsconfig.dist.json" }
   ],

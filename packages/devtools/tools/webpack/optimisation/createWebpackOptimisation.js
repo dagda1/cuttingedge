@@ -30,7 +30,7 @@ var createWebpackOptimisation = function (_a) {
     return (__assign(__assign({}, optimization), {
         minimize: isProduction,
         concatenateModules: isProduction,
-        emitOnErrors: isProduction,
+        emitOnErrors: true,
         minimizer: [new terser_webpack_plugin_1.default({ extractComments: false })],
         splitChunks: isPackage
             ? {}

@@ -5,12 +5,11 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "module": "dist/esm/component-library.esm.js",
-  "browser": "dist/umd/component-library.umd.js",
-  "main": "dist/component-library.js",
+  "module": "dist/esm/index.esm.js",
+  "browser": "dist/umd/index.umd.js",
+  "main": "dist/index.js",
   "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
+    "*.css.ts"
   ],
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
@@ -18,7 +17,6 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "@cutting/design-system": "^0.1.0",
     "@cutting/hooks": "4.28.2",
     "@cutting/util": "4.27.2",
     "@vanilla-extract/babel-plugin": "^1.0.1",
@@ -33,7 +31,8 @@
     "deepmerge": "^4.2.2",
     "gradient-parser": "^1.0.2",
     "node-self": "^1.0.0-c",
-    "polished": "^4.1.3"
+    "polished": "^4.1.3",
+    "tailwindcss": "^2.2.7"
   },
   "devDependencies": {
     "@cutting/devtools": "4.28.3",
@@ -44,6 +43,7 @@
     "@types/postcss-normalize": "^9.0.0",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
+    "@types/tailwindcss": "^2.2.1",
     "postcss-scss": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

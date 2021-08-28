@@ -26,9 +26,6 @@
       "path": "./packages/react-abortable-fetch/tsconfig.dist.json"
     },
     {
-      "path": "./packages/design-system/tsconfig.dist.json"
-    },
-    {
       "path": "./packages/component-library/tsconfig.dist.json"
     },
     {

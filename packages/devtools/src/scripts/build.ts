@@ -14,7 +14,7 @@ import { copyPublicFolder } from './utils/copy-public-folder';
 import { compile } from './webpack/compile';
 import { BuildType } from '../types/build';
 import { config as globalBuildConfig } from '../config/build.config';
-import { merge } from 'webpack-merge';
+import merge from 'deepmerge';
 import { configure as configureWebpackClient } from '../webpack/client';
 import { configure as configureWebpackServer } from '../webpack/server';
 import { configure as configureWebpackNode } from '../webpack/node';
@@ -37,12 +37,10 @@ export const build = async ({
 }): Promise<void> => {
   logger.start('starting build');
 
-  const localBuildConfig: BuildConfig = fs.existsSync(paths.localBuildConfig)
-    ? await import(paths.localBuildConfig)
-    : {};
+  const localBuildConfig: BuildConfig = fs.existsSync(paths.localBuildConfig) ? require(paths.localBuildConfig) : {};
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const buildConfig = merge(globalBuildConfig as any, localBuildConfig as any) as any;
+  const buildConfig = merge(globalBuildConfig, localBuildConfig);
 
   const nodeConfig = !!buildNode && configureWebpackNode(buildConfig.node);
 
@@ -63,7 +61,8 @@ export const build = async ({
     const serverConfig = !!buildServer && configureWebpackServer(buildConfig.server);
     const clientConfig =
       buildClient &&
-      configureWebpackClient({ ...buildConfig.client, isPackage: !!buildPackge, isStaticBuild: !buildServer });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      configureWebpackClient({ ...(buildConfig.client as any), isPackage: !!buildPackge, isStaticBuild: !buildServer });
 
     assert(!!clientConfig, 'clientConfig is not present');
 

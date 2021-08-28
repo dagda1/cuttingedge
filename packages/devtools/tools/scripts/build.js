@@ -10,25 +10,6 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -83,7 +64,7 @@ var copy_public_folder_1 = require("./utils/copy-public-folder");
 var compile_1 = require("./webpack/compile");
 var build_1 = require("../types/build");
 var build_config_1 = require("../config/build.config");
-var webpack_merge_1 = require("webpack-merge");
+var deepmerge_1 = __importDefault(require("deepmerge"));
 var client_1 = require("../webpack/client");
 var server_1 = require("../webpack/server");
 var node_1 = require("../webpack/node");
@@ -94,65 +75,57 @@ var printFileSizesAfterBuild = FileSizeReporter_1.default.printFileSizesAfterBui
 var build = function (_a) {
     var buildClient = _a.buildClient, buildServer = _a.buildServer, buildPackge = _a.buildPackge, buildNode = _a.buildNode;
     return __awaiter(void 0, void 0, void 0, function () {
-        var localBuildConfig, _b, buildConfig, nodeConfig, publicDir, previousFileSizes, serverConfig, clientConfig, clientStats, err_1;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var localBuildConfig, buildConfig, nodeConfig, publicDir, previousFileSizes, serverConfig, clientConfig, clientStats, err_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     logger_1.logger.start('starting build');
-                    if (!fs_extra_1.default.existsSync(paths_1.paths.localBuildConfig)) return [3 /*break*/, 2];
-                    return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(paths_1.paths.localBuildConfig)); })];
-                case 1:
-                    _b = _c.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    _b = {};
-                    _c.label = 3;
-                case 3:
-                    localBuildConfig = _b;
-                    buildConfig = webpack_merge_1.merge(build_config_1.config, localBuildConfig);
+                    localBuildConfig = fs_extra_1.default.existsSync(paths_1.paths.localBuildConfig) ? require(paths_1.paths.localBuildConfig) : {};
+                    buildConfig = deepmerge_1.default(build_config_1.config, localBuildConfig);
                     nodeConfig = !!buildNode && node_1.configure(buildConfig.node);
                     publicDir = buildServer ? paths_1.paths.appBuildPublic : paths_1.paths.appBuild;
-                    _c.label = 4;
-                case 4:
-                    _c.trys.push([4, 11, , 12]);
+                    _b.label = 1;
+                case 1:
+                    _b.trys.push([1, 8, , 9]);
                     return [4 /*yield*/, measureFileSizesBeforeBuild(publicDir)];
-                case 5:
-                    previousFileSizes = _c.sent();
+                case 2:
+                    previousFileSizes = _b.sent();
                     empty_build_dir_1.emptyBuildDir();
                     copy_public_folder_1.copyPublicFolder();
-                    if (!nodeConfig) return [3 /*break*/, 7];
+                    if (!nodeConfig) return [3 /*break*/, 4];
                     return [4 /*yield*/, compile_1.compile(nodeConfig, build_1.BuildType.node)];
-                case 6:
-                    _c.sent();
+                case 3:
+                    _b.sent();
                     logger_1.logger.done('finished building node webpack build');
                     return [2 /*return*/];
-                case 7:
+                case 4:
                     serverConfig = !!buildServer && server_1.configure(buildConfig.server);
                     clientConfig = buildClient &&
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         client_1.configure(__assign(__assign({}, buildConfig.client), { isPackage: !!buildPackge, isStaticBuild: !buildServer }));
                     assert_ts_1.assert(!!clientConfig, 'clientConfig is not present');
                     return [4 /*yield*/, compile_1.compile(clientConfig, build_1.BuildType.client)];
-                case 8:
-                    clientStats = (_c.sent()).stats;
+                case 5:
+                    clientStats = (_b.sent()).stats;
                     logger_1.logger.done('finished building client webpack build');
-                    if (!serverConfig) return [3 /*break*/, 10];
+                    if (!serverConfig) return [3 /*break*/, 7];
                     return [4 /*yield*/, compile_1.compile(serverConfig, build_1.BuildType.server)];
-                case 9:
-                    _c.sent();
+                case 6:
+                    _b.sent();
                     logger_1.logger.done('finished building server webpack build');
-                    _c.label = 10;
-                case 10:
+                    _b.label = 7;
+                case 7:
                     printFileSizesAfterBuild(clientStats, previousFileSizes, publicDir);
                     logger_1.logger.done('build finished');
-                    return [3 /*break*/, 12];
-                case 11:
-                    err_1 = _c.sent();
+                    return [3 /*break*/, 9];
+                case 8:
+                    err_1 = _b.sent();
                     logger_1.logger.error('Failed to compile.');
                     logger_1.logger.error(err_1.message || err_1);
                     logger_1.logger.error(err_1.stack);
                     process.exit(1);
-                    return [3 /*break*/, 12];
-                case 12: return [2 /*return*/];
+                    return [3 /*break*/, 9];
+                case 9: return [2 /*return*/];
             }
         });
     });

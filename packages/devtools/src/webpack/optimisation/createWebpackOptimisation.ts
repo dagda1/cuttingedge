@@ -29,7 +29,7 @@ export const createWebpackOptimisation = ({
   ...{
     minimize: isProduction,
     concatenateModules: isProduction,
-    emitOnErrors: isProduction,
+    emitOnErrors: true,
     minimizer: [new TerserPlugin({ extractComments: false })],
     splitChunks: isPackage
       ? {}

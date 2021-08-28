@@ -67,6 +67,7 @@ var configure = function (options, overrides) {
     options.isWeb = true;
     var common = common_1.configureCommon(options, overrides);
     var polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
+    console.dir({ entries: entries });
     var iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
     var finalEntries = Object.keys(iter).reduce(function (acc, key) {
         var value = iter[key];
@@ -80,13 +81,16 @@ var configure = function (options, overrides) {
     var jsChunkFile = getFileName_1.getFileName({ isProduction: isProduction, isPackage: isPackage, isMainChunk: false, fileType: 'js' }) + ".js";
     var config = webpack_merge_1.merge(common, overrides, {
         name: 'client',
-        target: 'web',
-        entry: finalEntries,
+        target: isPackage ? 'node' : 'web',
+        entry: isPackage ? entries : finalEntries,
         devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, sockPort: sockPort, proxy: proxy, port: port }) : {},
-        output: __assign(__assign({ globalObject: isPackage ? 'this' : undefined, path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic, publicPath: publicPath, pathinfo: isDevelopment, filename: jsFile, hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js', hotUpdateMainFilename: 'static/js/[hash].hot-update.json', chunkFilename: jsChunkFile }, (isPackage
+        output: __assign(__assign({ globalObject: 'this', path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic, publicPath: publicPath, pathinfo: isDevelopment, filename: jsFile, hotUpdateChunkFilename: isPackage ? undefined : 'static/js/[id].[hash].hot-update.js', hotUpdateMainFilename: isPackage ? undefined : 'static/js/[hash].hot-update.json', chunkFilename: jsChunkFile }, (isPackage
             ? {
-                libraryTarget: 'umd',
-                libraryExport: 'default',
+                library: {
+                    export: 'default',
+                    name: 'LIB',
+                    type: 'umd',
+                },
             }
             : {})), { devtoolModuleFilenameTemplate: isProduction
                 ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -153,7 +157,6 @@ var configure = function (options, overrides) {
         },
     });
     config.optimization = createWebpackOptimisation_1.createWebpackOptimisation({ optimization: config.optimization, isProduction: isProduction, isPackage: isPackage });
-    console.dir({ o: config.output }, { depth: 333 });
     return config;
 };
 exports.configure = configure;
