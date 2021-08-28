@@ -1,7 +1,7 @@
 {
   "extends": "@cutting/tsconfig/tsconfig.test.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "outDir": "./dist",
     "rootDir": "./src",
     "suppressImplicitAnyIndexErrors": true

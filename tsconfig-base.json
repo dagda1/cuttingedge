@@ -6,20 +6,20 @@
     "declarationMap": true,
     "sourceMap": true,
     "paths": {
-      "@cutting/devtools": ["packages/devtools/src"],
-      "@cutting/the-watcher": ["packages/the-watcher"],
-      "@cutting/testing": ["packages/testing/src"],
-      "@cutting/util": ["packages/util/src"],
-      "@cutting/hooks": ["packages/hooks/src"],
-      "@cutting/use-operation": ["packages/use-operation/src"],
-      "@cutting/react-abortable-fetch": ["packages/react-abortable-fetch/src"],
-      "@cutting/component-library": ["packages/component-library/src"],
-      "@cutting/svg": ["packages/svg/src"],
-      "@cutting/use-shortcuts": ["packages/use-shortcuts/src"],
-      "@cutting/use-mathjax": ["packages/use-mathjax/src"],
-      "@cutting/use-get-parent-size": ["packages/use-get-parent-size/src"],
-      "@cutting/graphql-explorer": ["packages/graphql-explorer/src"],
-      "@cutting/website": ["packages/website/src"]
+      "@cutting/devtools": ["./packages/devtools/src"],
+      "@cutting/the-watcher": ["./packages/the-watcher"],
+      "@cutting/testing": ["./packages/testing/src"],
+      "@cutting/util": ["./packages/util/src"],
+      "@cutting/hooks": ["./packages/hooks/src"],
+      "@cutting/use-operation": ["./packages/use-operation/src"],
+      "@cutting/react-abortable-fetch": ["./packages/react-abortable-fetch/src"],
+      "@cutting/component-library": ["./packages/component-library/src"],
+      "@cutting/svg": ["./packages/svg/src"],
+      "@cutting/use-shortcuts": ["./packages/use-shortcuts/src"],
+      "@cutting/use-mathjax": ["./packages/use-mathjax/src"],
+      "@cutting/use-get-parent-size": ["./packages/use-get-parent-size/src"],
+      "@cutting/graphql-explorer": ["./packages/graphql-explorer/src"],
+      "@cutting/website": ["./packages/website/src"]
     }
   }
 }

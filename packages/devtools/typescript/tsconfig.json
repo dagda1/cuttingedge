@@ -1,7 +1,7 @@
 {
   "extends": "@cutting/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "outDir": "./dist",
     "rootDir": "src"
   },

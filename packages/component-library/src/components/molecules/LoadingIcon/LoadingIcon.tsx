@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { range } from '@cutting/util';
 import cs from 'classnames';
 
-import styles from './LoadingIcon.module.scss';
+import * as styles from './LoadingIcon.css';
 
 export interface LoadingIconProps {
   darkMode?: boolean;
@@ -13,7 +13,7 @@ const angles = [...range(0, 360, 30)];
 const LoadingIcon: FC<LoadingIconProps> = ({ darkMode }) => (
   <svg
     data-selector="loading-icon"
-    className={styles['loading-icon']}
+    className={styles.loadingIcon}
     xmlns="http://www.w3.org/2000/svg"
     width="120px"
     height="120px"

@@ -5,9 +5,9 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "module": "dist/esm/component-library.js",
-  "browser": "dist/umd/component-library.js",
-  "main": "dist/component-library.js",
+  "module": "dist/esm/component-library.esm.js",
+  "browser": "dist/umd/component-library.umd.js",
+  "main": "dist/cjs/component-library.cjs.js",
   "sideEffects": [
     "*.css.ts"
   ],
@@ -58,10 +58,24 @@
     "extends": "../../package.json"
   },
   "scripts": {
-    "build": "NODE_ENV=development cutting es-build",
+    "build": "NODE_ENV=production cutting es-build",
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build"  
+  },
+    "exports": {
+      ".": {
+        "import": "./dist/esm/component-library.esm.js",
+        "require": "./dist/cjs/component-library.cjs.js",
+        "browser": "./dist/umd/component-library.umd.js"
+      }
+    },
+    "typesVersions": {
+      "*": {
+        "*": [
+          "dist/esm/index.d.ts"
+        ]
+      }
+    }
   }
-}

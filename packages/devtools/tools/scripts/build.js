@@ -56,32 +56,29 @@ process.on('unhandledRejection', function (err) {
     throw err;
 });
 require("../config/env");
-var fs_extra_1 = __importDefault(require("fs-extra"));
 var paths_1 = require("../config/paths");
 var logger_1 = require("./logger");
 var FileSizeReporter_1 = __importDefault(require("react-dev-utils/FileSizeReporter"));
 var copy_public_folder_1 = require("./utils/copy-public-folder");
 var compile_1 = require("./webpack/compile");
 var build_1 = require("../types/build");
-var build_config_1 = require("../config/build.config");
-var deepmerge_1 = __importDefault(require("deepmerge"));
 var client_1 = require("../webpack/client");
 var server_1 = require("../webpack/server");
 var node_1 = require("../webpack/node");
 var assert_ts_1 = require("assert-ts");
 var empty_build_dir_1 = require("./empty-build-dir");
+var consolidateBuildConfigs_1 = require("./consolidateBuildConfigs");
 var measureFileSizesBeforeBuild = FileSizeReporter_1.default.measureFileSizesBeforeBuild;
 var printFileSizesAfterBuild = FileSizeReporter_1.default.printFileSizesAfterBuild;
 var build = function (_a) {
-    var buildClient = _a.buildClient, buildServer = _a.buildServer, buildPackge = _a.buildPackge, buildNode = _a.buildNode;
+    var buildClient = _a.buildClient, buildServer = _a.buildServer, buildNode = _a.buildNode;
     return __awaiter(void 0, void 0, void 0, function () {
-        var localBuildConfig, buildConfig, nodeConfig, publicDir, previousFileSizes, serverConfig, clientConfig, clientStats, err_1;
+        var buildConfig, nodeConfig, publicDir, previousFileSizes, serverConfig, clientConfig, clientStats, err_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     logger_1.logger.start('starting build');
-                    localBuildConfig = fs_extra_1.default.existsSync(paths_1.paths.localBuildConfig) ? require(paths_1.paths.localBuildConfig) : {};
-                    buildConfig = deepmerge_1.default(build_config_1.config, localBuildConfig);
+                    buildConfig = consolidateBuildConfigs_1.consolidateBuildConfigs();
                     nodeConfig = !!buildNode && node_1.configure(buildConfig.node);
                     publicDir = buildServer ? paths_1.paths.appBuildPublic : paths_1.paths.appBuild;
                     _b.label = 1;

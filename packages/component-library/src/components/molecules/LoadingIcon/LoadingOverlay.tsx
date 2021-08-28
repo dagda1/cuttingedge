@@ -1,7 +1,7 @@
 import LoadingIcon from './LoadingIcon';
 import cs from 'classnames';
 
-import styles from './LoadingIcon.module.scss';
+import * as styles from './LoadingIcon.css';
 export interface LoadingOverlayProps {
   busy: boolean;
   text?: string;
@@ -10,7 +10,7 @@ export interface LoadingOverlayProps {
 
 export const LoadingOverlay = ({ busy, text, darkMode }: LoadingOverlayProps): JSX.Element | null =>
   busy ? (
-    <div className={cs(styles['spinner-overlay'], { [styles.dark]: darkMode })} data-selector="spinner">
+    <div className={cs(styles.spinnerOverlay, { [styles.dark]: darkMode })} data-selector="spinner">
       <div className={styles.spinner}>
         <LoadingIcon darkMode={darkMode} />
         {text && <h2>{text}</h2>}
