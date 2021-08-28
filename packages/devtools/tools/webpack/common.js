@@ -61,14 +61,10 @@ var configureCommon = function (options, overrides) {
     var env = getEnvironment_1.getEnvVariables({ isNode: !!options.isNode });
     var cssFile = getFileName_1.getFileName({
         isProduction: isProduction,
-        isPackage: !!(options === null || options === void 0 ? void 0 : options.isPackage),
-        isMainChunk: true,
         fileType: 'css',
     }) + ".css";
     var cssChunkFile = getFileName_1.getFileName({
         isProduction: isProduction,
-        isPackage: !!(options === null || options === void 0 ? void 0 : options.isPackage),
-        isMainChunk: false,
         fileType: 'css',
     }) + ".css";
     var config = webpack_merge_1.merge(overrides, {

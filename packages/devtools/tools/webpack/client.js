@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -58,16 +47,15 @@ var getFileName_1 = require("./getFileName");
 var isProfilerEnabled = function () { return process.argv.includes('--profile'); };
 var configure = function (options, overrides) {
     if (overrides === void 0) { overrides = {}; }
-    var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild, _a = options.isPackage, isPackage = _a === void 0 ? false : _a;
-    var _b = getEnvironment_1.getEnvironment(), isDevelopment = _b.isDevelopment, isProduction = _b.isProduction, commitHash = _b.commitHash;
+    var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild;
+    var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, commitHash = _a.commitHash;
     var ssrBuild = !isStaticBuild;
-    var _c = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _c.protocol, publicPath = _c.publicPath, port = _c.port, sockPort = _c.sockPort;
+    var _b = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _b.protocol, publicPath = _b.publicPath, port = _b.port, sockPort = _b.sockPort;
     options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
     options.isNode = false;
     options.isWeb = true;
     var common = common_1.configureCommon(options, overrides);
     var polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
-    console.dir({ entries: entries });
     var iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
     var finalEntries = Object.keys(iter).reduce(function (acc, key) {
         var value = iter[key];
@@ -77,26 +65,31 @@ var configure = function (options, overrides) {
     }, {});
     var template = publicDir ? path_1.default.join(publicDir, 'index.html') : 'public/index.html';
     var templateExists = fs_1.default.existsSync(template);
-    var jsFile = getFileName_1.getFileName({ isProduction: isProduction, isPackage: isPackage, isMainChunk: true, fileType: 'js' }) + ".js";
-    var jsChunkFile = getFileName_1.getFileName({ isProduction: isProduction, isPackage: isPackage, isMainChunk: false, fileType: 'js' }) + ".js";
+    var jsFile = getFileName_1.getFileName({ isProduction: isProduction, fileType: 'js' }) + ".js";
+    var jsChunkFile = getFileName_1.getFileName({ isProduction: isProduction, fileType: 'js' }) + ".js";
     var config = webpack_merge_1.merge(common, overrides, {
         name: 'client',
-        target: isPackage ? 'node' : 'web',
-        entry: isPackage ? entries : finalEntries,
+        target: 'web',
+        entry: finalEntries,
         devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, sockPort: sockPort, proxy: proxy, port: port }) : {},
-        output: __assign(__assign({ globalObject: 'this', path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic, publicPath: publicPath, pathinfo: isDevelopment, filename: jsFile, hotUpdateChunkFilename: isPackage ? undefined : 'static/js/[id].[hash].hot-update.js', hotUpdateMainFilename: isPackage ? undefined : 'static/js/[hash].hot-update.json', chunkFilename: jsChunkFile }, (isPackage
-            ? {
-                library: {
-                    export: 'default',
-                    name: 'LIB',
-                    type: 'umd',
-                },
-            }
-            : {})), { devtoolModuleFilenameTemplate: isProduction
+        output: {
+            path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic,
+            publicPath: publicPath,
+            pathinfo: isDevelopment,
+            filename: jsFile,
+            hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
+            hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
+            chunkFilename: jsChunkFile,
+            library: {
+                name: 'LIB',
+                type: 'var',
+            },
+            devtoolModuleFilenameTemplate: isProduction
                 ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     function (info) { return path_1.default.relative(paths_1.paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'); }
                 : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    function (info) { return path_1.default.resolve(info.absoluteResourcePath).replace(/\\/g, '/'); } }),
+                    function (info) { return path_1.default.resolve(info.absoluteResourcePath).replace(/\\/g, '/'); },
+        },
         plugins: [
             isDevelopment &&
                 new react_refresh_webpack_plugin_1.default({
@@ -156,7 +149,7 @@ var configure = function (options, overrides) {
             level: 'verbose',
         },
     });
-    config.optimization = createWebpackOptimisation_1.createWebpackOptimisation({ optimization: config.optimization, isProduction: isProduction, isPackage: isPackage });
+    config.optimization = createWebpackOptimisation_1.createWebpackOptimisation({ optimization: config.optimization, isProduction: isProduction });
     return config;
 };
 exports.configure = configure;

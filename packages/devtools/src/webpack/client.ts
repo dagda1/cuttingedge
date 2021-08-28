@@ -24,7 +24,7 @@ import { getFileName } from './getFileName';
 const isProfilerEnabled = () => process.argv.includes('--profile');
 
 export const configure = (options: DevServerConfig, overrides: DeepPartial<Configuration> = {}): Configuration => {
-  const { entries, publicDir, proxy, devServer, isStaticBuild, isPackage = false } = options;
+  const { entries, publicDir, proxy, devServer, isStaticBuild } = options;
   const { isDevelopment, isProduction, commitHash } = getEnvironment();
   const ssrBuild = !isStaticBuild;
   const { protocol, publicPath, port, sockPort } = getUrlParts({ ssrBuild, isProduction });
@@ -36,8 +36,6 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
   const common = configureCommon(options, overrides);
 
   const polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
-
-  console.dir({ entries });
 
   const iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
 
@@ -54,32 +52,26 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
 
   const templateExists = fs.existsSync(template);
 
-  const jsFile = `${getFileName({ isProduction, isPackage, isMainChunk: true, fileType: 'js' })}.js`;
-  const jsChunkFile = `${getFileName({ isProduction, isPackage, isMainChunk: false, fileType: 'js' })}.js`;
+  const jsFile = `${getFileName({ isProduction, fileType: 'js' })}.js`;
+  const jsChunkFile = `${getFileName({ isProduction, fileType: 'js' })}.js`;
 
   const config: Configuration = merge(common, overrides, {
     name: 'client',
-    target: isPackage ? 'node' : 'web',
-    entry: isPackage ? entries : finalEntries,
+    target: 'web',
+    entry: finalEntries,
     devServer: isDevelopment ? createDevServer({ protocol, sockPort, proxy, port }) : {},
     output: {
-      globalObject: 'this',
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,
       pathinfo: isDevelopment,
       filename: jsFile,
-      hotUpdateChunkFilename: isPackage ? undefined : 'static/js/[id].[hash].hot-update.js',
-      hotUpdateMainFilename: isPackage ? undefined : 'static/js/[hash].hot-update.json',
+      hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
+      hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
       chunkFilename: jsChunkFile,
-      ...(isPackage
-        ? {
-            library: {
-              export: 'default',
-              name: 'LIB',
-              type: 'umd',
-            },
-          }
-        : {}),
+      library: {
+        name: 'LIB',
+        type: 'var',
+      },
       devtoolModuleFilenameTemplate: isProduction
         ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (info: any) => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
@@ -147,7 +139,7 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
     },
   });
 
-  config.optimization = createWebpackOptimisation({ optimization: config.optimization, isProduction, isPackage });
+  config.optimization = createWebpackOptimisation({ optimization: config.optimization, isProduction });
 
   return config;
 };

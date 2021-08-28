@@ -5,7 +5,6 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 import WebpackDevServer from 'webpack-dev-server';
-import clearConsole from 'react-dev-utils/clearConsole';
 import openBrowser from 'react-dev-utils/openBrowser';
 import { paths } from '../config/paths';
 import { logger } from '../scripts/logger';
@@ -17,8 +16,6 @@ import { assert } from 'assert-ts';
 import { DevServerConfig } from '../types/config';
 import fs from 'fs-extra';
 import { scaffold } from './createScaffold';
-
-const isInteractive = process.stdout.isTTY;
 
 const { devServer } = buildConfig;
 
@@ -61,20 +58,13 @@ const HOST = process.env.HOST || '0.0.0.0';
 
     config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic, paths.publicUrlOrPath);
 
-    const server = new WebpackDevServer(compiler, config.devServer);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const server = new WebpackDevServer(config.devServer as any, compiler as any) as any;
 
-    server.listen(port, HOST, (err) => {
-      if (err) {
-        console.error(err);
-        logger.error(err);
-        return;
-      }
-      if (isInteractive) {
-        clearConsole();
-      }
-      logger.info('Starting the development server...\n');
-      openBrowser(urls.localUrlForBrowser);
-    });
+    logger.info('Starting the development server...\n');
+    await server.start({ host: HOST, port });
+
+    openBrowser(urls.localUrlForBrowser);
 
     ['SIGINT', 'SIGTERM'].forEach((sig) => {
       process.on(sig, function () {

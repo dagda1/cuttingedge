@@ -102,7 +102,7 @@ var build = function (_a) {
                     serverConfig = !!buildServer && server_1.configure(buildConfig.server);
                     clientConfig = buildClient &&
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        client_1.configure(__assign(__assign({}, buildConfig.client), { isPackage: !!buildPackge, isStaticBuild: !buildServer }));
+                        client_1.configure(__assign(__assign({}, buildConfig.client), { isStaticBuild: !buildServer }));
                     assert_ts_1.assert(!!clientConfig, 'clientConfig is not present');
                     return [4 /*yield*/, compile_1.compile(clientConfig, build_1.BuildType.client)];
                 case 5:
