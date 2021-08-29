@@ -10,7 +10,6 @@ import path from 'path';
 import { emptyBuildDir } from './empty-build-dir';
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
 import { copyAssets } from './copy-assets';
-import { jsxPluginReact17 } from './es-build-jsx-react-17';
 
 const buildConfig = consolidateBuildConfigs();
 
@@ -58,6 +57,7 @@ async function bundle({
     target: 'node14',
     treeShaking: true,
     allowOverwrite: false,
+    inject: [path.resolve(__dirname, '..', '..', 'react-shim.js')],
     tsconfig: paths.tsConfigProduction,
     jsx: 'transform',
     logLevel: 'warning',
@@ -66,7 +66,6 @@ async function bundle({
       nodeExternalsPlugin({
         packagePath: paths.appPackageJson,
       }),
-      jsxPluginReact17(),
       vanillaExtractPlugin({
         processCss,
       }),

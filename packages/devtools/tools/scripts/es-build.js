@@ -125,6 +125,7 @@ function bundle(_a) {
                             target: 'node14',
                             treeShaking: true,
                             allowOverwrite: false,
+                            inject: [path_1.default.resolve(__dirname, '..', '..', 'react-shim.js')],
                             tsconfig: paths_1.paths.tsConfigProduction,
                             jsx: 'transform',
                             logLevel: 'warning',
