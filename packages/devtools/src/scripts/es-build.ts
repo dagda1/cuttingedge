@@ -8,8 +8,9 @@ import logger from './logger';
 import { CommonOptions } from 'esbuild';
 import path from 'path';
 import { emptyBuildDir } from './empty-build-dir';
-import { copyPublicFolder } from './utils/copy-public-folder';
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
+import { copyAssets } from './copy-assets';
+import { jsxPluginReact17 } from './es-build-jsx-react-17';
 
 const buildConfig = consolidateBuildConfigs();
 
@@ -58,13 +59,14 @@ async function bundle({
     treeShaking: true,
     allowOverwrite: false,
     tsconfig: paths.tsConfigProduction,
-    jsx: 'preserve',
+    jsx: 'transform',
     logLevel: 'warning',
     color: true,
     plugins: [
       nodeExternalsPlugin({
         packagePath: paths.appPackageJson,
       }),
+      jsxPluginReact17(),
       vanillaExtractPlugin({
         processCss,
       }),
@@ -78,7 +80,7 @@ async function bundle({
 const buildPackage = async () => {
   emptyBuildDir();
 
-  copyPublicFolder();
+  copyAssets();
 
   const { default: pkg } = await import(paths.appPackageJson);
 

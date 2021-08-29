@@ -78,8 +78,8 @@ var helpers_1 = require("../rollup/helpers");
 var logger_1 = __importDefault(require("./logger"));
 var path_1 = __importDefault(require("path"));
 var empty_build_dir_1 = require("./empty-build-dir");
-var copy_public_folder_1 = require("./utils/copy-public-folder");
 var esbuild_plugin_1 = require("@vanilla-extract/esbuild-plugin");
+var copy_assets_1 = require("./copy-assets");
 var buildConfig = consolidateBuildConfigs_1.consolidateBuildConfigs();
 var postcss = require('postcss');
 var autoprefixer = require('autoprefixer');
@@ -126,7 +126,7 @@ function bundle(_a) {
                             treeShaking: true,
                             allowOverwrite: false,
                             tsconfig: paths_1.paths.tsConfigProduction,
-                            jsx: 'preserve',
+                            jsx: 'transform',
                             logLevel: 'warning',
                             color: true,
                             plugins: [
@@ -155,7 +155,7 @@ var buildPackage = function () { return __awaiter(void 0, void 0, void 0, functi
         switch (_c.label) {
             case 0:
                 empty_build_dir_1.emptyBuildDir();
-                copy_public_folder_1.copyPublicFolder();
+                copy_assets_1.copyAssets();
                 return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(paths_1.paths.appPackageJson)); })];
             case 1:
                 pkg = (_c.sent()).default;
