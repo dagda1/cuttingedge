@@ -70,6 +70,11 @@
         "import": "./dist/esm/component-library.esm.js",
         "require": "./dist/cjs/component-library.cjs.js",
         "browser": "./dist/umd/component-library.umd.js"
+      },
+      "./styles.css": {
+        "import": "./dist/esm/component-library.esm.css",
+        "require": "./dist/esm/component-library.esm.css",
+        "browser": "./dist/esm/component-library.esm.css"
       }
     },
     "typesVersions": {

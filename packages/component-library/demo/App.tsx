@@ -6,13 +6,14 @@ import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
 import { defaultTheme } from '../src/style/themes/default/default.css';
 import { cuttingTheme } from '../src/style/themes/cutting/cutting.css';
+import { salesTheme } from '../src/style/themes/sales/salesTheme.css';
 
-const AvailableThemes = { defaultTheme, cuttingTheme } as const;
+const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme } as const;
 
 type Theme = keyof typeof AvailableThemes;
 
 export const App: FC = () => {
-  const [theme, setTheme] = useState<Theme>('defaultTheme');
+  const [theme, setTheme] = useState<Theme>('salesTheme');
 
   return (
     <ApplicationLayout className={AvailableThemes[theme]} heading="@cutting/component-library">
@@ -32,11 +33,15 @@ export const App: FC = () => {
                 {
                   value: 'defaultTheme',
                   content: 'gov.uk',
-                  checked: true,
                 },
                 {
                   value: 'cuttingTheme',
                   content: 'cutting',
+                },
+                {
+                  checked: true,
+                  value: 'salesTheme',
+                  content: 'sales',
                 },
               ]}
             />
@@ -217,6 +222,16 @@ export const App: FC = () => {
             <Heading level={2}>H2</Heading>
             <Heading level={3}>H3</Heading>
             <Heading level={4}>H4</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level={2}>Paragaphs</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <p>A paragraph</p>
           </div>
         </div>
       </div>

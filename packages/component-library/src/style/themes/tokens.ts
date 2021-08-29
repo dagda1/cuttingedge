@@ -72,6 +72,7 @@ export const tokens = {
     fonts: {
       heading: '"GDS Transport",arial,sans-serif',
       body: '"GDS Transport",arial,sans-serif',
+      paragraphs: '"GDS Transport",arial,sans-serif',
     },
     webFont: null,
     fontWeight: {
@@ -149,6 +150,9 @@ export const tokens = {
       link: 'underline',
     },
   },
+  headings: {
+    color: palette.black,
+  },
   buttons: {
     textTransform: 'none',
     fontWeight: String(fontWeight.regular),
@@ -160,7 +164,7 @@ export const tokens = {
       borderWidth: '2px',
       borderColor: 'transparent',
       hoverBackgroundColor: colors.primary,
-      backgroundColor: palette.green800,
+      background: palette.green800,
       focusColor: palette.green900,
       color: palette.white,
       marginTop: 0,
@@ -171,7 +175,7 @@ export const tokens = {
     secondary: {
       borderWidth: '2px',
       borderColor: 'transparent',
-      backgroundColor: colors.secondary,
+      background: colors.secondary,
       focusColor: palette.gray300,
       hoverBackgroundColor: colors.primary,
       color: palette.black,
@@ -182,8 +186,8 @@ export const tokens = {
     },
     warning: {
       borderWidth: '2px',
-      borderColor: 'transparent',
-      backgroundColor: colors.error,
+      border: 'transparent',
+      background: colors.error,
       focusColor: palette.red700,
       hoverBackgroundColor: colors.primary,
       color: palette.white,

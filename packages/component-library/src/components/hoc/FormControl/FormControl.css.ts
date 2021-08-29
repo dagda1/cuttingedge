@@ -31,7 +31,7 @@ export const error = style({
 
 export const highlight = style({
   paddingLeft: vars.space['3x'],
-  borderLeft: `5px solid ${vars.buttons.primary.backgroundColor}`,
+  borderLeft: `5px solid ${vars.buttons.primary.background}`,
 });
 
 export const wrapper = style(

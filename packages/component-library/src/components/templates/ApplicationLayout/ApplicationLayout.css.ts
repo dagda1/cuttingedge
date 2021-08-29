@@ -22,7 +22,7 @@ globalStyle('body', {
 export const body = style({
   fontFamily: vars.fontFamily.body,
   fontWeight: vars.fontWeight.regular,
-  backgroundColor: vars.backgroundColor.body,
+  background: vars.backgroundColor.body,
   color: vars.foregroundColor.body,
   margin: 0,
 });
@@ -59,6 +59,15 @@ globalStyle('h1', {
 globalStyle('h2,h3,h4', {
   marginTop: vars.space['4x'],
   marginBottom: vars.space['3x'],
+});
+
+globalStyle('h1,h2,h3,h4', {
+  color: vars.headings.color,
+});
+
+globalStyle('p', {
+  fontFamily: 'sans-serif',
+  ...responsiveFont(),
 });
 
 globalStyle('a:focus,a:focus h2', {

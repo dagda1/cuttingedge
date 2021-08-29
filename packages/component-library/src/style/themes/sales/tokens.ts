@@ -3,8 +3,8 @@ import { palette } from '../../palette.css';
 import { Tokens } from '../tokens';
 
 const colors = {
-  primary: palette.sky700,
-  secondary: palette.sky900,
+  primary: 'linear-gradient(167deg, rgba(40,13,87,1) 0%, rgba(54,63,159,1) 100%)',
+  secondary: palette.white,
 };
 
 const buttonPadding = '14px 22px';
@@ -20,21 +20,20 @@ export const tokens: DeepPartial<Tokens> = {
   },
   color: {
     foreground: {
-      body: palette.white,
+      body: palette.violet300,
     },
     background: {
-      body: palette.gray800,
+      body: 'linear-gradient(167deg, rgba(40,13,87,1) 0%, rgba(54,63,159,1) 100%)',
+    },
+  },
+  typography: {
+    fonts: {
+      heading: `'Poppins',sans-serif`,
+      body: `'Poppins',sans-serif`,
     },
   },
   headings: {
     color: palette.white,
-  },
-  typography: {
-    fonts: {
-      heading: 'Arial, sans-serif',
-      body: 'Arial, sans-serif',
-      paragraphs: 'Arial, sans-serif',
-    },
   },
   buttons: {
     textTransform: 'uppercase',
@@ -43,7 +42,7 @@ export const tokens: DeepPartial<Tokens> = {
       tablet: '100%',
     },
     primary: {
-      background: colors.primary,
+      background: 'linear-gradient( 93deg,rgba(37,42,213,1) 0%,rgba(122,49,222,1) 52%,rgba(196,56,231,1) 100% )',
       focusColor: colors.secondary,
       padding: buttonPadding,
       boxShadowColor: colors.primary,
@@ -51,7 +50,7 @@ export const tokens: DeepPartial<Tokens> = {
     secondary: {
       background: colors.secondary,
       focusColor: colors.primary,
-      color: palette.white,
+      color: palette.blue700,
       padding: buttonPadding,
       boxShadowColor: colors.secondary,
     },
@@ -60,11 +59,11 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   radios: {
-    borderColor: colors.primary,
+    borderColor: palette.blue600,
   },
   links: {
     color: {
-      link: palette.trueGray400,
+      link: palette.violet300,
       hover: palette.white,
     },
     decoration: {
