@@ -23,7 +23,7 @@ export const tokens: DeepPartial<Tokens> = {
       body: palette.violet300,
     },
     background: {
-      body: 'linear-gradient(167deg, rgba(40,13,87,1) 0%, rgba(54,63,159,1) 100%)',
+      body: '`linear-gradient(167deg, rgba(40,13,87,1) 0%, rgba(54,63,159,1) 100%)`',
     },
   },
   typography: {

@@ -25,27 +25,19 @@ export function getClientEnv(
   raw: Env;
   stringified: Partial<Env>;
 } {
-  const raw: Env = Object.keys(process.env).reduce(
-    (env: Env, key) => {
-      env[key] = process.env[key];
-      return env;
+  const raw: Env = {
+    ...{
+      NODE_ENV: process.env.NODE_ENV || 'development',
+      VERBOSE: !!process.env.VERBOSE,
+      HOST: process.env.HOST || options.host || 'localhost',
+      BUILD_TARGET: target === 'web' ? 'client' : 'server',
+      PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
+      CI: !!process.env.CI,
+      PUBLIC_URL: options.publicUrl || '',
+      nodePath,
     },
-    Object.assign(
-      {},
-      {
-        NODE_ENV: process.env.NODE_ENV || 'development',
-        VERBOSE: !!process.env.VERBOSE,
-        HOST: process.env.HOST || options.host || 'localhost',
-        BUILD_TARGET: target === 'web' ? 'client' : 'server',
-        PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
-        CI: !!process.env.CI,
-        PUBLIC_URL: options.publicUrl || '',
-        FAST_REFRESH: !!process.env.FAST_REFRESH || true,
-        nodePath,
-      },
-      additional,
-    ),
-  );
+    ...additional,
+  };
 
   // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = Object.keys(raw).reduce((env: Partial<Env>, key) => {

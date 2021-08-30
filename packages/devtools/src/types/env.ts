@@ -6,7 +6,6 @@ export type Env = {
   PUBLIC_PATH: string;
   CI: boolean;
   PUBLIC_URL: string;
-  FAST_REFRESH?: boolean;
   nodePath: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } & { [k: string]: any };

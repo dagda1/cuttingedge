@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -21,10 +32,7 @@ function getClientEnv(target, options, additional) {
     if (target === void 0) { target = 'web'; }
     if (options === void 0) { options = {}; }
     if (additional === void 0) { additional = {}; }
-    var raw = Object.keys(process.env).reduce(function (env, key) {
-        env[key] = process.env[key];
-        return env;
-    }, Object.assign({}, {
+    var raw = __assign({
         NODE_ENV: process.env.NODE_ENV || 'development',
         VERBOSE: !!process.env.VERBOSE,
         HOST: process.env.HOST || options.host || 'localhost',
@@ -32,9 +40,8 @@ function getClientEnv(target, options, additional) {
         PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
         CI: !!process.env.CI,
         PUBLIC_URL: options.publicUrl || '',
-        FAST_REFRESH: !!process.env.FAST_REFRESH || true,
         nodePath: exports.nodePath,
-    }, additional));
+    }, additional);
     // Stringify all values so we can feed into Webpack DefinePlugin
     var stringified = Object.keys(raw).reduce(function (env, key) {
         if (['__DEV__', '__BROWSER__', '__COMMIT__'].includes(key)) {

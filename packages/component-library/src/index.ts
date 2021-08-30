@@ -15,5 +15,5 @@ export {
   ApplicationLayout,
   ApplicationLayoutWithRouterScroll,
 } from './components/templates/ApplicationLayout/ApplicationLayout';
-export { defaultTheme } from './style/themes/default/default.css';
-export { cuttingTheme } from './style/themes/cutting/cutting.css';
+// TODO: refactor to multiple exports
+export * from './style';

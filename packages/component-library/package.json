@@ -59,7 +59,7 @@
   },
   "scripts": {
     "prebuild": "tsc",
-    "build": "NODE_ENV=production cutting es-build",
+    "build": "NODE_ENV=production cutting esbuild",
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test",

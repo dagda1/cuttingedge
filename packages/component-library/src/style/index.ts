@@ -5,6 +5,7 @@ export { atoms } from './atoms/sprinkles.css';
 export { vars } from './themes/vars.css';
 export { defaultTheme } from './themes/default/default.css';
 export { cuttingTheme } from './themes/cutting/cutting.css';
+export { salesTheme } from './themes/sales/salesTheme.css';
 export { palette } from './palette.css';
 export { breakpoints, breakpointNames } from './breakpoints';
 export { markResetImported } from './reset/reset-tracker';

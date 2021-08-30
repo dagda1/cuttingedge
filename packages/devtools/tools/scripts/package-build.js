@@ -47,4 +47,4 @@ var build_1 = require("./build");
         }
     });
 }); })();
-//# sourceMappingURL=es-build.js.map
+//# sourceMappingURL=esbuild.js.map

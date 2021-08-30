@@ -8,26 +8,43 @@ globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
 });
 
-globalStyle('html, body', {
-  margin: 0,
-  padding: 0,
-  height: '100%',
-});
-
-globalStyle('body', {
-  textSizeAdjust: '100%',
-  background: vars.backgroundColor.body,
-});
-
-export const body = style({
+const bodyStyle = {
   fontFamily: vars.fontFamily.body,
   fontWeight: vars.fontWeight.regular,
   background: vars.backgroundColor.body,
   color: vars.foregroundColor.body,
   margin: 0,
+};
+
+export const body = style({
+  ...bodyStyle,
 });
 
-globalStyle('#root', {
+globalStyle('*,*:before,*:after', {
+  boxSizing: 'border-box',
+});
+
+globalStyle('body:nth-child(2)', {
+  display: 'flex',
+  flexDirection: 'column',
+  flex: 1,
+  border: '5px solid red',
+});
+
+globalStyle('main', {
+  flex: 1,
+  justifyContent: 'center',
+  border: '10px solid green',
+});
+
+globalStyle('html, body', {
+  margin: 0,
+  padding: 0,
+  height: '100%',
+  textSizeAdjust: '100%',
+});
+
+globalStyle('#root,#__next', {
   maxWidth: `${breakpoints.desktop}rem`,
   margin: '0 auto',
   display: 'flex',
@@ -44,6 +61,10 @@ globalStyle('main', {
   flex: '1 0 auto',
   paddingRight: vars.space['2x'],
   paddingLeft: vars.space['2x'],
+});
+
+globalStyle('header,footer', {
+  ...bodyStyle,
 });
 
 globalStyle('h1', responsiveHeadingFont('h1'));
@@ -66,7 +87,7 @@ globalStyle('h1,h2,h3,h4', {
 });
 
 globalStyle('p', {
-  fontFamily: 'sans-serif',
+  fontFamily: vars.fontFamily.paragraphs,
   ...responsiveFont(),
 });
 

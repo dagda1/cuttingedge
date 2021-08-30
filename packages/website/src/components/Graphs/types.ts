@@ -1,5 +1,5 @@
 // https://www.nationsonline.org/oneworld/country_code_list.htm
-export type Countries = 'ITA' | 'GBR' | 'USA' | 'SWE' | 'SCO' | 'TUR' | 'IND';
+export type Countries = 'ITA' | 'GBR' | 'USA' | 'SWE' | 'SCO' | 'TUR' | 'IND' | 'BRA';
 
 export type CountryData = {
   longName: string;
@@ -62,11 +62,11 @@ export const countryData: CountriesData = {
     color: '#99ccff',
     population: 60000000,
   },
-  // BRA: {
-  //   longName: 'Brazil',
-  //   color: '#FEDF00',
-  //   population: 210000000,
-  // },
+  BRA: {
+    longName: 'Brazil',
+    color: '#FEDF00',
+    population: 210000000,
+  },
   IND: {
     longName: 'India',
     color: '#964B00',
