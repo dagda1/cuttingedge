@@ -7,6 +7,7 @@ import { ApplicationLayout } from '../src/components/templates/ApplicationLayout
 import { defaultTheme } from '../src/style/themes/default/default.css';
 import { cuttingTheme } from '../src/style/themes/cutting/cutting.css';
 import { salesTheme } from '../src/style/themes/sales/salesTheme.css';
+import cs from 'classnames';
 
 const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme } as const;
 
@@ -16,7 +17,7 @@ export const App: FC = () => {
   const [theme, setTheme] = useState<Theme>('salesTheme');
 
   return (
-    <ApplicationLayout className={AvailableThemes[theme]} heading="@cutting/component-library">
+    <ApplicationLayout className={cs(AvailableThemes[theme], styles.background)} heading="@cutting/component-library">
       <div className={styles.wrap}>
         <div className={styles.layout}>
           <div className={styles.item}>

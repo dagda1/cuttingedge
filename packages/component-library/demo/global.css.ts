@@ -12,6 +12,10 @@ export const wrap = composeStyles(
   }),
 );
 
+export const background = style({
+  background: vars.backgroundColor.body,
+});
+
 export const layout = style({
   display: 'flex',
   flex: 1,

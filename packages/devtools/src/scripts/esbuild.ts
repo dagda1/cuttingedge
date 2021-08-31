@@ -7,7 +7,7 @@ import { safePackageName } from '../rollup/helpers';
 import logger from './logger';
 import { CommonOptions } from 'esbuild';
 import path from 'path';
-import { emptyBuildDir } from './empty-build-dir';
+// import { emptyBuildDir } from './empty-build-dir';
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
 import { copyAssets } from './copy-assets';
 
@@ -37,7 +37,10 @@ async function bundle({
   format: ModuleFormat;
   env: 'development' | 'production';
 }): Promise<void> {
-  assert(Array.isArray(buildConfig.client.entries), `build config entries needs to be a string array`);
+  const entryPoints =
+    typeof buildConfig.client.entries === 'string' ? [buildConfig.client.entries] : buildConfig.client.entries;
+
+  assert(Array.isArray(entryPoints), `build config entries needs to be a string array`);
 
   const pkgName = safePackageName(packageName);
   const fileName = `${pkgName}.${format === 'iife' ? 'umd' : format}.js`;
@@ -46,7 +49,7 @@ async function bundle({
   logger.info(`writing ${path.basename(outfile)} for ${packageName}`);
 
   await build({
-    entryPoints: buildConfig.client.entries,
+    entryPoints,
     outfile,
     bundle: true,
     // minify: env === 'production',
@@ -56,7 +59,7 @@ async function bundle({
     format,
     target: 'node14',
     treeShaking: true,
-    allowOverwrite: false,
+    allowOverwrite: true,
     inject: [path.resolve(__dirname, '..', '..', 'react-shim.js')],
     tsconfig: paths.tsConfigProduction,
     jsx: 'transform',
@@ -77,7 +80,7 @@ async function bundle({
 }
 
 const buildPackage = async () => {
-  emptyBuildDir();
+  // emptyBuildDir();
 
   copyAssets();
 

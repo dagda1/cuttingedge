@@ -77,7 +77,7 @@ var assert_ts_1 = require("assert-ts");
 var helpers_1 = require("../rollup/helpers");
 var logger_1 = __importDefault(require("./logger"));
 var path_1 = __importDefault(require("path"));
-var empty_build_dir_1 = require("./empty-build-dir");
+// import { emptyBuildDir } from './empty-build-dir';
 var esbuild_plugin_1 = require("@vanilla-extract/esbuild-plugin");
 var copy_assets_1 = require("./copy-assets");
 var buildConfig = consolidateBuildConfigs_1.consolidateBuildConfigs();
@@ -104,17 +104,18 @@ function bundle(_a) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     env = _a.env;
     return __awaiter(this, void 0, void 0, function () {
-        var pkgName, fileName, outfile;
+        var entryPoints, pkgName, fileName, outfile;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    assert_ts_1.assert(Array.isArray(buildConfig.client.entries), "build config entries needs to be a string array");
+                    entryPoints = typeof buildConfig.client.entries === 'string' ? [buildConfig.client.entries] : buildConfig.client.entries;
+                    assert_ts_1.assert(Array.isArray(entryPoints), "build config entries needs to be a string array");
                     pkgName = helpers_1.safePackageName(packageName);
                     fileName = pkgName + "." + (format === 'iife' ? 'umd' : format) + ".js";
                     outfile = path_1.default.join(paths_1.paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
                     logger_1.default.info("writing " + path_1.default.basename(outfile) + " for " + packageName);
                     return [4 /*yield*/, esbuild_1.build({
-                            entryPoints: buildConfig.client.entries,
+                            entryPoints: entryPoints,
                             outfile: outfile,
                             bundle: true,
                             // minify: env === 'production',
@@ -124,7 +125,7 @@ function bundle(_a) {
                             format: format,
                             target: 'node14',
                             treeShaking: true,
-                            allowOverwrite: false,
+                            allowOverwrite: true,
                             inject: [path_1.default.resolve(__dirname, '..', '..', 'react-shim.js')],
                             tsconfig: paths_1.paths.tsConfigProduction,
                             jsx: 'transform',
@@ -155,7 +156,7 @@ var buildPackage = function () { return __awaiter(void 0, void 0, void 0, functi
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
-                empty_build_dir_1.emptyBuildDir();
+                // emptyBuildDir();
                 copy_assets_1.copyAssets();
                 return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(paths_1.paths.appPackageJson)); })];
             case 1:

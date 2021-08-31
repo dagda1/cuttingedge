@@ -12,8 +12,8 @@ export interface ApplicationLayoutProps {
   italicise?: boolean;
   center?: boolean;
   className?: string;
-  Footer?: ReactElement;
-  Header?: ReactElement;
+  footer?: ReactElement;
+  header?: ReactElement;
   innerRef?: RefObject<HTMLElement>;
 }
 
@@ -29,18 +29,22 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
   heading,
   className,
   innerRef,
-  Header = <header className={styles.hidden}>Header</header>,
-  Footer = <footer className={styles.hidden}>Footer</footer>,
+  header,
+  footer,
   children,
 }) => {
   return (
     <>
-      {Header}
-      <main className={cs(styles.body, className)} ref={innerRef}>
+      <header className={cs({ [styles.hidden]: !header })}>
+        <div className={styles.size}>{header}</div>
+      </header>
+      <main className={cs(styles.body, styles.size, className)} ref={innerRef}>
         <ApplicationLayoutHeading heading={heading} />
         {children}
       </main>
-      {Footer}
+      <footer className={cs({ [styles.hidden]: !header })}>
+        <div className={styles.size}>{footer}</div>
+      </footer>
     </>
   );
 };

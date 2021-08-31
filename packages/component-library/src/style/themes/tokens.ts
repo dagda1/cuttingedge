@@ -61,9 +61,13 @@ export const tokens = {
       linkVisited: palette.trueGray700,
       error: colors.error,
       body: palette.black,
+      header: palette.black,
+      footer: palette.black,
     },
     background: {
       body: palette.white,
+      header: palette.white,
+      footer: palette.white,
       input: palette.white,
       focus: palette.blue100,
     },

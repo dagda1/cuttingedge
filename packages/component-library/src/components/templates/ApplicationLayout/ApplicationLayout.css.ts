@@ -1,5 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { rem } from 'polished';
+import { responsiveStyle } from 'src/style';
 import { breakpoints } from '../../../style/breakpoints';
 import { vars } from '../../../style/themes/vars.css';
 import { responsiveFont, responsiveHeadingFont } from '../../../style/typography/typography';
@@ -11,30 +12,24 @@ globalStyle('*,*:before,*:after', {
 const bodyStyle = {
   fontFamily: vars.fontFamily.body,
   fontWeight: vars.fontWeight.regular,
-  background: vars.backgroundColor.body,
-  color: vars.foregroundColor.body,
-  margin: 0,
 };
 
 export const body = style({
   ...bodyStyle,
+  color: vars.foregroundColor.body,
+  // TODO: make this the body
+  // background: vars.backgroundColor.body,
 });
 
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
 });
 
-globalStyle('body:nth-child(2)', {
+// TODO: make less specific
+globalStyle('#root > div,#__next > div', {
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
-  border: '5px solid red',
-});
-
-globalStyle('main', {
-  flex: 1,
-  justifyContent: 'center',
-  border: '10px solid green',
 });
 
 globalStyle('html, body', {
@@ -45,7 +40,6 @@ globalStyle('html, body', {
 });
 
 globalStyle('#root,#__next', {
-  maxWidth: `${breakpoints.desktop}rem`,
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
@@ -55,16 +49,48 @@ globalStyle('#root,#__next', {
   paddingBottom: vars.space['2x'],
 });
 
+export const size = style({
+  border: '10px solid yellow',
+  ...responsiveStyle({
+    mobile: {
+      maxWidth: 'none',
+    },
+    tablet: {
+      maxWidth: `${breakpoints.tablet}rem`,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+    desktop: {
+      maxWidth: `${breakpoints.desktop}rem`,
+    },
+  }),
+});
+
 globalStyle('main', {
   display: 'flex',
+  maxWidth: `${breakpoints.desktop}rem`,
   flexDirection: 'column',
   flex: '1 0 auto',
-  paddingRight: vars.space['2x'],
-  paddingLeft: vars.space['2x'],
+  width: '100%',
 });
 
 globalStyle('header,footer', {
   ...bodyStyle,
+});
+
+globalStyle('header', {
+  background: vars.backgroundColor.header,
+  color: vars.foregroundColor.header,
+});
+
+globalStyle('footer', {
+  background: vars.backgroundColor.footer,
+  color: vars.foregroundColor.footer,
+});
+
+globalStyle('header a,footer a', {
+  color: 'inherit',
+  cursor: 'pointer',
 });
 
 globalStyle('h1', responsiveHeadingFont('h1'));
