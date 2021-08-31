@@ -32,8 +32,8 @@ export const tokens: DeepPartial<Tokens> = {
   },
   typography: {
     fonts: {
-      heading: `baton-turbo,sans-serif`,
-      body: `baton-turbo,sans-serif`,
+      heading: `metropolis,sans-serif`,
+      body: `metropolis,sans-serif`,
     },
   },
   headings: {
@@ -46,10 +46,10 @@ export const tokens: DeepPartial<Tokens> = {
       tablet: '100%',
     },
     primary: {
-      background: palette.orange400,
+      background: 'linear-gradient( 93deg,rgba(37,42,213,1) 0%,rgba(122,49,222,1) 52%,rgba(196,56,231,1) 100% )',
       focusColor: colors.secondary,
       padding: buttonPadding,
-      boxShadowColor: palette.orange400,
+      boxShadowColor: colors.primary,
     },
     secondary: {
       background: colors.secondary,

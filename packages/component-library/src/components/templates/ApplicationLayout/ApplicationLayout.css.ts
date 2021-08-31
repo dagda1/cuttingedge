@@ -50,7 +50,6 @@ globalStyle('#root,#__next', {
 });
 
 export const size = style({
-  border: '10px solid yellow',
   ...responsiveStyle({
     mobile: {
       maxWidth: 'none',

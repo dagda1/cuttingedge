@@ -24,11 +24,16 @@ export const root = style({
   ':focus': {
     borderColor: vars.accessibility.accessibleOutline.backgroundColor,
     color: vars.foregroundColor.body,
-    backgroundColor: vars.accessibility.accessibleOutline.backgroundColor,
+    background: vars.accessibility.accessibleOutline.backgroundColor,
   },
   ':focus-visible': {
     outline: '3px solid transparent',
     boxShadow: `0 2px 0 ${vars.foregroundColor.body}`,
+  },
+  ':hover': {
+    borderColor: vars.accessibility.accessibleOutline.backgroundColor,
+    color: vars.foregroundColor.body,
+    background: vars.accessibility.accessibleOutline.backgroundColor,
   },
 });
 

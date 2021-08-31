@@ -29,7 +29,7 @@ const convertTypography = <K extends keyof Tokens['typography']['headings'] | ke
     return acc;
   }, {} as Convert<typeof o, string>);
 
-const ratio = 1.5;
+const ratio = 1.2;
 const getLineHeight = (fontSize: number | string) => rem(Number(fontSize) * ratio);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

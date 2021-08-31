@@ -1,20 +1,21 @@
 import * as styles from './global.css';
 import React, { FC, useState } from 'react';
-import { Heading, FormInput, ExternalLink } from '../src';
+import { Heading, FormInput, ExternalLink, ButtonLink } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
 import { defaultTheme } from '../src/style/themes/default/default.css';
 import { cuttingTheme } from '../src/style/themes/cutting/cutting.css';
 import { salesTheme } from '../src/style/themes/sales/salesTheme.css';
+import { consultingTheme } from '../src/style/themes/consulting/consultingTheme.css';
 import cs from 'classnames';
 
-const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme } as const;
+const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme, consultingTheme } as const;
 
 type Theme = keyof typeof AvailableThemes;
 
 export const App: FC = () => {
-  const [theme, setTheme] = useState<Theme>('salesTheme');
+  const [theme, setTheme] = useState<Theme>('consultingTheme');
 
   return (
     <ApplicationLayout className={cs(AvailableThemes[theme], styles.background)} heading="@cutting/component-library">
@@ -40,12 +41,37 @@ export const App: FC = () => {
                   content: 'cutting',
                 },
                 {
-                  checked: true,
                   value: 'salesTheme',
                   content: 'sales',
                 },
+                {
+                  checked: true,
+                  value: 'consultingTheme',
+                  content: 'consulting',
+                },
               ]}
             />
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level={2}>Links</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a href="#">A link</a>
+          </div>
+          <div className={styles.item}>
+            <ExternalLink href="//cutting.scot" target="_blank">
+              External Link
+            </ExternalLink>
+          </div>
+          <div className={styles.item}>
+            <ButtonLink href="//cutting.scot" target="_blank">
+              External Link
+            </ButtonLink>
           </div>
         </div>
         <div className={styles.layout}>
@@ -194,22 +220,6 @@ export const App: FC = () => {
               invalid
               errorMessage="foo bar"
             />
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <Heading level={2}>Links</Heading>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#">A link</a>
-          </div>
-          <div className={styles.item}>
-            <ExternalLink href="//cutting.scot" target="_blank">
-              External Link
-            </ExternalLink>
           </div>
         </div>
         <div className={styles.layout}>
