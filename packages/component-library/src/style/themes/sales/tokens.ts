@@ -4,7 +4,7 @@ import { Tokens } from '../tokens';
 
 const colors = {
   primary: 'linear-gradient(167deg, rgba(40,13,87,1) 0%, rgba(54,63,159,1) 100%)',
-  secondary: palette.white,
+  secondary: palette.lime500,
 };
 
 const buttonPadding = '14px 22px';
@@ -20,12 +20,12 @@ export const tokens: DeepPartial<Tokens> = {
   },
   color: {
     foreground: {
-      body: palette.violet300,
+      body: palette.black,
       header: palette.gray600,
       footer: palette.gray600,
     },
     background: {
-      body: 'linear-gradient(167deg, rgba(40,13,87,1) 0%, rgba(54,63,159,1) 100%)',
+      body: palette.white,
       header: palette.white,
       footer: palette.white,
     },
@@ -37,7 +37,7 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   headings: {
-    color: palette.white,
+    color: palette.black,
   },
   buttons: {
     textTransform: 'uppercase',
@@ -54,7 +54,7 @@ export const tokens: DeepPartial<Tokens> = {
     secondary: {
       background: colors.secondary,
       focusColor: colors.primary,
-      color: palette.blue700,
+      color: palette.white,
       padding: buttonPadding,
       boxShadowColor: colors.secondary,
     },
@@ -63,11 +63,11 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   radios: {
-    borderColor: palette.blue600,
+    borderColor: palette.black,
   },
   links: {
     color: {
-      link: palette.violet300,
+      link: palette.black,
       hover: palette.gray600,
     },
     decoration: {

@@ -15,7 +15,7 @@ const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme, consultingThem
 type Theme = keyof typeof AvailableThemes;
 
 export const App: FC = () => {
-  const [theme, setTheme] = useState<Theme>('consultingTheme');
+  const [theme, setTheme] = useState<Theme>('salesTheme');
 
   return (
     <ApplicationLayout className={cs(AvailableThemes[theme], styles.background)} heading="@cutting/component-library">
@@ -70,7 +70,7 @@ export const App: FC = () => {
           </div>
           <div className={styles.item}>
             <ButtonLink href="//cutting.scot" target="_blank">
-              External Link
+              Button Link
             </ButtonLink>
           </div>
         </div>

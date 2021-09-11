@@ -126,4 +126,15 @@ export const palette = {
   fuchsia700: colors.fuchsia['700'],
   fuchsia800: colors.fuchsia['800'],
   fuchsia900: colors.fuchsia['900'],
+
+  lime50: colors.lime['50'],
+  lime100: colors.lime['100'],
+  lime200: colors.lime['200'],
+  lime300: colors.lime['300'],
+  lime400: colors.lime['400'],
+  lime500: colors.lime['500'],
+  lime600: colors.lime['600'],
+  lime700: colors.lime['700'],
+  lime800: colors.lime['800'],
+  lime900: colors.lime['900'],
 };

@@ -1,6 +1,6 @@
 {
   "name": "@cutting/component-library",
-  "version": "4.26.2",
+  "version": "4.27.2-preview",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -59,7 +59,7 @@
   },
   "scripts": {
     "prebuild": "tsc",
-    "build": "NODE_ENV=production cutting esbuild",
+    "build": "NODE_ENV=production cutting esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json",
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test",
