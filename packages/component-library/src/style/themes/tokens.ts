@@ -202,7 +202,7 @@ export const tokens = {
     },
   },
   radios: {
-    borderWidth: '2px',
+    borderWidth: '3px',
     borderColor: palette.black,
     regular: {
       width: rem(44),
