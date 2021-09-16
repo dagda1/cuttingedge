@@ -23,7 +23,7 @@ var argv = process.argv.slice(2);
 argv.push('--no-cache');
 // Watch unless on CI or in coverage mode
 if (!process.env.CI && argv.indexOf('--coverage') < 0) {
-    argv.push('--watch');
+    argv.push('--watchAll');
 }
 var config = fs_1.default.existsSync(paths_1.paths.ownJestConfig) ? paths_1.paths.ownJestConfig : paths_1.paths.jestConfig;
 argv.push('--config', config);

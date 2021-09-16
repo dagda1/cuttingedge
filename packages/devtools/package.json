@@ -1,6 +1,6 @@
 {
   "name": "@cutting/devtools",
-  "version": "4.28.1",
+  "version": "4.28.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -12,6 +12,7 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "tsc --build",
+    "prepublishOnly": "yarn build",
     "build": "cutting ts-build",
     "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test",
