@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.28.2
+
+### Patch Changes
+
+- use watchAll for jest
+
 ## 4.28.1
 
 ### Patch Changes
