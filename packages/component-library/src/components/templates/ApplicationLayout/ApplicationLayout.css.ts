@@ -18,7 +18,7 @@ export const body = style({
   ...bodyStyle,
   color: vars.foregroundColor.body,
   // TODO: make this the body
-  // background: vars.backgroundColor.body,
+  background: vars.backgroundColor.body,
 });
 
 globalStyle('*,*:before,*:after', {

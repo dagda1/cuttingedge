@@ -113,7 +113,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         background: tokens.buttons.primary.background,
         color: tokens.buttons.primary.color,
         padding: tokens.buttons.primary.padding,
-        boxShadow: `0 2px 0 ${tokens.buttons.primary.boxShadowColor} !important`,
         ':hover': {
           background: tokens.buttons.primary.focusColor,
         },
@@ -123,7 +122,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         background: tokens.buttons.secondary.background,
         color: tokens.buttons.secondary.color,
         padding: tokens.buttons.secondary.padding,
-        boxShadow: `0 2px 0 ${tokens.buttons.secondary.boxShadowColor} !important`,
         ':hover': {
           background: tokens.buttons.secondary.focusColor,
         },
@@ -133,7 +131,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         background: tokens.buttons.warning.background,
         color: tokens.buttons.warning.color,
         padding: tokens.buttons.secondary.padding,
-        boxShadow: `0 2px 0 ${tokens.buttons.warning.boxShadowColor} !important`,
         ':hover': {
           background: tokens.buttons.warning.focusColor,
         },

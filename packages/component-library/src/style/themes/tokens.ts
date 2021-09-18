@@ -174,7 +174,6 @@ export const tokens = {
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
-      boxShadowColor: palette.gray900,
     },
     secondary: {
       borderWidth: '2px',
@@ -186,7 +185,6 @@ export const tokens = {
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
-      boxShadowColor: palette.trueGray400,
     },
     warning: {
       borderWidth: '2px',
@@ -198,7 +196,6 @@ export const tokens = {
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
-      boxShadowColor: palette.orange900,
     },
   },
   radios: {

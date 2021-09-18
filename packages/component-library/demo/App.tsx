@@ -18,8 +18,13 @@ export const App: FC = () => {
   const [theme, setTheme] = useState<Theme>('salesTheme');
 
   return (
-    <ApplicationLayout className={cs(AvailableThemes[theme], styles.background)} heading="@cutting/component-library">
+    <ApplicationLayout className={cs(AvailableThemes[theme], styles.background)}>
       <div className={styles.wrap}>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <h1>@cutting/component-library</h1>
+          </div>
+        </div>
         <div className={styles.layout}>
           <div className={styles.item}>
             <RadioGroup<Theme>
@@ -41,11 +46,11 @@ export const App: FC = () => {
                   content: 'cutting',
                 },
                 {
+                  checked: true,
                   value: 'salesTheme',
                   content: 'sales',
                 },
                 {
-                  checked: true,
                   value: 'consultingTheme',
                   content: 'consulting',
                 },

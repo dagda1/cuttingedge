@@ -20,24 +20,24 @@ export const tokens: DeepPartial<Tokens> = {
   },
   color: {
     foreground: {
-      body: palette.black,
-      header: palette.gray600,
-      footer: palette.gray600,
-    },
-    background: {
       body: palette.white,
       header: palette.white,
       footer: palette.white,
     },
+    background: {
+      body: palette.gray800,
+      header: palette.gray800,
+      footer: palette.gray800,
+    },
   },
   typography: {
     fonts: {
-      heading: `baton-turbo,sans-serif`,
-      body: `baton-turbo,sans-serif`,
+      heading: 'futura-pt,sans-serif',
+      body: 'futura-pt,sans-serif',
     },
   },
   headings: {
-    color: palette.black,
+    color: palette.white,
   },
   buttons: {
     textTransform: 'uppercase',
@@ -49,26 +49,21 @@ export const tokens: DeepPartial<Tokens> = {
       background: palette.orange400,
       focusColor: colors.secondary,
       padding: buttonPadding,
-      boxShadowColor: palette.orange400,
     },
     secondary: {
       background: colors.secondary,
       focusColor: colors.primary,
       color: palette.white,
       padding: buttonPadding,
-      boxShadowColor: colors.secondary,
-    },
-    warning: {
-      boxShadowColor: palette.redError,
     },
   },
   radios: {
-    borderColor: palette.black,
+    borderColor: palette.white,
   },
   links: {
     color: {
-      link: palette.black,
-      hover: palette.gray600,
+      link: palette.white,
+      hover: palette.gray300,
     },
     decoration: {
       link: 'none',

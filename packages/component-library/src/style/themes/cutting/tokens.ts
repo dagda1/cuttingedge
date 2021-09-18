@@ -50,17 +50,12 @@ export const tokens: DeepPartial<Tokens> = {
       background: colors.primary,
       focusColor: colors.secondary,
       padding: buttonPadding,
-      boxShadowColor: colors.primary,
     },
     secondary: {
       background: colors.secondary,
       focusColor: colors.primary,
       color: palette.white,
       padding: buttonPadding,
-      boxShadowColor: colors.secondary,
-    },
-    warning: {
-      boxShadowColor: palette.redError,
     },
   },
   radios: {
