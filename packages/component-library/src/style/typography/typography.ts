@@ -24,7 +24,7 @@ export const responsiveFont = (): StyleRule => {
 
 export const responsiveHeadingFont = (heading: keyof typeof vars.fonts.headings): StyleRule => {
   return {
-    fontFamily: vars.fontFamily.body,
+    fontFamily: vars.fontFamily.heading,
     ...responsiveStyle({
       mobile: {
         fontSize: vars.fonts.headings[heading].mobile,

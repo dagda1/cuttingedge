@@ -235,6 +235,10 @@ export const App: FC = () => {
         <div className={styles.layout}>
           <div className={styles.item}>
             <Heading level={1}>H1</Heading>
+            <Heading level={1}>
+              This is a really, really, really, really, really, really, really, really, really, really, really, really,
+              really long h1
+            </Heading>
             <Heading level={2}>H2</Heading>
             <Heading level={3}>H3</Heading>
             <Heading level={4}>H4</Heading>

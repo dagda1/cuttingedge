@@ -32,8 +32,9 @@ export const tokens: DeepPartial<Tokens> = {
   },
   typography: {
     fonts: {
-      heading: 'futura-pt,sans-serif',
-      body: 'futura-pt,sans-serif',
+      heading: 'Tahi,sans-serif',
+      body: 'Tahi,sans-serif',
+      paragraphs: 'Tahi,sans-serif',
     },
   },
   headings: {

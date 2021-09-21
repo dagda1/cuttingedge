@@ -39,7 +39,7 @@ globalStyle('html, body', {
   textSizeAdjust: '100%',
 });
 
-globalStyle('#root,#__next', {
+globalStyle('#root', {
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
