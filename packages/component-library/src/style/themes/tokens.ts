@@ -10,7 +10,7 @@ export const colors = {
 
 type ScaleKeys<A extends readonly unknown[]> = `${keyof A & `${number}`}x`;
 
-const spacing = [4, 8, 12, 16, 20, 24, 36] as const;
+const spacing = [4, 8, 12, 16, 20, 24, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 80] as const;
 type SpaceKeys = ScaleKeys<typeof spacing>;
 
 const borderRadius = [1, 2, 4, 8, 16, 32] as const;
