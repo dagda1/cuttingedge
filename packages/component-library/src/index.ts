@@ -14,6 +14,7 @@ export { LoadingOverlay } from './components/molecules/LoadingIcon/LoadingOverla
 export { FormControl } from './components/hoc/FormControl/FormControl';
 export { FormInput } from './components/molecules/FormControls/FormControls';
 export { RadioGroup } from './components/molecules/RadioGroup/RadioGroup';
+export { CheckboxGroup } from './components/molecules/CheckboxGroup/CheckboxGroup';
 export {
   ApplicationLayout,
   ApplicationLayoutWithRouterScroll,

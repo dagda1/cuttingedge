@@ -4,7 +4,7 @@ import { Radio } from '../../atoms/Radio/Radio';
 import { CheckableProps, CheckableLayoutProps, CheckableValueType } from '../../atoms/Checkable/types';
 import cs from 'classnames';
 
-import * as styles from '../RadioGroup/RadioGroup.css';
+import * as styles from './Checkable.css';
 
 export type CheckableOption<V extends CheckableValueType> = CheckableProps<V> & { content: ReactNode };
 

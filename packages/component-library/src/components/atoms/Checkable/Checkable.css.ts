@@ -43,19 +43,37 @@ globalStyle(`${item} label:before`, {
   width: '40px',
   height: '40px',
   border: `${vars.radios.borderWidth} solid ${vars.radios.borderColor}`,
-  borderRadius: '50%',
   background: 'transparent',
 });
 
-globalStyle(`${item} label:after`, {
+globalStyle(`${item} input[type="checkbox"]:checked + label:after`, {
+  content: "''",
+  boxSizing: 'border-box',
+  position: 'absolute',
+  top: '11px',
+  left: '9px',
+  width: '23px',
+  height: '12px',
+  transform: 'rotate(-45deg)',
+  border: 'solid',
+  borderWidth: '0 0 5px 5px',
+  borderTopColor: 'transparent',
+  background: 'transparent',
+});
+
+globalStyle(`${item} input[type="radio"] + label:before`, {
+  borderRadius: '50%',
+});
+
+globalStyle(`${item} input[type="radio"] + label:after`, {
   content: "''",
   position: 'absolute',
   top: '10px',
   left: '10px',
   width: '0',
   height: '0',
-  borderRadius: '50%',
   background: 'currentColor',
+  borderRadius: '50%',
 });
 
 globalStyle(`${item} input:focus + label:before`, {

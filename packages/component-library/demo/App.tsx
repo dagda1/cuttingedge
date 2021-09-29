@@ -1,6 +1,6 @@
 import * as styles from './global.css';
 import React, { FC, useState } from 'react';
-import { Heading, FormInput, ExternalLink, ButtonLink } from '../src';
+import { Heading, FormInput, ExternalLink, ButtonLink, CheckboxGroup } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
@@ -98,6 +98,89 @@ export const App: FC = () => {
             <Button disabled buttonStyle="primary">
               Disabled
             </Button>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level={2}>Checkbox Group</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <CheckboxGroup
+              legend="large stacked"
+              name="large-stacked"
+              layout={'stacked'}
+              size={'large'}
+              options={[
+                {
+                  value: 'off',
+                  content: 'OFF',
+                },
+                {
+                  value: 'on',
+                  checked: true,
+                  content: 'ON',
+                },
+              ]}
+            />
+          </div>
+          <div className={styles.item}>
+            <CheckboxGroup
+              name="small-stacked"
+              layout={'stacked'}
+              size={'small'}
+              legend="small stacked"
+              options={[
+                {
+                  value: 'off',
+                  content: 'OFF',
+                },
+                {
+                  value: 'on',
+                  checked: true,
+                  content: 'ON',
+                },
+              ]}
+            />
+          </div>
+          <div className={styles.item}>
+            <CheckboxGroup
+              name="large-inline"
+              layout={'inline'}
+              size={'large'}
+              legend="large inline"
+              options={[
+                {
+                  value: 'off',
+                  content: 'OFF',
+                },
+                {
+                  value: 'on',
+                  checked: true,
+                  content: 'ON',
+                },
+              ]}
+            />
+          </div>
+          <div className={styles.item}>
+            <CheckboxGroup
+              name="small-inline"
+              layout={'inline'}
+              size={'small'}
+              legend="small inline"
+              options={[
+                {
+                  value: 'off',
+                  content: 'OFF',
+                },
+                {
+                  value: 'on',
+                  checked: true,
+                  content: 'ON',
+                },
+              ]}
+            />
           </div>
         </div>
         <div className={styles.layout}>
