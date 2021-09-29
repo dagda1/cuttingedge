@@ -1,5 +1,5 @@
 export type { StandardProps } from './types';
-export type { RadioGroupProps } from './components/molecules/RadioGroup/RadioGroup';
+export type { CheckableGroupProps } from './components/molecules/CheckableGroup/CheckableGroup';
 
 export { Heading } from './components/atoms/Heading/Heading';
 export { ExternalLink } from './components/atoms/ExternalLink/ExternalLink';

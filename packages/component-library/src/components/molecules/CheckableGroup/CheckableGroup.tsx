@@ -1,26 +1,26 @@
 import type { ReactNode, ChangeEvent } from 'react';
 import { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio/Radio';
-import { RadioProps, RadioLayoutProps, RadioValueType } from '../../atoms/Radio/types';
+import { CheckableProps, CheckableLayoutProps, CheckableValueType } from '../../atoms/Checkable/types';
 import cs from 'classnames';
 
 import * as styles from '../RadioGroup/RadioGroup.css';
 
-export type CheckableOption<V extends RadioValueType> = RadioProps<V> & { content: ReactNode };
+export type CheckableOption<V extends CheckableValueType> = CheckableProps<V> & { content: ReactNode };
 
 type LegendMode = 'screen-reader-only' | 'visible';
 
-export interface RadioGroupProps<V extends RadioValueType> {
+export interface CheckableGroupProps<V extends CheckableValueType> {
   legend: string;
   legendMode?: LegendMode;
   name: string;
   options: CheckableOption<V>[];
-  onChange?: (option: RadioProps<V>) => void;
+  onChange?: (option: CheckableProps<V>) => void;
   className?: string;
 }
 
 export function CheckableGroup(Comp: typeof Radio) {
-  return function CheckableGroup<V extends RadioValueType>({
+  return function CheckableGroup<V extends CheckableValueType>({
     legend,
     legendMode = 'screen-reader-only',
     layout,
@@ -29,7 +29,7 @@ export function CheckableGroup(Comp: typeof Radio) {
     options: checkableOptions,
     onChange,
     className,
-  }: RadioGroupProps<V> & RadioLayoutProps): JSX.Element {
+  }: CheckableGroupProps<V> & CheckableLayoutProps): JSX.Element {
     const optionsWithIds = useRef<CheckableOption<V>[]>(
       checkableOptions.map((o, index) => ({
         ...o,
@@ -46,7 +46,7 @@ export function CheckableGroup(Comp: typeof Radio) {
 
         console.log(option);
         if (!option) {
-          throw new Error(`could not find option in RadioGroup changeHandler`);
+          throw new Error(`could not find option in CheckableGroup changeHandler`);
         }
 
         setSelectedValue(option);

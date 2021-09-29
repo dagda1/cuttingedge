@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 import cs from 'classnames';
-import { RadioProps, RadioLayoutProps, RadioEventHandlers, RadioValueType } from './types';
+import { CheckableProps, CheckableLayoutProps, CheckableEventHandlers, CheckableValueType } from '../Checkable/types';
 
 import * as styles from './Radio.css';
 
-export function Radio<V extends RadioValueType>({
+export function Radio<V extends CheckableValueType>({
   id,
   name,
   value,
@@ -13,7 +13,7 @@ export function Radio<V extends RadioValueType>({
   layout,
   onChange,
   size,
-}: RadioProps<V> & RadioEventHandlers & RadioLayoutProps & { children: ReactNode }): JSX.Element {
+}: CheckableProps<V> & CheckableEventHandlers & CheckableLayoutProps & { children: ReactNode }): JSX.Element {
   return (
     <div
       className={cs(styles.item, {
