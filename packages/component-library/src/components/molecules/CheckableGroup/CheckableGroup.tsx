@@ -5,6 +5,7 @@ import { CheckableProps, CheckableLayoutProps, CheckableValueType } from '../../
 import cs from 'classnames';
 
 import * as styles from './Checkable.css';
+import { Checkbox } from 'src/components/atoms/Checkbox/Checkbox';
 
 export type CheckableOption<V extends CheckableValueType> = CheckableProps<V> & { content: ReactNode };
 
@@ -19,7 +20,7 @@ export interface CheckableGroupProps<V extends CheckableValueType> {
   className?: string;
 }
 
-export function CheckableGroup(Comp: typeof Radio) {
+export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
   return function CheckableGroup<V extends CheckableValueType>({
     legend,
     legendMode = 'screen-reader-only',
@@ -37,23 +38,30 @@ export function CheckableGroup(Comp: typeof Radio) {
         id: o.id || `${name}-${index}`,
       })),
     );
-    const [selectedValue, setSelectedValue] = useState(optionsWithIds.current.find((o) => !!o.checked));
+    const [selectedValues, setSelectedValues] = useState(optionsWithIds.current);
     const options = optionsWithIds.current;
 
     const changeHandler = useCallback(
       (e: ChangeEvent<HTMLInputElement>) => {
         const option = optionsWithIds.current.find((o) => o.id === e.target.id);
 
-        console.log(option);
         if (!option) {
-          throw new Error(`could not find option in CheckableGroup changeHandler`);
+          throw new Error(`could not find option in CheckableGroup changeHandler for ${e.target.id}`);
         }
 
-        setSelectedValue(option);
+        if (Comp === Radio) {
+          for (const o of selectedValues) {
+            o.checked = false;
+          }
+        }
+
+        option.checked = e.target.checked;
+
+        setSelectedValues([...selectedValues.filter((o) => o.id !== option.id), option]);
 
         onChange && onChange(option);
       },
-      [onChange],
+      [onChange, selectedValues],
     );
 
     return (
@@ -75,7 +83,7 @@ export function CheckableGroup(Comp: typeof Radio) {
                 name={name}
                 layout={layout}
                 size={size}
-                checked={selectedValue && id === selectedValue.id}
+                checked={!!selectedValues.find((x) => x.id === id)?.checked}
                 onChange={changeHandler}
                 {...option}
               >

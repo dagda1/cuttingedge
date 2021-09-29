@@ -109,7 +109,7 @@ export const App: FC = () => {
           <div className={styles.item}>
             <CheckboxGroup
               legend="large stacked"
-              name="large-stacked"
+              name="large-stacked-checkbox"
               layout={'stacked'}
               size={'large'}
               options={[
@@ -127,7 +127,7 @@ export const App: FC = () => {
           </div>
           <div className={styles.item}>
             <CheckboxGroup
-              name="small-stacked"
+              name="small-stacked-checkbox"
               layout={'stacked'}
               size={'small'}
               legend="small stacked"
@@ -146,7 +146,7 @@ export const App: FC = () => {
           </div>
           <div className={styles.item}>
             <CheckboxGroup
-              name="large-inline"
+              name="large-inline-checkbox"
               layout={'inline'}
               size={'large'}
               legend="large inline"
@@ -165,7 +165,7 @@ export const App: FC = () => {
           </div>
           <div className={styles.item}>
             <CheckboxGroup
-              name="small-inline"
+              name="small-inline-checkbox"
               layout={'inline'}
               size={'small'}
               legend="small inline"
@@ -192,7 +192,7 @@ export const App: FC = () => {
           <div className={styles.item}>
             <RadioGroup
               legend="large stacked"
-              name="large-stacked"
+              name="large-stacked-radio"
               layout={'stacked'}
               size={'large'}
               options={[
@@ -210,7 +210,7 @@ export const App: FC = () => {
           </div>
           <div className={styles.item}>
             <RadioGroup
-              name="small-stacked"
+              name="small-stacked-radio"
               layout={'stacked'}
               size={'small'}
               legend="small stacked"
@@ -229,7 +229,7 @@ export const App: FC = () => {
           </div>
           <div className={styles.item}>
             <RadioGroup
-              name="large-inline"
+              name="large-inline-radio"
               layout={'inline'}
               size={'large'}
               legend="large inline"
@@ -248,7 +248,7 @@ export const App: FC = () => {
           </div>
           <div className={styles.item}>
             <RadioGroup
-              name="small-inline"
+              name="small-inline-radio"
               layout={'inline'}
               size={'small'}
               legend="small inline"

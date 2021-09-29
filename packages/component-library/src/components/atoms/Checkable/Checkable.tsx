@@ -15,7 +15,6 @@ export function Checkable(type: 'radio' | 'checkbox') {
     onChange,
     size,
   }: CheckableProps<V> & CheckableEventHandlers & CheckableLayoutProps & { children: ReactNode }): JSX.Element {
-    console.log({ type });
     return (
       <div
         className={cs(styles.item, {
