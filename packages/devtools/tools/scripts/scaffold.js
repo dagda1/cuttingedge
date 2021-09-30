@@ -47,7 +47,7 @@ var logger_1 = __importDefault(require("./logger"));
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, createScaffold_1.scaffold()];
+                return [4 /*yield*/, (0, createScaffold_1.scaffold)()];
             case 1:
                 _a.sent();
                 return [3 /*break*/, 3];

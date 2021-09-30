@@ -47,7 +47,7 @@ var logger_1 = __importDefault(require("./logger"));
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, createInitialFiles_1.createInitialFiles()];
+                return [4 /*yield*/, (0, createInitialFiles_1.createInitialFiles)()];
             case 1:
                 _a.sent();
                 return [3 /*break*/, 3];

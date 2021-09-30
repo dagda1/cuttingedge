@@ -52,7 +52,7 @@ var find = function (cwd, predicate, tries) {
     if (predicate(cwd)) {
         return cwd;
     }
-    return exports.find(path_1.default.resolve(cwd, '..'), predicate, ++tries);
+    return (0, exports.find)(path_1.default.resolve(cwd, '..'), predicate, ++tries);
 };
 exports.find = find;
 var findAsync = function (cwd, predicate, tries) {
@@ -69,7 +69,7 @@ var findAsync = function (cwd, predicate, tries) {
                     if (_a.sent()) {
                         return [2 /*return*/, cwd];
                     }
-                    return [4 /*yield*/, exports.findAsync(path_1.default.resolve(cwd, '..'), predicate, ++tries)];
+                    return [4 /*yield*/, (0, exports.findAsync)(path_1.default.resolve(cwd, '..'), predicate, ++tries)];
                 case 2: return [2 /*return*/, _a.sent()];
             }
         });
@@ -77,13 +77,13 @@ var findAsync = function (cwd, predicate, tries) {
 };
 exports.findAsync = findAsync;
 var findFile = function (cwd, fileName) {
-    var dir = exports.find(cwd, function (dir) { return fs_1.default.existsSync(path_1.default.resolve(dir, fileName)); });
+    var dir = (0, exports.find)(cwd, function (dir) { return fs_1.default.existsSync(path_1.default.resolve(dir, fileName)); });
     return path_1.default.resolve(dir, fileName);
 };
 exports.findFile = findFile;
 var findAppNodeModules = function (cwd, packageName) {
     if (packageName === void 0) { packageName = 'typescript'; }
-    var dir = exports.find(cwd, function (dir) { return fs_1.default.existsSync(path_1.default.resolve(dir, ModulesDirName, packageName)); });
+    var dir = (0, exports.find)(cwd, function (dir) { return fs_1.default.existsSync(path_1.default.resolve(dir, ModulesDirName, packageName)); });
     return path_1.default.join(dir, ModulesDirName);
 };
 exports.findAppNodeModules = findAppNodeModules;

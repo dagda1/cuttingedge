@@ -78,8 +78,8 @@ var build = function (_a) {
             switch (_b.label) {
                 case 0:
                     logger_1.logger.start('starting build');
-                    buildConfig = consolidateBuildConfigs_1.consolidateBuildConfigs();
-                    nodeConfig = !!buildNode && node_1.configure(buildConfig.node);
+                    buildConfig = (0, consolidateBuildConfigs_1.consolidateBuildConfigs)();
+                    nodeConfig = !!buildNode && (0, node_1.configure)(buildConfig.node);
                     publicDir = buildServer ? paths_1.paths.appBuildPublic : paths_1.paths.appBuild;
                     _b.label = 1;
                 case 1:
@@ -87,26 +87,26 @@ var build = function (_a) {
                     return [4 /*yield*/, measureFileSizesBeforeBuild(publicDir)];
                 case 2:
                     previousFileSizes = _b.sent();
-                    empty_build_dir_1.emptyBuildDir();
-                    copy_public_folder_1.copyPublicFolder();
+                    (0, empty_build_dir_1.emptyBuildDir)();
+                    (0, copy_public_folder_1.copyPublicFolder)();
                     if (!nodeConfig) return [3 /*break*/, 4];
-                    return [4 /*yield*/, compile_1.compile(nodeConfig, build_1.BuildType.node)];
+                    return [4 /*yield*/, (0, compile_1.compile)(nodeConfig, build_1.BuildType.node)];
                 case 3:
                     _b.sent();
                     logger_1.logger.done('finished building node webpack build');
                     return [2 /*return*/];
                 case 4:
-                    serverConfig = !!buildServer && server_1.configure(buildConfig.server);
+                    serverConfig = !!buildServer && (0, server_1.configure)(buildConfig.server);
                     clientConfig = buildClient &&
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        client_1.configure(__assign(__assign({}, buildConfig.client), { isStaticBuild: !buildServer }));
-                    assert_ts_1.assert(!!clientConfig, 'clientConfig is not present');
-                    return [4 /*yield*/, compile_1.compile(clientConfig, build_1.BuildType.client)];
+                        (0, client_1.configure)(__assign(__assign({}, buildConfig.client), { isStaticBuild: !buildServer }));
+                    (0, assert_ts_1.assert)(!!clientConfig, 'clientConfig is not present');
+                    return [4 /*yield*/, (0, compile_1.compile)(clientConfig, build_1.BuildType.client)];
                 case 5:
                     clientStats = (_b.sent()).stats;
                     logger_1.logger.done('finished building client webpack build');
                     if (!serverConfig) return [3 /*break*/, 7];
-                    return [4 /*yield*/, compile_1.compile(serverConfig, build_1.BuildType.server)];
+                    return [4 /*yield*/, (0, compile_1.compile)(serverConfig, build_1.BuildType.server)];
                 case 6:
                     _b.sent();
                     logger_1.logger.done('finished building server webpack build');

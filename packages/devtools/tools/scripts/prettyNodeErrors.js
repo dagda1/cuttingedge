@@ -30,8 +30,8 @@ var jest_message_util_1 = require("jest-message-util");
 var codeFrameColumns = require('@babel/code-frame').codeFrameColumns;
 function pretty(error) {
     var message = error.message, stack = error.stack;
-    var lines = jest_message_util_1.getStackTraceLines(stack);
-    var topFrame = jest_message_util_1.getTopFrame(lines);
+    var lines = (0, jest_message_util_1.getStackTraceLines)(stack);
+    var topFrame = (0, jest_message_util_1.getTopFrame)(lines);
     var fallback = "" + message + stack;
     if (!topFrame) {
         return fallback;
@@ -48,7 +48,7 @@ function pretty(error) {
 function usePrettyErrors(transform) {
     var prepareStackTrace = Error.prepareStackTrace;
     Error.prepareStackTrace = function (error, trace) {
-        var prepared = prepareStackTrace ? jest_message_util_1.separateMessageFromStack(prepareStackTrace(error, trace)) : error;
+        var prepared = prepareStackTrace ? (0, jest_message_util_1.separateMessageFromStack)(prepareStackTrace(error, trace)) : error;
         var transformed = transform ? transform(prepared) : prepared;
         return pretty(transformed);
     };

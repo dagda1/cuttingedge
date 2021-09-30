@@ -15,10 +15,14 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -57,17 +61,17 @@ var miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleRepl
 var configureCommon = function (options, overrides) {
     var isNode = !!options.isNode;
     var isWeb = !isNode;
-    var _a = getEnvironment_1.getEnvironment(), isProduction = _a.isProduction, isDevelopment = _a.isDevelopment, staticAssetName = _a.staticAssetName, isAnalyse = _a.isAnalyse;
-    var env = getEnvironment_1.getEnvVariables({ isNode: !!options.isNode });
-    var cssFile = getFileName_1.getFileName({
+    var _a = (0, getEnvironment_1.getEnvironment)(), isProduction = _a.isProduction, isDevelopment = _a.isDevelopment, staticAssetName = _a.staticAssetName, isAnalyse = _a.isAnalyse;
+    var env = (0, getEnvironment_1.getEnvVariables)({ isNode: !!options.isNode });
+    var cssFile = (0, getFileName_1.getFileName)({
         isProduction: isProduction,
         fileType: 'css',
     }) + ".css";
-    var cssChunkFile = getFileName_1.getFileName({
+    var cssChunkFile = (0, getFileName_1.getFileName)({
         isProduction: isProduction,
         fileType: 'css',
     }) + ".css";
-    var config = webpack_merge_1.merge(overrides, {
+    var config = (0, webpack_merge_1.merge)(overrides, {
         mode: isDevelopment ? 'development' : 'production',
         bail: isProduction,
         devtool: 'source-map',
@@ -123,13 +127,13 @@ var configureCommon = function (options, overrides) {
         module: {
             strictExportPresence: true,
             rules: Array.prototype.filter.call(__spreadArray(__spreadArray(__spreadArray(__spreadArray([
-                fileLoader_1.createFileLoader({ isWeb: isWeb, staticAssetName: staticAssetName }),
-                assetsLoader_1.createAssetsLoader()
-            ], __read(typescriptLoader_1.createTypescriptLoader({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }))), __read(jsLoader_1.createJsLoader({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' }))), [
-                csvLoader_1.createCSVLoader(),
-                svgLoader_1.createSVGLoader(),
-                mdLoader_1.createMDLoader()
-            ]), __read(css_1.createCSSLoaders({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode }))), function (x) { return !!x; }),
+                (0, fileLoader_1.createFileLoader)({ isWeb: isWeb, staticAssetName: staticAssetName }),
+                (0, assetsLoader_1.createAssetsLoader)()
+            ], __read((0, typescriptLoader_1.createTypescriptLoader)({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' })), false), __read((0, jsLoader_1.createJsLoader)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' })), false), [
+                (0, csvLoader_1.createCSVLoader)(),
+                (0, svgLoader_1.createSVGLoader)(),
+                (0, mdLoader_1.createMDLoader)()
+            ], false), __read((0, css_1.createCSSLoaders)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode })), false), function (x) { return !!x; }),
         },
         plugins: Array.prototype.filter.call([
             new happypack_1.default({

@@ -15,10 +15,14 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -52,7 +56,7 @@ var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
                     : undefined,
             },
         },
-        { loader: 'postcss-loader', options: createPostCssoptions_1.createPostCssOptions({ isProduction: isProduction }) },
+        { loader: 'postcss-loader', options: (0, createPostCssoptions_1.createPostCssOptions)({ isProduction: isProduction }) },
     ].filter(Boolean);
 };
 exports.cssLoaders = cssLoaders;
@@ -74,30 +78,30 @@ var createCSSLoaders = function (_a) {
         {
             test: constants_1.cssRegex,
             exclude: /\.vanilla\.css$/i,
-            use: exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
+            use: (0, exports.cssLoaders)(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
         },
         {
             test: constants_1.sassRegex,
             exclude: constants_1.sassModuleRegex,
-            use: __spreadArray(__spreadArray([], __read(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 2 }))), [
+            use: __spreadArray(__spreadArray([], __read((0, exports.cssLoaders)(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 2 })), false), [
                 { loader: 'sass-loader' },
-            ]).filter(Boolean),
+            ], false).filter(Boolean),
         },
         {
             test: constants_1.sassModuleRegex,
-            use: __spreadArray(__spreadArray([], __read(exports.cssLoaders(isDevelopment, isProduction, isNode, { modules: true, importLoaders: 2 }))), [
+            use: __spreadArray(__spreadArray([], __read((0, exports.cssLoaders)(isDevelopment, isProduction, isNode, { modules: true, importLoaders: 2 })), false), [
                 {
                     loader: 'sass-loader',
                     options: {
                         sassOptions: {
                             outputStyle: 'expanded',
                             sourceMap: true,
-                            includePaths: __spreadArray([paths_1.paths.appSrc], __read(paths_1.paths.resolvedNodeModules)),
+                            includePaths: __spreadArray([paths_1.paths.appSrc], __read(paths_1.paths.resolvedNodeModules), false),
                             minimize: isProduction,
                         },
                     },
                 },
-            ]).filter(Boolean),
+            ], false).filter(Boolean),
         },
     ];
 };

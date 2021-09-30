@@ -25,8 +25,8 @@ var getEnvironment_1 = require("./getEnvironment");
 var guards_1 = require("./guards");
 var getExternals = function () {
     return [
-        webpack_node_externals_1.default(),
-        webpack_node_externals_1.default({
+        (0, webpack_node_externals_1.default)(),
+        (0, webpack_node_externals_1.default)({
             modulesDir: paths_1.paths.resolvedNodeModules[0],
             allowlist: [/^@cutting/].filter(function (x) { return x; }),
         }),
@@ -34,10 +34,10 @@ var getExternals = function () {
 };
 var configure = function (options, overrides) {
     if (overrides === void 0) { overrides = {}; }
-    var common = common_1.configureCommon(__assign(__assign({}, options), { isWeb: false }), overrides);
-    var isProduction = getEnvironment_1.getEnvironment().isProduction;
+    var common = (0, common_1.configureCommon)(__assign(__assign({}, options), { isWeb: false }), overrides);
+    var isProduction = (0, getEnvironment_1.getEnvironment)().isProduction;
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
-    var config = webpack_merge_1.merge(common, {
+    var config = (0, webpack_merge_1.merge)(common, {
         name: 'api',
         target: 'node',
         externals: getExternals(),

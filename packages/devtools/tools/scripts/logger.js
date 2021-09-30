@@ -91,12 +91,15 @@ var error = function (err) {
         write(LoggerTypes.error, err);
         return;
     }
-    if (err.message) {
+    if (err instanceof Error) {
         write(LoggerTypes.error, err.message);
+        write(LoggerTypes.error, err);
+        if (err.stack) {
+            write(LoggerTypes.error, err.stack);
+        }
     }
-    write(LoggerTypes.error, err);
-    if (err.stack) {
-        write(LoggerTypes.error, err.stack);
+    else {
+        console.error(err);
     }
 };
 exports.logger = {

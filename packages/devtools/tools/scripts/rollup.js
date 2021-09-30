@@ -92,10 +92,14 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __values = (this && this.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -156,15 +160,15 @@ function generateBundledModule(_a) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    assert_ts_1.assert(fs_extra_1.default.existsSync(entryFile), "Input file " + entryFile + " does not exist");
+                    (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(entryFile), "Input file " + entryFile + " does not exist");
                     minify = env === 'production';
-                    babelConfig = __rest(createBabelConfig_1.createBabelConfig({
+                    babelConfig = __rest((0, createBabelConfig_1.createBabelConfig)({
                         isDevelopment: false,
                         isProduction: true,
                         isNode: false,
                         moduleFormat: moduleFormat,
                     }), []);
-                    return [4 /*yield*/, rollup_1.rollup({
+                    return [4 /*yield*/, (0, rollup_1.rollup)({
                             input: entryFile,
                             external: function (id) {
                                 if (id === 'babel-plugin-transform-async-to-promises/helpers') {
@@ -176,8 +180,8 @@ function generateBundledModule(_a) {
                                 propertyReadSideEffects: false,
                             },
                             plugins: [
-                                analyze && rollup_plugin_size_snapshot_1.sizeSnapshot(),
-                                rollup_plugin_eslint_1.default({
+                                analyze && (0, rollup_plugin_size_snapshot_1.sizeSnapshot)(),
+                                (0, rollup_plugin_eslint_1.default)({
                                     fix: false,
                                     throwOnError: true,
                                     throwOnWarning: true,
@@ -186,32 +190,32 @@ function generateBundledModule(_a) {
                                     filterExclude: ['**/*.scss', '**/*.css', '**/*.md', '**/*.csv', 'dist/**', '**/*.json'],
                                     useEslintrc: true,
                                 }),
-                                plugin_node_resolve_1.default({
+                                (0, plugin_node_resolve_1.default)({
                                     mainFields: ['module', 'browser', 'main'],
                                     extensions: ['.mjs', '.cjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
                                 }),
-                                plugin_commonjs_1.default({
+                                (0, plugin_commonjs_1.default)({
                                     // use a regex to make sure to include eventual hoisted packages
                                     include: moduleFormat === 'umd' ? /\/node_modules\// : /\/regenerator-runtime\//,
                                 }),
-                                plugin_json_1.default(),
-                                rollup_plugin_md_1.md(),
-                                rollup_plugin_postcss_1.default({
+                                (0, plugin_json_1.default)(),
+                                (0, rollup_plugin_md_1.md)(),
+                                (0, rollup_plugin_postcss_1.default)({
                                     extract: true,
                                     modules: false,
                                     autoModules: true,
                                     sourceMap: true,
                                     use: ['sass'],
                                     plugins: [
-                                        postcss_import_1.default(),
-                                        autoprefixer_1.default(),
-                                        postcss_url_1.default({
+                                        (0, postcss_import_1.default)(),
+                                        (0, autoprefixer_1.default)(),
+                                        (0, postcss_url_1.default)({
                                             url: 'inline',
                                         }),
                                     ],
                                 }),
-                                csv_1.csv(),
-                                rollup_plugin_typescript2_1.default({
+                                (0, csv_1.csv)(),
+                                (0, rollup_plugin_typescript2_1.default)({
                                     typescript: require('typescript'),
                                     tsconfig: paths_1.paths.tsConfigProduction,
                                     abortOnError: true,
@@ -231,13 +235,13 @@ function generateBundledModule(_a) {
                                         },
                                     },
                                 }),
-                                plugin_babel_1.default(__assign(__assign({ exclude: /\/node_modules\/(core-js)\//, babelHelpers: 'runtime' }, babelConfig), { extensions: __spreadArray(__spreadArray([], __read(core_1.DEFAULT_EXTENSIONS)), ['ts', 'tsx']) })),
-                                rollup_plugin_inject_process_env_1.default({
+                                (0, plugin_babel_1.default)(__assign(__assign({ exclude: /\/node_modules\/(core-js)\//, babelHelpers: 'runtime' }, babelConfig), { extensions: __spreadArray(__spreadArray([], __read(core_1.DEFAULT_EXTENSIONS), false), ['ts', 'tsx'], false) })),
+                                (0, rollup_plugin_inject_process_env_1.default)({
                                     NODE_ENV: env,
                                 }),
-                                rollup_plugin_svgo_1.default(),
+                                (0, rollup_plugin_svgo_1.default)(),
                                 minify &&
-                                    rollup_plugin_terser_1.terser({
+                                    (0, rollup_plugin_terser_1.terser)({
                                         output: { comments: false },
                                         compress: {
                                             keep_infinity: true,
@@ -247,10 +251,10 @@ function generateBundledModule(_a) {
                                         ecma: 5,
                                         toplevel: moduleFormat === 'cjs',
                                     }),
-                                rollup_plugin_sourcemaps_1.default(),
+                                (0, rollup_plugin_sourcemaps_1.default)(),
                                 vizualize &&
                                     moduleFormat === 'esm' &&
-                                    rollup_plugin_visualizer_1.visualizer({
+                                    (0, rollup_plugin_visualizer_1.visualizer)({
                                         open: true,
                                         gzipSize: true,
                                         sourcemap: true,
@@ -260,7 +264,7 @@ function generateBundledModule(_a) {
                         })];
                 case 1:
                     bundle = _b.sent();
-                    pkgName = helpers_1.safePackageName(packageName);
+                    pkgName = (0, helpers_1.safePackageName)(packageName);
                     extension = env === 'production' ? 'min.js' : 'js';
                     fileName = ['esm', 'umd'].includes(moduleFormat)
                         ? pkgName + "." + moduleFormat + ".js"
@@ -280,7 +284,7 @@ function generateBundledModule(_a) {
                         })];
                 case 2:
                     _b.sent();
-                    copy_assets_1.copyAssets();
+                    (0, copy_assets_1.copyAssets)();
                     return [2 /*return*/];
             }
         });
@@ -288,17 +292,17 @@ function generateBundledModule(_a) {
 }
 var getInputFile = function (packageName, inputFileOverride) {
     if (inputFileOverride) {
-        assert_ts_1.assert(fs_extra_1.default.existsSync(inputFileOverride), "no --input-file found at " + inputFileOverride);
+        (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(inputFileOverride), "no --input-file found at " + inputFileOverride);
         return inputFileOverride;
     }
     var candidates = [];
-    [packageName, path_1.default.join(packageName, 'index'), 'index', path_1.default.join('bin', helpers_1.safePackageName(packageName))].forEach(function (candidate) {
+    [packageName, path_1.default.join(packageName, 'index'), 'index', path_1.default.join('bin', (0, helpers_1.safePackageName)(packageName))].forEach(function (candidate) {
         ['.ts', '.tsx'].forEach(function (fileType) {
             candidates.push(path_1.default.join(paths_1.paths.appSrc, "" + candidate + fileType));
         });
     });
     var inputFile = candidates.find(function (candidate) { return fs_extra_1.default.existsSync(candidate); });
-    assert_ts_1.assert(!!inputFile, 'No rootFile found for rollup');
+    (0, assert_ts_1.assert)(!!inputFile, 'No rootFile found for rollup');
     logger_1.logger.start("using input file " + path_1.default.basename(inputFile) + " for " + packageName);
     return inputFile;
 };
@@ -310,7 +314,7 @@ function build(_a) {
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
-                    empty_build_dir_1.emptyBuildDir();
+                    (0, empty_build_dir_1.emptyBuildDir)();
                     pkgJsonPath = path_1.default.join(process.cwd(), 'package.json');
                     return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(pkgJsonPath)); })];
                 case 1:
@@ -350,14 +354,14 @@ function build(_a) {
                     }
                     finally { if (e_1) throw e_1.error; }
                     return [7 /*endfinally*/];
-                case 9: return [4 /*yield*/, helpers_1.writeCjsEntryFile(packageName)];
+                case 9: return [4 /*yield*/, (0, helpers_1.writeCjsEntryFile)(packageName)];
                 case 10:
                     _d.sent();
                     pkgJson = __assign({}, pkg);
                     if (typeof pkgJson.exports !== 'undefined') {
                         return [2 /*return*/];
                     }
-                    pkgName = helpers_1.safePackageName(packageName);
+                    pkgName = (0, helpers_1.safePackageName)(packageName);
                     buildDir = path_1.default.basename(paths_1.paths.appBuild);
                     commonjsFile = path_1.default.join(buildDir, 'cjs', 'index.js');
                     esmFile = path_1.default.join(buildDir, 'esm', pkgName + ".esm.js");
@@ -376,7 +380,7 @@ function build(_a) {
                             '*': ["" + dtsFile],
                         },
                     };
-                    return [4 /*yield*/, write_package_1.writeToPackage(pkgJsonPath, pkgJson)];
+                    return [4 /*yield*/, (0, write_package_1.writeToPackage)(pkgJsonPath, pkgJson)];
                 case 11:
                     _d.sent();
                     return [2 /*return*/];
@@ -384,7 +388,7 @@ function build(_a) {
         });
     });
 }
-var program = commander_1.createCommand('rollup');
+var program = (0, commander_1.createCommand)('rollup');
 program
     .description('execute a rollup build')
     .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)

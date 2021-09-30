@@ -40,7 +40,7 @@ function getPackages(packages) {
 function runPkgCmd(cmd, args, pkg) {
     return new Promise(function (resolve, reject) {
         logger_1.logger.info(pkg.name + " " + cmd + " " + args.join(' '));
-        var child = child_process_1.spawn(cmd, args, {
+        var child = (0, child_process_1.spawn)(cmd, args, {
             stdio: [null, 1, 2],
             cwd: pkg.path,
         });
@@ -54,7 +54,7 @@ function runPkgCmd(cmd, args, pkg) {
         });
     });
 }
-var program = commander_1.createCommand('each-pkg');
+var program = (0, commander_1.createCommand)('each-pkg');
 /**
  * Executes a command for each package, optionally filtered by changed
  * or new packages. Explicity providing a package name is also

@@ -50,13 +50,13 @@ var createDevServer = function (_a) {
             directory: paths_1.paths.appPublic,
             publicPath: [paths_1.paths.publicUrlOrPath],
             watch: {
-                ignored: ignoredFiles_1.default(paths_1.paths.appSrc),
+                ignored: (0, ignoredFiles_1.default)(paths_1.paths.appSrc),
             },
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onBeforeSetupMiddleware: function (devServer) {
             var app = devServer.app;
-            app.use(evalSourceMapMiddleware_1.default(devServer));
+            app.use((0, evalSourceMapMiddleware_1.default)(devServer));
             if (fs_1.default.existsSync(paths_1.paths.proxySetup)) {
                 require(paths_1.paths.proxySetup)(app);
             }
@@ -64,8 +64,8 @@ var createDevServer = function (_a) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onAfterSetupMiddleware: function (devServer) {
             var app = devServer.app;
-            app.use(redirectServedPathMiddleware_1.default(paths_1.paths.publicUrlOrPath));
-            app.use(noopServiceWorkerMiddleware_1.default(paths_1.paths.publicUrlOrPath));
+            app.use((0, redirectServedPathMiddleware_1.default)(paths_1.paths.publicUrlOrPath));
+            app.use((0, noopServiceWorkerMiddleware_1.default)(paths_1.paths.publicUrlOrPath));
         },
     };
 };

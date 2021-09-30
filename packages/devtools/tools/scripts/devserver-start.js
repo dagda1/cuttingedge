@@ -75,9 +75,9 @@ var assert_ts_1 = require("assert-ts");
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var createScaffold_1 = require("./createScaffold");
 var devServer = build_config_1.config.devServer;
-assert_ts_1.assert(devServer, 'no devServer node');
-assert_ts_1.assert(devServer.publicDir, 'no publicDir');
-assert_ts_1.assert(devServer.entries, 'no devServer entries');
+(0, assert_ts_1.assert)(devServer, 'no devServer node');
+(0, assert_ts_1.assert)(devServer.publicDir, 'no publicDir');
+(0, assert_ts_1.assert)(devServer.entries, 'no devServer entries');
 var DEFAULT_PORT = Number(process.env.PORT) || 3000;
 var HOST = process.env.HOST || '0.0.0.0';
 (function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -87,14 +87,14 @@ var HOST = process.env.HOST || '0.0.0.0';
             case 0:
                 _a.trys.push([0, 4, , 5]);
                 if (!fs_extra_1.default.existsSync(devServer.publicDir) && !fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)) {
-                    createScaffold_1.scaffold();
+                    (0, createScaffold_1.scaffold)();
                 }
                 if (!fs_extra_1.default.existsSync(devServer.publicDir) && fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)) {
                     devServer.publicDir = paths_1.paths.devDirPublic;
                     devServer.entries = paths_1.paths.devDir;
                 }
-                config = client_1.configure(devServer);
-                return [4 /*yield*/, WebpackDevServerUtils_1.choosePort(HOST, DEFAULT_PORT)];
+                config = (0, client_1.configure)(devServer);
+                return [4 /*yield*/, (0, WebpackDevServerUtils_1.choosePort)(HOST, DEFAULT_PORT)];
             case 1:
                 port = _a.sent();
                 if (port === null) {
@@ -106,16 +106,16 @@ var HOST = process.env.HOST || '0.0.0.0';
             case 2:
                 pkg = _a.sent();
                 appName = pkg.name, proxySetting = pkg.proxy;
-                urls = WebpackDevServerUtils_1.prepareUrls(protocol, HOST, port);
-                compiler = WebpackDevServerUtils_1.createCompiler({ webpack: webpack_1.default, config: config, appName: appName, urls: urls, useYarn: true });
-                assert_ts_1.assert(!!config.devServer, 'no devServer in dev-server-start');
-                config.devServer.proxy = WebpackDevServerUtils_1.prepareProxy(proxySetting, paths_1.paths.appPublic, paths_1.paths.publicUrlOrPath);
+                urls = (0, WebpackDevServerUtils_1.prepareUrls)(protocol, HOST, port);
+                compiler = (0, WebpackDevServerUtils_1.createCompiler)({ webpack: webpack_1.default, config: config, appName: appName, urls: urls, useYarn: true });
+                (0, assert_ts_1.assert)(!!config.devServer, 'no devServer in dev-server-start');
+                config.devServer.proxy = (0, WebpackDevServerUtils_1.prepareProxy)(proxySetting, paths_1.paths.appPublic, paths_1.paths.publicUrlOrPath);
                 server_1 = new webpack_dev_server_1.default(config.devServer, compiler);
                 logger_1.logger.info('Starting the development server...\n');
                 return [4 /*yield*/, server_1.start({ host: HOST, port: port })];
             case 3:
                 _a.sent();
-                openBrowser_1.default(urls.localUrlForBrowser);
+                (0, openBrowser_1.default)(urls.localUrlForBrowser);
                 ['SIGINT', 'SIGTERM'].forEach(function (sig) {
                     process.on(sig, function () {
                         server_1.close();
@@ -125,7 +125,7 @@ var HOST = process.env.HOST || '0.0.0.0';
                 return [3 /*break*/, 5];
             case 4:
                 err_1 = _a.sent();
-                if (err_1) {
+                if (err_1 instanceof Error) {
                     console.error(err_1);
                     logger_1.logger.error(err_1.message);
                 }

@@ -12,7 +12,7 @@ var safePackageName = function (name) {
 };
 exports.safePackageName = safePackageName;
 var writeCjsEntryFile = function (name) {
-    var baseLine = "module.exports = require('./" + exports.safePackageName(name);
+    var baseLine = "module.exports = require('./" + (0, exports.safePackageName)(name);
     var contents = "\n  'use strict'\n  \n  if (process.env.NODE_ENV === 'production') {\n    " + baseLine + ".cjs.production.min.js')\n  } else {\n    " + baseLine + ".cjs.development.js')\n  }\n  ";
     return fs_extra_1.default.outputFile(path_1.default.join(paths_1.paths.appBuild, 'cjs', 'index.js'), contents);
 };

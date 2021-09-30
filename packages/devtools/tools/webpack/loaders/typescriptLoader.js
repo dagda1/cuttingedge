@@ -39,7 +39,7 @@ var createTypescriptLoader = function (_a) {
             use: [
                 {
                     loader: 'babel-loader',
-                    options: createBabelConfig_1.createBabelConfig({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: moduleFormat }),
+                    options: (0, createBabelConfig_1.createBabelConfig)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: moduleFormat }),
                 },
                 {
                     loader: 'ts-loader',

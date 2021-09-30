@@ -80,7 +80,7 @@ var path_1 = __importDefault(require("path"));
 // import { emptyBuildDir } from './empty-build-dir';
 var esbuild_plugin_1 = require("@vanilla-extract/esbuild-plugin");
 var copy_assets_1 = require("./copy-assets");
-var buildConfig = consolidateBuildConfigs_1.consolidateBuildConfigs();
+var buildConfig = (0, consolidateBuildConfigs_1.consolidateBuildConfigs)();
 var postcss = require('postcss');
 var autoprefixer = require('autoprefixer');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -109,12 +109,12 @@ function bundle(_a) {
             switch (_b.label) {
                 case 0:
                     entryPoints = typeof buildConfig.client.entries === 'string' ? [buildConfig.client.entries] : buildConfig.client.entries;
-                    assert_ts_1.assert(Array.isArray(entryPoints), "build config entries needs to be a string array");
-                    pkgName = helpers_1.safePackageName(packageName);
+                    (0, assert_ts_1.assert)(Array.isArray(entryPoints), "build config entries needs to be a string array");
+                    pkgName = (0, helpers_1.safePackageName)(packageName);
                     fileName = pkgName + "." + (format === 'iife' ? 'umd' : format) + ".js";
                     outfile = path_1.default.join(paths_1.paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
                     logger_1.default.info("writing " + path_1.default.basename(outfile) + " for " + packageName);
-                    return [4 /*yield*/, esbuild_1.build({
+                    return [4 /*yield*/, (0, esbuild_1.build)({
                             entryPoints: entryPoints,
                             outfile: outfile,
                             bundle: true,
@@ -132,10 +132,10 @@ function bundle(_a) {
                             logLevel: 'warning',
                             color: true,
                             plugins: [
-                                esbuild_node_externals_1.nodeExternalsPlugin({
+                                (0, esbuild_node_externals_1.nodeExternalsPlugin)({
                                     packagePath: paths_1.paths.appPackageJson,
                                 }),
-                                esbuild_plugin_1.vanillaExtractPlugin({
+                                (0, esbuild_plugin_1.vanillaExtractPlugin)({
                                     processCss: processCss,
                                 }),
                             ],
@@ -157,7 +157,7 @@ var buildPackage = function () { return __awaiter(void 0, void 0, void 0, functi
         switch (_c.label) {
             case 0:
                 // emptyBuildDir();
-                copy_assets_1.copyAssets();
+                (0, copy_assets_1.copyAssets)();
                 return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(paths_1.paths.appPackageJson)); })];
             case 1:
                 pkg = (_c.sent()).default;

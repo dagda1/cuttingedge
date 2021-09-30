@@ -82,11 +82,15 @@ function build() {
 
     copyAssets();
   } catch (e) {
-    logger.error(e);
-    logger.error(e.stack);
+    if (e instanceof Error) {
+      logger.error(e);
+      logger.error(e.stack);
+    }
 
-    if (e.frame) {
-      logger.error(e.frame);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((e as any)?.frame) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      logger.error((e as any).frame);
     }
 
     process.exit(1);

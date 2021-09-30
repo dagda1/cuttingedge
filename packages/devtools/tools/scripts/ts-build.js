@@ -29,9 +29,9 @@ function runEslint() {
     var _a, _b;
     logger_1.logger.start("Running eslint");
     var eslintPath = findExecutable(__dirname, 'eslint');
-    var eslintConfig = finders_1.findFile(process.cwd(), '.eslintrc.json');
+    var eslintConfig = (0, finders_1.findFile)(process.cwd(), '.eslintrc.json');
     var args = " --ext .ts,.tsx --max-warnings 0 " + paths_1.paths.appSrc + " --ignore-pattern *.test.* -c " + eslintConfig + " --fix";
-    var eslint = child_process_1.exec(eslintPath + " " + args);
+    var eslint = (0, child_process_1.exec)(eslintPath + " " + args);
     (_a = eslint.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) { return logger_1.logger.info(data); });
     (_b = eslint.stderr) === null || _b === void 0 ? void 0 : _b.on('data', function (data) { return logger_1.logger.error(data); });
     eslint.on('close', function (code) {
@@ -54,7 +54,7 @@ function runTypeScriptBuild() {
     var tscCommand = tscPath + " " + process.argv.slice(2).join(' ');
     logger_1.logger.info("running " + path_1.default.basename(tscCommand) + ", in " + path_1.default.dirname(process.cwd()));
     logger_1.logger.start("running tsc");
-    var tsc = child_process_1.exec(tscCommand);
+    var tsc = (0, child_process_1.exec)(tscCommand);
     (_a = tsc.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) { return logger_1.logger.info(data); });
     (_b = tsc.stderr) === null || _b === void 0 ? void 0 : _b.on('data', function (data) { return logger_1.logger.error(data); });
     tsc.on('close', function (code) {
@@ -65,15 +65,20 @@ function runTypeScriptBuild() {
     });
 }
 function build() {
+    var _a;
     try {
         runTypeScriptBuild();
         runEslint();
-        copy_assets_1.copyAssets();
+        (0, copy_assets_1.copyAssets)();
     }
     catch (e) {
-        logger_1.logger.error(e);
-        logger_1.logger.error(e.stack);
-        if (e.frame) {
+        if (e instanceof Error) {
+            logger_1.logger.error(e);
+            logger_1.logger.error(e.stack);
+        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if ((_a = e) === null || _a === void 0 ? void 0 : _a.frame) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             logger_1.logger.error(e.frame);
         }
         process.exit(1);

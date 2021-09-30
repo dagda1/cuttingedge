@@ -10,7 +10,8 @@ function compileWebpack(config: Configuration, cb: (err?: Error, stats?: Stats) 
   let compiler;
   try {
     compiler = webpack(config);
-  } catch (e) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (e: any) {
     printErrors('Failed to compile.', [e]);
     process.exit(1);
   }

@@ -15,10 +15,14 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -48,30 +52,30 @@ var isProfilerEnabled = function () { return process.argv.includes('--profile');
 var configure = function (options, overrides) {
     if (overrides === void 0) { overrides = {}; }
     var entries = options.entries, publicDir = options.publicDir, proxy = options.proxy, devServer = options.devServer, isStaticBuild = options.isStaticBuild;
-    var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, commitHash = _a.commitHash;
+    var _a = (0, getEnvironment_1.getEnvironment)(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, commitHash = _a.commitHash;
     var ssrBuild = !isStaticBuild;
-    var _b = getUrlParts_1.getUrlParts({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _b.protocol, publicPath = _b.publicPath, port = _b.port, sockPort = _b.sockPort;
+    var _b = (0, getUrlParts_1.getUrlParts)({ ssrBuild: ssrBuild, isProduction: isProduction }), protocol = _b.protocol, publicPath = _b.publicPath, port = _b.port, sockPort = _b.sockPort;
     options.publicUrl = publicPath.length > 1 && publicPath.substr(-1) === '/' ? publicPath.slice(0, -1) : publicPath;
     options.isNode = false;
     options.isWeb = true;
-    var common = common_1.configureCommon(options, overrides);
+    var common = (0, common_1.configureCommon)(options, overrides);
     var polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
     var iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
     var finalEntries = Object.keys(iter).reduce(function (acc, key) {
         var value = iter[key];
         var entryPoints = typeof value === 'string' ? [value] : value;
-        acc[key] = __spreadArray(__spreadArray([], __read(polyfills)), __read(entryPoints));
+        acc[key] = __spreadArray(__spreadArray([], __read(polyfills), false), __read(entryPoints), false);
         return acc;
     }, {});
     var template = publicDir ? path_1.default.join(publicDir, 'index.html') : 'public/index.html';
     var templateExists = fs_1.default.existsSync(template);
-    var jsFile = getFileName_1.getFileName({ isProduction: isProduction, fileType: 'js' }) + ".js";
-    var jsChunkFile = getFileName_1.getFileName({ isProduction: isProduction, fileType: 'js' }) + ".js";
-    var config = webpack_merge_1.merge(common, overrides, {
+    var jsFile = (0, getFileName_1.getFileName)({ isProduction: isProduction, fileType: 'js' }) + ".js";
+    var jsChunkFile = (0, getFileName_1.getFileName)({ isProduction: isProduction, fileType: 'js' }) + ".js";
+    var config = (0, webpack_merge_1.merge)(common, overrides, {
         name: 'client',
         target: 'web',
         entry: finalEntries,
-        devServer: isDevelopment ? createDevServer_1.createDevServer({ protocol: protocol, sockPort: sockPort, proxy: proxy, port: port }) : {},
+        devServer: isDevelopment ? (0, createDevServer_1.createDevServer)({ protocol: protocol, sockPort: sockPort, proxy: proxy, port: port }) : {},
         output: {
             path: isStaticBuild ? paths_1.paths.appBuild : paths_1.paths.appBuildPublic,
             publicPath: publicPath,
@@ -149,7 +153,7 @@ var configure = function (options, overrides) {
             level: 'verbose',
         },
     });
-    config.optimization = createWebpackOptimisation_1.createWebpackOptimisation({ optimization: config.optimization, isProduction: isProduction });
+    config.optimization = (0, createWebpackOptimisation_1.createWebpackOptimisation)({ optimization: config.optimization, isProduction: isProduction });
     return config;
 };
 exports.configure = configure;

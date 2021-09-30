@@ -18,7 +18,7 @@ process.on('unhandledRejection', function (err) {
     throw err;
 });
 delete require.cache[require.resolve('../config/env')];
-env_1.getClientEnv();
+(0, env_1.getClientEnv)();
 var argv = process.argv.slice(2);
 argv.push('--no-cache');
 // Watch unless on CI or in coverage mode
@@ -35,5 +35,5 @@ if (process.env.CI) {
     argv.push('--globalTeardown');
     argv.push('--coverage');
 }
-jest_1.run(argv);
+(0, jest_1.run)(argv);
 //# sourceMappingURL=test.js.map

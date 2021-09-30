@@ -13,7 +13,7 @@ var createJsLoader = function (_a) {
             use: [
                 {
                     loader: 'babel-loader',
-                    options: createBabelConfig_1.createBabelConfig({ isDevelopment: isDevelopment, isProduction: isProduction, moduleFormat: moduleFormat, isNode: isNode }),
+                    options: (0, createBabelConfig_1.createBabelConfig)({ isDevelopment: isDevelopment, isProduction: isProduction, moduleFormat: moduleFormat, isNode: isNode }),
                 },
             ],
         },
@@ -25,9 +25,9 @@ var createJsLoader = function (_a) {
                 babelrc: false,
                 configFile: false,
                 compact: false,
-                presets: createBabelConfig_1.createBabelPresets({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: 'cjs' }),
+                presets: (0, createBabelConfig_1.createBabelPresets)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: 'cjs' }),
                 cacheDirectory: true,
-                cacheIdentifier: getCacheIdentifier_1.getCacheIdentifier({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: moduleFormat }),
+                cacheIdentifier: (0, getCacheIdentifier_1.getCacheIdentifier)({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: moduleFormat }),
                 cacheCompression: false,
                 sourceMaps: true,
                 inputSourceMap: true,

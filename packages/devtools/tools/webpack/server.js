@@ -26,10 +26,14 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -50,8 +54,8 @@ var getUrlParts_1 = require("./getUrlParts");
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 var getExternals = function (isDevelopment) {
     return [
-        webpack_node_externals_1.default(),
-        webpack_node_externals_1.default({
+        (0, webpack_node_externals_1.default)(),
+        (0, webpack_node_externals_1.default)({
             modulesDir: paths_1.paths.resolvedNodeModules[0],
             allowlist: [
                 isDevelopment ? 'webpack/hot/poll?300' : null,
@@ -70,9 +74,9 @@ var getExternals = function (isDevelopment) {
 exports.getExternals = getExternals;
 var configure = function (options, overrides) {
     if (overrides === void 0) { overrides = {}; }
-    var common = common_1.configureCommon(__assign(__assign({}, options), { isNode: true, ssrBuild: true, isWeb: false }), overrides);
-    var _a = getEnvironment_1.getEnvironment(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
-    var publicPath = getUrlParts_1.getUrlParts({ ssrBuild: true, isProduction: isProduction }).publicPath;
+    var common = (0, common_1.configureCommon)(__assign(__assign({}, options), { isNode: true, ssrBuild: true, isWeb: false }), overrides);
+    var _a = (0, getEnvironment_1.getEnvironment)(), isDevelopment = _a.isDevelopment, isProduction = _a.isProduction;
+    var publicPath = (0, getUrlParts_1.getUrlParts)({ ssrBuild: true, isProduction: isProduction }).publicPath;
     var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
     var nodeArgs;
     if (isDevelopment) {
@@ -85,12 +89,12 @@ var configure = function (options, overrides) {
             nodeArgs.push(process.env.INSPECT);
         }
     }
-    var config = webpack_merge_1.merge(common, overrides, {
+    var config = (0, webpack_merge_1.merge)(common, overrides, {
         name: 'server',
         target: 'node',
         watch: isDevelopment,
-        externals: exports.getExternals(isDevelopment),
-        entry: isDevelopment ? __spreadArray(['webpack/hot/poll?300'], __read(entries)) : entries,
+        externals: (0, exports.getExternals)(isDevelopment),
+        entry: isDevelopment ? __spreadArray(['webpack/hot/poll?300'], __read(entries), false) : entries,
         output: {
             path: paths_1.paths.appBuild,
             filename: options.filename,

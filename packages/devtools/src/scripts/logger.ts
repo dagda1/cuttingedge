@@ -94,19 +94,20 @@ const warn = (text: string, data?: unknown) => {
   write(LoggerTypes.warn, text, data);
 };
 
-const error = (err: string | Error) => {
+const error = (err: unknown) => {
   if (typeof err === 'string') {
     write(LoggerTypes.error, err);
     return;
   }
 
-  if (err.message) {
+  if (err instanceof Error) {
     write(LoggerTypes.error, err.message);
-  }
-
-  write(LoggerTypes.error, err);
-  if (err.stack) {
-    write(LoggerTypes.error, err.stack);
+    write(LoggerTypes.error, err);
+    if (err.stack) {
+      write(LoggerTypes.error, err.stack);
+    }
+  } else {
+    console.error(err);
   }
 };
 

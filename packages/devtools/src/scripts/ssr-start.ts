@@ -21,7 +21,10 @@ function compile(config: Configuration): Compiler {
   try {
     compiler = webpack(config);
   } catch (e) {
-    printErrors('Failed to compile.', [e]);
+    if (e instanceof Error) {
+      printErrors('Failed to compile.', [e]);
+    }
+
     process.exit(1);
   }
   return compiler;

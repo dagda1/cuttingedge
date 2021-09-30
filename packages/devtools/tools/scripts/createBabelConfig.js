@@ -56,7 +56,7 @@ var createBabelConfig = function (_a) {
     return {
         babelrc: false,
         configFile: false,
-        presets: exports.createBabelPresets({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: moduleFormat }),
+        presets: (0, exports.createBabelPresets)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: moduleFormat }),
         // cacheDirectory: true,
         // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
         sourceType: 'unambiguous',

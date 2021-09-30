@@ -70,7 +70,8 @@ export const build = async ({
     printFileSizesAfterBuild(clientStats, previousFileSizes, publicDir);
 
     logger.done('build finished');
-  } catch (err) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     logger.error('Failed to compile.');
     logger.error(err.message || err);
     logger.error(err.stack);

@@ -12,14 +12,14 @@ var getPublicUrlOrPath_1 = __importDefault(require("react-dev-utils/getPublicUrl
 var appDirectory = fs_1.default.realpathSync(process.cwd());
 var resolveApp = function (relativePath) { return path_1.default.resolve(appDirectory, relativePath); };
 var DefaultBuildDir = 'dist';
-var publicUrlOrPath = getPublicUrlOrPath_1.default(process.env.NODE_ENV === 'development', undefined, process.env.PUBLIC_URL);
+var publicUrlOrPath = (0, getPublicUrlOrPath_1.default)(process.env.NODE_ENV === 'development', undefined, process.env.PUBLIC_URL);
 var resolveOwn = function (relativePath) { return path_1.default.resolve(__dirname, '..', relativePath); };
 var nodePaths = (process.env.NODE_PATH || '')
     .split(process.platform === 'win32' ? ';' : ':')
     .filter(Boolean)
     .filter(function (folder) { return !path_1.default.isAbsolute(folder); })
     .map(resolveApp);
-var appNodeModules = finders_1.findAppNodeModules(process.cwd());
+var appNodeModules = (0, finders_1.findAppNodeModules)(process.cwd());
 var resolvedNodeModules = [appNodeModules, './node_modules']
     .filter(function (m) { return fs_1.default.existsSync(m); })
     .map(function (m) { return path_1.default.relative(process.cwd(), m); });

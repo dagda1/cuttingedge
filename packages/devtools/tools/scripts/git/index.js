@@ -15,7 +15,7 @@ var getCommitHash = function () {
         return new Date().toISOString();
     }
     try {
-        return child_process_1.execSync('git rev-parse HEAD', { timeout: 1000 }).toString().trim();
+        return (0, child_process_1.execSync)('git rev-parse HEAD', { timeout: 1000 }).toString().trim();
     }
     catch (err) {
         logger_1.logger.error('The git is not working.  Creating a timestamp');

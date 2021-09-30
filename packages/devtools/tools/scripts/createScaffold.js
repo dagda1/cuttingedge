@@ -56,7 +56,7 @@ var scaffold = function () { return __awaiter(void 0, void 0, void 0, function (
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                createInitialFiles_1.createInitialFiles();
+                (0, createInitialFiles_1.createInitialFiles)();
                 if ([paths_1.paths.appPublic, paths_1.paths.devDirPublic].some(function (dir) {
                     if (fs_extra_1.default.existsSync(dir)) {
                         logger_1.default.info(dir + " exists, aborting scaffold.");

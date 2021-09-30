@@ -10,7 +10,7 @@ var deepmerge_1 = __importDefault(require("deepmerge"));
 var build_config_1 = require("../config/build.config");
 var consolidateBuildConfigs = function () {
     var localBuildConfig = fs_extra_1.default.existsSync(paths_1.paths.localBuildConfig) ? require(paths_1.paths.localBuildConfig) : {};
-    return deepmerge_1.default(build_config_1.config, localBuildConfig);
+    return (0, deepmerge_1.default)(build_config_1.config, localBuildConfig);
 };
 exports.consolidateBuildConfigs = consolidateBuildConfigs;
 //# sourceMappingURL=consolidateBuildConfigs.js.map

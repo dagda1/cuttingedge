@@ -73,7 +73,7 @@ const HOST = process.env.HOST || '0.0.0.0';
       });
     });
   } catch (err) {
-    if (err) {
+    if (err instanceof Error) {
       console.error(err);
       logger.error(err.message);
     }

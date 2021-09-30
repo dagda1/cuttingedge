@@ -97,7 +97,7 @@ function audit(exceptions) {
                     _g.label = 1;
                 case 1:
                     _g.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, run_1.run('yarn audit --json --level=moderate')];
+                    return [4 /*yield*/, (0, run_1.run)('yarn audit --json --level=moderate')];
                 case 2:
                     auditResult = _g.sent();
                     return [3 /*break*/, 4];
@@ -213,10 +213,10 @@ function audit(exceptions) {
                     jsonResults.testsuites.push(testSuite);
                     ossIndex = paths_1.paths.ossIndex;
                     if (!fs_extra_1.default.existsSync(ossIndex)) {
-                        mkdirp_1.default(ossIndex);
+                        (0, mkdirp_1.default)(ossIndex);
                     }
                     fs_extra_1.default.emptyDirSync(ossIndex);
-                    fs_extra_1.default.writeFileSync(path_1.default.join(ossIndex, 'junitReport.xml'), xml_1.default(jsonResults, { indent: '  ', declaration: true }));
+                    fs_extra_1.default.writeFileSync(path_1.default.join(ossIndex, 'junitReport.xml'), (0, xml_1.default)(jsonResults, { indent: '  ', declaration: true }));
                     finalMessage = "audit finished with " + failures.length + " found.";
                     logger_1.logger.done(finalMessage);
                     process.exit(0);
@@ -232,7 +232,7 @@ function audit(exceptions) {
     });
 }
 exports.audit = audit;
-var program = commander_1.createCommand('audit-parser');
+var program = (0, commander_1.createCommand)('audit-parser');
 program
     .description('run yarn audit against the yarn.lock file in current cwd')
     .helpOption('-h, --help', 'show help')

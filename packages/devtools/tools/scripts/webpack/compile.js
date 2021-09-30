@@ -13,10 +13,11 @@ var assert_ts_1 = require("assert-ts");
 function compileWebpack(config, cb) {
     var compiler;
     try {
-        compiler = webpack_1.default(config);
+        compiler = (0, webpack_1.default)(config);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }
     catch (e) {
-        printErrors_1.default('Failed to compile.', [e]);
+        (0, printErrors_1.default)('Failed to compile.', [e]);
         process.exit(1);
     }
     compiler.run(function (err, stats) {
@@ -33,8 +34,8 @@ var compile = function (config, buildType) {
                 reject(err);
                 return;
             }
-            assert_ts_1.assert(typeof stats !== 'undefined', "no stats in compile");
-            var messages = formatWebpackMessages_1.default(stats.toJson({ all: false, warnings: true, errors: true }));
+            (0, assert_ts_1.assert)(typeof stats !== 'undefined', "no stats in compile");
+            var messages = (0, formatWebpackMessages_1.default)(stats.toJson({ all: false, warnings: true, errors: true }));
             if (messages.errors.length) {
                 return reject(new Error(messages.errors.join('\n')));
             }

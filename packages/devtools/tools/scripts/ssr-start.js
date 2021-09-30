@@ -68,10 +68,12 @@ process.noDeprecation = true;
 function compile(config) {
     var compiler;
     try {
-        compiler = webpack_1.default(config);
+        compiler = (0, webpack_1.default)(config);
     }
     catch (e) {
-        printErrors_1.default('Failed to compile.', [e]);
+        if (e instanceof Error) {
+            (0, printErrors_1.default)('Failed to compile.', [e]);
+        }
         process.exit(1);
     }
     return compiler;
@@ -87,10 +89,10 @@ function main() {
         fs_extra_1.default.removeSync(paths_1.paths.appManifest);
         var localBuildConfig = require(paths_1.paths.localBuildConfig);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        var buildConfig = webpack_merge_1.merge(build_config_1.config, localBuildConfig);
-        var port = getUrlParts_1.getUrlParts({ ssrBuild: true, isProduction: false }).port;
-        var clientConfig = client_1.configure(__assign(__assign({}, buildConfig.client), { isStaticBuild: false }));
-        var serverConfig = server_1.configure(buildConfig.server);
+        var buildConfig = (0, webpack_merge_1.merge)(build_config_1.config, localBuildConfig);
+        var port = (0, getUrlParts_1.getUrlParts)({ ssrBuild: true, isProduction: false }).port;
+        var clientConfig = (0, client_1.configure)(__assign(__assign({}, buildConfig.client), { isStaticBuild: false }));
+        var serverConfig = (0, server_1.configure)(buildConfig.server);
         var clientCompiler = compile(clientConfig);
         var serverCompiler = compile(serverConfig);
         var watching;
@@ -133,7 +135,7 @@ function main() {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                empty_build_dir_1.emptyBuildDir();
+                (0, empty_build_dir_1.emptyBuildDir)();
                 return [4 /*yield*/, main()];
             case 1:
                 _a.sent();
