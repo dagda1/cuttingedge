@@ -2765,13 +2765,6 @@
   resolved "https://registry.npmjs.org/@types/webpack-env/-/webpack-env-1.16.2.tgz#8db514b059c1b2ae14ce9d7bb325296de6a9a0fa"
   integrity sha512-vKx7WNQNZDyJveYcHAm9ZxhqSGLYwoyLhrHjLBOkw3a7cT76sTdjgtwyijhk1MaHyRIuSztcVwrUOO/NEu68Dw==
 
-"@types/webpack-merge@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/@types/webpack-merge/-/webpack-merge-5.0.0.tgz#818a13948c1642bde7e2f4f079335a5f85365699"
-  integrity sha512-CFedsXD/7vmJ66PaC3eavdqqNZujWlvdkGFcizi0QPtDswK75DV7a5GTKzL9Ev6d0okLurq+ebQjwIEFmP9aZw==
-  dependencies:
-    webpack-merge "*"
-
 "@types/webpack-node-externals@^2.5.2":
   version "2.5.2"
   resolved "https://registry.npmjs.org/@types/webpack-node-externals/-/webpack-node-externals-2.5.2.tgz#d6e0c90147472304b6b5cfcd1bbd7138e6b9eb65"
@@ -2908,7 +2901,7 @@
     "@babel/template" "^7.12.13"
     "@vanilla-extract/integration" "^1.4.0"
 
-"@vanilla-extract/css@^1.2.1", "@vanilla-extract/css@^1.2.3", "@vanilla-extract/css@^1.5.0":
+"@vanilla-extract/css@^1.2.3", "@vanilla-extract/css@^1.5.0":
   version "1.6.1"
   resolved "https://registry.npmjs.org/@vanilla-extract/css/-/css-1.6.1.tgz#39c3b58f2b5f1b728e901b059c5021b8769d5a99"
   integrity sha512-MTR8pHVV80/B4H37JqyUwC8GUwA6DMdClcjgrU98svLrnmWq2Y8BWox9OQAOovoOwGtZwkJhjTQUmPkK0D13Bw==
@@ -2930,7 +2923,7 @@
   dependencies:
     "@vanilla-extract/integration" "^1.2.0"
 
-"@vanilla-extract/integration@^1.1.0", "@vanilla-extract/integration@^1.2.0", "@vanilla-extract/integration@^1.4.0":
+"@vanilla-extract/integration@^1.1.0", "@vanilla-extract/integration@^1.2.0", "@vanilla-extract/integration@^1.3.0", "@vanilla-extract/integration@^1.4.0":
   version "1.4.1"
   resolved "https://registry.npmjs.org/@vanilla-extract/integration/-/integration-1.4.1.tgz#698c69c7545542f67eb9180469029da2be85546b"
   integrity sha512-LH+pHMvjpdFsaKZU4Db/fIIhSnuzUIFMqViYv0Yp8Nf6OO0eaA4UBDhMc0yseFjdfFfdhtBDS88Ut2waXio6ZQ==
@@ -2944,12 +2937,19 @@
     javascript-stringify "^2.0.1"
     lodash "^4.17.21"
 
+"@vanilla-extract/next-plugin@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@vanilla-extract/next-plugin/-/next-plugin-1.0.0.tgz#32378c98254817dc3af5a847cede48da91bee45c"
+  integrity sha512-728O1S9wpfNpi7e0TpdETr4CFwHuLo6aGlE1H46fr3FxrKvnWvr+5aZNvq2zVLxvJaBrTAZsJ2R7PxV6wgeZeg==
+  dependencies:
+    "@vanilla-extract/webpack-plugin" "^2.0.0"
+
 "@vanilla-extract/private@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@vanilla-extract/private/-/private-1.0.1.tgz#c9479cebea7e7fbb07a1fe5b5c988a8753ef04ed"
   integrity sha512-ABrFJGSmF7a1M+eDTsIeAErPhIeRyBY3ypyLQPc4bUVEK1mvF7F2gx4fTP81pm12bkS0GhjSJtM854lcPWhB+w==
 
-"@vanilla-extract/sprinkles@^1.0.0":
+"@vanilla-extract/sprinkles@^1.1.1":
   version "1.3.0"
   resolved "https://registry.npmjs.org/@vanilla-extract/sprinkles/-/sprinkles-1.3.0.tgz#c7f50d900490df7024f227256fe73a7943e2d2da"
   integrity sha512-MF4ShklyUxAfXm+M6NkizNQSPFfGycZVHc/HIYqXrqDIFDc+6UQoBwiygWUla/6pXzZk9u1TViirhfZIH/zEmA==
@@ -2960,6 +2960,18 @@
   integrity sha512-HOcW7TYipzIBor+HruGW96fW9suWA5fgSHdsxngROm/F7AUk6SjAk/AOFD6kq4CLIG33d6ZryjRSPjb9STrfxw==
   dependencies:
     "@vanilla-extract/integration" "^1.1.0"
+    chalk "^4.1.1"
+    debug "^4.3.1"
+    loader-utils "^2.0.0"
+    lodash "^4.17.21"
+    virtual-resource-loader "^1.0.0"
+
+"@vanilla-extract/webpack-plugin@^2.0.0":
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/@vanilla-extract/webpack-plugin/-/webpack-plugin-2.1.0.tgz#0a385194289eccdab1a3b487de17a737153e46a2"
+  integrity sha512-DU6OtBrFlGkYds2fGzn9WvvoZOMzUBR/4WKmeMSlRn+ypUVtvu+z65MqlqE8QhbTzbOnmkifDkuyvOQOm+d3BA==
+  dependencies:
+    "@vanilla-extract/integration" "^1.3.0"
     chalk "^4.1.1"
     debug "^4.3.1"
     loader-utils "^2.0.0"
@@ -14150,7 +14162,7 @@ webpack-dev-server@^4.0.0:
     webpack-dev-middleware "^5.2.1"
     ws "^8.1.0"
 
-webpack-merge@*, webpack-merge@^5.8.0:
+webpack-merge@^5.8.0:
   version "5.8.0"
   resolved "https://registry.npmjs.org/webpack-merge/-/webpack-merge-5.8.0.tgz#2b39dbf22af87776ad744c390223731d30a68f61"
   integrity sha512-/SaI7xY0831XwP6kzuwhKWVKDP9t1QY1h65lAFLbZqMPIuYcD9QAW4u9STIbU9kaJbPBB/geU/gLr1wDjOhQ+Q==

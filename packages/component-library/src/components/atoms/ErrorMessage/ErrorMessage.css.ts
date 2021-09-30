@@ -1,9 +1,9 @@
-import { composeStyles, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { responsiveFont } from '../../../style/typography/typography';
 import { vars } from '../../../style/themes/vars.css';
 import { atoms } from '../../../style/atoms/sprinkles.css';
 
-export const root = composeStyles(
+export const root = style([
   atoms({
     marginBottom: '1x',
   }),
@@ -15,4 +15,4 @@ export const root = composeStyles(
     listStyle: 'none',
     display: 'block',
   }),
-);
+]);

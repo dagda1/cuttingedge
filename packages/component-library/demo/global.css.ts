@@ -1,4 +1,4 @@
-import { composeStyles, globalFontFace, style } from '@vanilla-extract/css';
+import { globalFontFace, style } from '@vanilla-extract/css';
 import { rem } from 'polished';
 import { atoms } from '../src/style/atoms/sprinkles.css';
 import { vars } from '../src/style/themes/vars.css';
@@ -31,14 +31,12 @@ globalFontFace('Tahi', {
   fontDisplay: 'swap',
 });
 
-export const wrap = composeStyles(
-  style({
-    maxWidth: rem(1008),
-    paddingLeft: vars.space['2x'],
-    paddingRight: vars.space['3x'],
-    margin: '0 auto',
-  }),
-);
+export const wrap = style({
+  maxWidth: rem(1008),
+  paddingLeft: vars.space['2x'],
+  paddingRight: vars.space['3x'],
+  margin: '0 auto',
+});
 
 export const background = style({
   background: vars.backgroundColor.body,
@@ -51,7 +49,7 @@ export const layout = style({
   flexFlow: 'row wrap',
 });
 
-export const item = composeStyles(
+export const item = style([
   atoms({
     paddingLeft: {
       mobile: '1x',
@@ -66,4 +64,4 @@ export const item = composeStyles(
       tablet: '1 0 auto',
     },
   }),
-);
+]);

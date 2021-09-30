@@ -1,4 +1,4 @@
-import { globalStyle, style, composeStyles } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes/vars.css';
 import { responsiveFont } from '../../../style/typography/typography';
 
@@ -85,18 +85,18 @@ globalStyle(`${item} input:checked + label:after`, {
   border: `10px solid ${vars.radios.borderColor}`,
 });
 
-export const small = composeStyles(item);
+export const small = style([item]);
 
 globalStyle(`${small} label:before,${small} label:after`, {
   transform: 'scale(0.5)',
 });
 
-export const inline = composeStyles(
+export const inline = style([
   item,
   style({
     marginRight: vars.space['3x'],
   }),
-);
+]);
 
 globalStyle(`${inline}:not(${small}) label`, {
   marginRight: vars.space['2x'],

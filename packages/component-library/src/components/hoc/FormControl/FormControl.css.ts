@@ -1,9 +1,9 @@
-import { composeStyles, style, globalStyle } from '@vanilla-extract/css';
+import { style, globalStyle } from '@vanilla-extract/css';
 import { responsiveStyle } from '../../../style/responsive-style';
 import { vars } from '../../../style/themes/vars.css';
 import { atoms } from '../../../style/atoms/sprinkles.css';
 
-export const root = composeStyles(
+export const root = style([
   atoms({
     display: 'flex',
     flexDirection: 'column',
@@ -22,7 +22,7 @@ export const root = composeStyles(
       },
     }),
   }),
-);
+]);
 
 export const error = style({
   paddingLeft: vars.space['3x'],
