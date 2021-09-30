@@ -22,7 +22,7 @@ export type FormControlProps<E> = {
   layout?: Layout;
   dataSelector?: string;
   width?: keyof typeof vars.inputWidth;
-} & InputHTMLAttributes<E>;
+} & InputHTMLAttributes<E> & { rows?: number; cols?: number };
 
 export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormControlProps<E> & P> {
   const FormControlWrapper: FC<FormControlProps<E> & P> = ({

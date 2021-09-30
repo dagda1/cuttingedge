@@ -4,7 +4,3 @@ export type Taggable<TProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTM
   | FC<TProps>
   | ComponentClass<TProps>
   | string;
-
-export type ExtractProps<ComponentOrProps> = ComponentOrProps extends React.ComponentType<infer U>
-  ? U
-  : ComponentOrProps;

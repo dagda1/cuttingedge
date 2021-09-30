@@ -1,4 +1,4 @@
-import type { ReactNode, ChangeEvent } from 'react';
+import type { ReactNode, ChangeEvent, InputHTMLAttributes } from 'react';
 import { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio/Radio';
 import { CheckableProps, CheckableLayoutProps, CheckableValueType } from '../../atoms/Checkable/types';
@@ -11,14 +11,16 @@ export type CheckableOption<V extends CheckableValueType> = CheckableProps<V> & 
 
 type LegendMode = 'screen-reader-only' | 'visible';
 
-export interface CheckableGroupProps<V extends CheckableValueType> {
+type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>;
+
+export type CheckableGroupProps<V extends CheckableValueType> = InputProps & {
   legend: string;
   legendMode?: LegendMode;
   name: string;
   options: CheckableOption<V>[];
   onChange?: (option: CheckableProps<V>) => void;
   className?: string;
-}
+} & CheckableLayoutProps;
 
 export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
   return function CheckableGroup<V extends CheckableValueType>({
@@ -30,7 +32,7 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
     options: checkableOptions,
     onChange,
     className,
-  }: CheckableGroupProps<V> & CheckableLayoutProps): JSX.Element {
+  }: CheckableGroupProps<V>): JSX.Element {
     const optionsWithIds = useRef<CheckableOption<V>[]>(
       checkableOptions.map((o, index) => ({
         ...o,
