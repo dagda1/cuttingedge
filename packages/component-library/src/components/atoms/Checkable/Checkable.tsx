@@ -11,15 +11,15 @@ export function Checkable(type: 'radio' | 'checkbox') {
     value,
     checked,
     children,
-    layout,
+    checkableLayout,
     onChange,
-    size,
+    checkableSize,
   }: CheckableProps<V> & CheckableEventHandlers & CheckableLayoutProps & { children: ReactNode }): JSX.Element {
     return (
       <div
         className={cs(styles.item, {
-          [styles.small]: size === 'small',
-          [styles.inline]: layout === 'inline',
+          [styles.small]: checkableSize === 'small',
+          [styles.inline]: checkableLayout === 'inline',
         })}
       >
         <input id={id} name={name} type={type} value={value} onChange={onChange} checked={checked} />

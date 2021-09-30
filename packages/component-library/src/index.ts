@@ -1,5 +1,11 @@
 export type { StandardProps } from './types';
 export type { CheckableGroupProps } from './components/molecules/CheckableGroup/CheckableGroup';
+export type {
+  FormCheckboxGroupProps,
+  FormRadioGroupProps,
+  FormInputProps,
+  FormTextAreaProps,
+} from './components/molecules/FormControls/FormControls';
 
 export { Heading } from './components/atoms/Heading/Heading';
 export { ExternalLink } from './components/atoms/ExternalLink/ExternalLink';

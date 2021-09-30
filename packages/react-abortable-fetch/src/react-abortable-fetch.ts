@@ -164,13 +164,18 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
         send(success(accumulated.current));
         onSuccess(accumulated.current);
       } catch (err) {
-        if (err?.name === 'AbortError') {
-          abortable(err);
-          return;
+        if (err instanceof Error) {
+          if (err?.name === 'AbortError') {
+            abortable(err);
+            return;
+          }
+
+          send(error(err));
+        } else {
+          console.log(`something weird is happening got an error which is not an error! ${JSON.stringify(error)}`);
         }
 
         onError(err);
-        send(error(err));
         return;
       } finally {
         abortController.current.abort();

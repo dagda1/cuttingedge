@@ -14,10 +14,11 @@
     "watch": "yarn build:tsc && yarn tsc -b ./tsconfig.packages.json --watch"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.16.0",
+    "@changesets/cli": "^2.17.0",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.6.2",
     "css-what": "^5.0.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "normalize-url": "^7.0.1",
@@ -66,6 +67,7 @@
     "d3-time": "^2.1.1",
     "effection": "2.0.0-beta.12",
     "normalize-url": "^7.0.1",
+    "prettier": "^2.4.1",
     "url-parse": "^1.5.3",
     "webpack": "^5.50.0"
   },

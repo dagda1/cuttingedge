@@ -31,8 +31,8 @@ export const App: FC = () => {
               legend="Choose theme"
               legendMode="visible"
               name="theme"
-              layout="inline"
-              size={'large'}
+              checkableLayout="inline"
+              checkableSize={'large'}
               onChange={(o) => {
                 setTheme(o.value);
               }}
@@ -110,8 +110,8 @@ export const App: FC = () => {
             <CheckboxGroup
               legend="large stacked"
               name="large-stacked-checkbox"
-              layout={'stacked'}
-              size={'large'}
+              checkableLayout={'stacked'}
+              checkableSize={'large'}
               options={[
                 {
                   value: 'off',
@@ -128,8 +128,8 @@ export const App: FC = () => {
           <div className={styles.item}>
             <CheckboxGroup
               name="small-stacked-checkbox"
-              layout={'stacked'}
-              size={'small'}
+              checkableLayout={'stacked'}
+              checkableSize={'small'}
               legend="small stacked"
               options={[
                 {
@@ -147,8 +147,8 @@ export const App: FC = () => {
           <div className={styles.item}>
             <CheckboxGroup
               name="large-inline-checkbox"
-              layout={'inline'}
-              size={'large'}
+              checkableLayout={'inline'}
+              checkableSize={'large'}
               legend="large inline"
               options={[
                 {
@@ -166,8 +166,8 @@ export const App: FC = () => {
           <div className={styles.item}>
             <CheckboxGroup
               name="small-inline-checkbox"
-              layout={'inline'}
-              size={'small'}
+              checkableLayout={'inline'}
+              checkableSize={'small'}
               legend="small inline"
               options={[
                 {
@@ -193,8 +193,8 @@ export const App: FC = () => {
             <RadioGroup
               legend="large stacked"
               name="large-stacked-radio"
-              layout={'stacked'}
-              size={'large'}
+              checkableLayout={'stacked'}
+              checkableSize={'large'}
               options={[
                 {
                   value: 'off',
@@ -211,8 +211,8 @@ export const App: FC = () => {
           <div className={styles.item}>
             <RadioGroup
               name="small-stacked-radio"
-              layout={'stacked'}
-              size={'small'}
+              checkableLayout={'stacked'}
+              checkableSize={'small'}
               legend="small stacked"
               options={[
                 {
@@ -230,8 +230,8 @@ export const App: FC = () => {
           <div className={styles.item}>
             <RadioGroup
               name="large-inline-radio"
-              layout={'inline'}
-              size={'large'}
+              checkableLayout={'inline'}
+              checkableSize={'large'}
               legend="large inline"
               options={[
                 {
@@ -249,8 +249,8 @@ export const App: FC = () => {
           <div className={styles.item}>
             <RadioGroup
               name="small-inline-radio"
-              layout={'inline'}
-              size={'small'}
+              checkableLayout={'inline'}
+              checkableSize={'small'}
               legend="small inline"
               options={[
                 {

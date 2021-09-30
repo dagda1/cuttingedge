@@ -12,5 +12,5 @@ export const FormCheckboxGroup = FormControl(CheckboxGroup);
 
 export type FormInputProps = ComponentProps<typeof FormInput>;
 export type FormTextAreaProps = ComponentProps<typeof FormTextArea>;
-// export type FormRadioGroupProps = ComponentProps<typeof FormRadioGroup>;
-// export type FormInputProps = ComponentProps<typeof FormInput>;
+export type FormRadioGroupProps = ComponentProps<typeof FormRadioGroup>;
+export type FormCheckboxGroupProps = ComponentProps<typeof FormCheckboxGroup>;

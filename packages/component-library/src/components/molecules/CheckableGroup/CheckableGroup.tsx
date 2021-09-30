@@ -1,7 +1,7 @@
 import type { ReactNode, ChangeEvent, InputHTMLAttributes } from 'react';
 import { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio/Radio';
-import { CheckableProps, CheckableLayoutProps, CheckableValueType } from '../../atoms/Checkable/types';
+import { CheckableLayoutProps, CheckableProps, CheckableValueType } from '../../atoms/Checkable/types';
 import cs from 'classnames';
 
 import * as styles from './Checkable.css';
@@ -11,7 +11,7 @@ export type CheckableOption<V extends CheckableValueType> = CheckableProps<V> & 
 
 type LegendMode = 'screen-reader-only' | 'visible';
 
-type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>;
+type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value' | 'size'>;
 
 export type CheckableGroupProps<V extends CheckableValueType> = InputProps & {
   legend: string;
@@ -26,8 +26,8 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
   return function CheckableGroup<V extends CheckableValueType>({
     legend,
     legendMode = 'screen-reader-only',
-    layout,
-    size,
+    checkableLayout,
+    checkableSize,
     name,
     options: checkableOptions,
     onChange,
@@ -73,7 +73,7 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
         </legend>
         <div
           className={cs(className, {
-            [styles.inline]: layout === 'inline',
+            [styles.inline]: checkableLayout === 'inline',
           })}
         >
           {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
@@ -83,8 +83,8 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
                 key={id}
                 id={id}
                 name={name}
-                layout={layout}
-                size={size}
+                checkableLayout={checkableLayout}
+                checkableSize={checkableSize}
                 checked={!!selectedValues.find((x) => x.id === id)?.checked}
                 onChange={changeHandler}
                 {...option}
