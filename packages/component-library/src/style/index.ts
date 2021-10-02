@@ -1,7 +1,7 @@
 export type { FontWeight } from './themes/make-theme';
 export { responsiveFont, responsiveHeadingFont } from './typography/typography';
 export { responsiveStyle } from './responsive-style';
-export { atoms } from './atoms/sprinkles.css';
+export { atoms } from './atoms/atoms';
 export { vars } from './themes/vars.css';
 export { defaultTheme } from './themes/default/default.css';
 export { cuttingTheme } from './themes/cutting/cutting.css';

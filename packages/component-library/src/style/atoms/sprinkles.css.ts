@@ -1,14 +1,8 @@
-import {
-  createAtomicStyles,
-  createAtomsFn,
-  createMapValueFn,
-  createNormalizeValueFn,
-  ConditionalValue,
-} from '@vanilla-extract/sprinkles';
+import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles';
 import { breakpoints } from '../breakpoints';
 import { vars } from '../themes/vars.css';
 
-const responsiveStyles = createAtomicStyles({
+const responsiveStyles = defineProperties({
   conditions: {
     mobile: {},
     tablet: { '@media': `screen and (min-width: ${breakpoints.tablet}rem)` },
@@ -50,13 +44,7 @@ const responsiveStyles = createAtomicStyles({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const mapResponsiveValue = createMapValueFn(responsiveStyles) as any;
-export const normalizeResponsiveValue = createNormalizeValueFn(responsiveStyles);
-
-export type ResponsiveValue<Value extends string | number> = ConditionalValue<typeof responsiveStyles, Value>;
-
-const unresponsiveStyles = createAtomicStyles({
+const unresponsiveStyles = defineProperties({
   properties: {
     top: [0],
     bottom: [0],
@@ -71,6 +59,4 @@ const unresponsiveStyles = createAtomicStyles({
   },
 });
 
-export const atoms = createAtomsFn(responsiveStyles, unresponsiveStyles);
-
-export type Atoms = Parameters<typeof atoms>[0];
+export const sprinkles = createSprinkles(responsiveStyles, unresponsiveStyles);

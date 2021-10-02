@@ -1,6 +1,6 @@
 {
   "name": "@cutting/component-library",
-  "version": "4.27.15-preview",
+  "version": "4.27.16-preview",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -9,7 +9,8 @@
   "browser": "dist/umd/component-library.umd.js",
   "main": "dist/cjs/component-library.cjs.js",
   "sideEffects": [
-    "*.css.ts"
+    "./src/style/reset/*",
+    "**/*.css.ts"
   ],
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
@@ -19,11 +20,10 @@
   "dependencies": {
     "@cutting/hooks": "4.28.2",
     "@cutting/util": "4.27.2",
-    "@vanilla-extract/babel-plugin": "^1.0.1",
-    "@vanilla-extract/css": "^1.2.3",
-    "@vanilla-extract/next-plugin": "^1.0.0",
-    "@vanilla-extract/sprinkles": "^1.1.1",
-    "@vanilla-extract/webpack-plugin": "^1.1.0",
+    "@vanilla-extract/babel-plugin": "^1.1.1",
+    "@vanilla-extract/css": "^1.6.1",
+    "@vanilla-extract/sprinkles": "^1.3.0",
+    "@vanilla-extract/webpack-plugin": "^2.1.0",
     "assert-ts": "^0.3.2",
     "capsize": "^2.0.0",
     "classnames": "^2.3.1",

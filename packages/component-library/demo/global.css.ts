@@ -1,6 +1,6 @@
 import { globalFontFace, style } from '@vanilla-extract/css';
 import { rem } from 'polished';
-import { atoms } from '../src/style/atoms/sprinkles.css';
+import { atoms } from '../src/style/atoms/atoms';
 import { vars } from '../src/style/themes/vars.css';
 
 globalFontFace('Tahi', {
@@ -51,17 +51,20 @@ export const layout = style({
 
 export const item = style([
   atoms({
-    paddingLeft: {
-      mobile: '1x',
-      tablet: '3x',
-    },
-    display: {
-      mobile: 'block',
-      tablet: 'inline-block',
-    },
-    flex: {
-      mobile: 'auto',
-      tablet: '1 0 auto',
+    reset: 'div',
+    ...{
+      paddingLeft: {
+        mobile: '1x',
+        tablet: '3x',
+      },
+      display: {
+        mobile: 'block',
+        tablet: 'inline-block',
+      },
+      flex: {
+        mobile: 'auto',
+        tablet: '1 0 auto',
+      },
     },
   }),
 ]);

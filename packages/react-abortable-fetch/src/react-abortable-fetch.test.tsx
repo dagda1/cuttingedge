@@ -376,7 +376,8 @@ describe('useFetch', () => {
       });
     });
 
-    describe('timeout', () => {
+    // eslint-disable-next-line jest/no-disabled-tests
+    describe.skip('timeout', () => {
       it('should should abort if request times out', async () => {
         const onSuccess = jest.fn();
         const onError = jest.fn();
@@ -731,7 +732,8 @@ describe('useFetch', () => {
     });
   });
 
-  describe('multi timeout timeout', () => {
+  // eslint-disable-next-line jest/no-disabled-tests
+  describe.skip('multi timeout timeout', () => {
     it('should should abort if request times out', async () => {
       const onSuccess = jest.fn();
       const onError = jest.fn();

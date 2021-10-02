@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { responsiveFont } from '../../../style/typography/typography';
 import { vars } from '../../../style/themes/vars.css';
-import { atoms } from '../../../style/atoms/sprinkles.css';
+import { atoms } from '../../../style/atoms/atoms';
 
 export const root = style([
   atoms({
