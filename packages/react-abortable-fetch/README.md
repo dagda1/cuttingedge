@@ -132,7 +132,7 @@ return (
   <button
     disabled={state !== 'READY'}
     onClick={() => {
-      run();
+      run({ an: 'object'});  // by default objects will be seriaized to json
     }}
   >
     DO IT

@@ -87,114 +87,127 @@ export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
     send(reset(initialState));
   }, [builderOrRequestInfos, initialState, send]);
 
-  const runner = useCallback(() => {
-    task.current = run(function* (scope) {
-      counter.current += 1;
-      send(start);
+  const parseArg = <A>(arg?: A) => {
+    if (typeof arg !== 'undefined') {
+      return typeof arg === 'object' ? JSON.stringify(arg) : String(arg);
+    }
+  };
 
-      try {
-        for (const job of fetchClient.current.jobs) {
-          const {
-            fetch: {
-              request,
-              init,
-              contentType,
-              onQuerySuccess = parentOnQuerySuccess,
-              onQueryError = parentOnQueryError,
-            },
-          } = job;
+  const runner = useCallback(
+    <A>(arg?: A) => {
+      task.current = run(function* (scope) {
+        counter.current += 1;
+        send(start);
 
-          timeoutRef.current = timeout ? timeout : undefined;
+        try {
+          for (const job of fetchClient.current.jobs) {
+            const {
+              fetch: {
+                request,
+                init = {},
+                contentType,
+                onQuerySuccess = parentOnQuerySuccess,
+                onQueryError = parentOnQueryError,
+              },
+            } = job;
 
-          scope.spawn<void>(function* () {
-            if (typeof timeoutRef.current !== 'number') {
+            timeoutRef.current = timeout ? timeout : undefined;
+
+            scope.spawn<void>(function* () {
+              if (typeof timeoutRef.current !== 'number') {
+                return;
+              }
+
+              yield sleep(timeoutRef.current as number);
+
+              console.log(
+                `
+Request ${request} did not complete in ${timeoutRef.current}ms.
+timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length} jobs`,
+              );
+
+              abortController.current.abort();
+            });
+
+            retries.current = retryAttempts;
+
+            job.state = 'LOADING';
+
+            const fetcher = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
+
+            const body = parseArg(arg);
+
+            const resolvedInit = { ...init, body };
+
+            let response: Response & Body = yield fetcher(request as string, resolvedInit);
+
+            while (!response.ok && retries.current > 0) {
+              yield sleep(retryDelay);
+              --retries.current;
+
+              console.log(`request ${request} failed, ${response.status}: ${response.statusText} -- retrying`);
+              console.log(`retry attempts left ${retries.current}`);
+
+              response = yield fetcher(request as string, init);
+            }
+
+            if (!response.ok) {
+              job.state = 'ERROR';
+              const responseError = new ResponseError(response.statusText, response.status, null);
+              onQueryError(responseError);
+              throw responseError;
+            }
+
+            job.state = 'SUCCEEDED';
+
+            const data: T = yield response[contentType as ContentType]();
+
+            assert(typeof acc !== 'undefined', `no accumulator function present`);
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const result = acc(accumulated.current as R, data as any, { request, fetcher }) as Promise<R>;
+
+            accumulated.current = isPromise(result) ? yield result : result;
+
+            onQuerySuccess(data);
+          }
+
+          send(success(accumulated.current));
+          onSuccess(accumulated.current);
+        } catch (err) {
+          if (err instanceof Error) {
+            if (err?.name === 'AbortError') {
+              abortable(err);
               return;
             }
 
-            yield sleep(timeoutRef.current as number);
-
-            console.log(
-              `
-Request ${request} did not complete in ${timeoutRef.current}ms.
-timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length} jobs`,
-            );
-
-            abortController.current.abort();
-          });
-
-          retries.current = retryAttempts;
-
-          job.state = 'LOADING';
-
-          const fetcher = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
-
-          let response: Response & Body = yield fetcher(request as string, init);
-
-          while (!response.ok && retries.current > 0) {
-            yield sleep(retryDelay);
-            --retries.current;
-
-            console.log(`request ${request} failed, ${response.status}: ${response.statusText} -- retrying`);
-            console.log(`retry attempts left ${retries.current}`);
-
-            response = yield fetcher(request as string, init);
+            send(error(err));
+          } else {
+            console.log(`something weird is happening got an error which is not an error! ${JSON.stringify(error)}`);
           }
 
-          if (!response.ok) {
-            job.state = 'ERROR';
-            const responseError = new ResponseError(response.statusText, response.status, null);
-            onQueryError(responseError);
-            throw responseError;
-          }
-
-          job.state = 'SUCCEEDED';
-
-          const data: T = yield response[contentType as ContentType]();
-
-          assert(typeof acc !== 'undefined', `no accumulator function present`);
-
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const result = acc(accumulated.current as R, data as any, { request, fetcher }) as Promise<R>;
-
-          accumulated.current = isPromise(result) ? yield result : result;
-
-          onQuerySuccess(data);
+          onError(err);
+          return;
+        } finally {
+          abortController.current.abort();
         }
-
-        send(success(accumulated.current));
-        onSuccess(accumulated.current);
-      } catch (err) {
-        if (err instanceof Error) {
-          if (err?.name === 'AbortError') {
-            abortable(err);
-            return;
-          }
-
-          send(error(err));
-        } else {
-          console.log(`something weird is happening got an error which is not an error! ${JSON.stringify(error)}`);
-        }
-
-        onError(err);
-        return;
-      } finally {
-        abortController.current.abort();
-      }
-    });
-  }, [
-    send,
-    timeout,
-    onSuccess,
-    parentOnQuerySuccess,
-    parentOnQueryError,
-    retryAttempts,
-    fetchType,
-    acc,
-    retryDelay,
-    onError,
-    abortable,
-    abortController,
-  ]);
+      });
+    },
+    [
+      send,
+      timeout,
+      onSuccess,
+      parentOnQuerySuccess,
+      parentOnQueryError,
+      retryAttempts,
+      fetchType,
+      acc,
+      retryDelay,
+      onError,
+      abortable,
+      abortController,
+    ],
+  );
 
   useIsomorphicLayoutEffect(() => {
     if (executeOnMount && typeof runner !== 'undefined' && machine.value === 'READY') {

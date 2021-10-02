@@ -97,6 +97,16 @@ const server = setupServer(
     const items = data.find((d) => d.vendorId === vendorId);
     return res(ctx.json(items));
   }),
+
+  rest.post('http://localhost:3000/leads', (req, res, ctx) => {
+    const { clientId } = req.body as { clientId?: string };
+
+    if (clientId !== 'client') {
+      return res(ctx.json({ result: 'fail' }));
+    }
+
+    return res(ctx.json({ accessToken: 'yes' }));
+  }),
 );
 
 describe('useFetch', () => {
@@ -800,6 +810,27 @@ describe('useFetch', () => {
       expect(onAbort).not.toHaveBeenCalled();
       expect(onSuccess).toHaveBeenCalled();
       expect(onError).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('run with arguments', () => {
+    it('should pass arguments to single run', async () => {
+      const { result, waitForNextUpdate } = renderHook(() =>
+        useFetch({ url: `http://localhost:3000/leads`, method: 'POST' }, { executeOnMount: false }),
+      );
+
+      expect(result.current.state).toBe('READY');
+
+      act(() => {
+        result.current.run({ clientId: 'client' });
+      });
+
+      expect(result.current.state).toBe('LOADING');
+
+      await waitForNextUpdate();
+
+      expect(result.current.state).toBe('SUCCEEDED');
+      expect(result.current.data).toEqual({ accessToken: 'yes' });
     });
   });
 });
