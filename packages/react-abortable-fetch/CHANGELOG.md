@@ -1,5 +1,11 @@
 # @cutting/react-abortable-fetch
 
+## 0.15.0
+
+### Minor Changes
+
+- Move component-library to vanilla-extract
+
 ## 0.13.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.0.0
+
+### Major Changes
+
+- Move component-library to vanilla-extract
+
 ## 4.26.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@cutting/component-library",
-  "version": "4.27.16-preview",
+  "version": "5.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -64,25 +64,25 @@
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test",
-    "prepublishOnly": "yarn build"  
+    "prepublishOnly": "yarn build"
   },
-    "exports": {
-      ".": {
-        "import": "./dist/esm/component-library.esm.js",
-        "require": "./dist/cjs/component-library.cjs.js",
-        "browser": "./dist/umd/component-library.umd.js"
-      },
-      "./styles.css": {
-        "import": "./dist/esm/component-library.esm.css",
-        "require": "./dist/esm/component-library.esm.css",
-        "browser": "./dist/esm/component-library.esm.css"
-      }
+  "exports": {
+    ".": {
+      "import": "./dist/esm/component-library.esm.js",
+      "require": "./dist/cjs/component-library.cjs.js",
+      "browser": "./dist/umd/component-library.umd.js"
     },
-    "typesVersions": {
-      "*": {
-        "*": [
-          "dist/esm/index.d.ts"
-        ]
-      }
+    "./styles.css": {
+      "import": "./dist/esm/component-library.esm.css",
+      "require": "./dist/esm/component-library.esm.css",
+      "browser": "./dist/esm/component-library.esm.css"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
     }
   }
+}
