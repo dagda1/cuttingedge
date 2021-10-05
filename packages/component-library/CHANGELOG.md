@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.0.1
+
+### Patch Changes
+
+- Make FormWrapper return type JSX.Element
+
 ## 5.0.0
 
 ### Major Changes

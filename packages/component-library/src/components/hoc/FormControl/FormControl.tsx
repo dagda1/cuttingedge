@@ -25,7 +25,7 @@ export type FormControlProps<E> = {
 } & InputHTMLAttributes<E> & { rows?: number; cols?: number };
 
 export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormControlProps<E> & P> {
-  const FormControlWrapper: FC<FormControlProps<E> & P> = ({
+  function FormControlWrapper({
     id,
     invalid,
     name,
@@ -41,7 +41,7 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
     layout = 'vertical',
     width = 'width100',
     ...rest
-  }) => {
+  }: FormControlProps<E> & P): JSX.Element {
     const internalId = useRef(id || name || prefixId());
 
     const errorId = `${internalId.current}-error`;
@@ -86,7 +86,7 @@ export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormContr
         </div>
       </div>
     );
-  };
+  }
 
   return FormControlWrapper;
 }
