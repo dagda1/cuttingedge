@@ -1,5 +1,5 @@
 import * as styles from './global.css';
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { Heading, FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
@@ -14,7 +14,7 @@ const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme, consultingThem
 
 type Theme = keyof typeof AvailableThemes;
 
-export const App: FC = () => {
+export function App(): JSX.Element {
   const [theme, setTheme] = useState<Theme>('salesTheme');
 
   return (
@@ -366,4 +366,4 @@ export const App: FC = () => {
       </div>
     </ApplicationLayout>
   );
-};
+}

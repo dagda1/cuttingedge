@@ -1,6 +1,6 @@
 {
   "name": "@cutting/component-library",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -36,7 +36,7 @@
     "tailwindcss": "^2.2.7"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.28.3",
+    "@cutting/devtools": "4.29.0",
     "@cutting/eslint-config": "4.25.3",
     "@cutting/useful-types": "4.24.2",
     "@testing-library/jest-dom": "^5.11.10",

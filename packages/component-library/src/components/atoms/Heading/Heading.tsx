@@ -1,4 +1,4 @@
-import type { FC, HTMLAttributes } from 'react';
+import type { HTMLAttributes, PropsWithChildren } from 'react';
 import cs from 'classnames';
 import { Taggable } from '@cutting/util';
 
@@ -9,7 +9,13 @@ export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   tabIndex?: number;
 }
 
-export const Heading: FC<HeadingProps> = ({ level = 1, className, tabIndex, children, ...rest }) => {
+export function Heading({
+  level = 1,
+  className,
+  tabIndex,
+  children,
+  ...rest
+}: PropsWithChildren<HeadingProps>): JSX.Element {
   const Tag = `h${level}` as Taggable;
 
   return (
@@ -17,6 +23,6 @@ export const Heading: FC<HeadingProps> = ({ level = 1, className, tabIndex, chil
       {children}
     </Tag>
   );
-};
+}
 
 Heading.displayName = 'Heading';

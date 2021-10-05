@@ -19,7 +19,7 @@
     "**/*.scss"
   ],
   "dependencies": {
-    "@cutting/component-library": "4.26.2",
+    "@cutting/component-library": "5.1.0",
     "@cutting/hooks": "4.28.2",
     "@cutting/react-abortable-fetch": "0.13.2",
     "@cutting/svg": "4.28.2",
@@ -57,7 +57,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.28.3",
+    "@cutting/devtools": "4.29.0",
     "@cutting/eslint-config": "4.25.3",
     "@cutting/useful-types": "4.24.2",
     "@testing-library/jest-dom": "^5.11.10",

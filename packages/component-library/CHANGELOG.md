@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.1.0
+
+### Minor Changes
+
+- remove React.FC
+
+## 5.0.2
+
+### Patch Changes
+
+- More typing
+
 ## 5.0.1
 
 ### Patch Changes

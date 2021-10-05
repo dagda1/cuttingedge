@@ -1,5 +1,5 @@
 import cs from 'classnames';
-import { FC, ReactNode, InputHTMLAttributes, useRef } from 'react';
+import { ReactNode, InputHTMLAttributes, useRef, ComponentType } from 'react';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
@@ -24,7 +24,7 @@ export type FormControlProps<E> = {
   width?: keyof typeof vars.inputWidth;
 } & InputHTMLAttributes<E> & { rows?: number; cols?: number };
 
-export function FormControl<P, E extends HTMLElement>(Comp: FC<P>): FC<FormControlProps<E> & P> {
+export function FormControl<P, E extends HTMLElement>(Comp: ComponentType<P>): ComponentType<FormControlProps<E> & P> {
   function FormControlWrapper({
     id,
     invalid,

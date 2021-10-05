@@ -1,4 +1,4 @@
-import type { FC, AnchorHTMLAttributes } from 'react';
+import type { AnchorHTMLAttributes, PropsWithChildren } from 'react';
 
 export interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   dataSelector?: string;
@@ -7,7 +7,7 @@ export interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElemen
   ariaLabelledBy?: string;
 }
 
-export const ExternalLink: FC<ExternalLinkProps> = ({
+export function ExternalLink({
   className,
   href,
   dataSelector = 'external-link',
@@ -16,17 +16,19 @@ export const ExternalLink: FC<ExternalLinkProps> = ({
   ariaLabel,
   ariaLabelledBy,
   ...rest
-}: ExternalLinkProps) => (
-  <a
-    href={href}
-    data-selector={dataSelector}
-    rel="noopener noreferrer"
-    target={blank ? '_blank' : ''}
-    className={className}
-    aria-label={ariaLabel}
-    aria-labelledby={ariaLabelledBy}
-    {...rest}
-  >
-    {children}
-  </a>
-);
+}: PropsWithChildren<ExternalLinkProps>): JSX.Element {
+  return (
+    <a
+      href={href}
+      data-selector={dataSelector}
+      rel="noopener noreferrer"
+      target={blank ? '_blank' : ''}
+      className={className}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      {...rest}
+    >
+      {children}
+    </a>
+  );
+}

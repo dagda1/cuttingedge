@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.29.0
+
+### Minor Changes
+
+- remove React.FC
+
 ## 4.28.3
 
 ### Patch Changes

@@ -1,4 +1,4 @@
-import LoadingIcon from './LoadingIcon';
+import { LoadingIcon } from './LoadingIcon';
 import cs from 'classnames';
 
 import * as styles from './LoadingIcon.css';

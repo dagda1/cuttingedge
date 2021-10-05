@@ -1,15 +1,15 @@
 import '@cutting/component-library/dist/esm/component-library.esm.css';
-import type { FC } from 'react';
 import { ApplicationLayout } from '@cutting/component-library';
+import { ReactNode } from 'react';
 
 const Header = <header>Header</header>;
 const Footer = <footer>Footer</footer>;
 
-export const App: FC = ({ children }) => {
+export function App({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <ApplicationLayout heading="Main Heading" Header={Header} Footer={Footer}>
+    <ApplicationLayout heading="Main Heading" header={Header} footer={Footer}>
       <section>Main Content</section>
       {children}
     </ApplicationLayout>
   );
-};
+}

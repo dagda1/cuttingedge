@@ -22,7 +22,7 @@
     "graphql": "^15.5.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.28.3",
+    "@cutting/devtools": "4.29.0",
     "@cutting/the-watcher": "0.4.1",
     "abortcontroller-polyfill": "^1.7.1",
     "react": "^17.0.2",

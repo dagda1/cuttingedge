@@ -1,4 +1,4 @@
-import type { FC, ReactElement, RefObject } from 'react';
+import type { ComponentType, PropsWithChildren, ReactElement, RefObject } from 'react';
 import { Heading } from '../../atoms/Heading/Heading';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
@@ -17,7 +17,7 @@ export interface ApplicationLayoutProps {
   innerRef?: RefObject<HTMLElement>;
 }
 
-const ApplicationLayoutHeading: FC<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
+const ApplicationLayoutHeading: ComponentType<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
   if (isNil(heading)) {
     return null;
   }
@@ -25,14 +25,14 @@ const ApplicationLayoutHeading: FC<Pick<ApplicationLayoutProps, 'heading'>> = ({
   return typeof heading === 'string' ? <Heading>{heading}</Heading> : heading;
 };
 
-export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
+export function ApplicationLayout({
   heading,
   className,
   innerRef,
   header,
   footer,
   children,
-}) => {
+}: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   return (
     <>
       <header className={cs({ [styles.hidden]: !header })}>
@@ -47,9 +47,9 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
       </footer>
     </>
   );
-};
+}
 
-export const ApplicationLayoutWithRouterScroll: FC<Omit<ApplicationLayoutProps, 'innerRef'>> = (props) => {
+export const ApplicationLayoutWithRouterScroll: ComponentType<Omit<ApplicationLayoutProps, 'innerRef'>> = (props) => {
   const root = useRef<HTMLDivElement>(null);
 
   useScrollToTop({ ref: root });

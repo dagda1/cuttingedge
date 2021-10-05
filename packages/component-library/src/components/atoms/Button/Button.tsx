@@ -1,4 +1,4 @@
-import type { FC, DetailedHTMLProps, ButtonHTMLAttributes, MouseEventHandler } from 'react';
+import type { DetailedHTMLProps, ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import cs from 'classnames';
 import { identity } from '@cutting/util';
 import { StandardProps } from '../../../types';
@@ -13,7 +13,7 @@ export type ButtonProps = StandardProps<
   ariaLabelledBy?: string;
 };
 
-export const Button: FC<ButtonProps> = ({
+export function Button({
   onClick = identity,
   className,
   buttonStyle = 'primary',
@@ -25,7 +25,7 @@ export const Button: FC<ButtonProps> = ({
   ariaLabel,
   ariaLabelledBy,
   ...rest
-}) => {
+}: ButtonProps): JSX.Element {
   return (
     <button
       className={cs(className, root, buttons[buttonStyle], { [disabledStyle]: disabled })}
@@ -41,4 +41,4 @@ export const Button: FC<ButtonProps> = ({
       {children}
     </button>
   );
-};
+}

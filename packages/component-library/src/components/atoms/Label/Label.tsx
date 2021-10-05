@@ -1,7 +1,7 @@
-import type { FC } from 'react';
 import cs from 'classnames';
 import * as styles from './Label.css';
 import { FontWeight } from '../../../style/themes/make-theme';
+import { PropsWithChildren } from 'react';
 
 export interface LabelProps {
   id?: string;
@@ -13,7 +13,7 @@ export interface LabelProps {
   dataSelector?: string;
 }
 
-export const Label: FC<LabelProps> = ({
+export function Label({
   id,
   htmlFor,
   invalid,
@@ -22,19 +22,21 @@ export const Label: FC<LabelProps> = ({
   fontWeight,
   children,
   dataSelector,
-}) => (
-  <label
-    htmlFor={htmlFor}
-    id={id}
-    className={cs(styles.root, className, {
-      [styles.invalid]: invalid,
-      [styles.required]: required,
-      [styles.strong]: fontWeight === 'strong',
-    })}
-    data-selector={dataSelector}
-  >
-    {children}
-  </label>
-);
+}: PropsWithChildren<LabelProps>): JSX.Element {
+  return (
+    <label
+      htmlFor={htmlFor}
+      id={id}
+      className={cs(styles.root, className, {
+        [styles.invalid]: invalid,
+        [styles.required]: required,
+        [styles.strong]: fontWeight === 'strong',
+      })}
+      data-selector={dataSelector}
+    >
+      {children}
+    </label>
+  );
+}
 
 Label.displayName = 'Label';
