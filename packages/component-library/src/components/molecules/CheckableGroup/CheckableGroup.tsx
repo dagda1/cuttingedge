@@ -1,4 +1,4 @@
-import type { ReactNode, ChangeEvent, InputHTMLAttributes } from 'react';
+import type { ReactNode, ChangeEvent, InputHTMLAttributes, ChangeEventHandler } from 'react';
 import { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio/Radio';
 import { CheckableLayoutProps, CheckableProps, CheckableValueType } from '../../atoms/Checkable/types';
@@ -18,7 +18,7 @@ export type CheckableGroupProps<V extends CheckableValueType> = InputProps & {
   legendMode?: LegendMode;
   name: string;
   options: CheckableOption<V>[];
-  onChange?: (option: CheckableProps<V>) => void;
+  onChange?: ChangeEventHandler;
   className?: string;
 } & CheckableLayoutProps;
 
@@ -61,7 +61,7 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
 
         setSelectedValues([...selectedValues.filter((o) => o.id !== option.id), option]);
 
-        onChange && onChange(option);
+        onChange && onChange(e);
       },
       [onChange, selectedValues],
     );

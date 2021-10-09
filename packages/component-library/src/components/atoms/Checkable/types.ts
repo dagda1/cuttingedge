@@ -1,4 +1,4 @@
-import type { ChangeEventHandler } from 'react';
+import type { ChangeEventHandler, RefObject } from 'react';
 
 export type CheckableLayout = 'inline' | 'stacked';
 
@@ -9,6 +9,7 @@ export interface CheckableProps<V extends CheckableValueType> {
   name?: string;
   checked?: boolean;
   value: V;
+  innerRef?: RefObject<HTMLInputElement>;
 }
 
 export interface CheckableEventHandlers {

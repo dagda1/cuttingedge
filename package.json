@@ -66,6 +66,7 @@
     "d3-scale": "^3.3.0",
     "d3-time": "^2.1.1",
     "effection": "2.0.0-beta.12",
+    "glob-parent": "^6.0.2",
     "normalize-url": "^7.0.1",
     "prettier": "^2.4.1",
     "url-parse": "^1.5.3",
