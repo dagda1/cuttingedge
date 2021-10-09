@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.1.1
+
+### Patch Changes
+
+- Export FormControlProps
+
 ## 5.1.0
 
 ### Minor Changes
