@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.2.2
+
+### Patch Changes
+
+- theme change
+
+## 5.2.1
+
+### Patch Changes
+
+- cutting theme button color change
+
 ## 5.2.0
 
 ### Minor Changes

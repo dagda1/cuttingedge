@@ -1,6 +1,6 @@
 import * as styles from './global.css';
 import React, { useState } from 'react';
-import { Heading, FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea } from '../src';
+import { Heading, FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
@@ -15,7 +15,7 @@ const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme, consultingThem
 type Theme = keyof typeof AvailableThemes;
 
 export function App(): JSX.Element {
-  const [theme, setTheme] = useState<Theme>('salesTheme');
+  const [theme, setTheme] = useState<Theme>('cuttingTheme');
 
   return (
     <ApplicationLayout className={cs(AvailableThemes[theme], styles.background)}>
@@ -34,7 +34,7 @@ export function App(): JSX.Element {
               checkableLayout="inline"
               checkableSize={'large'}
               onChange={(o) => {
-                setTheme(o.value);
+                setTheme(o.target.value as Theme);
               }}
               options={[
                 {
@@ -228,20 +228,22 @@ export function App(): JSX.Element {
             />
           </div>
           <div className={styles.item}>
-            <RadioGroup
+            <FormRadioGroup
               name="large-inline-radio"
               checkableLayout={'inline'}
               checkableSize={'large'}
               legend="large inline"
+              label="large inline"
               options={[
                 {
-                  value: 'off',
-                  content: 'OFF',
+                  content: 'Yes',
+                  value: 'yes',
+                  checked: true,
                 },
                 {
-                  value: 'on',
-                  checked: true,
-                  content: 'ON',
+                  content: 'No',
+                  value: 'no',
+                  checked: false,
                 },
               ]}
             />
@@ -277,7 +279,7 @@ export function App(): JSX.Element {
               highlight
               label="Highlight"
               maxLength={100}
-              onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              onKeyDown={(e) => {
                 console.log(e);
                 return true;
               }}

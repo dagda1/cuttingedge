@@ -18,7 +18,7 @@ export type CheckableGroupProps<V extends CheckableValueType> = InputProps & {
   legendMode?: LegendMode;
   name: string;
   options: CheckableOption<V>[];
-  onChange?: ChangeEventHandler;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   className?: string;
 } & CheckableLayoutProps;
 

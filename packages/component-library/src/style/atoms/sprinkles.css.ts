@@ -13,7 +13,7 @@ const responsiveStyles = defineProperties({
     position: ['absolute', 'relative', 'fixed'],
     display: ['none', 'block', 'inline', 'inline-block', 'flex'],
     alignItems: ['flex-start', 'center', 'flex-end'],
-    justifyContent: ['flex-start', 'center', 'flex-end', 'space-between'],
+    justifyContent: ['flex-start', 'center', 'flex-end', 'space-between', 'space-around'],
     flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'],
     flexWrap: ['nowrap', 'wrap', 'wrap-reverse'],
     flex: ['auto', '1', '1 1', '1 0 auto'],
