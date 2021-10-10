@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.26.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
 ## 4.25.1
 
 ### Patch Changes

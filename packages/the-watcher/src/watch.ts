@@ -1,6 +1,6 @@
 import { Operation, Stream } from 'effection';
 import { spawn } from 'effection';
-import { exec } from '@effection/node';
+import { exec } from '@effection/process';
 
 function writeOut(channel: Stream<string>, out: NodeJS.WriteStream) {
   return channel.forEach(function (data) {

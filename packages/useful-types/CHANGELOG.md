@@ -1,5 +1,16 @@
 # @cutting/useful-types
 
+## 4.25.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/util@4.28.0
+
 ## 4.24.2
 
 ### Patch Changes

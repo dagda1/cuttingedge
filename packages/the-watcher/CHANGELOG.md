@@ -1,5 +1,11 @@
 # @cutting/the-watcher
 
+## 0.5.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
 ## 0.4.1
 
 ### Patch Changes

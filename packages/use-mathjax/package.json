@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-mathjax",
   "description": "easy mathjax in react.",
-  "version": "4.26.2",
+  "version": "4.27.0",
   "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "repository": {
@@ -21,18 +21,18 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.27.2",
+    "@cutting/util": "4.28.0",
     "assert-ts": "^0.3.2",
     "mathjax": "3",
     "mathjax3": "3.0.0-beta.4",
     "react-use": "^17.2.3"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.29.0",
-    "@cutting/eslint-config": "4.25.3",
-    "@cutting/useful-types": "4.24.2",
+    "@cutting/devtools": "4.30.0",
+    "@cutting/eslint-config": "4.26.0",
+    "@cutting/useful-types": "4.25.0",
     "@testing-library/jest-dom": "^5.11.10",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.2",
     "@types/mathjax": "^0.0.36",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

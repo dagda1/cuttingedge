@@ -1,5 +1,16 @@
 # @cutting/use-mathjax
 
+## 4.27.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/util@4.28.0
+
 ## 4.26.2
 
 ### Patch Changes

@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "version": "4.26.4",
+  "version": "4.27.0",
   "license": "MIT",
   "scripts": {
     "start": "PORT=3000 SSR=true NODE_ENV=development cutting ssr-start",
@@ -19,13 +19,13 @@
     "**/*.scss"
   ],
   "dependencies": {
-    "@cutting/component-library": "5.1.2",
-    "@cutting/hooks": "4.28.2",
-    "@cutting/react-abortable-fetch": "0.13.2",
-    "@cutting/svg": "4.28.2",
-    "@cutting/use-mathjax": "4.26.2",
-    "@cutting/use-get-parent-size": "1.4.2",
-    "@cutting/util": "4.27.2",
+    "@cutting/component-library": "5.2.0",
+    "@cutting/hooks": "4.29.0",
+    "@cutting/react-abortable-fetch": "0.16.0",
+    "@cutting/svg": "4.29.0",
+    "@cutting/use-mathjax": "4.27.0",
+    "@cutting/use-get-parent-size": "1.5.0",
+    "@cutting/util": "4.28.0",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",
     "@visx/axis": "^1.10.0",
@@ -57,9 +57,9 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.29.0",
-    "@cutting/eslint-config": "4.25.3",
-    "@cutting/useful-types": "4.24.2",
+    "@cutting/devtools": "4.30.0",
+    "@cutting/eslint-config": "4.26.0",
+    "@cutting/useful-types": "4.25.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/csurf": "^1.11.1",
     "@types/d3": "^6.3.0",

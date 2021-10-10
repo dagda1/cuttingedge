@@ -1,5 +1,22 @@
 # @cutting/website
 
+## 4.27.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/component-library@5.2.0
+  - @cutting/hooks@4.29.0
+  - @cutting/react-abortable-fetch@0.16.0
+  - @cutting/svg@4.29.0
+  - @cutting/use-get-parent-size@1.5.0
+  - @cutting/use-mathjax@4.27.0
+  - @cutting/util@4.28.0
+
 ## 4.26.4
 
 ### Patch Changes

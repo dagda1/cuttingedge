@@ -2,7 +2,7 @@ import type { Task } from 'effection';
 import { createCommand } from 'commander';
 import { watch } from 'chokidar';
 import { findIO, isMonorepo } from './utils/io';
-import { main } from '@effection/node';
+import { main } from 'effection';
 import { onEmit, sleep, spawn } from 'effection';
 import { buildAndRun } from './watch';
 import { logger } from '@cutting/devtools/tools/scripts/logger';

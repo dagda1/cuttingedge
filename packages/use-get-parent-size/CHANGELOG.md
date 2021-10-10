@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 1.5.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/util@4.28.0
+
 ## 1.4.2
 
 ### Patch Changes

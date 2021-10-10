@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.28.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
 ## 4.27.2
 
 ### Patch Changes

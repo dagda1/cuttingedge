@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.30.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
 ## 4.29.0
 
 ### Minor Changes

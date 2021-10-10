@@ -5,7 +5,7 @@ import { CheckableLayoutProps, CheckableProps, CheckableValueType } from '../../
 import cs from 'classnames';
 
 import * as styles from './Checkable.css';
-import { Checkbox } from 'src/components/atoms/Checkbox/Checkbox';
+import { Checkbox } from '../../atoms/Checkbox/Checkbox';
 
 export type CheckableOption<V extends CheckableValueType> = CheckableProps<V> & { content: ReactNode };
 

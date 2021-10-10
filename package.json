@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.17.0",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^27.0.2",
     "@types/node": "^16.6.2",
     "css-what": "^5.0.1",
     "eslint-plugin-prettier": "^4.0.0",
@@ -56,8 +56,6 @@
     "npm": "7.20.0"
   },
   "resolutions": {
-    "@effection/core": "2.0.0-package-json-version-import.1629635798385",
-    "@effection/node": "2.0.0-beta.12",
     "@types/react": "^17.0.0",
     "@types/webpack": "^5.28.0",
     "browserslist": "^4.16.5",
@@ -65,7 +63,7 @@
     "d3-array": "^2.4.0",
     "d3-scale": "^3.3.0",
     "d3-time": "^2.1.1",
-    "effection": "2.0.0-beta.12",
+    "effection": "2.0.0-beta.22",
     "glob-parent": "^6.0.2",
     "normalize-url": "^7.0.1",
     "prettier": "^2.4.1",

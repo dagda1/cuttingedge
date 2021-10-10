@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.29.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/util@4.28.0
+
 ## 4.28.2
 
 ### Patch Changes

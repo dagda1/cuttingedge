@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.2.0
+
+### Minor Changes
+
+- clear vulnearabilities and upgrade effection
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/hooks@4.29.0
+  - @cutting/util@4.28.0
+
 ## 5.1.2
 
 ### Patch Changes
