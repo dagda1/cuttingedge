@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import { TextArea } from 'src/components/atoms/TextArea/TextArea';
+import { TextArea } from '../../atoms/TextArea/TextArea';
 import { Input } from '../../atoms/Input/Input';
 import { FormControl } from '../../hoc/FormControl/FormControl';
 import { CheckboxGroup } from '../CheckboxGroup/CheckboxGroup';

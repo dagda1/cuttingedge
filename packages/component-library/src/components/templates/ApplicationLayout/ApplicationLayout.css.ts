@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { rem } from 'polished';
-import { responsiveStyle } from 'src/style';
+import { responsiveStyle } from '../../../style';
 import { breakpoints } from '../../../style/breakpoints';
 import { vars } from '../../../style/themes/vars.css';
 import { responsiveFont, responsiveHeadingFont } from '../../../style/typography/typography';
