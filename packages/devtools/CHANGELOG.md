@@ -1,5 +1,17 @@
 # @cutting/devtools
 
+## 4.30.2
+
+### Patch Changes
+
+- publish onBlur for component library
+
+## 4.30.1
+
+### Patch Changes
+
+- add onBlur to checkable
+
 ## 4.30.0
 
 ### Minor Changes

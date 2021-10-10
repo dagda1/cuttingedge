@@ -1,5 +1,13 @@
 # @cutting/hooks
 
+## 4.29.1
+
+### Patch Changes
+
+- publish onBlur for component library
+- Updated dependencies [undefined]
+  - @cutting/util@4.28.1
+
 ## 4.29.0
 
 ### Minor Changes

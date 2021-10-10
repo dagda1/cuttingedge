@@ -1,5 +1,13 @@
 # @cutting/use-mathjax
 
+## 4.27.1
+
+### Patch Changes
+
+- publish onBlur for component library
+- Updated dependencies [undefined]
+  - @cutting/util@4.28.1
+
 ## 4.27.0
 
 ### Minor Changes

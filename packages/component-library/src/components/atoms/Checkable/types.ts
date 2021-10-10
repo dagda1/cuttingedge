@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, RefObject } from 'react';
+import type { ChangeEventHandler, FocusEventHandler, RefObject } from 'react';
 
 export type CheckableLayout = 'inline' | 'stacked';
 
@@ -14,6 +14,7 @@ export interface CheckableProps<V extends CheckableValueType> {
 
 export interface CheckableEventHandlers {
   onChange: ChangeEventHandler<HTMLInputElement>;
+  onBlur: FocusEventHandler<HTMLInputElement>;
 }
 
 export type CheckableSize = 'small' | 'large';

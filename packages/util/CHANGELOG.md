@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.28.1
+
+### Patch Changes
+
+- publish onBlur for component library
+
 ## 4.28.0
 
 ### Minor Changes

@@ -3,7 +3,7 @@ import { palette } from '../../palette.css';
 import { Tokens } from '../tokens';
 
 const colors = {
-  primary: palette.sky700,
+  primary: palette.lime500,
   secondary: palette.sky900,
 };
 

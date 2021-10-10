@@ -57,7 +57,7 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
           </Heading>
         )
       }
-      Header={
+      header={
         <>
           <Helmet title={heading || CuttingEdge}>
             <meta charSet="utf-8" />
@@ -66,7 +66,7 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
           <Header />
         </>
       }
-      Footer={showFooter ? <Footer /> : undefined}
+      footer={showFooter ? <Footer /> : undefined}
     >
       <>{children}</>
     </ApplicationLayoutWithRouterScroll>

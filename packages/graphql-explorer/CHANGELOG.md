@@ -1,5 +1,14 @@
 # @cutting/graphql-explorer
 
+## 4.25.1
+
+### Patch Changes
+
+- publish onBlur for component library
+- Updated dependencies [undefined]
+  - @cutting/util@4.28.1
+  - @cutting/react-abortable-fetch@0.16.1
+
 ## 4.25.0
 
 ### Minor Changes

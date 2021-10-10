@@ -1,5 +1,13 @@
 # @cutting/testing
 
+## 4.26.1
+
+### Patch Changes
+
+- publish onBlur for component library
+- Updated dependencies [undefined]
+  - @cutting/util@4.28.1
+
 ## 4.26.0
 
 ### Minor Changes

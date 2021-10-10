@@ -1,5 +1,14 @@
 # @cutting/svg
 
+## 4.29.1
+
+### Patch Changes
+
+- publish onBlur for component library
+- Updated dependencies [undefined]
+  - @cutting/use-get-parent-size@1.5.1
+  - @cutting/util@4.28.1
+
 ## 4.29.0
 
 ### Minor Changes

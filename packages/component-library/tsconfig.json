@@ -1,5 +1,5 @@
 {
-  "extends": "@cutting/tsconfig",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": "./",
     "noEmit": true

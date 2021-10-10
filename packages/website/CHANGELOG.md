@@ -1,5 +1,40 @@
 # @cutting/website
 
+## 4.27.4
+
+### Patch Changes
+
+- publish onBlur for component library
+- Updated dependencies [undefined]
+  - @cutting/component-library@5.2.4
+  - @cutting/hooks@4.29.1
+  - @cutting/svg@4.29.1
+  - @cutting/use-get-parent-size@1.5.1
+  - @cutting/use-mathjax@4.27.1
+  - @cutting/util@4.28.1
+  - @cutting/react-abortable-fetch@0.16.1
+
+## 4.27.3
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/component-library@5.2.3
+
+## 4.27.2
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/component-library@5.2.2
+
+## 4.27.1
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @cutting/component-library@5.2.1
+
 ## 4.27.0
 
 ### Minor Changes
