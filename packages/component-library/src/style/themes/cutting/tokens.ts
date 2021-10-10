@@ -3,8 +3,8 @@ import { palette } from '../../palette.css';
 import { Tokens } from '../tokens';
 
 const colors = {
-  primary: palette.sky700,
-  secondary: palette.sky900,
+  primary: palette.sky900,
+  secondary: palette.lime500,
 };
 
 const buttonPadding = '14px 22px';
