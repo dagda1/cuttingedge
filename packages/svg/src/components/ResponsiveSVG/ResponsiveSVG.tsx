@@ -1,4 +1,4 @@
-import type { FC, RefObject } from 'react';
+import type { FC, Ref } from 'react';
 import { PreserveAspectRatio } from '../../types/types';
 
 export interface Point {
@@ -11,7 +11,7 @@ export interface ResponsiveSVGProps {
   height: number;
   origin?: Point;
   preserveAspectRatio?: PreserveAspectRatio;
-  innerRef?: RefObject<SVGSVGElement>;
+  innerRef?: Ref<SVGSVGElement>;
   className?: string;
   hide?: boolean;
 }

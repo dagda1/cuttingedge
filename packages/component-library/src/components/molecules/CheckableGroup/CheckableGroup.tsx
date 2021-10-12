@@ -1,4 +1,4 @@
-import type { ReactNode, ChangeEvent, InputHTMLAttributes, ChangeEventHandler, FocusEventHandler } from 'react';
+import type { ReactNode, ChangeEvent, InputHTMLAttributes, ChangeEventHandler, FocusEventHandler, Ref } from 'react';
 import { useState, useRef, useCallback } from 'react';
 import { Radio } from '../../atoms/Radio/Radio';
 import { CheckableLayoutProps, CheckableProps, CheckableValueType } from '../../atoms/Checkable/types';
@@ -21,6 +21,7 @@ export type CheckableGroupProps<V extends CheckableValueType> = InputProps & {
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   className?: string;
+  innerRef?: Ref<HTMLInputElement>;
 } & CheckableLayoutProps;
 
 export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
@@ -33,6 +34,7 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
     options: checkableOptions,
     onChange,
     onBlur,
+    innerRef,
     className,
   }: CheckableGroupProps<V>): JSX.Element {
     const optionsWithIds = useRef<CheckableOption<V>[]>(
@@ -90,6 +92,7 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
                 checked={!!selectedValues.find((x) => x.id === id)?.checked}
                 onChange={changeHandler}
                 onBlur={onBlur as FocusEventHandler<HTMLInputElement>}
+                innerRef={innerRef}
                 {...option}
               >
                 {content}

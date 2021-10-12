@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.3.0
+
+### Minor Changes
+
+- Make innerRef Ref
+
 ## 5.2.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/svg
 
+## 4.30.0
+
+### Minor Changes
+
+- Make innerRef Ref
+
 ## 4.29.1
 
 ### Patch Changes

@@ -15,6 +15,7 @@ export function Checkable(type: 'radio' | 'checkbox') {
     onChange,
     onBlur,
     checkableSize,
+    innerRef,
   }: CheckableProps<V> & CheckableEventHandlers & CheckableLayoutProps & { children: ReactNode }): JSX.Element {
     return (
       <div
@@ -23,7 +24,16 @@ export function Checkable(type: 'radio' | 'checkbox') {
           [styles.inline]: checkableLayout === 'inline',
         })}
       >
-        <input id={id} name={name} type={type} value={value} onChange={onChange} onBlur={onBlur} checked={checked} />
+        <input
+          id={id}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          ref={innerRef}
+          checked={checked}
+        />
         <label htmlFor={id}>{children}</label>
       </div>
     );

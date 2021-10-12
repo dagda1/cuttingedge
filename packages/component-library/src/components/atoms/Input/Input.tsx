@@ -1,10 +1,10 @@
-import type { InputHTMLAttributes, RefObject } from 'react';
+import type { InputHTMLAttributes, Ref } from 'react';
 import cs from 'classnames';
 import * as styles from './Input.css';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean;
-  innerRef?: RefObject<HTMLInputElement>;
+  innerRef?: Ref<HTMLInputElement>;
 }
 
 export function Input({ required, className, invalid, innerRef, type = 'text', ...rest }: InputProps): JSX.Element {

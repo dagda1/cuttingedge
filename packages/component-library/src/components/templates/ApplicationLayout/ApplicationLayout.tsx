@@ -1,4 +1,4 @@
-import type { ComponentType, PropsWithChildren, ReactElement, RefObject } from 'react';
+import type { ComponentType, PropsWithChildren, ReactElement, Ref } from 'react';
 import { Heading } from '../../atoms/Heading/Heading';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
@@ -14,7 +14,7 @@ export interface ApplicationLayoutProps {
   className?: string;
   footer?: ReactElement;
   header?: ReactElement;
-  innerRef?: RefObject<HTMLElement>;
+  innerRef?: Ref<HTMLElement>;
 }
 
 const ApplicationLayoutHeading: ComponentType<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
