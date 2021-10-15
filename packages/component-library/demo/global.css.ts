@@ -33,8 +33,8 @@ globalFontFace('Tahi', {
 
 export const wrap = style({
   maxWidth: rem(1008),
-  paddingLeft: vars.space['2x'],
-  paddingRight: vars.space['3x'],
+  paddingLeft: vars.space['1x'],
+  paddingRight: vars.space['2x'],
   margin: '0 auto',
 });
 

@@ -10,7 +10,11 @@ export const colors = {
 
 type ScaleKeys<A extends readonly unknown[]> = `${keyof A & `${number}`}x`;
 
-const spacing = [4, 8, 12, 16, 20, 24, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 80] as const;
+const spacing = [
+  0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12.5, 13, 13.5, 14, 14.5,
+  15, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20,
+] as const;
+
 type SpaceKeys = ScaleKeys<typeof spacing>;
 
 const borderRadius = [1, 2, 4, 8, 16, 32] as const;
@@ -26,7 +30,7 @@ export const tokens = {
   space: {
     none: '0',
     ...spacing.reduce((acc, curr, i) => {
-      acc[`${i + 1}x` as SpaceKeys] = rem(curr);
+      acc[`${i + 1}x` as SpaceKeys] = `${curr}rem`;
       return acc;
     }, {} as Record<SpaceKeys, string>),
   },

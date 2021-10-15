@@ -28,7 +28,7 @@ globalStyle(`${item} input`, {
 globalStyle(`${item} label`, {
   ...responsiveFont(),
   fontWeight: vars.fontWeight.regular,
-  paddingLeft: vars.space['3x'],
+  paddingLeft: vars.space['2x'],
   display: 'inline-block',
   touchAction: 'manipulation',
   boxSizing: 'border-box',
@@ -94,7 +94,7 @@ globalStyle(`${small} label:before,${small} label:after`, {
 export const inline = style([
   item,
   style({
-    marginRight: vars.space['3x'],
+    marginRight: 0,
   }),
 ]);
 

@@ -103,8 +103,8 @@ globalStyle('h1', {
 });
 
 globalStyle('h2,h3,h4', {
-  marginTop: vars.space['4x'],
-  marginBottom: vars.space['3x'],
+  marginTop: vars.space['2x'],
+  marginBottom: vars.space['2x'],
 });
 
 globalStyle('h1,h2,h3,h4', {

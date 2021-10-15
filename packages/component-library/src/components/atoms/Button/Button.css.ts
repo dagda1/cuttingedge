@@ -9,7 +9,7 @@ export const root = style({
   textTransform: vars.buttons.textTransform,
   fontWeight: vars.buttons.fontWeight,
   touchAction: 'manipulation',
-  marginBottom: vars.space['5x'],
+  marginBottom: vars.space['2x'],
   ...responsiveStyle({
     mobile: {
       width: vars.buttons.width.mobile,

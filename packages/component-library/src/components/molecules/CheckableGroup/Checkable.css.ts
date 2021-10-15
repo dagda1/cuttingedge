@@ -14,7 +14,7 @@ export const srOnlyLegend = style({
 
 export const legend = style({
   ...responsiveFont(),
-  marginBottom: vars.space['4x'],
+  marginBottom: vars.space['1x'],
 });
 
 export const inline = style({
