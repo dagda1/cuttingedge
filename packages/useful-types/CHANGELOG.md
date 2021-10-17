@@ -1,10 +1,17 @@
 # @cutting/useful-types
 
+## 4.25.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @cutting/util@4.28.2
+
 ## 4.25.1
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/util@4.28.1
 
 ## 4.25.0
@@ -15,7 +22,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/util@4.28.0
 
 ## 4.24.2

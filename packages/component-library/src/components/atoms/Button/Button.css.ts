@@ -2,39 +2,43 @@ import { style, StyleRule, styleVariants } from '@vanilla-extract/css';
 import { responsiveFont } from '../../../style/typography/typography';
 import { vars } from '../../../style/themes/vars.css';
 import { responsiveStyle } from '../../../style/responsive-style';
+import { atoms } from '../../../style/atoms/atoms';
 
-export const root = style({
-  ...responsiveFont(),
-  cursor: 'pointer',
-  textTransform: vars.buttons.textTransform,
-  fontWeight: vars.buttons.fontWeight,
-  touchAction: 'manipulation',
-  marginBottom: vars.space['2x'],
-  ...responsiveStyle({
-    mobile: {
-      width: vars.buttons.width.mobile,
+export const root = style([
+  atoms({ reset: 'button' }),
+  {
+    ...responsiveFont(),
+    cursor: 'pointer',
+    textTransform: vars.buttons.textTransform,
+    fontWeight: vars.buttons.fontWeight,
+    touchAction: 'manipulation',
+    marginBottom: vars.space['2x'],
+    ...responsiveStyle({
+      mobile: {
+        width: vars.buttons.width.mobile,
+      },
+      tablet: {
+        width: vars.buttons.width.tablet,
+      },
+    }),
+    ':active': {
+      top: '2px',
     },
-    tablet: {
-      width: vars.buttons.width.tablet,
+    ':focus': {
+      borderColor: vars.accessibility.accessibleOutline.backgroundColor,
+      color: vars.foregroundColor.body,
+      background: vars.accessibility.accessibleOutline.backgroundColor,
     },
-  }),
-  ':active': {
-    top: '2px',
+    ':focus-visible': {
+      outline: '3px solid transparent',
+    },
+    ':hover': {
+      borderColor: vars.accessibility.accessibleOutline.backgroundColor,
+      color: vars.foregroundColor.body,
+      background: vars.accessibility.accessibleOutline.backgroundColor,
+    },
   },
-  ':focus': {
-    borderColor: vars.accessibility.accessibleOutline.backgroundColor,
-    color: vars.foregroundColor.body,
-    background: vars.accessibility.accessibleOutline.backgroundColor,
-  },
-  ':focus-visible': {
-    outline: '3px solid transparent',
-  },
-  ':hover': {
-    borderColor: vars.accessibility.accessibleOutline.backgroundColor,
-    color: vars.foregroundColor.body,
-    background: vars.accessibility.accessibleOutline.backgroundColor,
-  },
-});
+]);
 
 export const primary: StyleRule = {
   ...vars.buttons.primary,

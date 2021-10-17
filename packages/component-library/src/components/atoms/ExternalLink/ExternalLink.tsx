@@ -1,4 +1,6 @@
 import type { AnchorHTMLAttributes, PropsWithChildren } from 'react';
+import cs from 'classnames';
+import * as styles from './ExternalLink.css';
 
 export interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   dataSelector?: string;
@@ -23,7 +25,7 @@ export function ExternalLink({
       data-selector={dataSelector}
       rel="noopener noreferrer"
       target={blank ? '_blank' : ''}
-      className={className}
+      className={cs(styles.root, className)}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       {...rest}

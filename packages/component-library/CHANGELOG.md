@@ -1,5 +1,14 @@
 # @cutting/component-library
 
+## 5.3.2
+
+### Patch Changes
+
+- refactor sprinkles
+- Updated dependencies
+  - @cutting/util@4.28.2
+  - @cutting/hooks@4.29.2
+
 ## 5.3.1
 
 ### Patch Changes
@@ -17,7 +26,7 @@
 ### Patch Changes
 
 - publish onBlur for component library
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/hooks@4.29.1
   - @cutting/util@4.28.1
 
@@ -47,7 +56,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/hooks@4.29.0
   - @cutting/util@4.28.0
 

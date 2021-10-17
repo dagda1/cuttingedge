@@ -9,7 +9,7 @@ export const root = style([
     flexDirection: 'column',
     justifyContent: 'flex-start',
   }),
-  style({
+  {
     font: 'inherit',
     fontFamily: 'inherit',
     fontSize: 'inherit',
@@ -21,7 +21,7 @@ export const root = style([
         marginBottom: vars.space['2x'],
       },
     }),
-  }),
+  },
 ]);
 
 export const error = style({

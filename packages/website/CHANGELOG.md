@@ -1,17 +1,30 @@
 # @cutting/website
 
+## 4.27.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @cutting/component-library@5.3.2
+  - @cutting/util@4.28.2
+  - @cutting/hooks@4.29.2
+  - @cutting/use-get-parent-size@1.5.2
+  - @cutting/react-abortable-fetch@0.16.2
+  - @cutting/svg@4.30.1
+  - @cutting/use-mathjax@4.27.2
+
 ## 4.27.6
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/component-library@5.3.1
 
 ## 4.27.5
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/component-library@5.3.0
   - @cutting/svg@4.30.0
 
@@ -20,7 +33,7 @@
 ### Patch Changes
 
 - publish onBlur for component library
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/component-library@5.2.4
   - @cutting/hooks@4.29.1
   - @cutting/svg@4.29.1
@@ -33,21 +46,21 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/component-library@5.2.3
 
 ## 4.27.2
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/component-library@5.2.2
 
 ## 4.27.1
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/component-library@5.2.1
 
 ## 4.27.0
@@ -58,7 +71,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/component-library@5.2.0
   - @cutting/hooks@4.29.0
   - @cutting/react-abortable-fetch@0.16.0
@@ -71,14 +84,14 @@
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/component-library@5.1.2
 
 ## 4.26.3
 
 ### Patch Changes
 
-- Updated dependencies [undefined]
+- Updated dependencies
   - @cutting/component-library@5.1.1
 
 ## 4.26.2

@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.28.2
+
+### Patch Changes
+
+- refactor sprinkles
+
 ## 4.28.1
 
 ### Patch Changes

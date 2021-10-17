@@ -7,12 +7,12 @@ export const root = style([
   atoms({
     marginBottom: '1x',
   }),
-  style({
+  {
     ...responsiveFont(),
     color: vars.foregroundColor.error,
     fontWeight: vars.fontWeight.regular,
     marginLeft: 0,
     listStyle: 'none',
     display: 'block',
-  }),
+  },
 ]);

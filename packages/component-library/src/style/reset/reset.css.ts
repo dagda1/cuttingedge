@@ -52,18 +52,18 @@ const mark = style({
 
 const select = style([
   field,
-  style({
+  {
     selectors: {
       '&::-ms-expand': {
         display: 'none',
       },
     },
-  }),
+  },
 ]);
 
 const input = style([
   field,
-  style({
+  {
     selectors: {
       '&::-ms-clear': {
         display: 'none',
@@ -72,7 +72,7 @@ const input = style([
         WebkitAppearance: 'none',
       },
     },
-  }),
+  },
 ]);
 
 const button = style({

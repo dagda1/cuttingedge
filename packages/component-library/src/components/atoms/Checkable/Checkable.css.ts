@@ -97,9 +97,9 @@ globalStyle(`${small} label:after`, {
 
 export const inline = style([
   item,
-  style({
+  {
     marginRight: 0,
-  }),
+  },
 ]);
 
 globalStyle(`${inline}:not(${small}) label`, {
