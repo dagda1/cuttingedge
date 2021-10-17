@@ -1,4 +1,5 @@
 export type { FontWeight } from './themes/make-theme';
+export type { Breakpoint } from './breakpoints';
 export { responsiveFont, responsiveHeadingFont } from './typography/typography';
 export { responsiveStyle } from './responsive-style';
 export { atoms } from './atoms/atoms';

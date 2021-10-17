@@ -55,19 +55,22 @@ export const size = style({
       maxWidth: 'none',
     },
     tablet: {
-      maxWidth: `${breakpoints.tablet}rem`,
+      maxWidth: `${rem(breakpoints.tablet)}`,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
     desktop: {
-      maxWidth: `${breakpoints.desktop}rem`,
+      maxWidth: `${rem(breakpoints.desktop)}`,
+    },
+    wide: {
+      maxWidth: `${rem(breakpoints.wide)}`,
     },
   }),
 });
 
 globalStyle('main', {
   display: 'flex',
-  maxWidth: `${breakpoints.desktop}rem`,
+  maxWidth: `${rem(breakpoints.desktop)}`,
   flexDirection: 'column',
   flex: '1 0 auto',
   width: '100%',

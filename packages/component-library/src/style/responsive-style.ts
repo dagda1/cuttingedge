@@ -1,46 +1,49 @@
-import { isEqual, omit } from '@cutting/util';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { mapValues, omit } from '@cutting/util';
 import { StyleRule } from '@vanilla-extract/css';
 import { breakpoints } from './breakpoints';
+import { rem } from 'polished';
 
 type CSSProps = Omit<StyleRule, '@media' | '@supports'>;
 
-const makeMediaQuery = (breakpoint: keyof typeof breakpoints) => (styles: CSSProps) =>
+export const breakpointQuery = mapValues(
+  omit(breakpoints, 'mobile' as any),
+  (bp) => `screen and (min-width: ${rem(bp)})`,
+) as {
+  readonly tablet: string;
+  readonly desktop: string;
+  readonly wide: string;
+};
+
+const makeMediaQuery = (breakpoint: keyof typeof breakpointQuery) => (styles?: CSSProps) =>
   !styles || Object.keys(styles).length === 0
     ? {}
     : {
-        [`screen and (min-width: ${breakpoints[breakpoint]}rem)`]: styles,
+        [breakpointQuery[breakpoint]]: styles,
       };
 
 const mediaQuery = {
   tablet: makeMediaQuery('tablet'),
   desktop: makeMediaQuery('desktop'),
+  wide: makeMediaQuery('wide'),
 };
 
 interface ResponsiveStyle {
   mobile?: CSSProps;
   tablet?: CSSProps;
   desktop?: CSSProps;
+  wide?: CSSProps;
 }
 
-export const responsiveStyle = ({ mobile, tablet, desktop }: ResponsiveStyle): StyleRule => {
-  const mobileStyles = typeof mobile === 'undefined' ? {} : omit(mobile, '@media' as keyof CSSProps);
-
-  const tabletStyles = !tablet || isEqual(tablet, mobileStyles) ? null : tablet;
-
-  const stylesBelowDesktop = tabletStyles || mobileStyles;
-  const desktopStyles = !desktop || isEqual(desktop, stylesBelowDesktop) ? null : desktop;
-
-  const hasMediaQueries = tabletStyles || desktopStyles;
-
-  return {
-    ...mobileStyles,
-    ...(hasMediaQueries
-      ? {
-          '@media': {
-            ...(tabletStyles ? mediaQuery.tablet(tabletStyles) : {}),
-            ...(desktopStyles ? mediaQuery.desktop(desktopStyles) : {}),
-          },
-        }
-      : {}),
-  };
-};
+export const responsiveStyle = ({ mobile, tablet, desktop, wide }: ResponsiveStyle): StyleRule => ({
+  ...omit(mobile as CSSProps, '@media' as any),
+  ...(tablet || desktop || wide
+    ? {
+        '@media': {
+          ...mediaQuery.tablet(tablet ?? {}),
+          ...mediaQuery.desktop(desktop ?? {}),
+          ...mediaQuery.wide(wide ?? {}),
+        },
+      }
+    : {}),
+});

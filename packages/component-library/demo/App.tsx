@@ -44,9 +44,9 @@ export function App(): JSX.Element {
                 {
                   value: 'cuttingTheme',
                   content: 'cutting',
+                  checked: true,
                 },
                 {
-                  checked: true,
                   value: 'salesTheme',
                   content: 'sales',
                 },

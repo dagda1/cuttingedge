@@ -18,6 +18,10 @@ export const responsiveFont = (): StyleRule => {
         fontSize: vars.fonts.text.paragraph.desktop,
         lineHeight: vars.lineHeight.text.paragraph.desktop,
       },
+      wide: {
+        fontSize: vars.fonts.text.paragraph.wide,
+        lineHeight: vars.lineHeight.text.paragraph.wide,
+      },
     }),
   };
 };
@@ -37,6 +41,10 @@ export const responsiveHeadingFont = (heading: keyof typeof vars.fonts.headings)
       desktop: {
         fontSize: vars.fonts.headings[heading].desktop,
         lineHeight: vars.lineHeight.headings[heading].desktop,
+      },
+      wide: {
+        fontSize: vars.fonts.headings[heading].wide,
+        lineHeight: vars.lineHeight.headings[heading].wide,
       },
     }),
   };

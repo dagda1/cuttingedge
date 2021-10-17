@@ -14,6 +14,7 @@ type Responsive = {
   mobile: number;
   tablet: number;
   desktop: number;
+  wide: number;
 };
 
 const convertTypography = <K extends keyof Tokens['typography']['headings'] | keyof Tokens['typography']['text']>(
@@ -51,6 +52,8 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     colors: {
       ...tokens.colors,
     },
+    // focusRingSize: px(tokens.focusRingSize),
+    // touchableSize: px(tokens.touchableSize * tokens.grid),
     fonts: {
       headings: convertTypography(tokens.typography.headings, rem),
       text: convertTypography(tokens.typography.text, rem),
@@ -139,6 +142,7 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     radios: {
       ...tokens.radios,
     },
+    // shadow: tokens.shadows,
   } as const;
 
   return resolvedTokens;

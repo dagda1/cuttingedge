@@ -28,7 +28,7 @@ globalStyle(`${item} input`, {
 globalStyle(`${item} label`, {
   ...responsiveFont(),
   fontWeight: vars.fontWeight.regular,
-  paddingLeft: vars.space['2x'],
+  paddingLeft: vars.space['1x'],
   display: 'inline-block',
   touchAction: 'manipulation',
   boxSizing: 'border-box',
@@ -87,7 +87,11 @@ globalStyle(`${item} input:checked + label:after`, {
 
 export const small = style([item]);
 
-globalStyle(`${small} label:before,${small} label:after`, {
+globalStyle(`${small} label:before`, {
+  transform: 'scale(0.5)',
+});
+
+globalStyle(`${small} label:after`, {
   transform: 'scale(0.5)',
 });
 
@@ -99,5 +103,11 @@ export const inline = style([
 ]);
 
 globalStyle(`${inline}:not(${small}) label`, {
-  marginRight: vars.space['2x'],
+  marginRight: vars.space['1x'],
+  marginTop: '4px',
+});
+
+globalStyle(`${inline}${small} label`, {
+  paddingLeft: 0,
+  marginTop: '4px',
 });

@@ -1,11 +1,25 @@
 import { rem } from 'polished';
 import { palette } from '../palette.css';
+import { mix } from 'polished';
+import { getLightVariant } from '../util/a11y';
 
+const brand = '#1250C4';
 export const colors = {
   primary: palette.green800,
   secondary: palette.gray100,
   error: palette.redError,
   notification: palette.yellow400,
+  brand: '#1250C4',
+  brandAccent: '#de0059',
+  formAccent: brand,
+  focus: brand,
+  critical: '#e91b0c',
+  criticalLight: '#f9e6e4',
+  positive: '#3b610f',
+  caution: '#ffc600',
+  info: brand,
+  promote: '#5736ab',
+  white: '#fff',
 };
 
 type ScaleKeys<A extends readonly unknown[]> = `${keyof A & `${number}`}x`;
@@ -58,6 +72,56 @@ export const tokens = {
     widthTwoThirds: '66.66%',
     widthThreeQuarters: '75%',
   },
+  border: {
+    radius: {
+      standard: '4px',
+      large: '6px',
+      xlarge: '10px',
+    },
+    width: {
+      standard: 1,
+      large: 2,
+    },
+    color: {
+      brandAccent: colors.brandAccent,
+      caution: colors.caution,
+      cautionLight: mix(0.6, colors.caution, getLightVariant(colors.caution)),
+      critical: colors.critical,
+      criticalLight: mix(0.3, colors.critical, colors.criticalLight),
+      field: '#999999',
+      formAccent: colors.formAccent,
+      formHover: colors.formAccent,
+      info: colors.info,
+      infoLight: mix(0.3, colors.info, getLightVariant(colors.info)),
+      positive: colors.positive,
+      positiveLight: mix(0.3, colors.positive, getLightVariant(colors.positive)),
+      promote: colors.promote,
+      promoteLight: mix(0.3, colors.promote, getLightVariant(colors.promote)),
+      standard: palette.trueGray900,
+      invalid: colors.error,
+      focus: colors.primary,
+      standardInverted: colors.white,
+    },
+  },
+  // focusRingSize: 2,
+  // shadows: {
+  //   small: [
+  //     `0 2px 4px 0px ${rgba(palette.gray800, 0.1)}`,
+  //     `0 2px 2px -2px ${rgba(palette.gray800, 0.1)}`,
+  //     `0 4px 4px -4px ${rgba(palette.gray800, 0.2)}`,
+  //   ].join(', '),
+  //   medium: [
+  //     `0 2px 4px 0px ${rgba(palette.gray800, 0.1)}`,
+  //     `0 8px 8px -4px ${rgba(palette.gray800, 0.1)}`,
+  //     `0 12px 12px -8px ${rgba(palette.gray800, 0.2)}`,
+  //   ].join(', '),
+  //   large: [
+  //     `0 2px 4px 0px ${rgba(palette.gray800, 0.1)}`,
+  //     `0 12px 12px -4px ${rgba(palette.gray800, 0.1)}`,
+  //     `0 20px 20px -12px ${rgba(palette.gray800, 0.2)}`,
+  //   ].join(', '),
+  // },
+  // touchableSize: 10,
   color: {
     foreground: {
       link: palette.trueGray900,
@@ -91,21 +155,25 @@ export const tokens = {
         mobile: 2,
         tablet: 2,
         desktop: 3,
+        wide: 3,
       },
       h2: {
         mobile: 1.5,
         tablet: 1.5,
         desktop: 2.25,
+        wide: 2.25,
       },
       h3: {
         mobile: 1.125,
         tablet: 1.125,
         desktop: 1.5,
+        wide: 1.5,
       },
       h4: {
         mobile: 1,
         tablet: 1,
         desktop: 1.1875,
+        wide: 1.1875,
       },
     },
     text: {
@@ -113,29 +181,17 @@ export const tokens = {
         mobile: 1,
         tablet: 1,
         desktop: 1,
+        wide: 1,
       },
       paragraph: {
         mobile: 1,
         tablet: 1,
         desktop: 1.1875,
+        wide: 1.1875,
       },
     },
   },
   grid: 4,
-  border: {
-    radius: {
-      standard: '8px',
-    },
-    width: {
-      standard: 1,
-      large: 2,
-    },
-    color: {
-      standard: palette.trueGray900,
-      invalid: colors.error,
-      focus: colors.primary,
-    },
-  },
   width: {
     input: '100%',
   },

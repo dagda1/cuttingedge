@@ -1,16 +1,36 @@
-import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles';
-import { breakpoints } from '../breakpoints';
+import {
+  defineProperties,
+  createSprinkles,
+  ConditionalValue,
+  RequiredConditionalValue,
+  createNormalizeValueFn,
+  createMapValueFn,
+} from '@vanilla-extract/sprinkles';
+import { Breakpoint, breakpointNames, breakpoints } from '../breakpoints';
 import { vars } from '../themes/vars.css';
+import { rem } from 'polished';
+// import { unresponsiveProperties, pseudoProperties } from './atomic-properties';
 
-const responsiveStyles = defineProperties({
+// const pseudoAtomicProperties = defineProperties({
+//   defaultCondition: false,
+//   conditions: {
+//     active: {
+//       selector: '&:active',
+//     },
+//   },
+//   properties: pseudoProperties,
+// });
+
+const responsiveAtomicProperties = defineProperties({
   conditions: {
     mobile: {},
-    tablet: { '@media': `screen and (min-width: ${breakpoints.tablet}rem)` },
-    desktop: { '@media': `screen and (min-width: ${breakpoints.desktop}rem)` },
+    tablet: { '@media': `screen and (min-width: ${rem(breakpoints.tablet)})` },
+    desktop: { '@media': `screen and (min-width: ${rem(breakpoints.desktop)})` },
+    wide: { '@media': `screen and (min-width: ${rem(breakpoints.wide)})` },
   },
   defaultCondition: 'mobile',
   properties: {
-    position: ['absolute', 'relative', 'fixed'],
+    position: ['absolute', 'relative', 'fixed', 'static'],
     display: ['none', 'block', 'inline', 'inline-block', 'flex'],
     alignItems: ['flex-start', 'center', 'flex-end'],
     justifyContent: ['flex-start', 'center', 'flex-end', 'space-between', 'space-around'],
@@ -30,7 +50,7 @@ const responsiveStyles = defineProperties({
     fontFamily: vars.fontFamily,
     pointerEvents: ['none', 'auto'],
     opacity: [0, 1],
-    textAlign: ['left', 'center'],
+    textAlign: ['left', 'center', 'right'],
     fontWeight: vars.fontWeight,
   },
   shorthands: {
@@ -43,20 +63,27 @@ const responsiveStyles = defineProperties({
     placeItems: ['alignItems', 'justifyContent'],
   },
 });
+// const unresponsiveAtomicProperties = defineProperties({
+//   properties: unresponsiveProperties,
+// });
 
-const unresponsiveStyles = defineProperties({
-  properties: {
-    top: [0],
-    bottom: [0],
-    left: [0],
-    right: [0],
-    flexShrink: [0],
-    flexGrow: [0, 1],
-    zIndex: [-1, 0, 1],
-    width: { full: '100%' },
-    borderRadius: vars.borderRadius,
-    cursor: ['pointer'],
-  },
-});
+export const sprinkles = createSprinkles(
+  // unresponsiveAtomicProperties,
+  responsiveAtomicProperties,
+  // pseudoAtomicProperties,
+);
 
-export const sprinkles = createSprinkles(responsiveStyles, unresponsiveStyles);
+export type OptionalResponsiveValue<Value extends string | number> = ConditionalValue<
+  typeof responsiveAtomicProperties,
+  Value
+>;
+export type RequiredResponsiveValue<Value extends string | number> = RequiredConditionalValue<
+  typeof responsiveAtomicProperties,
+  Value
+>;
+
+export type RequiredResponsiveObject<Value> = Partial<Record<Breakpoint, Value>> &
+  Record<typeof breakpointNames[0], Value>;
+
+export const normalizeResponsiveValue = createNormalizeValueFn(responsiveAtomicProperties);
+export const mapResponsiveValue = createMapValueFn(responsiveAtomicProperties);
