@@ -71,7 +71,7 @@ const makeTypographyStyleRules = (textDefinition: TypographicDefinition) => {
 
   const { fontSize: tabletFontSize, lineHeight: tabletLineHeight } = textDefinition.tablet;
 
-  return {
+  return responsiveStyle({
     mobile: {
       fontSize: mobileFontSize,
       lineHeight: mobileLineHeight,
@@ -80,7 +80,7 @@ const makeTypographyStyleRules = (textDefinition: TypographicDefinition) => {
       fontSize: tabletFontSize,
       lineHeight: tabletLineHeight,
     },
-  };
+  });
 };
 
 export const responsiveTextStyleRule = {
