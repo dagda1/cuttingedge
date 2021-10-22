@@ -1,4 +1,3 @@
-export type { FontWeight } from './themes/make-theme';
 export type { Breakpoint } from './breakpoints';
 export { responsiveStyle } from './responsive-style';
 export { atoms } from './atoms/atoms';
@@ -9,5 +8,4 @@ export { salesTheme } from './themes/sales/salesTheme.css';
 export { palette } from './palette.css';
 export { breakpoints, breakpointNames } from './breakpoints';
 export { markResetImported } from './reset/reset-tracker';
-export { makeTheme } from './themes/make-theme';
 export { visuallyHidden, screenReaderOnly } from './accessibility.css';

@@ -1,7 +1,8 @@
-import { style } from '@vanilla-extract/css';
+import { style, StyleRule } from '@vanilla-extract/css';
 import { createTextStyle } from '@capsizecss/vanilla-extract';
 import { vars } from '../themes/vars.css';
 import { breakpointQuery, responsiveStyle } from '../responsive-style';
+import { FontWeight } from 'src';
 
 type Vars = typeof vars;
 type HeadingDefinition = Vars['headingLevel'];
@@ -13,7 +14,13 @@ type TypographicDefinition = HeadingDefinition[keyof HeadingDefinition];
 
 // export const fontWeight = styleVariants(vars.textWeight, mapToProperty('fontWeight'));
 
-const makeTypographyRules = (textDefinition: TypographicDefinition, debug?: string) => {
+export const makeTypographyRules = (
+  textDefinition: TypographicDefinition,
+  debug?: string,
+): {
+  untrimmed: string;
+  trimmed: string;
+} => {
   const {
     fontSize: mobileFontSize,
     lineHeight: mobileLineHeight,
@@ -59,9 +66,24 @@ const makeTypographyRules = (textDefinition: TypographicDefinition, debug?: stri
   };
 };
 
-export const heading = {
-  '1': makeTypographyRules(vars.headingLevel['1'], 'heading1'),
-  '2': makeTypographyRules(vars.headingLevel['2'], 'heading2'),
-  '3': makeTypographyRules(vars.headingLevel['3'], 'heading3'),
-  '4': makeTypographyRules(vars.headingLevel['4'], 'heading4'),
-};
+export const globalHeadingStyle = ({
+  weight = 'regular',
+  level,
+}: {
+  weight: FontWeight;
+  level: string;
+}): StyleRule => ({
+  fontFamily: vars.fontFamily.heading,
+  fontWeight: vars.fontWeight[weight],
+  color: vars.headings.color,
+  ...responsiveStyle({
+    mobile: {
+      fontSize: vars.headingLevel[level].mobile.fontSize,
+      lineHeight: vars.headingLevel[level].mobile.lineHeight,
+    },
+    tablet: {
+      fontSize: vars.headingLevel[level].tablet.fontSize,
+      lineHeight: vars.headingLevel[level].tablet.lineHeight,
+    },
+  }),
+});

@@ -3,9 +3,9 @@ import { ReactNode, InputHTMLAttributes, useRef, ComponentType } from 'react';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
-import { FontWeight } from '../../../style/themes/make-theme';
 import { vars } from '../../../style/themes/vars.css';
 import { ErrorMessage } from '../../atoms/ErrorMessage/ErrorMessage';
+import { FontWeight } from '../../../style/types';
 
 export type Layout = 'vertical' | 'horizontal';
 

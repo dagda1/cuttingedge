@@ -33,3 +33,5 @@ export interface FeatureQueries<StyleType> {
   };
 }
 export type Style = StyleWithSelectors & MediaQueries<StyleWithSelectors> & FeatureQueries<StyleWithSelectors>;
+
+export type FontWeight = 'regular' | 'medium' | 'strong';

@@ -170,5 +170,3 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
 
   return resolvedTokens;
 };
-
-export type FontWeight = keyof ReturnType<typeof makeTheme>['fontWeight'];
