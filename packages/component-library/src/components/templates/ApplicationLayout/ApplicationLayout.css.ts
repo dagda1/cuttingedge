@@ -4,6 +4,7 @@ import { globalHeadingStyle } from 'src/style/typography/typography.css';
 import { responsiveStyle } from '../../../style';
 import { breakpoints } from '../../../style/breakpoints';
 import { vars } from '../../../style/themes/vars.css';
+import { responsiveTextStyleRule } from '../../../style/typography/typography.css';
 
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
@@ -115,7 +116,7 @@ globalStyle('h1,h2,h3,h4', {
 
 globalStyle('p', {
   fontFamily: vars.fontFamily.paragraphs,
-  // ...responsiveFont(),
+  ...responsiveTextStyleRule.body,
 });
 
 globalStyle('a:focus,a:focus h2', {

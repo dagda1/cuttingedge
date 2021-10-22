@@ -14,7 +14,7 @@ type TypographicDefinition = HeadingDefinition[keyof HeadingDefinition];
 
 // export const fontWeight = styleVariants(vars.textWeight, mapToProperty('fontWeight'));
 
-export const makeTypographyRules = (
+const makeTypographyRules = (
   textDefinition: TypographicDefinition,
   debug?: string,
 ): {
@@ -64,6 +64,31 @@ export const makeTypographyRules = (
       debug,
     ),
   };
+};
+
+const makeTypographyStyleRules = (textDefinition: TypographicDefinition) => {
+  const { fontSize: mobileFontSize, lineHeight: mobileLineHeight } = textDefinition.mobile;
+
+  const { fontSize: tabletFontSize, lineHeight: tabletLineHeight } = textDefinition.tablet;
+
+  return {
+    mobile: {
+      fontSize: mobileFontSize,
+      lineHeight: mobileLineHeight,
+    },
+    tablet: {
+      fontSize: tabletFontSize,
+      lineHeight: tabletLineHeight,
+    },
+  };
+};
+
+export const responsiveTextStyleRule = {
+  body: makeTypographyStyleRules(vars.text.body),
+};
+
+export const responsiveText = {
+  body: makeTypographyRules(vars.text.body, 'body'),
 };
 
 export const globalHeadingStyle = ({

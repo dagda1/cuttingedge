@@ -99,6 +99,9 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     headingLevel: mapValues(tokens.typography.heading.level, (definition) =>
       fontSizeToCapHeight(tokens.grid, definition, tokens.typography.fontMetrics),
     ),
+    text: mapValues(tokens.typography.text, (definition) =>
+      fontSizeToCapHeight(tokens.grid, definition, tokens.typography.fontMetrics),
+    ),
     headings: {
       color: tokens.headings.color,
     },
@@ -113,9 +116,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         backgroundColor: tokens.accessibility.elementFocusColor,
         boxShadow: `0 -2px #fd0, 0 4px ${tokens.accessibility.boxShadowColor}`,
         textDecoration: `none`,
-        // backgroundColor: ,
-        // outline: `${tokens.accessibility.outlineWidth} solid ${tokens.accessibility.elementFocusColor}`,
-        // color: tokens.accessibility.linkFocusColor,
       },
       accessibleOutline: {
         backgroundColor: tokens.accessibility.accessibleOutlineColor,
@@ -165,7 +165,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     radios: {
       ...tokens.radios,
     },
-    // shadow: tokens.shadows,
   } as const;
 
   return resolvedTokens;

@@ -1,12 +1,15 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes/vars.css';
+import { responsiveText } from '../../../style/typography/typography.css';
 
-export const root = style({
-  // ...responsiveFont(),
-  display: 'block',
-  fontWeight: vars.fontWeight.regular,
-  lineHeight: '1.31579',
-});
+export const root = style([
+  responsiveText.body.untrimmed,
+  {
+    display: 'block',
+    fontWeight: vars.fontWeight.regular,
+    lineHeight: '1.31579',
+  },
+]);
 
 export const invalid = style({
   color: vars.invalid.color,

@@ -103,25 +103,6 @@ export const tokens = {
       standardInverted: colors.white,
     },
   },
-  // focusRingSize: 2,
-  // shadows: {
-  //   small: [
-  //     `0 2px 4px 0px ${rgba(palette.gray800, 0.1)}`,
-  //     `0 2px 2px -2px ${rgba(palette.gray800, 0.1)}`,
-  //     `0 4px 4px -4px ${rgba(palette.gray800, 0.2)}`,
-  //   ].join(', '),
-  //   medium: [
-  //     `0 2px 4px 0px ${rgba(palette.gray800, 0.1)}`,
-  //     `0 8px 8px -4px ${rgba(palette.gray800, 0.1)}`,
-  //     `0 12px 12px -8px ${rgba(palette.gray800, 0.2)}`,
-  //   ].join(', '),
-  //   large: [
-  //     `0 2px 4px 0px ${rgba(palette.gray800, 0.1)}`,
-  //     `0 12px 12px -4px ${rgba(palette.gray800, 0.1)}`,
-  //     `0 20px 20px -12px ${rgba(palette.gray800, 0.2)}`,
-  //   ].join(', '),
-  // },
-  // touchableSize: 10,
   color: {
     foreground: {
       link: palette.trueGray900,
@@ -203,16 +184,22 @@ export const tokens = {
     },
     text: {
       body: {
-        mobile: 1,
-        tablet: 1,
-        desktop: 1,
-        wide: 1,
-      },
-      paragraph: {
-        mobile: 1,
-        tablet: 1,
-        desktop: 1.1875,
-        wide: 1.1875,
+        mobile: {
+          fontSize: 16,
+          rows: 8,
+        },
+        tablet: {
+          fontSize: 19,
+          rows: 8,
+        },
+        desktop: {
+          fontSize: 19,
+          rows: 8,
+        },
+        wide: {
+          fontSize: 19,
+          rows: 8,
+        },
       },
     },
   },

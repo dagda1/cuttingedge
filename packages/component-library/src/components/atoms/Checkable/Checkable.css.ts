@@ -1,5 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes/vars.css';
+import { responsiveTextStyleRule } from '../../../style/typography/typography.css';
 
 export const item = style({
   position: 'relative',
@@ -25,7 +26,7 @@ globalStyle(`${item} input`, {
 });
 
 globalStyle(`${item} label`, {
-  // ...responsiveFont(),
+  ...responsiveTextStyleRule.body,
   fontWeight: vars.fontWeight.regular,
   paddingLeft: vars.space['1x'],
   display: 'inline-block',

@@ -2,11 +2,12 @@ import { style, StyleRule, styleVariants } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes/vars.css';
 import { responsiveStyle } from '../../../style/responsive-style';
 import { atoms } from '../../../style/atoms/atoms';
+import { responsiveText } from '../../../style/typography/typography.css';
 
 export const root = style([
+  responsiveText.body.untrimmed,
   atoms({ reset: 'button' }),
   {
-    // ...responsiveFont(),
     cursor: 'pointer',
     textTransform: vars.buttons.textTransform,
     fontWeight: vars.buttons.fontWeight,
