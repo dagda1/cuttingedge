@@ -146,34 +146,59 @@ export const tokens = {
       body: '"GDS Transport",arial,sans-serif',
       paragraphs: '"GDS Transport",arial,sans-serif',
     },
+    fontMetrics: {
+      capHeight: 1456,
+      ascent: 1900,
+      descent: -500,
+      lineGap: 0,
+      unitsPerEm: 2048,
+    },
     webFont: null,
     fontWeight: {
       ...fontWeight,
     },
-    headings: {
-      h1: {
-        mobile: 2,
-        tablet: 2,
-        desktop: 3,
-        wide: 3,
-      },
-      h2: {
-        mobile: 1.5,
-        tablet: 1.5,
-        desktop: 2.25,
-        wide: 2.25,
-      },
-      h3: {
-        mobile: 1.125,
-        tablet: 1.125,
-        desktop: 1.5,
-        wide: 1.5,
-      },
-      h4: {
-        mobile: 1,
-        tablet: 1,
-        desktop: 1.1875,
-        wide: 1.1875,
+    heading: {
+      level: {
+        '1': {
+          mobile: {
+            fontSize: 32,
+            rows: 10,
+          },
+          tablet: {
+            fontSize: 52,
+            rows: 15,
+          },
+        },
+        '2': {
+          mobile: {
+            fontSize: 28,
+            rows: 9,
+          },
+          tablet: {
+            fontSize: 38,
+            rows: 13,
+          },
+        },
+        '3': {
+          mobile: {
+            fontSize: 22,
+            rows: 8,
+          },
+          tablet: {
+            fontSize: 22,
+            rows: 8,
+          },
+        },
+        '4': {
+          mobile: {
+            fontSize: 18,
+            rows: 8,
+          },
+          tablet: {
+            fontSize: 18,
+            rows: 8,
+          },
+        },
       },
     },
     text: {

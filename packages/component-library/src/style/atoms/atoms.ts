@@ -20,10 +20,6 @@ export const atoms = ({ reset, ...rest }: Atoms): string => {
 
   const sprinklesClasses = sprinkles(rest);
 
-  console.dir(
-    `${resetStyles.base}${elementReset ? ` ${elementReset}` : ''}${sprinklesClasses ? ` ${sprinklesClasses}` : ''}`,
-  );
-
   return `${resetStyles.base}${elementReset ? ` ${elementReset}` : ''}${
     sprinklesClasses ? ` ${sprinklesClasses}` : ''
   }`;

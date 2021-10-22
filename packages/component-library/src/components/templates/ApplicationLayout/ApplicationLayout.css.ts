@@ -3,7 +3,6 @@ import { rem } from 'polished';
 import { responsiveStyle } from '../../../style';
 import { breakpoints } from '../../../style/breakpoints';
 import { vars } from '../../../style/themes/vars.css';
-import { responsiveFont, responsiveHeadingFont } from '../../../style/typography/typography';
 
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
@@ -95,10 +94,10 @@ globalStyle('header a,footer a', {
   cursor: 'pointer',
 });
 
-globalStyle('h1', responsiveHeadingFont('h1'));
-globalStyle('h2', responsiveHeadingFont('h2'));
-globalStyle('h3', responsiveHeadingFont('h3'));
-globalStyle('h4', responsiveHeadingFont('h4'));
+// globalStyle('h1', vars.headings.levels[1]);
+// globalStyle('h2', vars.headings.levels[2]);
+// globalStyle('h3', vars.headings.levels[3]);
+// globalStyle('h4', vars.headings.levels[4]);
 
 globalStyle('h1', {
   marginTop: 0,
@@ -116,7 +115,7 @@ globalStyle('h1,h2,h3,h4', {
 
 globalStyle('p', {
   fontFamily: vars.fontFamily.paragraphs,
-  ...responsiveFont(),
+  // ...responsiveFont(),
 });
 
 globalStyle('a:focus,a:focus h2', {
@@ -137,7 +136,7 @@ globalStyle('ul', {
 });
 
 globalStyle('a', {
-  ...responsiveFont(),
+  // ...responsiveFont(),
   textDecoration: vars.links.decoration.link,
   color: vars.links.color.link,
   textUnderlineOffset: '.1em',

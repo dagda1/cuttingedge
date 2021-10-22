@@ -2,36 +2,66 @@ import { DeepPartial, mapValues } from '@cutting/util';
 import type { Tokens } from './tokens';
 import { tokens as defaultTokens } from './tokens';
 import deepmerge from 'deepmerge';
+import { getCapHeight, FontMetrics } from '@capsizecss/core';
+import { precomputeValues } from '@capsizecss/vanilla-extract';
 
 const scaleCreator = (scale: 'px' | 'rem') => (v: string | number) => `${v}${scale}`;
 
 const px = scaleCreator('px');
-const rem = scaleCreator('rem');
 
-type Convert<P, O> = { [K in keyof P]: { [K1 in keyof P[K]]: O } };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fontSizeToCapHeight = (grid: number, definition: any, fontMetrics: FontMetrics) => {
+  const { mobile, tablet } = definition;
 
-type Responsive = {
-  mobile: number;
-  tablet: number;
-  desktop: number;
-  wide: number;
+  const mobileCapHeight = getCapHeight({
+    fontSize: mobile.fontSize,
+    fontMetrics,
+  });
+
+  const tabletCapHeight = getCapHeight({
+    fontSize: tablet.fontSize,
+    fontMetrics,
+  });
+
+  const {
+    fontSize: mobileFontSize,
+    lineHeight: mobileLineHeight,
+    ...mobileTrims
+  } = precomputeValues({
+    fontSize: mobile.fontSize,
+    leading: mobile.rows * grid,
+    fontMetrics,
+  });
+
+  const {
+    fontSize: tabletFontSize,
+    lineHeight: tabletLineHeight,
+    ...tabletTrims
+  } = precomputeValues({
+    fontSize: tablet.fontSize,
+    leading: tablet.rows * grid,
+    fontMetrics,
+  });
+
+  return {
+    mobile: {
+      fontSize: mobileFontSize,
+      lineHeight: mobileLineHeight,
+      capHeight: px(mobileCapHeight),
+      capsizeTrims: {
+        ...mobileTrims,
+      },
+    },
+    tablet: {
+      fontSize: tabletFontSize,
+      lineHeight: tabletLineHeight,
+      capHeight: px(tabletCapHeight),
+      capsizeTrims: {
+        ...tabletTrims,
+      },
+    },
+  };
 };
-
-const convertTypography = <K extends keyof Tokens['typography']['headings'] | keyof Tokens['typography']['text']>(
-  o: Record<K, Responsive>,
-  f: (a: string | number) => string,
-) =>
-  Object.keys(o).reduce((acc, curr) => {
-    const key = curr as keyof typeof o;
-    const current = o[key];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    acc[key] = mapValues(current, f as any);
-
-    return acc;
-  }, {} as Convert<typeof o, string>);
-
-const ratio = 1.3;
-const getLineHeight = (fontSize: number | string) => rem(Number(fontSize) * ratio);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
@@ -52,16 +82,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     colors: {
       ...tokens.colors,
     },
-    // focusRingSize: px(tokens.focusRingSize),
-    // touchableSize: px(tokens.touchableSize * tokens.grid),
-    fonts: {
-      headings: convertTypography(tokens.typography.headings, rem),
-      text: convertTypography(tokens.typography.text, rem),
-    },
-    lineHeight: {
-      headings: convertTypography(tokens.typography.headings, getLineHeight),
-      text: convertTypography(tokens.typography.text, getLineHeight),
-    },
     fontWeight: mapValues(tokens.typography.fontWeight, String),
     inlineFieldSize: {
       standard: '2.5rem',
@@ -76,6 +96,9 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     inputWidth: {
       ...tokens.inputWidth,
     },
+    headingLevel: mapValues(tokens.typography.heading.level, (definition) =>
+      fontSizeToCapHeight(tokens.grid, definition, tokens.typography.fontMetrics),
+    ),
     headings: {
       color: tokens.headings.color,
     },

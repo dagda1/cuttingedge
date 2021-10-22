@@ -1,9 +1,8 @@
 import { style } from '@vanilla-extract/css';
-import { responsiveFont } from '../../../style/typography/typography';
 import { vars } from '../../../style/themes/vars.css';
 
 export const root = style({
-  ...responsiveFont(),
+  // ...responsiveFont(),
   height: vars.inlineFieldSize.standard,
   width: vars.width.input,
   padding: vars.space['1x'],

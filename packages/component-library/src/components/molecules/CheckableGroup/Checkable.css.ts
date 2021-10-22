@@ -1,7 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '../../../style/themes/vars.css';
 import { screenReaderOnly } from '../../../style/accessibility.css';
-import { responsiveFont } from '../../../style/typography/typography';
 
 export const fieldset = style({
   border: 'none',
@@ -13,7 +12,7 @@ export const srOnlyLegend = style({
 });
 
 export const legend = style({
-  ...responsiveFont(),
+  // ...responsiveFont(),
   marginBottom: vars.space['1x'],
 });
 

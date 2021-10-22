@@ -1,5 +1,4 @@
 import { style, StyleRule, styleVariants } from '@vanilla-extract/css';
-import { responsiveFont } from '../../../style/typography/typography';
 import { vars } from '../../../style/themes/vars.css';
 import { responsiveStyle } from '../../../style/responsive-style';
 import { atoms } from '../../../style/atoms/atoms';
@@ -7,7 +6,7 @@ import { atoms } from '../../../style/atoms/atoms';
 export const root = style([
   atoms({ reset: 'button' }),
   {
-    ...responsiveFont(),
+    // ...responsiveFont(),
     cursor: 'pointer',
     textTransform: vars.buttons.textTransform,
     fontWeight: vars.buttons.fontWeight,
