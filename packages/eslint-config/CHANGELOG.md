@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.27.0
+
+### Minor Changes
+
+- replace eslint-loader with eslint-webpack-plugin
+
 ## 4.26.0
 
 ### Minor Changes

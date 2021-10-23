@@ -1,5 +1,23 @@
 # @cutting/component-library
 
+## 5.3.8
+
+### Patch Changes
+
+- header
+
+## 5.3.7
+
+### Patch Changes
+
+- reinstate header style in theme
+
+## 5.3.6
+
+### Patch Changes
+
+- replace eslint-loader with eslint-webpack-plugin
+
 ## 5.3.5
 
 ### Patch Changes

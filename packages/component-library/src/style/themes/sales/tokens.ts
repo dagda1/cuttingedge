@@ -28,10 +28,12 @@ export const tokens: DeepPartial<Tokens> = {
         '3': blueGray[300],
         '4': blueGray[300],
       },
+      header: blueGray[300],
       footer: palette.white,
     },
     background: {
       body: palette.gray800,
+      header: palette.gray800,
       heading: palette.gray800,
       footer: palette.gray800,
     },

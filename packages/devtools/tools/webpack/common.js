@@ -51,6 +51,7 @@ var path_1 = __importDefault(require("path"));
 var assetsLoader_1 = require("./loaders/assetsLoader");
 var image_minimizer_webpack_plugin_1 = __importDefault(require("image-minimizer-webpack-plugin"));
 var getFileName_1 = require("./getFileName");
+var eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
 var reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
 var reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
 var babelRuntimeEntryHelpers = require.resolve('@babel/runtime/helpers/esm/assertThisInitialized');
@@ -159,6 +160,16 @@ var configureCommon = function (options, overrides) {
                     configFile: isProduction ? paths_1.paths.tsConfigProduction : paths_1.paths.tsConfig,
                     build: paths_1.paths.projectReferences,
                 },
+            }),
+            new eslint_webpack_plugin_1.default({
+                emitError: isProduction,
+                emitWarning: true,
+                failOnError: isProduction,
+                failOnWarning: isProduction,
+                fix: isProduction,
+                quiet: false,
+                extensions: ['ts', 'tsx'],
+                context: paths_1.paths.appSrc,
             }),
             isDevelopment && new webpack_1.default.WatchIgnorePlugin({ paths: [paths_1.paths.appManifest] }),
             new image_minimizer_webpack_plugin_1.default({
