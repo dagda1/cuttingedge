@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.3.5
+
+### Patch Changes
+
+- font-family changes
+
 ## 5.3.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { rem } from 'polished';
-import { globalHeadingStyle } from 'src/style/typography/typography.css';
+import { globalHeadingStyle, responsiveText } from 'src/style/typography/typography.css';
 import { responsiveStyle } from '../../../style';
 import { breakpoints } from '../../../style/breakpoints';
 import { vars } from '../../../style/themes/vars.css';
@@ -82,8 +82,8 @@ globalStyle('header,footer', {
 });
 
 globalStyle('header', {
-  background: vars.backgroundColor.header,
-  color: vars.foregroundColor.header,
+  background: vars.backgroundColor.heading,
+  color: vars.foregroundColor.heading,
 });
 
 globalStyle('footer', {
@@ -92,7 +92,6 @@ globalStyle('footer', {
 });
 
 globalStyle('header a,footer a', {
-  color: 'inherit',
   cursor: 'pointer',
 });
 
@@ -132,8 +131,8 @@ globalStyle('ul', {
   listStyle: 'none',
 });
 
-globalStyle('a', {
-  // ...responsiveFont(),
+globalStyle('a, header a,footer a', {
+  ...responsiveText.body,
   textDecoration: vars.links.decoration.link,
   color: vars.links.color.link,
   textUnderlineOffset: '.1em',

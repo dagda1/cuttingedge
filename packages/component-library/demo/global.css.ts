@@ -3,13 +3,6 @@ import { rem } from 'polished';
 import { atoms } from '../src/style/atoms/atoms';
 import { vars } from '../src/style/themes/vars.css';
 
-globalFontFace('Tahi', {
-  src: `url('https://assets.website-files.com/60dbf2aaf4673e5eb42541b6/60f3ac325d007b530e26db11_PlusJakartaSans-Bold.woff2') format('woff2')`,
-  fontWeight: 700,
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
-});
-
 globalFontFace('Oswald', {
   fontStyle: 'normal',
   fontWeight: 200,
