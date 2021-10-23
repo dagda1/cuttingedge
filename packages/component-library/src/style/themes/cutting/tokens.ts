@@ -21,7 +21,12 @@ export const tokens: DeepPartial<Tokens> = {
   color: {
     foreground: {
       body: palette.white,
-      heading: palette.white,
+      heading: {
+        '1': palette.white,
+        '2': palette.white,
+        '3': palette.white,
+        '4': palette.white,
+      },
       footer: palette.white,
     },
     background: {

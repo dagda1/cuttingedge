@@ -100,7 +100,7 @@ export const globalHeadingStyle = ({
 }): StyleRule => ({
   fontFamily: vars.fontFamily.heading,
   fontWeight: vars.fontWeight[weight],
-  color: vars.foregroundColor.heading,
+  color: vars.foregroundColor.heading[level],
   ...responsiveStyle({
     mobile: {
       fontSize: vars.headingLevel[level].mobile.fontSize,

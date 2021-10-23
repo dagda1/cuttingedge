@@ -81,10 +81,10 @@ globalStyle('header,footer', {
   ...bodyStyle,
 });
 
-globalStyle('header', {
-  background: vars.backgroundColor.heading,
-  color: vars.foregroundColor.heading,
-});
+// globalStyle('header', {
+//   background: vars.backgroundColor.heading,
+//   color: vars.foregroundColor.heading,
+// });
 
 globalStyle('footer', {
   background: vars.backgroundColor.footer,

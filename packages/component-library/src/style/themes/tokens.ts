@@ -109,7 +109,12 @@ export const tokens = {
       linkVisited: palette.trueGray700,
       error: colors.error,
       body: palette.black,
-      heading: palette.black,
+      heading: {
+        '1': palette.black,
+        '2': palette.black,
+        '3': palette.black,
+        '4': palette.black,
+      },
       footer: palette.black,
     },
     background: {
