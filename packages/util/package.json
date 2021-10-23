@@ -13,7 +13,6 @@
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test"
   },
-  "dependencies": {},
   "devDependencies": {
     "@cutting/devtools": "4.30.3",
     "@cutting/eslint-config": "4.27.0",

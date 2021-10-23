@@ -19,12 +19,12 @@
     "**/*.scss"
   ],
   "dependencies": {
-    "@cutting/component-library": "5.3.8",
+    "@cutting/component-library": "5.3.9",
     "@cutting/hooks": "4.29.2",
     "@cutting/react-abortable-fetch": "0.16.2",
     "@cutting/svg": "4.30.1",
-    "@cutting/use-mathjax": "4.27.2",
     "@cutting/use-get-parent-size": "1.5.2",
+    "@cutting/use-mathjax": "4.27.2",
     "@cutting/util": "4.28.2",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",

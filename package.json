@@ -3,10 +3,10 @@
   "version": "4.22.0",
   "private": true,
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "yarn workspaces foreach -vpi run start",
     "build:tsc": "tsc -b ./tsconfig.packages.json",
     "clean:tsbuild": "yarn build:tsc -- --clean && find . \\( -name node_modules -o -name dir2 -o -path name \\) -prune -false -o -name 'dist' -type d   -exec rm -rf {} +",
-    "test": "CI=true yarn workspaces run test",
+    "test": "CI=true yarn workspaces foreach -vpi run test",
     "start": "yarn build && yarn --cwd packages/website start",
     "audit-packages": "cutting each-pkg cutting audit",
     "lint": "eslint 'packages/**/*.{ts,tsx,js}' -c ./packages/component-library/.eslintrc.json --ignore-path ./.eslintignore --fix",
@@ -52,8 +52,7 @@
     ]
   },
   "volta": {
-    "node": "14.18.1",
-    "yarn": "1.22.17"
+    "node": "14.18.1"
   },
   "resolutions": {
     "@types/react": "^17.0.0",
@@ -70,5 +69,5 @@
     "url-parse": "^1.5.3",
     "webpack": "^5.59.1"
   },
-  "dependencies": {}
+  "packageManager": "yarn@3.0.2"
 }

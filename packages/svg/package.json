@@ -15,14 +15,14 @@
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/util": "4.28.2",
     "@cutting/use-get-parent-size": "1.5.2",
+    "@cutting/util": "4.28.2",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
     "@cutting/devtools": "4.30.3",
-    "@cutting/testing": "4.26.2",
     "@cutting/eslint-config": "4.27.0",
+    "@cutting/testing": "4.26.2",
     "@cutting/useful-types": "4.25.2",
     "@testing-library/jest-dom": "^5.11.10",
     "react": "^17.0.2",
