@@ -102,9 +102,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     text: mapValues(tokens.typography.text, (definition) =>
       fontSizeToCapHeight(tokens.grid, definition, tokens.typography.fontMetrics),
     ),
-    headings: {
-      color: tokens.headings.color,
-    },
     accessibility: {
       visibleFocus: {
         outline: `${tokens.accessibility.outlineWidth} solid ${tokens.accessibility.elementFocusColor}`,

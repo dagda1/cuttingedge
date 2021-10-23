@@ -1,10 +1,11 @@
 import { DeepPartial } from '@cutting/util';
+import { blueGray, coolGray } from 'tailwindcss/colors';
 import { palette } from '../../palette.css';
 import { Tokens } from '../tokens';
 
 const colors = {
-  primary: 'linear-gradient(167deg, rgba(40,13,87,1) 0%, rgba(54,63,159,1) 100%)',
-  secondary: palette.lime500,
+  primary: palette.lime500,
+  secondary: palette.sky900,
 };
 
 const buttonPadding = '14px 22px';
@@ -20,25 +21,22 @@ export const tokens: DeepPartial<Tokens> = {
   },
   color: {
     foreground: {
-      body: palette.white,
-      header: palette.white,
+      body: blueGray[300],
+      header: palette.yellow400,
       footer: palette.white,
     },
     background: {
-      body: palette.gray800,
+      body: coolGray[600],
       header: palette.gray800,
       footer: palette.gray800,
     },
   },
   typography: {
     fonts: {
-      heading: 'Tahi,sans-serif',
-      body: 'Tahi,sans-serif',
-      paragraphs: 'Tahi,sans-serif',
+      heading: `'Oswald', sans-serif`,
+      body: 'Arial, sans-serif',
+      paragraphs: 'Arial, sans-serif',
     },
-  },
-  headings: {
-    color: palette.white,
   },
   buttons: {
     textTransform: 'uppercase',
@@ -47,7 +45,7 @@ export const tokens: DeepPartial<Tokens> = {
       tablet: '100%',
     },
     primary: {
-      background: palette.orange400,
+      background: colors.primary,
       focusColor: colors.secondary,
       padding: buttonPadding,
     },
@@ -59,12 +57,12 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   radios: {
-    borderColor: palette.white,
+    borderColor: colors.primary,
   },
   links: {
     color: {
-      link: palette.white,
-      hover: palette.gray300,
+      link: palette.trueGray400,
+      hover: palette.white,
     },
     decoration: {
       link: 'none',

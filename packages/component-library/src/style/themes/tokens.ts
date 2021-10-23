@@ -142,12 +142,12 @@ export const tokens = {
       level: {
         '1': {
           mobile: {
-            fontSize: 32,
+            fontSize: 40,
             rows: 10,
           },
           tablet: {
-            fontSize: 52,
-            rows: 15,
+            fontSize: 80,
+            rows: 21,
           },
         },
         '2': {
@@ -225,9 +225,6 @@ export const tokens = {
     decoration: {
       link: 'underline',
     },
-  },
-  headings: {
-    color: palette.black,
   },
   buttons: {
     textTransform: 'none',

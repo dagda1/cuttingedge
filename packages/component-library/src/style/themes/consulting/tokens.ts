@@ -36,9 +36,6 @@ export const tokens: DeepPartial<Tokens> = {
       body: `metropolis,sans-serif`,
     },
   },
-  headings: {
-    color: palette.white,
-  },
   buttons: {
     textTransform: 'uppercase',
     fontWeight: 'bold',

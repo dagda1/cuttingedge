@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.3.4
+
+### Patch Changes
+
+- remove bogus capsize
+
 ## 5.3.3
 
 ### Patch Changes

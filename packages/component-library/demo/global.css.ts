@@ -10,25 +10,10 @@ globalFontFace('Tahi', {
   fontDisplay: 'swap',
 });
 
-globalFontFace('Tahi', {
-  src: `url('https://assets.website-files.com/60dbf2aaf4673e5eb42541b6/60f1379eed27dcc885ef3715_PlusJakartaSans-Light.woff2') format('woff2')`,
-  fontWeight: 300,
+globalFontFace('Oswald', {
   fontStyle: 'normal',
-  fontDisplay: 'swap',
-});
-
-globalFontFace('Tahi', {
-  src: `url('https://assets.website-files.com/60dbf2aaf4673e5eb42541b6/60f3ac7b24a8612974fadb83_PlusJakartaSans-Medium.woff2') format('woff2')`,
-  fontWeight: 500,
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
-});
-
-globalFontFace('Tahi', {
-  src: `url('https://assets.website-files.com/60dbf2aaf4673e5eb42541b6/60f1379eed27dc6443ef3716_PlusJakartaSans-Regular.woff2') format('woff2')`,
-  fontWeight: 400,
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
+  fontWeight: 200,
+  src: 'url(https://fonts.googleapis.com/css?Oswald:wght@700&family=Cardo&display=swap)',
 });
 
 export const wrap = style({

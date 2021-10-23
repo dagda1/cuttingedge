@@ -15,7 +15,7 @@ const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme, consultingThem
 type Theme = keyof typeof AvailableThemes;
 
 export function App(): JSX.Element {
-  const [theme, setTheme] = useState<Theme>('cuttingTheme');
+  const [theme, setTheme] = useState<Theme>('salesTheme');
 
   return (
     <ApplicationLayout className={cs(AvailableThemes[theme], styles.background)}>
@@ -44,11 +44,11 @@ export function App(): JSX.Element {
                 {
                   value: 'cuttingTheme',
                   content: 'cutting',
-                  checked: true,
                 },
                 {
                   value: 'salesTheme',
                   content: 'sales',
+                  checked: true,
                 },
                 {
                   value: 'consultingTheme',
