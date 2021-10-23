@@ -2,7 +2,7 @@ import { style, StyleRule } from '@vanilla-extract/css';
 import { createTextStyle } from '@capsizecss/vanilla-extract';
 import { vars } from '../themes/vars.css';
 import { breakpointQuery, responsiveStyle } from '../responsive-style';
-import { FontWeight } from 'src';
+import { FontWeight } from '../types';
 
 type Vars = typeof vars;
 type HeadingDefinition = Vars['headingLevel'];

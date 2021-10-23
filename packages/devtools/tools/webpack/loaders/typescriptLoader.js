@@ -18,22 +18,6 @@ var createTypescriptLoader = function (_a) {
     };
     return [
         {
-            test: /\.tsx$/,
-            enforce: 'pre',
-            exclude: /\/node_modules\//,
-            use: [
-                {
-                    loader: 'eslint-loader',
-                    options: {
-                        fix: isProduction,
-                        emitWarning: isDevelopment,
-                        failOnWarning: isProduction,
-                        configFile: paths_1.paths.eslintConfig,
-                    },
-                },
-            ],
-        },
-        {
             test: /\.tsx?$/,
             exclude: /\/node_modules\//,
             use: [

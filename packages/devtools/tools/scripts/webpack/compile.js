@@ -37,6 +37,7 @@ var compile = function (config, buildType) {
             (0, assert_ts_1.assert)(typeof stats !== 'undefined', "no stats in compile");
             var messages = (0, formatWebpackMessages_1.default)(stats.toJson({ all: false, warnings: true, errors: true }));
             if (messages.errors.length) {
+                console.dir({messages})
                 return reject(new Error(messages.errors.join('\n')));
             }
             logger_1.logger.done("Compiled " + buildType + " successfully.");

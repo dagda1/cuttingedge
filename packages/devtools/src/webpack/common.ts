@@ -22,6 +22,7 @@ import path from 'path';
 import { createAssetsLoader } from './loaders/assetsLoader';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import { getFileName } from './getFileName';
+import EslintWebpackLoader from 'eslint-webpack-plugin';
 
 const reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
 const reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
@@ -143,6 +144,16 @@ export const configureCommon = (
             configFile: isProduction ? paths.tsConfigProduction : paths.tsConfig,
             build: paths.projectReferences,
           },
+        }),
+        new EslintWebpackLoader({
+          emitError: isProduction,
+          emitWarning: true,
+          failOnError: isProduction,
+          failOnWarning: isProduction,
+          fix: isProduction,
+          quiet: false,
+          extensions: ['ts', 'tsx'],
+          context: paths.appSrc,
         }),
         isDevelopment && new webpack.WatchIgnorePlugin({ paths: [paths.appManifest] }),
         new ImageMinimizerPlugin({
