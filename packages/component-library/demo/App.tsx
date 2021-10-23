@@ -60,29 +60,6 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={2}>Headings</Heading>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <Heading level={1}>H1 headings</Heading>
-            <Heading level={2}>H2 headings</Heading>
-            <Heading level={3}>H3 headings</Heading>
-            <Heading level={4}>H4 headings</Heading>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <Heading level={2}>Paragaphs</Heading>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <p>A paragraph</p>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
             <Heading level={2}>Links</Heading>
           </div>
         </div>
@@ -353,6 +330,29 @@ export function App(): JSX.Element {
               invalid
               errorMessage="foo bar"
             />
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level={2}>Headings</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level={1}>H1 headings</Heading>
+            <Heading level={2}>H2 headings</Heading>
+            <Heading level={3}>H3 headings</Heading>
+            <Heading level={4}>H4 headings</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level={2}>Paragaphs</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <p>A paragraph</p>
           </div>
         </div>
       </div>

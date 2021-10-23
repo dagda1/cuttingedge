@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.30.3
+
+### Patch Changes
+
+- replace eslint-loader with eslint-webpack-plugin
+
 ## 4.30.2
 
 ### Patch Changes

@@ -115,11 +115,13 @@ export const tokens = {
         '3': palette.black,
         '4': palette.black,
       },
+      header: palette.black,
       footer: palette.black,
     },
     background: {
       body: palette.white,
       heading: palette.white,
+      header: palette.white,
       footer: palette.white,
       input: palette.white,
       focus: palette.blue100,

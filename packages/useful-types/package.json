@@ -25,6 +25,6 @@
     "@cutting/util": "4.28.2"
   },
   "devDependencies": {
-    "@cutting/eslint-config": "4.26.0"
+    "@cutting/eslint-config": "4.27.0"
   }
 }

@@ -21,6 +21,7 @@ export const tokens: DeepPartial<Tokens> = {
   color: {
     foreground: {
       body: palette.violet300,
+      header: palette.violet300,
       heading: {
         '1': palette.gray600,
         '2': palette.gray600,
@@ -32,6 +33,7 @@ export const tokens: DeepPartial<Tokens> = {
     background: {
       body: 'linear-gradient(167deg, rgba(40,13,87,1) 0%, rgba(54,63,159,1) 100%)',
       heading: palette.white,
+      header: palette.white,
       footer: palette.white,
     },
   },
