@@ -1,5 +1,5 @@
 import type { FC, MouseEventHandler } from 'react';
-import styles from './MobileNavButton.module.scss';
+import * as styles from './MobileNavButton.css';
 
 export interface MobileNavButtonProps {
   onClick: MouseEventHandler;

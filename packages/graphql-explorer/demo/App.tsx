@@ -1,10 +1,7 @@
-import type { FC } from 'react';
-import './App.css';
-
-export const App: FC = () => {
+export function App(): JSX.Element {
   return (
     <div className="container">
       <h1>foo</h1>
     </div>
   );
-};
+}

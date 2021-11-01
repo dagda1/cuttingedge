@@ -36,7 +36,6 @@ var libPackages = [
     'packages/design-system',
     'packages/component-library',
     'packages/svg',
-    'packages/use-operation',
     'packages/use-shortcuts',
     'packages/react-abortable-fetch',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });

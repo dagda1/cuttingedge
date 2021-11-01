@@ -49,10 +49,6 @@
       "root": "packages/use-mathjax",
       "implicitDependencies": []
     },
-    "@cutting/use-operation": {
-      "root": "packages/use-operation",
-      "implicitDependencies": []
-    },
     "@cutting/use-shortcuts": {
       "root": "packages/use-shortcuts",
       "implicitDependencies": []

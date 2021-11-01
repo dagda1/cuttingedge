@@ -2,11 +2,9 @@ import type { FC } from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Pyramid } from '../Pyramid';
 
-import styles from './Home.module.scss';
-
 export const Home: FC = () => (
   <ApplicationLayout heading="Frontend developer, total" italicise center>
-    <div className={styles.main}>
+    <div>
       <Pyramid />
     </div>
   </ApplicationLayout>

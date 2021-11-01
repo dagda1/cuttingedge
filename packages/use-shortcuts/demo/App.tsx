@@ -1,23 +1,8 @@
-require('./global.module.scss');
+import './global.css';
 import React, { useState, useCallback } from 'react';
 import { Point } from './types';
 import { Box as MovableBox } from './Box';
 import { shortcutMap1, shortcutMap2 } from './shortCutMap';
-
-// const globalDocumentShortcuts = {
-//   alert: { combination: [KeyCode.Ctrl, 'a'] },
-// };
-
-// const globalHandler = (action: Action<string>) => {
-//   console.log('in globalHandler');
-//   switch (action.type) {
-//     case 'alert':
-//       alert('global alert');
-//       return;
-//     default:
-//       throw new Error('no such action');
-//   }
-// };
 
 const boxes1 = [
   { x: 50, y: 160, color: 'red' },
@@ -53,7 +38,7 @@ export const App: React.FC = () => {
     <div>
       <h1>UseShortcuts</h1>
       <hr />
-      <h2>Click on any box and use WSAD</h2>
+      <h2>Click on red or blue and use WSAD to move or Click on black or green and use the arrow keys to move</h2>
       {boxState1.map(({ x, y, color }, index) => (
         <MovableBox
           shortcutMap={shortcutMap1}

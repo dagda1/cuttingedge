@@ -42,7 +42,6 @@ const libPackages = [
   'packages/design-system',
   'packages/component-library',
   'packages/svg',
-  'packages/use-operation',
   'packages/use-shortcuts',
   'packages/react-abortable-fetch',
 ].map((dep) => path.resolve(process.cwd(), dep));

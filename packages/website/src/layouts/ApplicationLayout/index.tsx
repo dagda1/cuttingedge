@@ -9,9 +9,9 @@ import { CuttingEdge } from 'src/constants';
 import { useLocation } from 'react-router';
 import { Covid19 } from 'src/urls';
 import { Helmet } from 'react-helmet';
-import { ApplicationLayoutWithRouterScroll } from '@cutting/component-library';
+import { ApplicationLayoutWithRouterScroll, cuttingTheme } from '@cutting/component-library';
 
-import styles from './ApplicationLayout.module.scss';
+import * as styles from './ApplicationLayout.css';
 
 export interface ApplicationLayoutProps {
   heading?: string;
@@ -44,7 +44,7 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
 
   return (
     <ApplicationLayoutWithRouterScroll
-      className={className}
+      className={cs(cuttingTheme, className)}
       heading={
         heading && (
           <Heading

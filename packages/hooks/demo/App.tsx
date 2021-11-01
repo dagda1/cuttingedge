@@ -3,7 +3,7 @@ import { FC, useRef } from 'react';
 import { useScrollToTop } from '../src/useScrollToTop/useScrollToTop';
 import { ApplicationLayout } from '@cutting/component-library';
 
-import styles from './global.module.scss';
+import * as styles from './global.css';
 
 export const App: FC = () => {
   const ref = useRef<HTMLDivElement>();

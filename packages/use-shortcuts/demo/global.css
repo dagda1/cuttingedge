@@ -19,7 +19,7 @@ body {
   font-size: 160%;
 }
 
-:global #root {
+#root {
   padding: 8px;
   display: flex;
   flex: 1;

@@ -20,9 +20,6 @@
       "path": "./packages/use-get-parent-size/tsconfig.dist.json"
     },
     {
-      "path": "./packages/use-operation/tsconfig.dist.json"
-    },
-    {
       "path": "./packages/react-abortable-fetch/tsconfig.dist.json"
     },
     {
