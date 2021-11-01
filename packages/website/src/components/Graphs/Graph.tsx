@@ -19,7 +19,7 @@ import * as Urls from 'src/urls';
 import { NavLink, useLocation } from 'react-router-dom';
 import { assert } from 'assert-ts';
 
-import styles from './Graph.module.scss';
+import * as styles from './Graph.css';
 
 export type GraphProps = {
   result: { data?: CountriesResult };

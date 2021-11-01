@@ -8,7 +8,7 @@ import { LinePath } from '@visx/shape';
 import { curveMonotoneX } from '@visx/curve';
 import { SVGMathJax } from '@cutting/use-mathjax';
 
-import styles from './Sine.module.scss';
+import * as styles from './Sine.css';
 import { getScales, reducer, initialState, xTickValues, PiMap, PiMapKeys } from './utils';
 import { BottomAxis } from './BottomAxis';
 
@@ -53,15 +53,15 @@ const Sine: FC = () => {
                 <Line className={styles.ray} from={{ x: 0, y: 0 }} to={{ x: cosX, y: sinY }} />
               </React.Fragment>
             ))}
-            <circle className={styles['unit-cirle']} {...state.unitCircle} />
+            <circle className={styles.unitCircle} {...state.unitCircle} />
 
             <Line className={styles.hypotenuse} {...state.hypotenuse} />
             <Line className={styles.opposite} {...state.opposite} />
             <Line className={styles.adjacent} {...state.adjacent} />
             <circle className={styles.dot} {...state.dot} />
-            <circle className={styles['vertical-guide']} {...state.verticalDot} />
-            <Line className={styles['joining-line']} {...state.joiningLine} />
-            <circle className={styles['axis-dot']} {...state.axisDot} />
+            <circle className={styles.verticalGuide} {...state.verticalDot} />
+            <Line className={styles.joiningLine} {...state.joiningLine} />
+            <circle className={styles.axisDot} {...state.axisDot} />
             {expanded && (
               <>
                 <Group transform={`translate(${firstX}, 0)`}>
@@ -69,7 +69,7 @@ const Sine: FC = () => {
                     scale={yAxisScale}
                     tickValues={[-1, 0, 1]}
                     axisClassName={styles.axis}
-                    axisLineClassName={styles['axis-line']}
+                    axisLineClassName={styles.axisLine}
                     tickStroke="#fff"
                   />
                 </Group>
@@ -79,7 +79,7 @@ const Sine: FC = () => {
                     tickValues={xTickValues}
                     tickFormat={(x) => `$${PiMap[x as unknown as PiMapKeys]}$`}
                     axisClassName={styles.axis}
-                    axisLineClassName={styles['axis-line']}
+                    axisLineClassName={styles.axisLine}
                     tickStroke="#fff"
                     tickComponent={BottomAxis}
                   />

@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import * as Urls from '../../urls';
 
-import styles from './CV.module.scss';
+import * as styles from './CV.css';
 
 // eslint:disable
 export const CV: FC = () => {

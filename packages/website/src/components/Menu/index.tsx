@@ -9,7 +9,7 @@ import { Cow } from '../Svg';
 import { MenuItems, MobileMenuItems } from './MenuItems';
 import * as Urls from 'src/urls';
 
-import styles from './Menu.module.scss';
+import * as styles from './Menu.css';
 
 export interface MenuState {
   isExpanded: boolean;
@@ -27,7 +27,7 @@ export const Menu: FC = () => {
     <nav className={styles.container}>
       <div className={styles.full}>
         <ul>
-          <li className={styles.logo__container}>
+          <li className={styles.logoContainer}>
             <NavLink aria-label="home" to={urls.Home}>
               <Cow />
             </NavLink>
@@ -44,7 +44,7 @@ export const Menu: FC = () => {
               Contact
             </NavLink>
           </li>
-          <li className={styles.mobile__button__container}>
+          <li className={styles.mobileButtonContainer}>
             <MobileNavButton onClick={toggleIsExpanded} isActive={expanded} />
           </li>
           <MenuItems collapse={collapse} />

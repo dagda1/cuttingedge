@@ -4,13 +4,13 @@ import { footerPages } from '../../routes';
 import { NavLink } from 'react-router-dom';
 import { ExternalLink } from '@cutting/component-library';
 
-import styles from './Footer.module.scss';
+import * as styles from './Footer.css';
 
 export const Footer: FC = () => (
   <footer role="contentinfo">
     <div className={styles.left}>
       <div className={styles.logo}>
-        <div className={styles.logo__container}>
+        <div className={styles.logoContainer}>
           <div>
             <Cow />
           </div>
@@ -18,7 +18,7 @@ export const Footer: FC = () => (
         <span className={styles.name}>Paul Cowan</span>
       </div>
       <div className={styles.links}>
-        <ul className={styles.NavLinks}>
+        <ul>
           {footerPages.map((page) => (
             <li key={page.path}>
               <NavLink to={page.path}>{page.heading}</NavLink>

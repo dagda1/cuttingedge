@@ -4,7 +4,7 @@ import cs from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { Covid19, IncreaseInDeaths } from 'src/urls';
 
-import styles from './Menu.module.scss';
+import * as styles from './Menu.css';
 
 export interface MenuItemsProps {
   collapse: () => void;
@@ -25,7 +25,7 @@ export const MenuItems: FC<MenuItemsProps> = ({ collapse }) => (
 export const MobileMenuItems: FC<MenuItemsProps> = ({ collapse }) => {
   return (
     <div>
-      <li className={cs(styles.horizontal, styles.mobile, styles.close__button)}>
+      <li className={cs(styles.horizontal, styles.mobile, styles.closeButton)}>
         <button type="button" onClick={collapse}>
           X
         </button>

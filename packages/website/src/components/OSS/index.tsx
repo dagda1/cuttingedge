@@ -4,13 +4,13 @@ import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
 import { Github } from '../Svg';
 
-import styles from './OSS.module.scss';
+import * as styles from './OSS.css';
 
 export const OSS: FC = () => (
   <ApplicationLayout heading="Open Source Contributions">
     <div className={styles.container}>
       <Heading level={2}>Prominent opens source pull requests</Heading>
-      <ul className={styles.community__list}>
+      <ul className={styles.communityList}>
         <li>
           <ExternalLink href="https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1">
             Very active in Bigtest
@@ -58,7 +58,7 @@ export const OSS: FC = () => (
         ))}
       </div>
       <div>
-        <Heading level={2} className={styles.heading__repos}>
+        <Heading level={2}>
           For full list of github repos <ExternalLink href="https://github.com/dagda1">click here</ExternalLink>
         </Heading>
       </div>

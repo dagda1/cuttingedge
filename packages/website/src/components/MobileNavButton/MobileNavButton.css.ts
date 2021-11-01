@@ -1,4 +1,4 @@
-import { atoms } from '@cutting/component-library/src';
+import { atoms } from '@cutting/component-library';
 import { ComplexStyleRule, style } from '@vanilla-extract/css';
 
 const buttonStyles: ComplexStyleRule = {
