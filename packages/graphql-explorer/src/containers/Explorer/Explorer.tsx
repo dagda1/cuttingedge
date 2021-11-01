@@ -3,7 +3,7 @@ import { buildClientSchema, IntrospectionQuery, introspectionFromSchema, lexicog
 import { useRef } from 'react';
 import { getIntrospectionQuery } from 'graphql';
 import { ParentsizeSVG } from '@cutting/svg';
-import styles from './Explorer.module.scss';
+import * as styles from './Explorer.css';
 import { useFetch } from '@cutting/react-abortable-fetch';
 import { LoadingOverlay } from '@cutting/component-library';
 import { SimplifiedIntrospectionWithIds } from '../../types';
