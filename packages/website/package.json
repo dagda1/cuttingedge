@@ -59,7 +59,6 @@
   "devDependencies": {
     "@cutting/devtools": "4.30.3",
     "@cutting/eslint-config": "4.27.0",
-    "@cutting/useful-types": "4.25.2",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/csurf": "^1.11.1",
     "@types/d3": "^6.3.0",

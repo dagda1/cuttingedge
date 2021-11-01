@@ -24,7 +24,7 @@
     "effection": "2.0.0-beta.22"
   },
   "devDependencies": {
-    "@cutting/devtools": "^4.30.0",
+    "@cutting/devtools": "^4.30.3",
     "ts-node": "^9.1.1"
   },
   "volta": {

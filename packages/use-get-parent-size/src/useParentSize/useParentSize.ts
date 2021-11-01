@@ -3,7 +3,7 @@ import { RefObject, useCallback, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useIsomorphicLayoutEffect } from 'react-use';
 import { useDebouncedCallback } from 'use-debounce';
-import { useIsMounted } from '../useIsMounted/useIsMounted';
+import { useIsMounted } from '@cutting/hooks';
 import { identity, isNil } from '@cutting/util';
 import assert from 'assert-ts';
 

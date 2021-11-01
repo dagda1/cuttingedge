@@ -52,3 +52,26 @@ const MyComp: FC = () => {
   // etc.
 }
 ```
+
+## usePrevious
+
+### usage
+
+```ts
+import {usePrevious} from '@cutting/hooks';
+
+const Demo = () => {
+  const [count, setCount] = React.useState(0);
+  const prevCount = usePrevious(count);
+
+  return (
+    <p>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <button onClick={() => setCount(count - 1)}>-</button>
+      <p>
+        Now: {count}, before: {prevCount}
+      </p>
+    </p>
+  );
+};
+```

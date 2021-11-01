@@ -16,7 +16,6 @@
   "devDependencies": {
     "@cutting/devtools": "4.30.3",
     "@cutting/eslint-config": "4.27.0",
-    "@cutting/useful-types": "4.25.2",
     "typescript": "^4.4.4"
   },
   "volta": {

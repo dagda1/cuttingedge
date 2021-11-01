@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { ApplicationLayout } from '@cutting/component-library';
 import { ParentsizeSVG } from '../src/components/ParentsizeSVG/ParentsizeSVG';
 
-import styles from './global.module.scss';
+import * as styles from './global.css';
 
 export const App: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
