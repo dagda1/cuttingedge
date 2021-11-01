@@ -1,17 +1,16 @@
 import '@cutting/component-library/styles.css';
-import type { FC } from 'react';
 import { useRef } from 'react';
-import { ApplicationLayout } from '@cutting/component-library';
+import { ApplicationLayout, cuttingTheme } from '@cutting/component-library';
 import { ParentsizeSVG } from '../src/components/ParentsizeSVG/ParentsizeSVG';
 
 import * as styles from './global.css';
 
-export const App: FC = () => {
+export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   return (
-    <ApplicationLayout heading="@cutting/svg">
+    <ApplicationLayout heading="@cutting/svg" className={cuttingTheme}>
       <div className={styles.container} ref={ref}>
-        <ParentsizeSVG elementRef={ref} options={{ debounceDelay: 0 }}>
+        <ParentsizeSVG elementRef={ref} options={{ debounceDelay: 10 }}>
           <rect
             x="20%"
             y="20%"
@@ -33,4 +32,4 @@ export const App: FC = () => {
       </div>
     </ApplicationLayout>
   );
-};
+}

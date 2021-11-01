@@ -1,11 +1,11 @@
-import { style, globalStyle } from '@vamilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 export const container = style({
   border: '1px solid yellow',
   background: 'grey',
   color: 'white',
   overflow: 'hidden',
-  resize: 'auto',
+  resize: 'both',
   width: '50%',
   height: '50%',
   fontWeight: 'bold',

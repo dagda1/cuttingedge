@@ -1,16 +1,16 @@
 import '@cutting/component-library/styles.css';
-import { FC, useRef } from 'react';
+import { useRef } from 'react';
 import { useParentSize } from '../src/useParentSize/useParentSize';
-import { ApplicationLayout } from '@cutting/component-library';
+import { ApplicationLayout, cuttingTheme } from '@cutting/component-library';
 
-import styles from './global.module.scss';
+import * as styles from './global.css';
 
-export const App: FC = () => {
+export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>();
   const { width, height } = useParentSize(ref);
 
   return (
-    <ApplicationLayout heading="@cutting/hooks">
+    <ApplicationLayout heading="@cutting/hooks" className={cuttingTheme}>
       <div ref={ref} className={styles.parent}>
         <h1>Subject</h1>
       </div>
@@ -19,6 +19,6 @@ export const App: FC = () => {
       </div>
     </ApplicationLayout>
   );
-};
+}
 
 export default App;
