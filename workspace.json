@@ -1,0 +1,73 @@
+{
+  "version": 2,
+  "projects": {
+    "@cutting/component-library": {
+      "root": "packages/component-library",
+      "implicitDependencies": []
+    },
+    "@cutting/devtools": {
+      "root": "packages/devtools",
+      "implicitDependencies": []
+    },
+    "@cutting/eslint-config": {
+      "root": "packages/eslint-config",
+      "implicitDependencies": []
+    },
+    "@cutting/graphql-explorer": {
+      "root": "packages/graphql-explorer",
+      "implicitDependencies": []
+    },
+    "@cutting/hooks": {
+      "root": "packages/hooks",
+      "implicitDependencies": []
+    },
+    "@cutting/react-abortable-fetch": {
+      "root": "packages/react-abortable-fetch",
+      "implicitDependencies": []
+    },
+    "@cutting/svg": {
+      "root": "packages/svg",
+      "implicitDependencies": []
+    },
+    "@cutting/testing": {
+      "root": "packages/testing",
+      "implicitDependencies": []
+    },
+    "@cutting/the-watcher": {
+      "root": "packages/the-watcher",
+      "implicitDependencies": []
+    },
+    "@cutting/tsconfig": {
+      "root": "packages/tsconfig",
+      "implicitDependencies": []
+    },
+    "@cutting/use-get-parent-size": {
+      "root": "packages/use-get-parent-size",
+      "implicitDependencies": []
+    },
+    "@cutting/use-mathjax": {
+      "root": "packages/use-mathjax",
+      "implicitDependencies": []
+    },
+    "@cutting/use-operation": {
+      "root": "packages/use-operation",
+      "implicitDependencies": []
+    },
+    "@cutting/use-shortcuts": {
+      "root": "packages/use-shortcuts",
+      "implicitDependencies": []
+    },
+    "@cutting/useful-types": {
+      "root": "packages/useful-types",
+      "implicitDependencies": []
+    },
+    "@cutting/util": {
+      "root": "packages/util",
+      "implicitDependencies": []
+    },
+    "@cutting/website": {
+      "root": "packages/website",
+      "implicitDependencies": []
+    }
+  }
+}
