@@ -1,5 +1,5 @@
 import { responsiveStyle, vars } from '@cutting/component-library';
-import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 globalStyle('body', {
   fontFamily: `'GeosansLight' !important`,

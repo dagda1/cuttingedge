@@ -37,5 +37,5 @@ export const legend = style({
 });
 
 export const chart = style({
-  flex: 1;
+  flex: 1,
 });

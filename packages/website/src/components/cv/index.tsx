@@ -14,7 +14,7 @@ export const CV: FC = () => {
 
   return (
     <ApplicationLayout className={styles.main} heading="Paul Cowan CV">
-      <div className={styles['pdf-viewer']}>
+      <div className={styles.pdfViewer}>
         <h1>
           <a className={styles.link} href={Urls.Download}>
             <span>CLICK HERE TO DOWNLOAD MY CV (pdf)</span>

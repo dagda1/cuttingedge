@@ -33,10 +33,6 @@
       "root": "packages/testing",
       "implicitDependencies": []
     },
-    "@cutting/the-watcher": {
-      "root": "packages/the-watcher",
-      "implicitDependencies": []
-    },
     "@cutting/tsconfig": {
       "root": "packages/tsconfig",
       "implicitDependencies": []
