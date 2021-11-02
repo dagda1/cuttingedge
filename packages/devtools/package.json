@@ -169,7 +169,6 @@
     "esbuild-node-externals": "^1.3.0",
     "nocache": "^3.0.1",
     "node-forge": "^0.10.0",
-    "typescript": "^4.4.4",
     "xml": "^1.0.1"
   },
   "volta": {
