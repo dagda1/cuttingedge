@@ -1,11 +1,13 @@
 import type { FC } from 'react';
 import { Heading } from '@cutting/component-library';
+import cs from 'classnames';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as urls from '../../urls';
 import { MobileNavButton } from '../MobileNavButton';
 import { MenuItems, MobileMenuItems } from './MenuItems';
 
+import * as styles from './Menu.css';
 import { Cow } from '../Svg/Cow';
 
 export interface MenuState {
@@ -21,33 +23,33 @@ export const Menu: FC = () => {
   };
 
   return (
-    <nav>
-      <div>
+    <nav className={styles.container}>
+      <div className={styles.full}>
         <ul>
-          <li>
+          <li className={styles.logoContainer}>
             <NavLink aria-label="home" to={urls.Home}>
               <Cow />
             </NavLink>
           </li>
           <li>
             <Heading level={2}>
-              <NavLink aria-label="home" to={urls.Home}>
+              <NavLink aria-label="home" className={styles.name} to={urls.Home}>
                 Paul Cowan
               </NavLink>
             </Heading>
           </li>
-          <li>
-            <NavLink to={urls.ContactMe} onClick={collapse}>
+          <li className={cs(styles['contact'], styles.horizontal)}>
+            <NavLink to={urls.ContactMe} activeClassName={styles.active} onClick={collapse}>
               Contact
             </NavLink>
           </li>
-          <li>
+          <li className={styles.mobileButtonContainer}>
             <MobileNavButton onClick={toggleIsExpanded} isActive={expanded} />
           </li>
           <MenuItems collapse={collapse} />
         </ul>
       </div>
-      <div>
+      <div className={cs(styles.expandable, { [styles.expanded]: expanded })}>
         <ul>
           <MobileMenuItems collapse={collapse} />
         </ul>

@@ -3,22 +3,23 @@ import { footerPages } from '../../routes';
 import { NavLink } from 'react-router-dom';
 import { ExternalLink } from '@cutting/component-library';
 
-import { Cow } from '../../components/Svg/Cow';
-import { Github } from '../../components/Svg/Github';
-import { Twitter } from '../../components/Svg/Twitter';
+import * as styles from './Footer.css';
+import { Cow } from '../Svg/Cow';
+import { Github } from '../Svg/Github';
+import { Twitter } from '../Svg/Twitter';
 
 export const Footer: FC = () => (
   <footer role="contentinfo">
-    <div>
-      <div>
-        <div>
+    <div className={styles.left}>
+      <div className={styles.logo}>
+        <div className={styles.logoContainer}>
           <div>
             <Cow />
           </div>
         </div>
-        <span>Paul Cowan</span>
+        <span className={styles.name}>Paul Cowan</span>
       </div>
-      <div>
+      <div className={styles.links}>
         <ul>
           {footerPages.map((page) => (
             <li key={page.path}>
@@ -28,10 +29,10 @@ export const Footer: FC = () => (
         </ul>
       </div>
     </div>
-    <div>
-      <div>
+    <div className={styles.right}>
+      <div className={styles.contact}>
         <div>
-          <ul>
+          <ul className={styles.social}>
             <li>
               <ExternalLink href="https://github.com/dagda1" ariaLabel="Github profile">
                 <Github />
@@ -45,7 +46,7 @@ export const Footer: FC = () => (
           </ul>
           <ExternalLink href="mailto:paul.cowan@cutting.scot">paul.cowan@cutting.scot</ExternalLink>
         </div>
-        <div>Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</div>
+        <div className={styles.copyright}>Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</div>
       </div>
     </div>
   </footer>

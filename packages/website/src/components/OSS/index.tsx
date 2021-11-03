@@ -3,13 +3,14 @@ import { ExternalLink, Heading } from '@cutting/component-library';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
 
+import * as styles from './OSS.css';
 import { Github } from '../Svg/Github';
 
 export const OSS: FC = () => (
   <ApplicationLayout heading="Open Source Contributions">
-    <div>
+    <div className={styles.container}>
       <Heading level={2}>Prominent opens source pull requests</Heading>
-      <ul>
+      <ul className={styles.communityList}>
         <li>
           <ExternalLink href="https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1">
             Very active in Bigtest
@@ -41,11 +42,11 @@ export const OSS: FC = () => (
         </li>
       </ul>
       <Heading level={2}>My Work</Heading>
-      <div>
+      <div className={styles.repos}>
         {repos.map((repo: Repo, i: number) => (
-          <div key={i}>
+          <div className={styles.repo} key={i}>
             <ExternalLink href={repo.link}>
-              <div>
+              <div className={styles.icon}>
                 <Github />
               </div>
               <div>

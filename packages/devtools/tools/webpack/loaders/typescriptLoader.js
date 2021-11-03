@@ -15,7 +15,6 @@ var createTypescriptLoader = function (_a) {
         compilerOptions: {},
         logLevel: 'INFO',
     };
-    console.dir({ options: options, cwd: process.cwd() });
     return [
         {
             test: /\.tsx?$/,

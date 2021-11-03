@@ -1,6 +1,6 @@
 import '@cutting/component-library/styles.css';
 import type { FC } from 'react';
-import { Explorer } from 'src/containers/Explorer/Explorer';
+import { Explorer } from '../../containers/Explorer/Explorer';
 import { ApplicationLayout } from '@cutting/component-library';
 
 export const App: FC = () => {
