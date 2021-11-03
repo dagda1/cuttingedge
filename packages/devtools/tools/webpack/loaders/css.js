@@ -6,10 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createCSSLoaders = exports.cssLoaders = void 0;
 var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
 // import { createPostCssOptions } from '../createPostCssoptions';
-var getLocalIdent_1 = require("../getLocalIdent");
 var constants_1 = require("../constants");
 var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
-    var modules = _a.modules, importLoaders = _a.importLoaders;
+    var importLoaders = _a.importLoaders;
     return [
         !isNode && {
             loader: mini_css_extract_plugin_1.default.loader,
@@ -19,15 +18,8 @@ var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
             loader: 'css-loader',
             options: {
                 importLoaders: importLoaders,
-                sourceMap: true,
-                modules: modules
-                    ? {
-                        getLocalIdent: getLocalIdent_1.getLocalIdent,
-                        exportOnlyLocals: isNode,
-                        // TODO: we want to enable this for better code splitting
-                        // mode: 'pure',
-                    }
-                    : undefined,
+                sourceMap: false,
+                modules: false,
             },
         },
         // TODO: reinstate postcss

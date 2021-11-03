@@ -9,6 +9,7 @@ import path from 'path';
 // import { emptyBuildDir } from './empty-build-dir';
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
 import { copyAssets } from './copy-assets';
+import fs from 'fs';
 
 const buildConfig = consolidateBuildConfigs();
 
@@ -45,6 +46,14 @@ async function bundle({
   const outfile = path.join(paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
 
   logger.info(`writing ${path.basename(outfile)} for ${packageName}`);
+
+  const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim.js');
+
+  logger.error(`reactShimPath ${reactShimPath}`);
+
+  if (!fs.existsSync(reactShimPath)) {
+    throw new Error(`no reactShim at ${reactShimPath}`);
+  }
 
   await build({
     entryPoints,

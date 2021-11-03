@@ -29,8 +29,8 @@ var createJsLoader = function (_a) {
                 cacheDirectory: true,
                 cacheIdentifier: (0, getCacheIdentifier_1.getCacheIdentifier)({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: moduleFormat }),
                 cacheCompression: false,
-                sourceMaps: true,
-                inputSourceMap: true,
+                sourceMaps: false,
+                inputSourceMap: false,
             },
         },
     ];

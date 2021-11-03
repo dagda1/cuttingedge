@@ -7,7 +7,7 @@ export const createInitialFiles = (): void => {
   logger.info('init files check...');
 
   if (!fs.existsSync(paths.tsConfig)) {
-    fs.copyFileSync(path.join(__dirname, '../../typescript/tsconfig.json'), paths.tsConfig);
+    fs.copyFileSync(path.join(__dirname, '../../demo/tsconfig.json'), paths.tsConfig);
     logger.info('created tsconfig.json');
   }
 

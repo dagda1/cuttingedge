@@ -47,8 +47,7 @@ const libPackages = [
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');
-const testTsConfigPath = require.resolve('@cutting/tsconfig/tsconfig.test.json');
-const monorRepoTestTsConfigPath = path.resolve(__dirname, '../../typescript/tsconfig.test.json');
+const testTsConfig = require.resolve('@cutting/tsconfig/tsconfig.test.json');
 const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 
 type OurCompilerOptions = {
@@ -61,8 +60,6 @@ const tsConfig: OurCompilerOptions = fs.existsSync(tsConfigPath)
   : { compilerOptions: { outDir: undefined, module: undefined } };
 
 const tsConfigProduction = fs.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
-
-const testTsConfig = [testTsConfigPath, monorRepoTestTsConfigPath].find(fs.existsSync);
 
 const outDir = tsConfig.compilerOptions?.outDir || DefaultBuildDir;
 const isCommonJs = tsConfig.compilerOptions?.module?.toLowerCase() === 'commonjs';

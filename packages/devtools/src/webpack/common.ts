@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { paths } from '../config/paths';
-import WebpackBar from 'webpackbar';
+import ProgressBar from 'simple-progress-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import HappyPack from 'happypack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -121,6 +121,7 @@ export const configureCommon = (
     },
     plugins: Array.prototype.filter.call(
       [
+        new webpack.DefinePlugin(env.stringified),
         new HappyPack({
           id: 'ts',
           threads: 4,
@@ -131,8 +132,7 @@ export const configureCommon = (
             },
           ],
         }),
-        new webpack.DefinePlugin(env.stringified),
-        isDevelopment && new WebpackBar({ basic: true }),
+        isDevelopment && new ProgressBar({ color: true, format: 'expanded' }),
         isAnalyse &&
           new BundleAnalyzerPlugin({
             defaultSizes: 'gzip',

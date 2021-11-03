@@ -11,7 +11,7 @@ var logger_1 = __importDefault(require("./logger"));
 var createInitialFiles = function () {
     logger_1.default.info('init files check...');
     if (!fs_extra_1.default.existsSync(paths_1.paths.tsConfig)) {
-        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../typescript/tsconfig.json'), paths_1.paths.tsConfig);
+        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../demo/tsconfig.json'), paths_1.paths.tsConfig);
         logger_1.default.info('created tsconfig.json');
     }
     if (!fs_extra_1.default.existsSync(paths_1.paths.eslintConfig)) {

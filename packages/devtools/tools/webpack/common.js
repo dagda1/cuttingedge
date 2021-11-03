@@ -32,7 +32,7 @@ exports.configureCommon = void 0;
 var webpack_1 = __importDefault(require("webpack"));
 var fork_ts_checker_webpack_plugin_1 = __importDefault(require("fork-ts-checker-webpack-plugin"));
 var paths_1 = require("../config/paths");
-var webpackbar_1 = __importDefault(require("webpackbar"));
+var simple_progress_webpack_plugin_1 = __importDefault(require("simple-progress-webpack-plugin"));
 var webpack_bundle_analyzer_1 = require("webpack-bundle-analyzer");
 var happypack_1 = __importDefault(require("happypack"));
 var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
@@ -137,6 +137,7 @@ var configureCommon = function (options, overrides) {
             ], false), __read((0, css_1.createCSSLoaders)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode })), false), function (x) { return !!x; }),
         },
         plugins: Array.prototype.filter.call([
+            new webpack_1.default.DefinePlugin(env.stringified),
             new happypack_1.default({
                 id: 'ts',
                 threads: 4,
@@ -147,8 +148,7 @@ var configureCommon = function (options, overrides) {
                     },
                 ],
             }),
-            new webpack_1.default.DefinePlugin(env.stringified),
-            isDevelopment && new webpackbar_1.default({ basic: true }),
+            isDevelopment && new simple_progress_webpack_plugin_1.default({ color: true, format: 'expanded' }),
             isAnalyse &&
                 new webpack_bundle_analyzer_1.BundleAnalyzerPlugin({
                     defaultSizes: 'gzip',

@@ -79,6 +79,7 @@ var path_1 = __importDefault(require("path"));
 // import { emptyBuildDir } from './empty-build-dir';
 var esbuild_plugin_1 = require("@vanilla-extract/esbuild-plugin");
 var copy_assets_1 = require("./copy-assets");
+var fs_1 = __importDefault(require("fs"));
 var buildConfig = (0, consolidateBuildConfigs_1.consolidateBuildConfigs)();
 var postcss = require('postcss');
 var autoprefixer = require('autoprefixer');
@@ -103,7 +104,7 @@ function bundle(_a) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     env = _a.env;
     return __awaiter(this, void 0, void 0, function () {
-        var entryPoints, fileName, outfile;
+        var entryPoints, fileName, outfile, reactShimPath;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -112,6 +113,11 @@ function bundle(_a) {
                     fileName = "index.js";
                     outfile = path_1.default.join(paths_1.paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
                     logger_1.default.info("writing " + path_1.default.basename(outfile) + " for " + packageName);
+                    reactShimPath = path_1.default.resolve(__dirname, '..', '..', 'react-shim.js');
+                    logger_1.default.error("reactShimPath " + reactShimPath);
+                    if (!fs_1.default.existsSync(reactShimPath)) {
+                        throw new Error("no reactShim at " + reactShimPath);
+                    }
                     return [4 /*yield*/, (0, esbuild_1.build)({
                             entryPoints: entryPoints,
                             outfile: outfile,
@@ -119,7 +125,7 @@ function bundle(_a) {
                             // minify: env === 'production',
                             minify: false,
                             platform: 'node',
-                            sourcemap: true,
+                            sourcemap: false,
                             format: format,
                             target: 'node14',
                             treeShaking: true,

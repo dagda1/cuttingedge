@@ -1,6 +1,5 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // import { createPostCssOptions } from '../createPostCssoptions';
-import { getLocalIdent } from '../getLocalIdent';
 import { cssRegex } from '../constants';
 import { RuleSetRule } from 'webpack';
 
@@ -16,7 +15,7 @@ export const cssLoaders = (
   isDevelopment: boolean,
   isProduction: boolean,
   isNode: boolean,
-  { modules, importLoaders }: { modules: boolean; importLoaders: number },
+  { importLoaders }: { modules: boolean; importLoaders: number },
 ): LoaderItem[] =>
   [
     !isNode && {
@@ -28,14 +27,7 @@ export const cssLoaders = (
       options: {
         importLoaders,
         sourceMap: true,
-        modules: modules
-          ? {
-              getLocalIdent,
-              exportOnlyLocals: isNode,
-              // TODO: we want to enable this for better code splitting
-              // mode: 'pure',
-            }
-          : undefined,
+        modules: false,
       },
     },
     // TODO: reinstate postcss
