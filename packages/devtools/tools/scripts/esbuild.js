@@ -74,7 +74,6 @@ var paths_1 = require("../config/paths");
 var consolidateBuildConfigs_1 = require("./consolidateBuildConfigs");
 var esbuild_node_externals_1 = require("esbuild-node-externals");
 var assert_ts_1 = require("assert-ts");
-var helpers_1 = require("../rollup/helpers");
 var logger_1 = __importDefault(require("./logger"));
 var path_1 = __importDefault(require("path"));
 // import { emptyBuildDir } from './empty-build-dir';
@@ -104,14 +103,13 @@ function bundle(_a) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     env = _a.env;
     return __awaiter(this, void 0, void 0, function () {
-        var entryPoints, pkgName, fileName, outfile;
+        var entryPoints, fileName, outfile;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     entryPoints = typeof buildConfig.client.entries === 'string' ? [buildConfig.client.entries] : buildConfig.client.entries;
                     (0, assert_ts_1.assert)(Array.isArray(entryPoints), "build config entries needs to be a string array");
-                    pkgName = (0, helpers_1.safePackageName)(packageName);
-                    fileName = pkgName + "." + (format === 'iife' ? 'umd' : format) + ".js";
+                    fileName = "index.js";
                     outfile = path_1.default.join(paths_1.paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
                     logger_1.default.info("writing " + path_1.default.basename(outfile) + " for " + packageName);
                     return [4 /*yield*/, (0, esbuild_1.build)({

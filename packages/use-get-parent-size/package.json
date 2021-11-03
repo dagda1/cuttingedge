@@ -3,8 +3,8 @@
   "description": "Sizes an SVG document to the containing parent using the resize-observer.",
   "version": "1.5.2",
   "main": "dist/cjs/index.js",
-  "module": "dist/esm/use-get-parent-size.esm.js",
-  "browser": "dist/umd/use-get-parent-size.umd.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/index.js",
   "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "repository": {
@@ -64,9 +64,9 @@
     "resize-observer"
   ],
   "exports": {
-    "import": "./dist/esm/use-get-parent-size.esm.js",
+    "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/use-get-parent-size.umd.js"
+    "browser": "./dist/umd/index.js"
   },
   "typesVersions": {
     "*": {

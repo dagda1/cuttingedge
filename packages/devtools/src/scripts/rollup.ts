@@ -170,9 +170,7 @@ async function generateBundledModule({
 
   const pkgName = safePackageName(packageName);
   const extension = env === 'production' ? 'min.js' : 'js';
-  const fileName = ['esm', 'umd'].includes(moduleFormat)
-    ? `${pkgName}.${moduleFormat}.js`
-    : `${pkgName}.cjs.${env}.${extension}`;
+  const fileName = ['esm', 'umd'].includes(moduleFormat) ? `index.js` : `${pkgName}.cjs.${env}.${extension}`;
   const outputFileName = path.join(paths.appBuild, moduleFormat, fileName);
 
   logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
@@ -250,20 +248,18 @@ async function build({
 
   const pkgJson = { ...pkg };
 
-  if (typeof pkgJson.exports !== 'undefined') {
-    return;
-  }
-
-  const pkgName = safePackageName(packageName);
+  // if (typeof pkgJson.exports !== 'undefined') {
+  //   return;
+  // }
 
   const buildDir = path.basename(paths.appBuild);
 
   const commonjsFile = path.join(buildDir, 'cjs', 'index.js');
 
-  const esmFile = path.join(buildDir, 'esm', `${pkgName}.esm.js`);
+  const esmFile = path.join(buildDir, 'esm', `index.js`);
   pkgJson.module = esmFile;
 
-  const umdFile = path.join(buildDir, 'umd', `${pkgName}.umd.js`);
+  const umdFile = path.join(buildDir, 'umd', `index.js`);
   pkgJson.browser = umdFile;
 
   const dtsFile = path.join(buildDir, 'esm', `index.d.ts`);

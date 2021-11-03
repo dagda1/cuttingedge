@@ -53,15 +53,15 @@
     "hooks"
   ],
   "main": "dist/cjs/index.js",
-  "module": "dist/esm/use-mathjax.esm.js",
-  "browser": "dist/umd/use-mathjax.umd.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/index.js",
   "volta": {
     "extends": "../../package.json"
   },
   "exports": {
-    "import": "./dist/esm/use-mathjax.esm.js",
+    "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/use-mathjax.umd.js"
+    "browser": "./dist/umd/index.js"
   },
   "typesVersions": {
     "*": {

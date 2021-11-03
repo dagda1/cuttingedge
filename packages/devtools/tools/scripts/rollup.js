@@ -266,9 +266,7 @@ function generateBundledModule(_a) {
                     bundle = _b.sent();
                     pkgName = (0, helpers_1.safePackageName)(packageName);
                     extension = env === 'production' ? 'min.js' : 'js';
-                    fileName = ['esm', 'umd'].includes(moduleFormat)
-                        ? pkgName + "." + moduleFormat + ".js"
-                        : pkgName + ".cjs." + env + "." + extension;
+                    fileName = ['esm', 'umd'].includes(moduleFormat) ? "index.js" : pkgName + ".cjs." + env + "." + extension;
                     outputFileName = path_1.default.join(paths_1.paths.appBuild, moduleFormat, fileName);
                     logger_1.logger.info("writing " + path_1.default.basename(outputFileName) + " for " + packageName);
                     return [4 /*yield*/, bundle.write({
@@ -309,7 +307,7 @@ var getInputFile = function (packageName, inputFileOverride) {
 function build(_a) {
     var vizualize = _a.vizualize, analyze = _a.analyze, inputFile = _a.inputFile;
     return __awaiter(this, void 0, void 0, function () {
-        var pkgJsonPath, pkg, packageName, entryFile, configs, configs_1, configs_1_1, _b, moduleFormat, env, e_1_1, pkgJson, pkgName, buildDir, commonjsFile, esmFile, umdFile, dtsFile;
+        var pkgJsonPath, pkg, packageName, entryFile, configs, configs_1, configs_1_1, _b, moduleFormat, env, e_1_1, pkgJson, buildDir, commonjsFile, esmFile, umdFile, dtsFile;
         var e_1, _c;
         return __generator(this, function (_d) {
             switch (_d.label) {
@@ -358,15 +356,11 @@ function build(_a) {
                 case 10:
                     _d.sent();
                     pkgJson = __assign({}, pkg);
-                    if (typeof pkgJson.exports !== 'undefined') {
-                        return [2 /*return*/];
-                    }
-                    pkgName = (0, helpers_1.safePackageName)(packageName);
                     buildDir = path_1.default.basename(paths_1.paths.appBuild);
                     commonjsFile = path_1.default.join(buildDir, 'cjs', 'index.js');
-                    esmFile = path_1.default.join(buildDir, 'esm', pkgName + ".esm.js");
+                    esmFile = path_1.default.join(buildDir, 'esm', "index.js");
                     pkgJson.module = esmFile;
-                    umdFile = path_1.default.join(buildDir, 'umd', pkgName + ".umd.js");
+                    umdFile = path_1.default.join(buildDir, 'umd', "index.js");
                     pkgJson.browser = umdFile;
                     dtsFile = path_1.default.join(buildDir, 'esm', "index.d.ts");
                     pkgJson.types = dtsFile;

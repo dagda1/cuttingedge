@@ -21,9 +21,8 @@ export const createTypescriptLoader = ({
     transpileOnly: isDevelopment,
     happyPackMode: isDevelopment,
     projectReferences: paths.projectReferences,
-    compilerOptions: {
-      sourceMap: true,
-    },
+    compilerOptions: {},
+    logLevel: 'INFO',
   };
 
   return [

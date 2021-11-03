@@ -3,7 +3,6 @@ import { paths } from '../config/paths';
 import { consolidateBuildConfigs } from './consolidateBuildConfigs';
 import { nodeExternalsPlugin } from 'esbuild-node-externals';
 import { assert } from 'assert-ts';
-import { safePackageName } from '../rollup/helpers';
 import logger from './logger';
 import { CommonOptions } from 'esbuild';
 import path from 'path';
@@ -42,8 +41,7 @@ async function bundle({
 
   assert(Array.isArray(entryPoints), `build config entries needs to be a string array`);
 
-  const pkgName = safePackageName(packageName);
-  const fileName = `${pkgName}.${format === 'iife' ? 'umd' : format}.js`;
+  const fileName = `index.js`;
   const outfile = path.join(paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
 
   logger.info(`writing ${path.basename(outfile)} for ${packageName}`);

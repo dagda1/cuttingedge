@@ -1,23 +1,24 @@
 import type { FC } from 'react';
-import { Cow, Github, Twitter } from '../Svg';
 import { footerPages } from '../../routes';
 import { NavLink } from 'react-router-dom';
 import { ExternalLink } from '@cutting/component-library';
 
-import * as styles from './Footer.css';
+import { Cow } from '../../components/Svg/Cow';
+import { Github } from '../../components/Svg/Github';
+import { Twitter } from '../../components/Svg/Twitter';
 
 export const Footer: FC = () => (
   <footer role="contentinfo">
-    <div className={styles.left}>
-      <div className={styles.logo}>
-        <div className={styles.logoContainer}>
+    <div>
+      <div>
+        <div>
           <div>
             <Cow />
           </div>
         </div>
-        <span className={styles.name}>Paul Cowan</span>
+        <span>Paul Cowan</span>
       </div>
-      <div className={styles.links}>
+      <div>
         <ul>
           {footerPages.map((page) => (
             <li key={page.path}>
@@ -27,24 +28,24 @@ export const Footer: FC = () => (
         </ul>
       </div>
     </div>
-    <div className={styles.right}>
-      <div className={styles.contact}>
+    <div>
+      <div>
         <div>
-          <ul className={styles.social}>
+          <ul>
             <li>
               <ExternalLink href="https://github.com/dagda1" ariaLabel="Github profile">
-                <Github></Github>
+                <Github />
               </ExternalLink>
             </li>
             <li>
               <ExternalLink href="https://twitter.com/dagda1" ariaLabel="twitter profile">
-                <Twitter></Twitter>
+                <Twitter />
               </ExternalLink>
             </li>
           </ul>
           <ExternalLink href="mailto:paul.cowan@cutting.scot">paul.cowan@cutting.scot</ExternalLink>
         </div>
-        <div className={styles.copyright}>Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</div>
+        <div>Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</div>
       </div>
     </div>
   </footer>

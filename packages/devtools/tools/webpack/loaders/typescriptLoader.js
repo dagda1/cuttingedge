@@ -12,10 +12,10 @@ var createTypescriptLoader = function (_a) {
         transpileOnly: isDevelopment,
         happyPackMode: isDevelopment,
         projectReferences: paths_1.paths.projectReferences,
-        compilerOptions: {
-            sourceMap: true,
-        },
+        compilerOptions: {},
+        logLevel: 'INFO',
     };
+    console.dir({ options: options, cwd: process.cwd() });
     return [
         {
             test: /\.tsx?$/,

@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useMemo, useReducer } from 'react';
 import { useRef } from 'react';
-import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
+import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { ResponsiveSVG, Group, Line } from '@cutting/svg';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { AxisBottom, AxisLeft } from '@visx/axis';

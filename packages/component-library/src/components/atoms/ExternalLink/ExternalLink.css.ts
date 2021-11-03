@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from 'src';
+import { vars } from '../../../style/themes/vars.css';
 import { atoms } from '../../../style/atoms/atoms';
 
 export const root = style([

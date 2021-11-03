@@ -7,6 +7,8 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/index.js",
   "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
@@ -42,8 +44,6 @@
     "graphql",
     "dataviz"
   ],
-  "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
   "exports": {
     "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.js",

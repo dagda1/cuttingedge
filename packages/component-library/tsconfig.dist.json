@@ -10,5 +10,6 @@
     { "path": "../hooks/tsconfig.dist.json" },
     { "path": "../util/tsconfig.dist.json" }
   ],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "./src/setupTests.ts"]
 }
