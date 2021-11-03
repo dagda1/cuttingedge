@@ -49,8 +49,6 @@ async function bundle({
 
   const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim.js');
 
-  logger.error(`reactShimPath ${reactShimPath}`);
-
   if (!fs.existsSync(reactShimPath)) {
     throw new Error(`no reactShim at ${reactShimPath}`);
   }

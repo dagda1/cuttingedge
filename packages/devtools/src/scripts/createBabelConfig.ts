@@ -22,7 +22,7 @@ export const createBabelPresets = ({
   };
 
   if (isNode) {
-    presetOptions.targets = { node: '12' };
+    presetOptions.targets = { node: '14' };
   } else {
     presetOptions.useBuiltIns = 'entry';
     presetOptions.corejs = 3;

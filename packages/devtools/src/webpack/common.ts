@@ -177,14 +177,15 @@ export const configureCommon = (
             ],
           },
         }),
-        new VanillaExtractPlugin({
-          test: /\.css\.ts$/,
-          outputCss: true,
-        }),
         new MiniCssExtractPlugin({
           filename: cssFile,
           chunkFilename: cssChunkFile,
           ignoreOrder: true,
+        }),
+        new VanillaExtractPlugin({
+          test: /\.css\.ts$/,
+          outputCss: true,
+          allowRuntime: true,
         }),
       ],
       Boolean,

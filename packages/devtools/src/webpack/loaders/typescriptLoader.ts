@@ -22,7 +22,7 @@ export const createTypescriptLoader = ({
     happyPackMode: isDevelopment,
     projectReferences: paths.projectReferences,
     compilerOptions: {},
-    logLevel: 'INFO',
+    logLevel: 'WARN',
   };
 
   return [

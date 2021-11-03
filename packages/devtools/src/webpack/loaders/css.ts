@@ -45,6 +45,7 @@ export const createCSSLoaders = ({
 }): RuleSetRule[] => [
   {
     test: /\.vanilla\.css$/i,
+    sideEffects: true,
     use: [
       MiniCssExtractPlugin.loader,
       {
@@ -58,7 +59,6 @@ export const createCSSLoaders = ({
   {
     test: cssRegex,
     exclude: /\.vanilla\.css$/i,
-    sideEffects: true,
     use: cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
   },
 ];
