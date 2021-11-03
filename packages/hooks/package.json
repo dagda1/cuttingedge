@@ -3,8 +3,8 @@
   "description": "Hooks man, hooks.",
   "version": "4.29.2",
   "main": "dist/cjs/index.js",
-  "module": "dist/esm/hooks.esm.js",
-  "browser": "dist/umd/hooks.umd.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/index.js",
   "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "repository": {
@@ -63,9 +63,9 @@
     "hooks"
   ],
   "exports": {
-    "import": "./dist/esm/hooks.esm.js",
+    "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/hooks.umd.js"
+    "browser": "./dist/umd/index.js"
   },
   "typesVersions": {
     "*": {

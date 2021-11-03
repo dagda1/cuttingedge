@@ -11,11 +11,11 @@ import {
   VictoryAxis,
 } from 'victory';
 import dayjs from 'dayjs';
-import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
+import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { LoadingOverlay } from '@cutting/component-library';
 import { ResponsiveSVG } from '@cutting/svg';
 import { AxisColor, Countries, DayData, countryData, CountriesResult } from '../Graphs/types';
-import * as Urls from 'src/urls';
+import * as Urls from '../../urls';
 import { NavLink, useLocation } from 'react-router-dom';
 import { assert } from 'assert-ts';
 

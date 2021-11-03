@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
+    "@capsizecss/core": "^3.0.0",
     "@capsizecss/vanilla-extract": "^1.0.0",
     "@changesets/cli": "^2.17.0",
     "@cutting/useful-types": "4.25.2",

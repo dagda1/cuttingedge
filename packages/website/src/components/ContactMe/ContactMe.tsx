@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
+import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 
 import * as styles from './ContactMe.css';
 

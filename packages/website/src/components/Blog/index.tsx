@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { posts } from './posts';
 import { Heading, ExternalLink } from '@cutting/component-library';
-import { ApplicationLayout } from 'src/layouts/ApplicationLayout';
+import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 
 export const Blog: FC = () => (
   <ApplicationLayout heading="My blog posts">

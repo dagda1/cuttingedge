@@ -2,7 +2,7 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "target": "ESNext",
+    "target": "ES5",
     "module": "ESNext",
     "noEmit": true
   },

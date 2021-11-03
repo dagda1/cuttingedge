@@ -2,12 +2,12 @@ import type { FC } from 'react';
 import { Heading } from '@cutting/component-library';
 import cs from 'classnames';
 import { useRef, useEffect } from 'react';
-import { Footer } from 'src/components/Footer';
-import { Header } from 'src/components/Header';
+import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header';
 import { useScrollToTop } from '@cutting/hooks';
-import { CuttingEdge } from 'src/constants';
+import { CuttingEdge } from '../../constants';
 import { useLocation } from 'react-router';
-import { Covid19 } from 'src/urls';
+import { Covid19 } from '../../urls';
 import { Helmet } from 'react-helmet';
 import { ApplicationLayoutWithRouterScroll, cuttingTheme } from '@cutting/component-library';
 

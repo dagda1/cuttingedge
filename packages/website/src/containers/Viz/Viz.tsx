@@ -1,12 +1,12 @@
 import type { Page } from '@cutting/util';
 import type { FC } from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router';
-import * as Urls from 'src/urls';
+import * as Urls from '../../urls';
 import loadable from '@loadable/component';
-import { fallback } from 'src/components/Fallback/Fallback';
+import { fallback } from '../../components/Fallback/Fallback';
 import { MathJaxProvider } from '@cutting/use-mathjax';
 
-const Sine = loadable(() => import('src/components/Sine/Sine'), {
+const Sine = loadable(() => import('../../components/Sine/Sine'), {
   fallback,
 });
 

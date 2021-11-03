@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { useCountryCovidData } from 'src/components/Graphs/useCountryCovidData';
-import Graph from 'src/components/Graphs/Graph';
+import { useCountryCovidData } from '../../components/Graphs/useCountryCovidData';
+import Graph from '../../components/Graphs/Graph';
 import dayjs from 'dayjs';
 import { Countries, countryData, CountryResult } from '../Graphs/types';
 import { assert } from 'assert-ts';

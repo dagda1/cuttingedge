@@ -42,12 +42,12 @@
     "graphql",
     "dataviz"
   ],
-  "module": "dist/esm/graphql-explorer.esm.js",
-  "browser": "dist/umd/graphql-explorer.umd.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/index.js",
   "exports": {
-    "import": "./dist/esm/graphql-explorer.esm.js",
+    "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/graphql-explorer.umd.js"
+    "browser": "./dist/umd/index.js"
   },
   "typesVersions": {
     "*": {

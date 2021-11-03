@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { useCountryCovidData, countryData, Countries } from 'src/components/Graphs';
-import Graph from 'src/components/Graphs/Graph';
+import { useCountryCovidData, countryData, Countries } from '../../components/Graphs';
+import Graph from '../../components/Graphs/Graph';
 import dayjs from 'dayjs';
 
 export const Deaths: FC = () => {

@@ -1,41 +1,41 @@
 import type { FC } from 'react';
 import loadable from '@loadable/component';
-import * as Urls from 'src/urls';
+import * as Urls from '../urls';
 import { Route, Switch } from 'react-router';
 import type { Page } from '@cutting/util';
-import { ContactMe } from 'src/components/ContactMe';
+import { ContactMe } from '../components/ContactMe';
 
 const fallback = <div>loading....</div>;
 
-const Home = loadable(() => import('src/components/Home'), {
+const Home = loadable(() => import('../components/Home'), {
   fallback,
 });
 
-const OSS = loadable(() => import('src/components/OSS'), {
+const OSS = loadable(() => import('../components/OSS'), {
   fallback,
 });
 
-const Blog = loadable(() => import('src/components/Blog'), {
+const Blog = loadable(() => import('../components/Blog'), {
   fallback,
 });
 
-const CV = loadable(() => import('src/components/cv'), {
+const CV = loadable(() => import('../components/cv'), {
   fallback,
 });
 
-const PrivacyPolicy = loadable(() => import('src/components/PrivacyPolicy'), {
+const PrivacyPolicy = loadable(() => import('../components/PrivacyPolicy'), {
   fallback,
 });
 
-const TermsOfService = loadable(() => import('src/components/TermsOfService'), {
+const TermsOfService = loadable(() => import('../components/TermsOfService'), {
   fallback,
 });
 
-const Graphs = loadable(() => import(/* webpackPrefetch: true */ 'src/components/Graphs/Landing'), {
+const Graphs = loadable(() => import(/* webpackPrefetch: true */ '../components/Graphs/Landing'), {
   fallback,
 });
 
-const Viz = loadable(() => import('src/containers/Viz/Viz'), {
+const Viz = loadable(() => import('../containers/Viz/Viz'), {
   fallback,
 });
 

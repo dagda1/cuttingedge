@@ -6,7 +6,7 @@ import { StaticRouter, StaticRouterContext } from 'react-router';
 import { Routes } from '../routes';
 import path from 'path';
 import { Helmet } from 'react-helmet';
-import { GATagManager } from 'src/components/ga-tagmanager';
+import { GATagManager } from '../components/ga-tagmanager';
 
 const gaId = 'UA-146837410-1';
 

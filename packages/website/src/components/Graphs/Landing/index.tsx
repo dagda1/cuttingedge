@@ -1,23 +1,23 @@
 import type { FC } from 'react';
 import loadable from '@loadable/component';
-import * as Urls from 'src/urls';
+import * as Urls from '../../../urls';
 import { Route, Switch } from 'react-router';
 import type { Page } from '@cutting/util';
-import { fallback } from 'src/components/Fallback/Fallback';
+import { fallback } from '../../../components/Fallback/Fallback';
 
-// const Deaths = loadable(() => import('src/components/Confirmed'), {
+// const Deaths = loadable(() => import('../../../components/Confirmed'), {
 //   fallback,
 // });
 
-// const RateOfChange = loadable(() => import('src/components/RateOfChange'), {
+// const RateOfChange = loadable(() => import('../../../components/RateOfChange'), {
 //   fallback,
 // });
 
-const IncreseFromPreviousDay = loadable(() => import('src/components/IncreseFromPreviousDay'), {
+const IncreseFromPreviousDay = loadable(() => import('../../../components/IncreseFromPreviousDay'), {
   fallback,
 });
 
-const DailyIncreaseUk = loadable(() => import('src/components/DailyIncreaseUk'), {
+const DailyIncreaseUk = loadable(() => import('../../../components/DailyIncreaseUk'), {
   fallback,
 });
 
