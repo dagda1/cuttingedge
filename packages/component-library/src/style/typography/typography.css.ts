@@ -8,12 +8,6 @@ type Vars = typeof vars;
 type HeadingDefinition = Vars['headingLevel'];
 type TypographicDefinition = HeadingDefinition[keyof HeadingDefinition];
 
-// export const fontFamily = style({
-//   fontFamily: vars.fontFamily,
-// });
-
-// export const fontWeight = styleVariants(vars.textWeight, mapToProperty('fontWeight'));
-
 const makeTypographyRules = (
   textDefinition: TypographicDefinition,
   debug?: string,
@@ -100,6 +94,7 @@ export const responsiveText = {
   body: makeTypographyRules(vars.text.body, 'body'),
 };
 
+// TODO: make fontSize rem
 export const globalHeadingStyle = ({
   weight = 'regular',
   level,

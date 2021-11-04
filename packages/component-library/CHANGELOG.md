@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.3.10
+
+### Patch Changes
+
+- unresponsive properites added to sprinkles
+
 ## 5.3.8
 
 ### Patch Changes

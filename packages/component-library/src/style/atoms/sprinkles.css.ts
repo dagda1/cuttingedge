@@ -1,14 +1,38 @@
-import {
-  defineProperties,
-  createSprinkles,
-  ConditionalValue,
-  RequiredConditionalValue,
-  createNormalizeValueFn,
-  createMapValueFn,
-} from '@vanilla-extract/sprinkles';
-import { Breakpoint, breakpointNames, breakpoints } from '../breakpoints';
+import { defineProperties, createSprinkles, createMapValueFn } from '@vanilla-extract/sprinkles';
+import { breakpoints } from '../breakpoints';
 import { vars } from '../themes/vars.css';
 import { rem } from 'polished';
+
+export const unresponsiveProperties = {
+  background: vars.backgroundColor,
+  overflow: ['hidden', 'scroll', 'visible', 'auto'],
+  userSelect: ['none'],
+  outline: ['none'],
+  opacity: [0],
+  zIndex: {
+    0: 0,
+    1: 1,
+    2: 2,
+    dropdownBackdrop: 90,
+    dropdown: 100,
+    sticky: 200,
+    modalBackdrop: 290,
+    modal: 300,
+    notification: 400,
+  },
+  cursor: ['default', 'pointer'],
+  pointerEvents: ['none'],
+  top: [0],
+  bottom: [0],
+  left: [0],
+  right: [0],
+  minWidth: {
+    0: '0%',
+  },
+  transition: vars.transition,
+} as const;
+
+export type UnresponsiveProperties = keyof typeof unresponsiveProperties;
 
 const responsiveAtomicProperties = defineProperties({
   conditions: {
@@ -52,27 +76,16 @@ const responsiveAtomicProperties = defineProperties({
     placeItems: ['alignItems', 'justifyContent'],
   },
 });
-// const unresponsiveAtomicProperties = defineProperties({
-//   properties: unresponsiveProperties,
-// });
+
+const unresponsiveAtomicProperties = defineProperties({
+  properties: unresponsiveProperties,
+});
 
 export const sprinkles = createSprinkles(
-  // unresponsiveAtomicProperties,
+  unresponsiveAtomicProperties,
   responsiveAtomicProperties,
+  // TODO: pseudo properties
   // pseudoAtomicProperties,
 );
 
-export type OptionalResponsiveValue<Value extends string | number> = ConditionalValue<
-  typeof responsiveAtomicProperties,
-  Value
->;
-export type RequiredResponsiveValue<Value extends string | number> = RequiredConditionalValue<
-  typeof responsiveAtomicProperties,
-  Value
->;
-
-export type RequiredResponsiveObject<Value> = Partial<Record<Breakpoint, Value>> &
-  Record<typeof breakpointNames[0], Value>;
-
-export const normalizeResponsiveValue = createNormalizeValueFn(responsiveAtomicProperties);
 export const mapResponsiveValue = createMapValueFn(responsiveAtomicProperties);

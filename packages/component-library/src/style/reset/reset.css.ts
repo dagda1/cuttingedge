@@ -16,6 +16,11 @@ const block = style({
   display: 'block',
 });
 
+const heading = style({
+  margin: 0,
+  padding: 0,
+});
+
 const body = style({
   lineHeight: 1,
 });
@@ -84,6 +89,12 @@ const a = style({
   color: 'inherit',
 });
 
+const fieldset = style({
+  border: 'none',
+  margin: 0,
+  padding: 0,
+});
+
 export const element = {
   article: block,
   aside: block,
@@ -108,4 +119,10 @@ export const element = {
   button,
   textarea: field,
   input,
+  h1: heading,
+  h2: heading,
+  h3: heading,
+  h4: heading,
+  fieldset,
+  legend: fieldset,
 };
