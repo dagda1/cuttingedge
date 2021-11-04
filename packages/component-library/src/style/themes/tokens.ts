@@ -148,11 +148,19 @@ export const tokens = {
       level: {
         '1': {
           mobile: {
-            fontSize: 40,
+            fontSize: 32,
             rows: 10,
           },
           tablet: {
-            fontSize: 80,
+            fontSize: 32,
+            rows: 21,
+          },
+          desktop: {
+            fontSize: 48,
+            rows: 21,
+          },
+          wide: {
+            fontSize: 60,
             rows: 21,
           },
         },
@@ -162,6 +170,14 @@ export const tokens = {
             rows: 9,
           },
           tablet: {
+            fontSize: 38,
+            rows: 13,
+          },
+          desktop: {
+            fontSize: 38,
+            rows: 13,
+          },
+          wide: {
             fontSize: 38,
             rows: 13,
           },
@@ -175,6 +191,14 @@ export const tokens = {
             fontSize: 22,
             rows: 8,
           },
+          desktop: {
+            fontSize: 22,
+            rows: 8,
+          },
+          wide: {
+            fontSize: 22,
+            rows: 8,
+          },
         },
         '4': {
           mobile: {
@@ -182,6 +206,14 @@ export const tokens = {
             rows: 8,
           },
           tablet: {
+            fontSize: 18,
+            rows: 8,
+          },
+          desktop: {
+            fontSize: 18,
+            rows: 8,
+          },
+          wide: {
             fontSize: 18,
             rows: 8,
           },
@@ -195,7 +227,7 @@ export const tokens = {
           rows: 8,
         },
         tablet: {
-          fontSize: 19,
+          fontSize: 16,
           rows: 8,
         },
         desktop: {
@@ -280,6 +312,11 @@ export const tokens = {
       width: rem(44),
       height: rem(44),
     },
+  },
+  touchableSize: 11,
+  transitions: {
+    fast: 'transform .125s ease, opacity .125s ease',
+    touchable: 'transform 0.2s cubic-bezier(0.02, 1.505, 0.745, 1.235)',
   },
 };
 

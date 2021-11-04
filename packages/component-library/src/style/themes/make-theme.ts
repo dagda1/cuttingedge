@@ -11,7 +11,7 @@ const px = scaleCreator('px');
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const fontSizeToCapHeight = (grid: number, definition: any, fontMetrics: FontMetrics) => {
-  const { mobile, tablet } = definition;
+  const { mobile, tablet, desktop, wide } = definition;
 
   const mobileCapHeight = getCapHeight({
     fontSize: mobile.fontSize,
@@ -20,6 +20,16 @@ const fontSizeToCapHeight = (grid: number, definition: any, fontMetrics: FontMet
 
   const tabletCapHeight = getCapHeight({
     fontSize: tablet.fontSize,
+    fontMetrics,
+  });
+
+  const desktopCapHeight = getCapHeight({
+    fontSize: desktop.fontSize,
+    fontMetrics,
+  });
+
+  const wideCapHeight = getCapHeight({
+    fontSize: wide.fontSize,
     fontMetrics,
   });
 
@@ -43,6 +53,26 @@ const fontSizeToCapHeight = (grid: number, definition: any, fontMetrics: FontMet
     fontMetrics,
   });
 
+  const {
+    fontSize: desktopFontSize,
+    lineHeight: desktopLineHeight,
+    ...desktopTrims
+  } = precomputeValues({
+    fontSize: desktop.fontSize,
+    leading: desktop.rows * grid,
+    fontMetrics,
+  });
+
+  const {
+    fontSize: wideFontSize,
+    lineHeight: wideLineHeight,
+    ...wideTrims
+  } = precomputeValues({
+    fontSize: wide.fontSize,
+    leading: wide.rows * grid,
+    fontMetrics,
+  });
+
   return {
     mobile: {
       fontSize: mobileFontSize,
@@ -58,6 +88,22 @@ const fontSizeToCapHeight = (grid: number, definition: any, fontMetrics: FontMet
       capHeight: px(tabletCapHeight),
       capsizeTrims: {
         ...tabletTrims,
+      },
+    },
+    desktop: {
+      fontSize: desktopFontSize,
+      lineHeight: desktopLineHeight,
+      capHeight: px(desktopCapHeight),
+      capsizeTrims: {
+        ...desktopTrims,
+      },
+    },
+    wide: {
+      fontSize: wideFontSize,
+      lineHeight: wideLineHeight,
+      capHeight: px(wideCapHeight),
+      capsizeTrims: {
+        ...wideTrims,
       },
     },
   };
@@ -162,6 +208,8 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     radios: {
       ...tokens.radios,
     },
+    // touchableSize: tokens.touchableSize,
+    // transition: tokens.transitions,
   } as const;
 
   return resolvedTokens;

@@ -10,36 +10,6 @@
 //   none: 0,
 // } as const;
 
-// const boxShadow = {
-//   ...vars.shadows,
-//   outlineFocus: `0 0 0 ${vars.focusRingSize} ${vars.borderColor.focus}`,
-//   borderField: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.field}`,
-//   borderStandard: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.standard}`,
-//   borderStandardInverted: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.standardInverted}`,
-//   borderCritical: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.critical}`,
-//   borderCriticalLight: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.criticalLight}`,
-//   borderCriticalLarge: `inset 0 0 0 ${vars.borderWidth.large} ${vars.borderColor.critical}`,
-//   borderCaution: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.caution}`,
-//   borderCautionLight: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.cautionLight}`,
-//   borderPositive: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.positive}`,
-//   borderPositiveLight: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.positiveLight}`,
-//   borderInfo: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.info}`,
-//   borderInfoLight: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.infoLight}`,
-//   borderPromote: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.promote}`,
-//   borderPromoteLight: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.promoteLight}`,
-//   borderFormHover: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.formHover}`,
-//   borderFormAccent: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.formAccent}`,
-//   borderFormAccentLarge: `inset 0 0 0 ${vars.borderWidth.large} ${vars.borderColor.formAccent}`,
-//   borderBrandAccentLarge: `inset 0 0 0 ${vars.borderWidth.large} ${vars.borderColor.brandAccent}`,
-//   borderStandardInvertedLarge: `inset 0 0 0 ${vars.borderWidth.large} ${vars.borderColor.standardInverted}`,
-// };
-
-// export const pseudoProperties = {
-//   transform: vars.transform,
-// } as const;
-
-// export type PseudoProperties = keyof typeof pseudoProperties;
-
 // export const unresponsiveProperties = {
 //   background: vars.backgroundColor,
 //   overflow: ['hidden', 'scroll', 'visible', 'auto'],
@@ -57,7 +27,6 @@
 //     modal: 300,
 //     notification: 400,
 //   },
-//   boxShadow,
 //   cursor: ['default', 'pointer'],
 //   pointerEvents: ['none'],
 //   top: [0],
@@ -69,7 +38,6 @@
 //   minWidth: {
 //     0: '0%',
 //   },
-//   maxWidth: vars.contentWidth,
 //   transition: vars.transition,
 // } as const;
 

@@ -95,7 +95,7 @@ globalStyle('header a,footer a', {
   cursor: 'pointer',
 });
 
-globalStyle('h1', { ...globalHeadingStyle({ level: '1', weight: 'medium' }) });
+globalStyle('h1', globalHeadingStyle({ level: '1', weight: 'medium' }));
 globalStyle('h2', globalHeadingStyle({ level: '2', weight: 'medium' }));
 globalStyle('h3', globalHeadingStyle({ level: '3', weight: 'medium' }));
 globalStyle('h4', globalHeadingStyle({ level: '4', weight: 'medium' }));
