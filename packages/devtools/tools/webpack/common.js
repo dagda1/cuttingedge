@@ -193,14 +193,14 @@ var configureCommon = function (options, overrides) {
                     ],
                 },
             }),
-            new webpack_plugin_1.VanillaExtractPlugin({
-                test: /\.css\.ts$/,
-                outputCss: true,
-            }),
             new mini_css_extract_plugin_1.default({
                 filename: cssFile,
                 chunkFilename: cssChunkFile,
                 ignoreOrder: true,
+            }),
+            new webpack_plugin_1.VanillaExtractPlugin({
+                test: /\.css\.(js|jsx|ts|tsx)$/,
+                outputCss: true,
             }),
         ], Boolean),
     });

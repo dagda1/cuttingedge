@@ -12,11 +12,12 @@ function compileWebpack(config: Configuration, cb: (err?: Error, stats?: Stats) 
     compiler = webpack(config);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
+    logger.warn('we did not make it');
+    console.error(e);
     printErrors('Failed to compile.', [e]);
     process.exit(1);
   }
   compiler.run((err, stats) => {
-    console.error(err);
     cb(err, stats);
   });
 }
@@ -26,7 +27,7 @@ export const compile = (config: Configuration, buildType: BuildType): Promise<{ 
     logger.info(`compiling ${buildType}`);
     compileWebpack(config, (err, stats) => {
       if (err) {
-        logger.error(err.message);
+        console.error(err);
         reject(err);
         return;
       }

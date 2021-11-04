@@ -13,7 +13,7 @@ var createTypescriptLoader = function (_a) {
         happyPackMode: isDevelopment,
         projectReferences: paths_1.paths.projectReferences,
         compilerOptions: {},
-        logLevel: 'INFO',
+        logLevel: 'WARN',
     };
     return [
         {

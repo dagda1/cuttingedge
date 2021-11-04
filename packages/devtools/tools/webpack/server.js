@@ -63,10 +63,13 @@ var getExternals = function (isDevelopment) {
                 /\.(svg|png|jpg|jpeg|gif|ico)$/,
                 /\.(mp4|mp3|ogg|swf|webp)$/,
                 /\.(css|scss|sass|sss|less)$/,
+                /\.css.ts$/,
                 /^mathjax3/,
                 /^@babel/,
                 /^@loadable/,
                 /^@cutting/,
+                /^@vanilla-extract/,
+                /^@capsizecss/,
             ].filter(Boolean),
         }),
     ];

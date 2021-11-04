@@ -183,9 +183,8 @@ export const configureCommon = (
           ignoreOrder: true,
         }),
         new VanillaExtractPlugin({
-          test: /\.css\.ts$/,
+          test: /\.css\.(js|jsx|ts|tsx)$/,
           outputCss: true,
-          allowRuntime: true,
         }),
       ],
       Boolean,

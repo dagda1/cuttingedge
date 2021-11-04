@@ -17,11 +17,12 @@ function compileWebpack(config, cb) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }
     catch (e) {
+        logger_1.logger.warn('we did not make it');
+        console.error(e);
         (0, printErrors_1.default)('Failed to compile.', [e]);
         process.exit(1);
     }
     compiler.run(function (err, stats) {
-        console.error(err);
         cb(err, stats);
     });
 }
@@ -30,7 +31,7 @@ var compile = function (config, buildType) {
         logger_1.logger.info("compiling " + buildType);
         compileWebpack(config, function (err, stats) {
             if (err) {
-                logger_1.logger.error(err.message);
+                console.error(err);
                 reject(err);
                 return;
             }

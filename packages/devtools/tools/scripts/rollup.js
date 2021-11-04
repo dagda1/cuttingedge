@@ -356,6 +356,9 @@ function build(_a) {
                 case 10:
                     _d.sent();
                     pkgJson = __assign({}, pkg);
+                    if (typeof pkgJson.exports !== 'undefined') {
+                        return [2 /*return*/];
+                    }
                     buildDir = path_1.default.basename(paths_1.paths.appBuild);
                     commonjsFile = path_1.default.join(buildDir, 'cjs', 'index.js');
                     esmFile = path_1.default.join(buildDir, 'esm', "index.js");

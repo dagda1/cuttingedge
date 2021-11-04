@@ -18,7 +18,7 @@ var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
             loader: 'css-loader',
             options: {
                 importLoaders: importLoaders,
-                sourceMap: false,
+                sourceMap: true,
                 modules: false,
             },
         },
@@ -32,6 +32,7 @@ var createCSSLoaders = function (_a) {
     return [
         {
             test: /\.vanilla\.css$/i,
+            sideEffects: true,
             use: [
                 mini_css_extract_plugin_1.default.loader,
                 {
@@ -45,7 +46,6 @@ var createCSSLoaders = function (_a) {
         {
             test: constants_1.cssRegex,
             exclude: /\.vanilla\.css$/i,
-            sideEffects: true,
             use: (0, exports.cssLoaders)(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
         },
     ];

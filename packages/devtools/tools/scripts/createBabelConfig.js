@@ -23,7 +23,7 @@ var createBabelPresets = function (_a) {
         modules: moduleFormat === 'esm' ? false : 'auto',
     };
     if (isNode) {
-        presetOptions.targets = { node: '12' };
+        presetOptions.targets = { node: '14' };
     }
     else {
         presetOptions.useBuiltIns = 'entry';

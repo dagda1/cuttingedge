@@ -114,7 +114,6 @@ function bundle(_a) {
                     outfile = path_1.default.join(paths_1.paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
                     logger_1.default.info("writing " + path_1.default.basename(outfile) + " for " + packageName);
                     reactShimPath = path_1.default.resolve(__dirname, '..', '..', 'react-shim.js');
-                    logger_1.default.error("reactShimPath " + reactShimPath);
                     if (!fs_1.default.existsSync(reactShimPath)) {
                         throw new Error("no reactShim at " + reactShimPath);
                     }
@@ -125,7 +124,7 @@ function bundle(_a) {
                             // minify: env === 'production',
                             minify: false,
                             platform: 'node',
-                            sourcemap: false,
+                            sourcemap: true,
                             format: format,
                             target: 'node14',
                             treeShaking: true,

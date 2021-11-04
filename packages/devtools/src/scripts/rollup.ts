@@ -248,9 +248,9 @@ async function build({
 
   const pkgJson = { ...pkg };
 
-  // if (typeof pkgJson.exports !== 'undefined') {
-  //   return;
-  // }
+  if (typeof pkgJson.exports !== 'undefined') {
+    return;
+  }
 
   const buildDir = path.basename(paths.appBuild);
 
