@@ -208,8 +208,7 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     radios: {
       ...tokens.radios,
     },
-    // touchableSize: tokens.touchableSize,
-    // transition: tokens.transitions,
+    transition: tokens.transitions,
   } as const;
 
   return resolvedTokens;
