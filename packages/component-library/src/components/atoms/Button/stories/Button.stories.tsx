@@ -6,7 +6,7 @@ export default {
   title: 'atoms/Button',
   component: Button,
   argTypes: {
-    ...themedSelect,
+    ...themedSelect(),
   },
 } as ComponentMeta<typeof Button>;
 

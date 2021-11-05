@@ -32,7 +32,7 @@ export function themedTemplateMaker<T>(C: ComponentType<T>): ComponentStory<type
     const theme = typeof args.theme === 'undefined' ? defaultTheme : args.theme;
 
     return (
-      <ApplicationLayout className={theme}>
+      <ApplicationLayout className={theme} center>
         <div style={{ width: '25%' }}>
           <C {...args} />
         </div>
