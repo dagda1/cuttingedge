@@ -29,6 +29,21 @@ export default {
   component: SimpleRadioGroup,
   argTypes: {
     ...themedSelect(),
+    invalid: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    highlight: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    errorMessage: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 } as ComponentMeta<typeof SimpleRadioGroup>;
 

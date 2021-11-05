@@ -29,6 +29,32 @@ export default {
   component: SimpleCheckboxGroup,
   argTypes: {
     ...themedSelect(),
+    invalid: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    highlight: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    errorMessage: {
+      control: {
+        type: 'text',
+      },
+    },
+    legend: {
+      control: {
+        type: 'text',
+      },
+    },
+    legendMode: {
+      control: {
+        type: 'inline-radio',
+        options: ['screen-reader-only', 'visible'],
+      },
+    },
   },
 } as ComponentMeta<typeof SimpleCheckboxGroup>;
 
