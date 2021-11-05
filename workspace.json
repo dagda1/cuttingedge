@@ -13,10 +13,6 @@
       "root": "packages/eslint-config",
       "implicitDependencies": []
     },
-    "@cutting/graphql-explorer": {
-      "root": "packages/graphql-explorer",
-      "implicitDependencies": []
-    },
     "@cutting/hooks": {
       "root": "packages/hooks",
       "implicitDependencies": []
@@ -55,6 +51,10 @@
     },
     "@cutting/util": {
       "root": "packages/util",
+      "implicitDependencies": []
+    },
+    "@cutting/graphql-explorer": {
+      "root": "packages/graphql-explorer",
       "implicitDependencies": []
     },
     "@cutting/website": {
