@@ -4,6 +4,7 @@ import { consultingTheme } from '../../style/themes/consulting/consultingTheme.c
 import { ComponentStory } from '@storybook/react';
 import { ComponentType } from 'react';
 import { ApplicationLayout } from '../templates/ApplicationLayout/ApplicationLayout';
+import * as styles from './Stories.css';
 
 const themes = {
   defaultTheme,
@@ -33,7 +34,7 @@ export function themedTemplateMaker<T>(C: ComponentType<T>): ComponentStory<type
 
     return (
       <ApplicationLayout className={theme} center>
-        <div style={{ width: '25%' }}>
+        <div className={styles.root}>
           <C {...args} />
         </div>
       </ApplicationLayout>
