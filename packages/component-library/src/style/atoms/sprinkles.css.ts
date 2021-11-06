@@ -9,17 +9,6 @@ import {
 import { Breakpoint, breakpointNames, breakpoints } from '../breakpoints';
 import { vars } from '../themes/vars.css';
 import { rem } from 'polished';
-// import { unresponsiveProperties, pseudoProperties } from './atomic-properties';
-
-// const pseudoAtomicProperties = defineProperties({
-//   defaultCondition: false,
-//   conditions: {
-//     active: {
-//       selector: '&:active',
-//     },
-//   },
-//   properties: pseudoProperties,
-// });
 
 const responsiveAtomicProperties = defineProperties({
   conditions: {
