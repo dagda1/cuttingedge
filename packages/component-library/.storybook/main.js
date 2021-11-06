@@ -17,6 +17,7 @@ module.exports = {
     path.resolve('./.storybook/vanilla-extract.js'),
     "@storybook/addon-links",
     "@storybook/addon-essentials",
+    "storybook-addon-designs"
   ],
   core: {
     "builder": "webpack5"

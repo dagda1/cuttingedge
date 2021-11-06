@@ -10,7 +10,6 @@ export type {
 
 export type { FormControlProps } from './components/hoc/FormControl/FormControl';
 
-export { Heading } from './components/atoms/Heading/Heading';
 export { ExternalLink } from './components/atoms/ExternalLink/ExternalLink';
 export { Input } from './components/atoms/Input/Input';
 export { Label } from './components/atoms/Label';

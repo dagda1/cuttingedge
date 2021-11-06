@@ -1,5 +1,4 @@
 import type { ComponentType, PropsWithChildren, ReactElement, Ref } from 'react';
-import { Heading } from '../../atoms/Heading/Heading';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
@@ -22,7 +21,7 @@ const ApplicationLayoutHeading: ComponentType<Pick<ApplicationLayoutProps, 'head
     return null;
   }
 
-  return typeof heading === 'string' ? <Heading>{heading}</Heading> : heading;
+  return typeof heading === 'string' ? <h1>{heading}</h1> : heading;
 };
 
 export function ApplicationLayout({

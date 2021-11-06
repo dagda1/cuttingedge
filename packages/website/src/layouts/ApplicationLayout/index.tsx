@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { Heading } from '@cutting/component-library';
 import cs from 'classnames';
 import { useRef, useEffect } from 'react';
 import { Footer } from '../../components/Footer';
@@ -47,14 +46,14 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
       className={cs(cuttingTheme, className)}
       heading={
         heading && (
-          <Heading
+          <h1
             className={cs({
               [styles.italic]: italicise,
               [styles.center]: center,
             })}
           >
             {heading}
-          </Heading>
+          </h1>
         )
       }
       header={

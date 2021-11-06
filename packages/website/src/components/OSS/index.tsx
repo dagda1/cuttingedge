@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { ExternalLink, Heading } from '@cutting/component-library';
+import { ExternalLink } from '@cutting/component-library';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Repo, repos } from './repos';
 
@@ -9,7 +9,7 @@ import { Github } from '../Svg/Github';
 export const OSS: FC = () => (
   <ApplicationLayout heading="Open Source Contributions">
     <div className={styles.container}>
-      <Heading level={2}>Prominent opens source pull requests</Heading>
+      <h2>Prominent opens source pull requests</h2>
       <ul className={styles.communityList}>
         <li>
           <ExternalLink href="https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1">
@@ -41,7 +41,7 @@ export const OSS: FC = () => (
           </ExternalLink>
         </li>
       </ul>
-      <Heading level={2}>My Work</Heading>
+      <h2>My Work</h2>
       <div className={styles.repos}>
         {repos.map((repo: Repo, i: number) => (
           <div className={styles.repo} key={i}>
@@ -50,7 +50,7 @@ export const OSS: FC = () => (
                 <Github />
               </div>
               <div>
-                <Heading level={2}>{repo.name}</Heading>
+                <h2>{repo.name}</h2>
               </div>
               <div>{repo.description}</div>
             </ExternalLink>
@@ -58,9 +58,9 @@ export const OSS: FC = () => (
         ))}
       </div>
       <div>
-        <Heading level={2}>
+        <h2>
           For full list of github repos <ExternalLink href="https://github.com/dagda1">click here</ExternalLink>
-        </Heading>
+        </h2>
       </div>
     </div>
   </ApplicationLayout>

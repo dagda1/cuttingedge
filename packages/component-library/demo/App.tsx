@@ -1,6 +1,6 @@
 import * as styles from './global.css';
 import React, { useState } from 'react';
-import { Heading, FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup } from '../src';
+import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
@@ -60,7 +60,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={2}>Links</Heading>
+            <h2>Links</h2>
           </div>
         </div>
         <div className={styles.layout}>
@@ -81,7 +81,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={2}>Buttons</Heading>
+            <h2>Buttons</h2>
           </div>
         </div>
         <div className={styles.layout}>
@@ -102,7 +102,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={2}>Checkbox Group</Heading>
+            <h2>Checkbox Group</h2>
           </div>
         </div>
         <div className={styles.layout}>
@@ -185,7 +185,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={2}>Radio Group</Heading>
+            <h2>Radio Group</h2>
           </div>
         </div>
         <div className={styles.layout}>
@@ -270,7 +270,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={2}>TextArea</Heading>
+            <h2>TextArea</h2>
           </div>
         </div>
         <div className={styles.layout}>
@@ -290,7 +290,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={2}>Input</Heading>
+            <h2>Input</h2>
           </div>
         </div>
         <div className={styles.layout}>
@@ -334,20 +334,20 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={2}>Headings</Heading>
+            <h2>Headings</h2>
           </div>
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={1}>H1 headings</Heading>
-            <Heading level={2}>H2 headings</Heading>
-            <Heading level={3}>H3 headings</Heading>
-            <Heading level={4}>H4 headings</Heading>
+            <h1>H1 headings</h1>
+            <h2>H2 headings</h2>
+            <h3>H3 headings</h3>
+            <h4>H4 headings</h4>
           </div>
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level={2}>Paragaphs</Heading>
+            <h2>Paragaphs</h2>
           </div>
         </div>
         <div className={styles.layout}>

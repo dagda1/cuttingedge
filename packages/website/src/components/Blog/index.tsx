@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { posts } from './posts';
-import { Heading, ExternalLink } from '@cutting/component-library';
+import { ExternalLink } from '@cutting/component-library';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 
 export const Blog: FC = () => (
@@ -14,7 +14,7 @@ export const Blog: FC = () => (
     {posts.map((post, i) => (
       <div key={i}>
         <ExternalLink href={post.link} blank={false}>
-          <Heading level={2}>{post.title}</Heading>
+          <h2>{post.title}</h2>
         </ExternalLink>
         <p>{post.summary}</p>
         <p>

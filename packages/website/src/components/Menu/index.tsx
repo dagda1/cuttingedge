@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { Heading } from '@cutting/component-library';
 import cs from 'classnames';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -32,11 +31,11 @@ export const Menu: FC = () => {
             </NavLink>
           </li>
           <li>
-            <Heading level={2}>
+            <h2>
               <NavLink aria-label="home" className={styles.name} to={urls.Home}>
                 Paul Cowan
               </NavLink>
-            </Heading>
+            </h2>
           </li>
           <li className={cs(styles['contact'], styles.horizontal)}>
             <NavLink to={urls.ContactMe} activeClassName={styles.active} onClick={collapse}>
