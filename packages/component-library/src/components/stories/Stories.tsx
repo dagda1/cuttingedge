@@ -1,6 +1,8 @@
+/* eslint-disable react/display-name */
 import { defaultTheme } from '../../style/themes/default/default.css';
 import { cuttingTheme } from '../../style/themes/cutting/cutting.css';
 import { consultingTheme } from '../../style/themes/consulting/consultingTheme.css';
+import { salesTheme } from '../../style/themes/sales/salesTheme.css';
 import { ComponentStory } from '@storybook/react';
 import { ComponentType } from 'react';
 import { ApplicationLayout } from '../templates/ApplicationLayout/ApplicationLayout';
@@ -10,6 +12,7 @@ const themes = {
   defaultTheme,
   cuttingTheme,
   consultingTheme,
+  salesTheme,
 } as const;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -28,12 +31,12 @@ export function themedSelect() {
 }
 
 export function themedTemplateMaker<T>(C: ComponentType<T>): ComponentStory<typeof C> {
-  // eslint-disable-next-line react/display-name
-  return (args: any) => {
-    const theme = typeof args.theme === 'undefined' ? defaultTheme : args.theme;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return ({ theme, ...args }: any) => {
+    const chosenTheme = typeof theme === 'undefined' ? defaultTheme : theme;
 
     return (
-      <ApplicationLayout className={theme} center>
+      <ApplicationLayout className={chosenTheme} center>
         <div className={styles.root}>
           <C {...args} />
         </div>

@@ -1,13 +1,17 @@
 import { ComponentStory } from '@storybook/react';
 import { consultingTheme } from '../../../../style/themes/consulting/consultingTheme.css';
 import { cuttingTheme } from '../../../../style/themes/cutting/cutting.css';
+import { salesTheme } from '../../../../style/themes/sales/salesTheme.css';
 import { defaultTheme } from '../../../../style/themes/default/default.css';
 import { ApplicationLayout } from '../ApplicationLayout';
+import cs from 'classnames';
+import { atoms } from '../../../../style/atoms/atoms';
 
 const themes = {
   defaultTheme,
   cuttingTheme,
   consultingTheme,
+  salesTheme,
 } as const;
 
 export default {
@@ -35,19 +39,19 @@ export default {
     },
     heading: {
       control: {
-        type: 'string',
+        type: 'text',
       },
     },
   },
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Template: ComponentStory<typeof ApplicationLayout> = (args: any) => {
-  const theme = typeof args.theme === 'undefined' ? defaultTheme : args.theme;
+const Template: ComponentStory<typeof ApplicationLayout> = ({ theme, children, ...rest }: any) => {
+  const themed = typeof theme === 'undefined' ? defaultTheme : theme;
 
   return (
-    <ApplicationLayout className={theme} center>
-      {args.children}
+    <ApplicationLayout className={cs(themed, atoms({ padding: '3x' }))} {...rest}>
+      {children}
     </ApplicationLayout>
   );
 };
