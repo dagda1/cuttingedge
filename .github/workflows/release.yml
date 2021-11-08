@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@main
         with:
           fetch-depth: 0
-          token: ${{ secrets.CUTTING_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js 14.x
         uses: actions/setup-node@main
@@ -32,5 +32,5 @@ jobs:
           version: yarn run version
           publish: yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.CUTTING_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.CUTTING_NPM_TOKEN }}
