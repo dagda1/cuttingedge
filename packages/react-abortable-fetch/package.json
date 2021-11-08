@@ -13,7 +13,7 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "lint": "yarn eslint ./src/**/*.{ts,tsx}",
+    "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix",
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup",

@@ -10,7 +10,7 @@
     "start": "PORT=3000 SSR=true NODE_ENV=development cutting ssr-start",
     "debug": "yarn start -- --inspect=localhost:9230",
     "build": "NODE_ENV=production cutting ssr-build",
-    "lint": "yarn eslint ./src/**/*.{ts,tsx}",
+    "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix",
     "test": "NODE_ENV=test cutting test",
     "deploy": "NODE_ENV=production yarn run build && ./bin/deploy.sh",
     "serve": "NODE_ENV=production node ./dist/server.js"

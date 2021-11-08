@@ -21,7 +21,7 @@
     "test:unit": "NODE_ENV=test cutting test a",
     "test": "CI=true yarn test:unit && yarn test:types",
     "build": "NODE_ENV=production cutting rollup",
-    "lint": "yarn eslint ./src/**/*.{ts,tsx}",
+    "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {

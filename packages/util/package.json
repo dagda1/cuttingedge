@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=development cutting rollup",
-    "lint": "yarn eslint ./src/**/*.{ts,tsx}",
+    "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix",
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true yarn test"
   },
