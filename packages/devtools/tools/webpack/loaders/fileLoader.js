@@ -1,5 +1,5 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.createFileLoader = void 0;
 var createFileLoader = function (_a) {
   var staticAssetName = _a.staticAssetName,
@@ -27,7 +27,7 @@ var createFileLoader = function (_a) {
       /\.mjs$/,
       /\.cjs$/,
     ],
-    loader: 'file-loader',
+    loader: "file-loader",
     options: { name: staticAssetName, emitFile: isWeb },
   };
 };

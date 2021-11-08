@@ -1,10 +1,10 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.createCSVLoader = void 0;
 var createCSVLoader = function () {
   return {
     test: /\.csv$/,
-    loader: 'csv-loader',
+    loader: "csv-loader",
     options: {
       header: true,
       skipEmptyLines: true,

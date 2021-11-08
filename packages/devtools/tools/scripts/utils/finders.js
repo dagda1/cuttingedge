@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __awaiter =
   (this && this.__awaiter) ||
   function (thisArg, _arguments, P, generator) {
@@ -19,13 +19,15 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator['throw'](value));
+          step(generator["throw"](value));
         } catch (e) {
           reject(e);
         }
       }
       function step(result) {
-        result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        result.done
+          ? resolve(result.value)
+          : adopt(result.value).then(fulfilled, rejected);
       }
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -50,7 +52,7 @@ var __generator =
       g;
     return (
       (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-      typeof Symbol === 'function' &&
+      typeof Symbol === "function" &&
         (g[Symbol.iterator] = function () {
           return this;
         }),
@@ -63,14 +65,19 @@ var __generator =
     }
     function step(op) {
       if (f) {
-        throw new TypeError('Generator is already executing.');
+        throw new TypeError("Generator is already executing.");
       }
       while (_) {
         try {
           if (
             ((f = 1),
             y &&
-              (t = op[0] & 2 ? y['return'] : op[0] ? y['throw'] || ((t = y['return']) && t.call(y), 0) : y.next) &&
+              (t =
+                op[0] & 2
+                  ? y["return"]
+                  : op[0]
+                  ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
+                  : y.next) &&
               !(t = t.call(y, op[1])).done)
           ) {
             return t;
@@ -96,7 +103,10 @@ var __generator =
               _.trys.pop();
               continue;
             default:
-              if (!((t = _.trys), (t = t.length > 0 && t[t.length - 1])) && (op[0] === 6 || op[0] === 2)) {
+              if (
+                !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
+                (op[0] === 6 || op[0] === 2)
+              ) {
                 _ = 0;
                 continue;
               }
@@ -139,23 +149,31 @@ var __importDefault =
   function (mod) {
     return mod && mod.__esModule ? mod : { default: mod };
   };
-Object.defineProperty(exports, '__esModule', { value: true });
-exports.findAppNodeModules = exports.findFile = exports.findAsync = exports.find = void 0;
-var path_1 = __importDefault(require('path'));
-var fs_1 = __importDefault(require('fs'));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findAppNodeModules =
+  exports.findFile =
+  exports.findAsync =
+  exports.find =
+    void 0;
+var path_1 = __importDefault(require("path"));
+var fs_1 = __importDefault(require("fs"));
 var MaxTries = 10;
-var ModulesDirName = 'node_modules';
+var ModulesDirName = "node_modules";
 var find = function (cwd, predicate, tries) {
   if (tries === void 0) {
     tries = 0;
   }
   if (tries === MaxTries) {
-    throw new Error('cannot find in ' + cwd);
+    throw new Error("cannot find in " + cwd);
   }
   if (predicate(cwd)) {
     return cwd;
   }
-  return (0, exports.find)(path_1.default.resolve(cwd, '..'), predicate, ++tries);
+  return (0, exports.find)(
+    path_1.default.resolve(cwd, ".."),
+    predicate,
+    ++tries
+  );
 };
 exports.find = find;
 var findAsync = function (cwd, predicate, tries) {
@@ -167,14 +185,21 @@ var findAsync = function (cwd, predicate, tries) {
       switch (_a.label) {
         case 0:
           if (tries === MaxTries) {
-            throw new Error('cannot find in ' + cwd);
+            throw new Error("cannot find in " + cwd);
           }
           return [4 /*yield*/, predicate(cwd)];
         case 1:
           if (_a.sent()) {
             return [2 /*return*/, cwd];
           }
-          return [4 /*yield*/, (0, exports.findAsync)(path_1.default.resolve(cwd, '..'), predicate, ++tries)];
+          return [
+            4 /*yield*/,
+            (0, exports.findAsync)(
+              path_1.default.resolve(cwd, ".."),
+              predicate,
+              ++tries
+            ),
+          ];
         case 2:
           return [2 /*return*/, _a.sent()];
       }
@@ -191,10 +216,12 @@ var findFile = function (cwd, fileName) {
 exports.findFile = findFile;
 var findAppNodeModules = function (cwd, packageName) {
   if (packageName === void 0) {
-    packageName = 'typescript';
+    packageName = "typescript";
   }
   var dir = (0, exports.find)(cwd, function (dir) {
-    return fs_1.default.existsSync(path_1.default.resolve(dir, ModulesDirName, packageName));
+    return fs_1.default.existsSync(
+      path_1.default.resolve(dir, ModulesDirName, packageName)
+    );
   });
   return path_1.default.join(dir, ModulesDirName);
 };

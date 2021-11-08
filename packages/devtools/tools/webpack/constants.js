@@ -1,6 +1,11 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-exports.constants = exports.sassModuleRegex = exports.sassRegex = exports.cssModuleRegex = exports.cssRegex = void 0;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.constants =
+  exports.sassModuleRegex =
+  exports.sassRegex =
+  exports.cssModuleRegex =
+  exports.cssRegex =
+    void 0;
 exports.cssRegex = /\.css$/;
 exports.cssModuleRegex = /\.module\.css$/;
 exports.sassRegex = /\.(scss|sass)$/;

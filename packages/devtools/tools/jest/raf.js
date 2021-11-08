@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var animation = {
   requestAnimationFrame: function () {
     return 0;
@@ -8,18 +8,21 @@ var animation = {
   },
 };
 if (window) {
-  var vendors = ['ms', 'moz', 'webkit', 'o'];
+  var vendors = ["ms", "moz", "webkit", "o"];
   var win_1 = window;
   animation.requestAnimationFrame = vendors
     .map(function (vendor) {
-      return win_1[vendor + 'RequestAnimationFrame'];
+      return win_1[vendor + "RequestAnimationFrame"];
     })
     .reduce(function (accumulator, func) {
       return accumulator || func;
     }, window.requestAnimationFrame);
   animation.cancelAnimationFrame = vendors
     .map(function (vendor) {
-      return win_1[vendor + 'CancelAnimationFrame'] || win_1[vendor + 'CancelRequestAnimationFrame'];
+      return (
+        win_1[vendor + "CancelAnimationFrame"] ||
+        win_1[vendor + "CancelRequestAnimationFrame"]
+      );
     })
     .reduce(function (accumulator, func) {
       return accumulator || func;
@@ -42,6 +45,8 @@ if (!animation.requestAnimationFrame) {
     };
   }
 }
-global.requestAnimationFrame = window.requestAnimationFrame = window.requestAnimationFrame || animation.requestAnimationFrame;
-global.cancelAnimationFrame = window.cancelAnimationFrame = window.cancelAnimationFrame || animation.cancelAnimationFrame;
+global.requestAnimationFrame = window.requestAnimationFrame =
+  window.requestAnimationFrame || animation.requestAnimationFrame;
+global.cancelAnimationFrame = window.cancelAnimationFrame =
+  window.cancelAnimationFrame || animation.cancelAnimationFrame;
 //# sourceMappingURL=raf.js.map

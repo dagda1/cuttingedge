@@ -1,15 +1,15 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.createMDLoader = void 0;
 var createMDLoader = function () {
   return {
     test: /\.md$/,
     use: [
       {
-        loader: 'html-loader',
+        loader: "html-loader",
       },
       {
-        loader: 'markdown-loader',
+        loader: "markdown-loader",
         options: {},
       },
     ],

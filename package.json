@@ -29,6 +29,7 @@
     "clean": "yarn build:tsc -- --clean && find . \\( -name node_modules -o -name dir2 -o -path name \\) -prune -false -o -name 'dist' -type d   -exec rm -rf {} +",
     "lint": "yarn nx run-many --target=lint --all --parallel --exclude=@cutting/website",
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix",
+    "prepare": "husky install",
     "start": "yarn build && yarn --cwd packages/website start",
     "test": "CI=true yarn workspaces foreach -vi run test",
     "watch": "yarn build:tsc && yarn tsc -b ./tsconfig.packages.json --watch",
@@ -60,6 +61,7 @@
     "eslint": "^8.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "gradient-parser": "^1.0.2",
+    "husky": "^7.0.4",
     "lint-prepush": "^2.2.0",
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
@@ -78,7 +80,7 @@
     "base": "main",
     "tasks": {
       "*.{js,jsx,ts,tsx}": [
-        "yarn lint:all"
+        "yarn lint"
       ],
       "*.{js,css,md}": [
         "prettier --write"

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __assign =
   (this && this.__assign) ||
   function () {
@@ -26,9 +26,12 @@ var __rest =
         t[p] = s[p];
       }
     }
-    if (s != null && typeof Object.getOwnPropertySymbols === 'function') {
+    if (s != null && typeof Object.getOwnPropertySymbols === "function") {
       for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-        if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) {
+        if (
+          e.indexOf(p[i]) < 0 &&
+          Object.prototype.propertyIsEnumerable.call(s, p[i])
+        ) {
           t[p[i]] = s[p[i]];
         }
       }
@@ -40,24 +43,28 @@ var __importDefault =
   function (mod) {
     return mod && mod.__esModule ? mod : { default: mod };
   };
-Object.defineProperty(exports, '__esModule', { value: true });
-var fs_1 = __importDefault(require('fs'));
-var jest_message_util_1 = require('jest-message-util');
-var codeFrameColumns = require('@babel/code-frame').codeFrameColumns;
+Object.defineProperty(exports, "__esModule", { value: true });
+var fs_1 = __importDefault(require("fs"));
+var jest_message_util_1 = require("jest-message-util");
+var codeFrameColumns = require("@babel/code-frame").codeFrameColumns;
 function pretty(error) {
   var message = error.message,
     stack = error.stack;
   var lines = (0, jest_message_util_1.getStackTraceLines)(stack);
   var topFrame = (0, jest_message_util_1.getTopFrame)(lines);
-  var fallback = '' + message + stack;
+  var fallback = "" + message + stack;
   if (!topFrame) {
     return fallback;
   }
   var file = topFrame.file,
     line = topFrame.line;
   try {
-    var result = codeFrameColumns(fs_1.default.readFileSync(file, 'utf8'), { start: { line: line } }, { highlightCode: true });
-    return '\n' + message + '\n\n' + result + '\n' + stack + '\n';
+    var result = codeFrameColumns(
+      fs_1.default.readFileSync(file, "utf8"),
+      { start: { line: line } },
+      { highlightCode: true }
+    );
+    return "\n" + message + "\n\n" + result + "\n" + stack + "\n";
   } catch (error) {
     return fallback;
   }
@@ -65,7 +72,11 @@ function pretty(error) {
 function usePrettyErrors(transform) {
   var prepareStackTrace = Error.prepareStackTrace;
   Error.prepareStackTrace = function (error, trace) {
-    var prepared = prepareStackTrace ? (0, jest_message_util_1.separateMessageFromStack)(prepareStackTrace(error, trace)) : error;
+    var prepared = prepareStackTrace
+      ? (0, jest_message_util_1.separateMessageFromStack)(
+          prepareStackTrace(error, trace)
+        )
+      : error;
     var transformed = transform ? transform(prepared) : prepared;
     return pretty(transformed);
   };
@@ -74,9 +85,9 @@ function usePrettyErrors(transform) {
 // @see https://github.com/facebook/create-react-app/blob/next/packages/react-dev-utils/formatWebpackMessages.js#L112
 var stackTransform = function (_a) {
   var _b = _a.stack,
-    stack = _b === void 0 ? '' : _b,
-    rest = __rest(_a, ['stack']);
-  return __assign({ stack: stack.replace('/build/webpack:', '') }, rest);
+    stack = _b === void 0 ? "" : _b,
+    rest = __rest(_a, ["stack"]);
+  return __assign({ stack: stack.replace("/build/webpack:", "") }, rest);
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 usePrettyErrors(stackTransform);

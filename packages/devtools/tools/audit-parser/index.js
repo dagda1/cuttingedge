@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-'use strict';
+"use strict";
 var __createBinding =
   (this && this.__createBinding) ||
   (Object.create
@@ -24,10 +24,10 @@ var __setModuleDefault =
   (this && this.__setModuleDefault) ||
   (Object.create
     ? function (o, v) {
-        Object.defineProperty(o, 'default', { enumerable: true, value: v });
+        Object.defineProperty(o, "default", { enumerable: true, value: v });
       }
     : function (o, v) {
-        o['default'] = v;
+        o["default"] = v;
       });
 var __importStar =
   (this && this.__importStar) ||
@@ -38,7 +38,7 @@ var __importStar =
     var result = {};
     if (mod != null) {
       for (var k in mod) {
-        if (k !== 'default' && Object.prototype.hasOwnProperty.call(mod, k)) {
+        if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) {
           __createBinding(result, mod, k);
         }
       }
@@ -66,13 +66,15 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator['throw'](value));
+          step(generator["throw"](value));
         } catch (e) {
           reject(e);
         }
       }
       function step(result) {
-        result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        result.done
+          ? resolve(result.value)
+          : adopt(result.value).then(fulfilled, rejected);
       }
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -97,7 +99,7 @@ var __generator =
       g;
     return (
       (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-      typeof Symbol === 'function' &&
+      typeof Symbol === "function" &&
         (g[Symbol.iterator] = function () {
           return this;
         }),
@@ -110,14 +112,19 @@ var __generator =
     }
     function step(op) {
       if (f) {
-        throw new TypeError('Generator is already executing.');
+        throw new TypeError("Generator is already executing.");
       }
       while (_) {
         try {
           if (
             ((f = 1),
             y &&
-              (t = op[0] & 2 ? y['return'] : op[0] ? y['throw'] || ((t = y['return']) && t.call(y), 0) : y.next) &&
+              (t =
+                op[0] & 2
+                  ? y["return"]
+                  : op[0]
+                  ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
+                  : y.next) &&
               !(t = t.call(y, op[1])).done)
           ) {
             return t;
@@ -143,7 +150,10 @@ var __generator =
               _.trys.pop();
               continue;
             default:
-              if (!((t = _.trys), (t = t.length > 0 && t[t.length - 1])) && (op[0] === 6 || op[0] === 2)) {
+              if (
+                !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
+                (op[0] === 6 || op[0] === 2)
+              ) {
                 _ = 0;
                 continue;
               }
@@ -184,7 +194,7 @@ var __generator =
 var __read =
   (this && this.__read) ||
   function (o, n) {
-    var m = typeof Symbol === 'function' && o[Symbol.iterator];
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) {
       return o;
     }
@@ -200,7 +210,7 @@ var __read =
       e = { error: error };
     } finally {
       try {
-        if (r && !r.done && (m = i['return'])) {
+        if (r && !r.done && (m = i["return"])) {
           m.call(i);
         }
       } finally {
@@ -216,17 +226,17 @@ var __importDefault =
   function (mod) {
     return mod && mod.__esModule ? mod : { default: mod };
   };
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.audit = void 0;
-var path_1 = __importDefault(require('path'));
-var fs_extra_1 = __importDefault(require('fs-extra'));
-var mkdirp_1 = __importDefault(require('mkdirp'));
-var paths_1 = require('../config/paths');
-var commander_1 = require('commander');
-var run_1 = require('../scripts/utils/run');
-var logger_1 = require('../scripts/logger');
-var xml_1 = __importDefault(require('xml'));
-var LogFailurePrefix = 'ossindex.sonatype.org';
+var path_1 = __importDefault(require("path"));
+var fs_extra_1 = __importDefault(require("fs-extra"));
+var mkdirp_1 = __importDefault(require("mkdirp"));
+var paths_1 = require("../config/paths");
+var commander_1 = require("commander");
+var run_1 = require("../scripts/utils/run");
+var logger_1 = require("../scripts/logger");
+var xml_1 = __importDefault(require("xml"));
+var LogFailurePrefix = "ossindex.sonatype.org";
 function audit(exceptions) {
   var _a, _b, _c;
   return __awaiter(this, void 0, void 0, function () {
@@ -267,21 +277,26 @@ function audit(exceptions) {
           _g.label = 1;
         case 1:
           _g.trys.push([1, 3, , 4]);
-          return [4 /*yield*/, (0, run_1.run)('yarn audit --json --level=moderate')];
+          return [
+            4 /*yield*/,
+            (0, run_1.run)("yarn audit --json --level=moderate"),
+          ];
         case 2:
           auditResult = _g.sent();
           return [3 /*break*/, 4];
         case 3:
           err_1 = _g.sent();
           logger_1.logger.error(JSON.stringify(err_1));
-          logger_1.logger.warn('Call to yarnkpg audit has caused an error.  Exiting for now.  Audits caught on next build');
+          logger_1.logger.warn(
+            "Call to yarnkpg audit has caused an error.  Exiting for now.  Audits caught on next build"
+          );
           process.exit(0);
           return [2 /*return*/];
         case 4:
           (_d = __read(
             auditResult
               .trim()
-              .split('\n')
+              .split("\n")
               .reverse()
               .filter(function (a) {
                 if (!a) {
@@ -292,14 +307,20 @@ function audit(exceptions) {
               })
               .map(function (s) {
                 return JSON.parse(s);
-              }),
+              })
           )),
             (report = _d[0]),
             (vulnerabilities = _d.slice(1));
           totalDependencies =
-            (_a = report === null || report === void 0 ? void 0 : report.data) === null || _a === void 0 ? void 0 : _a.totalDependencies;
+            (_a =
+              report === null || report === void 0 ? void 0 : report.data) ===
+              null || _a === void 0
+              ? void 0
+              : _a.totalDependencies;
           if (!totalDependencies) {
-            logger_1.logger.error('Call to Yarn audit has failed.  Exiting for now.  Audits caught on next build');
+            logger_1.logger.error(
+              "Call to Yarn audit has failed.  Exiting for now.  Audits caught on next build"
+            );
             logger_1.logger.error(report);
             logger_1.logger.error(auditResult);
             process.exit(0);
@@ -307,38 +328,50 @@ function audit(exceptions) {
           return [
             4 /*yield*/,
             Promise.resolve().then(function () {
-              return __importStar(require(path_1.default.join(process.cwd(), 'package.json')));
+              return __importStar(
+                require(path_1.default.join(process.cwd(), "package.json"))
+              );
             }),
           ];
         case 5:
           (_e = _g.sent()), (name_1 = _e.name), (version = _e.version);
-          displayName_1 = name_1 + '@' + version;
-          logMessage = 'running yarn audit for ' + displayName_1;
+          displayName_1 = name_1 + "@" + version;
+          logMessage = "running yarn audit for " + displayName_1;
           logger_1.logger.info(logMessage);
           failures = vulnerabilities.filter(function (vulnerability) {
             var _a, _b;
             if (
-              !((_a = vulnerability === null || vulnerability === void 0 ? void 0 : vulnerability.data) === null || _a === void 0
+              !((_a =
+                vulnerability === null || vulnerability === void 0
+                  ? void 0
+                  : vulnerability.data) === null || _a === void 0
                 ? void 0
                 : _a.advisory)
             ) {
               logger_1.logger.info(typeof vulnerability);
               console.dir(vulnerability);
             }
-            var advisory = (_b = vulnerability.data) === null || _b === void 0 ? void 0 : _b.advisory;
-            var severity = advisory === null || advisory === void 0 ? void 0 : advisory.severity;
+            var advisory =
+              (_b = vulnerability.data) === null || _b === void 0
+                ? void 0
+                : _b.advisory;
+            var severity =
+              advisory === null || advisory === void 0
+                ? void 0
+                : advisory.severity;
             var packageName = advisory.module_name;
-            var meetsCrieria = !!severity && exceptions.includes(packageName) === false;
+            var meetsCrieria =
+              !!severity && exceptions.includes(packageName) === false;
             if (meetsCrieria) {
               var logMessage_2 =
                 LogFailurePrefix +
-                ' - Found a ' +
+                " - Found a " +
                 severity +
-                ' vulneability for ' +
+                " vulneability for " +
                 packageName +
-                ' in ' +
+                " in " +
                 displayName_1 +
-                ' - ' +
+                " - " +
                 advisory.url;
               logger_1.logger.error(logMessage_2);
             }
@@ -348,7 +381,7 @@ function audit(exceptions) {
             testsuites: [
               {
                 _attr: {
-                  name: 'Yarn Audit',
+                  name: "Yarn Audit",
                   failures: failures.length,
                   tests: totalDependencies,
                 },
@@ -372,21 +405,29 @@ function audit(exceptions) {
             failure = failures[i];
             if (
               !((_c =
-                (_b = failure === null || failure === void 0 ? void 0 : failure.data) === null || _b === void 0
+                (_b =
+                  failure === null || failure === void 0
+                    ? void 0
+                    : failure.data) === null || _b === void 0
                   ? void 0
                   : _b.resolution) === null || _c === void 0
                 ? void 0
                 : _c.path)
             ) {
-              logMessage_1 = 'irregular json = ' + JSON.stringify(failure);
-              logger_1.logger.error('Houston we have a problem.......');
+              logMessage_1 = "irregular json = " + JSON.stringify(failure);
+              logger_1.logger.error("Houston we have a problem.......");
               logger_1.logger.error(logMessage_1);
               process.exit(1);
             }
-            (_f = failure.data), (advisory = _f.advisory), (recommendation = _f.recommendation), (path_2 = _f.resolution.path);
-            (overview = advisory.overview), (module_name = advisory.module_name);
-            dependencyPath = path_2.split('>').length === 1 ? path_2 : path_2.split('>')[0];
-            message = [overview, recommendation].join('\n');
+            (_f = failure.data),
+              (advisory = _f.advisory),
+              (recommendation = _f.recommendation),
+              (path_2 = _f.resolution.path);
+            (overview = advisory.overview),
+              (module_name = advisory.module_name);
+            dependencyPath =
+              path_2.split(">").length === 1 ? path_2 : path_2.split(">")[0];
+            message = [overview, recommendation].join("\n");
             testCase = {
               testcase: [
                 {
@@ -400,7 +441,7 @@ function audit(exceptions) {
                   failure: [
                     {
                       _attr: {
-                        message: 'Dependency of ' + dependencyPath,
+                        message: "Dependency of " + dependencyPath,
                       },
                     },
                     message,
@@ -419,10 +460,10 @@ function audit(exceptions) {
           }
           fs_extra_1.default.emptyDirSync(ossIndex);
           fs_extra_1.default.writeFileSync(
-            path_1.default.join(ossIndex, 'junitReport.xml'),
-            (0, xml_1.default)(jsonResults, { indent: '  ', declaration: true }),
+            path_1.default.join(ossIndex, "junitReport.xml"),
+            (0, xml_1.default)(jsonResults, { indent: "  ", declaration: true })
           );
-          finalMessage = 'audit finished with ' + failures.length + ' found.';
+          finalMessage = "audit finished with " + failures.length + " found.";
           logger_1.logger.done(finalMessage);
           process.exit(0);
           return [3 /*break*/, 7];
@@ -438,11 +479,14 @@ function audit(exceptions) {
   });
 }
 exports.audit = audit;
-var program = (0, commander_1.createCommand)('audit-parser');
+var program = (0, commander_1.createCommand)("audit-parser");
 program
-  .description('run yarn audit against the yarn.lock file in current cwd')
-  .helpOption('-h, --help', 'show help')
-  .option('-e, --exceptions', 'a list of packages to ignore, i.e. angular 1.3 in bpm should be the only one')
+  .description("run yarn audit against the yarn.lock file in current cwd")
+  .helpOption("-h, --help", "show help")
+  .option(
+    "-e, --exceptions",
+    "a list of packages to ignore, i.e. angular 1.3 in bpm should be the only one"
+  )
   .action(function (_, options) {
     if (options === void 0) {
       options = [];

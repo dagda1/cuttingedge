@@ -1,14 +1,16 @@
-'use strict';
+"use strict";
 var __importDefault =
   (this && this.__importDefault) ||
   function (mod) {
     return mod && mod.__esModule ? mod : { default: mod };
   };
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.createCSSLoaders = exports.cssLoaders = void 0;
-var mini_css_extract_plugin_1 = __importDefault(require('mini-css-extract-plugin'));
+var mini_css_extract_plugin_1 = __importDefault(
+  require("mini-css-extract-plugin")
+);
 // import { createPostCssOptions } from '../createPostCssoptions';
-var constants_1 = require('../constants');
+var constants_1 = require("../constants");
 var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
   var importLoaders = _a.importLoaders;
   return [
@@ -17,7 +19,7 @@ var cssLoaders = function (isDevelopment, isProduction, isNode, _a) {
       options: {},
     },
     {
-      loader: 'css-loader',
+      loader: "css-loader",
       options: {
         importLoaders: importLoaders,
         sourceMap: true,
@@ -40,7 +42,7 @@ var createCSSLoaders = function (_a) {
       use: [
         mini_css_extract_plugin_1.default.loader,
         {
-          loader: require.resolve('css-loader'),
+          loader: require.resolve("css-loader"),
           options: {
             url: false,
           },
@@ -50,7 +52,10 @@ var createCSSLoaders = function (_a) {
     {
       test: constants_1.cssRegex,
       exclude: /\.vanilla\.css$/i,
-      use: (0, exports.cssLoaders)(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
+      use: (0, exports.cssLoaders)(isDevelopment, isProduction, isNode, {
+        modules: false,
+        importLoaders: 1,
+      }).filter(Boolean),
     },
   ];
 };

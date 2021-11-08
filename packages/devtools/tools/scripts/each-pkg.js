@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __assign =
   (this && this.__assign) ||
   function () {
@@ -22,20 +22,20 @@ var __importDefault =
   function (mod) {
     return mod && mod.__esModule ? mod : { default: mod };
   };
-Object.defineProperty(exports, '__esModule', { value: true });
-var fs_1 = __importDefault(require('fs'));
-var path_1 = __importDefault(require('path'));
-var commander_1 = require('commander');
-var paths_1 = require('../config/paths');
-var logger_1 = require('../scripts/logger');
-var child_process_1 = require('child_process');
+Object.defineProperty(exports, "__esModule", { value: true });
+var fs_1 = __importDefault(require("fs"));
+var path_1 = __importDefault(require("path"));
+var commander_1 = require("commander");
+var paths_1 = require("../config/paths");
+var logger_1 = require("../scripts/logger");
+var child_process_1 = require("child_process");
 function getPackages(packages) {
   return packages
     .filter(function (pkgPath) {
       return fs_1.default.lstatSync(pkgPath).isDirectory();
     })
     .map(function (pkgPath) {
-      var pkg = require(path_1.default.join(pkgPath, './package.json'));
+      var pkg = require(path_1.default.join(pkgPath, "./package.json"));
       return __assign(__assign({}, pkg), { path: pkgPath });
     });
 }
@@ -50,12 +50,12 @@ function getPackages(packages) {
  */
 function runPkgCmd(cmd, args, pkg) {
   return new Promise(function (resolve, reject) {
-    logger_1.logger.info(pkg.name + ' ' + cmd + ' ' + args.join(' '));
+    logger_1.logger.info(pkg.name + " " + cmd + " " + args.join(" "));
     var child = (0, child_process_1.spawn)(cmd, args, {
       stdio: [null, 1, 2],
       cwd: pkg.path,
     });
-    child.on('exit', function (code) {
+    child.on("exit", function (code) {
       if (code === 0) {
         resolve();
       } else {
@@ -64,16 +64,19 @@ function runPkgCmd(cmd, args, pkg) {
     });
   });
 }
-var program = (0, commander_1.createCommand)('each-pkg');
+var program = (0, commander_1.createCommand)("each-pkg");
 /**
  * Executes a command for each package, optionally filtered by changed
  * or new packages. Explicity providing a package name is also
  * supported in conjunction with the changed and new options.
  */
 program
-  .description('Executes the specified command for each package')
-  .arguments('<cmd> [args...]')
-  .option('-p, --package <name>', 'target a specific package (can be combined with the above)')
+  .description("Executes the specified command for each package")
+  .arguments("<cmd> [args...]")
+  .option(
+    "-p, --package <name>",
+    "target a specific package (can be combined with the above)"
+  )
   .parse(process.argv)
   .action(function (cmd, args) {
     var pkgs = getPackages(paths_1.paths.libPackages);
@@ -84,7 +87,7 @@ program
             return runPkgCmd(cmd, args, pkg);
           })
           .catch(function (e) {
-            logger_1.logger.error(pkg.name + ' failed with ' + e);
+            logger_1.logger.error(pkg.name + " failed with " + e);
             process.exit(1);
           });
       }, Promise.resolve())

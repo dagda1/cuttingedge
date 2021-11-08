@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __createBinding =
   (this && this.__createBinding) ||
   (Object.create
@@ -23,10 +23,10 @@ var __setModuleDefault =
   (this && this.__setModuleDefault) ||
   (Object.create
     ? function (o, v) {
-        Object.defineProperty(o, 'default', { enumerable: true, value: v });
+        Object.defineProperty(o, "default", { enumerable: true, value: v });
       }
     : function (o, v) {
-        o['default'] = v;
+        o["default"] = v;
       });
 var __importStar =
   (this && this.__importStar) ||
@@ -37,7 +37,7 @@ var __importStar =
     var result = {};
     if (mod != null) {
       for (var k in mod) {
-        if (k !== 'default' && Object.prototype.hasOwnProperty.call(mod, k)) {
+        if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) {
           __createBinding(result, mod, k);
         }
       }
@@ -65,13 +65,15 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator['throw'](value));
+          step(generator["throw"](value));
         } catch (e) {
           reject(e);
         }
       }
       function step(result) {
-        result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        result.done
+          ? resolve(result.value)
+          : adopt(result.value).then(fulfilled, rejected);
       }
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -96,7 +98,7 @@ var __generator =
       g;
     return (
       (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-      typeof Symbol === 'function' &&
+      typeof Symbol === "function" &&
         (g[Symbol.iterator] = function () {
           return this;
         }),
@@ -109,14 +111,19 @@ var __generator =
     }
     function step(op) {
       if (f) {
-        throw new TypeError('Generator is already executing.');
+        throw new TypeError("Generator is already executing.");
       }
       while (_) {
         try {
           if (
             ((f = 1),
             y &&
-              (t = op[0] & 2 ? y['return'] : op[0] ? y['throw'] || ((t = y['return']) && t.call(y), 0) : y.next) &&
+              (t =
+                op[0] & 2
+                  ? y["return"]
+                  : op[0]
+                  ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
+                  : y.next) &&
               !(t = t.call(y, op[1])).done)
           ) {
             return t;
@@ -142,7 +149,10 @@ var __generator =
               _.trys.pop();
               continue;
             default:
-              if (!((t = _.trys), (t = t.length > 0 && t[t.length - 1])) && (op[0] === 6 || op[0] === 2)) {
+              if (
+                !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
+                (op[0] === 6 || op[0] === 2)
+              ) {
                 _ = 0;
                 continue;
               }
@@ -185,52 +195,70 @@ var __importDefault =
   function (mod) {
     return mod && mod.__esModule ? mod : { default: mod };
   };
-Object.defineProperty(exports, '__esModule', { value: true });
-process.env.BABEL_ENV = 'development';
-process.env.NODE_ENV = 'development';
-process.on('unhandledRejection', function (err) {
+Object.defineProperty(exports, "__esModule", { value: true });
+process.env.BABEL_ENV = "development";
+process.env.NODE_ENV = "development";
+process.on("unhandledRejection", function (err) {
   throw err;
 });
-var webpack_dev_server_1 = __importDefault(require('webpack-dev-server'));
-var openBrowser_1 = __importDefault(require('react-dev-utils/openBrowser'));
-var paths_1 = require('../config/paths');
-var logger_1 = require('../scripts/logger');
-var WebpackDevServerUtils_1 = require('react-dev-utils/WebpackDevServerUtils');
-var webpack_1 = __importDefault(require('webpack'));
-var client_1 = require('../webpack/client');
-var build_config_1 = require('../config/build.config');
-var assert_ts_1 = require('assert-ts');
-var fs_extra_1 = __importDefault(require('fs-extra'));
-var createScaffold_1 = require('./createScaffold');
+var webpack_dev_server_1 = __importDefault(require("webpack-dev-server"));
+var openBrowser_1 = __importDefault(require("react-dev-utils/openBrowser"));
+var paths_1 = require("../config/paths");
+var logger_1 = require("../scripts/logger");
+var WebpackDevServerUtils_1 = require("react-dev-utils/WebpackDevServerUtils");
+var webpack_1 = __importDefault(require("webpack"));
+var client_1 = require("../webpack/client");
+var build_config_1 = require("../config/build.config");
+var assert_ts_1 = require("assert-ts");
+var fs_extra_1 = __importDefault(require("fs-extra"));
+var createScaffold_1 = require("./createScaffold");
 var devServer = build_config_1.config.devServer;
-(0, assert_ts_1.assert)(devServer, 'no devServer node');
-(0, assert_ts_1.assert)(devServer.publicDir, 'no publicDir');
-(0, assert_ts_1.assert)(devServer.entries, 'no devServer entries');
+(0, assert_ts_1.assert)(devServer, "no devServer node");
+(0, assert_ts_1.assert)(devServer.publicDir, "no publicDir");
+(0, assert_ts_1.assert)(devServer.entries, "no devServer entries");
 var DEFAULT_PORT = Number(process.env.PORT) || 3000;
-var HOST = process.env.HOST || '0.0.0.0';
+var HOST = process.env.HOST || "0.0.0.0";
 (function () {
   return __awaiter(void 0, void 0, void 0, function () {
-    var config, port, protocol, pkg, appName, proxySetting, urls, compiler, server_1, err_1;
+    var config,
+      port,
+      protocol,
+      pkg,
+      appName,
+      proxySetting,
+      urls,
+      compiler,
+      server_1,
+      err_1;
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
           _a.trys.push([0, 4, , 5]);
-          if (!fs_extra_1.default.existsSync(devServer.publicDir) && !fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)) {
+          if (
+            !fs_extra_1.default.existsSync(devServer.publicDir) &&
+            !fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)
+          ) {
             (0, createScaffold_1.scaffold)();
           }
-          if (!fs_extra_1.default.existsSync(devServer.publicDir) && fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)) {
+          if (
+            !fs_extra_1.default.existsSync(devServer.publicDir) &&
+            fs_extra_1.default.existsSync(paths_1.paths.devDirPublic)
+          ) {
             devServer.publicDir = paths_1.paths.devDirPublic;
             devServer.entries = paths_1.paths.devDir;
           }
           config = (0, client_1.configure)(devServer);
-          return [4 /*yield*/, (0, WebpackDevServerUtils_1.choosePort)(HOST, DEFAULT_PORT)];
+          return [
+            4 /*yield*/,
+            (0, WebpackDevServerUtils_1.choosePort)(HOST, DEFAULT_PORT),
+          ];
         case 1:
           port = _a.sent();
           if (port === null) {
-            logger_1.logger.error('We have not found a port.');
+            logger_1.logger.error("We have not found a port.");
             return [2 /*return*/];
           }
-          protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+          protocol = process.env.HTTPS === "true" ? "https" : "http";
           return [
             4 /*yield*/,
             Promise.resolve().then(function () {
@@ -248,19 +276,23 @@ var HOST = process.env.HOST || '0.0.0.0';
             urls: urls,
             useYarn: true,
           });
-          (0, assert_ts_1.assert)(!!config.devServer, 'no devServer in dev-server-start');
+          (0,
+          assert_ts_1.assert)(!!config.devServer, "no devServer in dev-server-start");
           config.devServer.proxy = (0, WebpackDevServerUtils_1.prepareProxy)(
             proxySetting,
             paths_1.paths.appPublic,
-            paths_1.paths.publicUrlOrPath,
+            paths_1.paths.publicUrlOrPath
           );
-          server_1 = new webpack_dev_server_1.default(config.devServer, compiler);
-          logger_1.logger.info('Starting the development server...\n');
+          server_1 = new webpack_dev_server_1.default(
+            config.devServer,
+            compiler
+          );
+          logger_1.logger.info("Starting the development server...\n");
           return [4 /*yield*/, server_1.start({ host: HOST, port: port })];
         case 3:
           _a.sent();
           (0, openBrowser_1.default)(urls.localUrlForBrowser);
-          ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+          ["SIGINT", "SIGTERM"].forEach(function (sig) {
             process.on(sig, function () {
               server_1.close();
               process.exit();

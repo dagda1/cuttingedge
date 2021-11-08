@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __assign =
   (this && this.__assign) ||
   function () {
@@ -17,7 +17,7 @@ var __assign =
       };
     return __assign.apply(this, arguments);
   };
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.createBabelConfig = exports.createBabelPresets = void 0;
 // import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -28,27 +28,27 @@ var createBabelPresets = function (_a) {
     isNode = _a.isNode,
     moduleFormat = _a.moduleFormat;
   var presetOptions = {
-    exclude: ['transform-typeof-symbol'],
-    modules: moduleFormat === 'esm' ? false : 'auto',
+    exclude: ["transform-typeof-symbol"],
+    modules: moduleFormat === "esm" ? false : "auto",
   };
   if (isNode) {
-    presetOptions.targets = { node: '14' };
+    presetOptions.targets = { node: "14" };
   } else {
-    presetOptions.useBuiltIns = 'entry';
+    presetOptions.useBuiltIns = "entry";
     presetOptions.corejs = 3;
     presetOptions.targets = {
-      edge: '17',
-      firefox: '60',
-      chrome: '67',
-      safari: '11.1',
-      ie: '11',
+      edge: "17",
+      firefox: "60",
+      chrome: "67",
+      safari: "11.1",
+      ie: "11",
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     };
   }
   return [
-    ['@babel/preset-env', __assign({}, presetOptions)],
+    ["@babel/preset-env", __assign({}, presetOptions)],
     [
-      require('@babel/preset-react').default,
+      require("@babel/preset-react").default,
       {
         development: isDevelopment,
         useBuiltIns: isDevelopment,
@@ -75,37 +75,37 @@ var createBabelConfig = function (_a) {
     }),
     // cacheDirectory: true,
     // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
-    sourceType: 'unambiguous',
+    sourceType: "unambiguous",
     plugins: [
-      'babel-plugin-macros',
-      'babel-plugin-annotate-pure-calls',
-      'babel-plugin-dev-expression',
+      "babel-plugin-macros",
+      "babel-plugin-annotate-pure-calls",
+      "babel-plugin-dev-expression",
       [
-        '@babel/plugin-proposal-class-properties',
+        "@babel/plugin-proposal-class-properties",
         {
           loose: true,
         },
       ],
-      ['@babel/plugin-proposal-decorators', { legacy: true }],
-      ['@babel/plugin-proposal-private-methods', { loose: true }],
-      ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
-      '@babel/plugin-proposal-numeric-separator',
+      ["@babel/plugin-proposal-decorators", { legacy: true }],
+      ["@babel/plugin-proposal-private-methods", { loose: true }],
+      ["@babel/plugin-proposal-private-property-in-object", { loose: true }],
+      "@babel/plugin-proposal-numeric-separator",
       [
-        '@babel/plugin-transform-runtime',
+        "@babel/plugin-transform-runtime",
         {
           corejs: false,
           helpers: true,
-          version: require('@babel/runtime/package.json').version,
+          version: require("@babel/runtime/package.json").version,
           regenerator: true,
-          useESModules: moduleFormat === 'esm',
+          useESModules: moduleFormat === "esm",
         },
       ],
-      '@babel/plugin-syntax-dynamic-import',
-      '@loadable/babel-plugin',
-      '@babel/plugin-proposal-optional-chaining',
-      '@babel/plugin-proposal-nullish-coalescing-operator',
-      '@vanilla-extract/babel-plugin',
-      hot && require.resolve('react-refresh/babel'),
+      "@babel/plugin-syntax-dynamic-import",
+      "@loadable/babel-plugin",
+      "@babel/plugin-proposal-optional-chaining",
+      "@babel/plugin-proposal-nullish-coalescing-operator",
+      "@vanilla-extract/babel-plugin",
+      hot && require.resolve("react-refresh/babel"),
     ].filter(Boolean),
   };
 };

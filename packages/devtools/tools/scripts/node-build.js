@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __awaiter =
   (this && this.__awaiter) ||
   function (thisArg, _arguments, P, generator) {
@@ -19,13 +19,15 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator['throw'](value));
+          step(generator["throw"](value));
         } catch (e) {
           reject(e);
         }
       }
       function step(result) {
-        result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        result.done
+          ? resolve(result.value)
+          : adopt(result.value).then(fulfilled, rejected);
       }
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -50,7 +52,7 @@ var __generator =
       g;
     return (
       (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-      typeof Symbol === 'function' &&
+      typeof Symbol === "function" &&
         (g[Symbol.iterator] = function () {
           return this;
         }),
@@ -63,14 +65,19 @@ var __generator =
     }
     function step(op) {
       if (f) {
-        throw new TypeError('Generator is already executing.');
+        throw new TypeError("Generator is already executing.");
       }
       while (_) {
         try {
           if (
             ((f = 1),
             y &&
-              (t = op[0] & 2 ? y['return'] : op[0] ? y['throw'] || ((t = y['return']) && t.call(y), 0) : y.next) &&
+              (t =
+                op[0] & 2
+                  ? y["return"]
+                  : op[0]
+                  ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
+                  : y.next) &&
               !(t = t.call(y, op[1])).done)
           ) {
             return t;
@@ -96,7 +103,10 @@ var __generator =
               _.trys.pop();
               continue;
             default:
-              if (!((t = _.trys), (t = t.length > 0 && t[t.length - 1])) && (op[0] === 6 || op[0] === 2)) {
+              if (
+                !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
+                (op[0] === 6 || op[0] === 2)
+              ) {
                 _ = 0;
                 continue;
               }
@@ -134,15 +144,22 @@ var __generator =
       return { value: op[0] ? op[1] : void 0, done: true };
     }
   };
-Object.defineProperty(exports, '__esModule', { value: true });
-var build_1 = require('./build');
-var copy_assets_1 = require('./copy-assets');
+Object.defineProperty(exports, "__esModule", { value: true });
+var build_1 = require("./build");
+var copy_assets_1 = require("./copy-assets");
 (function () {
   return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
-          return [4 /*yield*/, (0, build_1.build)({ buildClient: false, buildServer: false, buildNode: true })];
+          return [
+            4 /*yield*/,
+            (0, build_1.build)({
+              buildClient: false,
+              buildServer: false,
+              buildNode: true,
+            }),
+          ];
         case 1:
           _a.sent();
           (0, copy_assets_1.copyAssets)();

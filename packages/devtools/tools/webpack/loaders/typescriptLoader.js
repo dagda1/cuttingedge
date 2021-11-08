@@ -1,8 +1,8 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.createTypescriptLoader = void 0;
-var paths_1 = require('../../config/paths');
-var createBabelConfig_1 = require('../../scripts/createBabelConfig');
+var paths_1 = require("../../config/paths");
+var createBabelConfig_1 = require("../../scripts/createBabelConfig");
 var createTypescriptLoader = function (_a) {
   var isDevelopment = _a.isDevelopment,
     isNode = _a.isNode,
@@ -10,12 +10,14 @@ var createTypescriptLoader = function (_a) {
   var isProduction = !isDevelopment;
   var options = {
     silent: isDevelopment,
-    configFile: isProduction ? paths_1.paths.tsConfigProduction : paths_1.paths.tsConfig,
+    configFile: isProduction
+      ? paths_1.paths.tsConfigProduction
+      : paths_1.paths.tsConfig,
     transpileOnly: isDevelopment,
     happyPackMode: isDevelopment,
     projectReferences: paths_1.paths.projectReferences,
     compilerOptions: {},
-    logLevel: 'WARN',
+    logLevel: "WARN",
   };
   return [
     {
@@ -23,7 +25,7 @@ var createTypescriptLoader = function (_a) {
       exclude: /\/node_modules\//,
       use: [
         {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: (0, createBabelConfig_1.createBabelConfig)({
             isDevelopment: isDevelopment,
             isProduction: isProduction,
@@ -32,7 +34,7 @@ var createTypescriptLoader = function (_a) {
           }),
         },
         {
-          loader: 'ts-loader',
+          loader: "ts-loader",
           options: options,
         },
       ].filter(Boolean),

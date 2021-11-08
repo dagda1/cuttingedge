@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __assign =
   (this && this.__assign) ||
   function () {
@@ -37,13 +37,15 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator['throw'](value));
+          step(generator["throw"](value));
         } catch (e) {
           reject(e);
         }
       }
       function step(result) {
-        result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        result.done
+          ? resolve(result.value)
+          : adopt(result.value).then(fulfilled, rejected);
       }
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -68,7 +70,7 @@ var __generator =
       g;
     return (
       (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-      typeof Symbol === 'function' &&
+      typeof Symbol === "function" &&
         (g[Symbol.iterator] = function () {
           return this;
         }),
@@ -81,14 +83,19 @@ var __generator =
     }
     function step(op) {
       if (f) {
-        throw new TypeError('Generator is already executing.');
+        throw new TypeError("Generator is already executing.");
       }
       while (_) {
         try {
           if (
             ((f = 1),
             y &&
-              (t = op[0] & 2 ? y['return'] : op[0] ? y['throw'] || ((t = y['return']) && t.call(y), 0) : y.next) &&
+              (t =
+                op[0] & 2
+                  ? y["return"]
+                  : op[0]
+                  ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
+                  : y.next) &&
               !(t = t.call(y, op[1])).done)
           ) {
             return t;
@@ -114,7 +121,10 @@ var __generator =
               _.trys.pop();
               continue;
             default:
-              if (!((t = _.trys), (t = t.length > 0 && t[t.length - 1])) && (op[0] === 6 || op[0] === 2)) {
+              if (
+                !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
+                (op[0] === 6 || op[0] === 2)
+              ) {
                 _ = 0;
                 continue;
               }
@@ -157,20 +167,20 @@ var __importDefault =
   function (mod) {
     return mod && mod.__esModule ? mod : { default: mod };
   };
-Object.defineProperty(exports, '__esModule', { value: true });
-process.env.NODE_ENV = 'development';
-var fs_extra_1 = __importDefault(require('fs-extra'));
-var webpack_1 = __importDefault(require('webpack'));
-var paths_1 = require('../config/paths');
-var webpack_dev_server_1 = __importDefault(require('webpack-dev-server'));
-var printErrors_1 = __importDefault(require('./printErrors'));
-var logger_1 = require('./logger');
-var webpack_merge_1 = require('webpack-merge');
-var client_1 = require('../webpack/client');
-var server_1 = require('../webpack/server');
-var build_config_1 = require('../config/build.config');
-var getUrlParts_1 = require('../webpack/getUrlParts');
-var empty_build_dir_1 = require('./empty-build-dir');
+Object.defineProperty(exports, "__esModule", { value: true });
+process.env.NODE_ENV = "development";
+var fs_extra_1 = __importDefault(require("fs-extra"));
+var webpack_1 = __importDefault(require("webpack"));
+var paths_1 = require("../config/paths");
+var webpack_dev_server_1 = __importDefault(require("webpack-dev-server"));
+var printErrors_1 = __importDefault(require("./printErrors"));
+var logger_1 = require("./logger");
+var webpack_merge_1 = require("webpack-merge");
+var client_1 = require("../webpack/client");
+var server_1 = require("../webpack/server");
+var build_config_1 = require("../config/build.config");
+var getUrlParts_1 = require("../webpack/getUrlParts");
+var empty_build_dir_1 = require("./empty-build-dir");
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 process.noDeprecation = true;
 function compile(config) {
@@ -179,7 +189,7 @@ function compile(config) {
     compiler = (0, webpack_1.default)(config);
   } catch (e) {
     if (e instanceof Error) {
-      (0, printErrors_1.default)('Failed to compile.', [e]);
+      (0, printErrors_1.default)("Failed to compile.", [e]);
     }
     process.exit(1);
   }
@@ -190,32 +200,40 @@ function compile(config) {
 process.env.INSPECT_BRK =
   process.argv.find(function (arg) {
     return arg.match(/--inspect-brk(=|$)/);
-  }) || '';
+  }) || "";
 process.env.INSPECT =
   process.argv.find(function (arg) {
     return arg.match(/--inspect(=|$)/);
-  }) || '';
+  }) || "";
 function main() {
   return new Promise(function (resolve) {
     var _a;
-    logger_1.logger.start('Compiling...');
+    logger_1.logger.start("Compiling...");
     fs_extra_1.default.removeSync(paths_1.paths.appManifest);
     var localBuildConfig = require(paths_1.paths.localBuildConfig);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    var buildConfig = (0, webpack_merge_1.merge)(build_config_1.config, localBuildConfig);
-    var port = (0, getUrlParts_1.getUrlParts)({ ssrBuild: true, isProduction: false }).port;
-    var clientConfig = (0, client_1.configure)(__assign(__assign({}, buildConfig.client), { isStaticBuild: false }));
+    var buildConfig = (0, webpack_merge_1.merge)(
+      build_config_1.config,
+      localBuildConfig
+    );
+    var port = (0, getUrlParts_1.getUrlParts)({
+      ssrBuild: true,
+      isProduction: false,
+    }).port;
+    var clientConfig = (0, client_1.configure)(
+      __assign(__assign({}, buildConfig.client), { isStaticBuild: false })
+    );
     var serverConfig = (0, server_1.configure)(buildConfig.server);
     var clientCompiler = compile(clientConfig);
     var serverCompiler = compile(serverConfig);
     var watching;
-    clientCompiler.hooks.done.tap('cutting', function () {
+    clientCompiler.hooks.done.tap("cutting", function () {
       watching = serverCompiler.watch(
         {},
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         function (stats) {
           return {};
-        },
+        }
       );
     });
     /**
@@ -223,13 +241,22 @@ function main() {
      * This will actually run on a different port than the main app.
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    var clientDevServer = new webpack_dev_server_1.default(clientConfig.devServer, clientCompiler);
-    clientDevServer.listen(port, (_a = clientConfig.devServer) === null || _a === void 0 ? void 0 : _a.host, function (err) {
-      if (err) {
-        logger_1.logger.error(err);
+    var clientDevServer = new webpack_dev_server_1.default(
+      clientConfig.devServer,
+      clientCompiler
+    );
+    clientDevServer.listen(
+      port,
+      (_a = clientConfig.devServer) === null || _a === void 0
+        ? void 0
+        : _a.host,
+      function (err) {
+        if (err) {
+          logger_1.logger.error(err);
+        }
       }
-    });
-    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+    );
+    ["SIGINT", "SIGTERM"].forEach(function (sig) {
       process.on(sig, function () {
         if (clientDevServer) {
           clientDevServer.close();

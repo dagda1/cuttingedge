@@ -1,5 +1,5 @@
-'use strict';
-var root = typeof window === 'undefined' ? global : window;
+"use strict";
+var root = typeof window === "undefined" ? global : window;
 root.scrollTo = function () {
   return {};
 };

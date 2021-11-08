@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __assign =
   (this && this.__assign) ||
   function () {
@@ -41,10 +41,10 @@ var __setModuleDefault =
   (this && this.__setModuleDefault) ||
   (Object.create
     ? function (o, v) {
-        Object.defineProperty(o, 'default', { enumerable: true, value: v });
+        Object.defineProperty(o, "default", { enumerable: true, value: v });
       }
     : function (o, v) {
-        o['default'] = v;
+        o["default"] = v;
       });
 var __importStar =
   (this && this.__importStar) ||
@@ -55,7 +55,7 @@ var __importStar =
     var result = {};
     if (mod != null) {
       for (var k in mod) {
-        if (k !== 'default' && Object.prototype.hasOwnProperty.call(mod, k)) {
+        if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) {
           __createBinding(result, mod, k);
         }
       }
@@ -83,13 +83,15 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator['throw'](value));
+          step(generator["throw"](value));
         } catch (e) {
           reject(e);
         }
       }
       function step(result) {
-        result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        result.done
+          ? resolve(result.value)
+          : adopt(result.value).then(fulfilled, rejected);
       }
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -114,7 +116,7 @@ var __generator =
       g;
     return (
       (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-      typeof Symbol === 'function' &&
+      typeof Symbol === "function" &&
         (g[Symbol.iterator] = function () {
           return this;
         }),
@@ -127,14 +129,19 @@ var __generator =
     }
     function step(op) {
       if (f) {
-        throw new TypeError('Generator is already executing.');
+        throw new TypeError("Generator is already executing.");
       }
       while (_) {
         try {
           if (
             ((f = 1),
             y &&
-              (t = op[0] & 2 ? y['return'] : op[0] ? y['throw'] || ((t = y['return']) && t.call(y), 0) : y.next) &&
+              (t =
+                op[0] & 2
+                  ? y["return"]
+                  : op[0]
+                  ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
+                  : y.next) &&
               !(t = t.call(y, op[1])).done)
           ) {
             return t;
@@ -160,7 +167,10 @@ var __generator =
               _.trys.pop();
               continue;
             default:
-              if (!((t = _.trys), (t = t.length > 0 && t[t.length - 1])) && (op[0] === 6 || op[0] === 2)) {
+              if (
+                !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
+                (op[0] === 6 || op[0] === 2)
+              ) {
                 _ = 0;
                 continue;
               }
@@ -207,9 +217,12 @@ var __rest =
         t[p] = s[p];
       }
     }
-    if (s != null && typeof Object.getOwnPropertySymbols === 'function') {
+    if (s != null && typeof Object.getOwnPropertySymbols === "function") {
       for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-        if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) {
+        if (
+          e.indexOf(p[i]) < 0 &&
+          Object.prototype.propertyIsEnumerable.call(s, p[i])
+        ) {
           t[p[i]] = s[p[i]];
         }
       }
@@ -219,7 +232,7 @@ var __rest =
 var __read =
   (this && this.__read) ||
   function (o, n) {
-    var m = typeof Symbol === 'function' && o[Symbol.iterator];
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) {
       return o;
     }
@@ -235,7 +248,7 @@ var __read =
       e = { error: error };
     } finally {
       try {
-        if (r && !r.done && (m = i['return'])) {
+        if (r && !r.done && (m = i["return"])) {
           m.call(i);
         }
       } finally {
@@ -264,13 +277,13 @@ var __spreadArray =
 var __values =
   (this && this.__values) ||
   function (o) {
-    var s = typeof Symbol === 'function' && Symbol.iterator,
+    var s = typeof Symbol === "function" && Symbol.iterator,
       m = s && o[s],
       i = 0;
     if (m) {
       return m.call(o);
     }
-    if (o && typeof o.length === 'number') {
+    if (o && typeof o.length === "number") {
       return {
         next: function () {
           if (o && i >= o.length) {
@@ -280,51 +293,65 @@ var __values =
         },
       };
     }
-    throw new TypeError(s ? 'Object is not iterable.' : 'Symbol.iterator is not defined.');
+    throw new TypeError(
+      s ? "Object is not iterable." : "Symbol.iterator is not defined."
+    );
   };
 var __importDefault =
   (this && this.__importDefault) ||
   function (mod) {
     return mod && mod.__esModule ? mod : { default: mod };
   };
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-var rollup_1 = require('rollup');
-var paths_1 = require('../config/paths');
-var fs_extra_1 = __importDefault(require('fs-extra'));
-var path_1 = __importDefault(require('path'));
-var rollup_plugin_typescript2_1 = __importDefault(require('rollup-plugin-typescript2'));
-var logger_1 = require('./logger');
-var plugin_node_resolve_1 = __importDefault(require('@rollup/plugin-node-resolve'));
-var assert_ts_1 = require('assert-ts');
-var rollup_plugin_inject_process_env_1 = __importDefault(require('rollup-plugin-inject-process-env'));
-var plugin_babel_1 = __importDefault(require('@rollup/plugin-babel'));
-var plugin_json_1 = __importDefault(require('@rollup/plugin-json'));
-var rollup_plugin_sourcemaps_1 = __importDefault(require('rollup-plugin-sourcemaps'));
-var rollup_plugin_terser_1 = require('rollup-plugin-terser');
-var copy_assets_1 = require('./copy-assets');
-var rollup_plugin_postcss_1 = __importDefault(require('rollup-plugin-postcss'));
-var rollup_plugin_md_1 = require('@cutting/rollup-plugin-md');
+var rollup_1 = require("rollup");
+var paths_1 = require("../config/paths");
+var fs_extra_1 = __importDefault(require("fs-extra"));
+var path_1 = __importDefault(require("path"));
+var rollup_plugin_typescript2_1 = __importDefault(
+  require("rollup-plugin-typescript2")
+);
+var logger_1 = require("./logger");
+var plugin_node_resolve_1 = __importDefault(
+  require("@rollup/plugin-node-resolve")
+);
+var assert_ts_1 = require("assert-ts");
+var rollup_plugin_inject_process_env_1 = __importDefault(
+  require("rollup-plugin-inject-process-env")
+);
+var plugin_babel_1 = __importDefault(require("@rollup/plugin-babel"));
+var plugin_json_1 = __importDefault(require("@rollup/plugin-json"));
+var rollup_plugin_sourcemaps_1 = __importDefault(
+  require("rollup-plugin-sourcemaps")
+);
+var rollup_plugin_terser_1 = require("rollup-plugin-terser");
+var copy_assets_1 = require("./copy-assets");
+var rollup_plugin_postcss_1 = __importDefault(require("rollup-plugin-postcss"));
+var rollup_plugin_md_1 = require("@cutting/rollup-plugin-md");
 // @ts-ignore
-var rollup_plugin_svgo_1 = __importDefault(require('rollup-plugin-svgo'));
+var rollup_plugin_svgo_1 = __importDefault(require("rollup-plugin-svgo"));
 // @ts-ignore
-var rollup_plugin_eslint_1 = __importDefault(require('@rbnlffl/rollup-plugin-eslint'));
+var rollup_plugin_eslint_1 = __importDefault(
+  require("@rbnlffl/rollup-plugin-eslint")
+);
 // @ts-ignore
-var postcss_url_1 = __importDefault(require('postcss-url'));
+var postcss_url_1 = __importDefault(require("postcss-url"));
 // @ts-ignore
-var autoprefixer_1 = __importDefault(require('autoprefixer'));
-var plugin_commonjs_1 = __importDefault(require('@rollup/plugin-commonjs'));
-var createBabelConfig_1 = require('./createBabelConfig');
-var helpers_1 = require('../rollup/helpers');
-var write_package_1 = require('./write-package');
-var csv_1 = require('../rollup/plugins/csv');
-var postcss_import_1 = __importDefault(require('postcss-import'));
-var empty_build_dir_1 = require('./empty-build-dir');
-var core_1 = require('@babel/core');
-var commander_1 = require('commander');
-var rollup_plugin_visualizer_1 = require('rollup-plugin-visualizer');
-var rollup_plugin_size_snapshot_1 = require('rollup-plugin-size-snapshot');
-logger_1.logger.debug('using ' + path_1.default.basename(paths_1.paths.tsConfigProduction));
+var autoprefixer_1 = __importDefault(require("autoprefixer"));
+var plugin_commonjs_1 = __importDefault(require("@rollup/plugin-commonjs"));
+var createBabelConfig_1 = require("./createBabelConfig");
+var helpers_1 = require("../rollup/helpers");
+var write_package_1 = require("./write-package");
+var csv_1 = require("../rollup/plugins/csv");
+var postcss_import_1 = __importDefault(require("postcss-import"));
+var empty_build_dir_1 = require("./empty-build-dir");
+var core_1 = require("@babel/core");
+var commander_1 = require("commander");
+var rollup_plugin_visualizer_1 = require("rollup-plugin-visualizer");
+var rollup_plugin_size_snapshot_1 = require("rollup-plugin-size-snapshot");
+logger_1.logger.debug(
+  "using " + path_1.default.basename(paths_1.paths.tsConfigProduction)
+);
 function generateBundledModule(_a) {
   var packageName = _a.packageName,
     entryFile = _a.entryFile,
@@ -333,12 +360,19 @@ function generateBundledModule(_a) {
     vizualize = _a.vizualize,
     analyze = _a.analyze;
   return __awaiter(this, void 0, void 0, function () {
-    var minify, babelConfig, bundle, pkgName, extension, fileName, outputFileName;
+    var minify,
+      babelConfig,
+      bundle,
+      pkgName,
+      extension,
+      fileName,
+      outputFileName;
     return __generator(this, function (_b) {
       switch (_b.label) {
         case 0:
-          (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(entryFile), 'Input file ' + entryFile + ' does not exist');
-          minify = env === 'production';
+          (0,
+          assert_ts_1.assert)(fs_extra_1.default.existsSync(entryFile), "Input file " + entryFile + " does not exist");
+          minify = env === "production";
           babelConfig = __rest(
             (0, createBabelConfig_1.createBabelConfig)({
               isDevelopment: false,
@@ -346,17 +380,17 @@ function generateBundledModule(_a) {
               isNode: false,
               moduleFormat: moduleFormat,
             }),
-            [],
+            []
           );
           return [
             4 /*yield*/,
             (0, rollup_1.rollup)({
               input: entryFile,
               external: function (id) {
-                if (id === 'babel-plugin-transform-async-to-promises/helpers') {
+                if (id === "babel-plugin-transform-async-to-promises/helpers") {
                   return false;
                 }
-                return !id.startsWith('.') && !path_1.default.isAbsolute(id);
+                return !id.startsWith(".") && !path_1.default.isAbsolute(id);
               },
               treeshake: {
                 propertyReadSideEffects: false,
@@ -367,18 +401,36 @@ function generateBundledModule(_a) {
                   fix: false,
                   throwOnError: true,
                   throwOnWarning: true,
-                  extensions: ['.ts', '.tsx', '.test.ts', '.test.tsx'],
-                  filterInclude: 'src/**',
-                  filterExclude: ['**/*.scss', '**/*.css', '**/*.md', '**/*.csv', 'dist/**', '**/*.json'],
+                  extensions: [".ts", ".tsx", ".test.ts", ".test.tsx"],
+                  filterInclude: "src/**",
+                  filterExclude: [
+                    "**/*.scss",
+                    "**/*.css",
+                    "**/*.md",
+                    "**/*.csv",
+                    "dist/**",
+                    "**/*.json",
+                  ],
                   useEslintrc: true,
                 }),
                 (0, plugin_node_resolve_1.default)({
-                  mainFields: ['module', 'browser', 'main'],
-                  extensions: ['.mjs', '.cjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
+                  mainFields: ["module", "browser", "main"],
+                  extensions: [
+                    ".mjs",
+                    ".cjs",
+                    ".js",
+                    ".ts",
+                    ".tsx",
+                    ".json",
+                    ".jsx",
+                  ],
                 }),
                 (0, plugin_commonjs_1.default)({
                   // use a regex to make sure to include eventual hoisted packages
-                  include: moduleFormat === 'umd' ? /\/node_modules\// : /\/regenerator-runtime\//,
+                  include:
+                    moduleFormat === "umd"
+                      ? /\/node_modules\//
+                      : /\/regenerator-runtime\//,
                 }),
                 (0, plugin_json_1.default)(),
                 (0, rollup_plugin_md_1.md)(),
@@ -387,40 +439,57 @@ function generateBundledModule(_a) {
                   modules: false,
                   autoModules: true,
                   sourceMap: true,
-                  use: ['sass'],
+                  use: ["sass"],
                   plugins: [
                     (0, postcss_import_1.default)(),
                     (0, autoprefixer_1.default)(),
                     (0, postcss_url_1.default)({
-                      url: 'inline',
+                      url: "inline",
                     }),
                   ],
                 }),
                 (0, csv_1.csv)(),
                 (0, rollup_plugin_typescript2_1.default)({
-                  typescript: require('typescript'),
+                  typescript: require("typescript"),
                   tsconfig: paths_1.paths.tsConfigProduction,
                   abortOnError: true,
                   tsconfigDefaults: {
                     compilerOptions: {
                       sourceMap: true,
                       declaration: true,
-                      target: 'esnext',
-                      jsx: 'react-jsx',
+                      target: "esnext",
+                      jsx: "react-jsx",
                     },
                     useTsconfigDeclarationDir: true,
                   },
                   tsconfigOverride: {
                     compilerOptions: {
                       sourceMap: true,
-                      target: 'esnext',
+                      target: "esnext",
                     },
                   },
                 }),
                 (0, plugin_babel_1.default)(
-                  __assign(__assign({ exclude: /\/node_modules\/(core-js)\//, babelHelpers: 'runtime' }, babelConfig), {
-                    extensions: __spreadArray(__spreadArray([], __read(core_1.DEFAULT_EXTENSIONS), false), ['ts', 'tsx'], false),
-                  }),
+                  __assign(
+                    __assign(
+                      {
+                        exclude: /\/node_modules\/(core-js)\//,
+                        babelHelpers: "runtime",
+                      },
+                      babelConfig
+                    ),
+                    {
+                      extensions: __spreadArray(
+                        __spreadArray(
+                          [],
+                          __read(core_1.DEFAULT_EXTENSIONS),
+                          false
+                        ),
+                        ["ts", "tsx"],
+                        false
+                      ),
+                    }
+                  )
                 ),
                 (0, rollup_plugin_inject_process_env_1.default)({
                   NODE_ENV: env,
@@ -435,16 +504,16 @@ function generateBundledModule(_a) {
                       passes: 10,
                     },
                     ecma: 5,
-                    toplevel: moduleFormat === 'cjs',
+                    toplevel: moduleFormat === "cjs",
                   }),
                 (0, rollup_plugin_sourcemaps_1.default)(),
                 vizualize &&
-                  moduleFormat === 'esm' &&
+                  moduleFormat === "esm" &&
                   (0, rollup_plugin_visualizer_1.visualizer)({
                     open: true,
                     gzipSize: true,
                     sourcemap: true,
-                    template: 'sunburst',
+                    template: "sunburst",
                   }),
               ].filter(Boolean),
             }),
@@ -452,22 +521,33 @@ function generateBundledModule(_a) {
         case 1:
           bundle = _b.sent();
           pkgName = (0, helpers_1.safePackageName)(packageName);
-          extension = env === 'production' ? 'min.js' : 'js';
-          fileName = ['esm', 'umd'].includes(moduleFormat) ? 'index.js' : pkgName + '.cjs.' + env + '.' + extension;
-          outputFileName = path_1.default.join(paths_1.paths.appBuild, moduleFormat, fileName);
-          logger_1.logger.info('writing ' + path_1.default.basename(outputFileName) + ' for ' + packageName);
+          extension = env === "production" ? "min.js" : "js";
+          fileName = ["esm", "umd"].includes(moduleFormat)
+            ? "index.js"
+            : pkgName + ".cjs." + env + "." + extension;
+          outputFileName = path_1.default.join(
+            paths_1.paths.appBuild,
+            moduleFormat,
+            fileName
+          );
+          logger_1.logger.info(
+            "writing " +
+              path_1.default.basename(outputFileName) +
+              " for " +
+              packageName
+          );
           return [
             4 /*yield*/,
             bundle.write({
               file: outputFileName,
               format: moduleFormat,
               name: packageName,
-              exports: 'named',
+              exports: "named",
               sourcemap: true,
-              esModule: moduleFormat !== 'umd',
-              interop: 'auto',
+              esModule: moduleFormat !== "umd",
+              interop: "auto",
               freeze: false,
-              globals: { react: 'React' },
+              globals: { react: "React" },
             }),
           ];
         case 2:
@@ -480,25 +560,35 @@ function generateBundledModule(_a) {
 }
 var getInputFile = function (packageName, inputFileOverride) {
   if (inputFileOverride) {
-    (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(inputFileOverride), 'no --input-file found at ' + inputFileOverride);
+    (0, assert_ts_1.assert)(
+      fs_extra_1.default.existsSync(inputFileOverride),
+      "no --input-file found at " + inputFileOverride
+    );
     return inputFileOverride;
   }
   var candidates = [];
   [
     packageName,
-    path_1.default.join(packageName, 'index'),
-    'index',
-    path_1.default.join('bin', (0, helpers_1.safePackageName)(packageName)),
+    path_1.default.join(packageName, "index"),
+    "index",
+    path_1.default.join("bin", (0, helpers_1.safePackageName)(packageName)),
   ].forEach(function (candidate) {
-    ['.ts', '.tsx'].forEach(function (fileType) {
-      candidates.push(path_1.default.join(paths_1.paths.appSrc, '' + candidate + fileType));
+    [".ts", ".tsx"].forEach(function (fileType) {
+      candidates.push(
+        path_1.default.join(paths_1.paths.appSrc, "" + candidate + fileType)
+      );
     });
   });
   var inputFile = candidates.find(function (candidate) {
     return fs_extra_1.default.existsSync(candidate);
   });
-  (0, assert_ts_1.assert)(!!inputFile, 'No rootFile found for rollup');
-  logger_1.logger.start('using input file ' + path_1.default.basename(inputFile) + ' for ' + packageName);
+  (0, assert_ts_1.assert)(!!inputFile, "No rootFile found for rollup");
+  logger_1.logger.start(
+    "using input file " +
+      path_1.default.basename(inputFile) +
+      " for " +
+      packageName
+  );
   return inputFile;
 };
 function build(_a) {
@@ -528,7 +618,7 @@ function build(_a) {
       switch (_d.label) {
         case 0:
           (0, empty_build_dir_1.emptyBuildDir)();
-          pkgJsonPath = path_1.default.join(process.cwd(), 'package.json');
+          pkgJsonPath = path_1.default.join(process.cwd(), "package.json");
           return [
             4 /*yield*/,
             Promise.resolve().then(function () {
@@ -540,12 +630,12 @@ function build(_a) {
           packageName = pkg.name;
           entryFile = getInputFile(packageName, inputFile);
           configs = [
-            { moduleFormat: 'cjs', env: 'development' },
-            { moduleFormat: 'cjs', env: 'production' },
-            { moduleFormat: 'esm', env: 'production' },
-            { moduleFormat: 'umd', env: 'production' },
+            { moduleFormat: "cjs", env: "development" },
+            { moduleFormat: "cjs", env: "production" },
+            { moduleFormat: "esm", env: "production" },
+            { moduleFormat: "umd", env: "production" },
           ];
-          logger_1.logger.info('Generating ' + packageName + ' bundle.');
+          logger_1.logger.info("Generating " + packageName + " bundle.");
           _d.label = 2;
         case 2:
           _d.trys.push([2, 7, 8, 9]);
@@ -555,7 +645,9 @@ function build(_a) {
           if (!!configs_1_1.done) {
             return [3 /*break*/, 6];
           }
-          (_b = configs_1_1.value), (moduleFormat = _b.moduleFormat), (env = _b.env);
+          (_b = configs_1_1.value),
+            (moduleFormat = _b.moduleFormat),
+            (env = _b.env);
           return [
             4 /*yield*/,
             generateBundledModule({
@@ -595,28 +687,31 @@ function build(_a) {
         case 10:
           _d.sent();
           pkgJson = __assign({}, pkg);
-          if (typeof pkgJson.exports !== 'undefined') {
+          if (typeof pkgJson.exports !== "undefined") {
             return [2 /*return*/];
           }
           buildDir = path_1.default.basename(paths_1.paths.appBuild);
-          commonjsFile = path_1.default.join(buildDir, 'cjs', 'index.js');
-          esmFile = path_1.default.join(buildDir, 'esm', 'index.js');
+          commonjsFile = path_1.default.join(buildDir, "cjs", "index.js");
+          esmFile = path_1.default.join(buildDir, "esm", "index.js");
           pkgJson.module = esmFile;
-          umdFile = path_1.default.join(buildDir, 'umd', 'index.js');
+          umdFile = path_1.default.join(buildDir, "umd", "index.js");
           pkgJson.browser = umdFile;
-          dtsFile = path_1.default.join(buildDir, 'esm', 'index.d.ts');
+          dtsFile = path_1.default.join(buildDir, "esm", "index.d.ts");
           pkgJson.types = dtsFile;
           pkgJson.exports = {
-            import: './' + esmFile,
-            require: './' + commonjsFile,
-            browser: './' + umdFile,
+            import: "./" + esmFile,
+            require: "./" + commonjsFile,
+            browser: "./" + umdFile,
           };
           pkgJson.typesVersions = {
-            '*': {
-              '*': ['' + dtsFile],
+            "*": {
+              "*": ["" + dtsFile],
             },
           };
-          return [4 /*yield*/, (0, write_package_1.writeToPackage)(pkgJsonPath, pkgJson)];
+          return [
+            4 /*yield*/,
+            (0, write_package_1.writeToPackage)(pkgJsonPath, pkgJson),
+          ];
         case 11:
           _d.sent();
           return [2 /*return*/];
@@ -624,12 +719,12 @@ function build(_a) {
     });
   });
 }
-var program = (0, commander_1.createCommand)('rollup');
+var program = (0, commander_1.createCommand)("rollup");
 program
-  .description('execute a rollup build')
-  .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)
-  .option('-a, --analyze', 'analyze the bundle', false)
-  .option('-i, --input-file <path>', 'the entry file')
+  .description("execute a rollup build")
+  .option("-v, --vizualize", "run the rollup-plugin-visualizer", false)
+  .option("-a, --analyze", "analyze the bundle", false)
+  .option("-i, --input-file <path>", "the entry file")
   .parse(process.argv)
   .action(function (_a) {
     var vizualize = _a.vizualize,
@@ -641,10 +736,17 @@ program
         switch (_b.label) {
           case 0:
             _b.trys.push([0, 2, , 3]);
-            return [4 /*yield*/, build({ vizualize: vizualize, inputFile: inputFile, analyze: analyze })];
+            return [
+              4 /*yield*/,
+              build({
+                vizualize: vizualize,
+                inputFile: inputFile,
+                analyze: analyze,
+              }),
+            ];
           case 1:
             _b.sent();
-            logger_1.logger.done('finished building');
+            logger_1.logger.done("finished building");
             return [3 /*break*/, 3];
           case 2:
             err_1 = _b.sent();

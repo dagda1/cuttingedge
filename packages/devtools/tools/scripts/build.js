@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __assign =
   (this && this.__assign) ||
   function () {
@@ -37,13 +37,15 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator['throw'](value));
+          step(generator["throw"](value));
         } catch (e) {
           reject(e);
         }
       }
       function step(result) {
-        result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        result.done
+          ? resolve(result.value)
+          : adopt(result.value).then(fulfilled, rejected);
       }
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -68,7 +70,7 @@ var __generator =
       g;
     return (
       (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-      typeof Symbol === 'function' &&
+      typeof Symbol === "function" &&
         (g[Symbol.iterator] = function () {
           return this;
         }),
@@ -81,14 +83,19 @@ var __generator =
     }
     function step(op) {
       if (f) {
-        throw new TypeError('Generator is already executing.');
+        throw new TypeError("Generator is already executing.");
       }
       while (_) {
         try {
           if (
             ((f = 1),
             y &&
-              (t = op[0] & 2 ? y['return'] : op[0] ? y['throw'] || ((t = y['return']) && t.call(y), 0) : y.next) &&
+              (t =
+                op[0] & 2
+                  ? y["return"]
+                  : op[0]
+                  ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
+                  : y.next) &&
               !(t = t.call(y, op[1])).done)
           ) {
             return t;
@@ -114,7 +121,10 @@ var __generator =
               _.trys.pop();
               continue;
             default:
-              if (!((t = _.trys), (t = t.length > 0 && t[t.length - 1])) && (op[0] === 6 || op[0] === 2)) {
+              if (
+                !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
+                (op[0] === 6 || op[0] === 2)
+              ) {
                 _ = 0;
                 continue;
               }
@@ -157,40 +167,54 @@ var __importDefault =
   function (mod) {
     return mod && mod.__esModule ? mod : { default: mod };
   };
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.build = void 0;
-process.env.NODE_ENV = 'production';
-process.on('unhandledRejection', function (err) {
+process.env.NODE_ENV = "production";
+process.on("unhandledRejection", function (err) {
   throw err;
 });
-require('../config/env');
-var paths_1 = require('../config/paths');
-var logger_1 = require('./logger');
-var FileSizeReporter_1 = __importDefault(require('react-dev-utils/FileSizeReporter'));
-var copy_public_folder_1 = require('./utils/copy-public-folder');
-var compile_1 = require('./webpack/compile');
-var build_1 = require('../types/build');
-var client_1 = require('../webpack/client');
-var server_1 = require('../webpack/server');
-var node_1 = require('../webpack/node');
-var assert_ts_1 = require('assert-ts');
-var empty_build_dir_1 = require('./empty-build-dir');
-var consolidateBuildConfigs_1 = require('./consolidateBuildConfigs');
-var measureFileSizesBeforeBuild = FileSizeReporter_1.default.measureFileSizesBeforeBuild;
-var printFileSizesAfterBuild = FileSizeReporter_1.default.printFileSizesAfterBuild;
+require("../config/env");
+var paths_1 = require("../config/paths");
+var logger_1 = require("./logger");
+var FileSizeReporter_1 = __importDefault(
+  require("react-dev-utils/FileSizeReporter")
+);
+var copy_public_folder_1 = require("./utils/copy-public-folder");
+var compile_1 = require("./webpack/compile");
+var build_1 = require("../types/build");
+var client_1 = require("../webpack/client");
+var server_1 = require("../webpack/server");
+var node_1 = require("../webpack/node");
+var assert_ts_1 = require("assert-ts");
+var empty_build_dir_1 = require("./empty-build-dir");
+var consolidateBuildConfigs_1 = require("./consolidateBuildConfigs");
+var measureFileSizesBeforeBuild =
+  FileSizeReporter_1.default.measureFileSizesBeforeBuild;
+var printFileSizesAfterBuild =
+  FileSizeReporter_1.default.printFileSizesAfterBuild;
 var build = function (_a) {
   var buildClient = _a.buildClient,
     buildServer = _a.buildServer,
     buildNode = _a.buildNode;
   return __awaiter(void 0, void 0, void 0, function () {
-    var buildConfig, nodeConfig, publicDir, previousFileSizes, serverConfig, clientConfig, clientStats, err_1;
+    var buildConfig,
+      nodeConfig,
+      publicDir,
+      previousFileSizes,
+      serverConfig,
+      clientConfig,
+      clientStats,
+      err_1;
     return __generator(this, function (_b) {
       switch (_b.label) {
         case 0:
-          logger_1.logger.start('starting build');
-          buildConfig = (0, consolidateBuildConfigs_1.consolidateBuildConfigs)();
+          logger_1.logger.start("starting build");
+          buildConfig = (0,
+          consolidateBuildConfigs_1.consolidateBuildConfigs)();
           nodeConfig = !!buildNode && (0, node_1.configure)(buildConfig.node);
-          publicDir = buildServer ? paths_1.paths.appBuildPublic : paths_1.paths.appBuild;
+          publicDir = buildServer
+            ? paths_1.paths.appBuildPublic
+            : paths_1.paths.appBuild;
           _b.label = 1;
         case 1:
           _b.trys.push([1, 8, , 9]);
@@ -202,37 +226,52 @@ var build = function (_a) {
           if (!nodeConfig) {
             return [3 /*break*/, 4];
           }
-          return [4 /*yield*/, (0, compile_1.compile)(nodeConfig, build_1.BuildType.node)];
+          return [
+            4 /*yield*/,
+            (0, compile_1.compile)(nodeConfig, build_1.BuildType.node),
+          ];
         case 3:
           _b.sent();
-          logger_1.logger.done('finished building node webpack build');
+          logger_1.logger.done("finished building node webpack build");
           return [2 /*return*/];
         case 4:
-          serverConfig = !!buildServer && (0, server_1.configure)(buildConfig.server);
+          serverConfig =
+            !!buildServer && (0, server_1.configure)(buildConfig.server);
           clientConfig =
             buildClient &&
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (0, client_1.configure)(__assign(__assign({}, buildConfig.client), { isStaticBuild: !buildServer }));
-          (0, assert_ts_1.assert)(!!clientConfig, 'clientConfig is not present');
-          return [4 /*yield*/, (0, compile_1.compile)(clientConfig, build_1.BuildType.client)];
+            (0, client_1.configure)(
+              __assign(__assign({}, buildConfig.client), {
+                isStaticBuild: !buildServer,
+              })
+            );
+          (0,
+          assert_ts_1.assert)(!!clientConfig, "clientConfig is not present");
+          return [
+            4 /*yield*/,
+            (0, compile_1.compile)(clientConfig, build_1.BuildType.client),
+          ];
         case 5:
           clientStats = _b.sent().stats;
-          logger_1.logger.done('finished building client webpack build');
+          logger_1.logger.done("finished building client webpack build");
           if (!serverConfig) {
             return [3 /*break*/, 7];
           }
-          return [4 /*yield*/, (0, compile_1.compile)(serverConfig, build_1.BuildType.server)];
+          return [
+            4 /*yield*/,
+            (0, compile_1.compile)(serverConfig, build_1.BuildType.server),
+          ];
         case 6:
           _b.sent();
-          logger_1.logger.done('finished building server webpack build');
+          logger_1.logger.done("finished building server webpack build");
           _b.label = 7;
         case 7:
           printFileSizesAfterBuild(clientStats, previousFileSizes, publicDir);
-          logger_1.logger.done('build finished');
+          logger_1.logger.done("build finished");
           return [3 /*break*/, 9];
         case 8:
           err_1 = _b.sent();
-          logger_1.logger.error('Failed to compile.');
+          logger_1.logger.error("Failed to compile.");
           logger_1.logger.error(err_1.message || err_1);
           logger_1.logger.error(err_1.stack);
           process.exit(1);
