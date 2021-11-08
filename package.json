@@ -31,7 +31,9 @@
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix",
     "start": "yarn build && yarn --cwd packages/website start",
     "test": "CI=true yarn workspaces foreach -vi run test",
-    "watch": "yarn build:tsc && yarn tsc -b ./tsconfig.packages.json --watch"
+    "watch": "yarn build:tsc && yarn tsc -b ./tsconfig.packages.json --watch",
+    "version": "changeset version && yarn",
+    "release": "yarn build && changeset publish"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

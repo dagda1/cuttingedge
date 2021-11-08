@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    name: Publish & Deploy
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.CUTTING_GITHUB_TOKEN }}
+
+      - name: Setup Node.js 14.x
+        uses: actions/setup-node@main
+        with:
+          node-version: 14.x
+
+      - name: Install Dependencies
+        run: yarn --immutable
+
+      - name: Create release PR or publish to npm
+        uses: changesets/action@main
+        with:
+          version: yarn run version
+          publish: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.CUTTING_GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.CUTTING_NPM_TOKEN }}
