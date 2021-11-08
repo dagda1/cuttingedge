@@ -1,5 +1,5 @@
 import { ComponentMeta } from '@storybook/react';
-import { themedSelect, themedTemplateMaker } from '../../stories/Stories';
+import { themedSelect, themedTemplateMaker } from '../../../components/stories/Stories';
 import { vars } from '../../../style/themes/vars.css';
 import * as styles from './Colors.css';
 
