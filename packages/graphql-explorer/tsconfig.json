@@ -6,10 +6,10 @@
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "references": [
+    { "path": "../svg/tsconfig.dist.json" },
     { "path": "../util/tsconfig.dist.json" },
     { "path": "../hooks/tsconfig.dist.json" },
     { "path": "../component-library/tsconfig.dist.json" },
-    { "path": "../svg/tsconfig.dist.json" },
     { "path": "../react-abortable-fetch/tsconfig.dist.json" }
   ]
 }

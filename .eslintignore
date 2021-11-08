@@ -1,5 +1,6 @@
 /.git
 package.json
-packages/babel-runtime
+packages/*/babel-runtime
 packages/*/node_modules
 packages/*/dist
+packages/*/tools

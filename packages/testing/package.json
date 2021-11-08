@@ -17,8 +17,6 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "echo no op",
-    "test": "echo no op",
     "lint": "eslint {src,tests}/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
     "build": "NODE_ENV=production cutting ts-build",

@@ -10,11 +10,5 @@
   ],
   "volta": {
     "extends": "../../package.json"
-  },
-  "scripts": {
-    "start": "echo no start",
-    "test": "echo no test",
-    "build": "echo no build",
-    "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix"
   }
 }

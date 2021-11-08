@@ -12,12 +12,6 @@
   "files": [
     "global.d.ts"
   ],
-  "license": "MIT",
-  "scripts": {
-    "start": "echo no start",
-    "test": "echo no test",
-    "build": "echo no build"
-  },
   "volta": {
     "extends": "../../package.json"
   },
