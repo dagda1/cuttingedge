@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-try-expect */
 import { wait } from './wait';
 import { expect, it, describe } from '@jest/globals';
 

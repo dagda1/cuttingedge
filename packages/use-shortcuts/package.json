@@ -21,6 +21,7 @@
     "test:unit": "NODE_ENV=test cutting test a",
     "test": "CI=true yarn test:unit && yarn test:types",
     "build": "NODE_ENV=production cutting rollup",
+    "lint": "yarn eslint ./src/**/*.{ts,tsx}",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
@@ -34,6 +35,7 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@types/mousetrap": "^1.6.7",
     "dtslint": "^4.0.9",
+    "eslint": "^8.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "typescript": "^4.4.4"

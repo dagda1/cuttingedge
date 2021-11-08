@@ -14,6 +14,7 @@
   "license": "MIT",
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
+    "lint": "yarn eslint ./src/**/*.{ts,tsx}",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup",
     "prepublishOnly": "yarn build"
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@cutting/devtools": "4.30.3",
     "abortcontroller-polyfill": "^1.7.1",
+    "eslint": "^8.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },

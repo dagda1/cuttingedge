@@ -1857,7 +1857,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cutting/component-library@5.3.9, @cutting/component-library@workspace:packages/component-library":
+"@cutting/component-library@5.3.10, @cutting/component-library@workspace:packages/component-library":
   version: 0.0.0-use.local
   resolution: "@cutting/component-library@workspace:packages/component-library"
   dependencies:
@@ -1885,6 +1885,7 @@ __metadata:
     assert-ts: ^0.3.2
     babel-loader: ^8.2.3
     classnames: ^2.3.1
+    eslint: ^8.1.0
     react: ^17.0.2
     react-dom: ^17.0.2
     serve-handler: ^6.1.3
@@ -2089,6 +2090,7 @@ __metadata:
     "@cutting/react-abortable-fetch": 0.16.2
     "@cutting/util": 4.28.2
     abortcontroller-polyfill: ^1.7.1
+    eslint: ^8.1.0
     graphql: ^15.5.0
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -2112,6 +2114,7 @@ __metadata:
     "@types/react-dom": ^17.0.3
     "@types/react-router-dom": ^5.1.7
     assert-ts: ^0.3.2
+    eslint: ^8.1.0
     history: ^4.10.1
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -2141,6 +2144,7 @@ __metadata:
     assert-ts: ^0.3.3
     cross-fetch: ^2.2.5
     effection: 2.0.0-beta.22
+    eslint: ^8.1.0
     fetch-jsonp: ^1.1.3
     msw: ^0.28.2
     react: ^17.0.2
@@ -2175,6 +2179,7 @@ __metadata:
     "@cutting/use-get-parent-size": 1.5.2
     "@cutting/util": 4.28.2
     "@testing-library/jest-dom": ^5.11.10
+    eslint: ^8.1.0
     react: ^17.0.2
     react-dom: ^17.0.2
     resize-observer-polyfill: ^1.5.1
@@ -2195,6 +2200,7 @@ __metadata:
     "@testing-library/jest-dom": ^5.11.10
     "@types/jest": ^26.0.22
     assert-ts: ^0.3.2
+    eslint: ^8.1.0
     resize-observer-polyfill: ^1.5.1
     typescript: ^4.4.4
     use-debounce: ^6.0.1
@@ -2211,7 +2217,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/use-get-parent-size@workspace:packages/use-get-parent-size"
   dependencies:
-    "@cutting/component-library": 5.3.9
+    "@cutting/component-library": 5.3.10
     "@cutting/devtools": 4.30.3
     "@cutting/eslint-config": 4.27.0
     "@cutting/util": 4.28.2
@@ -2222,6 +2228,7 @@ __metadata:
     "@types/react-dom": ^17.0.3
     "@types/react-router-dom": ^5.1.7
     assert-ts: ^0.3.2
+    eslint: ^8.1.0
     history: ^4.10.1
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -2247,6 +2254,7 @@ __metadata:
     "@types/jest": ^27.0.2
     "@types/mathjax": ^0.0.36
     assert-ts: ^0.3.2
+    eslint: ^8.1.0
     mathjax: 3
     mathjax3: 3.0.0-beta.4
     react: ^17.0.2
@@ -2271,6 +2279,7 @@ __metadata:
     "@types/mousetrap": ^1.6.7
     classnames: ^2.3.1
     dtslint: ^4.0.9
+    eslint: ^8.1.0
     mousetrap: ^1.6.5
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -2296,6 +2305,7 @@ __metadata:
   dependencies:
     "@cutting/devtools": 4.30.3
     "@cutting/eslint-config": 4.27.0
+    eslint: ^8.1.0
     typescript: ^4.4.4
   languageName: unknown
   linkType: soft
@@ -2304,7 +2314,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/website@workspace:packages/website"
   dependencies:
-    "@cutting/component-library": 5.3.9
+    "@cutting/component-library": 5.3.10
     "@cutting/devtools": 4.30.3
     "@cutting/eslint-config": 4.27.0
     "@cutting/hooks": 4.29.2
@@ -2342,6 +2352,7 @@ __metadata:
     d3-array: ^2.12.1
     d3-scale: ^3.3.0
     dayjs: ^1.10.4
+    eslint: ^8.1.0
     express: ^4.17.1
     global: ^4.4.0
     helmet: 4.5.0
@@ -9735,6 +9746,7 @@ __metadata:
     "@capsizecss/core": ^3.0.0
     "@capsizecss/vanilla-extract": ^1.0.0
     "@changesets/cli": ^2.17.0
+    "@cutting/devtools": 4.30.3
     "@cutting/useful-types": 4.25.2
     "@nrwl/cli": latest
     "@nrwl/nx-cloud": latest
@@ -9751,6 +9763,7 @@ __metadata:
     csstype: ^3.0.8
     dedent: ^0.7.0
     deepmerge: ^4.2.2
+    eslint: ^8.1.0
     eslint-plugin-prettier: ^4.0.0
     gradient-parser: ^1.0.2
     lodash: ^4.17.21
