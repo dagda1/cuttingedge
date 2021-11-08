@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.3.11
+
+### Patch Changes
+
+- b8bf70d0: move color into documentation
+
 ## 5.3.10
 
 ### Patch Changes
