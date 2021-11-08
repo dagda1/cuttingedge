@@ -79,11 +79,8 @@
   "lint-prepush": {
     "base": "main",
     "tasks": {
-      "*.{js,jsx,ts,tsx}": [
+      "*.{js,jsx,ts,tsx,js,css,md}": [
         "yarn lint"
-      ],
-      "*.{js,css,md}": [
-        "prettier --write"
       ]
     }
   },
