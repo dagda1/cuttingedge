@@ -13,13 +13,13 @@ jobs:
       CI: true
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@main
+        uses: actions/checkout@master
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js 14.x
-        uses: actions/setup-node@main
+        uses: actions/setup-node@master
         with:
           node-version: 14.x
 
@@ -27,7 +27,7 @@ jobs:
         run: yarn --immutable
 
       - name: Create release PR or publish to npm
-        uses: changesets/action@main
+        uses: changesets/action@master
         with:
           version: yarn run version
           publish: yarn release
