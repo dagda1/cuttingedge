@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "version": "4.27.14",
+  "version": "4.27.15",
   "license": "MIT",
   "scripts": {
     "start": "PORT=3000 SSR=true NODE_ENV=development cutting ssr-start",
@@ -20,7 +20,7 @@
     "**/*.scss"
   ],
   "dependencies": {
-    "@cutting/component-library": "5.3.10",
+    "@cutting/component-library": "5.3.11",
     "@cutting/hooks": "4.29.2",
     "@cutting/react-abortable-fetch": "0.16.2",
     "@cutting/svg": "4.30.1",
