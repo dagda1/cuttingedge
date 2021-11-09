@@ -22,6 +22,9 @@ var jestConfig = {
         'ts-jest': {
             tsconfig: paths_1.paths.testTsConfig,
             isolatedModules: true,
+            babelConfig: {
+                plugins: ['@vanilla-extract/babel-plugin'],
+            },
         },
     },
     coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/src/tests/', '<rootDir>/src/types/'],
@@ -61,6 +64,8 @@ var jestConfig = {
     modulePaths: ['<rootDir>', 'src'],
     resetMocks: true,
     reporters: ['default'],
+    silent: false,
+    verbose: true,
 };
 module.exports = jestConfig;
 //# sourceMappingURL=jest.config.js.map

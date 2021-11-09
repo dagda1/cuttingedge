@@ -31,7 +31,7 @@
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix",
     "prepare": "husky install",
     "start": "yarn build && yarn --cwd packages/website start",
-    "test": "CI=true yarn workspaces foreach -vi run test",
+    "test": "CI=true yarn nx run-many --target=test --all --parallel --exclude=@cutting/website,@cutting/graphql-explorer",
     "watch": "yarn build:tsc && yarn tsc -b ./tsconfig.packages.json --watch",
     "version": "changeset version && yarn",
     "release": "yarn build && changeset publish"
@@ -96,7 +96,6 @@
     "d3-array": "^2.4.0",
     "d3-scale": "^3.3.0",
     "d3-time": "^2.1.1",
-    "effection": "2.0.0-beta.22",
     "glob-parent": "^6.0.2",
     "normalize-url": "^7.0.2",
     "prettier": "^2.4.1",

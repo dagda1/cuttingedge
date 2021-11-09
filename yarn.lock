@@ -2143,7 +2143,7 @@ __metadata:
     abortcontroller-polyfill: ^1.7.1
     assert-ts: ^0.3.3
     cross-fetch: ^2.2.5
-    effection: 2.0.0-beta.22
+    effection: ^2.0.1
     eslint: ^8.1.0
     fetch-jsonp: ^1.1.3
     msw: ^0.28.2
@@ -2416,73 +2416,73 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@effection/channel@npm:2.0.0-beta.21":
-  version: 2.0.0-beta.21
-  resolution: "@effection/channel@npm:2.0.0-beta.21"
+"@effection/channel@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@effection/channel@npm:2.0.1"
   dependencies:
-    "@effection/core": 2.0.0-beta.17
-    "@effection/events": 2.0.0-beta.21
-    "@effection/stream": 2.0.0-beta.6
-  checksum: c880bec2367f669119694bec9d07dffcb3b68ab00bd488053cce187ca7335c1f80c410d6d3eab5f3366bb44817c03518c2ad79fc5538f54a71052e57d942ec78
+    "@effection/core": 2.0.1
+    "@effection/events": 2.0.1
+    "@effection/stream": 2.0.1
+  checksum: cf00ecfa560da832e1add7f99cabccc80858a6672db9e7092b2e2ef90dca2efa4ff0f13e37694210ab95bfeacf4397149fed06a8731e2d1856307842fae4f027
   languageName: node
   linkType: hard
 
-"@effection/core@npm:2.0.0-beta.17":
-  version: 2.0.0-beta.17
-  resolution: "@effection/core@npm:2.0.0-beta.17"
-  checksum: 697799ae899a9599a5655cd844a53779535568903ac7e098e91566f5d1b8d69624a6de2e2b9422600cdcd7c57cecde4d034b64de0a8a8f40b612ead91985d4df
+"@effection/core@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@effection/core@npm:2.0.1"
+  checksum: 3ac8595a278ceaa9c8c260d6f4ab79b7f2d3915b77cde4cddd243b375a389ee0f1410fb8a9a080c9f5f0bf46646e986381171fd29791f960a0fe1c4d30c76e9a
   languageName: node
   linkType: hard
 
-"@effection/events@npm:2.0.0-beta.21":
-  version: 2.0.0-beta.21
-  resolution: "@effection/events@npm:2.0.0-beta.21"
+"@effection/events@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@effection/events@npm:2.0.1"
   dependencies:
-    "@effection/core": 2.0.0-beta.17
-    "@effection/stream": 2.0.0-beta.6
-  checksum: d661c40b9a9d47495a7dada1659afc073f215ab35e306eb7ef9e7186f650365b4cd94cc39bc1de47aa870d64ddb90eed75262bff0bcb6c0e0b8f683ac0caecba
+    "@effection/core": 2.0.1
+    "@effection/stream": 2.0.1
+  checksum: 55edebe0847a2b70df24eebb5eea8887ea1a9d61c21743201410a0752935333fe5b11c877751297aac0eb36b6059fef386f556aee158055026318f83f4a2ef22
   languageName: node
   linkType: hard
 
-"@effection/fetch@npm:2.0.0-beta.20":
-  version: 2.0.0-beta.20
-  resolution: "@effection/fetch@npm:2.0.0-beta.20"
+"@effection/fetch@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@effection/fetch@npm:2.0.1"
   dependencies:
-    "@effection/core": 2.0.0-beta.17
+    "@effection/core": 2.0.1
     abort-controller: ^3.0.0
     cross-fetch: ^3.0.4
     node-fetch: ^2.6.1
-  checksum: f99b7e6f2de9fca6a3c5c84e87bb70849852fb310fee4826dab4df6110f86d111107536c932d4e2f14ba6fc2f1907f0abc7b852d70dbe63b83b5f6c333500688
+  checksum: f56dc06f6f73a7555f1a8eb1192e4e4de440acc72ec37a970bc37c765580cf3e77ddaa859545b27f37f451bec0622dbff564a0bc6537830f9eab36c6354c7fa0
   languageName: node
   linkType: hard
 
-"@effection/main@npm:2.0.0-beta.19":
-  version: 2.0.0-beta.19
-  resolution: "@effection/main@npm:2.0.0-beta.19"
+"@effection/main@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@effection/main@npm:2.0.1"
   dependencies:
-    "@effection/core": 2.0.0-beta.17
+    "@effection/core": 2.0.1
     chalk: ^4.1.2
     stacktrace-parser: ^0.1.10
-  checksum: 9177fc19ae432ef41c3dc431fdb3febabca4d8be602fb8edf4833208cf57e8d1fadb277c79350306527bbfe07d6a3aaaa106b96ddf91d93ee926f8f940176ea4
+  checksum: 4608bcd72118034aca244a7c76392086b3d48fc69481fa55642e498e71d99aebe9fe0969b5a434f247da591f716d48e6be0e3b9c6774687ed99f8fc4877aa32b
   languageName: node
   linkType: hard
 
-"@effection/stream@npm:2.0.0-beta.6":
-  version: 2.0.0-beta.6
-  resolution: "@effection/stream@npm:2.0.0-beta.6"
+"@effection/stream@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@effection/stream@npm:2.0.1"
   dependencies:
-    "@effection/core": 2.0.0-beta.17
-    "@effection/subscription": 2.0.0-beta.19
-  checksum: dc2cfba771b20b977ac8686715a734a128a88e67d83d85b974ae9d17505eb5b1a8be408e69f9a9e8704af4b0d5b46ea0e2ebbc576287e11bce81fddb55f55d6d
+    "@effection/core": 2.0.1
+    "@effection/subscription": 2.0.1
+  checksum: 81a9e5d5a8544e91107fe02cb53652c7c95a8eed347fd4f9eeab2d0d3bba3b6a13e483fbb386039c1059b978af00cf6caa74fcba3c4d1c0d70098b87b3dedc8d
   languageName: node
   linkType: hard
 
-"@effection/subscription@npm:2.0.0-beta.19":
-  version: 2.0.0-beta.19
-  resolution: "@effection/subscription@npm:2.0.0-beta.19"
+"@effection/subscription@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@effection/subscription@npm:2.0.1"
   dependencies:
-    "@effection/core": 2.0.0-beta.17
-  checksum: e336c1bd491619a2a23c3c85b6071c9ffe9a5959f4b6e3922330cf2f3a8c95b8fb0adb067b4b089663c70b862fbb921de73ba227afc1ba58f2d8adc44dee134c
+    "@effection/core": 2.0.1
+  checksum: 43fcfb7d65bddca14a9f61c4ba202515c013b5669c7ea1a6c3bdc9fe81814a59e053a6d0c57708a302fe7bd71bafe177cba775faf56e0920e94c5bd9ffbb7a87
   languageName: node
   linkType: hard
 
@@ -10722,18 +10722,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"effection@npm:2.0.0-beta.22":
-  version: 2.0.0-beta.22
-  resolution: "effection@npm:2.0.0-beta.22"
+"effection@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "effection@npm:2.0.1"
   dependencies:
-    "@effection/channel": 2.0.0-beta.21
-    "@effection/core": 2.0.0-beta.17
-    "@effection/events": 2.0.0-beta.21
-    "@effection/fetch": 2.0.0-beta.20
-    "@effection/main": 2.0.0-beta.19
-    "@effection/stream": 2.0.0-beta.6
-    "@effection/subscription": 2.0.0-beta.19
-  checksum: 4107e285c30d871af7eb4c8d4b8da99fa339efb155db8ab2881bd22777d744edafc8ee611822120b3c871d2b2e7cb124a67dcb01c26723a0303f08695576a52e
+    "@effection/channel": 2.0.1
+    "@effection/core": 2.0.1
+    "@effection/events": 2.0.1
+    "@effection/fetch": 2.0.1
+    "@effection/main": 2.0.1
+    "@effection/stream": 2.0.1
+    "@effection/subscription": 2.0.1
+  checksum: a8f6dd2d60bf0b500039bb28bbc31ac48a3ae036c3ee262b10593d9649c22e01d8be90145cbdbf31668777a83a474497b88e369f2293916cc7be1376a253fdce
   languageName: node
   linkType: hard
 

@@ -5,7 +5,7 @@
     "noEmit": true,
     "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts", "test/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts", "test/**/*.tsx", "setupTests.ts"],
   "references": [
     { "path": "../hooks/tsconfig.dist.json" },
     { "path": "../util/tsconfig.dist.json" }
