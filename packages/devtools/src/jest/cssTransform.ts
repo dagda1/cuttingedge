@@ -5,3 +5,5 @@ export const process = (): string => {
 export const getCacheKey = (): string => {
   return 'cssTransform';
 };
+
+export default { process };
