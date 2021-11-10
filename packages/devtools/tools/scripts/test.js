@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable jest/no-jest-import */
-require("setimmediate");
 var env_1 = require("../config/env");
 var fs_1 = __importDefault(require("fs"));
 var paths_1 = require("../config/paths");

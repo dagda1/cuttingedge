@@ -177,10 +177,10 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
           send(success(accumulated.current));
           onSuccess(accumulated.current);
         } catch (err) {
-          if (err) {
-            console.log(`>>>>>>>>>>>>>>>>>>>>>> ${err.message}`);
-            console.log(err.stack);
-          }
+          // if (err) {
+          //   console.log(`>>>>>>>>>>>>>>>>>>>>>> ${err.message}`);
+          //   console.log(err.stack);
+          // }
           if (err instanceof Error) {
             if (err?.name === 'AbortError') {
               abortable(err);
