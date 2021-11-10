@@ -15,4 +15,5 @@ var process = function (src, filename) {
     return exp;
 };
 exports.process = process;
+exports.default = { process: exports.process };
 //# sourceMappingURL=fileTransform.js.map

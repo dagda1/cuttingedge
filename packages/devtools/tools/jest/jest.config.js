@@ -22,6 +22,13 @@ var jestConfig = {
         'ts-jest': {
             tsconfig: paths_1.paths.testTsConfig,
             isolatedModules: true,
+            babelConfig: {
+                presets: [
+                    '@babel/preset-react',
+                    ['@babel/preset-env', { targets: { node: 14 }, useBuiltIns: 'entry', corejs: 3 }],
+                ],
+                plugins: ['@vanilla-extract/babel-plugin'],
+            },
         },
     },
     coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/src/tests/', '<rootDir>/src/types/'],
@@ -50,9 +57,9 @@ var jestConfig = {
     transform: {
         '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
         '.(js|jsx|cjs|mjs)$': require.resolve('babel-jest'),
-        '^.+\\.css$': path_1.default.join(__dirname, './cssTransform.js'),
-        '^.+\\.csv$': path_1.default.join(__dirname, './fileTransform.js'),
-        '^(?!.*\\.(js|jsx|css|json)$)': path_1.default.join(__dirname, './fileTransform.js'),
+        '^.+\\.css$': path_1.default.join(__dirname, './cssTransform'),
+        '^.+\\.csv$': path_1.default.join(__dirname, './fileTransform'),
+        '^(?!.*\\.(js|jsx|css|json)$)': path_1.default.join(__dirname, './fileTransform'),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     },
     transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
@@ -61,6 +68,9 @@ var jestConfig = {
     modulePaths: ['<rootDir>', 'src'],
     resetMocks: true,
     reporters: ['default'],
+    silent: false,
+    verbose: true,
+    noStackTrace: false,
 };
 module.exports = jestConfig;
 //# sourceMappingURL=jest.config.js.map

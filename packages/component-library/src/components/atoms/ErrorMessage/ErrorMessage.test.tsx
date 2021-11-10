@@ -14,6 +14,6 @@ describe('ErrorLabel', () => {
 
     const label = getByTestId('error-selector') as HTMLLabelElement;
 
-    expect(label.innerHTML).toBe('Error');
+    expect(label.innerHTML).toContain('Error');
   });
 });

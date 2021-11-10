@@ -52,6 +52,10 @@ if (result.signal) {
         'be shutting down.',
     );
   }
-  process.exit(1);
+  if (process.env.NODE_ENV === 'test') {
+    setTimeout(() => process.exit(1), 1000);
+  } else {
+    process.exit(1);
+  }
 }
 process.exit(result.status);

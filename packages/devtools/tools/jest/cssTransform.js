@@ -9,4 +9,5 @@ var getCacheKey = function () {
     return 'cssTransform';
 };
 exports.getCacheKey = getCacheKey;
+exports.default = { process: exports.process };
 //# sourceMappingURL=cssTransform.js.map

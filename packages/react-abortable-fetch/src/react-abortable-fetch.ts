@@ -4,7 +4,7 @@ import { createQueryMachine, abort, reset, start, success, error } from './machi
 import { FetchStates, Builder, ContentType, UseFetchOptions, QueryResult, FetchRequestInfo } from './types';
 import { run, sleep, Task } from 'effection';
 import { createFetchClient } from './client/fetch-client';
-import { fetch as nativeFetch } from 'cross-fetch';
+import nativeFetch from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import { Fn, identity, isPromise } from '@cutting/util';
 import { assert } from 'assert-ts';
@@ -134,6 +134,8 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
             job.state = 'LOADING';
 
             const fetcher = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
+
+            assert(typeof fetcher === 'function', `something is wrong fetcher is ${typeof fetcher}`);
 
             const body = parseArg(arg);
 

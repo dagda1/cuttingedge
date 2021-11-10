@@ -1,4 +1,4 @@
-import { Label, LabelProps } from '.';
+import { Label, LabelProps } from './Label';
 import { render } from '@testing-library/react';
 import { expect, it, describe } from '@jest/globals';
 

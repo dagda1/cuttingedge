@@ -829,6 +829,8 @@ describe('useFetch', () => {
 
       await waitForNextUpdate();
 
+      console.log(result.current.error);
+
       expect(result.current.state).toBe('SUCCEEDED');
       expect(result.current.data).toEqual({ accessToken: 'yes' });
     });

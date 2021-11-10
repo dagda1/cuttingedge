@@ -22,3 +22,5 @@ export const process = (src: string, filename: string): string => {
 
   return exp;
 };
+
+export default { process };
