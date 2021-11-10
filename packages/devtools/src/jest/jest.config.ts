@@ -22,7 +22,13 @@ export type OverridableJestConfig = Pick<
 > &
   Pick<
     Config.GlobalConfig,
-    'coverageDirectory' | 'collectCoverageFrom' | 'coveragePathIgnorePatterns' | 'reporters' | 'silent' | 'verbose'
+    | 'coverageDirectory'
+    | 'collectCoverageFrom'
+    | 'coveragePathIgnorePatterns'
+    | 'reporters'
+    | 'silent'
+    | 'verbose'
+    | 'noStackTrace'
   >;
 
 const setupTestsFileName = 'setupTests.ts';
@@ -39,16 +45,20 @@ const jestConfig: OverridableJestConfig = {
   rootDir: process.cwd(),
   roots: ['<rootDir>', '<rootDir>/src'],
   coverageDirectory: '<rootDir>/.coverage',
-globals: {
-  __DEV__: true,
-  'ts-jest': {
-    tsconfig: paths.testTsConfig,
-    isolatedModules: true,
-    babelConfig: {
-      plugins: ['@vanilla-extract/babel-plugin'],
+  globals: {
+    __DEV__: true,
+    'ts-jest': {
+      tsconfig: paths.testTsConfig,
+      isolatedModules: true,
+      babelConfig: {
+        presets: [
+          '@babel/preset-react',
+          ['@babel/preset-env', { targets: { node: 14 }, useBuiltIns: 'entry', corejs: 3 }],
+        ],
+        plugins: ['@vanilla-extract/babel-plugin'],
+      },
     },
   },
-},
   coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/src/tests/', '<rootDir>/src/types/'],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
@@ -89,6 +99,7 @@ globals: {
   reporters: ['default'],
   silent: false,
   verbose: true,
+  noStackTrace: false,
 };
 
 module.exports = jestConfig;

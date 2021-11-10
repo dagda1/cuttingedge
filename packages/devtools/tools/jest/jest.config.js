@@ -23,6 +23,10 @@ var jestConfig = {
             tsconfig: paths_1.paths.testTsConfig,
             isolatedModules: true,
             babelConfig: {
+                presets: [
+                    '@babel/preset-react',
+                    ['@babel/preset-env', { targets: { node: 14 }, useBuiltIns: 'entry', corejs: 3 }],
+                ],
                 plugins: ['@vanilla-extract/babel-plugin'],
             },
         },
@@ -66,6 +70,7 @@ var jestConfig = {
     reporters: ['default'],
     silent: false,
     verbose: true,
+    noStackTrace: false,
 };
 module.exports = jestConfig;
 //# sourceMappingURL=jest.config.js.map

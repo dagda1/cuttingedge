@@ -44,7 +44,12 @@ if (result.signal) {
             'Someone might have called `kill` or `killall`, or the system could ' +
             'be shutting down.');
     }
-    process.exit(1);
+    if (process.env.NODE_ENV === 'test') {
+        setTimeout(function () { return process.exit(1); }, 1000);
+    }
+    else {
+        process.exit(1);
+    }
 }
 process.exit(result.status);
 //# sourceMappingURL=cutting.js.map

@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable jest/no-jest-import */
+require("setimmediate");
 var env_1 = require("../config/env");
 var fs_1 = __importDefault(require("fs"));
 var paths_1 = require("../config/paths");
@@ -29,7 +30,6 @@ var config = fs_1.default.existsSync(paths_1.paths.ownJestConfig) ? paths_1.path
 argv.push('--config', config);
 argv.push('--env', 'jsdom');
 argv.push('--rootDir', "" + process.cwd());
-argv.push('--useStderr');
 if (process.env.CI) {
     argv.push('--ci');
     argv.push('--globalTeardown');
