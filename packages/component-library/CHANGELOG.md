@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.3.12
+
+### Patch Changes
+
+- fa5b470b: Renamed Colors.stories.tsx
+
 ## 5.3.11
 
 ### Patch Changes

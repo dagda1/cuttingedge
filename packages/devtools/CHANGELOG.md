@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.30.4
+
+### Patch Changes
+
+- 07261f5b: Fix exports for jest transformers
+
 ## 4.30.3
 
 ### Patch Changes

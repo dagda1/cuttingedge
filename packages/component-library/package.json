@@ -1,6 +1,6 @@
 {
   "name": "@cutting/component-library",
-  "version": "5.3.11",
+  "version": "5.3.12",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
-    "@cutting/devtools": "4.30.3",
+    "@cutting/devtools": "4.30.4",
     "@cutting/eslint-config": "4.27.0",
     "@mdx-js/react": "^1.6.22",
     "@storybook/addon-actions": "^6.3.12",
