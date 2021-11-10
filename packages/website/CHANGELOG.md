@@ -1,5 +1,12 @@
 # @cutting/website
 
+## 4.27.16
+
+### Patch Changes
+
+- Updated dependencies [fa5b470b]
+  - @cutting/component-library@5.3.12
+
 ## 4.27.15
 
 ### Patch Changes

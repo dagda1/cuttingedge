@@ -20,7 +20,7 @@
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.30.3",
+    "@cutting/devtools": "4.30.4",
     "@cutting/eslint-config": "4.27.0",
     "@cutting/testing": "4.26.2",
     "@testing-library/jest-dom": "^5.11.10",
