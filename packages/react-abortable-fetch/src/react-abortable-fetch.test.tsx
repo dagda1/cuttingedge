@@ -813,6 +813,7 @@ describe('useFetch', () => {
     });
   });
 
+  // eslint-disable-next-line jest/no-focused-tests
   describe.only('run with arguments', () => {
     it('should pass arguments to single run', async () => {
       const { result, waitForNextUpdate } = renderHook(() =>
