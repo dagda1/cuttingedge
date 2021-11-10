@@ -70,6 +70,7 @@
     "postcss-loader": "^6.2.0",
     "postcss-scss": "^4.0.2",
     "prettier": "^2.4.1",
+    "react-dev-utils": "next",
     "ssri": "8.0.1",
     "tailwindcss": "^2.2.7",
     "trim-newlines": "^4.0.2",
