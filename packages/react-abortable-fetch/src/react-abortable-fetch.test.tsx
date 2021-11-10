@@ -813,7 +813,7 @@ describe('useFetch', () => {
     });
   });
 
-  describe('run with arguments', () => {
+  describe.only('run with arguments', () => {
     it('should pass arguments to single run', async () => {
       const { result, waitForNextUpdate } = renderHook(() =>
         useFetch({ url: `http://localhost:3000/leads`, method: 'POST' }, { executeOnMount: false }),
