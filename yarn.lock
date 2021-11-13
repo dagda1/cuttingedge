@@ -1848,12 +1848,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cutting/component-library@5.3.12, @cutting/component-library@workspace:packages/component-library":
+"@cutting/component-library@5.3.13, @cutting/component-library@workspace:packages/component-library":
   version: 0.0.0-use.local
   resolution: "@cutting/component-library@workspace:packages/component-library"
   dependencies:
     "@babel/core": ^7.16.0
-    "@cutting/devtools": 4.30.4
+    "@cutting/devtools": 4.30.5
     "@cutting/eslint-config": 4.27.0
     "@cutting/hooks": 4.29.2
     "@cutting/util": 4.28.2
@@ -1876,6 +1876,7 @@ __metadata:
     assert-ts: ^0.3.2
     babel-loader: ^8.2.3
     classnames: ^2.3.1
+    esbuild: ^0.13.13
     eslint: ^8.1.0
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -1888,7 +1889,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@cutting/devtools@4.30.4, @cutting/devtools@^4.30.3, @cutting/devtools@workspace:packages/devtools":
+"@cutting/devtools@4.30.5, @cutting/devtools@^4.30.3, @cutting/devtools@workspace:packages/devtools":
   version: 0.0.0-use.local
   resolution: "@cutting/devtools@workspace:packages/devtools"
   dependencies:
@@ -1965,7 +1966,7 @@ __metadata:
     dashdash: ^2.0.0
     deepmerge: ^4.2.2
     dotenv: ^10.0.0
-    esbuild: ^0.13.12
+    esbuild: ^0.13.13
     esbuild-node-externals: ^1.3.0
     eslint: ^8.1.0
     eslint-plugin-prettier: ^4.0.0
@@ -2195,7 +2196,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/graphql-explorer@workspace:packages/graphql-explorer"
   dependencies:
-    "@cutting/devtools": 4.30.4
+    "@cutting/devtools": 4.30.5
     "@cutting/react-abortable-fetch": 0.16.2
     "@cutting/util": 4.28.2
     abortcontroller-polyfill: ^1.7.1
@@ -2213,7 +2214,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/hooks@workspace:packages/hooks"
   dependencies:
-    "@cutting/devtools": 4.30.4
+    "@cutting/devtools": 4.30.5
     "@cutting/eslint-config": 4.27.0
     "@cutting/util": 4.28.2
     "@testing-library/jest-dom": ^5.11.10
@@ -2282,7 +2283,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/svg@workspace:packages/svg"
   dependencies:
-    "@cutting/devtools": 4.30.4
+    "@cutting/devtools": 4.30.5
     "@cutting/eslint-config": 4.27.0
     "@cutting/testing": 4.26.2
     "@cutting/use-get-parent-size": 1.5.2
@@ -2303,7 +2304,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/testing@workspace:packages/testing"
   dependencies:
-    "@cutting/devtools": 4.30.4
+    "@cutting/devtools": 4.30.5
     "@cutting/eslint-config": 4.27.0
     "@cutting/util": 4.28.2
     "@testing-library/jest-dom": ^5.11.10
@@ -2326,8 +2327,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/use-get-parent-size@workspace:packages/use-get-parent-size"
   dependencies:
-    "@cutting/component-library": 5.3.12
-    "@cutting/devtools": 4.30.4
+    "@cutting/component-library": 5.3.13
+    "@cutting/devtools": 4.30.5
     "@cutting/eslint-config": 4.27.0
     "@cutting/util": 4.28.2
     "@testing-library/jest-dom": ^5.11.10
@@ -2356,7 +2357,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/use-mathjax@workspace:packages/use-mathjax"
   dependencies:
-    "@cutting/devtools": 4.30.4
+    "@cutting/devtools": 4.30.5
     "@cutting/eslint-config": 4.27.0
     "@cutting/util": 4.28.2
     "@testing-library/jest-dom": ^5.11.10
@@ -2381,7 +2382,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/use-shortcuts@workspace:packages/use-shortcuts"
   dependencies:
-    "@cutting/devtools": 4.30.4
+    "@cutting/devtools": 4.30.5
     "@cutting/eslint-config": 4.27.0
     "@cutting/util": 4.28.2
     "@testing-library/jest-dom": ^5.11.10
@@ -2412,7 +2413,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/util@workspace:packages/util"
   dependencies:
-    "@cutting/devtools": 4.30.4
+    "@cutting/devtools": 4.30.5
     "@cutting/eslint-config": 4.27.0
     eslint: ^8.1.0
     typescript: ^4.4.4
@@ -2423,8 +2424,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/website@workspace:packages/website"
   dependencies:
-    "@cutting/component-library": 5.3.12
-    "@cutting/devtools": 4.30.4
+    "@cutting/component-library": 5.3.13
+    "@cutting/devtools": 4.30.5
     "@cutting/eslint-config": 4.27.0
     "@cutting/hooks": 4.29.2
     "@cutting/react-abortable-fetch": 0.16.2
@@ -11243,7 +11244,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.13.12":
+"esbuild@npm:^0.13.13":
   version: 0.13.13
   resolution: "esbuild@npm:0.13.13"
   dependencies:
