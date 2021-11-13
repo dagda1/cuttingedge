@@ -12,12 +12,12 @@ module.exports = {
   typescript: {
     check: true,
     checkOptions: {},
+    reactDocgen: false 
   },
   addons: [
     path.resolve('./.storybook/vanilla-extract.js'),
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "storybook-addon-designs"
   ],
   core: {
     "builder": "webpack5"

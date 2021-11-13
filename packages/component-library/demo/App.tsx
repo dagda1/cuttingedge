@@ -1,6 +1,6 @@
 import * as styles from './global.css';
 import React, { useState } from 'react';
-import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup } from '../src';
+import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup, Donut } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
@@ -57,6 +57,18 @@ export function App(): JSX.Element {
               ]}
             />
           </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <h2>Donuts</h2>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          {[0, 50, 100].map((score) => (
+            <div key={score} className={styles.item}>
+              <Donut score={score} />
+            </div>
+          ))}
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
