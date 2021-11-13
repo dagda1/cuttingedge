@@ -29,7 +29,6 @@ export const donut = style({
   width: '12.5rem',
   height: '12.5rem',
   position: 'relative',
-  margin: 'auto',
 });
 
 const frameAndCircle: ComplexStyleRule = {
