@@ -7,6 +7,19 @@ module.exports = {
 
     const cssRule = module.rules.find((rule) => rule?.test?.test('test.css'));
     cssRule.test = /.*(?<!\.vanilla)\.css$/;
+    
+    // const tsxRule = module.rules.find((rule) => rule?.test?.test('test.tsx'))
+ 
+    
+    // // tsxRule.use[0].options.plugins.push(require.resolve('@vanilla-extract/babel-plugin'));
+
+    // for(const rule of module.rules) {
+    //   if(Array.isArray(rule.use) && typeof rule.use[0].options !== 'undefined' && Array.isArray(rule.use[0].options.plugins)) {
+    //     rule.use[0].options.plugins.push(require.resolve('@vanilla-extract/babel-plugin'))
+    //   }
+    // }
+
+    // console.dir({r: module.rules}, {depth: 33})
 
     return {
       ...baseConfig,

@@ -32,5 +32,7 @@ export {
   ApplicationLayout,
   ApplicationLayoutWithRouterScroll,
 } from './components/templates/ApplicationLayout/ApplicationLayout';
+export { Donut } from './components/molecules/Donut/Donut';
+
 // TODO: refactor to multiple exports
 export * from './style';
