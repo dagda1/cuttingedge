@@ -15,7 +15,7 @@
     "test:ci": "CI=true yarn test"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.30.4",
+    "@cutting/devtools": "4.30.5",
     "@cutting/eslint-config": "4.27.0",
     "eslint": "^8.1.0",
     "typescript": "^4.4.4"

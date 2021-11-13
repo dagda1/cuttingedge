@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.3.13
+
+### Patch Changes
+
+- 6b05dfce: Add <Donut /> component
+
 ## 5.3.12
 
 ### Patch Changes

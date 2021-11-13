@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.30.5
+
+### Patch Changes
+
+- 6b05dfce: Add <Donut /> component
+
 ## 4.30.4
 
 ### Patch Changes
