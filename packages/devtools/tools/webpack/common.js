@@ -204,7 +204,6 @@ var configureCommon = function (options, overrides) {
             }),
         ], Boolean),
     });
-    console.dir({ config: config }, { depth: 33 });
     return config;
 };
 exports.configureCommon = configureCommon;

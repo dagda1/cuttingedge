@@ -90,9 +90,6 @@
     "node": "14.18.1"
   },
   "resolutions": {
-    "@storybook/core-common/webpack": "^5",
-    "@storybook/core-server/webpack": "^5",
-    "@storybook/react/webpack": "^5",
     "@types/react": "^17.0.0",
     "@types/webpack": "^5.28.0",
     "browserslist": "^4.16.5",
