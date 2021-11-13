@@ -24,7 +24,7 @@ jobs:
           node-version: 14.x
 
       - name: Install Dependencies
-        run: yarn install
+        run: yarn --immutable
 
       - name: Create release PR or publish to npm
         uses: changesets/action@master
