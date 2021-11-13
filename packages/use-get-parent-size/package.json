@@ -32,7 +32,7 @@
     "use-debounce": "^6.0.1"
   },
   "devDependencies": {
-    "@cutting/component-library": "5.3.13",
+    "@cutting/component-library": "5.3.14",
     "@cutting/devtools": "4.30.5",
     "@cutting/eslint-config": "4.27.0",
     "@testing-library/jest-dom": "^5.11.10",

@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.3.14
+
+### Patch Changes
+
+- 4558a006: remove margin auto from donut
+
 ## 5.3.13
 
 ### Patch Changes
