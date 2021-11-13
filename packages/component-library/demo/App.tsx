@@ -60,13 +60,15 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <h2>Links</h2>
+            <h2>Donuts</h2>
           </div>
         </div>
         <div className={styles.layout}>
-          <div className={styles.item}>
-            <Donut score={60} />
-          </div>
+          {[0, 50, 100].map((score) => (
+            <div key={score} className={styles.item}>
+              <Donut score={score} />
+            </div>
+          ))}
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
