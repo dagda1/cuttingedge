@@ -9,7 +9,7 @@ var logger_1 = __importDefault(require("./logger"));
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var emptyBuildDir = function () {
     if (process.env.WATCHING !== 'true') {
-        logger_1.default.warn("emptying dist " + paths_1.paths.appBuild);
+        logger_1.default.warn("emptying dist ".concat(paths_1.paths.appBuild));
         fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
     }
     else {

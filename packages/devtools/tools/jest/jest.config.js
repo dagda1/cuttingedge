@@ -11,7 +11,7 @@ var setupTestsFileName = 'setupTests.ts';
 var setupTestsCandidates = [path_1.default.resolve('.', setupTestsFileName), path_1.default.resolve('src', 'tests', setupTestsFileName)];
 var localSetupTestsFile = setupTestsCandidates.find(fs_extra_1.default.existsSync);
 if (localSetupTestsFile) {
-    logger_1.default.debug("found local setup file " + localSetupTestsFile);
+    logger_1.default.debug("found local setup file ".concat(localSetupTestsFile));
 }
 var jestConfig = {
     rootDir: process.cwd(),

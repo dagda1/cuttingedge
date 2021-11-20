@@ -50,13 +50,13 @@ var write = function (type, text, verbose) {
     var textToLog = '';
     var logObject = false;
     var logType = logTypes[type];
-    textToLog += chalk_1.default[logType.bg].black(logType.msg.padEnd(8)) + " " + chalk_1.default[logType.text](text);
+    textToLog += "".concat(chalk_1.default[logType.bg].black(logType.msg.padEnd(8)), " ").concat(chalk_1.default[logType.text](text));
     if (verbose) {
         if (typeof verbose === 'object') {
             logObject = true;
         }
         else {
-            textToLog += "\n\n" + verbose;
+            textToLog += "\n\n".concat(verbose);
         }
     }
     console.log(textToLog);

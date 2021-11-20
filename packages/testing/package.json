@@ -33,8 +33,8 @@
     "@cutting/eslint-config": "4.27.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/jest": "^26.0.22",
-    "eslint": "^8.1.0",
-    "typescript": "^4.4.4"
+    "eslint": "^8.2.0",
+    "typescript": "^4.5.2"
   },
   "keywords": [
     "hotkeys",

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.process = void 0;
 var path_1 = __importDefault(require("path"));
 var createExport = function (filename) {
-    return ("\n    if (typeof module === 'object' && module) {\n        Object.defineProperty(exports, \"__esModule\", {\n          value: true\n      });\n        module.exports = " + JSON.stringify(path_1.default.basename(filename)) + "\n    } else {\n      Object.defineProperty(exports, \"__esModule\", {\n          value: true\n      });\n      exports.default = " + JSON.stringify(path_1.default.basename(filename)) + ";\n    }\n")
+    return "\n    if (typeof module === 'object' && module) {\n        Object.defineProperty(exports, \"__esModule\", {\n          value: true\n      });\n        module.exports = ".concat(JSON.stringify(path_1.default.basename(filename)), "\n    } else {\n      Object.defineProperty(exports, \"__esModule\", {\n          value: true\n      });\n      exports.default = ").concat(JSON.stringify(path_1.default.basename(filename)), ";\n    }\n")
         .trim()
         .replace(/^\s{4}/g, '');
 };

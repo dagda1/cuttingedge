@@ -64,14 +64,14 @@ var configureCommon = function (options, overrides) {
     var isWeb = !isNode;
     var _a = (0, getEnvironment_1.getEnvironment)(), isProduction = _a.isProduction, isDevelopment = _a.isDevelopment, staticAssetName = _a.staticAssetName, isAnalyse = _a.isAnalyse;
     var env = (0, getEnvironment_1.getEnvVariables)({ isNode: !!options.isNode });
-    var cssFile = (0, getFileName_1.getFileName)({
+    var cssFile = "".concat((0, getFileName_1.getFileName)({
         isProduction: isProduction,
         fileType: 'css',
-    }) + ".css";
-    var cssChunkFile = (0, getFileName_1.getFileName)({
+    }), ".css");
+    var cssChunkFile = "".concat((0, getFileName_1.getFileName)({
         isProduction: isProduction,
         fileType: 'css',
-    }) + ".css";
+    }), ".css");
     var config = (0, webpack_merge_1.merge)(overrides, {
         mode: isDevelopment ? 'development' : 'production',
         bail: isProduction,

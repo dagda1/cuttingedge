@@ -6,7 +6,7 @@ var logger_1 = require("../logger");
 var run = function (cmd) {
     return new Promise(function (resolve, reject) {
         var _a;
-        var command = (0, child_process_1.exec)("" + cmd);
+        var command = (0, child_process_1.exec)("".concat(cmd));
         var result = '';
         (_a = command.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) {
             result += data.toString();

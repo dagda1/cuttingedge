@@ -28,7 +28,7 @@ if (!process.env.CI && argv.indexOf('--coverage') < 0) {
 var config = fs_1.default.existsSync(paths_1.paths.ownJestConfig) ? paths_1.paths.ownJestConfig : paths_1.paths.jestConfig;
 argv.push('--config', config);
 argv.push('--env', 'jsdom');
-argv.push('--rootDir', "" + process.cwd());
+argv.push('--rootDir', "".concat(process.cwd()));
 if (process.env.CI) {
     argv.push('--ci');
     argv.push('--globalTeardown');

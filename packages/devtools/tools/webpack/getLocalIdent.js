@@ -17,7 +17,7 @@ var getLocalIdent = function (loaderContext, _, localName, options) {
     }
     var request = path_1.default.relative(options.context, loaderContext.resourcePath).replace(constants_1.sassModuleRegex, '');
     var prefix = (0, string_1.dasherize)(path_1.default.parse(request).name);
-    return prefix + "__" + localName;
+    return "".concat(prefix, "__").concat(localName);
 };
 exports.getLocalIdent = getLocalIdent;
 //# sourceMappingURL=getLocalIdent.js.map

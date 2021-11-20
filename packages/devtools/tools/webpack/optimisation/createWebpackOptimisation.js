@@ -42,7 +42,7 @@ var createWebpackOptimisation = function (_a) {
                 framework: {
                     name: 'framework',
                     chunks: 'all',
-                    test: new RegExp("(?<!node_modules.*)[\\\\/]node_modules[\\\\/](" + FRAMEWORK_BUNDLES.join("|") + ")[\\\\/]"),
+                    test: new RegExp("(?<!node_modules.*)[\\\\/]node_modules[\\\\/](".concat(FRAMEWORK_BUNDLES.join("|"), ")[\\\\/]")),
                     priority: 40,
                     enforce: true,
                 },
@@ -64,7 +64,7 @@ var createWebpackOptimisation = function (_a) {
                         }
                         else {
                             if (!module.libIdent) {
-                                throw new Error("Encountered unknown module type: " + module.type + ". Please open an issue.");
+                                throw new Error("Encountered unknown module type: ".concat(module.type, ". Please open an issue."));
                             }
                             hash.update(module.libIdent({ context: path_1.default.resolve('.') }));
                         }

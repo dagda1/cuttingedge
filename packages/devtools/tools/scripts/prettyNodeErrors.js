@@ -32,14 +32,14 @@ function pretty(error) {
     var message = error.message, stack = error.stack;
     var lines = (0, jest_message_util_1.getStackTraceLines)(stack);
     var topFrame = (0, jest_message_util_1.getTopFrame)(lines);
-    var fallback = "" + message + stack;
+    var fallback = "".concat(message).concat(stack);
     if (!topFrame) {
         return fallback;
     }
     var file = topFrame.file, line = topFrame.line;
     try {
         var result = codeFrameColumns(fs_1.default.readFileSync(file, 'utf8'), { start: { line: line } }, { highlightCode: true });
-        return "\n" + message + "\n\n" + result + "\n" + stack + "\n";
+        return "\n".concat(message, "\n\n").concat(result, "\n").concat(stack, "\n");
     }
     catch (error) {
         return fallback;

@@ -48,7 +48,7 @@ function getClientEnv(target, options, additional) {
             env[key] = JSON.stringify(raw[key]);
         }
         else {
-            env["process.env." + key] = JSON.stringify(raw[key]);
+            env["process.env.".concat(key)] = JSON.stringify(raw[key]);
         }
         return env;
     }, {});

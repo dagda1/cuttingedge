@@ -17,7 +17,7 @@ function findExecutable(current, executable, tries) {
     if (tries === void 0) { tries = 0; }
     var modulesDir = path_1.default.resolve(current, 'node_modules', '.bin', executable);
     if (tries === MaxTries) {
-        throw new Error("cannot find " + executable + " in " + modulesDir);
+        throw new Error("cannot find ".concat(executable, " in ").concat(modulesDir));
     }
     if (fs_extra_1.default.existsSync(modulesDir)) {
         return modulesDir;
@@ -30,12 +30,12 @@ function runEslint() {
     logger_1.logger.start("Running eslint");
     var eslintPath = findExecutable(__dirname, 'eslint');
     var eslintConfig = (0, finders_1.findFile)(process.cwd(), '.eslintrc.json');
-    var args = " --ext .ts,.tsx --max-warnings 0 " + paths_1.paths.appSrc + " --ignore-pattern *.test.* -c " + eslintConfig + " --fix";
-    var eslint = (0, child_process_1.exec)(eslintPath + " " + args);
+    var args = " --ext .ts,.tsx --max-warnings 0 ".concat(paths_1.paths.appSrc, " --ignore-pattern *.test.* -c ").concat(eslintConfig, " --fix");
+    var eslint = (0, child_process_1.exec)("".concat(eslintPath, " ").concat(args));
     (_a = eslint.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) { return logger_1.logger.info(data); });
     (_b = eslint.stderr) === null || _b === void 0 ? void 0 : _b.on('data', function (data) { return logger_1.logger.error(data); });
     eslint.on('close', function (code) {
-        logger_1.logger.done("eslint exited with code " + code + ".");
+        logger_1.logger.done("eslint exited with code ".concat(code, "."));
         if (code !== 0) {
             process.exit(code);
         }
@@ -51,14 +51,14 @@ function runTypeScriptBuild() {
         process.argv.push('-p', isProduction ? paths_1.paths.tsConfigProduction : paths_1.paths.tsConfig);
     }
     var tscPath = findExecutable(__dirname, 'tsc');
-    var tscCommand = tscPath + " " + process.argv.slice(2).join(' ');
-    logger_1.logger.info("running " + path_1.default.basename(tscCommand) + ", in " + path_1.default.dirname(process.cwd()));
+    var tscCommand = "".concat(tscPath, " ").concat(process.argv.slice(2).join(' '));
+    logger_1.logger.info("running ".concat(path_1.default.basename(tscCommand), ", in ").concat(path_1.default.dirname(process.cwd())));
     logger_1.logger.start("running tsc");
     var tsc = (0, child_process_1.exec)(tscCommand);
     (_a = tsc.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) { return logger_1.logger.info(data); });
     (_b = tsc.stderr) === null || _b === void 0 ? void 0 : _b.on('data', function (data) { return logger_1.logger.error(data); });
     tsc.on('close', function (code) {
-        logger_1.logger.done("tsc exited with code " + code);
+        logger_1.logger.done("tsc exited with code ".concat(code));
         if (code !== 0) {
             process.exit(1);
         }
