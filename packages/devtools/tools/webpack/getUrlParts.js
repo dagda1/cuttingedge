@@ -13,7 +13,7 @@ var getUrlParts = function (_a) {
     var host = process.env.HOST || 'localhost';
     var urls = (0, WebpackDevServerUtils_1.prepareUrls)(protocol, host, port);
     var sockPort = Number(port);
-    var publicPath = isProduction ? '/' : protocol + "://" + host + ":" + port + "/";
+    var publicPath = isProduction ? '/' : "".concat(protocol, "://").concat(host, ":").concat(port, "/");
     return {
         port: port,
         protocol: protocol,

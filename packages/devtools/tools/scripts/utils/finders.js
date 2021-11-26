@@ -47,7 +47,7 @@ var ModulesDirName = 'node_modules';
 var find = function (cwd, predicate, tries) {
     if (tries === void 0) { tries = 0; }
     if (tries === MaxTries) {
-        throw new Error("cannot find in " + cwd);
+        throw new Error("cannot find in ".concat(cwd));
     }
     if (predicate(cwd)) {
         return cwd;
@@ -62,7 +62,7 @@ var findAsync = function (cwd, predicate, tries) {
             switch (_a.label) {
                 case 0:
                     if (tries === MaxTries) {
-                        throw new Error("cannot find in " + cwd);
+                        throw new Error("cannot find in ".concat(cwd));
                     }
                     return [4 /*yield*/, predicate(cwd)];
                 case 1:

@@ -7,7 +7,7 @@ exports.copyAssets = void 0;
 var copy_1 = __importDefault(require("copy"));
 var paths_1 = require("../config/paths");
 var copyAssets = function () {
-    var patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json', '*.html', '*.csv', 'config.js'].map(function (pattern) { return paths_1.paths.appSrc + "/**/" + pattern; });
+    var patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json', '*.html', '*.csv', 'config.js'].map(function (pattern) { return "".concat(paths_1.paths.appSrc, "/**/").concat(pattern); });
     (0, copy_1.default)(patterns, paths_1.paths.appBuild, function (err) {
         if (err) {
             throw err;

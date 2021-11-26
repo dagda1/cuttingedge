@@ -73,7 +73,7 @@ exports.paths = {
     tsConfigProduction: tsConfigProduction,
     testTsConfig: testTsConfig,
     devDir: resolveApp(DevFolder),
-    devDirPublic: resolveApp(DevFolder + "/public"),
+    devDirPublic: resolveApp("".concat(DevFolder, "/public")),
     libPackages: libPackages,
     defaultBuildConfigPath: path_1.default.join(__dirname, './build.config.js'),
     proxySetup: resolveApp('setupProxy.js'),

@@ -112,10 +112,10 @@ function bundle(_a) {
                     (0, assert_ts_1.assert)(Array.isArray(entryPoints), "build config entries needs to be a string array");
                     fileName = "index.js";
                     outfile = path_1.default.join(paths_1.paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
-                    logger_1.default.info("writing " + path_1.default.basename(outfile) + " for " + packageName);
+                    logger_1.default.info("writing ".concat(path_1.default.basename(outfile), " for ").concat(packageName));
                     reactShimPath = path_1.default.resolve(__dirname, '..', '..', 'react-shim.js');
                     if (!fs_1.default.existsSync(reactShimPath)) {
-                        throw new Error("no reactShim at " + reactShimPath);
+                        throw new Error("no reactShim at ".concat(reactShimPath));
                     }
                     return [4 /*yield*/, (0, esbuild_1.build)({
                             entryPoints: entryPoints,
@@ -170,7 +170,7 @@ var buildPackage = function () { return __awaiter(void 0, void 0, void 0, functi
                     { format: 'cjs', env: 'production' },
                     { format: 'esm', env: 'production' },
                 ];
-                logger_1.default.info("Generating " + packageName + " bundle.");
+                logger_1.default.info("Generating ".concat(packageName, " bundle."));
                 _c.label = 2;
             case 2:
                 _c.trys.push([2, 7, 8, 9]);

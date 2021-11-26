@@ -22,11 +22,11 @@ switch (script) {
     case 'esbuild':
     case 'test':
     case 'ts-build': {
-        command = "../scripts/" + script;
+        command = "../scripts/".concat(script);
         break;
     }
     default:
-        logger_1.logger.info("Unknown script " + script + ".");
+        logger_1.logger.info("Unknown script ".concat(script, "."));
         logger_1.logger.info('Perhaps you need to update cutting?');
         break;
 }

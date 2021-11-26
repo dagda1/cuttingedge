@@ -39,7 +39,7 @@ function getPackages(packages) {
  */
 function runPkgCmd(cmd, args, pkg) {
     return new Promise(function (resolve, reject) {
-        logger_1.logger.info(pkg.name + " " + cmd + " " + args.join(' '));
+        logger_1.logger.info("".concat(pkg.name, " ").concat(cmd, " ").concat(args.join(' ')));
         var child = (0, child_process_1.spawn)(cmd, args, {
             stdio: [null, 1, 2],
             cwd: pkg.path,
@@ -72,7 +72,7 @@ program
         return p
             .then(function () { return runPkgCmd(cmd, args, pkg); })
             .catch(function (e) {
-            logger_1.logger.error(pkg.name + " failed with " + e);
+            logger_1.logger.error("".concat(pkg.name, " failed with ").concat(e));
             process.exit(1);
         });
     }, Promise.resolve())

@@ -130,8 +130,8 @@ function audit(exceptions) {
                     return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(path_1.default.join(process.cwd(), 'package.json'))); })];
                 case 5:
                     _e = _g.sent(), name_1 = _e.name, version = _e.version;
-                    displayName_1 = name_1 + "@" + version;
-                    logMessage = "running yarn audit for " + displayName_1;
+                    displayName_1 = "".concat(name_1, "@").concat(version);
+                    logMessage = "running yarn audit for ".concat(displayName_1);
                     logger_1.logger.info(logMessage);
                     failures = vulnerabilities.filter(function (vulnerability) {
                         var _a, _b;
@@ -144,7 +144,7 @@ function audit(exceptions) {
                         var packageName = advisory.module_name;
                         var meetsCrieria = !!severity && exceptions.includes(packageName) === false;
                         if (meetsCrieria) {
-                            var logMessage_2 = LogFailurePrefix + " - Found a " + severity + " vulneability for " + packageName + " in " + displayName_1 + " - " + advisory.url;
+                            var logMessage_2 = "".concat(LogFailurePrefix, " - Found a ").concat(severity, " vulneability for ").concat(packageName, " in ").concat(displayName_1, " - ").concat(advisory.url);
                             logger_1.logger.error(logMessage_2);
                         }
                         return meetsCrieria;
@@ -176,7 +176,7 @@ function audit(exceptions) {
                     for (i = 0; i < failures.length; i++) {
                         failure = failures[i];
                         if (!((_c = (_b = failure === null || failure === void 0 ? void 0 : failure.data) === null || _b === void 0 ? void 0 : _b.resolution) === null || _c === void 0 ? void 0 : _c.path)) {
-                            logMessage_1 = "irregular json = " + JSON.stringify(failure);
+                            logMessage_1 = "irregular json = ".concat(JSON.stringify(failure));
                             logger_1.logger.error('Houston we have a problem.......');
                             logger_1.logger.error(logMessage_1);
                             process.exit(1);
@@ -198,7 +198,7 @@ function audit(exceptions) {
                                     failure: [
                                         {
                                             _attr: {
-                                                message: "Dependency of " + dependencyPath,
+                                                message: "Dependency of ".concat(dependencyPath),
                                             },
                                         },
                                         message,
@@ -217,7 +217,7 @@ function audit(exceptions) {
                     }
                     fs_extra_1.default.emptyDirSync(ossIndex);
                     fs_extra_1.default.writeFileSync(path_1.default.join(ossIndex, 'junitReport.xml'), (0, xml_1.default)(jsonResults, { indent: '  ', declaration: true }));
-                    finalMessage = "audit finished with " + failures.length + " found.";
+                    finalMessage = "audit finished with ".concat(failures.length, " found.");
                     logger_1.logger.done(finalMessage);
                     process.exit(0);
                     return [3 /*break*/, 7];

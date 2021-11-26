@@ -28,7 +28,7 @@ function compileWebpack(config, cb) {
 }
 var compile = function (config, buildType) {
     return new Promise(function (resolve, reject) {
-        logger_1.logger.info("compiling " + buildType);
+        logger_1.logger.info("compiling ".concat(buildType));
         compileWebpack(config, function (err, stats) {
             if (err) {
                 console.error(err);
@@ -40,7 +40,7 @@ var compile = function (config, buildType) {
             if (messages.errors.length) {
                 return reject(new Error(messages.errors.join('\n')));
             }
-            logger_1.logger.done("Compiled " + buildType + " successfully.");
+            logger_1.logger.done("Compiled ".concat(buildType, " successfully."));
             if (messages.warnings.length) {
                 logger_1.logger.warn('Compiled with warnings.');
                 logger_1.logger.warn(messages.warnings.join('\n\n'));

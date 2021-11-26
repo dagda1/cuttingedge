@@ -19,7 +19,7 @@ var csv = function () {
                 skipEmptyLines: true,
             });
             return {
-                code: "export default " + JSON.stringify(parsed.data) + ";",
+                code: "export default ".concat(JSON.stringify(parsed.data), ";"),
                 map: { mappings: '' },
             };
         },

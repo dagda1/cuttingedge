@@ -152,7 +152,7 @@ var core_1 = require("@babel/core");
 var commander_1 = require("commander");
 var rollup_plugin_visualizer_1 = require("rollup-plugin-visualizer");
 var rollup_plugin_size_snapshot_1 = require("rollup-plugin-size-snapshot");
-logger_1.logger.debug("using " + path_1.default.basename(paths_1.paths.tsConfigProduction));
+logger_1.logger.debug("using ".concat(path_1.default.basename(paths_1.paths.tsConfigProduction)));
 function generateBundledModule(_a) {
     var packageName = _a.packageName, entryFile = _a.entryFile, moduleFormat = _a.moduleFormat, env = _a.env, vizualize = _a.vizualize, analyze = _a.analyze;
     return __awaiter(this, void 0, void 0, function () {
@@ -160,7 +160,7 @@ function generateBundledModule(_a) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(entryFile), "Input file " + entryFile + " does not exist");
+                    (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(entryFile), "Input file ".concat(entryFile, " does not exist"));
                     minify = env === 'production';
                     babelConfig = __rest((0, createBabelConfig_1.createBabelConfig)({
                         isDevelopment: false,
@@ -266,9 +266,9 @@ function generateBundledModule(_a) {
                     bundle = _b.sent();
                     pkgName = (0, helpers_1.safePackageName)(packageName);
                     extension = env === 'production' ? 'min.js' : 'js';
-                    fileName = ['esm', 'umd'].includes(moduleFormat) ? "index.js" : pkgName + ".cjs." + env + "." + extension;
+                    fileName = ['esm', 'umd'].includes(moduleFormat) ? "index.js" : "".concat(pkgName, ".cjs.").concat(env, ".").concat(extension);
                     outputFileName = path_1.default.join(paths_1.paths.appBuild, moduleFormat, fileName);
-                    logger_1.logger.info("writing " + path_1.default.basename(outputFileName) + " for " + packageName);
+                    logger_1.logger.info("writing ".concat(path_1.default.basename(outputFileName), " for ").concat(packageName));
                     return [4 /*yield*/, bundle.write({
                             file: outputFileName,
                             format: moduleFormat,
@@ -290,18 +290,18 @@ function generateBundledModule(_a) {
 }
 var getInputFile = function (packageName, inputFileOverride) {
     if (inputFileOverride) {
-        (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(inputFileOverride), "no --input-file found at " + inputFileOverride);
+        (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(inputFileOverride), "no --input-file found at ".concat(inputFileOverride));
         return inputFileOverride;
     }
     var candidates = [];
     [packageName, path_1.default.join(packageName, 'index'), 'index', path_1.default.join('bin', (0, helpers_1.safePackageName)(packageName))].forEach(function (candidate) {
         ['.ts', '.tsx'].forEach(function (fileType) {
-            candidates.push(path_1.default.join(paths_1.paths.appSrc, "" + candidate + fileType));
+            candidates.push(path_1.default.join(paths_1.paths.appSrc, "".concat(candidate).concat(fileType)));
         });
     });
     var inputFile = candidates.find(function (candidate) { return fs_extra_1.default.existsSync(candidate); });
     (0, assert_ts_1.assert)(!!inputFile, 'No rootFile found for rollup');
-    logger_1.logger.start("using input file " + path_1.default.basename(inputFile) + " for " + packageName);
+    logger_1.logger.start("using input file ".concat(path_1.default.basename(inputFile), " for ").concat(packageName));
     return inputFile;
 };
 function build(_a) {
@@ -325,7 +325,7 @@ function build(_a) {
                         { moduleFormat: 'esm', env: 'production' },
                         { moduleFormat: 'umd', env: 'production' },
                     ];
-                    logger_1.logger.info("Generating " + packageName + " bundle.");
+                    logger_1.logger.info("Generating ".concat(packageName, " bundle."));
                     _d.label = 2;
                 case 2:
                     _d.trys.push([2, 7, 8, 9]);
@@ -368,13 +368,13 @@ function build(_a) {
                     dtsFile = path_1.default.join(buildDir, 'esm', "index.d.ts");
                     pkgJson.types = dtsFile;
                     pkgJson.exports = {
-                        import: "./" + esmFile,
-                        require: "./" + commonjsFile,
-                        browser: "./" + umdFile,
+                        import: "./".concat(esmFile),
+                        require: "./".concat(commonjsFile),
+                        browser: "./".concat(umdFile),
                     };
                     pkgJson.typesVersions = {
                         '*': {
-                            '*': ["" + dtsFile],
+                            '*': ["".concat(dtsFile)],
                         },
                     };
                     return [4 /*yield*/, (0, write_package_1.writeToPackage)(pkgJsonPath, pkgJson)];

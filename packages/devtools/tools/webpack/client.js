@@ -69,8 +69,8 @@ var configure = function (options, overrides) {
     }, {});
     var template = publicDir ? path_1.default.join(publicDir, 'index.html') : 'public/index.html';
     var templateExists = fs_1.default.existsSync(template);
-    var jsFile = (0, getFileName_1.getFileName)({ isProduction: isProduction, fileType: 'js' }) + ".js";
-    var jsChunkFile = (0, getFileName_1.getFileName)({ isProduction: isProduction, fileType: 'js' }) + ".js";
+    var jsFile = "".concat((0, getFileName_1.getFileName)({ isProduction: isProduction, fileType: 'js' }), ".js");
+    var jsChunkFile = "".concat((0, getFileName_1.getFileName)({ isProduction: isProduction, fileType: 'js' }), ".js");
     var config = (0, webpack_merge_1.merge)(common, overrides, {
         name: 'client',
         target: 'web',
