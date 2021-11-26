@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.30.0
+
+### Minor Changes
+
+- 7edd9a89: upgrade to typescript 4.5
+
+### Patch Changes
+
+- Updated dependencies [7edd9a89]
+  - @cutting/util@4.29.0
+
 ## 4.29.2
 
 ### Patch Changes

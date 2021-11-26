@@ -1,7 +1,7 @@
 {
   "name": "@cutting/hooks",
   "description": "Hooks man, hooks.",
-  "version": "4.29.2",
+  "version": "4.30.0",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "browser": "dist/umd/index.js",
@@ -24,7 +24,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.28.2",
+    "@cutting/util": "4.29.0",
     "assert-ts": "^0.3.2",
     "history": "^4.10.1",
     "react-use": "^17.2.3",
@@ -32,8 +32,8 @@
     "use-debounce": "^6.0.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.30.5",
-    "@cutting/eslint-config": "4.27.0",
+    "@cutting/devtools": "4.31.0",
+    "@cutting/eslint-config": "4.28.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/history": "^4.7.8",
     "@types/jest": "^27.0.2",

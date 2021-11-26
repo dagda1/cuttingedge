@@ -1,5 +1,22 @@
 # @cutting/website
 
+## 4.28.0
+
+### Minor Changes
+
+- 7edd9a89: upgrade to typescript 4.5
+
+### Patch Changes
+
+- Updated dependencies [7edd9a89]
+  - @cutting/component-library@5.4.0
+  - @cutting/hooks@4.30.0
+  - @cutting/react-abortable-fetch@0.17.0
+  - @cutting/svg@4.31.0
+  - @cutting/use-get-parent-size@1.6.0
+  - @cutting/use-mathjax@4.28.0
+  - @cutting/util@4.29.0
+
 ## 4.27.18
 
 ### Patch Changes
