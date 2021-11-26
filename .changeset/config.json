@@ -6,5 +6,8 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [
+    "@cutting/graphql-explorer",
+    "@cutting/website"
+  ]
 }

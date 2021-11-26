@@ -1,5 +1,17 @@
 # @cutting/svg
 
+## 4.31.0
+
+### Minor Changes
+
+- 7edd9a89: upgrade to typescript 4.5
+
+### Patch Changes
+
+- Updated dependencies [7edd9a89]
+  - @cutting/use-get-parent-size@1.6.0
+  - @cutting/util@4.29.0
+
 ## 4.30.1
 
 ### Patch Changes

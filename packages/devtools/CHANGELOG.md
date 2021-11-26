@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.31.0
+
+### Minor Changes
+
+- 7edd9a89: upgrade to typescript 4.5
+
 ## 4.30.5
 
 ### Patch Changes

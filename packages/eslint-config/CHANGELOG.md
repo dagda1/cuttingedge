@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.28.0
+
+### Minor Changes
+
+- 7edd9a89: upgrade to typescript 4.5
+
 ## 4.27.0
 
 ### Minor Changes
