@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: Set yarn berry
+      run: yarn set version berry
     - name: Install Dependencies
       run: yarn install
     - name: Create Release Pull Request
