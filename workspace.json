@@ -53,10 +53,6 @@
       "root": "packages/util",
       "implicitDependencies": []
     },
-    "@cutting/graphql-explorer": {
-      "root": "packages/graphql-explorer",
-      "implicitDependencies": []
-    },
     "@cutting/website": {
       "root": "packages/website",
       "implicitDependencies": []
