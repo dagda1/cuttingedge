@@ -17,9 +17,6 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Set yarn berry
-        run: yarn set version berry
-
       - name: Install Dependencies
         run: yarn
 
