@@ -42,7 +42,7 @@ describe('useScrollToTop', () => {
     };
 
     render(
-      <Router history={history}>
+      <Router location={history.location} navigator={history}>
         <Comp />
       </Router>,
     );

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import loadable from '@loadable/component';
 import * as Urls from '../urls';
-import { Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router';
 import type { Page } from '@cutting/util';
 import { ContactMe } from '../components/ContactMe';
 
@@ -44,64 +44,56 @@ export const routable: Page[] = [
   {
     heading: 'Home',
     path: Urls.Home,
-    component: Home,
-    exact: true,
+    element: <Home />,
   },
   {
     heading: 'OSS',
     path: Urls.OSS,
-    component: OSS,
-    exact: true,
+    element: <OSS />,
   },
   {
     heading: 'Blog',
     path: Urls.Blog,
-    component: Blog,
-    exact: true,
+    element: <Blog />,
   },
   {
     heading: 'CV',
     path: Urls.CV,
-    component: CV,
-    exact: true,
+    element: <CV />,
   },
   {
     heading: 'Privacy Policy',
     path: Urls.PrivacyPolicy,
-    component: PrivacyPolicy,
-    exact: true,
+    element: <PrivacyPolicy />,
     footerPage: true,
   },
   {
     heading: 'Terms of Service',
     path: Urls.TermsOfService,
-    component: TermsOfService,
-    exact: true,
+    element: <TermsOfService />,
     footerPage: true,
   },
   {
     heading: 'COVID-19',
     path: Urls.Covid19,
-    component: Graphs,
-    exact: false,
+    element: <Graphs />,
     footerPage: false,
   },
   {
     heading: 'Viz',
     path: Urls.Viz,
-    component: Viz,
-    exact: false,
+    element: <Viz />,
     footerPage: false,
   },
 ];
 
-export const Routes: FC = () => (
-  <Switch>
+export const MainRoutes: FC = () => (
+  <Routes>
     {routable.map(({ path, ...rest }) => (
       <Route key={path} path={path} {...rest} />
     ))}
-    <Route path={Urls.ContactMe} component={ContactMe} exact />
-  </Switch>
+    <Route path={Urls.ContactMe} element={<ContactMe />} />
+  </Routes>
 );
 
 export const bannerPages = routable.filter((p) => !p.footerPage && p.path !== Urls.Home);

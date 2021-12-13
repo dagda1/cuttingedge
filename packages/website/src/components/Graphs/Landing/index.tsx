@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import loadable from '@loadable/component';
 import * as Urls from '../../../urls';
-import { Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router';
 import type { Page } from '@cutting/util';
 import { fallback } from '../../../components/Fallback/Fallback';
 
@@ -25,14 +25,12 @@ export const routable: Page[] = [
   {
     heading: 'Daily Increase In Scottish deaths',
     path: Urls.Covid19,
-    component: DailyIncreaseUk,
-    exact: true,
+    element: <DailyIncreaseUk />,
   },
   {
     heading: 'Increase in deaths',
     path: Urls.IncreaseInDeaths,
-    component: IncreseFromPreviousDay,
-    exact: true,
+    element: <IncreseFromPreviousDay />,
   },
   // {
   //   heading: 'Deaths',
@@ -49,11 +47,11 @@ export const routable: Page[] = [
 ];
 
 export const Landing: FC = () => (
-  <Switch>
+  <Routes>
     {routable.map(({ path, ...rest }) => {
       return <Route key={path} path={path} {...rest} />;
     })}
-  </Switch>
+  </Routes>
 );
 
 export default Landing;
