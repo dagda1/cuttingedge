@@ -2474,6 +2474,7 @@ __metadata:
     "@actions/github": ^5.0.0
     "@cutting/devtools": 4.31.0
     "@cutting/eslint-config": 4.28.0
+    assert-ts: ^0.3.4
     axios: ^0.24.0
     eslint: ^8.2.0
     typescript: ^4.5.3
