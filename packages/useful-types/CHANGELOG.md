@@ -1,5 +1,13 @@
 # @cutting/useful-types
 
+## 4.25.5
+
+### Patch Changes
+
+- 68080fa3: more
+- Updated dependencies [68080fa3]
+  - @cutting/util@4.29.2
+
 ## 4.25.4
 
 ### Patch Changes

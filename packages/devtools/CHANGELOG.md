@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.31.2
+
+### Patch Changes
+
+- 68080fa3: more
+
 ## 4.31.1
 
 ### Patch Changes

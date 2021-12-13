@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.29.2
+
+### Patch Changes
+
+- 68080fa3: more
+
 ## 4.29.1
 
 ### Patch Changes
