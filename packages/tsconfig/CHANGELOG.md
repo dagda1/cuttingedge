@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.26.1
+
+### Patch Changes
+
+- 68080fa3: more
+
 ## 4.26.0
 
 ### Minor Changes

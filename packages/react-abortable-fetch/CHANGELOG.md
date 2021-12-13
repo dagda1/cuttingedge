@@ -1,5 +1,13 @@
 # @cutting/react-abortable-fetch
 
+## 0.17.2
+
+### Patch Changes
+
+- 68080fa3: more
+- Updated dependencies [68080fa3]
+  - @cutting/util@4.29.2
+
 ## 0.17.1
 
 ### Patch Changes
