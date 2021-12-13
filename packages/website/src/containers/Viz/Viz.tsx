@@ -1,6 +1,6 @@
 import type { Page } from '@cutting/util';
 import type { FC } from 'react';
-import { Redirect, Route, Switch, useRouteMatch } from 'react-router';
+import { Route, Routes, Navigate, useLocation } from 'react-router';
 import * as Urls from '../../urls';
 import loadable from '@loadable/component';
 import { fallback } from '../../components/Fallback/Fallback';
@@ -10,21 +10,21 @@ const Sine = loadable(() => import('../../components/Sine/Sine'), {
   fallback,
 });
 
-const routes: Page[] = [{ heading: 'Sine wave', path: Urls.Sine, component: Sine, exact: true }];
+const routes: Page[] = [{ heading: 'Sine wave', path: Urls.Sine, element: <Sine /> }];
 
-const Default = () => <Redirect to={Urls.Sine} />;
+const Default = () => <Navigate to={Urls.Sine} />;
 
 export const Viz: FC = () => {
-  const { path: currentPath } = useRouteMatch();
+  const { pathname: currentPath } = useLocation();
 
   return (
     <MathJaxProvider>
-      <Switch>
+      <Routes>
         {routes.map(({ path, ...rest }) => {
           return <Route key={path} path={path} {...rest} />;
         })}
-        <Route path={currentPath} component={Default} exact />
-      </Switch>
+        <Route path={currentPath} element={<Default />} />
+      </Routes>
     </MathJaxProvider>
   );
 };

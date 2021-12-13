@@ -1564,7 +1564,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.10.4, @babel/runtime@npm:^7.12.1, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.0, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.0, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.7.7, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.10.4, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.0, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.0, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.7.7, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.16.3
   resolution: "@babel/runtime@npm:7.16.3"
   dependencies:
@@ -1914,8 +1914,8 @@ __metadata:
     storybook-addon-designs: ^6.2.0
     typescript: ^4.5.3
   peerDependencies:
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ">= 17.x.x"
+    react-dom: ">= 17.x.x"
   languageName: unknown
   linkType: soft
 
@@ -2117,8 +2117,8 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
   peerDependencies:
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ">= 17.x.x"
+    react-dom: ">= 17.x.x"
   languageName: unknown
   linkType: soft
 
@@ -2135,19 +2135,19 @@ __metadata:
     "@types/react": ^17.0.3
     "@types/react-dom": ^17.0.3
     "@types/react-router-dom": ^5.1.7
-    assert-ts: ^0.3.4
+    assert-ts: ^0.3.2
     eslint: ^8.2.0
     history: ^4.10.1
     react: ^17.0.2
     react-dom: ^17.0.2
-    react-router-dom: 5.2.0
+    react-router-dom: ^6.1.1
     react-use: ^17.2.3
     resize-observer-polyfill: ^1.5.1
-    typescript: ^4.5.3
+    typescript: ^4.5.2
     use-debounce: ^6.0.1
   peerDependencies:
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ">= 17.x.x"
+    react-dom: ">= 17.x.x"
   languageName: unknown
   linkType: soft
 
@@ -2175,8 +2175,8 @@ __metadata:
     uuid: ^8.3.2
     xstate: ^4.18.0
   peerDependencies:
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ">= 17.x.x"
+    react-dom: ">= 17.x.x"
   languageName: unknown
   linkType: soft
 
@@ -2207,8 +2207,8 @@ __metadata:
     resize-observer-polyfill: ^1.5.1
     typescript: ^4.5.3
   peerDependencies:
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ">= 17.x.x"
+    react-dom: ">= 17.x.x"
   languageName: unknown
   linkType: soft
 
@@ -2229,7 +2229,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@cutting/tsconfig@workspace:packages/tsconfig":
+"@cutting/tsconfig@4.26.0, @cutting/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@cutting/tsconfig@workspace:packages/tsconfig"
   languageName: unknown
@@ -2254,14 +2254,14 @@ __metadata:
     history: ^4.10.1
     react: ^17.0.2
     react-dom: ^17.0.2
-    react-router-dom: 5.2.0
+    react-router-dom: ^6.1.1
     react-use: ^17.2.3
     resize-observer-polyfill: ^1.5.1
     typescript: ^4.5.3
     use-debounce: ^6.0.1
   peerDependencies:
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ">= 17.x.x"
+    react-dom: ">= 17.x.x"
   languageName: unknown
   linkType: soft
 
@@ -2285,8 +2285,8 @@ __metadata:
     react-use: ^17.2.3
     typescript: ^4.5.3
   peerDependencies:
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ">= 17.x.x"
+    react-dom: ">= 17.x.x"
   languageName: unknown
   linkType: soft
 
@@ -2307,12 +2307,12 @@ __metadata:
     react-dom: ^17.0.2
     typescript: ^4.5.3
   peerDependencies:
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ">= 17.x.x"
+    react-dom: ">= 17.x.x"
   languageName: unknown
   linkType: soft
 
-"@cutting/useful-types@workspace:packages/useful-types":
+"@cutting/useful-types@4.25.4, @cutting/useful-types@workspace:packages/useful-types":
   version: 0.0.0-use.local
   resolution: "@cutting/useful-types@workspace:packages/useful-types"
   dependencies:
@@ -2371,7 +2371,6 @@ __metadata:
     "@types/react": ^17.0.3
     "@types/react-dom": ^17.0.3
     "@types/react-helmet": ^6.1.1
-    "@types/react-router": ^5.1.13
     "@types/react-router-dom": ^5.1.7
     "@types/regression": ^2.0.0
     "@types/serialize-javascript": ^5.0.0
@@ -2400,7 +2399,7 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
     react-helmet: ^6.1.0
-    react-router-dom: 5.2.0
+    react-router-dom: ^6.1.1
     referrer-policy: ^1.2.0
     regression: ^2.0.1
     serialize-javascript: ^5.0.1
@@ -6219,7 +6218,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-router@npm:*, @types/react-router@npm:^5.1.13":
+"@types/react-router@npm:*":
   version: 5.1.17
   resolution: "@types/react-router@npm:5.1.17"
   dependencies:
@@ -7693,7 +7692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"assert-ts@npm:^0.3.3, assert-ts@npm:^0.3.4":
+"assert-ts@npm:^0.3.2, assert-ts@npm:^0.3.3, assert-ts@npm:^0.3.4":
   version: 0.3.4
   resolution: "assert-ts@npm:0.3.4"
   checksum: 143d6dd83c3cbe71bc4927d734de22ef0a0052f3bde059eed78d5ca5b71428bc35a5c0437d3637cde17583babc46116e6076414a4f69e5735e32391adc5984e6
@@ -10078,6 +10077,8 @@ __metadata:
     "@capsizecss/core": ^3.0.0
     "@capsizecss/vanilla-extract": ^1.0.0
     "@changesets/cli": ^2.17.0
+    "@cutting/tsconfig": 4.26.0
+    "@cutting/useful-types": 4.25.4
     "@nrwl/cli": ^13.3.1
     "@nrwl/nx-cloud": ^13.0.0
     "@nrwl/tao": ^13.3.1
@@ -13720,7 +13721,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"history@npm:^4.10.1, history@npm:^4.9.0":
+"history@npm:^4.10.1":
   version: 4.10.1
   resolution: "history@npm:4.10.1"
   dependencies:
@@ -13743,7 +13744,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hoist-non-react-statics@npm:^3.1.0, hoist-non-react-statics@npm:^3.3.0, hoist-non-react-statics@npm:^3.3.1":
+"hoist-non-react-statics@npm:^3.3.0, hoist-non-react-statics@npm:^3.3.1":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
   dependencies:
@@ -15241,13 +15242,6 @@ __metadata:
   version: 0.3.0
   resolution: "is-yarn-global@npm:0.3.0"
   checksum: bca013d65fee2862024c9fbb3ba13720ffca2fe750095174c1c80922fdda16402b5c233f5ac9e265bc12ecb5446e7b7f519a32d9541788f01d4d44e24d2bf481
-  languageName: node
-  linkType: hard
-
-"isarray@npm:0.0.1":
-  version: 0.0.1
-  resolution: "isarray@npm:0.0.1"
-  checksum: 49191f1425681df4a18c2f0f93db3adb85573bcdd6a4482539d98eac9e705d8961317b01175627e860516a2fc45f8f9302db26e5a380a97a520e272e2a40a8d4
   languageName: node
   linkType: hard
 
@@ -16834,7 +16828,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.2.0, loose-envify@npm:^1.3.1, loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.2.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -17441,19 +17435,6 @@ __metadata:
   version: 1.0.1
   resolution: "min-indent@npm:1.0.1"
   checksum: bfc6dd03c5eaf623a4963ebd94d087f6f4bbbfd8c41329a7f09706b0cb66969c4ddd336abeb587bc44bc6f08e13bf90f0b374f9d71f9f01e04adc2cd6f083ef1
-  languageName: node
-  linkType: hard
-
-"mini-create-react-context@npm:^0.4.0":
-  version: 0.4.1
-  resolution: "mini-create-react-context@npm:0.4.1"
-  dependencies:
-    "@babel/runtime": ^7.12.1
-    tiny-warning: ^1.0.3
-  peerDependencies:
-    prop-types: ^15.0.0
-    react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: f8cb2c7738aac355fe9ce7e8425f371b7fa90daddd5133edda4ccfdc18c49043b2ec04be6f3abf09b60a0f52549d54f158d5bfd81cdfb1a658531e5b9fe7bc6a
   languageName: node
   linkType: hard
 
@@ -18923,15 +18904,6 @@ __metadata:
   version: 2.2.1
   resolution: "path-to-regexp@npm:2.2.1"
   checksum: b921a74e7576e25b06ad1635abf7e8125a29220d2efc2b71d74b9591f24a27e6f09078fa9a1b27516a097ea0637b7cab79d19b83d7f36a8ef3ef5422770e89d9
-  languageName: node
-  linkType: hard
-
-"path-to-regexp@npm:^1.7.0":
-  version: 1.8.0
-  resolution: "path-to-regexp@npm:1.8.0"
-  dependencies:
-    isarray: 0.0.1
-  checksum: 709f6f083c0552514ef4780cb2e7e4cf49b0cc89a97439f2b7cc69a608982b7690fb5d1720a7473a59806508fc2dae0be751ba49f495ecf89fd8fbc62abccbcd
   languageName: node
   linkType: hard
 
@@ -20456,7 +20428,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.12.0, react-is@npm:^16.6.0, react-is@npm:^16.7.0, react-is@npm:^16.8.1":
+"react-is@npm:^16.12.0, react-is@npm:^16.7.0, react-is@npm:^16.8.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
@@ -20510,24 +20482,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:5.2.0":
-  version: 5.2.0
-  resolution: "react-router-dom@npm:5.2.0"
-  dependencies:
-    "@babel/runtime": ^7.1.2
-    history: ^4.9.0
-    loose-envify: ^1.3.1
-    prop-types: ^15.6.2
-    react-router: 5.2.0
-    tiny-invariant: ^1.0.2
-    tiny-warning: ^1.0.0
-  peerDependencies:
-    react: ">=15"
-  checksum: 98d2d35f9540ac4a3c14dc023623fc8411a6a6338e95d726370e07b27c3bc6e854516537c8e3f9ad2483c4bbd579ba28cce9aff843a19fe8ebff663318886335
-  languageName: node
-  linkType: hard
-
-"react-router-dom@npm:^6.0.0":
+"react-router-dom@npm:^6.0.0, react-router-dom@npm:^6.1.1":
   version: 6.1.1
   resolution: "react-router-dom@npm:6.1.1"
   dependencies:
@@ -20537,26 +20492,6 @@ __metadata:
     react: ">=16.8"
     react-dom: ">=16.8"
   checksum: 211d9c4bb94037a7c8654506fcfd535bccfc11812204fd1743b1871d63da61cdaccd12d65a95a7ac4a53ad79b35e7d52f5d2a5925587d4ca1bc5f234805bab1c
-  languageName: node
-  linkType: hard
-
-"react-router@npm:5.2.0":
-  version: 5.2.0
-  resolution: "react-router@npm:5.2.0"
-  dependencies:
-    "@babel/runtime": ^7.1.2
-    history: ^4.9.0
-    hoist-non-react-statics: ^3.1.0
-    loose-envify: ^1.3.1
-    mini-create-react-context: ^0.4.0
-    path-to-regexp: ^1.7.0
-    prop-types: ^15.6.2
-    react-is: ^16.6.0
-    tiny-invariant: ^1.0.2
-    tiny-warning: ^1.0.0
-  peerDependencies:
-    react: ">=15"
-  checksum: 6fc908729110a65a5676a9e41333e0f511a3c0ff84c93c0dc704330cf3e02124c93aaeab8031b0e2c71712390d9278fff848eeebfbdda36dca3201142f309973
   languageName: node
   linkType: hard
 
@@ -23477,7 +23412,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tiny-warning@npm:^1.0.0, tiny-warning@npm:^1.0.3":
+"tiny-warning@npm:^1.0.0":
   version: 1.0.3
   resolution: "tiny-warning@npm:1.0.3"
   checksum: da62c4acac565902f0624b123eed6dd3509bc9a8d30c06e017104bedcf5d35810da8ff72864400ad19c5c7806fc0a8323c68baf3e326af7cb7d969f846100d71
@@ -24007,7 +23942,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.5.3":
+"typescript@npm:^4.5.2, typescript@npm:^4.5.3":
   version: 4.5.3
   resolution: "typescript@npm:4.5.3"
   bin:
@@ -24017,7 +23952,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.5.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.5.2#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.3#~builtin<compat/typescript>":
   version: 4.5.3
   resolution: "typescript@patch:typescript@npm%3A4.5.3#~builtin<compat/typescript>::version=4.5.3&hash=ddd1e8"
   bin:

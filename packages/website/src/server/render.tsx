@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
 import { HttpStatusCode, isProduction } from '@cutting/util';
 import { StaticRouter, StaticRouterContext } from 'react-router';
-import { Routes } from '../routes';
+import { MainRoutes } from '../routes';
 import path from 'path';
 import { Helmet } from 'react-helmet';
 import { GATagManager } from '../components/ga-tagmanager';
@@ -46,7 +46,7 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
       <body {...helmet.bodyAttributes.toComponent()}>
         <div id="root">
           <StaticRouter location={req.url} context={context}>
-            <Routes />
+            <MainRoutes />
           </StaticRouter>
         </div>
       </body>
