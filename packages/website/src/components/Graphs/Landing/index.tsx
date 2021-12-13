@@ -25,12 +25,12 @@ export const routable: Page[] = [
   {
     heading: 'Daily Increase In Scottish deaths',
     path: Urls.Covid19,
-    element: <DailyIncreaseUk/>,
+    element: <DailyIncreaseUk />,
   },
   {
     heading: 'Increase in deaths',
     path: Urls.IncreaseInDeaths,
-    element: <IncreseFromPreviousDay/>,
+    element: <IncreseFromPreviousDay />,
   },
   // {
   //   heading: 'Deaths',
