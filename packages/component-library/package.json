@@ -27,6 +27,8 @@
     "@babel/core": "^7.16.0",
     "@cutting/devtools": "4.31.2",
     "@cutting/eslint-config": "4.28.1",
+    "@cutting/tsconfig": "4.26.0",
+    "@cutting/useful-types": "4.25.4",
     "@mdx-js/react": "^1.6.22",
     "@storybook/addon-actions": "^6.3.12",
     "@storybook/addon-docs": "^6.3.12",

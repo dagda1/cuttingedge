@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "@cutting/devtools": "4.31.2",
+    "@cutting/tsconfig": "4.26.0",
+    "@cutting/useful-types": "4.25.4",
     "abortcontroller-polyfill": "^1.7.1",
     "eslint": "^8.2.0",
     "react": "^17.0.2",
