@@ -1,5 +1,13 @@
 # @cutting/react-abortable-fetch
 
+## 0.17.1
+
+### Patch Changes
+
+- 8a44b1b8: add @cutting/vercel-wait-for-preview-url
+- Updated dependencies [8a44b1b8]
+  - @cutting/util@4.29.1
+
 ## 0.17.0
 
 ### Minor Changes

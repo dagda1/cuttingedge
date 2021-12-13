@@ -1,5 +1,13 @@
 # @cutting/hooks
 
+## 4.30.1
+
+### Patch Changes
+
+- 8a44b1b8: add @cutting/vercel-wait-for-preview-url
+- Updated dependencies [8a44b1b8]
+  - @cutting/util@4.29.1
+
 ## 4.30.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @cutting/use-shortcuts
 
+## 4.27.1
+
+### Patch Changes
+
+- 8a44b1b8: add @cutting/vercel-wait-for-preview-url
+- Updated dependencies [8a44b1b8]
+  - @cutting/util@4.29.1
+
 ## 4.27.0
 
 ### Minor Changes
