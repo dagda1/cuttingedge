@@ -10,7 +10,7 @@
 
 - 68080fa3: more
 - Updated dependencies [68080fa3]
-  - @cutting/util@4.29.2
+  - @cutting/uatil@4.29.2
 
 ## 4.27.1
 
