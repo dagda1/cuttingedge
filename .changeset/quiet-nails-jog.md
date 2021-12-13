@@ -10,7 +10,6 @@
 "@cutting/use-shortcuts": patch
 "@cutting/util": patch
 "@cutting/wait-for-vercel-preview-url": patch
-"@cutting/website": patch
 ---
 
 add @cutting/vercel-wait-for-preview-url

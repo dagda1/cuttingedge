@@ -10,10 +10,10 @@ jobs:
     name: Create Changeset PR
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
     - name: Install Dependencies
       run: yarn install
     - name: Create Release Pull Request
-      uses: changesets/action@master
+      uses: changesets/action@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
