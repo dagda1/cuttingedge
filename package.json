@@ -19,6 +19,7 @@
       "packages/use-mathjax",
       "packages/use-shortcuts",
       "packages/graphql-explorer",
+      "packages/wait-for-vercel-preview-url",
       "packages/website"
     ]
   },
@@ -74,7 +75,7 @@
     "ssri": "8.0.1",
     "tailwindcss": "^2.2.7",
     "trim-newlines": "^4.0.2",
-    "typescript": "^4.5.2",
+    "typescript": "^4.5.3",
     "url-parse": "^1.5.3"
   },
   "lint-prepush": {

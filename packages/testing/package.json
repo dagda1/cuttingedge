@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@cutting/util": "4.29.0",
-    "assert-ts": "^0.3.2",
+    "assert-ts": "^0.3.4",
     "resize-observer-polyfill": "^1.5.1",
     "use-debounce": "^6.0.1"
   },
@@ -34,7 +34,7 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@types/jest": "^26.0.22",
     "eslint": "^8.2.0",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.3"
   },
   "keywords": [
     "hotkeys",
