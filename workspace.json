@@ -53,6 +53,10 @@
       "root": "packages/util",
       "implicitDependencies": []
     },
+    "@cutting/wait-for-vercel-preview-url": {
+      "root": "packages/wait-for-vercel-preview-url",
+      "implicitDependencies": []
+    },
     "@cutting/website": {
       "root": "packages/website",
       "implicitDependencies": []

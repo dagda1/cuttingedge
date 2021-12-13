@@ -1,0 +1,4 @@
+
+{
+  "extends": "@cutting/eslint-config/node"
+}
