@@ -20,13 +20,13 @@
     "**/*.scss"
   ],
   "dependencies": {
-    "@cutting/component-library": "5.4.0",
-    "@cutting/hooks": "4.30.0",
-    "@cutting/react-abortable-fetch": "0.17.0",
-    "@cutting/svg": "4.31.0",
-    "@cutting/use-get-parent-size": "1.6.0",
-    "@cutting/use-mathjax": "4.28.0",
-    "@cutting/util": "4.29.0",
+    "@cutting/component-library": "5.4.1",
+    "@cutting/hooks": "4.30.1",
+    "@cutting/react-abortable-fetch": "0.17.1",
+    "@cutting/svg": "4.31.1",
+    "@cutting/use-get-parent-size": "1.6.1",
+    "@cutting/use-mathjax": "4.28.1",
+    "@cutting/util": "4.29.1",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",
     "@visx/axis": "^1.10.0",
@@ -58,7 +58,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.31.0",
+    "@cutting/devtools": "4.31.1",
     "@cutting/eslint-config": "4.28.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/csurf": "^1.11.1",

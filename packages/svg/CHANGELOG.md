@@ -1,5 +1,14 @@
 # @cutting/svg
 
+## 4.31.1
+
+### Patch Changes
+
+- 8a44b1b8: add @cutting/vercel-wait-for-preview-url
+- Updated dependencies [8a44b1b8]
+  - @cutting/use-get-parent-size@1.6.1
+  - @cutting/util@4.29.1
+
 ## 4.31.0
 
 ### Minor Changes

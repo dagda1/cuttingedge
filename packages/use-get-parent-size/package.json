@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-get-parent-size",
   "description": "Sizes an SVG document to the containing parent using the resize-observer.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "browser": "dist/umd/index.js",
@@ -24,7 +24,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@cutting/util": "4.29.0",
+    "@cutting/util": "4.29.1",
     "assert-ts": "^0.3.4",
     "history": "^4.10.1",
     "react-use": "^17.2.3",
@@ -32,8 +32,8 @@
     "use-debounce": "^6.0.1"
   },
   "devDependencies": {
-    "@cutting/component-library": "5.4.0",
-    "@cutting/devtools": "4.31.0",
+    "@cutting/component-library": "5.4.1",
+    "@cutting/devtools": "4.31.1",
     "@cutting/eslint-config": "4.28.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@types/history": "^4.7.8",
