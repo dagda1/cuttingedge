@@ -5,9 +5,6 @@
       "path": "./packages/devtools"
     },
     {
-      "path": "./packages/testing"
-    },
-    {
       "path": "./packages/util/tsconfig.dist.json"
     },
     {

@@ -32,7 +32,6 @@
   },
   "devDependencies": {
     "@cutting/devtools": "^4.31.2",
-    "@cutting/testing": "4.27.2",
     "@cutting/tsconfig": "4.26.0",
     "@cutting/useful-types": "4.25.4",
     "@types/react": "^17.0.3",

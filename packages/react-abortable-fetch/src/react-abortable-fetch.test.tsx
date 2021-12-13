@@ -3,9 +3,16 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useFetch } from './react-abortable-fetch';
-import { flushPromises } from '@cutting/testing';
 
 let times = 1;
+
+const scheduler = typeof setImmediate === 'function' ? setImmediate : setTimeout;
+
+function flushPromises(): Promise<unknown> {
+  return new Promise((resolve) => {
+    scheduler(resolve);
+  });
+}
 
 const pause = (ms: number) => new Promise((res) => setTimeout(res, ms));
 

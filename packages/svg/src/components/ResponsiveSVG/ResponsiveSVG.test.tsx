@@ -1,10 +1,18 @@
-import { describe, it, expect } from '@jest/globals';
+import { describe, it, expect, jest } from '@jest/globals';
 import type { FC } from 'react';
 import { render, screen } from '@testing-library/react';
-import { resize } from '@cutting/testing';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { ResponsiveSVG } from './ResponsiveSVG';
+
+const resize = (width: number, height: number): void => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  ResizeObserver.mockImplementation((cb) => {
+    cb([{ contentRect: { width, height } }]);
+    return { observe: jest.fn(), disconnect: jest.fn(), unobserve: jest.fn() };
+  });
+};
 
 const TestEr: FC = () => {
   const ref = useRef<HTMLDivElement>(null);

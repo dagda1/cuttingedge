@@ -2164,7 +2164,6 @@ __metadata:
   resolution: "@cutting/react-abortable-fetch@workspace:packages/react-abortable-fetch"
   dependencies:
     "@cutting/devtools": ^4.31.2
-    "@cutting/testing": 4.27.2
     "@cutting/tsconfig": 4.26.0
     "@cutting/useful-types": 4.25.4
     "@cutting/util": 4.29.2
@@ -2207,7 +2206,6 @@ __metadata:
   dependencies:
     "@cutting/devtools": 4.31.2
     "@cutting/eslint-config": 4.28.1
-    "@cutting/testing": 4.27.2
     "@cutting/tsconfig": 4.26.0
     "@cutting/use-get-parent-size": 1.6.2
     "@cutting/useful-types": 4.25.4
@@ -2221,25 +2219,6 @@ __metadata:
   peerDependencies:
     react: ">= 17.x.x"
     react-dom: ">= 17.x.x"
-  languageName: unknown
-  linkType: soft
-
-"@cutting/testing@4.27.2, @cutting/testing@workspace:packages/testing":
-  version: 0.0.0-use.local
-  resolution: "@cutting/testing@workspace:packages/testing"
-  dependencies:
-    "@cutting/devtools": 4.31.2
-    "@cutting/eslint-config": 4.28.1
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
-    "@cutting/util": 4.29.2
-    "@testing-library/jest-dom": ^5.11.10
-    "@types/jest": ^26.0.22
-    assert-ts: ^0.3.4
-    eslint: ^8.2.0
-    resize-observer-polyfill: ^1.5.1
-    typescript: ^4.5.3
-    use-debounce: ^6.0.1
   languageName: unknown
   linkType: soft
 
@@ -2263,7 +2242,6 @@ __metadata:
     "@cutting/component-library": 5.4.2
     "@cutting/devtools": 4.31.2
     "@cutting/eslint-config": 4.28.1
-    "@cutting/testing": 4.27.2
     "@cutting/tsconfig": 4.26.0
     "@cutting/useful-types": 4.25.4
     "@cutting/util": 4.29.2
@@ -2343,6 +2321,8 @@ __metadata:
 "@cutting/useful-types@npm:4.25.4":
   version: 4.25.4
   resolution: "@cutting/useful-types@npm:4.25.4"
+  dependencies:
+    "@cutting/util": 4.29.1
   checksum: 9252fc366e83bdbb0fbd936019d1a035ae9e2f1a386f5416f48022312a85c47e8866568c6cc600cbc48bdd71a33471ef973102f8f934a66bc05e320da238fcd6
   languageName: node
   linkType: hard
@@ -2368,6 +2348,13 @@ __metadata:
     typescript: ^4.5.3
   languageName: unknown
   linkType: soft
+
+"@cutting/util@npm:4.29.1":
+  version: 4.29.1
+  resolution: "@cutting/util@npm:4.29.1"
+  checksum: eafedb334dc6328a8f850529b039df9eaf6b50e2f2fa95fc6d74c527409efa014d0ab3956c9b4e145517f2737ef415ce4f9360eb2e313c893b8425bf20fce4b3
+  languageName: node
+  linkType: hard
 
 "@cutting/wait-for-vercel-preview-url@workspace:packages/wait-for-vercel-preview-url":
   version: 0.0.0-use.local
@@ -5907,16 +5894,6 @@ __metadata:
     jest-diff: ^27.0.0
     pretty-format: ^27.0.0
   checksum: 3683a9945821966f6dccddf337219a5d682633687c9d30df859223db553589f63e9b2c34e69f0cc845c86ffcf115742f25c12ea03c8d33d2244890fdc0af61e2
-  languageName: node
-  linkType: hard
-
-"@types/jest@npm:^26.0.22":
-  version: 26.0.24
-  resolution: "@types/jest@npm:26.0.24"
-  dependencies:
-    jest-diff: ^26.0.0
-    pretty-format: ^26.0.0
-  checksum: ae39675412f08d884926254e9b12bfd2b5a4e4d204c94d3148cb942174a474930d0c60540133c968f22241d4712b7940c96cbc883096eb326a4d5b206fb78bd0
   languageName: node
   linkType: hard
 
@@ -15557,7 +15534,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-diff@npm:^26.0.0, jest-diff@npm:^26.0.1":
+"jest-diff@npm:^26.0.1":
   version: 26.6.2
   resolution: "jest-diff@npm:26.6.2"
   dependencies:
@@ -19787,7 +19764,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-format@npm:^26.0.0, pretty-format@npm:^26.6.2":
+"pretty-format@npm:^26.6.2":
   version: 26.6.2
   resolution: "pretty-format@npm:26.6.2"
   dependencies:

@@ -35,7 +35,6 @@
     "@cutting/component-library": "5.4.2",
     "@cutting/devtools": "4.31.2",
     "@cutting/eslint-config": "4.28.1",
-    "@cutting/testing": "4.27.2",
     "@cutting/tsconfig": "4.26.0",
     "@cutting/useful-types": "4.25.4",
     "@testing-library/jest-dom": "^5.11.10",

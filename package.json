@@ -5,7 +5,6 @@
   "workspaces": {
     "packages": [
       "packages/devtools",
-      "packages/testing",
       "packages/eslint-config",
       "packages/tsconfig",
       "packages/useful-types",
