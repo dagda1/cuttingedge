@@ -1903,7 +1903,7 @@ __metadata:
     "@types/react": ^17.0.3
     "@types/react-dom": ^17.0.3
     "@types/tailwindcss": ^2.2.1
-    assert-ts: ^0.3.2
+    assert-ts: ^0.3.4
     babel-loader: ^8.2.3
     classnames: ^2.3.1
     esbuild: ^0.13.13
@@ -2253,7 +2253,7 @@ __metadata:
     "@types/react": ^17.0.3
     "@types/react-dom": ^17.0.3
     "@types/react-router-dom": ^5.1.7
-    assert-ts: ^0.3.2
+    assert-ts: ^0.3.4
     eslint: ^8.2.0
     history: ^4.10.1
     react: ^17.0.2
@@ -2339,7 +2339,7 @@ __metadata:
     "@cutting/util": 4.29.0
     "@testing-library/jest-dom": ^5.11.10
     "@types/jest": ^26.0.22
-    assert-ts: ^0.3.2
+    assert-ts: ^0.3.4
     eslint: ^8.2.0
     resize-observer-polyfill: ^1.5.1
     typescript: ^4.5.3
@@ -2367,7 +2367,7 @@ __metadata:
     "@types/react": ^17.0.3
     "@types/react-dom": ^17.0.3
     "@types/react-router-dom": ^5.1.7
-    assert-ts: ^0.3.2
+    assert-ts: ^0.3.4
     eslint: ^8.2.0
     history: ^4.10.1
     react: ^17.0.2
@@ -2393,7 +2393,7 @@ __metadata:
     "@testing-library/jest-dom": ^5.11.10
     "@types/jest": ^27.0.2
     "@types/mathjax": ^0.0.36
-    assert-ts: ^0.3.2
+    assert-ts: ^0.3.4
     eslint: ^8.2.0
     mathjax: 3
     mathjax3: 3.0.0-beta.4
@@ -2515,7 +2515,7 @@ __metadata:
     "@visx/group": ^1.7.0
     "@visx/scale": ^1.7.0
     "@visx/shape": ^1.8.0
-    assert-ts: ^0.3.2
+    assert-ts: ^0.3.4
     body-parser: ^1.19.0
     classnames: ^2.3.1
     cookie-parser: 1.4.5

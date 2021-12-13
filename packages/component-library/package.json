@@ -20,7 +20,7 @@
   "dependencies": {
     "@cutting/hooks": "4.30.0",
     "@cutting/util": "4.29.0",
-    "assert-ts": "^0.3.2",
+    "assert-ts": "^0.3.4",
     "classnames": "^2.3.1"
   },
   "devDependencies": {
