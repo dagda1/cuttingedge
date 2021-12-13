@@ -24,14 +24,14 @@
   },
   "scripts": {
     "audit-packages": "cutting each-pkg cutting audit",
-    "build": "yarn nx run-many --target=build --all --parallel --exclude=@cutting/website,@cutting/graphql-explorer",
+    "build": "yarn workspaces foreach -t run build",
     "build:tsc": "tsc -b ./tsconfig.packages.json",
     "clean": "yarn build:tsc -- --clean && find . \\( -name node_modules -o -name dir2 -o -path name \\) -prune -false -o -name 'dist' -type d   -exec rm -rf {} +",
-    "lint": "yarn nx run-many --target=lint --all --parallel --exclude=@cutting/website,@cutting/graphql-explorer",
+    "lint": "yarn nx run-many --target=lint --all --parallel",
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix",
     "prepare": "husky install",
     "start": "yarn build && yarn --cwd packages/website start",
-    "test": "CI=true yarn nx run-many --target=test --all --parallel --exclude=@cutting/website,@cutting/graphql-explorer",
+    "test": "CI=true yarn workspaces foreach -t run test",
     "watch": "yarn build:tsc && yarn tsc -b ./tsconfig.packages.json --watch",
     "version": "changeset version && yarn",
     "release": "yarn build && changeset publish"

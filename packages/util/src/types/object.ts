@@ -1,1 +1,1 @@
-export type EmptyObject = Record<PropertyKey, never>;
+export type EmptyObject = Record<never, never>;

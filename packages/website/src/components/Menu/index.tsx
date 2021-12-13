@@ -38,7 +38,11 @@ export const Menu: FC = () => {
             </h2>
           </li>
           <li className={cs(styles['contact'], styles.horizontal)}>
-            <NavLink to={urls.ContactMe} activeClassName={styles.active} onClick={collapse}>
+            <NavLink
+              to={urls.ContactMe}
+              className={({ isActive }) => (isActive ? styles.active : '')}
+              onClick={collapse}
+            >
               Contact
             </NavLink>
           </li>

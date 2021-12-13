@@ -24,6 +24,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
+    "@cutting/hooks": "^4.30.2",
     "@cutting/util": "4.29.2",
     "assert-ts": "^0.3.4",
     "history": "^5.1.0",

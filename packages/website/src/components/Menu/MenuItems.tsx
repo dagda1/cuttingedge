@@ -14,7 +14,11 @@ export const MenuItems: FC<MenuItemsProps> = ({ collapse }) => (
   <>
     {bannerPages.map((page) => (
       <li key={page.heading} className={styles.horizontal}>
-        <NavLink to={page.path} className={page.className} activeClassName={styles.active} onClick={collapse}>
+        <NavLink
+          to={page.path}
+          className={({ isActive }) => page.className + (isActive ? styles.active : '')}
+          onClick={collapse}
+        >
           {page.heading}
         </NavLink>
       </li>
@@ -43,7 +47,7 @@ export const MobileMenuItems: FC<MenuItemsProps> = ({ collapse }) => {
       ].map((page) => {
         return (
           <li key={page.heading} className={cs(styles.horizontal, styles.mobile)}>
-            <NavLink to={page.path} activeClassName={styles.active} onClick={collapse}>
+            <NavLink to={page.path} className={({ isActive }) => (isActive ? styles.active : '')} onClick={collapse}>
               {page.heading}
             </NavLink>
           </li>
