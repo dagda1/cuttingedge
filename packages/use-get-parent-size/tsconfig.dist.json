@@ -8,6 +8,7 @@
   },
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
   "references": [
+    { "path": "../hooks/tsconfig.dist.json"},
     { "path": "../util/tsconfig.dist.json" }
   ]
 }

@@ -4,8 +4,12 @@ import { Router } from 'react-router';
 import { createMemoryHistory } from 'history';
 
 export const wrapComponentInReduxForTesting = (ui: ReactElement): RenderResult => {
+  const history = createMemoryHistory();
   return {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...render(<Router history={createMemoryHistory() as any}>{ui}</Router>),
+    ...render(
+      <Router navigator={history} location={history.location}>
+        {ui}
+      </Router>,
+    ),
   };
 };

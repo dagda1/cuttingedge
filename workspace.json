@@ -25,10 +25,6 @@
       "root": "packages/svg",
       "implicitDependencies": []
     },
-    "@cutting/testing": {
-      "root": "packages/testing",
-      "implicitDependencies": []
-    },
     "@cutting/tsconfig": {
       "root": "packages/tsconfig",
       "implicitDependencies": []

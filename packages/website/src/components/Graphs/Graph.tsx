@@ -76,7 +76,7 @@ export const Graph: FC<GraphProps> = ({
 
             return (
               <li key={u.url}>
-                <NavLink activeClassName={styles.active} to={u.url} exact={true}>
+                <NavLink className={({ isActive }) => (isActive ? styles.active : '')} to={u.url} end>
                   {u.text}
                 </NavLink>
               </li>

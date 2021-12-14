@@ -25,7 +25,6 @@ var resolvedNodeModules = [appNodeModules, './node_modules']
     .map(function (m) { return path_1.default.relative(process.cwd(), m); });
 var libPackages = [
     'packages/devtools',
-    'packages/testing',
     'packages/eslint-config',
     'packages/tsconfig',
     'packages/useful-types',

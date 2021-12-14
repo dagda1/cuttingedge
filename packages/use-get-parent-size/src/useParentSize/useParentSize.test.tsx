@@ -1,8 +1,20 @@
-import { expect, it, describe } from '@jest/globals';
+import { expect, it, describe, jest } from '@jest/globals';
 import { act } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
-import { resize } from '@cutting/testing';
 import { useParentSize } from './useParentSize';
+
+import ResizeObserver from 'resize-observer-polyfill';
+
+jest.mock('resize-observer-polyfill');
+
+const resize = (width: number, height: number): void => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  ResizeObserver.mockImplementation((cb) => {
+    cb([{ contentRect: { width, height } }]);
+    return { observe: jest.fn(), disconnect: jest.fn(), unobserve: jest.fn() };
+  });
+};
 
 describe('useParentSize', () => {
   it('should use initial default dimensions of { width: 1, height: 1}', async () => {
