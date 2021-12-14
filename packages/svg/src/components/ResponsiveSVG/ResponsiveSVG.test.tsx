@@ -5,6 +5,10 @@ import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { ResponsiveSVG } from './ResponsiveSVG';
 
+import ResizeObserver from 'resize-observer-polyfill';
+
+jest.mock('resize-observer-polyfill');
+
 const resize = (width: number, height: number): void => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore

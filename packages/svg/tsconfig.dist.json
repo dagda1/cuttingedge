@@ -10,7 +10,6 @@
     { "path": "../util/tsconfig.dist.json" },
     { "path": "../hooks/tsconfig.dist.json" },
     { "path": "../component-library/tsconfig.dist.json" },
-    { "path": "../svg/tsconfig.dist.json" },
     { "path": "../use-get-parent-size/tsconfig.dist.json" }
   ],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]

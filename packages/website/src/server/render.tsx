@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { renderToString } from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
 import { HttpStatusCode, isProduction } from '@cutting/util';
-import { StaticRouter, StaticRouterContext } from 'react-router';
+import { StaticRouter } from 'react-router-dom/server';
 import { MainRoutes } from '../routes';
 import path from 'path';
 import { Helmet } from 'react-helmet';
@@ -22,8 +22,6 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
     entrypoints: ['client'],
     statsFile,
   });
-
-  const context: StaticRouterContext = {};
 
   const helmet = Helmet.renderStatic();
 
@@ -45,7 +43,7 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
       </head>
       <body {...helmet.bodyAttributes.toComponent()}>
         <div id="root">
-          <StaticRouter location={req.url} context={context}>
+          <StaticRouter location={req.url}>
             <MainRoutes />
           </StaticRouter>
         </div>
