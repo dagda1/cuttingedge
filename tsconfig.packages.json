@@ -32,9 +32,6 @@
       "path": "./packages/use-mathjax/tsconfig.dist.json"
     },
     {
-      "path": "./packages/wait-for-vercel-preview-url"
-    },
-    {
       "path": "./packages/website/tsconfig.dist.json"
     }
   ]

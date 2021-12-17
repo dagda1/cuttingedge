@@ -10,7 +10,6 @@
 "@cutting/use-mathjax": patch
 "@cutting/use-shortcuts": patch
 "@cutting/util": patch
-"@cutting/wait-for-vercel-preview-url": patch
 "@cutting/website": patch
 ---
 

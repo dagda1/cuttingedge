@@ -37,7 +37,6 @@ var libPackages = [
     'packages/svg',
     'packages/use-shortcuts',
     'packages/react-abortable-fetch',
-    'packages/wait-for-vercel-preview-url',
 ].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
 var tsConfigPath = resolveApp('tsconfig.json');
 var testTsConfig = require.resolve('@cutting/tsconfig/tsconfig.test.json');

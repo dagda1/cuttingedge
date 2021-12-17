@@ -43,7 +43,6 @@ const libPackages = [
   'packages/svg',
   'packages/use-shortcuts',
   'packages/react-abortable-fetch',
-  'packages/wait-for-vercel-preview-url',
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');

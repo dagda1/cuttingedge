@@ -18,7 +18,6 @@
       "packages/use-mathjax",
       "packages/use-shortcuts",
       "packages/graphql-explorer",
-      "packages/wait-for-vercel-preview-url",
       "packages/website"
     ]
   },
