@@ -29,10 +29,9 @@ export function Label({
       id={id}
       className={cs(styles.root, className, {
         [styles.invalid]: invalid,
-        [styles.required]: false,
+        [styles.required]: required,
         [styles.strong]: fontWeight === 'strong',
       })}
-      data-selector={dataSelector}
     >
       {children}
     </label>
