@@ -44,6 +44,7 @@ export const useParentSize = <E extends Element>(
       return;
     }
 
+    // some comment
     const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
       if (!Array.isArray(entries) || entries.length !== 1) {
         return;

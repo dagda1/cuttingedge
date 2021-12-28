@@ -28,10 +28,11 @@ export function Label({
       htmlFor={htmlFor}
       id={id}
       className={cs(styles.root, className, {
-        [styles.invalid]: false,
-        [styles.required]: false,
+        [styles.invalid]: invalid,
+        [styles.required]: required,
         [styles.strong]: fontWeight === 'strong',
       })}
+      data-selector={dataSelector}
     >
       {children}
     </label>
