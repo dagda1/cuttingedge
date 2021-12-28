@@ -1,1 +1,0 @@
-{"version":3,"file":"useScrollToTop.d.ts","sourceRoot":"","sources":["../../packages/hooks/src/useScrollToTop/useScrollToTop.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,MAAM,WAAW,mBAAmB,CAAC,CAAC,GAAG,WAAW;IAClD,GAAG,EAAE,SAAS,CAAC,CAAC,CAAC,CAAC;CACnB;AAED,eAAO,MAAM,cAAc,YAAa,mBAAmB,KAAG,IAkB7D,CAAC"}

@@ -2304,7 +2304,6 @@ __metadata:
   resolution: "@cutting/useful-types@workspace:packages/useful-types"
   dependencies:
     "@cutting/eslint-config": 4.28.1
-    "@cutting/util": 4.29.2
   languageName: unknown
   linkType: soft
 

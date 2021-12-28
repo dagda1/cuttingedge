@@ -1,1 +1,0 @@
-{"version":3,"file":"LoadingIcon.d.ts","sourceRoot":"","sources":["../../../../packages/component-library/src/components/molecules/LoadingIcon/LoadingIcon.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,EAAE,EAAE,MAAM,OAAO,CAAC;AAMhC,MAAM,WAAW,gBAAgB;IAC/B,QAAQ,CAAC,EAAE,OAAO,CAAC;CACpB;AAID,QAAA,MAAM,WAAW,EAAE,EAAE,CAAC,gBAAgB,CA+BrC,CAAC;AAEF,eAAe,WAAW,CAAC"}

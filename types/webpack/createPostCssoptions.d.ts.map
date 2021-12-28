@@ -1,1 +1,0 @@
-{"version":3,"file":"createPostCssoptions.d.ts","sourceRoot":"","sources":["../../packages/devtools/src/webpack/createPostCssoptions.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,oBAAoB;kBAIjB,OAAO;MACnB;IACF,cAAc,EAAE;QACd,SAAS,EAAE,OAAO,CAAC;QACnB,MAAM,EAAE,MAAM,CAAC;QACf,KAAK,EAAE,MAAM,CAAC;QAEd,OAAO,EAAE,GAAG,EAAE,CAAC;KAChB,CAAC;CAaF,CAAC"}
