@@ -65,6 +65,7 @@ export const useParentSize = <E extends Element>(
       }
     });
 
+    // comment
     resizeObserver.observe(refElement);
 
     return () => {
