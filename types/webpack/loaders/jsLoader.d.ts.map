@@ -1,1 +1,0 @@
-{"version":3,"file":"jsLoader.d.ts","sourceRoot":"","sources":["../../../packages/devtools/src/webpack/loaders/jsLoader.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,SAAS,CAAC;AAGtC,OAAO,EAAE,YAAY,EAAE,MAAM,0BAA0B,CAAC;AAGxD,eAAO,MAAM,cAAc;mBAMV,OAAO;kBACR,OAAO;kBACP,YAAY;YAClB,OAAO;MACb,WAAW,EA2Bd,CAAC"}
