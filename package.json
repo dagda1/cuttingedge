@@ -77,7 +77,7 @@
   "lint-prepush": {
     "base": "main",
     "tasks": {
-      "*.{js,jsx,ts,tsx,js,md}": [
+      "*.{ts,tsx}": [
         "yarn lint"
       ]
     }
