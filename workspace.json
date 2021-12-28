@@ -3,54 +3,80 @@
   "projects": {
     "@cutting/component-library": {
       "root": "packages/component-library",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/devtools": {
       "root": "packages/devtools",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/eslint-config": {
       "root": "packages/eslint-config",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/hooks": {
       "root": "packages/hooks",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/react-abortable-fetch": {
       "root": "packages/react-abortable-fetch",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/svg": {
       "root": "packages/svg",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/tsconfig": {
       "root": "packages/tsconfig",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/use-get-parent-size": {
       "root": "packages/use-get-parent-size",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/use-mathjax": {
       "root": "packages/use-mathjax",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/use-shortcuts": {
       "root": "packages/use-shortcuts",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/useful-types": {
       "root": "packages/useful-types",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/util": {
       "root": "packages/util",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     },
     "@cutting/website": {
       "root": "packages/website",
+      "type": "library",
+      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
       "implicitDependencies": []
     }
   }
