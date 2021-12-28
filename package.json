@@ -78,7 +78,7 @@
     "base": "main",
     "tasks": {
       "*.{js,jsx,ts,tsx,js,md}": [
-        "yarn lint"
+        "yarn eslint --ext \".ts,.tsx\" . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix"
       ]
     }
   },

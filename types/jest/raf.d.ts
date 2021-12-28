@@ -1,8 +1,8 @@
 interface IndexableWindow {
-    [key: string]: any;
+  [key: string]: any;
 }
 declare const animation: {
-    requestAnimationFrame(callback: FrameRequestCallback): number;
-    cancelAnimationFrame(id: number): void;
+  requestAnimationFrame(callback: FrameRequestCallback): number;
+  cancelAnimationFrame(id: number): void;
 };
 //# sourceMappingURL=raf.d.ts.map

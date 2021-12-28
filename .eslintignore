@@ -4,3 +4,4 @@ packages/*/babel-runtime
 packages/*/node_modules
 packages/*/dist
 packages/*/tools
+*.d.ts

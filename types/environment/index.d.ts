@@ -1,7 +1,7 @@
 export declare enum environments {
-    development = "development",
-    test = "test",
-    production = "production"
+  development = 'development',
+  test = 'test',
+  production = 'production',
 }
 export declare const env: string;
 export declare const isDevelopment: boolean;

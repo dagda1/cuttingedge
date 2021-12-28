@@ -29,7 +29,7 @@ export function Label({
       id={id}
       className={cs(styles.root, className, {
         [styles.invalid]: false,
-        [styles.required]: required,
+        [styles.required]: false,
         [styles.strong]: fontWeight === 'strong',
       })}
     >

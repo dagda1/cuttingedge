@@ -1,4 +1,4 @@
 export declare class NotFoundError extends Error {
-    constructor(message: string);
+  constructor(message: string);
 }
 //# sourceMappingURL=NotFoundError.d.ts.map
