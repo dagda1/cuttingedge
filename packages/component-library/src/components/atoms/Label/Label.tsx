@@ -28,7 +28,7 @@ export function Label({
       htmlFor={htmlFor}
       id={id}
       className={cs(styles.root, className, {
-        [styles.invalid]: invalid,
+        [styles.invalid]: false,
         [styles.required]: required,
         [styles.strong]: fontWeight === 'strong',
       })}
