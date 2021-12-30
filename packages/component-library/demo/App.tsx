@@ -46,13 +46,13 @@ export function App(): JSX.Element {
                   content: 'cutting',
                 },
                 {
+                  value: 'consultingTheme',
+                  content: 'consulting',
+                },
+                {
                   value: 'salesTheme',
                   content: 'sales',
                   checked: true,
-                },
-                {
-                  value: 'consultingTheme',
-                  content: 'consulting',
                 },
               ]}
             />
