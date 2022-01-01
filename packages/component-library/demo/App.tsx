@@ -1,6 +1,6 @@
 import * as styles from './global.css';
 import React, { useState } from 'react';
-import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup, Donut } from '../src';
+import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup, Donut, Alert } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';

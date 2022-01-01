@@ -4,7 +4,7 @@ import { getLightVariant } from '../util/a11y';
 
 const brand = '#1250C4';
 export const colors = {
-  primary: palette.green800,
+  primary: '#00703C',
   secondary: palette.gray100,
   error: palette.redError,
   notification: palette.yellow400,
@@ -259,6 +259,11 @@ export const tokens = {
       link: 'underline',
     },
   },
+  banners: {
+    titleColor: palette.white,
+    color: palette.black,
+    backgroundColor: palette.white,
+  },
   buttons: {
     textTransform: 'none',
     fontWeight: String(fontWeight.regular),
@@ -270,12 +275,13 @@ export const tokens = {
       borderWidth: '2px',
       borderColor: 'transparent',
       hoverBackgroundColor: palette.white,
-      background: palette.green800,
+      background: colors.primary,
       focusColor: palette.white,
       color: palette.white,
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
+      borderBottomColor: 'transparent',
     },
     secondary: {
       borderWidth: '2px',
@@ -287,6 +293,7 @@ export const tokens = {
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
+      borderBottomColor: palette.black,
     },
     warning: {
       borderWidth: '2px',
@@ -298,6 +305,7 @@ export const tokens = {
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
+      borderBottomColor: palette.gray400,
     },
   },
   radios: {

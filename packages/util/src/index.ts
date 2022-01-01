@@ -18,7 +18,7 @@ export { isNil } from './object/isNil';
 export { isObject } from './object/isObject';
 export { range } from './object/range';
 export { uniqueId } from './object/uniqueid';
-export { dasherize, decamelize, padNumber, stripSpaces } from './string';
+export { dasherize, decamelize, padNumber, stripSpaces, capitalize } from './string';
 export { getDisplayName } from './react/components';
 export { StorageHelper } from './services/storageHelper';
 export { isProduction, isDevelopment, isTest, env, isCI } from './environment';

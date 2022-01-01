@@ -9,6 +9,7 @@ export type {
 } from './components/molecules/FormControls/FormControls';
 
 export type { FormControlProps } from './components/hoc/FormControl/FormControl';
+export type { AlertType, AlertProps } from './components/molecules/Alert/Alert';
 
 export { ExternalLink } from './components/atoms/ExternalLink/ExternalLink';
 export { Input } from './components/atoms/Input/Input';
@@ -33,6 +34,7 @@ export {
   ApplicationLayoutWithRouterScroll,
 } from './components/templates/ApplicationLayout/ApplicationLayout';
 export { Donut } from './components/molecules/Donut/Donut';
+export { Alert } from './components/molecules/Alert/Alert';
 
 // TODO: refactor to multiple exports
 export * from './style';
