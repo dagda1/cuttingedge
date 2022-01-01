@@ -32,8 +32,8 @@
   "devDependencies": {
     "@cutting/devtools": "4.31.2",
     "@cutting/eslint-config": "4.28.1",
-    "@cutting/tsconfig": "4.26.0",
-    "@cutting/useful-types": "4.25.4",
+    "@cutting/tsconfig": "4.26.1",
+    "@cutting/useful-types": "4.25.5",
     "@testing-library/jest-dom": "^5.16.1",
     "@types/mousetrap": "^1.6.7",
     "dtslint": "^4.0.9",

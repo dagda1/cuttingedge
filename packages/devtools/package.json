@@ -133,8 +133,8 @@
     "typescript/**/*.*"
   ],
   "devDependencies": {
-    "@cutting/tsconfig": "4.26.0",
-    "@cutting/useful-types": "4.25.4",
+    "@cutting/tsconfig": "4.26.1",
+    "@cutting/useful-types": "4.25.5",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@types/autoprefixer": "^10.2.0",
     "@types/babel__plugin-transform-runtime": "^7.9.2",

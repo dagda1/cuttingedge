@@ -346,6 +346,23 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
+            <h2>Alerts</h2>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Alert type="success" bannerHeading="Training outcome recorded and trainee withdrawn">
+              <p>This is good</p>
+            </Alert>
+          </div>
+          <div className={styles.item}>
+            <Alert type="error" bannerHeading="Training outcome recorded and trainee withdrawn">
+              <p>Huston we have a problem</p>
+            </Alert>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
             <h2>Headings</h2>
           </div>
         </div>
