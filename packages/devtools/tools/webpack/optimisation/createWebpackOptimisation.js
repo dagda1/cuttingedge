@@ -18,6 +18,7 @@ exports.createWebpackOptimisation = void 0;
 var terser_webpack_plugin_1 = __importDefault(require("terser-webpack-plugin"));
 var crypto_1 = __importDefault(require("crypto"));
 var path_1 = __importDefault(require("path"));
+var image_minimizer_webpack_plugin_1 = __importDefault(require("image-minimizer-webpack-plugin"));
 // import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 var FRAMEWORK_BUNDLES = ['react', 'react-dom'];
 var isModuleCSS = function (module) {
@@ -31,7 +32,32 @@ var createWebpackOptimisation = function (_a) {
         minimize: isProduction,
         concatenateModules: isProduction,
         emitOnErrors: true,
-        minimizer: [new terser_webpack_plugin_1.default({ extractComments: false })],
+        minimizer: [
+            new terser_webpack_plugin_1.default({ extractComments: false }),
+            new image_minimizer_webpack_plugin_1.default({
+                minimizer: {
+                    implementation: image_minimizer_webpack_plugin_1.default.imageminMinify,
+                    options: {
+                        // Lossless optimization with custom option
+                        plugins: [
+                            ['gifsicle', { interlaced: true }],
+                            ['jpegtran', { progressive: true }],
+                            ['optipng', { optimizationLevel: 5 }],
+                            [
+                                'svgo',
+                                {
+                                    plugins: [
+                                        {
+                                            removeViewBox: false,
+                                        },
+                                    ],
+                                },
+                            ],
+                        ],
+                    },
+                },
+            }),
+        ],
         splitChunks: {
             chunks: 'all',
             automaticNameDelimiter: '-',

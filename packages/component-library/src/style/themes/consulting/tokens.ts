@@ -3,7 +3,7 @@ import { palette } from '../../palette.css';
 import { Tokens } from '../tokens';
 
 const colors = {
-  primary: 'linear-gradient(167deg, rgba(40,13,87,1) 0%, rgba(54,63,159,1) 100%)',
+  primary: palette.yellow200,
   secondary: palette.white,
 };
 

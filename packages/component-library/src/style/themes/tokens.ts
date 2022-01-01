@@ -91,7 +91,7 @@ export const tokens = {
       positiveLight: mix(0.3, colors.positive, getLightVariant(colors.positive)),
       promote: colors.promote,
       promoteLight: mix(0.3, colors.promote, getLightVariant(colors.promote)),
-      standard: palette.trueGray900,
+      standard: palette.neutral900,
       invalid: colors.error,
       focus: colors.primary,
       standardInverted: colors.white,
@@ -99,9 +99,9 @@ export const tokens = {
   },
   color: {
     foreground: {
-      link: palette.trueGray900,
+      link: palette.neutral900,
       linkHover: palette.white,
-      linkVisited: palette.trueGray700,
+      linkVisited: palette.neutral700,
       error: colors.error,
       body: palette.black,
       heading: {

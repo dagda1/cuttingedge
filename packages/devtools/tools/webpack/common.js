@@ -49,7 +49,6 @@ var webpack_merge_1 = require("webpack-merge");
 var webpack_plugin_1 = require("@vanilla-extract/webpack-plugin");
 var path_1 = __importDefault(require("path"));
 var assetsLoader_1 = require("./loaders/assetsLoader");
-var image_minimizer_webpack_plugin_1 = __importDefault(require("image-minimizer-webpack-plugin"));
 var getFileName_1 = require("./getFileName");
 var eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
 var reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
@@ -172,27 +171,6 @@ var configureCommon = function (options, overrides) {
                 context: paths_1.paths.appSrc,
             }),
             isDevelopment && new webpack_1.default.WatchIgnorePlugin({ paths: [paths_1.paths.appManifest] }),
-            new image_minimizer_webpack_plugin_1.default({
-                minimizerOptions: {
-                    // Lossless optimization with custom option
-                    // Feel free to experiment with options for better result for you
-                    plugins: [
-                        ['gifsicle', { interlaced: true }],
-                        ['jpegtran', { progressive: true }],
-                        ['optipng', { optimizationLevel: 5 }],
-                        [
-                            'svgo',
-                            {
-                                plugins: [
-                                    {
-                                        removeViewBox: false,
-                                    },
-                                ],
-                            },
-                        ],
-                    ],
-                },
-            }),
             new mini_css_extract_plugin_1.default({
                 filename: cssFile,
                 chunkFilename: cssChunkFile,

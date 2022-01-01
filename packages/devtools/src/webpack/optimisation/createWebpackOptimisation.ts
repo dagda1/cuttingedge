@@ -3,6 +3,7 @@ import { Chunk } from 'webpack';
 import crypto from 'crypto';
 import path from 'path';
 import { Configuration } from 'webpack';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 // import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 const FRAMEWORK_BUNDLES = ['react', 'react-dom'];
@@ -28,7 +29,32 @@ export const createWebpackOptimisation = ({
     minimize: isProduction,
     concatenateModules: isProduction,
     emitOnErrors: true,
-    minimizer: [new TerserPlugin({ extractComments: false })],
+    minimizer: [
+      new TerserPlugin({ extractComments: false }),
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            // Lossless optimization with custom option
+            plugins: [
+              ['gifsicle', { interlaced: true }],
+              ['jpegtran', { progressive: true }],
+              ['optipng', { optimizationLevel: 5 }],
+              [
+                'svgo',
+                {
+                  plugins: [
+                    {
+                      removeViewBox: false,
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      }),
+    ],
     splitChunks: {
       chunks: 'all',
       automaticNameDelimiter: '-',
