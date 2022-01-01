@@ -1855,8 +1855,8 @@ __metadata:
     "@cutting/devtools": 4.31.2
     "@cutting/eslint-config": 4.28.1
     "@cutting/hooks": 4.30.2
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
+    "@cutting/tsconfig": 4.26.1
+    "@cutting/useful-types": 4.25.5
     "@cutting/util": 4.29.2
     "@mdx-js/react": ^1.6.22
     "@storybook/addon-actions": ^6.4.9
@@ -1904,8 +1904,8 @@ __metadata:
     "@babel/preset-env": ^7.16.7
     "@babel/preset-react": ^7.16.7
     "@cutting/rollup-plugin-md": 0.5.0
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
+    "@cutting/tsconfig": 4.26.1
+    "@cutting/useful-types": 4.25.5
     "@loadable/babel-plugin": ^5.13.2
     "@loadable/component": ^5.15.2
     "@loadable/webpack-plugin": ^5.15.2
@@ -2079,8 +2079,8 @@ __metadata:
     "@cutting/devtools": 4.31.2
     "@cutting/react-abortable-fetch": 0.17.2
     "@cutting/svg": ^4.31.2
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
+    "@cutting/tsconfig": 4.26.1
+    "@cutting/useful-types": 4.25.5
     "@cutting/util": 4.29.2
     abortcontroller-polyfill: ^1.7.1
     eslint: ^8.6.0
@@ -2099,8 +2099,8 @@ __metadata:
   dependencies:
     "@cutting/devtools": 4.31.2
     "@cutting/eslint-config": 4.28.1
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
+    "@cutting/tsconfig": 4.26.1
+    "@cutting/useful-types": 4.25.5
     "@cutting/util": 4.29.2
     "@testing-library/jest-dom": ^5.16.1
     "@types/history": ^4.7.8
@@ -2129,8 +2129,8 @@ __metadata:
   resolution: "@cutting/react-abortable-fetch@workspace:packages/react-abortable-fetch"
   dependencies:
     "@cutting/devtools": ^4.31.2
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
+    "@cutting/tsconfig": 4.26.1
+    "@cutting/useful-types": 4.25.5
     "@cutting/util": 4.29.2
     "@types/react": ^17.0.38
     "@types/react-dom": ^17.0.11
@@ -2171,9 +2171,9 @@ __metadata:
   dependencies:
     "@cutting/devtools": 4.31.2
     "@cutting/eslint-config": 4.28.1
-    "@cutting/tsconfig": 4.26.0
+    "@cutting/tsconfig": 4.26.1
     "@cutting/use-get-parent-size": 1.6.2
-    "@cutting/useful-types": 4.25.4
+    "@cutting/useful-types": 4.25.5
     "@cutting/util": 4.29.2
     "@testing-library/jest-dom": ^5.16.1
     eslint: ^8.6.0
@@ -2187,14 +2187,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@cutting/tsconfig@npm:4.26.0":
-  version: 4.26.0
-  resolution: "@cutting/tsconfig@npm:4.26.0"
-  checksum: b118b5900c8b68c2a36619d557de8db86ce2089b57292bb072df2679c2c30b07c3c978152e0518db275fc1df03567d806f00dfd48f1af948fa141a4c5fb51449
-  languageName: node
-  linkType: hard
-
-"@cutting/tsconfig@workspace:packages/tsconfig":
+"@cutting/tsconfig@4.26.1, @cutting/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@cutting/tsconfig@workspace:packages/tsconfig"
   languageName: unknown
@@ -2208,8 +2201,8 @@ __metadata:
     "@cutting/devtools": 4.31.2
     "@cutting/eslint-config": 4.28.1
     "@cutting/hooks": ^4.30.2
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
+    "@cutting/tsconfig": 4.26.1
+    "@cutting/useful-types": 4.25.5
     "@cutting/util": 4.29.2
     "@testing-library/jest-dom": ^5.16.1
     "@types/history": ^4.7.8
@@ -2239,8 +2232,8 @@ __metadata:
   dependencies:
     "@cutting/devtools": 4.31.2
     "@cutting/eslint-config": 4.28.1
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
+    "@cutting/tsconfig": 4.26.1
+    "@cutting/useful-types": 4.25.5
     "@cutting/util": 4.29.2
     "@testing-library/jest-dom": ^5.16.1
     "@types/jest": ^27.4.0
@@ -2266,8 +2259,8 @@ __metadata:
   dependencies:
     "@cutting/devtools": 4.31.2
     "@cutting/eslint-config": 4.28.1
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
+    "@cutting/tsconfig": 4.26.1
+    "@cutting/useful-types": 4.25.5
     "@cutting/util": 4.29.2
     "@testing-library/jest-dom": ^5.16.1
     "@types/mousetrap": ^1.6.7
@@ -2284,16 +2277,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@cutting/useful-types@npm:4.25.4":
-  version: 4.25.4
-  resolution: "@cutting/useful-types@npm:4.25.4"
-  dependencies:
-    "@cutting/util": 4.29.1
-  checksum: 9252fc366e83bdbb0fbd936019d1a035ae9e2f1a386f5416f48022312a85c47e8866568c6cc600cbc48bdd71a33471ef973102f8f934a66bc05e320da238fcd6
-  languageName: node
-  linkType: hard
-
-"@cutting/useful-types@workspace:packages/useful-types":
+"@cutting/useful-types@4.25.5, @cutting/useful-types@workspace:packages/useful-types":
   version: 0.0.0-use.local
   resolution: "@cutting/useful-types@workspace:packages/useful-types"
   dependencies:
@@ -2307,19 +2291,12 @@ __metadata:
   dependencies:
     "@cutting/devtools": 4.31.2
     "@cutting/eslint-config": 4.28.1
-    "@cutting/tsconfig": 4.26.0
-    "@cutting/useful-types": 4.25.4
+    "@cutting/tsconfig": 4.26.1
+    "@cutting/useful-types": 4.25.5
     eslint: ^8.6.0
     typescript: ^4.5.3
   languageName: unknown
   linkType: soft
-
-"@cutting/util@npm:4.29.1":
-  version: 4.29.1
-  resolution: "@cutting/util@npm:4.29.1"
-  checksum: eafedb334dc6328a8f850529b039df9eaf6b50e2f2fa95fc6d74c527409efa014d0ab3956c9b4e145517f2737ef415ce4f9360eb2e313c893b8425bf20fce4b3
-  languageName: node
-  linkType: hard
 
 "@cutting/website@workspace:packages/website":
   version: 0.0.0-use.local
@@ -2331,10 +2308,10 @@ __metadata:
     "@cutting/hooks": 4.30.2
     "@cutting/react-abortable-fetch": 0.17.2
     "@cutting/svg": 4.31.2
-    "@cutting/tsconfig": 4.26.0
+    "@cutting/tsconfig": 4.26.1
     "@cutting/use-get-parent-size": 1.6.2
     "@cutting/use-mathjax": 4.28.2
-    "@cutting/useful-types": 4.25.4
+    "@cutting/useful-types": 4.25.5
     "@cutting/util": 4.29.2
     "@loadable/component": ^5.15.2
     "@loadable/server": ^5.14.2
