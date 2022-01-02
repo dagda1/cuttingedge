@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.31.4
+
+### Patch Changes
+
+- 7262245f: consolidate versioning changes
+
 ## 4.31.3
 
 ### Patch Changes
