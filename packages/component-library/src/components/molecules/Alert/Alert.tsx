@@ -30,7 +30,7 @@ export function Alert({ type, title = capitalize(type), bannerHeading, children 
       </div>
       <div className={styles.bannerContent}>
         <p className={styles.subHeading}>{bannerHeading}</p>
-        <p className="govuk-body">{children}</p>
+        <p className={styles.body}>{children}</p>
       </div>
     </div>
   );
