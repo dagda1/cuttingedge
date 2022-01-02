@@ -1,5 +1,13 @@
 # @cutting/use-shortcuts
 
+## 4.28.2
+
+### Patch Changes
+
+- 7262245f: consolidate versioning changes
+- Updated dependencies [7262245f]
+  - @cutting/util@4.29.4
+
 ## 4.28.1
 
 ### Patch Changes

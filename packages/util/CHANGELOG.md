@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.29.4
+
+### Patch Changes
+
+- 7262245f: consolidate versioning changes
+
 ## 4.29.3
 
 ### Patch Changes

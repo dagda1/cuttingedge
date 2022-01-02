@@ -1,5 +1,14 @@
 # @cutting/hooks
 
+## 1.6.4
+
+### Patch Changes
+
+- 7262245f: consolidate versioning changes
+- Updated dependencies [7262245f]
+  - @cutting/hooks@4.30.4
+  - @cutting/util@4.29.4
+
 ## 1.6.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @cutting/use-mathjax
 
+## 4.28.4
+
+### Patch Changes
+
+- 7262245f: consolidate versioning changes
+- Updated dependencies [7262245f]
+  - @cutting/util@4.29.4
+
 ## 4.28.3
 
 ### Patch Changes

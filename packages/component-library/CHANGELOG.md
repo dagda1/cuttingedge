@@ -1,5 +1,14 @@
 # @cutting/component-library
 
+## 5.4.4
+
+### Patch Changes
+
+- 7262245f: consolidate versioning changes
+- Updated dependencies [7262245f]
+  - @cutting/hooks@4.30.4
+  - @cutting/util@4.29.4
+
 ## 5.4.3
 
 ### Patch Changes
