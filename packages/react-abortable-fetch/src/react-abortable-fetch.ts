@@ -53,7 +53,9 @@ export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
     timeout = 180000,
   } = options;
 
-  const [machine, send] = useMachine(createQueryMachine({ initialState }));
+  const machineConfig = useMemo(() => createQueryMachine({ initialState }), [initialState]);
+
+  const [machine, send] = useMachine(machineConfig);
   const abortController = useRef(new AbortController());
   const fetchClient = useRef(createFetchClient<R, T>(builderOrRequestInfos, abortController.current));
   const counter = useRef(0);

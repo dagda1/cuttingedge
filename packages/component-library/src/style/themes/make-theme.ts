@@ -4,6 +4,7 @@ import { tokens as defaultTokens } from './tokens';
 import deepmerge from 'deepmerge';
 import { getCapHeight, FontMetrics } from '@capsizecss/core';
 import { precomputeValues } from '@capsizecss/vanilla-extract';
+import colors from 'tailwindcss/colors';
 
 const scaleCreator = (scale: 'px' | 'rem') => (v: string | number) => `${v}${scale}`;
 
@@ -171,6 +172,11 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     links: {
       ...tokens.links,
     },
+    banners: {
+      titleColor: colors.white,
+      color: tokens.banners.color,
+      backgroundColor: tokens.banners.backgroundColor,
+    },
     buttons: {
       textTransform: tokens.buttons.textTransform,
       fontWeight: tokens.buttons.fontWeight,
@@ -179,6 +185,8 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
       },
       primary: {
         border: `${tokens.buttons.primary.borderWidth} solid ${tokens.buttons.primary.borderWidth}`,
+        borderBottomColor: tokens.buttons.primary.borderBottomColor,
+        borderBottomWidth: '2px',
         background: tokens.buttons.primary.background,
         color: tokens.buttons.primary.color,
         padding: tokens.buttons.primary.padding,
@@ -188,6 +196,8 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
       },
       secondary: {
         border: `${tokens.buttons.secondary.borderWidth} solid ${tokens.buttons.secondary.borderWidth}`,
+        borderBottomColor: tokens.buttons.secondary.borderBottomColor,
+        borderBottomWidth: '2px',
         background: tokens.buttons.secondary.background,
         color: tokens.buttons.secondary.color,
         padding: tokens.buttons.secondary.padding,

@@ -1,5 +1,5 @@
 import { DeepPartial } from '@cutting/util';
-import { blueGray } from 'tailwindcss/colors';
+import { slate } from 'tailwindcss/colors';
 import { palette } from '../../palette.css';
 import { Tokens } from '../tokens';
 
@@ -21,14 +21,14 @@ export const tokens: DeepPartial<Tokens> = {
   },
   color: {
     foreground: {
-      body: blueGray[300],
+      body: slate[300],
       heading: {
         '1': palette.yellow400,
-        '2': blueGray[300],
-        '3': blueGray[300],
-        '4': blueGray[300],
+        '2': slate[300],
+        '3': slate[300],
+        '4': slate[300],
       },
-      header: blueGray[300],
+      header: slate[300],
       footer: palette.white,
     },
     background: {
@@ -68,7 +68,7 @@ export const tokens: DeepPartial<Tokens> = {
   },
   links: {
     color: {
-      link: palette.trueGray400,
+      link: palette.neutral400,
       hover: palette.white,
     },
     decoration: {

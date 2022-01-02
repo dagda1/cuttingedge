@@ -1,6 +1,6 @@
 import * as styles from './global.css';
 import React, { useState } from 'react';
-import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup, Donut } from '../src';
+import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup, Donut, Alert } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
 import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
@@ -15,7 +15,7 @@ const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme, consultingThem
 type Theme = keyof typeof AvailableThemes;
 
 export function App(): JSX.Element {
-  const [theme, setTheme] = useState<Theme>('salesTheme');
+  const [theme, setTheme] = useState<Theme>('cuttingTheme');
 
   return (
     <ApplicationLayout className={cs(AvailableThemes[theme], styles.background)}>
@@ -44,6 +44,7 @@ export function App(): JSX.Element {
                 {
                   value: 'cuttingTheme',
                   content: 'cutting',
+                  checked: true,
                 },
                 {
                   value: 'consultingTheme',
@@ -52,7 +53,6 @@ export function App(): JSX.Element {
                 {
                   value: 'salesTheme',
                   content: 'sales',
-                  checked: true,
                 },
               ]}
             />
@@ -342,6 +342,23 @@ export function App(): JSX.Element {
               invalid
               errorMessage="foo bar"
             />
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <h2>Alerts</h2>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Alert type="success" bannerHeading="Training outcome recorded and trainee withdrawn">
+              <p>This is good</p>
+            </Alert>
+          </div>
+          <div className={styles.item}>
+            <Alert type="error" bannerHeading="Training outcome recorded and trainee withdrawn">
+              <p>Huston we have a problem</p>
+            </Alert>
           </div>
         </div>
         <div className={styles.layout}>

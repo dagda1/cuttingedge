@@ -20,7 +20,6 @@ import { merge } from 'webpack-merge';
 import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import path from 'path';
 import { createAssetsLoader } from './loaders/assetsLoader';
-import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import { getFileName } from './getFileName';
 import EslintWebpackLoader from 'eslint-webpack-plugin';
 
@@ -156,27 +155,7 @@ export const configureCommon = (
           context: paths.appSrc,
         }),
         isDevelopment && new webpack.WatchIgnorePlugin({ paths: [paths.appManifest] }),
-        new ImageMinimizerPlugin({
-          minimizerOptions: {
-            // Lossless optimization with custom option
-            // Feel free to experiment with options for better result for you
-            plugins: [
-              ['gifsicle', { interlaced: true }],
-              ['jpegtran', { progressive: true }],
-              ['optipng', { optimizationLevel: 5 }],
-              [
-                'svgo',
-                {
-                  plugins: [
-                    {
-                      removeViewBox: false,
-                    },
-                  ],
-                },
-              ],
-            ],
-          },
-        }),
+
         new MiniCssExtractPlugin({
           filename: cssFile,
           chunkFilename: cssChunkFile,

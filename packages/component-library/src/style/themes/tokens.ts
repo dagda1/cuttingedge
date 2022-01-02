@@ -4,7 +4,7 @@ import { getLightVariant } from '../util/a11y';
 
 const brand = '#1250C4';
 export const colors = {
-  primary: palette.green800,
+  primary: '#00703C',
   secondary: palette.gray100,
   error: palette.redError,
   notification: palette.yellow400,
@@ -91,7 +91,7 @@ export const tokens = {
       positiveLight: mix(0.3, colors.positive, getLightVariant(colors.positive)),
       promote: colors.promote,
       promoteLight: mix(0.3, colors.promote, getLightVariant(colors.promote)),
-      standard: palette.trueGray900,
+      standard: palette.neutral900,
       invalid: colors.error,
       focus: colors.primary,
       standardInverted: colors.white,
@@ -99,9 +99,9 @@ export const tokens = {
   },
   color: {
     foreground: {
-      link: palette.trueGray900,
+      link: palette.neutral900,
       linkHover: palette.white,
-      linkVisited: palette.trueGray700,
+      linkVisited: palette.neutral700,
       error: colors.error,
       body: palette.black,
       heading: {
@@ -259,6 +259,11 @@ export const tokens = {
       link: 'underline',
     },
   },
+  banners: {
+    titleColor: palette.white,
+    color: palette.black,
+    backgroundColor: palette.white,
+  },
   buttons: {
     textTransform: 'none',
     fontWeight: String(fontWeight.regular),
@@ -270,12 +275,13 @@ export const tokens = {
       borderWidth: '2px',
       borderColor: 'transparent',
       hoverBackgroundColor: palette.white,
-      background: palette.green800,
+      background: colors.primary,
       focusColor: palette.white,
       color: palette.white,
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
+      borderBottomColor: 'transparent',
     },
     secondary: {
       borderWidth: '2px',
@@ -287,6 +293,7 @@ export const tokens = {
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
+      borderBottomColor: palette.black,
     },
     warning: {
       borderWidth: '2px',
@@ -298,6 +305,7 @@ export const tokens = {
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
+      borderBottomColor: palette.gray400,
     },
   },
   radios: {

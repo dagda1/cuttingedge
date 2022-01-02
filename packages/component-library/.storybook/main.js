@@ -7,12 +7,12 @@ module.exports = {
   ],
   reactOptions: {
     fastRefresh: true,
-    strictMode: true,
+    strictMode: false,
   },
   typescript: {
-    check: true,
-    checkOptions: {},
-    reactDocgen: false 
+    // check: true,
+    // checkOptions: {},
+    // reactDocgen: false 
   },
   addons: [
     path.resolve('./.storybook/vanilla-extract.js'),
