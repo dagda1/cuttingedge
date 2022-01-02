@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.28.2
+
+### Patch Changes
+
+- e8934df2: Add <Aliert />
+
 ## 4.28.1
 
 ### Patch Changes

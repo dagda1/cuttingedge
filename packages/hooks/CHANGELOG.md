@@ -1,5 +1,15 @@
 # @cutting/hooks
 
+## 4.30.3
+
+### Patch Changes
+
+- e8934df2: Add <Aliert />
+- 7262245f: consolidate versioning changes
+- Updated dependencies [e8934df2]
+- Updated dependencies [7262245f]
+  - @cutting/util@4.29.3
+
 ## 4.30.2
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-get-parent-size",
   "description": "Sizes an SVG document to the containing parent using the resize-observer.",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "browser": "dist/umd/index.js",
@@ -21,11 +21,11 @@
     "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix",
     "lint:fix": "yarn lint --fix",
     "build": "NODE_ENV=production cutting rollup",
-    "prepublishOnly": "yarn build"
+    "prepack": "yarn build"
   },
   "dependencies": {
-    "@cutting/hooks": "^4.30.2",
-    "@cutting/util": "4.29.2",
+    "@cutting/hooks": "^4.30.3",
+    "@cutting/util": "4.29.3",
     "assert-ts": "^0.3.4",
     "history": "^5.1.0",
     "react-use": "^17.2.3",
@@ -33,11 +33,11 @@
     "use-debounce": "^6.0.1"
   },
   "devDependencies": {
-    "@cutting/component-library": "5.4.2",
-    "@cutting/devtools": "4.31.2",
-    "@cutting/eslint-config": "4.28.1",
+    "@cutting/component-library": "5.4.3",
+    "@cutting/devtools": "4.31.3",
+    "@cutting/eslint-config": "4.28.2",
     "@cutting/tsconfig": "4.26.1",
-    "@cutting/useful-types": "4.25.5",
+    "@cutting/useful-types": "4.25.6",
     "@testing-library/jest-dom": "^5.16.1",
     "@types/history": "^4.7.8",
     "@types/jest": "^27.4.0",

@@ -1,5 +1,12 @@
 # @cutting/util
 
+## 4.29.3
+
+### Patch Changes
+
+- e8934df2: Add <Aliert />
+- 7262245f: consolidate versioning changes
+
 ## 4.29.2
 
 ### Patch Changes

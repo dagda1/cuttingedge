@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.25.6
+
+### Patch Changes
+
+- ef69c3e5: remove @cutting/util dependency from @cutting/usefult-types
+
 ## 4.25.5
 
 ### Patch Changes
