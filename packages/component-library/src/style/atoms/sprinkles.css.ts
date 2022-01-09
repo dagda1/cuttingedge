@@ -44,7 +44,7 @@ const responsiveAtomicProperties = defineProperties({
   defaultCondition: 'mobile',
   properties: {
     position: ['absolute', 'relative', 'fixed', 'static'],
-    display: ['none', 'block', 'inline', 'inline-block', 'flex'],
+    display: ['none', 'block', 'inline', 'inline-block', 'flex', 'inline-flex'],
     alignItems: ['flex-start', 'center', 'flex-end'],
     justifyContent: ['flex-start', 'center', 'flex-end', 'space-between', 'space-around'],
     flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'],
