@@ -360,6 +360,11 @@ export function App(): JSX.Element {
               <p>Huston we have a problem</p>
             </Alert>
           </div>
+          <div className={styles.item}>
+            <Alert type="warning" bannerHeading="Training outcome recorded and trainee withdrawn">
+              <p>Huston we have a problem</p>
+            </Alert>
+          </div>
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
