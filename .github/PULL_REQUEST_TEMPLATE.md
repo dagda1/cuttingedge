@@ -1,28 +1,43 @@
-<!--- Provide a general summary of your changes in the Title above -->
+## Motivation
 
-## Description
-<!--- Describe your changes in detail -->
+<!-- REQUIRED
+  Why are you introducing this change? Why is this change necessary? What
+  are you trying to achieve with this change?
+  If you have a relevant issue, add a link directly to the URL here.
+ -->
 
-## Motivation and Context
-<!--- Why is this change required? What problem does it solve? -->
-<!--- If it fixes an open issue, please link to the issue here. -->
+## Approach
 
-## How has this been tested?
-<!--- Please describe in detail how you tested your changes. -->
-<!--- Include details of your testing environment, tests ran to see how -->
-<!--- your change affects other areas of the code, etc. -->
+<!-- REQUIRED
+  How does this change fulfill the purpose? Keep it high level. Avoid code-splaining.
+-->
 
-## Screenshots (if appropriate):
+### Alternate Designs
 
-## Types of changes
-<!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+ <!-- OPTIONAL
+   Explain what other alternatives you considered and why you chose this option.
+ -->
 
-## Checklist:
-<!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
-<!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] My code follows the code style of this project.
-- [ ] My change requires a change to the documentation.
-- [ ] I have updated the documentation accordingly.
+### Possible Drawbacks or Risks
+
+ <!-- OPTIONAL
+   What are the possible side-effects or negative impacts of this change?
+ -->
+
+### TODOs and Open Questions
+
+<!-- OPTIONAL
+- [ ] Use GitHub checklists. When solved, check the box and explain the conclusion.
+-->
+
+## Learning
+
+<!-- OPTIONAL
+  Share any blog posts, patterns, libraries, or documentation that helped you.
+-->
+
+## Screenshots
+
+<!-- OPTIONAL
+  If relevant, include "before" and "after" to demonstrate this change. Add a caption describing what each screenshot shows.
+-->
