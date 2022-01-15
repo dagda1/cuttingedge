@@ -129,6 +129,7 @@ globalStyle('ul', {
   marginTop: 0,
   paddingLeft: 0,
   listStyle: 'none',
+  ...responsiveTextStyleRule.body,
 });
 
 globalStyle('a, header a,footer a', {

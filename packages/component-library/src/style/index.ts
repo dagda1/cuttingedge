@@ -9,4 +9,3 @@ export { palette } from './palette.css';
 export { breakpoints, breakpointNames } from './breakpoints';
 export { markResetImported } from './reset/reset-tracker';
 export { visuallyHidden, screenReaderOnly } from './accessibility.css';
-export { responsiveText } from './typography/typography.css';
