@@ -28,6 +28,10 @@ export const warning = style({
   backgroundColor: vars.colors.caution,
 });
 
+globalStyle(`${warning} h2`, {
+  color: vars.colors.white,
+});
+
 export const error = style({
   borderColor: vars.colors.error,
   backgroundColor: vars.colors.error,
