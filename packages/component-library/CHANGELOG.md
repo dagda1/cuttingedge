@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.4.5
+
+### Patch Changes
+
+- 7abe1cf9: add warning alert type
+
 ## 5.4.4
 
 ### Patch Changes
