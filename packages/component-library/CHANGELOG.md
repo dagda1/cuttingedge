@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.4.6
+
+### Patch Changes
+
+- ebf39861: alert warning color
+
 ## 5.4.5
 
 ### Patch Changes
