@@ -20,7 +20,7 @@
     "**/*.scss"
   ],
   "dependencies": {
-    "@cutting/component-library": "5.4.6",
+    "@cutting/component-library": "5.4.7",
     "@cutting/hooks": "4.30.4",
     "@cutting/react-abortable-fetch": "0.17.4",
     "@cutting/svg": "4.31.4",

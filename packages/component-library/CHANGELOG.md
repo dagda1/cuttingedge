@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.4.7
+
+### Patch Changes
+
+- 23fc321a: export responsiveText
+
 ## 5.4.6
 
 ### Patch Changes
