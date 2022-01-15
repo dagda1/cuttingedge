@@ -23,6 +23,11 @@ export const success = style({
   backgroundColor: vars.colors.primary,
 });
 
+export const warning = style({
+  borderColor: vars.colors.caution,
+  backgroundColor: vars.colors.caution,
+});
+
 export const error = style({
   borderColor: vars.colors.error,
   backgroundColor: vars.colors.error,

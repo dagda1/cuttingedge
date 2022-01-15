@@ -3,7 +3,7 @@ import cs from 'classnames';
 import * as styles from './Alert.css';
 import { capitalize } from '@cutting/util';
 
-export type AlertType = 'success' | 'error';
+export type AlertType = 'success' | 'warning' | 'error';
 
 export interface AlertProps {
   type: AlertType;
