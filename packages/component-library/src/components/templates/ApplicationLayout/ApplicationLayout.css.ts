@@ -125,7 +125,7 @@ export const hidden = style({
   outline: 'none',
 });
 
-globalStyle('ul', {
+globalStyle('ul,ol', {
   marginTop: 0,
   paddingLeft: 0,
   listStyle: 'none',

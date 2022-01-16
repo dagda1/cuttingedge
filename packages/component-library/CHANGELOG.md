@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.4.8
+
+### Patch Changes
+
+- c10bb07b: ol font
+
 ## 5.4.7
 
 ### Patch Changes
