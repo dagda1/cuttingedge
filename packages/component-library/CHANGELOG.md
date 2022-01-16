@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.4.9
+
+### Patch Changes
+
+- 99717605: sales theme color
+
 ## 5.4.8
 
 ### Patch Changes

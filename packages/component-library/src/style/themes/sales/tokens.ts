@@ -68,7 +68,7 @@ export const tokens: DeepPartial<Tokens> = {
   },
   links: {
     color: {
-      link: palette.neutral400,
+      link: '#0BA5E9',
       hover: palette.white,
     },
     decoration: {
