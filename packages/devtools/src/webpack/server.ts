@@ -11,7 +11,7 @@ import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
 import { getUrlParts } from './getUrlParts';
-import type { DeepPartial } from '@cutting/util';
+import { DeepPartial } from '../types/deepPartial';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getExternals = function (isDevelopment: boolean): any {
