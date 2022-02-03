@@ -1847,7 +1847,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cutting/component-library@5.4.7, @cutting/component-library@workspace:packages/component-library":
+"@cutting/component-library@5.4.9, @cutting/component-library@workspace:packages/component-library":
   version: 0.0.0-use.local
   resolution: "@cutting/component-library@workspace:packages/component-library"
   dependencies:
@@ -2197,7 +2197,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/use-get-parent-size@workspace:packages/use-get-parent-size"
   dependencies:
-    "@cutting/component-library": 5.4.7
+    "@cutting/component-library": 5.4.9
     "@cutting/devtools": 4.31.4
     "@cutting/eslint-config": 4.28.2
     "@cutting/hooks": ^4.30.4
@@ -2302,7 +2302,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cutting/website@workspace:packages/website"
   dependencies:
-    "@cutting/component-library": 5.4.7
+    "@cutting/component-library": 5.4.9
     "@cutting/devtools": 4.31.4
     "@cutting/eslint-config": 4.28.2
     "@cutting/hooks": 4.30.4
