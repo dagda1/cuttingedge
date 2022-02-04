@@ -9,6 +9,10 @@ jobs:
   create-release-pr:
     name: Create Changeset PR
     runs-on: ubuntu-latest
+    env:
+      CI: true
+      YARN_ENABLE_IMMUTABLE_INSTALLS: false
+
     steps:
     - uses: actions/checkout@v1
     - name: Install Dependencies
