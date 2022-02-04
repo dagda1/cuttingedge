@@ -17,7 +17,7 @@ import HtmlWebpackPartialsPlugin from 'html-webpack-partials-plugin';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
-import type { DeepPartial } from '@cutting/util';
+import { DeepPartial } from '../types/deepPartial';
 import { Configuration } from 'webpack';
 import { getFileName } from './getFileName';
 

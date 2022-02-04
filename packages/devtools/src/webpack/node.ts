@@ -7,7 +7,7 @@ import WriteFilePlugin from 'write-file-webpack-plugin';
 import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
-import type { DeepPartial } from '@cutting/util';
+import { DeepPartial } from '../types/deepPartial';
 
 const getExternals = () => {
   return [
