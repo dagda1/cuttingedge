@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
       - name: Checkout Repo
@@ -36,4 +37,3 @@ jobs:
           publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
