@@ -2,7 +2,6 @@
 "@cutting/component-library": patch
 "@cutting/devtools": patch
 "@cutting/eslint-config": patch
-"@cutting/graphql-explorer": patch
 "@cutting/hooks": patch
 "@cutting/react-abortable-fetch": patch
 "@cutting/svg": patch
@@ -12,7 +11,6 @@
 "@cutting/use-shortcuts": patch
 "@cutting/useful-types": patch
 "@cutting/util": patch
-"@cutting/website": patch
 ---
 
 yarn.lock
