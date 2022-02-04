@@ -1,5 +1,12 @@
 # @cutting/useful-types
 
+## 4.25.7
+
+### Patch Changes
+
+- 0bdf3e9d: yarn.lock
+- 3bfd4f40: remove ignored packages
+
 ## 4.25.6
 
 ### Patch Changes

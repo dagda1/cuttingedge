@@ -1,6 +1,6 @@
 {
   "name": "@cutting/tsconfig",
-  "version": "4.26.1",
+  "version": "4.26.2",
   "description": "Cutting Typescript Config",
   "author": "Paul Cowan <engineering@frontside.com>",
   "license": "MIT",

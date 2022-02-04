@@ -1,5 +1,15 @@
 # @cutting/react-abortable-fetch
 
+## 0.17.6
+
+### Patch Changes
+
+- 0bdf3e9d: yarn.lock
+- 3bfd4f40: remove ignored packages
+- Updated dependencies [0bdf3e9d]
+- Updated dependencies [3bfd4f40]
+  - @cutting/util@4.29.6
+
 ## 0.17.5
 
 ### Patch Changes

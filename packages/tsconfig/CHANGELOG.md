@@ -1,5 +1,12 @@
 # @cutting/tsconfig
 
+## 4.26.2
+
+### Patch Changes
+
+- 0bdf3e9d: yarn.lock
+- 3bfd4f40: remove ignored packages
+
 ## 4.26.1
 
 ### Patch Changes
