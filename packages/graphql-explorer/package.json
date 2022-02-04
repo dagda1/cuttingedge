@@ -20,15 +20,15 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@cutting/react-abortable-fetch": "0.17.5",
-    "@cutting/svg": "^4.31.5",
-    "@cutting/util": "4.29.5",
+    "@cutting/react-abortable-fetch": "0.17.6",
+    "@cutting/svg": "^4.31.6",
+    "@cutting/util": "4.29.6",
     "graphql": "^15.5.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.31.5",
-    "@cutting/tsconfig": "4.26.1",
-    "@cutting/useful-types": "4.25.6",
+    "@cutting/devtools": "4.31.6",
+    "@cutting/tsconfig": "4.26.2",
+    "@cutting/useful-types": "4.25.7",
     "abortcontroller-polyfill": "^1.7.1",
     "eslint": "^8.6.0",
     "react": "^17.0.2",

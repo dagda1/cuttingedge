@@ -1,5 +1,16 @@
 # @cutting/component-library
 
+## 5.4.11
+
+### Patch Changes
+
+- 0bdf3e9d: yarn.lock
+- 3bfd4f40: remove ignored packages
+- Updated dependencies [0bdf3e9d]
+- Updated dependencies [3bfd4f40]
+  - @cutting/hooks@4.30.6
+  - @cutting/util@4.29.6
+
 ## 5.4.10
 
 ### Patch Changes
