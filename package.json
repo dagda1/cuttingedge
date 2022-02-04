@@ -32,7 +32,7 @@
     "start": "yarn build && yarn --cwd packages/website start",
     "test": "CI=true yarn nx run-many --target=test --all --parallel --exclude=@cutting/website",
     "watch": "yarn build:tsc && yarn tsc -b ./tsconfig.packages.json --watch",
-    "version": "changeset version && yarn",
+    "version": "changeset version && yarn install --mode update-lockfile",
     "release": "yarn build && changeset publish"
   },
   "devDependencies": {
