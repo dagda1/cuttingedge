@@ -24,7 +24,10 @@ jobs:
           node-version: 14.x
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn install
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YARN_ENABLE_IMMUTABLE_INSTALLS: false
 
       - name: Create release PR or publish to npm
         uses: changesets/action@v1
