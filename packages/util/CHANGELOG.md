@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.29.5
+
+### Patch Changes
+
+- fe3eba28: add combinations to @cutting/util
+
 ## 4.29.4
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @cutting/use-shortcuts
 
+## 4.28.3
+
+### Patch Changes
+
+- Updated dependencies [fe3eba28]
+  - @cutting/util@4.29.5
+
 ## 4.28.2
 
 ### Patch Changes

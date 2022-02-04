@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.31.5
+
+### Patch Changes
+
+- fe3eba28: add combinations to @cutting/util
+
 ## 4.31.4
 
 ### Patch Changes
