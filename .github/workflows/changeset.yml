@@ -17,3 +17,4 @@ jobs:
       uses: changesets/action@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        YARN_ENABLE_IMMUTABLE_INSTALLS: false
