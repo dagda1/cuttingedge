@@ -29,11 +29,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-- name: Create release PR or publish to npm
-  uses: changesets/action@v1
-  with:
-    version: yarn run version
-    publish: yarn release
+      - name: Create release PR or publish to npm
+        uses: changesets/action@v1
+        with:
+          version: yarn run version
+          publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.CUTTING_NPM_TOKEN }}
