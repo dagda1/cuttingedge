@@ -1,6 +1,6 @@
 {
   "name": "@cutting/devtools",
-  "version": "4.31.5",
+  "version": "4.31.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -133,8 +133,8 @@
     "typescript/**/*.*"
   ],
   "devDependencies": {
-    "@cutting/tsconfig": "4.26.1",
-    "@cutting/useful-types": "4.25.6",
+    "@cutting/tsconfig": "4.26.2",
+    "@cutting/useful-types": "4.25.7",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@types/autoprefixer": "^10.2.0",
     "@types/babel__plugin-transform-runtime": "^7.9.2",

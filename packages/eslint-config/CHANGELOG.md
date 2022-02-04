@@ -1,5 +1,12 @@
 # @cutting/eslint-config
 
+## 4.28.3
+
+### Patch Changes
+
+- 0bdf3e9d: yarn.lock
+- 3bfd4f40: remove ignored packages
+
 ## 4.28.2
 
 ### Patch Changes
