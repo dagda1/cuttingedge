@@ -1,4 +1,4 @@
-import { Config } from '@jest/types';
+import type { Config } from '@jest/types';
 import path from 'path';
 import { paths } from '../config/paths';
 import fs from 'fs-extra';

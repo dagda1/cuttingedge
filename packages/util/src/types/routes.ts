@@ -1,5 +1,5 @@
 import type { RouteProps } from 'react-router';
-import { EmptyObject } from './object';
+import type { EmptyObject } from './object';
 
 export type Page<P = EmptyObject> = RouteProps & {
   heading: string;

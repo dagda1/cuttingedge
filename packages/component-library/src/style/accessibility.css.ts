@@ -1,4 +1,5 @@
-import { style, StyleRule } from '@vanilla-extract/css';
+import type { StyleRule } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 export const visuallyHidden = style({
   position: 'absolute',

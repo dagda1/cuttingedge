@@ -1,8 +1,9 @@
 import type { DetailedHTMLProps, ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import cs from 'classnames';
 import { identity } from '@cutting/util';
-import { StandardProps } from '../../../types';
-import { root, buttons, ButtonStyle, disabled as disabledStyle } from './Button.css';
+import type { StandardProps } from '../../../types';
+import type { ButtonStyle } from './Button.css';
+import { root, buttons, disabled as disabledStyle } from './Button.css';
 
 export type ButtonProps = StandardProps<
   DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>

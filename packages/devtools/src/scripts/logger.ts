@@ -1,4 +1,5 @@
-import chalk, { BackgroundColor, ForegroundColor } from 'chalk';
+import type { BackgroundColor, ForegroundColor } from 'chalk';
+import chalk from 'chalk';
 
 export enum LoggerTypes {
   warn = 'warn',

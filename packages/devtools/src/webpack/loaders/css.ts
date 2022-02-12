@@ -1,7 +1,7 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // import { createPostCssOptions } from '../createPostCssoptions';
 import { cssRegex } from '../constants';
-import { RuleSetRule } from 'webpack';
+import type { RuleSetRule } from 'webpack';
 
 interface LoaderItem {
   loader: string;

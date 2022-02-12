@@ -1,5 +1,6 @@
 import { expect, it, describe } from '@jest/globals';
-import { ErrorMessage, ErrorProps } from './ErrorMessage';
+import type { ErrorProps } from './ErrorMessage';
+import { ErrorMessage } from './ErrorMessage';
 import { render } from '@testing-library/react';
 
 const wrap = (props: ErrorProps) => render(<ErrorMessage {...props} />);

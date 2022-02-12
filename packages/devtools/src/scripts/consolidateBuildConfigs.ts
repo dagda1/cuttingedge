@@ -1,4 +1,4 @@
-import { BuildConfig } from '../types/config';
+import type { BuildConfig } from '../types/config';
 import fs from 'fs-extra';
 import { paths } from '../config/paths';
 import merge from 'deepmerge';

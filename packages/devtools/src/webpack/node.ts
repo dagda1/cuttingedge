@@ -1,13 +1,14 @@
 import { merge } from 'webpack-merge';
-import webpack, { Configuration } from 'webpack';
-import { NodeBuildConfig } from '../types/config';
+import type { Configuration } from 'webpack';
+import webpack from 'webpack';
+import type { NodeBuildConfig } from '../types/config';
 import nodeExternals from 'webpack-node-externals';
 import { paths } from '../config/paths';
 import WriteFilePlugin from 'write-file-webpack-plugin';
 import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
-import { DeepPartial } from '../types/deepPartial';
+import type { DeepPartial } from '../types/deepPartial';
 
 const getExternals = () => {
   return [

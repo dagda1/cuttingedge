@@ -1,4 +1,4 @@
-import { RuleSetRule } from 'webpack';
+import type { RuleSetRule } from 'webpack';
 
 export const createMDLoader = (): RuleSetRule => ({
   test: /\.md$/,

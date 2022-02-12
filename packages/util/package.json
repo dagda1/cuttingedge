@@ -14,6 +14,9 @@
     "test": "NODE_ENV=test cutting test",
     "test:ci": "CI=true pnpm test"
   },
+  "dependencies": {
+    "assert-ts": "^0.3.4"
+  },
   "devDependencies": {
     "@cutting/devtools": "4.31.6",
     "@cutting/eslint-config": "4.28.3",

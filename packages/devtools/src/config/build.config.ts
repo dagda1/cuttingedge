@@ -1,4 +1,4 @@
-import { BuildConfig } from '../types/config';
+import type { BuildConfig } from '../types/config';
 import { paths } from './paths';
 
 const isProduction = process.env.NODE_ENV === 'production';

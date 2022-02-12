@@ -1,5 +1,6 @@
-import { Dimensions, UseParentSizeOptions, UseParentSizeResult } from './types';
-import { RefObject, useCallback, useMemo, useRef, useState } from 'react';
+import type { Dimensions, UseParentSizeOptions, UseParentSizeResult } from './types';
+import type { RefObject } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useIsomorphicLayoutEffect } from 'react-use';
 import { useDebouncedCallback } from 'use-debounce';

@@ -1,7 +1,9 @@
-import { CSSProperties, PropsWithChildren, RefObject, useEffect } from 'react';
+import type { CSSProperties, PropsWithChildren, RefObject } from 'react';
+import { useEffect } from 'react';
 import type { UseParentSizeOptions } from '@cutting/use-get-parent-size';
 import { useParentSize } from '@cutting/use-get-parent-size';
-import { ResponsiveSVG, ResponsiveSVGProps } from '../ResponsiveSVG/ResponsiveSVG';
+import type { ResponsiveSVGProps } from '../ResponsiveSVG/ResponsiveSVG';
+import { ResponsiveSVG } from '../ResponsiveSVG/ResponsiveSVG';
 
 type Align = 'none' | 'center';
 

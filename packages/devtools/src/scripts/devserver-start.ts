@@ -13,7 +13,7 @@ import webpack from 'webpack';
 import { configure as configureWebpackClient } from '../webpack/client';
 import { config as buildConfig } from '../config/build.config';
 import { assert } from 'assert-ts';
-import { DevServerConfig } from '../types/config';
+import type { DevServerConfig } from '../types/config';
 import fs from 'fs-extra';
 import { scaffold } from './createScaffold';
 

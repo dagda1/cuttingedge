@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { mapValues, omit } from '@cutting/util';
-import { StyleRule } from '@vanilla-extract/css';
+import type { StyleRule } from '@vanilla-extract/css';
 import { breakpoints } from './breakpoints';
 import { rem } from 'polished';
 

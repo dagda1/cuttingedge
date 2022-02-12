@@ -1,5 +1,5 @@
-import { CompilerOptions } from 'typescript';
-import { ProxyConfigMap } from 'webpack-dev-server';
+import type { CompilerOptions } from 'typescript';
+import type { ProxyConfigMap } from 'webpack-dev-server';
 
 export interface BuildConfig {
   client: {

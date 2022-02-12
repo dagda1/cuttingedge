@@ -1,8 +1,9 @@
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
 import printErrors from '../printErrors';
-import webpack, { Configuration, Stats } from 'webpack';
+import type { Configuration, Stats } from 'webpack';
+import webpack from 'webpack';
 import { logger } from '../logger';
-import { BuildType } from '../../types/build';
+import type { BuildType } from '../../types/build';
 import { assert } from 'assert-ts';
 
 // Wrap webpack compile in a try catch.

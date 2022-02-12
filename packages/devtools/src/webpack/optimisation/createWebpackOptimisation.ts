@@ -1,8 +1,8 @@
 import TerserPlugin from 'terser-webpack-plugin';
-import { Chunk } from 'webpack';
+import type { Chunk } from 'webpack';
 import crypto from 'crypto';
 import path from 'path';
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 // import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 

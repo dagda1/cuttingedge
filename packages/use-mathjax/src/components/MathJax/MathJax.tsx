@@ -1,6 +1,7 @@
-import { FC, LegacyRef, useRef } from 'react';
+import type { FC, LegacyRef } from 'react';
+import { useRef } from 'react';
 import { useMathJax } from '../../hooks/useMathJax/useMathJax';
-import { MathJaxProps } from './types';
+import type { MathJaxProps } from './types';
 
 export const MathJax: FC<MathJaxProps> = ({ expr }) => {
   const ref = useRef<HTMLDivElement>();

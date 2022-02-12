@@ -1,6 +1,7 @@
 process.env.NODE_ENV = 'development';
 import fs from 'fs-extra';
-import webpack, { Configuration, Compiler, Watching } from 'webpack';
+import type { Configuration, Compiler, Watching } from 'webpack';
+import webpack from 'webpack';
 import { paths } from '../config/paths';
 import devServer from 'webpack-dev-server';
 import printErrors from './printErrors';
@@ -8,7 +9,7 @@ import { logger } from './logger';
 import { merge } from 'webpack-merge';
 import { configure as configureWebpackClient } from '../webpack/client';
 import { configure as configureWebpackServer } from '../webpack/server';
-import { BuildConfig } from '../types/config';
+import type { BuildConfig } from '../types/config';
 import { config as globalBuildConfig } from '../config/build.config';
 import { getUrlParts } from '../webpack/getUrlParts';
 import { emptyBuildDir } from './empty-build-dir';

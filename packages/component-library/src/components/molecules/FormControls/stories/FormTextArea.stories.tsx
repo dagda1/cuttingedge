@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import type { ComponentMeta } from '@storybook/react';
 import { FormTextArea } from '../FormControls';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 

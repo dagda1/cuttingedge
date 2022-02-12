@@ -1,4 +1,4 @@
-import { ComponentStory } from '@storybook/react';
+import type { ComponentStory } from '@storybook/react';
 import { consultingTheme } from '../../../../style/themes/consulting/consultingTheme.css';
 import { cuttingTheme } from '../../../../style/themes/cutting/cutting.css';
 import { salesTheme } from '../../../../style/themes/sales/salesTheme.css';

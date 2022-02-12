@@ -1,4 +1,4 @@
-import { Env } from '../types/env';
+import type { Env } from '../types/env';
 import { getClientEnv } from '../config/env';
 import { getCommitHash } from '../scripts/git';
 

@@ -1,8 +1,9 @@
 import type { DetailedHTMLProps, AnchorHTMLAttributes, MouseEventHandler } from 'react';
 import cs from 'classnames';
 import { identity } from '@cutting/util';
-import { StandardProps } from '../../../types';
-import { root, buttons, ButtonStyle } from '../Button/Button.css';
+import type { StandardProps } from '../../../types';
+import type { ButtonStyle } from '../Button/Button.css';
+import { root, buttons } from '../Button/Button.css';
 import * as styles from './ButtonLink.css';
 
 export type ButtonLinkProps = StandardProps<

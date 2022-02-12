@@ -1,5 +1,6 @@
 import { expect, it, describe, jest } from '@jest/globals';
-import { Button, ButtonProps } from './Button';
+import type { ButtonProps } from './Button';
+import { Button } from './Button';
 import { render, fireEvent } from '@testing-library/react';
 
 const wrap = (props: Partial<ButtonProps> = {}) => render(<Button {...{ children: 'Click Me!', ...props }} />);

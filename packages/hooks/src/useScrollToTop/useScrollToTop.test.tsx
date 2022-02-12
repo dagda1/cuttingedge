@@ -2,7 +2,7 @@ import { expect, it, describe, beforeEach, afterEach, jest } from '@jest/globals
 import type { FC } from 'react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
-import { History } from 'history';
+import type { History } from 'history';
 import { render } from '@testing-library/react';
 import { useScrollToTop } from './useScrollToTop';
 

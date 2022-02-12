@@ -1,7 +1,8 @@
-import { FC, useState } from 'react';
+import type { FC } from 'react';
+import { useState } from 'react';
 import { browserAdaptor } from 'mathjax3/mathjax3/adaptors/browserAdaptor';
 import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
-import { MathDocument } from 'mathjax3/mathjax3/core/MathDocument';
+import type { MathDocument } from 'mathjax3/mathjax3/core/MathDocument';
 import { createStrictContext } from '../../createStrictContext';
 import { MathJax } from 'mathjax3';
 import { TeX } from 'mathjax3/mathjax3/input/tex.js';

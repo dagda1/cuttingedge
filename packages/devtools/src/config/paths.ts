@@ -1,6 +1,6 @@
 import type { ParsedCommandLine } from 'typescript';
 import path from 'path';
-import                                                                                             from 'fs';
+import fs from 'fs';
 import { findAppNodeModules } from '../scripts/utils/finders';
 import getPublicUrlOrPath from 'react-dev-utils/getPublicUrlOrPath';
 

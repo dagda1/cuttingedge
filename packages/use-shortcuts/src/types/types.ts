@@ -1,5 +1,5 @@
 import type { RefObject } from 'react';
-import { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
+import type { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
 
 export type UseShortcuts<R extends Record<string, unknown>, E extends HTMLElement = HTMLElement> = {
   shortcutMap: R;

@@ -3,8 +3,8 @@ import { defaultTheme } from '../../style/themes/default/default.css';
 import { cuttingTheme } from '../../style/themes/cutting/cutting.css';
 import { consultingTheme } from '../../style/themes/consulting/consultingTheme.css';
 import { salesTheme } from '../../style/themes/sales/salesTheme.css';
-import { ComponentStory } from '@storybook/react';
-import { ComponentType } from 'react';
+import type { ComponentStory } from '@storybook/react';
+import type { ComponentType } from 'react';
 import { ApplicationLayout } from '../templates/ApplicationLayout/ApplicationLayout';
 import * as styles from './Stories.css';
 

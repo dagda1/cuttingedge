@@ -1,11 +1,12 @@
 import cs from 'classnames';
-import { ReactNode, InputHTMLAttributes, useRef, ComponentType } from 'react';
+import type { ReactNode, InputHTMLAttributes, ComponentType } from 'react';
+import { useRef } from 'react';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
-import { vars } from '../../../style/themes/vars.css';
+import type { vars } from '../../../style/themes/vars.css';
 import { ErrorMessage } from '../../atoms/ErrorMessage/ErrorMessage';
-import { FontWeight } from '../../../style/types';
+import type { FontWeight } from '../../../style/types';
 
 export type Layout = 'vertical' | 'horizontal';
 

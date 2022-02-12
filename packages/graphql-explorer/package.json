@@ -20,6 +20,7 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
+    "@cutting/component-library": "5.4.11",
     "@cutting/react-abortable-fetch": "0.17.6",
     "@cutting/svg": "^4.31.6",
     "@cutting/util": "4.29.6",
@@ -27,8 +28,10 @@
   },
   "devDependencies": {
     "@cutting/devtools": "4.31.6",
+    "@cutting/eslint-config": "4.28.3",
     "@cutting/tsconfig": "4.26.2",
     "@cutting/useful-types": "4.25.7",
+    "@vanilla-extract/css": "^1.6.8",
     "abortcontroller-polyfill": "^1.7.1",
     "eslint": "^8.6.0",
     "react": "^17.0.2",

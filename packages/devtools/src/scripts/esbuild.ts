@@ -4,7 +4,7 @@ import { consolidateBuildConfigs } from './consolidateBuildConfigs';
 import { nodeExternalsPlugin } from 'esbuild-node-externals';
 import { assert } from 'assert-ts';
 import logger from './logger';
-import { CommonOptions } from 'esbuild';
+import type { CommonOptions } from 'esbuild';
 import path from 'path';
 // import { emptyBuildDir } from './empty-build-dir';
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';

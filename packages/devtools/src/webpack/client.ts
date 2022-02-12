@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { DevServerConfig } from '../types/config';
+import type { DevServerConfig } from '../types/config';
 import { configureCommon } from './common';
 import { paths } from '../config/paths';
 import fs from 'fs';
@@ -17,8 +17,8 @@ import HtmlWebpackPartialsPlugin from 'html-webpack-partials-plugin';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
-import { DeepPartial } from '../types/deepPartial';
-import { Configuration } from 'webpack';
+import type { DeepPartial } from '../types/deepPartial';
+import type { Configuration } from 'webpack';
 import { getFileName } from './getFileName';
 
 const isProfilerEnabled = () => process.argv.includes('--profile');

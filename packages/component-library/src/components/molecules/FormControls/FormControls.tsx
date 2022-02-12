@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { TextArea } from '../../atoms/TextArea/TextArea';
 import { Input } from '../../atoms/Input/Input';
 import { FormControl } from '../../hoc/FormControl/FormControl';

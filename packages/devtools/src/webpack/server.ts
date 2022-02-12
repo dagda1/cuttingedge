@@ -1,8 +1,9 @@
-import { Configuration } from 'webpack';
-import { ServerBuildConfig } from '../types/config';
+import type { Configuration } from 'webpack';
+import type { ServerBuildConfig } from '../types/config';
 import { merge } from 'webpack-merge';
 import webpack from 'webpack';
-import nodeExternals, { AllowlistOption } from 'webpack-node-externals';
+import type { AllowlistOption } from 'webpack-node-externals';
+import nodeExternals from 'webpack-node-externals';
 import { paths } from '../config/paths';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -11,7 +12,7 @@ import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';
 import { isPlugin } from './guards';
 import { getUrlParts } from './getUrlParts';
-import { DeepPartial } from '../types/deepPartial';
+import type { DeepPartial } from '../types/deepPartial';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getExternals = function (isDevelopment: boolean): any {

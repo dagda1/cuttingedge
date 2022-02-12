@@ -1,8 +1,10 @@
 /* eslint-disable jest/expect-expect */
 import { expect, it, describe } from '@jest/globals';
 import { Input } from '../../atoms/Input/Input';
-import { FormControl, FormControlProps } from './FormControl';
-import { render, RenderResult } from '@testing-library/react';
+import type { FormControlProps } from './FormControl';
+import { FormControl } from './FormControl';
+import type { RenderResult } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 const FormInput = FormControl(Input);
 

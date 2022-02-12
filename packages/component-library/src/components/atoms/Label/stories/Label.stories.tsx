@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import type { ComponentMeta } from '@storybook/react';
 import { Label } from '../Label';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 

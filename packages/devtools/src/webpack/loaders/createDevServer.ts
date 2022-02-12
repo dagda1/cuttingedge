@@ -3,7 +3,7 @@ import ignoredFiles from 'react-dev-utils/ignoredFiles';
 import fs from 'fs';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
 import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
-import { ProxyConfigArray, ProxyConfigMap } from 'webpack-dev-server';
+import type { ProxyConfigArray, ProxyConfigMap } from 'webpack-dev-server';
 import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
 
 export const createDevServer = ({

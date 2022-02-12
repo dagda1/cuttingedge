@@ -1,6 +1,7 @@
-import { ComponentMeta } from '@storybook/react';
+import type { ComponentMeta } from '@storybook/react';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
-import { FormCheckboxGroup, FormCheckboxGroupProps } from '../../FormControls/FormControls';
+import type { FormCheckboxGroupProps } from '../../FormControls/FormControls';
+import { FormCheckboxGroup } from '../../FormControls/FormControls';
 
 function SimpleCheckboxGroup({ legend, errorMessage, value = 'no', ...rest }: FormCheckboxGroupProps): JSX.Element {
   return (

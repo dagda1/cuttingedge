@@ -1,5 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
-import { Alert, AlertProps } from './Alert';
+import type { AlertProps } from './Alert';
+import { Alert } from './Alert';
 import { render } from '@testing-library/react';
 
 const wrap = (props: AlertProps) => render(<Alert {...props} />);

@@ -1,6 +1,6 @@
-import { Options as PresetOptions } from '@babel/preset-env';
-import { Options as RuntimeOptions } from '@babel/plugin-transform-runtime';
-import { ModuleFormat } from '../types/moduleFormat';
+import type { Options as PresetOptions } from '@babel/preset-env';
+import type { Options as RuntimeOptions } from '@babel/plugin-transform-runtime';
+import type { ModuleFormat } from '../types/moduleFormat';
 // import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

@@ -1,4 +1,4 @@
-import { ModuleFormat } from 'rollup';
+import type { ModuleFormat } from 'rollup';
 
 export const getCacheIdentifier = ({
   isDevelopment,

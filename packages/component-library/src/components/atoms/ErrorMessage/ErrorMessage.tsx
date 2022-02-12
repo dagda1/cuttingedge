@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react';
 import cs from 'classnames';
-import { StandardProps } from '../../../types';
+import type { StandardProps } from '../../../types';
 import * as styles from './ErrorMessage.css';
 import { visuallyHidden } from '../../../style/accessibility.css';
 
