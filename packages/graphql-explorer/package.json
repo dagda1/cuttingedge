@@ -14,10 +14,10 @@
   "license": "MIT",
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
-    "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix",
+    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup",
-    "prepack": "yarn build"
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "@cutting/react-abortable-fetch": "0.17.6",

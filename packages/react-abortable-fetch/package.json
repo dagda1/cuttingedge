@@ -13,11 +13,11 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix",
+    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
     "build": "NODE_ENV=production cutting rollup",
-    "prepack": "yarn build"
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "@cutting/util": "4.29.6",
@@ -34,14 +34,14 @@
     "@cutting/devtools": "^4.31.6",
     "@cutting/tsconfig": "4.26.2",
     "@cutting/useful-types": "4.25.7",
-    "@types/react": "^17.0.38",
+    "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "@types/uuid": "^8.3.3",
     "eslint": "^8.6.0",
     "msw": "^0.36.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.5"
   },
   "files": [
     "dist",

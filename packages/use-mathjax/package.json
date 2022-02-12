@@ -15,10 +15,10 @@
   "scripts": {
     "start": "PORT=9999 NODE_ENV=development cutting devserver-start",
     "test": "NODE_ENV=test cutting test",
-    "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix",
-    "lint:fix": "yarn lint --fix",
+    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
+    "lint:fix": "pnpm lint --fix",
     "build": "NODE_ENV=production cutting rollup",
-    "prepack": "yarn build"
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "@cutting/util": "4.29.6",
@@ -39,7 +39,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-syntax-highlighter": "^15.4.3",
-    "typescript": "^4.5.3"
+    "typescript": "^4.5.5"
   },
   "peerDependencies": {
     "react": ">= 17.x.x",
