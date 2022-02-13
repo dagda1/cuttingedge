@@ -1,4 +1,5 @@
-import React, { FC, useCallback, useEffect, useMemo, useReducer } from 'react';
+import type { FC } from 'react';
+import React, { useCallback, useEffect, useMemo, useReducer } from 'react';
 import { useRef } from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { ResponsiveSVG, Group, Line } from '@cutting/svg';
@@ -9,7 +10,8 @@ import { curveMonotoneX } from '@visx/curve';
 import { SVGMathJax } from '@cutting/use-mathjax';
 
 import * as styles from './Sine.css';
-import { getScales, reducer, initialState, xTickValues, PiMap, PiMapKeys } from './utils';
+import type { PiMapKeys } from './utils';
+import { getScales, reducer, initialState, xTickValues, PiMap } from './utils';
 import { BottomAxis } from './BottomAxis';
 
 const Sine: FC = () => {

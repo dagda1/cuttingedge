@@ -33,6 +33,7 @@
     "@loadable/server": "^5.14.2",
     "@vanilla-extract/css": "^1.6.8",
     "@visx/axis": "^1.10.0",
+    "@visx/curve": "^1.7.0",
     "@visx/group": "^1.7.0",
     "@visx/scale": "^1.7.0",
     "@visx/shape": "^1.8.0",
