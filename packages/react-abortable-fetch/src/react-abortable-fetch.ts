@@ -1,12 +1,14 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createQueryMachine, abort, reset, start, success, error } from './machine';
-import { FetchStates, Builder, ContentType, UseFetchOptions, QueryResult, FetchRequestInfo } from './types';
-import { run, sleep, Task } from 'effection';
+import type { FetchStates, Builder, ContentType, UseFetchOptions, QueryResult, FetchRequestInfo } from './types';
+import type { Task } from 'effection';
+import { run, sleep } from 'effection';
 import { createFetchClient } from './client/fetch-client';
 import nativeFetch from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
-import { Fn, identity, isPromise } from '@cutting/util';
+import type { Fn } from '@cutting/util';
+import { identity, isPromise } from '@cutting/util';
 import { assert } from 'assert-ts';
 import { useIsomorphicLayoutEffect } from './hooks/use-Isomorphic-layout-effect';
 import { getDefaultAccumulator, noOp } from './default-accumulator';

@@ -7,7 +7,7 @@ This package centralises eslint rules to a common package that can be consumed b
 Import this library:
 
 ```bash
-yarn add @cutting/eslint-config -S
+pnpm add @cutting/eslint-config -S
 ```
 
 Create a `.eslintrc.json` in the root of the project that will consume this library.
@@ -27,7 +27,7 @@ Add the following lines to your package.json to enable linting and prettier to r
 ```bash
   "scripts": {
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "yarn run lint -- --fix"
+    "lint:fix": "pnpm run lint -- --fix"
   }
 ```
 

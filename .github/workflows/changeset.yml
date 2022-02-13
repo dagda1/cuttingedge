@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install Dependencies
-      run:  yarn install
+      run:  pnpm install
     - name: Create Release Pull Request
       uses: changesets/action@v1
       env:

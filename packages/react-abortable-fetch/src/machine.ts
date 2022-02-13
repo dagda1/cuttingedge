@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Machine, StateMachine } from 'xstate';
-import { FetchContext, FetchSchema } from './types';
+import type { StateMachine } from 'xstate';
+import type { FetchContext, FetchSchema } from './types';
+import { Machine } from 'xstate';
 
 export const start = { type: 'START' } as const;
 export const abort = { type: 'ABORT' } as const;

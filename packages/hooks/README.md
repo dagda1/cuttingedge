@@ -6,7 +6,7 @@
 ## install 
 
 ```sh
-yarn add @cutting/hooks
+pnpm add @cutting/hooks
 
 # or
 

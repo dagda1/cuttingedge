@@ -15,7 +15,7 @@ export async function audit(exceptions: string[]): Promise<void> {
     let auditResult: string;
 
     try {
-      auditResult = await run('yarn audit --json --level=moderate');
+      auditResult = await run('pnpm audit --json --level=moderate');
     } catch (err) {
       logger.error(JSON.stringify(err));
       logger.warn('Call to yarnkpg audit has caused an error.  Exiting for now.  Audits caught on next build');
@@ -49,7 +49,7 @@ export async function audit(exceptions: string[]): Promise<void> {
 
     const { name, version } = await import(path.join(process.cwd(), 'package.json'));
     const displayName = `${name}@${version}`;
-    const logMessage = `running yarn audit for ${displayName}`;
+    const logMessage = `running pnpm audit for ${displayName}`;
 
     logger.info(logMessage);
 
@@ -177,7 +177,7 @@ export async function audit(exceptions: string[]): Promise<void> {
 const program = createCommand('audit-parser');
 
 program
-  .description('run yarn audit against the yarn.lock file in current cwd')
+  .description('run pnpm audit against the yarn.lock file in current cwd')
   .helpOption('-h, --help', 'show help')
   .option('-e, --exceptions', 'a list of packages to ignore, i.e. angular 1.3 in bpm should be the only one')
   .action(async (_, options = []) => {

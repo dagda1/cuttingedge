@@ -1,4 +1,4 @@
-import { Accumulator } from './types';
+import type { Accumulator } from './types';
 
 export function getDefaultAccumulator<R, T>(initialState?: R): Accumulator<R, T> {
   if (Array.isArray(initialState)) {

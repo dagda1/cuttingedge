@@ -5,7 +5,7 @@
 ## install 
 
 ```sh
-yarn add @cutting/svg
+pnpm add @cutting/svg
 
 # or
 

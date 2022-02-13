@@ -26,14 +26,14 @@ jobs:
           node-version: 14.x
 
       - name: Install Dependencies
-        run: yarn install
+        run: pnpm install
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create release PR or publish to npm
         uses: changesets/action@v1
         with:
-          version: yarn run version
-          publish: yarn release
+          version: pnpm run version
+          publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

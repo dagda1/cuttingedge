@@ -1,4 +1,4 @@
-import { ShortcutAction } from './types/types';
+import type { ShortcutAction } from './types/types';
 import { isCombination, isSequence } from './utils/guards';
 
 function createKeyStrokes(keyStrokes: string | string[], separator: '+' | ' '): string {

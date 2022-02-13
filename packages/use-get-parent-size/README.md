@@ -6,7 +6,7 @@
 ## install 
 
 ```sh
-yarn add @cutting/use-get-parent-size
+pnpm add @cutting/use-get-parent-size
 
 # or
 

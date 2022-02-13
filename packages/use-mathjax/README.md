@@ -7,7 +7,7 @@ A real working demo is [here](https://cutting.scot/viz/sine) which is why I wrot
 ## install 
 
 ```sh
-yarn add @cutting/use-mathjax
+pnpm add @cutting/use-mathjax
 ```
 
 ## MathJax components

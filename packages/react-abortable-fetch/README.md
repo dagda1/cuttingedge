@@ -10,7 +10,7 @@ Here is the simplest form of using `react-abortable-fetch`:
 npm install @cutting/react-abortable-fetch
 
 # yarn
-yarn add @cutting/react-abortable-fetch
+pnpm add @cutting/react-abortable-fetch
 ```
 
 ```ts

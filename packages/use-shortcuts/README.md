@@ -13,7 +13,7 @@ Effortlessly create keyboard shortcuts with this react hook.
 npm install @cutting/use-shortcuts -S
 
 # yarn
-yarn add @cutting/use-shortcuts -S
+pnpm add @cutting/use-shortcuts -S
 ```
 
 ## Usage
@@ -156,7 +156,7 @@ export const Comp: FC = () => {
 ## build
 
 ```sh
-yarn build
+pnpm build
 ```
 
 ## run tests

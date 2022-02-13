@@ -97,7 +97,7 @@ function audit(exceptions) {
                     _g.label = 1;
                 case 1:
                     _g.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, (0, run_1.run)('yarn audit --json --level=moderate')];
+                    return [4 /*yield*/, (0, run_1.run)('pnpm audit --json --level=moderate')];
                 case 2:
                     auditResult = _g.sent();
                     return [3 /*break*/, 4];
@@ -131,7 +131,7 @@ function audit(exceptions) {
                 case 5:
                     _e = _g.sent(), name_1 = _e.name, version = _e.version;
                     displayName_1 = "".concat(name_1, "@").concat(version);
-                    logMessage = "running yarn audit for ".concat(displayName_1);
+                    logMessage = "running pnpm audit for ".concat(displayName_1);
                     logger_1.logger.info(logMessage);
                     failures = vulnerabilities.filter(function (vulnerability) {
                         var _a, _b;
@@ -234,7 +234,7 @@ function audit(exceptions) {
 exports.audit = audit;
 var program = (0, commander_1.createCommand)('audit-parser');
 program
-    .description('run yarn audit against the yarn.lock file in current cwd')
+    .description('run pnpm audit against the yarn.lock file in current cwd')
     .helpOption('-h, --help', 'show help')
     .option('-e, --exceptions', 'a list of packages to ignore, i.e. angular 1.3 in bpm should be the only one')
     .action(function (_, options) {
