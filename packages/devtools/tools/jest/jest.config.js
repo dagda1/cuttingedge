@@ -3,17 +3,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var path_1 = __importDefault(require("path"));
-var paths_1 = require("../config/paths");
-var fs_extra_1 = __importDefault(require("fs-extra"));
-var logger_1 = __importDefault(require("../scripts/logger"));
-var setupTestsFileName = 'setupTests.ts';
-var setupTestsCandidates = [path_1.default.resolve('.', setupTestsFileName), path_1.default.resolve('src', 'tests', setupTestsFileName)];
-var localSetupTestsFile = setupTestsCandidates.find(fs_extra_1.default.existsSync);
+const path_1 = __importDefault(require("path"));
+const paths_1 = require("../config/paths");
+const fs_extra_1 = __importDefault(require("fs-extra"));
+const logger_1 = __importDefault(require("../scripts/logger"));
+const setupTestsFileName = 'setupTests.ts';
+const setupTestsCandidates = [path_1.default.resolve('.', setupTestsFileName), path_1.default.resolve('src', 'tests', setupTestsFileName)];
+const localSetupTestsFile = setupTestsCandidates.find(fs_extra_1.default.existsSync);
 if (localSetupTestsFile) {
-    logger_1.default.debug("found local setup file ".concat(localSetupTestsFile));
+    logger_1.default.debug(`found local setup file ${localSetupTestsFile}`);
 }
-var jestConfig = {
+const jestConfig = {
     rootDir: process.cwd(),
     roots: ['<rootDir>', '<rootDir>/src'],
     coverageDirectory: '<rootDir>/.coverage',

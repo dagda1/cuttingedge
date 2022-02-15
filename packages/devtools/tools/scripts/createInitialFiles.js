@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createInitialFiles = void 0;
-var fs_extra_1 = __importDefault(require("fs-extra"));
-var path_1 = __importDefault(require("path"));
-var paths_1 = require("../config/paths");
-var logger_1 = __importDefault(require("./logger"));
-var createInitialFiles = function () {
+const fs_extra_1 = __importDefault(require("fs-extra"));
+const path_1 = __importDefault(require("path"));
+const paths_1 = require("../config/paths");
+const logger_1 = __importDefault(require("./logger"));
+const createInitialFiles = () => {
     logger_1.default.info('init files check...');
     if (!fs_extra_1.default.existsSync(paths_1.paths.tsConfig)) {
         fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../demo/tsconfig.json'), paths_1.paths.tsConfig);

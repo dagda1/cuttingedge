@@ -4,16 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.emptyBuildDir = void 0;
-var paths_1 = require("../config/paths");
-var logger_1 = __importDefault(require("./logger"));
-var fs_extra_1 = __importDefault(require("fs-extra"));
-var emptyBuildDir = function () {
+const paths_1 = require("../config/paths");
+const logger_1 = __importDefault(require("./logger"));
+const fs_extra_1 = __importDefault(require("fs-extra"));
+const emptyBuildDir = () => {
     if (process.env.WATCHING !== 'true') {
-        logger_1.default.warn("emptying dist ".concat(paths_1.paths.appBuild));
+        logger_1.default.warn(`emptying dist ${paths_1.paths.appBuild}`);
         fs_extra_1.default.emptyDirSync(paths_1.paths.appBuild);
     }
     else {
-        logger_1.default.warn("WATCHING so not deleting build directory");
+        logger_1.default.warn(`WATCHING so not deleting build directory`);
     }
 };
 exports.emptyBuildDir = emptyBuildDir;

@@ -1,4 +1,4 @@
 "use strict";
-var root = typeof window === 'undefined' ? global : window;
-root.scrollTo = function () { return ({}); };
+const root = typeof window === 'undefined' ? global : window;
+root.scrollTo = () => ({});
 //# sourceMappingURL=polyfills.js.map

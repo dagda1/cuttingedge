@@ -1,31 +1,31 @@
 "use strict";
-var animation = {
-    requestAnimationFrame: function () { return 0; },
-    cancelAnimationFrame: function () { return undefined; },
+const animation = {
+    requestAnimationFrame: () => 0,
+    cancelAnimationFrame: () => undefined,
 };
 if (window) {
-    var vendors = ['ms', 'moz', 'webkit', 'o'];
-    var win_1 = window;
+    const vendors = ['ms', 'moz', 'webkit', 'o'];
+    const win = window;
     animation.requestAnimationFrame = vendors
-        .map(function (vendor) { return win_1[vendor + 'RequestAnimationFrame']; })
-        .reduce(function (accumulator, func) { return accumulator || func; }, window.requestAnimationFrame);
+        .map((vendor) => win[vendor + 'RequestAnimationFrame'])
+        .reduce((accumulator, func) => accumulator || func, window.requestAnimationFrame);
     animation.cancelAnimationFrame = vendors
-        .map(function (vendor) { return win_1[vendor + 'CancelAnimationFrame'] || win_1[vendor + 'CancelRequestAnimationFrame']; })
-        .reduce(function (accumulator, func) { return accumulator || func; }, window.cancelAnimationFrame);
+        .map((vendor) => win[vendor + 'CancelAnimationFrame'] || win[vendor + 'CancelRequestAnimationFrame'])
+        .reduce((accumulator, func) => accumulator || func, window.cancelAnimationFrame);
 }
 if (!animation.requestAnimationFrame) {
-    var lastTime_1 = 0;
-    animation.requestAnimationFrame = function (callback) {
-        var currTime = new Date().getTime();
-        var timeToCall = Math.max(0, 16 - (currTime - lastTime_1));
-        var id = window.setTimeout(function () {
+    let lastTime = 0;
+    animation.requestAnimationFrame = (callback) => {
+        const currTime = new Date().getTime();
+        const timeToCall = Math.max(0, 16 - (currTime - lastTime));
+        const id = window.setTimeout(() => {
             callback(currTime + timeToCall);
         }, timeToCall);
-        lastTime_1 = currTime + timeToCall;
+        lastTime = currTime + timeToCall;
         return id;
     };
     if (!animation.cancelAnimationFrame) {
-        animation.cancelAnimationFrame = function (id) {
+        animation.cancelAnimationFrame = (id) => {
             clearTimeout(id);
         };
     }

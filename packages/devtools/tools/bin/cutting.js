@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = require("../scripts/logger");
-var spawn = require('react-dev-utils/crossSpawn');
-var script = process.argv[2];
-var args = process.argv.slice(3);
-var command = '';
+const logger_1 = require("../scripts/logger");
+const spawn = require('react-dev-utils/crossSpawn');
+const script = process.argv[2];
+const args = process.argv.slice(3);
+let command = '';
 switch (script) {
     case 'audit':
         command = '../audit-parser/index.js';
@@ -22,15 +22,15 @@ switch (script) {
     case 'esbuild':
     case 'test':
     case 'ts-build': {
-        command = "../scripts/".concat(script);
+        command = `../scripts/${script}`;
         break;
     }
     default:
-        logger_1.logger.info("Unknown script ".concat(script, "."));
+        logger_1.logger.info(`Unknown script ${script}.`);
         logger_1.logger.info('Perhaps you need to update cutting?');
         break;
 }
-var result = spawn.sync('node', [require.resolve(command)].concat(args), {
+const result = spawn.sync('node', [require.resolve(command)].concat(args), {
     stdio: 'inherit',
 });
 if (result.signal) {
@@ -45,7 +45,7 @@ if (result.signal) {
             'be shutting down.');
     }
     if (process.env.NODE_ENV === 'test') {
-        setTimeout(function () { return process.exit(1); }, 1000);
+        setTimeout(() => process.exit(1), 1000);
     }
     else {
         process.exit(1);

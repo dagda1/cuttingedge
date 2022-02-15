@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import type { ComponentType } from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
 

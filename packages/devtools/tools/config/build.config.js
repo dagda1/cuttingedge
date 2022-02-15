@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.config = void 0;
-var paths_1 = require("./paths");
-var isProduction = process.env.NODE_ENV === 'production';
+const paths_1 = require("./paths");
+const isProduction = process.env.NODE_ENV === 'production';
 exports.config = {
     client: {
         entries: paths_1.paths.appSrc,

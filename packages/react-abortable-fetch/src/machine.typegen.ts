@@ -1,21 +1,21 @@
 // This file was automatically generated. Edits will be overwritten
 
 export interface Typegen0 {
-  "@@xstate/typegen": true;
-  eventsCausingActions: {};
+  '@@xstate/typegen': true;
+  eventsCausingActions: Record<string, unknown>;
   internalEvents: {
-    "xstate.init": { type: "xstate.init" };
+    'xstate.init': { type: 'xstate.init' };
   };
-  invokeSrcNameMap: {};
+  invokeSrcNameMap: Record<string, unknown>;
   missingImplementations: {
     actions: never;
     services: never;
     guards: never;
     delays: never;
   };
-  eventsCausingServices: {};
-  eventsCausingGuards: {};
-  eventsCausingDelays: {};
-  matchesStates: "ready" | "loading" | "succeeded" | "error" | "aborted";
+  eventsCausingServices: Record<string, unknown>;
+  eventsCausingGuards: Record<string, unknown>;
+  eventsCausingDelays: Record<string, unknown>;
+  matchesStates: 'ready' | 'loading' | 'succeeded' | 'error' | 'aborted';
   tags: never;
 }

@@ -1,26 +1,25 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUrlParts = void 0;
-var assert_ts_1 = require("assert-ts");
-var WebpackDevServerUtils_1 = require("react-dev-utils/WebpackDevServerUtils");
-var getUrlParts = function (_a) {
-    var ssrBuild = _a.ssrBuild, isProduction = _a.isProduction;
-    var rawPort = process.env.PORT || 3000;
+const assert_ts_1 = require("assert-ts");
+const WebpackDevServerUtils_1 = require("react-dev-utils/WebpackDevServerUtils");
+const getUrlParts = ({ ssrBuild, isProduction, }) => {
+    const rawPort = process.env.PORT || 3000;
     (0, assert_ts_1.assert)(!!rawPort, 'No port number on environment variable PORT');
-    var portOffset = ssrBuild && !isProduction ? 1 : 0;
-    var port = Number(rawPort) + portOffset;
-    var protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-    var host = process.env.HOST || 'localhost';
-    var urls = (0, WebpackDevServerUtils_1.prepareUrls)(protocol, host, port);
-    var sockPort = Number(port);
-    var publicPath = isProduction ? '/' : "".concat(protocol, "://").concat(host, ":").concat(port, "/");
+    const portOffset = ssrBuild && !isProduction ? 1 : 0;
+    const port = Number(rawPort) + portOffset;
+    const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+    const host = process.env.HOST || 'localhost';
+    const urls = (0, WebpackDevServerUtils_1.prepareUrls)(protocol, host, port);
+    const sockPort = Number(port);
+    const publicPath = isProduction ? '/' : `${protocol}://${host}:${port}/`;
     return {
-        port: port,
-        protocol: protocol,
-        host: host,
-        urls: urls,
-        publicPath: publicPath,
-        sockPort: sockPort,
+        port,
+        protocol,
+        host,
+        urls,
+        publicPath,
+        sockPort,
     };
 };
 exports.getUrlParts = getUrlParts;

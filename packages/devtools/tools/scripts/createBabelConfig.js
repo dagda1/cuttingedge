@@ -1,24 +1,12 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createBabelConfig = exports.createBabelPresets = void 0;
 // import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-var createBabelPresets = function (_a) {
-    var isDevelopment = _a.isDevelopment, 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    isProduction = _a.isProduction, isNode = _a.isNode, moduleFormat = _a.moduleFormat;
-    var presetOptions = {
+const createBabelPresets = ({ isDevelopment, 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+isProduction, isNode, moduleFormat, }) => {
+    const presetOptions = {
         exclude: ['transform-typeof-symbol'],
         modules: moduleFormat === 'esm' ? false : 'auto',
     };
@@ -38,7 +26,7 @@ var createBabelPresets = function (_a) {
         };
     }
     return [
-        ['@babel/preset-env', __assign({}, presetOptions)],
+        ['@babel/preset-env', Object.assign({}, presetOptions)],
         [
             require('@babel/preset-react').default,
             {
@@ -50,13 +38,12 @@ var createBabelPresets = function (_a) {
 };
 exports.createBabelPresets = createBabelPresets;
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-var createBabelConfig = function (_a) {
-    var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, isNode = _a.isNode, moduleFormat = _a.moduleFormat;
-    var hot = isDevelopment && !isNode;
+const createBabelConfig = ({ isDevelopment, isProduction, isNode, moduleFormat, }) => {
+    const hot = isDevelopment && !isNode;
     return {
         babelrc: false,
         configFile: false,
-        presets: (0, exports.createBabelPresets)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: moduleFormat }),
+        presets: (0, exports.createBabelPresets)({ isDevelopment, isProduction, isNode, moduleFormat }),
         // cacheDirectory: true,
         // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
         sourceType: 'unambiguous',

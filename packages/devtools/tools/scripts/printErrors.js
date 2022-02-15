@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = require("./logger");
-var printErrors = function (summary, errors) {
+const logger_1 = require("./logger");
+const printErrors = (summary, errors) => {
     logger_1.logger.error(summary);
-    errors.forEach(function (err) {
+    errors.forEach((err) => {
         logger_1.logger.error(err.message || err);
     });
 };

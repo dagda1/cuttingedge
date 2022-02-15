@@ -1,43 +1,31 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configure = void 0;
-var webpack_merge_1 = require("webpack-merge");
-var webpack_1 = __importDefault(require("webpack"));
-var webpack_node_externals_1 = __importDefault(require("webpack-node-externals"));
-var paths_1 = require("../config/paths");
-var write_file_webpack_plugin_1 = __importDefault(require("write-file-webpack-plugin"));
-var common_1 = require("./common");
-var getEnvironment_1 = require("./getEnvironment");
-var guards_1 = require("./guards");
-var getExternals = function () {
+const webpack_merge_1 = require("webpack-merge");
+const webpack_1 = __importDefault(require("webpack"));
+const webpack_node_externals_1 = __importDefault(require("webpack-node-externals"));
+const paths_1 = require("../config/paths");
+const write_file_webpack_plugin_1 = __importDefault(require("write-file-webpack-plugin"));
+const common_1 = require("./common");
+const getEnvironment_1 = require("./getEnvironment");
+const guards_1 = require("./guards");
+const getExternals = () => {
     return [
         (0, webpack_node_externals_1.default)(),
         (0, webpack_node_externals_1.default)({
             modulesDir: paths_1.paths.resolvedNodeModules[0],
-            allowlist: [/^@cutting/].filter(function (x) { return x; }),
+            allowlist: [/^@cutting/].filter((x) => x),
         }),
     ];
 };
-var configure = function (options, overrides) {
-    if (overrides === void 0) { overrides = {}; }
-    var common = (0, common_1.configureCommon)(__assign(__assign({}, options), { isWeb: false }), overrides);
-    var isProduction = (0, getEnvironment_1.getEnvironment)().isProduction;
-    var entries = Array.isArray(options.entries) ? options.entries : [options.entries];
-    var config = (0, webpack_merge_1.merge)(common, {
+const configure = (options, overrides = {}) => {
+    const common = (0, common_1.configureCommon)(Object.assign(Object.assign({}, options), { isWeb: false }), overrides);
+    const { isProduction } = (0, getEnvironment_1.getEnvironment)();
+    const entries = Array.isArray(options.entries) ? options.entries : [options.entries];
+    const config = (0, webpack_merge_1.merge)(common, {
         name: 'api',
         target: 'node',
         externals: getExternals(),

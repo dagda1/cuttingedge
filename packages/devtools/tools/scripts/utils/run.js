@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.run = void 0;
-var child_process_1 = require("child_process");
-var logger_1 = require("../logger");
-var run = function (cmd) {
-    return new Promise(function (resolve, reject) {
+const child_process_1 = require("child_process");
+const logger_1 = require("../logger");
+const run = (cmd) => {
+    return new Promise((resolve, reject) => {
         var _a;
-        var command = (0, child_process_1.exec)("".concat(cmd));
-        var result = '';
+        const command = (0, child_process_1.exec)(`${cmd}`);
+        let result = '';
         (_a = command.stdout) === null || _a === void 0 ? void 0 : _a.on('data', function (data) {
             result += data.toString();
         });

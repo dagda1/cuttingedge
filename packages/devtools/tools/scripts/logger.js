@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logger = exports.LoggerTypes = void 0;
-var chalk_1 = __importDefault(require("chalk"));
+const chalk_1 = __importDefault(require("chalk"));
 var LoggerTypes;
 (function (LoggerTypes) {
     LoggerTypes["warn"] = "warn";
@@ -14,7 +14,7 @@ var LoggerTypes;
     LoggerTypes["start"] = "start";
     LoggerTypes["done"] = "done";
 })(LoggerTypes = exports.LoggerTypes || (exports.LoggerTypes = {}));
-var logTypes = {
+const logTypes = {
     warn: {
         bg: 'bgYellow',
         msg: ' WARNING ',
@@ -46,17 +46,17 @@ var logTypes = {
         text: 'green',
     },
 };
-var write = function (type, text, verbose) {
-    var textToLog = '';
-    var logObject = false;
-    var logType = logTypes[type];
-    textToLog += "".concat(chalk_1.default[logType.bg].black(logType.msg.padEnd(8)), " ").concat(chalk_1.default[logType.text](text));
+const write = (type, text, verbose) => {
+    let textToLog = '';
+    let logObject = false;
+    const logType = logTypes[type];
+    textToLog += `${chalk_1.default[logType.bg].black(logType.msg.padEnd(8))} ${chalk_1.default[logType.text](text)}`;
     if (verbose) {
         if (typeof verbose === 'object') {
             logObject = true;
         }
         else {
-            textToLog += "\n\n".concat(verbose);
+            textToLog += `\n\n${verbose}`;
         }
     }
     console.log(textToLog);
@@ -67,26 +67,23 @@ var write = function (type, text, verbose) {
         console.dir(verbose, { depth: 15 });
     }
 };
-var log = function (text) {
-    if (text === void 0) { text = ''; }
-    return console.log(text);
-};
-var start = function (text) {
+const log = (text = '') => console.log(text);
+const start = (text) => {
     write(LoggerTypes.start, text);
 };
-var done = function (text) {
+const done = (text) => {
     write(LoggerTypes.done, text);
 };
-var info = function (text) {
+const info = (text) => {
     write(LoggerTypes.info, text);
 };
-var debug = function (text, data) {
+const debug = (text, data) => {
     write(LoggerTypes.debug, text, data);
 };
-var warn = function (text, data) {
+const warn = (text, data) => {
     write(LoggerTypes.warn, text, data);
 };
-var error = function (err) {
+const error = (err) => {
     if (typeof err === 'string') {
         write(LoggerTypes.error, err);
         return;
@@ -103,13 +100,13 @@ var error = function (err) {
     }
 };
 exports.logger = {
-    log: log,
-    info: info,
-    debug: debug,
-    warn: warn,
-    error: error,
-    start: start,
-    done: done,
+    log,
+    info,
+    debug,
+    warn,
+    error,
+    start,
+    done,
 };
 exports.default = exports.logger;
 //# sourceMappingURL=logger.js.map

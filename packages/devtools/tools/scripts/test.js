@@ -4,31 +4,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable jest/no-jest-import */
-var env_1 = require("../config/env");
-var fs_1 = __importDefault(require("fs"));
-var paths_1 = require("../config/paths");
+const env_1 = require("../config/env");
+const fs_1 = __importDefault(require("fs"));
+const paths_1 = require("../config/paths");
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-var jest_1 = require("jest");
+const jest_1 = require("jest");
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'test';
 process.env.NODE_ENV = 'test';
 process.env.PUBLIC_URL = '';
-process.on('unhandledRejection', function (err) {
+process.on('unhandledRejection', (err) => {
     throw err;
 });
 delete require.cache[require.resolve('../config/env')];
 (0, env_1.getClientEnv)();
-var argv = process.argv.slice(2);
+const argv = process.argv.slice(2);
 argv.push('--no-cache');
 // Watch unless on CI or in coverage mode
 if (!process.env.CI && argv.indexOf('--coverage') < 0) {
     argv.push('--watchAll');
 }
-var config = fs_1.default.existsSync(paths_1.paths.ownJestConfig) ? paths_1.paths.ownJestConfig : paths_1.paths.jestConfig;
+const config = fs_1.default.existsSync(paths_1.paths.ownJestConfig) ? paths_1.paths.ownJestConfig : paths_1.paths.jestConfig;
 argv.push('--config', config);
 argv.push('--env', 'jsdom');
-argv.push('--rootDir', "".concat(process.cwd()));
+argv.push('--rootDir', `${process.cwd()}`);
 if (process.env.CI) {
     argv.push('--ci');
     argv.push('--globalTeardown');

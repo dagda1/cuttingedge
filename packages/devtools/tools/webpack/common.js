@@ -1,77 +1,52 @@
 "use strict";
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configureCommon = void 0;
-var webpack_1 = __importDefault(require("webpack"));
-var fork_ts_checker_webpack_plugin_1 = __importDefault(require("fork-ts-checker-webpack-plugin"));
-var paths_1 = require("../config/paths");
-var simple_progress_webpack_plugin_1 = __importDefault(require("simple-progress-webpack-plugin"));
-var webpack_bundle_analyzer_1 = require("webpack-bundle-analyzer");
-var happypack_1 = __importDefault(require("happypack"));
-var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
-var getEnvironment_1 = require("./getEnvironment");
-var fileLoader_1 = require("./loaders/fileLoader");
-var jsLoader_1 = require("./loaders/jsLoader");
-var typescriptLoader_1 = require("./loaders/typescriptLoader");
-var css_1 = require("./loaders/css");
-var csvLoader_1 = require("./loaders/csvLoader");
-var svgLoader_1 = require("./loaders/svgLoader");
-var mdLoader_1 = require("./loaders/mdLoader");
-var ModuleScopePlugin_1 = __importDefault(require("react-dev-utils/ModuleScopePlugin"));
-var webpack_merge_1 = require("webpack-merge");
-var webpack_plugin_1 = require("@vanilla-extract/webpack-plugin");
-var path_1 = __importDefault(require("path"));
-var assetsLoader_1 = require("./loaders/assetsLoader");
-var getFileName_1 = require("./getFileName");
-var eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
-var reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
-var reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
-var babelRuntimeEntryHelpers = require.resolve('@babel/runtime/helpers/esm/assertThisInitialized');
-var babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator');
-var reactRefreshOverlay = require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay');
-var reactRefreshRuntimeUtils = require.resolve('@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js');
-var miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
-var configureCommon = function (options, overrides) {
-    var isNode = !!options.isNode;
-    var isWeb = !isNode;
-    var _a = (0, getEnvironment_1.getEnvironment)(), isProduction = _a.isProduction, isDevelopment = _a.isDevelopment, staticAssetName = _a.staticAssetName, isAnalyse = _a.isAnalyse;
-    var env = (0, getEnvironment_1.getEnvVariables)({ isNode: !!options.isNode });
-    var cssFile = "".concat((0, getFileName_1.getFileName)({
-        isProduction: isProduction,
+const webpack_1 = __importDefault(require("webpack"));
+const fork_ts_checker_webpack_plugin_1 = __importDefault(require("fork-ts-checker-webpack-plugin"));
+const paths_1 = require("../config/paths");
+const simple_progress_webpack_plugin_1 = __importDefault(require("simple-progress-webpack-plugin"));
+const webpack_bundle_analyzer_1 = require("webpack-bundle-analyzer");
+const happypack_1 = __importDefault(require("happypack"));
+const mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
+const getEnvironment_1 = require("./getEnvironment");
+const fileLoader_1 = require("./loaders/fileLoader");
+const jsLoader_1 = require("./loaders/jsLoader");
+const typescriptLoader_1 = require("./loaders/typescriptLoader");
+const css_1 = require("./loaders/css");
+const csvLoader_1 = require("./loaders/csvLoader");
+const svgLoader_1 = require("./loaders/svgLoader");
+const mdLoader_1 = require("./loaders/mdLoader");
+const ModuleScopePlugin_1 = __importDefault(require("react-dev-utils/ModuleScopePlugin"));
+const webpack_merge_1 = require("webpack-merge");
+const webpack_plugin_1 = require("@vanilla-extract/webpack-plugin");
+const path_1 = __importDefault(require("path"));
+const assetsLoader_1 = require("./loaders/assetsLoader");
+const getFileName_1 = require("./getFileName");
+const eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
+const reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
+const reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
+const babelRuntimeEntryHelpers = require.resolve('@babel/runtime/helpers/esm/assertThisInitialized');
+const babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator');
+const reactRefreshOverlay = require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay');
+const reactRefreshRuntimeUtils = require.resolve('@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js');
+const miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
+const configureCommon = (options, overrides) => {
+    const isNode = !!options.isNode;
+    const isWeb = !isNode;
+    const { isProduction, isDevelopment, staticAssetName, isAnalyse } = (0, getEnvironment_1.getEnvironment)();
+    const env = (0, getEnvironment_1.getEnvVariables)({ isNode: !!options.isNode });
+    const cssFile = `${(0, getFileName_1.getFileName)({
+        isProduction,
         fileType: 'css',
-    }), ".css");
-    var cssChunkFile = "".concat((0, getFileName_1.getFileName)({
-        isProduction: isProduction,
+    })}.css`;
+    const cssChunkFile = `${(0, getFileName_1.getFileName)({
+        isProduction,
         fileType: 'css',
-    }), ".css");
-    var config = (0, webpack_merge_1.merge)(overrides, {
+    })}.css`;
+    const config = (0, webpack_merge_1.merge)(overrides, {
         mode: isDevelopment ? 'development' : 'production',
         bail: isProduction,
         devtool: 'source-map',
@@ -126,14 +101,16 @@ var configureCommon = function (options, overrides) {
         },
         module: {
             strictExportPresence: true,
-            rules: Array.prototype.filter.call(__spreadArray(__spreadArray(__spreadArray(__spreadArray([
-                (0, fileLoader_1.createFileLoader)({ isWeb: isWeb, staticAssetName: staticAssetName }),
-                (0, assetsLoader_1.createAssetsLoader)()
-            ], __read((0, typescriptLoader_1.createTypescriptLoader)({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' })), false), __read((0, jsLoader_1.createJsLoader)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: isNode ? 'cjs' : 'esm' })), false), [
+            rules: Array.prototype.filter.call([
+                (0, fileLoader_1.createFileLoader)({ isWeb, staticAssetName }),
+                (0, assetsLoader_1.createAssetsLoader)(),
+                ...(0, typescriptLoader_1.createTypescriptLoader)({ isDevelopment, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
+                ...(0, jsLoader_1.createJsLoader)({ isDevelopment, isProduction, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
                 (0, csvLoader_1.createCSVLoader)(),
                 (0, svgLoader_1.createSVGLoader)(),
-                (0, mdLoader_1.createMDLoader)()
-            ], false), __read((0, css_1.createCSSLoaders)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode })), false), function (x) { return !!x; }),
+                (0, mdLoader_1.createMDLoader)(),
+                ...(0, css_1.createCSSLoaders)({ isDevelopment, isProduction, isNode }),
+            ], (x) => !!x),
         },
         plugins: Array.prototype.filter.call([
             new webpack_1.default.DefinePlugin(env.stringified),

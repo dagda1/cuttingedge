@@ -45,7 +45,7 @@ async function bundle({
   const fileName = `index.js`;
   const outfile = path.join(paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
 
-  logger.info(`writing ${path.basename(outfile)} for ${packageName}`);
+  logger.info(`writing ${path.basename(outfile)} for ${packageName} in ${format} format`);
 
   const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim.js');
 

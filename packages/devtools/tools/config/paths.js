@@ -5,25 +5,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.paths = void 0;
-var path_1 = __importDefault(require("path"));
-var fs_1 = __importDefault(require("fs"));
-var finders_1 = require("../scripts/utils/finders");
-var getPublicUrlOrPath_1 = __importDefault(require("react-dev-utils/getPublicUrlOrPath"));
-var appDirectory = fs_1.default.realpathSync(process.cwd());
-var resolveApp = function (relativePath) { return path_1.default.resolve(appDirectory, relativePath); };
-var DefaultBuildDir = 'dist';
-var publicUrlOrPath = (0, getPublicUrlOrPath_1.default)(process.env.NODE_ENV === 'development', undefined, process.env.PUBLIC_URL);
-var resolveOwn = function (relativePath) { return path_1.default.resolve(__dirname, '..', relativePath); };
-var nodePaths = (process.env.NODE_PATH || '')
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
+const finders_1 = require("../scripts/utils/finders");
+const getPublicUrlOrPath_1 = __importDefault(require("react-dev-utils/getPublicUrlOrPath"));
+const appDirectory = fs_1.default.realpathSync(process.cwd());
+const resolveApp = (relativePath) => path_1.default.resolve(appDirectory, relativePath);
+const DefaultBuildDir = 'dist';
+const publicUrlOrPath = (0, getPublicUrlOrPath_1.default)(process.env.NODE_ENV === 'development', undefined, process.env.PUBLIC_URL);
+const resolveOwn = (relativePath) => path_1.default.resolve(__dirname, '..', relativePath);
+const nodePaths = (process.env.NODE_PATH || '')
     .split(process.platform === 'win32' ? ';' : ':')
     .filter(Boolean)
-    .filter(function (folder) { return !path_1.default.isAbsolute(folder); })
+    .filter((folder) => !path_1.default.isAbsolute(folder))
     .map(resolveApp);
-var appNodeModules = (0, finders_1.findAppNodeModules)(process.cwd());
-var resolvedNodeModules = [appNodeModules, './node_modules']
-    .filter(function (m) { return fs_1.default.existsSync(m); })
-    .map(function (m) { return path_1.default.relative(process.cwd(), m); });
-var libPackages = [
+const appNodeModules = (0, finders_1.findAppNodeModules)(process.cwd());
+const resolvedNodeModules = [appNodeModules, './node_modules']
+    .filter((m) => fs_1.default.existsSync(m))
+    .map((m) => path_1.default.relative(process.cwd(), m));
+const libPackages = [
     'packages/devtools',
     'packages/eslint-config',
     'packages/tsconfig',
@@ -37,22 +37,22 @@ var libPackages = [
     'packages/svg',
     'packages/use-shortcuts',
     'packages/react-abortable-fetch',
-].map(function (dep) { return path_1.default.resolve(process.cwd(), dep); });
-var tsConfigPath = resolveApp('tsconfig.json');
-var testTsConfig = require.resolve('@cutting/tsconfig/tsconfig.test.json');
-var tsConfigProductionPath = resolveApp('tsconfig.dist.json');
-var tsConfig = fs_1.default.existsSync(tsConfigPath)
+].map((dep) => path_1.default.resolve(process.cwd(), dep));
+const tsConfigPath = resolveApp('tsconfig.json');
+const testTsConfig = require.resolve('@cutting/tsconfig/tsconfig.test.json');
+const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
+const tsConfig = fs_1.default.existsSync(tsConfigPath)
     ? require(tsConfigPath)
     : { compilerOptions: { outDir: undefined, module: undefined } };
-var tsConfigProduction = fs_1.default.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
-var outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.outDir) || DefaultBuildDir;
-var isCommonJs = ((_c = (_b = tsConfig.compilerOptions) === null || _b === void 0 ? void 0 : _b.module) === null || _c === void 0 ? void 0 : _c.toLowerCase()) === 'commonjs';
-var appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
-var DevFolder = 'demo';
+const tsConfigProduction = fs_1.default.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
+const outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.outDir) || DefaultBuildDir;
+const isCommonJs = ((_c = (_b = tsConfig.compilerOptions) === null || _b === void 0 ? void 0 : _b.module) === null || _c === void 0 ? void 0 : _c.toLowerCase()) === 'commonjs';
+const appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
+const DevFolder = 'demo';
 exports.paths = {
     dotenv: resolveApp('.env'),
     appPath: resolveApp('.'),
-    appBuild: appBuild,
+    appBuild,
     appBuildPublic: path_1.default.join(appBuild, 'public'),
     appManifest: path_1.default.join(appBuild, 'loadable-stats.json'),
     appPublic: resolveApp('public'),
@@ -67,17 +67,17 @@ exports.paths = {
     nodePaths: nodePaths,
     ownNodeModules: resolveOwn('node_modules'),
     localBuildConfig: resolveApp('./build.config.js'),
-    resolvedNodeModules: resolvedNodeModules,
+    resolvedNodeModules,
     tsConfig: tsConfigPath,
-    tsConfigProduction: tsConfigProduction,
-    testTsConfig: testTsConfig,
+    tsConfigProduction,
+    testTsConfig,
     devDir: resolveApp(DevFolder),
-    devDirPublic: resolveApp("".concat(DevFolder, "/public")),
-    libPackages: libPackages,
+    devDirPublic: resolveApp(`${DevFolder}/public`),
+    libPackages,
     defaultBuildConfigPath: path_1.default.join(__dirname, './build.config.js'),
     proxySetup: resolveApp('setupProxy.js'),
     tranlationsDir: resolveApp('src/translations'),
-    publicUrlOrPath: publicUrlOrPath,
+    publicUrlOrPath,
     gitDir: resolveApp('./.git'),
     eslintConfig: resolveApp('./.eslintrc.json'),
     gitIgnore: resolveApp('./.gitignore'),

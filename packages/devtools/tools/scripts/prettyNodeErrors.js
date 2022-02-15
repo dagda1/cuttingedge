@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -25,39 +14,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs_1 = __importDefault(require("fs"));
-var jest_message_util_1 = require("jest-message-util");
-var codeFrameColumns = require('@babel/code-frame').codeFrameColumns;
+const fs_1 = __importDefault(require("fs"));
+const jest_message_util_1 = require("jest-message-util");
+const { codeFrameColumns } = require('@babel/code-frame');
 function pretty(error) {
-    var message = error.message, stack = error.stack;
-    var lines = (0, jest_message_util_1.getStackTraceLines)(stack);
-    var topFrame = (0, jest_message_util_1.getTopFrame)(lines);
-    var fallback = "".concat(message).concat(stack);
+    const { message, stack } = error;
+    const lines = (0, jest_message_util_1.getStackTraceLines)(stack);
+    const topFrame = (0, jest_message_util_1.getTopFrame)(lines);
+    const fallback = `${message}${stack}`;
     if (!topFrame) {
         return fallback;
     }
-    var file = topFrame.file, line = topFrame.line;
+    const { file, line } = topFrame;
     try {
-        var result = codeFrameColumns(fs_1.default.readFileSync(file, 'utf8'), { start: { line: line } }, { highlightCode: true });
-        return "\n".concat(message, "\n\n").concat(result, "\n").concat(stack, "\n");
+        const result = codeFrameColumns(fs_1.default.readFileSync(file, 'utf8'), { start: { line } }, { highlightCode: true });
+        return `\n${message}\n\n${result}\n${stack}\n`;
     }
     catch (error) {
         return fallback;
     }
 }
 function usePrettyErrors(transform) {
-    var prepareStackTrace = Error.prepareStackTrace;
-    Error.prepareStackTrace = function (error, trace) {
-        var prepared = prepareStackTrace ? (0, jest_message_util_1.separateMessageFromStack)(prepareStackTrace(error, trace)) : error;
-        var transformed = transform ? transform(prepared) : prepared;
+    const { prepareStackTrace } = Error;
+    Error.prepareStackTrace = (error, trace) => {
+        const prepared = prepareStackTrace ? (0, jest_message_util_1.separateMessageFromStack)(prepareStackTrace(error, trace)) : error;
+        const transformed = transform ? transform(prepared) : prepared;
         return pretty(transformed);
     };
 }
 // Clean up Webpack's sourcemap namespacing in error stacks
 // @see https://github.com/facebook/create-react-app/blob/next/packages/react-dev-utils/formatWebpackMessages.js#L112
-var stackTransform = function (_a) {
-    var _b = _a.stack, stack = _b === void 0 ? '' : _b, rest = __rest(_a, ["stack"]);
-    return (__assign({ stack: stack.replace('/build/webpack:', '') }, rest));
+const stackTransform = (_a) => {
+    var { stack = '' } = _a, rest = __rest(_a, ["stack"]);
+    return (Object.assign({ stack: stack.replace('/build/webpack:', '') }, rest));
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 usePrettyErrors(stackTransform);

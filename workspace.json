@@ -16,7 +16,7 @@
     "@cutting/eslint-config": {
       "root": "packages/eslint-config",
       "type": "library",
-      "outputs": ["dist/cjs", "dist/umd", "dist/esm"],
+      "outputs": ["tools"],
       "implicitDependencies": []
     },
     "@cutting/hooks": {

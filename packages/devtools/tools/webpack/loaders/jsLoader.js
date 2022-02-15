@@ -1,39 +1,36 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createJsLoader = void 0;
-var paths_1 = require("../../config/paths");
-var createBabelConfig_1 = require("../../scripts/createBabelConfig");
-var getCacheIdentifier_1 = require("./getCacheIdentifier");
-var createJsLoader = function (_a) {
-    var isDevelopment = _a.isDevelopment, isProduction = _a.isProduction, moduleFormat = _a.moduleFormat, isNode = _a.isNode;
-    return [
-        {
-            test: /\.(js|jsx|mjs|cjs)$/,
-            include: [paths_1.paths.appSrc],
-            use: [
-                {
-                    loader: 'babel-loader',
-                    options: (0, createBabelConfig_1.createBabelConfig)({ isDevelopment: isDevelopment, isProduction: isProduction, moduleFormat: moduleFormat, isNode: isNode }),
-                },
-            ],
-        },
-        {
-            test: /\.(js|mjs|cjs)$/,
-            exclude: /@babel(?:\/|\\{1,2})runtime/,
-            loader: require.resolve('babel-loader'),
-            options: {
-                babelrc: false,
-                configFile: false,
-                compact: false,
-                presets: (0, createBabelConfig_1.createBabelPresets)({ isDevelopment: isDevelopment, isProduction: isProduction, isNode: isNode, moduleFormat: 'cjs' }),
-                cacheDirectory: true,
-                cacheIdentifier: (0, getCacheIdentifier_1.getCacheIdentifier)({ isDevelopment: isDevelopment, isNode: isNode, moduleFormat: moduleFormat }),
-                cacheCompression: false,
-                sourceMaps: true,
-                inputSourceMap: true,
+const paths_1 = require("../../config/paths");
+const createBabelConfig_1 = require("../../scripts/createBabelConfig");
+const getCacheIdentifier_1 = require("./getCacheIdentifier");
+const createJsLoader = ({ isDevelopment, isProduction, moduleFormat, isNode, }) => [
+    {
+        test: /\.(js|jsx|mjs|cjs)$/,
+        include: [paths_1.paths.appSrc],
+        use: [
+            {
+                loader: 'babel-loader',
+                options: (0, createBabelConfig_1.createBabelConfig)({ isDevelopment, isProduction, moduleFormat, isNode }),
             },
+        ],
+    },
+    {
+        test: /\.(js|mjs|cjs)$/,
+        exclude: /@babel(?:\/|\\{1,2})runtime/,
+        loader: require.resolve('babel-loader'),
+        options: {
+            babelrc: false,
+            configFile: false,
+            compact: false,
+            presets: (0, createBabelConfig_1.createBabelPresets)({ isDevelopment, isProduction, isNode, moduleFormat: 'cjs' }),
+            cacheDirectory: true,
+            cacheIdentifier: (0, getCacheIdentifier_1.getCacheIdentifier)({ isDevelopment, isNode, moduleFormat }),
+            cacheCompression: false,
+            sourceMaps: true,
+            inputSourceMap: true,
         },
-    ];
-};
+    },
+];
 exports.createJsLoader = createJsLoader;
 //# sourceMappingURL=jsLoader.js.map

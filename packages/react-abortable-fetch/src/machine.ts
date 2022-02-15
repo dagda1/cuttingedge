@@ -29,7 +29,7 @@ export const createQueryMachine = <D>({ initialData }: { initialData: D }) => {
     initial: 'ready',
     context: model.initialContext,
     // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-    tsTypes: {} as import("./machine.typegen").Typegen0,
+    tsTypes: {} as import('./machine.typegen').Typegen0,
     states: {
       ready: {
         on: {
