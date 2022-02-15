@@ -18,6 +18,17 @@ module.exports = {
     'jest/consistent-test-it': ['error', { fn: 'it' }],
     'jest/expect-expect': ['off'],
     'no-var': 'warn',
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "{}": {
+            "message": "Use Record<string, unknown> instead",
+            "fixWith": "Record<string, unknown>"
+          }
+        }
+      }
+    ],
     curly: 'error',
     eqeqeq: ['error', 'always'],
     'prefer-const': 'warn',

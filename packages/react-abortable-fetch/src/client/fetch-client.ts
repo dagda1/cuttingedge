@@ -38,7 +38,7 @@ export function createFetchClient<R, T>(
       this.jobs.push({
         uuid: v4(),
         key,
-        state: 'READY',
+        state: 'ready',
         fetch: {
           request: url,
           init: {

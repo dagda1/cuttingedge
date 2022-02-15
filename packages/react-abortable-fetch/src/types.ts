@@ -1,53 +1,15 @@
 import type { Task } from 'effection';
-import { fetch as nativeFetch } from 'cross-fetch';
-import fetchJsonp from 'fetch-jsonp';
-
-export type FetchContext<T> = {
-  data: T;
-  error?: Error;
-};
-
-export type FetchActions<T> =
-  | { type: 'READY' }
-  | { type: 'LOADING' }
-  | { type: 'SUCCEEDED'; data: T }
-  | { type: 'ERROR'; error: Error }
-  | { type: 'ABORTED'; error: Error };
-
-/* eslint-disable @typescript-eslint/ban-types */
-export interface FetchSchema<T> {
-  states: {
-    ['READY']: {};
-    ['LOADING']: {
-      states: {
-        ['SUCCESS']: {
-          context: { payload: T };
-        };
-        ['ERROR']: {};
-        ['ABORT']: {};
-      };
-    };
-    ['SUCCEEDED']: {
-      states: {
-        ['RESET']: {};
-      };
-    };
-    ['ERROR']: {
-      context: { error: Error };
-    };
-    ['ABORTED']: {};
-  };
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type FetchStates = keyof FetchSchema<any>['states'];
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type FetchActionTypes = FetchActions<any>['type'];
+import type { fetch as nativeFetch } from 'cross-fetch';
+import type fetchJsonp from 'fetch-jsonp';
 
 export interface Runnable<T> {
   run(scope: Task): T;
 }
+
+export const fetchStates = ['ready', 'loading', 'succeeded', 'error', 'aborted'] as const;
+
+export type FetchStates = typeof fetchStates[number];
+export type FetchActionTypes = 'READY' | 'SUCCESS' | 'ERROR' | 'RESET';
 
 export type ContentType = 'json' | 'text';
 export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
@@ -114,7 +76,7 @@ export type Builder<R, T> = (fetch: FetchClient<R, T>) => FetchClient<R, T>;
 
 export type QueryResult<A> =
   | {
-      state: 'READY';
+      state: 'ready';
       run: (...args: unknown[]) => void;
       reset: () => void;
       abort: () => void;
@@ -123,7 +85,7 @@ export type QueryResult<A> =
       counter?: number;
     }
   | {
-      state: 'LOADING';
+      state: 'loading';
       run: (...args: unknown[]) => void;
       reset: () => void;
       abort: () => void;
@@ -132,7 +94,7 @@ export type QueryResult<A> =
       counter?: number;
     }
   | {
-      state: 'SUCCEEDED';
+      state: 'succeeded';
       data: A;
       run: (...args: unknown[]) => void;
       reset: () => void;
@@ -141,7 +103,7 @@ export type QueryResult<A> =
       counter?: number;
     }
   | {
-      state: 'ERROR';
+      state: 'error';
       error: Error;
       data: undefined;
       run: (...args: unknown[]) => void;
@@ -150,7 +112,7 @@ export type QueryResult<A> =
       counter?: number;
     }
   | {
-      state: 'ABORTED';
+      state: 'aborted';
       error: undefined;
       data: undefined;
       run: (...args: unknown[]) => void;

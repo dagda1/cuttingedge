@@ -1,7 +1,8 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
-import { createQueryMachine, abort, reset, start, success, error } from './machine';
+import { createQueryMachine } from './machine';
 import type { FetchStates, Builder, ContentType, UseFetchOptions, QueryResult, FetchRequestInfo } from './types';
+import { fetchStates } from './types';
 import type { Task } from 'effection';
 import { run, sleep } from 'effection';
 import { createFetchClient } from './client/fetch-client';
@@ -55,7 +56,7 @@ export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
     timeout = 180000,
   } = options;
 
-  const machineConfig = useMemo(() => createQueryMachine({ initialState }), [initialState]);
+  const machineConfig = useMemo(() => createQueryMachine({ initialData: initialState }), [initialState]);
 
   const [machine, send] = useMachine(machineConfig);
   const abortController = useRef(new AbortController());
@@ -71,7 +72,7 @@ export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
   const abortable = useCallback(
     (e: Error) => {
       onAbort(e);
-      send(abort);
+      send('ABORT');
     },
     [onAbort, send],
   );
@@ -88,7 +89,7 @@ export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
     abortController.current = new AbortController();
     fetchClient.current = createFetchClient<R, T>(builderOrRequestInfos, abortController.current);
     accumulated.current = initialState;
-    send(reset(initialState));
+    send('RESET');
   }, [builderOrRequestInfos, initialState, send]);
 
   const parseArg = <A>(arg?: A) => {
@@ -101,7 +102,7 @@ export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
     <A>(arg?: A) => {
       task.current = run(function* (scope) {
         counter.current += 1;
-        send(start);
+        send('START');
 
         try {
           for (const job of fetchClient.current.jobs) {
@@ -135,7 +136,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
 
             retries.current = retryAttempts;
 
-            job.state = 'LOADING';
+            job.state = 'loading';
 
             const fetcher = fetchType === 'fetch' ? nativeFetch : fetchJsonp;
 
@@ -158,13 +159,13 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
             }
 
             if (!response.ok) {
-              job.state = 'ERROR';
+              job.state = 'error';
               const responseError = new ResponseError(response.statusText, response.status, null);
               onQueryError(responseError);
               throw responseError;
             }
 
-            job.state = 'SUCCEEDED';
+            job.state = 'succeeded';
 
             const data: T = yield response[contentType as ContentType]();
 
@@ -178,7 +179,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
             onQuerySuccess(data);
           }
 
-          send(success(accumulated.current));
+          send('SUCCESS', accumulated.current);
           onSuccess(accumulated.current);
         } catch (err) {
           if (err instanceof Error) {
@@ -187,9 +188,9 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
               return;
             }
 
-            send(error(err));
+            send('ERROR', err);
           } else {
-            console.log(`something weird is happening got an error which is not an error! ${JSON.stringify(error)}`);
+            console.log(`something weird is happening got an error which is not an error! ${JSON.stringify(err)}`);
           }
 
           onError(err);
@@ -221,7 +222,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
     }
 
     return () => {
-      if (['SUCCEEDED', 'ERROR', 'ABORTED'].includes(machine.value as FetchStates)) {
+      if (fetchStates.includes(machine.value as FetchStates)) {
         task.current?.halt();
       }
     };
@@ -229,9 +230,9 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
 
   const result: QueryResult<R> = useMemo(() => {
     switch (machine.value as FetchStates) {
-      case 'READY':
+      case 'ready':
         return {
-          state: 'READY',
+          state: 'ready',
           run: runner,
           reset: resetable,
           abort: aborter,
@@ -239,9 +240,9 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
           error: undefined,
           counter: counter.current,
         };
-      case 'LOADING':
+      case 'loading':
         return {
-          state: 'LOADING',
+          state: 'loading',
           run: runner,
           reset: resetable,
           abort: aborter,
@@ -249,31 +250,29 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
           error: undefined,
           counter: counter.current,
         };
-      case 'SUCCEEDED':
+      case 'succeeded':
         return {
-          state: 'SUCCEEDED',
+          state: 'succeeded',
           run: runner,
           reset: resetable,
           abort: aborter,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          data: machine.context.data as any,
+          data: machine.context.data as R,
           error: undefined,
           counter: counter.current,
         };
-      case 'ERROR':
+      case 'error':
         return {
-          state: 'ERROR',
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          error: machine.context.error as any,
+          state: 'error',
+          error: machine.context.error as Error,
           data: undefined,
           run: runner,
           reset: resetable,
           abort: aborter,
           counter: counter.current,
         };
-      case 'ABORTED':
+      case 'aborted':
         return {
-          state: 'ABORTED',
+          state: 'aborted',
           data: undefined,
           error: undefined,
           run: runner,

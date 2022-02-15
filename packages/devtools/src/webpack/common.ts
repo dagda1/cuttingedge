@@ -139,7 +139,6 @@ export const configureCommon = (
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
         new ForkTsCheckerWebpackPlugin({
           typescript: {
-            enabled: true,
             configFile: isProduction ? paths.tsConfigProduction : paths.tsConfig,
             build: paths.projectReferences,
           },

@@ -41,11 +41,11 @@ export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
 
   const ref = useRef<HTMLDivElement>(null);
 
-  if (state === 'LOADING') {
+  if (state === 'loading') {
     return <LoadingOverlay busy={true} />;
   }
 
-  if (state === 'ERROR') {
+  if (state === 'error') {
     console.log(error);
     return (
       <div className={styles.error}>

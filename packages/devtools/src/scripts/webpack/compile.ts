@@ -19,7 +19,7 @@ function compileWebpack(config: Configuration, cb: (err?: Error, stats?: Stats) 
     process.exit(1);
   }
   compiler.run((err, stats) => {
-    cb(err, stats);
+    cb(err ?? undefined, stats);
   });
 }
 

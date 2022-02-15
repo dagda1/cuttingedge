@@ -1,83 +1,78 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import type { StateMachine } from 'xstate';
-import type { FetchContext, FetchSchema } from './types';
-import { Machine } from 'xstate';
+import { createModel } from 'xstate/lib/model';
 
-export const start = { type: 'START' } as const;
-export const abort = { type: 'ABORT' } as const;
-export const error = (error: Error) => ({ type: 'ERROR', error } as const);
-export const reset = <D>(initialState: D) => ({ type: 'RESET', payload: initialState } as const);
-export const success = <D>(data: D) => ({ type: 'SUCCESS', payload: data } as const);
-
-export type QueryActions<D> =
-  | typeof start
-  | ReturnType<typeof success>
-  | ReturnType<typeof error>
-  | typeof abort
-  | ReturnType<typeof reset>;
-
-export const createQueryMachine = <D>({
-  initialState,
-}: {
-  initialState: D;
-}): StateMachine<FetchContext<D>, FetchSchema<D>, QueryActions<D>> => {
-  const context: FetchContext<D> = {
-    data: initialState,
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const createQueryMachine = <D>({ initialData }: { initialData: D }) => {
+  const initialSate: {
+    data: D;
+    error?: Error | undefined;
+  } = {
+    data: initialData,
     error: undefined,
-  } as const;
+  };
+  const model = createModel(
+    {
+      ...initialSate,
+    },
+    {
+      events: {
+        START: () => ({}),
+        SUCCESS: (payload: D) => ({ payload }),
+        RESET: () => ({}),
+        ABORT: () => ({}),
+        ERROR: (error?: Error | undefined) => ({ error }),
+      },
+    },
+  );
 
-  const machine = Machine<FetchContext<D>, FetchSchema<D>, QueryActions<D>>({
-    id: 'fetchable',
-    initial: 'READY',
+  const machine = model.createMachine({
+    id: 'fetch',
+    initial: 'ready',
+    context: model.initialContext,
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
+    tsTypes: {} as import("./machine.typegen").Typegen0,
     states: {
-      ['READY']: {
-        on: { START: 'LOADING' },
-      },
-      ['LOADING']: {
+      ready: {
         on: {
-          ['SUCCESS']: {
-            target: 'SUCCEEDED',
-            actions: (context, event) => {
-              context.data = event.payload as D;
-            },
+          START: 'loading',
+        },
+      },
+      loading: {
+        on: {
+          SUCCESS: {
+            target: 'succeeded',
+            actions: model.assign(
+              {
+                data: (_, e) => e.payload,
+                error: undefined,
+              },
+              'SUCCESS',
+            ),
           },
-          ['ERROR']: {
-            target: ['ERROR'],
-            actions: (context, event) => {
-              context.error = event.error;
-            },
+          ERROR: {
+            target: 'error',
+            actions: model.assign({
+              error: (_, event) => event.error,
+            }),
           },
-          ['ABORT']: {
-            target: ['ABORTED'],
+          ABORT: {
+            target: 'aborted',
           },
         },
       },
-      ['SUCCEEDED']: {
+      succeeded: {},
+      error: {
         on: {
-          ['RESET']: {
-            target: 'READY',
+          RESET: {
+            target: 'loading',
+            actions: model.reset(),
           },
         },
       },
-      ['ERROR']: {
+      aborted: {
         on: {
-          ['RESET']: {
-            target: 'READY',
-            actions: (_context, event) => {
-              _context = context;
-              return _context;
-            },
-          },
-        },
-      },
-      ['ABORTED']: {
-        on: {
-          ['RESET']: {
-            target: 'READY',
-            actions: (_context, event) => {
-              _context = context;
-              return _context;
-            },
+          RESET: {
+            target: 'ready',
+            actions: model.reset(),
           },
         },
       },

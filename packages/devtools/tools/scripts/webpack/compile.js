@@ -23,7 +23,7 @@ function compileWebpack(config, cb) {
         process.exit(1);
     }
     compiler.run(function (err, stats) {
-        cb(err, stats);
+        cb(err !== null && err !== void 0 ? err : undefined, stats);
     });
 }
 var compile = function (config, buildType) {
