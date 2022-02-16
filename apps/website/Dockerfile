@@ -7,13 +7,13 @@ RUN mkdir -p /cutting/dist
 
 WORKDIR /cutting/dist
 
-COPY ./packages/website/dist .
+COPY ./apps/website/dist .
 
 RUN rm -rf /node_modules/@cutting
 
-COPY ./packages/website/package.json .
+COPY ./apps/website/package.json .
 
-ADD ./packages/website/.npmrc-deploy /root/.npmrc
+ADD ./apps/website/.npmrc-deploy /root/.npmrc
 
 RUN npm cache clean --force
 

@@ -10,7 +10,7 @@
  2. [@cutting/util](./packages/util/README.md) - Any common functionality applicable to all packages can be found here.
  3. [@cutting/use-shortcuts](./packages/use-shortcuts/README.md) - Effortlessly create keyboard shortcust with this react hook.
  5. [@cutting/component-library](./packages/component-library/README.md) - Common react components that can be shared among all projects.  This ensures consistency in both styling and functionality.  The [atomic design methodology](http://atomicdesign.bradfrost.com/chapter-2/) will be used to add a logical grouping to the component structure.
- 7. [@cutting/website](./packages/website/README.md) - Frontend main site code for the [cutting website](http://cutting.**scot**])
+ 7. [@cutting/website](./apps/website/README.md) - Frontend main site code for the [cutting website](http://cutting.**scot**])
 
 Each subpackage above can be deployed or imported as an npm package in isolation.
 

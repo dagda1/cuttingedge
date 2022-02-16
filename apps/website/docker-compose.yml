@@ -3,7 +3,7 @@ services:
   server:
     build:
       context: ../../
-      dockerfile: ./packages/website/Dockerfile
+      dockerfile: ./apps/website/Dockerfile
     command: node ./dist/server.js
     environment:
       PORT: 3000

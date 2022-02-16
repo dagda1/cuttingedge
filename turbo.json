@@ -3,14 +3,16 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
-      "cache": false
+      "dependsOn": ["^build"],
+      "outputs": [
+        "dist/**",
+        "tools/**"
+      ]
     },
     "test": {
       "dependsOn": ["^build"],
       "outputs": []
     },
-    "lint": {
-      "outputs": []
-    }
+    "lint": {}
   }
 }

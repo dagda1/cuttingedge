@@ -34,7 +34,7 @@
     "./packages/component-library",
     "./packages/useful-types",
     "./packages/use-shortcuts",
-    "./packages/website"
+    "./apps/website"
   ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }
