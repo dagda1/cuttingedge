@@ -104,7 +104,6 @@ export const configureCommon = (
       symlinks: true,
     },
     module: {
-      strictExportPresence: true,
       rules: Array.prototype.filter.call(
         [
           createFileLoader({ isWeb, staticAssetName }),
@@ -118,6 +117,11 @@ export const configureCommon = (
         ],
         (x) => !!x,
       ),
+      parser: {
+        javascript: {
+          strictExportPresence: true,
+        },
+      },
     },
     plugins: Array.prototype.filter.call(
       [

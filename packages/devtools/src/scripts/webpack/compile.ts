@@ -19,7 +19,8 @@ function compileWebpack(config: Configuration, cb: (err?: Error, stats?: Stats) 
     process.exit(1);
   }
   compiler.run((err, stats) => {
-    cb(err ?? undefined, stats);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cb(err as any, stats);
   });
 }
 
@@ -38,7 +39,7 @@ export const compile = (config: Configuration, buildType: BuildType): Promise<{ 
       const messages = formatWebpackMessages(stats.toJson({ all: false, warnings: true, errors: true }));
 
       if (messages.errors.length) {
-        return reject(new Error(messages.errors.map((m) => m.substring(0, 100)).join('\n')));
+        return reject(new Error(messages.errors.join('\n')));
       }
 
       logger.done(`Compiled ${buildType} successfully.`);

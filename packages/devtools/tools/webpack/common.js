@@ -101,7 +101,6 @@ const configureCommon = (options, overrides) => {
             symlinks: true,
         },
         module: {
-            strictExportPresence: true,
             rules: Array.prototype.filter.call([
                 (0, fileLoader_1.createFileLoader)({ isWeb, staticAssetName }),
                 (0, assetsLoader_1.createAssetsLoader)(),
@@ -112,6 +111,11 @@ const configureCommon = (options, overrides) => {
                 (0, mdLoader_1.createMDLoader)(),
                 ...(0, css_1.createCSSLoaders)({ isDevelopment, isProduction, isNode }),
             ], (x) => !!x),
+            parser: {
+                javascript: {
+                    strictExportPresence: true,
+                },
+            },
         },
         plugins: Array.prototype.filter.call([
             new webpack_1.default.DefinePlugin(env.stringified),

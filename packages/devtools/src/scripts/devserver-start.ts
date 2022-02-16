@@ -52,7 +52,7 @@ const HOST = process.env.HOST || '0.0.0.0';
     const { name: appName, proxy: proxySetting } = pkg;
     const urls = prepareUrls(protocol, HOST, port);
 
-    const compiler = createCompiler({ webpack, config, appName, urls, useYarn: true });
+    const compiler = createCompiler({ webpack, config, appName, urls });
 
     assert(!!config.devServer, 'no devServer in dev-server-start');
 

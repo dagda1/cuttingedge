@@ -1,4 +1,5 @@
-import { ComplexStyleRule, keyframes, style } from '@vanilla-extract/css';
+import type { ComplexStyleRule } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 import { vars } from 'src';
 
 // const getColour = (score: number) =>

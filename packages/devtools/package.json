@@ -43,7 +43,6 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/bluebird": "^3.5.36",
-    "@types/jest": "^27.4.0",
     "@types/loadable__component": "^5.13.4",
     "@vanilla-extract/esbuild-plugin": "^2.0.2",
     "@vanilla-extract/webpack-plugin": "^2.1.5",

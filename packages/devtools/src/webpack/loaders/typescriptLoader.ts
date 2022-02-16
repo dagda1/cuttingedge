@@ -17,18 +17,18 @@ export const createTypescriptLoader = ({
 
   const options: Partial<Options> = {
     silent: isDevelopment,
-    configFile: isProduction ? paths.tsConfigProduction : paths.tsConfig,
+    configFile: paths.tsConfigProduction,
     transpileOnly: isDevelopment,
     happyPackMode: isDevelopment,
     projectReferences: paths.projectReferences,
     compilerOptions: {},
-    logLevel: 'WARN',
+    logLevel: 'INFO',
   };
 
   return [
     {
       test: /\.tsx?$/,
-      exclude: /\/node_modules\//,
+      exclude: [/\/node_modules\//, /\.test.tsx?$/],
       use: [
         {
           loader: 'babel-loader',

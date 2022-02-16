@@ -35,7 +35,7 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
 
   const common = configureCommon(options, overrides);
 
-  const polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
+  const polyfills = ['whatwg-fetch'];
 
   const iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
 

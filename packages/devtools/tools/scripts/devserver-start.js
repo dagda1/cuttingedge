@@ -72,7 +72,7 @@ const HOST = process.env.HOST || '0.0.0.0';
         const pkg = yield Promise.resolve().then(() => __importStar(require(paths_1.paths.appPackageJson)));
         const { name: appName, proxy: proxySetting } = pkg;
         const urls = (0, WebpackDevServerUtils_1.prepareUrls)(protocol, HOST, port);
-        const compiler = (0, WebpackDevServerUtils_1.createCompiler)({ webpack: webpack_1.default, config, appName, urls, useYarn: true });
+        const compiler = (0, WebpackDevServerUtils_1.createCompiler)({ webpack: webpack_1.default, config, appName, urls });
         (0, assert_ts_1.assert)(!!config.devServer, 'no devServer in dev-server-start');
         config.devServer.proxy = (0, WebpackDevServerUtils_1.prepareProxy)(proxySetting, paths_1.paths.appPublic, paths_1.paths.publicUrlOrPath);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

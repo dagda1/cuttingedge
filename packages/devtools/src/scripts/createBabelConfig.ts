@@ -19,7 +19,7 @@ export const createBabelPresets = ({
   const presetOptions: PresetOptions = {
     exclude: ['transform-typeof-symbol'],
     modules: moduleFormat === 'esm' ? false : 'auto',
-    useBuiltIns: 'usage',
+    useBuiltIns: 'entry',
     corejs: 3,
   };
 

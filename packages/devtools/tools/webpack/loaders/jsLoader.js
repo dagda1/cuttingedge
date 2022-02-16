@@ -23,7 +23,7 @@ const createJsLoader = ({ isDevelopment, isProduction, moduleFormat, isNode, }) 
             babelrc: false,
             configFile: false,
             compact: false,
-            presets: (0, createBabelConfig_1.createBabelPresets)({ isDevelopment, isProduction, isNode, moduleFormat: 'cjs' }),
+            presets: (0, createBabelConfig_1.createBabelPresets)({ isDevelopment, isProduction, isNode, moduleFormat }),
             cacheDirectory: true,
             cacheIdentifier: (0, getCacheIdentifier_1.getCacheIdentifier)({ isDevelopment, isNode, moduleFormat }),
             cacheCompression: false,

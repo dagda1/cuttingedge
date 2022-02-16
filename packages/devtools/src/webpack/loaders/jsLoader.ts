@@ -33,7 +33,7 @@ export const createJsLoader = ({
       babelrc: false,
       configFile: false,
       compact: false,
-      presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat: 'cjs' }),
+      presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat }),
       cacheDirectory: true,
       cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
       cacheCompression: false,
