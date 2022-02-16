@@ -19,12 +19,13 @@ export const createBabelPresets = ({
   const presetOptions: PresetOptions = {
     exclude: ['transform-typeof-symbol'],
     modules: moduleFormat === 'esm' ? false : 'auto',
+    useBuiltIns: 'usage',
+    corejs: 3,
   };
 
   if (isNode) {
-    presetOptions.targets = { node: '14' };
+    presetOptions.targets = { node: '16' };
   } else {
-    presetOptions.useBuiltIns = 'entry';
     presetOptions.corejs = 3;
 
     presetOptions.targets = {

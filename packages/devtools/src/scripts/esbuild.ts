@@ -62,14 +62,16 @@ async function bundle({
     platform: 'node',
     sourcemap: true,
     format,
-    target: 'node14',
+    target: 'node16',
     treeShaking: true,
     allowOverwrite: true,
     inject: [path.resolve(__dirname, '..', '..', 'react-shim.js')],
     tsconfig: paths.tsConfigProduction,
     jsx: 'transform',
-    logLevel: 'warning',
+    logLevel: 'verbose',
+    preserveSymlinks: true,
     color: true,
+    absWorkingDir: paths.appPath,
     plugins: [
       nodeExternalsPlugin({
         packagePath: paths.appPackageJson,

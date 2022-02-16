@@ -23,13 +23,13 @@
   },
   "scripts": {
     "audit-packages": "cutting each-pkg cutting audit",
-    "build": "nx run-many --target=build --all --exclude=@cutting/website",
+    "build": "turbo run build --ignore=\"packages/website/*\"",
     "build:tsc": "tsc -b ./tsconfig.packages.json",
     "clean": "pnpm build:tsc -- --clean && find . \\( -name node_modules -o -name dir2 -o -path name \\) -prune -false -o -name 'dist' -type d   -exec rm -rf {} +",
-    "lint": "nx run-many --target=lint --all --parallel --fix --exclude=@cutting/website",
+    "lint": "turbo run lint",
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix",
     "prepare": "husky install",
-    "test": "CI=true nx run-many --target=test --all --parallel --exclude=@cutting/website",
+    "test": "CI=true turbo run test",
     "watch": "build:tsc && pnpm tsc -b ./tsconfig.packages.json --watch",
     "version": "changeset version && pnpm install --lockfile-only",
     "release": "pnpm build && changeset publish"
@@ -38,13 +38,10 @@
     "@changesets/cli": "^2.20.0",
     "@cutting/devtools": "4.31.6",
     "@cutting/tsconfig": "4.26.2",
-    "@nrwl/cli": "^13.8.1",
-    "@nrwl/nx-cloud": "^13.1.4",
-    "@nrwl/tao": "^13.8.1",
-    "@nrwl/workspace": "^13.8.1",
     "follow-redirects": "^1.14.8",
     "husky": "^7.0.4",
     "node-fetch": "^3.2.0",
+    "turbo": "^1.1.2",
     "typescript": "^4.5.5"
   },
   "lint-prepush": {
@@ -58,7 +55,7 @@
   "packageManager": "pnpm@6.30.1",
   "volta": {
     "node": "16.13.2",
-    "pnpm": "6.30.1"
+    "pnpm": "6.31.0"
   },
   "pnpm": {
     "overrides": {

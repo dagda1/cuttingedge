@@ -1,0 +1,1079 @@
+• Packages in scope: @cutting/component-library, @cutting/devtools, @cutting/eslint-config, @cutting/graphql-explorer, @cutting/hooks, @cutting/react-abortable-fetch, @cutting/svg, @cutting/tsconfig, @cutting/use-get-parent-size, @cutting/use-mathjax, @cutting/use-shortcuts, @cutting/useful-types, @cutting/util, @cutting/website
+• Running build in 14 packages
+@cutting/hooks:build: cache miss, executing 4931e2107da269de
+@cutting/use-get-parent-size:build: cache miss, executing e9fd82460ea9fc44
+@cutting/use-mathjax:build: cache miss, executing 963e393ff06dbf83
+@cutting/svg:build: cache miss, executing 7618b1cd03bddc9b
+@cutting/website:build: cache miss, executing 4652016d7bb2f10f
+@cutting/use-shortcuts:build: cache miss, executing 093733d66affe141
+@cutting/devtools:build: cache miss, executing 7c9fd841b6727931
+@cutting/component-library:build: cache miss, executing ddd1655299368429
+@cutting/react-abortable-fetch:build: cache miss, executing 0060a92a1c688e22@cutting/util:build: cache miss, executing f7df21fecd9bacb9
+
+@cutting/hooks:build: 
+@cutting/hooks:build: > @cutting/hooks@4.30.6 build /Users/paulcowan/projects/cuttingedge/packages/hooks
+@cutting/hooks:build: > NODE_ENV=production cutting rollup
+@cutting/hooks:build: 
+@cutting/use-get-parent-size:build: 
+@cutting/use-get-parent-size:build: > @cutting/use-get-parent-size@1.6.6 build /Users/paulcowan/projects/cuttingedge/packages/use-get-parent-size
+@cutting/use-get-parent-size:build: > NODE_ENV=production cutting rollup
+@cutting/use-get-parent-size:build: 
+@cutting/use-mathjax:build: 
+@cutting/use-mathjax:build: > @cutting/use-mathjax@4.28.6 build /Users/paulcowan/projects/cuttingedge/packages/use-mathjax
+@cutting/use-mathjax:build: > NODE_ENV=production cutting rollup
+@cutting/use-mathjax:build: 
+@cutting/svg:build: 
+@cutting/svg:build: > @cutting/svg@4.31.6 build /Users/paulcowan/projects/cuttingedge/packages/svg
+@cutting/svg:build: > NODE_ENV=development cutting rollup
+@cutting/svg:build: 
+@cutting/component-library:build: 
+@cutting/component-library:build: > @cutting/component-library@5.4.11 build /Users/paulcowan/projects/cuttingedge/packages/component-library
+@cutting/component-library:build: > NODE_ENV=production cutting esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json
+@cutting/component-library:build: 
+@cutting/use-shortcuts:build: 
+@cutting/use-shortcuts:build: > @cutting/use-shortcuts@4.28.4 build /Users/paulcowan/projects/cuttingedge/packages/use-shortcuts
+@cutting/use-shortcuts:build: > NODE_ENV=production cutting rollup
+@cutting/use-shortcuts:build: 
+@cutting/util:build: 
+@cutting/util:build: > @cutting/util@4.29.6 build /Users/paulcowan/projects/cuttingedge/packages/util
+@cutting/util:build: > NODE_ENV=development cutting rollup
+@cutting/util:build: 
+@cutting/devtools:build: 
+@cutting/devtools:build: > @cutting/devtools@4.31.6 build /Users/paulcowan/projects/cuttingedge/packages/devtools
+@cutting/devtools:build: > cutting ts-build
+@cutting/devtools:build: 
+@cutting/website:build: 
+@cutting/website:build: > @cutting/website@4.28.0 build /Users/paulcowan/projects/cuttingedge/packages/website
+@cutting/website:build: > NODE_ENV=production cutting ssr-build
+@cutting/website:build: 
+@cutting/react-abortable-fetch:build: 
+@cutting/react-abortable-fetch:build: > @cutting/react-abortable-fetch@0.17.6 build /Users/paulcowan/projects/cuttingedge/packages/react-abortable-fetch
+@cutting/react-abortable-fetch:build: > NODE_ENV=production cutting rollup
+@cutting/react-abortable-fetch:build: 
+@cutting/devtools:build:  INFO    running tsc --build, in /Users/paulcowan/projects/cuttingedge/packages
+@cutting/devtools:build:  START   running tsc
+@cutting/devtools:build: 
+@cutting/devtools:build:  START   Running eslint
+@cutting/devtools:build: 
+@cutting/devtools:build:  DONE    tsc exited with code 0
+@cutting/devtools:build: 
+@cutting/component-library:build:  INFO    Generating @cutting/component-library bundle.
+@cutting/component-library:build:  INFO    writing index.js for @cutting/component-library in iife format
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mGetting metadata for absolute path /Users/paulcowan/projects/cuttingedge/packages/devtools/react-shim.js[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   The file "/Users/paulcowan/projects/cuttingedge/packages/component-library/tsconfig.dist.json" exists
+@cutting/component-library:build:   The file "/Users/paulcowan/projects/cuttingedge/packages/component-library/tsconfig.json" exists
+@cutting/component-library:build:   The file "/Users/paulcowan/projects/cuttingedge/tsconfig-base.json" exists
+@cutting/component-library:build:   The file "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json" exists
+@cutting/component-library:build:   Read 19 entries for directory "/"
+@cutting/component-library:build:   Read 4 entries for directory "/Users"
+@cutting/component-library:build:   Read 162 entries for directory "/Users/paulcowan"
+@cutting/component-library:build:   Read 60 entries for directory "/Users/paulcowan/projects"
+@cutting/component-library:build:   The file "/Users/paulcowan/projects/cuttingedge/package.json" exists
+@cutting/component-library:build:   Read 23 entries for directory "/Users/paulcowan/projects/cuttingedge"
+@cutting/component-library:build:   Read 14 entries for directory "/Users/paulcowan/projects/cuttingedge/packages"
+@cutting/component-library:build:   The file "/Users/paulcowan/projects/cuttingedge/packages/devtools/package.json" exists
+@cutting/component-library:build:   Read 17 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/devtools"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/devtools/react-shim.js" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library" of type "entry-point"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   The import "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" is being treated as an absolute path
+@cutting/component-library:build:   Read 14 entries for directory "/Users/paulcowan/projects/cuttingedge/packages"
+@cutting/component-library:build:   The file "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json" exists
+@cutting/component-library:build:   Read 16 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library"
+@cutting/component-library:build:   Matching "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" against "paths" in "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Using "/Users/paulcowan/projects/cuttingedge/packages/component-library" as "baseURL"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" as a file
+@cutting/component-library:build:     Checking for file "src"
+@cutting/component-library:build:     Checking for file "src.tsx"
+@cutting/component-library:build:     Checking for file "src.ts"
+@cutting/component-library:build:     Checking for file "src.jsx"
+@cutting/component-library:build:     Checking for file "src.js"
+@cutting/component-library:build:     Checking for file "src.css"
+@cutting/component-library:build:     Checking for file "src.json"
+@cutting/component-library:build:     Failed to find file "src"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" as a directory
+@cutting/component-library:build:     Read 16 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library"
+@cutting/component-library:build:     Read 6 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src"
+@cutting/component-library:build:     Failed to find file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/index.tsx"
+@cutting/component-library:build:     Found file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/index.ts"
+@cutting/component-library:build:   Read 6 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/index.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/atoms/ExternalLink/ExternalLink" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 6 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components"
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ExternalLink"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ExternalLink/ExternalLink" as a file
+@cutting/component-library:build:     Checking for file "ExternalLink"
+@cutting/component-library:build:     Checking for file "ExternalLink.tsx"
+@cutting/component-library:build:     Found file "ExternalLink.tsx"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ExternalLink"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ExternalLink/ExternalLink.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/atoms/Input/Input" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input/Input" as a file
+@cutting/component-library:build:     Checking for file "Input"
+@cutting/component-library:build:     Checking for file "Input.tsx"
+@cutting/component-library:build:     Found file "Input.tsx"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input/Input.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/atoms/Label" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label" as a file
+@cutting/component-library:build:     Checking for file "Label"
+@cutting/component-library:build:     Checking for file "Label.tsx"
+@cutting/component-library:build:     Checking for file "Label.ts"
+@cutting/component-library:build:     Checking for file "Label.jsx"
+@cutting/component-library:build:     Checking for file "Label.js"
+@cutting/component-library:build:     Checking for file "Label.css"
+@cutting/component-library:build:     Checking for file "Label.json"
+@cutting/component-library:build:     Failed to find file "Label"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label" as a directory
+@cutting/component-library:build:     Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:     Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label"
+@cutting/component-library:build:     Found file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label/index.tsx"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label/index.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/atoms/ErrorMessage/ErrorMessage" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage/ErrorMessage" as a file
+@cutting/component-library:build:     Checking for file "ErrorMessage"
+@cutting/component-library:build:     Checking for file "ErrorMessage.tsx"
+@cutting/component-library:build:     Found file "ErrorMessage.tsx"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage/ErrorMessage.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/atoms/Button/Button" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button/Button" as a file
+@cutting/component-library:build:     Checking for file "Button"
+@cutting/component-library:build:     Checking for file "Button.tsx"
+@cutting/component-library:build:     Found file "Button.tsx"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button/Button.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/atoms/ButtonLink/ButtonLink" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink/ButtonLink" as a file
+@cutting/component-library:build:     Checking for file "ButtonLink"
+@cutting/component-library:build:     Checking for file "ButtonLink.tsx"
+@cutting/component-library:build:     Found file "ButtonLink.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink/ButtonLink.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/atoms/Button/Button.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button/Button.css" as a file
+@cutting/component-library:build:     Checking for file "Button.css"
+@cutting/component-library:build:     Checking for file "Button.css.tsx"
+@cutting/component-library:build:     Checking for file "Button.css.ts"
+@cutting/component-library:build:     Found file "Button.css.ts"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button/Button.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/atoms/ButtonLink/ButtonLink.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink/ButtonLink.css" as a file
+@cutting/component-library:build:     Checking for file "ButtonLink.css"
+@cutting/component-library:build:     Checking for file "ButtonLink.css.tsx"
+@cutting/component-library:build:     Checking for file "ButtonLink.css.ts"
+@cutting/component-library:build:     Found file "ButtonLink.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink/ButtonLink.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/molecules/LoadingIcon/LoadingOverlay" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components"
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon/LoadingOverlay" as a file
+@cutting/component-library:build:     Checking for file "LoadingOverlay"
+@cutting/component-library:build:     Checking for file "LoadingOverlay.tsx"
+@cutting/component-library:build:     Found file "LoadingOverlay.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon/LoadingOverlay.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/hoc/FormControl/FormControl" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components"
+@cutting/component-library:build:   Read 1 entry for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl/FormControl" as a file
+@cutting/component-library:build:     Checking for file "FormControl"
+@cutting/component-library:build:     Checking for file "FormControl.tsx"
+@cutting/component-library:build:     Found file "FormControl.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl/FormControl.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/molecules/FormControls/FormControls" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/FormControls"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/FormControls/FormControls" as a file
+@cutting/component-library:build:     Checking for file "FormControls"
+@cutting/component-library:build:     Checking for file "FormControls.tsx"
+@cutting/component-library:build:     Found file "FormControls.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/FormControls"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/FormControls/FormControls.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/molecules/RadioGroup/RadioGroup" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup/RadioGroup" as a file
+@cutting/component-library:build:     Checking for file "RadioGroup"
+@cutting/component-library:build:     Checking for file "RadioGroup.tsx"
+@cutting/component-library:build:     Found file "RadioGroup.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup/RadioGroup.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/molecules/CheckboxGroup/CheckboxGroup" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup/CheckboxGroup" as a file
+@cutting/component-library:build:     Checking for file "CheckboxGroup"
+@cutting/component-library:build:     Checking for file "CheckboxGroup.tsx"
+@cutting/component-library:build:     Found file "CheckboxGroup.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup/CheckboxGroup.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/templates/ApplicationLayout/ApplicationLayout" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components"
+@cutting/component-library:build:   Read 1 entry for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates/ApplicationLayout"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates/ApplicationLayout/ApplicationLayout" as a file
+@cutting/component-library:build:     Checking for file "ApplicationLayout"
+@cutting/component-library:build:     Checking for file "ApplicationLayout.tsx"
+@cutting/component-library:build:     Found file "ApplicationLayout.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates/ApplicationLayout"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates/ApplicationLayout/ApplicationLayout.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/molecules/Donut/Donut" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Donut"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Donut/Donut" as a file
+@cutting/component-library:build:     Checking for file "Donut"
+@cutting/component-library:build:     Checking for file "Donut.tsx"
+@cutting/component-library:build:     Found file "Donut.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Donut"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Donut/Donut.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./components/molecules/Alert/Alert" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Alert"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Alert/Alert" as a file
+@cutting/component-library:build:     Checking for file "Alert"
+@cutting/component-library:build:     Checking for file "Alert.tsx"
+@cutting/component-library:build:     Found file "Alert.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Alert"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Alert/Alert.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./style" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 6 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" as a file
+@cutting/component-library:build:     Checking for file "style"
+@cutting/component-library:build:     Checking for file "style.tsx"
+@cutting/component-library:build:     Checking for file "style.ts"
+@cutting/component-library:build:     Checking for file "style.jsx"
+@cutting/component-library:build:     Checking for file "style.js"
+@cutting/component-library:build:     Checking for file "style.css"
+@cutting/component-library:build:     Checking for file "style.json"
+@cutting/component-library:build:     Failed to find file "style"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" as a directory
+@cutting/component-library:build:     Read 6 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src"
+@cutting/component-library:build:     Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:     Failed to find file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/index.tsx"
+@cutting/component-library:build:     Found file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/index.ts"
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/index.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./Label" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label/Label" as a file
+@cutting/component-library:build:     Checking for file "Label"
+@cutting/component-library:build:     Checking for file "Label.tsx"
+@cutting/component-library:build:     Found file "Label.tsx"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label/Label.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./responsive-style" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/responsive-style" as a file
+@cutting/component-library:build:     Checking for file "responsive-style"
+@cutting/component-library:build:     Checking for file "responsive-style.tsx"
+@cutting/component-library:build:     Checking for file "responsive-style.ts"
+@cutting/component-library:build:     Found file "responsive-style.ts"
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/responsive-style.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./Donut.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Donut" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Donut"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Donut/Donut.css" as a file
+@cutting/component-library:build:     Checking for file "Donut.css"
+@cutting/component-library:build:     Checking for file "Donut.css.tsx"
+@cutting/component-library:build:     Checking for file "Donut.css.ts"
+@cutting/component-library:build:     Found file "Donut.css.ts"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Donut"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Donut/Donut.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../atoms/Radio/Radio" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Radio"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Radio/Radio" as a file
+@cutting/component-library:build:     Checking for file "Radio"
+@cutting/component-library:build:     Checking for file "Radio.tsx"
+@cutting/component-library:build:     Found file "Radio.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Radio"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Radio/Radio.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../atoms/Checkbox/Checkbox" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkbox"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkbox/Checkbox" as a file
+@cutting/component-library:build:     Checking for file "Checkbox"
+@cutting/component-library:build:     Checking for file "Checkbox.tsx"
+@cutting/component-library:build:     Found file "Checkbox.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkbox"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkbox/Checkbox.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./LoadingIcon" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon/LoadingIcon" as a file
+@cutting/component-library:build:     Checking for file "LoadingIcon"
+@cutting/component-library:build:     Checking for file "LoadingIcon.tsx"
+@cutting/component-library:build:     Found file "LoadingIcon.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon/LoadingIcon.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../atoms/TextArea/TextArea" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/FormControls" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea/TextArea" as a file
+@cutting/component-library:build:     Checking for file "TextArea"
+@cutting/component-library:build:     Checking for file "TextArea.tsx"
+@cutting/component-library:build:     Found file "TextArea.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea/TextArea.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./Input.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input/Input.css" as a file
+@cutting/component-library:build:     Checking for file "Input.css"
+@cutting/component-library:build:     Checking for file "Input.css.tsx"
+@cutting/component-library:build:     Checking for file "Input.css.ts"
+@cutting/component-library:build:     Found file "Input.css.ts"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input/Input.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./ExternalLink.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ExternalLink" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ExternalLink"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ExternalLink/ExternalLink.css" as a file
+@cutting/component-library:build:     Checking for file "ExternalLink.css"
+@cutting/component-library:build:     Checking for file "ExternalLink.css.tsx"
+@cutting/component-library:build:     Checking for file "ExternalLink.css.ts"
+@cutting/component-library:build:     Found file "ExternalLink.css.ts"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ExternalLink"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ExternalLink/ExternalLink.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../CheckableGroup/CheckableGroup" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup/CheckableGroup" as a file
+@cutting/component-library:build:     Checking for file "CheckableGroup"
+@cutting/component-library:build:     Checking for file "CheckableGroup.tsx"
+@cutting/component-library:build:     Found file "CheckableGroup.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup/CheckableGroup.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./Alert.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Alert" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Alert"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Alert/Alert.css" as a file
+@cutting/component-library:build:     Checking for file "Alert.css"
+@cutting/component-library:build:     Checking for file "Alert.css.tsx"
+@cutting/component-library:build:     Checking for file "Alert.css.ts"
+@cutting/component-library:build:     Found file "Alert.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Alert"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/Alert/Alert.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./atoms/atoms" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms/atoms" as a file
+@cutting/component-library:build:     Checking for file "atoms"
+@cutting/component-library:build:     Checking for file "atoms.tsx"
+@cutting/component-library:build:     Checking for file "atoms.ts"
+@cutting/component-library:build:     Found file "atoms.ts"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms/atoms.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../CheckableGroup/CheckableGroup" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup/CheckableGroup" as a file
+@cutting/component-library:build:     Checking for file "CheckableGroup"
+@cutting/component-library:build:     Checking for file "CheckableGroup.tsx"
+@cutting/component-library:build:     Found file "CheckableGroup.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup/CheckableGroup.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../atoms/Input/Input" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/FormControls" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input/Input" as a file
+@cutting/component-library:build:     Checking for file "Input"
+@cutting/component-library:build:     Checking for file "Input.tsx"
+@cutting/component-library:build:     Found file "Input.tsx"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input/Input.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./Label.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label/Label.css" as a file
+@cutting/component-library:build:     Checking for file "Label.css"
+@cutting/component-library:build:     Checking for file "Label.css.tsx"
+@cutting/component-library:build:     Checking for file "Label.css.ts"
+@cutting/component-library:build:     Found file "Label.css.ts"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label/Label.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./ErrorMessage.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage/ErrorMessage.css" as a file
+@cutting/component-library:build:     Checking for file "ErrorMessage.css"
+@cutting/component-library:build:     Checking for file "ErrorMessage.css.tsx"
+@cutting/component-library:build:     Checking for file "ErrorMessage.css.ts"
+@cutting/component-library:build:     Found file "ErrorMessage.css.ts"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage/ErrorMessage.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../Checkable/Checkable" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkbox" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable/Checkable" as a file
+@cutting/component-library:build:     Checking for file "Checkable"
+@cutting/component-library:build:     Checking for file "Checkable.tsx"
+@cutting/component-library:build:     Found file "Checkable.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable/Checkable.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../atoms/Label" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 10 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label" as a file
+@cutting/component-library:build:     Checking for file "Label"
+@cutting/component-library:build:     Checking for file "Label.tsx"
+@cutting/component-library:build:     Checking for file "Label.ts"
+@cutting/component-library:build:     Checking for file "Label.jsx"
+@cutting/component-library:build:     Checking for file "Label.js"
+@cutting/component-library:build:     Checking for file "Label.css"
+@cutting/component-library:build:     Checking for file "Label.json"
+@cutting/component-library:build:     Failed to find file "Label"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label" as a directory
+@cutting/component-library:build:     Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label"
+@cutting/component-library:build:     Found file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label/index.tsx"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Label/index.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../Button/Button.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button/Button.css" as a file
+@cutting/component-library:build:     Checking for file "Button.css"
+@cutting/component-library:build:     Checking for file "Button.css.tsx"
+@cutting/component-library:build:     Checking for file "Button.css.ts"
+@cutting/component-library:build:     Found file "Button.css.ts"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button/Button.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./Button.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button/Button.css" as a file
+@cutting/component-library:build:     Checking for file "Button.css"
+@cutting/component-library:build:     Checking for file "Button.css.tsx"
+@cutting/component-library:build:     Checking for file "Button.css.ts"
+@cutting/component-library:build:     Found file "Button.css.ts"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Button/Button.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./LoadingIcon.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon/LoadingIcon.css" as a file
+@cutting/component-library:build:     Checking for file "LoadingIcon.css"
+@cutting/component-library:build:     Checking for file "LoadingIcon.css.tsx"
+@cutting/component-library:build:     Checking for file "LoadingIcon.css.ts"
+@cutting/component-library:build:     Found file "LoadingIcon.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon/LoadingIcon.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./themes/vars.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/vars.css" as a file
+@cutting/component-library:build:     Checking for file "vars.css"
+@cutting/component-library:build:     Checking for file "vars.css.tsx"
+@cutting/component-library:build:     Checking for file "vars.css.ts"
+@cutting/component-library:build:     Found file "vars.css.ts"
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/vars.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../../style/accessibility.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/accessibility.css" as a file
+@cutting/component-library:build:     Checking for file "accessibility.css"
+@cutting/component-library:build:     Checking for file "accessibility.css.tsx"
+@cutting/component-library:build:     Checking for file "accessibility.css.ts"
+@cutting/component-library:build:     Found file "accessibility.css.ts"
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/accessibility.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./ButtonLink.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink/ButtonLink.css" as a file
+@cutting/component-library:build:     Checking for file "ButtonLink.css"
+@cutting/component-library:build:     Checking for file "ButtonLink.css.tsx"
+@cutting/component-library:build:     Checking for file "ButtonLink.css.ts"
+@cutting/component-library:build:     Found file "ButtonLink.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ButtonLink/ButtonLink.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../../utl" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 6 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl" as a file
+@cutting/component-library:build:     Checking for file "utl"
+@cutting/component-library:build:     Checking for file "utl.tsx"
+@cutting/component-library:build:     Checking for file "utl.ts"
+@cutting/component-library:build:     Checking for file "utl.jsx"
+@cutting/component-library:build:     Checking for file "utl.js"
+@cutting/component-library:build:     Checking for file "utl.css"
+@cutting/component-library:build:     Checking for file "utl.json"
+@cutting/component-library:build:     Failed to find file "utl"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl" as a directory
+@cutting/component-library:build:     Read 6 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src"
+@cutting/component-library:build:     Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl"
+@cutting/component-library:build:     Failed to find file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/index.tsx"
+@cutting/component-library:build:     Found file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/index.ts"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/index.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./ApplicationLayout.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates/ApplicationLayout" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates/ApplicationLayout"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates/ApplicationLayout/ApplicationLayout.css" as a file
+@cutting/component-library:build:     Checking for file "ApplicationLayout.css"
+@cutting/component-library:build:     Checking for file "ApplicationLayout.css.tsx"
+@cutting/component-library:build:     Checking for file "ApplicationLayout.css.ts"
+@cutting/component-library:build:     Found file "ApplicationLayout.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates/ApplicationLayout"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/templates/ApplicationLayout/ApplicationLayout.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../hoc/FormControl/FormControl" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/FormControls" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl/FormControl" as a file
+@cutting/component-library:build:     Checking for file "FormControl"
+@cutting/component-library:build:     Checking for file "FormControl.tsx"
+@cutting/component-library:build:     Found file "FormControl.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl/FormControl.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../Checkable/Checkable" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Radio" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable/Checkable" as a file
+@cutting/component-library:build:     Checking for file "Checkable"
+@cutting/component-library:build:     Checking for file "Checkable.tsx"
+@cutting/component-library:build:     Found file "Checkable.tsx"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable/Checkable.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./themes/default/default.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes"
+@cutting/component-library:build:   Read 1 entry for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/default"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/default/default.css" as a file
+@cutting/component-library:build:     Checking for file "default.css"
+@cutting/component-library:build:     Checking for file "default.css.tsx"
+@cutting/component-library:build:     Checking for file "default.css.ts"
+@cutting/component-library:build:     Found file "default.css.ts"
+@cutting/component-library:build:   Read 1 entry for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/default"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/default/default.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./Checkable.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable/Checkable.css" as a file
+@cutting/component-library:build:     Checking for file "Checkable.css"
+@cutting/component-library:build:     Checking for file "Checkable.css.tsx"
+@cutting/component-library:build:     Checking for file "Checkable.css.ts"
+@cutting/component-library:build:     Found file "Checkable.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Checkable/Checkable.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./FormControl.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl/FormControl.css" as a file
+@cutting/component-library:build:     Checking for file "FormControl.css"
+@cutting/component-library:build:     Checking for file "FormControl.css.tsx"
+@cutting/component-library:build:     Checking for file "FormControl.css.ts"
+@cutting/component-library:build:     Found file "FormControl.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl/FormControl.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../atoms/Radio/Radio" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Radio"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Radio/Radio" as a file
+@cutting/component-library:build:     Checking for file "Radio"
+@cutting/component-library:build:     Checking for file "Radio.tsx"
+@cutting/component-library:build:     Found file "Radio.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Radio"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Radio/Radio.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../CheckboxGroup/CheckboxGroup" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/FormControls" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup/CheckboxGroup" as a file
+@cutting/component-library:build:     Checking for file "CheckboxGroup"
+@cutting/component-library:build:     Checking for file "CheckboxGroup.tsx"
+@cutting/component-library:build:     Found file "CheckboxGroup.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckboxGroup/CheckboxGroup.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./themes/cutting/cutting.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/cutting"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/cutting/cutting.css" as a file
+@cutting/component-library:build:     Checking for file "cutting.css"
+@cutting/component-library:build:     Checking for file "cutting.css.tsx"
+@cutting/component-library:build:     Checking for file "cutting.css.ts"
+@cutting/component-library:build:     Found file "cutting.css.ts"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/cutting"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/cutting/cutting.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../../atoms/ErrorMessage/ErrorMessage" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/hoc/FormControl" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage/ErrorMessage" as a file
+@cutting/component-library:build:     Checking for file "ErrorMessage"
+@cutting/component-library:build:     Checking for file "ErrorMessage.tsx"
+@cutting/component-library:build:     Found file "ErrorMessage.tsx"
+@cutting/component-library:build:   Read 4 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/ErrorMessage/ErrorMessage.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./themes/sales/salesTheme.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 7 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/sales"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/sales/salesTheme.css" as a file
+@cutting/component-library:build:     Checking for file "salesTheme.css"
+@cutting/component-library:build:     Checking for file "salesTheme.css.tsx"
+@cutting/component-library:build:     Checking for file "salesTheme.css.ts"
+@cutting/component-library:build:     Found file "salesTheme.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/sales"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/themes/sales/salesTheme.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../RadioGroup/RadioGroup" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/FormControls" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup/RadioGroup" as a file
+@cutting/component-library:build:     Checking for file "RadioGroup"
+@cutting/component-library:build:     Checking for file "RadioGroup.tsx"
+@cutting/component-library:build:     Found file "RadioGroup.tsx"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/RadioGroup/RadioGroup.tsx" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./LoadingIcon.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon/LoadingIcon.css" as a file
+@cutting/component-library:build:     Checking for file "LoadingIcon.css"
+@cutting/component-library:build:     Checking for file "LoadingIcon.css.tsx"
+@cutting/component-library:build:     Checking for file "LoadingIcon.css.ts"
+@cutting/component-library:build:     Found file "LoadingIcon.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/LoadingIcon/LoadingIcon.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./palette.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/palette.css" as a file
+@cutting/component-library:build:     Checking for file "palette.css"
+@cutting/component-library:build:     Checking for file "palette.css.tsx"
+@cutting/component-library:build:     Checking for file "palette.css.ts"
+@cutting/component-library:build:     Found file "palette.css.ts"
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/palette.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./Checkable.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup/Checkable.css" as a file
+@cutting/component-library:build:     Checking for file "Checkable.css"
+@cutting/component-library:build:     Checking for file "Checkable.css.tsx"
+@cutting/component-library:build:     Checking for file "Checkable.css.ts"
+@cutting/component-library:build:     Found file "Checkable.css.ts"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/molecules/CheckableGroup/Checkable.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./prefixer" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/prefixer" as a file
+@cutting/component-library:build:     Checking for file "prefixer"
+@cutting/component-library:build:     Checking for file "prefixer.tsx"
+@cutting/component-library:build:     Checking for file "prefixer.ts"
+@cutting/component-library:build:     Checking for file "prefixer.jsx"
+@cutting/component-library:build:     Checking for file "prefixer.js"
+@cutting/component-library:build:     Checking for file "prefixer.css"
+@cutting/component-library:build:     Checking for file "prefixer.json"
+@cutting/component-library:build:     Failed to find file "prefixer"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/prefixer" as a directory
+@cutting/component-library:build:     Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl"
+@cutting/component-library:build:     Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/prefixer"
+@cutting/component-library:build:     Failed to find file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/prefixer/index.tsx"
+@cutting/component-library:build:     Found file "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/prefixer/index.ts"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/prefixer"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/utl/prefixer/index.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./TextArea.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea/TextArea.css" as a file
+@cutting/component-library:build:     Checking for file "TextArea.css"
+@cutting/component-library:build:     Checking for file "TextArea.css.tsx"
+@cutting/component-library:build:     Checking for file "TextArea.css.ts"
+@cutting/component-library:build:     Found file "TextArea.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea/TextArea.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./breakpoints" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/breakpoints" as a file
+@cutting/component-library:build:     Checking for file "breakpoints"
+@cutting/component-library:build:     Checking for file "breakpoints.tsx"
+@cutting/component-library:build:     Checking for file "breakpoints.ts"
+@cutting/component-library:build:     Found file "breakpoints.ts"
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/breakpoints.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../Input/Input.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/TextArea" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input/Input.css" as a file
+@cutting/component-library:build:     Checking for file "Input.css"
+@cutting/component-library:build:     Checking for file "Input.css.tsx"
+@cutting/component-library:build:     Checking for file "Input.css.ts"
+@cutting/component-library:build:     Found file "Input.css.ts"
+@cutting/component-library:build:   Read 5 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/components/atoms/Input/Input.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./reset/reset-tracker" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/reset"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/reset/reset-tracker" as a file
+@cutting/component-library:build:     Checking for file "reset-tracker"
+@cutting/component-library:build:     Checking for file "reset-tracker.tsx"
+@cutting/component-library:build:     Checking for file "reset-tracker.ts"
+@cutting/component-library:build:     Found file "reset-tracker.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/reset"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/reset/reset-tracker.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./accessibility.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/accessibility.css" as a file
+@cutting/component-library:build:     Checking for file "accessibility.css"
+@cutting/component-library:build:     Checking for file "accessibility.css.tsx"
+@cutting/component-library:build:     Checking for file "accessibility.css.ts"
+@cutting/component-library:build:     Found file "accessibility.css.ts"
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/accessibility.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "../reset/reset.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/reset"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/reset/reset.css" as a file
+@cutting/component-library:build:     Checking for file "reset.css"
+@cutting/component-library:build:     Checking for file "reset.css.tsx"
+@cutting/component-library:build:     Checking for file "reset.css.ts"
+@cutting/component-library:build:     Found file "reset.css.ts"
+@cutting/component-library:build:   Read 3 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/reset"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/reset/reset.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./sprinkles.css" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms/sprinkles.css" as a file
+@cutting/component-library:build:     Checking for file "sprinkles.css"
+@cutting/component-library:build:     Checking for file "sprinkles.css.tsx"
+@cutting/component-library:build:     Checking for file "sprinkles.css.ts"
+@cutting/component-library:build:     Found file "sprinkles.css.ts"
+@cutting/component-library:build:   Read 2 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/atoms/sprinkles.css.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/component-library:build: [36m⬥ [46;36m[[46;30mVERBOSE[46;36m][0m [1mResolving import "./breakpoints" in directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style" of type "import-statement"[0m
+@cutting/component-library:build: 
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Attempting to load "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/breakpoints" as a file
+@cutting/component-library:build:     Checking for file "breakpoints"
+@cutting/component-library:build:     Checking for file "breakpoints.tsx"
+@cutting/component-library:build:     Checking for file "breakpoints.ts"
+@cutting/component-library:build:     Found file "breakpoints.ts"
+@cutting/component-library:build:   Read 12 entries for directory "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style"
+@cutting/component-library:build:   Marking this file as having no side effects due to "/Users/paulcowan/projects/cuttingedge/packages/component-library/package.json"
+@cutting/component-library:build:   This import is under the effect of "/Users/paulcowan/projects/cuttingedge/node_modules/@cutting/tsconfig/tsconfig.json"
+@cutting/component-library:build:   Primary path is "/Users/paulcowan/projects/cuttingedge/packages/component-library/src/style/breakpoints.ts" in namespace "file"
+@cutting/component-library:build: 
+@cutting/website:build:  START   starting build
+@cutting/website:build: 
+@cutting/svg:build:  DEBUG   using tsconfig.dist.json
+@cutting/svg:build:  WARNING  emptying dist /Users/paulcowan/projects/cuttingedge/packages/svg/dist
+@cutting/svg:build:  START   using input file index.ts for @cutting/svg
+@cutting/svg:build: 
+@cutting/svg:build:  INFO    Generating @cutting/svg bundle.
+@cutting/hooks:build:  DEBUG   using tsconfig.dist.json
+@cutting/hooks:build:  WARNING  emptying dist /Users/paulcowan/projects/cuttingedge/packages/hooks/dist
+@cutting/hooks:build:  START   using input file index.ts for @cutting/hooks
+@cutting/hooks:build: 
+@cutting/hooks:build:  INFO    Generating @cutting/hooks bundle.
+@cutting/use-mathjax:build:  DEBUG   using tsconfig.dist.json
+@cutting/use-mathjax:build:  WARNING  emptying dist /Users/paulcowan/projects/cuttingedge/packages/use-mathjax/dist
+@cutting/use-mathjax:build:  START   using input file index.ts for @cutting/use-mathjax
+@cutting/use-mathjax:build: 
+@cutting/use-mathjax:build:  INFO    Generating @cutting/use-mathjax bundle.
+@cutting/website:build:  WARNING  emptying dist /Users/paulcowan/projects/cuttingedge/packages/website/dist
+@cutting/util:build:  DEBUG   using tsconfig.dist.json
+@cutting/util:build:  WARNING  emptying dist /Users/paulcowan/projects/cuttingedge/packages/util/dist
+@cutting/use-shortcuts:build:  DEBUG   using tsconfig.dist.json
+@cutting/use-shortcuts:build:  WARNING  emptying dist /Users/paulcowan/projects/cuttingedge/packages/use-shortcuts/dist
+@cutting/use-shortcuts:build:  START   using input file index.ts for @cutting/use-shortcuts
+@cutting/use-shortcuts:build: 
+@cutting/use-shortcuts:build:  INFO    Generating @cutting/use-shortcuts bundle.
+@cutting/use-get-parent-size:build:  DEBUG   using tsconfig.dist.json
+@cutting/use-get-parent-size:build:  WARNING  emptying dist /Users/paulcowan/projects/cuttingedge/packages/use-get-parent-size/dist
+@cutting/use-get-parent-size:build:  START   using input file index.ts for @cutting/use-get-parent-size
+@cutting/use-get-parent-size:build: 
+@cutting/use-get-parent-size:build:  INFO    Generating @cutting/use-get-parent-size bundle.
+@cutting/util:build:  START   using input file index.ts for @cutting/util
+@cutting/util:build: 
+@cutting/util:build:  INFO    Generating @cutting/util bundle.
+@cutting/react-abortable-fetch:build:  DEBUG   using tsconfig.dist.json
+@cutting/react-abortable-fetch:build:  WARNING  emptying dist /Users/paulcowan/projects/cuttingedge/packages/react-abortable-fetch/dist
+@cutting/react-abortable-fetch:build:  START   using input file index.ts for @cutting/react-abortable-fetch
+@cutting/react-abortable-fetch:build: 
+@cutting/react-abortable-fetch:build:  INFO    Generating @cutting/react-abortable-fetch bundle.
+@cutting/website:build:  INFO    compiling client
+@cutting/website:build: Happy[ts]: Version: 5.0.1. Threads: 4
+@cutting/website:build:  ERROR   Failed to compile.
+@cutting/website:build: 
+@cutting/website:build: Error: Can't resolve 'ts-loader' in '/Users/paulcowan/projects/cuttingedge/packages/website'
+@cutting/website:build:     at finishWithoutResolve (/Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:304:18)
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:381:15
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:430:5
+@cutting/website:build:     at eval (eval at create (/Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/tapable@2.2.1/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:430:5
+@cutting/website:build:     at eval (eval at create (/Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/tapable@2.2.1/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:27:1)
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:87:43
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:430:5
+@cutting/website:build:     at eval (eval at create (/Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/tapable@2.2.1/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:430:5 {
+@cutting/website:build:   details: "resolve 'ts-loader' in '/Users/paulcowan/projects/cuttingedge/packages/website'\n" +
+@cutting/website:build:     '  Parsed request is a module\n' +
+@cutting/website:build:     '  using description file: /Users/paulcowan/projects/cuttingedge/packages/website/package.json (relative path: .)\n' +
+@cutting/website:build:     '    resolve as module\n' +
+@cutting/website:build:     '      looking for modules in /Users/paulcowan/projects/cuttingedge/packages/website/node_modules\n' +
+@cutting/website:build:     '        single file module\n' +
+@cutting/website:build:     '          using description file: /Users/paulcowan/projects/cuttingedge/packages/website/package.json (relative path: ./node_modules/ts-loader)\n' +
+@cutting/website:build:     '            no extension\n' +
+@cutting/website:build:     "              /Users/paulcowan/projects/cuttingedge/packages/website/node_modules/ts-loader doesn't exist\n" +
+@cutting/website:build:     '            .js\n' +
+@cutting/website:build:     "              /Users/paulcowan/projects/cuttingedge/packages/website/node_modules/ts-loader.js doesn't exist\n" +
+@cutting/website:build:     "        /Users/paulcowan/projects/cuttingedge/packages/website/node_modules/ts-loader doesn't exist\n" +
+@cutting/website:build:     "      /Users/paulcowan/projects/cuttingedge/packages/node_modules doesn't exist or is not a directory\n" +
+@cutting/website:build:     '      looking for modules in /Users/paulcowan/projects/cuttingedge/node_modules\n' +
+@cutting/website:build:     '        single file module\n' +
+@cutting/website:build:     '          using description file: /Users/paulcowan/projects/cuttingedge/package.json (relative path: ./node_modules/ts-loader)\n' +
+@cutting/website:build:     '            no extension\n' +
+@cutting/website:build:     "              /Users/paulcowan/projects/cuttingedge/node_modules/ts-loader doesn't exist\n" +
+@cutting/website:build:     '            .js\n' +
+@cutting/website:build:     "              /Users/paulcowan/projects/cuttingedge/node_modules/ts-loader.js doesn't exist\n" +
+@cutting/website:build:     "        /Users/paulcowan/projects/cuttingedge/node_modules/ts-loader doesn't exist\n" +
+@cutting/website:build:     "      /Users/paulcowan/projects/node_modules doesn't exist or is not a directory\n" +
+@cutting/website:build:     '      looking for modules in /Users/paulcowan/node_modules\n' +
+@cutting/website:build:     '        single file module\n' +
+@cutting/website:build:     '          No description file found in /Users/paulcowan/node_modules or above\n' +
+@cutting/website:build:     '          no extension\n' +
+@cutting/website:build:     "            /Users/paulcowan/node_modules/ts-loader doesn't exist\n" +
+@cutting/website:build:     '          .js\n' +
+@cutting/website:build:     "            /Users/paulcowan/node_modules/ts-loader.js doesn't exist\n" +
+@cutting/website:build:     "        /Users/paulcowan/node_modules/ts-loader doesn't exist\n" +
+@cutting/website:build:     "      /Users/node_modules doesn't exist or is not a directory\n" +
+@cutting/website:build:     "      /node_modules doesn't exist or is not a directory"
+@cutting/website:build: }
+@cutting/website:build:  ERROR   Can't resolve 'ts-loader' in '/Users/paulcowan/projects/cuttingedge/packages/website'
+@cutting/website:build: 
+@cutting/website:build:  ERROR   Error: Can't resolve 'ts-loader' in '/Users/paulcowan/projects/cuttingedge/packages/website'
+@cutting/website:build:     at finishWithoutResolve (/Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:304:18)
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:381:15
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:430:5
+@cutting/website:build:     at eval (eval at create (/Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/tapable@2.2.1/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:430:5
+@cutting/website:build:     at eval (eval at create (/Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/tapable@2.2.1/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:27:1)
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:87:43
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:430:5
+@cutting/website:build:     at eval (eval at create (/Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/tapable@2.2.1/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)
+@cutting/website:build:     at /Users/paulcowan/projects/cuttingedge/node_modules/.pnpm/enhanced-resolve@5.9.0/node_modules/enhanced-resolve/lib/Resolver.js:430:5
+@cutting/website:build: 
+@cutting/website:build:  ELIFECYCLE  Command failed with exit code 1.

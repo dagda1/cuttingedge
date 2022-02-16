@@ -1,0 +1,22 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "/Users/paulcowan/projects/cuttingedge"
+  },
+  "1 error pnpm": {
+    "code": "ELIFECYCLE",
+    "errno": "ENOENT",
+    "syscall": "spawn",
+    "file": "sh",
+    "pkgid": "cuttingedge@4.22.0",
+    "stage": "build",
+    "script": "turbo run build --ignore=\"packages/website/*\"",
+    "pkgname": "cuttingedge",
+    "err": {
+      "name": "pnpm",
+      "message": "cuttingedge@4.22.0 build: `turbo run build --ignore=\"packages/website/*\"`\nspawn ENOENT",
+      "code": "ELIFECYCLE",
+      "stack": "pnpm: cuttingedge@4.22.0 build: `turbo run build --ignore=\"packages/website/*\"`\nspawn ENOENT\n    at ChildProcess.<anonymous> (/Users/paulcowan/.volta/tools/image/packages/pnpm/lib/node_modules/pnpm/dist/pnpm.cjs:92204:22)\n    at ChildProcess.emit (node:events:390:28)\n    at maybeClose (node:internal/child_process:1064:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:301:5)"
+    }
+  }
+}

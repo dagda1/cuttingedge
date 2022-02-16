@@ -76,14 +76,16 @@ env, }) {
             platform: 'node',
             sourcemap: true,
             format,
-            target: 'node14',
+            target: 'node16',
             treeShaking: true,
             allowOverwrite: true,
             inject: [path_1.default.resolve(__dirname, '..', '..', 'react-shim.js')],
             tsconfig: paths_1.paths.tsConfigProduction,
             jsx: 'transform',
-            logLevel: 'warning',
+            logLevel: 'verbose',
+            preserveSymlinks: true,
             color: true,
+            absWorkingDir: paths_1.paths.appPath,
             plugins: [
                 (0, esbuild_node_externals_1.nodeExternalsPlugin)({
                     packagePath: paths_1.paths.appPackageJson,
