@@ -1,4 +1,4 @@
-import { SimplifiedTypeWithIDs } from '../types';
+import type { SimplifiedTypeWithIDs } from '../types';
 
 export function buildId(...parts: string[]): string {
   return parts.join('::');

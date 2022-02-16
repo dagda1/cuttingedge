@@ -22,9 +22,11 @@
     "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.17.2",
     "@changesets/cli": "^2.20.0",
     "@cutting/devtools": "4.31.6",
     "@cutting/tsconfig": "4.26.2",
+    "core-js": "3.21.0",
     "follow-redirects": "^1.14.8",
     "husky": "^7.0.4",
     "node-fetch": "^3.2.0",

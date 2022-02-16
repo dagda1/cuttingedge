@@ -1,12 +1,13 @@
 import type { FC } from 'react';
-import { buildClientSchema, IntrospectionQuery, introspectionFromSchema, lexicographicSortSchema } from 'graphql';
+import type { IntrospectionQuery } from 'graphql';
+import { buildClientSchema, introspectionFromSchema, lexicographicSortSchema } from 'graphql';
 import { useRef } from 'react';
 import { getIntrospectionQuery } from 'graphql';
 import { ParentsizeSVG } from '@cutting/svg';
 import * as styles from './Explorer.css';
 import { useFetch } from '@cutting/react-abortable-fetch';
 import { LoadingOverlay } from '@cutting/component-library';
-import { SimplifiedIntrospectionWithIds } from '../../types';
+import type { SimplifiedIntrospectionWithIds } from '../../types';
 import { getSchema } from '../../introspection/get-schema';
 import { getTypeGraph } from '../../introspection/get-type-graph';
 

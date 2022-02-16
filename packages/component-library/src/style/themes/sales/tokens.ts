@@ -1,7 +1,7 @@
-import { DeepPartial } from '@cutting/util';
+import type { DeepPartial } from '@cutting/util';
 import { slate } from 'tailwindcss/colors';
 import { palette } from '../../palette.css';
-import { Tokens } from '../tokens';
+import type { Tokens } from '../tokens';
 
 const colors = {
   primary: palette.lime500,

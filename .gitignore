@@ -55,3 +55,4 @@ stats.json
 .size-snapshot.json
 
 .turbo
+.pnpm-*.log

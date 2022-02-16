@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { keyBy } from '@cutting/util';
 import { isInputObjectType, isScalarType } from 'graphql';
-import { SimplifiedIntrospectionWithIds, SimplifiedTypeWithIDs } from '../types';
+import type { SimplifiedIntrospectionWithIds, SimplifiedTypeWithIDs } from '../types';
 import { isSystemType, typeNameToId } from './utils';
 
 export function getDefaultRoot(schema: SimplifiedIntrospectionWithIds): string {

@@ -1,8 +1,10 @@
-import { DeepPartial, mapValues } from '@cutting/util';
+import type { DeepPartial } from '@cutting/util';
+import { mapValues } from '@cutting/util';
 import type { Tokens } from './tokens';
 import { tokens as defaultTokens } from './tokens';
 import deepmerge from 'deepmerge';
-import { getCapHeight, FontMetrics } from '@capsizecss/core';
+import type { FontMetrics } from '@capsizecss/core';
+import { getCapHeight } from '@capsizecss/core';
 import { precomputeValues } from '@capsizecss/vanilla-extract';
 import colors from 'tailwindcss/colors';
 

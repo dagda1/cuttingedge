@@ -1,6 +1,6 @@
-import { DeepPartial } from '@cutting/util';
+import type { DeepPartial } from '@cutting/util';
 import { palette } from '../../palette.css';
-import { Tokens } from '../tokens';
+import type { Tokens } from '../tokens';
 
 const colors = {
   primary: palette.yellow200,
