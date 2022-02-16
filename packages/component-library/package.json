@@ -18,8 +18,8 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "@cutting/hooks": "4.30.6",
-    "@cutting/util": "4.29.6",
+    "@cutting/hooks": "workspace:../hooks",
+    "@cutting/util": "workspace:../util",
     "assert-ts": "^0.3.4",
     "classnames": "^2.3.1",
     "deepmerge": "^4.2.2"
@@ -29,10 +29,10 @@
     "@babel/runtime": "^7.17.2",
     "@capsizecss/core": "^3.0.0",
     "@capsizecss/vanilla-extract": "^1.0.0",
-    "@cutting/devtools": "4.31.6",
-    "@cutting/eslint-config": "4.28.3",
-    "@cutting/tsconfig": "4.26.2",
-    "@cutting/useful-types": "4.25.7",
+    "@cutting/devtools": "workspace:../devtools",
+    "@cutting/eslint-config": "workspace:../eslint-config",
+    "@cutting/tsconfig": "workspace:../tsconfig",
+    "@cutting/useful-types": "workspace:../useful-types",
     "@mdx-js/react": "^2.0.0",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-docs": "^6.4.19",

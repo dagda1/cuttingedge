@@ -2,15 +2,14 @@
   "name": "cuttingedge",
   "version": "4.22.0",
   "private": true,
-  "workspaces": {
-    "workspaces": [
-      "apps/*",
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "audit-packages": "cutting each-pkg cutting audit",
-    "build": "turbo run build",
+    "build": "turbo run build --scope=\"packages/**/*\"",
+    "build:apps": "turbo run build --scope=\"@cutting/website\"",
     "build:tsc": "tsc -b ./tsconfig.packages.json",
     "clean": "pnpm build:tsc -- --clean && find . \\( -name node_modules -o -name dir2 -o -path name \\) -prune -false -o -name 'dist' -type d   -exec rm -rf {} +",
     "lint": "turbo run lint",
@@ -24,8 +23,8 @@
   "devDependencies": {
     "@babel/runtime": "^7.17.2",
     "@changesets/cli": "^2.20.0",
-    "@cutting/devtools": "4.31.6",
-    "@cutting/tsconfig": "4.26.2",
+    "@cutting/devtools": "workspace:./packages/devtools",
+    "@cutting/tsconfig": "workspace:./packages/tsconfig",
     "core-js": "3.21.0",
     "follow-redirects": "^1.14.8",
     "husky": "^7.0.4",

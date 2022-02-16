@@ -1,5 +1,6 @@
 import { atoms } from '@cutting/component-library';
-import { ComplexStyleRule, style } from '@vanilla-extract/css';
+import type { ComplexStyleRule } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 const buttonStyles: ComplexStyleRule = {
   borderRadius: '32px',

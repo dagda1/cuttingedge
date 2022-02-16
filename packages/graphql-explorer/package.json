@@ -20,17 +20,17 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@cutting/component-library": "5.4.11",
-    "@cutting/react-abortable-fetch": "0.17.6",
-    "@cutting/svg": "^4.31.6",
-    "@cutting/util": "4.29.6",
+    "@cutting/component-library": "workspace:../component-library",
+    "@cutting/react-abortable-fetch": "workspace:../react-abortable-fetch",
+    "@cutting/svg": "workspace:../svg",
+    "@cutting/util": "workspace:../util",
     "graphql": "^16.3.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.31.6",
-    "@cutting/eslint-config": "4.28.3",
-    "@cutting/tsconfig": "4.26.2",
-    "@cutting/useful-types": "4.25.7",
+    "@cutting/devtools": "workspace:../devtools",
+    "@cutting/eslint-config": "workspace:../eslint-config",
+    "@cutting/tsconfig": "workspace:../tsconfig",
+    "@cutting/useful-types": "workspace:../useful-types",
     "@vanilla-extract/css": "^1.6.8",
     "abortcontroller-polyfill": "^1.7.3",
     "eslint": "^8.9.0",

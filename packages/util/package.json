@@ -18,10 +18,10 @@
     "assert-ts": "^0.3.4"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.31.6",
-    "@cutting/eslint-config": "4.28.3",
-    "@cutting/tsconfig": "4.26.2",
-    "@cutting/useful-types": "4.25.7",
+    "@cutting/devtools": "workspace:../devtools",
+    "@cutting/eslint-config": "workspace:../eslint-config",
+    "@cutting/tsconfig": "workspace:../tsconfig",
+    "@cutting/useful-types": "workspace:../useful-types",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "eslint": "^8.9.0",

@@ -38,7 +38,7 @@ export const compile = (config: Configuration, buildType: BuildType): Promise<{ 
       const messages = formatWebpackMessages(stats.toJson({ all: false, warnings: true, errors: true }));
 
       if (messages.errors.length) {
-        return reject(new Error(messages.errors.join('\n')));
+        return reject(new Error(messages.errors.map((m) => m.substring(0, 100)).join('\n')));
       }
 
       logger.done(`Compiled ${buildType} successfully.`);

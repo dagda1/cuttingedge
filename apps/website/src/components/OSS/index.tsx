@@ -1,7 +1,8 @@
 import type { FC } from 'react';
 import { ExternalLink } from '@cutting/component-library';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
-import { Repo, repos } from './repos';
+import type { Repo } from './repos';
+import { repos } from './repos';
 
 import * as styles from './OSS.css';
 import { Github } from '../Svg/Github';

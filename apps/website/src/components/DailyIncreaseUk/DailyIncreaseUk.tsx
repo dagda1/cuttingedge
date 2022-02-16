@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { useCountryCovidData } from '../../components/Graphs/useCountryCovidData';
 import Graph from '../../components/Graphs/Graph';
 import dayjs from 'dayjs';
-import { Countries, CountriesResult } from '../Graphs/types';
+import type { Countries, CountriesResult } from '../Graphs/types';
 import { assert } from 'assert-ts';
 import { LoadingOverlay } from '@cutting/component-library';
 

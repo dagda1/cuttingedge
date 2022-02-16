@@ -24,8 +24,8 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@cutting/hooks": "^4.30.6",
-    "@cutting/util": "4.29.6",
+    "@cutting/hooks": "workspace:../hooks",
+    "@cutting/util": "workspace:../util",
     "assert-ts": "^0.3.4",
     "history": "^5.2.0",
     "react-use": "^17.3.2",
@@ -33,11 +33,11 @@
     "use-debounce": "^7.0.1"
   },
   "devDependencies": {
-    "@cutting/component-library": "5.4.11",
-    "@cutting/devtools": "4.31.6",
-    "@cutting/eslint-config": "4.28.3",
-    "@cutting/tsconfig": "4.26.2",
-    "@cutting/useful-types": "4.25.7",
+    "@cutting/component-library": "workspace:../component-library",
+    "@cutting/devtools": "workspace:../devtools",
+    "@cutting/eslint-config": "workspace:../eslint-config",
+    "@cutting/tsconfig": "workspace:../tsconfig",
+    "@cutting/useful-types": "workspace:../useful-types",
     "@testing-library/jest-dom": "^5.16.2",
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.39",

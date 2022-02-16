@@ -1,5 +1,6 @@
 import type { FC } from 'react';
-import { render, Renderer } from 'react-dom';
+import type { Renderer } from 'react-dom';
+import { render } from 'react-dom';
 import { hydrate } from 'react-dom';
 import { loadableReady } from '@loadable/component';
 

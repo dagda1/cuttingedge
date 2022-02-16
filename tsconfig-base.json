@@ -15,8 +15,7 @@
       "@cutting/svg": ["./packages/svg/src"],
       "@cutting/use-shortcuts": ["./packages/use-shortcuts/src"],
       "@cutting/use-mathjax": ["./packages/use-mathjax/src"],
-      "@cutting/use-get-parent-size": ["./packages/use-get-parent-size/src"],
-      "@cutting/website": ["./apps/website/src"]
+      "@cutting/use-get-parent-size": ["./packages/use-get-parent-size/src"]
     }
   }
 }

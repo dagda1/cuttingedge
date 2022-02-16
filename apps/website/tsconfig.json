@@ -2,15 +2,10 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "target": "ES5",
+    "target": "ESNext",
     "module": "ESNext",
+    "rootDir": "./src",
     "noEmit": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "references": [
-    { "path": "../../packages/util/tsconfig.dist.json" },
-    { "path": "../../packages/hooks/tsconfig.dist.json" },
-    { "path": "../../packages/svg/tsconfig.dist.json" },
-    { "path": "../../packages/react-abortable-fetch/tsconfig.dist.json" }
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

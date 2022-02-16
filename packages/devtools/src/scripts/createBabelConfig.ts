@@ -26,8 +26,6 @@ export const createBabelPresets = ({
   if (isNode) {
     presetOptions.targets = { node: '16' };
   } else {
-    presetOptions.corejs = 3;
-
     presetOptions.targets = {
       edge: '17',
       firefox: '60',

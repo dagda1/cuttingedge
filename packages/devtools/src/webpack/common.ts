@@ -101,6 +101,7 @@ export const configureCommon = (
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ]) as any,
       ],
+      symlinks: true,
     },
     module: {
       strictExportPresence: true,

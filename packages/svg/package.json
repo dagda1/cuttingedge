@@ -15,16 +15,16 @@
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/use-get-parent-size": "1.6.6",
-    "@cutting/util": "4.29.6",
+    "@cutting/use-get-parent-size": "workspace:../use-get-parent-size",
+    "@cutting/util": "workspace:../util",
     "classnames": "^2.3.1",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.31.6",
-    "@cutting/eslint-config": "4.28.3",
-    "@cutting/tsconfig": "4.26.2",
-    "@cutting/useful-types": "4.25.7",
+    "@cutting/devtools": "workspace:../devtools",
+    "@cutting/eslint-config": "workspace:../eslint-config",
+    "@cutting/tsconfig": "workspace:../tsconfig",
+    "@cutting/useful-types": "workspace:../useful-types",
     "@testing-library/jest-dom": "^5.16.2",
     "eslint": "^8.9.0",
     "react": "^17.0.2",

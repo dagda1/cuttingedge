@@ -25,15 +25,15 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@cutting/util": "4.29.6",
+    "@cutting/util": "workspace:../util",
     "classnames": "^2.3.1",
     "mousetrap": "^1.6.5"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.31.6",
-    "@cutting/eslint-config": "4.28.3",
-    "@cutting/tsconfig": "4.26.2",
-    "@cutting/useful-types": "4.25.7",
+    "@cutting/devtools": "workspace:../devtools",
+    "@cutting/eslint-config": "workspace:../eslint-config",
+    "@cutting/tsconfig": "workspace:../tsconfig",
+    "@cutting/useful-types": "workspace:../useful-types",
     "@testing-library/jest-dom": "^5.16.2",
     "@types/mousetrap": "^1.6.9",
     "dtslint": "^4.2.1",

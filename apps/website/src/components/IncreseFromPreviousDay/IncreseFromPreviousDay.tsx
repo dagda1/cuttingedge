@@ -2,7 +2,8 @@ import type { FC } from 'react';
 import { useCountryCovidData } from '../../components/Graphs/useCountryCovidData';
 import Graph from '../../components/Graphs/Graph';
 import dayjs from 'dayjs';
-import { Countries, countryData, CountryResult } from '../Graphs/types';
+import type { Countries, CountryResult } from '../Graphs/types';
+import { countryData } from '../Graphs/types';
 import { assert } from 'assert-ts';
 
 export const IncreseFromPreviousDay: FC = () => {

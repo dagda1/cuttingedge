@@ -30,9 +30,6 @@
     },
     {
       "path": "./packages/use-mathjax/tsconfig.dist.json"
-    },
-    {
-      "path": "./apps/website/tsconfig.dist.json"
     }
   ]
 }

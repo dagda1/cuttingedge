@@ -1,4 +1,5 @@
-import { CountryStats, DayData, CountryData, countryData, Countries, DayStatistics, CountriesResult } from './types';
+import type { CountryStats, DayData, CountryData, Countries, DayStatistics, CountriesResult } from './types';
+import { countryData } from './types';
 import { useFetch } from '@cutting/react-abortable-fetch';
 import dayjs from 'dayjs';
 import { uniqBy } from '@cutting/util';

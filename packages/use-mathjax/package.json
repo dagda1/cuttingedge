@@ -21,17 +21,17 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@cutting/util": "4.29.6",
+    "@cutting/util": "workspace:../util",
     "assert-ts": "^0.3.4",
     "mathjax": "3",
     "mathjax3": "3.0.0-beta.4",
     "react-use": "^17.3.2"
   },
   "devDependencies": {
-    "@cutting/devtools": "4.31.6",
-    "@cutting/eslint-config": "4.28.3",
-    "@cutting/tsconfig": "4.26.2",
-    "@cutting/useful-types": "4.25.7",
+    "@cutting/devtools": "workspace:../devtools",
+    "@cutting/eslint-config": "workspace:../eslint-config",
+    "@cutting/tsconfig": "workspace:../tsconfig",
+    "@cutting/useful-types": "workspace:../useful-types",
     "@testing-library/jest-dom": "^5.16.2",
     "@types/jest": "^27.4.0",
     "@types/mathjax": "^0.0.37",

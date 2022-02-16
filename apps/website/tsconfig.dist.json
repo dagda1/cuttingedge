@@ -7,11 +7,5 @@
     "noEmit": false
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
-  "references": [
-    { "path": "../util/tsconfig.dist.json" },
-    { "path": "../hooks/tsconfig.dist.json" },
-    { "path": "../svg/tsconfig.dist.json" },
-    { "path": "../react-abortable-fetch/tsconfig.dist.json" }
-  ]
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
 }

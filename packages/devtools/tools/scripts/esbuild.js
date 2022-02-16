@@ -82,7 +82,7 @@ env, }) {
             inject: [path_1.default.resolve(__dirname, '..', '..', 'react-shim.js')],
             tsconfig: paths_1.paths.tsConfigProduction,
             jsx: 'transform',
-            logLevel: 'verbose',
+            logLevel: 'warning',
             preserveSymlinks: true,
             color: true,
             absWorkingDir: paths_1.paths.appPath,

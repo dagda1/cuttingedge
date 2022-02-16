@@ -98,6 +98,7 @@ const configureCommon = (options, overrides) => {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ]),
             ],
+            symlinks: true,
         },
         module: {
             strictExportPresence: true,

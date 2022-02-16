@@ -1,8 +1,5 @@
 prefer-workspace-packages: true
+link-workspace-packages: deep
 packages:
   - 'packages/*'
-  - 'test-helpers'
-  - 'fixtures/*'
-  - 'site'
-  - 'examples/*'
-  - 'tests'
+  - 'apps/*'

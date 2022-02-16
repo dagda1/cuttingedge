@@ -33,12 +33,11 @@ const configure = (options, overrides = {}) => {
     options.isNode = false;
     options.isWeb = true;
     const common = (0, common_1.configureCommon)(options, overrides);
-    const polyfills = ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch'];
     const iter = typeof entries === 'string' || Array.isArray(entries) ? { client: entries } : entries;
     const finalEntries = Object.keys(iter).reduce((acc, key) => {
         const value = iter[key];
         const entryPoints = typeof value === 'string' ? [value] : value;
-        acc[key] = [...polyfills, ...entryPoints];
+        acc[key] = [...entryPoints];
         return acc;
     }, {});
     const template = publicDir ? path_1.default.join(publicDir, 'index.html') : 'public/index.html';

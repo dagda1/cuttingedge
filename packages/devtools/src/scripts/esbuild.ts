@@ -68,7 +68,7 @@ async function bundle({
     inject: [path.resolve(__dirname, '..', '..', 'react-shim.js')],
     tsconfig: paths.tsConfigProduction,
     jsx: 'transform',
-    logLevel: 'verbose',
+    logLevel: 'warning',
     preserveSymlinks: true,
     color: true,
     absWorkingDir: paths.appPath,

@@ -30,6 +30,7 @@ const getExternals = function (isDevelopment) {
                 /\.css.ts$/,
                 /^mathjax3/,
                 /^@babel/,
+                /^babel-loader/,
                 /^@loadable/,
                 /^@cutting/,
                 /^@vanilla-extract/,

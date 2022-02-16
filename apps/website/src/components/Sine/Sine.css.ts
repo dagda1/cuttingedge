@@ -1,5 +1,6 @@
 import { palette } from '@cutting/component-library';
-import { ComplexStyleRule, globalStyle, style } from '@vanilla-extract/css';
+import type { ComplexStyleRule } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 const strokeColor = palette.white;
 const strokeWidth = 2;
