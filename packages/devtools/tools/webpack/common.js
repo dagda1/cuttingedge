@@ -137,7 +137,7 @@ const configureCommon = (options, overrides) => {
             new webpack_1.default.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
             new fork_ts_checker_webpack_plugin_1.default({
                 typescript: {
-                    configFile: isProduction ? paths_1.paths.tsConfigProduction : paths_1.paths.tsConfig,
+                    configFile: paths_1.paths.tsConfigProduction,
                     build: paths_1.paths.projectReferences,
                 },
             }),

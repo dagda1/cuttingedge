@@ -28,7 +28,7 @@ export const createTypescriptLoader = ({
   return [
     {
       test: /\.tsx?$/,
-      exclude: [/\/node_modules\//, /\.test.tsx?$/],
+      exclude: [/\/node_modules\//],
       use: [
         {
           loader: 'babel-loader',

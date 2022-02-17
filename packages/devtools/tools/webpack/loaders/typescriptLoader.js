@@ -17,7 +17,7 @@ const createTypescriptLoader = ({ isDevelopment, isNode, moduleFormat, }) => {
     return [
         {
             test: /\.tsx?$/,
-            exclude: [/\/node_modules\//, /\.test.tsx?$/],
+            exclude: [/\/node_modules\//],
             use: [
                 {
                     loader: 'babel-loader',
