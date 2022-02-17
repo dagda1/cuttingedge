@@ -1,6 +1,6 @@
 import '@cutting/component-library/styles.css';
 import { ApplicationLayout, defaultTheme } from '@cutting/component-library';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 const Header = <header>Header</header>;
 const Footer = <footer>Footer</footer>;

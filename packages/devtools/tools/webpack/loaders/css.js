@@ -10,14 +10,17 @@ const constants_1 = require("../constants");
 const cssLoaders = (isDevelopment, isProduction, isNode, { importLoaders }) => [
     !isNode && {
         loader: mini_css_extract_plugin_1.default.loader,
-        options: {},
+        options: {
+            esModule: false,
+        },
     },
     {
         loader: 'css-loader',
         options: {
             importLoaders,
-            sourceMap: true,
+            sourceMap: false,
             modules: false,
+            esModule: false,
         },
     },
     // TODO: reinstate postcss
@@ -40,6 +43,7 @@ const createCSSLoaders = ({ isDevelopment, isProduction, isNode, }) => [
     },
     {
         test: constants_1.cssRegex,
+        sideEffects: true,
         exclude: /\.vanilla\.css$/i,
         use: (0, exports.cssLoaders)(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
     },

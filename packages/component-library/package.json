@@ -10,7 +10,8 @@
   "main": "dist/cjs/index.js",
   "sideEffects": [
     "./src/style/reset/*",
-    "**/*.css.ts"
+    "**/*.css.ts",
+    "*.css"
   ],
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
@@ -25,6 +26,7 @@
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.17.2",
     "@capsizecss/core": "^3.0.0",
     "@capsizecss/vanilla-extract": "^1.0.0",
     "@cutting/devtools": "workspace:../devtools",
@@ -48,6 +50,7 @@
     "@vanilla-extract/babel-plugin": "^1.1.4",
     "@vanilla-extract/css": "^1.6.8",
     "@vanilla-extract/sprinkles": "^1.3.3",
+    "autoprefixer": "^10.4.2",
     "csstype": "^3.0.10",
     "dedent": "^0.7.0",
     "esbuild": "^0.14.21",

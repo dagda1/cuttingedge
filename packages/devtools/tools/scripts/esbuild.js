@@ -83,9 +83,7 @@ env, }) {
             tsconfig: paths_1.paths.tsConfigProduction,
             jsx: 'transform',
             logLevel: 'warning',
-            preserveSymlinks: true,
             color: true,
-            absWorkingDir: paths_1.paths.appPath,
             plugins: [
                 (0, esbuild_node_externals_1.nodeExternalsPlugin)({
                     packagePath: paths_1.paths.appPackageJson,

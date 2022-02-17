@@ -17,6 +17,7 @@ const jestConfig = {
     rootDir: process.cwd(),
     roots: ['<rootDir>', '<rootDir>/src'],
     coverageDirectory: '<rootDir>/.coverage',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     globals: {
         __DEV__: true,
         'ts-jest': {
@@ -25,7 +26,7 @@ const jestConfig = {
             babelConfig: {
                 presets: [
                     '@babel/preset-react',
-                    ['@babel/preset-env', { targets: { node: 14 }, useBuiltIns: 'entry', corejs: 3 }],
+                    ['@babel/preset-env', { targets: { node: 16 }, useBuiltIns: 'entry', corejs: 3 }],
                 ],
                 plugins: ['@vanilla-extract/babel-plugin'],
             },

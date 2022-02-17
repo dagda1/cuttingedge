@@ -62,9 +62,10 @@ const HOST = process.env.HOST || '0.0.0.0';
     const server = new WebpackDevServer(config.devServer as any, compiler as any) as any;
 
     logger.info('Starting the development server...\n');
-    await server.start({ host: HOST, port });
 
-    openBrowser(urls.localUrlForBrowser);
+    server.startCallback(() => {
+      openBrowser(urls.localUrlForBrowser);
+    });
 
     ['SIGINT', 'SIGTERM'].forEach((sig) => {
       process.on(sig, function () {

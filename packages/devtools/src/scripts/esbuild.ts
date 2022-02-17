@@ -69,9 +69,7 @@ async function bundle({
     tsconfig: paths.tsConfigProduction,
     jsx: 'transform',
     logLevel: 'warning',
-    preserveSymlinks: true,
     color: true,
-    absWorkingDir: paths.appPath,
     plugins: [
       nodeExternalsPlugin({
         packagePath: paths.appPackageJson,

@@ -3,7 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createBabelConfig = exports.createBabelPresets = void 0;
 // import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const createBabelPresets = ({ isDevelopment, 
+const createBabelPresets = ({ 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+isDevelopment, 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 isProduction, isNode, moduleFormat, }) => {
     const presetOptions = {
@@ -13,16 +15,11 @@ isProduction, isNode, moduleFormat, }) => {
         corejs: 3,
     };
     if (isNode) {
-        presetOptions.targets = { node: '16' };
+        presetOptions.targets = { node: '16', esmodules: moduleFormat === 'esm' ? true : undefined };
     }
     else {
         presetOptions.targets = {
-            edge: '17',
-            firefox: '60',
-            chrome: '67',
-            safari: '11.1',
-            ie: '11',
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            browsers: ['edge >= 17', 'firefox >= 60', 'chrome >= 67', 'safari >= 12', 'ie >= 11', 'ios >= 9'],
         };
     }
     return [
@@ -30,8 +27,7 @@ isProduction, isNode, moduleFormat, }) => {
         [
             require('@babel/preset-react').default,
             {
-                development: isDevelopment,
-                useBuiltIns: isDevelopment,
+                runtime: 'automatic',
             },
         ],
     ];

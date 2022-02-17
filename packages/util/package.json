@@ -15,15 +15,19 @@
     "test:ci": "CI=true pnpm test"
   },
   "dependencies": {
+    "@babel/runtime": "^7.17.2",
     "assert-ts": "^0.3.4"
   },
   "devDependencies": {
+    "@babel/plugin-transform-regenerator": "^7.16.7",
     "@cutting/devtools": "workspace:../devtools",
     "@cutting/eslint-config": "workspace:../eslint-config",
     "@cutting/tsconfig": "workspace:../tsconfig",
     "@cutting/useful-types": "workspace:../useful-types",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "@vanilla-extract/babel-plugin": "^1.1.4",
+    "@vanilla-extract/css": "^1.6.8",
     "eslint": "^8.9.0",
     "typescript": "^4.5.5"
   },

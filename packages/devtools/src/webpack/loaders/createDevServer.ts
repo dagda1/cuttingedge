@@ -1,10 +1,9 @@
 import { paths } from '../../config/paths';
-import ignoredFiles from 'react-dev-utils/ignoredFiles';
-import fs from 'fs';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
 import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 import type { ProxyConfigArray, ProxyConfigMap } from 'webpack-dev-server';
 import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
+import type WebpackDevServer from 'webpack-dev-server';
 
 export const createDevServer = ({
   protocol,
@@ -18,8 +17,7 @@ export const createDevServer = ({
   port: number;
   proxy?: ProxyConfigMap | ProxyConfigArray;
   sockPort?: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-}): any => {
+}): WebpackDevServer.Configuration => {
   const sockPath = process.env.WDS_SOCKET_PATH || '/ws';
   const sockHost =
     process.env.WDS_SOCKET_HOST ?? typeof window !== 'undefined' ? window.location?.hostname : 'localhost';
@@ -33,7 +31,7 @@ export const createDevServer = ({
     port,
     hot: 'only',
     client: {
-      logging: 'verbose',
+      logging: 'error',
       webSocketURL: {
         // Enable custom sockjs pathname for websocket connection to hot reloading server.
         // Enable custom sockjs hostname, pathname and port for websocket connection
@@ -47,6 +45,7 @@ export const createDevServer = ({
     },
     devMiddleware: {
       publicPath: paths.publicUrlOrPath.slice(0, -1),
+      stats: 'summary',
     },
     host,
     https: protocol === 'https',
@@ -56,27 +55,19 @@ export const createDevServer = ({
     },
     proxy,
     static: {
-      directory: paths.appPublic,
+      directory: paths.devDir,
       publicPath: [paths.publicUrlOrPath],
       watch: {
-        ignored: ignoredFiles(paths.appSrc),
+        followSymlinks: true,
+        ignored: /node_modules\/(?!@cutting)/,
       },
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onBeforeSetupMiddleware(devServer: any) {
-      const app = devServer.app;
-      app.use(evalSourceMapMiddleware(devServer));
-
-      if (fs.existsSync(paths.proxySetup)) {
-        require(paths.proxySetup)(app);
-      }
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onAfterSetupMiddleware(devServer: any) {
-      const app = devServer.app;
-      app.use(redirectServedPath(paths.publicUrlOrPath));
-
-      app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
+    setupMiddlewares: (middlewares, devServer) => {
+      // This lets us fetch source contents from webpack for the error overlay.
+      middlewares.unshift(evalSourceMapMiddleware(devServer));
+      middlewares.push(redirectServedPath(paths.publicUrlOrPath));
+      middlewares.push(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
+      return middlewares;
     },
   };
 };

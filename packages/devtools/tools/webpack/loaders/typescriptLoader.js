@@ -7,17 +7,17 @@ const createTypescriptLoader = ({ isDevelopment, isNode, moduleFormat, }) => {
     const isProduction = !isDevelopment;
     const options = {
         silent: isDevelopment,
-        configFile: paths_1.paths.tsConfigProduction,
+        configFile: isProduction ? paths_1.paths.tsConfigProduction : paths_1.paths.tsConfig,
         transpileOnly: isDevelopment,
         happyPackMode: isDevelopment,
         projectReferences: paths_1.paths.projectReferences,
         compilerOptions: {},
-        logLevel: 'INFO',
+        logLevel: 'WARN',
     };
     return [
         {
             test: /\.tsx?$/,
-            exclude: [/\/node_modules\//],
+            exclude: /\/node_modules\//,
             use: [
                 {
                     loader: 'babel-loader',

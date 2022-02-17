@@ -5,6 +5,7 @@ import type { ModuleFormat } from '../types/moduleFormat';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createBabelPresets = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isDevelopment,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isProduction,
@@ -24,16 +25,11 @@ export const createBabelPresets = ({
   };
 
   if (isNode) {
-    presetOptions.targets = { node: '16' };
+    presetOptions.targets = { node: '16', esmodules: moduleFormat === 'esm' ? true : undefined };
   } else {
     presetOptions.targets = {
-      edge: '17',
-      firefox: '60',
-      chrome: '67',
-      safari: '11.1',
-      ie: '11',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
+      browsers: ['edge >= 17', 'firefox >= 60', 'chrome >= 67', 'safari >= 12', 'ie >= 11', 'ios >= 9'],
+    };
   }
 
   return [
@@ -41,8 +37,7 @@ export const createBabelPresets = ({
     [
       require('@babel/preset-react').default,
       {
-        development: isDevelopment,
-        useBuiltIns: isDevelopment,
+        runtime: 'automatic',
       },
     ],
   ];

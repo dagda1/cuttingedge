@@ -20,14 +20,17 @@ export const cssLoaders = (
   [
     !isNode && {
       loader: MiniCssExtractPlugin.loader,
-      options: {},
+      options: {
+        esModule: false,
+      },
     },
     {
       loader: 'css-loader',
       options: {
         importLoaders,
-        sourceMap: true,
+        sourceMap: false,
         modules: false,
+        esModule: false,
       },
     },
     // TODO: reinstate postcss
@@ -58,6 +61,7 @@ export const createCSSLoaders = ({
   },
   {
     test: cssRegex,
+    sideEffects: true,
     exclude: /\.vanilla\.css$/i,
     use: cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
   },

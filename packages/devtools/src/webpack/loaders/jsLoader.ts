@@ -3,9 +3,6 @@ import { paths } from '../../config/paths';
 import { createBabelPresets, createBabelConfig } from '../../scripts/createBabelConfig';
 import type { ModuleFormat } from '../../types/moduleFormat';
 import { getCacheIdentifier } from './getCacheIdentifier';
-import path from 'path';
-
-const testFiles = path.join(paths.appSrc, '**/*.test.*');
 
 export const createJsLoader = ({
   isDevelopment,
@@ -21,7 +18,6 @@ export const createJsLoader = ({
   {
     test: /\.(js|jsx|mjs|cjs)$/,
     include: [paths.appSrc],
-    exclude: [testFiles],
     use: [
       {
         loader: 'babel-loader',
@@ -31,13 +27,13 @@ export const createJsLoader = ({
   },
   {
     test: /\.(js|mjs|cjs)$/,
-    exclude: [/@babel(?:\/|\\{1,2})runtime/, testFiles],
+    exclude: /@babel(?:\/|\\{1,2})runtime/,
     loader: require.resolve('babel-loader'),
     options: {
       babelrc: false,
       configFile: false,
       compact: false,
-      presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat }),
+      presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat: 'cjs' }),
       cacheDirectory: true,
       cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
       cacheCompression: false,

@@ -78,8 +78,9 @@ const HOST = process.env.HOST || '0.0.0.0';
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const server = new webpack_dev_server_1.default(config.devServer, compiler);
         logger_1.logger.info('Starting the development server...\n');
-        yield server.start({ host: HOST, port });
-        (0, openBrowser_1.default)(urls.localUrlForBrowser);
+        server.startCallback(() => {
+            (0, openBrowser_1.default)(urls.localUrlForBrowser);
+        });
         ['SIGINT', 'SIGTERM'].forEach((sig) => {
             process.on(sig, function () {
                 server.close();

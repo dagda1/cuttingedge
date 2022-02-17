@@ -3,6 +3,9 @@ module.exports = {
     MyGlobal: true,
   },
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: './tsconfig.json'
+  },
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:jest/recommended',
@@ -14,6 +17,7 @@ module.exports = {
     '@typescript-eslint/no-parameter-properties': ['off'],
     '@typescript-eslint/no-namespace': ['off'],
     '@typescript-eslint/explicit-module-boundary-types': ['error', { allowArgumentsExplicitlyTypedAsAny: true }],
+    '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     'jest/consistent-test-it': ['error', { fn: 'it' }],
     'jest/expect-expect': ['off'],

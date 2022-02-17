@@ -29,7 +29,6 @@ export const getExternals = function (isDevelopment: boolean): any {
         /\.css.ts$/,
         /^mathjax3/,
         /^@babel/,
-        /^babel-loader/,
         /^@loadable/,
         /^@cutting/,
         /^@vanilla-extract/,
