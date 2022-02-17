@@ -27,6 +27,7 @@ importers:
       '@changesets/cli': ^2.20.0
       '@cutting/devtools': workspace:./packages/devtools
       '@cutting/tsconfig': workspace:./packages/tsconfig
+      '@vanilla-extract/babel-plugin': ^1.1.4
       babel-loader: ^8.2.3
       core-js: 3.21.0
       css-loader: ^6.6.0
@@ -56,6 +57,7 @@ importers:
       '@changesets/cli': 2.20.0
       '@cutting/devtools': link:packages/devtools
       '@cutting/tsconfig': link:packages/tsconfig
+      '@vanilla-extract/babel-plugin': 1.1.4
       babel-loader: 8.2.3_310335cfbe98469c80470a974dfa5104
       css-loader: 6.6.0_webpack@5.68.0
       eslint: 8.9.0
