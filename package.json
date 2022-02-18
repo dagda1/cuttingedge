@@ -3,13 +3,11 @@
   "version": "4.22.0",
   "private": true,
   "workspaces": [
-    "apps/*",
     "packages/*"
   ],
   "scripts": {
     "audit-packages": "cutting each-pkg cutting audit",
     "build": "turbo run build --scope=\"packages/**/*\"",
-    "build:apps": "turbo run build --scope=\"@cutting/website\"",
     "build:tsc": "tsc -b ./tsconfig.packages.json",
     "clean": "pnpm build:tsc -- --clean && find . \\( -name node_modules -o -name dir2 -o -path name \\) -prune -false -o -name 'dist' -type d   -exec rm -rf {} +",
     "lint": "turbo run lint",
