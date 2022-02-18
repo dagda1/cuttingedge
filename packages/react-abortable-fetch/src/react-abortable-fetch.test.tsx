@@ -232,8 +232,6 @@ describe('useFetch', () => {
         result.current.run();
       });
 
-      expect(result.current.state).toBe('loading');
-
       await waitForNextUpdate();
 
       expect(result.current.state).toBe('succeeded');
