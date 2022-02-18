@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
-import { render, RenderResult } from '@testing-library/react';
+import type { ReactElement } from 'react';
+import type { RenderResult } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { Router } from 'react-router';
 import { createMemoryHistory } from 'history';
 

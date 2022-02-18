@@ -4,7 +4,6 @@ import { useRef } from 'react';
 import { ApplicationLayout, cuttingTheme } from '@cutting/component-library';
 import { ParentsizeSVG } from '../src/components/ParentsizeSVG/ParentsizeSVG';
 
-
 export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   return (

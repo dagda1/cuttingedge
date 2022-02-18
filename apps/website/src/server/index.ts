@@ -1,12 +1,12 @@
 import express from 'express';
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction } from '@cutting/util';
 import { render } from './render';
 import path from 'path';
 import favicon from 'serve-favicon';
-import { Exception } from '../errors/Exception';
+import type { Exception } from '../errors/Exception';
 import { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
 import referrerPolicy from 'referrer-policy';
