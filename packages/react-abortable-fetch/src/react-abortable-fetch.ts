@@ -2,11 +2,10 @@ import { useCallback, useRef, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { createQueryMachine } from './machine';
 import type { FetchStates, Builder, ContentType, UseFetchOptions, QueryResult, FetchRequestInfo } from './types';
-import { fetchStates } from './types';
 import type { Task } from 'effection';
 import { run, sleep } from 'effection';
+import { fetch as nativeFetch } from 'cross-fetch';
 import { createFetchClient } from './client/fetch-client';
-import nativeFetch from 'cross-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import type { Fn } from '@cutting/util';
 import { identity, isPromise } from '@cutting/util';
@@ -28,6 +27,10 @@ type ExtractArgs<Args extends UseFetchArgs<R, T>, R, T> = Args extends { url: st
   : Args extends Fn
   ? Builder<R, T>
   : never;
+
+const AbortController = global.AbortController;
+
+const finishStates: readonly FetchStates[] = ['succeeded', 'error', 'aborted'] as const;
 
 export function useFetch<R, T = R>(url: string, options?: UseFetchOptions<R, T>): QueryResult<R>;
 export function useFetch<R, T = R>(urls: string[], options?: UseFetchOptions<R, T>): QueryResult<R>;
@@ -56,7 +59,8 @@ export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
     timeout = 180000,
   } = options;
 
-  const machineConfig = useMemo(() => createQueryMachine({ initialData: initialState }), [initialState]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const machineConfig = useMemo(() => createQueryMachine({ initialData: initialState }), []);
 
   const [machine, send] = useMachine(machineConfig);
   const abortController = useRef(new AbortController());
@@ -172,14 +176,18 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
             assert(typeof acc !== 'undefined', `no accumulator function present`);
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const result = acc(accumulated.current as R, data as any, { request, fetcher }) as Promise<R>;
+            const result = acc(accumulated.current as R, data as any, {
+              request,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              fetcher: fetcher as any,
+            }) as Promise<R>;
 
             accumulated.current = isPromise(result) ? yield result : result;
 
             onQuerySuccess(data);
           }
 
-          send('SUCCESS', accumulated.current);
+          send('SUCCESS', { payload: accumulated.current });
           onSuccess(accumulated.current);
         } catch (err) {
           if (err instanceof Error) {
@@ -188,7 +196,7 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
               return;
             }
 
-            send('ERROR', err);
+            send('ERROR', { error: err });
           } else {
             console.log(`something weird is happening got an error which is not an error! ${JSON.stringify(err)}`);
           }
@@ -217,12 +225,12 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
   );
 
   useIsomorphicLayoutEffect(() => {
-    if (executeOnMount && typeof runner !== 'undefined' && machine.value === 'READY') {
+    if (executeOnMount && typeof runner !== 'undefined' && machine.value === 'ready') {
       runner();
     }
 
     return () => {
-      if (fetchStates.includes(machine.value as FetchStates)) {
+      if (finishStates.includes(machine.value as FetchStates)) {
         task.current?.halt();
       }
     };

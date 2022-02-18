@@ -16,10 +16,10 @@ export const createQueryMachine = <D>({ initialData }: { initialData: D }) => {
     {
       events: {
         START: () => ({}),
-        SUCCESS: (payload: D) => ({ payload }),
+        SUCCESS: ({ payload }: { payload: D }) => ({ payload }),
         RESET: () => ({}),
         ABORT: () => ({}),
-        ERROR: (error?: Error | undefined) => ({ error }),
+        ERROR: ({ error }: { error: Error }) => ({ error }),
       },
     },
   );
@@ -40,13 +40,10 @@ export const createQueryMachine = <D>({ initialData }: { initialData: D }) => {
         on: {
           SUCCESS: {
             target: 'succeeded',
-            actions: model.assign(
-              {
-                data: (_, e) => e.payload,
-                error: undefined,
-              },
-              'SUCCESS',
-            ),
+            actions: model.assign({
+              data: (_, e) => e.payload,
+              error: undefined,
+            }),
           },
           ERROR: {
             target: 'error',
@@ -59,11 +56,18 @@ export const createQueryMachine = <D>({ initialData }: { initialData: D }) => {
           },
         },
       },
-      succeeded: {},
+      succeeded: {
+        on: {
+          RESET: {
+            target: 'ready',
+            actions: model.reset(),
+          },
+        },
+      },
       error: {
         on: {
           RESET: {
-            target: 'loading',
+            target: 'ready',
             actions: model.reset(),
           },
         },

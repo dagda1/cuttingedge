@@ -23,7 +23,7 @@
   "search.exclude": {
     "**/dist/*.*": true
   },
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "typescript.preferences.quoteStyle": "single",
   "editor.fontSize": 13,
   "git.autofetch": true,

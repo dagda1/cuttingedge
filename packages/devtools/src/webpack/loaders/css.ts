@@ -30,7 +30,6 @@ export const cssLoaders = (
         importLoaders,
         sourceMap: isDevelopment,
         modules: false,
-        
         esModule: true,
       },
     },

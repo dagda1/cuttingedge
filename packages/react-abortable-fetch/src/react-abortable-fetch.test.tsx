@@ -181,7 +181,7 @@ describe('useFetch', () => {
 
       expect(onSuccess).toHaveBeenCalled();
       expect(onError).not.toHaveBeenCalled();
-      expect(result.current.state).toBe('SUCCEEDED');
+      expect(result.current.state).toBe('succeeded');
       expect(onAbort).not.toBeCalled();
     });
   });
@@ -190,9 +190,9 @@ describe('useFetch', () => {
     it('should successfully run a single query', async () => {
       const { result, waitFor } = renderHook(() => useFetch(`http://localhost:3000/single`));
 
-      await waitFor(() => result.current.state === 'SUCCEEDED' && typeof result.current.data !== 'undefined');
+      await waitFor(() => result.current.state === 'succeeded' && typeof result.current.data !== 'undefined');
 
-      expect(result.current.state).toBe('SUCCEEDED');
+      expect(result.current.state).toBe('succeeded');
       expect(result.current.data).toEqual({ greeting: 'hello there' });
     });
 
@@ -216,7 +216,7 @@ describe('useFetch', () => {
       expect(onQuerySuccess).toHaveBeenCalledTimes(1);
       expect(onSuccess).toHaveBeenCalled();
       expect(onError).not.toHaveBeenCalled();
-      expect(result.current.state).toBe('SUCCEEDED');
+      expect(result.current.state).toBe('succeeded');
       expect(result.current.data).toEqual({ greeting: 'hello there' });
       expect(onAbort).not.toBeCalled();
     });
@@ -226,17 +226,17 @@ describe('useFetch', () => {
         useFetch(`http://localhost:3000/single`, { executeOnMount: false }),
       );
 
-      expect(result.current.state).toBe('READY');
+      expect(result.current.state).toBe('ready');
 
       await act(async () => {
         result.current.run();
       });
 
-      expect(result.current.state).toBe('LOADING');
+      expect(result.current.state).toBe('loading');
 
       await waitForNextUpdate();
 
-      expect(result.current.state).toBe('SUCCEEDED');
+      expect(result.current.state).toBe('succeeded');
       expect(result.current.data).toEqual({ greeting: 'hello there' });
     });
 
@@ -274,11 +274,11 @@ describe('useFetch', () => {
           }),
         );
 
-        expect(result.current.state).toBe('LOADING');
+        expect(result.current.state).toBe('loading');
 
         await waitForNextUpdate();
 
-        expect(result.current.state).toBe('SUCCEEDED');
+        expect(result.current.state).toBe('succeeded');
 
         expect(result.current.data).toEqual({ id: '1', name: 'bob' });
         expect(onSuccess).toHaveBeenCalled();
@@ -299,11 +299,11 @@ describe('useFetch', () => {
           }),
         );
 
-        expect(result.current.state).toBe('LOADING');
+        expect(result.current.state).toBe('loading');
 
         await waitForNextUpdate();
 
-        expect(result.current.state).toBe('ERROR');
+        expect(result.current.state).toBe('error');
 
         expect(result.current.error).toBeInstanceOf(Error);
 
@@ -326,13 +326,13 @@ describe('useFetch', () => {
           }),
         );
 
-        expect(result.current.state).toBe('LOADING');
+        expect(result.current.state).toBe('loading');
 
         await act(async () => {
           result.current.abort();
         });
 
-        expect(result.current.state).toBe('ABORTED');
+        expect(result.current.state).toBe('aborted');
 
         expect(onAbort).toHaveBeenCalled();
         expect(onSuccess).not.toHaveBeenCalled();
@@ -353,13 +353,13 @@ describe('useFetch', () => {
 
         await waitForNextUpdate();
 
-        expect(result.current.state).toBe('SUCCEEDED');
+        expect(result.current.state).toBe('succeeded');
 
         await act(async () => {
           result.current.reset();
         });
 
-        expect(result.current.state).toBe('READY');
+        expect(result.current.state).toBe('ready');
       });
     });
 
@@ -390,7 +390,7 @@ describe('useFetch', () => {
         await waitForNextUpdate();
 
         expect(result.current.error).toBeUndefined();
-        expect(result.current.state).toBe('SUCCEEDED');
+        expect(result.current.state).toBe('succeeded');
       });
     });
 
@@ -419,7 +419,7 @@ describe('useFetch', () => {
 
         await flushPromises();
 
-        expect(result.current.state).toBe('ABORTED');
+        expect(result.current.state).toBe('aborted');
 
         expect(onAbort).toHaveBeenCalled();
         expect(onSuccess).not.toHaveBeenCalled();
@@ -441,7 +441,7 @@ describe('useFetch', () => {
 
         await waitForNextUpdate();
 
-        expect(result.current.state).toBe('SUCCEEDED');
+        expect(result.current.state).toBe('succeeded');
       });
     });
   });
@@ -465,11 +465,11 @@ describe('useFetch', () => {
           ),
         );
 
-        expect(result.current.state).toBe('LOADING');
+        expect(result.current.state).toBe('loading');
 
         await waitForNextUpdate();
 
-        expect(result.current.state).toBe('SUCCEEDED');
+        expect(result.current.state).toBe('succeeded');
 
         expect(onQuerySuccess).toHaveBeenCalled();
         expect(onSuccess).toHaveBeenCalled();
@@ -498,11 +498,11 @@ describe('useFetch', () => {
         ),
       );
 
-      expect(result.current.state).toBe('LOADING');
+      expect(result.current.state).toBe('loading');
 
       await waitForNextUpdate();
 
-      expect(result.current.state).toBe('SUCCEEDED');
+      expect(result.current.state).toBe('succeeded');
 
       expect(onQuerySuccess).toHaveBeenCalled();
       expect(onSuccess).toHaveBeenCalled();
@@ -538,11 +538,11 @@ describe('useFetch', () => {
           ),
         );
 
-        expect(result.current.state).toBe('LOADING');
+        expect(result.current.state).toBe('loading');
 
         await waitForNextUpdate();
 
-        expect(result.current.state).toBe('SUCCEEDED');
+        expect(result.current.state).toBe('succeeded');
 
         expect(onQuerySuccess).toHaveBeenCalled();
         expect(onQueryError).not.toHaveBeenCalled();
@@ -591,17 +591,17 @@ describe('useFetch', () => {
           ),
         );
 
-        expect(result.current.state).toBe('READY');
+        expect(result.current.state).toBe('ready');
 
         await act(async () => {
           result.current.run();
         });
 
-        expect(result.current.state).toBe('LOADING');
+        expect(result.current.state).toBe('loading');
 
         await waitFor(() => result.current.data?.length === 3, { timeout: 50000 });
 
-        expect(result.current.state).toBe('SUCCEEDED');
+        expect(result.current.state).toBe('succeeded');
 
         expect(onQuerySuccess).toBeCalledTimes(3);
         expect(onQueryError).not.toHaveBeenCalled();
@@ -629,17 +629,17 @@ describe('useFetch', () => {
           ),
         );
 
-        expect(result.current.state).toBe('READY');
+        expect(result.current.state).toBe('ready');
 
         await act(async () => {
           result.current.run();
         });
 
-        expect(result.current.state).toBe('LOADING');
+        expect(result.current.state).toBe('loading');
 
         await waitForNextUpdate();
 
-        expect(result.current.state).toBe('SUCCEEDED');
+        expect(result.current.state).toBe('succeeded');
 
         expect(result.current.data).toEqual(12);
         expect(onQuerySuccess).toBeCalledTimes(3);
@@ -681,11 +681,11 @@ describe('useFetch', () => {
           result.current.run();
         });
 
-        expect(result.current.state).toBe('LOADING');
+        expect(result.current.state).toBe('loading');
 
         await waitForNextUpdate();
 
-        expect(result.current.state).toBe('ERROR');
+        expect(result.current.state).toBe('error');
 
         expect(result.current.error).toBeInstanceOf(Error);
 
@@ -729,13 +729,13 @@ describe('useFetch', () => {
           result.current.run();
         });
 
-        expect(result.current.state).toBe('LOADING');
+        expect(result.current.state).toBe('loading');
 
         await act(async () => {
           result.current.abort();
         });
 
-        expect(result.current.state).toBe('ABORTED');
+        expect(result.current.state).toBe('aborted');
 
         expect(onAbort).toHaveBeenCalled();
 
@@ -781,7 +781,7 @@ describe('useFetch', () => {
         await waitForNextUpdate();
       });
 
-      expect(result.current.state).toBe('ABORTED');
+      expect(result.current.state).toBe('aborted');
 
       expect(onAbort).toHaveBeenCalled();
       expect(onSuccess).not.toHaveBeenCalled();
@@ -812,7 +812,7 @@ describe('useFetch', () => {
 
       await waitForNextUpdate();
 
-      expect(result.current.state).toBe('SUCCEEDED');
+      expect(result.current.state).toBe('succeeded');
 
       expect(onQuerySuccess).toHaveBeenCalled();
       expect(onAbort).not.toHaveBeenCalled();
@@ -827,19 +827,19 @@ describe('useFetch', () => {
         useFetch({ url: `http://localhost:3000/leads`, method: 'POST' }, { executeOnMount: false }),
       );
 
-      expect(result.current.state).toBe('READY');
+      expect(result.current.state).toBe('ready');
 
       act(() => {
         result.current.run({ clientId: 'client' });
       });
 
-      expect(result.current.state).toBe('LOADING');
+      expect(result.current.state).toBe('loading');
 
       await waitForNextUpdate();
 
       console.log(result.current.error);
 
-      expect(result.current.state).toBe('SUCCEEDED');
+      expect(result.current.state).toBe('succeeded');
       expect(result.current.data).toEqual({ accessToken: 'yes' });
     });
   });

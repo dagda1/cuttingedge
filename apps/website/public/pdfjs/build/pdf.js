@@ -20707,7 +20707,7 @@
           return {
             method: 'GET',
             headers: headers,
-            signal: abortController && abortController.signal,
+            // signal: abortController && abortController.signal,
             mode: 'cors',
             credentials: withCredentials ? 'include' : 'same-origin',
             redirect: 'follow',

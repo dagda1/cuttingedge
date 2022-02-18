@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useFetch } from '../src';
 import cs from 'classnames';
 import './App.css';
-import { FetchStates } from '../src/types';
 import { assert } from 'assert-ts';
 
 interface Product {
@@ -20,6 +19,8 @@ interface Product {
 }
 
 type Result = Pick<Product['data'], 'id' | 'name' | 'year'>;
+
+const initialState: Result[] = [];
 
 export const App: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -41,7 +42,7 @@ export const App: React.FC = () => {
       'https://reqres.in/api/products/10?delay=1',
     ],
     {
-      initialState: [],
+      initialState,
       executeOnMount: false,
       accumulator(acc, current) {
         acc.push({ id: current.data.id, name: current.data.name, year: current.data.year });
@@ -105,7 +106,7 @@ export const App: React.FC = () => {
         <div className="button__container">
           <button
             className="btn-primary"
-            disabled={state !== 'READY'}
+            disabled={state !== 'ready'}
             onClick={() => {
               setMessages([]);
               setProgress(0);
@@ -114,12 +115,12 @@ export const App: React.FC = () => {
           >
             START
           </button>
-          <button className="btn-danger" disabled={state !== 'LOADING'} onClick={() => abort()}>
+          <button className="btn-danger" disabled={state !== 'loading'} onClick={() => abort()}>
             CANCEL
           </button>
           <button
             className="btn-secondary"
-            disabled={['READY', 'LOADING'].includes(state as FetchStates)}
+            disabled={['ready', 'loading'].includes(state)}
             onClick={() => {
               reset();
               setMessages([]);

@@ -5,7 +5,6 @@ export type {
   UseFetchOptions,
   QueryResult,
   FetchStates,
-  FetchActionTypes,
   ContentType,
   Accumulator,
 } from './types';

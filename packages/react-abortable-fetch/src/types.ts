@@ -1,15 +1,15 @@
-import type { Task } from 'effection';
+// import type { Task } from 'effection';
 import type { fetch as nativeFetch } from 'cross-fetch';
 import type fetchJsonp from 'fetch-jsonp';
 
 export interface Runnable<T> {
-  run(scope: Task): T;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  run(scope: any): T;
 }
 
 export const fetchStates = ['ready', 'loading', 'succeeded', 'error', 'aborted'] as const;
 
 export type FetchStates = typeof fetchStates[number];
-export type FetchActionTypes = 'READY' | 'SUCCESS' | 'ERROR' | 'RESET';
 
 export type ContentType = 'json' | 'text';
 export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
@@ -131,12 +131,4 @@ export type ExtractType<T> = T extends {
   ? U
   : T extends { [Symbol.iterator](): unknown }
   ? unknown
-  : never;
-
-export type O<T> = T extends (task: Task<infer U>) => Iterator<infer R>
-  ? (task: Task<U>) => Iterator<O<U>, R>
-  : T extends PromiseLike<infer U>
-  ? PromiseLike<U>
-  : T extends Iterator<infer U, infer R, infer N>
-  ? Iterator<U, R, N>
   : never;

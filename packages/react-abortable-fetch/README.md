@@ -18,7 +18,7 @@ import { useFetch } from '@cutting/react-abortable-fetch';
 
 const { data, error, state } = useFetch(`/api/users/1`);
 
-if (state === 'LOADING') {
+if (state === 'loading') {
   return <div>loading...</div>
 }
 
@@ -94,7 +94,7 @@ Here are some other annoyances:
 - I really, really, really do not want a set of conflicting and contradictory boolean flags like `isLoading`, `isError` etc.  I want a mutually exclusive `state` string union that can only ever be one value?
 
   ```ts
-  type State = 'READY' | 'LOADING' | 'SUCCEEDED' | 'ERROR' | 'ABORTED';
+  type State = 'ready' | 'loading' | 'succeeded' | 'error' | 'aborted';
   ```
 
 - I needed json and jsonp
@@ -130,7 +130,7 @@ const { run, state } = useFetch(`/api/users/1`, { executeOnMount: false });
 
 return (
   <button
-    disabled={state !== 'READY'}
+    disabled={state !== 'ready'}
     onClick={() => {
       run({ an: 'object'});  // by default objects will be seriaized to json
     }}

@@ -4,7 +4,8 @@
     "baseUrl": "./",
     "outDir": "./dist/esm",
     "rootDir": "./src",
-    "noEmit": false
+    "noEmit": false,
+    "preserveSymlinks": false
   },
   "references": [
     { "path": "../util/tsconfig.dist.json" }
