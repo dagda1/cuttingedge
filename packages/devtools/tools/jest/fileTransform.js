@@ -1,14 +1,11 @@
-'use strict';
-var __importDefault =
-  (this && this.__importDefault) ||
-  function (mod) {
-    return mod && mod.__esModule ? mod : { default: mod };
-  };
-Object.defineProperty(exports, '__esModule', { value: true });
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.process = void 0;
-const path_1 = __importDefault(require('path'));
-const createExport = (filename) =>
-  `
+const path_1 = __importDefault(require("path"));
+const createExport = (filename) => `
     if (typeof module === 'object' && module) {
         Object.defineProperty(exports, "__esModule", {
           value: true
@@ -24,8 +21,8 @@ const createExport = (filename) =>
     .trim()
     .replace(/^\s{4}/g, '');
 const process = (src, filename) => {
-  const exp = createExport(filename);
-  return exp;
+    const exp = createExport(filename);
+    return exp;
 };
 exports.process = process;
 exports.default = { process: exports.process };

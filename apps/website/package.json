@@ -9,9 +9,9 @@
   "scripts": {
     "start": "PORT=3000 SSR=true NODE_ENV=development cutting ssr-start",
     "debug": "pnpm start -- --inspect=localhost:9230",
-    "build": "NODE_ENV=production cutting ssr-build",
+    "build": "echo disabled for now # NODE_ENV=production cutting ssr-build",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "test": "NODE_ENV=test cutting test",
+    "test": "echo disabled for now",
     "deploy": "NODE_ENV=production pnpm build && ./bin/deploy.sh",
     "serve": "NODE_ENV=production node ./dist/server.js"
   },
@@ -74,7 +74,8 @@
     "@babel/runtime": "^7.17.2",
     "@cutting/devtools": "workspace:../../packages/devtools",
     "@cutting/eslint-config": "workspace:../../packages/eslint-config",
-    "@cutting/tsconfig": "4.26.2",
+    "@cutting/tsconfig": "workspace:../../packages/tsconfig",
+    "@cutting/useful-types": "workspace:../../packages/useful-types",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@types/csurf": "^1.11.2",

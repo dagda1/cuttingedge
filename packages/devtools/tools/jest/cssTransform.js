@@ -1,12 +1,12 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCacheKey = exports.process = void 0;
 const process = () => {
-  return 'module.exports = {};';
+    return 'module.exports = {};';
 };
 exports.process = process;
 const getCacheKey = () => {
-  return 'cssTransform';
+    return 'cssTransform';
 };
 exports.getCacheKey = getCacheKey;
 exports.default = { process: exports.process };
