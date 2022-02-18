@@ -42,6 +42,7 @@
     "html-loader": "^3.1.0",
     "husky": "^7.0.4",
     "markdown-loader": "^8.0.0",
+    "lint-prepush": "^2.2.0",
     "node-fetch": "^3.2.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
