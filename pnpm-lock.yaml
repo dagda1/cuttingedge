@@ -784,6 +784,9 @@ importers:
       '@cutting/util': workspace:../util
       '@testing-library/jest-dom': ^5.16.2
       '@types/mousetrap': ^1.6.9
+      '@vanilla-extract/babel-plugin': ^1.1.4
+      '@vanilla-extract/css': ^1.6.8
+      '@vanilla-extract/sprinkles': ^1.3.3
       classnames: ^2.3.1
       dtslint: ^4.2.1
       eslint: ^8.9.0
@@ -802,6 +805,9 @@ importers:
       '@cutting/useful-types': link:../useful-types
       '@testing-library/jest-dom': 5.16.2
       '@types/mousetrap': 1.6.9
+      '@vanilla-extract/babel-plugin': 1.1.4
+      '@vanilla-extract/css': 1.6.8
+      '@vanilla-extract/sprinkles': 1.3.3_@vanilla-extract+css@1.6.8
       dtslint: 4.2.1_typescript@4.5.5
       eslint: 8.9.0
       react: 17.0.2

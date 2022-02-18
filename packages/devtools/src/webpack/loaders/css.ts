@@ -21,16 +21,17 @@ export const cssLoaders = (
     !isNode && {
       loader: MiniCssExtractPlugin.loader,
       options: {
-        esModule: false,
+        esModule: true,
       },
     },
     {
       loader: 'css-loader',
       options: {
         importLoaders,
-        sourceMap: false,
+        sourceMap: isDevelopment,
         modules: false,
-        esModule: false,
+        
+        esModule: true,
       },
     },
     // TODO: reinstate postcss

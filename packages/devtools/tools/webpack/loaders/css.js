@@ -11,16 +11,16 @@ const cssLoaders = (isDevelopment, isProduction, isNode, { importLoaders }) => [
     !isNode && {
         loader: mini_css_extract_plugin_1.default.loader,
         options: {
-            esModule: false,
+            esModule: true,
         },
     },
     {
         loader: 'css-loader',
         options: {
             importLoaders,
-            sourceMap: false,
+            sourceMap: isDevelopment,
             modules: false,
-            esModule: false,
+            esModule: true,
         },
     },
     // TODO: reinstate postcss
