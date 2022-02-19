@@ -10,16 +10,21 @@ jobs:
       CI: true
 
     steps:
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.30.1
+
       - name: Checkout Repo
         uses: actions/checkout@main
 
-      - name: Setup Node.js 14.x
+      - name: Setup Node.js 16.x
         uses: actions/setup-node@main
         with:
-          node-version: 14.x
+          node-version: 16.x
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm i
 
       - name: Build
         run: pnpm build
