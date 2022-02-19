@@ -15,4 +15,4 @@
 "@cutting/util": patch
 ---
 
-fix changeset.yaml
+yes
