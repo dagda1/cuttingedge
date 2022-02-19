@@ -16,6 +16,6 @@
     "extends": "../../package.json"
   },
   "devDependencies": {
-    "@cutting/eslint-config": "workspace:../eslint-config"
+    "@cutting/eslint-config": "workspace:*"
   }
 }

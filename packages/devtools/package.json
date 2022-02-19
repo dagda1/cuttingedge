@@ -135,9 +135,9 @@
     "typescript/**/*.*"
   ],
   "devDependencies": {
-    "@cutting/eslint-config": "workspace:../eslint-config",
-    "@cutting/tsconfig": "workspace:../tsconfig",
-    "@cutting/useful-types": "workspace:../useful-types",
+    "@cutting/eslint-config": "workspace:*",
+    "@cutting/tsconfig": "workspace:*",
+    "@cutting/useful-types": "workspace:*",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/pluginutils": "^4.1.2",
     "@types/babel__plugin-transform-runtime": "^7.9.2",
