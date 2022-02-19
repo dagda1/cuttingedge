@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.26.4
+
+### Patch Changes
+
+- 128579ea: fix changesets
+
 ## 4.26.3
 
 ### Patch Changes
