@@ -2,7 +2,6 @@
 "@cutting/component-library": patch
 "@cutting/devtools": patch
 "@cutting/eslint-config": patch
-"@cutting/graphql-explorer": patch
 "@cutting/hooks": patch
 "@cutting/react-abortable-fetch": patch
 "@cutting/svg": patch
