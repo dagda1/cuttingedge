@@ -1,9 +1,7 @@
 ---
-"@cutting/website": minor
 "@cutting/component-library": minor
 "@cutting/devtools": minor
 "@cutting/eslint-config": minor
-"@cutting/graphql-explorer": minor
 "@cutting/hooks": minor
 "@cutting/react-abortable-fetch": minor
 "@cutting/svg": minor
