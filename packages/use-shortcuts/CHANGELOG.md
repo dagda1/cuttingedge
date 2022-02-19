@@ -1,5 +1,11 @@
 # @cutting/use-shortcuts
 
+## 4.28.7
+
+### Patch Changes
+
+- 4a4e54da: update README
+
 ## 4.28.6
 
 ### Patch Changes
