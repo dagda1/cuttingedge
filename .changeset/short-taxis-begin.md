@@ -1,5 +1,4 @@
 ---
-"@cutting/website": patch
 "@cutting/component-library": patch
 "@cutting/devtools": patch
 "@cutting/eslint-config": patch
