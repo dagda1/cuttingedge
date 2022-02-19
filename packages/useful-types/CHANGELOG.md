@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.25.9
+
+### Patch Changes
+
+- 128579ea: fix changesets
+
 ## 4.25.8
 
 ### Patch Changes

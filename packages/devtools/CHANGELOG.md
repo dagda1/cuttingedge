@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.31.8
+
+### Patch Changes
+
+- 128579ea: fix changesets
+
 ## 4.31.7
 
 ### Patch Changes

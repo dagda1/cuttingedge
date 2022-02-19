@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.29.8
+
+### Patch Changes
+
+- 128579ea: fix changesets
+
 ## 4.29.7
 
 ### Patch Changes
