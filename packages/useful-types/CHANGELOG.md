@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.25.8
+
+### Patch Changes
+
+- 565b42ff: yes
+
 ## 4.25.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.26.3
+
+### Patch Changes
+
+- 565b42ff: yes
+
 ## 4.26.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.29.7
+
+### Patch Changes
+
+- 565b42ff: yes
+
 ## 4.29.6
 
 ### Patch Changes
