@@ -18,7 +18,7 @@ All packages have tests and most part from `util` have their own viewable demo w
 
 ## Installation instructions
 
-[pnpm] is the package panager used throughout the monorepo.
+[pnpm](https://pnpm.io/) is the package manager used throughout the monorepo.
 
 To check everything is working locally, run the following commands:
 
