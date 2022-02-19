@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.28.4
+
+### Patch Changes
+
+- 565b42ff: yes
+
 ## 4.28.3
 
 ### Patch Changes

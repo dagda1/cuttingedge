@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.31.7
+
+### Patch Changes
+
+- 565b42ff: yes
+
 ## 4.31.6
 
 ### Patch Changes

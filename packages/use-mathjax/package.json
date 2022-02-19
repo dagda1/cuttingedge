@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-mathjax",
   "description": "easy mathjax in react.",
-  "version": "4.28.6",
+  "version": "4.28.7",
   "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "repository": {
