@@ -18,11 +18,13 @@ All packages have tests and most part from `util` have their own viewable demo w
 
 ## Installation instructions
 
+[pnpm] is the package panager used throughout the monorepo.
+
 To check everything is working locally, run the following commands:
 
 ```sh
-npm install
-npm run start
+pnpm install
+pnpm run start
 ```
 
 When these commands have finished open a browser at [http://localhost:3000](http://localhost:3000)
@@ -31,10 +33,10 @@ When these commands have finished open a browser at [http://localhost:3000](http
 
 A combination of the test runner [jest](https://facebook.github.io/jest/) and [react-testing-library](https://github.com/testing-library/react-testing-library) are used to unit test the code.
 
-You will need to have perviously ran `npm install` before running:
+You will need to have perviously ran `pnpm install` before running:
 
 ```sh
-npm test
+pnpm test
 ```
 
 This will run unit tests in every subpackage of the monorepo.  Each subpackage has its own suite of tests that can be executed with the same command when executed in the subdirectory.
