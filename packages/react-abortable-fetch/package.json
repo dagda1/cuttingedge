@@ -20,7 +20,7 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@cutting/util": "workspace:../util",
+    "@cutting/util": "workspace:*",
     "@effection/channel": "2.0.3",
     "@effection/core": "2.2.0",
     "@effection/events": "2.0.3",
@@ -39,10 +39,10 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.17.2",
-    "@cutting/devtools": "workspace:../devtools",
-    "@cutting/eslint-config": "workspace:../eslint-config",
-    "@cutting/tsconfig": "workspace:../tsconfig",
-    "@cutting/useful-types": "workspace:../useful-types",
+    "@cutting/devtools": "workspace:*",
+    "@cutting/eslint-config": "workspace:*",
+    "@cutting/tsconfig": "workspace:*",
+    "@cutting/useful-types": "workspace:*",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "@types/uuid": "^8.3.4",
