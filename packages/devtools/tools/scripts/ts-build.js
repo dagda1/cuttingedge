@@ -64,7 +64,6 @@ function runTypeScriptBuild() {
     });
 }
 function build() {
-    var _a;
     try {
         runTypeScriptBuild();
         runEslint();
@@ -76,7 +75,7 @@ function build() {
             logger_1.logger.error(e.stack);
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if ((_a = e) === null || _a === void 0 ? void 0 : _a.frame) {
+        if (e === null || e === void 0 ? void 0 : e.frame) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             logger_1.logger.error(e.frame);
         }
