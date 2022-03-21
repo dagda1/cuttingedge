@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.30.0
+
+### Minor Changes
+
+- e6a06fa0: add escapeHtml to @cutting/util
+
 ## 4.29.8
 
 ### Patch Changes
