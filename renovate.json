@@ -1,9 +1,26 @@
 {
   "baseBranches": ["main"],
-  "extends": [
-    "config:base"
-  ],
-  "lockFileMaintenance": {
-    "enabled": false
-  }
+  "extends": ["config:base", "group:monorepos"],
+  "includePaths": ["package.json"],
+  "schedule": ["every weekend"],
+  "semanticCommits": "enabled",
+  "rangeStrategy": "bump",
+  "rebaseLabel": "rebase",
+  "rebaseWhen": "auto",
+  "requiredStatusChecks": [],
+  "prConcurrentLimit": 5,
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "depTypeList": ["devDependencies"],
+      "automerge": true
+    },
+    {
+      "packagePatterns": ["eslint"],
+      "groupName": "eslint"
+    }
+  ]
 }
