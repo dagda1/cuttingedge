@@ -9,6 +9,9 @@
   "rebaseWhen": "auto",
   "requiredStatusChecks": [],
   "prConcurrentLimit": 5,
+  "lockFileMaintenance": {
+    "enabled": false
+  },
   "packageRules": [
     {
       "updateTypes": ["minor", "patch", "pin", "digest"],
