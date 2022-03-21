@@ -1,5 +1,9 @@
 {
+  "baseBranches": ["main"],
   "extends": [
     "config:base"
-  ]
+  ],
+  "lockFileMaintenance": {
+    "enabled": false
+  }
 }
