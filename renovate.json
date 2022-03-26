@@ -1,6 +1,7 @@
 {
   "baseBranches": ["main"],
   "extends": ["config:base", "group:monorepos"],
+  "automerge": true,
   "includePaths": ["package.json"],
   "schedule": ["every weekend"],
   "semanticCommits": "enabled",
