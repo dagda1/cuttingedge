@@ -3,7 +3,7 @@
   "extends": ["config:base", "group:monorepos"],
   "automerge": true,
   "includePaths": ["package.json"],
-  "schedule": ["every weekend"],
+  "schedule": ["before 2am on sunday"],
   "semanticCommits": "enabled",
   "rangeStrategy": "bump",
   "rebaseLabel": "rebase",
