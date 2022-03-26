@@ -28,7 +28,7 @@ importers:
       '@changesets/cli': 2.21.1
       '@cutting/devtools': workspace:*
       '@cutting/tsconfig': workspace:*
-      babel-loader: 8.2.3
+      babel-loader: 8.2.4
       core-js: 3.21.1
       css-loader: 6.7.1
       eslint: 8.11.0
@@ -58,7 +58,7 @@ importers:
       '@changesets/cli': 2.21.1
       '@cutting/devtools': link:packages/devtools
       '@cutting/tsconfig': link:packages/tsconfig
-      babel-loader: 8.2.3_fa907c5a4f16ccc493e21649ccc59574
+      babel-loader: 8.2.4_fa907c5a4f16ccc493e21649ccc59574
       css-loader: 6.7.1_webpack@5.70.0
       eslint: 8.11.0
       file-loader: 6.2.0_webpack@5.70.0
@@ -301,7 +301,7 @@ importers:
       '@mdx-js/react': 2.1.0_react@17.0.2
       '@storybook/addon-actions': 6.4.19_4211ed8b26069fec1bc8ff4659f40efc
       '@storybook/addon-docs': 6.4.19_98196728d5d84989ae803d31cf8b0cfa
-      '@storybook/addon-essentials': 6.4.19_7595029ff524fa1a774895840172d5f2
+      '@storybook/addon-essentials': 6.4.19_f4be2d6c7104bd22a341245cca2f8462
       '@storybook/addon-links': 6.4.19_react-dom@17.0.2+react@17.0.2
       '@storybook/builder-webpack5': 6.4.19_c8e148a97e30bf229d56faa9ef82bae3
       '@storybook/manager-webpack5': 6.4.19_c8e148a97e30bf229d56faa9ef82bae3
@@ -3864,7 +3864,7 @@ packages:
       - webpack-command
     dev: true
 
-  /@storybook/addon-essentials/6.4.19_7595029ff524fa1a774895840172d5f2:
+  /@storybook/addon-essentials/6.4.19_f4be2d6c7104bd22a341245cca2f8462:
     resolution: {integrity: sha512-vbV8sjepMVEuwhTDBHjO3E6vXluG7RiEeozV1QVuS9lGhjQdvUPdZ9rDNUcP6WHhTdEkS/ffTMaGIy1v8oZd7g==}
     peerDependencies:
       '@babel/core': ^7.9.6
@@ -3901,7 +3901,7 @@ packages:
       '@storybook/addons': 6.4.19_react-dom@17.0.2+react@17.0.2
       '@storybook/api': 6.4.19_react-dom@17.0.2+react@17.0.2
       '@storybook/node-logger': 6.4.19
-      babel-loader: 8.2.3_fa907c5a4f16ccc493e21649ccc59574
+      babel-loader: 8.2.4_fa907c5a4f16ccc493e21649ccc59574
       core-js: 3.21.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -7447,6 +7447,21 @@ packages:
       make-dir: 3.1.0
       schema-utils: 2.7.1
       webpack: 5.70.0_esbuild@0.14.27
+
+  /babel-loader/8.2.4_fa907c5a4f16ccc493e21649ccc59574:
+    resolution: {integrity: sha512-8dytA3gcvPPPv4Grjhnt8b5IIiTcq/zeXOPk4iTYI0SVXcsmuGg7JtBRDp8S9X+gJfhQ8ektjXZlDu1Bb33U8A==}
+    engines: {node: '>= 8.9'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+      webpack: '>=2'
+    dependencies:
+      '@babel/core': 7.17.8
+      find-cache-dir: 3.3.2
+      loader-utils: 2.0.2
+      make-dir: 3.1.0
+      schema-utils: 2.7.1
+      webpack: 5.70.0
+    dev: true
 
   /babel-plugin-add-react-displayname/0.0.5:
     resolution: {integrity: sha1-M51M3be2X9YtHfnbn+BN4TQSK9U=}

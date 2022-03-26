@@ -33,7 +33,7 @@
     "@changesets/cli": "2.21.1",
     "@cutting/devtools": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
-    "babel-loader": "8.2.3",
+    "babel-loader": "8.2.4",
     "css-loader": "6.7.1",
     "eslint": "8.11.0",
     "file-loader": "6.2.0",
