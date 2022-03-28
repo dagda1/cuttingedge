@@ -4,15 +4,9 @@ import { paths } from '../config/paths';
 import { createInitialFiles } from './createInitialFiles';
 import fs from 'fs-extra';
 import logger from './logger';
-
-enum UserDirectoryChoice {
-  root = 1,
-  demo = 2,
-}
+import { ApplicationType } from '../types/applicationType';
 
 export const scaffold = async (): Promise<void> => {
-  createInitialFiles();
-
   if (
     [paths.appPublic, paths.devDirPublic].some((dir) => {
       if (fs.existsSync(dir)) {
@@ -29,29 +23,39 @@ export const scaffold = async (): Promise<void> => {
   const { value } = await inquirer.prompt({
     type: 'number',
     name: 'value',
-    message: `There is no public index.html etc, should I create these:
+    message: `What am I creating:
     
-    1.  In the root
-    2.  In a ./demo directory
+    1.  A web app
+    2.  A package
+    3.  A CLI app
     `,
   });
 
   if (!value) {
-    throw new Error('No public index.html to start dev server');
+    throw new Error('No application type has been made.');
   }
+
+  const applicationType = value as ApplicationType;
+
+  createInitialFiles(applicationType);
 
   const source = path.join(__dirname, '../../demo');
 
-  if (Number(value) === UserDirectoryChoice.root) {
-    if (!fs.existsSync(paths.appSrc)) {
-      fs.mkdirSync(paths.appSrc);
-    }
+  switch (applicationType) {
+    case ApplicationType.WebApp:
+      if (!fs.existsSync(paths.appSrc)) {
+        fs.mkdirSync(paths.appSrc);
+      }
 
-    fs.copySync(path.join(source, 'public'), path.join(process.cwd(), 'public'));
-    fs.copyFileSync(path.join(source, 'index.tsx'), path.join(paths.appSrc, 'index.tsx'));
-    fs.copyFileSync(path.join(source, 'App.tsx'), path.join(paths.appSrc, 'App.tsx'));
-  } else if (Number(value) === UserDirectoryChoice.demo) {
-    fs.mkdirSync(paths.devDir);
-    fs.copySync(source, path.join(process.cwd(), 'demo'));
+      fs.copySync(path.join(source, 'public'), path.join(process.cwd(), 'public'));
+      fs.copyFileSync(path.join(source, 'index.tsx'), path.join(paths.appSrc, 'index.tsx'));
+      fs.copyFileSync(path.join(source, 'App.tsx'), path.join(paths.appSrc, 'App.tsx'));
+      break;
+    case ApplicationType.package:
+      fs.mkdirSync(paths.devDir);
+      fs.copySync(source, path.join(process.cwd(), 'demo'));
+      break;
+    case ApplicationType.cli:
+      console.log('cli');
   }
 };

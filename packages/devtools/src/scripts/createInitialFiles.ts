@@ -1,15 +1,25 @@
 import fs from 'fs-extra';
 import path from 'path';
+import { ApplicationType } from '../types/applicationType';
 import { paths } from '../config/paths';
 import logger from './logger';
 
 const args = process.argv.slice(3);
 
-export const createInitialFiles = (): void => {
+console.dir({ args });
+
+export const createInitialFiles = (applicationType: ApplicationType): void => {
   logger.info('init files check...');
 
+  const applicationDirectory = applicationType === ApplicationType.cli ? 'cli' : 'demo';
+
   if (!fs.existsSync(paths.tsConfig)) {
-    fs.copyFileSync(path.join(__dirname, '../../demo/tsconfig.json'), paths.tsConfig);
+    fs.copyFileSync(path.join(__dirname, '../..', applicationDirectory, 'tsconfig.json'), paths.tsConfig);
+    logger.info('created tsconfig.json');
+  }
+
+  if (!fs.existsSync(paths.tsConfig)) {
+    fs.copyFileSync(path.join(__dirname, '../..', applicationDirectory, 'tsconfig.json'), paths.tsConfig);
     logger.info('created tsconfig.json');
   }
 
