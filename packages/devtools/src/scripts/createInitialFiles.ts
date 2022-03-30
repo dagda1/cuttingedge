@@ -3,9 +3,7 @@ import path from 'path';
 import { paths } from '../config/paths';
 import logger from './logger';
 
-const args = process.argv.slice(3);
-
-console.dir({ args });
+// const _args = process.argv.slice(3);
 
 export const createInitialFiles = (): void => {
   logger.info('init files check...');

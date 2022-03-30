@@ -57,7 +57,6 @@ export async function audit(exceptions: string[]): Promise<void> {
     const failures = vulnerabilities.filter((vulnerability: any) => {
       if (!vulnerability?.data?.advisory) {
         logger.info(typeof vulnerability);
-        console.dir(vulnerability);
       }
 
       const advisory = vulnerability.data?.advisory;

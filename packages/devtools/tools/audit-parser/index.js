@@ -88,7 +88,6 @@ function audit(exceptions) {
                 var _a, _b;
                 if (!((_a = vulnerability === null || vulnerability === void 0 ? void 0 : vulnerability.data) === null || _a === void 0 ? void 0 : _a.advisory)) {
                     logger_1.logger.info(typeof vulnerability);
-                    console.dir(vulnerability);
                 }
                 const advisory = (_b = vulnerability.data) === null || _b === void 0 ? void 0 : _b.advisory;
                 const severity = advisory === null || advisory === void 0 ? void 0 : advisory.severity;
