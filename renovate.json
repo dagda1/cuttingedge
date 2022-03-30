@@ -5,6 +5,7 @@
   "schedule": ["before 2am on sunday"],
   "automerge": true,
   "includePaths": ["package.json"],
+  "schedule": ["before 2am on sunday"],
   "semanticCommits": "enabled",
   "rangeStrategy": "bump",
   "rebaseLabel": "rebase",
