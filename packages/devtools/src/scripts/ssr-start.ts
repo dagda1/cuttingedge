@@ -84,13 +84,12 @@ function main() {
           clientDevServer.close();
         }
         if (watching) {
-          watching.close((err, result) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          watching.close((err, _result) => {
             if (err) {
               logger.error(err);
               process.exit(1);
             }
-
-            console.dir({ result });
           });
         }
       });

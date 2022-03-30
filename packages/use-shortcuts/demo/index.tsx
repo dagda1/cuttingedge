@@ -13,7 +13,6 @@ render(App);
 if (module.hot) {
   module.hot.accept('./App', () =>
     import('./App').then((m) => {
-      console.dir(m);
       render(m.App);
     }),
   );

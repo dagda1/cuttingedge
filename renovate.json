@@ -1,9 +1,9 @@
 {
   "baseBranches": ["main"],
-  "extends": ["config:base", "group:monorepos"],
+  "extends": ["config:base", "group:monorepos", ":dependencyDashboard"],
+  "dependencyDashboard": true,
   "automerge": true,
   "includePaths": ["package.json"],
-  "schedule": ["before 2am on sunday"],
   "semanticCommits": "enabled",
   "rangeStrategy": "bump",
   "rebaseLabel": "rebase",
