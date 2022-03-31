@@ -57,7 +57,7 @@ export function Explorer({ gatewayUrl }: ExplorerProps): JSX.Element {
   return (
     <>
       <div className={styles.container} ref={ref}>
-        <ParentsizeSVG elementRef={ref} align="center">
+        <ParentsizeSVG parentRef={ref} align="center">
           <circle fill="#fff" x={12} y={20} r={200} />
         </ParentsizeSVG>
       </div>

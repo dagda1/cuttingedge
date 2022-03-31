@@ -18,7 +18,7 @@ A react component that will resize and scale to the dimensions of the supplied r
 
 ![svg document resizing to scale when using the ParentsizeSVG component](./img/sizer.gif)
 
-The `ParentsizeSVG` component takes an `elementRef` prop that should point to a valid HTML DOM element.
+The `ParentsizeSVG` component takes an `parentRef` prop that should point to a valid HTML DOM element.
 
 ## usage
 

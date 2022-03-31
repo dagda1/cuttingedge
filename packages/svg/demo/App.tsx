@@ -9,7 +9,7 @@ export function App(): JSX.Element {
   return (
     <ApplicationLayout heading="@cutting/svg" className={cuttingTheme}>
       <div className={styles.container} ref={ref}>
-        <ParentsizeSVG elementRef={ref} options={{ debounceDelay: 10 }}>
+        <ParentsizeSVG parentRef={ref} options={{ debounceDelay: 10 }}>
           <rect
             x="0"
             y="0"
