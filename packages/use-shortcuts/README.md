@@ -19,10 +19,9 @@ yarn add @cutting/use-shortcuts -S
 ## Usage
 
 ```js
-import type { FC } from 'react';
 import { useShortcuts } from '@cutting/use-shortcuts';
 
-const MyCmponent: FC = () => {
+function MyCmponent(): JSX.Element {
   useShortcuts({
     shortcutMap: {
       MOVE_LEFT: 'a',
@@ -80,7 +79,7 @@ There is a [KeyCode enum](./src/types/keycodes.ts) to help with the special keys
     SEQUENCE_EXAMPLE: { sequence: ['x', 'c'] },
 };
 
-const MyCmponent: FC = () => {
+const MyCmponent(): JSX.Element {
   const handleMove = useCallback(
     (action: keyof typeof shortcutMap) => {
       switch (action) {
@@ -127,7 +126,7 @@ export interface UseShortcuts {
 By default event listeners are added to the `document` object unless the `ref` attribute is supplied in the configuration, in which case the event handlers are added to that element when it is in the DOM:
 
 ```javascript
-export const Comp: FC = () => {
+export const Comp(): JSX.Element {
   const ref = useRef<HTMLInputElement>(null);
   const [text, setText] = useState('');
 

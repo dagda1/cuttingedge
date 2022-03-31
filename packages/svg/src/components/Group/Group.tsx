@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import cx from 'classnames';
 
 type GroupOnlyProps = {
@@ -15,7 +14,7 @@ type GroupOnlyProps = {
 
 type GroupProps = GroupOnlyProps & Omit<React.SVGProps<SVGGElement>, keyof GroupOnlyProps>;
 
-export const Group: FC<GroupProps> = ({
+export function Group({
   y = 0,
   x = 0,
   transform,
@@ -23,7 +22,7 @@ export const Group: FC<GroupProps> = ({
   children,
   innerRef,
   ...restProps
-}: GroupProps): JSX.Element => {
+}: GroupProps): JSX.Element {
   return (
     <g
       ref={innerRef}
@@ -34,4 +33,4 @@ export const Group: FC<GroupProps> = ({
       {children}
     </g>
   );
-};
+}

@@ -1,9 +1,8 @@
-import type { FC } from 'react';
 import type { TickRendererProps } from '@visx/axis';
 import { Group } from '@cutting/svg';
 import { SVGMathJax } from '@cutting/use-mathjax';
 
-export const BottomAxis: FC<TickRendererProps> = ({ formattedValue, x, y }) => {
+export function BottomAxis({ formattedValue, x, y }: TickRendererProps): JSX.Element {
   if (formattedValue === '$0$') {
     return <></>;
   }

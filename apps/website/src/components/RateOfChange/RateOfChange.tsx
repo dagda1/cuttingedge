@@ -1,11 +1,10 @@
-import type { FC } from 'react';
 import { useCountryCovidData } from '../../components/Graphs/useCountryCovidData';
 import Graph from '../../components/Graphs/Graph';
 import regression from 'regression';
 import type { Countries } from '../Graphs';
 import dayjs from 'dayjs';
 
-export const RateOfChange: FC = () => {
+export function RateOfChange(): JSX.Element {
   const result = useCountryCovidData({ startDate: '2020-01-01' });
 
   const dates: string[] = result?.data?.GBR?.data.map((x) => dayjs(x.x).format('DD/MM')) || [];
@@ -40,4 +39,4 @@ export const RateOfChange: FC = () => {
       yTickFormat={() => ''}
     />
   );
-};
+}

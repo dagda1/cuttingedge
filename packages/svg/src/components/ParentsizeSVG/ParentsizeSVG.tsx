@@ -7,7 +7,7 @@ import { ResponsiveSVG } from '../ResponsiveSVG/ResponsiveSVG';
 
 type Align = 'none' | 'center';
 
-export type ParentsizeSVGProps<E extends HTMLElement> = {
+export type ParentsizeSVGProps<E extends HTMLElement = HTMLElement> = {
   elementRef: RefObject<E>;
   style?: CSSProperties;
   align?: Align;

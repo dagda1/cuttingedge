@@ -24,7 +24,7 @@ A React hook to let you know whether the component running the hook is still mou
 ```ts
 import { useIsMounted } from '../useIsMounted/useIsMounted';
 
-const MyComp: FC = () => {
+const MyComp(): JSX.Element {
   const isMounted = useIsMounted();
 
    if (isMounted) {
@@ -44,7 +44,7 @@ A React hook to bump the focus to the top of the viewport or to an optional ref
 ```ts
 import { useScrollToTop } from '@cutting/hooks';
 
-const MyComp: FC = () => {
+const MyComp(): JSX.Element {
   const root = useRef<HTMLDivElement>(null);
 
   useScrollToTop({ ref: root });

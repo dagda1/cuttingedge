@@ -1,10 +1,9 @@
-import type { FC } from 'react';
 import type { Countries } from '../../components/Graphs';
 import { useCountryCovidData, countryData } from '../../components/Graphs';
 import Graph from '../../components/Graphs/Graph';
 import dayjs from 'dayjs';
 
-export const Deaths: FC = () => {
+export function Deaths(): JSX.Element {
   const result = useCountryCovidData();
 
   if (result.data) {
@@ -33,4 +32,4 @@ export const Deaths: FC = () => {
       }
     />
   );
-};
+}

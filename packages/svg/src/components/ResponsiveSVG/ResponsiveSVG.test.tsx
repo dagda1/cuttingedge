@@ -1,5 +1,4 @@
 import { describe, it, expect, jest } from '@jest/globals';
-import type { FC } from 'react';
 import { render, screen } from '@testing-library/react';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
@@ -18,7 +17,7 @@ const resize = (width: number, height: number): void => {
   });
 };
 
-const TestEr: FC = () => {
+function TestEr(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(ref);
 
@@ -29,7 +28,7 @@ const TestEr: FC = () => {
       </ResponsiveSVG>
     </div>
   );
-};
+}
 
 const wrap = () => render(<TestEr />);
 

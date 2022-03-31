@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import React, { useCallback, useEffect, useMemo, useReducer } from 'react';
 import { useRef } from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
@@ -14,7 +13,7 @@ import type { PiMapKeys } from './utils';
 import { getScales, reducer, initialState, xTickValues, PiMap } from './utils';
 import { BottomAxis } from './BottomAxis';
 
-const Sine: FC = () => {
+function Sine(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef);
   const tickFrame = useRef<number>();
@@ -101,6 +100,6 @@ const Sine: FC = () => {
       </section>
     </ApplicationLayout>
   );
-};
+}
 
 export default Sine;

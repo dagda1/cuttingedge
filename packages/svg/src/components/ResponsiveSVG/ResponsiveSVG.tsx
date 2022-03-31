@@ -1,4 +1,4 @@
-import type { FC, Ref } from 'react';
+import type { ReactNode, Ref } from 'react';
 import type { PreserveAspectRatio } from '../../types/types';
 
 export interface Point {
@@ -14,9 +14,10 @@ export interface ResponsiveSVGProps {
   innerRef?: Ref<SVGSVGElement>;
   className?: string;
   hide?: boolean;
+  children: ReactNode;
 }
 
-export const ResponsiveSVG: FC<ResponsiveSVGProps> = ({
+export function ResponsiveSVG({
   height,
   width,
   children,
@@ -24,7 +25,7 @@ export const ResponsiveSVG: FC<ResponsiveSVGProps> = ({
   preserveAspectRatio = 'xMaxYMid meet',
   innerRef,
   className,
-}) => {
+}: ResponsiveSVGProps): JSX.Element {
   const aspect = width / height;
 
   const adjustedHeight = Math.ceil(width / aspect);
@@ -49,4 +50,4 @@ export const ResponsiveSVG: FC<ResponsiveSVGProps> = ({
       </svg>
     </div>
   );
-};
+}

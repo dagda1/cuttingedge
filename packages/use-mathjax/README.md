@@ -31,7 +31,7 @@ const Maths = () => {
   )
 }
 
-export const App: FC = () => {
+export const App(): JSX.Element {
   return (
     <StrictMode>
       <MathJaxProvider>
@@ -63,7 +63,7 @@ const Maths = () => {
   )
 }
 
-export const App: FC = () => {
+export const App(): JSX.Element {
   return (
     <StrictMode>
       <MathJaxProvider>
@@ -83,7 +83,7 @@ Both the `<MathJax/>` and the `<SVGMathJax/>` components and the `useMathJax` ho
 ```ts
 export { MathJaxProvider } from '@cutting/use-mathjax';
 
-export const App: FC = () => {
+export const App(): JSX.Element {
   return (
     <StrictMode>
       <MathJaxProvider>
@@ -118,7 +118,7 @@ const Maths = () => {
   )
 }
 
-export const App: FC = () => {
+export const App(): JSX.Element {
   return (
     <StrictMode>
       <MathJaxProvider>

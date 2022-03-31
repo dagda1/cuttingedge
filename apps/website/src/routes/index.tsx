@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import loadable from '@loadable/component';
 import * as Urls from '../urls';
 import { Route, Routes } from 'react-router';
@@ -87,14 +86,16 @@ export const routable: Page[] = [
   },
 ];
 
-export const MainRoutes: FC = () => (
-  <Routes>
-    {routable.map(({ path, ...rest }) => (
-      <Route key={path} path={path} {...rest} />
-    ))}
-    <Route path={Urls.ContactMe} element={<ContactMe />} />
-  </Routes>
-);
+export function MainRoutes(): JSX.Element {
+  return (
+    <Routes>
+      {routable.map(({ path, ...rest }) => (
+        <Route key={path} path={path} {...rest} />
+      ))}
+      <Route path={Urls.ContactMe} element={<ContactMe />} />
+    </Routes>
+  );
+}
 
 export const bannerPages = routable.filter((p) => !p.footerPage && p.path !== Urls.Home);
 

@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import { useRef } from 'react';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import {
@@ -33,7 +32,7 @@ export type GraphProps = {
   labels?: ({ datum }: { datum: DayData }) => string;
 };
 
-export const Graph: FC<GraphProps> = ({
+export function Graph({
   result,
   yAxisLabel,
   labels,
@@ -41,7 +40,7 @@ export const Graph: FC<GraphProps> = ({
   xTickFormat = (label: string, i: number, a: unknown[]) =>
     i % 2 === 0 || i === a.length - 1 ? `${dayjs(label).format('DD/MM')}` : '',
   yTickFormat = (t) => t,
-}) => {
+}: GraphProps): JSX.Element {
   const location = useLocation();
   const legendRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
@@ -205,6 +204,6 @@ export const Graph: FC<GraphProps> = ({
       </div>
     </ApplicationLayout>
   );
-};
+}
 
 export default Graph;
