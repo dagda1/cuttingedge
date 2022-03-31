@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.31.1
+
+### Patch Changes
+
+- 0f3d2133: changesets fixes
+
 ## 4.31.0
 
 ### Minor Changes

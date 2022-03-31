@@ -1,5 +1,14 @@
 # @cutting/hooks
 
+## 1.6.11
+
+### Patch Changes
+
+- 0f3d2133: changesets fixes
+- Updated dependencies [0f3d2133]
+  - @cutting/hooks@4.30.11
+  - @cutting/util@4.31.1
+
 ## 1.6.10
 
 ### Patch Changes

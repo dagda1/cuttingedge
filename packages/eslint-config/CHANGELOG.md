@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.29.1
+
+### Patch Changes
+
+- 0f3d2133: changesets fixes
+
 ## 4.29.0
 
 ### Minor Changes
