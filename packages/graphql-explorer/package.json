@@ -1,5 +1,6 @@
 {
   "name": "@cutting/graphql-explorer",
+  "private": true,
   "description": "Swagger for graphql.....init",
   "version": "4.26.0",
   "repository": {
