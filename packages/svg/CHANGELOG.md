@@ -1,5 +1,17 @@
 # @cutting/svg
 
+## 4.32.0
+
+### Minor Changes
+
+- 3413251c: build in production
+
+### Patch Changes
+
+- Updated dependencies [3413251c]
+  - @cutting/util@4.31.0
+  - @cutting/use-get-parent-size@1.6.10
+
 ## 4.31.9
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.31.0
+
+### Minor Changes
+
+- 3413251c: build in production
+
 ## 4.30.0
 
 ### Minor Changes
