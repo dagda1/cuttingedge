@@ -18,7 +18,7 @@
     "test": "CI=true turbo run test",
     "watch": "build:tsc && pnpm tsc -b ./tsconfig.packages.json --watch",
     "ci:version": "changeset version && pnpm install --lockfile-only",
-    "ci:release": "pnpm build && changeset publish"
+    "ci:publish": "pnpm build && changeset publish"
   },
   "dependencies": {
     "@babel/runtime": "7.17.8",
