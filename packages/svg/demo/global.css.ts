@@ -1,7 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const container = style({
-  border: '1px solid yellow',
+  border: '10px solid yellow',
   background: 'grey',
   color: 'white',
   overflow: 'hidden',
@@ -12,6 +12,7 @@ export const container = style({
   justifyContent: 'center',
   alignItems: 'center',
   margin: '0 auto',
+  marginBottom: '10rem',
 });
 
 globalStyle('svg', {

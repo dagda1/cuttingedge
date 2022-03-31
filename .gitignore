@@ -56,3 +56,4 @@ stats.json
 
 .turbo
 .pnpm-*.log
+pnpm-global

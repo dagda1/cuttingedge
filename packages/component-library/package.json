@@ -104,5 +104,13 @@
         "dist/esm/index.d.ts"
       ]
     }
+  },
+  "pnpm": {
+    "overrides": {
+      "@babel/core@<7.17.8": ">=7.17.8",
+      "@babel/types@<7.17.0": ">=7.17.3",
+      "ansi-regex@>2.1.1 <5.0.1": ">=5.0.1",
+      "acorn@<8.7.0": ">=8.7.0"
+    }
   }
 }
