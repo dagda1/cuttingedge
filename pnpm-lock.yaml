@@ -702,7 +702,9 @@ importers:
       '@cutting/tsconfig': workspace:*
       '@cutting/useful-types': workspace:*
       '@cutting/util': workspace:*
+      '@jest/globals': 27.5.1
       '@testing-library/jest-dom': 5.16.2
+      '@testing-library/react-hooks': 7.0.2
       '@types/react': 17.0.43
       '@types/react-dom': 17.0.14
       '@types/react-router-dom': 5.3.3
@@ -731,7 +733,9 @@ importers:
       '@cutting/eslint-config': link:../eslint-config
       '@cutting/tsconfig': link:../tsconfig
       '@cutting/useful-types': link:../useful-types
+      '@jest/globals': 27.5.1
       '@testing-library/jest-dom': 5.16.2
+      '@testing-library/react-hooks': 7.0.2_react-dom@18.0.0+react@18.0.0
       '@types/react': 17.0.43
       '@types/react-dom': 17.0.14
       '@types/react-router-dom': 5.3.3
@@ -5515,7 +5519,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.17.8
-      '@types/react': 17.0.41
+      '@types/react': 17.0.43
       '@types/react-dom': 17.0.14
       '@types/react-test-renderer': 17.0.1
       react: 18.0.0
@@ -5523,6 +5527,28 @@ packages:
       react-error-boundary: 3.1.4_react@18.0.0
       react-test-renderer: 17.0.2_react@18.0.0
     dev: false
+
+  /@testing-library/react-hooks/7.0.2_react-dom@18.0.0+react@18.0.0:
+    resolution: {integrity: sha512-dYxpz8u9m4q1TuzfcUApqi8iFfR6R0FaMbr2hjZJy1uC8z+bO/K4v8Gs9eogGKYQop7QsrBTFkv/BCF7MzD2Cg==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+      react-test-renderer: '>=16.9.0'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-test-renderer:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.17.8
+      '@types/react': 17.0.43
+      '@types/react-dom': 17.0.14
+      '@types/react-test-renderer': 17.0.1
+      react: 18.0.0
+      react-dom: 18.0.0_react@18.0.0
+      react-error-boundary: 3.1.4_react@18.0.0
+    dev: true
 
   /@testing-library/react/12.1.4_react-dom@18.0.0+react@18.0.0:
     resolution: {integrity: sha512-jiPKOm7vyUw311Hn/HlNQ9P8/lHNtArAx0PisXyFixDDvfl8DbD6EUdbshK5eqauvBSvzZd19itqQ9j3nferJA==}
@@ -6225,8 +6251,7 @@ packages:
   /@types/react-test-renderer/17.0.1:
     resolution: {integrity: sha512-3Fi2O6Zzq/f3QR9dRnlnHso9bMl7weKCviFmfF6B4LS1Uat6Hkm15k0ZAQuDz+UBq6B3+g+NM6IT2nr5QgPzCw==}
     dependencies:
-      '@types/react': 17.0.41
-    dev: false
+      '@types/react': 17.0.43
 
   /@types/react/17.0.41:
     resolution: {integrity: sha512-chYZ9ogWUodyC7VUTRBfblysKLjnohhFY9bGLwvnUFFy48+vB9DikmB3lW0qTFmBcKSzmdglcvkHK71IioOlDA==}
@@ -16407,7 +16432,6 @@ packages:
     dependencies:
       '@babel/runtime': 7.17.8
       react: 18.0.0
-    dev: false
 
   /react-error-overlay/6.0.10:
     resolution: {integrity: sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==}
@@ -17232,7 +17256,7 @@ packages:
   /rtl-css-js/1.15.0:
     resolution: {integrity: sha512-99Cu4wNNIhrI10xxUaABHsdDqzalrSRTie4GeCmbGVuehm4oj+fIy8fTzB+16pmKe8Bv9rl+hxIBez6KxExTew==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.17.8
     dev: false
 
   /run-async/2.4.1:

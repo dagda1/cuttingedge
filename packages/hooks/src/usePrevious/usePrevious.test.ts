@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { usePrevious } from './usePrevious';
 import { it, expect, describe } from '@jest/globals';
 
-const setUp = () => renderHook(({ state }) => usePrevious(state), { initialProps: { state: 0 } });
+const setUp = () => renderHook(({ state = 0 }) => usePrevious(state), { initialProps: { state: 0 } });
 
 describe('usePrevious', () => {
   it('should return undefined on initial render', () => {
