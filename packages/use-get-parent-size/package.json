@@ -40,20 +40,20 @@
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
     "@testing-library/jest-dom": "5.16.2",
-    "@types/react": "17.0.41",
+    "@types/react": "17.0.43",
     "@types/react-dom": "17.0.14",
     "@types/react-router-dom": "5.3.3",
     "@vanilla-extract/babel-plugin": "1.1.5",
     "@vanilla-extract/css": "1.6.8",
     "eslint": "8.11.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
     "react-router-dom": "6.2.2",
     "typescript": "4.6.2"
   },
   "peerDependencies": {
-    "react": ">= 17.x.x",
-    "react-dom": ">= 17.x.x"
+    "react": ">= 18.x.x",
+    "react-dom": ">= 18.x.x"
   },
   "volta": {
     "extends": "../../package.json"

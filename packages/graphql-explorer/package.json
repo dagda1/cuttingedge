@@ -37,12 +37,12 @@
     "@vanilla-extract/sprinkles": "1.4.0",
     "abortcontroller-polyfill": "1.7.3",
     "eslint": "8.11.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
   },
   "peerDependencies": {
-    "react": ">= 17.x.x",
-    "react-dom": ">= 17.x.x"
+    "react": ">= 18.x.x",
+    "react-dom": ">= 18.x.x"
   },
   "volta": {
     "extends": "../../package.json"

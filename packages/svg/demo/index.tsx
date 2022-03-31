@@ -1,10 +1,12 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { App } from './App';
 
-export const root = document.getElementById('root');
+export const container = document.getElementById('root');
+
+const root = createRoot(container);
 
 const render = (Component: typeof App) => {
-  ReactDOM.render(<Component />, root);
+  root.render(<Component />);
 };
 
 render(App);

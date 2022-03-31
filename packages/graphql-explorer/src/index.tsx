@@ -1,10 +1,17 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { App } from './containers/App/App';
+import { assert } from 'assert-ts';
 
-export const root = document.getElementById('root');
+const selector = 'root'
+
+export const container = document.getElementById(selector);
+
+assert(!!container, `container with id ${selector} not found`);
+
+const root = createRoot(container);
 
 const render = (Component: typeof App) => {
-  ReactDOM.render(<Component />, root);
+  root.render(<Component />);
 };
 
 render(App);

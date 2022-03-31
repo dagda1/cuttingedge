@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist/esm",
     "rootDir": "./src",
     "noEmit": false
@@ -12,5 +12,5 @@
     { "path": "../component-library/tsconfig.dist.json" },
     { "path": "../use-get-parent-size/tsconfig.dist.json" }
   ],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "demo"]
 }

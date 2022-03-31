@@ -1,11 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { App } from './App';
 
-export const root = document.getElementById('root');
+export const container = document.getElementById('root');
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const root = createRoot(container);
 
 const render = (Component: React.FC) => {
-  ReactDOM.render(<Component />, root);
+  root.render(<Component />);
 };
 
 render(App);
