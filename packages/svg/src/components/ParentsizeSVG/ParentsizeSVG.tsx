@@ -8,7 +8,7 @@ import { ResponsiveSVG } from '../ResponsiveSVG/ResponsiveSVG';
 type Align = 'none' | 'center';
 
 export type ParentsizeSVGProps<E extends HTMLElement = HTMLElement> = {
-  elementRef: RefObject<E>;
+  parentRef: RefObject<E>;
   style?: CSSProperties;
   align?: Align;
   scale?: number;
@@ -25,7 +25,7 @@ export const DefaultStyle: CSSProperties = {
 } as const;
 
 export function ParentsizeSVG<E extends HTMLElement>({
-  elementRef,
+  parentRef,
   children,
   style = DefaultStyle,
   scale = 1,
@@ -33,18 +33,18 @@ export function ParentsizeSVG<E extends HTMLElement>({
   options: { debounceDelay = 50, ...optionsRest } = {},
   ...rest
 }: PropsWithChildren<ParentsizeSVGProps<E>>): JSX.Element | null {
-  const { width, height } = useParentSize(elementRef, { debounceDelay, ...optionsRest });
+  const { width, height } = useParentSize(parentRef, { debounceDelay, ...optionsRest });
 
   useEffect(() => {
-    if (!elementRef.current) {
+    if (!parentRef.current) {
       return;
     }
 
     for (const [key, value] of Object.entries(style)) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      elementRef.current.style[key as any] = value;
+      parentRef.current.style[key as any] = value;
     }
-  }, [elementRef, style]);
+  }, [parentRef, style]);
 
   const transform =
     align === 'center'

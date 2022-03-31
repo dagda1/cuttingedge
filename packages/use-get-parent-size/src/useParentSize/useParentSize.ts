@@ -25,7 +25,7 @@ export const useParentSize = <E extends Element>(
 
   const transformer = useCallback(transformFunc, [transformFunc]);
 
-  assert(!!ref, 'You must pass a valid ref to useParent');
+  assert(!!ref, 'You must pass a valid ref to useParentSize');
 
   const debouncedCallback = useDebouncedCallback(
     (value: Dimensions) => {
