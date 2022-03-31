@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import cs from 'classnames';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -13,7 +12,7 @@ export interface MenuState {
   isExpanded: boolean;
 }
 
-export const Menu: FC = () => {
+export function Menu(): JSX.Element {
   const [expanded, setExpanded] = useState(false);
 
   const collapse = (): void => setExpanded(false);

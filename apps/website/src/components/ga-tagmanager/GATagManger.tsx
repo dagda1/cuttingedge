@@ -1,6 +1,4 @@
-import type { FC } from 'react';
-
-export const GATagManager: FC<{ gaId: string }> = ({ gaId }) => {
+export function GATagManager({ gaId }: { gaId: string }): JSX.Element {
   return (
     <>
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
@@ -35,4 +33,4 @@ export const GATagManager: FC<{ gaId: string }> = ({ gaId }) => {
       />
     </>
   );
-};
+}

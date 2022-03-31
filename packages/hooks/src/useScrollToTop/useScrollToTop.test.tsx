@@ -1,5 +1,4 @@
 import { expect, it, describe, beforeEach, afterEach, jest } from '@jest/globals';
-import type { FC } from 'react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import type { History } from 'history';
@@ -36,10 +35,10 @@ describe('useScrollToTop', () => {
       writable: true,
     });
 
-    const Comp: FC = () => {
+    function Comp(): JSX.Element {
       useScrollToTop({ ref });
       return <h1>Foo</h1>;
-    };
+    }
 
     render(
       <Router location={history.location} navigator={history}>

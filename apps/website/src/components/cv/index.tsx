@@ -1,11 +1,10 @@
-import type { FC } from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import * as Urls from '../../urls';
 
 import * as styles from './CV.css';
 
 // eslint:disable
-export const CV: FC = () => {
+export function CV(): JSX.Element {
   const CVFile = 'paulcowan-cv.pdf';
 
   const pdfUrl = ['', 'assets', CVFile].join('/');
@@ -24,6 +23,6 @@ export const CV: FC = () => {
       </div>
     </ApplicationLayout>
   );
-};
+}
 
 export default CV;

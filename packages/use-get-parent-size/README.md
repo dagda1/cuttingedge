@@ -46,13 +46,12 @@ export interface UseParentSizeOptions {
   Default is identity, `(x) => x`
 
 ```ts
-import type { FC } from 'react';
 import { useRef } from 'react';
 import type { UseParentSizeOptions } from '@cutting/use-get-parent-size';
 
-export const ResponsiveSVG: FC = ({
+export function ResponsiveSVG({
   children
-}) => {
+}): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(ref, options);
   const aspect = width / height;

@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { ReactNode } from 'react';
 import { useState } from 'react';
 import { browserAdaptor } from 'mathjax3/mathjax3/adaptors/browserAdaptor';
 import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
@@ -27,7 +27,7 @@ if (typeof window !== 'undefined') {
 
 export const [Provider, useMathJaxContext] = createStrictContext<MathDoc | undefined>({ strict: false });
 
-export const MathJaxProvider: FC = ({ children }) => {
+export function MathJaxProvider({ children }: { children: ReactNode }): JSX.Element {
   const [mathDocument, setMathDocument] = useState<MathDoc>();
 
   useIsomorphicLayoutEffect(() => {
@@ -62,4 +62,4 @@ export const MathJaxProvider: FC = ({ children }) => {
   }, []);
 
   return <Provider value={mathDocument}>{children}</Provider>;
-};
+}

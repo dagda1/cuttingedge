@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import type { Renderer } from 'react-dom';
 import { render } from 'react-dom';
 import { hydrate } from 'react-dom';
@@ -6,7 +5,7 @@ import { loadableReady } from '@loadable/component';
 
 import { App } from '../containers/App';
 
-const bootstrap = (renderMethod: Renderer, Component: FC): void => {
+const bootstrap = (renderMethod: Renderer, Component: typeof App): void => {
   const root = document.getElementById('root');
 
   if (!root) {

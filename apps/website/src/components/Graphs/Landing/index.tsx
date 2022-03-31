@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import loadable from '@loadable/component';
 import * as Urls from '../../../urls';
 import { Route, Routes } from 'react-router';
@@ -46,12 +45,14 @@ export const routable: Page[] = [
   // },
 ];
 
-export const Landing: FC = () => (
-  <Routes>
-    {routable.map(({ path, ...rest }) => {
-      return <Route key={path} path={path} {...rest} />;
-    })}
-  </Routes>
-);
+export function Landing(): JSX.Element {
+  return (
+    <Routes>
+      {routable.map(({ path, ...rest }) => {
+        return <Route key={path} path={path} {...rest} />;
+      })}
+    </Routes>
+  );
+}
 
 export default Landing;

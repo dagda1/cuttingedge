@@ -1,22 +1,22 @@
 import { describe, it, expect } from '@jest/globals';
-import type { FC } from 'react';
 import { render, screen } from '@testing-library/react';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
+import type { ParentsizeSVGProps } from './ParentsizeSVG';
 import { ParentsizeSVG } from './ParentsizeSVG';
 
-const TestEr: FC = () => {
+function TestEr(props: ParentsizeSVGProps) {
   const ref = useRef<HTMLDivElement>(null);
   useParentSize(ref);
 
   return (
-    <ParentsizeSVG elementRef={ref}>
+    <ParentsizeSVG {...props} elementRef={ref}>
       <rect x="20%" y="20%" width="200px" height="200px" rx="20" />
     </ParentsizeSVG>
   );
-};
+}
 
-const wrap = () => render(<TestEr />);
+const wrap = (props: ParentsizeSVGProps = { align: 'none' } as ParentsizeSVGProps) => render(<TestEr {...props} />);
 
 describe('useParentSize', () => {
   it('should set the svg viewBox attribute', () => {

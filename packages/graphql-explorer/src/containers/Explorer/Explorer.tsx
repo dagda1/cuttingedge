@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import type { IntrospectionQuery } from 'graphql';
 import { buildClientSchema, introspectionFromSchema, lexicographicSortSchema } from 'graphql';
 import { useRef } from 'react';
@@ -15,7 +14,7 @@ export interface ExplorerProps {
   gatewayUrl: string;
 }
 
-export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
+export function Explorer({ gatewayUrl }: ExplorerProps): JSX.Element {
   const { data, error, state } = useFetch<{ schema: SimplifiedIntrospectionWithIds }, { data: IntrospectionQuery }>(
     {
       url: gatewayUrl,
@@ -64,4 +63,4 @@ export const Explorer: FC<ExplorerProps> = ({ gatewayUrl }) => {
       </div>
     </>
   );
-};
+}

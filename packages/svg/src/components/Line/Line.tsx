@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import cx from 'classnames';
 import type { AddSVGProps, Point } from '../../types/types';
 
@@ -12,14 +11,14 @@ export type LineProps = {
   to?: Point;
 };
 
-export const Line: FC<LineProps> = ({
+export function Line({
   from = { x: 0, y: 0 },
   to = { x: 1, y: 1 },
   fill = 'transparent',
   className,
   innerRef,
   ...restProps
-}: AddSVGProps<LineProps, SVGLineElement>): JSX.Element => {
+}: AddSVGProps<LineProps, SVGLineElement>): JSX.Element {
   const isRectilinear = from.x === to.x || from.y === to.y;
 
   return (
@@ -35,4 +34,4 @@ export const Line: FC<LineProps> = ({
       {...restProps}
     />
   );
-};
+}

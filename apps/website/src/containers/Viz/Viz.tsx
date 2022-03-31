@@ -1,5 +1,4 @@
 import type { Page } from '@cutting/util';
-import type { FC } from 'react';
 import { Route, Routes, Navigate, useLocation } from 'react-router';
 import * as Urls from '../../urls';
 import loadable from '@loadable/component';
@@ -14,7 +13,7 @@ const routes: Page[] = [{ heading: 'Sine wave', path: Urls.Sine, element: <Sine 
 
 const Default = () => <Navigate to={Urls.Sine} />;
 
-export const Viz: FC = () => {
+export function Viz(): JSX.Element {
   const { pathname: currentPath } = useLocation();
 
   return (

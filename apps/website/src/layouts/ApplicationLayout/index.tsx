@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import cs from 'classnames';
 import { useRef, useEffect } from 'react';
 import { Footer } from '../../components/Footer';
@@ -18,16 +17,17 @@ export interface ApplicationLayoutProps {
   center?: boolean;
   className?: string;
   showFooter?: boolean;
+  children?: React.ReactNode;
 }
 
-export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
+export function ApplicationLayout({
   heading,
   italicise,
   center,
   className,
   showFooter = true,
   children,
-}) => {
+}: ApplicationLayoutProps): JSX.Element {
   const root = useRef<HTMLDivElement>(null);
 
   useScrollToTop({ ref: root });
@@ -70,4 +70,4 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
       <>{children}</>
     </ApplicationLayoutWithRouterScroll>
   );
-};
+}
