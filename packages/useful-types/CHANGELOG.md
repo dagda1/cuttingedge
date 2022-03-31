@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.25.10
+
+### Patch Changes
+
+- 0f3d2133: changesets fixes
+
 ## 4.25.9
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.32.1
+
+### Patch Changes
+
+- 0f3d2133: changesets fixes
+
 ## 4.32.0
 
 ### Minor Changes
