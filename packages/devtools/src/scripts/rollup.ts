@@ -8,7 +8,7 @@ import typescript from 'rollup-plugin-typescript2';
 import { logger } from './logger';
 import resolve from '@rollup/plugin-node-resolve';
 import { assert } from 'assert-ts';
-import injectProcessEnv from 'rollup-plugin-inject-process-env';
+// import injectProcessEnv from 'rollup-plugin-inject-process-env';
 import type { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
 import babel from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
@@ -142,9 +142,9 @@ async function generateBundledModule({
         ...babelConfig,
         extensions: [...DEFAULT_EXTENSIONS, 'ts', 'tsx'],
       } as RollupBabelInputPluginOptions),
-      injectProcessEnv({
-        NODE_ENV: env,
-      }),
+      // injectProcessEnv({
+      //   NODE_ENV: env,
+      // }),
       svgo(),
       minify &&
         terser({
