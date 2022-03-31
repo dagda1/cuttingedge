@@ -44,10 +44,13 @@ jobs:
         id: changesets
         uses: changesets/action@master
         with:
+          # Custom versioning script in package.json
           version: pnpm ci:version
-          commit: 'chore: update versions'
-          title: 'chore: update versions'
-          publish: pnpm release
+          # Custom versioning script in package.json
+          publish: pnpm ci:publish
+          # Messages
+          commit: 'chore(deploy): Release'
+          title: 'chore(deploy): Release'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

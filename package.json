@@ -17,10 +17,8 @@
     "prepare": "husky install",
     "test": "CI=true turbo run test",
     "watch": "build:tsc && pnpm tsc -b ./tsconfig.packages.json --watch",
-    "version": "changeset version && pnpm install --lockfile-only",
-    "release": "pnpm build && changeset publish",
-    "ci:version": "pnpm changelog && pnpx changeset version && pnpm install --no-frozen-lockfile && git add .",
-    "ci:publish": "pnpm build-pkgs && git status && pnpm publish -r && pnpm changeset tag"
+    "ci:version": "changeset version && pnpm install --lockfile-only",
+    "ci:release": "pnpm build && changeset publish"
   },
   "dependencies": {
     "@babel/runtime": "7.17.8",
