@@ -42,7 +42,7 @@ jobs:
       
       - name: Create PR or Publish release
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@master
         with:
           version: pnpm ci:version
           commit: 'chore: update versions'
