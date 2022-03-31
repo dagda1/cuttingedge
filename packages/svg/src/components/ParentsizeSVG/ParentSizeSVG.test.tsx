@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import type { ParentsizeSVGProps } from './ParentsizeSVG';
 import { ParentsizeSVG } from './ParentsizeSVG';
 
-function TestEr(props: ParentsizeSVGProps) {
+function TestEr(props: Partial<ParentsizeSVGProps>) {
   const ref = useRef<HTMLDivElement>(null);
   useParentSize(ref);
 
@@ -16,7 +16,7 @@ function TestEr(props: ParentsizeSVGProps) {
   );
 }
 
-const wrap = (props: ParentsizeSVGProps = { align: 'none' } as ParentsizeSVGProps) => render(<TestEr {...props} />);
+const wrap = (props: Partial<ParentsizeSVGProps> = {}) => render(<TestEr {...props} />);
 
 describe('useParentSize', () => {
   it('should set the svg viewBox attribute', () => {
@@ -27,5 +27,21 @@ describe('useParentSize', () => {
     expect(svg.getAttribute('viewBox')).toBe('0 0 1 1');
 
     screen.getByTestId('cutting-svg-container');
+  });
+
+  it('should render a transform attribute when not aligned', () => {
+    wrap();
+
+    const svg = document.querySelector('svg') as SVGElement;
+
+    expect(svg.querySelector('g') as SVGGElement).toHaveAttribute('transform', 'translate(0,0) scale(1)');
+  });
+
+  it('should render a transform attribute when aligned', () => {
+    wrap({ align: 'center' });
+
+    const svg = document.querySelector('svg') as SVGElement;
+
+    expect(svg.querySelector('g') as SVGGElement).toHaveAttribute('transform', 'translate(0.5,-19.5) scale(1)');
   });
 });

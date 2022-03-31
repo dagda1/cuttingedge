@@ -11,17 +11,17 @@ export function App(): JSX.Element {
       <div className={styles.container} ref={ref}>
         <ParentsizeSVG elementRef={ref} options={{ debounceDelay: 10 }}>
           <rect
-            x="20%"
-            y="20%"
+            x="0"
+            y="0"
             width={'50%'}
             height={'50%'}
-            rx="20"
+            rx="0"
             style={{ fill: '#ff0000', stroke: '#000000', strokeWidth: '2px' }}
           />
 
           <rect
-            x="30%"
-            y="30%"
+            x="0"
+            y="0"
             width={'50%'}
             height={'50%'}
             rx="40"
