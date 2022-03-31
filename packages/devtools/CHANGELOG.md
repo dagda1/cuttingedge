@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.32.0
+
+### Minor Changes
+
+- a27c6a02: stop injecting process.env.NODE_ENV into rollup
+
 ## 4.31.8
 
 ### Patch Changes
