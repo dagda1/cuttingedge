@@ -1,5 +1,13 @@
 # @cutting/hooks
 
+## 1.6.10
+
+### Patch Changes
+
+- Updated dependencies [3413251c]
+  - @cutting/util@4.31.0
+  - @cutting/hooks@4.30.10
+
 ## 1.6.9
 
 ### Patch Changes

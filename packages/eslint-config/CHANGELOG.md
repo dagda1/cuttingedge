@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.29.0
+
+### Minor Changes
+
+- 3413251c: build in production
+
 ## 4.28.5
 
 ### Patch Changes
