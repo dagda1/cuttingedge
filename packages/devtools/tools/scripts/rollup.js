@@ -55,7 +55,6 @@ const rollup_plugin_typescript2_1 = __importDefault(require("rollup-plugin-types
 const logger_1 = require("./logger");
 const plugin_node_resolve_1 = __importDefault(require("@rollup/plugin-node-resolve"));
 const assert_ts_1 = require("assert-ts");
-const rollup_plugin_inject_process_env_1 = __importDefault(require("rollup-plugin-inject-process-env"));
 const plugin_babel_1 = __importDefault(require("@rollup/plugin-babel"));
 const plugin_json_1 = __importDefault(require("@rollup/plugin-json"));
 const rollup_plugin_sourcemaps_1 = __importDefault(require("rollup-plugin-sourcemaps"));
@@ -162,9 +161,9 @@ function generateBundledModule({ packageName, entryFile, moduleFormat, env, vizu
                     },
                 }),
                 (0, plugin_babel_1.default)(Object.assign(Object.assign({ exclude: /\/node_modules\/(core-js)\//, babelHelpers: 'runtime' }, babelConfig), { extensions: [...core_1.DEFAULT_EXTENSIONS, 'ts', 'tsx'] })),
-                (0, rollup_plugin_inject_process_env_1.default)({
-                    NODE_ENV: env,
-                }),
+                // injectProcessEnv({
+                //   NODE_ENV: env,
+                // }),
                 (0, rollup_plugin_svgo_1.default)(),
                 minify &&
                     (0, rollup_plugin_terser_1.terser)({
