@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 1.8.0
+
+### Minor Changes
+
+- 8c139b38: rename elementRef parentRef
+
 ## 1.7.0
 
 ### Minor Changes

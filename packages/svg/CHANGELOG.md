@@ -1,5 +1,16 @@
 # @cutting/svg
 
+## 4.34.0
+
+### Minor Changes
+
+- 8c139b38: rename elementRef parentRef
+
+### Patch Changes
+
+- Updated dependencies [8c139b38]
+  - @cutting/use-get-parent-size@1.8.0
+
 ## 4.33.0
 
 ### Minor Changes
