@@ -21,12 +21,12 @@
     "ci:publish": "pnpm build && changeset publish"
   },
   "dependencies": {
-    "@babel/runtime": "7.17.8",
+    "@babel/runtime": "7.17.9",
     "core-js": "3.21.1",
     "regenerator-runtime": "0.13.9"
   },
   "devDependencies": {
-    "@babel/core": "7.17.8",
+    "@babel/core": "7.17.9",
     "@babel/plugin-proposal-numeric-separator": "7.16.7",
     "@babel/plugin-proposal-private-methods": "7.16.11",
     "@babel/plugin-proposal-private-property-in-object": "7.16.7",
