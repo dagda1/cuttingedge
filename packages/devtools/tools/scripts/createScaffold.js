@@ -20,6 +20,9 @@ const createInitialFiles_1 = require("./createInitialFiles");
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const logger_1 = __importDefault(require("./logger"));
 const applicationType_1 = require("../types/applicationType");
+const validate_npm_package_name_1 = __importDefault(require("validate-npm-package-name"));
+const console_1 = require("console");
+const installDependencies_1 = require("./installDependencies");
 const appSource = {
     [applicationType_1.ApplicationType.WebApp]: '../../demo',
     [applicationType_1.ApplicationType.package]: '../../demo',
@@ -36,6 +39,13 @@ function scaffold() {
         })) {
             return;
         }
+        const { projectName } = yield inquirer_1.default.prompt({
+            type: 'input',
+            name: 'projectName',
+            message: 'What is the name of your project?',
+            validate: validate_npm_package_name_1.default,
+        });
+        (0, console_1.assert)(!!projectName, 'projectName is required');
         const { value } = yield inquirer_1.default.prompt({
             type: 'number',
             name: 'value',
@@ -46,13 +56,12 @@ function scaffold() {
     3.  A CLI app
     `,
         });
-        if (!value) {
-            throw new Error('No application type has been made.');
-        }
+        (0, console_1.assert)(!!value, 'No application type has been made.');
         const applicationType = value;
         if (applicationType !== applicationType_1.ApplicationType.cli) {
             (0, createInitialFiles_1.createInitialFiles)(applicationType);
         }
+        (0, installDependencies_1.installDependencies)(projectName, applicationType);
         const source = path_1.default.join(__dirname, appSource[applicationType]);
         switch (applicationType) {
             case applicationType_1.ApplicationType.WebApp:

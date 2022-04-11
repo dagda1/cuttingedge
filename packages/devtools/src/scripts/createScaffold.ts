@@ -5,6 +5,9 @@ import { createInitialFiles } from './createInitialFiles';
 import fs from 'fs-extra';
 import logger from './logger';
 import { ApplicationType } from '../types/applicationType';
+import validateProjectName from 'validate-npm-package-name';
+import { assert } from 'console';
+import { installDependencies } from './installDependencies';
 
 const appSource: Record<ApplicationType, string> = {
   [ApplicationType.WebApp]: '../../demo',
@@ -26,6 +29,15 @@ export async function scaffold(): Promise<void> {
     return;
   }
 
+  const { projectName } = await inquirer.prompt({
+    type: 'input',
+    name: 'projectName',
+    message: 'What is the name of your project?',
+    validate: validateProjectName,
+  });
+
+  assert(!!projectName, 'projectName is required');
+
   const { value } = await inquirer.prompt({
     type: 'number',
     name: 'value',
@@ -37,15 +49,15 @@ export async function scaffold(): Promise<void> {
     `,
   });
 
-  if (!value) {
-    throw new Error('No application type has been made.');
-  }
+  assert(!!value, 'No application type has been made.');
 
   const applicationType = value as ApplicationType;
 
   if (applicationType !== ApplicationType.cli) {
     createInitialFiles(applicationType);
   }
+
+  installDependencies(projectName, applicationType);
 
   const source = path.join(__dirname, appSource[applicationType]);
 
