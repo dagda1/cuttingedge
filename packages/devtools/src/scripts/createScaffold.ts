@@ -70,25 +70,23 @@ export async function scaffold(): Promise<void> {
 
   installDependencies(appName, applicationType);
 
-  const rootSrc = path.join(root, 'src');
-  const devDir = path.join(root, 'demo');
-
   fs.copyFileSync(path.join(__dirname, '../../init/.gitignore'), path.join(process.cwd(), '.gitignore'));
 
   switch (applicationType) {
     case ApplicationType.WebApp:
-      if (!fs.existsSync(rootSrc)) {
-        fs.mkdirSync(rootSrc);
-      }
-
-      fs.copySync(path.join(source, 'public'), path.join(process.cwd(), 'public'));
-      fs.copyFileSync(path.join(source, 'index.tsx'), path.join(rootSrc, 'index.tsx'));
-      fs.copyFileSync(path.join(source, 'App.tsx'), path.join(rootSrc, 'App.tsx'));
+      fs.copySync(source, root);
+      const rootSrc = path.join(root, 'src');
+      fs.moveSync(path.join(root, 'App.tsx'), path.join(rootSrc, 'App.tsx'));
+      fs.moveSync(path.join(root, 'index.tsx'), path.join(rootSrc, 'index.tsx'));
       break;
     case ApplicationType.package:
+      const devDir = path.join(root, 'demo');
+
       fs.mkdirSync(devDir);
       fs.copySync(source, devDir);
       fs.copySync(path.join(__dirname, '../../package'), root);
+      fs.moveSync(path.join(devDir, 'tsconfig.json'), path.join(root, 'tsconfig.json'));
+      fs.moveSync(path.join(devDir, 'tsconfig.dist.json'), path.join(root, 'tsconfig.dist.json'));
       break;
     case ApplicationType.cli:
       fs.copySync(source, root);

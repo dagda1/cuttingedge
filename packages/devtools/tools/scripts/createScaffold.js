@@ -67,22 +67,21 @@ function scaffold() {
         const originalDirectory = process.cwd();
         process.chdir(root);
         (0, installDependencies_1.installDependencies)(appName, applicationType);
-        const rootSrc = path_1.default.join(root, 'src');
-        const devDir = path_1.default.join(root, 'demo');
         fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../init/.gitignore'), path_1.default.join(process.cwd(), '.gitignore'));
         switch (applicationType) {
             case applicationType_1.ApplicationType.WebApp:
-                if (!fs_extra_1.default.existsSync(rootSrc)) {
-                    fs_extra_1.default.mkdirSync(rootSrc);
-                }
-                fs_extra_1.default.copySync(path_1.default.join(source, 'public'), path_1.default.join(process.cwd(), 'public'));
-                fs_extra_1.default.copyFileSync(path_1.default.join(source, 'index.tsx'), path_1.default.join(rootSrc, 'index.tsx'));
-                fs_extra_1.default.copyFileSync(path_1.default.join(source, 'App.tsx'), path_1.default.join(rootSrc, 'App.tsx'));
+                fs_extra_1.default.copySync(source, root);
+                const rootSrc = path_1.default.join(root, 'src');
+                fs_extra_1.default.moveSync(path_1.default.join(root, 'App.tsx'), path_1.default.join(rootSrc, 'App.tsx'));
+                fs_extra_1.default.moveSync(path_1.default.join(root, 'index.tsx'), path_1.default.join(rootSrc, 'index.tsx'));
                 break;
             case applicationType_1.ApplicationType.package:
+                const devDir = path_1.default.join(root, 'demo');
                 fs_extra_1.default.mkdirSync(devDir);
                 fs_extra_1.default.copySync(source, devDir);
                 fs_extra_1.default.copySync(path_1.default.join(__dirname, '../../package'), root);
+                fs_extra_1.default.moveSync(path_1.default.join(devDir, 'tsconfig.json'), path_1.default.join(root, 'tsconfig.json'));
+                fs_extra_1.default.moveSync(path_1.default.join(devDir, 'tsconfig.dist.json'), path_1.default.join(root, 'tsconfig.dist.json'));
                 break;
             case applicationType_1.ApplicationType.cli:
                 fs_extra_1.default.copySync(source, root);
