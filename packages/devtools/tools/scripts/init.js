@@ -12,11 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const createInitialFiles_1 = require("./createInitialFiles");
+const createScaffold_1 = require("./createScaffold");
 const logger_1 = __importDefault(require("./logger"));
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield (0, createInitialFiles_1.createInitialFiles)();
+        yield (0, createScaffold_1.scaffold)();
     }
     catch (err) {
         logger_1.default.error(err);

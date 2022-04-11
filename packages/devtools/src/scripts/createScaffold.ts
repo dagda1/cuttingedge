@@ -6,7 +6,13 @@ import fs from 'fs-extra';
 import logger from './logger';
 import { ApplicationType } from '../types/applicationType';
 
-export const scaffold = async (): Promise<void> => {
+const appSource: Record<ApplicationType, string> = {
+  [ApplicationType.WebApp]: '../../demo',
+  [ApplicationType.package]: '../../demo',
+  [ApplicationType.cli]: '../../cli',
+};
+
+export async function scaffold(): Promise<void> {
   if (
     [paths.appPublic, paths.devDirPublic].some((dir) => {
       if (fs.existsSync(dir)) {
@@ -37,9 +43,11 @@ export const scaffold = async (): Promise<void> => {
 
   const applicationType = value as ApplicationType;
 
-  createInitialFiles(applicationType);
+  if (applicationType !== ApplicationType.cli) {
+    createInitialFiles(applicationType);
+  }
 
-  const source = path.join(__dirname, '../../demo');
+  const source = path.join(__dirname, appSource[applicationType]);
 
   switch (applicationType) {
     case ApplicationType.WebApp:
@@ -56,6 +64,7 @@ export const scaffold = async (): Promise<void> => {
       fs.copySync(source, path.join(process.cwd(), 'demo'));
       break;
     case ApplicationType.cli:
-      console.log('cli');
+      fs.mkdirSync(paths.appSrc);
+      fs.copySync(source, paths.appSrc);
   }
-};
+}

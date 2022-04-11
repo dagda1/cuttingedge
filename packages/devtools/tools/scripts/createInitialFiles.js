@@ -6,14 +6,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createInitialFiles = void 0;
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const path_1 = __importDefault(require("path"));
+const applicationType_1 = require("../types/applicationType");
 const paths_1 = require("../config/paths");
 const logger_1 = __importDefault(require("./logger"));
 const args = process.argv.slice(3);
 console.dir({ args });
-const createInitialFiles = () => {
+const createInitialFiles = (applicationType) => {
     logger_1.default.info('init files check...');
+    const applicationDirectory = applicationType === applicationType_1.ApplicationType.cli ? 'cli' : 'demo';
     if (!fs_extra_1.default.existsSync(paths_1.paths.tsConfig)) {
-        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../demo/tsconfig.json'), paths_1.paths.tsConfig);
+        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../..', applicationDirectory, 'tsconfig.json'), paths_1.paths.tsConfig);
+        logger_1.default.info('created tsconfig.json');
+    }
+    if (!fs_extra_1.default.existsSync(paths_1.paths.tsConfig)) {
+        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../..', applicationDirectory, 'tsconfig.json'), paths_1.paths.tsConfig);
         logger_1.default.info('created tsconfig.json');
     }
     if (!fs_extra_1.default.existsSync(paths_1.paths.eslintConfig)) {

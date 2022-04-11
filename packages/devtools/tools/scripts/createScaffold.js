@@ -19,47 +19,59 @@ const paths_1 = require("../config/paths");
 const createInitialFiles_1 = require("./createInitialFiles");
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const logger_1 = __importDefault(require("./logger"));
-var UserDirectoryChoice;
-(function (UserDirectoryChoice) {
-    UserDirectoryChoice[UserDirectoryChoice["root"] = 1] = "root";
-    UserDirectoryChoice[UserDirectoryChoice["demo"] = 2] = "demo";
-})(UserDirectoryChoice || (UserDirectoryChoice = {}));
-const scaffold = () => __awaiter(void 0, void 0, void 0, function* () {
-    (0, createInitialFiles_1.createInitialFiles)();
-    if ([paths_1.paths.appPublic, paths_1.paths.devDirPublic].some((dir) => {
-        if (fs_extra_1.default.existsSync(dir)) {
-            logger_1.default.info(`${dir} exists, aborting scaffold.`);
-            return true;
+const applicationType_1 = require("../types/applicationType");
+const appSource = {
+    [applicationType_1.ApplicationType.WebApp]: '../../demo',
+    [applicationType_1.ApplicationType.package]: '../../demo',
+    [applicationType_1.ApplicationType.cli]: '../../cli',
+};
+function scaffold() {
+    return __awaiter(this, void 0, void 0, function* () {
+        if ([paths_1.paths.appPublic, paths_1.paths.devDirPublic].some((dir) => {
+            if (fs_extra_1.default.existsSync(dir)) {
+                logger_1.default.info(`${dir} exists, aborting scaffold.`);
+                return true;
+            }
+            return false;
+        })) {
+            return;
         }
-        return false;
-    })) {
-        return;
-    }
-    const { value } = yield inquirer_1.default.prompt({
-        type: 'number',
-        name: 'value',
-        message: `There is no public index.html etc, should I create these:
+        const { value } = yield inquirer_1.default.prompt({
+            type: 'number',
+            name: 'value',
+            message: `What am I creating:
     
-    1.  In the root
-    2.  In a ./demo directory
+    1.  A web app
+    2.  A package
+    3.  A CLI app
     `,
-    });
-    if (!value) {
-        throw new Error('No public index.html to start dev server');
-    }
-    const source = path_1.default.join(__dirname, '../../demo');
-    if (Number(value) === UserDirectoryChoice.root) {
-        if (!fs_extra_1.default.existsSync(paths_1.paths.appSrc)) {
-            fs_extra_1.default.mkdirSync(paths_1.paths.appSrc);
+        });
+        if (!value) {
+            throw new Error('No application type has been made.');
         }
-        fs_extra_1.default.copySync(path_1.default.join(source, 'public'), path_1.default.join(process.cwd(), 'public'));
-        fs_extra_1.default.copyFileSync(path_1.default.join(source, 'index.tsx'), path_1.default.join(paths_1.paths.appSrc, 'index.tsx'));
-        fs_extra_1.default.copyFileSync(path_1.default.join(source, 'App.tsx'), path_1.default.join(paths_1.paths.appSrc, 'App.tsx'));
-    }
-    else if (Number(value) === UserDirectoryChoice.demo) {
-        fs_extra_1.default.mkdirSync(paths_1.paths.devDir);
-        fs_extra_1.default.copySync(source, path_1.default.join(process.cwd(), 'demo'));
-    }
-});
+        const applicationType = value;
+        if (applicationType !== applicationType_1.ApplicationType.cli) {
+            (0, createInitialFiles_1.createInitialFiles)(applicationType);
+        }
+        const source = path_1.default.join(__dirname, appSource[applicationType]);
+        switch (applicationType) {
+            case applicationType_1.ApplicationType.WebApp:
+                if (!fs_extra_1.default.existsSync(paths_1.paths.appSrc)) {
+                    fs_extra_1.default.mkdirSync(paths_1.paths.appSrc);
+                }
+                fs_extra_1.default.copySync(path_1.default.join(source, 'public'), path_1.default.join(process.cwd(), 'public'));
+                fs_extra_1.default.copyFileSync(path_1.default.join(source, 'index.tsx'), path_1.default.join(paths_1.paths.appSrc, 'index.tsx'));
+                fs_extra_1.default.copyFileSync(path_1.default.join(source, 'App.tsx'), path_1.default.join(paths_1.paths.appSrc, 'App.tsx'));
+                break;
+            case applicationType_1.ApplicationType.package:
+                fs_extra_1.default.mkdirSync(paths_1.paths.devDir);
+                fs_extra_1.default.copySync(source, path_1.default.join(process.cwd(), 'demo'));
+                break;
+            case applicationType_1.ApplicationType.cli:
+                fs_extra_1.default.mkdirSync(paths_1.paths.appSrc);
+                fs_extra_1.default.copySync(source, paths_1.paths.appSrc);
+        }
+    });
+}
 exports.scaffold = scaffold;
 //# sourceMappingURL=createScaffold.js.map
