@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { App } from './containers/App/App';
 import { assert } from 'assert-ts';
 
-const selector = 'root'
+const selector = 'root';
 
 export const container = document.getElementById(selector);
 
