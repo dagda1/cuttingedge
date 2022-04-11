@@ -1,4 +1,3 @@
-import path from 'path';
 import fs from 'fs-extra';
 import os from 'os';
 import { ApplicationType } from '../types/applicationType';
@@ -25,31 +24,14 @@ const applicationDevDependencies: Record<ApplicationType, string[]> = {
   [ApplicationType.cli]: ['nodemon', 'ts-node'],
 };
 
-export function installDependencies(projectName: string, applicationType: ApplicationType): void {
-  const root = path.resolve(projectName);
-  const appName = path.basename(root);
+const applicationDependencies: Record<ApplicationType, string[]> = {
+  [ApplicationType.WebApp]: ['react', 'react-dom', '@cutting/component-library'],
+  [ApplicationType.package]: [],
+  [ApplicationType.cli]: [],
+};
 
-  fs.ensureDirSync(projectName);
-
-  logger.info(`createing pacakge.json file for ${projectName}`);
-
-  const packageJson = {
-    name: appName,
-    version: '0.1.0',
-    private: true,
-  };
-
-  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify(packageJson, null, 2) + os.EOL);
-
-  const originalDirectory = process.cwd();
-
-  process.chdir(root);
-
-  const dependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
-
-  logger.info(`installing dependencies for ${projectName}`);
-
-  const pnpm = exec(`pnpm install ${dependencyList} --save-dev`);
+function install(dependencies: string) {
+  const pnpm = exec(`pnpm install ${dependencies}`);
 
   pnpm.stdout?.on('data', (data) => logger.info(data));
   pnpm.stderr?.on('data', (data) => logger.error(data));
@@ -61,8 +43,32 @@ export function installDependencies(projectName: string, applicationType: Applic
       process.exit(1);
     }
   });
+}
 
-  logger.info(`dependencies installed for ${projectName}`);
+export function installDependencies(appName: string, applicationType: ApplicationType): void {
+  logger.info(`createing pacakge.json file for ${appName}`);
 
-  process.chdir(originalDirectory);
+  const packageJson = {
+    name: appName,
+    version: '0.1.0',
+    private: true,
+  };
+
+  fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2) + os.EOL);
+
+  logger.info(`installing devDependencies for ${appName}`);
+
+  const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
+
+  install(`${devDependencyList} --save-dev`);
+
+  const dependencyList = applicationDependencies[applicationType];
+
+  if (dependencyList.length > 0) {
+    logger.info(`installing dependencies for ${appName}`);
+
+    install(`${dependencyList.join(' ')}`);
+  }
+
+  logger.info(`dependencies installed for ${appName}`);
 }

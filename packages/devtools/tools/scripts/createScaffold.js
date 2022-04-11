@@ -16,7 +16,6 @@ exports.scaffold = void 0;
 const inquirer_1 = __importDefault(require("inquirer"));
 const path_1 = __importDefault(require("path"));
 const paths_1 = require("../config/paths");
-const createInitialFiles_1 = require("./createInitialFiles");
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const logger_1 = __importDefault(require("./logger"));
 const applicationType_1 = require("../types/applicationType");
@@ -43,7 +42,10 @@ function scaffold() {
             type: 'input',
             name: 'projectName',
             message: 'What is the name of your project?',
-            validate: validate_npm_package_name_1.default,
+            validate: (input) => __awaiter(this, void 0, void 0, function* () {
+                const { validForNewPackages } = (0, validate_npm_package_name_1.default)(input);
+                return validForNewPackages;
+            }),
         });
         (0, console_1.assert)(!!projectName, 'projectName is required');
         const { value } = yield inquirer_1.default.prompt({
@@ -58,28 +60,34 @@ function scaffold() {
         });
         (0, console_1.assert)(!!value, 'No application type has been made.');
         const applicationType = value;
-        if (applicationType !== applicationType_1.ApplicationType.cli) {
-            (0, createInitialFiles_1.createInitialFiles)(applicationType);
-        }
-        (0, installDependencies_1.installDependencies)(projectName, applicationType);
+        const root = path_1.default.resolve(projectName);
         const source = path_1.default.join(__dirname, appSource[applicationType]);
+        const appName = path_1.default.basename(root);
+        fs_extra_1.default.ensureDirSync(projectName);
+        const originalDirectory = process.cwd();
+        process.chdir(root);
+        (0, installDependencies_1.installDependencies)(appName, applicationType);
+        const rootSrc = path_1.default.join(root, 'src');
+        const devDir = path_1.default.join(root, 'demo');
+        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../init/.gitignore'), path_1.default.join(process.cwd(), '.gitignore'));
         switch (applicationType) {
             case applicationType_1.ApplicationType.WebApp:
-                if (!fs_extra_1.default.existsSync(paths_1.paths.appSrc)) {
-                    fs_extra_1.default.mkdirSync(paths_1.paths.appSrc);
+                if (!fs_extra_1.default.existsSync(rootSrc)) {
+                    fs_extra_1.default.mkdirSync(rootSrc);
                 }
                 fs_extra_1.default.copySync(path_1.default.join(source, 'public'), path_1.default.join(process.cwd(), 'public'));
-                fs_extra_1.default.copyFileSync(path_1.default.join(source, 'index.tsx'), path_1.default.join(paths_1.paths.appSrc, 'index.tsx'));
-                fs_extra_1.default.copyFileSync(path_1.default.join(source, 'App.tsx'), path_1.default.join(paths_1.paths.appSrc, 'App.tsx'));
+                fs_extra_1.default.copyFileSync(path_1.default.join(source, 'index.tsx'), path_1.default.join(rootSrc, 'index.tsx'));
+                fs_extra_1.default.copyFileSync(path_1.default.join(source, 'App.tsx'), path_1.default.join(rootSrc, 'App.tsx'));
                 break;
             case applicationType_1.ApplicationType.package:
-                fs_extra_1.default.mkdirSync(paths_1.paths.devDir);
-                fs_extra_1.default.copySync(source, path_1.default.join(process.cwd(), 'demo'));
+                fs_extra_1.default.mkdirSync(devDir);
+                fs_extra_1.default.copySync(source, devDir);
+                fs_extra_1.default.copySync(path_1.default.join(__dirname, '../../package'), root);
                 break;
             case applicationType_1.ApplicationType.cli:
-                fs_extra_1.default.mkdirSync(paths_1.paths.appSrc);
-                fs_extra_1.default.copySync(source, paths_1.paths.appSrc);
+                fs_extra_1.default.copySync(source, root);
         }
+        process.chdir(originalDirectory);
     });
 }
 exports.scaffold = scaffold;
