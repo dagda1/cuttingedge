@@ -46,7 +46,7 @@ function install(dependencies) {
     });
 }
 function installDependencies(appName, applicationType) {
-    logger_1.logger.info(`createing pacakge.json file for ${appName}`);
+    logger_1.logger.info(`creating package.json file for ${appName}`);
     const packageJson = {
         name: appName,
         version: '0.1.0',
