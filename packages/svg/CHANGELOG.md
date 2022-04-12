@@ -1,5 +1,17 @@
 # @cutting/svg
 
+## 4.36.0
+
+### Minor Changes
+
+- 11095849: component-library fixes
+
+### Patch Changes
+
+- Updated dependencies [11095849]
+  - @cutting/use-get-parent-size@1.10.0
+  - @cutting/util@4.33.0
+
 ## 4.35.0
 
 ### Minor Changes

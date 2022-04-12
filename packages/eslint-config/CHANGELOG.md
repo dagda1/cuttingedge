@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.31.0
+
+### Minor Changes
+
+- 11095849: component-library fixes
+
 ## 4.30.0
 
 ### Minor Changes

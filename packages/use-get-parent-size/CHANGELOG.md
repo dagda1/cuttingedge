@@ -1,5 +1,17 @@
 # @cutting/hooks
 
+## 1.10.0
+
+### Minor Changes
+
+- 11095849: component-library fixes
+
+### Patch Changes
+
+- Updated dependencies [11095849]
+  - @cutting/hooks@4.32.0
+  - @cutting/util@4.33.0
+
 ## 1.9.0
 
 ### Minor Changes
