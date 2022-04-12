@@ -1,5 +1,14 @@
 # @cutting/hooks
 
+## 1.8.1
+
+### Patch Changes
+
+- e0188472: run changesets
+- Updated dependencies [e0188472]
+  - @cutting/hooks@4.30.12
+  - @cutting/util@4.31.2
+
 ## 1.8.0
 
 ### Minor Changes
