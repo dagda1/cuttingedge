@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.9.0
+
+### Minor Changes
+
+- dfb5f7bd: prefer workspace packages
+
+### Patch Changes
+
+- Updated dependencies [dfb5f7bd]
+  - @cutting/hooks@4.34.0
+  - @cutting/util@4.35.0
+
 ## 5.8.0
 
 ### Minor Changes

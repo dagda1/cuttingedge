@@ -1,5 +1,13 @@
 # @cutting/use-shortcuts
 
+## 4.31.1
+
+### Patch Changes
+
+- dfb5f7bd: prefer workspace packages
+- Updated dependencies [dfb5f7bd]
+  - @cutting/util@4.35.0
+
 ## 4.31.0
 
 ### Minor Changes

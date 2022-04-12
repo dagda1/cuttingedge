@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.35.0
+
+### Minor Changes
+
+- dfb5f7bd: prefer workspace packages
+
 ## 4.34.0
 
 ### Minor Changes

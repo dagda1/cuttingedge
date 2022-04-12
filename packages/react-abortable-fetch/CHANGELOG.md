@@ -1,5 +1,13 @@
 # @cutting/react-abortable-fetch
 
+## 0.20.1
+
+### Patch Changes
+
+- dfb5f7bd: prefer workspace packages
+- Updated dependencies [dfb5f7bd]
+  - @cutting/util@4.35.0
+
 ## 0.20.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.28.1
+
+### Patch Changes
+
+- dfb5f7bd: prefer workspace packages
+
 ## 4.28.0
 
 ### Minor Changes

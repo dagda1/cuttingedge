@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.38.1
+
+### Patch Changes
+
+- dfb5f7bd: prefer workspace packages
+
 ## 4.38.0
 
 ### Minor Changes

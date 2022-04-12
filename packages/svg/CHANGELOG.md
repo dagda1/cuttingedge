@@ -1,5 +1,14 @@
 # @cutting/svg
 
+## 4.37.1
+
+### Patch Changes
+
+- dfb5f7bd: prefer workspace packages
+- Updated dependencies [dfb5f7bd]
+  - @cutting/use-get-parent-size@1.11.1
+  - @cutting/util@4.35.0
+
 ## 4.37.0
 
 ### Minor Changes
