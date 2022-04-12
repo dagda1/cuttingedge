@@ -14,10 +14,10 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "start": "PORT=8888 NODE_ENV=development cutting devserver-start",
+    "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "test": "NODE_ENV=test cutting test",
-    "build": "NODE_ENV=production cutting rollup",
+    "test": "NODE_ENV=test devtools test",
+    "build": "NODE_ENV=production devtools rollup",
     "prepack": "pnpm build"
   },
   "dependencies": {

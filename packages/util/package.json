@@ -9,9 +9,9 @@
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=production cutting rollup",
+    "build": "NODE_ENV=production devtools rollup",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "test": "NODE_ENV=test cutting test",
+    "test": "NODE_ENV=test devtools test",
     "test:ci": "CI=true pnpm test"
   },
   "dependencies": {

@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "audit-packages": "cutting each-pkg cutting audit",
+    "audit-packages": "devtools each-pkg devtools audit",
     "all": "pnpm i && pnpm build && pnpm lint && pnpm test",
     "build": "turbo run build",
     "build:tsc": "tsc -b ./tsconfig.packages.json",

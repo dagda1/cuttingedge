@@ -4,7 +4,7 @@
   "scripts": {
     "build": "NODE_ENV=production tsc -p ./tsconfig.build.json",
     "lint": "yarn eslint ./src/**/*.{ts,tsx} --fix",
-    "test": "NODE_ENV=test cutting test",
+    "test": "NODE_ENV=test devtools test",
     "test:ci": "CI=true yarn test",
     "watch": "PORT=4000 nodemon"
   },

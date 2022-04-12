@@ -5,15 +5,13 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "bin": {
-    "cutting": "./tools/bin/cutting.js"
-  },
+  "bin": "./tools/bin/cutting.js",
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "scripts": {
     "prebuild": "tsc --build",
     "prepack": "pnpm build",
-    "build": "cutting ts-build",
+    "build": "devtools ts-build",
     "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test",
     "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix"
