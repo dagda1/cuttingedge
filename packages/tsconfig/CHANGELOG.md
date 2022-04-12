@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.27.0
+
+### Minor Changes
+
+- fe4c8c00: run pnpm -r update
+
 ## 4.26.6
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # @cutting/graphql-explorer
 
+## 4.27.0
+
+### Minor Changes
+
+- fe4c8c00: run pnpm -r update
+
+### Patch Changes
+
+- Updated dependencies [fe4c8c00]
+  - @cutting/component-library@5.6.0
+  - @cutting/react-abortable-fetch@0.18.0
+  - @cutting/svg@4.35.0
+  - @cutting/util@4.32.0
+
 ## 4.26.1
 
 ### Patch Changes
