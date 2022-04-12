@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.34.0
+
+### Minor Changes
+
+- f119de0b: missing devDependencies for init
+
 ## 4.33.4
 
 ### Patch Changes
