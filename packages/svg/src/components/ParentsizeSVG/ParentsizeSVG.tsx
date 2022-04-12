@@ -51,7 +51,6 @@ export function ParentsizeSVG<E extends HTMLElement>({
       ? `translate(${width / 2},${height / 2 - 20}) scale(${scale})`
       : `translate(0,0) scale(${scale})`;
 
-  console.dir({ transform, width, height, scale });
   return (
     <ResponsiveSVG width={width} height={height} {...rest}>
       <g transform={transform}>{children}</g>

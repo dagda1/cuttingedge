@@ -1,6 +1,6 @@
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { keyframes, style } from '@vanilla-extract/css';
-import { vars } from 'src';
+import { vars } from '../../../style/themes/vars.css';
 
 // const getColour = (score: number) =>
 //   score < Math.ceil(topScore / 2)
