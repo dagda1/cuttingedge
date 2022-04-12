@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.35.0
+
+### Minor Changes
+
+- 16eb710d: missing web dependencies
+
 ## 4.34.0
 
 ### Minor Changes
