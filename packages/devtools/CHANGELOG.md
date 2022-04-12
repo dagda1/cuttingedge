@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.33.0
+
+### Minor Changes
+
+- 24145b00: scaffold web apps, packages and cli
+
 ## 4.32.1
 
 ### Patch Changes
