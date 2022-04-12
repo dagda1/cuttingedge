@@ -29,7 +29,7 @@ const applicationDevDependencies = {
     [applicationType_1.ApplicationType.cli]: ['nodemon', 'ts-node'],
 };
 const applicationDependencies = {
-    [applicationType_1.ApplicationType.WebApp]: ['react', 'react-dom', '@cutting/component-library'],
+    [applicationType_1.ApplicationType.WebApp]: ['react', 'react-dom', '@cutting/util', '@cutting/hooks', '@cutting/component-library'],
     [applicationType_1.ApplicationType.package]: [],
     [applicationType_1.ApplicationType.cli]: [],
 };
