@@ -25,8 +25,6 @@ const nodePaths = (process.env.NODE_PATH || '')
 
 const appNodeModules = findAppNodeModules(process.cwd());
 
-console.dir({ appNodeModules });
-
 const runningAsGlobalPackage = typeof appNodeModules === 'string';
 
 const resolvePath = (fn: () => string | string[]) => (runningAsGlobalPackage ? 'N/A' : fn());

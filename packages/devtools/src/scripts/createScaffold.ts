@@ -70,7 +70,7 @@ export async function scaffold(): Promise<void> {
 
   installDependencies(appName, applicationType);
 
-  fs.copyFileSync(path.join(__dirname, '../../init/.gitignore'), path.join(process.cwd(), '.gitignore'));
+  fs.copySync(path.join(__dirname, '../../init/gitignore'), path.join(process.cwd(), '.gitignore'));
 
   switch (applicationType) {
     case ApplicationType.WebApp:
@@ -91,6 +91,8 @@ export async function scaffold(): Promise<void> {
     case ApplicationType.cli:
       fs.copySync(source, root);
   }
+
+  fs.moveSync(path.join(process.cwd(), 'eslintrc.json'), path.join(process.cwd(), '.eslintrc.json'));
 
   process.chdir(originalDirectory);
 }

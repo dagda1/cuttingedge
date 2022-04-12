@@ -126,12 +126,12 @@
     "write-file-webpack-plugin": "4.5.1"
   },
   "files": [
-    "bin/**/*.*",
-    "css/**/*.*",
-    "demo/**/*.*",
-    "init/**/*.*",
-    "tools/**/*.*",
-    "typescript/**/*.*"
+    "bin",
+    "cli",
+    "css",
+    "demo",
+    "init",
+    "tools"
   ],
   "devDependencies": {
     "@cutting/eslint-config": "workspace:*",

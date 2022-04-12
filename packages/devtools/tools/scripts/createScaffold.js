@@ -67,7 +67,7 @@ function scaffold() {
         const originalDirectory = process.cwd();
         process.chdir(root);
         (0, installDependencies_1.installDependencies)(appName, applicationType);
-        fs_extra_1.default.copyFileSync(path_1.default.join(__dirname, '../../init/.gitignore'), path_1.default.join(process.cwd(), '.gitignore'));
+        fs_extra_1.default.copySync(path_1.default.join(__dirname, '../../init/gitignore'), path_1.default.join(process.cwd(), '.gitignore'));
         switch (applicationType) {
             case applicationType_1.ApplicationType.WebApp:
                 fs_extra_1.default.copySync(source, root);
@@ -86,6 +86,7 @@ function scaffold() {
             case applicationType_1.ApplicationType.cli:
                 fs_extra_1.default.copySync(source, root);
         }
+        fs_extra_1.default.moveSync(path_1.default.join(process.cwd(), 'eslintrc.json'), path_1.default.join(process.cwd(), '.eslintrc.json'));
         process.chdir(originalDirectory);
     });
 }

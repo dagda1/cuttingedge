@@ -20,7 +20,6 @@ const nodePaths = (process.env.NODE_PATH || '')
     .filter((folder) => !path_1.default.isAbsolute(folder))
     .map(resolveApp);
 const appNodeModules = (0, finders_1.findAppNodeModules)(process.cwd());
-console.dir({ appNodeModules });
 const runningAsGlobalPackage = typeof appNodeModules === 'string';
 const resolvePath = (fn) => (runningAsGlobalPackage ? 'N/A' : fn());
 const resolvedNodeModules = resolvePath(() => [appNodeModules, './node_modules']
