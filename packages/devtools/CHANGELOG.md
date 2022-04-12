@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.33.2
+
+### Patch Changes
+
+- de07b90b: stop paths exploding
+
 ## 4.33.1
 
 ### Patch Changes
