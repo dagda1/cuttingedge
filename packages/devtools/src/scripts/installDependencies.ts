@@ -26,7 +26,7 @@ const applicationDevDependencies: Record<ApplicationType, string[]> = {
 };
 
 const applicationDependencies: Record<ApplicationType, string[]> = {
-  [ApplicationType.WebApp]: ['react', 'react-dom', '@cutting/component-library'],
+  [ApplicationType.WebApp]: ['react', 'react-dom', '@cutting/component-library', '@cutting/hooks', '@cutting/util'],
   [ApplicationType.package]: [],
   [ApplicationType.cli]: [],
 };
