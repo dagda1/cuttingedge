@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.10.0
+
+### Minor Changes
+
+- 8999ef4d: failure
+
 ## 5.9.0
 
 ### Minor Changes
