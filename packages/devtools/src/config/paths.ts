@@ -25,9 +25,15 @@ const nodePaths = (process.env.NODE_PATH || '')
 
 const appNodeModules = findAppNodeModules(process.cwd());
 
-const resolvedNodeModules = [appNodeModules, './node_modules']
-  .filter((m) => fs.existsSync(m))
-  .map((m) => path.relative(process.cwd(), m));
+const runningAsGlobalPackage = typeof appNodeModules === 'string';
+
+const resolvePath = (fn: () => string | string[]) => (runningAsGlobalPackage ? 'N/A' : fn());
+
+const resolvedNodeModules = resolvePath(() =>
+  [appNodeModules as string, './node_modules']
+    .filter((m) => fs.existsSync(m))
+    .map((m) => path.relative(process.cwd(), m)),
+);
 
 const libPackages = [
   'packages/devtools',
@@ -46,7 +52,7 @@ const libPackages = [
 ].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');
-const testTsConfig = require.resolve('@cutting/tsconfig/tsconfig.test.json');
+const testTsConfig = resolvePath(() => require.resolve('@cutting/tsconfig/tsconfig.test.json'));
 const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 
 type OurCompilerOptions = {

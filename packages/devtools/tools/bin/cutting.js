@@ -10,7 +10,6 @@ switch (script) {
     case 'audit':
         command = '../audit-parser/index.js';
         break;
-    case 'each-pkg':
     case 'devserver-start':
     case 'init':
     case 'node-build':

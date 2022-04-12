@@ -20,9 +20,11 @@ const nodePaths = (process.env.NODE_PATH || '')
     .filter((folder) => !path_1.default.isAbsolute(folder))
     .map(resolveApp);
 const appNodeModules = (0, finders_1.findAppNodeModules)(process.cwd());
-const resolvedNodeModules = [appNodeModules, './node_modules']
+const runningAsGlobalPackage = typeof appNodeModules === 'string';
+const resolvePath = (fn) => (runningAsGlobalPackage ? 'N/A' : fn());
+const resolvedNodeModules = resolvePath(() => [appNodeModules, './node_modules']
     .filter((m) => fs_1.default.existsSync(m))
-    .map((m) => path_1.default.relative(process.cwd(), m));
+    .map((m) => path_1.default.relative(process.cwd(), m)));
 const libPackages = [
     'packages/devtools',
     'packages/eslint-config',
@@ -39,7 +41,7 @@ const libPackages = [
     'packages/react-abortable-fetch',
 ].map((dep) => path_1.default.resolve(process.cwd(), dep));
 const tsConfigPath = resolveApp('tsconfig.json');
-const testTsConfig = require.resolve('@cutting/tsconfig/tsconfig.test.json');
+const testTsConfig = resolvePath(() => require.resolve('@cutting/tsconfig/tsconfig.test.json'));
 const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 const tsConfig = fs_1.default.existsSync(tsConfigPath)
     ? require(tsConfigPath)
