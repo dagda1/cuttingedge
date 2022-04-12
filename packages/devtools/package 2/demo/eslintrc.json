@@ -1,0 +1,3 @@
+{
+  "extends": "@cutting/eslint-config/react"
+}

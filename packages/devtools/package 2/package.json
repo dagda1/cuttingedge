@@ -8,14 +8,6 @@
   "bin": "./tools/bin/cutting.js",
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
-  "scripts": {
-    "prebuild": "tsc --build",
-    "prepack": "pnpm build",
-    "build": "devtools ts-build",
-    "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
-    "test": "echo test",
-    "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix"
-  },
   "dependencies": {
     "@babel/core": "7.17.9",
     "@babel/plugin-proposal-class-properties": "7.16.7",
@@ -134,9 +126,9 @@
     "tools"
   ],
   "devDependencies": {
-    "@cutting/eslint-config": "workspace:*",
-    "@cutting/tsconfig": "workspace:*",
-    "@cutting/useful-types": "workspace:*",
+    "@cutting/eslint-config": "4.29.2",
+    "@cutting/tsconfig": "4.26.6",
+    "@cutting/useful-types": "4.25.11",
     "@rollup/plugin-commonjs": "21.0.3",
     "@rollup/pluginutils": "4.2.0",
     "@types/babel__plugin-transform-runtime": "7.9.2",
@@ -174,5 +166,13 @@
   },
   "volta": {
     "extends": "../../package.json"
-  }
+  },
+  "scripts": {
+    "prebuild": "tsc --build",
+    "build": "devtools ts-build",
+    "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
+    "test": "echo test",
+    "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix"
+  },
+  "readme": "# @cutting/devtools\n\nCommon [webpack](https://webpack.js.org/), [jest](https://facebook.github.io/jest/) and npm scripts\n"
 }
