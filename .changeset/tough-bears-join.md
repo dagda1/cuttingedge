@@ -2,4 +2,4 @@
 "@cutting/devtools": patch
 ---
 
-include hidden files in pack
+update cli package.json
