@@ -85,17 +85,17 @@ importers:
       '@babel/plugin-proposal-private-property-in-object': 7.16.7
       '@babel/plugin-syntax-dynamic-import': 7.8.3
       '@babel/runtime': 7.17.9
-      '@cutting/component-library': workspace:^5.5.2
-      '@cutting/devtools': workspace:^4.35.0
-      '@cutting/eslint-config': workspace:^4.29.2
-      '@cutting/hooks': workspace:^4.30.12
-      '@cutting/react-abortable-fetch': workspace:^0.17.12
-      '@cutting/svg': workspace:^4.34.1
-      '@cutting/tsconfig': workspace:^4.26.6
-      '@cutting/use-get-parent-size': workspace:^1.8.1
-      '@cutting/use-mathjax': workspace:^4.28.12
-      '@cutting/useful-types': workspace:^4.25.11
-      '@cutting/util': workspace:^4.31.2
+      '@cutting/component-library': workspace:../../packages/component-library
+      '@cutting/devtools': workspace:../../packages/devtools
+      '@cutting/eslint-config': workspace:../../packages/eslint-config
+      '@cutting/hooks': workspace:../../packages/hooks
+      '@cutting/react-abortable-fetch': workspace:../../packages/react-abortable-fetch
+      '@cutting/svg': workspace:../../packages/svg
+      '@cutting/tsconfig': workspace:../../packages/tsconfig
+      '@cutting/use-get-parent-size': workspace:../../packages/use-get-parent-size
+      '@cutting/use-mathjax': workspace:../../packages/use-mathjax
+      '@cutting/useful-types': workspace:../../packages/useful-types
+      '@cutting/util': workspace:../../packages/util
       '@loadable/component': 5.15.2
       '@loadable/server': 5.15.2
       '@testing-library/jest-dom': 5.16.4
@@ -833,7 +833,7 @@ importers:
       '@cutting/util': workspace:*
       '@jest/globals': 27.5.1
       '@testing-library/jest-dom': 5.16.4
-      '@testing-library/react': ^13.0.1
+      '@testing-library/react': ^13.0.0
       '@vanilla-extract/babel-plugin': 1.1.5
       '@vanilla-extract/css': 1.6.8
       '@vanilla-extract/sprinkles': 1.4.0
@@ -935,7 +935,7 @@ importers:
       '@vanilla-extract/css': 1.6.8
       assert-ts: ^0.3.4
       eslint: 8.13.0
-      mathjax: ^3.2.0
+      mathjax: '3'
       mathjax3: 3.0.0-beta.4
       react: 18.0.0
       react-dom: 18.0.0
