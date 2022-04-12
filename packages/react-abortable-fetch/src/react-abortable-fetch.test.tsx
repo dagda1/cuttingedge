@@ -364,8 +364,7 @@ describe('useFetch', () => {
       });
     });
 
-    // eslint-disable-next-line jest/no-disabled-tests
-    describe.skip('retry', () => {
+    describe('retry', () => {
       it('should retry a failing query', async () => {
         const onSuccess = jest.fn();
         const onError = jest.fn();
@@ -376,7 +375,7 @@ describe('useFetch', () => {
           useFetch(`http://localhost:3000/flaky-connection`, {
             executeOnMount: false,
             retryAttempts: 5,
-            retryDelay: 200,
+            retryDelay: 50,
             onSuccess,
             onError,
             onAbort,
