@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.29.2
+
+### Patch Changes
+
+- e0188472: run changesets
+
 ## 4.29.1
 
 ### Patch Changes

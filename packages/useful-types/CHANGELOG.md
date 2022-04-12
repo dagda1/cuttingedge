@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.25.11
+
+### Patch Changes
+
+- e0188472: run changesets
+
 ## 4.25.10
 
 ### Patch Changes

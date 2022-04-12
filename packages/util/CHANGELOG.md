@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.31.2
+
+### Patch Changes
+
+- e0188472: run changesets
+
 ## 4.31.1
 
 ### Patch Changes

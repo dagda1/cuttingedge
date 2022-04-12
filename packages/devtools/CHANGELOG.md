@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.33.1
+
+### Patch Changes
+
+- e0188472: run changesets
+
 ## 4.33.0
 
 ### Minor Changes
