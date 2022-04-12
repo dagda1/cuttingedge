@@ -1,4 +1,4 @@
-seimport * as styles from './global.css';
+import * as styles from './global.css';
 import React, { useState } from 'react';
 import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup, Donut, Alert } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
