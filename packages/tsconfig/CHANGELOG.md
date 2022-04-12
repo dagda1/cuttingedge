@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.29.1
+
+### Patch Changes
+
+- dfb5f7bd: prefer workspace packages
+
 ## 4.29.0
 
 ### Minor Changes

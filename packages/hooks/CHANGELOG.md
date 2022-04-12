@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.34.0
+
+### Minor Changes
+
+- dfb5f7bd: prefer workspace packages
+
+### Patch Changes
+
+- Updated dependencies [dfb5f7bd]
+  - @cutting/util@4.35.0
+
 ## 4.33.0
 
 ### Minor Changes
