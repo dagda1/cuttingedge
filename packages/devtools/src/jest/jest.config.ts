@@ -41,6 +41,8 @@ if (localSetupTestsFile) {
   logger.debug(`found local setup file ${localSetupTestsFile}`);
 }
 
+console.log(paths.testTsConfig);
+
 const jestConfig: OverridableJestConfig = {
   rootDir: process.cwd(),
   roots: ['<rootDir>', '<rootDir>/src'],

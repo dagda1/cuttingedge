@@ -13,6 +13,7 @@ const localSetupTestsFile = setupTestsCandidates.find(fs_extra_1.default.existsS
 if (localSetupTestsFile) {
     logger_1.default.debug(`found local setup file ${localSetupTestsFile}`);
 }
+console.log(paths_1.paths.testTsConfig);
 const jestConfig = {
     rootDir: process.cwd(),
     roots: ['<rootDir>', '<rootDir>/src'],

@@ -4,9 +4,9 @@ import fs from 'fs';
 const MaxTries = 10;
 const ModulesDirName = 'node_modules';
 
-export const find = (cwd: string, predicate: (dir: string) => boolean, tries = 0): string => {
+export const find = (cwd: string, predicate: (dir: string) => boolean, tries = 0): string | boolean => {
   if (tries === MaxTries) {
-    throw new Error(`cannot find in ${cwd}`);
+    return false;
   }
 
   if (predicate(cwd)) {
@@ -16,30 +16,22 @@ export const find = (cwd: string, predicate: (dir: string) => boolean, tries = 0
   return find(path.resolve(cwd, '..'), predicate, ++tries);
 };
 
-export const findAsync = async (
-  cwd: string,
-  predicate: (dir: string) => Promise<boolean>,
-  tries = 0,
-): Promise<string> => {
-  if (tries === MaxTries) {
-    throw new Error(`cannot find in ${cwd}`);
-  }
-
-  if (await predicate(cwd)) {
-    return cwd;
-  }
-
-  return await findAsync(path.resolve(cwd, '..'), predicate, ++tries);
-};
-
-export const findFile = (cwd: string, fileName: string): string => {
+export const findFile = (cwd: string, fileName: string): string | boolean => {
   const dir = find(cwd, (dir) => fs.existsSync(path.resolve(dir, fileName)));
+
+  if (typeof dir !== 'string') {
+    return false;
+  }
 
   return path.resolve(dir, fileName);
 };
 
-export const findAppNodeModules = (cwd: string, packageName = 'typescript'): string => {
+export const findAppNodeModules = (cwd: string, packageName = 'typescript'): string | boolean => {
   const dir = find(cwd, (dir) => fs.existsSync(path.resolve(dir, ModulesDirName, packageName)));
+
+  if (typeof dir !== 'string') {
+    return false;
+  }
 
   return path.join(dir, ModulesDirName);
 };
