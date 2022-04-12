@@ -1,5 +1,16 @@
 # @cutting/use-shortcuts
 
+## 4.31.0
+
+### Minor Changes
+
+- 72d1169e: run changesets
+
+### Patch Changes
+
+- Updated dependencies [72d1169e]
+  - @cutting/util@4.34.0
+
 ## 4.30.0
 
 ### Minor Changes

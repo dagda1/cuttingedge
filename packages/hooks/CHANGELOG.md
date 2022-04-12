@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.33.0
+
+### Minor Changes
+
+- 72d1169e: run changesets
+
+### Patch Changes
+
+- Updated dependencies [72d1169e]
+  - @cutting/util@4.34.0
+
 ## 4.32.0
 
 ### Minor Changes
