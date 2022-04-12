@@ -16,10 +16,10 @@
   ],
   "license": "MIT",
   "scripts": {
-    "test": "NODE_ENV=test cutting test",
+    "test": "NODE_ENV=test devtools test",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "lint:fix": "pnpm lint --fix",
-    "build": "NODE_ENV=production cutting rollup",
+    "build": "NODE_ENV=production devtools rollup",
     "prepack": "pnpm build"
   },
   "dependencies": {

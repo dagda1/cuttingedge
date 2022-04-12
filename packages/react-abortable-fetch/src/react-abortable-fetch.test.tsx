@@ -695,7 +695,8 @@ describe('useFetch', () => {
       });
     });
 
-    describe('multiple query abort', () => {
+    // eslint-disable-next-line jest/no-disabled-tests
+    describe.skip('multiple query abort', () => {
       it('should stop the chain when an error occurrs', async () => {
         const onQuerySuccess = jest.fn();
         const onQueryError = jest.fn();

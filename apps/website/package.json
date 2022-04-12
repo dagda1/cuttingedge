@@ -8,9 +8,9 @@
   "version": "4.28.0",
   "license": "MIT",
   "scripts": {
-    "start": "PORT=3000 SSR=true NODE_ENV=development cutting ssr-start",
+    "start": "PORT=3000 SSR=true NODE_ENV=development devtools ssr-start",
     "debug": "pnpm start -- --inspect=localhost:9230",
-    "build": "echo disabled for now # NODE_ENV=production cutting ssr-build",
+    "build": "echo disabled for now # NODE_ENV=production devtools ssr-build",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "test": "echo disabled for now",
     "deploy": "NODE_ENV=production pnpm build && ./bin/deploy.sh",
