@@ -18,12 +18,13 @@ const devDependencies = [
     '@jest/globals',
     '@types/eslint',
     '@typescript-eslint/eslint-plugin',
+    '@vanilla-extract/babel-plugin',
     'jest',
     'ts-jest',
     'typescript',
 ];
 const applicationDevDependencies = {
-    [applicationType_1.ApplicationType.WebApp]: [],
+    [applicationType_1.ApplicationType.WebApp]: ['@vanilla-extract/css', '@vanilla-extract/sprinkles'],
     [applicationType_1.ApplicationType.package]: [],
     [applicationType_1.ApplicationType.cli]: ['nodemon', 'ts-node'],
 };

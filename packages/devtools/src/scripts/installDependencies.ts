@@ -13,13 +13,14 @@ const devDependencies = [
   '@jest/globals',
   '@types/eslint',
   '@typescript-eslint/eslint-plugin',
+  '@vanilla-extract/babel-plugin',
   'jest',
   'ts-jest',
   'typescript',
 ];
 
 const applicationDevDependencies: Record<ApplicationType, string[]> = {
-  [ApplicationType.WebApp]: [],
+  [ApplicationType.WebApp]: ['@vanilla-extract/css', '@vanilla-extract/sprinkles'],
   [ApplicationType.package]: [],
   [ApplicationType.cli]: ['nodemon', 'ts-node'],
 };
