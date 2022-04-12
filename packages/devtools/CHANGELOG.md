@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.35.1
+
+### Patch Changes
+
+- 25055539: typo
+
 ### Minor Changes
 
 - 16eb710d: missing web dependencies
