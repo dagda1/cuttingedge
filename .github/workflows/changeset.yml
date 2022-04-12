@@ -18,7 +18,7 @@ jobs:
         version: 6.31.0
     - uses: actions/checkout@v1
     - name: Install Dependencies
-      run:  pnpm i
+      run:  pnpm i --no-frozen-lockfilepnpm i
     - name: Create Release Pull Request
       uses: changesets/action@v1
       env:
