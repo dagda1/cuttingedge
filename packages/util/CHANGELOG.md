@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.32.0
+
+### Minor Changes
+
+- fe4c8c00: run pnpm -r update
+
 ## 4.31.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.30.0
+
+### Minor Changes
+
+- fe4c8c00: run pnpm -r update
+
 ## 4.29.2
 
 ### Patch Changes

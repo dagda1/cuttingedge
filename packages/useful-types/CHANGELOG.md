@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.26.0
+
+### Minor Changes
+
+- fe4c8c00: run pnpm -r update
+
 ## 4.25.11
 
 ### Patch Changes

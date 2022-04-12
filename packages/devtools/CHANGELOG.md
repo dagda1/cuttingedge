@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.36.0
+
+### Minor Changes
+
+- fe4c8c00: run pnpm -r update
+
 ## 4.35.1
 
 ### Patch Changes
