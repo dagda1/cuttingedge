@@ -20,6 +20,7 @@ const nodePaths = (process.env.NODE_PATH || '')
     .filter((folder) => !path_1.default.isAbsolute(folder))
     .map(resolveApp);
 const appNodeModules = (0, finders_1.findAppNodeModules)(process.cwd());
+console.dir({ appNodeModules });
 const runningAsGlobalPackage = typeof appNodeModules === 'string';
 const resolvePath = (fn) => (runningAsGlobalPackage ? 'N/A' : fn());
 const resolvedNodeModules = resolvePath(() => [appNodeModules, './node_modules']
@@ -41,7 +42,14 @@ const libPackages = [
     'packages/react-abortable-fetch',
 ].map((dep) => path_1.default.resolve(process.cwd(), dep));
 const tsConfigPath = resolveApp('tsconfig.json');
-const testTsConfig = resolvePath(() => require.resolve('@cutting/tsconfig/tsconfig.test.json'));
+const testTsConfig = (() => {
+    try {
+        return require.resolve('@cutting/tsconfig/tsconfig.test.json');
+    }
+    catch (e) {
+        return 'N/A';
+    }
+})();
 const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 const tsConfig = fs_1.default.existsSync(tsConfigPath)
     ? require(tsConfigPath)
