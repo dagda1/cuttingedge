@@ -7,7 +7,6 @@
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@cutting/graphql-explorer",
     "@cutting/website"
   ]
 }
