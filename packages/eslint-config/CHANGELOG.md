@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.32.0
+
+### Minor Changes
+
+- 72d1169e: run changesets
+
 ## 4.31.0
 
 ### Minor Changes

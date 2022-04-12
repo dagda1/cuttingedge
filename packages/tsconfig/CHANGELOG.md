@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.29.0
+
+### Minor Changes
+
+- 72d1169e: run changesets
+
 ## 4.28.0
 
 ### Minor Changes

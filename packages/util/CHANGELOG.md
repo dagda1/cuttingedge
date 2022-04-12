@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.34.0
+
+### Minor Changes
+
+- 72d1169e: run changesets
+
 ## 4.33.0
 
 ### Minor Changes

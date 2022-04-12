@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.28.0
+
+### Minor Changes
+
+- 72d1169e: run changesets
+
 ## 4.27.0
 
 ### Minor Changes
