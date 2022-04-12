@@ -6,6 +6,8 @@ import { useFetch } from './react-abortable-fetch';
 
 let times = 1;
 
+jest.setTimeout(30000);
+
 const scheduler = typeof setImmediate === 'function' ? setImmediate : setTimeout;
 
 function flushPromises(): Promise<unknown> {
