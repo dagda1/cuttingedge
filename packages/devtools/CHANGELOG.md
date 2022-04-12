@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.33.3
+
+### Patch Changes
+
+- 928d3605: include hidden files in pack
+
 ## 4.33.2
 
 ### Patch Changes
