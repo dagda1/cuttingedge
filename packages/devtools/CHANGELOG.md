@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.37.0
+
+### Minor Changes
+
+- 11095849: component-library fixes
+
 ## 4.36.0
 
 ### Minor Changes

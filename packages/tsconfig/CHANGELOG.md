@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.28.0
+
+### Minor Changes
+
+- 11095849: component-library fixes
+
 ## 4.27.0
 
 ### Minor Changes
