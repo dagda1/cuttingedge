@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.36.0
+
+### Minor Changes
+
+- 578d0a1a: again
+
 ## 4.35.0
 
 ### Minor Changes
