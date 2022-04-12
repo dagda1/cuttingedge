@@ -1,5 +1,12 @@
 # @cutting/devtools
 
+## 4.33.4
+
+### Patch Changes
+
+- 78e34fc0: update cli package.json
+- 78e34fc0: update cli package.json
+
 ## 4.33.3
 
 ### Patch Changes
