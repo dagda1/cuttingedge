@@ -47,7 +47,7 @@ function install(dependencies: string) {
 }
 
 export function installDependencies(appName: string, applicationType: ApplicationType): void {
-  logger.info(`createing pacakge.json file for ${appName}`);
+  logger.info(`creating package.json file for ${appName}`);
 
   const packageJson = {
     name: appName,
