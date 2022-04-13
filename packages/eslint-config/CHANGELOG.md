@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.33.0
+
+### Minor Changes
+
+- e08c3939: again
+
 ## 4.32.1
 
 ### Patch Changes

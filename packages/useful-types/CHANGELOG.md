@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.29.0
+
+### Minor Changes
+
+- e08c3939: again
+
 ## 4.28.1
 
 ### Patch Changes
