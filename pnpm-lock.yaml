@@ -761,6 +761,7 @@ importers:
       '@effection/main': 2.0.3
       '@effection/stream': 2.0.3
       '@effection/subscription': 2.0.3
+      '@testing-library/react-hooks': 8.0.0
       '@types/react': 18.0.1
       '@types/react-dom': 18.0.0
       '@types/uuid': 8.3.4
@@ -803,6 +804,7 @@ importers:
       '@cutting/eslint-config': link:../eslint-config
       '@cutting/tsconfig': link:../tsconfig
       '@cutting/useful-types': link:../useful-types
+      '@testing-library/react-hooks': 8.0.0_d1b655986da7bf62d1172c7ae6e89165
       '@types/react': 18.0.1
       '@types/react-dom': 18.0.0
       '@types/uuid': 8.3.4
@@ -873,6 +875,7 @@ importers:
       '@cutting/useful-types': workspace:*
       '@cutting/util': workspace:*
       '@testing-library/jest-dom': 5.16.4
+      '@testing-library/react-hooks': 8.0.0
       '@types/react': 18.0.1
       '@types/react-dom': 18.0.0
       '@types/react-router-dom': 5.3.3
@@ -904,6 +907,7 @@ importers:
       '@cutting/tsconfig': link:../tsconfig
       '@cutting/useful-types': link:../useful-types
       '@testing-library/jest-dom': 5.16.4
+      '@testing-library/react-hooks': 8.0.0_d1b655986da7bf62d1172c7ae6e89165
       '@types/react': 18.0.1
       '@types/react-dom': 18.0.0
       '@types/react-router-dom': 5.3.3
@@ -965,6 +969,7 @@ importers:
       '@cutting/useful-types': workspace:*
       '@cutting/util': workspace:*
       '@testing-library/jest-dom': 5.16.4
+      '@testing-library/react-hooks': 8.0.0
       '@types/mousetrap': 1.6.9
       '@vanilla-extract/babel-plugin': 1.1.5
       '@vanilla-extract/css': 1.6.8
@@ -985,6 +990,7 @@ importers:
       '@cutting/tsconfig': link:../tsconfig
       '@cutting/useful-types': link:../useful-types
       '@testing-library/jest-dom': 5.16.4
+      '@testing-library/react-hooks': 8.0.0_react-dom@18.0.0+react@18.0.0
       '@types/mousetrap': 1.6.9
       '@vanilla-extract/babel-plugin': 1.1.5
       '@vanilla-extract/css': 1.6.8
@@ -4943,6 +4949,28 @@ packages:
     dependencies:
       '@babel/runtime': 7.17.9
       '@types/react': 18.0.1
+      react: 18.0.0
+      react-dom: 18.0.0_react@18.0.0
+      react-error-boundary: 3.1.4_react@18.0.0
+    dev: true
+
+  /@testing-library/react-hooks/8.0.0_react-dom@18.0.0+react@18.0.0:
+    resolution: {integrity: sha512-uZqcgtcUUtw7Z9N32W13qQhVAD+Xki2hxbTR461MKax8T6Jr8nsUvZB+vcBTkzY2nFvsUet434CsgF0ncW2yFw==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@types/react': ^16.9.0 || ^17.0.0
+      react: ^16.9.0 || ^17.0.0
+      react-dom: ^16.9.0 || ^17.0.0
+      react-test-renderer: ^16.9.0 || ^17.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react-dom:
+        optional: true
+      react-test-renderer:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.17.9
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
       react-error-boundary: 3.1.4_react@18.0.0
