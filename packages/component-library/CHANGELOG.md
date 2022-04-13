@@ -1,5 +1,13 @@
 # @cutting/component-library
 
+## 5.12.1
+
+### Patch Changes
+
+- Updated dependencies [92d64693]
+  - @cutting/util@4.38.1
+  - @cutting/hooks@4.37.1
+
 ## 5.12.0
 
 ### Minor Changes

@@ -1,14 +1,23 @@
 # @cutting/devtools
 
+## 4.40.1
+
+### Patch Changes
+
+- 92d64693: trim dependencies
+
 <<<<<<< HEAD
+
 ## 4.39.2
+
 =======
+
 ## 4.40.0
 
 ### Minor Changes
 
 - aaa
->>>>>>> 60a9d85a (more)
+  > > > > > > > 60a9d85a (more)
 
 ### Patch Changes
 
