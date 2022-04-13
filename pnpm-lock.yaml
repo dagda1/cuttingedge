@@ -833,7 +833,7 @@ importers:
       '@cutting/util': workspace:*
       '@jest/globals': 27.5.1
       '@testing-library/jest-dom': 5.16.4
-      '@testing-library/react': ^13.0.0
+      '@testing-library/react': ^13.0.1
       '@vanilla-extract/babel-plugin': 1.1.5
       '@vanilla-extract/css': 1.6.8
       '@vanilla-extract/sprinkles': 1.4.0
@@ -935,7 +935,7 @@ importers:
       '@vanilla-extract/css': 1.6.8
       assert-ts: ^0.3.4
       eslint: 8.13.0
-      mathjax: '3'
+      mathjax: ^3.2.0
       mathjax3: 3.0.0-beta.4
       react: 18.0.0
       react-dom: 18.0.0
@@ -3237,7 +3237,7 @@ packages:
     resolution: {integrity: sha512-8KG5RD0GVP4ydEzRn/I4BNDuxDtqVbOdm8675T49OIG/NGhaK0pjPX7ZcDlvKYbA+ulvVK3ztfcF4uBdOxuJbQ==}
     dependencies:
       '@gar/promisify': 1.1.3
-      semver: 7.3.6
+      semver: 7.3.7
     dev: true
 
   /@npmcli/move-file/1.1.2:
@@ -3351,7 +3351,7 @@ packages:
       request: 2.88.2
       retry: 0.12.0
       safe-buffer: 5.2.1
-      semver: 7.3.6
+      semver: 7.3.7
       slide: 1.1.6
       ssri: 8.0.1
     optionalDependencies:
@@ -5496,13 +5496,13 @@ packages:
   /@types/loadable__component/5.13.4:
     resolution: {integrity: sha512-YhoCCxyuvP2XeZNbHbi8Wb9EMaUJuA2VGHxJffcQYrJKIKSkymJrhbzsf9y4zpTmr5pExAAEh5hbF628PAZ8Dg==}
     dependencies:
-      '@types/react': 18.0.2
+      '@types/react': 18.0.3
     dev: false
 
   /@types/loadable__server/5.12.6:
     resolution: {integrity: sha512-LgO5aUQJYFQY5bLuAef4anCZ/SwsEo2hG/D4zfREgUGDXjezBjZCwlUmmpfIQLsR64reLTCijS0m7gsd1k9cKA==}
     dependencies:
-      '@types/react': 18.0.2
+      '@types/react': 18.0.3
     dev: true
 
   /@types/loadable__webpack-plugin/5.7.3:
@@ -5692,8 +5692,8 @@ packages:
       '@types/scheduler': 0.16.2
       csstype: 3.0.11
 
-  /@types/react/18.0.2:
-    resolution: {integrity: sha512-2poV9ReTwwV5ZNxkKyk7t6Vp/odeTfYI3vRjtDYWfUdEstx9mp26jzELfMBwV6gXg1irhHUnmZJH/dJW7xafcA==}
+  /@types/react/18.0.3:
+    resolution: {integrity: sha512-P8QUaMW4k+kH9aKNPl9b3XWcKMSSALYprLL8xpAMJOLUn3Pl6B+6nKC4F7dsk9oJPwkiRx+qlwhG/Zc1LxFVuQ==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -5960,7 +5960,7 @@ packages:
       functional-red-black-tree: 1.0.1
       ignore: 5.2.0
       regexpp: 3.2.0
-      semver: 7.3.6
+      semver: 7.3.7
       tsutils: 3.21.0_typescript@4.6.3
       typescript: 4.6.3
     transitivePeerDependencies:
@@ -6046,7 +6046,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.6
+      semver: 7.3.7
       tsutils: 3.21.0_typescript@4.6.3
       typescript: 4.6.3
     transitivePeerDependencies:
@@ -6067,7 +6067,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.6
+      semver: 7.3.7
       tsutils: 3.21.0_typescript@4.6.3
       typescript: 4.6.3
     transitivePeerDependencies:
@@ -6846,7 +6846,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
       get-intrinsic: 1.1.1
       is-string: 1.0.7
 
@@ -6876,7 +6876,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
       es-shim-unscopables: 1.0.0
     dev: true
 
@@ -6886,7 +6886,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
       es-shim-unscopables: 1.0.0
 
   /array.prototype.map/1.0.4:
@@ -6895,7 +6895,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
       es-array-method-boxes-properly: 1.0.0
       is-string: 1.0.7
     dev: true
@@ -7584,7 +7584,7 @@ packages:
   /builtins/5.0.0:
     resolution: {integrity: sha512-aizhtbxgT1Udg0Fj6GssXshAVK+nxbtCV+1OtTrMNy67jffDFBY6CUBAkhO4owbleAx6fdbnWdpsmmcXydbzNw==}
     dependencies:
-      semver: 7.3.6
+      semver: 7.3.7
     dev: false
 
   /bytes/3.0.0:
@@ -8472,7 +8472,7 @@ packages:
       postcss-modules-values: 4.0.0_postcss@8.4.12
       postcss-value-parser: 4.2.0
       schema-utils: 3.1.1
-      semver: 7.3.6
+      semver: 7.3.7
       webpack: 5.72.0_esbuild@0.14.34
     dev: true
 
@@ -8489,7 +8489,7 @@ packages:
       postcss-modules-scope: 3.0.0_postcss@8.4.12
       postcss-modules-values: 4.0.0_postcss@8.4.12
       postcss-value-parser: 4.2.0
-      semver: 7.3.6
+      semver: 7.3.7
       webpack: 5.72.0_esbuild@0.14.34
 
   /css-minimizer-webpack-plugin/3.4.1_esbuild@0.14.34+webpack@5.72.0:
@@ -9471,8 +9471,8 @@ packages:
     dependencies:
       stackframe: 1.2.1
 
-  /es-abstract/1.19.3:
-    resolution: {integrity: sha512-4axXLNovnMYf0+csS5rVnS5hLmV1ek+ecx9MuCjByL1E5Nn54avf6CHQxIjgQIHBnfX9AMxTRIy0q+Yu5J/fXA==}
+  /es-abstract/1.19.4:
+    resolution: {integrity: sha512-flV8e5g9/xulChMG48Fygk1ptpo4lQRJ0eJYtxJFgi7pklLx7EFcOJ34jnvr8pbWlaFN/AT1cZpe0hiFel9Hqg==}
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.2
@@ -10581,7 +10581,7 @@ packages:
       memfs: 3.4.1
       minimatch: 3.1.2
       schema-utils: 2.7.0
-      semver: 7.3.6
+      semver: 7.3.7
       tapable: 1.1.3
       typescript: 4.6.3
       webpack: 4.46.0
@@ -10613,7 +10613,7 @@ packages:
       memfs: 3.4.1
       minimatch: 3.1.2
       schema-utils: 2.7.0
-      semver: 7.3.6
+      semver: 7.3.7
       tapable: 1.1.3
       typescript: 4.6.3
       webpack: 5.72.0_esbuild@0.14.34
@@ -10638,7 +10638,7 @@ packages:
       memfs: 3.4.1
       minimatch: 3.1.2
       schema-utils: 3.1.1
-      semver: 7.3.6
+      semver: 7.3.7
       tapable: 2.2.1
       typescript: 4.6.3
       webpack: 5.72.0_esbuild@0.14.34
@@ -10821,7 +10821,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
       functions-have-names: 1.2.2
     dev: true
 
@@ -12800,7 +12800,7 @@ packages:
       jest-util: 27.5.1
       natural-compare: 1.4.0
       pretty-format: 27.5.1
-      semver: 7.3.6
+      semver: 7.3.7
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -13360,11 +13360,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
-    dev: true
-
-  /lru-cache/7.8.1:
-    resolution: {integrity: sha512-E1v547OCgJvbvevfjgK9sNKIVXO96NnsTsFPBlg4ZxjhsJSODoH9lk8Bm0OxvHNm6Vm5Yqkl/1fErDxhYL8Skg==}
-    engines: {node: '>=12'}
 
   /lz-string/1.4.4:
     resolution: {integrity: sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=}
@@ -14088,7 +14083,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.8.1
-      semver: 7.3.6
+      semver: 7.3.7
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -14121,7 +14116,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       hosted-git-info: 4.1.0
-      semver: 7.3.6
+      semver: 7.3.7
       validate-npm-package-name: 3.0.0
     dev: true
 
@@ -14227,7 +14222,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
 
   /object.fromentries/2.0.5:
     resolution: {integrity: sha512-CAyG5mWQRRiBU57Re4FKoTBjXfDoNwdFVH2Y1tS9PqCsfUTymAohOkEMSG3aRNKmv4lV3O7p1et7c187q6bynw==}
@@ -14235,7 +14230,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
 
   /object.getownpropertydescriptors/2.1.3:
     resolution: {integrity: sha512-VdDoCwvJI4QdC6ndjpqFmoL3/+HxffFBbcJzKi5hwLLqqx3mdbedRpfZDdK0SrOSauj8X4GzBvnDZl4vTN7dOw==}
@@ -14243,13 +14238,13 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
 
   /object.hasown/1.1.0:
     resolution: {integrity: sha512-MhjYRfj3GBlhSkDHo6QmvgjRLXQ2zndabdf3nX0yTyZK9rPfxb6uRpAac8HXNLy1GpqWtZ81Qh4v3uOls2sRAg==}
     dependencies:
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
     dev: false
 
   /object.pick/1.3.0:
@@ -14264,7 +14259,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
 
   /objectorarray/1.0.5:
     resolution: {integrity: sha512-eJJDYkhJFFbBBAxeh8xW+weHlkI28n2ZdQV/J/DNfWfSKlGEf2xcfAbZTv3riEXHAhL9SVOTs2pRmXiSTf78xg==}
@@ -14890,7 +14885,7 @@ packages:
       loader-utils: 2.0.2
       postcss: 8.4.12
       schema-utils: 3.1.1
-      semver: 7.3.6
+      semver: 7.3.7
       webpack: 4.46.0
     dev: true
 
@@ -15338,7 +15333,7 @@ packages:
       array.prototype.map: 1.0.4
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
       get-intrinsic: 1.1.1
       iterate-value: 1.0.2
     dev: true
@@ -15349,7 +15344,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
     dev: true
 
   /promise.series/0.2.0:
@@ -16057,8 +16052,8 @@ packages:
       extend-shallow: 3.0.2
       safe-regex: 1.1.0
 
-  /regexp.prototype.flags/1.4.1:
-    resolution: {integrity: sha512-pMR7hBVUUGI7PMA37m2ofIdQCsomVnas+Jn5UPGAHQ+/LlwKm/aTLJHdasmHRzlfeZwHiAOaRSo2rbBDm3nNUQ==}
+  /regexp.prototype.flags/1.4.2:
+    resolution: {integrity: sha512-Ynz8fTQW5/1elh+jWU2EDDzeoNbD0OQ0R+D1VJU5ATOkUaro4A9YEkdN2ODQl/8UQFPPpZNw91fOcLFamM7Pww==}
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.2
@@ -16693,12 +16688,12 @@ packages:
     resolution: {integrity: sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==}
     hasBin: true
 
-  /semver/7.3.6:
-    resolution: {integrity: sha512-HZWqcgwLsjaX1HBD31msI/rXktuIhS+lWvdE4kN9z+8IVT4Itc7vqU2WvYsyD6/sjYCt4dEKH/m1M3dwI9CC5w==}
-    engines: {node: ^10.0.0 || ^12.0.0 || ^14.0.0 || >=16.0.0}
+  /semver/7.3.7:
+    resolution: {integrity: sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==}
+    engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      lru-cache: 7.8.1
+      lru-cache: 6.0.0
 
   /send/0.17.2:
     resolution: {integrity: sha512-UJYB6wFSJE3G00nEivR5rgWp8c2xXvJ3OPWPhmuteU0IKj8nKbG3DrjiOmLwpnHGYWAVwA69zmTm++YG0Hmwww==}
@@ -17293,11 +17288,11 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
       get-intrinsic: 1.1.1
       has-symbols: 1.0.3
       internal-slot: 1.0.3
-      regexp.prototype.flags: 1.4.1
+      regexp.prototype.flags: 1.4.2
       side-channel: 1.0.4
 
   /string.prototype.padend/3.1.3:
@@ -17306,7 +17301,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
     dev: true
 
   /string.prototype.padstart/3.1.3:
@@ -17315,7 +17310,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
     dev: true
 
   /string.prototype.trimend/1.0.4:
@@ -17968,7 +17963,7 @@ packages:
       json5: 2.2.1
       lodash.memoize: 4.1.2
       make-error: 1.3.6
-      semver: 7.3.6
+      semver: 7.3.7
       typescript: 4.6.3
       yargs-parser: 20.2.9
     dev: false
@@ -17983,7 +17978,7 @@ packages:
       chalk: 4.1.2
       enhanced-resolve: 5.9.2
       micromatch: 4.0.5
-      semver: 7.3.6
+      semver: 7.3.7
       typescript: 4.6.3
       webpack: 5.72.0_esbuild@0.14.34
 
@@ -18469,7 +18464,7 @@ packages:
       is-yarn-global: 0.3.0
       latest-version: 5.1.0
       pupa: 2.1.1
-      semver: 7.3.6
+      semver: 7.3.7
       semver-diff: 3.1.1
       xdg-basedir: 4.0.0
     dev: true
@@ -18604,7 +18599,7 @@ packages:
     resolution: {integrity: sha512-g9JpC/3He3bm38zsLupWryXHoEcS22YHthuPQSJdMy6KNrzIRzWqcsHzD/WUnqe45whVou4VIsPew37DoXWNrA==}
     dependencies:
       define-properties: 1.1.3
-      es-abstract: 1.19.3
+      es-abstract: 1.19.4
       has-symbols: 1.0.3
       object.getownpropertydescriptors: 2.1.3
     dev: false
@@ -19694,7 +19689,6 @@ packages:
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
-    dev: true
 
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
