@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.38.1
+
+### Patch Changes
+
+- 92d64693: trim dependencies
+
 ## 4.38.0
 
 ### Minor Changes
