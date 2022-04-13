@@ -4,5 +4,5 @@
 if [[ -z "$CI" ]]; then
   pnpm install && pnpm lint
 else
-  echo "skip pnpm all in CI environemnt"
+  echo "skip hook in CI environemnt"
 fi
