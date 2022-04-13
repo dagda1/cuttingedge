@@ -1,11 +1,8 @@
 export type { DeepPartial } from './types/DeepPartial';
-export type { Taggable } from './types/react';
-export type { Page } from './types/routes';
 export type { Fn } from './functions/functions';
 
 export { isDate } from './date/date';
 export { isElementInViewportTop } from './dom/dom';
-export { scrollToValidationError } from './dom/scroll';
 export { wait } from './dom/wait';
 export { isNumber } from './number';
 export { HttpMethod } from './enums/HttpMethod';
@@ -20,7 +17,6 @@ export { range } from './object/range';
 export { uniqueId } from './object/uniqueid';
 export { dasherize, decamelize, padNumber, stripSpaces, capitalize } from './string';
 export { escapeHtml } from './string/escapeHtml';
-export { getDisplayName } from './react/components';
 export { StorageHelper } from './services/storageHelper';
 export { isProduction, isDevelopment, isTest, env, isCI } from './environment';
 export { isFunction, isPromise, isAsyncFunction } from './functions/functions';

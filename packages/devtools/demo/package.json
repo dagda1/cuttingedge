@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "prebuild": "tsc",
-    "build": "NODE_ENV=production devtools esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json",
+    "build": "NODE_ENV=production devtools static-build",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
     "test": "NODE_ENV=test devtools test"

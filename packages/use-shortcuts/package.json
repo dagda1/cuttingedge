@@ -35,6 +35,7 @@
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
     "@testing-library/jest-dom": "5.16.4",
+    "@testing-library/react-hooks": "8.0.0",
     "@types/mousetrap": "1.6.9",
     "@vanilla-extract/babel-plugin": "1.1.5",
     "@vanilla-extract/css": "1.6.8",

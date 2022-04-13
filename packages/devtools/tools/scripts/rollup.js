@@ -79,10 +79,9 @@ const postcss_import_1 = __importDefault(require("postcss-import"));
 const empty_build_dir_1 = require("./empty-build-dir");
 const core_1 = require("@babel/core");
 const commander_1 = require("commander");
-const rollup_plugin_visualizer_1 = require("rollup-plugin-visualizer");
-const rollup_plugin_size_snapshot_1 = require("rollup-plugin-size-snapshot");
+const rollup_plugin_analyzer_1 = __importDefault(require("rollup-plugin-analyzer"));
 logger_1.logger.debug(`using ${path_1.default.basename(paths_1.paths.tsConfigProduction)}`);
-function generateBundledModule({ packageName, entryFile, moduleFormat, env, vizualize, analyze, }) {
+function generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze }) {
     return __awaiter(this, void 0, void 0, function* () {
         (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(entryFile), `Input file ${entryFile} does not exist`);
         const minify = env === 'production';
@@ -105,7 +104,6 @@ function generateBundledModule({ packageName, entryFile, moduleFormat, env, vizu
                 propertyReadSideEffects: false,
             },
             plugins: [
-                analyze && (0, rollup_plugin_size_snapshot_1.sizeSnapshot)(),
                 (0, rollup_plugin_eslint_1.default)({
                     fix: false,
                     throwOnError: true,
@@ -177,14 +175,7 @@ function generateBundledModule({ packageName, entryFile, moduleFormat, env, vizu
                         toplevel: moduleFormat === 'cjs',
                     }),
                 (0, rollup_plugin_sourcemaps_1.default)(),
-                vizualize &&
-                    moduleFormat === 'esm' &&
-                    (0, rollup_plugin_visualizer_1.visualizer)({
-                        open: true,
-                        gzipSize: true,
-                        sourcemap: true,
-                        template: 'sunburst',
-                    }),
+                analyze && (0, rollup_plugin_analyzer_1.default)({ summaryOnly: true }),
             ].filter(Boolean),
         });
         const pkgName = (0, helpers_1.safePackageName)(packageName);
@@ -222,7 +213,7 @@ const getInputFile = (packageName, inputFileOverride) => {
     logger_1.logger.start(`using input file ${path_1.default.basename(inputFile)} for ${packageName}`);
     return inputFile;
 };
-function build({ vizualize, analyze, inputFile, }) {
+function build({ analyze, inputFile }) {
     return __awaiter(this, void 0, void 0, function* () {
         (0, empty_build_dir_1.emptyBuildDir)();
         const pkgJsonPath = path_1.default.join(process.cwd(), 'package.json');
@@ -237,7 +228,7 @@ function build({ vizualize, analyze, inputFile, }) {
         ];
         logger_1.logger.info(`Generating ${packageName} bundle.`);
         for (const { moduleFormat, env } of configs) {
-            yield generateBundledModule({ packageName, entryFile, moduleFormat, env, vizualize, analyze });
+            yield generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze });
         }
         yield (0, helpers_1.writeCjsEntryFile)(packageName);
         const pkgJson = Object.assign({}, pkg);
@@ -268,14 +259,13 @@ function build({ vizualize, analyze, inputFile, }) {
 const program = (0, commander_1.createCommand)('rollup');
 program
     .description('execute a rollup build')
-    .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)
     .option('-a, --analyze', 'analyze the bundle', false)
     .option('-i, --input-file <path>', 'the entry file')
     .parse(process.argv)
-    .action(function ({ vizualize, inputFile, analyze }) {
+    .action(function ({ inputFile, analyze }) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield build({ vizualize, inputFile, analyze });
+            yield build({ inputFile, analyze });
             logger_1.logger.done('finished building');
         }
         catch (err) {
