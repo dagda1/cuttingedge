@@ -45,7 +45,7 @@ jobs:
       
       - name: Create PR or Publish release
         id: changesets
-        uses: changesets/action@master
+        uses: changesets/action@v1
         with:
           # Custom versioning script in package.json
           version: pnpm ci:version
