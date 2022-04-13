@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.30.0
+
+### Minor Changes
+
+- aaa
+
 ## 4.29.0
 
 ### Minor Changes

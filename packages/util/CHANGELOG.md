@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.38.0
+
+### Minor Changes
+
+- aaa
+
 ## 4.37.0
 
 ### Minor Changes

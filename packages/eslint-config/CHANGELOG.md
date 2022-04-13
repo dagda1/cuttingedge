@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.34.0
+
+### Minor Changes
+
+- aaa
+
 ## 4.33.0
 
 ### Minor Changes

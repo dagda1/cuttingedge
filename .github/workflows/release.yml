@@ -28,8 +28,8 @@ jobs:
           node-version: 16.x
           cache: 'pnpm'
 
-      # - name: prune
-      #   run: pnpm store prune
+      - name: prune
+        run: pnpm store prune
 
       - name: Install Dependencies
         run: pnpm i --no-frozen-lockfile
