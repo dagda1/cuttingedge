@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.39.1
+
+### Patch Changes
+
+- a43b6954: devtools init dependency updates
+
 ## 4.39.0
 
 ### Minor Changes

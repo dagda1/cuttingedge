@@ -1,5 +1,13 @@
 # @cutting/component-library
 
+## 5.11.1
+
+### Patch Changes
+
+- a43b6954: devtools init dependency updates
+  - @cutting/hooks@4.36.0
+  - @cutting/util@4.37.0
+
 ## 5.11.0
 
 ### Minor Changes
