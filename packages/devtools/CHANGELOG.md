@@ -6,19 +6,6 @@
 
 - 92d64693: trim dependencies
 
-<<<<<<< HEAD
-
-## 4.39.2
-
-=======
-
-## 4.40.0
-
-### Minor Changes
-
-- aaa
-  > > > > > > > 60a9d85a (more)
-
 ### Patch Changes
 
 - 85b94792: sequence for installing dependencies
