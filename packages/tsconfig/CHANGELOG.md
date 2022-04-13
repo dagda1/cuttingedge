@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.30.0
+
+### Minor Changes
+
+- e08c3939: again
+
 ## 4.29.1
 
 ### Patch Changes

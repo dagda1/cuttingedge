@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: pnpm/action-setup@v2.0.1
       with:
-        version: 6.31.0
+        version: 6.32.6
     - uses: actions/checkout@v1
     - name: Install Dependencies
       run:  pnpm i --no-frozen-lockfilepnpm i

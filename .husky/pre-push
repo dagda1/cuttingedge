@@ -1,4 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-pnpm all
+if [[ -z "$CI" ]]; then
+  pnpm all
+else
+  echo "skip pnpm all in CI environemnt"
+fi

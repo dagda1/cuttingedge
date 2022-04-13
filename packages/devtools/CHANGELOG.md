@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.39.0
+
+### Minor Changes
+
+- e08c3939: again
+
 ## 4.38.1
 
 ### Patch Changes

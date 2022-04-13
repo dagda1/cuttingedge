@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.30.0
+          version: 6.32.6
 
       - name: Checkout Repo
         uses: actions/checkout@main
@@ -27,6 +27,9 @@ jobs:
         with:
           node-version: 16.x
           cache: 'pnpm'
+
+      - name: prune
+        run: pnpm store prune
 
       - name: Install Dependencies
         run: pnpm i --no-frozen-lockfile

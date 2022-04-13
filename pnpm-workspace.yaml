@@ -1,4 +1,4 @@
-prefer-workspace-packages: true
+link-workspace-packages: deep
 packages:
   - 'packages/*'
   - 'apps/*'
