@@ -90,17 +90,18 @@ export async function scaffold(): Promise<void> {
       break;
     case ApplicationType.cli:
       fs.copySync(source, root);
-      const packageJson = path.join(process.cwd(), 'package.json');
-
-      const raw = fs.readFileSync(packageJson, 'utf8').replace(/\{\{name\}\}/g, appName);
-
-      fs.writeFileSync(packageJson, raw);
       break;
     default:
       throw new Error(`unknown application type: ${applicationType}`);
   }
 
   fs.moveSync(path.join(process.cwd(), 'eslintrc.json'), path.join(process.cwd(), '.eslintrc.json'));
+
+  const packageJson = path.join(process.cwd(), 'package.json');
+
+  const raw = fs.readFileSync(packageJson, 'utf8').replace(/\{\{name\}\}/g, appName);
+
+  fs.writeFileSync(packageJson, raw);
 
   process.chdir(originalDirectory);
 }

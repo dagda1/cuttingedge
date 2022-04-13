@@ -293,6 +293,7 @@ importers:
       assert-ts: 0.3.4
       classnames: 2.3.1
       deepmerge: 4.2.2
+      polished: 4.2.2
     devDependencies:
       '@babel/runtime': 7.17.9
       '@capsizecss/core': 3.0.0
@@ -324,7 +325,6 @@ importers:
       esbuild: 0.14.34
       eslint: 8.13.0
       node-fetch: 3.2.3
-      polished: 4.2.2
       postcss: 8.4.12
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
@@ -14745,7 +14745,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       '@babel/runtime': 7.17.9
-    dev: true
 
   /portfinder/1.0.28:
     resolution: {integrity: sha512-Se+2isanIcEqf2XMHjyUKskczxbPH7dQnlMjXX6+dybayyHvAf/TCgyMRlzf/B6QDhAEFOGes0pzRo3by4AbMA==}

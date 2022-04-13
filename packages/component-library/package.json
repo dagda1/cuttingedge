@@ -23,7 +23,8 @@
     "@cutting/util": "workspace:*",
     "assert-ts": "^0.3.4",
     "classnames": "^2.3.1",
-    "deepmerge": "^4.2.2"
+    "deepmerge": "^4.2.2",
+    "polished": "4.2.2"
   },
   "devDependencies": {
     "@babel/runtime": "7.17.9",
@@ -56,7 +57,6 @@
     "esbuild": "0.14.34",
     "eslint": "8.13.0",
     "node-fetch": "3.2.3",
-    "polished": "4.2.2",
     "postcss": "8.4.12",
     "react": "18.0.0",
     "react-dom": "18.0.0",

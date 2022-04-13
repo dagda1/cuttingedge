@@ -85,14 +85,14 @@ function scaffold() {
                 break;
             case applicationType_1.ApplicationType.cli:
                 fs_extra_1.default.copySync(source, root);
-                const packageJson = path_1.default.join(process.cwd(), 'package.json');
-                const raw = fs_extra_1.default.readFileSync(packageJson, 'utf8').replace(/\{\{name\}\}/g, appName);
-                fs_extra_1.default.writeFileSync(packageJson, raw);
                 break;
             default:
                 throw new Error(`unknown application type: ${applicationType}`);
         }
         fs_extra_1.default.moveSync(path_1.default.join(process.cwd(), 'eslintrc.json'), path_1.default.join(process.cwd(), '.eslintrc.json'));
+        const packageJson = path_1.default.join(process.cwd(), 'package.json');
+        const raw = fs_extra_1.default.readFileSync(packageJson, 'utf8').replace(/\{\{name\}\}/g, appName);
+        fs_extra_1.default.writeFileSync(packageJson, raw);
         process.chdir(originalDirectory);
     });
 }

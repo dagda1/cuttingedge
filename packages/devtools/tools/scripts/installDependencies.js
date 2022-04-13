@@ -1,15 +1,12 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.installDependencies = void 0;
-const fs_extra_1 = __importDefault(require("fs-extra"));
-const os_1 = __importDefault(require("os"));
 const applicationType_1 = require("../types/applicationType");
 const child_process_1 = require("child_process");
 const logger_1 = require("./logger");
+const dependencies = ['assert-ts'];
 const devDependencies = [
+    '@babel/core',
     '@cutting/devtools',
     '@cutting/eslint-config',
     '@cutting/tsconfig',
@@ -17,25 +14,51 @@ const devDependencies = [
     '@cutting/util',
     '@jest/globals',
     '@types/eslint',
+    '@types/node',
     '@typescript-eslint/eslint-plugin',
+    '@typescript-eslint/parser',
     '@vanilla-extract/babel-plugin',
+    'eslint',
+    'regenerator-runtime',
     'jest',
     'ts-jest',
     'typescript',
+    'webpack',
 ];
 const applicationDevDependencies = {
-    [applicationType_1.ApplicationType.WebApp]: ['@vanilla-extract/css', '@vanilla-extract/sprinkles'],
+    [applicationType_1.ApplicationType.WebApp]: [
+        '@types/react',
+        '@types/react-dom',
+        '@types/react-router-dom',
+        '@vanilla-extract/css',
+        '@vanilla-extract/sprinkles',
+        'babel-loader',
+        'css-loader',
+        'core-js',
+        'file-loader',
+        'html-loader',
+        'ts-loader',
+        'whatwg-fetch',
+    ],
     [applicationType_1.ApplicationType.package]: [],
     [applicationType_1.ApplicationType.cli]: ['nodemon', 'ts-node'],
 };
 const applicationDependencies = {
-    [applicationType_1.ApplicationType.WebApp]: ['react', 'react-dom', '@cutting/util', '@cutting/hooks', '@cutting/component-library'],
+    [applicationType_1.ApplicationType.WebApp]: [
+        'react',
+        'react-dom',
+        'react-router',
+        'react-router-dom',
+        '@cutting/util',
+        '@cutting/hooks',
+        '@cutting/component-library',
+    ],
     [applicationType_1.ApplicationType.package]: [],
     [applicationType_1.ApplicationType.cli]: [],
 };
 function install(dependencies) {
     var _a, _b;
-    const pnpm = (0, child_process_1.exec)(`pnpm install ${dependencies}`);
+    const pnpm = (0, child_process_1.exec)(`pnpm add ${dependencies}`);
     (_a = pnpm.stdout) === null || _a === void 0 ? void 0 : _a.on('data', (data) => logger_1.logger.info(data));
     (_b = pnpm.stderr) === null || _b === void 0 ? void 0 : _b.on('data', (data) => logger_1.logger.error(data));
     pnpm.on('close', (code) => {
@@ -47,20 +70,12 @@ function install(dependencies) {
 }
 function installDependencies(appName, applicationType) {
     logger_1.logger.info(`creating package.json file for ${appName}`);
-    const packageJson = {
-        name: appName,
-        version: '0.1.0',
-        private: true,
-    };
-    fs_extra_1.default.writeFileSync('package.json', JSON.stringify(packageJson, null, 2) + os_1.default.EOL);
     logger_1.logger.info(`installing devDependencies for ${appName}`);
     const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
     install(`${devDependencyList} --save-dev`);
-    const dependencyList = applicationDependencies[applicationType];
-    if (dependencyList.length > 0) {
-        logger_1.logger.info(`installing dependencies for ${appName}`);
-        install(`${dependencyList.join(' ')}`);
-    }
+    const dependencyList = [...dependencies, ...applicationDependencies[applicationType]];
+    logger_1.logger.info(`installing dependencies for ${appName}`);
+    install(`${dependencyList.join(' ')} - P`);
     logger_1.logger.info(`dependencies installed for ${appName}`);
 }
 exports.installDependencies = installDependencies;

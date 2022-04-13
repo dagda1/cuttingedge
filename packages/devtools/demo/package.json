@@ -1,0 +1,26 @@
+{
+  "name": "{{name}}",
+  "version": "0.1.0",
+  "scripts": {
+    "prebuild": "tsc",
+    "build": "NODE_ENV=production devtools esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json",
+    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
+    "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
+    "test": "NODE_ENV=test devtools test"
+  },
+  "type": "module",
+  "module": "dist/esm/index.js",
+  "exports": {
+    "import": "./dist/esm/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
+  },
+  "volta": {
+    "node": "16.13.2"
+  }
+}
