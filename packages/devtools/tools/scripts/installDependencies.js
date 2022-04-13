@@ -73,9 +73,10 @@ function installDependencies(appName, applicationType) {
     logger_1.logger.info(`installing devDependencies for ${appName}`);
     const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
     install(`${devDependencyList} --save-dev`);
-    const dependencyList = [...dependencies, ...applicationDependencies[applicationType]];
+    const dependencyList = [...dependencies, ...applicationDependencies[applicationType]].toString();
     logger_1.logger.info(`installing dependencies for ${appName}`);
-    install(`${dependencyList.join(' ')} - P`);
+    logger_1.logger.debug(dependencyList);
+    install(`${dependencyList} -P`);
     logger_1.logger.info(`dependencies installed for ${appName}`);
 }
 exports.installDependencies = installDependencies;

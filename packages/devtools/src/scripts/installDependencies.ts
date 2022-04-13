@@ -82,11 +82,13 @@ export function installDependencies(appName: string, applicationType: Applicatio
 
   install(`${devDependencyList} --save-dev`);
 
-  const dependencyList = [...dependencies, ...applicationDependencies[applicationType]];
+  const dependencyList = [...dependencies, ...applicationDependencies[applicationType]].join(' ');
 
   logger.info(`installing dependencies for ${appName}`);
 
-  install(`${dependencyList.join(' ')} - P`);
+  logger.debug(dependencyList);
+
+  install(`${dependencyList} -P`);
 
   logger.info(`dependencies installed for ${appName}`);
 }
