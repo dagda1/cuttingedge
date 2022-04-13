@@ -1,5 +1,17 @@
 # @cutting/hooks
 
+## 1.14.0
+
+### Minor Changes
+
+- is not well
+
+### Patch Changes
+
+- Updated dependencies
+  - @cutting/hooks@4.38.0
+  - @cutting/util@4.39.0
+
 ## 1.13.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.32.0
+
+### Minor Changes
+
+- is not well
+
 ## 4.31.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.41.0
+
+### Minor Changes
+
+- is not well
+
 ## 4.40.1
 
 ### Patch Changes

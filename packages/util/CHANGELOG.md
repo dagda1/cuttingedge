@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.39.0
+
+### Minor Changes
+
+- is not well
+
 ## 4.38.1
 
 ### Patch Changes

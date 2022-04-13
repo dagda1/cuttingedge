@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.31.0
+
+### Minor Changes
+
+- is not well
+
 ## 4.30.0
 
 ### Minor Changes
