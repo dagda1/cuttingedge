@@ -259,6 +259,7 @@ importers:
       '@storybook/builder-webpack5': 6.4.21
       '@storybook/manager-webpack5': 6.4.21
       '@storybook/react': 6.4.21
+      '@testing-library/react': 13.0.0
       '@types/babel__core': 7.1.19
       '@types/dedent': 0.7.0
       '@types/mdx-js__react': 1.5.5
@@ -310,6 +311,7 @@ importers:
       '@storybook/builder-webpack5': 6.4.21_ca671ad3ce0a7f7bda49b08e28e02cd9
       '@storybook/manager-webpack5': 6.4.21_ca671ad3ce0a7f7bda49b08e28e02cd9
       '@storybook/react': 6.4.21_4eb21be7fb955d707fa4ee412a025b41
+      '@testing-library/react': 13.0.0_react-dom@18.0.0+react@18.0.0
       '@types/babel__core': 7.1.19
       '@types/dedent': 0.7.0
       '@types/mdx-js__react': 1.5.5
@@ -702,6 +704,7 @@ importers:
       '@cutting/util': workspace:*
       '@jest/globals': 27.5.1
       '@testing-library/jest-dom': 5.16.4
+      '@testing-library/react': 13.0.0
       '@testing-library/react-hooks': 8.0.0
       '@types/react': 18.0.1
       '@types/react-dom': 18.0.0
@@ -733,6 +736,7 @@ importers:
       '@cutting/useful-types': link:../useful-types
       '@jest/globals': 27.5.1
       '@testing-library/jest-dom': 5.16.4
+      '@testing-library/react': 13.0.0_react-dom@18.0.0+react@18.0.0
       '@testing-library/react-hooks': 8.0.0_d1b655986da7bf62d1172c7ae6e89165
       '@types/react': 18.0.1
       '@types/react-dom': 18.0.0
@@ -875,6 +879,7 @@ importers:
       '@cutting/useful-types': workspace:*
       '@cutting/util': workspace:*
       '@testing-library/jest-dom': 5.16.4
+      '@testing-library/react': 13.0.0
       '@testing-library/react-hooks': 8.0.0
       '@types/react': 18.0.1
       '@types/react-dom': 18.0.0
@@ -907,6 +912,7 @@ importers:
       '@cutting/tsconfig': link:../tsconfig
       '@cutting/useful-types': link:../useful-types
       '@testing-library/jest-dom': 5.16.4
+      '@testing-library/react': 13.0.0_react-dom@18.0.0+react@18.0.0
       '@testing-library/react-hooks': 8.0.0_d1b655986da7bf62d1172c7ae6e89165
       '@types/react': 18.0.1
       '@types/react-dom': 18.0.0
