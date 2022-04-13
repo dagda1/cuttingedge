@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.39.2
+
+### Patch Changes
+
+- 85b94792: sequence for installing dependencies
+
 ## 4.39.1
 
 ### Patch Changes
