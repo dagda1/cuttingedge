@@ -1,6 +1,15 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.installDependencies = void 0;
+exports.installDevDependencies = exports.installDependencies = void 0;
 const applicationType_1 = require("../types/applicationType");
 const child_process_1 = require("child_process");
 const logger_1 = require("./logger");
@@ -57,27 +66,37 @@ const applicationDependencies = {
     [applicationType_1.ApplicationType.cli]: [],
 };
 function install(dependencies) {
-    var _a, _b;
-    const pnpm = (0, child_process_1.exec)(`pnpm add ${dependencies}`);
-    (_a = pnpm.stdout) === null || _a === void 0 ? void 0 : _a.on('data', (data) => logger_1.logger.info(data));
-    (_b = pnpm.stderr) === null || _b === void 0 ? void 0 : _b.on('data', (data) => logger_1.logger.error(data));
-    pnpm.on('close', (code) => {
-        logger_1.logger.done(`pnpm exited with code ${code}`);
-        if (code !== 0) {
-            process.exit(1);
-        }
+    return new Promise((resolve) => {
+        var _a, _b;
+        logger_1.logger.debug(`installing in ${process.cwd()}`);
+        const pnpm = (0, child_process_1.exec)(`pnpm add ${dependencies}`);
+        (_a = pnpm.stdout) === null || _a === void 0 ? void 0 : _a.on('data', (data) => logger_1.logger.info(data));
+        (_b = pnpm.stderr) === null || _b === void 0 ? void 0 : _b.on('data', (data) => logger_1.logger.error(data));
+        pnpm.on('close', (code) => {
+            if (code !== 0) {
+                logger_1.logger.error(`pnpm exited with code ${code}`);
+                process.exit(1);
+            }
+            logger_1.logger.done(`pnpm exited with code ${code}`);
+            setTimeout(resolve, 500);
+        });
     });
 }
 function installDependencies(appName, applicationType) {
-    logger_1.logger.info(`creating package.json file for ${appName}`);
-    logger_1.logger.info(`installing devDependencies for ${appName}`);
-    const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
-    install(`${devDependencyList} --save-dev`);
-    const dependencyList = [...dependencies, ...applicationDependencies[applicationType]].toString();
-    logger_1.logger.info(`installing dependencies for ${appName}`);
-    logger_1.logger.debug(dependencyList);
-    install(`${dependencyList} -P`);
-    logger_1.logger.info(`dependencies installed for ${appName}`);
+    return __awaiter(this, void 0, void 0, function* () {
+        const dependencyList = [...dependencies, ...applicationDependencies[applicationType]].join(' ');
+        logger_1.logger.info(`installing dependencies for ${appName}`);
+        yield install(`${dependencyList} -P`);
+    });
 }
 exports.installDependencies = installDependencies;
+function installDevDependencies(appName, applicationType) {
+    return __awaiter(this, void 0, void 0, function* () {
+        logger_1.logger.info(`installing devDependencies for ${appName}`);
+        const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
+        yield install(`${devDependencyList} --save-dev`);
+        logger_1.logger.info(`dependencies installed for ${appName}`);
+    });
+}
+exports.installDevDependencies = installDevDependencies;
 //# sourceMappingURL=installDependencies.js.map

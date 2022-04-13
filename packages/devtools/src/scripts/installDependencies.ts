@@ -59,36 +59,40 @@ const applicationDependencies: Record<ApplicationType, string[]> = {
 };
 
 function install(dependencies: string) {
-  const pnpm = exec(`pnpm add ${dependencies}`);
+  return new Promise<void>((resolve) => {
+    logger.debug(`installing in ${process.cwd()}`);
+    const pnpm = exec(`pnpm add ${dependencies}`);
 
-  pnpm.stdout?.on('data', (data) => logger.info(data));
-  pnpm.stderr?.on('data', (data) => logger.error(data));
+    pnpm.stdout?.on('data', (data) => logger.info(data));
+    pnpm.stderr?.on('data', (data) => logger.error(data));
 
-  pnpm.on('close', (code) => {
-    logger.done(`pnpm exited with code ${code}`);
+    pnpm.on('close', (code) => {
+      if (code !== 0) {
+        logger.error(`pnpm exited with code ${code}`);
+        process.exit(1);
+      }
 
-    if (code !== 0) {
-      process.exit(1);
-    }
+      logger.done(`pnpm exited with code ${code}`);
+
+      setTimeout(resolve, 500);
+    });
   });
 }
 
-export function installDependencies(appName: string, applicationType: ApplicationType): void {
-  logger.info(`creating package.json file for ${appName}`);
-
-  logger.info(`installing devDependencies for ${appName}`);
-
-  const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
-
-  install(`${devDependencyList} --save-dev`);
-
+export async function installDependencies(appName: string, applicationType: ApplicationType): Promise<void> {
   const dependencyList = [...dependencies, ...applicationDependencies[applicationType]].join(' ');
 
   logger.info(`installing dependencies for ${appName}`);
 
-  logger.debug(dependencyList);
+  await install(`${dependencyList} -P`);
+}
 
-  install(`${dependencyList} -P`);
+export async function installDevDependencies(appName: string, applicationType: ApplicationType): Promise<void> {
+  logger.info(`installing devDependencies for ${appName}`);
+
+  const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
+
+  await install(`${devDependencyList} --save-dev`);
 
   logger.info(`dependencies installed for ${appName}`);
 }

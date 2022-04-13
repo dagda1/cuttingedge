@@ -66,7 +66,6 @@ function scaffold() {
         fs_extra_1.default.ensureDirSync(projectName);
         const originalDirectory = process.cwd();
         process.chdir(root);
-        (0, installDependencies_1.installDependencies)(appName, applicationType);
         fs_extra_1.default.copySync(path_1.default.join(__dirname, '../../init/gitignore'), path_1.default.join(process.cwd(), '.gitignore'));
         switch (applicationType) {
             case applicationType_1.ApplicationType.WebApp:
@@ -93,6 +92,8 @@ function scaffold() {
         const packageJson = path_1.default.join(process.cwd(), 'package.json');
         const raw = fs_extra_1.default.readFileSync(packageJson, 'utf8').replace(/\{\{name\}\}/g, appName);
         fs_extra_1.default.writeFileSync(packageJson, raw);
+        yield (0, installDependencies_1.installDependencies)(appName, applicationType);
+        yield (0, installDependencies_1.installDevDependencies)(appName, applicationType);
         process.chdir(originalDirectory);
     });
 }
