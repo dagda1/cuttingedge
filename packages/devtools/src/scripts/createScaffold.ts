@@ -6,7 +6,7 @@ import logger from './logger';
 import { ApplicationType } from '../types/applicationType';
 import validateProjectName from 'validate-npm-package-name';
 import { assert } from 'console';
-import { installDependencies } from './installDependencies';
+import { installDependencies, installDevDependencies } from './installDependencies';
 
 const appSource: Record<ApplicationType, string> = {
   [ApplicationType.WebApp]: '../../demo',
@@ -68,8 +68,6 @@ export async function scaffold(): Promise<void> {
 
   process.chdir(root);
 
-  installDependencies(appName, applicationType);
-
   fs.copySync(path.join(__dirname, '../../init/gitignore'), path.join(process.cwd(), '.gitignore'));
 
   switch (applicationType) {
@@ -102,6 +100,10 @@ export async function scaffold(): Promise<void> {
   const raw = fs.readFileSync(packageJson, 'utf8').replace(/\{\{name\}\}/g, appName);
 
   fs.writeFileSync(packageJson, raw);
+
+  await installDependencies(appName, applicationType);
+
+  await installDevDependencies(appName, applicationType);
 
   process.chdir(originalDirectory);
 }
