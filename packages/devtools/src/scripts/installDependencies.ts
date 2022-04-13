@@ -1,10 +1,11 @@
-import fs from 'fs-extra';
-import os from 'os';
 import { ApplicationType } from '../types/applicationType';
 import { exec } from 'child_process';
 import { logger } from './logger';
 
+const dependencies = ['assert-ts'];
+
 const devDependencies = [
+  '@babel/core',
   '@cutting/devtools',
   '@cutting/eslint-config',
   '@cutting/tsconfig',
@@ -12,27 +13,53 @@ const devDependencies = [
   '@cutting/util',
   '@jest/globals',
   '@types/eslint',
+  '@types/node',
   '@typescript-eslint/eslint-plugin',
+  '@typescript-eslint/parser',
   '@vanilla-extract/babel-plugin',
+  'eslint',
+  'regenerator-runtime',
   'jest',
   'ts-jest',
   'typescript',
+  'webpack',
 ];
 
 const applicationDevDependencies: Record<ApplicationType, string[]> = {
-  [ApplicationType.WebApp]: ['@vanilla-extract/css', '@vanilla-extract/sprinkles'],
+  [ApplicationType.WebApp]: [
+    '@types/react',
+    '@types/react-dom',
+    '@types/react-router-dom',
+    '@vanilla-extract/css',
+    '@vanilla-extract/sprinkles',
+    'babel-loader',
+    'css-loader',
+    'core-js',
+    'file-loader',
+    'html-loader',
+    'ts-loader',
+    'whatwg-fetch',
+  ],
   [ApplicationType.package]: [],
   [ApplicationType.cli]: ['nodemon', 'ts-node'],
 };
 
 const applicationDependencies: Record<ApplicationType, string[]> = {
-  [ApplicationType.WebApp]: ['react', 'react-dom', '@cutting/util', '@cutting/hooks', '@cutting/component-library'],
+  [ApplicationType.WebApp]: [
+    'react',
+    'react-dom',
+    'react-router',
+    'react-router-dom',
+    '@cutting/util',
+    '@cutting/hooks',
+    '@cutting/component-library',
+  ],
   [ApplicationType.package]: [],
   [ApplicationType.cli]: [],
 };
 
 function install(dependencies: string) {
-  const pnpm = exec(`pnpm install ${dependencies}`);
+  const pnpm = exec(`pnpm add ${dependencies}`);
 
   pnpm.stdout?.on('data', (data) => logger.info(data));
   pnpm.stderr?.on('data', (data) => logger.error(data));
@@ -49,27 +76,17 @@ function install(dependencies: string) {
 export function installDependencies(appName: string, applicationType: ApplicationType): void {
   logger.info(`creating package.json file for ${appName}`);
 
-  const packageJson = {
-    name: appName,
-    version: '0.1.0',
-    private: true,
-  };
-
-  fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2) + os.EOL);
-
   logger.info(`installing devDependencies for ${appName}`);
 
   const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
 
   install(`${devDependencyList} --save-dev`);
 
-  const dependencyList = applicationDependencies[applicationType];
+  const dependencyList = [...dependencies, ...applicationDependencies[applicationType]];
 
-  if (dependencyList.length > 0) {
-    logger.info(`installing dependencies for ${appName}`);
+  logger.info(`installing dependencies for ${appName}`);
 
-    install(`${dependencyList.join(' ')}`);
-  }
+  install(`${dependencyList.join(' ')} - P`);
 
   logger.info(`dependencies installed for ${appName}`);
 }

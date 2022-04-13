@@ -1,0 +1,40 @@
+{
+  "name": "{{name}}",
+  "version": "0.1.0",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/index.js",
+  "main": "dist/cjs/index.js",
+  "sideEffects": [
+    "*.css"
+  ],
+  "types": "dist/esm/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "prebuild": "tsc",
+    "build": "NODE_ENV=production devtools esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json",
+    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
+    "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
+    "test": "NODE_ENV=test devtools test"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "browser": "./dist/umd/index.js"
+    },
+    "./styles.css": {
+      "import": "./dist/esm/index.css",
+      "require": "./dist/esm/index.css",
+      "browser": "./dist/esm/index.css"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
+  }
+}
