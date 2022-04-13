@@ -10,7 +10,6 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "tsc --build",
-    "prepack": "pnpm build",
     "build": "devtools ts-build",
     "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test",

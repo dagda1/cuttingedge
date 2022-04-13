@@ -21,8 +21,7 @@
     "test:unit": "NODE_ENV=test devtools test a",
     "test": "CI=true pnpm test:unit && pnpm test:types",
     "build": "NODE_ENV=production devtools rollup",
-    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "prepack": "pnpm build"
+    "lint": "eslint ./src/**/*.{ts,tsx} --fix"
   },
   "dependencies": {
     "@cutting/util": "workspace:*",

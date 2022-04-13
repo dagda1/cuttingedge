@@ -47,8 +47,7 @@
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
     "test": "NODE_ENV=test devtools test",
-    "test:ci": "CI=true pnpm test",
-    "prepack": "pnpm build"
+    "test:ci": "CI=true pnpm test"
   },
   "volta": {
     "extends": "../../package.json"

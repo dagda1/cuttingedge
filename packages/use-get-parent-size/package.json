@@ -20,8 +20,7 @@
     "test": "NODE_ENV=test devtools test",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "lint:fix": "pnpm lint --fix",
-    "build": "NODE_ENV=production devtools rollup",
-    "prepack": "pnpm build"
+    "build": "NODE_ENV=production devtools rollup"
   },
   "dependencies": {
     "@cutting/hooks": "workspace:*",
