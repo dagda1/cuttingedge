@@ -34,28 +34,19 @@ import postcssImport from 'postcss-import';
 import { emptyBuildDir } from './empty-build-dir';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { createCommand } from 'commander';
-import { visualizer } from 'rollup-plugin-visualizer';
-import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
+import analyzer from 'rollup-plugin-analyzer';
 
 export interface BundlerOptions {
   packageName: string;
   entryFile: string;
   moduleFormat: ModuleFormat;
   env: 'development' | 'production';
-  vizualize: boolean;
   analyze: boolean;
 }
 
 logger.debug(`using ${path.basename(paths.tsConfigProduction)}`);
 
-async function generateBundledModule({
-  packageName,
-  entryFile,
-  moduleFormat,
-  env,
-  vizualize,
-  analyze,
-}: BundlerOptions) {
+async function generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze }: BundlerOptions) {
   assert(fs.existsSync(entryFile), `Input file ${entryFile} does not exist`);
 
   const minify = env === 'production';
@@ -81,7 +72,6 @@ async function generateBundledModule({
       propertyReadSideEffects: false,
     },
     plugins: [
-      analyze && sizeSnapshot(),
       eslint({
         fix: false,
         throwOnError: true,
@@ -158,14 +148,7 @@ async function generateBundledModule({
           toplevel: moduleFormat === 'cjs',
         }),
       sourceMaps(),
-      vizualize &&
-        moduleFormat === 'esm' &&
-        visualizer({
-          open: true,
-          gzipSize: true,
-          sourcemap: true,
-          template: 'sunburst',
-        }),
+      analyze && analyzer({ summaryOnly: true }),
     ].filter(Boolean),
   });
 
@@ -217,11 +200,7 @@ const getInputFile = (packageName: string, inputFileOverride?: string): string =
   return inputFile;
 };
 
-async function build({
-  vizualize,
-  analyze,
-  inputFile,
-}: Pick<BundlerOptions, 'vizualize' | 'analyze'> & { inputFile?: string }) {
+async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & { inputFile?: string }) {
   emptyBuildDir();
 
   const pkgJsonPath = path.join(process.cwd(), 'package.json');
@@ -242,7 +221,7 @@ async function build({
   logger.info(`Generating ${packageName} bundle.`);
 
   for (const { moduleFormat, env } of configs) {
-    await generateBundledModule({ packageName, entryFile, moduleFormat, env, vizualize, analyze });
+    await generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze });
   }
 
   await writeCjsEntryFile(packageName);
@@ -285,13 +264,12 @@ const program = createCommand('rollup');
 
 program
   .description('execute a rollup build')
-  .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)
   .option('-a, --analyze', 'analyze the bundle', false)
   .option('-i, --input-file <path>', 'the entry file')
   .parse(process.argv)
-  .action(async function ({ vizualize, inputFile, analyze }) {
+  .action(async function ({ inputFile, analyze }) {
     try {
-      await build({ vizualize, inputFile, analyze });
+      await build({ inputFile, analyze });
 
       logger.done('finished building');
     } catch (err) {
