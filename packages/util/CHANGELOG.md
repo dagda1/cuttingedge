@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.43.0
+
+### Minor Changes
+
+- 244b74e5: zzz
+
 ## 4.42.0
 
 ### Minor Changes
