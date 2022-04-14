@@ -18,7 +18,7 @@
     "test": "CI=true turbo run test",
     "watch": "pnpm build:tsc && pnpm tsc -b ./tsconfig.packages.json --watch",
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile",
-    "ci:publish": "pnpm build && changeset publish"
+    "ci:publish": "pnpm build && pnpm publish -r && changeset publish"
   },
   "dependencies": {
     "@babel/runtime": "7.17.9",
@@ -53,7 +53,7 @@
   "packageManager": "pnpm@6.32.4",
   "volta": {
     "node": "16.14.2",
-    "pnpm": "6.32.6"
+    "pnpm": "6.32.7"
   },
   "husky": {
     "hooks": {
