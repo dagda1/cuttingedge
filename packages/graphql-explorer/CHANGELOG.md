@@ -1,5 +1,12 @@
 # @cutting/graphql-explorer
 
+## 4.32.1
+
+### Patch Changes
+
+- @cutting/component-library@5.13.1
+- @cutting/svg@4.40.1
+
 ## 4.32.0
 
 ### Minor Changes
