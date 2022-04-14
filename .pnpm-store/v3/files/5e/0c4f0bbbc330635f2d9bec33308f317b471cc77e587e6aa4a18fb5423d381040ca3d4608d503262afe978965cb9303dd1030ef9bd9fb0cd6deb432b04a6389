@@ -1,4 +1,0 @@
-import { Task, Operation } from '@effection/core';
-export * from './error';
-export declare function main<T>(operation: Operation<T>): Task<T>;
-//# sourceMappingURL=browser.d.ts.map

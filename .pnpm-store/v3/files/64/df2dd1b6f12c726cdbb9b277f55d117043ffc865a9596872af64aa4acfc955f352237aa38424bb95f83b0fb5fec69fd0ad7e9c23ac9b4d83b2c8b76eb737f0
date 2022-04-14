@@ -1,7 +1,0 @@
-export declare class HaltError extends Error {
-    get __isEffectionHaltError(): true;
-    constructor();
-}
-export declare function isHaltError(value: any): value is HaltError;
-export declare function swallowHalt(error: Error): undefined;
-//# sourceMappingURL=halt-error.d.ts.map

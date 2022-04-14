@@ -1,6 +1,0 @@
-export interface Buffer<T> extends Iterable<T> {
-    push(value: T): void;
-}
-export declare function createBuffer<T>(size?: number): Buffer<T>;
-export declare function createRingBuffer<T>(size: number): Buffer<T>;
-//# sourceMappingURL=buffer.d.ts.map

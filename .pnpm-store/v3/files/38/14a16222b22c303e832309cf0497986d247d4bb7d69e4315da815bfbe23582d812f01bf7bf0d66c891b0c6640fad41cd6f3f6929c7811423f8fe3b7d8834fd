@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":";AAAA;;GAEG;AAGH,iCAA2C;AAC3C,oBAAkB;AAElB,iBAAS,YAAK,CAAC","sourcesContent":["/**\n * Created by user on 2017/12/10/010.\n */\n\n\nimport { upath, fn, IUPath } from './core';\nimport './lib/fs';\n\nexport = upath;\n"]}

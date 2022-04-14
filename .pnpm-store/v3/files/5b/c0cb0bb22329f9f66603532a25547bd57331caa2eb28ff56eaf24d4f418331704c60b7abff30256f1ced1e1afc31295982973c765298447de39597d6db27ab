@@ -1,6 +1,0 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createStream = void 0;
-var stream_1 = require("./stream");
-Object.defineProperty(exports, "createStream", { enumerable: true, get: function () { return stream_1.createStream; } });
-//# sourceMappingURL=index.js.map

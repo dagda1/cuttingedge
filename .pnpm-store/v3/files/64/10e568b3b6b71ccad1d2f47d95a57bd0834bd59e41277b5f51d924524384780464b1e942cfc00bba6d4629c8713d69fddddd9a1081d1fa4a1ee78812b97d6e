@@ -1,1 +1,0 @@
-{"version":3,"file":"abort-signal.d.ts","sourceRoot":"","sources":["../src/abort-signal.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,QAAQ,EAAE,MAAM,aAAa,CAAC;AACvC,OAAO,EAAmB,WAAW,EAAE,MAAM,kBAAkB,CAAC;AAEhE;;;;;;;;;;;;;;;;;;;;;;;;;GAyBG;AACH,iBAAS,iBAAiB,IAAI,QAAQ,CAAC,WAAW,CAAC,CAmBlD;AAED,OAAO,EAAE,iBAAiB,EAAE,WAAW,EAAE,CAAC"}

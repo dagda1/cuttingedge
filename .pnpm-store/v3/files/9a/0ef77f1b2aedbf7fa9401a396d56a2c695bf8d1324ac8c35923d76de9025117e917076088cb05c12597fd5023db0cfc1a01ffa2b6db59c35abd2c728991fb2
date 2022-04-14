@@ -1,2 +1,0 @@
-export { createStream } from './stream';
-//# sourceMappingURL=index.js.map

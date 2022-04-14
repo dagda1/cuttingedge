@@ -1,5 +1,0 @@
-import { Controller } from './controller';
-import { Resource } from '../operation';
-import { Task } from '../task';
-export declare function createResourceController<TOut>(task: Task<TOut>, resource: Resource<TOut>): Controller<TOut>;
-//# sourceMappingURL=resource-controller.d.ts.map

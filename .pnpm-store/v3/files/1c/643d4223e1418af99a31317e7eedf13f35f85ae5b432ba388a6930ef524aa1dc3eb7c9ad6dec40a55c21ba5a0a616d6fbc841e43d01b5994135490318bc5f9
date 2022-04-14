@@ -1,8 +1,0 @@
-import { OperationObject, Resource } from "./operation";
-import type { FutureLike } from "./future";
-export declare function isPromise(value: any): value is PromiseLike<unknown>;
-export declare function isGenerator(value: any): value is Iterator<unknown>;
-export declare function isFuture<T>(value: any): value is FutureLike<T>;
-export declare function isResource<TOut>(value: any): value is Resource<TOut>;
-export declare function isObjectOperation<TOut>(x: unknown): x is OperationObject<TOut>;
-//# sourceMappingURL=predicates.d.ts.map

@@ -1,1 +1,0 @@
-{"version":3,"file":"operation-iterator.d.ts","sourceRoot":"","sources":["../src/operation-iterator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,iBAAiB,CAAC;AAE5C;;GAEG;AACH,MAAM,WAAW,iBAAiB,CAAC,CAAC,EAAE,OAAO,GAAG,SAAS;IACvD,IAAI,IAAI,SAAS,CAAC,cAAc,CAAC,CAAC,EAAE,OAAO,CAAC,CAAC,CAAC;CAC/C"}

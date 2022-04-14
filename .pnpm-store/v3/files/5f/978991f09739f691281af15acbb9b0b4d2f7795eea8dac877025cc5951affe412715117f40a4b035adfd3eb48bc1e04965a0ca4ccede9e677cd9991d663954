@@ -1,9 +1,0 @@
-import type { Task, TaskInfo } from './task';
-/**
- * @hidden
- */
-export interface HasEffectionTrace {
-    effectionTrace: TaskInfo[];
-}
-export declare function addTrace(error: Error & Partial<HasEffectionTrace>, task: Task): Error & HasEffectionTrace;
-//# sourceMappingURL=error.d.ts.map

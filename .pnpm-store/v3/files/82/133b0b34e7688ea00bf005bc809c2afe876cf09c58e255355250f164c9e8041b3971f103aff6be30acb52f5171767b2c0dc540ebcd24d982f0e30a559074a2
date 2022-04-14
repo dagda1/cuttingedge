@@ -1,4 +1,0 @@
-import { Controller } from './controller';
-import { Task } from '../task';
-export declare function createPromiseController<TOut>(task: Task<TOut>, promise: PromiseLike<TOut>): Controller<TOut>;
-//# sourceMappingURL=promise-controller.d.ts.map

@@ -1,5 +1,0 @@
-import { Task } from '../task';
-import type { Controller } from './controller';
-import { Operation } from '../operation';
-export declare function createDelegateController<TOut>(task: Task<TOut>, operation: Operation<TOut>, createController: () => Controller<TOut>): Controller<TOut>;
-//# sourceMappingURL=delegate-controller.d.ts.map

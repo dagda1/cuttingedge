@@ -1,5 +1,0 @@
-import { Controller } from './controller';
-import { Task } from '../task';
-import { FutureLike } from '../future';
-export declare function createFutureController<TOut>(task: Task<TOut>, future: FutureLike<TOut>): Controller<TOut>;
-//# sourceMappingURL=future-controller.d.ts.map
