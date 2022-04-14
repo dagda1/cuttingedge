@@ -2,9 +2,8 @@ import type { Dimensions, UseParentSizeOptions, UseParentSizeResult } from './ty
 import type { RefObject } from 'react';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useIsomorphicLayoutEffect } from 'react-use';
 import { useDebouncedCallback } from 'use-debounce';
-import { useIsMounted } from '@cutting/hooks';
+import { useIsMounted, useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { identity, isNil } from '@cutting/util';
 import assert from 'assert-ts';
 
