@@ -1,0 +1,68 @@
+{
+  "name": "@yarn-tool/resolve-package",
+  "version": "1.0.46",
+  "description": "resolve package root and package.json paths , work on node 17 too",
+  "keywords": [
+    "resolve",
+    "package",
+    "json",
+    "root",
+    "npm",
+    "entry",
+    "find",
+    "up",
+    "find-up",
+    "findup",
+    "look-up",
+    "look",
+    "file",
+    "search",
+    "match",
+    "parent",
+    "parents",
+    "folder",
+    "directory",
+    "walk",
+    "walking",
+    "path"
+  ],
+  "homepage": "https://github.com/bluelovers/ws-yarn-workspaces/tree/master/packages/@yarn-tool/resolve-package#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-yarn-workspaces/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-yarn-workspaces.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "npx nyc yarn run test",
+    "lint": "npx eslint **/*.ts",
+    "test": "echo \"Error: no test specified\"",
+    "test:mocha": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "npm:publish": "npm publish",
+    "preversion": "yarn run test",
+    "prepublish:lockfile": "npx sync-lockfile .",
+    "prepublishOnly": "echo prepublishOnly",
+    "postpublish_": "git commit -m \"chore(release): publish\" .",
+    "ncu": "npx yarn-tool ncu -u",
+    "sort-package-json": "npx yarn-tool sort",
+    "tsc:default": "tsc -p tsconfig.json",
+    "tsc:esm": "tsc -p tsconfig.esm.json"
+  },
+  "dependencies": {
+    "pkg-dir": "< 6 >= 5",
+    "tslib": "^2.3.1",
+    "upath2": "^3.1.12"
+  },
+  "devDependencies": {
+    "@ts-type/package-dts": "^1.0.60",
+    "@types/node": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "7b783c898c714abcf51de68292d5528732ca8ec3"
+}

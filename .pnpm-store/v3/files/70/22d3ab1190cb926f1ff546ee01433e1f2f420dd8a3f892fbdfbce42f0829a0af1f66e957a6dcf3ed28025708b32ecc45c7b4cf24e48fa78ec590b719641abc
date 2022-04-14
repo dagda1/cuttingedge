@@ -1,0 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createQueue = void 0;
+var queue_1 = require("./queue");
+Object.defineProperty(exports, "createQueue", { enumerable: true, get: function () { return queue_1.createQueue; } });
+//# sourceMappingURL=index.js.map

@@ -1,0 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.matcher = void 0;
+function matcher(reference) {
+    return (value) => {
+        if (typeof (value) === 'object' && typeof (reference) === 'object') {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            let castedValue = value;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            let castedReference = reference;
+            return Object.entries(castedReference).every(([key, ref]) => matcher(ref)(castedValue[key]));
+        }
+        else {
+            return value === reference;
+        }
+    };
+}
+exports.matcher = matcher;
+//# sourceMappingURL=match.js.map

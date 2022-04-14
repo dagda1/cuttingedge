@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.40.0
+
+### Minor Changes
+
+- d542ad8f: version
+
 ## 4.39.0
 
 ### Minor Changes

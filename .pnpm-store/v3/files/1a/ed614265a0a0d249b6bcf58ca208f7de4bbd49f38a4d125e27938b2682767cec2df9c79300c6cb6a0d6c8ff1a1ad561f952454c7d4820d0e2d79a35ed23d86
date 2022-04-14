@@ -1,0 +1,3 @@
+import { createStyleObject, precomputeValues } from '@capsizecss/core';
+export declare type CreateStyleObjectParameters = Parameters<typeof createStyleObject>[0];
+export declare type ComputedValues = ReturnType<typeof precomputeValues>;

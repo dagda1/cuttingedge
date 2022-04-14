@@ -1,0 +1,3 @@
+import { Controller } from './controller';
+export declare function createSuspendController<TOut>(): Controller<TOut>;
+//# sourceMappingURL=suspend-controller.d.ts.map

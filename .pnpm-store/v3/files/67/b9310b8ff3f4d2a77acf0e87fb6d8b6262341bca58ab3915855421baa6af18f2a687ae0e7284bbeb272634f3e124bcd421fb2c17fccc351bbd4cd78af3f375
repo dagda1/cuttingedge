@@ -1,0 +1,39 @@
+{
+  "name": "mj-context-menu",
+  "version": "0.2.2",
+  "description": "A generic context menu",
+  "main": "dist/context_menu.js",
+  "types": "dist/context_menu.d.ts",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "prepare": "./node_modules/.bin/tsc"
+  },
+  "maintainers": [
+    "Volker Sorge <v.sorge@mathjax.org>"
+  ],
+  "bugs": {
+    "email": "v.sorge@mathjax.org",
+    "url": "https://github.com/zorkow/context-menu"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zorkow/context-menu"
+  },
+  "keywords": [
+    "context-menu"
+  ],
+  "homepage": "https://github.com/zorkow/context-menu",
+  "dependencies": {},
+  "devDependencies": {
+    "tslint": "^5.*",
+    "tslint-jsdoc-rules": "*",
+    "tslint-unix-formatter": "*",
+    "typescript": "^3.*"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ]
+}

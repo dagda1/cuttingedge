@@ -1,0 +1,12 @@
+import { Stream } from './stream';
+/**
+ * @hidden
+ */
+export interface Writable<T> {
+    send(message: T): void;
+}
+/**
+ * @hidden
+ */
+export declare type WritableStream<TReceive, TSend, TReturn = undefined> = Stream<TReceive, TReturn> & Writable<TSend>;
+//# sourceMappingURL=writable-stream.d.ts.map

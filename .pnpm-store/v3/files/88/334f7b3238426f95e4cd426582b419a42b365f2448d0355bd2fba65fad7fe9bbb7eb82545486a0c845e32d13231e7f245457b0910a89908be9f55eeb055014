@@ -1,0 +1,97 @@
+import { Subscription } from './index';
+declare type Close<T> = (...args: T extends undefined ? [] : [T]) => void;
+/**
+ * A queue which can act as a subscription. It can be sent messages to and
+ * which can be closed.
+ *
+ * @typeParam T the type of the items in the queue
+ * @typeParam TClose the type of the value that the queue is closed with
+ */
+export interface Queue<T, TClose = undefined> extends Subscription<T, TClose> {
+    /**
+     * Send a value to the queue.
+     */
+    send(value: T): void;
+    /**
+     * Close the queue
+     *
+     * ### Example
+     *
+     * Closing queue with no close value:
+     *
+     * ```typescript
+     * import { main, createQueue } from 'effection';
+     *
+     * main(function*() {
+     *   let queue = createQueue<number>();
+     *   queue.close();
+     *   yield queue.join();
+     * });
+     * ```
+     *
+     * Closing queue with close value:
+     *
+     * ```typescript
+     * import { main, createQueue } from 'effection';
+     *
+     * main(function*() {
+     *   let queue = createQueue<number, string>();
+     *   queue.close("I'm done");
+     *   let value = yield queue.join();
+     *   console.log(value) // => "I'm done"
+     * });
+     * ```
+     */
+    close: Close<TClose>;
+    /**
+     * Like {@link close}, but with no special case for closing a queue without a
+     * value, this makes `closeWith` easier to use from generic code.
+     */
+    closeWith(value: TClose): void;
+    /**
+     * Return a subscription for this queue. Useful when using destructuring
+     * assignment.
+     *
+     * ### Example
+     *
+     * ```typescript
+     * import { main, createQueue } from 'effection';
+     *
+     * main(function*() {
+     *   let { send, subscription } = createQueue<number>();
+     *   send(1);
+     *   send(2);
+     *   send(3);
+     *
+     *   yield subscription.forEach((value) => console.log("got number", value));
+     * });
+     * ```
+     */
+    subscription: Subscription<T, TClose>;
+}
+/**
+ * Creates a new queue. Queues are unlimited in size and sending a message to a
+ * queue is always synchronous.
+ *
+ * ### Example
+ *
+ * ```typescript
+ * import { main, createQueue } from 'effection';
+ *
+ * main(function*() {
+ *   let queue = createQueue<number>();
+ *   queue.send(1);
+ *   queue.send(2);
+ *   queue.send(3);
+ *
+ *   yield queue.forEach((value) => console.log("got number", value));
+ * });
+ * ```
+ *
+ * @param name the name of the returned subscription, useful for debugging
+ * @typeParam T the type of the items in the queue
+ * @typeParam TClose the type of the value that the queue is closed with
+ */
+export declare function createQueue<T, TClose = undefined>(name?: string): Queue<T, TClose>;
+export {};
+//# sourceMappingURL=queue.d.ts.map

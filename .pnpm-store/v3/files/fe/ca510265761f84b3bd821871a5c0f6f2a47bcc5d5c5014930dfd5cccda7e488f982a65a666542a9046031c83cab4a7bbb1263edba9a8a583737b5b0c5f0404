@@ -1,0 +1,25 @@
+import { Task } from './task';
+/**
+ * The `Effection` constant provides access to some global properties in
+ * Effection. Most importantly, `Effection` has a {@link root} task, which all
+ * tasks spawned by {@link run} or `main` are spawned under. You normally do
+ * not need to work with this task directly, but it is useful for debugging and
+ * testing.
+ */
+export declare const Effection: {
+    /**
+     * All tasks spawned by {@link run} or `main` are spawned as children of this
+     * task. You normally do not need to work with this task directly, but it is
+     * useful for debugging and testing.
+     */
+    root: Task<unknown>;
+    /**
+     * Completely halt all running Effection tasks and create a new root task.
+     */
+    reset(): Promise<void>;
+    /**
+     * Completely halt all running Effection tasks.
+     */
+    halt(): Promise<void>;
+};
+//# sourceMappingURL=effection.d.ts.map

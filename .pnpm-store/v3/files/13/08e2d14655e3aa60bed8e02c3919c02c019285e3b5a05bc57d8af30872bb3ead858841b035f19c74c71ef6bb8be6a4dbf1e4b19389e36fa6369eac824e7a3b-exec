@@ -1,0 +1,27 @@
+{
+    "name": "@types/write-file-webpack-plugin",
+    "version": "4.5.2",
+    "description": "TypeScript definitions for write-file-webpack-plugin",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/write-file-webpack-plugin",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Nathan Hardy",
+            "url": "https://github.com/nhardy",
+            "githubUsername": "nhardy"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/write-file-webpack-plugin"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/webpack": "^4"
+    },
+    "typesPublisherContentHash": "0cd9e129937545e091a3c53901e91c2abefdbf8897f5236fb5b7b6a063b92e70",
+    "typeScriptVersion": "3.7"
+}

@@ -1,0 +1,52 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.all = void 0;
+const labels_1 = require("../labels");
+const spawn_1 = require("./spawn");
+/**
+ * Block and wait for all of the given operations to complete. Returns an array of
+ * values that the given operations evaluated to. This has the same purpose as
+ * [Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all).
+ *
+ * If any of the operations become errored, then `all` will also become errored.
+ *
+ * ### Example
+ *
+ * ```typescript
+ * import { main, all, fetch } from 'effection';
+ *
+ * main(function*() {
+ *  let [google, bing] = yield all([fetch('http://google.com').text(), fetch('http://bing.com').text()]);
+ *  // ...
+ * });
+ * ```
+ *
+ * @typeParam T the type of the array of options, this can a heterogenous array
+ * @param operations a list of operations to wait for
+ * @returns the list of values that the operations evaluate to, in the order they were given
+ */
+function all(operations) {
+    return labels_1.withLabels(function* (task) {
+        let tasks = [];
+        let results = [];
+        try {
+            yield function* () {
+                for (let operation of operations) {
+                    tasks.push(yield spawn_1.spawn(operation, { scope: task.options.scope }));
+                }
+                for (let task of tasks) {
+                    results.push(yield task);
+                }
+            };
+        }
+        catch (err) {
+            for (let task of tasks) {
+                task.halt();
+            }
+            throw (err);
+        }
+        return results;
+    }, { name: 'all', count: operations.length });
+}
+exports.all = all;
+//# sourceMappingURL=all.js.map

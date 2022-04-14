@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("marked"),r=require("@rollup/pluginutils");function t(e){return e&&e.__esModule?e:{default:e}}var u=t(e);const n=/\.md$/;exports.md=(e={})=>{const t=r.createFilter(e.include||["**/*.md"],e.exclude);return e.marked&&u.default.setOptions(e.marked),{name:"md",transform(e,r){if(!n.test(r))return null;if(!t(r))return null;const l=u.default(e);return{code:`export default ${JSON.stringify(l.toString())};`,map:{mappings:""}}}}};
+//# sourceMappingURL=rollup-plugin-md.cjs.production.min.js.map

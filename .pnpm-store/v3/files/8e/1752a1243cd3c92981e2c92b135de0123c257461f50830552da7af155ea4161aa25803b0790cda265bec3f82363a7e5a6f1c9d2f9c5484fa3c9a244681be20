@@ -1,0 +1,73 @@
+{
+  "name": "happypack",
+  "main": "./lib/HappyPlugin.js",
+  "description": "webpack speed booster, makes you happy!",
+  "version": "5.0.1",
+  "scripts": {
+    "lint": "eslint lib",
+    "test": "npm run test:webpack1",
+    "test:webpack1": "NODE_PATH='./packages:./upstream/webpack1/node_modules' mocha --opts .mocha",
+    "test:webpack2": "NODE_PATH='./packages:./upstream/webpack2/node_modules' mocha --opts .mocha",
+    "test:webpack3": "NODE_PATH='./packages:./upstream/webpack3/node_modules' mocha --opts .mocha",
+    "test:webpack4": "NODE_PATH='./packages:./upstream/webpack4/node_modules' mocha --opts .mocha",
+    "test:coverage": "nyc --silent npm run test:webpack1 && nyc --silent --no-clean npm run test:webpack2 && nyc --silent --no-clean npm run test:webpack3 && nyc --no-clean npm run test:webpack4",
+    "test:examples": "./examples/build-all.sh",
+    "coverage": "nyc report",
+    "coverage:html": "nyc report --reporter html",
+    "coverage:ci": "nyc report --reporter=text-lcov > tmp/coverage.lcov && codecov --disable search -f tmp/coverage.lcov",
+    "prepublishOnly": "npm run lint && npm run test:webpack1 && npm run test:webpack2 && npm run test:webpack3 && npm run test:webpack4 && npm run test:examples"
+  },
+  "engines": {
+    "node": ">=6.11.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/amireh/happypack.git"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "fast",
+    "speed",
+    "performance",
+    "compilation",
+    "transformer",
+    "loader",
+    "happiness",
+    "happy"
+  ],
+  "author": "Ahmad Amireh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amireh/happypack/issues"
+  },
+  "homepage": "https://github.com/amireh/happypack#readme",
+  "devDependencies": {
+    "codecov": "1.0.1",
+    "eslint": "4.18.2",
+    "mocha": "3.0.1",
+    "multiline-slash": "2.0.0",
+    "nyc": "11.6.0"
+  },
+  "dependencies": {
+    "async": "1.5.0",
+    "json-stringify-safe": "5.0.1",
+    "loader-utils": "1.1.0",
+    "serialize-error": "^2.1.0"
+  },
+  "nyc": {
+    "include": [
+      "lib/*.js"
+    ],
+    "exclude": [
+      "lib/**/*.test.js"
+    ]
+  },
+  "files": [
+    "lib",
+    "CHANGELOG.md",
+    "LICENSE",
+    "loader.js",
+    "README.md"
+  ]
+}

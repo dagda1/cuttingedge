@@ -1,0 +1,64 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.extractLabels = exports.setLabels = exports.withLabels = void 0;
+const predicates_1 = require("./predicates");
+const symbol_1 = require("./symbol");
+/**
+ * Apply the given labels to an operation. When the operation is run as a task,
+ * using {@link run} or {@link spawn}, the labels get applied to the task as
+ * well.
+ *
+ * If the task operation already has labels, the existing labels are not
+ * removed. See {@link setLabels} if you want to replace the existing labels
+ * entirely.
+ */
+function withLabels(operation, labels) {
+    if (predicates_1.isObjectOperation(operation)) {
+        let original = operation[symbol_1.Symbol.operation];
+        return Object.assign(operation, {
+            ...labels,
+            [symbol_1.Symbol.operation]: original
+        });
+    }
+    else if (operation) {
+        operation.labels = { ...(operation.labels || {}), ...labels };
+    }
+    return operation;
+}
+exports.withLabels = withLabels;
+/**
+ * Like {@link withLabels}, but replaces the existing labels entirely.
+ */
+function setLabels(operation, labels) {
+    if (predicates_1.isObjectOperation(operation)) {
+        let original = operation[symbol_1.Symbol.operation];
+        operation = {
+            ...labels,
+            [symbol_1.Symbol.operation]: original
+        };
+    }
+    else if (operation) {
+        operation.labels = labels;
+    }
+    return operation;
+}
+exports.setLabels = setLabels;
+function extractLabels(operation) {
+    if (!predicates_1.isObjectOperation(operation)) {
+        return {
+            ...((operation === null || operation === void 0 ? void 0 : operation.name) ? { name: operation === null || operation === void 0 ? void 0 : operation.name } : null),
+            ...operation === null || operation === void 0 ? void 0 : operation.labels
+        };
+    }
+    let labels = {};
+    for (let key in operation) {
+        let value = operation[key];
+        if (typeof value == 'string'
+            || typeof value == 'number'
+            || typeof value == 'boolean')
+            labels[key] = value;
+    }
+    return labels;
+}
+exports.extractLabels = extractLabels;
+//# sourceMappingURL=labels.js.map

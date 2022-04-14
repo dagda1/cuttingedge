@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createPromiseController = void 0;
+const future_1 = require("../future");
+function createPromiseController(task, promise) {
+    let { produce, future } = future_1.createFuture();
+    function start() {
+        Promise.race([promise, future]).then((value) => {
+            produce({ state: 'completed', value });
+        }, (error) => {
+            produce({ state: 'errored', error });
+        });
+    }
+    function halt() {
+        produce({ state: 'halted' });
+    }
+    return { start, halt, future, type: 'promise', operation: promise };
+}
+exports.createPromiseController = createPromiseController;
+//# sourceMappingURL=promise-controller.js.map

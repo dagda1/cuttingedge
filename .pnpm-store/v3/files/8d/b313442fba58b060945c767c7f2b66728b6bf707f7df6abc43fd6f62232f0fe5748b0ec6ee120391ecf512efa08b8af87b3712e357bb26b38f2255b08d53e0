@@ -1,0 +1,42 @@
+{
+  "name": "victory-core",
+  "version": "36.3.0",
+  "description": "Victory Core",
+  "keywords": [
+    "data visualization",
+    "React",
+    "d3",
+    "charting"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/formidablelabs/victory.git"
+  },
+  "homepage": "https://formidable.com/open-source/victory",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "author": "Formidable",
+  "license": "MIT",
+  "dependencies": {
+    "d3-ease": "^1.0.0",
+    "d3-interpolate": "^1.1.1",
+    "d3-scale": "^1.0.0",
+    "d3-shape": "^1.2.0",
+    "d3-timer": "^1.0.0",
+    "lodash": "^4.17.21",
+    "prop-types": "^15.5.8",
+    "react-fast-compare": "^2.0.0"
+  },
+  "resolutions": {
+    "d3-interpolate/d3-color": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.6.0 || ^17.0.0"
+  },
+  "scripts": {
+    "version": "yarn run nps build-libs && nps build-dists"
+  },
+  "sideEffects": false,
+  "gitHead": "ebafd849d2ded3f1d2aabf0d6e64dcbd48e4c9d6"
+}

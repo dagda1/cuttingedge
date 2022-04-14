@@ -1,0 +1,37 @@
+{
+    "name": "@types/loadable__server",
+    "version": "5.12.6",
+    "description": "TypeScript definitions for @loadable/server",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/loadable__server",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Martynas Kadiša",
+            "url": "https://github.com/martynaskadisa",
+            "githubUsername": "martynaskadisa"
+        },
+        {
+            "name": "Luis Herranz",
+            "url": "https://github.com/luisherranz",
+            "githubUsername": "luisherranz"
+        },
+        {
+            "name": "Arman Sargsyan",
+            "url": "https://github.com/Armanio",
+            "githubUsername": "Armanio"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/loadable__server"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/react": "*"
+    },
+    "typesPublisherContentHash": "8c94d861383cb2ad1d842e647764328caab9bace34cfbe4352c68becba98ac55",
+    "typeScriptVersion": "3.6"
+}

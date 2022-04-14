@@ -1,0 +1,54 @@
+{
+    "name": "@types/parsimmon",
+    "version": "1.10.6",
+    "description": "TypeScript definitions for Parsimmon",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Bart van der Schoor",
+            "url": "https://github.com/Bartvds",
+            "githubUsername": "Bartvds"
+        },
+        {
+            "name": "Mizunashi Mana",
+            "url": "https://github.com/mizunashi-mana",
+            "githubUsername": "mizunashi-mana"
+        },
+        {
+            "name": "Boris Cherny",
+            "url": "https://github.com/bcherny",
+            "githubUsername": "bcherny"
+        },
+        {
+            "name": "Benny van Reeven",
+            "url": "https://github.com/bvanreeven",
+            "githubUsername": "bvanreeven"
+        },
+        {
+            "name": "Leonard Thieu",
+            "url": "https://github.com/leonard-thieu",
+            "githubUsername": "leonard-thieu"
+        },
+        {
+            "name": "Jonathan Frere",
+            "url": "https://github.com/MrJohz",
+            "githubUsername": "MrJohz"
+        },
+        {
+            "name": "Isaac Huang",
+            "url": "https://github.com/caasi",
+            "githubUsername": "caasi"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/parsimmon"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "003332719be7be86a3a60505bfc2ab8d0f3602e5d7814ce388641788eb6b081a",
+    "typeScriptVersion": "3.3"
+}

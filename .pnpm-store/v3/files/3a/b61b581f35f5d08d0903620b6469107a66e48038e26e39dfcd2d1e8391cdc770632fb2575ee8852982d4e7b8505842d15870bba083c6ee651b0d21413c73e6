@@ -1,0 +1,19 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Symbol } from "./symbol";
+export function isPromise(value) {
+    return value && typeof (value.then) === 'function';
+}
+export function isGenerator(value) {
+    return value && typeof (value.next) === 'function';
+}
+export function isFuture(value) {
+    return value && typeof (value.consume) === 'function';
+}
+export function isResource(value) {
+    return typeof (value) === 'object' && typeof (value.init) === 'function';
+}
+export function isObjectOperation(x) {
+    return typeof x === 'object' && x != null && Symbol.operation in x;
+}
+//# sourceMappingURL=predicates.js.map

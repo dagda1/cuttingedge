@@ -1,0 +1,162 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+const module$1 = require('module');
+const path = require('path');
+const fs = require('fs');
+const findUp = require('find-up');
+
+/**
+ * Determines if the `child` path is under the `parent` path.
+ */
+function isInDirectory(parent, child) {
+    const relativePath = path.relative(parent, child);
+    return !relativePath.startsWith('..') && !path.isAbsolute(relativePath);
+}
+/**
+ * Iterates over package.json file paths recursively found in parent directories, starting from the
+ * current working directory. If the current working directory is in a git repository, then package.json
+ * files outside of the git repository will not be yielded.
+ * @internal
+ */
+async function* findPackagePaths() {
+    // Find git root if in git repository
+    const gitDirectoryPath = await findUp('.git', { type: 'directory' });
+    const gitRootPath = gitDirectoryPath === undefined
+        ? undefined
+        : path.dirname(gitDirectoryPath);
+    function isInGitDirectory(path) {
+        return gitRootPath === undefined || isInDirectory(gitRootPath, path);
+    }
+    let cwd = process.cwd();
+    let packagePath;
+    while ((packagePath = await findUp('package.json', { type: 'file', cwd })) &&
+        isInGitDirectory(packagePath)) {
+        yield packagePath;
+        cwd = path.dirname(path.dirname(packagePath));
+    }
+}
+/** @internal */
+async function findDependencies({ packagePaths, keys, warnings }) {
+    const dependencies = new Set();
+    for await (const packagePath of packagePaths) {
+        try {
+            const pkg = JSON.parse((await fs.promises.readFile(packagePath)).toString()) ?? {};
+            // console.log(pkg)
+            for (const key of keys) {
+                const dependenciesToVersions = pkg[key] ?? {};
+                for (const dependency of Object.keys(dependenciesToVersions)) {
+                    dependencies.add(dependency);
+                }
+            }
+        }
+        catch {
+            warnings.push(`Couldn't process '${packagePath}'. Make sure it is a valid JSON or use the 'packagePath' option`);
+        }
+    }
+    return Array.from(dependencies);
+}
+
+/**
+ * A Rollup plugin that automatically declares NodeJS built-in modules,
+ * and optionally npm dependencies, as 'external'.
+ */
+function externals(options = {}) {
+    // Consolidate options
+    const config = {
+        packagePath: [],
+        builtins: true,
+        prefixedBuiltins: 'strip',
+        deps: true,
+        devDeps: true,
+        peerDeps: true,
+        optDeps: true,
+        include: [],
+        exclude: [],
+        ...options
+    };
+    // This will store all eventual warnings until we can display them
+    const warnings = [];
+    // Map the include and exclude options to arrays of regexes
+    const [include, exclude] = ['include', 'exclude'].map(optionName => []
+        .concat(config[optionName])
+        .map((entry, index) => {
+        if (entry instanceof RegExp) {
+            return entry;
+        }
+        else if (typeof entry === 'string') {
+            return new RegExp('^' + entry.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$');
+        }
+        else {
+            if (entry) {
+                warnings.push(`Ignoring wrong entry type #${index} in '${optionName}' option: '${entry}'`);
+            }
+            return /(?=no)match/;
+        }
+    }));
+    // Filter function to keep only non excluded dependencies
+    const isNotExcluded = (id) => !exclude.some(rx => rx.test(id));
+    // Array of the final regexes
+    const externals = [];
+    const isExternal = (id) => externals.some(rx => rx.test(id));
+    return {
+        name: 'node-externals',
+        async buildStart() {
+            // 1) Filter NodeJS builtins, supporting potential import from a sub directory (e.g. 'fs/promises')
+            const builtins = (config.builtins ? module$1.builtinModules : []).filter(isNotExcluded);
+            if (builtins.length > 0) {
+                externals.push(new RegExp(`^(?:${builtins.join('|')})(?:/.+)?$`));
+            }
+            // 2) Find and filter dependencies, supporting potential import from a sub directory (e.g. 'lodash/map')
+            const packagePaths = [].concat(config.packagePath);
+            const dependencies = (await findDependencies({
+                packagePaths: packagePaths.length > 0 ? packagePaths : findPackagePaths(),
+                keys: [
+                    config.deps && 'dependencies',
+                    config.devDeps && 'devDependencies',
+                    config.peerDeps && 'peerDependencies',
+                    config.optDeps && 'optionalDependencies'
+                ].filter(Boolean),
+                warnings
+            })).filter(isNotExcluded);
+            if (dependencies.length > 0) {
+                externals.push(new RegExp(`^(?:${dependencies.join('|')})(?:/.+)?$`));
+            }
+            // 3) Add the include option
+            if (include.length > 0) {
+                externals.push(...include);
+            }
+            // All done. Issue the warnings we may have collected
+            while (warnings.length > 0) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                this.warn(warnings.shift());
+            }
+        },
+        resolveId(importee, importer, { isEntry }) {
+            // Ignore entry chunks & don't mess with other plugins
+            if (isEntry || !importee.charCodeAt(0) || !importer?.charCodeAt(0)) {
+                return null;
+            }
+            // Remove node:/nodejs: prefix so builtins resolve to their unprefixed equivalent
+            let stripped = importee;
+            if (config.prefixedBuiltins) {
+                if (importee.startsWith('node:')) {
+                    stripped = importee.slice(5);
+                }
+                else if (importee.startsWith('nodejs:')) {
+                    stripped = importee.slice(7);
+                }
+            }
+            // Return object if importee should be treated as an external module,
+            // otherwise return `null` to let Rollup and other plugins handle it
+            return isExternal(stripped) && isNotExcluded(stripped)
+                ? { id: config.prefixedBuiltins === 'strip' ? stripped : importee, external: true }
+                : null;
+        }
+    };
+}
+
+exports.default = externals;
+exports.externals = externals;
+//# sourceMappingURL=index.js.map

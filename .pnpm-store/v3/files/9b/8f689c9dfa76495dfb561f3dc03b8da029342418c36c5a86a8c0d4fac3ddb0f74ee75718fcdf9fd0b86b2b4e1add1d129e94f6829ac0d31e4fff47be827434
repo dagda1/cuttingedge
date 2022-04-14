@@ -1,0 +1,64 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Effection = void 0;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const task_1 = require("./task");
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const package_json_1 = __importDefault(require("../package.json"));
+const { version } = package_json_1.default;
+const MAJOR_VERSION = version.split('.')[0];
+const GLOBAL_PROPERTY = `__effectionV${MAJOR_VERSION}`;
+function createRootTask() {
+    let task = task_1.createTask(undefined, { ignoreChildErrors: true, labels: { name: 'root' } });
+    task.start();
+    return task;
+}
+function getGlobalConfig() {
+    if (!globalThis[GLOBAL_PROPERTY]) {
+        globalThis[GLOBAL_PROPERTY] = {
+            root: createRootTask()
+        };
+    }
+    return globalThis[GLOBAL_PROPERTY];
+}
+/**
+ * The `Effection` constant provides access to some global properties in
+ * Effection. Most importantly, `Effection` has a {@link root} task, which all
+ * tasks spawned by {@link run} or `main` are spawned under. You normally do
+ * not need to work with this task directly, but it is useful for debugging and
+ * testing.
+ */
+exports.Effection = {
+    /**
+     * All tasks spawned by {@link run} or `main` are spawned as children of this
+     * task. You normally do not need to work with this task directly, but it is
+     * useful for debugging and testing.
+     */
+    get root() {
+        return getGlobalConfig().root;
+    },
+    /**
+     * Set the root task to a new task.
+     */
+    set root(value) {
+        getGlobalConfig().root = value;
+    },
+    /**
+     * Completely halt all running Effection tasks and create a new root task.
+     */
+    async reset() {
+        await exports.Effection.root.halt();
+        exports.Effection.root = createRootTask();
+    },
+    /**
+     * Completely halt all running Effection tasks.
+     */
+    async halt() {
+        await exports.Effection.root.halt();
+    }
+};
+//# sourceMappingURL=effection.js.map

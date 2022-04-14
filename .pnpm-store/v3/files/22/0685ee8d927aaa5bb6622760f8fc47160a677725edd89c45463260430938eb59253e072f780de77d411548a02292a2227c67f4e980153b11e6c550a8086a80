@@ -1,0 +1,46 @@
+import { createFuture } from '../future';
+import { extractLabels } from '../labels';
+export function createDelegateController(task, operation, createController) {
+    let delegate;
+    let { produce, future } = createFuture();
+    function start() {
+        try {
+            delegate = createController();
+            task.setLabels({
+                ...extractLabels(delegate.operation),
+                ...extractLabels(operation)
+            });
+        }
+        catch (error) {
+            produce({ state: 'errored', error });
+            return;
+        }
+        delegate.future.consume((value) => {
+            produce(value);
+        });
+        delegate.start();
+    }
+    function halt() {
+        delegate === null || delegate === void 0 ? void 0 : delegate.halt();
+    }
+    return {
+        get type() {
+            if (delegate) {
+                return delegate.type === 'promise' ? 'async function' : `${delegate.type} function`;
+            }
+            else {
+                return 'function';
+            }
+        },
+        get operation() {
+            return delegate === null || delegate === void 0 ? void 0 : delegate.operation;
+        },
+        get resourceTask() {
+            return delegate === null || delegate === void 0 ? void 0 : delegate.resourceTask;
+        },
+        future,
+        start,
+        halt,
+    };
+}
+//# sourceMappingURL=delegate-controller.js.map

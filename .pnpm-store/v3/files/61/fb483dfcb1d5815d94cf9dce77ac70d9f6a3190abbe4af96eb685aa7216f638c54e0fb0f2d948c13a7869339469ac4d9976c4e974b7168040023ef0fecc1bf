@@ -1,0 +1,14 @@
+export declare function tryParseJson<T>(text: string): unknown;
+export declare function tryParseJson<T>(text: string, predicate: (parsed: unknown) => parsed is T): T | undefined;
+export declare function parseJson<T>(text: string): unknown;
+export declare function parseJson<T>(text: string, predicate?: (parsed: unknown) => parsed is T): T;
+export declare function identity<T>(t: T): T;
+export declare function isObject(value: unknown): value is object;
+export declare function withoutStart(s: string, start: string): string | undefined;
+export declare function computeHash(content: string): string;
+export declare function isScopedPackage(packageName: string): boolean;
+export declare function unmangleScopedPackage(packageName: string): string | undefined;
+export declare function mangleScopedPackage(packageName: string): string;
+export declare function removeVersionFromPackageName(packageName: string | undefined): string | undefined;
+export declare function hasVersionNumberInMapping(packageName: string): boolean;
+export declare function sleep(seconds: number): Promise<void>;

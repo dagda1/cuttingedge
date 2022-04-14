@@ -1,0 +1,57 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.StateMachine = void 0;
+function f(value) { return JSON.stringify(value); }
+class StateMachine {
+    constructor(emitter) {
+        this.emitter = emitter;
+        this.current = 'pending';
+    }
+    transition(event, validTransitions) {
+        let from = this.current;
+        let to = validTransitions[from];
+        if (!to) {
+            let options = Object.keys(validTransitions).map(f).join(', ');
+            throw new Error(`INTERNAL ERROR: state transition ${f(event)} is not valid in current state ${f(from)}, should be one of ${options}`);
+        }
+        this.current = to;
+        this.emitter.emit('state', { from, to });
+    }
+    get isFinalized() {
+        return this.current === 'errored' || this.current === 'completed' || this.current === 'halted';
+    }
+    start() {
+        this.transition('start', {
+            'pending': 'running',
+        });
+    }
+    completing() {
+        this.transition('completing', {
+            'running': 'completing',
+        });
+    }
+    erroring() {
+        this.transition('erroring', {
+            'running': 'erroring',
+            'completing': 'erroring',
+            'halting': 'erroring',
+            'erroring': 'erroring',
+        });
+    }
+    halting() {
+        this.transition('halting', {
+            'running': 'halting',
+            'completing': 'halting',
+            'halting': 'halting',
+        });
+    }
+    finish() {
+        this.transition('finish', {
+            'completing': 'completed',
+            'erroring': 'errored',
+            'halting': 'halted',
+        });
+    }
+}
+exports.StateMachine = StateMachine;
+//# sourceMappingURL=state-machine.js.map

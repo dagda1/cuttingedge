@@ -1,0 +1,16 @@
+import { createFuture } from '../future';
+export function createPromiseController(task, promise) {
+    let { produce, future } = createFuture();
+    function start() {
+        Promise.race([promise, future]).then((value) => {
+            produce({ state: 'completed', value });
+        }, (error) => {
+            produce({ state: 'errored', error });
+        });
+    }
+    function halt() {
+        produce({ state: 'halted' });
+    }
+    return { start, halt, future, type: 'promise', operation: promise };
+}
+//# sourceMappingURL=promise-controller.js.map

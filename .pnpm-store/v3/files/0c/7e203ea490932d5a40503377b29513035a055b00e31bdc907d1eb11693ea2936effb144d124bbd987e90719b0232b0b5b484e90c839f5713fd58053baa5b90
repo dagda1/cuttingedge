@@ -1,0 +1,5 @@
+export declare type DeepPartial<T> = {
+    [P in keyof T]?: DeepPartial<T[P]>;
+};
+export declare function matcher<T>(reference: unknown): (value: T) => boolean;
+//# sourceMappingURL=match.d.ts.map

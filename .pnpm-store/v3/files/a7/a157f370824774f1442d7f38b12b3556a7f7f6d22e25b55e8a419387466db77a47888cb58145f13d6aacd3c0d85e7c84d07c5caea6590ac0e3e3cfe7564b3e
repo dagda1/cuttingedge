@@ -1,0 +1,64 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createChannel = void 0;
+const stream_1 = require("@effection/stream");
+const events_1 = require("@effection/events");
+const events_2 = require("events");
+/**
+ * Create a new {@link Channel}.
+ *
+ * See [the guide on Streams and Subscriptions](https://frontside.com/effection/docs/guides/collections) for more details.
+ *
+ * ### Example
+ *
+ * ``` javascript
+ * import { main, createChannel } from 'effection';
+ *
+ * main(function*() {
+ *   let channel = createChannel();
+ *
+ *   channel.send('too early'); // the channel has no subscribers yet!
+ *
+ *   let firstSubscription = yield channel.subscribe();
+ *   let secondSubscription = yield channel.subscribe();
+ *
+ *   channel.send('hello');
+ *   channel.send('world');
+ *
+ *   console.log(yield firstSubscription.expect()); // logs 'hello'
+ *   console.log(yield firstSubscription.expect()); // logs 'world'
+ *   console.log(yield secondSubscription.expect()); // logs 'hello'
+ *   console.log(yield secondSubscription.expect()); // logs 'world'
+ * });
+ * ```
+ */
+function createChannel(options = {}) {
+    let bus = new events_2.EventEmitter();
+    if (options.maxSubscribers) {
+        bus.setMaxListeners(options.maxSubscribers);
+    }
+    else {
+        bus.setMaxListeners(100000);
+    }
+    let stream = stream_1.createStream((publish) => function* (task) {
+        let subscription = events_1.on(bus, 'event').subscribe(task);
+        while (true) {
+            let { value: next } = yield subscription.next();
+            if (next.done) {
+                return next.value;
+            }
+            else {
+                publish(next.value);
+            }
+        }
+    }, options.name);
+    let send = (message) => {
+        bus.emit('event', { done: false, value: message });
+    };
+    let close = (...args) => {
+        bus.emit('event', { done: true, value: args[0] });
+    };
+    return { send, close, stream, ...stream };
+}
+exports.createChannel = createChannel;
+//# sourceMappingURL=channel.js.map

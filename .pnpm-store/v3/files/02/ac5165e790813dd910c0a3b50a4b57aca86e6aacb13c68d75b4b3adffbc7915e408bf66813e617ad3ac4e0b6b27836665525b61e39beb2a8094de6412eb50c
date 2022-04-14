@@ -1,0 +1,6 @@
+export declare type Runnable = () => void;
+export interface RunLoop {
+    run(fn: Runnable): void;
+}
+export declare function createRunLoop(name?: string): RunLoop;
+//# sourceMappingURL=run-loop.d.ts.map

@@ -1,0 +1,8 @@
+import { precomputeValues } from '@capsizecss/core';
+import { CreateStyleObjectParameters } from './types';
+interface MediaQueries {
+    '@media': Record<string, CreateStyleObjectParameters>;
+}
+declare function createTextStyle(args: CreateStyleObjectParameters, debugId?: string): string;
+declare function createTextStyle(args: CreateStyleObjectParameters, mediaQueries?: MediaQueries, debugId?: string): string;
+export { createTextStyle, precomputeValues };

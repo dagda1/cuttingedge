@@ -1,0 +1,45 @@
+{
+  "name": "html-webpack-partials-plugin",
+  "version": "0.8.0",
+  "description": "Easily add partial support to the HTML Webpack Plugin",
+  "keywords": [
+    "webpack",
+    "plugin",
+    "html",
+    "partial",
+    "template",
+    "html-webpack-plugin",
+    "html-webpack-partials-plugin"
+  ],
+  "main": "index.js",
+  "repository": "git@github.com:colbyfayock/html-webpack-partials-plugin.git",
+  "author": "Colby Fayock <hello@colbyfayock.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha",
+    "bump": "npm version"
+  },
+  "precommit": "yarn test",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "lodash": "^4.17.20",
+    "path": "^0.12.7"
+  },
+  "peerDependencies": {
+    "html-webpack-plugin": ">=4.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "chai": "^4.2.0",
+    "html-webpack-plugin": "^4.3.0",
+    "husky": "^4.2.5",
+    "mocha": "^8.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

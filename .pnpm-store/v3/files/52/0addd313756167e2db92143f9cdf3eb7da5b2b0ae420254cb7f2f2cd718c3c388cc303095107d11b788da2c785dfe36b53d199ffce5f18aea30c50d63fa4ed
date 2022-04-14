@@ -1,0 +1,105 @@
+function absRect(rect) {
+    return {
+        top: rect.y,
+        right: rect.x + rect.width,
+        bottom: rect.y + rect.height,
+        left: rect.x,
+    };
+}
+export function getDistanceGuides(selected, compared) {
+    const a = absRect(selected);
+    const b = absRect(compared);
+    const isYIntersecting = !(a.top > b.bottom || a.bottom < b.top);
+    const isXIntersecting = !(a.left > b.right || a.right < b.left);
+    // Rects are intersecting.
+    if (isXIntersecting && isYIntersecting) {
+        // Center of intersecting region.
+        const intersectCenter = {
+            x: (Math.max(a.left, b.left) + Math.min(a.right, b.right)) / 2,
+            y: (Math.max(a.top, b.top) + Math.min(a.bottom, b.bottom)) / 2,
+        };
+        return [
+            {
+                points: [
+                    { x: a.left, y: intersectCenter.y },
+                    { x: b.left, y: intersectCenter.y },
+                ],
+            },
+            {
+                points: [
+                    {
+                        x: a.right,
+                        y: intersectCenter.y,
+                    },
+                    { x: b.right, y: intersectCenter.y },
+                ],
+            },
+            {
+                points: [
+                    { y: a.top, x: intersectCenter.x },
+                    { y: b.top, x: intersectCenter.x },
+                ],
+            },
+            {
+                points: [
+                    {
+                        y: a.bottom,
+                        x: intersectCenter.x,
+                    },
+                    { y: b.bottom, x: intersectCenter.x },
+                ],
+            },
+        ];
+    }
+    const isALeft = a.left > b.right;
+    const isABelow = a.top > b.bottom;
+    const selectedCenter = {
+        x: selected.x + selected.width / 2,
+        y: selected.y + selected.height / 2,
+    };
+    const guides = [
+        !isXIntersecting
+            ? {
+                points: [
+                    { x: isALeft ? a.left : a.right, y: selectedCenter.y },
+                    { x: isALeft ? b.right : b.left, y: selectedCenter.y },
+                ],
+                bisector: !isYIntersecting
+                    ? [
+                        { x: isALeft ? b.right : b.left, y: selectedCenter.y },
+                        {
+                            // These 0.5 makes the guides looks aligned with the outlines.
+                            x: isALeft ? b.right : b.left,
+                            y: isABelow ? b.bottom : b.top,
+                        },
+                    ]
+                    : void 0,
+            }
+            : null,
+        !isYIntersecting
+            ? {
+                points: [
+                    { y: isABelow ? a.top : a.bottom, x: selectedCenter.x },
+                    { y: isABelow ? b.bottom : b.top, x: selectedCenter.x },
+                ],
+                bisector: !isXIntersecting
+                    ? [
+                        { y: isABelow ? b.bottom : b.top, x: selectedCenter.x },
+                        {
+                            // These 0.5 makes the guides looks aligned with the outlines.
+                            y: isABelow ? b.bottom : b.top,
+                            x: isALeft ? b.right : b.left,
+                        },
+                    ]
+                    : void 0,
+            }
+            : null,
+    ];
+    return guides.filter((x) => !!x);
+}
+/**
+ * x.xxxxx... -> x.xx
+ */
+export function round(n) {
+    return Math.round(n * 100) / 100;
+}

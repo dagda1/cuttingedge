@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createFutureController = void 0;
+const future_1 = require("../future");
+function createFutureController(task, future) {
+    let { future: inner, produce } = future_1.createFuture();
+    function start() {
+        future.consume(produce);
+    }
+    function halt() {
+        produce({ state: 'halted' });
+    }
+    return { start, halt, future: inner, type: 'future', operation: future };
+}
+exports.createFutureController = createFutureController;
+//# sourceMappingURL=future-controller.js.map

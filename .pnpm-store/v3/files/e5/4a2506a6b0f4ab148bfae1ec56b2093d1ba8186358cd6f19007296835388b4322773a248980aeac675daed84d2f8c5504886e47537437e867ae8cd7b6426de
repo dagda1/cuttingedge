@@ -1,0 +1,5 @@
+/**
+ * @hidden
+ */
+export declare function deprecated<TThis, TArgs extends unknown[], TReturn>(message: string, fn: (this: TThis, ...args: TArgs) => TReturn): (this: TThis, ...args: TArgs) => TReturn;
+//# sourceMappingURL=deprecated.d.ts.map

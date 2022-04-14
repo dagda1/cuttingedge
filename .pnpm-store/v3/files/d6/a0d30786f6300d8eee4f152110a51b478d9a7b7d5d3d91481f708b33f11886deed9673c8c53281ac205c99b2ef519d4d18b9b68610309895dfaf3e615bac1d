@@ -1,0 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.addTrace = void 0;
+function addTrace(error, task) {
+    let info = {
+        id: task.id,
+        type: task.type,
+        labels: task.labels,
+        state: task.state,
+    };
+    return Object.create(error, {
+        effectionTrace: {
+            value: [...(error.effectionTrace || []), info],
+            enumerable: true,
+        }
+    });
+}
+exports.addTrace = addTrace;
+//# sourceMappingURL=error.js.map

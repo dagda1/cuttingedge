@@ -1,0 +1,34 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.sleep = void 0;
+const future_1 = require("../future");
+const labels_1 = require("../labels");
+/**
+ * Sleep for the given amount of milliseconds. If no duration is given, then
+ * sleep indefinitely.
+ *
+ * ### Example
+ *
+ * ```typescript
+ * import { main, sleep } from 'effection';
+ *
+ * main(function*() {
+ *   yield sleep(2000);
+ *   console.log("Hello lazy world!");
+ * });
+ * ```
+ *
+ * @param duration the number of milliseconds to sleep
+ */
+function sleep(duration) {
+    return labels_1.withLabels((task) => {
+        let { future, resolve } = future_1.createFuture();
+        if (duration != null) {
+            let timeoutId = setTimeout(resolve, duration);
+            task.consume(() => clearTimeout(timeoutId));
+        }
+        return future;
+    }, { name: 'sleep', duration: (duration != null) ? duration : 'forever' });
+}
+exports.sleep = sleep;
+//# sourceMappingURL=sleep.js.map

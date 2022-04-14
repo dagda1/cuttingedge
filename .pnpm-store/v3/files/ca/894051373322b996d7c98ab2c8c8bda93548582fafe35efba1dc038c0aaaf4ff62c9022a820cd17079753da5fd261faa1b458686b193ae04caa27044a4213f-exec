@@ -1,0 +1,30 @@
+{
+    "name": "@types/tailwindcss",
+    "version": "3.0.10",
+    "description": "TypeScript definitions for tailwindcss",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/tailwindcss",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Dolan Miu",
+            "url": "https://github.com/dolanmiu",
+            "githubUsername": "dolanmiu"
+        },
+        {
+            "name": "Dylan Vann",
+            "url": "https://github.com/DylanVann",
+            "githubUsername": "DylanVann"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/tailwindcss"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "6f941ebb5cadaf30ef7c5a05f0ea1e30a1038541ba3f1955228b51eadc2fe73c",
+    "typeScriptVersion": "4.1"
+}

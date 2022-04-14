@@ -1,0 +1,16 @@
+/**
+ * @hidden
+ */
+export function deprecated(message, fn) {
+    return function (...args) {
+        try {
+            throw new Error('trace');
+        }
+        catch (trace) {
+            let [line] = trace.stack.split("\n").slice(3, 4);
+            console.warn(message, "\n" + line); // eslint-disable-line no-console
+        }
+        return fn.call(this, ...args);
+    };
+}
+//# sourceMappingURL=deprecated.js.map

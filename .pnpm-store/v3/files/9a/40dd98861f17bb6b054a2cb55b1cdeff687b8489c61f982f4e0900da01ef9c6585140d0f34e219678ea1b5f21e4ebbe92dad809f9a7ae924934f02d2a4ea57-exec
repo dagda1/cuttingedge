@@ -1,0 +1,28 @@
+{
+    "name": "@types/webpackbar",
+    "version": "4.0.3",
+    "description": "TypeScript definitions for webpackbar",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/webpackbar",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Piotr Błażejewicz",
+            "url": "https://github.com/peterblazejewicz",
+            "githubUsername": "peterblazejewicz"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/webpackbar"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/node": "*",
+        "@types/webpack": "^4"
+    },
+    "typesPublisherContentHash": "9f78e75beb26cdc4fd1fbd454a1ffdf3c9d9d8b44deb1d4be589b0d967b1eb9a",
+    "typeScriptVersion": "3.8"
+}

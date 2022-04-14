@@ -1,0 +1,10 @@
+declare global {
+    const SymbolOperation: unique symbol;
+}
+export interface SymbolExtentions {
+    operation: typeof SymbolOperation;
+}
+export declare type SymbolConstructor = typeof Symbol & SymbolExtentions;
+declare const SymbolExtended: SymbolConstructor;
+export { SymbolExtended as Symbol };
+//# sourceMappingURL=symbol.d.ts.map

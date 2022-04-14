@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.36.0
+
+### Minor Changes
+
+- d542ad8f: version
+
 ## 4.35.0
 
 ### Minor Changes

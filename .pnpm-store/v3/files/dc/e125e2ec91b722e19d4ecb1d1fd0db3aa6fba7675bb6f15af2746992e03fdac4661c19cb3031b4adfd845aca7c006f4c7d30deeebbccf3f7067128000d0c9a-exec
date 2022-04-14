@@ -1,0 +1,31 @@
+{
+    "name": "@types/react-dev-utils",
+    "version": "9.0.10",
+    "description": "TypeScript definitions for react-dev-utils",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-dev-utils",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "ark120202",
+            "url": "https://github.com/ark120202",
+            "githubUsername": "ark120202"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/react-dev-utils"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/eslint": "*",
+        "@types/express": "*",
+        "@types/html-webpack-plugin": "*",
+        "@types/webpack": "^4",
+        "@types/webpack-dev-server": "3"
+    },
+    "typesPublisherContentHash": "217d16cabec04ffcbdd43f9286a6d3e4cf1973dc6efa5e205be458d425e562df",
+    "typeScriptVersion": "3.8"
+}

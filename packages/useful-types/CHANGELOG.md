@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.32.0
+
+### Minor Changes
+
+- d542ad8f: version
+
 ## 4.31.0
 
 ### Minor Changes

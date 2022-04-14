@@ -1,0 +1,71 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "colbyfayock",
+      "name": "Colby Fayock",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1045274?v=4",
+      "profile": "https://colbyfayock.com/newsletter",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "ssmith353",
+      "name": "Steven Smith",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6590114?v=4",
+      "profile": "http://ssmith.dev",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "avivshafir",
+      "name": "Aviv Shafir",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6135443?v=4",
+      "profile": "https://twitter.com/avivshafir",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "superelement",
+      "name": "Jim Doyle",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1377237?v=4",
+      "profile": "http://www.jimdoyle.com.au",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "septs",
+      "name": "Septs",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3842474?v=4",
+      "profile": "https://septs.blog",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "zjffun",
+      "name": "JuFeng Zhang",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/25266120?v=4",
+      "profile": "https://zjffun.com",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "html-webpack-partials-plugin",
+  "projectOwner": "colbyfayock",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

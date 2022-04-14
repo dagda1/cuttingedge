@@ -1,0 +1,15 @@
+export function addTrace(error, task) {
+    let info = {
+        id: task.id,
+        type: task.type,
+        labels: task.labels,
+        state: task.state,
+    };
+    return Object.create(error, {
+        effectionTrace: {
+            value: [...(error.effectionTrace || []), info],
+            enumerable: true,
+        }
+    });
+}
+//# sourceMappingURL=error.js.map

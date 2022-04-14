@@ -1,0 +1,20 @@
+function isEventTarget(target) {
+    return typeof target.addEventListener === 'function';
+}
+export function addListener(source, name, listener) {
+    if (isEventTarget(source)) {
+        source.addEventListener(name, listener);
+    }
+    else {
+        source.on(name, listener);
+    }
+}
+export function removeListener(source, name, listener) {
+    if (isEventTarget(source)) {
+        source.removeEventListener(name, listener);
+    }
+    else {
+        source.off(name, listener);
+    }
+}
+//# sourceMappingURL=event-source.js.map

@@ -1,0 +1,50 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createDelegateController = void 0;
+const future_1 = require("../future");
+const labels_1 = require("../labels");
+function createDelegateController(task, operation, createController) {
+    let delegate;
+    let { produce, future } = future_1.createFuture();
+    function start() {
+        try {
+            delegate = createController();
+            task.setLabels({
+                ...labels_1.extractLabels(delegate.operation),
+                ...labels_1.extractLabels(operation)
+            });
+        }
+        catch (error) {
+            produce({ state: 'errored', error });
+            return;
+        }
+        delegate.future.consume((value) => {
+            produce(value);
+        });
+        delegate.start();
+    }
+    function halt() {
+        delegate === null || delegate === void 0 ? void 0 : delegate.halt();
+    }
+    return {
+        get type() {
+            if (delegate) {
+                return delegate.type === 'promise' ? 'async function' : `${delegate.type} function`;
+            }
+            else {
+                return 'function';
+            }
+        },
+        get operation() {
+            return delegate === null || delegate === void 0 ? void 0 : delegate.operation;
+        },
+        get resourceTask() {
+            return delegate === null || delegate === void 0 ? void 0 : delegate.resourceTask;
+        },
+        future,
+        start,
+        halt,
+    };
+}
+exports.createDelegateController = createDelegateController;
+//# sourceMappingURL=delegate-controller.js.map

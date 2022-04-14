@@ -1,0 +1,16 @@
+# Installation
+> `npm install --save @types/webpackbar`
+
+# Summary
+This package contains type definitions for webpackbar (https://github.com/nuxt/webpackbar).
+
+# Details
+Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/webpackbar.
+
+### Additional Details
+ * Last updated: Thu, 23 Dec 2021 23:36:05 GMT
+ * Dependencies: [@types/webpack](https://npmjs.com/package/@types/webpack), [@types/node](https://npmjs.com/package/@types/node)
+ * Global values: none
+
+# Credits
+These definitions were written by [Piotr Błażejewicz](https://github.com/peterblazejewicz).

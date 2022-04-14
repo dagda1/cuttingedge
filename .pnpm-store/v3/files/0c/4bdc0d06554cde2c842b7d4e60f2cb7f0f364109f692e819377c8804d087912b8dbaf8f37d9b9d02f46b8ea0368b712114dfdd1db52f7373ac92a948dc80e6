@@ -1,0 +1,7 @@
+export declare const capsizeVars: import("@vanilla-extract/private").MapLeafNodes<{
+    fontSize: null;
+    lineHeight: null;
+    capHeightTrim: null;
+    baselineTrim: null;
+}, import("@vanilla-extract/private").CSSVarFunction>;
+export declare const capsizeStyle: string;

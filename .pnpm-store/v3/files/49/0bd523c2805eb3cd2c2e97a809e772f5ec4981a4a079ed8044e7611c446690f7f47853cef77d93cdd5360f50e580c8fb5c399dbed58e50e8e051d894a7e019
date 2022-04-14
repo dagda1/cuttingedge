@@ -1,0 +1,66 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.run = exports.label = exports.all = exports.race = exports.spawn = exports.withTimeout = exports.timeout = exports.ensure = exports.sleep = exports.Symbol = exports.AbortSignal = exports.createAbortSignal = exports.Future = exports.createFuture = exports.setLabels = exports.withLabels = exports.deprecated = exports.Effection = exports.createTask = void 0;
+const effection_1 = require("./effection");
+var task_1 = require("./task");
+Object.defineProperty(exports, "createTask", { enumerable: true, get: function () { return task_1.createTask; } });
+var effection_2 = require("./effection");
+Object.defineProperty(exports, "Effection", { enumerable: true, get: function () { return effection_2.Effection; } });
+var deprecated_1 = require("./deprecated");
+Object.defineProperty(exports, "deprecated", { enumerable: true, get: function () { return deprecated_1.deprecated; } });
+var labels_1 = require("./labels");
+Object.defineProperty(exports, "withLabels", { enumerable: true, get: function () { return labels_1.withLabels; } });
+Object.defineProperty(exports, "setLabels", { enumerable: true, get: function () { return labels_1.setLabels; } });
+var future_1 = require("./future");
+Object.defineProperty(exports, "createFuture", { enumerable: true, get: function () { return future_1.createFuture; } });
+Object.defineProperty(exports, "Future", { enumerable: true, get: function () { return future_1.Future; } });
+var abort_signal_1 = require("./abort-signal");
+Object.defineProperty(exports, "createAbortSignal", { enumerable: true, get: function () { return abort_signal_1.createAbortSignal; } });
+Object.defineProperty(exports, "AbortSignal", { enumerable: true, get: function () { return abort_signal_1.AbortSignal; } });
+var symbol_1 = require("./symbol");
+Object.defineProperty(exports, "Symbol", { enumerable: true, get: function () { return symbol_1.Symbol; } });
+var sleep_1 = require("./operations/sleep");
+Object.defineProperty(exports, "sleep", { enumerable: true, get: function () { return sleep_1.sleep; } });
+var ensure_1 = require("./operations/ensure");
+Object.defineProperty(exports, "ensure", { enumerable: true, get: function () { return ensure_1.ensure; } });
+var timeout_1 = require("./operations/timeout");
+Object.defineProperty(exports, "timeout", { enumerable: true, get: function () { return timeout_1.timeout; } });
+var with_timeout_1 = require("./operations/with-timeout");
+Object.defineProperty(exports, "withTimeout", { enumerable: true, get: function () { return with_timeout_1.withTimeout; } });
+var spawn_1 = require("./operations/spawn");
+Object.defineProperty(exports, "spawn", { enumerable: true, get: function () { return spawn_1.spawn; } });
+var race_1 = require("./operations/race");
+Object.defineProperty(exports, "race", { enumerable: true, get: function () { return race_1.race; } });
+var all_1 = require("./operations/all");
+Object.defineProperty(exports, "all", { enumerable: true, get: function () { return all_1.all; } });
+var label_1 = require("./operations/label");
+Object.defineProperty(exports, "label", { enumerable: true, get: function () { return label_1.label; } });
+/**
+ * Run takes an operation and runs it in a task. It returns the task it created.
+ *
+ * Run is an entry point into Effection, and is especially useful when
+ * embedding Effection code into existing code. If you are writing your whole
+ * program using Effection, you should prefer using `main`.
+ *
+ * ### Example
+ *
+ * ```
+ * import { run, fetch } from 'effection';
+ *
+ * async function fetchExample() {
+ *   await run(function*() {
+ *     let response = yield fetch('http://www.example.com');
+ *     yield response.text();
+ *   });
+ * });
+ * ```
+ *
+ * @param operation the operation to run
+ * @param options the options to configure the task with
+ * @returns the new task
+ */
+function run(operation, options) {
+    return effection_1.Effection.root.run(operation, options);
+}
+exports.run = run;
+//# sourceMappingURL=index.js.map

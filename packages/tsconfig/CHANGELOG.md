@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.33.0
+
+### Minor Changes
+
+- d542ad8f: version
+
 ## 4.32.0
 
 ### Minor Changes

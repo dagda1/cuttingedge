@@ -1,0 +1,28 @@
+{
+    "name": "@types/rollup-plugin-size-snapshot",
+    "version": "0.10.1",
+    "description": "TypeScript definitions for rollup-plugin-size-snapshot",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/rollup-plugin-size-snapshot",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Max Boguslavskiy",
+            "url": "https://github.com/maxbogus",
+            "githubUsername": "maxbogus"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/rollup-plugin-size-snapshot"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/node": "*",
+        "rollup": "^0.63.4"
+    },
+    "typesPublisherContentHash": "dcc8ac379604da6ab966a7b6c4024349d94a647d3c47e739c3bed94878f5c948",
+    "typeScriptVersion": "3.6"
+}

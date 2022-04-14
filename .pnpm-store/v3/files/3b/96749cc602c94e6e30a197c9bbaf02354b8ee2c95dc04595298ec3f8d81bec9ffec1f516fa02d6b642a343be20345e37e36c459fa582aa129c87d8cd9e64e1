@@ -1,0 +1,43 @@
+<h1><%= header %></h1>
+<p><%= copy %></p>
+
+<hr />
+
+<h2>webpack.config.js</h2>
+<pre>
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPartialsPlugin = require('../../');
+
+module.exports = {
+  entry: {
+    main: path.join(__dirname, './main.js')
+  },
+  output: {
+    path: path.join(__dirname, './dist'),
+    filename: '[name].js'
+  },
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new HtmlWebpackPartialsPlugin({
+      path: path.join(__dirname, './partials/body.html'),
+      options: {
+        header: 'Hello world!',
+        copy: 'This is a test.'
+      }
+    })
+  ]
+};
+</pre>
+
+<h2>main.js</h2>
+<pre>
+console.log('Test!');
+</pre>
+
+<h2>partials/body.html</h2>
+<pre>
+&#x3C;h1&#x3E;&#x3C;%= header %&#x3E;&#x3C;/h1&#x3E;
+&#x3C;p&#x3E;&#x3C;%= copy %&#x3E;&#x3C;/p&#x3E;
+...and the rest of this configuration example
+</pre>

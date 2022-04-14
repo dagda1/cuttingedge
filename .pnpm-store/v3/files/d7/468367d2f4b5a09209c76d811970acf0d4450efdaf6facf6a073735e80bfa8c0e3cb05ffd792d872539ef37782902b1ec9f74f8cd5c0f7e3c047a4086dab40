@@ -1,0 +1,133 @@
+import { HaltError } from './halt-error';
+import { createRunLoop } from './run-loop';
+/**
+ * Create a new Future. This returns an object which contains the future itself
+ * as well as a function to produce a value for the future, and also shortcuts
+ * to resolve/reject/halt the future.
+ *
+ * ### Example
+ *
+ * ```typescript
+ * import { createFuture } from 'effection';
+ *
+ * let { future, produce } = createFuture<number>();
+ *
+ * // later...
+ * produce({ state: 'completed', value: 100 });
+ *
+ * future.consume((value) => console.log(value)) // => { state: 'completed', value: 100 }
+ * ```
+ *
+ * ### Example using shortcut
+ *
+ * ```typescript
+ * import { createFuture } from 'effection';
+ *
+ * let { future, resolve } = createFuture<number>();
+ *
+ * // later...
+ * resolve(100);
+ *
+ * future.consume((value) => console.log(value)) // => { state: 'completed', value: 100 }
+ * ```
+ */
+export function createFuture() {
+    return createFutureOnRunLoop(createRunLoop('future'));
+}
+export function createFutureOnRunLoop(runLoop) {
+    let consumers = [];
+    let result;
+    function consume(consumer) {
+        consumers.push(consumer);
+        runLoop.run(run);
+    }
+    function run() {
+        if (result) {
+            while (true) {
+                let consumer = consumers.shift();
+                if (consumer) {
+                    consumer(result);
+                }
+                else {
+                    break;
+                }
+            }
+        }
+    }
+    function produce(value) {
+        if (!result) {
+            result = value;
+            runLoop.run(run);
+        }
+    }
+    let promise;
+    function getPromise() {
+        return promise || (promise = new Promise((resolve, reject) => {
+            consume((value) => {
+                if (value.state === 'completed') {
+                    resolve(value.value);
+                }
+                else if (value.state === 'errored') {
+                    reject(value.error);
+                }
+                else if (value.state === 'halted') {
+                    reject(new HaltError());
+                }
+            });
+        }));
+    }
+    return {
+        produce,
+        future: {
+            get state() { return (result === null || result === void 0 ? void 0 : result.state) || 'pending'; },
+            consume,
+            then: (...args) => getPromise().then(...args),
+            catch: (...args) => getPromise().catch(...args),
+            finally: (...args) => getPromise().finally(...args),
+            [Symbol.toStringTag]: '[continuation]',
+        },
+        resolve: (value) => produce({ state: 'completed', value }),
+        reject: (error) => produce({ state: 'errored', error }),
+        halt: () => produce({ state: 'halted' }),
+    };
+}
+/**
+ * Namespace for `Future` functions to create resolved futures.
+ *
+ * See [Future](./interfaces/Future.html).
+ */
+export const Future = {
+    /**
+     * Create a future which has resolved successfully to a `completed` state.
+     *
+     * @param value The value to resolve to
+     * @typeParam T The type that the future resolves to
+     */
+    resolve(value) {
+        let { future, resolve } = createFuture();
+        resolve(value);
+        return future;
+    },
+    /**
+     * Create a future which has been rejected and is in an `errored` state.
+     *
+     * @param error The error that the future rejects with
+     * @typeParam T The type that the future resolves to
+     */
+    reject(error) {
+        let { future, reject } = createFuture();
+        reject(error);
+        return future;
+    },
+    /**
+     * Create a future which has been halted and is in a `halted` state.
+     *
+     * @typeParam T The type that the future resolves to
+     */
+    halt() {
+        let { future, halt } = createFuture();
+        halt();
+        return future;
+    },
+};
+//# sourceMappingURL=future.js.map

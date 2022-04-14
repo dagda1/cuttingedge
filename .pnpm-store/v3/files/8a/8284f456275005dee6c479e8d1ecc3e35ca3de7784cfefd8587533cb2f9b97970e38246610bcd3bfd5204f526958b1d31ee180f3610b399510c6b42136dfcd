@@ -1,0 +1,18 @@
+import type { Task } from '../task';
+import type { RunLoop } from '../run-loop';
+import { Operation } from '../operation';
+import { Future } from '../future';
+export interface Controller<TOut> {
+    type: string;
+    operation: Operation<TOut>;
+    resourceTask?: Task;
+    start(): void;
+    halt(): void;
+    future: Future<TOut>;
+}
+export declare type Options = {
+    runLoop: RunLoop;
+    onYieldingToChange?: (task: Task | undefined) => void;
+};
+export declare function createController<T>(task: Task<T>, operation: Operation<T>, options: Options): Controller<T>;
+//# sourceMappingURL=controller.d.ts.map

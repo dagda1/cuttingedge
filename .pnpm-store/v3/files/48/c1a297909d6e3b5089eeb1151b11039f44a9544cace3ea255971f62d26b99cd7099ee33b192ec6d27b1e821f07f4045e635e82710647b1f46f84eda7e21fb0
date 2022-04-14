@@ -1,0 +1,25 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeListener = exports.addListener = void 0;
+function isEventTarget(target) {
+    return typeof target.addEventListener === 'function';
+}
+function addListener(source, name, listener) {
+    if (isEventTarget(source)) {
+        source.addEventListener(name, listener);
+    }
+    else {
+        source.on(name, listener);
+    }
+}
+exports.addListener = addListener;
+function removeListener(source, name, listener) {
+    if (isEventTarget(source)) {
+        source.removeEventListener(name, listener);
+    }
+    else {
+        source.off(name, listener);
+    }
+}
+exports.removeListener = removeListener;
+//# sourceMappingURL=event-source.js.map

@@ -1,0 +1,27 @@
+{
+    "name": "@types/happypack",
+    "version": "5.0.2",
+    "description": "TypeScript definitions for happypack",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/happypack",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Akash Vishwakarma",
+            "url": "https://github.com/akashishu777",
+            "githubUsername": "akashishu777"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/happypack"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/webpack": "^4"
+    },
+    "typesPublisherContentHash": "622e9c78875d4566b51e5bc31854b9f323fcfd4de59bfc51b9d764ae6ccfca78",
+    "typeScriptVersion": "3.7"
+}

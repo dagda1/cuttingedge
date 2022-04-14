@@ -1,0 +1,7 @@
+import { HasEffectionTrace } from '@effection/core';
+export declare function formatName(error: Error): string;
+export declare function formatMessage(error: Error): string;
+export declare function formatEffection(error: Error & Partial<HasEffectionTrace>): string | undefined;
+export declare function formatStack(error: Error): string | undefined;
+export declare function formatError(error: Error): string;
+//# sourceMappingURL=format-error-node.d.ts.map
