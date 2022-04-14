@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.45.0
+
+### Minor Changes
+
+- 244b74e5: zzz
+
 ## 4.44.0
 
 ### Minor Changes

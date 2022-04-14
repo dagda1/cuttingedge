@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.42.0
+
+### Minor Changes
+
+- 244b74e5: zzz
+
+### Patch Changes
+
+- Updated dependencies [244b74e5]
+  - @cutting/util@4.43.0
+
 ## 4.41.0
 
 ### Minor Changes
