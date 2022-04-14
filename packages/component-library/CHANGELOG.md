@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.16.0
+
+### Minor Changes
+
+- b7c32b0d: more bumping
+
+### Patch Changes
+
+- Updated dependencies [b7c32b0d]
+  - @cutting/hooks@4.41.0
+  - @cutting/util@4.42.0
+
 ## 5.15.0
 
 ### Minor Changes

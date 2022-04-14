@@ -1,5 +1,13 @@
 # @cutting/use-mathjax
 
+## 4.35.2
+
+### Patch Changes
+
+- Updated dependencies [b7c32b0d]
+  - @cutting/hooks@4.41.0
+  - @cutting/util@4.42.0
+
 ## 4.35.1
 
 ### Patch Changes
