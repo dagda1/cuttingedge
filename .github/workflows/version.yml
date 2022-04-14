@@ -40,7 +40,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}          
 
       - name: Install Dependencies
-        run: pnpm i --no-frozen-lockfile
+        run: pnpm i
 
       - name: Create versions PR & prepare publish
         id: changesets
