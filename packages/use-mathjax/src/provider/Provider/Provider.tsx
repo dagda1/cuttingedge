@@ -8,7 +8,7 @@ import { MathJax } from 'mathjax3';
 import { TeX } from 'mathjax3/mathjax3/input/tex.js';
 import { SVG } from 'mathjax3/mathjax3/output/svg.js';
 import { AllPackages } from 'mathjax3/mathjax3/input/tex/AllPackages';
-import { useIsomorphicLayoutEffect } from 'react-use';
+import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 
 interface MathDoc {
   version: string;
