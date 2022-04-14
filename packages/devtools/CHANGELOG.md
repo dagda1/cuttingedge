@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.43.0
+
+### Minor Changes
+
+- bdc75fe3: more bumping
+
 ## 4.42.0
 
 ### Minor Changes
