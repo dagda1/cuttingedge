@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.38.1
+
+### Patch Changes
+
+- 22996a38: remove react-use and move useIsomorphicLayoutEffect into hooks
+
 ## 4.38.0
 
 ### Minor Changes

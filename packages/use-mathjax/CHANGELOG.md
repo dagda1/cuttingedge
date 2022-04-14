@@ -1,5 +1,13 @@
 # @cutting/use-mathjax
 
+## 4.34.1
+
+### Patch Changes
+
+- 22996a38: remove react-use and move useIsomorphicLayoutEffect into hooks
+- Updated dependencies [22996a38]
+  - @cutting/hooks@4.38.1
+
 ## 4.34.0
 
 ### Minor Changes
