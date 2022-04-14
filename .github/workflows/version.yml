@@ -9,42 +9,44 @@ env:
   HUSKY: 0  # Bypass husky commit hook for CI
 
 jobs:
-  version:
-    timeout-minutes: 8
+  release:
+    name: Publish & Deploy
     runs-on: ubuntu-latest
+    env:
+      CI: true
     steps:
-      - name: checkout code repository
-        uses: actions/checkout@v3
-        with:          
-          fetch-depth: 0
-
-      - name: setup pnpm
-        uses: pnpm/action-setup@v2.2.1
+      - uses: pnpm/action-setup@v2.0.1
         with:
           version: 6.32.6
 
-      - name: setup node.js
-        uses: actions/setup-node@v3
+      - name: Checkout Repo
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@main
         with:
           node-version: 16.x
           cache: 'pnpm'
 
-      - name: Set up NPM credentials
+
+      - name: Creating .npmrc
         run: |
           cat << EOF > "$HOME/.npmrc"
             email=paul.cowan@cutting.scot
             //registry.npmjs.org/:_authToken=$NPM_TOKEN
           EOF
-
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}          
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install Dependencies
         run: pnpm i
-
-      - name: Create versions PR & prepare publish
+      
+      - name: Create PR or Publish release
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@master
         with:
           # Custom versioning script in package.json
           version: pnpm ci:version
@@ -54,6 +56,5 @@ jobs:
           commit: 'chore(deploy): Release'
           title: 'chore(deploy): Release'
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
