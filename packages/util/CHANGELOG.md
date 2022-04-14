@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.44.0
+
+### Minor Changes
+
+- ba063559: aaa
+
 ## 4.43.0
 
 ### Minor Changes
