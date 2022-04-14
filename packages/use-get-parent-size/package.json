@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-get-parent-size",
   "description": "Sizes an SVG document to the containing parent using the resize-observer.",
-  "version": "1.14.1",
+  "version": "1.15.0",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "browser": "dist/umd/index.js",

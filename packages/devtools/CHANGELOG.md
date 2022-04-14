@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.42.0
+
+### Minor Changes
+
+- d542ad8f: version
+
 ## 4.41.0
 
 ### Minor Changes
