@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.46.0
+
+### Minor Changes
+
+- ba063559: aaa
+
 ## 4.45.0
 
 ### Minor Changes
