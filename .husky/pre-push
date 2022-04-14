@@ -1,8 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-if [[ -z "$CI" ]]; then
-  pnpm install && pnpm lint
-else
-  echo "skip hook in CI environemnt"
-fi
+pnpm all
