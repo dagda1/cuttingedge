@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.40.0
+
+### Minor Changes
+
+- bdc75fe3: more bumping
+
+### Patch Changes
+
+- Updated dependencies [bdc75fe3]
+  - @cutting/util@4.41.0
+
 ## 4.39.0
 
 ### Minor Changes

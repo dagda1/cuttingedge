@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.41.0
+
+### Minor Changes
+
+- bdc75fe3: more bumping
+
 ## 4.40.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @cutting/svg
 
+## 4.41.1
+
+### Patch Changes
+
+- Updated dependencies [bdc75fe3]
+  - @cutting/util@4.41.0
+  - @cutting/use-get-parent-size@1.15.1
+
 ## 4.41.0
 
 ### Minor Changes
