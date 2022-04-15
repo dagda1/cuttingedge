@@ -6,6 +6,7 @@ on:
       - main
 env:
   CI: true
+  HUSKY: 0
 
 jobs:
   version:
