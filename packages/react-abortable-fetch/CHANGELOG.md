@@ -1,5 +1,18 @@
 # @cutting/react-abortable-fetch
 
+## 0.27.0
+
+### Minor Changes
+
+- 7ea7da5d: here we go
+
+### Patch Changes
+
+- 7ea7da5d: AAA
+- Updated dependencies [7ea7da5d]
+- Updated dependencies [7ea7da5d]
+  - @cutting/util@4.49.0
+
 ## 0.26.2
 
 ### Patch Changes

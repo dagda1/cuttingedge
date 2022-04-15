@@ -1,5 +1,15 @@
 # @cutting/util
 
+## 4.49.0
+
+### Minor Changes
+
+- 7ea7da5d: here we go
+
+### Patch Changes
+
+- 7ea7da5d: AAA
+
 ## 4.48.0
 
 ### Minor Changes
