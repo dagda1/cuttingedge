@@ -20,13 +20,12 @@ jobs:
           version: 6.32.7
 
       - name: Checkout Repo
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js 16.x
-        uses: actions/setup-node@main
+        uses: actions/setup-node@v2
         with:
           node-version: 16.x
           cache: 'pnpm'
@@ -53,8 +52,8 @@ jobs:
           # Custom versioning script in package.json
           publish: pnpm ci:publish
           # Messages
-          commit: 'chore(deploy): Release'
-          title: 'chore(deploy): Release'
+          commit: "chore: version packages"
+          title: "Version Packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

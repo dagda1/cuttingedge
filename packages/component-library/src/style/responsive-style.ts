@@ -2,7 +2,7 @@
 import { mapValues, omit } from '@cutting/util';
 import type { StyleRule } from '@vanilla-extract/css';
 import { breakpoints } from './breakpoints';
-import { rem } from 'polished';
+import rem from 'polished/lib/helpers/rem';
 
 type CSSProps = Omit<StyleRule, '@media' | '@supports'>;
 

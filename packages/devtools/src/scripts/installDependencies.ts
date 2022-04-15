@@ -2,7 +2,7 @@ import { ApplicationType } from '../types/applicationType';
 import { exec } from 'child_process';
 import { logger } from './logger';
 
-const dependencies = ['assert-ts'];
+const dependencies = ['assert-ts', '@cutting/util'];
 
 const devDependencies = [
   '@babel/core',
@@ -10,7 +10,6 @@ const devDependencies = [
   '@cutting/eslint-config',
   '@cutting/tsconfig',
   '@cutting/useful-types',
-  '@cutting/util',
   '@jest/globals',
   '@types/eslint',
   '@types/node',
@@ -50,7 +49,6 @@ const applicationDependencies: Record<ApplicationType, string[]> = {
     'react-dom',
     'react-router',
     'react-router-dom',
-    '@cutting/util',
     '@cutting/hooks',
     '@cutting/component-library',
   ],

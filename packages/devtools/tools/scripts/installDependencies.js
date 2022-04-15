@@ -13,14 +13,13 @@ exports.installDevDependencies = exports.installDependencies = void 0;
 const applicationType_1 = require("../types/applicationType");
 const child_process_1 = require("child_process");
 const logger_1 = require("./logger");
-const dependencies = ['assert-ts'];
+const dependencies = ['assert-ts', '@cutting/util'];
 const devDependencies = [
     '@babel/core',
     '@cutting/devtools',
     '@cutting/eslint-config',
     '@cutting/tsconfig',
     '@cutting/useful-types',
-    '@cutting/util',
     '@jest/globals',
     '@types/eslint',
     '@types/node',
@@ -58,7 +57,6 @@ const applicationDependencies = {
         'react-dom',
         'react-router',
         'react-router-dom',
-        '@cutting/util',
         '@cutting/hooks',
         '@cutting/component-library',
     ],

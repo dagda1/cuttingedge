@@ -1,4 +1,5 @@
-import { mix, rem } from 'polished';
+import rem from 'polished/lib/helpers/rem';
+import mix from 'polished/lib/color/mix';
 import { palette } from '../palette.css';
 import { getLightVariant } from '../util/a11y';
 
