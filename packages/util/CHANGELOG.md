@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.48.1
+
+### Patch Changes
+
+- 7a63f9c1: AAA
+
 ## 4.48.0
 
 ### Minor Changes
