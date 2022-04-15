@@ -7,21 +7,13 @@ const createBabelPresets = ({
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 isDevelopment, 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-isProduction, isNode, moduleFormat, }) => {
+isProduction, moduleFormat, }) => {
     const presetOptions = {
         exclude: ['transform-typeof-symbol'],
         modules: moduleFormat === 'esm' ? false : 'auto',
         useBuiltIns: 'entry',
         corejs: 3,
     };
-    if (isNode) {
-        presetOptions.targets = { node: '16', esmodules: moduleFormat === 'esm' ? true : undefined };
-    }
-    else {
-        presetOptions.targets = {
-            browsers: ['edge >= 17', 'firefox >= 60', 'chrome >= 67', 'safari >= 12', 'ie >= 11', 'ios >= 9'],
-        };
-    }
     return [
         ['@babel/preset-env', Object.assign({}, presetOptions)],
         [

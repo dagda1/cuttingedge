@@ -9,7 +9,6 @@ export const createBabelPresets = ({
   isDevelopment,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isProduction,
-  isNode,
   moduleFormat,
 }: {
   isDevelopment: boolean;
@@ -23,14 +22,6 @@ export const createBabelPresets = ({
     useBuiltIns: 'entry',
     corejs: 3,
   };
-
-  if (isNode) {
-    presetOptions.targets = { node: '16', esmodules: moduleFormat === 'esm' ? true : undefined };
-  } else {
-    presetOptions.targets = {
-      browsers: ['edge >= 17', 'firefox >= 60', 'chrome >= 67', 'safari >= 12', 'ie >= 11', 'ios >= 9'],
-    };
-  }
 
   return [
     ['@babel/preset-env', { ...presetOptions }],
