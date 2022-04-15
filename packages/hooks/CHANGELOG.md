@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.46.0
+
+### Minor Changes
+
+- 20164c54: another
+
+### Patch Changes
+
+- Updated dependencies [20164c54]
+  - @cutting/util@4.47.0
+
 ## 4.45.0
 
 ### Minor Changes
