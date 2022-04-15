@@ -11,14 +11,15 @@
     "all": "pnpm i && pnpm build && pnpm lint && pnpm test",
     "build": "turbo run build",
     "build:tsc": "tsc -b ./tsconfig.packages.json",
-    "clean": "pnpm build:tsc -- --clean && find . \\( -name node_modules -o -name dir2 -o -path name \\) -prune -false -o -name 'dist' -type d   -exec rm -rf {} +",
+    "clean": "rm -rf ./packages/*/{tsconfig.*tsbuildinfo,dist}",
     "lint": "turbo run lint",
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix",
     "prepare": "husky install",
     "test": "CI=true turbo run test",
     "watch": "pnpm build:tsc && pnpm tsc -b ./tsconfig.packages.json --watch",
-    "ci:version": "changeset version && pnpm install --frozen-lockfile=false",
-    "ci:publish": "pnpm build && changeset publish"
+    "ci:version": "changeset version && pnpm install --frozen-lockfile false",
+    "prerelease": "pnpm clean && pnpm install && pnpm run build",
+    "release": "pnpm run prerelease && changeset publish && git push --follow-tags && git status && pnpm -r publish"
   },
   "devDependencies": {
     "@babel/core": "7.17.9",
