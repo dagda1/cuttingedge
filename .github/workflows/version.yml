@@ -52,7 +52,7 @@ jobs:
           # Custom versioning script in package.json
           version: pnpm ci:version
           # Custom versioning script in package.json
-          publish: pnpm ci:publish
+          publish: pnpm release
           # Messages
           commit: "chore: version packages"
           title: "Version Packages"

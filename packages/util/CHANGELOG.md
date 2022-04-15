@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.48.0
+
+### Minor Changes
+
+- 1edcec38: use pnpm for publishing
+
 ## 4.47.0
 
 ### Minor Changes
