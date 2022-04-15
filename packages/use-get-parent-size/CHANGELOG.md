@@ -1,5 +1,19 @@
 # @cutting/hooks
 
+## 1.18.0
+
+### Minor Changes
+
+- 7ea7da5d: here we go
+
+### Patch Changes
+
+- 7ea7da5d: AAA
+- Updated dependencies [7ea7da5d]
+- Updated dependencies [7ea7da5d]
+  - @cutting/hooks@4.48.0
+  - @cutting/util@4.49.0
+
 ## 1.17.2
 
 ### Patch Changes
