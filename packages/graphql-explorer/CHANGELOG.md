@@ -1,5 +1,16 @@
 # @cutting/graphql-explorer
 
+## 4.35.3
+
+### Patch Changes
+
+- 7a63f9c1: AAA
+- Updated dependencies [7a63f9c1]
+  - @cutting/component-library@5.22.1
+  - @cutting/react-abortable-fetch@0.26.3
+  - @cutting/svg@4.43.3
+  - @cutting/util@4.48.1
+
 ## 4.35.2
 
 ### Patch Changes

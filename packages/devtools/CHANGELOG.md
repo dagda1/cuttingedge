@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.50.1
+
+### Patch Changes
+
+- 7a63f9c1: AAA
+
 ## 4.50.0
 
 ### Minor Changes
