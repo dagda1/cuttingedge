@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.50.0
+
+### Minor Changes
+
+- 1edcec38: use pnpm for publishing
+
 ## 4.49.0
 
 ### Minor Changes

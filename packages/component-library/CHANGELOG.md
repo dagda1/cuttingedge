@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.22.0
+
+### Minor Changes
+
+- 1edcec38: use pnpm for publishing
+
+### Patch Changes
+
+- Updated dependencies [1edcec38]
+  - @cutting/hooks@4.47.0
+  - @cutting/util@4.48.0
+
 ## 5.21.0
 
 ### Minor Changes
