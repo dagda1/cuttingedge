@@ -5,7 +5,6 @@ export { isDate } from './date/date';
 export { isElementInViewportTop } from './dom/dom';
 export { wait } from './dom/wait';
 export { isNumber } from './number';
-// export { HttpMethod } from './enums/HttpMethod';
 export { HttpStatusCode } from './enums/HttpStatusCodes';
 export { once } from './events/once/once';
 export { flatten, flattenDeep } from './lists/lists';

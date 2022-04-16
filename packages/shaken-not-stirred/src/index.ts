@@ -1,8 +1,9 @@
 import path from 'path';
 import { rollup } from 'rollup';
-// import walker from 'acorn-walk';
-import acorn from 'acorn';
+import { parse } from 'acorn';
 import virtual from '@rollup/plugin-virtual';
+import { assert } from 'assert-ts';
+import type { Node as AstNode } from 'acorn';
 
 export function check(input: string): Promise<{
   shaken: boolean;
@@ -10,10 +11,10 @@ export function check(input: string): Promise<{
   const resolved = path.resolve(input);
 
   return rollup({
-    input: '__agadoo__',
+    input: '__shaken_not_stirred__',
     plugins: [
       virtual({
-        __agadoo__: `import ${JSON.stringify(resolved)}`,
+        __shaken_not_stirred__: `import ${JSON.stringify(resolved)}`,
       }),
     ],
     onwarn: (warning, handle) => {
@@ -30,12 +31,17 @@ export function check(input: string): Promise<{
     .then((result) => {
       const { code } = result.output[0];
 
-      const ast = acorn.parse(code, {
+      const ast = parse(code, {
         ecmaVersion: 11,
         sourceType: 'module',
       });
 
-      const nodes = ast.body.filter((node) => {
+      assert(ast.type === 'Program', `ast not a Program`);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const body = (ast as any).body;
+
+      const nodes = body.filter((node: AstNode) => {
         return node.type !== 'ImportDeclaration';
       });
 
