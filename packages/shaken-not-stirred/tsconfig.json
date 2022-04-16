@@ -1,9 +1,13 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./tools",
     "baseUrl": "./",
-    "outDir": "./dist/esm",
     "rootDir": "./src",
+    "skipLibCheck": true,
+    "isolatedModules": false,
     "noEmit": false
   },
   "references": [
@@ -11,5 +15,5 @@
     { "path": "../hooks/tsconfig.dist.json" }
   ],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "./src/setupTests.ts"]
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
 }

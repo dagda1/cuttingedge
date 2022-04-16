@@ -35,22 +35,6 @@ const resolvedNodeModules = resolvePath(() =>
     .map((m) => path.relative(process.cwd(), m)),
 );
 
-const libPackages = [
-  'packages/devtools',
-  'packages/eslint-config',
-  'packages/tsconfig',
-  'packages/useful-types',
-  'packages/util',
-  'packages/use-get-parent-size',
-  'packages/hooks',
-  'packages/use-mathjax',
-  'packages/design-system',
-  'packages/component-library',
-  'packages/svg',
-  'packages/use-shortcuts',
-  'packages/react-abortable-fetch',
-].map((dep) => path.resolve(process.cwd(), dep));
-
 const tsConfigPath = resolveApp('tsconfig.json');
 const testTsConfig = (() => {
   try {
@@ -103,7 +87,6 @@ export const paths = {
   testTsConfig,
   devDir: resolveApp(DevFolder),
   devDirPublic: resolveApp(`${DevFolder}/public`),
-  libPackages,
   defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
   proxySetup: resolveApp('setupProxy.js'),
   tranlationsDir: resolveApp('src/translations'),
