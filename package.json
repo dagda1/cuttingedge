@@ -31,6 +31,7 @@
     "core-js": "3.21.1",
     "@changesets/cli": "2.22.0",
     "@cutting/devtools": "workspace:*",
+    "@cutting/shaken-not-stirred": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "babel-loader": "8.2.4",
     "css-loader": "6.7.1",

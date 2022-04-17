@@ -34,21 +34,30 @@ import postcssImport from 'postcss-import';
 import { emptyBuildDir } from './empty-build-dir';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { createCommand } from 'commander';
-import analyzer from 'rollup-plugin-analyzer';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 export interface BundlerOptions {
   packageName: string;
-  entryPoints: string[];
+  entryFile: string;
   moduleFormat: ModuleFormat;
   env: 'development' | 'production';
+  vizualize: boolean;
   analyze: boolean;
 }
 
 logger.debug(`using ${path.basename(paths.tsConfigProduction)}`);
 
-const shebang: Record<string, string> = {};
+async function generateBundledModule({
+  packageName,
+  entryFile,
+  moduleFormat,
+  env,
+  vizualize,
+  analyze,
+}: BundlerOptions) {
+  assert(fs.existsSync(entryFile), `Input file ${entryFile} does not exist`);
 
-async function generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze }: BundlerOptions) {
   const minify = env === 'production';
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -60,7 +69,7 @@ async function generateBundledModule({ packageName, entryPoints, moduleFormat, e
   });
 
   const bundle = await rollup({
-    input: entryPoints.length === 1 ? entryPoints[0] : entryPoints,
+    input: entryFile,
     external: (id: string) => {
       if (id === 'babel-plugin-transform-async-to-promises/helpers') {
         return false;
@@ -72,6 +81,7 @@ async function generateBundledModule({ packageName, entryPoints, moduleFormat, e
       propertyReadSideEffects: false,
     },
     plugins: [
+      analyze && sizeSnapshot(),
       eslint({
         fix: false,
         throwOnError: true,
@@ -91,26 +101,6 @@ async function generateBundledModule({ packageName, entryPoints, moduleFormat, e
       }),
       json(),
       md(),
-      {
-        // Custom plugin that removes shebang from code because newer
-        // versions of bublé bundle their own private version of `acorn`
-        // and I don't know a way to patch in the option `allowHashBang`
-        // to acorn. Taken from microbundle.
-        // See: https://github.com/Rich-Harris/buble/pull/165
-        transform(code: string) {
-          const reg = /^#!(.*)/;
-          const match = code.match(reg);
-
-          shebang[packageName] = match ? '#!' + match[1] : '';
-
-          code = code.replace(reg, '');
-
-          return {
-            code,
-            map: null,
-          };
-        },
-      },
       postcss({
         extract: true,
         modules: false,
@@ -168,7 +158,14 @@ async function generateBundledModule({ packageName, entryPoints, moduleFormat, e
           toplevel: moduleFormat === 'cjs',
         }),
       sourceMaps(),
-      analyze && analyzer({ summaryOnly: true }),
+      vizualize &&
+        moduleFormat === 'esm' &&
+        visualizer({
+          open: true,
+          gzipSize: true,
+          sourcemap: true,
+          template: 'sunburst',
+        }),
     ].filter(Boolean),
   });
 
@@ -180,8 +177,7 @@ async function generateBundledModule({ packageName, entryPoints, moduleFormat, e
   logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
 
   await bundle.write({
-    file: entryPoints.length === 1 ? outputFileName : undefined,
-    dir: entryPoints.length === 1 ? undefined : path.dirname(outputFileName),
+    file: outputFileName,
     format: moduleFormat,
     name: packageName,
     exports: 'named',
@@ -222,10 +218,10 @@ const getInputFile = (packageName: string, inputFileOverride?: string): string =
 };
 
 async function build({
+  vizualize,
   analyze,
   inputFile,
-  additionalEntryPoints = [],
-}: Pick<BundlerOptions, 'analyze'> & { inputFile?: string; additionalEntryPoints?: string[] }) {
+}: Pick<BundlerOptions, 'vizualize' | 'analyze'> & { inputFile?: string }) {
   emptyBuildDir();
 
   const pkgJsonPath = path.join(process.cwd(), 'package.json');
@@ -236,8 +232,6 @@ async function build({
 
   const entryFile = getInputFile(packageName, inputFile);
 
-  assert(!!entryFile, `Could not find entry file for ${packageName}`);
-
   const configs: { moduleFormat: ModuleFormat; env: 'development' | 'production' }[] = [
     { moduleFormat: 'cjs', env: 'development' },
     { moduleFormat: 'cjs', env: 'production' },
@@ -247,15 +241,8 @@ async function build({
 
   logger.info(`Generating ${packageName} bundle.`);
 
-  const entryPoints = [entryFile, ...additionalEntryPoints];
-
   for (const { moduleFormat, env } of configs) {
-    if (entryPoints.length > 1 && moduleFormat === 'umd') {
-      logger.warn(`Skipping ${moduleFormat} for ${packageName} because it is not supported for multiple entry points`);
-      continue;
-    }
-
-    await generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze });
+    await generateBundledModule({ packageName, entryFile, moduleFormat, env, vizualize, analyze });
   }
 
   await writeCjsEntryFile(packageName);
@@ -298,17 +285,13 @@ const program = createCommand('rollup');
 
 program
   .description('execute a rollup build')
+  .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)
   .option('-a, --analyze', 'analyze the bundle', false)
   .option('-i, --input-file <path>', 'the entry file')
-  .option('-e, --additional-entries <path>', 'comma separated list of additional paths to search for files')
   .parse(process.argv)
-  .action(async function ({ inputFile, analyze, additionalEntries }) {
+  .action(async function ({ vizualize, inputFile, analyze }) {
     try {
-      const additionalEntryPoints: string[] = additionalEntries?.length
-        ? (additionalEntries as string).split(',').map((s) => path.resolve(process.cwd(), s))
-        : [];
-
-      await build({ inputFile, analyze, additionalEntryPoints });
+      await build({ vizualize, inputFile, analyze });
 
       logger.done('finished building');
     } catch (err) {

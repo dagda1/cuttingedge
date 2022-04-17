@@ -79,11 +79,12 @@ const postcss_import_1 = __importDefault(require("postcss-import"));
 const empty_build_dir_1 = require("./empty-build-dir");
 const core_1 = require("@babel/core");
 const commander_1 = require("commander");
-const rollup_plugin_analyzer_1 = __importDefault(require("rollup-plugin-analyzer"));
+const rollup_plugin_visualizer_1 = require("rollup-plugin-visualizer");
+const rollup_plugin_size_snapshot_1 = require("rollup-plugin-size-snapshot");
 logger_1.logger.debug(`using ${path_1.default.basename(paths_1.paths.tsConfigProduction)}`);
-const shebang = {};
-function generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze }) {
+function generateBundledModule({ packageName, entryFile, moduleFormat, env, vizualize, analyze, }) {
     return __awaiter(this, void 0, void 0, function* () {
+        (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(entryFile), `Input file ${entryFile} does not exist`);
         const minify = env === 'production';
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const babelConfig = __rest((0, createBabelConfig_1.createBabelConfig)({
@@ -93,7 +94,7 @@ function generateBundledModule({ packageName, entryPoints, moduleFormat, env, an
             moduleFormat,
         }), []);
         const bundle = yield (0, rollup_1.rollup)({
-            input: entryPoints.length === 1 ? entryPoints[0] : entryPoints,
+            input: entryFile,
             external: (id) => {
                 if (id === 'babel-plugin-transform-async-to-promises/helpers') {
                     return false;
@@ -104,6 +105,7 @@ function generateBundledModule({ packageName, entryPoints, moduleFormat, env, an
                 propertyReadSideEffects: false,
             },
             plugins: [
+                analyze && (0, rollup_plugin_size_snapshot_1.sizeSnapshot)(),
                 (0, rollup_plugin_eslint_1.default)({
                     fix: false,
                     throwOnError: true,
@@ -123,23 +125,6 @@ function generateBundledModule({ packageName, entryPoints, moduleFormat, env, an
                 }),
                 (0, plugin_json_1.default)(),
                 (0, rollup_plugin_md_1.md)(),
-                {
-                    // Custom plugin that removes shebang from code because newer
-                    // versions of bublé bundle their own private version of `acorn`
-                    // and I don't know a way to patch in the option `allowHashBang`
-                    // to acorn. Taken from microbundle.
-                    // See: https://github.com/Rich-Harris/buble/pull/165
-                    transform(code) {
-                        const reg = /^#!(.*)/;
-                        const match = code.match(reg);
-                        shebang[packageName] = match ? '#!' + match[1] : '';
-                        code = code.replace(reg, '');
-                        return {
-                            code,
-                            map: null,
-                        };
-                    },
-                },
                 (0, rollup_plugin_postcss_1.default)({
                     extract: true,
                     modules: false,
@@ -192,7 +177,14 @@ function generateBundledModule({ packageName, entryPoints, moduleFormat, env, an
                         toplevel: moduleFormat === 'cjs',
                     }),
                 (0, rollup_plugin_sourcemaps_1.default)(),
-                analyze && (0, rollup_plugin_analyzer_1.default)({ summaryOnly: true }),
+                vizualize &&
+                    moduleFormat === 'esm' &&
+                    (0, rollup_plugin_visualizer_1.visualizer)({
+                        open: true,
+                        gzipSize: true,
+                        sourcemap: true,
+                        template: 'sunburst',
+                    }),
             ].filter(Boolean),
         });
         const pkgName = (0, helpers_1.safePackageName)(packageName);
@@ -201,8 +193,7 @@ function generateBundledModule({ packageName, entryPoints, moduleFormat, env, an
         const outputFileName = path_1.default.join(paths_1.paths.appBuild, moduleFormat, fileName);
         logger_1.logger.info(`writing ${path_1.default.basename(outputFileName)} for ${packageName}`);
         yield bundle.write({
-            file: entryPoints.length === 1 ? outputFileName : undefined,
-            dir: entryPoints.length === 1 ? undefined : path_1.default.dirname(outputFileName),
+            file: outputFileName,
             format: moduleFormat,
             name: packageName,
             exports: 'named',
@@ -231,14 +222,13 @@ const getInputFile = (packageName, inputFileOverride) => {
     logger_1.logger.start(`using input file ${path_1.default.basename(inputFile)} for ${packageName}`);
     return inputFile;
 };
-function build({ analyze, inputFile, additionalEntryPoints = [], }) {
+function build({ vizualize, analyze, inputFile, }) {
     return __awaiter(this, void 0, void 0, function* () {
         (0, empty_build_dir_1.emptyBuildDir)();
         const pkgJsonPath = path_1.default.join(process.cwd(), 'package.json');
         const { default: pkg } = yield Promise.resolve().then(() => __importStar(require(pkgJsonPath)));
         const packageName = pkg.name;
         const entryFile = getInputFile(packageName, inputFile);
-        (0, assert_ts_1.assert)(!!entryFile, `Could not find entry file for ${packageName}`);
         const configs = [
             { moduleFormat: 'cjs', env: 'development' },
             { moduleFormat: 'cjs', env: 'production' },
@@ -246,13 +236,8 @@ function build({ analyze, inputFile, additionalEntryPoints = [], }) {
             { moduleFormat: 'umd', env: 'production' },
         ];
         logger_1.logger.info(`Generating ${packageName} bundle.`);
-        const entryPoints = [entryFile, ...additionalEntryPoints];
         for (const { moduleFormat, env } of configs) {
-            if (entryPoints.length > 1 && moduleFormat === 'umd') {
-                logger_1.logger.warn(`Skipping ${moduleFormat} for ${packageName} because it is not supported for multiple entry points`);
-                continue;
-            }
-            yield generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze });
+            yield generateBundledModule({ packageName, entryFile, moduleFormat, env, vizualize, analyze });
         }
         yield (0, helpers_1.writeCjsEntryFile)(packageName);
         const pkgJson = Object.assign({}, pkg);
@@ -283,17 +268,14 @@ function build({ analyze, inputFile, additionalEntryPoints = [], }) {
 const program = (0, commander_1.createCommand)('rollup');
 program
     .description('execute a rollup build')
+    .option('-v, --vizualize', 'run the rollup-plugin-visualizer', false)
     .option('-a, --analyze', 'analyze the bundle', false)
     .option('-i, --input-file <path>', 'the entry file')
-    .option('-e, --additional-entries <path>', 'comma separated list of additional paths to search for files')
     .parse(process.argv)
-    .action(function ({ inputFile, analyze, additionalEntries }) {
+    .action(function ({ vizualize, inputFile, analyze }) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const additionalEntryPoints = (additionalEntries === null || additionalEntries === void 0 ? void 0 : additionalEntries.length)
-                ? additionalEntries.split(',').map((s) => path_1.default.resolve(process.cwd(), s))
-                : [];
-            yield build({ inputFile, analyze, additionalEntryPoints });
+            yield build({ vizualize, inputFile, analyze });
             logger_1.logger.done('finished building');
         }
         catch (err) {

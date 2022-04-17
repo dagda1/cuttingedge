@@ -5,11 +5,11 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "bin": "./dist/esm/bin/shaken-not-stirred.js",
+  "bin": "./dist/bin/shaken-not-stirred.js",
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=production devtools rollup -e src/bin/shaken-not-stirred.ts",
+    "build": "NODE_ENV=production devtools ts-build",
     "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix",
     "test": "NODE_ENV=test devtools test",
     "test:ci": "CI=true pnpm test"
@@ -32,25 +32,11 @@
     "typescript": "^4.6.3"
   },
   "files": [
-    "bin",
     "dist"
   ],
   "volta": {
     "extends": "../../package.json"
   },
-  "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
-  "types": "dist/esm/index.d.ts",
-  "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/index.js"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "dist/esm/index.d.ts"
-      ]
-    }
-  }
+  "main": "dist/index.js",
+  "types": "dis/index.d.ts"
 }

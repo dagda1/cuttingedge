@@ -1,16 +1,15 @@
 {
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "baseUrl": "./",
     "rootDirs": ["./src", "./bin"],
     "skipLibCheck": true,
     "isolatedModules": false,
-    "noEmit": true
+    "noEmit": false
   },
-  "references": [
-    { "path": "../util/tsconfig.dist.json" },
-    { "path": "../hooks/tsconfig.dist.json" }
-  ],
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "fixtures"]
+  "include": ["src/**/*.ts", "bin/**/*.ts"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
 }

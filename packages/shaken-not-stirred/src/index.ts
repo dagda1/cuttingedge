@@ -42,10 +42,13 @@ export function check(input: string): Promise<{
       const body = (ast as any).body;
 
       const nodes = body.filter((node: AstNode) => {
+        if (node.type !== 'ImportDeclaration') {
+          console.log({ node });
+        }
         return node.type !== 'ImportDeclaration';
       });
 
-      console.log(code);
+      // console.log(code);
 
       return {
         shaken: nodes.length === 0,

@@ -1,14 +1,10 @@
 #!/usr/bin/env node
 import path from 'path';
 import fs from 'fs';
-import { check } from '../index';
 import { assert } from 'assert-ts';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { check } from '../src';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-const packageJsonPath = path.join(__dirname, '../../package.json');
+const packageJsonPath = path.join(process.cwd(), 'package.json');
 
 function ifExists(file: string) {
   return fs.existsSync(file) ? file : null;
@@ -34,7 +30,9 @@ function resolve(file: string) {
 function getInput() {
   assert(fs.existsSync(packageJsonPath), 'package.json not found');
 
-  const pkg = JSON.parse(packageJsonPath);
+  const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+
+  console.log({ m: pkg.module, main: pkg.main });
 
   const unresolved = pkg.module || pkg.main || 'index';
   const resolved = resolve(unresolved);
