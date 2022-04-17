@@ -81,9 +81,8 @@ const core_1 = require("@babel/core");
 const commander_1 = require("commander");
 const rollup_plugin_analyzer_1 = __importDefault(require("rollup-plugin-analyzer"));
 logger_1.logger.debug(`using ${path_1.default.basename(paths_1.paths.tsConfigProduction)}`);
-function generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze }) {
+function generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze }) {
     return __awaiter(this, void 0, void 0, function* () {
-        (0, assert_ts_1.assert)(fs_extra_1.default.existsSync(entryFile), `Input file ${entryFile} does not exist`);
         const minify = env === 'production';
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const babelConfig = __rest((0, createBabelConfig_1.createBabelConfig)({
@@ -93,7 +92,7 @@ function generateBundledModule({ packageName, entryFile, moduleFormat, env, anal
             moduleFormat,
         }), []);
         const bundle = yield (0, rollup_1.rollup)({
-            input: entryFile,
+            input: entryPoints,
             external: (id) => {
                 if (id === 'babel-plugin-transform-async-to-promises/helpers') {
                     return false;
@@ -213,13 +212,14 @@ const getInputFile = (packageName, inputFileOverride) => {
     logger_1.logger.start(`using input file ${path_1.default.basename(inputFile)} for ${packageName}`);
     return inputFile;
 };
-function build({ analyze, inputFile }) {
+function build({ analyze, inputFile, additionalEntryPoints = [], }) {
     return __awaiter(this, void 0, void 0, function* () {
         (0, empty_build_dir_1.emptyBuildDir)();
         const pkgJsonPath = path_1.default.join(process.cwd(), 'package.json');
         const { default: pkg } = yield Promise.resolve().then(() => __importStar(require(pkgJsonPath)));
         const packageName = pkg.name;
         const entryFile = getInputFile(packageName, inputFile);
+        (0, assert_ts_1.assert)(!!entryFile, `Could not find entry file for ${packageName}`);
         const configs = [
             { moduleFormat: 'cjs', env: 'development' },
             { moduleFormat: 'cjs', env: 'production' },
@@ -227,8 +227,10 @@ function build({ analyze, inputFile }) {
             { moduleFormat: 'umd', env: 'production' },
         ];
         logger_1.logger.info(`Generating ${packageName} bundle.`);
+        const entryPoints = [entryFile, ...additionalEntryPoints];
+        console.dir({ entryPoints });
         for (const { moduleFormat, env } of configs) {
-            yield generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze });
+            yield generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze });
         }
         yield (0, helpers_1.writeCjsEntryFile)(packageName);
         const pkgJson = Object.assign({}, pkg);
@@ -261,11 +263,16 @@ program
     .description('execute a rollup build')
     .option('-a, --analyze', 'analyze the bundle', false)
     .option('-i, --input-file <path>', 'the entry file')
+    .option('-e, --additional-entries <path>', 'comma separated list of additional paths to search for files')
     .parse(process.argv)
-    .action(function ({ inputFile, analyze }) {
+    .action(function ({ inputFile, analyze, additionalEntries }) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield build({ inputFile, analyze });
+            const additionalEntryPoints = (additionalEntries === null || additionalEntries === void 0 ? void 0 : additionalEntries.length)
+                ? additionalEntries.split(',').map((s) => path_1.default.resolve(process.cwd(), s))
+                : [];
+            console.dir({ additionalEntryPoints });
+            yield build({ inputFile, analyze, additionalEntryPoints });
             logger_1.logger.done('finished building');
         }
         catch (err) {

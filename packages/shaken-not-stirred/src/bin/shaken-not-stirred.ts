@@ -46,6 +46,9 @@ function getInput() {
 
 async function main() {
   const input = process.argv[2] || getInput();
+
+  assert(!!input, 'Input file not specified');
+
   const relative = path.relative(process.cwd(), input);
 
   const result = await check(input);

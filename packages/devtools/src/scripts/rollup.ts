@@ -38,7 +38,7 @@ import analyzer from 'rollup-plugin-analyzer';
 
 export interface BundlerOptions {
   packageName: string;
-  entryFile: string;
+  entryPoints: string[];
   moduleFormat: ModuleFormat;
   env: 'development' | 'production';
   analyze: boolean;
@@ -46,9 +46,7 @@ export interface BundlerOptions {
 
 logger.debug(`using ${path.basename(paths.tsConfigProduction)}`);
 
-async function generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze }: BundlerOptions) {
-  assert(fs.existsSync(entryFile), `Input file ${entryFile} does not exist`);
-
+async function generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze }: BundlerOptions) {
   const minify = env === 'production';
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -60,7 +58,7 @@ async function generateBundledModule({ packageName, entryFile, moduleFormat, env
   });
 
   const bundle = await rollup({
-    input: entryFile,
+    input: entryPoints,
     external: (id: string) => {
       if (id === 'babel-plugin-transform-async-to-promises/helpers') {
         return false;
@@ -200,7 +198,11 @@ const getInputFile = (packageName: string, inputFileOverride?: string): string =
   return inputFile;
 };
 
-async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & { inputFile?: string }) {
+async function build({
+  analyze,
+  inputFile,
+  additionalEntryPoints = [],
+}: Pick<BundlerOptions, 'analyze'> & { inputFile?: string; additionalEntryPoints?: string[] }) {
   emptyBuildDir();
 
   const pkgJsonPath = path.join(process.cwd(), 'package.json');
@@ -211,6 +213,8 @@ async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & {
 
   const entryFile = getInputFile(packageName, inputFile);
 
+  assert(!!entryFile, `Could not find entry file for ${packageName}`);
+
   const configs: { moduleFormat: ModuleFormat; env: 'development' | 'production' }[] = [
     { moduleFormat: 'cjs', env: 'development' },
     { moduleFormat: 'cjs', env: 'production' },
@@ -220,8 +224,12 @@ async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & {
 
   logger.info(`Generating ${packageName} bundle.`);
 
+  const entryPoints = [entryFile, ...additionalEntryPoints];
+
+  console.dir({ entryPoints });
+
   for (const { moduleFormat, env } of configs) {
-    await generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze });
+    await generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze });
   }
 
   await writeCjsEntryFile(packageName);
@@ -266,10 +274,17 @@ program
   .description('execute a rollup build')
   .option('-a, --analyze', 'analyze the bundle', false)
   .option('-i, --input-file <path>', 'the entry file')
+  .option('-e, --additional-entries <path>', 'comma separated list of additional paths to search for files')
   .parse(process.argv)
-  .action(async function ({ inputFile, analyze }) {
+  .action(async function ({ inputFile, analyze, additionalEntries }) {
     try {
-      await build({ inputFile, analyze });
+      const additionalEntryPoints: string[] = additionalEntries?.length
+        ? (additionalEntries as string).split(',').map((s) => path.resolve(process.cwd(), s))
+        : [];
+
+      console.dir({ additionalEntryPoints });
+
+      await build({ inputFile, analyze, additionalEntryPoints });
 
       logger.done('finished building');
     } catch (err) {
