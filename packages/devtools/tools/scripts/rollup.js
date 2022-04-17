@@ -81,6 +81,7 @@ const core_1 = require("@babel/core");
 const commander_1 = require("commander");
 const rollup_plugin_analyzer_1 = __importDefault(require("rollup-plugin-analyzer"));
 logger_1.logger.debug(`using ${path_1.default.basename(paths_1.paths.tsConfigProduction)}`);
+const shebang = {};
 function generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze }) {
     return __awaiter(this, void 0, void 0, function* () {
         const minify = env === 'production';
@@ -92,7 +93,7 @@ function generateBundledModule({ packageName, entryPoints, moduleFormat, env, an
             moduleFormat,
         }), []);
         const bundle = yield (0, rollup_1.rollup)({
-            input: entryPoints,
+            input: entryPoints.length === 1 ? entryPoints[0] : entryPoints,
             external: (id) => {
                 if (id === 'babel-plugin-transform-async-to-promises/helpers') {
                     return false;
@@ -122,6 +123,23 @@ function generateBundledModule({ packageName, entryPoints, moduleFormat, env, an
                 }),
                 (0, plugin_json_1.default)(),
                 (0, rollup_plugin_md_1.md)(),
+                {
+                    // Custom plugin that removes shebang from code because newer
+                    // versions of bublé bundle their own private version of `acorn`
+                    // and I don't know a way to patch in the option `allowHashBang`
+                    // to acorn. Taken from microbundle.
+                    // See: https://github.com/Rich-Harris/buble/pull/165
+                    transform(code) {
+                        const reg = /^#!(.*)/;
+                        const match = code.match(reg);
+                        shebang[packageName] = match ? '#!' + match[1] : '';
+                        code = code.replace(reg, '');
+                        return {
+                            code,
+                            map: null,
+                        };
+                    },
+                },
                 (0, rollup_plugin_postcss_1.default)({
                     extract: true,
                     modules: false,
@@ -183,7 +201,8 @@ function generateBundledModule({ packageName, entryPoints, moduleFormat, env, an
         const outputFileName = path_1.default.join(paths_1.paths.appBuild, moduleFormat, fileName);
         logger_1.logger.info(`writing ${path_1.default.basename(outputFileName)} for ${packageName}`);
         yield bundle.write({
-            file: outputFileName,
+            file: entryPoints.length === 1 ? outputFileName : undefined,
+            dir: entryPoints.length === 1 ? undefined : path_1.default.dirname(outputFileName),
             format: moduleFormat,
             name: packageName,
             exports: 'named',
@@ -228,8 +247,11 @@ function build({ analyze, inputFile, additionalEntryPoints = [], }) {
         ];
         logger_1.logger.info(`Generating ${packageName} bundle.`);
         const entryPoints = [entryFile, ...additionalEntryPoints];
-        console.dir({ entryPoints });
         for (const { moduleFormat, env } of configs) {
+            if (entryPoints.length > 1 && moduleFormat === 'umd') {
+                logger_1.logger.warn(`Skipping ${moduleFormat} for ${packageName} because it is not supported for multiple entry points`);
+                continue;
+            }
             yield generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze });
         }
         yield (0, helpers_1.writeCjsEntryFile)(packageName);
@@ -271,7 +293,6 @@ program
             const additionalEntryPoints = (additionalEntries === null || additionalEntries === void 0 ? void 0 : additionalEntries.length)
                 ? additionalEntries.split(',').map((s) => path_1.default.resolve(process.cwd(), s))
                 : [];
-            console.dir({ additionalEntryPoints });
             yield build({ inputFile, analyze, additionalEntryPoints });
             logger_1.logger.done('finished building');
         }

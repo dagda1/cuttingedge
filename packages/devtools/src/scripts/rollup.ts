@@ -46,6 +46,8 @@ export interface BundlerOptions {
 
 logger.debug(`using ${path.basename(paths.tsConfigProduction)}`);
 
+const shebang: Record<string, string> = {};
+
 async function generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze }: BundlerOptions) {
   const minify = env === 'production';
 
@@ -58,7 +60,7 @@ async function generateBundledModule({ packageName, entryPoints, moduleFormat, e
   });
 
   const bundle = await rollup({
-    input: entryPoints,
+    input: entryPoints.length === 1 ? entryPoints[0] : entryPoints,
     external: (id: string) => {
       if (id === 'babel-plugin-transform-async-to-promises/helpers') {
         return false;
@@ -89,6 +91,26 @@ async function generateBundledModule({ packageName, entryPoints, moduleFormat, e
       }),
       json(),
       md(),
+      {
+        // Custom plugin that removes shebang from code because newer
+        // versions of bublé bundle their own private version of `acorn`
+        // and I don't know a way to patch in the option `allowHashBang`
+        // to acorn. Taken from microbundle.
+        // See: https://github.com/Rich-Harris/buble/pull/165
+        transform(code: string) {
+          const reg = /^#!(.*)/;
+          const match = code.match(reg);
+
+          shebang[packageName] = match ? '#!' + match[1] : '';
+
+          code = code.replace(reg, '');
+
+          return {
+            code,
+            map: null,
+          };
+        },
+      },
       postcss({
         extract: true,
         modules: false,
@@ -158,7 +180,8 @@ async function generateBundledModule({ packageName, entryPoints, moduleFormat, e
   logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
 
   await bundle.write({
-    file: outputFileName,
+    file: entryPoints.length === 1 ? outputFileName : undefined,
+    dir: entryPoints.length === 1 ? undefined : path.dirname(outputFileName),
     format: moduleFormat,
     name: packageName,
     exports: 'named',
@@ -226,9 +249,12 @@ async function build({
 
   const entryPoints = [entryFile, ...additionalEntryPoints];
 
-  console.dir({ entryPoints });
-
   for (const { moduleFormat, env } of configs) {
+    if (entryPoints.length > 1 && moduleFormat === 'umd') {
+      logger.warn(`Skipping ${moduleFormat} for ${packageName} because it is not supported for multiple entry points`);
+      continue;
+    }
+
     await generateBundledModule({ packageName, entryPoints, moduleFormat, env, analyze });
   }
 
@@ -281,8 +307,6 @@ program
       const additionalEntryPoints: string[] = additionalEntries?.length
         ? (additionalEntries as string).split(',').map((s) => path.resolve(process.cwd(), s))
         : [];
-
-      console.dir({ additionalEntryPoints });
 
       await build({ inputFile, analyze, additionalEntryPoints });
 
