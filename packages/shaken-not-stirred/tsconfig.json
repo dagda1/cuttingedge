@@ -1,8 +1,8 @@
 {
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "baseUrl": "./src",
-    "rootDir": "./src",
+    "baseUrl": ".",
+    "rootDirs": ["./src", "./bin"],
     "skipLibCheck": true,
     "isolatedModules": false,
     "noEmit": true

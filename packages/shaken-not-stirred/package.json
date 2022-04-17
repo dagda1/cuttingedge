@@ -1,5 +1,5 @@
 {
-  "name": "@cutting/workspace*",
+  "name": "@cutting/shaken-not-stirred",
   "version": "0.1.0",
   "repository": {
     "type": "git",
@@ -37,5 +37,20 @@
   ],
   "volta": {
     "extends": "../../package.json"
+  },
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/index.js",
+  "types": "dist/esm/index.d.ts",
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js",
+    "browser": "./dist/umd/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
   }
 }

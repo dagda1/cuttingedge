@@ -1,52 +1,20 @@
 #!/usr/bin/env node
-const path = require('path');
-const fs = require('fs');
+import path from 'path';
+import fs from 'fs';
+import { check } from '../index';
+import { assert } from 'assert-ts';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const input = process.argv[2] || get_input();
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-require('./index.js')
-  .check(input)
-  .then((result) => {
-    const relative = path.relative(process.cwd(), input);
+const packageJsonPath = path.join(__dirname, '../../package.json');
 
-    if (result.shaken) {
-      console.error(`Success! ${relative} is fully tree-shakeable`);
-    } else {
-      error(`Failed to tree-shake ${relative}`);
-    }
-  });
-
-function error(msg) {
-  console.error(msg);
-  process.exit(1);
+function ifExists(file: string) {
+  return fs.existsSync(file) ? file : null;
 }
 
-function get_input() {
-  if (!fs.existsSync('package.json')) {
-    error(`Could not find package.json`);
-  }
-
-  const pkg = JSON.parse(fs.readFileSync('package.json'), 'utf-8');
-
-  const unresolved = pkg.module || pkg.main || 'index';
-  const resolved = resolve(unresolved);
-
-  if (!resolved) {
-    error(`Could not resolve entry point`);
-  }
-
-  return resolved;
-}
-
-function resolve(file) {
-  if (is_directory(file)) {
-    return if_exists(`${file}/index.mjs`) || if_exists(`${file}/index.js`);
-  }
-
-  return if_exists(file) || if_exists(`${file}.mjs`) || if_exists(`${file}.js`);
-}
-
-function is_directory(file) {
+function isDirectory(file: string) {
   try {
     const stats = fs.statSync(file);
     return stats.isDirectory();
@@ -55,6 +23,39 @@ function is_directory(file) {
   }
 }
 
-function if_exists(file) {
-  return fs.existsSync(file) ? file : null;
+function resolve(file: string) {
+  if (isDirectory(file)) {
+    return ifExists(`${file}/index.mjs`) || ifExists(`${file}/index.js`);
+  }
+
+  return ifExists(file) || ifExists(`${file}.mjs`) || ifExists(`${file}.js`);
 }
+
+function getInput() {
+  assert(fs.existsSync(packageJsonPath), 'package.json not found');
+
+  const pkg = JSON.parse(packageJsonPath);
+
+  const unresolved = pkg.module || pkg.main || 'index';
+  const resolved = resolve(unresolved);
+
+  assert(!!resolved, `Could not resolve entry point`);
+
+  return resolved;
+}
+
+async function main() {
+  const input = process.argv[2] || getInput();
+  const relative = path.relative(process.cwd(), input);
+
+  const result = await check(input);
+
+  if (result.shaken) {
+    console.error(`Success! ${relative} is fully tree-shakeable`);
+  } else {
+    console.error(`Failed to tree-shake ${relative}`);
+    process.exit(1);
+  }
+}
+
+main();
