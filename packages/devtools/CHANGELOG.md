@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.52.2
+
+### Patch Changes
+
+- 9d5016fc: add eslintrc to package
+
 ## 4.52.1
 
 ### Patch Changes
