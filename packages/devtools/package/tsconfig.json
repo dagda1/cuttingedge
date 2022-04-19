@@ -1,0 +1,19 @@
+{
+  "extends": "@cutting/tsconfig",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "rootDir": "./src",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "module": "ES2020",
+    "moduleResolution": "Node",
+    "outDir": "./dist"
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
