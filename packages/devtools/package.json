@@ -109,7 +109,6 @@
     "terser-webpack-plugin": "5.3.1",
     "ts-jest": "27.1.4",
     "ts-loader": "9.2.8",
-    "ts-toolbelt": "9.6.0",
     "url-loader": "4.1.1",
     "validate-npm-package-name": "4.0.0",
     "webpack": "^5.72.0",
@@ -125,6 +124,7 @@
     "cli",
     "css",
     "demo",
+    "package",
     "init",
     "tools"
   ],
