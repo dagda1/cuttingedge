@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.52.4
+
+### Patch Changes
+
+- 771ec33e: add browserlist
+
 ## 4.52.3
 
 ### Patch Changes
