@@ -15,29 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.scaffold = void 0;
 const inquirer_1 = __importDefault(require("inquirer"));
 const path_1 = __importDefault(require("path"));
-const paths_1 = require("../config/paths");
 const fs_extra_1 = __importDefault(require("fs-extra"));
-const logger_1 = __importDefault(require("./logger"));
 const applicationType_1 = require("../types/applicationType");
 const validate_npm_package_name_1 = __importDefault(require("validate-npm-package-name"));
 const console_1 = require("console");
 const installDependencies_1 = require("./installDependencies");
 const appSource = {
-    [applicationType_1.ApplicationType.WebApp]: '../../demo',
+    [applicationType_1.ApplicationType.WebApp]: '../../web',
     [applicationType_1.ApplicationType.package]: '../../package',
     [applicationType_1.ApplicationType.cli]: '../../cli',
 };
 function scaffold() {
     return __awaiter(this, void 0, void 0, function* () {
-        if ([paths_1.paths.appPublic, paths_1.paths.devDirPublic].some((dir) => {
-            if (fs_extra_1.default.existsSync(dir)) {
-                logger_1.default.info(`${dir} exists, aborting scaffold.`);
-                return true;
-            }
-            return false;
-        })) {
-            return;
-        }
         const { projectName } = yield inquirer_1.default.prompt({
             type: 'input',
             name: 'projectName',

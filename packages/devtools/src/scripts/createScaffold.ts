@@ -1,33 +1,18 @@
 import inquirer from 'inquirer';
 import path from 'path';
-import { paths } from '../config/paths';
 import fs from 'fs-extra';
-import logger from './logger';
 import { ApplicationType } from '../types/applicationType';
 import validateProjectName from 'validate-npm-package-name';
 import { assert } from 'console';
 import { installDependencies, installDevDependencies } from './installDependencies';
 
 const appSource: Record<ApplicationType, string> = {
-  [ApplicationType.WebApp]: '../../demo',
+  [ApplicationType.WebApp]: '../../web',
   [ApplicationType.package]: '../../package',
   [ApplicationType.cli]: '../../cli',
 };
 
 export async function scaffold(): Promise<void> {
-  if (
-    [paths.appPublic, paths.devDirPublic].some((dir) => {
-      if (fs.existsSync(dir)) {
-        logger.info(`${dir} exists, aborting scaffold.`);
-        return true;
-      }
-
-      return false;
-    })
-  ) {
-    return;
-  }
-
   const { projectName } = await inquirer.prompt({
     type: 'input',
     name: 'projectName',
