@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.52.3
+
+### Patch Changes
+
+- 1c085f17: no demo in package
+
 ## 4.52.2
 
 ### Patch Changes
