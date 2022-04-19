@@ -24,7 +24,7 @@ const console_1 = require("console");
 const installDependencies_1 = require("./installDependencies");
 const appSource = {
     [applicationType_1.ApplicationType.WebApp]: '../../demo',
-    [applicationType_1.ApplicationType.package]: '../../demo',
+    [applicationType_1.ApplicationType.package]: '../../package',
     [applicationType_1.ApplicationType.cli]: '../../cli',
 };
 function scaffold() {
@@ -75,12 +75,13 @@ function scaffold() {
                 fs_extra_1.default.moveSync(path_1.default.join(root, 'index.tsx'), path_1.default.join(rootSrc, 'index.tsx'));
                 break;
             case applicationType_1.ApplicationType.package:
+                fs_extra_1.default.copySync(source, root);
                 const devDir = path_1.default.join(root, 'demo');
                 fs_extra_1.default.mkdirSync(devDir);
                 fs_extra_1.default.copySync(source, devDir);
                 fs_extra_1.default.copySync(path_1.default.join(__dirname, '../../package'), root);
-                fs_extra_1.default.moveSync(path_1.default.join(devDir, 'tsconfig.json'), path_1.default.join(root, 'tsconfig.json'));
-                fs_extra_1.default.moveSync(path_1.default.join(devDir, 'tsconfig.dist.json'), path_1.default.join(root, 'tsconfig.dist.json'));
+                fs_extra_1.default.removeSync(path_1.default.join(devDir, 'tsconfig.json'));
+                fs_extra_1.default.removeSync(path_1.default.join(devDir, 'tsconfig.dist.json'));
                 break;
             case applicationType_1.ApplicationType.cli:
                 fs_extra_1.default.copySync(source, root);

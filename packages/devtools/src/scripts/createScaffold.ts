@@ -10,7 +10,7 @@ import { installDependencies, installDevDependencies } from './installDependenci
 
 const appSource: Record<ApplicationType, string> = {
   [ApplicationType.WebApp]: '../../demo',
-  [ApplicationType.package]: '../../demo',
+  [ApplicationType.package]: '../../package',
   [ApplicationType.cli]: '../../cli',
 };
 
@@ -78,13 +78,14 @@ export async function scaffold(): Promise<void> {
       fs.moveSync(path.join(root, 'index.tsx'), path.join(rootSrc, 'index.tsx'));
       break;
     case ApplicationType.package:
+      fs.copySync(source, root);
       const devDir = path.join(root, 'demo');
 
       fs.mkdirSync(devDir);
       fs.copySync(source, devDir);
       fs.copySync(path.join(__dirname, '../../package'), root);
-      fs.moveSync(path.join(devDir, 'tsconfig.json'), path.join(root, 'tsconfig.json'));
-      fs.moveSync(path.join(devDir, 'tsconfig.dist.json'), path.join(root, 'tsconfig.dist.json'));
+      fs.removeSync(path.join(devDir, 'tsconfig.json'));
+      fs.removeSync(path.join(devDir, 'tsconfig.dist.json'));
       break;
     case ApplicationType.cli:
       fs.copySync(source, root);
