@@ -1,5 +1,12 @@
 # @cutting/devtools
 
+## 4.52.4
+
+### Patch Changes
+
+- cac6afee: add browserlist
+- cac6afee: add web
+
 ## 4.52.3
 
 ### Patch Changes
