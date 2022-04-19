@@ -78,15 +78,6 @@ export async function scaffold(): Promise<void> {
       fs.moveSync(path.join(root, 'index.tsx'), path.join(rootSrc, 'index.tsx'));
       break;
     case ApplicationType.package:
-      fs.copySync(source, root);
-      const devDir = path.join(root, 'demo');
-
-      fs.mkdirSync(devDir);
-      fs.copySync(source, devDir);
-      fs.copySync(path.join(__dirname, '../../package'), root);
-      fs.removeSync(path.join(devDir, 'tsconfig.json'));
-      fs.removeSync(path.join(devDir, 'tsconfig.dist.json'));
-      break;
     case ApplicationType.cli:
       fs.copySync(source, root);
       break;

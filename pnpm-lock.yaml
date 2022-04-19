@@ -496,8 +496,10 @@ importers:
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.5_7438e257949716b76944dadfd87ca00d
       '@rbnlffl/rollup-plugin-eslint': 3.0.0_rollup@2.70.1
       '@rollup/plugin-babel': 5.3.1_@babel+core@7.17.9+rollup@2.70.1
+      '@rollup/plugin-commonjs': 21.0.3_rollup@2.70.1
       '@rollup/plugin-json': 4.1.0_rollup@2.70.1
       '@rollup/plugin-node-resolve': 13.1.3_rollup@2.70.1
+      '@rollup/pluginutils': 4.2.0
       '@testing-library/dom': 8.13.0
       '@testing-library/jest-dom': 5.16.4
       '@types/bluebird': 3.5.36
@@ -555,6 +557,7 @@ importers:
       react-test-renderer: 18.0.0_react@18.0.0
       regenerator-runtime: 0.13.9
       rollup: 2.70.1
+      rollup-plugin-analyzer: 4.0.0
       rollup-plugin-inject-process-env: 1.3.1
       rollup-plugin-node-externals: 4.0.0_rollup@2.70.1
       rollup-plugin-postcss: 4.0.2_postcss@8.4.12
@@ -585,8 +588,6 @@ importers:
       '@cutting/eslint-config': link:../eslint-config
       '@cutting/tsconfig': link:../tsconfig
       '@cutting/useful-types': link:../useful-types
-      '@rollup/plugin-commonjs': 21.0.3_rollup@2.70.1
-      '@rollup/pluginutils': 4.2.0
       '@types/babel__plugin-transform-runtime': 7.9.2
       '@types/babel__preset-env': 7.9.2
       '@types/copy': 0.3.2
@@ -617,7 +618,6 @@ importers:
       esbuild-node-externals: 1.4.1_esbuild@0.14.34
       nocache: 3.0.3
       node-forge: 1.3.1
-      rollup-plugin-analyzer: 4.0.0
       typescript: 4.6.3
       xml: 1.0.1
 
@@ -3392,7 +3392,7 @@ packages:
       magic-string: 0.25.9
       resolve: 1.22.0
       rollup: 2.70.1
-    dev: true
+    dev: false
 
   /@rollup/plugin-json/4.1.0_rollup@2.70.1:
     resolution: {integrity: sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==}
@@ -3428,6 +3428,7 @@ packages:
       estree-walker: 1.0.1
       picomatch: 2.3.1
       rollup: 2.70.1
+    dev: false
 
   /@rollup/pluginutils/4.2.0:
     resolution: {integrity: sha512-2WUyJNRkyH5p487pGnn4tWAsxhEFKN/pT8CMgHshd5H+IXkOnKvKZwsz5ZWz+YCXkleZRAU5kwbfgF8CPfDRqA==}
@@ -3435,6 +3436,7 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: false
 
   /@sindresorhus/is/0.14.0:
     resolution: {integrity: sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==}
@@ -10082,9 +10084,11 @@ packages:
 
   /estree-walker/1.0.1:
     resolution: {integrity: sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==}
+    dev: false
 
   /estree-walker/2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
+    dev: false
 
   /esutils/2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
@@ -12194,7 +12198,7 @@ packages:
     resolution: {integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==}
     dependencies:
       '@types/estree': 0.0.51
-    dev: true
+    dev: false
 
   /is-regex/1.1.4:
     resolution: {integrity: sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==}
@@ -13396,6 +13400,7 @@ packages:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
       sourcemap-codec: 1.4.8
+    dev: false
 
   /make-dir/2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
@@ -16371,7 +16376,7 @@ packages:
   /rollup-plugin-analyzer/4.0.0:
     resolution: {integrity: sha512-LL9GEt3bkXp6Wa19SNR5MWcvHNMvuTFYg+eYBZN2OIFhSWN+pEJUQXEKu5BsOeABob3x9PDaLKW7w5iOJnsESQ==}
     engines: {node: '>=8.0.0'}
-    dev: true
+    dev: false
 
   /rollup-plugin-inject-process-env/1.3.1:
     resolution: {integrity: sha512-kKDoL30IZr0wxbNVJjq+OS92RJSKRbKV6B5eNW4q3mZTFqoWDh6lHy+mPDYuuGuERFNKXkG+AKxvYqC9+DRpKQ==}
@@ -16996,6 +17001,7 @@ packages:
 
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+    dev: false
 
   /space-separated-tokens/1.1.5:
     resolution: {integrity: sha512-q/JSVd1Lptzhf5bkYm4ob4iWPjx0KiRe3sRFBNrVqbJkFaBm5vbbowy1mymoPNLRa52+oadOhJ+K49wsSeSjTA==}
