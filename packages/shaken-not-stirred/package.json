@@ -37,6 +37,6 @@
   "volta": {
     "extends": "../../package.json"
   },
-  "main": "dist/index.js",
-  "types": "dis/index.d.ts"
+  "main": "dist/src/index.js",
+  "types": "dis/src/index.d.ts"
 }

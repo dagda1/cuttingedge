@@ -32,8 +32,6 @@ function getInput() {
 
   const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 
-  console.log({ m: pkg.module, main: pkg.main });
-
   const unresolved = pkg.module || pkg.main || 'index';
   const resolved = resolve(unresolved);
 

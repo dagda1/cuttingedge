@@ -17,6 +17,13 @@ export function check(input: string): Promise<{
         __shaken_not_stirred__: `import ${JSON.stringify(resolved)}`,
       }),
     ],
+    external: (id: string) => {
+      if (id === 'babel-plugin-transform-async-to-promises/helpers') {
+        return false;
+      }
+
+      return !id.startsWith('.') && !path.isAbsolute(id);
+    },
     onwarn: (warning, handle) => {
       if (warning.code !== 'EMPTY_BUNDLE') {
         handle(warning);
@@ -43,12 +50,16 @@ export function check(input: string): Promise<{
 
       const nodes = body.filter((node: AstNode) => {
         if (node.type !== 'ImportDeclaration') {
-          console.log({ node });
+          if (node.type === 'VariableDeclaration') {
+            console.log('----------------------------------------');
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            console.log((node as any).declarations);
+            console.log('----------------------------------------');
+          }
+          console.log(code.substring(node.start, node.end));
         }
         return node.type !== 'ImportDeclaration';
       });
-
-      // console.log(code);
 
       return {
         shaken: nodes.length === 0,
