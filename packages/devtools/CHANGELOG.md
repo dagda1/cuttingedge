@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.52.5
+
+### Patch Changes
+
+- ddc16c30: web
+
 ## 4.52.4
 
 ### Patch Changes
