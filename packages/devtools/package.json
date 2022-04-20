@@ -124,9 +124,9 @@
   },
   "files": [
     "bin",
-    "cli",
-    "css",
     "web",
+    "web/**/*",
+    "cli",
     "package",
     "init",
     "tools"
