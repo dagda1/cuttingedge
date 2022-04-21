@@ -70,9 +70,9 @@ import { MathJax } from '@cutting/use-mathjax';
       </div>
     </>
   );
-};
+}
 
-export const App(): JSX.Element {
+export function App(): JSX.Element {
   return (
     <StrictMode>
       <MathJaxProvider>
@@ -80,4 +80,4 @@ export const App(): JSX.Element {
       </MathJaxProvider>
     </StrictMode>
   );
-};
+}
