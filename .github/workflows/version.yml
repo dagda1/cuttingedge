@@ -32,9 +32,13 @@ jobs:
             ${{ runner.os }}-
 
       - uses: pnpm/action-setup@v2.2.1
+        id: install_pnpm
         with:
           version: 6.32.7
-    
+
+      - name: echo npm dest
+        run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"
+      
       - name: install dependencies
         run: pnpm install
       
