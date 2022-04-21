@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.50.2
+
+### Patch Changes
+
+- f732b2a7: hell on earth
+
 ## 4.50.1
 
 ### Patch Changes
