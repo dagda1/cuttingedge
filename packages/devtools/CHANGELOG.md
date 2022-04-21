@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.53.0
+
+### Minor Changes
+
+- 8af02e63: esbuild tweaks
+
 ## 4.52.5
 
 ### Patch Changes

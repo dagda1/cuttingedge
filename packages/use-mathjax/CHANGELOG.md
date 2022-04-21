@@ -1,5 +1,16 @@
 # @cutting/use-mathjax
 
+## 4.40.0
+
+### Minor Changes
+
+- 8af02e63: esbuild tweaks
+
+### Patch Changes
+
+- @cutting/hooks@4.49.0
+- @cutting/util@4.50.0
+
 ## 4.39.0
 
 ### Minor Changes
