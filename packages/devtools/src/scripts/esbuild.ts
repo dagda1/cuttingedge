@@ -1,4 +1,4 @@
-import { build } from 'esbuild';
+import { build, analyzeMetafile } from 'esbuild';
 import { paths } from '../config/paths';
 import { consolidateBuildConfigs } from './consolidateBuildConfigs';
 import { nodeExternalsPlugin } from 'esbuild-node-externals';
@@ -10,6 +10,8 @@ import path from 'path';
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
 import { copyAssets } from './copy-assets';
 import fs from 'fs';
+import { createCommand } from 'commander';
+import { emptyBuildDir } from './empty-build-dir';
 
 const buildConfig = consolidateBuildConfigs();
 
@@ -28,14 +30,15 @@ async function processCss(css: any) {
 }
 
 async function bundle({
-  packageName,
   format,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   env,
+  analyze,
 }: {
   packageName: 'string';
   format: ModuleFormat;
   env: 'development' | 'production';
+  analyze: boolean;
 }): Promise<void> {
   const entryPoints =
     typeof buildConfig.client.entries === 'string' ? [buildConfig.client.entries] : buildConfig.client.entries;
@@ -43,9 +46,8 @@ async function bundle({
   assert(Array.isArray(entryPoints), `build config entries needs to be a string array`);
 
   const fileName = `index.js`;
-  const outfile = path.join(paths.appBuild, format === 'iife' ? 'umd' : format, fileName);
-
-  logger.info(`writing ${path.basename(outfile)} for ${packageName} in ${format} format`);
+  const outdir = path.join(paths.appBuild, format === 'iife' ? 'umd' : format);
+  const outfile = path.join(outdir, fileName);
 
   const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim.js');
 
@@ -53,23 +55,26 @@ async function bundle({
     throw new Error(`no reactShim at ${reactShimPath}`);
   }
 
-  await build({
+  const result = await build({
     entryPoints,
-    outfile,
+    outfile: format !== 'esm' ? outfile : undefined,
+    outdir: format === 'esm' ? outdir : undefined,
     bundle: true,
-    // minify: env === 'production',
-    minify: false,
-    platform: 'node',
+    minify: true,
+    platform: 'browser',
     sourcemap: true,
     format,
-    target: 'node16',
+    target: ['es2020', 'chrome73', 'firefox67', 'safari12', 'edge18', 'node16'],
     treeShaking: true,
     allowOverwrite: true,
     inject: [path.resolve(__dirname, '..', '..', 'react-shim.js')],
     tsconfig: paths.tsConfigProduction,
     jsx: 'transform',
-    logLevel: 'warning',
+    logLevel: 'debug',
     color: true,
+    mainFields: ['module', 'main'],
+    splitting: format === 'esm',
+    metafile: analyze,
     plugins: [
       nodeExternalsPlugin({
         packagePath: paths.appPackageJson,
@@ -82,10 +87,20 @@ async function bundle({
     console.error(err);
     process.exit(1);
   });
+
+  if (analyze) {
+    assert(!!result.metafile, `no metafile in esbuild result`);
+    const text = await analyzeMetafile(result.metafile, {
+      color: true,
+      verbose: false,
+    });
+
+    console.log(text);
+  }
 }
 
-const buildPackage = async () => {
-  // emptyBuildDir();
+const buildPackage = async ({ analyze = false }: { analyze: boolean }) => {
+  emptyBuildDir();
 
   copyAssets();
 
@@ -102,8 +117,24 @@ const buildPackage = async () => {
   logger.info(`Generating ${packageName} bundle.`);
 
   for (const { format, env } of configs) {
-    await bundle({ packageName, format, env });
+    await bundle({ packageName, format, env, analyze });
   }
 };
 
-buildPackage();
+const program = createCommand('exbuild');
+
+program
+  .description('execute an esbuild build')
+  .option('-a, --analyze', 'analyze the bundle', false)
+  .parse(process.argv)
+  .action(async function ({ analyze }) {
+    try {
+      await buildPackage({ analyze });
+
+      logger.done('finished building');
+    } catch (err) {
+      logger.error(err);
+      process.exit(1);
+    }
+  })
+  .parse(process.argv);
