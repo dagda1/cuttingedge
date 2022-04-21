@@ -1,5 +1,14 @@
 # @cutting/use-mathjax
 
+## 4.40.1
+
+### Patch Changes
+
+- afb80318: bump
+- Updated dependencies [afb80318]
+  - @cutting/hooks@4.49.1
+  - @cutting/util@4.50.1
+
 ## 4.40.0
 
 ### Minor Changes

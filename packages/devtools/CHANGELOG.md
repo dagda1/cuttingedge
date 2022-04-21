@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.53.1
+
+### Patch Changes
+
+- afb80318: bump
+
 ## 4.53.0
 
 ### Minor Changes
