@@ -1,5 +1,13 @@
 # @cutting/hooks
 
+## 4.49.2
+
+### Patch Changes
+
+- f732b2a7: hell on earth
+- Updated dependencies [f732b2a7]
+  - @cutting/util@4.50.2
+
 ## 4.49.1
 
 ### Patch Changes

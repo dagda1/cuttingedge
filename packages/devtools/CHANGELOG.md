@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.53.2
+
+### Patch Changes
+
+- f732b2a7: hell on earth
+
 ## 4.53.1
 
 ### Patch Changes
