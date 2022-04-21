@@ -1,5 +1,16 @@
 # @cutting/graphql-explorer
 
+## 4.37.2
+
+### Patch Changes
+
+- afb80318: bump
+- Updated dependencies [afb80318]
+  - @cutting/component-library@5.25.1
+  - @cutting/react-abortable-fetch@0.28.1
+  - @cutting/svg@4.45.1
+  - @cutting/util@4.50.1
+
 ## 4.37.1
 
 ### Patch Changes
