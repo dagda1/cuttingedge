@@ -1,7 +1,7 @@
 import loadable from '@loadable/component';
 import * as Urls from '../urls';
 import { Route, Routes } from 'react-router';
-import type { Page } from '@cutting/util';
+import type { Page } from '../types';
 import { ContactMe } from '../components/ContactMe';
 
 const fallback = <div>loading....</div>;

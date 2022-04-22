@@ -91,9 +91,9 @@
       "browser": "./dist/umd/index.js"
     },
     "./styles.css": {
-      "import": "./dist/esm/index.css",
-      "require": "./dist/esm/index.css",
-      "browser": "./dist/esm/index.css"
+      "import": "./dist/esm/src.css",
+      "require": "./dist/esm/src.css",
+      "browser": "./dist/esm/src.css"
     }
   },
   "typesVersions": {
