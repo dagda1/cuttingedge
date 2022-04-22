@@ -1,4 +1,4 @@
-import { ApplicationLayout } from '@cutting/component-library/*';
+import { ApplicationLayout } from '@cutting/component-library';
 import { Pyramid } from '../Pyramid';
 
 export function Home(): JSX.Element {

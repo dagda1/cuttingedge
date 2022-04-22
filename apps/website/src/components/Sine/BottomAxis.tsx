@@ -12,4 +12,4 @@ export function BottomAxis({ formattedValue, x, y }: TickRendererProps): JSX.Ele
       <SVGMathJax expr={formattedValue || '$\\frac{\\pi}2$'} />
     </Group>
   );
-};
+}

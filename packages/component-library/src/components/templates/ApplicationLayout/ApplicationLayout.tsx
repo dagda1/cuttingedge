@@ -1,4 +1,4 @@
-import type { ComponentType, PropsWithChildren, ReactElement, Ref } from 'react';
+import type { ComponentType, PropsWithChildren, ReactElement, ReactNode, Ref } from 'react';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
@@ -14,6 +14,7 @@ export interface ApplicationLayoutProps {
   footer?: ReactElement;
   header?: ReactElement;
   innerRef?: Ref<HTMLElement>;
+  children: ReactNode;
 }
 
 const ApplicationLayoutHeading: ComponentType<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
@@ -48,10 +49,10 @@ export function ApplicationLayout({
   );
 }
 
-export const ApplicationLayoutWithRouterScroll: ComponentType<Omit<ApplicationLayoutProps, 'innerRef'>> = (props) => {
+export function ApplicationLayoutWithRouterScroll(props: Omit<ApplicationLayoutProps, 'innerRef'>): JSX.Element {
   const root = useRef<HTMLDivElement>(null);
 
   useScrollToTop({ ref: root });
 
   return <ApplicationLayout {...props} innerRef={root} />;
-};
+}
