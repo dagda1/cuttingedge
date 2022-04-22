@@ -1,8 +1,9 @@
 import loadable from '@loadable/component';
 import * as Urls from '../../../urls';
 import { Route, Routes } from 'react-router';
-import type { Page } from '@cutting/util';
+
 import { fallback } from '../../../components/Fallback/Fallback';
+import type { Page } from '../../../types';
 
 // const Deaths = loadable(() => import('../../../components/Confirmed'), {
 //   fallback,

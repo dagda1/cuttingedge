@@ -1,4 +1,4 @@
-import type { Page } from '@cutting/util';
+import type { Page } from '../../types';
 import { Route, Routes, Navigate, useLocation } from 'react-router';
 import * as Urls from '../../urls';
 import loadable from '@loadable/component';
@@ -26,6 +26,6 @@ export function Viz(): JSX.Element {
       </Routes>
     </MathJaxProvider>
   );
-};
+}
 
 export default Viz;
