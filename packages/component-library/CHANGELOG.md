@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.25.4
+
+### Patch Changes
+
+- 1b21fbe8: node version
+
 ## 5.25.3
 
 ### Patch Changes
