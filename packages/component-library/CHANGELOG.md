@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.25.3
+
+### Patch Changes
+
+- b48cd978: fix style.css package export
+
 ## 5.25.2
 
 ### Patch Changes
