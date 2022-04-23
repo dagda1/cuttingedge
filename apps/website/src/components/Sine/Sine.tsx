@@ -8,6 +8,7 @@ import { LinePath } from '@visx/shape';
 import { curveMonotoneX } from '@visx/curve';
 import { SVGMathJax } from '@cutting/use-mathjax';
 
+import * as styles from './Sine.css';
 import type { PiMapKeys } from './utils';
 import { getScales, reducer, initialState, xTickValues, PiMap } from './utils';
 import { BottomAxis } from './BottomAxis';
@@ -42,7 +43,7 @@ function Sine(): JSX.Element {
 
   return (
     <ApplicationLayout heading="Sine of the times">
-      <section ref={containerRef}>
+      <section className={styles.main} ref={containerRef}>
         <ResponsiveSVG width={width} height={height}>
           <Group x={initialX} y={initialY}>
             {state.rays.map(({ cosX, sinY, label, offsetX, offsetY }) => (
@@ -50,33 +51,42 @@ function Sine(): JSX.Element {
                 <Group transform={`translate(${offsetX}, ${offsetY})`}>
                   <SVGMathJax>{label}</SVGMathJax>
                 </Group>
-                <Line from={{ x: 0, y: 0 }} to={{ x: cosX, y: sinY }} />
+                <Line className={styles.ray} from={{ x: 0, y: 0 }} to={{ x: cosX, y: sinY }} />
               </React.Fragment>
             ))}
-            <circle {...state.unitCircle} />
+            <circle className={styles.unitCircle} {...state.unitCircle} />
 
-            <Line {...state.hypotenuse} />
-            <Line {...state.opposite} />
-            <Line {...state.adjacent} />
-            <circle {...state.dot} />
-            <circle {...state.verticalDot} />
-            <Line {...state.joiningLine} />
-            <circle {...state.axisDot} />
+            <Line className={styles.hypotenuse} {...state.hypotenuse} />
+            <Line className={styles.opposite} {...state.opposite} />
+            <Line className={styles.adjacent} {...state.adjacent} />
+            <circle className={styles.dot} {...state.dot} />
+            <circle className={styles.verticalGuide} {...state.verticalDot} />
+            <Line className={styles.joiningLine} {...state.joiningLine} />
+            <circle className={styles.axisDot} {...state.axisDot} />
             {expanded && (
               <>
                 <Group transform={`translate(${firstX}, 0)`}>
-                  <AxisLeft scale={yAxisScale} tickValues={[-1, 0, 1]} tickStroke="#fff" />
+                  <AxisLeft
+                    scale={yAxisScale}
+                    tickValues={[-1, 0, 1]}
+                    axisClassName={styles.axis}
+                    axisLineClassName={styles.axisLine}
+                    tickStroke="#fff"
+                  />
                 </Group>
                 <Group>
                   <AxisBottom
                     scale={xAxisScale}
                     tickValues={xTickValues}
                     tickFormat={(x) => `$${PiMap[x as unknown as PiMapKeys]}$`}
+                    axisClassName={styles.axis}
+                    axisLineClassName={styles.axisLine}
                     tickStroke="#fff"
                     tickComponent={BottomAxis}
                   />
                 </Group>
                 <LinePath<{ x: number; y: number }>
+                  className={styles.sine}
                   x={(d) => xAxisScale(d.x) ?? 0}
                   y={(d) => yAxisScale(d.y) ?? 0}
                   strokeWidth={1}

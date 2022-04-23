@@ -3,14 +3,15 @@ import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import type { Repo } from './repos';
 import { repos } from './repos';
 
+import * as styles from './OSS.css';
 import { Github } from '../Svg/Github';
 
 export function OSS(): JSX.Element {
   return (
     <ApplicationLayout heading="Open Source Contributions">
-      <div>
+      <div className={styles.container}>
         <h2>Prominent opens source pull requests</h2>
-        <ul>
+        <ul className={styles.communityList}>
           <li>
             <ExternalLink href="https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1">
               Very active in Bigtest
@@ -42,11 +43,11 @@ export function OSS(): JSX.Element {
           </li>
         </ul>
         <h2>My Work</h2>
-        <div>
+        <div className={styles.repos}>
           {repos.map((repo: Repo, i: number) => (
-            <div key={i}>
+            <div className={styles.repo} key={i}>
               <ExternalLink href={repo.link}>
-                <div>
+                <div className={styles.icon}>
                   <Github />
                 </div>
                 <div>
