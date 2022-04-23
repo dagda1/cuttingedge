@@ -55,7 +55,7 @@ const configureCommon = (options, overrides) => {
             hints: false,
         },
         resolve: {
-            mainFields: isNode ? ['main', 'module', 'browser'] : ['module', 'browser', 'main'],
+            mainFields: isNode ? ['module', 'main', 'browser'] : ['module', 'browser', 'main'],
             modules: [path_1.default.join(process.cwd(), paths_1.paths.resolvedNodeModules[0]), './node_modules', path_1.default.resolve('.')],
             extensions: [
                 '.web.mjs',

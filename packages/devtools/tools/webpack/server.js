@@ -22,12 +22,11 @@ const getExternals = function (isDevelopment) {
         (0, webpack_node_externals_1.default)({
             modulesDir: paths_1.paths.resolvedNodeModules[0],
             allowlist: [
-                isDevelopment ? 'webpack/hot/poll?300' : null,
+                // isDevelopment ? 'webpack/hot/poll?300' : null,
                 /\.(eot|woff|woff2|ttf|otf)$/,
                 /\.(svg|png|jpg|jpeg|gif|ico)$/,
                 /\.(mp4|mp3|ogg|swf|webp)$/,
                 /\.(css|scss|sass|sss|less)$/,
-                /\.css.ts$/,
                 /^mathjax3/,
                 /^@babel/,
                 /^@loadable/,
@@ -60,15 +59,13 @@ const configure = (options, overrides = {}) => {
         target: 'node',
         watch: isDevelopment,
         externals: (0, exports.getExternals)(isDevelopment),
-        entry: isDevelopment ? ['webpack/hot/poll?300', ...entries] : entries,
+        entry: entries,
+        stats: 'verbose',
         output: {
             path: paths_1.paths.appBuild,
             filename: options.filename,
             publicPath,
             libraryTarget: 'commonjs2',
-            library: {
-                type: 'commonjs2',
-            },
         },
         plugins: [
             new webpack_1.default.optimize.LimitChunkCountPlugin({

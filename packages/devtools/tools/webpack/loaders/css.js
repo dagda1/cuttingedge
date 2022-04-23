@@ -8,11 +8,11 @@ const mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plug
 // import { createPostCssOptions } from '../createPostCssoptions';
 const constants_1 = require("../constants");
 const cssLoaders = (isDevelopment, isProduction, isNode, { importLoaders }) => [
-    !isNode && {
+    {
         loader: mini_css_extract_plugin_1.default.loader,
-        options: {
-            esModule: true,
-        },
+        // options: {
+        //   esModule: true,
+        // },
     },
     {
         loader: 'css-loader',
@@ -20,7 +20,7 @@ const cssLoaders = (isDevelopment, isProduction, isNode, { importLoaders }) => [
             importLoaders,
             sourceMap: isDevelopment,
             modules: false,
-            esModule: true,
+            // esModule: true,
         },
     },
     // TODO: reinstate postcss

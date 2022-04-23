@@ -1,4 +1,4 @@
-import { atoms, responsiveStyle, vars } from '@cutting/component-library';
+import { vars, atoms, responsiveStyle } from '@cutting/component-library';
 import { style, globalStyle } from '@vanilla-extract/css';
 
 export const footer = style([
@@ -33,11 +33,11 @@ export const left = style([
       mobile: 'column',
       tablet: 'row',
     },
-    flex: {
-      mobile: 'auto',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      tablet: '0 0 33.333%' as any,
-    },
+    // flex: {
+    //   mobile: 'auto',
+    //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //   tablet: '0 0 33.333%' as any,
+    // },
   }),
 ]);
 
@@ -48,11 +48,10 @@ export const right = style([
       mobile: 'column',
       tablet: 'row',
     },
-    flex: {
-      mobile: 'auto',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      tablet: '0 0 66.6666%' as any,
-    },
+    // flex: {
+    //   mobile: 'auto',
+    //   tablet: '0 0 66%',
+    // },
   }),
 ]);
 

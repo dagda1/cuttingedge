@@ -19,8 +19,6 @@ import * as Urls from '../../urls';
 import { NavLink, useLocation } from 'react-router-dom';
 import { assert } from 'assert-ts';
 
-import * as styles from './Graph.css';
-
 export type GraphProps = {
   result: { data?: CountriesResult };
   xAxisLabel: string;
@@ -53,8 +51,8 @@ export function Graph({
 
   return (
     <ApplicationLayout heading={heading} showFooter={true}>
-      <div className={styles.container}>
-        <ul className={styles.links}>
+      <div>
+        <ul>
           {[
             {
               url: Urls.Covid19,
@@ -76,14 +74,14 @@ export function Graph({
 
             return (
               <li key={u.url}>
-                <NavLink className={({ isActive }) => (isActive ? styles.active : '')} to={u.url} end>
+                <NavLink to={u.url} end>
                   {u.text}
                 </NavLink>
               </li>
             );
           })}
         </ul>
-        <div className={styles.legend} ref={legendRef}>
+        <div ref={legendRef}>
           <ResponsiveSVG height={legendHeight} width={legendWdith}>
             <VictoryLegend
               x={0}
@@ -118,7 +116,7 @@ export function Graph({
           </ResponsiveSVG>
         </div>
 
-        <div className={styles.chart} ref={chartRef}>
+        <div ref={chartRef}>
           {typeof result?.data === 'undefined' ? (
             <LoadingOverlay busy={true} darkMode />
           ) : (

@@ -58,7 +58,7 @@ export const configureCommon = (
       hints: false,
     },
     resolve: {
-      mainFields: isNode ? ['main', 'module', 'browser'] : ['module', 'browser', 'main'],
+      mainFields: isNode ? ['module', 'main', 'browser'] : ['module', 'browser', 'main'],
       modules: [path.join(process.cwd(), paths.resolvedNodeModules[0]), './node_modules', path.resolve('.')],
       extensions: [
         '.web.mjs',

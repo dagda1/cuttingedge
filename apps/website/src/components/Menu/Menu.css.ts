@@ -70,6 +70,7 @@ export const contact = style([
     fontSize: '1.25rem',
     padding: '.5rem',
     ...responsiveStyle({
+      mobile: {},
       tablet: {
         top: '0 !important',
         fontSize: '2rem',
@@ -184,6 +185,7 @@ globalStyle(`${horizontal} a:hover`, {
 globalStyle(`li.${horizontal}:not(${contact})`, {
   display: 'none',
   ...responsiveStyle({
+    mobile: {},
     tablet: {
       display: 'inline',
     },
@@ -250,6 +252,7 @@ globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
 export const noMobile = style({
   display: 'none !important',
   ...responsiveStyle({
+    mobile: {},
     tablet: {
       display: 'inline',
     },

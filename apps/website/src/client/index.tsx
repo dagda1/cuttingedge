@@ -1,26 +1,30 @@
-import type { Renderer } from 'react-dom';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { hydrate } from 'react-dom';
 import { loadableReady } from '@loadable/component';
 
 import { App } from '../containers/App';
 
-const bootstrap = (renderMethod: Renderer, Component: typeof App): void => {
-  const root = document.getElementById('root');
+const bootstrap = (Component: typeof App): void => {
+  const container = document.getElementById('root');
 
-  if (!root) {
+  if (!container) {
     return;
   }
 
+  const root = createRoot(container);
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  renderMethod(<Component />, root);
+  root.render(<Component />);
 };
 
 if (typeof module.hot !== undefined) {
-  bootstrap(render, App);
+  bootstrap(App);
   module.hot?.accept('../containers/App', () => {
-    import('../containers/App').then((m) => bootstrap(render, m.App));
+    import('../containers/App').then((m) => bootstrap(m.App));
   });
 } else {
-  loadableReady(() => bootstrap(hydrate, App));
+  loadableReady(() => {
+    const root = document.getElementById('main');
+    hydrate(<App />, root);
+  });
 }

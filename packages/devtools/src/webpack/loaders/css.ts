@@ -18,11 +18,11 @@ export const cssLoaders = (
   { importLoaders }: { modules: boolean; importLoaders: number },
 ): LoaderItem[] =>
   [
-    !isNode && {
+    {
       loader: MiniCssExtractPlugin.loader,
-      options: {
-        esModule: true,
-      },
+      // options: {
+      //   esModule: true,
+      // },
     },
     {
       loader: 'css-loader',
@@ -30,7 +30,7 @@ export const cssLoaders = (
         importLoaders,
         sourceMap: isDevelopment,
         modules: false,
-        esModule: true,
+        // esModule: true,
       },
     },
     // TODO: reinstate postcss
