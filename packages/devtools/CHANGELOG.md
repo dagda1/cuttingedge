@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.53.3
+
+### Patch Changes
+
+- 161f8178: package scaffolding
+
 ## 4.53.2
 
 ### Patch Changes
