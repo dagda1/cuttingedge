@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.53.4
+
+### Patch Changes
+
+- 7a4db6b5: add missing eslinrc file
+
 ## 4.53.3
 
 ### Patch Changes
