@@ -1,8 +1,15 @@
 import { responsiveStyle, vars } from '@cutting/component-library';
-import { globalStyle, style } from '@vanilla-extract/css';
+import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
+
+globalFontFace('GeosansLight', {
+  fontDisplay: 'optional',
+  fontStyle: 'normal',
+  fontWeight: '100 900',
+  src: "url('../fonts/GeosansLight/GeosansLight.eot')",
+});
 
 globalStyle('body', {
-  // fontFamily: `'GeosansLight' !important`,
+  fontFamily: "'GeosansLight' !important",
   backgroundColor: vars.backgroundColor.body,
 });
 
@@ -18,7 +25,7 @@ globalStyle(`${covid} svg:first-of-type`, {
   marginBottom: vars.space['2x'],
 });
 
-export const footer = style({
+export const hidden = style({
   display: 'none',
 });
 
@@ -40,7 +47,6 @@ globalStyle('header', {
 });
 
 globalStyle('h1', {
-  border: '10px solid green',
   marginTop: 0,
   marginBottom: 0,
   paddingTop: 0,

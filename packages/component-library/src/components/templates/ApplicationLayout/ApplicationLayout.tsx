@@ -42,8 +42,8 @@ export function ApplicationLayout({
         <ApplicationLayoutHeading heading={heading} />
         {children}
       </main>
-      <footer className={cs({ [styles.hidden]: !header })}>
-        <div className={styles.size}>{footer}</div>
+      <footer role="contentinfo" className={cs({ [styles.hidden]: !header }, styles.size)}>
+        {footer}
       </footer>
     </>
   );
