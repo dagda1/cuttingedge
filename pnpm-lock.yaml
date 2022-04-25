@@ -95,6 +95,7 @@ importers:
       '@cutting/use-mathjax': workspace:*
       '@cutting/useful-types': workspace:*
       '@cutting/util': workspace:*
+      '@jest/globals': 27.5.1
       '@loadable/component': 5.15.2
       '@loadable/server': 5.15.2
       '@testing-library/jest-dom': 5.16.4
@@ -212,6 +213,7 @@ importers:
       '@cutting/devtools': link:../../packages/devtools
       '@cutting/eslint-config': link:../../packages/eslint-config
       '@cutting/tsconfig': link:../../packages/tsconfig
+      '@jest/globals': 27.5.1
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/react': 13.0.0_react-dom@18.0.0+react@18.0.0
       '@types/csurf': 1.11.2

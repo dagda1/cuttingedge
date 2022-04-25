@@ -106,10 +106,10 @@ const configureCommon = (options, overrides) => {
                 (0, assetsLoader_1.createAssetsLoader)(),
                 ...(0, typescriptLoader_1.createTypescriptLoader)({ isDevelopment, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
                 ...(0, jsLoader_1.createJsLoader)({ isDevelopment, isProduction, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
+                ...(0, css_1.createCSSLoaders)({ isDevelopment, isProduction, isNode }),
                 (0, csvLoader_1.createCSVLoader)(),
                 (0, svgLoader_1.createSVGLoader)(),
                 (0, mdLoader_1.createMDLoader)(),
-                ...(0, css_1.createCSSLoaders)({ isDevelopment, isProduction, isNode }),
             ], (x) => !!x),
             parser: {
                 javascript: {
@@ -152,14 +152,14 @@ const configureCommon = (options, overrides) => {
                 context: paths_1.paths.appSrc,
             }),
             isDevelopment && new webpack_1.default.WatchIgnorePlugin({ paths: [paths_1.paths.appManifest] }),
+            new webpack_plugin_1.VanillaExtractPlugin({
+                test: /\.css\.ts$/,
+                outputCss: isNode === false,
+            }),
             new mini_css_extract_plugin_1.default({
                 filename: cssFile,
                 chunkFilename: cssChunkFile,
                 ignoreOrder: true,
-            }),
-            new webpack_plugin_1.VanillaExtractPlugin({
-                test: /\.css\.(js|jsx|ts|tsx)$/,
-                outputCss: true,
             }),
         ], Boolean),
     });

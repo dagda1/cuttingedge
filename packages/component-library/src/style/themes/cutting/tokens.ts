@@ -31,10 +31,10 @@ export const tokens: DeepPartial<Tokens> = {
       footer: palette.white,
     },
     background: {
-      body: palette.gray800,
-      heading: palette.gray800,
-      header: palette.gray800,
-      footer: palette.gray800,
+      body: palette.black,
+      heading: palette.black,
+      header: palette.black,
+      footer: palette.black,
     },
   },
   typography: {

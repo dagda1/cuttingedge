@@ -110,10 +110,10 @@ export const configureCommon = (
           createAssetsLoader(),
           ...createTypescriptLoader({ isDevelopment, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
           ...createJsLoader({ isDevelopment, isProduction, isNode, moduleFormat: isNode ? 'cjs' : 'esm' }),
+          ...createCSSLoaders({ isDevelopment, isProduction, isNode }),
           createCSVLoader(),
           createSVGLoader(),
           createMDLoader(),
-          ...createCSSLoaders({ isDevelopment, isProduction, isNode }),
         ],
         (x) => !!x,
       ),
@@ -160,14 +160,14 @@ export const configureCommon = (
         }),
         isDevelopment && new webpack.WatchIgnorePlugin({ paths: [paths.appManifest] }),
 
+        new VanillaExtractPlugin({
+          test: /\.css\.ts$/,
+          outputCss: isNode === false,
+        }),
         new MiniCssExtractPlugin({
           filename: cssFile,
           chunkFilename: cssChunkFile,
           ignoreOrder: true,
-        }),
-        new VanillaExtractPlugin({
-          test: /\.css\.(js|jsx|ts|tsx)$/,
-          outputCss: true,
         }),
       ],
       Boolean,

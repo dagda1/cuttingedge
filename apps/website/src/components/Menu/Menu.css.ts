@@ -1,10 +1,6 @@
 import { palette, responsiveStyle, vars, atoms } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
-export const path = style({
-  fill: palette.white,
-});
-
 export const full = style({
   display: 'flex',
   justifyContent: 'center',
@@ -24,7 +20,11 @@ globalStyle(`${container} ul`, {
   marginBottom: 0,
 });
 
-globalStyle(`${container} li`, {
+globalStyle(`${container} svg path`, {
+  fill: palette.white,
+});
+
+globalStyle(`${container} ul li`, {
   display: 'inline-block',
   verticalAlign: 'middle',
   position: 'relative',
@@ -183,11 +183,10 @@ globalStyle(`${horizontal} a:hover`, {
 });
 
 globalStyle(`li.${horizontal}:not(${contact})`, {
-  display: 'none',
   ...responsiveStyle({
-    mobile: {},
+    mobile: { display: 'none' },
     tablet: {
-      display: 'inline',
+      display: 'inline-block',
     },
   }),
 });

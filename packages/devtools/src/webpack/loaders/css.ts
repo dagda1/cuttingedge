@@ -2,67 +2,87 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // import { createPostCssOptions } from '../createPostCssoptions';
 import { cssRegex } from '../constants';
 import type { RuleSetRule } from 'webpack';
-
-interface LoaderItem {
-  loader: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  options: any;
-  ident?: string;
-  type?: string;
-}
-
-export const cssLoaders = (
-  isDevelopment: boolean,
-  isProduction: boolean,
-  isNode: boolean,
-  { importLoaders }: { modules: boolean; importLoaders: number },
-): LoaderItem[] =>
-  [
-    {
-      loader: MiniCssExtractPlugin.loader,
-      // options: {
-      //   esModule: true,
-      // },
-    },
-    {
-      loader: 'css-loader',
-      options: {
-        importLoaders,
-        sourceMap: isDevelopment,
-        modules: false,
-        // esModule: true,
-      },
-    },
-    // TODO: reinstate postcss
-    // { loader: 'postcss-loader', options: createPostCssOptions({ isProduction }) },
-  ].filter(Boolean) as LoaderItem[];
+import { paths } from '../../config/paths';
 
 export const createCSSLoaders = ({
-  isDevelopment,
-  isProduction,
   isNode,
 }: {
   isDevelopment: boolean;
   isProduction: boolean;
   isNode: boolean;
-}): RuleSetRule[] => [
-  {
-    test: /\.vanilla\.css$/i,
-    sideEffects: true,
-    use: [
-      MiniCssExtractPlugin.loader,
-      {
-        loader: require.resolve('css-loader'),
-        options: {
-          url: false,
+}): RuleSetRule[] => {
+  return isNode
+    ? [
+        {
+          test: /\.vanilla\.css$/i,
+          use: ['css-loader'],
         },
-      },
-    ],
-  },
-  {
-    test: cssRegex,
-    sideEffects: true,
-    exclude: /\.vanilla\.css$/i,
-    use: cssLoaders(isDevelopment, isProduction, isNode, { modules: false, importLoaders: 1 }).filter(Boolean),
-  },
-];
+        {
+          test: cssRegex,
+          sideEffects: true,
+          exclude: /\.vanilla\.css$/i,
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                // sourceMap: isDevelopment,
+                modules: false,
+                url: false,
+                // esModule: true,
+              },
+            },
+          ],
+        },
+      ]
+    : [
+        {
+          test: /\.vanilla\.css$/i,
+          sideEffects: true,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: paths.publicUrlOrPath,
+              },
+            },
+            {
+              loader: require.resolve('css-loader'),
+              options: {
+                importLoaders: 1,
+                modules: false,
+                url: false,
+                // url: [Function: url],
+                // import: [Function: import]
+              },
+            },
+          ],
+        },
+        {
+          test: cssRegex,
+          sideEffects: true,
+          exclude: /\.vanilla\.css$/i,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: paths.publicUrlOrPath,
+                // esModule: true,
+              },
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                // sourceMap: isDevelopment,
+                modules: false,
+                url: false,
+                // esModule: true,
+              },
+            },
+            // TODO: reinstate postcss
+            // { loader: 'postcss-loader', options: createPostCssOptions({ isProduction }) },
+          ],
+        },
+      ];
+};

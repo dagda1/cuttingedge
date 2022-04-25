@@ -30,10 +30,6 @@ const TermsOfService = loadable(() => import('../components/TermsOfService'), {
   fallback,
 });
 
-const Graphs = loadable(() => import(/* webpackPrefetch: true */ '../components/Graphs/Landing'), {
-  fallback,
-});
-
 const Viz = loadable(() => import('../containers/Viz/Viz'), {
   fallback,
 });
@@ -71,12 +67,6 @@ export const routable: Page[] = [
     path: Urls.TermsOfService,
     element: <TermsOfService />,
     footerPage: true,
-  },
-  {
-    heading: 'COVID-19',
-    path: Urls.Covid19,
-    element: <Graphs />,
-    footerPage: false,
   },
   {
     heading: 'Viz',

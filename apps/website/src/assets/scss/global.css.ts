@@ -2,7 +2,7 @@ import { responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 globalStyle('body', {
-  fontFamily: `'GeosansLight' !important`,
+  // fontFamily: `'GeosansLight' !important`,
   backgroundColor: vars.backgroundColor.body,
 });
 
@@ -22,10 +22,11 @@ export const footer = style({
   display: 'none',
 });
 
-globalStyle(`body:not(${covid})`, {
-  background: `url(../images/lightening.jpg) no-repeat center center fixed`,
-  backgroundSize: 'cover',
-});
+// TODO: background image
+// globalStyle(`body:not(${covid})`, {
+//   background: `url(../images/lightening.jpg) no-repeat center center fixed`,
+//   backgroundSize: 'cover',
+// });
 
 globalStyle('header', {
   ...responsiveStyle({
@@ -39,6 +40,7 @@ globalStyle('header', {
 });
 
 globalStyle('h1', {
+  border: '10px solid green',
   marginTop: 0,
   marginBottom: 0,
   paddingTop: 0,

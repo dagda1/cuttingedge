@@ -129,6 +129,11 @@ globalStyle(`${social} a`, {
   lineHeight: '21px',
 });
 
+globalStyle(`${social} li a`, {
+  display: 'inline-block',
+  width: '20px',
+});
+
 globalStyle(`${social} svg`, {
   width: '100%',
   height: 'auto',
