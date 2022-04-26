@@ -64,7 +64,6 @@ globalStyle(`${container} li h2 a`, {
 export const contact = style([
   {
     backgroundColor: '#FF8B45',
-    color: '#ffffff',
     borderRadius: '1rem',
     fontWeight: 'bold',
     fontSize: '1.25rem',
@@ -79,6 +78,15 @@ export const contact = style([
     }),
   },
 ]);
+
+globalStyle(`li${contact} a`, {
+  color: palette.white,
+  fontWeight: 'bold',
+  ...responsiveStyle({
+    mobile: { position: 'static' },
+    tablet: { position: 'relative', top: '1px' },
+  }),
+});
 
 globalStyle(`${container} div:not(.expanded):not(${contact}) ul li`, {
   ...responsiveStyle({
