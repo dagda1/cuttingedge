@@ -70,7 +70,7 @@ export const routable: Page[] = [
   },
   {
     heading: 'Viz',
-    path: Urls.Viz,
+    path: '/viz/*',
     element: <Viz />,
     footerPage: false,
   },
