@@ -3,7 +3,7 @@ import { Pyramid } from '../Pyramid';
 
 export function Home(): JSX.Element {
   return (
-    <ApplicationLayout heading="Elite Frontend developer" italicise center>
+    <ApplicationLayout heading="Elite Frontend developer" center>
       <div>
         <Pyramid />
       </div>

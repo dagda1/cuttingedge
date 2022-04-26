@@ -221,10 +221,22 @@ globalStyle(`${horizontal}${expanded} a`, {
 export const mobile = style({});
 export const closeButton = style({});
 
+globalStyle(`ul li${horizontal}${mobile}`, {
+  display: 'flex',
+  border: `1px solid ${palette.white}`,
+  paddingTop: vars.space['2x'],
+  paddingBottom: vars.space['4x'],
+  marginBottom: vars.space['2x'],
+  paddingLeft: vars.space['2x'],
+  color: palette.white,
+  justifyContent: 'center',
+});
+
 globalStyle(`ul li${horizontal}${mobile}${closeButton}`, {
   display: 'flex',
   justifyContent: 'flex-end',
 });
+
 globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
   display: 'flex',
   justifyContent: 'center',
@@ -239,22 +251,23 @@ globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
   top: '8px',
   transition: 'none',
   width: '32px',
-}),
-  globalStyle(`ul li${horizontal}${mobile}${closeButton} button:before`, {
-    position: 'absolute',
-    // -webkit-transform: translate(-50%, -50%),
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-    // -webkit-font-smoothing: antialiased,
-    fontFamily: 'icomoon',
-    fontStyle: 'normal',
-    fontVariant: 'normal',
-    fontWeight: 'normal',
-    lineHeight: 1,
-    textIndent: 0,
-    textTransform: 'none',
-  });
+});
+
+globalStyle(`ul li${horizontal}${mobile}${closeButton} button:before`, {
+  position: 'absolute',
+  // -webkit-transform: translate(-50%, -50%),
+  left: '50%',
+  top: '50%',
+  transform: 'translate(-50%, -50%)',
+  // -webkit-font-smoothing: antialiased,
+  fontFamily: 'icomoon',
+  fontStyle: 'normal',
+  fontVariant: 'normal',
+  fontWeight: 'normal',
+  lineHeight: 1,
+  textIndent: 0,
+  textTransform: 'none',
+});
 
 export const noMobile = style({
   display: 'none !important',

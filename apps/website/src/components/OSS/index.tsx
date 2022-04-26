@@ -10,7 +10,7 @@ export function OSS(): JSX.Element {
   return (
     <ApplicationLayout heading="Open Source Contributions">
       <div className={styles.container}>
-        <h2>Prominent opens source pull requests</h2>
+        <h2>Merged pull requests to public repositories</h2>
         <ul className={styles.communityList}>
           <li>
             <ExternalLink href="https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1">

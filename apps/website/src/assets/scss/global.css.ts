@@ -8,6 +8,18 @@ globalStyle('body', {
   fontFamily: "'Roboto' !important",
   fontWeight: 800,
   backgroundColor: vars.backgroundColor.body,
+  ...responsiveStyle({
+    mobile: {
+      padding: `0 ${vars.space['2x']}`,
+    },
+    tablet: {
+      padding: 0,
+    },
+  }),
+});
+
+globalStyle('#root', {
+  paddingTop: '0 !important',
 });
 
 export const covid = style({});
