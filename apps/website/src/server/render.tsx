@@ -41,6 +41,7 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
         {helmet.title.toComponent()}
         {extractor.getStyleElements()}
         {isProduction && <GATagManager gaId={gaId} />}
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100&amp;display=swap" rel="stylesheet" />
       </head>
       <body {...helmet.bodyAttributes.toComponent()} className={cuttingTheme}>
         <div id="root">

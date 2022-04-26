@@ -1,12 +1,13 @@
-import { globalFontFace, style } from '@vanilla-extract/css';
+import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
 import rem from 'polished/lib/helpers/rem';
+import { palette } from '../src';
 import { atoms } from '../src/style/atoms/atoms';
 import { vars } from '../src/style/themes/vars.css';
 
 globalFontFace('Oswald', {
   fontStyle: 'normal',
   fontWeight: 200,
-  src: 'url(https://fonts.googleapis.com/css?Oswald:wght@700&family=Cardo&display=swap)',
+  src: "url('https://fonts.googleapis.com/css?Oswald:wght@700&family=Cardo&display=swap')",
 });
 
 export const wrap = style({
@@ -14,6 +15,10 @@ export const wrap = style({
   paddingLeft: vars.space['1x'],
   paddingRight: vars.space['2x'],
   margin: '0 auto',
+});
+
+globalStyle('body', {
+  background: palette.black,
 });
 
 export const background = style({

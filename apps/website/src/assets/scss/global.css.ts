@@ -1,15 +1,12 @@
 import { responsiveStyle, vars } from '@cutting/component-library';
-import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
-
-globalFontFace('GeosansLight', {
-  fontDisplay: 'optional',
-  fontStyle: 'normal',
-  fontWeight: '100 900',
-  src: "url('../fonts/GeosansLight/GeosansLight.eot')",
-});
+import { globalStyle, style } from '@vanilla-extract/css';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import lightening from '../images/lightening.jpg';
 
 globalStyle('body', {
-  fontFamily: "'GeosansLight' !important",
+  fontFamily: "'Roboto' !important",
+  fontWeight: 800,
   backgroundColor: vars.backgroundColor.body,
 });
 
@@ -29,11 +26,10 @@ export const hidden = style({
   display: 'none',
 });
 
-// TODO: background image
-// globalStyle(`body:not(${covid})`, {
-//   background: `url(../images/lightening.jpg) no-repeat center center fixed`,
-//   backgroundSize: 'cover',
-// });
+globalStyle(`body`, {
+  background: `url('${lightening}') no-repeat center center fixed`,
+  backgroundSize: 'cover',
+});
 
 globalStyle('header', {
   ...responsiveStyle({

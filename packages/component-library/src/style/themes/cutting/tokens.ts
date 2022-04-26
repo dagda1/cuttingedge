@@ -31,17 +31,22 @@ export const tokens: DeepPartial<Tokens> = {
       footer: palette.white,
     },
     background: {
-      body: palette.black,
-      heading: palette.black,
-      header: palette.black,
-      footer: palette.black,
+      body: 'transparent',
+      heading: 'transparent',
+      header: 'transparent',
+      footer: 'transparent',
     },
   },
   typography: {
     fonts: {
-      heading: 'Arial, sans-serif',
-      body: 'Arial, sans-serif',
-      paragraphs: 'Arial, sans-serif',
+      heading: "'Roboto'",
+      body: "'Roboto'",
+      paragraphs: "'Roboto'",
+    },
+    fontWeight: {
+      regular: 100,
+      medium: 800,
+      strong: 800,
     },
   },
   buttons: {

@@ -16,9 +16,8 @@ globalStyle(`${main} h1`, {
 
 export const italic = style({
   color: '#fff',
-  fontFamily: 'adobe-garamond-pro',
   fontStyle: 'italic',
-  fontWeight: 400,
+  fontWeight: 100,
   letterSpacing: '1px',
   lineHeight: '1.5em',
   textTransform: 'none',
