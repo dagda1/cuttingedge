@@ -79,7 +79,7 @@ globalStyle(`${shape} div:after`, {
 });
 
 export const front = style({
-  borderBottomColor: '#e04545',
+  borderBottomColor: '#e04545 !important',
   transform: `rotateY(0deg) translate3d(0px, 0px, ${halfBase}px) rotateX(${apexAngle})`,
   selectors: {
     [`&:after`]: {
@@ -89,7 +89,7 @@ export const front = style({
 });
 
 export const back = style({
-  borderBottomColor: '#ccaf5a',
+  borderBottomColor: '#ccaf5a !important',
   transform: `rotateY(90deg) translate3d(0px, 0px, ${halfBase}px) rotateX(${apexAngle})`,
   selectors: {
     [`&:after`]: {
@@ -99,8 +99,8 @@ export const back = style({
 });
 
 export const left = style({
-  borderBottomColor: '#800000',
-  transform: `rotateY(180deg) translate3d(0px, 0px, ${halfBase}px) rotateX(apexAngle)`,
+  borderBottomColor: '#800000 !important',
+  transform: `rotateY(180deg) translate3d(0px, 0px, ${halfBase}px) rotateX(${apexAngle})`,
   selectors: {
     [`&:after`]: {
       content: 'TYPESCRIPT',
@@ -109,8 +109,8 @@ export const left = style({
 });
 
 export const right = style({
-  borderBottomColor: '#4ccfc8',
-  transform: `rotateY(270deg) translate3d(0px, 0px, ${halfBase}) rotateX(${apexAngle})`,
+  borderBottomColor: '#4ccfc8 !important',
+  transform: `rotateY(270deg) translate3d(0px, 0px, ${halfBase}px) rotateX(${apexAngle})`,
   selectors: {
     [`&:after`]: {
       content: 'REACT',
