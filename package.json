@@ -49,7 +49,7 @@
     "webpack": "5.72.0",
     "whatwg-fetch": "3.6.2"
   },
-  "packageManager": "pnpm@6.32.9",
+  "packageManager": "pnpm@6.32.10",
   "volta": {
     "node": "16.14.2",
     "pnpm": "6.32.9"
