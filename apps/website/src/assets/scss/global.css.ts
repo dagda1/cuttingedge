@@ -46,7 +46,7 @@ globalStyle(`body`, {
 globalStyle('header', {
   ...responsiveStyle({
     mobile: {
-      paddingLeft: vars.space['1x'],
+      paddingLeft: 0,
     },
     desktop: {
       paddingLeft: 'inherit',

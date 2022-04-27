@@ -44,6 +44,11 @@ export const mobileButtonContainer = style({
   verticalAlign: 'middle',
 });
 
+globalStyle(`${mobileButtonContainer} button`, {
+  position: 'absolute',
+  top: '-1rem',
+});
+
 globalStyle(`${mobileButtonContainer} svg`, {
   marginBottom: 0,
 });
