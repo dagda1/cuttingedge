@@ -129,10 +129,6 @@ globalStyle(`${logoContainer} a`, {
   marginRight: vars.space['1x'],
 });
 
-globalStyle(`${logoContainer} a:focus svg`, {
-  background: vars.links.color.hover,
-});
-
 export const active = style({
   color: vars.links.color.active,
 });
