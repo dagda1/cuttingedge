@@ -32,7 +32,7 @@ importers:
       '@cutting/devtools': workspace:*
       '@cutting/tsconfig': workspace:*
       babel-loader: 8.2.5
-      core-js: 3.22.2
+      core-js: 3.22.3
       css-loader: 6.7.1
       eslint: 8.14.0
       file-loader: 6.2.0
@@ -59,7 +59,7 @@ importers:
       '@cutting/devtools': link:packages/devtools
       '@cutting/tsconfig': link:packages/tsconfig
       babel-loader: 8.2.5_acba72ea4bf9d339cdfcd8f55cdb7006
-      core-js: 3.22.2
+      core-js: 3.22.3
       css-loader: 6.7.1_webpack@5.72.0
       eslint: 8.14.0
       file-loader: 6.2.0_webpack@5.72.0
@@ -8335,8 +8335,8 @@ packages:
     resolution: {integrity: sha512-FRq5b/VMrWlrmCzwRrpDYNxyHP9BcAZC+xHJaqTgIE5091ZV1NTmyh0sGOg5XqpnHvR0svdy0sv1gWA1zmhxig==}
     requiresBuild: true
 
-  /core-js/3.22.2:
-    resolution: {integrity: sha512-Z5I2vzDnEIqO2YhELVMFcL1An2CIsFe9Q7byZhs8c/QxummxZlAHw33TUHbIte987LkisOgL0LwQ1P9D6VISnA==}
+  /core-js/3.22.3:
+    resolution: {integrity: sha512-1t+2a/d2lppW1gkLXx3pKPVGbBdxXAkqztvWb1EJ8oF8O2gIGiytzflNiFEehYwVK/t2ryUsGBoOFFvNx95mbg==}
     requiresBuild: true
     dev: true
 
