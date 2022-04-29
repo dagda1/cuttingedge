@@ -1,5 +1,16 @@
 # @cutting/use-mathjax
 
+## 4.41.0
+
+### Minor Changes
+
+- b2fe72d2: remove mathjax3 in favour of mathjax-full
+
+### Patch Changes
+
+- @cutting/hooks@4.49.2
+- @cutting/util@4.50.2
+
 ## 4.40.2
 
 ### Patch Changes
