@@ -7,10 +7,10 @@
 #   mathjax3: 3.0.0-beta.4
 #
 diff --git a/node_modules/mathjax3/mathjax3-ts/input/tex/mhchem/mhchem_parser.js b/node_modules/mathjax3/mathjax3-ts/input/tex/mhchem/mhchem_parser.js
-index a330e98..db226e2 100644
+index a330e98..299923d 100644
 --- a/node_modules/mathjax3/mathjax3-ts/input/tex/mhchem/mhchem_parser.js
 +++ b/node_modules/mathjax3/mathjax3-ts/input/tex/mhchem/mhchem_parser.js
-@@ -1,8 +1,11 @@
+@@ -1,8 +1,10 @@
 +"use strict";
 +Object.defineProperty(exports, "__esModule", { value: true });
  //
@@ -18,17 +18,11 @@ index a330e98..db226e2 100644
  //
  /** @type {MhchemParser} */
 -export var mhchemParser = {
-+
 +var mhchemParser = {
    //
    // Parses mchem \ce syntax
    //
-@@ -1279,11 +1282,12 @@ mhchemParser.stateMachines = {
-   //#endregion
- };
- 
-+
- //
+@@ -1283,7 +1285,7 @@ mhchemParser.stateMachines = {
  // texify: Take MhchemParser output and convert it to TeX
  //
  /** @type {Texify} */
@@ -37,7 +31,7 @@ index a330e98..db226e2 100644
    go: function (input, isInner) {  // (recursive, max 4 levels)
      if (!input) { return ""; }
      var res = "";
-@@ -1606,7 +1610,12 @@ export var texify = {
+@@ -1606,7 +1608,11 @@ export var texify = {
  // Will show type error at calling position
  //
  /** @param {number} a */
@@ -46,17 +40,17 @@ index a330e98..db226e2 100644
  /** @param {string} a */
 -export function assertString(a) {}
 +function assertString(a) {}
-+
+ 
 +exports.assertNever = assertNever;
 +exports.assertString = assertString;
 +exports.mhchemParser = mhchemParser;
 +exports.texify = texify;
- 
+\ No newline at end of file
 diff --git a/node_modules/mathjax3/mathjax3/input/tex/mhchem/mhchem_parser.js b/node_modules/mathjax3/mathjax3/input/tex/mhchem/mhchem_parser.js
-index a330e98..db226e2 100644
+index a330e98..299923d 100644
 --- a/node_modules/mathjax3/mathjax3/input/tex/mhchem/mhchem_parser.js
 +++ b/node_modules/mathjax3/mathjax3/input/tex/mhchem/mhchem_parser.js
-@@ -1,8 +1,11 @@
+@@ -1,8 +1,10 @@
 +"use strict";
 +Object.defineProperty(exports, "__esModule", { value: true });
  //
@@ -64,17 +58,11 @@ index a330e98..db226e2 100644
  //
  /** @type {MhchemParser} */
 -export var mhchemParser = {
-+
 +var mhchemParser = {
    //
    // Parses mchem \ce syntax
    //
-@@ -1279,11 +1282,12 @@ mhchemParser.stateMachines = {
-   //#endregion
- };
- 
-+
- //
+@@ -1283,7 +1285,7 @@ mhchemParser.stateMachines = {
  // texify: Take MhchemParser output and convert it to TeX
  //
  /** @type {Texify} */
@@ -83,7 +71,7 @@ index a330e98..db226e2 100644
    go: function (input, isInner) {  // (recursive, max 4 levels)
      if (!input) { return ""; }
      var res = "";
-@@ -1606,7 +1610,12 @@ export var texify = {
+@@ -1606,7 +1608,11 @@ export var texify = {
  // Will show type error at calling position
  //
  /** @param {number} a */
@@ -92,9 +80,9 @@ index a330e98..db226e2 100644
  /** @param {string} a */
 -export function assertString(a) {}
 +function assertString(a) {}
-+
+ 
 +exports.assertNever = assertNever;
 +exports.assertString = assertString;
 +exports.mhchemParser = mhchemParser;
 +exports.texify = texify;
- 
+\ No newline at end of file

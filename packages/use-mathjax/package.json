@@ -17,7 +17,8 @@
     "test": "NODE_ENV=test devtools test",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "lint:fix": "pnpm lint --fix",
-    "build": "NODE_ENV=production devtools rollup"
+    "build": "NODE_ENV=production devtools rollup",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@cutting/hooks": "workspace:*",
@@ -30,6 +31,7 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
+    "@milahu/patch-package": "^6.4.11",
     "@testing-library/jest-dom": "5.16.4",
     "@types/mathjax": "0.0.37",
     "@vanilla-extract/babel-plugin": "1.1.5",
