@@ -27,7 +27,7 @@ export const getExternals = function (isDevelopment: boolean): any {
         /\.(mp4|mp3|ogg|swf|webp)$/,
         /\.(css|scss|sass|sss|less)$/,
         /\.css.ts$/,
-        /^mathjax3/,
+        /^mathjax-full/,
         /^@babel/,
         /^@loadable/,
         /^@cutting/,

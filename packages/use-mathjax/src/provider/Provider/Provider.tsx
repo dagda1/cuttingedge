@@ -1,14 +1,14 @@
 import type { ReactNode } from 'react';
 import { useState } from 'react';
-import { browserAdaptor } from 'mathjax3/mathjax3/adaptors/browserAdaptor';
-import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
-import type { MathDocument } from 'mathjax3/mathjax3/core/MathDocument';
+import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
+import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
 import { createStrictContext } from '../../createStrictContext';
-import { MathJax } from 'mathjax3';
-import { TeX } from 'mathjax3/mathjax3/input/tex.js';
-import { SVG } from 'mathjax3/mathjax3/output/svg.js';
-import { AllPackages } from 'mathjax3/mathjax3/input/tex/AllPackages';
+import { mathjax } from 'mathjax-full/js/mathjax';
+import { TeX } from 'mathjax-full/js/input/tex';
+import { SVG } from 'mathjax-full/js/output/svg';
+import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
+import type { MathDocument } from 'mathjax-full/js/core/MathDocument';
 
 interface MathDoc {
   version: string;
@@ -31,7 +31,7 @@ export function MathJaxProvider({ children }: { children: ReactNode }): JSX.Elem
   const [mathDocument, setMathDocument] = useState<MathDoc>();
 
   useIsomorphicLayoutEffect(() => {
-    const html = MathJax.document(document, {
+    const html = mathjax.document(document, {
       InputJax: new TeX({
         inlineMath: [
           ['$', '$'],
@@ -44,7 +44,7 @@ export function MathJaxProvider({ children }: { children: ReactNode }): JSX.Elem
     });
 
     const mathJax = {
-      version: MathJax.version,
+      version: mathjax.version,
       html: html,
 
       Typeset(...elements: HTMLElement[]) {
