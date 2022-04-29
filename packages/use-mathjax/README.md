@@ -4,7 +4,7 @@ React components `<MathJax />`, `<SVGMathJax>` and a `useMathJax` hook to easily
 
 A real working demo is [here](https://cutting.scot/viz/sine) which is why I wrote this component.
 
-Here is a working [codesandbox](https://codesandbox.io/s/cutting-use-mathjax-example-t0jflk)
+Here is a working [codesandbox](https://codesandbox.io/s/cutting-use-mathjax-example-t0jflk).
 
 ## install 
 

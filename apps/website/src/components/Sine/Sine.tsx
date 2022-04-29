@@ -49,7 +49,7 @@ function Sine(): JSX.Element {
             {state.rays.map(({ cosX, sinY, label, offsetX, offsetY }) => (
               <React.Fragment key={label}>
                 <Group transform={`translate(${offsetX}, ${offsetY})`}>
-                  <SVGMathJax expr={label} />
+                  <SVGMathJax>{label}</SVGMathJax>
                 </Group>
                 <Line className={styles.ray} from={{ x: 0, y: 0 }} to={{ x: cosX, y: sinY }} />
               </React.Fragment>
