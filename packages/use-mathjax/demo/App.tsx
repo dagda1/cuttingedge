@@ -8,22 +8,13 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import './global.css';
 export function Maths(): JSX.Element {
-  const ref = useRef<HTMLParagraphElement>();
+  const ref = useRef<HTMLParagraphElement>(null);
   useMathJax({ elements: ref.current });
 
   return (
     <>
       <h1>useMathJax</h1>
-      <h2>direct use with the hook useMathJax</h2>
-      <div ref={ref}>
-        <p
-          className="math"
-          dangerouslySetInnerHTML={{
-            __html: `
-            $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$
-          `,
-          }}
-        ></p>
+      <h2>direct use with the useMathJax hook</h2>
 
         <SyntaxHighlighter language="javascript" style={docco}>
           {`
@@ -36,38 +27,34 @@ export const Maths(): JSX.Element {
   return (
     <>
       <h1>useMathJax</h1>
-      <h2>direct use with the hook useMathJax</h2>
+      <h2>direct use with the useMathJax hook</h2>
       <div ref={ref}>
-        <p
-          className="math"
-          dangerouslySetInnerHTML={{
-            __html: \`
-            $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$
-          \`,
-          }}
-        ></p>
+        <p className="math">{\`$$x = {-b \\\\pm \\\\sqrt{b^2-4ac} \\\\over 2a}$$\`}</p>
       </div>
     </>
   );
 };
 `}
         </SyntaxHighlighter>
+        <strong>renders:</strong>
+        <div ref={ref}>
+          <p className="math">{`$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$`}</p>
+         </div>
+
         <h2>Or with the MathJax component</h2>
-        <MathJax expr={`$$\\int x^2dx$$`} />
-        <MathJax expr={`$$\\frac{5\\pi}4$$`} />
-        <MathJax expr={`$$\\frac{3\\pi}2$$`} />
         <SyntaxHighlighter language="javascript" style={docco}>
           {`
 import { MathJax } from '@cutting/use-mathjax';
-//
-//
-//
-        <MathJax expr={\`$$\\int x^2dx$$\`} />
-        <MathJax expr={\`$$\\frac{5\\pi}4$$\`} />
-        <MathJax expr={\`$$\\frac{3\\pi}2$$\`} />
-          `}
+
+<MathJax> {\`$$\\\\int x^2dx$$\`}</MathJax>
+<MathJax> {\`$$\\\\frac{5\\\\pi}4$$\`}</MathJax>
+<MathJax> {\`$$\\\\frac{3\\\\pi}2$$\`}</MathJax>  
+`}
         </SyntaxHighlighter>
-      </div>
+        <strong>renders:</strong>
+        <MathJax> {`$$\\int x^2dx$$`}</MathJax>
+        <MathJax> {`$$\\frac{5\\pi}4$$`}</MathJax>
+        <MathJax> {`$$\\frac{3\\pi}2$$`}</MathJax>
     </>
   );
 }

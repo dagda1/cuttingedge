@@ -3,7 +3,7 @@ import { useMathJaxContext } from '../../provider/Provider/Provider';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 
 export interface UseMathJax {
-  elements?: HTMLElement | HTMLElement[] | SVGGElement | SVGElement[];
+  elements: HTMLElement | HTMLElement[] | SVGGElement | SVGElement[] | null;
 }
 
 export const useMathJax = ({ elements }: UseMathJax): void => {

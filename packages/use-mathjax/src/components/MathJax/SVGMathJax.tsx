@@ -3,10 +3,10 @@ import { MathJax } from './MathJax';
 
 type SVGMathJaxProps = MathJaxProps & { width?: number; height?: number };
 
-export function SVGMathJax({ expr, width = 30, height = 30 }: SVGMathJaxProps): JSX.Element {
+export function SVGMathJax({ children, width = 30, height = 30 }: SVGMathJaxProps): JSX.Element {
   return (
     <foreignObject width={width} height={height}>
-      <MathJax expr={expr} />
+      <MathJax>{children}</MathJax>
     </foreignObject>
   );
 }

@@ -4,6 +4,8 @@ React components `<MathJax />`, `<SVGMathJax>` and a `useMathJax` hook to easily
 
 A real working demo is [here](https://cutting.scot/viz/sine) which is why I wrote this component.
 
+Here is a working [codesandbox](https://codesandbox.io/s/cutting-use-mathjax-example-t0jflk)
+
 ## install 
 
 ```sh
@@ -24,9 +26,9 @@ import { MathJax, MathJaxProvider } from '@cutting/use-mathjax';
 const Maths = () => {
   return (
     <>
-      <MathJax expr={`$$\\int x^2dx$$`} />
-      <MathJax expr={`$$\\frac{5\\pi}4$$`} />
-      <MathJax expr={`$$\\frac{3\\pi}2$$`} />
+      <MathJax> {\`$$\\\\int x^2dx$$\`}</MathJax>
+      <MathJax> {\`$$\\\\frac{5\\\\pi}4$$\`}</MathJax>
+      <MathJax> {\`$$\\\\frac{3\\\\pi}2$$\`}</MathJax>
     </>
   )
 }
@@ -106,15 +108,9 @@ const Maths = () => {
   useMathJax({ elements: ref });
 
   return (
-    <p 
-      ref={ref}
-      className="math"
-      dangerouslySetInnerHTML={{
-        __html: `
-        $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$
-      `,
-      }}
-    ></p>
+      <div ref={ref}>
+        <p className="math">{`$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$`}</p>
+      </div>
   )
 }
 
