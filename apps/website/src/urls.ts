@@ -5,6 +5,4 @@ export const CV = '/cv';
 export const Download = '/download';
 export const PrivacyPolicy = '/privacy-policy';
 export const TermsOfService = '/terms-of-service';
-export const Viz = '/viz';
-export const Sine = '/viz/sine';
 export const ContactMe = '/contact-me';

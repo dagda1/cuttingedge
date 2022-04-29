@@ -15,7 +15,7 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
       {bannerPages.map((page) => (
         <li key={page.heading} className={cs(styles.horizontal, className)}>
           <NavLink
-            to={page.path?.includes('/viz') ? '/viz' : page.path}
+            to={page.path?.includes('*') ? page.path.slice(0, -2) : page.path}
             className={({ isActive }) => page.className + (isActive ? styles.active : '')}
             onClick={collapse}
           >

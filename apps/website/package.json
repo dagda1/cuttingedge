@@ -12,7 +12,7 @@
     "debug": "pnpm start -- --inspect=localhost:9230",
     "build": "NODE_ENV=production PORT=3000 devtools ssr-build",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "test": "echo disabled for now",
+    "test": "NODE_ENV=test devtools test",
     "deploy": "NODE_ENV=production pnpm build && ./bin/deploy.sh",
     "serve": "PORT=3000 NODE_ENV=production node ./dist/server.js"
   },
