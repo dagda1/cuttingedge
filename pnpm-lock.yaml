@@ -40,7 +40,7 @@ importers:
       html-loader: 3.1.0
       husky: 7.0.4
       markdown-loader: 8.0.0
-      node-fetch: 3.2.3
+      node-fetch: 3.2.4
       regenerator-runtime: 0.13.9
       style-loader: 3.3.1
       ts-loader: 9.2.9
@@ -67,7 +67,7 @@ importers:
       html-loader: 3.1.0_webpack@5.72.0
       husky: 7.0.4
       markdown-loader: 8.0.0_webpack@5.72.0
-      node-fetch: 3.2.3
+      node-fetch: 3.2.4
       regenerator-runtime: 0.13.9
       style-loader: 3.3.1_webpack@5.72.0
       ts-loader: 9.2.9_typescript@4.6.3+webpack@5.72.0
@@ -14121,6 +14121,15 @@ packages:
 
   /node-fetch/3.2.3:
     resolution: {integrity: sha512-AXP18u4pidSZ1xYXRDPY/8jdv3RAozIt/WLNR/MBGZAz+xjtlr90RvCnsvHQRiXyWliZF/CpytExp32UU67/SA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      data-uri-to-buffer: 4.0.0
+      fetch-blob: 3.1.5
+      formdata-polyfill: 4.0.10
+    dev: true
+
+  /node-fetch/3.2.4:
+    resolution: {integrity: sha512-WvYJRN7mMyOLurFR2YpysQGuwYrJN+qrrpHjJDuKMcSPdfFccRUla/kng2mz6HWSBxJcqPbvatS6Gb4RhOzCJw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       data-uri-to-buffer: 4.0.0
