@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.54.0
+
+### Minor Changes
+
+- b2fe72d2: remove mathjax3 in favour of mathjax-full
+
 ## 4.53.4
 
 ### Patch Changes
