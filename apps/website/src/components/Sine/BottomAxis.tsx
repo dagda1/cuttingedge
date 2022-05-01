@@ -9,7 +9,7 @@ export function BottomAxis({ formattedValue, x, y }: TickRendererProps): JSX.Ele
 
   return (
     <Group transform={`translate(${x - 6}, ${y - 12})`}>
-      <SVGMathJax expr={formattedValue || '$\\frac{\\pi}2$'} />
+      <SVGMathJax>{formattedValue || '$\\frac{\\pi}2$'}</SVGMathJax>
     </Group>
   );
 }

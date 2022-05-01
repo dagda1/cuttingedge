@@ -8,7 +8,6 @@ import { isNil } from '@cutting/util';
 
 export interface ApplicationLayoutProps {
   heading?: string | JSX.Element;
-  italicise?: boolean;
   center?: boolean;
   className?: string;
   footer?: ReactElement;
@@ -42,8 +41,8 @@ export function ApplicationLayout({
         <ApplicationLayoutHeading heading={heading} />
         {children}
       </main>
-      <footer className={cs({ [styles.hidden]: !header })}>
-        <div className={styles.size}>{footer}</div>
+      <footer role="contentinfo" className={cs({ [styles.hidden]: !header }, styles.size)}>
+        {footer}
       </footer>
     </>
   );

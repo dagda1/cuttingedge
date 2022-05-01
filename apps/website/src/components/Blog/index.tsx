@@ -4,9 +4,9 @@ import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 
 export function Blog(): JSX.Element {
   return (
-    <ApplicationLayout heading="My blog posts">
+    <ApplicationLayout heading="Published blog posts">
       <p>
-        I blog professionally for
+        I blog professionally for&nbsp;
         <ExternalLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</ExternalLink>
         .<br />
         My personal blog is <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>.

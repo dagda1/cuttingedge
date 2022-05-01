@@ -36,7 +36,7 @@ const fontWeight = {
   regular: 400,
   medium: 500,
   strong: 700,
-} as const;
+};
 
 export const tokens = {
   space: {

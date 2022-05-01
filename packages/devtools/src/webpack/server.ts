@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Configuration } from 'webpack';
 import type { ServerBuildConfig } from '../types/config';
 import { merge } from 'webpack-merge';
@@ -21,7 +22,7 @@ export const getExternals = function (isDevelopment: boolean): any {
     nodeExternals({
       modulesDir: paths.resolvedNodeModules[0],
       allowlist: [
-        isDevelopment ? 'webpack/hot/poll?300' : null,
+        // isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
@@ -65,15 +66,13 @@ export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Con
     target: 'node',
     watch: isDevelopment,
     externals: getExternals(isDevelopment),
-    entry: isDevelopment ? ['webpack/hot/poll?300', ...entries] : entries,
+    entry: entries,
+    stats: 'verbose',
     output: {
       path: paths.appBuild,
       filename: options.filename,
       publicPath,
       libraryTarget: 'commonjs2',
-      library: {
-        type: 'commonjs2',
-      },
     },
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({

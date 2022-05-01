@@ -53,15 +53,15 @@ import { MathJax, MathJaxProvider } from '@cutting/use-mathjax';
 
 const Maths = () => {
   return (
-   <svg preserveAspectRatio="xMaxYMid meet" viewBox="0 0 960 654" style="overflow: visible;">
+   <svg preserveAspectRatio="xMaxYMid meet" viewBox="0 0 960 654" style={{ overflow: 'visible' }}>
      {[
        { value: Math.PI / 4, label: '$\\frac{\\pi}4$' },
        { value: Math.PI / 2, label: '$\\frac{\\pi}2$' },
       ].map(({ cosX, sinY, label, offsetX, offsetY }) => (
      <g key={label}>
-      <SVGMathJax expr={label} />
+        <SVGMathJax>{label}</SVGMathJax>
      </g>
-   <svg>
+   </svg>
   )
 }
 

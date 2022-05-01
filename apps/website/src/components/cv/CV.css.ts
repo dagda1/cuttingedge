@@ -9,8 +9,7 @@ export const pdfViewer = style({
 });
 
 globalStyle(`${pdfViewer} iframe`, {
-  width: '100%',
-  height: '100%',
+  flex: 1,
   marginTop: vars.space['1x'],
 });
 

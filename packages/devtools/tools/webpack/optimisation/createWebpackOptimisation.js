@@ -93,7 +93,7 @@ const createWebpackOptimisation = ({ optimization, isProduction, }) => (Object.a
                     return (crypto_1.default
                         .createHash('sha1')
                         .update(chunks.reduce((acc, chunk) => {
-                        return acc + chunk.name;
+                        return `${acc}${chunk.name}`;
                     }, ''))
                         .digest('hex') + (isModuleCSS(module) ? '_CSS' : ''));
                 },
