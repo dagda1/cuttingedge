@@ -6,6 +6,13 @@
     "rootDir": "./src",
     "noEmit": false
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
+  "references": [
+    { "path": "../../packages/util/tsconfig.dist.json" },
+    { "path": "../../packages/hooks/tsconfig.dist.json" },
+    { "path": "../../packages/component-library/tsconfig.dist.json" },
+    { "path": "../../packages/svg/tsconfig.dist.json" },
+    { "path": "../../packages/react-abortable-fetch/tsconfig.dist.json" },
+    { "path": "../../packages/use-mathjax/tsconfig.dist.json"}
+  ]
 }

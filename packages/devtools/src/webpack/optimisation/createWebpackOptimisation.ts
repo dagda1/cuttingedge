@@ -106,7 +106,7 @@ export const createWebpackOptimisation = ({
                 .createHash('sha1')
                 .update(
                   chunks.reduce((acc: string, chunk: Chunk) => {
-                    return acc + chunk.name;
+                    return `${acc}${chunk.name}`;
                   }, ''),
                 )
                 .digest('hex') + (isModuleCSS(module) ? '_CSS' : '')

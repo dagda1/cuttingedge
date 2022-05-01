@@ -1,21 +1,21 @@
 import { bannerPages } from '../../routes';
 import cs from 'classnames';
 import { NavLink } from 'react-router-dom';
-import { Covid19, IncreaseInDeaths } from '../../urls';
 
 import * as styles from './Menu.css';
 
 export interface MenuItemsProps {
   collapse: () => void;
+  className?: string;
 }
 
-export function MenuItems({ collapse }: MenuItemsProps): JSX.Element {
+export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element {
   return (
     <>
       {bannerPages.map((page) => (
-        <li key={page.heading} className={styles.horizontal}>
+        <li key={page.heading} className={cs(styles.horizontal, className)}>
           <NavLink
-            to={page.path}
+            to={page.path?.includes('*') ? page.path.slice(0, -2) : page.path}
             className={({ isActive }) => page.className + (isActive ? styles.active : '')}
             onClick={collapse}
           >
@@ -29,31 +29,13 @@ export function MenuItems({ collapse }: MenuItemsProps): JSX.Element {
 
 export function MobileMenuItems({ collapse }: MenuItemsProps): JSX.Element {
   return (
-    <div>
+    <>
       <li className={cs(styles.horizontal, styles.mobile, styles.closeButton)}>
         <button type="button" onClick={collapse}>
           X
         </button>
       </li>
-      <MenuItems collapse={collapse} />
-      {[
-        {
-          path: Covid19,
-          heading: 'COVID-19 Daily increase in Scottish deaths',
-        },
-        {
-          path: IncreaseInDeaths,
-          heading: 'COVID-19 Daily increase in World deaths',
-        },
-      ].map((page) => {
-        return (
-          <li key={page.heading} className={cs(styles.horizontal, styles.mobile)}>
-            <NavLink to={page.path} className={({ isActive }) => (isActive ? styles.active : '')} onClick={collapse}>
-              {page.heading}
-            </NavLink>
-          </li>
-        );
-      })}
-    </div>
+      <MenuItems collapse={collapse} className={styles.mobile} />
+    </>
   );
 }

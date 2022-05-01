@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { Router } from 'react-router';
 import { createMemoryHistory } from 'history';
 
-export const wrapComponentInReduxForTesting = (ui: ReactElement): RenderResult => {
+export const wrapComponentForTesting = (ui: ReactElement): RenderResult => {
   const history = createMemoryHistory();
   return {
     ...render(

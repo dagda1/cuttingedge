@@ -1,5 +1,19 @@
-import { atoms, responsiveStyle, vars } from '@cutting/component-library';
+import { vars, atoms, responsiveStyle, palette } from '@cutting/component-library';
 import { style, globalStyle } from '@vanilla-extract/css';
+
+globalStyle('footer', {
+  display: 'flex',
+  flexShrink: 0,
+  width: '100%',
+  ...responsiveStyle({
+    mobile: {
+      flexDirection: 'column',
+    },
+    tablet: {
+      flexDirection: 'row',
+    },
+  }),
+});
 
 export const footer = style([
   {
@@ -26,35 +40,32 @@ export const footer = style([
   }),
 ]);
 
-export const left = style([
-  { display: 'flex' },
-  atoms({
-    flexDirection: {
-      mobile: 'column',
-      tablet: 'row',
+export const left = style({
+  display: 'flex',
+  ...responsiveStyle({
+    mobile: {
+      flexDirection: 'column',
+      flex: 'auto',
     },
-    flex: {
-      mobile: 'auto',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      tablet: '0 0 33.333%' as any,
+    tablet: {
+      flexDirection: 'row',
+      flex: '0 0 33.333%',
     },
   }),
-]);
+});
 
-export const right = style([
-  { display: 'flex' },
-  atoms({
-    flexDirection: {
-      mobile: 'column',
-      tablet: 'row',
+export const right = style({
+  ...responsiveStyle({
+    mobile: {
+      flexDirection: 'column',
+      flex: 'auto',
     },
-    flex: {
-      mobile: 'auto',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      tablet: '0 0 66.6666%' as any,
+    tablet: {
+      flexDirection: 'row',
+      flex: '0 0 66.666%',
     },
   }),
-]);
+});
 
 export const logoContainer = style({
   width: '40px',
@@ -65,6 +76,10 @@ export const logoContainer = style({
 globalStyle(`${logoContainer} svg`, {
   width: '100%',
   height: 'auto',
+});
+
+globalStyle(`${logoContainer} svg path`, {
+  fill: palette.white,
 });
 
 globalStyle(`${logoContainer} > div`, {
@@ -128,6 +143,11 @@ globalStyle(`${social} li`, {
 globalStyle(`${social} a`, {
   height: '20px',
   lineHeight: '21px',
+});
+
+globalStyle(`${social} li a`, {
+  display: 'inline-block',
+  width: '20px',
 });
 
 globalStyle(`${social} svg`, {

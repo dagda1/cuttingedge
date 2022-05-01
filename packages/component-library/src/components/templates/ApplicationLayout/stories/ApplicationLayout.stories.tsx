@@ -27,11 +27,6 @@ export default {
       },
       defaultValue: themes.defaultTheme,
     },
-    italicise: {
-      control: {
-        type: 'boolean',
-      },
-    },
     center: {
       control: {
         type: 'boolean',

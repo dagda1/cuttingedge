@@ -45,7 +45,7 @@ export const createDevServer = ({
     },
     devMiddleware: {
       publicPath: paths.publicUrlOrPath.slice(0, -1),
-      stats: 'summary',
+      stats: 'errors-only',
     },
     host,
     https: protocol === 'https',

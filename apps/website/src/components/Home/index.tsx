@@ -1,9 +1,9 @@
-import { ApplicationLayout } from '@cutting/component-library';
+import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { Pyramid } from '../Pyramid';
 
 export function Home(): JSX.Element {
   return (
-    <ApplicationLayout heading="Frontend developer, total" italicise center>
+    <ApplicationLayout heading="Elite Frontend developer" center>
       <div>
         <Pyramid />
       </div>

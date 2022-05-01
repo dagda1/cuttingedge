@@ -1,4 +1,4 @@
-import { atoms } from '@cutting/component-library';
+import { atoms, vars } from '@cutting/component-library';
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style } from '@vanilla-extract/css';
 
@@ -9,7 +9,7 @@ const buttonStyles: ComplexStyleRule = {
   background: 'transparent',
   border: 'none',
   padding: '0',
-  marginTop: '1rem',
+  marginTop: vars.space['1x'],
 };
 
 export const MobileNavButtonActive = style([{ ...buttonStyles, color: '#0000' }]);

@@ -9,7 +9,7 @@ import { Twitter } from '../Svg/Twitter';
 
 export function Footer(): JSX.Element {
   return (
-    <footer role="contentinfo">
+    <>
       <div className={styles.left}>
         <div className={styles.logo}>
           <div className={styles.logoContainer}>
@@ -49,6 +49,6 @@ export function Footer(): JSX.Element {
           <div className={styles.copyright}>Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</div>
         </div>
       </div>
-    </footer>
+    </>
   );
 }

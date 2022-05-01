@@ -17,6 +17,7 @@ export const icon = style({
 export const repos = style({
   display: 'block',
   ...responsiveStyle({
+    mobile: {},
     tablet: {
       display: 'flex',
       flexFlow: 'wrap',
@@ -27,6 +28,7 @@ export const repos = style({
 export const repo = style({
   marginRight: vars.space['1x'],
   ...responsiveStyle({
+    mobile: {},
     tablet: {
       flex: '1 0 47%',
     },

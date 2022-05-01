@@ -12,7 +12,7 @@ export function CV(): JSX.Element {
   const viewerUrl = `/pdfjs/web/viewer.html?file=${pdfUrl}&fileName=${CVFile}&openFile=true&download=true&viewBookmark=true`;
 
   return (
-    <ApplicationLayout className={styles.main} heading="Paul Cowan CV">
+    <ApplicationLayout className={styles.main}>
       <div className={styles.pdfViewer}>
         <h1>
           <a className={styles.link} href={Urls.Download}>

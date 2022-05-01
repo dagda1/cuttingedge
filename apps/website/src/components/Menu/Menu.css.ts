@@ -1,10 +1,6 @@
 import { palette, responsiveStyle, vars, atoms } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
-export const path = style({
-  fill: palette.white,
-});
-
 export const full = style({
   display: 'flex',
   justifyContent: 'center',
@@ -24,7 +20,11 @@ globalStyle(`${container} ul`, {
   marginBottom: 0,
 });
 
-globalStyle(`${container} li`, {
+globalStyle(`${container} svg path`, {
+  fill: palette.white,
+});
+
+globalStyle(`${container} ul li`, {
   display: 'inline-block',
   verticalAlign: 'middle',
   position: 'relative',
@@ -42,6 +42,11 @@ globalStyle(`${container} li:not(:last-of-type)`, {
 });
 export const mobileButtonContainer = style({
   verticalAlign: 'middle',
+});
+
+globalStyle(`${mobileButtonContainer} button`, {
+  position: 'absolute',
+  top: '-1rem',
 });
 
 globalStyle(`${mobileButtonContainer} svg`, {
@@ -64,12 +69,12 @@ globalStyle(`${container} li h2 a`, {
 export const contact = style([
   {
     backgroundColor: '#FF8B45',
-    color: '#ffffff',
     borderRadius: '1rem',
     fontWeight: 'bold',
     fontSize: '1.25rem',
     padding: '.5rem',
     ...responsiveStyle({
+      mobile: {},
       tablet: {
         top: '0 !important',
         fontSize: '2rem',
@@ -78,6 +83,15 @@ export const contact = style([
     }),
   },
 ]);
+
+globalStyle(`li${contact} a`, {
+  color: palette.white,
+  fontWeight: 'bold',
+  ...responsiveStyle({
+    mobile: { position: 'static' },
+    tablet: { position: 'relative', top: '1px' },
+  }),
+});
 
 globalStyle(`${container} div:not(.expanded):not(${contact}) ul li`, {
   ...responsiveStyle({
@@ -118,10 +132,6 @@ globalStyle(`${logoContainer} svg`, {
 globalStyle(`${logoContainer} a`, {
   display: 'inline-block',
   marginRight: vars.space['1x'],
-});
-
-globalStyle(`${logoContainer} a:focus svg`, {
-  background: vars.links.color.hover,
 });
 
 export const active = style({
@@ -182,10 +192,10 @@ globalStyle(`${horizontal} a:hover`, {
 });
 
 globalStyle(`li.${horizontal}:not(${contact})`, {
-  display: 'none',
   ...responsiveStyle({
+    mobile: { display: 'none' },
     tablet: {
-      display: 'inline',
+      display: 'inline-block',
     },
   }),
 });
@@ -212,10 +222,22 @@ globalStyle(`${horizontal}${expanded} a`, {
 export const mobile = style({});
 export const closeButton = style({});
 
+globalStyle(`ul li${horizontal}${mobile}`, {
+  display: 'flex',
+  border: `1px solid ${palette.white}`,
+  paddingTop: vars.space['2x'],
+  paddingBottom: vars.space['4x'],
+  marginBottom: vars.space['2x'],
+  paddingLeft: vars.space['2x'],
+  color: palette.white,
+  justifyContent: 'center',
+});
+
 globalStyle(`ul li${horizontal}${mobile}${closeButton}`, {
   display: 'flex',
   justifyContent: 'flex-end',
 });
+
 globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
   display: 'flex',
   justifyContent: 'center',
@@ -230,26 +252,28 @@ globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
   top: '8px',
   transition: 'none',
   width: '32px',
-}),
-  globalStyle(`ul li${horizontal}${mobile}${closeButton} button:before`, {
-    position: 'absolute',
-    // -webkit-transform: translate(-50%, -50%),
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-    // -webkit-font-smoothing: antialiased,
-    fontFamily: 'icomoon',
-    fontStyle: 'normal',
-    fontVariant: 'normal',
-    fontWeight: 'normal',
-    lineHeight: 1,
-    textIndent: 0,
-    textTransform: 'none',
-  });
+});
+
+globalStyle(`ul li${horizontal}${mobile}${closeButton} button:before`, {
+  position: 'absolute',
+  // -webkit-transform: translate(-50%, -50%),
+  left: '50%',
+  top: '50%',
+  transform: 'translate(-50%, -50%)',
+  // -webkit-font-smoothing: antialiased,
+  fontFamily: 'icomoon',
+  fontStyle: 'normal',
+  fontVariant: 'normal',
+  fontWeight: 'normal',
+  lineHeight: 1,
+  textIndent: 0,
+  textTransform: 'none',
+});
 
 export const noMobile = style({
   display: 'none !important',
   ...responsiveStyle({
+    mobile: {},
     tablet: {
       display: 'inline',
     },

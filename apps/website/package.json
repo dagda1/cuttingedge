@@ -10,15 +10,15 @@
   "scripts": {
     "start": "PORT=3000 SSR=true NODE_ENV=development devtools ssr-start",
     "debug": "pnpm start -- --inspect=localhost:9230",
-    "build": "echo disabled for now # NODE_ENV=production devtools ssr-build",
+    "build": "NODE_ENV=production PORT=3000 devtools ssr-build",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "test": "echo disabled for now",
+    "test": "NODE_ENV=test devtools test",
     "deploy": "NODE_ENV=production pnpm build && ./bin/deploy.sh",
-    "serve": "NODE_ENV=production node ./dist/server.js"
+    "serve": "PORT=3000 NODE_ENV=production node ./dist/server.js"
   },
   "sideEffects": [
     "**/*.css",
-    "**/*.scss"
+    "**/*.cs.ts"
   ],
   "dependencies": {
     "@cutting/component-library": "workspace:*",
@@ -40,8 +40,8 @@
     "assert-ts": "0.3.4",
     "body-parser": "1.20.0",
     "classnames": "2.3.1",
-    "core-js": "3.21.1",
     "cookie-parser": "1.4.6",
+    "core-js": "3.21.1",
     "csurf": "1.11.0",
     "d3-array": "3.1.5",
     "d3-scale": "4.0.2",
@@ -62,7 +62,6 @@
     "serialize-javascript": "6.0.0",
     "serve-favicon": "2.5.0",
     "url-join": "5.0.0",
-    "victory": "36.3.1",
     "webpack": "5.72.0",
     "zlib": "1.0.5"
   },
@@ -77,6 +76,7 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
+    "@jest/globals": "27.5.1",
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.0.0",
     "@types/csurf": "1.11.2",
@@ -98,6 +98,10 @@
     "css-loader": "6.7.1",
     "eslint": "8.13.0",
     "html-loader": "3.1.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^10.0.1",
     "install": "0.13.0",
     "markdown-loader": "8.0.0",
     "nodemon": "2.0.15",

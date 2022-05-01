@@ -7,6 +7,7 @@ import { MainRoutes } from '../routes';
 import path from 'path';
 import { Helmet } from 'react-helmet';
 import { GATagManager } from '../components/ga-tagmanager';
+import { cuttingTheme } from '@cutting/component-library';
 
 const gaId = 'UA-146837410-1';
 
@@ -40,8 +41,9 @@ export async function render({ req, res }: RendererOptions): Promise<void> {
         {helmet.title.toComponent()}
         {extractor.getStyleElements()}
         {isProduction && <GATagManager gaId={gaId} />}
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100&amp;display=swap" rel="stylesheet" />
       </head>
-      <body {...helmet.bodyAttributes.toComponent()}>
+      <body {...helmet.bodyAttributes.toComponent()} className={cuttingTheme}>
         <div id="root">
           <StaticRouter location={req.url}>
             <MainRoutes />

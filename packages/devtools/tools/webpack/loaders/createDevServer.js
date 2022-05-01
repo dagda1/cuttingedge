@@ -35,7 +35,7 @@ const createDevServer = ({ protocol, host = '0.0.0.0', sockPort, proxy, port, })
         },
         devMiddleware: {
             publicPath: paths_1.paths.publicUrlOrPath.slice(0, -1),
-            stats: 'summary',
+            stats: 'errors-only',
         },
         host,
         https: protocol === 'https',

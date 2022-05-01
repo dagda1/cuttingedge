@@ -1,9 +1,25 @@
 import { responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import lightening from '../images/lightening.jpg';
 
 globalStyle('body', {
-  fontFamily: `'GeosansLight' !important`,
+  fontFamily: "'Roboto' !important",
+  fontWeight: 800,
   backgroundColor: vars.backgroundColor.body,
+  ...responsiveStyle({
+    mobile: {
+      padding: `0 ${vars.space['2x']}`,
+    },
+    tablet: {
+      padding: 0,
+    },
+  }),
+});
+
+globalStyle('#root', {
+  paddingTop: '0 !important',
 });
 
 export const covid = style({});
@@ -18,19 +34,19 @@ globalStyle(`${covid} svg:first-of-type`, {
   marginBottom: vars.space['2x'],
 });
 
-export const footer = style({
+export const hidden = style({
   display: 'none',
 });
 
-globalStyle(`body:not(${covid})`, {
-  background: `url(../images/lightening.jpg) no-repeat center center fixed`,
+globalStyle(`body`, {
+  background: `url('${lightening}') no-repeat center center fixed`,
   backgroundSize: 'cover',
 });
 
 globalStyle('header', {
   ...responsiveStyle({
     mobile: {
-      paddingLeft: vars.space['1x'],
+      paddingLeft: 0,
     },
     desktop: {
       paddingLeft: 'inherit',
