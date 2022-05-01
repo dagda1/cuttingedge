@@ -1,5 +1,15 @@
 # @cutting/use-mathjax
 
+## 4.42.0
+
+### Minor Changes
+
+- 59b88353: use children instead of expr in use-mathjax
+
+### Patch Changes
+
+- 582557ef: type reference
+
 ## 4.41.0
 
 ### Minor Changes
