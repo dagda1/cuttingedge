@@ -14,15 +14,6 @@ globalStyle(`${main} h1`, {
   paddingBottom: 0,
 });
 
-export const italic = style({
-  color: '#fff',
-  fontStyle: 'italic',
-  fontWeight: 100,
-  letterSpacing: '1px',
-  lineHeight: '1.5em',
-  textTransform: 'none',
-});
-
 export const center = style({
   textAlign: 'center',
 });

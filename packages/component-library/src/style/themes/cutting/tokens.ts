@@ -45,8 +45,8 @@ export const tokens: DeepPartial<Tokens> = {
     },
     fontWeight: {
       regular: 100,
-      medium: 800,
-      strong: 800,
+      medium: 200,
+      strong: 400,
     },
   },
   buttons: {

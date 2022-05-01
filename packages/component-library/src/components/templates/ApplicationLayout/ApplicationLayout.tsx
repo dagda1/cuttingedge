@@ -8,7 +8,6 @@ import { isNil } from '@cutting/util';
 
 export interface ApplicationLayoutProps {
   heading?: string | JSX.Element;
-  italicise?: boolean;
   center?: boolean;
   className?: string;
   footer?: ReactElement;

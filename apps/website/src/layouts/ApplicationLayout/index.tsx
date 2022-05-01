@@ -10,7 +10,6 @@ import * as styles from './ApplicationLayout.css';
 
 export interface ApplicationLayoutProps {
   heading?: string;
-  italicise?: boolean;
   center?: boolean;
   className?: string;
   showFooter?: boolean;
@@ -19,7 +18,6 @@ export interface ApplicationLayoutProps {
 
 export function ApplicationLayout({
   heading,
-  italicise,
   center,
   className,
   showFooter = true,
@@ -36,7 +34,6 @@ export function ApplicationLayout({
         heading && (
           <h1
             className={cs({
-              [styles.italic]: italicise,
               [styles.center]: center,
             })}
           >

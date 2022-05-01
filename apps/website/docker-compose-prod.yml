@@ -6,6 +6,7 @@ services:
     environment:
       PORT: 3000
       NODE_ENV: production
+      NPM_TOKEN: $NPM_TOKEN
     command: npm serve
     restart: always
 
