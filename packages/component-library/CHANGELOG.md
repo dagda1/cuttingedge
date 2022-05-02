@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.26.0
+
+### Minor Changes
+
+- 7d8cf0c6: cutting theme changes
+
 ## 5.25.4
 
 ### Patch Changes
