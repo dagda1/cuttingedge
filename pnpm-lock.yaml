@@ -301,6 +301,7 @@ importers:
       '@vanilla-extract/sprinkles': 1.4.0_@vanilla-extract+css@1.6.8
       assert-ts: 0.3.4
       classnames: 2.3.1
+      dedent: 0.7.0
       deepmerge: 4.2.2
       polished: 4.2.2
     devDependencies:
@@ -330,7 +331,6 @@ importers:
       '@vanilla-extract/css': 1.6.8
       autoprefixer: 10.4.4_postcss@8.4.12
       csstype: 3.0.11
-      dedent: 0.7.0
       esbuild: 0.14.34
       eslint: 8.13.0
       node-fetch: 3.2.3
