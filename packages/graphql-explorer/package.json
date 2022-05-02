@@ -37,7 +37,7 @@
     "@vanilla-extract/sprinkles": "1.4.0",
     "abortcontroller-polyfill": "1.7.3",
     "eslint": "8.13.0",
-    "react": "18.0.0",
+    "react": "18.1.0",
     "react-dom": "18.0.0"
   },
   "peerDependencies": {
