@@ -19,6 +19,7 @@
   "dependencies": {
     "@cutting/hooks": "workspace:*",
     "@cutting/util": "workspace:*",
+    "@vanilla-extract/sprinkles": "1.4.0",
     "assert-ts": "^0.3.4",
     "classnames": "^2.3.1",
     "deepmerge": "^4.2.2",
@@ -49,7 +50,6 @@
     "@types/tailwindcss": "3.0.10",
     "@vanilla-extract/babel-plugin": "1.1.5",
     "@vanilla-extract/css": "1.6.8",
-    "@vanilla-extract/sprinkles": "1.4.0",
     "autoprefixer": "10.4.4",
     "csstype": "3.0.11",
     "dedent": "0.7.0",

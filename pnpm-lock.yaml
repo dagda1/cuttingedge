@@ -298,6 +298,7 @@ importers:
     dependencies:
       '@cutting/hooks': link:../hooks
       '@cutting/util': link:../util
+      '@vanilla-extract/sprinkles': 1.4.0_@vanilla-extract+css@1.6.8
       assert-ts: 0.3.4
       classnames: 2.3.1
       deepmerge: 4.2.2
@@ -327,7 +328,6 @@ importers:
       '@types/tailwindcss': 3.0.10
       '@vanilla-extract/babel-plugin': 1.1.5
       '@vanilla-extract/css': 1.6.8
-      '@vanilla-extract/sprinkles': 1.4.0_@vanilla-extract+css@1.6.8
       autoprefixer: 10.4.4_postcss@8.4.12
       csstype: 3.0.11
       dedent: 0.7.0
@@ -6466,7 +6466,6 @@ packages:
       '@vanilla-extract/css': ^1.0.0
     dependencies:
       '@vanilla-extract/css': 1.6.8
-    dev: true
 
   /@vanilla-extract/webpack-plugin/2.1.7_webpack@5.72.0:
     resolution: {integrity: sha512-6i8x2at+ASbYTZ+UoN0bkTNB0Kkg4nSVz2YF5Q5pcNupEl3F0p2hgW3+LO4Sd+gkjH3JKMeKI5ivhBE86yjR6A==}
