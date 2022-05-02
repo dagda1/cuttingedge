@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.26.2
+
+### Patch Changes
+
+- 0bcfec84: Add sprinkles to component-library
+
 ## 5.26.1
 
 ### Patch Changes
