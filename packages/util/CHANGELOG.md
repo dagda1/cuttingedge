@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.51.0
+
+### Minor Changes
+
+- 1781542e: add @babel/runtime to util
+
 ## 4.50.2
 
 ### Patch Changes

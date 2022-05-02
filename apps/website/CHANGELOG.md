@@ -1,5 +1,21 @@
 # @cutting/website
 
+## 4.29.0
+
+### Minor Changes
+
+- 1781542e: add @babel/runtime to util
+
+### Patch Changes
+
+- Updated dependencies [1781542e]
+  - @cutting/util@4.51.0
+  - @cutting/component-library@5.26.1
+  - @cutting/hooks@4.49.3
+  - @cutting/svg@4.45.3
+  - @cutting/use-get-parent-size@1.19.3
+  - @cutting/use-mathjax@4.42.1
+
 ## 4.28.0
 
 ### Minor Changes
