@@ -84,17 +84,16 @@ importers:
       '@babel/plugin-proposal-private-property-in-object': 7.16.7
       '@babel/plugin-syntax-dynamic-import': 7.8.3
       '@babel/runtime': 7.17.9
-      '@cutting/component-library': workspace:*
-      '@cutting/devtools': workspace:*
-      '@cutting/eslint-config': workspace:*
-      '@cutting/hooks': workspace:*
-      '@cutting/react-abortable-fetch': workspace:*
-      '@cutting/svg': workspace:*
-      '@cutting/tsconfig': workspace:*
-      '@cutting/use-get-parent-size': workspace:*
-      '@cutting/use-mathjax': workspace:*
-      '@cutting/useful-types': workspace:*
-      '@cutting/util': workspace:*
+      '@cutting/component-library': 5.26.0
+      '@cutting/devtools': 4.54.0
+      '@cutting/eslint-config': 4.40.1
+      '@cutting/hooks': 4.49.2
+      '@cutting/svg': 4.45.2
+      '@cutting/tsconfig': 4.37.1
+      '@cutting/use-get-parent-size': 1.19.2
+      '@cutting/use-mathjax': 4.42.0
+      '@cutting/useful-types': 4.36.1
+      '@cutting/util': 4.50.2
       '@jest/globals': 27.5.1
       '@loadable/component': 5.15.2
       '@loadable/server': 5.15.2
@@ -164,11 +163,9 @@ importers:
     dependencies:
       '@cutting/component-library': link:../../packages/component-library
       '@cutting/hooks': link:../../packages/hooks
-      '@cutting/react-abortable-fetch': link:../../packages/react-abortable-fetch
       '@cutting/svg': link:../../packages/svg
       '@cutting/use-get-parent-size': link:../../packages/use-get-parent-size
       '@cutting/use-mathjax': link:../../packages/use-mathjax
-      '@cutting/useful-types': link:../../packages/useful-types
       '@cutting/util': link:../../packages/util
       '@loadable/component': 5.15.2_react@18.0.0
       '@loadable/server': 5.15.2_ebab06993a82faa61d137ba40f86df6b
@@ -215,6 +212,7 @@ importers:
       '@cutting/devtools': link:../../packages/devtools
       '@cutting/eslint-config': link:../../packages/eslint-config
       '@cutting/tsconfig': link:../../packages/tsconfig
+      '@cutting/useful-types': link:../../packages/useful-types
       '@jest/globals': 27.5.1
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/react': 13.0.0_react-dom@18.0.0+react@18.0.0
