@@ -30,8 +30,6 @@ COPY ./apps/website/package.json .
 
 RUN pnpx @pnpm/make-dedicated-lockfile@latest
 
-# RUN pnpm fetch --loglevel=debug --aggregate-output --use-stderr
-
 RUN echo -n "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc-deploy
 
 RUN pnpm install --prod

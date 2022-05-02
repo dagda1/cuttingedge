@@ -21,6 +21,7 @@
     "**/*.cs.ts"
   ],
   "dependencies": {
+    "@babel/runtime": "7.17.9",
     "@cutting/component-library": "5.26.0",
     "@cutting/hooks": "4.49.2",
     "@cutting/svg": "4.45.2",

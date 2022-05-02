@@ -15,11 +15,11 @@
     "test:ci": "CI=true pnpm test"
   },
   "dependencies": {
+    "@babel/runtime": "^7.17.9",
     "assert-ts": "^0.3.4"
   },
   "devDependencies": {
     "@babel/plugin-transform-regenerator": "7.17.9",
-    "@babel/runtime": "^7.17.9",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
