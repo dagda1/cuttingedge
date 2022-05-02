@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.26.3
+
+### Patch Changes
+
+- 9266831e: add dedent
+
 ## 5.26.2
 
 ### Patch Changes
