@@ -75,6 +75,17 @@ globalStyle('main', {
   flexDirection: 'column',
   flex: '1 0 auto',
   width: '100%',
+  ...responsiveStyle({
+    mobile: {
+      padding: 0,
+    },
+    tablet: {
+      padding: vars.space['2x'],
+    },
+    desktop: {
+      padding: 0,
+    },
+  }),
 });
 
 globalStyle('header,footer', {
