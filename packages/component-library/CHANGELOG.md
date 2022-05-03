@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.26.4
+
+### Patch Changes
+
+- 4544395c: footer styles
+
 ## 5.26.3
 
 ### Patch Changes
