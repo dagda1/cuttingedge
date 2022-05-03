@@ -30,6 +30,7 @@ export function ApplicationLayout({
   return (
     <ApplicationLayoutWithRouterScroll
       className={cs(cuttingTheme, className)}
+      headerAriaLabel="Cutting-Edge Solutions (Scotland)"
       heading={
         heading && (
           <h1

@@ -14,6 +14,7 @@ export interface ApplicationLayoutProps {
   header?: ReactElement;
   innerRef?: Ref<HTMLElement>;
   children: ReactNode;
+  headerAriaLabel?: string;
 }
 
 const ApplicationLayoutHeading: ComponentType<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
@@ -31,17 +32,18 @@ export function ApplicationLayout({
   header,
   footer,
   children,
+  headerAriaLabel,
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   return (
     <>
-      <header className={cs({ [styles.hidden]: !header })}>
+      <header role="banner" className={cs({ [styles.hidden]: !header })} aria-label={headerAriaLabel}>
         <div className={styles.size}>{header}</div>
       </header>
       <main className={cs(styles.body, styles.size, className)} ref={innerRef}>
         <ApplicationLayoutHeading heading={heading} />
         {children}
       </main>
-      <footer role="contentinfo" className={cs({ [styles.hidden]: !header }, styles.size)}>
+      <footer role="contentinfo" className={cs(styles.size, { [styles.hidden]: !header }, styles.size)}>
         {footer}
       </footer>
     </>

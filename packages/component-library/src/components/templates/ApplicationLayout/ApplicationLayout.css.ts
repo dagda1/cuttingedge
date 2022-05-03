@@ -81,6 +81,10 @@ globalStyle('header,footer', {
   ...bodyStyle,
 });
 
+globalStyle('footer', {
+  padding: vars.space['1x'],
+});
+
 globalStyle('header', {
   background: vars.backgroundColor.header,
   color: vars.foregroundColor.header,

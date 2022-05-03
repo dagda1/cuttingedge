@@ -1,15 +1,16 @@
 import express from 'express';
 import type { Request, Response, NextFunction } from 'express';
-// import helmet from 'helmet';
-// import bodyParser from 'body-parser';
+import helmet from 'helmet';
+import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction } from '@cutting/util';
 import { render } from './render';
 import path from 'path';
-// import favicon from 'serve-favicon';
+import favicon from 'serve-favicon';
 import type { Exception } from '../errors/Exception';
-// import { contentSecurityPolicy } from 'helmet';
-// import noCache from 'nocache';
-// import referrerPolicy from 'referrer-policy';
+import { contentSecurityPolicy } from 'helmet';
+import noCache from 'nocache';
+import referrerPolicy from 'referrer-policy';
+import { DownloadPdf, DownloadWordDoc } from 'src/urls';
 
 export const app = express();
 
@@ -19,49 +20,62 @@ const publicDir = path.join(rootDir, isProduction ? 'dist/public' : 'public');
 
 app.use(express.static(publicDir));
 
-// if (isProduction) {
-//   app.use(helmet());
-//   app.use(noCache());
-//   app.use(referrerPolicy({ policy: 'no-referrer' }));
-//   app.use(helmet.hidePoweredBy());
-//   app.use(bodyParser.urlencoded({ extended: false }));
-//   app.use(bodyParser.json());
-//   app.use(favicon(path.join(publicDir, 'favicon.ico')));
-//   app.use(
-//     contentSecurityPolicy({
-//       directives: {
-//         defaultSrc: ["'self'", 'https://covidapi.info/'],
-//         scriptSrc: [
-//           "'self'",
-//           "'unsafe-inline'",
-//           "'unsafe-eval'",
-//           'https://www.googletagmanager.com/',
-//           'https://www.formlets.com',
-//           'https://www.google-analytics.com',
-//           'https://www.opendata.nhs.scot/',
-//         ],
-//         connectSrc: [
-//           'https://www.google-analytics.com',
-//           'www.google-analytics.com',
-//           'https://www.formlets.com',
-//           'https://covidapi.info/',
-//           'https://www.opendata.nhs.scot/',
-//         ],
-//         styleSrc: ["'self'", "'unsafe-inline'"],
-//         imgSrc: ["'self'", 'data:', 'https://www.google-analytics.com'],
-//         fontSrc: ["'self'", 'data:'],
-//         objectSrc: ["'self'", 'blob:'],
-//         frameSrc: ["'self'", 'https://www.formlets.com'],
-//       },
-//     }),
-//   );
-// }
+if (isProduction) {
+  app.use(helmet());
+  app.use(noCache());
+  app.use(referrerPolicy({ policy: 'no-referrer' }));
+  app.use(helmet.hidePoweredBy());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  app.use(favicon(path.join(publicDir, 'favicon.ico')));
+  app.use(
+    contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'", 'https://covidapi.info/'],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "'unsafe-eval'",
+          'https://www.googletagmanager.com/',
+          'https://www.formlets.com',
+          'https://www.google-analytics.com',
+          'https://www.opendata.nhs.scot/',
+        ],
+        connectSrc: [
+          'https://www.google-analytics.com',
+          'www.google-analytics.com',
+          'https://www.formlets.com',
+          'https://covidapi.info/',
+          'https://www.opendata.nhs.scot/',
+        ],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", 'data:', 'https://www.google-analytics.com'],
+        fontSrc: ["'self'", 'data:'],
+        objectSrc: ["'self'", 'blob:'],
+        frameSrc: ["'self'", 'https://www.formlets.com'],
+      },
+    }),
+  );
+}
 
-app.get('/download', (req, res) => {
+app.get(DownloadPdf, (_, res) => {
   const CVFile = 'paulcowan-cv.pdf';
   const pdfPath = ['', publicDir, 'assets', CVFile].join('/');
 
   res.status(HttpStatusCode.Ok).download(pdfPath, CVFile, (err) => {
+    if (!err) {
+      return;
+    }
+
+    console.log(err);
+  });
+});
+
+app.get(DownloadWordDoc, (_, res) => {
+  const WordDoc = 'paulcowan-cv.docx';
+  const wordDocPath = ['', publicDir, 'assets', WordDoc].join('/');
+
+  res.status(HttpStatusCode.Ok).download(wordDocPath, WordDoc, (err) => {
     if (!err) {
       return;
     }

@@ -3,6 +3,11 @@ import * as Urls from '../../urls';
 
 import * as styles from './CV.css';
 
+const docs = [
+  { file: 'paulcowan-cv.pdf', url: Urls.DownloadPdf, text: 'pdf' },
+  { file: 'paulcowan-cv.docs', url: Urls.DownloadWordDoc, text: 'word (.docx)' },
+] as const;
+
 // eslint:disable
 export function CV(): JSX.Element {
   const CVFile = 'paulcowan-cv.pdf';
@@ -14,13 +19,15 @@ export function CV(): JSX.Element {
   return (
     <ApplicationLayout className={styles.main}>
       <div className={styles.pdfViewer}>
-        <h1>
-          <a className={styles.link} href={Urls.Download}>
-            <span>CLICK HERE TO DOWNLOAD MY CV (pdf)</span>
-          </a>
-        </h1>
-        <iframe title="CV" src={viewerUrl} />
+        {docs.map((doc) => (
+          <h2 key={doc.file}>
+            <a className={styles.link} href={doc.url}>
+              <span>DOWNLOAD {doc.text}</span>
+            </a>
+          </h2>
+        ))}
       </div>
+      <iframe title="CV" src={viewerUrl} />
     </ApplicationLayout>
   );
 }

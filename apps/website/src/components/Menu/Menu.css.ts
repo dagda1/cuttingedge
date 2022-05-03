@@ -136,6 +136,8 @@ globalStyle(`${logoContainer} a`, {
 
 export const active = style({
   color: vars.links.color.active,
+  background: '#fff',
+  padding: vars.space['1x'],
 });
 
 export const name = style({

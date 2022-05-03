@@ -16,7 +16,7 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
         <li key={page.heading} className={cs(styles.horizontal, className)}>
           <NavLink
             to={page.path?.includes('*') ? page.path.slice(0, -2) : page.path}
-            className={({ isActive }) => page.className + (isActive ? styles.active : '')}
+            className={({ isActive }) => cs(page.className, { [styles.active]: isActive })}
             onClick={collapse}
           >
             {page.heading}
