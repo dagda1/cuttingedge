@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  server:
+    image: 313095418189.dkr.ecr.us-east-1.amazonaws.com/website_server:latest
+    environment:
+        PORT: 3000
+        NODE_ENV: production
+    command: node ./dist/server.js
+    restart: always
+
+  nginx:
+    image: 313095418189.dkr.ecr.us-east-1.amazonaws.com/website_nginx:latest
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes:
+        - /root/ssl:/etc/nginx/ssl/
+    command: nginx -c /etc/nginx/nginx.conf -g "daemon off;"
+    restart: always
