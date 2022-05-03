@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.26.5
+
+### Patch Changes
+
+- 60be2b65: padding on body
+
 ## 5.26.4
 
 ### Patch Changes
