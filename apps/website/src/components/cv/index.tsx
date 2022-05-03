@@ -5,7 +5,7 @@ import * as styles from './CV.css';
 
 const docs = [
   { file: 'paulcowan-cv.pdf', url: Urls.DownloadPdf, text: 'pdf' },
-  { file: 'paulcowan-cv.docs', url: Urls.DownloadWordDoc, text: 'word (.docx)' },
+  { file: 'paulcowan-cv.docx', url: Urls.DownloadWordDoc, text: 'word (.docx)' },
 ] as const;
 
 // eslint:disable

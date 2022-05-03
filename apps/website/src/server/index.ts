@@ -20,7 +20,7 @@ const publicDir = path.join(rootDir, isProduction ? 'dist/public' : 'public');
 
 app.use(express.static(publicDir));
 
-if (isProduction) {
+if (false) {
   app.use(helmet());
   app.use(noCache());
   app.use(referrerPolicy({ policy: 'no-referrer' }));
@@ -48,9 +48,9 @@ if (isProduction) {
           'https://covidapi.info/',
           'https://www.opendata.nhs.scot/',
         ],
-        styleSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com/css'],
         imgSrc: ["'self'", 'data:', 'https://www.google-analytics.com'],
-        fontSrc: ["'self'", 'data:'],
+        fontSrc: ["'self'", 'data:', 'https://fonts.gstatic.com'],
         objectSrc: ["'self'", 'blob:'],
         frameSrc: ["'self'", 'https://www.formlets.com'],
       },

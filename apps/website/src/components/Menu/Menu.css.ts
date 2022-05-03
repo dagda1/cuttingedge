@@ -129,13 +129,13 @@ globalStyle(`${logoContainer} svg`, {
   height: 'auto',
 });
 
-globalStyle(`${logoContainer} a`, {
-  display: 'inline-block',
-  marginRight: vars.space['1x'],
-});
+// globalStyle(`${logoContainer} a`, {
+//   display: 'inline-block',
+//   marginRight: vars.space['1x'],
+// });
 
 export const active = style({
-  color: vars.links.color.active,
+  color: '#000',
   background: '#fff',
   padding: vars.space['1x'],
 });
@@ -167,30 +167,27 @@ export const expanded = style([
 ]);
 //   @include py(2);
 
-globalStyle(`${expanded} ul li`, {
+globalStyle(`${expanded} ul li a`, {
   paddingTop: vars.space['1x'],
   paddingBottom: vars.space['2x'],
   marginBottom: vars.space['1x'],
   paddingLeft: vars.space['1x'],
-  color: '#fff',
+  display: 'flex',
+  justifyContent: 'center',
+  flex: 1,
 });
 
 export const horizontal = style({
   display: 'block',
   selectors: {
     [`&:hover`]: {
-      color: palette.black,
-      backgroundColor: palette.white,
+      color: palette.gray300,
     },
   },
 });
 
 globalStyle(`${horizontal} a`, {
   display: 'block',
-});
-
-globalStyle(`${horizontal} a:hover`, {
-  color: palette.black,
 });
 
 globalStyle(`li.${horizontal}:not(${contact})`, {
@@ -227,10 +224,7 @@ export const closeButton = style({});
 globalStyle(`ul li${horizontal}${mobile}`, {
   display: 'flex',
   border: `1px solid ${palette.white}`,
-  paddingTop: vars.space['2x'],
-  paddingBottom: vars.space['4x'],
   marginBottom: vars.space['2x'],
-  paddingLeft: vars.space['2x'],
   color: palette.white,
   justifyContent: 'center',
 });
