@@ -44,7 +44,7 @@ export const tokens: DeepPartial<Tokens> = {
       paragraphs: "'Roboto'",
     },
     fontWeight: {
-      regular: 100,
+      regular: 900,
       medium: 200,
       strong: 400,
     },

@@ -6,7 +6,6 @@ import lightening from '../images/lightening.jpg';
 
 globalStyle('body', {
   fontFamily: "'Roboto' !important",
-  fontWeight: 800,
   backgroundColor: vars.backgroundColor.body,
   ...responsiveStyle({
     mobile: {

@@ -14,6 +14,7 @@ const createCSSLoaders = ({ isNode, }) => {
             {
                 test: /\.vanilla\.css$/i,
                 use: ['css-loader'],
+                sideEffects: true,
             },
             {
                 test: constants_1.cssRegex,

@@ -1,8 +1,7 @@
 import type { Reducer } from 'react';
-import { range } from 'd3-array';
 import type { ScaleLinear } from 'd3-scale';
 import { scaleLinear } from '@visx/scale';
-import { identity } from '@cutting/util';
+import { identity, range } from '@cutting/util';
 
 export type Dimensions = { width: number; height: number };
 
@@ -130,9 +129,7 @@ export const reducer: Reducer<typeof initialState, SineActions> = (state, action
 
       const { radius, firstX } = action.payload;
 
-      const sine = range(0, 54)
-        .map((x) => (x * 10) / 85)
-        .map((x) => ({ x, y: -Math.sin(x - newTime) }));
+      const sine = [...range(0, 54)].map((x) => (x * 10) / 85).map((x) => ({ x, y: -Math.sin(x - newTime) }));
 
       const dx = radius * Math.cos(newTime);
       const dy = radius * -Math.sin(newTime); // counter-clockwise

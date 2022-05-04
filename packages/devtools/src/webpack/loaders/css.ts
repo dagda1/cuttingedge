@@ -16,6 +16,7 @@ export const createCSSLoaders = ({
         {
           test: /\.vanilla\.css$/i,
           use: ['css-loader'],
+          sideEffects: true,
         },
         {
           test: cssRegex,

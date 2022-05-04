@@ -70,7 +70,6 @@ export const contact = style([
   {
     backgroundColor: '#FF8B45',
     borderRadius: '1rem',
-    fontWeight: 'bold',
     fontSize: '1.25rem',
     ...responsiveStyle({
       mobile: {},
@@ -85,7 +84,6 @@ export const contact = style([
 
 globalStyle(`li${contact} a`, {
   color: palette.white,
-  fontWeight: 'bold',
   ...responsiveStyle({
     mobile: { position: 'static' },
     tablet: { position: 'relative', top: '1px' },
@@ -130,7 +128,6 @@ globalStyle(`${logoContainer} svg`, {
 
 export const active = style({
   color: '#ffffff',
-  fontWeight: 800,
   fontStyle: 'bold',
 });
 
@@ -259,7 +256,6 @@ globalStyle(`ul li${horizontal}${mobile}${closeButton} button:before`, {
   fontFamily: 'icomoon',
   fontStyle: 'normal',
   fontVariant: 'normal',
-  fontWeight: 'normal',
   lineHeight: 1,
   textIndent: 0,
   textTransform: 'none',
