@@ -72,7 +72,9 @@ export const contact = style([
     borderRadius: '1rem',
     fontSize: '1.25rem',
     ...responsiveStyle({
-      mobile: {},
+      mobile: {
+        padding: '.5rem .75rem',
+      },
       tablet: {
         top: '0 !important',
         fontSize: '2rem',
