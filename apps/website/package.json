@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "version": "4.29.4",
+  "version": "4.29.5",
   "license": "MIT",
   "scripts": {
     "start": "PORT=3000 SSR=true NODE_ENV=development devtools ssr-start",
@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "@babel/runtime": "7.17.9",
-    "@cutting/component-library": "5.26.5",
+    "@cutting/component-library": "5.26.6",
     "@cutting/hooks": "4.49.3",
     "@cutting/svg": "4.45.3",
     "@cutting/use-get-parent-size": "1.19.3",
@@ -70,7 +70,7 @@
     "@babel/plugin-proposal-private-property-in-object": "7.16.7",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/runtime": "7.17.9",
-    "@cutting/devtools": "4.54.0",
+    "@cutting/devtools": "4.54.1",
     "@cutting/eslint-config": "4.40.1",
     "@cutting/tsconfig": "4.37.1",
     "@cutting/useful-types": "4.36.1",

@@ -1,5 +1,13 @@
 # @cutting/component-library
 
+## 5.26.6
+
+### Patch Changes
+
+- 553a768e: remove d3-array
+  - @cutting/hooks@4.49.3
+  - @cutting/util@4.51.0
+
 ## 5.26.5
 
 ### Patch Changes

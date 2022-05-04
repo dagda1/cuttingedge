@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.54.1
+
+### Patch Changes
+
+- 553a768e: remove d3-array
+
 ## 4.54.0
 
 ### Minor Changes
