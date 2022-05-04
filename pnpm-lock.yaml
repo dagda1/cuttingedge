@@ -84,8 +84,8 @@ importers:
       '@babel/plugin-proposal-private-property-in-object': 7.16.7
       '@babel/plugin-syntax-dynamic-import': 7.8.3
       '@babel/runtime': 7.17.9
-      '@cutting/component-library': 5.26.5
-      '@cutting/devtools': 4.54.0
+      '@cutting/component-library': 5.26.6
+      '@cutting/devtools': 4.54.1
       '@cutting/eslint-config': 4.40.1
       '@cutting/hooks': 4.49.3
       '@cutting/svg': 4.45.3
