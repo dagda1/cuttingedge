@@ -72,7 +72,6 @@ export const contact = style([
     borderRadius: '1rem',
     fontWeight: 'bold',
     fontSize: '1.25rem',
-    padding: '.5rem',
     ...responsiveStyle({
       mobile: {},
       tablet: {
@@ -129,15 +128,15 @@ globalStyle(`${logoContainer} svg`, {
   height: 'auto',
 });
 
-// globalStyle(`${logoContainer} a`, {
-//   display: 'inline-block',
-//   marginRight: vars.space['1x'],
-// });
-
 export const active = style({
-  color: '#000',
-  background: '#fff',
-  padding: vars.space['1x'],
+  color: '#ffffff',
+  fontWeight: 800,
+  fontStyle: 'bold',
+});
+
+globalStyle(`${contact} ${active}`, {
+  background: 'inherit',
+  padding: '0',
 });
 
 export const name = style({

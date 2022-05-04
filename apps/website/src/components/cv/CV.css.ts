@@ -3,7 +3,6 @@ import { globalStyle, style } from '@vanilla-extract/css';
 
 export const pdfViewer = style({
   display: 'flex',
-  marginRight: vars.space['2x'],
 
   ...responsiveStyle({
     mobile: {

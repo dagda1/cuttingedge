@@ -20,8 +20,8 @@ const publicDir = path.join(rootDir, isProduction ? 'dist/public' : 'public');
 
 app.use(express.static(publicDir));
 
-if (false) {
-  app.use(helmet());
+if (isProduction) {
+  app.use(helmet({ crossOriginEmbedderPolicy: false }));
   app.use(noCache());
   app.use(referrerPolicy({ policy: 'no-referrer' }));
   app.use(helmet.hidePoweredBy());
@@ -41,16 +41,10 @@ if (false) {
           'https://www.google-analytics.com',
           'https://www.opendata.nhs.scot/',
         ],
-        connectSrc: [
-          'https://www.google-analytics.com',
-          'www.google-analytics.com',
-          'https://www.formlets.com',
-          'https://covidapi.info/',
-          'https://www.opendata.nhs.scot/',
-        ],
-        styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com/css'],
-        imgSrc: ["'self'", 'data:', 'https://www.google-analytics.com'],
-        fontSrc: ["'self'", 'data:', 'https://fonts.gstatic.com'],
+        connectSrc: ['https://www.google-analytics.com', 'www.google-analytics.com', 'https://www.formlets.com'],
+        styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+        imgSrc: ["'self'", 'data:', 'https://www.google-analytics.com', 'https://www.googletagmanager.com/'],
+        fontSrc: ["'self'", 'data:', 'https://fonts.gstatic.com', 'https://fonts.googleapis.com'],
         objectSrc: ["'self'", 'blob:'],
         frameSrc: ["'self'", 'https://www.formlets.com'],
       },
