@@ -7,7 +7,6 @@
     "sourceMap": true,
     "paths": {
       "@cutting/devtools": ["./packages/devtools/src"],
-      "@cutting/the-watcher": ["./packages/the-watcher"],
       "@cutting/util": ["./packages/util/src"],
       "@cutting/hooks": ["./packages/hooks/src"],
       "@cutting/react-abortable-fetch": ["./packages/react-abortable-fetch/src"],
