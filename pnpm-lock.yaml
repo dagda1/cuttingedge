@@ -36,7 +36,7 @@ importers:
       css-loader: 6.7.1
       eslint: 8.14.0
       file-loader: 6.2.0
-      follow-redirects: 1.14.9
+      follow-redirects: 1.15.0
       html-loader: 3.1.0
       husky: 7.0.4
       markdown-loader: 8.0.0
@@ -63,7 +63,7 @@ importers:
       css-loader: 6.7.1_webpack@5.72.0
       eslint: 8.14.0
       file-loader: 6.2.0_webpack@5.72.0
-      follow-redirects: 1.14.9
+      follow-redirects: 1.15.0
       html-loader: 3.1.0_webpack@5.72.0
       husky: 7.0.4
       markdown-loader: 8.0.0_webpack@5.72.0
@@ -11216,6 +11216,16 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+
+  /follow-redirects/1.15.0:
+    resolution: {integrity: sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: true
 
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
