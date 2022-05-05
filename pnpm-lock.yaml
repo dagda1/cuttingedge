@@ -43,7 +43,7 @@ importers:
       node-fetch: 3.2.4
       regenerator-runtime: 0.13.9
       style-loader: 3.3.1
-      ts-loader: 9.2.9
+      ts-loader: 9.3.0
       turbo: 1.2.6
       typescript: 4.6.4
       webpack: 5.72.0
@@ -70,7 +70,7 @@ importers:
       node-fetch: 3.2.4
       regenerator-runtime: 0.13.9
       style-loader: 3.3.1_webpack@5.72.0
-      ts-loader: 9.2.9_typescript@4.6.4+webpack@5.72.0
+      ts-loader: 9.3.0_typescript@4.6.4+webpack@5.72.0
       turbo: 1.2.6
       typescript: 4.6.4
       webpack: 5.72.0
@@ -19208,8 +19208,8 @@ packages:
       typescript: 4.6.3
       webpack: 5.72.0_esbuild@0.14.34
 
-  /ts-loader/9.2.9_typescript@4.6.4+webpack@5.72.0:
-    resolution: {integrity: sha512-b0+vUY2/enb0qYtDQuNlDnJ9900NTiPiJcDJ6sY7ax1CCCwXfYIqPOMm/BwW7jsF1km+Oz8W9s31HLuD+FLIMg==}
+  /ts-loader/9.3.0_typescript@4.6.4+webpack@5.72.0:
+    resolution: {integrity: sha512-2kLLAdAD+FCKijvGKi9sS0OzoqxLCF3CxHpok7rVgCZ5UldRzH0TkbwG9XECKjBzHsAewntC5oDaI/FwKzEUog==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       typescript: '*'
