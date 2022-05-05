@@ -2,7 +2,6 @@
   "baseBranches": ["main"],
   "extends": ["config:base", "group:monorepos", ":dependencyDashboard"],
   "dependencyDashboard": false,
-  "schedule": ["before 2am on sunday"],
   "automerge": true,
   "includePaths": ["package.json"],
   "semanticCommits": "enabled",
