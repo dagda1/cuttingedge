@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make\
     nasm 
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@6.32.11
 
 RUN rm -rf /cutting/
 
