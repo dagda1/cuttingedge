@@ -10,6 +10,7 @@
   "rebaseWhen": "auto",
   "requiredStatusChecks": [],
   "prConcurrentLimit": 5,
+  "updateInternalDeps": true,
   "lockFileMaintenance": {
     "enabled": false
   },

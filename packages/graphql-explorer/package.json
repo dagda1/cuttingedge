@@ -22,7 +22,6 @@
   "dependencies": {
     "@cutting/component-library": "workspace:*",
     "@cutting/react-abortable-fetch": "workspace:*",
-    "@cutting/svg": "workspace:*",
     "@cutting/util": "workspace:*",
     "assert-ts": "^0.3.4",
     "graphql": "^16.3.0"
