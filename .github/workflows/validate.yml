@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.32.11
+          version: 6.32.12
 
       - name: pnpm version
         run: pnpm -v
