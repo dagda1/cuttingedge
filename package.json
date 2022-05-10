@@ -46,7 +46,7 @@
     "ts-loader": "9.3.0",
     "turbo": "1.2.8",
     "typescript": "4.6.4",
-    "webpack": "5.72.0",
+    "webpack": "5.72.1",
     "whatwg-fetch": "3.6.2"
   },
   "packageManager": "pnpm@6.32.12",
