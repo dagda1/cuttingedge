@@ -17,11 +17,10 @@
   "packageRules": [
     {
       "updateTypes": ["major", "minor", "patch", "pin", "digest"],
-      "automerge": true
-    },
-    {
-      "depTypeList": ["devDependencies"],
-      "automerge": true
+      "automerge": true,
+      "depTypeList": ["dependencies", "devDependencies"],
+      "groupName": "all",
+      "groupSlug": "all"
     },
     {
       "packagePatterns": ["eslint"],

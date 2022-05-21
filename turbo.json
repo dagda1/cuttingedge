@@ -4,15 +4,18 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [
-        "dist/**",
-        "tools/**"
-      ]
+      "outputs": ["dist/**/*"]
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": [],
+      "outputs": ["coverage/**/*"],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "src/test/**/*.ts", "src/test/**/*.tsx"]
+    },
+		"lint": {
       "outputs": []
     },
-    "lint": {}
+    "clean": {
+      "outputs": []
+    }
   }
 }
