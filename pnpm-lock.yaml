@@ -6263,7 +6263,6 @@ packages:
       - esbuild
       - uglify-js
       - webpack-cli
-    dev: true
 
   /@types/webpackbar/4.0.3:
     resolution: {integrity: sha512-KKqtt4+Phsw4b0ZevlFeN1fcevUj+qxEGP5Fb60KWCwlBkTKdxe+Zd4FkYKpM1W+wxs6wKhEnEmF5DdFqE3VpQ==}
@@ -19811,13 +19810,11 @@ packages:
     resolution: {integrity: sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /typescript/4.6.4:
     resolution: {integrity: sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /uglify-js/3.15.4:
     resolution: {integrity: sha512-vMOPGDuvXecPs34V74qDKk4iJ/SN4vL3Ow/23ixafENYvtrNvtbcgUeugTcUGRGsOF/5fU8/NYSL5Hyb3l1OJA==}
