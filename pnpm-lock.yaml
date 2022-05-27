@@ -36,7 +36,7 @@ importers:
       css-loader: 6.7.1
       eslint: 8.16.0
       file-loader: 6.2.0
-      follow-redirects: 1.15.0
+      follow-redirects: 1.15.1
       html-loader: 3.1.0
       husky: 8.0.1
       markdown-loader: 8.0.0
@@ -63,7 +63,7 @@ importers:
       css-loader: 6.7.1_webpack@5.72.1
       eslint: 8.16.0
       file-loader: 6.2.0_webpack@5.72.1
-      follow-redirects: 1.15.0
+      follow-redirects: 1.15.1
       html-loader: 3.1.0_webpack@5.72.1
       husky: 8.0.1
       markdown-loader: 8.0.0_webpack@5.72.1
@@ -8574,7 +8574,7 @@ packages:
     dev: false
 
   /code-point-at/1.1.0:
-    resolution: {integrity: sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=}
+    resolution: {integrity: sha512-RpAVKQA5T63xEj6/giIbUEtZwJ4UFIc3ZtvEkiaUERylqe8xb5IvqcgOurZLahv93CLKfxcw5YI+DZcUBRyLXA==}
     engines: {node: '>=0.10.0'}
     dev: true
     optional: true
@@ -11409,8 +11409,8 @@ packages:
       debug:
         optional: true
 
-  /follow-redirects/1.15.0:
-    resolution: {integrity: sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==}
+  /follow-redirects/1.15.1:
+    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
