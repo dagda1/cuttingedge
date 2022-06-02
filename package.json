@@ -51,7 +51,7 @@
   },
   "packageManager": "pnpm@6.32.19",
   "volta": {
-    "node": "16.15.0"
+    "node": "16.15.1"
   },
   "husky": {
     "hooks": {
