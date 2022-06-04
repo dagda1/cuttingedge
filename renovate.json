@@ -3,7 +3,6 @@
   "extends": ["config:base", "group:monorepos", ":dependencyDashboard"],
   "dependencyDashboard": false,
   "automerge": true,
-  "includePaths": ["package.json"],
   "semanticCommits": "enabled",
   "rangeStrategy": "bump",
   "rebaseLabel": "rebase",
@@ -16,6 +15,7 @@
   },
   "packageRules": [
     {
+      "matchPaths": ["apps/", "packages/"],
       "updateTypes": ["major", "minor", "patch", "pin", "digest"],
       "automerge": true,
       "depTypeList": ["dependencies", "devDependencies"],
