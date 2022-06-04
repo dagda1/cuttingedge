@@ -20,6 +20,7 @@ const getExternals = function (isDevelopment) {
     return [
         (0, webpack_node_externals_1.default)(),
         (0, webpack_node_externals_1.default)({
+            modulesDir: paths_1.paths.monorepoNodeModules,
             allowlist: [
                 // isDevelopment ? 'webpack/hot/poll?300' : null,
                 /\.(eot|woff|woff2|ttf|otf)$/,

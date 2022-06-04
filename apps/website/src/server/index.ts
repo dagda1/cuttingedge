@@ -1,7 +1,6 @@
-import express from 'express';
+import express, { json, urlencoded } from 'express';
 import type { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
-import bodyParser from 'body-parser';
 import { HttpStatusCode, isProduction } from '@cutting/util';
 import { render } from './render';
 import path from 'path';
@@ -25,8 +24,8 @@ if (isProduction) {
   app.use(noCache());
   app.use(referrerPolicy({ policy: 'no-referrer' }));
   app.use(helmet.hidePoweredBy());
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
+  app.use(urlencoded({ extended: false }));
+  app.use(json());
   app.use(favicon(path.join(publicDir, 'favicon.ico')));
   app.use(
     contentSecurityPolicy({

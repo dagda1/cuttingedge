@@ -18,6 +18,8 @@ export type OverridableJestConfig = Pick<
   | 'roots'
   | 'modulePaths'
   | 'resetMocks'
+  | 'extensionsToTreatAsEsm'
+  | 'moduleNameMapper'
 > &
   Pick<
     Config.GlobalConfig,
@@ -34,7 +36,7 @@ if (localSetupTestsFile) {
   logger.debug(`found local setup file ${localSetupTestsFile}`);
 }
 
-console.log(paths.testTsConfig);
+const esModules = ['uuid'].join('|');
 
 const jestConfig: OverridableJestConfig = {
   rootDir: process.cwd(),
@@ -45,6 +47,7 @@ const jestConfig: OverridableJestConfig = {
     __DEV__: true,
     'ts-jest': {
       tsconfig: paths.testTsConfig,
+      useESM: true,
       isolatedModules: true,
       babelConfig: {
         presets: [
@@ -55,6 +58,7 @@ const jestConfig: OverridableJestConfig = {
       },
     },
   },
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
   coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/src/tests/', '<rootDir>/src/types/'],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
@@ -85,7 +89,7 @@ const jestConfig: OverridableJestConfig = {
     '^(?!.*\\.(js|jsx|css|json)$)': path.join(__dirname, './fileTransform'),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any,
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
+  transformIgnorePatterns: [`/node_modules/(?!${esModules})`],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'csv', 'node'],
   moduleDirectories: ['node_modules', '../../node_modules'],
   modulePaths: ['<rootDir>', 'src'],
@@ -95,6 +99,10 @@ const jestConfig: OverridableJestConfig = {
   silent: false,
   verbose: true,
   noStackTrace: false,
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } as any,
 };
 
 module.exports = jestConfig;

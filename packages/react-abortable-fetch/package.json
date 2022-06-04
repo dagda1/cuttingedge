@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
-    "test": "NODE_ENV=test devtools test",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_ENV=test devtools test",
     "build": "NODE_ENV=production devtools rollup"
   },
   "dependencies": {
@@ -33,7 +33,6 @@
     "cross-fetch": "^3.1.5",
     "effection": "^2.0.4",
     "fetch-jsonp": "^1.2.1",
-    "uuid": "^8.3.2",
     "xstate": "^4.31.0"
   },
   "devDependencies": {
@@ -45,7 +44,6 @@
     "@testing-library/react-hooks": "8.0.0",
     "@types/react": "18.0.11",
     "@types/react-dom": "18.0.5",
-    "@types/uuid": "8.3.4",
     "@vanilla-extract/babel-plugin": "1.1.6",
     "@vanilla-extract/css": "^1.7.1",
     "classnames": "2.3.1",
