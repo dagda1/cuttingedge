@@ -29,9 +29,7 @@
       "node",
       "webpack-env",
       "@cutting/useful-types"
-    ],
-    "typeRoots": [
-      "../../../node_modules/@types"
     ]
-  }
+  },
+  "include": ["./node_modules/@types/webpack-env/index.d.ts"]
 }
