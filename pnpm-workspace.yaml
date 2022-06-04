@@ -1,4 +1,3 @@
-strict-peer-dependencies: false
 packages:
   - 'packages/*'
   - 'apps/*'

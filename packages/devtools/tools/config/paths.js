@@ -25,6 +25,7 @@ const resolvePath = (fn) => (runningAsGlobalPackage ? 'N/A' : fn());
 const resolvedNodeModules = resolvePath(() => [appNodeModules, './node_modules']
     .filter((m) => fs_1.default.existsSync(m))
     .map((m) => path_1.default.relative(process.cwd(), m)));
+console.dir({ resolvedNodeModules });
 const libPackages = [
     'packages/devtools',
     'packages/eslint-config',

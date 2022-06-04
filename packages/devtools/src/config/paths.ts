@@ -1,7 +1,6 @@
 import type { ParsedCommandLine } from 'typescript';
 import path from 'path';
 import fs from 'fs';
-import { findAppNodeModules } from '../scripts/utils/finders';
 import getPublicUrlOrPath from 'react-dev-utils/getPublicUrlOrPath';
 
 const appDirectory = fs.realpathSync(process.cwd());
@@ -22,34 +21,6 @@ const nodePaths = (process.env.NODE_PATH || '')
   .filter(Boolean)
   .filter((folder) => !path.isAbsolute(folder))
   .map(resolveApp);
-
-const appNodeModules = findAppNodeModules(process.cwd());
-
-const runningAsGlobalPackage = typeof appNodeModules === 'string';
-
-const resolvePath = (fn: () => string | string[]) => (runningAsGlobalPackage ? 'N/A' : fn());
-
-const resolvedNodeModules = resolvePath(() =>
-  [appNodeModules as string, './node_modules']
-    .filter((m) => fs.existsSync(m))
-    .map((m) => path.relative(process.cwd(), m)),
-);
-
-const libPackages = [
-  'packages/devtools',
-  'packages/eslint-config',
-  'packages/tsconfig',
-  'packages/useful-types',
-  'packages/util',
-  'packages/use-get-parent-size',
-  'packages/hooks',
-  'packages/use-mathjax',
-  'packages/design-system',
-  'packages/component-library',
-  'packages/svg',
-  'packages/use-shortcuts',
-  'packages/react-abortable-fetch',
-].map((dep) => path.resolve(process.cwd(), dep));
 
 const tsConfigPath = resolveApp('tsconfig.json');
 const testTsConfig = (() => {
@@ -97,13 +68,11 @@ export const paths = {
   nodePaths: nodePaths,
   ownNodeModules: resolveOwn('node_modules'),
   localBuildConfig: resolveApp('./build.config.js'),
-  resolvedNodeModules,
   tsConfig: tsConfigPath,
   tsConfigProduction,
   testTsConfig,
   devDir: resolveApp(DevFolder),
   devDirPublic: resolveApp(`${DevFolder}/public`),
-  libPackages,
   defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
   proxySetup: resolveApp('setupProxy.js'),
   tranlationsDir: resolveApp('src/translations'),

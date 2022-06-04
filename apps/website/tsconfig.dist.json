@@ -6,6 +6,7 @@
     "rootDir": "./src",
     "noEmit": false
   },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "../../node_modules/@types/d3/index.d.ts"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
   "references": [
     { "path": "../../packages/util/tsconfig.dist.json" },

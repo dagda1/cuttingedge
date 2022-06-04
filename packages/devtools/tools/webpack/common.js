@@ -33,6 +33,7 @@ const babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator');
 const reactRefreshOverlay = require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay');
 const reactRefreshRuntimeUtils = require.resolve('@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js');
 const miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
+const pnpmPath = path_1.default.join(__dirname, '..', '..', '..', '..', 'node_modules', '.pnpm');
 const configureCommon = (options, overrides) => {
     const isNode = !!options.isNode;
     const isWeb = !isNode;
@@ -86,8 +87,8 @@ const configureCommon = (options, overrides) => {
                 // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
                 // please link the files into your node_modules/ and let module-resolution kick in.
                 // Make sure your source files are compiled, as they will not be processed in any way.
-                new ModuleScopePlugin_1.default(paths_1.paths.appSrc, [
-                    paths_1.paths.appPackageJson,
+                new ModuleScopePlugin_1.default([
+                    paths_1.paths.appSrc,
                     reactRefreshRuntimeEntry,
                     reactRefreshWebpackPluginRuntimeEntry,
                     babelRuntimeEntryHelpers,
@@ -95,6 +96,7 @@ const configureCommon = (options, overrides) => {
                     reactRefreshOverlay,
                     reactRefreshRuntimeUtils,
                     miniCssHot,
+                    pnpmPath
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ]),
             ],
