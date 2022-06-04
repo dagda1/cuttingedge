@@ -1,5 +1,5 @@
 import type { Builder, FetchClient, FetchRequestInfo } from '../types';
-import { v4 } from 'uuid';
+import { generateUUID } from '@cutting/util';
 
 const getJobKey = (info: string | FetchRequestInfo) => {
   return JSON.stringify(info);
@@ -36,7 +36,7 @@ export function createFetchClient<R, T>(
       }
 
       this.jobs.push({
-        uuid: v4(),
+        uuid: generateUUID(),
         key,
         state: 'ready',
         fetch: {

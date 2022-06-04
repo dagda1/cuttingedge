@@ -13,7 +13,7 @@ const localSetupTestsFile = setupTestsCandidates.find(fs_extra_1.default.existsS
 if (localSetupTestsFile) {
     logger_1.default.debug(`found local setup file ${localSetupTestsFile}`);
 }
-console.log(paths_1.paths.testTsConfig);
+const esModules = ['uuid'].join('|');
 const jestConfig = {
     rootDir: process.cwd(),
     roots: ['<rootDir>', '<rootDir>/src'],
@@ -23,6 +23,7 @@ const jestConfig = {
         __DEV__: true,
         'ts-jest': {
             tsconfig: paths_1.paths.testTsConfig,
+            useESM: true,
             isolatedModules: true,
             babelConfig: {
                 presets: [
@@ -33,6 +34,7 @@ const jestConfig = {
             },
         },
     },
+    extensionsToTreatAsEsm: ['.ts', '.tsx'],
     coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/src/tests/', '<rootDir>/src/types/'],
     collectCoverageFrom: [
         'src/**/*.{js,jsx,ts,tsx}',
@@ -55,7 +57,6 @@ const jestConfig = {
         '<rootDir>/src/**/*.feature',
     ],
     testEnvironment: 'jsdom',
-    testURL: 'http://localhost',
     transform: {
         '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
         '.(js|jsx|cjs|mjs)$': require.resolve('babel-jest'),
@@ -64,7 +65,7 @@ const jestConfig = {
         '^(?!.*\\.(js|jsx|css|json)$)': path_1.default.join(__dirname, './fileTransform'),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     },
-    transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
+    transformIgnorePatterns: [`/node_modules/(?!${esModules})`],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'csv', 'node'],
     moduleDirectories: ['node_modules', '../../node_modules'],
     modulePaths: ['<rootDir>', 'src'],
@@ -73,6 +74,10 @@ const jestConfig = {
     silent: false,
     verbose: true,
     noStackTrace: false,
+    moduleNameMapper: {
+        '^(\\.{1,2}/.*)\\.js$': '$1',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    },
 };
 module.exports = jestConfig;
 //# sourceMappingURL=jest.config.js.map

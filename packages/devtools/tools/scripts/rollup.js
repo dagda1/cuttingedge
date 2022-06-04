@@ -117,10 +117,7 @@ function generateBundledModule({ packageName, entryFile, moduleFormat, env, anal
                     mainFields: ['module', 'browser', 'main'],
                     extensions: ['.mjs', '.cjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
                 }),
-                (0, plugin_commonjs_1.default)({
-                    // use a regex to make sure to include eventual hoisted packages
-                    include: moduleFormat === 'umd' ? /\/node_modules\// : /\/regenerator-runtime\//,
-                }),
+                (0, plugin_commonjs_1.default)(),
                 (0, plugin_json_1.default)(),
                 (0, rollup_plugin_md_1.md)(),
                 (0, rollup_plugin_postcss_1.default)({

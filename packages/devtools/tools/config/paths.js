@@ -7,7 +7,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.paths = void 0;
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
-const finders_1 = require("../scripts/utils/finders");
 const getPublicUrlOrPath_1 = __importDefault(require("react-dev-utils/getPublicUrlOrPath"));
 const appDirectory = fs_1.default.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path_1.default.resolve(appDirectory, relativePath);
@@ -19,27 +18,6 @@ const nodePaths = (process.env.NODE_PATH || '')
     .filter(Boolean)
     .filter((folder) => !path_1.default.isAbsolute(folder))
     .map(resolveApp);
-const appNodeModules = (0, finders_1.findAppNodeModules)(process.cwd());
-const runningAsGlobalPackage = typeof appNodeModules === 'string';
-const resolvePath = (fn) => (runningAsGlobalPackage ? 'N/A' : fn());
-const resolvedNodeModules = resolvePath(() => [appNodeModules, './node_modules']
-    .filter((m) => fs_1.default.existsSync(m))
-    .map((m) => path_1.default.relative(process.cwd(), m)));
-const libPackages = [
-    'packages/devtools',
-    'packages/eslint-config',
-    'packages/tsconfig',
-    'packages/useful-types',
-    'packages/util',
-    'packages/use-get-parent-size',
-    'packages/hooks',
-    'packages/use-mathjax',
-    'packages/design-system',
-    'packages/component-library',
-    'packages/svg',
-    'packages/use-shortcuts',
-    'packages/react-abortable-fetch',
-].map((dep) => path_1.default.resolve(process.cwd(), dep));
 const tsConfigPath = resolveApp('tsconfig.json');
 const testTsConfig = (() => {
     try {
@@ -58,6 +36,8 @@ const outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void
 const isCommonJs = ((_c = (_b = tsConfig.compilerOptions) === null || _b === void 0 ? void 0 : _b.module) === null || _c === void 0 ? void 0 : _c.toLowerCase()) === 'commonjs';
 const appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
 const DevFolder = 'demo';
+const monorepoNodeModules = path_1.default.join(__dirname, '..', '..', '..', '..', 'node_modules');
+const pnpmPath = path_1.default.join(monorepoNodeModules, '.pnpm');
 exports.paths = {
     dotenv: resolveApp('.env'),
     appPath: resolveApp('.'),
@@ -76,13 +56,11 @@ exports.paths = {
     nodePaths: nodePaths,
     ownNodeModules: resolveOwn('node_modules'),
     localBuildConfig: resolveApp('./build.config.js'),
-    resolvedNodeModules,
     tsConfig: tsConfigPath,
     tsConfigProduction,
     testTsConfig,
     devDir: resolveApp(DevFolder),
     devDirPublic: resolveApp(`${DevFolder}/public`),
-    libPackages,
     defaultBuildConfigPath: path_1.default.join(__dirname, './build.config.js'),
     proxySetup: resolveApp('setupProxy.js'),
     tranlationsDir: resolveApp('src/translations'),
@@ -95,5 +73,7 @@ exports.paths = {
     jestConfig: path_1.default.join(__dirname, '../jest/jest.config.js'),
     projectReferences: !!tsConfig.references,
     isCommonJS: isCommonJs,
+    monorepoNodeModules,
+    pnpmPath,
 };
 //# sourceMappingURL=paths.js.map

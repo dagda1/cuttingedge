@@ -85,10 +85,7 @@ async function generateBundledModule({ packageName, entryFile, moduleFormat, env
         mainFields: ['module', 'browser', 'main'],
         extensions: ['.mjs', '.cjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
       }),
-      commonjs({
-        // use a regex to make sure to include eventual hoisted packages
-        include: moduleFormat === 'umd' ? /\/node_modules\// : /\/regenerator-runtime\//,
-      }),
+      commonjs(),
       json(),
       md(),
       postcss({

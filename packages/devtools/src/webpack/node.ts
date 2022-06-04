@@ -14,7 +14,6 @@ const getExternals = () => {
   return [
     nodeExternals(),
     nodeExternals({
-      modulesDir: paths.resolvedNodeModules[0],
       allowlist: [/^@cutting/].filter((x) => x),
     }),
   ];

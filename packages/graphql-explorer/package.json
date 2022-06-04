@@ -32,13 +32,15 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@vanilla-extract/babel-plugin": "1.1.5",
-    "@vanilla-extract/css": "1.6.8",
-    "@vanilla-extract/sprinkles": "1.4.0",
+    "@types/react": "18.0.11",
+    "@types/react-dom": "18.0.5",
+    "@vanilla-extract/babel-plugin": "1.1.6",
+    "@vanilla-extract/css": "^1.7.1",
+    "@vanilla-extract/sprinkles": "1.4.1",
     "abortcontroller-polyfill": "1.7.3",
-    "eslint": "8.13.0",
+    "eslint": "8.17.0",
     "react": "18.1.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.1.0"
   },
   "peerDependencies": {
     "react": ">= 18.x.x",

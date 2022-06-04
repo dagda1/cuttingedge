@@ -25,3 +25,4 @@ export { omit } from './object/omit';
 export { isEqual } from './object/is-equal';
 export { mapValues } from './object/map-values';
 export { combinations } from './object/combinations';
+export { generateUUID } from './uuid/uuid';

@@ -56,7 +56,7 @@ const configureCommon = (options, overrides) => {
         },
         resolve: {
             mainFields: isNode ? ['module', 'main', 'browser'] : ['module', 'browser', 'main'],
-            modules: [path_1.default.join(process.cwd(), paths_1.paths.resolvedNodeModules[0]), './node_modules', path_1.default.resolve('.')],
+            modules: [path_1.default.join(process.cwd(), paths_1.paths.monorepoNodeModules), './node_modules', path_1.default.resolve('.')],
             extensions: [
                 '.web.mjs',
                 '.mjs',
@@ -86,8 +86,8 @@ const configureCommon = (options, overrides) => {
                 // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
                 // please link the files into your node_modules/ and let module-resolution kick in.
                 // Make sure your source files are compiled, as they will not be processed in any way.
-                new ModuleScopePlugin_1.default(paths_1.paths.appSrc, [
-                    paths_1.paths.appPackageJson,
+                new ModuleScopePlugin_1.default([
+                    paths_1.paths.appSrc,
                     reactRefreshRuntimeEntry,
                     reactRefreshWebpackPluginRuntimeEntry,
                     babelRuntimeEntryHelpers,
@@ -95,6 +95,7 @@ const configureCommon = (options, overrides) => {
                     reactRefreshOverlay,
                     reactRefreshRuntimeUtils,
                     miniCssHot,
+                    paths_1.paths.pnpmPath,
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ]),
             ],
