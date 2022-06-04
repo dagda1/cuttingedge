@@ -20,7 +20,6 @@ export const getExternals = function (isDevelopment: boolean): any {
   return [
     nodeExternals(),
     nodeExternals({
-      modulesDir: paths.resolvedNodeModules[0],
       allowlist: [
         // isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,

@@ -33,7 +33,6 @@ const babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator');
 const reactRefreshOverlay = require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay');
 const reactRefreshRuntimeUtils = require.resolve('@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js');
 const miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
-const pnpmPath = path_1.default.join(__dirname, '..', '..', '..', '..', 'node_modules', '.pnpm');
 const configureCommon = (options, overrides) => {
     const isNode = !!options.isNode;
     const isWeb = !isNode;
@@ -57,7 +56,7 @@ const configureCommon = (options, overrides) => {
         },
         resolve: {
             mainFields: isNode ? ['module', 'main', 'browser'] : ['module', 'browser', 'main'],
-            modules: [path_1.default.join(process.cwd(), paths_1.paths.resolvedNodeModules[0]), './node_modules', path_1.default.resolve('.')],
+            modules: [path_1.default.join(process.cwd(), paths_1.paths.monorepoNodeModules), './node_modules', path_1.default.resolve('.')],
             extensions: [
                 '.web.mjs',
                 '.mjs',
@@ -96,7 +95,7 @@ const configureCommon = (options, overrides) => {
                     reactRefreshOverlay,
                     reactRefreshRuntimeUtils,
                     miniCssHot,
-                    pnpmPath
+                    paths_1.paths.pnpmPath,
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ]),
             ],

@@ -16,7 +16,6 @@ const getExternals = () => {
     return [
         (0, webpack_node_externals_1.default)(),
         (0, webpack_node_externals_1.default)({
-            modulesDir: paths_1.paths.resolvedNodeModules[0],
             allowlist: [/^@cutting/].filter((x) => x),
         }),
     ];

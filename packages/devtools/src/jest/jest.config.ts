@@ -11,7 +11,6 @@ export type OverridableJestConfig = Pick<
   | 'setupFilesAfterEnv'
   | 'testMatch'
   | 'testEnvironment'
-  | 'testURL'
   | 'transform'
   | 'transformIgnorePatterns'
   | 'moduleFileExtensions'
@@ -22,14 +21,8 @@ export type OverridableJestConfig = Pick<
 > &
   Pick<
     Config.GlobalConfig,
-    | 'coverageDirectory'
-    | 'collectCoverageFrom'
-    | 'coveragePathIgnorePatterns'
-    | 'reporters'
-    | 'silent'
-    | 'verbose'
-    | 'noStackTrace'
-  >;
+    'coverageDirectory' | 'collectCoverageFrom' | 'coveragePathIgnorePatterns' | 'silent' | 'verbose' | 'noStackTrace'
+  > & { reporters: string[] };
 
 const setupTestsFileName = 'setupTests.ts';
 
@@ -84,7 +77,6 @@ const jestConfig: OverridableJestConfig = {
     '<rootDir>/src/**/*.feature',
   ],
   testEnvironment: 'jsdom',
-  testURL: 'http://localhost',
   transform: {
     '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
     '.(js|jsx|cjs|mjs)$': require.resolve('babel-jest'), // jest's default

@@ -55,7 +55,6 @@ const jestConfig = {
         '<rootDir>/src/**/*.feature',
     ],
     testEnvironment: 'jsdom',
-    testURL: 'http://localhost',
     transform: {
         '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
         '.(js|jsx|cjs|mjs)$': require.resolve('babel-jest'),

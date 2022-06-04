@@ -50,6 +50,9 @@ const appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
 
 const DevFolder = 'demo';
 
+const monorepoNodeModules = path.join(__dirname, '..', '..', '..', '..', 'node_modules');
+const pnpmPath = path.join(monorepoNodeModules, '.pnpm');
+
 export const paths = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
@@ -85,4 +88,6 @@ export const paths = {
   jestConfig: path.join(__dirname, '../jest/jest.config.js'),
   projectReferences: !!tsConfig.references,
   isCommonJS: isCommonJs,
+  monorepoNodeModules,
+  pnpmPath,
 };

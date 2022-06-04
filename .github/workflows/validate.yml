@@ -9,12 +9,9 @@ jobs:
     env:
       CI: true
     steps:
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.1.7
-
-      - name: pnpm version
-        run: pnpm -v
 
       - name: Checkout Repo
         uses: actions/checkout@v3

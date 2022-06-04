@@ -30,7 +30,6 @@ const babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator');
 const reactRefreshOverlay = require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay');
 const reactRefreshRuntimeUtils = require.resolve('@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js');
 const miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
-const pnpmPath = path.join(__dirname, '..', '..', '..', '..', 'node_modules', '.pnpm');
 
 export const configureCommon = (
   options: DevServerConfig | ServerBuildConfig | NodeBuildConfig,
@@ -60,7 +59,7 @@ export const configureCommon = (
     },
     resolve: {
       mainFields: isNode ? ['module', 'main', 'browser'] : ['module', 'browser', 'main'],
-      modules: [path.join(process.cwd(), paths.resolvedNodeModules[0]), './node_modules', path.resolve('.')],
+      modules: [path.join(process.cwd(), paths.monorepoNodeModules), './node_modules', path.resolve('.')],
       extensions: [
         '.web.mjs',
         '.mjs',
@@ -99,7 +98,7 @@ export const configureCommon = (
           reactRefreshOverlay,
           reactRefreshRuntimeUtils,
           miniCssHot,
-          pnpmPath,
+          paths.pnpmPath,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ]) as any,
       ],
