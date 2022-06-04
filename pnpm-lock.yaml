@@ -34,7 +34,7 @@ importers:
       babel-loader: 8.2.5
       core-js: 3.22.8
       css-loader: 6.7.1
-      eslint: 8.16.0
+      eslint: 8.17.0
       file-loader: 6.2.0
       follow-redirects: 1.15.1
       html-loader: 3.1.0
@@ -61,7 +61,7 @@ importers:
       babel-loader: 8.2.5_1e6208c184491b2ebbab8f4236ed439d
       core-js: 3.22.8
       css-loader: 6.7.1_webpack@5.73.0
-      eslint: 8.16.0
+      eslint: 8.17.0
       file-loader: 6.2.0_webpack@5.73.0
       follow-redirects: 1.15.1
       html-loader: 3.1.0_webpack@5.73.0
@@ -10610,13 +10610,13 @@ packages:
       eslint: 8.13.0
       eslint-visitor-keys: 2.1.0
 
-  /eslint-utils/3.0.0_eslint@8.16.0:
+  /eslint-utils/3.0.0_eslint@8.17.0:
     resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
     engines: {node: ^10.0.0 || ^12.0.0 || >= 14.0.0}
     peerDependencies:
       eslint: '>=5'
     dependencies:
-      eslint: 8.16.0
+      eslint: 8.17.0
       eslint-visitor-keys: 2.1.0
     dev: true
 
@@ -10687,8 +10687,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /eslint/8.16.0:
-    resolution: {integrity: sha512-MBndsoXY/PeVTDJeWsYj7kLZ5hQpJOfMYLsF6LicLHQWbRDG19lK5jOix4DPl8yY4SUFcE3txy86OzFLWT+yoA==}
+  /eslint/8.17.0:
+    resolution: {integrity: sha512-gq0m0BTJfci60Fz4nczYxNAlED+sMcihltndR8t9t1evnU/azx53x3t2UHXC/uRjcbvRw/XctpaNygSTcQD+Iw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -10701,7 +10701,7 @@ packages:
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
       eslint-scope: 7.1.1
-      eslint-utils: 3.0.0_eslint@8.16.0
+      eslint-utils: 3.0.0_eslint@8.17.0
       eslint-visitor-keys: 3.3.0
       espree: 9.3.2
       esquery: 1.4.0
