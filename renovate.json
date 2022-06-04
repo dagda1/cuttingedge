@@ -13,6 +13,10 @@
   "lockFileMaintenance": {
     "enabled": false
   },
+  "includePaths": [
+    "apps/*",
+    "packages/*"
+  ],
   "packageRules": [
     {
       "matchPaths": ["apps/", "packages/"],
