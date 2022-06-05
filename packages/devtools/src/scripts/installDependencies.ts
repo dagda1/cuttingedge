@@ -13,6 +13,7 @@ const devDependencies = [
   '@jest/globals',
   '@types/eslint',
   '@types/node',
+  '@types/webpack-env',
   '@typescript-eslint/eslint-plugin',
   '@typescript-eslint/parser',
   '@vanilla-extract/babel-plugin',
