@@ -1,5 +1,12 @@
 # @cutting/devtools
 
+## 4.55.0
+
+### Minor Changes
+
+- 22f71e16: upgrade all dependencies
+- b7128628: add @types/webpack-env to scaffolding
+
 ## 4.54.1
 
 ### Patch Changes
