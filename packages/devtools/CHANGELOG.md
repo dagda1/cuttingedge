@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.55.0
+
+### Minor Changes
+
+- 22f71e166: upgrade all dependencies
+
 ## 4.54.1
 
 ### Patch Changes

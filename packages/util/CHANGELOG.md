@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.52.0
+
+### Minor Changes
+
+- 22f71e166: upgrade all dependencies
+
 ## 4.51.0
 
 ### Minor Changes
