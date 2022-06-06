@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.55.0
+
+### Minor Changes
+
+- 698770fe: bump
+
 ## 4.54.1
 
 ### Patch Changes
