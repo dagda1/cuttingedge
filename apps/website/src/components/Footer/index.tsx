@@ -12,6 +12,15 @@ export function Footer(): JSX.Element {
     <>
       <div className={styles.left}>
         <div className={styles.logo}>
+          <div className={styles.seal}>
+            <div>
+              <a href="https://ssl.comodo.com/ev-ssl-certificates.php" id="comodoTL">
+                {' '}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className={styles.logo}>
           <div className={styles.logoContainer}>
             <div>
               <Cow />
@@ -19,6 +28,7 @@ export function Footer(): JSX.Element {
           </div>
           <span className={styles.name}>Paul Cowan</span>
         </div>
+
         <div className={styles.links}>
           <ul>
             {footerPages.map((page) => (

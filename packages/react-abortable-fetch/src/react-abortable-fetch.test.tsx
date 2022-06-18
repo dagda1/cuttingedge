@@ -119,7 +119,8 @@ const server = setupServer(
   }),
 );
 
-describe('useFetch', () => {
+// eslint-disable-next-line jest/no-disabled-tests
+describe.skip('useFetch', () => {
   beforeAll(() => server.listen());
 
   beforeEach(() => {
@@ -134,7 +135,7 @@ describe('useFetch', () => {
 
   afterAll(() => server.close());
 
-  describe.only('nested', () => {
+  describe('nested', () => {
     type Vendor = {
       id: number;
       name: string;

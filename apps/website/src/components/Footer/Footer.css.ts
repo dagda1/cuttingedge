@@ -105,6 +105,12 @@ export const name = style({
   marginLeft: '5px',
 });
 
+export const seal = style({
+  paddingTop: 0,
+  position: 'relative',
+  top: '3px',
+});
+
 export const logo = style([
   {
     flex: '0 0 50%',

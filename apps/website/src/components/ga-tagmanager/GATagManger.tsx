@@ -1,3 +1,5 @@
+import { nonce } from '../../server/nonce';
+
 export function GATagManager({ gaId }: { gaId: string }): JSX.Element {
   return (
     <>
@@ -30,6 +32,7 @@ export function GATagManager({ gaId }: { gaId: string }): JSX.Element {
    insertCallback(window.history, "replaceState", notify_analytics, location)
       `,
         }}
+        nonce={`${nonce}`}
       />
     </>
   );
