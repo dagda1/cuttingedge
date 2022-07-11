@@ -1,8 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCacheIdentifier = void 0;
-const getCacheIdentifier = ({ isDevelopment, moduleFormat, isNode, }) => {
+export const getCacheIdentifier = ({ isDevelopment, moduleFormat, isNode, }) => {
     return [isDevelopment ? 'development' : 'production', isNode ? 'node' : 'web', moduleFormat].join('-');
 };
-exports.getCacheIdentifier = getCacheIdentifier;
 //# sourceMappingURL=getCacheIdentifier.js.map

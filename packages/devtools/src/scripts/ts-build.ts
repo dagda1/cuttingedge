@@ -1,7 +1,7 @@
-import { logger } from './logger';
+import { logger } from './logger.js'
 import fs from 'fs-extra';
 import path from 'path';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 import { exec } from 'child_process';
 import { findFile } from './utils/finders';
 import { copyAssets } from './copy-assets';

@@ -1,13 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createBabelConfig = exports.createBabelPresets = void 0;
 // import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const createBabelPresets = ({ 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-isDevelopment, 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-isProduction, moduleFormat, }) => {
+export function createBabelPresets({ moduleFormat, }) {
     const presetOptions = {
         exclude: ['transform-typeof-symbol'],
         modules: moduleFormat === 'esm' ? false : 'auto',
@@ -15,24 +7,23 @@ isProduction, moduleFormat, }) => {
         corejs: 3,
     };
     return [
-        ['@babel/preset-env', Object.assign({}, presetOptions)],
+        ['@babel/preset-env', { ...presetOptions }],
         [
-            require('@babel/preset-react').default,
+            '@babel/preset-react',
             {
                 runtime: 'automatic',
             },
         ],
     ];
-};
-exports.createBabelPresets = createBabelPresets;
+}
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const createBabelConfig = ({ isDevelopment, isProduction, isNode, moduleFormat, }) => {
+export const createBabelConfig = ({ isDevelopment, isProduction, isNode, moduleFormat, }) => {
     const hot = isDevelopment && !isNode;
     return {
         babelrc: false,
         configFile: false,
-        presets: (0, exports.createBabelPresets)({ isDevelopment, isProduction, isNode, moduleFormat }),
-        // cacheDirectory: true,
+        presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat }),
+        cacheDirectory: true,
         // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
         sourceType: 'unambiguous',
         plugins: [
@@ -54,7 +45,6 @@ const createBabelConfig = ({ isDevelopment, isProduction, isNode, moduleFormat, 
                 {
                     corejs: false,
                     helpers: true,
-                    version: require('@babel/runtime/package.json').version,
                     regenerator: true,
                     useESModules: moduleFormat === 'esm',
                 },
@@ -64,9 +54,8 @@ const createBabelConfig = ({ isDevelopment, isProduction, isNode, moduleFormat, 
             '@babel/plugin-proposal-optional-chaining',
             '@babel/plugin-proposal-nullish-coalescing-operator',
             '@vanilla-extract/babel-plugin',
-            hot && require.resolve('react-refresh/babel'),
+            hot && 'react-refresh/babel',
         ].filter(Boolean),
     };
 };
-exports.createBabelConfig = createBabelConfig;
 //# sourceMappingURL=createBabelConfig.js.map

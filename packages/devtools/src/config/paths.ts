@@ -1,7 +1,11 @@
 import type { ParsedCommandLine } from 'typescript';
 import path from 'path';
 import fs from 'fs';
-import getPublicUrlOrPath from 'react-dev-utils/getPublicUrlOrPath';
+import getPublicUrlOrPath from 'react-dev-utils/getPublicUrlOrPath.js';
+import { fileURLToPath } from 'url';
+import { readFile } from 'fs/promises';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath: string) => path.resolve(appDirectory, relativePath);
@@ -23,13 +27,16 @@ const nodePaths = (process.env.NODE_PATH || '')
   .map(resolveApp);
 
 const tsConfigPath = resolveApp('tsconfig.json');
-const testTsConfig = (() => {
+const testTsConfig = await (async () => {
   try {
-    return require.resolve('@cutting/tsconfig/tsconfig.test.json');
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return await import.meta.resolve('@cutting/tsconfig/tsconfig.test.json');
   } catch (e) {
     return 'N/A';
   }
 })();
+
 const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 
 type OurCompilerOptions = {
@@ -38,8 +45,8 @@ type OurCompilerOptions = {
 };
 
 const tsConfig: OurCompilerOptions = fs.existsSync(tsConfigPath)
-  ? (require(tsConfigPath) as OurCompilerOptions)
-  : { compilerOptions: { outDir: undefined, module: undefined } };
+  ? JSON.parse(await readFile(tsConfigPath, 'utf8'))
+  : await { compilerOptions: { outDir: undefined, module: undefined } };
 
 const tsConfigProduction = fs.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
 

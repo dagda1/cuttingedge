@@ -1,49 +1,47 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-var _a, _b, _c;
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.paths = void 0;
-const path_1 = __importDefault(require("path"));
-const fs_1 = __importDefault(require("fs"));
-const getPublicUrlOrPath_1 = __importDefault(require("react-dev-utils/getPublicUrlOrPath"));
-const appDirectory = fs_1.default.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path_1.default.resolve(appDirectory, relativePath);
+import path from 'path';
+import fs from 'fs';
+import getPublicUrlOrPath from 'react-dev-utils/getPublicUrlOrPath.js';
+import { fileURLToPath } from 'url';
+import { readFile } from 'fs/promises';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 const DefaultBuildDir = 'dist';
-const publicUrlOrPath = (0, getPublicUrlOrPath_1.default)(process.env.NODE_ENV === 'development', undefined, process.env.PUBLIC_URL);
-const resolveOwn = (relativePath) => path_1.default.resolve(__dirname, '..', relativePath);
+const publicUrlOrPath = getPublicUrlOrPath(process.env.NODE_ENV === 'development', undefined, process.env.PUBLIC_URL);
+const resolveOwn = (relativePath) => path.resolve(__dirname, '..', relativePath);
 const nodePaths = (process.env.NODE_PATH || '')
     .split(process.platform === 'win32' ? ';' : ':')
     .filter(Boolean)
-    .filter((folder) => !path_1.default.isAbsolute(folder))
+    .filter((folder) => !path.isAbsolute(folder))
     .map(resolveApp);
 const tsConfigPath = resolveApp('tsconfig.json');
-const testTsConfig = (() => {
+const testTsConfig = await (async () => {
     try {
-        return require.resolve('@cutting/tsconfig/tsconfig.test.json');
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        return await import.meta.resolve('@cutting/tsconfig/tsconfig.test.json');
     }
     catch (e) {
         return 'N/A';
     }
 })();
 const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
-const tsConfig = fs_1.default.existsSync(tsConfigPath)
-    ? require(tsConfigPath)
-    : { compilerOptions: { outDir: undefined, module: undefined } };
-const tsConfigProduction = fs_1.default.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
-const outDir = ((_a = tsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.outDir) || DefaultBuildDir;
-const isCommonJs = ((_c = (_b = tsConfig.compilerOptions) === null || _b === void 0 ? void 0 : _b.module) === null || _c === void 0 ? void 0 : _c.toLowerCase()) === 'commonjs';
+const tsConfig = fs.existsSync(tsConfigPath)
+    ? JSON.parse(await readFile(tsConfigPath, 'utf8'))
+    : await { compilerOptions: { outDir: undefined, module: undefined } };
+const tsConfigProduction = fs.existsSync(tsConfigProductionPath) ? tsConfigProductionPath : tsConfigPath;
+const outDir = tsConfig.compilerOptions?.outDir || DefaultBuildDir;
+const isCommonJs = tsConfig.compilerOptions?.module?.toLowerCase() === 'commonjs';
 const appBuild = outDir ? resolveApp(outDir) : resolveApp(DefaultBuildDir);
 const DevFolder = 'demo';
-const monorepoNodeModules = path_1.default.join(__dirname, '..', '..', '..', '..', 'node_modules');
-const pnpmPath = path_1.default.join(monorepoNodeModules, '.pnpm');
-exports.paths = {
+const monorepoNodeModules = path.join(__dirname, '..', '..', '..', '..', 'node_modules');
+const pnpmPath = path.join(monorepoNodeModules, '.pnpm');
+export const paths = {
     dotenv: resolveApp('.env'),
     appPath: resolveApp('.'),
     appBuild,
-    appBuildPublic: path_1.default.join(appBuild, 'public'),
-    appManifest: path_1.default.join(appBuild, 'loadable-stats.json'),
+    appBuildPublic: path.join(appBuild, 'public'),
+    appManifest: path.join(appBuild, 'loadable-stats.json'),
     appPublic: resolveApp('public'),
     appNodeModules: resolveApp('node_modules'),
     appSrc: resolveApp('src'),
@@ -61,7 +59,7 @@ exports.paths = {
     testTsConfig,
     devDir: resolveApp(DevFolder),
     devDirPublic: resolveApp(`${DevFolder}/public`),
-    defaultBuildConfigPath: path_1.default.join(__dirname, './build.config.js'),
+    defaultBuildConfigPath: path.join(__dirname, './build.config.js'),
     proxySetup: resolveApp('setupProxy.js'),
     tranlationsDir: resolveApp('src/translations'),
     publicUrlOrPath,
@@ -70,7 +68,7 @@ exports.paths = {
     gitIgnore: resolveApp('./.gitignore'),
     ossIndex: resolveApp('ossindex'),
     ownJestConfig: resolveApp('jest.config.js'),
-    jestConfig: path_1.default.join(__dirname, '../jest/jest.config.js'),
+    jestConfig: path.join(__dirname, '../jest/jest.config.js'),
     projectReferences: !!tsConfig.references,
     isCommonJS: isCommonJs,
     monorepoNodeModules,

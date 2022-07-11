@@ -1,83 +1,65 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.scaffold = void 0;
-const inquirer_1 = __importDefault(require("inquirer"));
-const path_1 = __importDefault(require("path"));
-const fs_extra_1 = __importDefault(require("fs-extra"));
-const applicationType_1 = require("../types/applicationType");
-const validate_npm_package_name_1 = __importDefault(require("validate-npm-package-name"));
-const console_1 = require("console");
-const installDependencies_1 = require("./installDependencies");
+import inquirer from 'inquirer';
+import path from 'path';
+import fs from 'fs-extra';
+import { ApplicationType } from '../types/applicationType';
+import validateProjectName from 'validate-npm-package-name';
+import { assert } from 'console';
+import { installDependencies, installDevDependencies } from './installDependencies';
 const appSource = {
-    [applicationType_1.ApplicationType.WebApp]: '../../web',
-    [applicationType_1.ApplicationType.package]: '../../package',
-    [applicationType_1.ApplicationType.cli]: '../../cli',
+    [ApplicationType.WebApp]: '../../web',
+    [ApplicationType.package]: '../../package',
+    [ApplicationType.cli]: '../../cli',
 };
-function scaffold() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const { projectName } = yield inquirer_1.default.prompt({
-            type: 'input',
-            name: 'projectName',
-            message: 'What is the name of your project?',
-            validate: (input) => __awaiter(this, void 0, void 0, function* () {
-                const { validForNewPackages } = (0, validate_npm_package_name_1.default)(input);
-                return validForNewPackages;
-            }),
-        });
-        (0, console_1.assert)(!!projectName, 'projectName is required');
-        const { value } = yield inquirer_1.default.prompt({
-            type: 'number',
-            name: 'value',
-            message: `What am I creating:
+export async function scaffold() {
+    const { projectName } = await inquirer.prompt({
+        type: 'input',
+        name: 'projectName',
+        message: 'What is the name of your project?',
+        validate: async (input) => {
+            const { validForNewPackages } = validateProjectName(input);
+            return validForNewPackages;
+        },
+    });
+    assert(!!projectName, 'projectName is required');
+    const { value } = await inquirer.prompt({
+        type: 'number',
+        name: 'value',
+        message: `What am I creating:
     
     1.  A web app
     2.  A package
     3.  A CLI app
     `,
-        });
-        (0, console_1.assert)(!!value, 'No application type has been made.');
-        const applicationType = value;
-        const root = path_1.default.resolve(projectName);
-        const source = path_1.default.join(__dirname, appSource[applicationType]);
-        const appName = path_1.default.basename(root);
-        fs_extra_1.default.ensureDirSync(projectName);
-        const originalDirectory = process.cwd();
-        process.chdir(root);
-        fs_extra_1.default.copySync(path_1.default.join(__dirname, '../../init/gitignore'), path_1.default.join(process.cwd(), '.gitignore'));
-        switch (applicationType) {
-            case applicationType_1.ApplicationType.WebApp:
-                fs_extra_1.default.copySync(source, root);
-                const rootSrc = path_1.default.join(root, 'src');
-                fs_extra_1.default.moveSync(path_1.default.join(root, 'App.tsx'), path_1.default.join(rootSrc, 'App.tsx'));
-                fs_extra_1.default.moveSync(path_1.default.join(root, 'index.tsx'), path_1.default.join(rootSrc, 'index.tsx'));
-                break;
-            case applicationType_1.ApplicationType.package:
-            case applicationType_1.ApplicationType.cli:
-                fs_extra_1.default.copySync(source, root);
-                break;
-            default:
-                throw new Error(`unknown application type: ${applicationType}`);
-        }
-        fs_extra_1.default.moveSync(path_1.default.join(process.cwd(), 'eslintrc.json'), path_1.default.join(process.cwd(), '.eslintrc.json'));
-        const packageJson = path_1.default.join(process.cwd(), 'package.json');
-        const raw = fs_extra_1.default.readFileSync(packageJson, 'utf8').replace(/\{\{name\}\}/g, appName);
-        fs_extra_1.default.writeFileSync(packageJson, raw);
-        yield (0, installDependencies_1.installDependencies)(appName, applicationType);
-        yield (0, installDependencies_1.installDevDependencies)(appName, applicationType);
-        process.chdir(originalDirectory);
     });
+    assert(!!value, 'No application type has been made.');
+    const applicationType = value;
+    const root = path.resolve(projectName);
+    const source = path.join(__dirname, appSource[applicationType]);
+    const appName = path.basename(root);
+    fs.ensureDirSync(projectName);
+    const originalDirectory = process.cwd();
+    process.chdir(root);
+    fs.copySync(path.join(__dirname, '../../init/gitignore'), path.join(process.cwd(), '.gitignore'));
+    switch (applicationType) {
+        case ApplicationType.WebApp:
+            fs.copySync(source, root);
+            const rootSrc = path.join(root, 'src');
+            fs.moveSync(path.join(root, 'App.tsx'), path.join(rootSrc, 'App.tsx'));
+            fs.moveSync(path.join(root, 'index.tsx'), path.join(rootSrc, 'index.tsx'));
+            break;
+        case ApplicationType.package:
+        case ApplicationType.cli:
+            fs.copySync(source, root);
+            break;
+        default:
+            throw new Error(`unknown application type: ${applicationType}`);
+    }
+    fs.moveSync(path.join(process.cwd(), 'eslintrc.json'), path.join(process.cwd(), '.eslintrc.json'));
+    const packageJson = path.join(process.cwd(), 'package.json');
+    const raw = fs.readFileSync(packageJson, 'utf8').replace(/\{\{name\}\}/g, appName);
+    fs.writeFileSync(packageJson, raw);
+    await installDependencies(appName, applicationType);
+    await installDevDependencies(appName, applicationType);
+    process.chdir(originalDirectory);
 }
-exports.scaffold = scaffold;
 //# sourceMappingURL=createScaffold.js.map

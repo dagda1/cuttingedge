@@ -1,6 +1,6 @@
 import { ApplicationType } from '../types/applicationType';
 import { exec } from 'child_process';
-import { logger } from './logger';
+import { logger } from './logger.js'
 
 const dependencies = ['assert-ts', '@cutting/util'];
 

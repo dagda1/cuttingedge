@@ -1,5 +1,5 @@
-import { paths } from '../config/paths';
-import logger from './logger';
+import { paths } from '../config/paths.js';
+import logger from './logger.js';
 import fs from 'fs-extra';
 
 export const emptyBuildDir = (): void => {

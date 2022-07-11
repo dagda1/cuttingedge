@@ -7,6 +7,7 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "types": "dist/esm/index.d.ts",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production devtools rollup",
@@ -30,18 +31,14 @@
     "@vanilla-extract/babel-plugin": "1.1.7",
     "@vanilla-extract/css": "^1.7.4",
     "eslint": "8.23.0",
-    "typescript": "4.8.2"
+    "typescript": "4.8.3"
   },
   "volta": {
     "extends": "../../package.json"
   },
-  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
   "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/index.js"
+    "import": "./dist/esm/index.js"
   },
   "typesVersions": {
     "*": {

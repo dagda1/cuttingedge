@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 'use strict';
-Object.defineProperty(exports, "__esModule", { value: true });
-const logger_1 = require("../scripts/logger");
-const spawn = require('react-dev-utils/crossSpawn');
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { spawnSync } from 'child_process';
+import path from 'path';
+import chalk from 'chalk';
+import { assert } from 'assert-ts';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const script = process.argv[2];
 const args = process.argv.slice(3);
 let command = '';
@@ -21,27 +27,28 @@ switch (script) {
     case 'esbuild':
     case 'test':
     case 'ts-build': {
-        command = `../scripts/${script}`;
+        command = path.join(__dirname, `../scripts/${script}.js`);
         break;
     }
     default:
-        logger_1.logger.info(`Unknown script ${script}.`);
-        logger_1.logger.info('Perhaps you need to update cutting?');
+        console.info(chalk.yellow(`Unknown script ${script}.`));
+        console.info(chalk.yellow('Perhaps you need to update cutting?'));
         break;
 }
-const result = spawn.sync('node', [require.resolve(command)].concat(args), {
+assert(fs.existsSync(command), `Unknown script ${command}`);
+const result = spawnSync('node', [path.resolve(command)].concat(args), {
     stdio: 'inherit',
 });
 if (result.signal) {
     if (result.signal === 'SIGKILL') {
-        logger_1.logger.info('The build failed because the process exited too early. ' +
+        console.info(chalk.yellow('The build failed because the process exited too early. ' +
             'This probably means the system ran out of memory or someone called ' +
-            '`kill -9` on the process.');
+            '`kill -9` on the process.'));
     }
     else if (result.signal === 'SIGTERM') {
-        logger_1.logger.info('The build failed because the process exited too early. ' +
+        console.info(chalk.yellow('The build failed because the process exited too early. ' +
             'Someone might have called `kill` or `killall`, or the system could ' +
-            'be shutting down.');
+            'be shutting down.'));
     }
     if (process.env.NODE_ENV === 'test') {
         setTimeout(() => process.exit(1), 1000);
@@ -50,5 +57,5 @@ if (result.signal) {
         process.exit(1);
     }
 }
-process.exit(result.status);
+process.exit(result.status ?? 0);
 //# sourceMappingURL=cutting.js.map

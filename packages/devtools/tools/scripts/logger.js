@@ -1,11 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.logger = exports.LoggerTypes = void 0;
-const chalk_1 = __importDefault(require("chalk"));
-var LoggerTypes;
+import chalk from 'chalk';
+export var LoggerTypes;
 (function (LoggerTypes) {
     LoggerTypes["warn"] = "warn";
     LoggerTypes["debug"] = "debug";
@@ -13,7 +7,7 @@ var LoggerTypes;
     LoggerTypes["error"] = "error";
     LoggerTypes["start"] = "start";
     LoggerTypes["done"] = "done";
-})(LoggerTypes = exports.LoggerTypes || (exports.LoggerTypes = {}));
+})(LoggerTypes || (LoggerTypes = {}));
 const logTypes = {
     warn: {
         bg: 'bgYellow',
@@ -50,7 +44,7 @@ const write = (type, text, verbose) => {
     let textToLog = '';
     let logObject = false;
     const logType = logTypes[type];
-    textToLog += `${chalk_1.default[logType.bg].black(logType.msg.padEnd(8))} ${chalk_1.default[logType.text](text)}`;
+    textToLog += `${chalk[logType.bg].black(logType.msg.padEnd(8))} ${chalk[logType.text](text)}`;
     if (verbose) {
         if (typeof verbose === 'object') {
             logObject = true;
@@ -99,7 +93,7 @@ const error = (err) => {
         console.error(err);
     }
 };
-exports.logger = {
+export const logger = {
     log,
     info,
     debug,
@@ -108,5 +102,5 @@ exports.logger = {
     start,
     done,
 };
-exports.default = exports.logger;
+export default logger;
 //# sourceMappingURL=logger.js.map

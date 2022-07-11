@@ -1,151 +1,108 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const esbuild_1 = require("esbuild");
-const paths_1 = require("../config/paths");
-const consolidateBuildConfigs_1 = require("./consolidateBuildConfigs");
-const esbuild_node_externals_1 = require("esbuild-node-externals");
-const assert_ts_1 = require("assert-ts");
-const logger_1 = __importDefault(require("./logger"));
-const path_1 = __importDefault(require("path"));
+import { build, analyzeMetafile } from 'esbuild';
+import { paths } from '../config/paths.js';
+import { consolidateBuildConfigs } from './consolidateBuildConfigs';
+import { nodeExternalsPlugin } from 'esbuild-node-externals';
+import { assert } from 'assert-ts';
+import logger from './logger.js';
+import path from 'path';
 // import { emptyBuildDir } from './empty-build-dir';
-const esbuild_plugin_1 = require("@vanilla-extract/esbuild-plugin");
-const copy_assets_1 = require("./copy-assets");
-const fs_1 = __importDefault(require("fs"));
-const commander_1 = require("commander");
-const empty_build_dir_1 = require("./empty-build-dir");
-const buildConfig = (0, consolidateBuildConfigs_1.consolidateBuildConfigs)();
+import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
+import { copyAssets } from './copy-assets';
+import fs from 'fs';
+import { createCommand } from 'commander';
+import { emptyBuildDir } from './empty-build-dir';
+const buildConfig = consolidateBuildConfigs();
 const postcss = require('postcss');
 const autoprefixer = require('autoprefixer');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function processCss(css) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const result = yield postcss([autoprefixer]).process(css, {
-            from: undefined /* suppress source map warning */,
-        });
-        return result.css;
+async function processCss(css) {
+    const result = await postcss([autoprefixer]).process(css, {
+        from: undefined /* suppress source map warning */,
     });
+    return result.css;
 }
-function bundle({ format, 
+async function bundle({ format, 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 env, analyze, }) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const entryPoints = typeof buildConfig.client.entries === 'string' ? [buildConfig.client.entries] : buildConfig.client.entries;
-        (0, assert_ts_1.assert)(Array.isArray(entryPoints), `build config entries needs to be a string array`);
-        const fileName = `index.js`;
-        const outdir = path_1.default.join(paths_1.paths.appBuild, format === 'iife' ? 'umd' : format);
-        const outfile = path_1.default.join(outdir, fileName);
-        const reactShimPath = path_1.default.resolve(__dirname, '..', '..', 'react-shim.js');
-        if (!fs_1.default.existsSync(reactShimPath)) {
-            throw new Error(`no reactShim at ${reactShimPath}`);
-        }
-        const result = yield (0, esbuild_1.build)({
-            entryPoints,
-            outfile: format !== 'esm' ? outfile : undefined,
-            outdir: format === 'esm' ? outdir : undefined,
-            bundle: true,
-            minify: true,
-            platform: 'browser',
-            sourcemap: true,
-            format,
-            target: ['es2020', 'chrome73', 'firefox67', 'safari12', 'edge18', 'node16'],
-            treeShaking: true,
-            allowOverwrite: true,
-            inject: [path_1.default.resolve(__dirname, '..', '..', 'react-shim.js')],
-            tsconfig: paths_1.paths.tsConfigProduction,
-            jsx: 'transform',
-            logLevel: 'debug',
-            color: true,
-            mainFields: ['module', 'main'],
-            splitting: format === 'esm',
-            metafile: analyze,
-            plugins: [
-                (0, esbuild_node_externals_1.nodeExternalsPlugin)({
-                    packagePath: paths_1.paths.appPackageJson,
-                }),
-                (0, esbuild_plugin_1.vanillaExtractPlugin)({
-                    processCss,
-                }),
-            ],
-        }).catch((err) => {
-            console.error(err);
-            process.exit(1);
-        });
-        if (analyze) {
-            (0, assert_ts_1.assert)(!!result.metafile, `no metafile in esbuild result`);
-            const text = yield (0, esbuild_1.analyzeMetafile)(result.metafile, {
-                color: true,
-                verbose: false,
-            });
-            console.log(text);
-        }
+    const entryPoints = typeof buildConfig.client.entries === 'string' ? [buildConfig.client.entries] : buildConfig.client.entries;
+    assert(Array.isArray(entryPoints), `build config entries needs to be a string array`);
+    const fileName = `index.js`;
+    const outdir = path.join(paths.appBuild, format === 'iife' ? 'umd' : format);
+    const outfile = path.join(outdir, fileName);
+    const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim.js');
+    if (!fs.existsSync(reactShimPath)) {
+        throw new Error(`no reactShim at ${reactShimPath}`);
+    }
+    const result = await build({
+        entryPoints,
+        outfile: format !== 'esm' ? outfile : undefined,
+        outdir: format === 'esm' ? outdir : undefined,
+        bundle: true,
+        minify: true,
+        platform: 'browser',
+        sourcemap: true,
+        format,
+        target: ['es2020', 'chrome73', 'firefox67', 'safari12', 'edge18', 'node16'],
+        treeShaking: true,
+        allowOverwrite: true,
+        inject: [path.resolve(__dirname, '..', '..', 'react-shim.js')],
+        tsconfig: paths.tsConfigProduction,
+        jsx: 'transform',
+        logLevel: 'debug',
+        color: true,
+        mainFields: ['module', 'main'],
+        splitting: format === 'esm',
+        metafile: analyze,
+        plugins: [
+            nodeExternalsPlugin({
+                packagePath: paths.appPackageJson,
+            }),
+            vanillaExtractPlugin({
+                processCss,
+            }),
+        ],
+    }).catch((err) => {
+        console.error(err);
+        process.exit(1);
     });
+    if (analyze) {
+        assert(!!result.metafile, `no metafile in esbuild result`);
+        const text = await analyzeMetafile(result.metafile, {
+            color: true,
+            verbose: false,
+        });
+        console.log(text);
+    }
 }
-const buildPackage = ({ analyze = false }) => __awaiter(void 0, void 0, void 0, function* () {
-    (0, empty_build_dir_1.emptyBuildDir)();
-    (0, copy_assets_1.copyAssets)();
-    const { default: pkg } = yield Promise.resolve().then(() => __importStar(require(paths_1.paths.appPackageJson)));
+const buildPackage = async ({ analyze = false }) => {
+    emptyBuildDir();
+    copyAssets();
+    const { default: pkg } = await import(paths.appPackageJson);
     const packageName = pkg.name;
     const configs = [
         { format: 'iife', env: 'production' },
         { format: 'cjs', env: 'production' },
         { format: 'esm', env: 'production' },
     ];
-    logger_1.default.info(`Generating ${packageName} bundle.`);
+    logger.info(`Generating ${packageName} bundle.`);
     for (const { format, env } of configs) {
-        yield bundle({ packageName, format, env, analyze });
+        await bundle({ packageName, format, env, analyze });
     }
-});
-const program = (0, commander_1.createCommand)('exbuild');
+};
+const program = createCommand('exbuild');
 program
     .description('execute an esbuild build')
     .option('-a, --analyze', 'analyze the bundle', false)
     .parse(process.argv)
-    .action(function ({ analyze }) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield buildPackage({ analyze });
-            logger_1.default.done('finished building');
-        }
-        catch (err) {
-            logger_1.default.error(err);
-            process.exit(1);
-        }
-    });
+    .action(async function ({ analyze }) {
+    try {
+        await buildPackage({ analyze });
+        logger.done('finished building');
+    }
+    catch (err) {
+        logger.error(err);
+        process.exit(1);
+    }
 })
     .parse(process.argv);
 //# sourceMappingURL=esbuild.js.map

@@ -2,10 +2,10 @@
 import path from 'path';
 import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 import { createCommand } from 'commander';
-import { run } from '../scripts/utils/run';
-import { logger } from '../scripts/logger';
+import { run } from '../scripts/utils/run.js';
+import { logger } from '../scripts/logger.js';
 import xml from 'xml';
 
 const LogFailurePrefix = 'ossindex.sonatype.org';

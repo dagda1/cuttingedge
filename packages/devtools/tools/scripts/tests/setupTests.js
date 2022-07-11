@@ -1,4 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-require("./raf");
+import './raf';
 //# sourceMappingURL=setupTests.js.map

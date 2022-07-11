@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createPostCssOptions = void 0;
-const createPostCssOptions = ({ 
+export const createPostCssOptions = ({ 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 isProduction, }) => ({
     postcssOptions: {
@@ -16,5 +13,4 @@ isProduction, }) => ({
         ],
     },
 });
-exports.createPostCssOptions = createPostCssOptions;
 //# sourceMappingURL=createPostCssoptions.js.map

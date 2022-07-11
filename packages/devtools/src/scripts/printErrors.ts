@@ -1,4 +1,4 @@
-import { logger } from './logger';
+import { logger } from './logger.js';
 
 const printErrors = (summary: string, errors: Error[]): void => {
   logger.error(summary);

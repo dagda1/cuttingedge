@@ -1,4 +1,4 @@
-import { paths } from '../../config/paths';
+import { paths } from '../../config/paths.js';
 import type { Options } from 'ts-loader';
 import type { RuleSetRule } from 'webpack';
 import { createBabelConfig } from '../../scripts/createBabelConfig';

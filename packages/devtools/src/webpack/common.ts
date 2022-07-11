@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 import ProgressBar from 'simple-progress-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import HappyPack from 'happypack';
@@ -22,14 +22,39 @@ import path from 'path';
 import { createAssetsLoader } from './loaders/assetsLoader';
 import { getFileName } from './getFileName';
 import EslintWebpackLoader from 'eslint-webpack-plugin';
+import { assert } from 'assert-ts';
 
-const reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
-const reactRefreshWebpackPluginRuntimeEntry = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
-const babelRuntimeEntryHelpers = require.resolve('@babel/runtime/helpers/esm/assertThisInitialized');
-const babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator');
-const reactRefreshOverlay = require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay');
-const reactRefreshRuntimeUtils = require.resolve('@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js');
-const miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
+const reactRefreshRuntimeEntry = await import.meta.resolve?.('react-refresh/runtime');
+const reactRefreshWebpackPluginRuntimeEntry = await import.meta.resolve?.('@pmmmwh/react-refresh-webpack-plugin');
+const babelRuntimeEntryHelpers = await import.meta.resolve?.('@babel/runtime/helpers/esm/assertThisInitialized');
+const babelRuntimeRegenerator = await import.meta.resolve?.('@babel/runtime/regenerator');
+const reactRefreshOverlay = await import.meta.resolve?.('@pmmmwh/react-refresh-webpack-plugin/overlay');
+const reactRefreshRuntimeUtils = await import.meta.resolve?.(
+  '@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js',
+);
+const miniCssHot = await import.meta.resolve?.('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
+
+const moduleScopes = [
+  reactRefreshRuntimeEntry,
+  reactRefreshWebpackPluginRuntimeEntry,
+  babelRuntimeEntryHelpers,
+  babelRuntimeRegenerator,
+  reactRefreshOverlay,
+  reactRefreshRuntimeUtils,
+  miniCssHot,
+].flatMap((entry) => (!!entry ? [entry] : []));
+
+console.dir(moduleScopes);
+
+for (const moduleScope of moduleScopes) {
+  assert(!!moduleScope, `moduleScope is not defined`);
+}
+
+const http = (await import.meta.resolve?.('stream-http')) as string;
+const https = (await import.meta.resolve?.('https-browserify')) as string;
+const stream = (await import.meta.resolve?.('stream-browserify')) as string;
+const hotPoll = (await import.meta.resolve?.('webpack/hot/poll')) as string;
+const nativeUrl = (await import.meta.resolve?.('native-url')) as string;
 
 export const configureCommon = (
   options: DevServerConfig | ServerBuildConfig | NodeBuildConfig,
@@ -75,13 +100,13 @@ export const configureCommon = (
         '.csv',
       ],
       fallback: {
-        http: require.resolve('stream-http'),
-        https: require.resolve('https-browserify'),
-        stream: require.resolve('stream-browserify'),
+        http,
+        https,
+        stream,
       },
       alias: {
-        'webpack/hot/poll': require.resolve('webpack/hot/poll'),
-        'native-url': require.resolve('native-url'),
+        'webpack/hot/poll': hotPoll,
+        'native-url': nativeUrl,
       },
       plugins: [
         // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -91,13 +116,7 @@ export const configureCommon = (
         // Make sure your source files are compiled, as they will not be processed in any way.
         new ModuleScopePlugin([
           paths.appSrc,
-          reactRefreshRuntimeEntry,
-          reactRefreshWebpackPluginRuntimeEntry,
-          babelRuntimeEntryHelpers,
-          babelRuntimeRegenerator,
-          reactRefreshOverlay,
-          reactRefreshRuntimeUtils,
-          miniCssHot,
+          ...moduleScopes,
           paths.pnpmPath,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ]) as any,

@@ -1,9 +1,9 @@
 import { build, analyzeMetafile } from 'esbuild';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 import { consolidateBuildConfigs } from './consolidateBuildConfigs';
 import { nodeExternalsPlugin } from 'esbuild-node-externals';
 import { assert } from 'assert-ts';
-import logger from './logger';
+import logger from './logger.js';
 import type { CommonOptions } from 'esbuild';
 import path from 'path';
 // import { emptyBuildDir } from './empty-build-dir';
@@ -17,8 +17,11 @@ const buildConfig = consolidateBuildConfigs();
 
 type ModuleFormat = Required<Pick<CommonOptions, 'format'>>['format'];
 
-const postcss = require('postcss');
-const autoprefixer = require('autoprefixer');
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const postcss = (await import('postcss')) as any;
+const autoprefixer = await 'autoprefixer';
+
+console.dir({ postcss });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function processCss(css: any) {

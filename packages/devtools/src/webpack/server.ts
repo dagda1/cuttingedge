@@ -5,7 +5,7 @@ import { merge } from 'webpack-merge';
 import webpack from 'webpack';
 import type { AllowlistOption } from 'webpack-node-externals';
 import nodeExternals from 'webpack-node-externals';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import StartServerPlugin from 'razzle-start-server-webpack-plugin';

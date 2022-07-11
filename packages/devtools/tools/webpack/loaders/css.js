@@ -1,14 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createCSSLoaders = void 0;
-const mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // import { createPostCssOptions } from '../createPostCssoptions';
-const constants_1 = require("../constants");
-const paths_1 = require("../../config/paths");
-const createCSSLoaders = ({ isNode, }) => {
+import { cssRegex } from '../constants';
+import { paths } from '../../config/paths.js';
+export const createCSSLoaders = ({ isNode, }) => {
     return isNode
         ? [
             {
@@ -17,7 +11,7 @@ const createCSSLoaders = ({ isNode, }) => {
                 sideEffects: true,
             },
             {
-                test: constants_1.cssRegex,
+                test: cssRegex,
                 sideEffects: true,
                 exclude: /\.vanilla\.css$/i,
                 use: [
@@ -40,9 +34,9 @@ const createCSSLoaders = ({ isNode, }) => {
                 sideEffects: true,
                 use: [
                     {
-                        loader: mini_css_extract_plugin_1.default.loader,
+                        loader: MiniCssExtractPlugin.loader,
                         options: {
-                            publicPath: paths_1.paths.publicUrlOrPath,
+                            publicPath: paths.publicUrlOrPath,
                         },
                     },
                     {
@@ -58,14 +52,14 @@ const createCSSLoaders = ({ isNode, }) => {
                 ],
             },
             {
-                test: constants_1.cssRegex,
+                test: cssRegex,
                 sideEffects: true,
                 exclude: /\.vanilla\.css$/i,
                 use: [
                     {
-                        loader: mini_css_extract_plugin_1.default.loader,
+                        loader: MiniCssExtractPlugin.loader,
                         options: {
-                            publicPath: paths_1.paths.publicUrlOrPath,
+                            publicPath: paths.publicUrlOrPath,
                             // esModule: true,
                         },
                     },
@@ -85,5 +79,4 @@ const createCSSLoaders = ({ isNode, }) => {
             },
         ];
 };
-exports.createCSSLoaders = createCSSLoaders;
 //# sourceMappingURL=css.js.map

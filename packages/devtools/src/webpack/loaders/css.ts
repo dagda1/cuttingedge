@@ -2,7 +2,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // import { createPostCssOptions } from '../createPostCssoptions';
 import { cssRegex } from '../constants';
 import type { RuleSetRule } from 'webpack';
-import { paths } from '../../config/paths';
+import { paths } from '../../config/paths.js';
 
 export const createCSSLoaders = ({
   isNode,

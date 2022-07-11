@@ -3,19 +3,15 @@ import type { Options as RuntimeOptions } from '@babel/plugin-transform-runtime'
 import type { ModuleFormat } from '../types/moduleFormat';
 // import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const createBabelPresets = ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  isDevelopment,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  isProduction,
+export function createBabelPresets({
   moduleFormat,
 }: {
   isDevelopment: boolean;
   isProduction: boolean;
   isNode: boolean;
   moduleFormat: ModuleFormat;
-}) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}): any[] {
   const presetOptions: PresetOptions = {
     exclude: ['transform-typeof-symbol'],
     modules: moduleFormat === 'esm' ? false : 'auto',
@@ -26,13 +22,13 @@ export const createBabelPresets = ({
   return [
     ['@babel/preset-env', { ...presetOptions }],
     [
-      require('@babel/preset-react').default,
+      '@babel/preset-react',
       {
         runtime: 'automatic',
       },
     ],
   ];
-};
+}
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createBabelConfig = ({
@@ -47,11 +43,12 @@ export const createBabelConfig = ({
   moduleFormat: ModuleFormat;
 }) => {
   const hot = isDevelopment && !isNode;
+
   return {
     babelrc: false,
     configFile: false,
     presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat }),
-    // cacheDirectory: true,
+    cacheDirectory: true,
     // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
     sourceType: 'unambiguous',
     plugins: [
@@ -73,7 +70,6 @@ export const createBabelConfig = ({
         {
           corejs: false,
           helpers: true,
-          version: require('@babel/runtime/package.json').version,
           regenerator: true,
           useESModules: moduleFormat === 'esm',
         } as RuntimeOptions,
@@ -83,7 +79,7 @@ export const createBabelConfig = ({
       '@babel/plugin-proposal-optional-chaining',
       '@babel/plugin-proposal-nullish-coalescing-operator',
       '@vanilla-extract/babel-plugin',
-      hot && require.resolve('react-refresh/babel'),
+      hot && 'react-refresh/babel',
     ].filter(Boolean),
   };
 };

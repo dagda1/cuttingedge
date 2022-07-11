@@ -11,7 +11,7 @@ export enum LoggerTypes {
 }
 
 export type LoggerType = {
-  [key in LoggerTypes]: { bg: typeof BackgroundColor; msg: string; text: typeof ForegroundColor };
+  [key in LoggerTypes]: { bg: BackgroundColor; msg: string; text: ForegroundColor };
 };
 
 const logTypes: LoggerType = {

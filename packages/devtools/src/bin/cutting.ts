@@ -1,8 +1,16 @@
 #!/usr/bin/env node
 'use strict';
 
-import { logger } from '../scripts/logger';
-const spawn = require('react-dev-utils/crossSpawn');
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { spawnSync } from 'child_process';
+import path from 'path';
+import chalk from 'chalk';
+import { assert } from 'assert-ts';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const script = process.argv[2];
 const args = process.argv.slice(3);
@@ -24,31 +32,37 @@ switch (script) {
   case 'esbuild':
   case 'test':
   case 'ts-build': {
-    command = `../scripts/${script}`;
+    command = path.join(__dirname, `../scripts/${script}.js`);
     break;
   }
   default:
-    logger.info(`Unknown script ${script}.`);
-    logger.info('Perhaps you need to update cutting?');
+    console.info(chalk.yellow(`Unknown script ${script}.`));
+    console.info(chalk.yellow('Perhaps you need to update cutting?'));
     break;
 }
 
-const result = spawn.sync('node', [require.resolve(command)].concat(args), {
+assert(fs.existsSync(command), `Unknown script ${command}`);
+
+const result = spawnSync('node', [path.resolve(command)].concat(args), {
   stdio: 'inherit',
 });
 
 if (result.signal) {
   if (result.signal === 'SIGKILL') {
-    logger.info(
-      'The build failed because the process exited too early. ' +
-        'This probably means the system ran out of memory or someone called ' +
-        '`kill -9` on the process.',
+    console.info(
+      chalk.yellow(
+        'The build failed because the process exited too early. ' +
+          'This probably means the system ran out of memory or someone called ' +
+          '`kill -9` on the process.',
+      ),
     );
   } else if (result.signal === 'SIGTERM') {
-    logger.info(
-      'The build failed because the process exited too early. ' +
-        'Someone might have called `kill` or `killall`, or the system could ' +
-        'be shutting down.',
+    console.info(
+      chalk.yellow(
+        'The build failed because the process exited too early. ' +
+          'Someone might have called `kill` or `killall`, or the system could ' +
+          'be shutting down.',
+      ),
     );
   }
   if (process.env.NODE_ENV === 'test') {
@@ -57,4 +71,4 @@ if (result.signal) {
     process.exit(1);
   }
 }
-process.exit(result.status);
+process.exit(result.status ?? 0);

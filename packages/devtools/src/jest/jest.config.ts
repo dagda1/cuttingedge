@@ -1,8 +1,9 @@
 import type { Config } from '@jest/types';
 import path from 'path';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 import fs from 'fs-extra';
-import logger from '../scripts/logger';
+import logger from '../scripts/logger.js';
+import { assert } from 'console';
 
 export type OverridableJestConfig = Pick<
   Config.ProjectConfig,
@@ -37,6 +38,12 @@ if (localSetupTestsFile) {
 }
 
 const esModules = ['uuid'].join('|');
+
+const tsJestTransformer = await import.meta.resolve?.('ts-jest/dist');
+const babelJestTransformer = await import.meta.resolve?.('babel-jest');
+
+assert(!!tsJestTransformer, 'ts-jest is not installed');
+assert(!!babelJestTransformer, 'babel-jest is not installed');
 
 const jestConfig: OverridableJestConfig = {
   rootDir: process.cwd(),
@@ -82,8 +89,8 @@ const jestConfig: OverridableJestConfig = {
   ],
   testEnvironment: 'jsdom',
   transform: {
-    '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
-    '.(js|jsx|cjs|mjs)$': require.resolve('babel-jest'), // jest's default
+    '.(ts|tsx|js)$': tsJestTransformer,
+    '.(js|jsx|cjs|mjs)$': babelJestTransformer,
     '^.+\\.css$': path.join(__dirname, './cssTransform'),
     '^.+\\.csv$': path.join(__dirname, './fileTransform'),
     '^(?!.*\\.(js|jsx|css|json)$)': path.join(__dirname, './fileTransform'),

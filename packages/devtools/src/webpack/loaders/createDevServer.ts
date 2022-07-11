@@ -1,4 +1,4 @@
-import { paths } from '../../config/paths';
+import { paths } from '../../config/paths.js';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
 import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 import type { ProxyConfigArray, ProxyConfigMap } from 'webpack-dev-server';

@@ -1,6 +1,6 @@
 import { getClientEnv } from '../config/env';
 import fs from 'fs';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { run } from 'jest';
@@ -13,8 +13,6 @@ process.env.PUBLIC_URL = '';
 process.on('unhandledRejection', (err) => {
   throw err;
 });
-
-delete require.cache[require.resolve('../config/env')];
 
 getClientEnv();
 

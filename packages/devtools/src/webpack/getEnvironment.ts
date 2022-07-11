@@ -38,8 +38,6 @@ export const getEnvVariables = ({
   stringified: Partial<Env>;
 } => {
   const { isDevelopment } = getEnvironment();
-  delete require.cache[require.resolve('../config/env')];
-
   return getClientEnv(
     isNode ? 'node' : 'web',
     {},

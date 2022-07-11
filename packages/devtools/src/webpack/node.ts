@@ -3,7 +3,7 @@ import type { Configuration } from 'webpack';
 import webpack from 'webpack';
 import type { NodeBuildConfig } from '../types/config';
 import nodeExternals from 'webpack-node-externals';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 import WriteFilePlugin from 'write-file-webpack-plugin';
 import { configureCommon } from './common';
 import { getEnvironment } from './getEnvironment';

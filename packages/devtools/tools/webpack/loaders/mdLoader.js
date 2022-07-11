@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createMDLoader = void 0;
-const createMDLoader = () => ({
+export const createMDLoader = () => ({
     test: /\.md$/,
     use: [
         {
@@ -13,5 +10,4 @@ const createMDLoader = () => ({
         },
     ],
 });
-exports.createMDLoader = createMDLoader;
 //# sourceMappingURL=mdLoader.js.map

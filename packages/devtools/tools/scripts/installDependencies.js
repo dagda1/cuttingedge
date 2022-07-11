@@ -1,18 +1,6 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.installDevDependencies = exports.installDependencies = void 0;
-const applicationType_1 = require("../types/applicationType");
-const child_process_1 = require("child_process");
-const logger_1 = require("./logger");
+import { ApplicationType } from '../types/applicationType';
+import { exec } from 'child_process';
+import { logger } from './logger.js';
 const dependencies = ['assert-ts', '@cutting/util'];
 const devDependencies = [
     '@babel/core',
@@ -35,7 +23,7 @@ const devDependencies = [
     'webpack',
 ];
 const applicationDevDependencies = {
-    [applicationType_1.ApplicationType.WebApp]: [
+    [ApplicationType.WebApp]: [
         '@types/react',
         '@types/react-dom',
         '@types/react-router-dom',
@@ -49,11 +37,11 @@ const applicationDevDependencies = {
         'ts-loader',
         'whatwg-fetch',
     ],
-    [applicationType_1.ApplicationType.package]: [],
-    [applicationType_1.ApplicationType.cli]: ['nodemon', 'ts-node'],
+    [ApplicationType.package]: [],
+    [ApplicationType.cli]: ['nodemon', 'ts-node'],
 };
 const applicationDependencies = {
-    [applicationType_1.ApplicationType.WebApp]: [
+    [ApplicationType.WebApp]: [
         'react',
         'react-dom',
         'react-router',
@@ -61,41 +49,34 @@ const applicationDependencies = {
         '@cutting/hooks',
         '@cutting/component-library',
     ],
-    [applicationType_1.ApplicationType.package]: [],
-    [applicationType_1.ApplicationType.cli]: [],
+    [ApplicationType.package]: [],
+    [ApplicationType.cli]: [],
 };
 function install(dependencies) {
     return new Promise((resolve) => {
-        var _a, _b;
-        logger_1.logger.debug(`installing in ${process.cwd()}`);
-        const pnpm = (0, child_process_1.exec)(`pnpm add ${dependencies}`);
-        (_a = pnpm.stdout) === null || _a === void 0 ? void 0 : _a.on('data', (data) => logger_1.logger.info(data));
-        (_b = pnpm.stderr) === null || _b === void 0 ? void 0 : _b.on('data', (data) => logger_1.logger.error(data));
+        logger.debug(`installing in ${process.cwd()}`);
+        const pnpm = exec(`pnpm add ${dependencies}`);
+        pnpm.stdout?.on('data', (data) => logger.info(data));
+        pnpm.stderr?.on('data', (data) => logger.error(data));
         pnpm.on('close', (code) => {
             if (code !== 0) {
-                logger_1.logger.error(`pnpm exited with code ${code}`);
+                logger.error(`pnpm exited with code ${code}`);
                 process.exit(1);
             }
-            logger_1.logger.done(`pnpm exited with code ${code}`);
+            logger.done(`pnpm exited with code ${code}`);
             setTimeout(resolve, 500);
         });
     });
 }
-function installDependencies(appName, applicationType) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const dependencyList = [...dependencies, ...applicationDependencies[applicationType]].join(' ');
-        logger_1.logger.info(`installing dependencies for ${appName}`);
-        yield install(`${dependencyList} -P`);
-    });
+export async function installDependencies(appName, applicationType) {
+    const dependencyList = [...dependencies, ...applicationDependencies[applicationType]].join(' ');
+    logger.info(`installing dependencies for ${appName}`);
+    await install(`${dependencyList} -P`);
 }
-exports.installDependencies = installDependencies;
-function installDevDependencies(appName, applicationType) {
-    return __awaiter(this, void 0, void 0, function* () {
-        logger_1.logger.info(`installing devDependencies for ${appName}`);
-        const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
-        yield install(`${devDependencyList} --save-dev`);
-        logger_1.logger.info(`dependencies installed for ${appName}`);
-    });
+export async function installDevDependencies(appName, applicationType) {
+    logger.info(`installing devDependencies for ${appName}`);
+    const devDependencyList = [...devDependencies, ...applicationDevDependencies[applicationType]].join(' ');
+    await install(`${devDependencyList} --save-dev`);
+    logger.info(`dependencies installed for ${appName}`);
 }
-exports.installDevDependencies = installDevDependencies;
 //# sourceMappingURL=installDependencies.js.map

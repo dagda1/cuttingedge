@@ -4,7 +4,7 @@ import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import type { DevServerConfig } from '../types/config';
 import { configureCommon } from './common';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 import fs from 'fs';
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';

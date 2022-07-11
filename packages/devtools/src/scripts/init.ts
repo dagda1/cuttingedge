@@ -1,5 +1,5 @@
 import { scaffold } from './createScaffold';
-import logger from './logger';
+import logger from './logger.js';
 
 (async () => {
   try {

@@ -1,5 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-require("./polyfills");
-require("./raf");
+
+import './polyfills';
+import './raf';
+import { configure } from '@testing-library/dom';
+configure({ testIdAttribute: 'data-selector' });
 //# sourceMappingURL=setupTests.js.map

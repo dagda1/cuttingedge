@@ -6,8 +6,8 @@ process.on('unhandledRejection', (err) => {
 });
 import WebpackDevServer from 'webpack-dev-server';
 import openBrowser from 'react-dev-utils/openBrowser';
-import { paths } from '../config/paths';
-import { logger } from '../scripts/logger';
+import { paths } from '../config/paths.js';
+import { logger } from '../scripts/logger.js';
 import { choosePort, createCompiler, prepareProxy, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
 import webpack from 'webpack';
 import { configure as configureWebpackClient } from '../webpack/client';

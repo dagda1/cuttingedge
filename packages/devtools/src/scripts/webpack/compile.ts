@@ -2,7 +2,7 @@ import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
 import printErrors from '../printErrors';
 import type { Configuration, Stats } from 'webpack';
 import webpack from 'webpack';
-import { logger } from '../logger';
+import { logger } from '../logger.js'
 import type { BuildType } from '../../types/build';
 import { assert } from 'assert-ts';
 

@@ -1,14 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.constants = exports.sassModuleRegex = exports.sassRegex = exports.cssModuleRegex = exports.cssRegex = void 0;
-exports.cssRegex = /\.css$/i;
-exports.cssModuleRegex = /\.module\.css$/;
-exports.sassRegex = /\.(scss|sass)$/;
-exports.sassModuleRegex = /\.module\.(scss|sass)$/;
-exports.constants = {
-    cssRegex: exports.cssRegex,
-    cssModuleRegex: exports.cssModuleRegex,
-    sassRegex: exports.sassRegex,
-    sassModuleRegex: exports.sassModuleRegex,
+export const cssRegex = /\.css$/i;
+export const cssModuleRegex = /\.module\.css$/;
+export const sassRegex = /\.(scss|sass)$/;
+export const sassModuleRegex = /\.module\.(scss|sass)$/;
+export const constants = {
+    cssRegex,
+    cssModuleRegex,
+    sassRegex,
+    sassModuleRegex,
 };
 //# sourceMappingURL=constants.js.map

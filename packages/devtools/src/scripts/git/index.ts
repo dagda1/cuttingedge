@@ -1,7 +1,7 @@
-import { logger } from '../logger';
+import { logger } from '../logger.js'
 import { execSync } from 'child_process';
 import fs from 'fs-extra';
-import { paths } from '../../config/paths';
+import { paths } from '../../config/paths.js';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getCommitHash = () => {

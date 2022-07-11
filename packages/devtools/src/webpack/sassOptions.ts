@@ -1,4 +1,4 @@
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = !isDevelopment;

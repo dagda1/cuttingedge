@@ -1,11 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const logger_1 = require("./logger");
+import { logger } from './logger.js';
 const printErrors = (summary, errors) => {
-    logger_1.logger.error(summary);
+    logger.error(summary);
     errors.forEach((err) => {
-        logger_1.logger.error(err.message || err);
+        logger.error(err.message || err);
     });
 };
-exports.default = printErrors;
+export default printErrors;
 //# sourceMappingURL=printErrors.js.map

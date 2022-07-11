@@ -1,14 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.sassOptions = void 0;
-const paths_1 = require("../config/paths");
+import { paths } from '../config/paths.js';
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = !isDevelopment;
-exports.sassOptions = {
+export const sassOptions = {
     sassOptions: {
         outputStyle: 'expanded',
         sourceMap: true,
-        includePaths: [paths_1.paths.appSrc],
+        includePaths: [paths.appSrc],
         minimize: isProduction,
     },
 };

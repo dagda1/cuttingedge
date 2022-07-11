@@ -1,17 +1,12 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const path_1 = __importDefault(require("path"));
-const paths_1 = require("../config/paths");
-const fs_extra_1 = __importDefault(require("fs-extra"));
-const logger_1 = __importDefault(require("../scripts/logger"));
+import path from 'path';
+import { paths } from '../config/paths.js';
+import fs from 'fs-extra';
+import logger from '../scripts/logger.js';
 const setupTestsFileName = 'setupTests.ts';
-const setupTestsCandidates = [path_1.default.resolve('.', setupTestsFileName), path_1.default.resolve('src', 'tests', setupTestsFileName)];
-const localSetupTestsFile = setupTestsCandidates.find(fs_extra_1.default.existsSync);
+const setupTestsCandidates = [path.resolve('.', setupTestsFileName), path.resolve('src', 'tests', setupTestsFileName)];
+const localSetupTestsFile = setupTestsCandidates.find(fs.existsSync);
 if (localSetupTestsFile) {
-    logger_1.default.debug(`found local setup file ${localSetupTestsFile}`);
+    logger.debug(`found local setup file ${localSetupTestsFile}`);
 }
 const esModules = ['uuid'].join('|');
 const jestConfig = {
@@ -22,7 +17,7 @@ const jestConfig = {
     globals: {
         __DEV__: true,
         'ts-jest': {
-            tsconfig: paths_1.paths.testTsConfig,
+            tsconfig: paths.testTsConfig,
             useESM: true,
             isolatedModules: true,
             babelConfig: {
@@ -46,9 +41,9 @@ const jestConfig = {
         '!src/**/constants.*',
     ],
     setupFilesAfterEnv: [
-        path_1.default.join(__dirname, './polyfills'),
+        path.join(__dirname, './polyfills'),
         '@testing-library/jest-dom/extend-expect',
-        path_1.default.join(__dirname, './setupTests'),
+        path.join(__dirname, './setupTests'),
         localSetupTestsFile,
     ].filter(Boolean),
     testMatch: [
@@ -60,9 +55,9 @@ const jestConfig = {
     transform: {
         '.(ts|tsx|js)$': require.resolve('ts-jest/dist'),
         '.(js|jsx|cjs|mjs)$': require.resolve('babel-jest'),
-        '^.+\\.css$': path_1.default.join(__dirname, './cssTransform'),
-        '^.+\\.csv$': path_1.default.join(__dirname, './fileTransform'),
-        '^(?!.*\\.(js|jsx|css|json)$)': path_1.default.join(__dirname, './fileTransform'),
+        '^.+\\.css$': path.join(__dirname, './cssTransform'),
+        '^.+\\.csv$': path.join(__dirname, './fileTransform'),
+        '^(?!.*\\.(js|jsx|css|json)$)': path.join(__dirname, './fileTransform'),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     },
     transformIgnorePatterns: [`/node_modules/(?!${esModules})`],

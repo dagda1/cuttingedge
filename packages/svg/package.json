@@ -17,28 +17,28 @@
   "dependencies": {
     "@cutting/use-get-parent-size": "workspace:*",
     "@cutting/util": "workspace:*",
-    "classnames": "^2.3.1",
+    "classnames": "^2.3.2",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@babel/runtime": "7.18.9",
+    "@babel/runtime": "7.19.0",
     "@cutting/component-library": "workspace:*",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@jest/globals": "29.0.2",
+    "@jest/globals": "29.0.3",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "^13.4.0",
-    "@types/react": "18.0.18",
+    "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
-    "@vanilla-extract/babel-plugin": "1.1.7",
-    "@vanilla-extract/css": "^1.7.4",
-    "@vanilla-extract/sprinkles": "1.4.1",
-    "eslint": "8.23.0",
+    "@vanilla-extract/babel-plugin": "1.2.0",
+    "@vanilla-extract/css": "^1.9.0",
+    "@vanilla-extract/sprinkles": "1.5.0",
+    "eslint": "8.23.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.8.2"
+    "typescript": "4.8.3"
   },
   "peerDependencies": {
     "react": ">= 18.x.x",

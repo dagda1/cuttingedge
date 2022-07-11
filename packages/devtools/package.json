@@ -8,15 +8,28 @@
   "bin": "./tools/bin/cutting.js",
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
+  "type": "module",
+  "module": "tools/esm/index.js",
+  "exports": {
+    "import": "./tools/esm/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "tools/esm/index.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "prebuild": "tsc --build",
-    "build": "devtools ts-build",
+    "build": "NODE_ENV=production devtools rollup",
     "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test",
-    "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix"
+    "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix",
+    "dev": "tsc -b && pnpm postbuild && ./tools/bin/cutting.js rollup"
   },
   "dependencies": {
-    "@babel/core": "^7.18.13",
+    "@babel/core": "^7.19.1",
     "@babel/plugin-proposal-class-properties": "7.18.6",
     "@babel/plugin-proposal-decorators": "7.18.10",
     "@babel/plugin-proposal-nullish-coalescing-operator": "7.18.6",
@@ -44,16 +57,16 @@
     "@vanilla-extract/esbuild-plugin": "2.1.0",
     "@vanilla-extract/webpack-plugin": "2.1.12",
     "assert-ts": "0.3.4",
-    "autoprefixer": "10.4.8",
+    "autoprefixer": "10.4.11",
     "babel-jest": "29.0.2",
     "babel-loader": "8.2.5",
     "babel-plugin-annotate-pure-calls": "0.4.0",
     "babel-plugin-dev-expression": "0.2.3",
     "babel-plugin-macros": "3.1.0",
-    "browserslist": "4.21.3",
+    "browserslist": "4.21.4",
     "builtin-modules": "3.3.0",
-    "chalk": "4.1.2",
-    "commander": "9.4.0",
+    "chalk": "5.0.1",
+    "commander": "9.3.0",
     "copy": "0.3.2",
     "core-js": "3.25.0",
     "cross-env": "7.0.3",
@@ -61,7 +74,7 @@
     "css-minimizer-webpack-plugin": "4.0.0",
     "dotenv": "16.0.2",
     "esbuild": "0.15.7",
-    "eslint": "8.23.0",
+    "eslint": "8.23.1",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-webpack-plugin": "3.2.0",
     "file-loader": "6.2.0",
@@ -168,7 +181,7 @@
     "@types/xml": "1.0.8",
     "@typescript-eslint/eslint-plugin": "5.36.1",
     "@typescript-eslint/parser": "5.36.1",
-    "eslint": "8.23.0",
+    "eslint": "8.23.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "27.0.1",
     "eslint-plugin-jest-formatting": "3.1.0",
@@ -181,7 +194,7 @@
     "jest-environment-jsdom": "29.0.2",
     "nocache": "3.0.4",
     "node-forge": "1.3.1",
-    "typescript": "4.8.2",
+    "typescript": "4.8.3",
     "xml": "1.0.1"
   },
   "volta": {

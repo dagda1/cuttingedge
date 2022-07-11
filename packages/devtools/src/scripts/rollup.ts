@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { rollup } from 'rollup';
 import type { ModuleFormat } from '../types/moduleFormat';
-import { paths } from '../config/paths';
+import { paths } from '../config/paths.js';
 import fs from 'fs-extra';
 import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
-import { logger } from './logger';
+import { logger } from './logger.js';
 import resolve from '@rollup/plugin-node-resolve';
 import { assert } from 'assert-ts';
 // import injectProcessEnv from 'rollup-plugin-inject-process-env';
@@ -14,7 +14,7 @@ import babel from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
-import { copyAssets } from './copy-assets';
+import { copyAssets } from './copy-assets.js';
 import postcss from 'rollup-plugin-postcss';
 import { md } from '@cutting/rollup-plugin-md';
 // @ts-ignore
@@ -26,15 +26,17 @@ import url from 'postcss-url';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
 import commonjs from '@rollup/plugin-commonjs';
-import { createBabelConfig } from './createBabelConfig';
-import { safePackageName, writeCjsEntryFile } from '../rollup/helpers';
-import { writeToPackage } from './write-package';
-import { csv } from '../rollup/plugins/csv';
+import { createBabelConfig } from './createBabelConfig.js';
+import { writeToPackage } from './write-package.js';
+import { csv } from '../rollup/plugins/csv.js';
 import postcssImport from 'postcss-import';
-import { emptyBuildDir } from './empty-build-dir';
+import { emptyBuildDir } from './empty-build-dir.js';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { createCommand } from 'commander';
 import analyzer from 'rollup-plugin-analyzer';
+import { readFile } from 'fs/promises';
+import ts from 'typescript';
+import { safePackageName } from '../rollup/helpers';
 
 export interface BundlerOptions {
   packageName: string;
@@ -104,7 +106,7 @@ async function generateBundledModule({ packageName, entryFile, moduleFormat, env
       }),
       csv(),
       typescript({
-        typescript: require('typescript'),
+        typescript: ts,
         tsconfig: paths.tsConfigProduction,
         abortOnError: true,
         tsconfigDefaults: {
@@ -149,9 +151,8 @@ async function generateBundledModule({ packageName, entryFile, moduleFormat, env
     ].filter(Boolean),
   });
 
-  const pkgName = safePackageName(packageName);
   const extension = env === 'production' ? 'min.js' : 'js';
-  const fileName = ['esm', 'umd'].includes(moduleFormat) ? `index.js` : `${pkgName}.cjs.${env}.${extension}`;
+  const fileName = `index.${extension}`;
   const outputFileName = path.join(paths.appBuild, moduleFormat, fileName);
 
   logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
@@ -202,17 +203,15 @@ async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & {
 
   const pkgJsonPath = path.join(process.cwd(), 'package.json');
 
-  const { default: pkg } = await import(pkgJsonPath);
+  const pkg = JSON.parse(await readFile(pkgJsonPath, 'utf-8'));
 
   const packageName = pkg.name;
 
   const entryFile = getInputFile(packageName, inputFile);
 
   const configs: { moduleFormat: ModuleFormat; env: 'development' | 'production' }[] = [
-    { moduleFormat: 'cjs', env: 'development' },
-    { moduleFormat: 'cjs', env: 'production' },
+    { moduleFormat: 'esm', env: 'development' },
     { moduleFormat: 'esm', env: 'production' },
-    { moduleFormat: 'umd', env: 'production' },
   ];
 
   logger.info(`Generating ${packageName} bundle.`);
@@ -220,8 +219,6 @@ async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & {
   for (const { moduleFormat, env } of configs) {
     await generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze });
   }
-
-  await writeCjsEntryFile(packageName);
 
   const pkgJson = { ...pkg };
 
@@ -231,21 +228,14 @@ async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & {
 
   const buildDir = path.basename(paths.appBuild);
 
-  const commonjsFile = path.join(buildDir, 'cjs', 'index.js');
-
-  const esmFile = path.join(buildDir, 'esm', `index.js`);
+  const esmFile = path.join(buildDir, 'esm', `index.min.js`);
   pkgJson.module = esmFile;
-
-  const umdFile = path.join(buildDir, 'umd', `index.js`);
-  pkgJson.browser = umdFile;
 
   const dtsFile = path.join(buildDir, 'esm', `index.d.ts`);
   pkgJson.types = dtsFile;
 
   pkgJson.exports = {
     import: `./${esmFile}`,
-    require: `./${commonjsFile}`,
-    browser: `./${umdFile}`,
   };
 
   pkgJson.typesVersions = {
@@ -257,7 +247,7 @@ async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & {
   await writeToPackage(pkgJsonPath, pkgJson);
 }
 
-const program = createCommand('rollup');
+export const program = createCommand('rollup');
 
 program
   .description('execute a rollup build')

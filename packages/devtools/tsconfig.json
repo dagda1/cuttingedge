@@ -1,14 +1,15 @@
 {
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "ESNext",
     "outDir": "./tools",
     "baseUrl": "./",
     "rootDir": "./src",
     "skipLibCheck": true,
     "isolatedModules": false,
-    "noEmit": false
+    "noEmit": false,
+    "resolveJsonModule": true
   },
   "references": [
     { "path": "../util/tsconfig.dist.json" },

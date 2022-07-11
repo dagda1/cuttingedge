@@ -1,5 +1,5 @@
 import type { RuleSetRule } from 'webpack';
-import { paths } from '../../config/paths';
+import { paths } from '../../config/paths.js';
 import { createBabelPresets, createBabelConfig } from '../../scripts/createBabelConfig';
 import type { ModuleFormat } from '../../types/moduleFormat';
 import { getCacheIdentifier } from './getCacheIdentifier';
@@ -28,7 +28,7 @@ export const createJsLoader = ({
   {
     test: /\.(js|mjs|cjs)$/,
     exclude: /@babel(?:\/|\\{1,2})runtime/,
-    loader: require.resolve('babel-loader'),
+    loader: 'babel-loader',
     options: {
       babelrc: false,
       configFile: false,
