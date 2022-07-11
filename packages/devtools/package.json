@@ -9,9 +9,9 @@
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "type": "module",
-  "module": "tools/esm/index.js",
+  "module": "tools/esm/index.min.js",
   "exports": {
-    "import": "./tools/esm/index.js"
+    "import": "./tools/esm/index.min.js"
   },
   "typesVersions": {
     "*": {
@@ -22,7 +22,7 @@
   },
   "scripts": {
     "prebuild": "tsc --build",
-    "build": "NODE_ENV=production devtools rollup",
+    "build": "NODE_ENV=production pnpm prebuild && pnpm postbuild && devtools rollup",
     "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test",
     "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix",

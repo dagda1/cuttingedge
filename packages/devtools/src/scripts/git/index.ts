@@ -1,4 +1,4 @@
-import { logger } from '../logger.js'
+import { logger } from '../logger.js';
 import { execSync } from 'child_process';
 import fs from 'fs-extra';
 import { paths } from '../../config/paths.js';

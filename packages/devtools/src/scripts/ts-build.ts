@@ -1,4 +1,4 @@
-import { logger } from './logger.js'
+import { logger } from './logger.js';
 import fs from 'fs-extra';
 import path from 'path';
 import { paths } from '../config/paths.js';

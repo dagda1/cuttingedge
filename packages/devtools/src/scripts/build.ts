@@ -6,7 +6,7 @@ process.on('unhandledRejection', (err) => {
 
 import '../config/env';
 import { paths } from '../config/paths.js';
-import { logger } from './logger.js'
+import { logger } from './logger.js';
 import FileSizeReporter from 'react-dev-utils/FileSizeReporter';
 import { copyPublicFolder } from './utils/copy-public-folder';
 import { compile } from './webpack/compile';
