@@ -10,7 +10,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import { assert } from 'assert-ts';
 // import injectProcessEnv from 'rollup-plugin-inject-process-env';
 import type { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
-import babel from '@rollup/plugin-babel';
+import { babel } from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
@@ -36,7 +36,10 @@ import { createCommand } from 'commander';
 import analyzer from 'rollup-plugin-analyzer';
 import { readFile } from 'fs/promises';
 import ts from 'typescript';
-import { safePackageName } from '../rollup/helpers';
+
+// TODO: remove this shit
+const safePackageName = (name: string): string =>
+  name.toLowerCase().replace(/(^@.*\/)|((^[^a-zA-Z]+)|[^\w.-])|([^a-zA-Z0-9]+$)/g, '');
 
 export interface BundlerOptions {
   packageName: string;

@@ -26,7 +26,7 @@
     "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test",
     "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix",
-    "dev": "tsc -b && pnpm postbuild && ./tools/bin/cutting.js rollup"
+    "dev": "pnpm postbuild && ./tools/bin/cutting.js rollup"
   },
   "dependencies": {
     "@babel/core": "^7.19.1",

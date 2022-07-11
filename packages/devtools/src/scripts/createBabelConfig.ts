@@ -48,7 +48,7 @@ export const createBabelConfig = ({
     babelrc: false,
     configFile: false,
     presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat }),
-    cacheDirectory: true,
+    // cacheDirectory: true,
     // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
     sourceType: 'unambiguous',
     plugins: [

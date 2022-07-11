@@ -16,8 +16,8 @@
     "test:ci": "CI=true pnpm test"
   },
   "dependencies": {
-    "@babel/core": "7.18.13",
-    "@babel/runtime": "7.18.9",
+    "@babel/core": "7.19.1",
+    "@babel/runtime": "7.19.0",
     "assert-ts": "^0.3.4"
   },
   "devDependencies": {
@@ -26,11 +26,11 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@jest/globals": "29.0.2",
-    "@typescript-eslint/eslint-plugin": "5.36.1",
-    "@vanilla-extract/babel-plugin": "1.1.7",
-    "@vanilla-extract/css": "^1.7.4",
-    "eslint": "8.23.0",
+    "@jest/globals": "29.0.3",
+    "@typescript-eslint/eslint-plugin": "5.37.0",
+    "@vanilla-extract/babel-plugin": "1.2.0",
+    "@vanilla-extract/css": "^1.9.0",
+    "eslint": "8.23.1",
     "typescript": "4.8.3"
   },
   "volta": {

@@ -5,7 +5,7 @@ import webpack from 'webpack';
 import { paths } from '../config/paths.js';
 import devServer from 'webpack-dev-server';
 import printErrors from './printErrors';
-import { logger } from './logger.js'
+import { logger } from './logger.js';
 import { merge } from 'webpack-merge';
 import { configure as configureWebpackClient } from '../webpack/client';
 import { configure as configureWebpackServer } from '../webpack/server';
@@ -32,7 +32,7 @@ function compile(config: Configuration): Compiler {
   return compiler;
 }
 
-const localBuildConfig = JSON.parse( await readFile(paths.localBuildConfig, 'utf-8')) as BuildConfig;
+const localBuildConfig = JSON.parse(await readFile(paths.localBuildConfig, 'utf-8')) as BuildConfig;
 
 // Capture any --inspect or --inspect-brk flags (with optional values) so that we
 // can pass them when we invoke nodejs
@@ -44,7 +44,6 @@ function main() {
     logger.start('Compiling...');
 
     fs.removeSync(paths.appManifest);
-
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const buildConfig = merge(globalBuildConfig as any, localBuildConfig as any) as any;
