@@ -1,6 +1,6 @@
-const { paths } = require('@cutting/devtools/tools/config/paths');
+import { paths } from '@cutting/devtools/tools/config/paths';
 
-module.exports = {
+export default {
   client: {
     entries: process.env.NODE_ENV === 'development' ? paths.devDir : [paths.appSrc],
     publicDir: paths.devDirPublic,

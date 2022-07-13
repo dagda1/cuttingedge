@@ -112,4 +112,4 @@ const jestConfig: OverridableJestConfig = {
   } as any,
 };
 
-module.exports = jestConfig;
+export default jestConfig;

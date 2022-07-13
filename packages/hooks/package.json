@@ -2,10 +2,9 @@
   "name": "@cutting/hooks",
   "description": "Cutting reusable hooks.",
   "version": "4.49.3",
-  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
   "types": "dist/esm/index.d.ts",
+  "type": "module",
   "sideEffects": false,
   "repository": {
     "type": "git",
@@ -66,9 +65,7 @@
     "hooks"
   ],
   "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/index.js"
+    "import": "./dist/esm/index.js"
   },
   "typesVersions": {
     "*": {

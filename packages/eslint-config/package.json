@@ -2,7 +2,8 @@
   "name": "@cutting/eslint-config",
   "version": "4.40.1",
   "description": "Cutting eslint configuration definition",
-  "main": "index.js",
+  "module": "index.js",
+  "type": "module",
   "license": "MIT",
   "files": [
     "index.js",

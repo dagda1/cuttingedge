@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import type { OutputOptions } from 'rollup';
 import { rollup } from 'rollup';
 import type { ModuleFormat } from '../types/moduleFormat';
 import { paths } from '../config/paths.js';
@@ -36,6 +37,7 @@ import { createCommand } from 'commander';
 import analyzer from 'rollup-plugin-analyzer';
 import { readFile } from 'fs/promises';
 import ts from 'typescript';
+import deepmerge from 'deepmerge';
 
 // TODO: remove this shit
 const safePackageName = (name: string): string =>
@@ -47,11 +49,19 @@ export interface BundlerOptions {
   moduleFormat: ModuleFormat;
   env: 'development' | 'production';
   analyze: boolean;
+  preserveModules: boolean;
 }
 
 logger.debug(`using ${path.basename(paths.tsConfigProduction)}`);
 
-async function generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze }: BundlerOptions) {
+async function generateBundledModule({
+  packageName,
+  entryFile,
+  moduleFormat,
+  env,
+  analyze,
+  preserveModules = false,
+}: BundlerOptions) {
   assert(fs.existsSync(entryFile), `Input file ${entryFile} does not exist`);
 
   const minify = env === 'production';
@@ -159,18 +169,43 @@ async function generateBundledModule({ packageName, entryFile, moduleFormat, env
   const outputFileName = path.join(paths.appBuild, moduleFormat, fileName);
 
   logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
-
-  await bundle.write({
-    file: outputFileName,
+  const buildOptions: OutputOptions = {
     format: moduleFormat,
     name: packageName,
     exports: 'named',
     sourcemap: true,
-    esModule: moduleFormat !== 'umd',
+    esModule: true,
     interop: 'auto',
     freeze: false,
     globals: { react: 'React' },
-  });
+  };
+
+  logger.info(`preserveModules is ${preserveModules}`);
+
+  if (preserveModules) {
+    const dir = `dist/${moduleFormat}`;
+    logger.info(`writing to ${dir} for ${packageName}`);
+    await bundle.write(
+      deepmerge(buildOptions, {
+        preserveModules,
+        preserveModulesRoot: 'src',
+        dir,
+      }) as OutputOptions,
+    );
+  } else {
+    const pkgName = safePackageName(packageName);
+    const extension = env === 'production' ? 'min.js' : 'js';
+    const fileName = moduleFormat === 'esm' ? `index.js` : `${pkgName}.cjs.${env}.${extension}`;
+    const outputFileName = path.join(paths.appBuild, moduleFormat, fileName);
+
+    logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
+
+    await bundle.write(
+      deepmerge(buildOptions, {
+        file: outputFileName,
+      }) as OutputOptions,
+    );
+  }
 
   copyAssets();
 }
@@ -201,7 +236,11 @@ const getInputFile = (packageName: string, inputFileOverride?: string): string =
   return inputFile;
 };
 
-async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & { inputFile?: string }) {
+async function build({
+  analyze,
+  inputFile,
+  preserveModules,
+}: Pick<BundlerOptions, 'analyze' | 'preserveModules'> & { inputFile?: string }) {
   emptyBuildDir();
 
   const pkgJsonPath = path.join(process.cwd(), 'package.json');
@@ -213,14 +252,13 @@ async function build({ analyze, inputFile }: Pick<BundlerOptions, 'analyze'> & {
   const entryFile = getInputFile(packageName, inputFile);
 
   const configs: { moduleFormat: ModuleFormat; env: 'development' | 'production' }[] = [
-    { moduleFormat: 'esm', env: 'development' },
     { moduleFormat: 'esm', env: 'production' },
   ];
 
   logger.info(`Generating ${packageName} bundle.`);
 
   for (const { moduleFormat, env } of configs) {
-    await generateBundledModule({ packageName, entryFile, moduleFormat, env, analyze });
+    await generateBundledModule({ packageName, preserveModules, entryFile, moduleFormat, env, analyze });
   }
 
   const pkgJson = { ...pkg };
@@ -256,10 +294,11 @@ program
   .description('execute a rollup build')
   .option('-a, --analyze', 'analyze the bundle', false)
   .option('-i, --input-file <path>', 'the entry file')
+  .option('-p, --preserve-modules', 'rollup preserveModules', false)
   .parse(process.argv)
-  .action(async function ({ inputFile, analyze }) {
+  .action(async function ({ inputFile, analyze, preserveModules }) {
     try {
-      await build({ inputFile, analyze });
+      await build({ inputFile, analyze, preserveModules });
 
       logger.done('finished building');
     } catch (err) {

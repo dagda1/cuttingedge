@@ -2,9 +2,8 @@
   "name": "@cutting/use-get-parent-size",
   "description": "Sizes an SVG document to the containing parent using the resize-observer.",
   "version": "1.19.3",
-  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
+  "type": "module",
   "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "repository": {
@@ -68,9 +67,7 @@
     "resize-observer"
   ],
   "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/index.js"
+    "import": "./dist/esm/index.js"
   },
   "typesVersions": {
     "*": {

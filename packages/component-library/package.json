@@ -6,11 +6,10 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "module": "dist/esm/src.js",
-  "browser": "dist/umd/index.js",
-  "main": "dist/cjs/index.js",
   "sideEffects": [
     "*.css"
   ],
+  "type": "module",
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "files": [

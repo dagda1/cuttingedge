@@ -16,8 +16,8 @@ const render = (Component: typeof App) => {
 
 render(App);
 
-if (module.hot) {
-  module.hot.accept('./containers/App/App', () =>
+if (import.meta.hot) {
+  import.meta.hot.accept('./containers/App/App', () =>
     import('./containers/App/App').then((m) => {
       console.dir(m);
       render(m.App);

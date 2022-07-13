@@ -17,9 +17,9 @@ const bootstrap = (Component: typeof App): void => {
   root.render(<Component />);
 };
 
-if (typeof module.hot !== undefined) {
+if (typeof import.meta.hot !== undefined) {
   bootstrap(App);
-  module.hot?.accept('../containers/App', () => {
+  import.meta.hot?.accept('../containers/App', () => {
     import('../containers/App').then((m) => bootstrap(m.App));
   });
 } else {

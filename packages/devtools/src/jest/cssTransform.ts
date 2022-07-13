@@ -1,5 +1,5 @@
 export const process = (): string => {
-  return 'module.exports = {};';
+  return 'export default {};';
 };
 
 export const getCacheKey = (): string => {

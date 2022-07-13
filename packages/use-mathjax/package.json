@@ -2,6 +2,8 @@
   "name": "@cutting/use-mathjax",
   "description": "easy mathjax in react.",
   "version": "4.42.1",
+  "type": "module",
+  "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "repository": {
@@ -56,9 +58,6 @@
     "hook",
     "hooks"
   ],
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
   "volta": {
     "extends": "../../package.json"
   },

@@ -556,6 +556,7 @@ importers:
       cross-env: 7.0.3
       css-loader: 6.7.1_webpack@5.73.0
       css-minimizer-webpack-plugin: 4.0.0_oaq3yey5mbhfmyr4mwwnvjustu
+      deepmerge: 4.2.2
       dotenv: 16.0.1
       esbuild: 0.14.42
       eslint: 8.17.0
@@ -656,7 +657,6 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.18.0_t4yleyuu4vegmpl3c5fdnr2x7m
       '@typescript-eslint/parser': 5.18.0_n4lrrl552kqf5nk4rgej5xdcha
       '@vanilla-extract/babel-plugin': 1.1.7
-      deepmerge: 4.2.2
       esbuild-node-externals: 1.4.1_esbuild@0.14.42
       eslint-config-prettier: 8.5.0_eslint@8.17.0
       eslint-plugin-jest: 26.4.6_hx2c4hmmwvypl2fcwszzox2kfe

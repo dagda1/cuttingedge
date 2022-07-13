@@ -12,10 +12,10 @@ server.listen(process.env.PORT, () => {
   console.log(`🚀 started on http://localhost:${process.env.PORT}`);
 });
 
-if (module.hot) {
+if (import.meta.hot) {
   console.log('✅  Server-side HMR Enabled!');
 
-  module.hot.accept('./server', () => {
+  import.meta.hot.accept('./server', () => {
     console.log('🔁  HMR Reloading `./server`...');
     server.removeListener('request', currentApp);
     import('./server').then((m) => {

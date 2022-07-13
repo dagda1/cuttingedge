@@ -1,6 +1,6 @@
 import { paths } from '@cutting/devtools/tools/config/paths.js';
 
-module.exports = {
+export default {
   devServer: {
     entries: paths.devDir,
     publicDir: paths.devDirPublic,

@@ -6,8 +6,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch"
   },
-  "main": "dist/cjs/index.js",
-  "browser": "dist/umd/index.js",
+  "type": "module",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "sideEffects": false,
@@ -78,9 +77,7 @@
     "workerDirectory": "demo/public"
   },
   "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/index.js"
+    "import": "./dist/esm/index.js"
   },
   "typesVersions": {
     "*": {

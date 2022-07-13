@@ -1,7 +1,7 @@
 const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
+export default {
   webpackFinal(baseConfig, options) {
     const { module = {}, plugins = {} } = baseConfig;
 

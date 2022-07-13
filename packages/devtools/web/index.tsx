@@ -20,6 +20,6 @@ const render = (Component: typeof App) => {
 
 render(App);
 
-if (module.hot) {
-  module.hot.accept('./App', () => import('./App').then((m) => render(m.App)));
+if (import.meta.hot) {
+  import.meta.hot.accept('./App', () => import('./App').then((m) => render(m.App)));
 }

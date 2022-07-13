@@ -1,6 +1,6 @@
-const { paths } = require('@cutting/devtools/tools/config/paths');
+import { paths } from '@cutting/devtools/tools/config/paths';
 
-module.exports = {
+export default {
   client: {
     entries: { client: paths.appClientIndexJs },
     ssrBuild: true,

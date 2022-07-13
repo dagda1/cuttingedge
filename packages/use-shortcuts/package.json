@@ -6,9 +6,8 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "main": "dist/cjs/index.js",
+  "type": "module",
   "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
   "sideEffects": false,
   "types": "dist/esm/index.d.ts",
   "files": [
@@ -64,9 +63,7 @@
     "use-shortcuts"
   ],
   "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/index.js"
+    "import": "./dist/esm/index.js"
   },
   "typesVersions": {
     "*": {

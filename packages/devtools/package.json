@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "bin": "./tools/bin/cutting.js",
+  "bin": "./tools/esm/bin/cutting.js",
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "type": "module",
@@ -21,12 +21,10 @@
     }
   },
   "scripts": {
-    "prebuild": "tsc --build",
-    "build": "NODE_ENV=production pnpm prebuild && pnpm postbuild && devtools rollup",
-    "postbuild": "chmod -R 777 tools && git update-index --chmod=+x --add ./tools/bin/cutting.js",
+    "build": "NODE_ENV=production tsc --build --clean && tsc --build && pnpm postbuild",
+    "postbuild": "chmod -R 777 tools && git update-index  --chmod=+x --add ./tools/esm/bin/cutting.js",
     "test": "echo test",
-    "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix",
-    "dev": "pnpm postbuild && ./tools/bin/cutting.js rollup"
+    "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix"
   },
   "dependencies": {
     "@babel/core": "^7.19.1",

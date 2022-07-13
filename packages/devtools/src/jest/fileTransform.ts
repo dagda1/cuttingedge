@@ -6,7 +6,7 @@ const createExport = (filename: string) =>
         Object.defineProperty(exports, "__esModule", {
           value: true
       });
-        module.exports = ${JSON.stringify(path.basename(filename))}
+        export default ${JSON.stringify(path.basename(filename))}
     } else {
       Object.defineProperty(exports, "__esModule", {
           value: true
