@@ -1,7 +1,7 @@
 import { StrictMode, useRef } from 'react';
-import { MathJaxProvider } from '../src/provider/Provider/Provider';
-import { useMathJax } from '../src/hooks/useMathJax/useMathJax';
-import { MathJax } from '../src/components/MathJax/MathJax';
+import { MathJaxProvider } from '../src/provider/Provider/Provider.js';
+import { useMathJax } from '../src/hooks/useMathJax/useMathJax.js';
+import { MathJax } from '../src/components/MathJax/MathJax.js';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';

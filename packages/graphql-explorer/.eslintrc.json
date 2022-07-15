@@ -1,4 +1,4 @@
 
 {
-  "extends": "@cutting/eslint-config/react"
+  "extends": "@cutting/eslint-config/react.cjs"
 }

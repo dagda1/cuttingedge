@@ -36,7 +36,7 @@ switch (script) {
         break;
 }
 assert(fs.existsSync(command), `Unknown script ${command}`);
-const result = spawnSync('node', [path.resolve(command)].concat(args), {
+const result = spawnSync('node', ['--experimental-import-meta-resolve', path.resolve(command)].concat(args), {
     stdio: 'inherit',
 });
 if (result.signal) {

@@ -1,5 +1,5 @@
-import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
-import printErrors from '../printErrors';
+import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages.js';
+import printErrors from '../printErrors.js';
 import type { Configuration, Stats } from 'webpack';
 import webpack from 'webpack';
 import { logger } from '../logger.js';

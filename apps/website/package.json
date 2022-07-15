@@ -7,6 +7,7 @@
   },
   "version": "4.29.5",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "PORT=3000 SSR=true NODE_ENV=development devtools ssr-start",
     "debug": "pnpm start -- --inspect=localhost:9230",

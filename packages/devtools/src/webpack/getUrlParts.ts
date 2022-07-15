@@ -1,6 +1,6 @@
 import { assert } from 'assert-ts';
 import type { Urls } from 'react-dev-utils/WebpackDevServerUtils';
-import { prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
+import { prepareUrls } from 'react-dev-utils/WebpackDevServerUtils.js';
 
 export const getUrlParts = ({
   ssrBuild,

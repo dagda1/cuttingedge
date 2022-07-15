@@ -3,15 +3,13 @@ import fs from 'fs-extra';
 import webpack from 'webpack';
 import { paths } from '../config/paths.js';
 import devServer from 'webpack-dev-server';
-import printErrors from './printErrors';
+import printErrors from './printErrors.js';
 import { logger } from './logger.js';
 import { merge } from 'webpack-merge';
-import { configure as configureWebpackClient } from '../webpack/client';
-import { configure as configureWebpackServer } from '../webpack/server';
-import { config as globalBuildConfig } from '../config/build.config';
-import { getUrlParts } from '../webpack/getUrlParts';
-import { emptyBuildDir } from './empty-build-dir';
-import { readFile } from 'fs/promises';
+import { configure as configureWebpackClient } from '../webpack/client.js';
+import { configure as configureWebpackServer } from '../webpack/server.js';
+import { config as globalBuildConfig } from '../config/build.config.js';
+import { getUrlParts } from '../webpack/getUrlParts.js';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 process.noDeprecation = true;
 function compile(config) {
@@ -27,7 +25,7 @@ function compile(config) {
     }
     return compiler;
 }
-const localBuildConfig = JSON.parse(await readFile(paths.localBuildConfig, 'utf-8'));
+const localBuildConfig = import(paths.localBuildConfig).then((m) => m.default);
 // Capture any --inspect or --inspect-brk flags (with optional values) so that we
 // can pass them when we invoke nodejs
 process.env.INSPECT_BRK = process.argv.find((arg) => arg.match(/--inspect-brk(=|$)/)) || '';
@@ -80,7 +78,6 @@ function main() {
     });
 }
 (async () => {
-    emptyBuildDir();
     await main();
 })();
 //# sourceMappingURL=ssr-start.js.map

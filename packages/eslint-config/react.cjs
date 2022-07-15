@@ -1,5 +1,5 @@
-export default {
-  extends: './index',
+module.exports = {
+  extends: './index.cjs',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -7,7 +7,7 @@ export default {
       jsx: true,
     },
   },
-  extends: ['./index', 'plugin:react/recommended', 'plugin:jsx-a11y/recommended'],
+  extends: ['./index.cjs', 'plugin:react/recommended', 'plugin:jsx-a11y/recommended'],
   settings: {
     react: {
       pragma: 'React',

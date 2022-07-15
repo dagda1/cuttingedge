@@ -1,4 +1,4 @@
-import { paths } from '@cutting/devtools/tools/config/paths';
+import { paths } from '@cutting/devtools/paths.js';
 
 export default {
   client: {

@@ -34,7 +34,11 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
         id: install_pnpm
         with:
+<<<<<<< HEAD
           version: 7.11.0
+=======
+          version: 7.5.2
+>>>>>>> 9d7bd9d25 (rename eslint js files to cjs)
 
       - name: echo npm dest
         run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"

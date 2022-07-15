@@ -6,7 +6,6 @@
     "allowJs": true,
     "types": [
       "node",
-      "webpack-env",
       "@types/jest",
       "@cutting/useful-types"
     ]

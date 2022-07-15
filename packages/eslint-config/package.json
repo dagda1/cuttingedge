@@ -2,8 +2,7 @@
   "name": "@cutting/eslint-config",
   "version": "4.40.1",
   "description": "Cutting eslint configuration definition",
-  "module": "index.js",
-  "type": "module",
+  "main": "index.cjs",
   "license": "MIT",
   "files": [
     "index.js",
@@ -39,7 +38,6 @@
   },
   "peerDependencies": {
     "@babel/eslint-parser": ">= 7.x.x",
-    "@types/webpack-env": ">= 1.x.x",
     "@typescript-eslint/eslint-plugin": ">= 5.x.x",
     "@typescript-eslint/parser": ">= 5.x.x",
     "eslint": ">= 8.x.x",

@@ -31,7 +31,6 @@ import { createBabelConfig } from './createBabelConfig.js';
 import { writeToPackage } from './write-package.js';
 import { csv } from '../rollup/plugins/csv.js';
 import postcssImport from 'postcss-import';
-import { emptyBuildDir } from './empty-build-dir.js';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { createCommand } from 'commander';
 import analyzer from 'rollup-plugin-analyzer';
@@ -241,8 +240,6 @@ async function build({
   inputFile,
   preserveModules,
 }: Pick<BundlerOptions, 'analyze' | 'preserveModules'> & { inputFile?: string }) {
-  emptyBuildDir();
-
   const pkgJsonPath = path.join(process.cwd(), 'package.json');
 
   const pkg = JSON.parse(await readFile(pkgJsonPath, 'utf-8'));

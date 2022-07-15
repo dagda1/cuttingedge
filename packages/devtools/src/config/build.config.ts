@@ -1,5 +1,5 @@
 import type { BuildConfig } from '../types/config';
-import { paths } from './paths';
+import { paths } from './paths.js';
 
 const isProduction = process.env.NODE_ENV === 'production';
 

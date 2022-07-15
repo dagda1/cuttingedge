@@ -15,7 +15,7 @@ export const copyPublicFolder = () => {
         return;
     }
     if (!fs.existsSync(paths.appBuildPublic)) {
-        fs.mkdirSync(paths.appBuildPublic);
+        fs.mkdirSync(paths.appBuildPublic, { recursive: true });
     }
     copyRecursiveSync(paths.appPublic, paths.appBuildPublic);
 };

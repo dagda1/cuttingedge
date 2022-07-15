@@ -5,9 +5,9 @@ import type { NodeBuildConfig } from '../types/config';
 import nodeExternals from 'webpack-node-externals';
 import { paths } from '../config/paths.js';
 import WriteFilePlugin from 'write-file-webpack-plugin';
-import { configureCommon } from './common';
-import { getEnvironment } from './getEnvironment';
-import { isPlugin } from './guards';
+import { configureCommon } from './common.js';
+import { getEnvironment } from './getEnvironment.js';
+import { isPlugin } from './guards.js';
 import type { DeepPartial } from '../types/deepPartial';
 
 const getExternals = () => {

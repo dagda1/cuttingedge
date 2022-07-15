@@ -19,7 +19,7 @@ const testTsConfig = await (async () => {
     try {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        return await import.meta.resolve('@cutting/tsconfig/tsconfig.test.json');
+        return fileURLToPath((await import.meta.resolve('@cutting/tsconfig/tsconfig.test.json')));
     }
     catch (e) {
         return 'N/A';

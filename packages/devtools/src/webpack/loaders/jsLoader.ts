@@ -1,8 +1,8 @@
 import type { RuleSetRule } from 'webpack';
 import { paths } from '../../config/paths.js';
-import { createBabelPresets, createBabelConfig } from '../../scripts/createBabelConfig';
-import type { ModuleFormat } from '../../types/moduleFormat';
-import { getCacheIdentifier } from './getCacheIdentifier';
+import { createBabelPresets, createBabelConfig } from '../../scripts/createBabelConfig.js';
+import type { ModuleFormat } from '../../types/moduleFormat.js';
+import { getCacheIdentifier } from './getCacheIdentifier.js';
 
 export const createJsLoader = ({
   isDevelopment,

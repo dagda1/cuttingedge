@@ -5,10 +5,10 @@ import { paths } from '../config/paths.js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import StartServerPlugin from 'razzle-start-server-webpack-plugin';
-import { configureCommon } from './common';
-import { getEnvironment } from './getEnvironment';
-import { isPlugin } from './guards';
-import { getUrlParts } from './getUrlParts';
+import { configureCommon } from './common.js';
+import { getEnvironment } from './getEnvironment.js';
+import { isPlugin } from './guards.js';
+import { getUrlParts } from './getUrlParts.js';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getExternals = function (isDevelopment) {
     return [

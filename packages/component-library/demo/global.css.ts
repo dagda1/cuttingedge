@@ -1,5 +1,5 @@
 import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
-import rem from 'polished/lib/helpers/rem';
+import rem from 'polished/lib/helpers/rem.js';
 import { palette } from '../src';
 import { atoms } from '../src/style/atoms/atoms';
 import { vars } from '../src/style/themes/vars.css';

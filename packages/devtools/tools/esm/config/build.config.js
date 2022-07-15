@@ -1,4 +1,4 @@
-import { paths } from './paths';
+import { paths } from './paths.js';
 const isProduction = process.env.NODE_ENV === 'production';
 export const config = {
     client: {

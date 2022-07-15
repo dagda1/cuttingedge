@@ -2,21 +2,23 @@ import webpack from 'webpack';
 import path from 'path';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { configureCommon } from './common';
+import { configureCommon } from './common.js';
 import { paths } from '../config/paths.js';
 import fs from 'fs';
-import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
+import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin.js';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import { getUrlParts } from './getUrlParts';
-import { getEnvironment } from './getEnvironment';
-import { createDevServer } from './loaders/createDevServer';
-import { createWebpackOptimisation } from './optimisation/createWebpackOptimisation';
+import { getUrlParts } from './getUrlParts.js';
+import { getEnvironment } from './getEnvironment.js';
+import { createDevServer } from './loaders/createDevServer.js';
+import { createWebpackOptimisation } from './optimisation/createWebpackOptimisation.js';
 import LoadableWebpackPlugin from '@loadable/webpack-plugin';
 import HtmlWebpackPartialsPlugin from 'html-webpack-partials-plugin';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
-import { getFileName } from './getFileName';
+import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin.js';
+import { getFileName } from './getFileName.js';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProfilerEnabled = () => process.argv.includes('--profile');
 export const configure = (options, overrides = {}) => {
     const { entries, publicDir, proxy, devServer, isStaticBuild } = options;

@@ -9,7 +9,6 @@
     "tsconfig.test.json"
   ],
   "devDependencies": {
-    "@types/webpack-env": "1.18.0"
   },
   "volta": {
     "extends": "../../package.json"

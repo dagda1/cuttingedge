@@ -1,8 +1,8 @@
 import { paths } from '../../config/paths.js';
 import type { Options } from 'ts-loader';
 import type { RuleSetRule } from 'webpack';
-import { createBabelConfig } from '../../scripts/createBabelConfig';
-import type { ModuleFormat } from '../../types/moduleFormat';
+import { createBabelConfig } from '../../scripts/createBabelConfig.js';
+import type { ModuleFormat } from '../../types/moduleFormat.js';
 
 export const createTypescriptLoader = ({
   isDevelopment,

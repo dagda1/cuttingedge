@@ -1,4 +1,4 @@
-import { isNil } from './isNil';
+import { isNil } from './isNil.js';
 
 export type PartialShallow<T> = {
   [P in keyof T]?: T[P] extends Record<string, unknown> ? Record<string, unknown> : T[P];

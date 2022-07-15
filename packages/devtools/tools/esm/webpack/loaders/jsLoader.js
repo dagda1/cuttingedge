@@ -1,6 +1,6 @@
 import { paths } from '../../config/paths.js';
-import { createBabelPresets, createBabelConfig } from '../../scripts/createBabelConfig';
-import { getCacheIdentifier } from './getCacheIdentifier';
+import { createBabelPresets, createBabelConfig } from '../../scripts/createBabelConfig.js';
+import { getCacheIdentifier } from './getCacheIdentifier.js';
 export const createJsLoader = ({ isDevelopment, isProduction, moduleFormat, isNode, }) => [
     {
         test: /\.(js|jsx|mjs|cjs)$/,

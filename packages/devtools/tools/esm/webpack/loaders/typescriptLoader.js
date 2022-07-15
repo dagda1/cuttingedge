@@ -1,5 +1,5 @@
 import { paths } from '../../config/paths.js';
-import { createBabelConfig } from '../../scripts/createBabelConfig';
+import { createBabelConfig } from '../../scripts/createBabelConfig.js';
 export const createTypescriptLoader = ({ isDevelopment, isNode, moduleFormat, }) => {
     const isProduction = !isDevelopment;
     const options = {

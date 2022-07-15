@@ -1,36 +1,23 @@
 import { build, analyzeMetafile } from 'esbuild';
 import { paths } from '../config/paths.js';
-import { consolidateBuildConfigs } from './consolidateBuildConfigs';
 import { nodeExternalsPlugin } from 'esbuild-node-externals';
 import { assert } from 'assert-ts';
 import logger from './logger.js';
 import type { CommonOptions } from 'esbuild';
 import path from 'path';
-// import { emptyBuildDir } from './empty-build-dir';
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
-import { copyAssets } from './copy-assets';
+import { copyAssets } from './copy-assets.js';
 import fs from 'fs';
 import { createCommand } from 'commander';
-import { emptyBuildDir } from './empty-build-dir';
+import { consolidateBuildConfigs } from './consolidateBuildConfigs.js';
+import { readFile } from 'fs/promises';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const buildConfig = consolidateBuildConfigs();
 
 type ModuleFormat = Required<Pick<CommonOptions, 'format'>>['format'];
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const postcss = (await import('postcss')) as any;
-const autoprefixer = await 'autoprefixer';
-
-console.dir({ postcss });
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-async function processCss(css: any) {
-  const result = await postcss([autoprefixer]).process(css, {
-    from: undefined /* suppress source map warning */,
-  });
-
-  return result.css;
-}
 
 async function bundle({
   format,
@@ -52,7 +39,7 @@ async function bundle({
   const outdir = path.join(paths.appBuild, format === 'iife' ? 'umd' : format);
   const outfile = path.join(outdir, fileName);
 
-  const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim.js');
+  const reactShimPath = path.resolve(__dirname, '..', '..', '..', 'react-shim.js');
 
   if (!fs.existsSync(reactShimPath)) {
     throw new Error(`no reactShim at ${reactShimPath}`);
@@ -70,7 +57,7 @@ async function bundle({
     target: ['es2020', 'chrome73', 'firefox67', 'safari12', 'edge18', 'node16'],
     treeShaking: true,
     allowOverwrite: true,
-    inject: [path.resolve(__dirname, '..', '..', 'react-shim.js')],
+    inject: [reactShimPath],
     tsconfig: paths.tsConfigProduction,
     jsx: 'transform',
     logLevel: 'debug',
@@ -82,9 +69,7 @@ async function bundle({
       nodeExternalsPlugin({
         packagePath: paths.appPackageJson,
       }),
-      vanillaExtractPlugin({
-        processCss,
-      }),
+      vanillaExtractPlugin(),
     ],
   }).catch((err) => {
     console.error(err);
@@ -103,19 +88,13 @@ async function bundle({
 }
 
 const buildPackage = async ({ analyze = false }: { analyze: boolean }) => {
-  emptyBuildDir();
-
   copyAssets();
 
-  const { default: pkg } = await import(paths.appPackageJson);
+  const pkg = JSON.parse(await readFile(paths.appPackageJson, 'utf-8'));
 
   const packageName = pkg.name;
 
-  const configs: { format: ModuleFormat; env: 'development' | 'production' }[] = [
-    { format: 'iife', env: 'production' },
-    { format: 'cjs', env: 'production' },
-    { format: 'esm', env: 'production' },
-  ];
+  const configs: { format: ModuleFormat; env: 'development' | 'production' }[] = [{ format: 'esm', env: 'production' }];
 
   logger.info(`Generating ${packageName} bundle.`);
 
@@ -124,7 +103,7 @@ const buildPackage = async ({ analyze = false }: { analyze: boolean }) => {
   }
 };
 
-const program = createCommand('exbuild');
+const program = createCommand('esbuild');
 
 program
   .description('execute an esbuild build')

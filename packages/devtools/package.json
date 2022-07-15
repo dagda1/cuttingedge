@@ -11,7 +11,12 @@
   "type": "module",
   "module": "tools/esm/index.min.js",
   "exports": {
-    "import": "./tools/esm/index.min.js"
+    ".": {
+      "import": "./tools/esm/index.min.js"
+    },
+    "./paths.js": {
+      "import": "./tools/esm/config/paths.js"
+    }
   },
   "typesVersions": {
     "*": {
@@ -21,7 +26,7 @@
     }
   },
   "scripts": {
-    "build": "NODE_ENV=production tsc --build --clean && tsc --build && pnpm postbuild",
+    "build": "NODE_ENV=production tsc --build && pnpm postbuild",
     "postbuild": "chmod -R 777 tools && git update-index  --chmod=+x --add ./tools/esm/bin/cutting.js",
     "test": "echo test",
     "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix"

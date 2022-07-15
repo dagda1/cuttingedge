@@ -1,5 +1,5 @@
 import { assert } from 'assert-ts';
-import { prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
+import { prepareUrls } from 'react-dev-utils/WebpackDevServerUtils.js';
 export const getUrlParts = ({ ssrBuild, isProduction, }) => {
     const rawPort = process.env.PORT || 3000;
     assert(!!rawPort, 'No port number on environment variable PORT');

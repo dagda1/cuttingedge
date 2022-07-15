@@ -1,8 +1,8 @@
 import { paths } from '../../config/paths.js';
-import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
-import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
+import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware.js';
+import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware.js';
 import type { ProxyConfigArray, ProxyConfigMap } from 'webpack-dev-server';
-import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
+import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware.js';
 import type WebpackDevServer from 'webpack-dev-server';
 
 export const createDevServer = ({

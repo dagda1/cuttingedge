@@ -1,5 +1,5 @@
 import { expect, describe, it } from '@jest/globals';
-import { isNil } from './isNil';
+import { isNil } from './isNil.js';
 
 describe('isNil', () => {
   it.each`

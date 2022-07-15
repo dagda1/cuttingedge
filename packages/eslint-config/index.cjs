@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   globals: {
     MyGlobal: true,
   },
@@ -56,7 +56,7 @@ export default {
             singleQuote: true,
             semi: true,
             tabWidth: 2,
-            trailingComma: 'all',
+            trailingComma: 'none',
           },
         ],
         semi: ['error', 'always'],

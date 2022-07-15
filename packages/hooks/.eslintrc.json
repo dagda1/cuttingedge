@@ -1,6 +1,6 @@
 
 {
-  "extends": "@cutting/eslint-config/react",
+  "extends": "@cutting/eslint-config/react.cjs",
   "rules": {
     "react-hooks/rules-of-hooks": ["error", {
       "additionalHooks": "(useIsomorphicLayoutEffect)"

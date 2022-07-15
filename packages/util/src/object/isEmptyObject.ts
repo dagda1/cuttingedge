@@ -1,6 +1,6 @@
 import { isEmpty } from './isEmpty';
-import { isDate } from '../date/date';
-import { isNil } from './isNil';
+import { isDate } from '../date/date.js';
+import { isNil } from './isNil.js';
 import { isObject } from './isObject';
 
 export const isEmptyObject = <T extends Record<string, unknown>>(o: T): boolean => {

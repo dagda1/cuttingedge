@@ -1,8 +1,16 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // import { createPostCssOptions } from '../createPostCssoptions';
-import { cssRegex } from '../constants';
+import { cssRegex } from '../constants.js';
 import type { RuleSetRule } from 'webpack';
 import { paths } from '../../config/paths.js';
+import { assert } from 'assert-ts';
+import { fileURLToPath } from 'url';
+
+const cssLoaderUrl = await import.meta.resolve?.('css-loader');
+
+assert(!!cssLoaderUrl, `no css-loader found in ${cssLoaderUrl}`);
+
+const cssLoaderPath = fileURLToPath(cssLoaderUrl);
 
 export const createCSSLoaders = ({
   isNode,
@@ -24,7 +32,7 @@ export const createCSSLoaders = ({
           exclude: /\.vanilla\.css$/i,
           use: [
             {
-              loader: 'css-loader',
+              loader: cssLoaderPath,
               options: {
                 importLoaders: 1,
                 // sourceMap: isDevelopment,
@@ -48,7 +56,7 @@ export const createCSSLoaders = ({
               },
             },
             {
-              loader: require.resolve('css-loader'),
+              loader: 'css-loader',
               options: {
                 importLoaders: 1,
                 modules: false,

@@ -22,7 +22,7 @@
     "assert-ts": "^0.3.4",
     "classnames": "^2.3.1",
     "dedent": "0.7.0",
-    "deepmerge": "^4.2.2",
+    "deepmerge": "4.2.2",
     "polished": "4.2.2"
   },
   "devDependencies": {
@@ -87,14 +87,13 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/esm/src.js",
-      "require": "./dist/cjs/index.js",
-      "browser": "./dist/umd/index.js"
+      "import": "./dist/esm/src.js"
     },
     "./styles.css": {
-      "import": "./dist/esm/src.css",
-      "require": "./dist/esm/src.css",
-      "browser": "./dist/esm/src.css"
+      "import": "./dist/esm/src.css"
+    },
+    "./package.json": {
+      "import": "./package.json"
     }
   },
   "typesVersions": {

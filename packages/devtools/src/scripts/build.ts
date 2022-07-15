@@ -4,19 +4,19 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-import '../config/env';
+import '../config/env.js';
 import { paths } from '../config/paths.js';
 import { logger } from './logger.js';
-import FileSizeReporter from 'react-dev-utils/FileSizeReporter';
-import { copyPublicFolder } from './utils/copy-public-folder';
-import { compile } from './webpack/compile';
-import { BuildType } from '../types/build';
-import { configure as configureWebpackClient } from '../webpack/client';
-import { configure as configureWebpackServer } from '../webpack/server';
-import { configure as configureWebpackNode } from '../webpack/node';
+import FileSizeReporter from 'react-dev-utils/FileSizeReporter.js';
+import { copyPublicFolder } from './utils/copy-public-folder.js';
+import { compile } from './webpack/compile.js';
+import { BuildType } from '../types/build.js';
+import { configure as configureWebpackClient } from '../webpack/client.js';
+import { configure as configureWebpackServer } from '../webpack/server.js';
+import { configure as configureWebpackNode } from '../webpack/node.js';
 import { assert } from 'assert-ts';
-import { emptyBuildDir } from './empty-build-dir';
-import { consolidateBuildConfigs } from './consolidateBuildConfigs';
+import { consolidateBuildConfigs } from './consolidateBuildConfigs.js';
+
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 
@@ -39,8 +39,6 @@ export const build = async ({
 
   try {
     const previousFileSizes = await measureFileSizesBeforeBuild(publicDir);
-
-    emptyBuildDir();
 
     copyPublicFolder();
 

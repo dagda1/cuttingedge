@@ -3,6 +3,7 @@ import { paths } from '../config/paths.js';
 import fs from 'fs-extra';
 import logger from '../scripts/logger.js';
 import { assert } from 'console';
+import { fileURLToPath } from 'url';
 const setupTestsFileName = 'setupTests.ts';
 const setupTestsCandidates = [path.resolve('.', setupTestsFileName), path.resolve('src', 'tests', setupTestsFileName)];
 const localSetupTestsFile = setupTestsCandidates.find(fs.existsSync);
@@ -10,8 +11,8 @@ if (localSetupTestsFile) {
     logger.debug(`found local setup file ${localSetupTestsFile}`);
 }
 const esModules = ['uuid'].join('|');
-const tsJestTransformer = await import.meta.resolve?.('ts-jest/dist');
-const babelJestTransformer = await import.meta.resolve?.('babel-jest');
+const tsJestTransformer = fileURLToPath((await import.meta.resolve?.('ts-jest/dist')));
+const babelJestTransformer = fileURLToPath((await import.meta.resolve?.('babel-jest')));
 assert(!!tsJestTransformer, 'ts-jest is not installed');
 assert(!!babelJestTransformer, 'babel-jest is not installed');
 const jestConfig = {

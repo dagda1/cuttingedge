@@ -2,7 +2,7 @@ import { describe, it, expect, jest } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
-import { ResponsiveSVG } from './ResponsiveSVG';
+import { ResponsiveSVG } from './ResponsiveSVG.js';
 
 import ResizeObserver from 'resize-observer-polyfill';
 

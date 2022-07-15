@@ -5,24 +5,25 @@ import ProgressBar from 'simple-progress-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import HappyPack from 'happypack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { getEnvironment, getEnvVariables } from './getEnvironment';
-import { createFileLoader } from './loaders/fileLoader';
-import { createJsLoader } from './loaders/jsLoader';
-import { createTypescriptLoader } from './loaders/typescriptLoader';
-import { createCSSLoaders } from './loaders/css';
-import { createCSVLoader } from './loaders/csvLoader';
-import { createSVGLoader } from './loaders/svgLoader';
-import { createMDLoader } from './loaders/mdLoader';
+import { getEnvironment, getEnvVariables } from './getEnvironment.js';
+import { createFileLoader } from './loaders/fileLoader.js';
+import { createJsLoader } from './loaders/jsLoader.js';
+import { createTypescriptLoader } from './loaders/typescriptLoader.js';
+import { createCSSLoaders } from './loaders/css.js';
+import { createCSVLoader } from './loaders/csvLoader.js';
+import { createSVGLoader } from './loaders/svgLoader.js';
+import { createMDLoader } from './loaders/mdLoader.js';
 import type { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from '../types/config';
 import type { Configuration } from 'webpack';
-import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
+// import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin.js';
 import { merge } from 'webpack-merge';
 import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import path from 'path';
-import { createAssetsLoader } from './loaders/assetsLoader';
-import { getFileName } from './getFileName';
+import { createAssetsLoader } from './loaders/assetsLoader.js';
+import { getFileName } from './getFileName.js';
 import EslintWebpackLoader from 'eslint-webpack-plugin';
 import { assert } from 'assert-ts';
+import { fileURLToPath } from 'url';
 
 const reactRefreshRuntimeEntry = await import.meta.resolve?.('react-refresh/runtime');
 const reactRefreshWebpackPluginRuntimeEntry = await import.meta.resolve?.('@pmmmwh/react-refresh-webpack-plugin');
@@ -33,6 +34,7 @@ const reactRefreshRuntimeUtils = await import.meta.resolve?.(
   '@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js',
 );
 const miniCssHot = await import.meta.resolve?.('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
+const vanillaWebpackPlugin = await import.meta.resolve?.('@vanilla-extract/webpack-plugin');
 
 const moduleScopes = [
   reactRefreshRuntimeEntry,
@@ -42,19 +44,19 @@ const moduleScopes = [
   reactRefreshOverlay,
   reactRefreshRuntimeUtils,
   miniCssHot,
-].flatMap((entry) => (!!entry ? [entry] : []));
-
-console.dir(moduleScopes);
+  vanillaWebpackPlugin,
+].flatMap((entry) => (!!entry ? [fileURLToPath(entry)] : []));
 
 for (const moduleScope of moduleScopes) {
   assert(!!moduleScope, `moduleScope is not defined`);
 }
 
-const http = (await import.meta.resolve?.('stream-http')) as string;
-const https = (await import.meta.resolve?.('https-browserify')) as string;
-const stream = (await import.meta.resolve?.('stream-browserify')) as string;
-const hotPoll = (await import.meta.resolve?.('webpack/hot/poll')) as string;
-const nativeUrl = (await import.meta.resolve?.('native-url')) as string;
+const http = fileURLToPath((await import.meta.resolve?.('stream-http')) as string);
+const https = fileURLToPath((await import.meta.resolve?.('https-browserify')) as string);
+const stream = fileURLToPath((await import.meta.resolve?.('stream-browserify')) as string);
+const crypto = fileURLToPath((await import.meta.resolve?.('crypto-browserify')) as string);
+// const hotPoll = fileURLToPath(await import.meta.resolve?.('webpack/hot/poll') as string);
+const nativeUrl = fileURLToPath((await import.meta.resolve?.('native-url')) as string);
 
 export const configureCommon = (
   options: DevServerConfig | ServerBuildConfig | NodeBuildConfig,
@@ -69,6 +71,7 @@ export const configureCommon = (
     isProduction,
     fileType: 'css',
   })}.css`;
+
   const cssChunkFile = `${getFileName({
     isProduction,
     fileType: 'css',
@@ -103,9 +106,11 @@ export const configureCommon = (
         http,
         https,
         stream,
+        crypto,
+        fs: false,
       },
       alias: {
-        'webpack/hot/poll': hotPoll,
+        // 'webpack/hot/poll': hotPoll,
         'native-url': nativeUrl,
       },
       plugins: [
@@ -114,12 +119,12 @@ export const configureCommon = (
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
         // please link the files into your node_modules/ and let module-resolution kick in.
         // Make sure your source files are compiled, as they will not be processed in any way.
-        new ModuleScopePlugin([
-          paths.appSrc,
-          ...moduleScopes,
-          paths.pnpmPath,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ]) as any,
+        // new ModuleScopePlugin([
+        //   paths.appSrc,
+        //   ...moduleScopes,
+        //   paths.pnpmPath,
+        //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // ]) as any,
       ],
       symlinks: true,
     },

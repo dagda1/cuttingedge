@@ -4,6 +4,7 @@ import { paths } from '../config/paths.js';
 import fs from 'fs-extra';
 import logger from '../scripts/logger.js';
 import { assert } from 'console';
+import { fileURLToPath } from 'url';
 
 export type OverridableJestConfig = Pick<
   Config.ProjectConfig,
@@ -39,8 +40,8 @@ if (localSetupTestsFile) {
 
 const esModules = ['uuid'].join('|');
 
-const tsJestTransformer = await import.meta.resolve?.('ts-jest/dist');
-const babelJestTransformer = await import.meta.resolve?.('babel-jest');
+const tsJestTransformer = fileURLToPath((await import.meta.resolve?.('ts-jest/dist')) as string);
+const babelJestTransformer = fileURLToPath((await import.meta.resolve?.('babel-jest')) as string);
 
 assert(!!tsJestTransformer, 'ts-jest is not installed');
 assert(!!babelJestTransformer, 'babel-jest is not installed');
