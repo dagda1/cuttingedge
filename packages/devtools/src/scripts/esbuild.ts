@@ -39,7 +39,7 @@ async function bundle({
   const outdir = path.join(paths.appBuild, format === 'iife' ? 'umd' : format);
   const outfile = path.join(outdir, fileName);
 
-  const reactShimPath = path.resolve(__dirname, '..', '..', '..', 'react-shim.js');
+  const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim.js');
 
   if (!fs.existsSync(reactShimPath)) {
     throw new Error(`no reactShim at ${reactShimPath}`);

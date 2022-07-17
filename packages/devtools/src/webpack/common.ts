@@ -51,12 +51,15 @@ for (const moduleScope of moduleScopes) {
   assert(!!moduleScope, `moduleScope is not defined`);
 }
 
-const http = fileURLToPath((await import.meta.resolve?.('stream-http')) as string);
-const https = fileURLToPath((await import.meta.resolve?.('https-browserify')) as string);
-const stream = fileURLToPath((await import.meta.resolve?.('stream-browserify')) as string);
-const crypto = fileURLToPath((await import.meta.resolve?.('crypto-browserify')) as string);
-// const hotPoll = fileURLToPath(await import.meta.resolve?.('webpack/hot/poll') as string);
+// const http = fileURLToPath((await import.meta.resolve?.('stream-http')) as string);
+// const https = fileURLToPath((await import.meta.resolve?.('https-browserify')) as string);
+// const stream = fileURLToPath((await import.meta.resolve?.('stream-browserify')) as string);
+// const crypto = fileURLToPath((await import.meta.resolve?.('crypto-browserify')) as string);
 const nativeUrl = fileURLToPath((await import.meta.resolve?.('native-url')) as string);
+// const fsPath = fileURLToPath((await import.meta.resolve?.('fs-browsers')) as string);
+// const zlib = fileURLToPath((await import.meta.resolve?.('browserify-zlib')) as string);
+// const net = fileURLToPath((await import.meta.resolve?.('net-browserify')) as string);
+// const hotPoll = fileURLToPath(await import.meta.resolve?.('webpack/hot/poll') as string);
 
 export const configureCommon = (
   options: DevServerConfig | ServerBuildConfig | NodeBuildConfig,
@@ -103,11 +106,13 @@ export const configureCommon = (
         '.csv',
       ],
       fallback: {
-        http,
-        https,
-        stream,
-        crypto,
+        http: false,
+        https: false,
+        stream: false,
+        crypto: false,
         fs: false,
+        zlib: false,
+        net: false,
       },
       alias: {
         // 'webpack/hot/poll': hotPoll,

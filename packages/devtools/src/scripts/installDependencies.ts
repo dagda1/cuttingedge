@@ -1,4 +1,4 @@
-import { ApplicationType } from '../types/applicationType';
+import { ApplicationType } from '../types/applicationType.js';
 import { exec } from 'child_process';
 import { logger } from './logger.js';
 

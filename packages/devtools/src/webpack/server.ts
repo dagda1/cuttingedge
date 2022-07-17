@@ -72,7 +72,6 @@ export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Con
       path: paths.appBuild,
       filename: options.filename,
       publicPath,
-      libraryTarget: 'commonjs2',
     },
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({

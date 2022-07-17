@@ -5,7 +5,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 import { useDebouncedCallback } from 'use-debounce';
 import { useIsMounted, useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { identity, isNil } from '@cutting/util';
-import assert from 'assert-ts';
+import { assert } from 'assert-ts';
 
 export const useParentSize = <E extends Element>(
   ref: RefObject<E>,

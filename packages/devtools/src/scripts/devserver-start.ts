@@ -4,18 +4,20 @@ process.env.NODE_ENV = 'development';
 process.on('unhandledRejection', (err) => {
   throw err;
 });
+
+import type { DevServerConfig } from '../types/config';
 import WebpackDevServer from 'webpack-dev-server';
-import openBrowser from 'react-dev-utils/openBrowser';
+import openBrowser from 'react-dev-utils/openBrowser.js';
 import { paths } from '../config/paths.js';
 import { logger } from '../scripts/logger.js';
-import { choosePort, createCompiler, prepareProxy, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
+import { choosePort, createCompiler, prepareProxy, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils.js';
 import webpack from 'webpack';
-import { configure as configureWebpackClient } from '../webpack/client';
-import { config as buildConfig } from '../config/build.config';
+import { configure as configureWebpackClient } from '../webpack/client.js';
+import { config as buildConfig } from '../config/build.config.js';
 import { assert } from 'assert-ts';
-import type { DevServerConfig } from '../types/config';
 import fs from 'fs-extra';
-import { scaffold } from './createScaffold';
+import { scaffold } from './createScaffold.js';
+import { readFile } from 'fs/promises';
 
 const { devServer } = buildConfig;
 
@@ -48,7 +50,7 @@ const HOST = process.env.HOST || '0.0.0.0';
     }
 
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-    const pkg = await import(paths.appPackageJson);
+    const pkg = JSON.parse(await readFile(paths.appPackageJson, 'utf-8'));
     const { name: appName, proxy: proxySetting } = pkg;
     const urls = prepareUrls(protocol, HOST, port);
 

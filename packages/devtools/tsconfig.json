@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "outDir": "./tools/esm",
+    "outDir": "./tools",
     "baseUrl": "./",
     "rootDir": "./src",
     "skipLibCheck": true,

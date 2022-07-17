@@ -61,9 +61,7 @@
     "extends": "../../package.json"
   },
   "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/index.js"
+    "import": "./dist/esm/index.js"
   },
   "typesVersions": {
     "*": {

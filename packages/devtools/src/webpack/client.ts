@@ -115,7 +115,7 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
         }),
       new HtmlWebpackPartialsPlugin([
         {
-          path: path.join(__dirname, './partial.html'),
+          path: path.join(__dirname, '..', '..', './partial.html'),
           location: 'body',
           priority: 'low',
           options: {

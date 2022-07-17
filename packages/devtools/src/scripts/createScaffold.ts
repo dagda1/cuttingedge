@@ -1,10 +1,10 @@
 import inquirer from 'inquirer';
 import path from 'path';
 import fs from 'fs-extra';
-import { ApplicationType } from '../types/applicationType';
+import { ApplicationType } from '../types/applicationType.js';
 import validateProjectName from 'validate-npm-package-name';
-import { assert } from 'console';
-import { installDependencies, installDevDependencies } from './installDependencies';
+import { assert } from 'assert-ts';
+import { installDependencies, installDevDependencies } from './installDependencies.js';
 
 const appSource: Record<ApplicationType, string> = {
   [ApplicationType.WebApp]: '../../web',

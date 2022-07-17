@@ -30,7 +30,12 @@ export const createWebpackOptimisation = ({
     concatenateModules: isProduction,
     emitOnErrors: true,
     minimizer: [
-      new TerserPlugin({ extractComments: false }),
+      new TerserPlugin({
+        extractComments: false,
+        terserOptions: {
+          ecma: 2020,
+        },
+      }),
       new ImageMinimizerPlugin({
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,

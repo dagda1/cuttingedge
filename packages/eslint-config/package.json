@@ -9,7 +9,8 @@
     "react.js",
     "angular.js",
     "node.js",
-    "README.md"
+    "README.md",
+    "partial.html"
   ],
   "keywords": [
     "eslint",

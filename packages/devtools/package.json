@@ -5,29 +5,29 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "bin": "./tools/esm/bin/cutting.js",
+  "bin": "./tools/bin/cutting.js",
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "type": "module",
-  "module": "tools/esm/index.min.js",
+  "module": "tools/index.min.js",
   "exports": {
     ".": {
-      "import": "./tools/esm/index.min.js"
+      "import": "./tools/index.min.js"
     },
     "./paths.js": {
-      "import": "./tools/esm/config/paths.js"
+      "import": "./tools/config/paths.js"
     }
   },
   "typesVersions": {
     "*": {
       "*": [
-        "tools/esm/index.d.ts"
+        "tools/index.d.ts"
       ]
     }
   },
   "scripts": {
     "build": "NODE_ENV=production tsc --build && pnpm postbuild",
-    "postbuild": "chmod -R 777 tools && git update-index  --chmod=+x --add ./tools/esm/bin/cutting.js",
+    "postbuild": "chmod -R 777 tools && git update-index  --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test",
     "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix"
   },
@@ -83,6 +83,7 @@
     "file-loader": "6.2.0",
     "fork-ts-checker-webpack-plugin": "7.2.13",
     "fs-extra": "10.1.0",
+    "fs-browsers": "1.1.6",
     "happypack": "5.0.1",
     "html-loader": "4.1.0",
     "html-webpack-partials-plugin": "0.8.0",
@@ -98,6 +99,7 @@
     "markdown-loader": "8.0.0",
     "mini-css-extract-plugin": "2.6.1",
     "native-url": "0.3.4",
+    "net-browserify": "0.2.4",
     "papaparse": "5.3.2",
     "postcss": "8.4.16",
     "postcss-import": "15.0.0",
