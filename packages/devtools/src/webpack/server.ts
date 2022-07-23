@@ -18,9 +18,12 @@ import type { DeepPartial } from '../types/deepPartial.js';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getExternals = function (isDevelopment: boolean): any {
   return [
-    nodeExternals(),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    nodeExternals({ importType: 'module' as any }),
     nodeExternals({
       modulesDir: paths.monorepoNodeModules,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      importType: 'module' as any,
       allowlist: [
         // isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,
@@ -34,6 +37,7 @@ export const getExternals = function (isDevelopment: boolean): any {
         /^@cutting/,
         /^@vanilla-extract/,
         /^@capsizecss/,
+        /^react-router-dom/,
       ].filter(Boolean) as AllowlistOption[],
     }),
   ];
@@ -68,10 +72,28 @@ export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Con
     externals: getExternals(isDevelopment),
     entry: entries,
     stats: 'verbose',
+    experiments: {
+      outputModule: true,
+      topLevelAwait: true,
+    },
     output: {
       path: paths.appBuild,
       filename: options.filename,
       publicPath,
+      module: true,
+      libraryTarget: 'module',
+      library: {
+        type: 'module',
+      },
+      chunkLoading: 'import',
+      chunkFormat: 'module',
+      environment: {
+        const: true,
+        destructuring: true,
+        forOf: true,
+        module: true,
+        templateLiteral: true,
+      },
     },
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({

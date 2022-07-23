@@ -944,13 +944,13 @@ importers:
       react-router-dom: 6.3.0
       resize-observer-polyfill: ^1.5.1
       typescript: 4.7.4
-      use-debounce: ^7.0.1
+      use-debounce: 8.0.2
     dependencies:
       '@cutting/hooks': link:../hooks
       '@cutting/util': link:../util
       assert-ts: 0.3.4
       resize-observer-polyfill: 1.5.1
-      use-debounce: 7.0.1_react@18.1.0
+      use-debounce: 8.0.2_react@18.1.0
     devDependencies:
       '@cutting/component-library': link:../component-library
       '@cutting/devtools': link:../devtools
@@ -20811,8 +20811,8 @@ packages:
       querystring: 0.2.0
     dev: true
 
-  /use-debounce/7.0.1_react@18.1.0:
-    resolution: {integrity: sha512-fOrzIw2wstbAJuv8PC9Vg4XgwyTLEOdq4y/Z3IhVl8DAE4svRcgyEUvrEXu+BMNgMoc3YND6qLT61kkgEKXh7Q==}
+  /use-debounce/8.0.2_react@18.1.0:
+    resolution: {integrity: sha512-4yCQ4FmlmYNpcHXJk1E19chO1X58fH4+QrwKpa5nkx3d7szHR3MjheRgECLvHivp3ClUqEom+SHOGB9zBz+qlw==}
     engines: {node: '>= 10.0.0'}
     peerDependencies:
       react: '>=16.8.0'

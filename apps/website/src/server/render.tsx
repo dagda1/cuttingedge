@@ -2,7 +2,9 @@ import type { Request, Response } from 'express';
 import { renderToString } from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
 import { HttpStatusCode, isProduction } from '@cutting/util';
-import { StaticRouter } from 'react-router-dom/server';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { StaticRouter } from 'react-router-dom/server.mjs';
 import { MainRoutes } from '../routes';
 import path from 'path';
 import { Helmet } from 'react-helmet';

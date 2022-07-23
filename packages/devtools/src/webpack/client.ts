@@ -64,17 +64,15 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
     entry: finalEntries,
     devServer: isDevelopment ? createDevServer({ protocol, sockPort, proxy, port }) : {},
     output: {
+      asyncChunks: true,
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,
       pathinfo: isDevelopment,
+      clean: true,
       filename: jsFile,
       hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
       hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
       chunkFilename: jsChunkFile,
-      library: {
-        name: 'LIB',
-        type: 'var',
-      },
       devtoolModuleFilenameTemplate: isProduction
         ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (info: any) => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
