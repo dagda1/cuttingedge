@@ -3,18 +3,10 @@ import type { Options as RuntimeOptions } from '@babel/plugin-transform-runtime'
 import type { ModuleFormat } from '../types/moduleFormat';
 // import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
 
-export function createBabelPresets({
-  moduleFormat,
-}: {
-  isDevelopment: boolean;
-  isProduction: boolean;
-  isNode: boolean;
-  moduleFormat: ModuleFormat;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-}): any[] {
+export function createBabelPresets(): any[] {
   const presetOptions: PresetOptions = {
     exclude: ['transform-typeof-symbol'],
-    modules: moduleFormat === 'esm' ? false : 'auto',
+    modules: false,
     useBuiltIns: 'entry',
     corejs: 3,
   };
@@ -47,7 +39,7 @@ export const createBabelConfig = ({
   return {
     babelrc: false,
     configFile: false,
-    presets: createBabelPresets({ isDevelopment, isProduction, isNode, moduleFormat }),
+    presets: createBabelPresets(),
     // cacheDirectory: true,
     // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
     sourceType: 'unambiguous',

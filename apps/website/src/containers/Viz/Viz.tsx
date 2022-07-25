@@ -1,7 +1,9 @@
 import { Route, Routes } from 'react-router';
-import loadable from '@loadable/component';
 import { fallback } from '../../components/Fallback/Fallback';
 import { MathJaxProvider } from '@cutting/use-mathjax';
+import loadable from '@loadable/component';
+
+console.dir({ loadable });
 
 const Sine = loadable(() => import('../../components/Sine/Sine'), {
   fallback,

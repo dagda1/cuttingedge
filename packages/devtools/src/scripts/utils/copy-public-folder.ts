@@ -1,17 +1,7 @@
 import fs from 'fs-extra';
 import { paths } from '../../config/paths.js';
-import path from 'path';
-
-export const copyRecursiveSync = function copyRecursiveSync(src: string, dest: string): void {
-  fs.copySync(src, dest);
-
-  fs.readdirSync(src)
-    .map((name) => name)
-    .filter((dir) => fs.lstatSync(path.join(src, dir)).isDirectory())
-    .forEach((dir) => {
-      copyRecursiveSync(path.join(src, dir), path.join(dest, dir));
-    });
-};
+import copy from 'copy';
+import { logger } from '../logger.js';
 
 export const copyPublicFolder = (): void => {
   if (!fs.existsSync(paths.appPublic)) {
@@ -22,5 +12,30 @@ export const copyPublicFolder = (): void => {
     fs.mkdirSync(paths.appBuildPublic, { recursive: true });
   }
 
-  copyRecursiveSync(paths.appPublic, paths.appBuildPublic);
+  logger.debug(`copying from ${paths.appPublic} to ${paths.appBuildPublic}`);
+
+  const patterns = [
+    '*.css',
+    '*.js',
+    '*.pdf',
+    '*.docx',
+    '*.png',
+    '*.jpg',
+    '*.md',
+    '*.svg',
+    '*.json',
+    '*.html',
+    '*.csv',
+    'config.js',
+    '*.ico',
+    '*.properties',
+  ].map((pattern) => `${paths.appPublic}/**/${pattern}`);
+
+  logger.debug(`copying assets to ${paths.appBuildPublic}`);
+
+  copy(patterns, paths.appBuildPublic, (err) => {
+    if (err) {
+      throw err;
+    }
+  });
 };

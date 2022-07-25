@@ -3,7 +3,6 @@ import type { Configuration } from 'webpack';
 import type { ServerBuildConfig } from '../types/config';
 import { merge } from 'webpack-merge';
 import webpack from 'webpack';
-import type { AllowlistOption } from 'webpack-node-externals';
 import nodeExternals from 'webpack-node-externals';
 import { paths } from '../config/paths.js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -15,17 +14,12 @@ import { isPlugin } from './guards.js';
 import { getUrlParts } from './getUrlParts.js';
 import type { DeepPartial } from '../types/deepPartial.js';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getExternals = function (isDevelopment: boolean): any {
+const getExternals = function () {
   return [
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    nodeExternals({ importType: 'module' as any }),
     nodeExternals({
-      modulesDir: paths.monorepoNodeModules,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       importType: 'module' as any,
       allowlist: [
-        // isDevelopment ? 'webpack/hot/poll?300' : null,
         /\.(eot|woff|woff2|ttf|otf)$/,
         /\.(svg|png|jpg|jpeg|gif|ico)$/,
         /\.(mp4|mp3|ogg|swf|webp)$/,
@@ -33,12 +27,13 @@ export const getExternals = function (isDevelopment: boolean): any {
         /\.css.ts$/,
         /^mathjax-full/,
         /^@babel/,
-        /^@loadable/,
         /^@cutting/,
         /^@vanilla-extract/,
         /^@capsizecss/,
         /^react-router-dom/,
-      ].filter(Boolean) as AllowlistOption[],
+      ],
+      modulesDir: paths.ownNodeModules,
+      additionalModuleDirs: [paths.monorepoNodeModules],
     }),
   ];
 };
@@ -69,7 +64,7 @@ export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Con
     name: 'server',
     target: 'node',
     watch: isDevelopment,
-    externals: getExternals(isDevelopment),
+    externals: getExternals(),
     entry: entries,
     stats: 'verbose',
     experiments: {
@@ -93,6 +88,7 @@ export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Con
         forOf: true,
         module: true,
         templateLiteral: true,
+        arrowFunction: true,
       },
     },
     plugins: [

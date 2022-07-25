@@ -14,7 +14,7 @@ const getExternals = () => {
   return [
     nodeExternals(),
     nodeExternals({
-      allowlist: [/^@cutting/].filter((x) => x),
+      allowlist: [/^@cutting/].filter(Boolean),
     }),
   ];
 };
@@ -33,7 +33,7 @@ export const configure = (options: NodeBuildConfig, overrides: DeepPartial<Confi
     entry: entries,
     output: {
       path: paths.appBuild,
-      filename: 'index.cjs',
+      filename: 'index.mjs',
     },
     plugins: [
       new WriteFilePlugin(),

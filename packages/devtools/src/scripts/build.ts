@@ -40,8 +40,6 @@ export const build = async ({
   try {
     const previousFileSizes = await measureFileSizesBeforeBuild(publicDir);
 
-    copyPublicFolder();
-
     if (nodeConfig) {
       await compile(nodeConfig, BuildType.node);
       logger.done('finished building node webpack build');
@@ -64,6 +62,8 @@ export const build = async ({
 
       logger.done('finished building server webpack build');
     }
+
+    copyPublicFolder();
 
     printFileSizesAfterBuild(clientStats, previousFileSizes, publicDir);
 
