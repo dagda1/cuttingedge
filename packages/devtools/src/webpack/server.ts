@@ -33,6 +33,7 @@ const getExternals = function () {
         /^@vanilla-extract/,
         /^@capsizecss/,
         /^react-router-dom/,
+        /^webpack\/hot/,
       ],
       modulesDir: paths.ownNodeModules,
     }),

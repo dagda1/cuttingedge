@@ -51,13 +51,14 @@ for (const moduleScope of moduleScopes) {
   assert(!!moduleScope, `moduleScope is not defined`);
 }
 
-// const http = fileURLToPath((await import.meta.resolve?.('stream-http')) as string);
 // const https = fileURLToPath((await import.meta.resolve?.('https-browserify')) as string);
 // const stream = fileURLToPath((await import.meta.resolve?.('stream-browserify')) as string);
-// const crypto = fileURLToPath((await import.meta.resolve?.('crypto-browserify')) as string);
+const http = fileURLToPath((await import.meta.resolve?.('stream-http')) as string);
 const nativeUrl = fileURLToPath((await import.meta.resolve?.('native-url')) as string);
+const pathBrowserify = fileURLToPath((await import.meta.resolve?.('path-browserify')) as string);
+const crypto = fileURLToPath((await import.meta.resolve?.('crypto-browserify')) as string);
+const zlib = fileURLToPath((await import.meta.resolve?.('browserify-zlib')) as string);
 // const fsPath = fileURLToPath((await import.meta.resolve?.('fs-browsers')) as string);
-// const zlib = fileURLToPath((await import.meta.resolve?.('browserify-zlib')) as string);
 // const net = fileURLToPath((await import.meta.resolve?.('net-browserify')) as string);
 // const hotPoll = fileURLToPath(await import.meta.resolve?.('webpack/hot/poll') as string);
 
@@ -106,17 +107,19 @@ export const configureCommon = (
         '.csv',
       ],
       fallback: {
-        http: false,
+        fs: false,
+        path: pathBrowserify,
+        crypto,
+        http,
+        zlib,
         https: false,
         stream: false,
-        crypto: false,
-        fs: false,
-        zlib: false,
         net: false,
       },
       alias: {
         // 'webpack/hot/poll': hotPoll,
         'native-url': nativeUrl,
+        zlib,
       },
       plugins: [
         // Prevents users from importing files from outside of src/ (or node_modules/).

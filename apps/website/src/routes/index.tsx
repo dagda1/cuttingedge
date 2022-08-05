@@ -2,9 +2,10 @@ import * as Urls from '../urls';
 import { Route, Routes } from 'react-router';
 import type { Page } from '../types';
 import { ContactMe } from '../components/ContactMe';
-import loadable from '@loadable/component';
+import loadableModule from '@loadable/component';
+import { unwrap } from '../modules/unwrap';
 
-console.dir({ loadable });
+const loadable = unwrap(loadableModule);
 
 const fallback = <div>loading....</div>;
 
