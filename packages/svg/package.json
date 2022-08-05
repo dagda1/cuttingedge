@@ -7,10 +7,7 @@
   },
   "module": "dist/esm/index.js",
   "type": "module",
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
+  "sideEffects": false,
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "dependencies": {

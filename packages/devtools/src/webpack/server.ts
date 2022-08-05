@@ -16,6 +16,7 @@ import type { DeepPartial } from '../types/deepPartial.js';
 
 const getExternals = function () {
   return [
+    nodeExternals({ importType: 'module' as any }),
     nodeExternals({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       importType: 'module' as any,
@@ -27,13 +28,13 @@ const getExternals = function () {
         /\.css.ts$/,
         /^mathjax-full/,
         /^@babel/,
+        /^@loadable/,
         /^@cutting/,
         /^@vanilla-extract/,
         /^@capsizecss/,
         /^react-router-dom/,
       ],
       modulesDir: paths.ownNodeModules,
-      additionalModuleDirs: [paths.monorepoNodeModules],
     }),
   ];
 };
@@ -62,7 +63,7 @@ export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Con
 
   const config: Configuration = merge(common, overrides, {
     name: 'server',
-    target: 'node',
+    target: 'node16',
     watch: isDevelopment,
     externals: getExternals(),
     entry: entries,

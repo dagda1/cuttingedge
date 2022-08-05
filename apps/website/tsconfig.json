@@ -8,11 +8,11 @@
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "../../node_modules/@types/d3/index.d.ts"],
   "references": [
-    { "path": "../../packages/util/tsconfig.dist.json" },
-    { "path": "../../packages/hooks/tsconfig.dist.json" },
-    { "path": "../../packages/component-library/tsconfig.dist.json" },
-    { "path": "../../packages/svg/tsconfig.dist.json" },
-    { "path": "../../packages/react-abortable-fetch/tsconfig.dist.json" },
-    { "path": "../../packages/use-mathjax/tsconfig.dist.json"}
+    { "path": "../../packages/util/tsconfig.json" },
+    { "path": "../../packages/hooks/tsconfig.json" },
+    { "path": "../../packages/component-library/tsconfig.json" },
+    { "path": "../../packages/svg/tsconfig.json" },
+    { "path": "../../packages/react-abortable-fetch/tsconfig.json" },
+    { "path": "../../packages/use-mathjax/tsconfig.json"}
   ]
 }

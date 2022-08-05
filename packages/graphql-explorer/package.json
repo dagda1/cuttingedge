@@ -57,9 +57,12 @@
     "dataviz"
   ],
   "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js",
-    "browser": "./dist/umd/index.js"
+    ".": {
+      "import": "./dist/esm/src.js"
+    },
+    "./types": {
+      "import": "./dist/esm/src.css"
+    }
   },
   "typesVersions": {
     "*": {

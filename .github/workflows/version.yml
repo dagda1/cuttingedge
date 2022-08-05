@@ -35,10 +35,14 @@ jobs:
         id: install_pnpm
         with:
 <<<<<<< HEAD
+<<<<<<< HEAD
           version: 7.11.0
 =======
           version: 7.5.2
 >>>>>>> 9d7bd9d25 (rename eslint js files to cjs)
+=======
+          version: 7.8.0
+>>>>>>> 7c8e2fda5 (more module fixes)
 
       - name: echo npm dest
         run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"

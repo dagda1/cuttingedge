@@ -11,7 +11,7 @@ export const config: BuildConfig = {
   },
   server: {
     entries: paths.appServerIndexJs,
-    filename: 'server.js',
+    filename: 'server.mjs',
     bail: true,
     ssrBuild: true,
     isNode: true,
