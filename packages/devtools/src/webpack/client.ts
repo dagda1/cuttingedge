@@ -7,7 +7,7 @@ import { configureCommon } from './common.js';
 import { paths } from '../config/paths.js';
 import fs from 'fs';
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin.js';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+// import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { getUrlParts } from './getUrlParts.js';
 import { getEnvironment } from './getEnvironment.js';
 import { createDevServer } from './loaders/createDevServer.js';
@@ -68,7 +68,6 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
       path: isStaticBuild ? paths.appBuild : paths.appBuildPublic,
       publicPath,
       pathinfo: isDevelopment,
-      clean: true,
       filename: jsFile,
       hotUpdateChunkFilename: 'static/js/[id].[hash].hot-update.js',
       hotUpdateMainFilename: 'static/js/[hash].hot-update.json',
@@ -80,14 +79,15 @@ export const configure = (options: DevServerConfig, overrides: DeepPartial<Confi
           (info: any) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
     plugins: [
-      isDevelopment &&
-        new ReactRefreshWebpackPlugin({
-          overlay: {
-            sockIntegration: 'wds',
-            sockPort,
-          },
-        }),
-      isDevelopment && isStaticBuild && new webpack.HotModuleReplacementPlugin(),
+      // isDevelopment &&
+      //   new ReactRefreshWebpackPlugin({
+      //     esModule: true,
+      //     exclude: /^server$/,
+      //     overlay: {
+      //       sockIntegration: 'whm',
+      //     },
+      //   }),
+      // isDevelopment && isStaticBuild && new webpack.HotModuleReplacementPlugin(),
       ssrBuild &&
         new LoadableWebpackPlugin({
           writeToDisk: { filename: paths.appBuild },

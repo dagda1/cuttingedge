@@ -15,52 +15,24 @@ import { createSVGLoader } from './loaders/svgLoader.js';
 import { createMDLoader } from './loaders/mdLoader.js';
 import type { DevServerConfig, ServerBuildConfig, NodeBuildConfig } from '../types/config';
 import type { Configuration } from 'webpack';
-// import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin.js';
+import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin.js';
 import { merge } from 'webpack-merge';
 import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import path from 'path';
 import { createAssetsLoader } from './loaders/assetsLoader.js';
 import { getFileName } from './getFileName.js';
 import EslintWebpackLoader from 'eslint-webpack-plugin';
-import { assert } from 'assert-ts';
-import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
-const reactRefreshRuntimeEntry = await import.meta.resolve?.('react-refresh/runtime');
-const reactRefreshWebpackPluginRuntimeEntry = await import.meta.resolve?.('@pmmmwh/react-refresh-webpack-plugin');
-const babelRuntimeEntryHelpers = await import.meta.resolve?.('@babel/runtime/helpers/esm/assertThisInitialized');
-const babelRuntimeRegenerator = await import.meta.resolve?.('@babel/runtime/regenerator');
-const reactRefreshOverlay = await import.meta.resolve?.('@pmmmwh/react-refresh-webpack-plugin/overlay');
-const reactRefreshRuntimeUtils = await import.meta.resolve?.(
-  '@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js',
-);
-const miniCssHot = await import.meta.resolve?.('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
-const vanillaWebpackPlugin = await import.meta.resolve?.('@vanilla-extract/webpack-plugin');
+const require = createRequire(import.meta.url);
 
-const moduleScopes = [
-  reactRefreshRuntimeEntry,
-  reactRefreshWebpackPluginRuntimeEntry,
-  babelRuntimeEntryHelpers,
-  babelRuntimeRegenerator,
-  reactRefreshOverlay,
-  reactRefreshRuntimeUtils,
-  miniCssHot,
-  vanillaWebpackPlugin,
-].flatMap((entry) => (!!entry ? [fileURLToPath(entry)] : []));
-
-for (const moduleScope of moduleScopes) {
-  assert(!!moduleScope, `moduleScope is not defined`);
-}
-
-// const https = fileURLToPath((await import.meta.resolve?.('https-browserify')) as string);
-// const stream = fileURLToPath((await import.meta.resolve?.('stream-browserify')) as string);
-const http = fileURLToPath((await import.meta.resolve?.('stream-http')) as string);
-const nativeUrl = fileURLToPath((await import.meta.resolve?.('native-url')) as string);
-const pathBrowserify = fileURLToPath((await import.meta.resolve?.('path-browserify')) as string);
-const crypto = fileURLToPath((await import.meta.resolve?.('crypto-browserify')) as string);
-const zlib = fileURLToPath((await import.meta.resolve?.('browserify-zlib')) as string);
-// const fsPath = fileURLToPath((await import.meta.resolve?.('fs-browsers')) as string);
-// const net = fileURLToPath((await import.meta.resolve?.('net-browserify')) as string);
-// const hotPoll = fileURLToPath(await import.meta.resolve?.('webpack/hot/poll') as string);
+const reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime');
+const reactRefreshWebpackPlugin = require.resolve('@pmmmwh/react-refresh-webpack-plugin');
+const babelRuntimeEntryHelpers = require.resolve('@babel/runtime/helpers/esm/assertThisInitialized');
+const babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator');
+const reactRefreshOverlay = require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay');
+const reactRefreshRuntimeUtils = require.resolve('@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js');
+const miniCssHot = require.resolve('mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js');
 
 export const configureCommon = (
   options: DevServerConfig | ServerBuildConfig | NodeBuildConfig,
@@ -108,18 +80,16 @@ export const configureCommon = (
       ],
       fallback: {
         fs: false,
-        path: pathBrowserify,
-        crypto,
-        http,
-        zlib,
-        https: false,
-        stream: false,
-        net: false,
+        http: require.resolve('stream-http'),
+        https: require.resolve('https-browserify'),
+        stream: require.resolve('stream-browserify'),
+        crypto: require.resolve('crypto-browserify'),
+        zlib: require.resolve('crypto-browserify'),
+        path: require.resolve('path-browserify')
       },
       alias: {
-        // 'webpack/hot/poll': hotPoll,
-        'native-url': nativeUrl,
-        zlib,
+        'webpack/hot/poll': require.resolve('webpack/hot/poll'),
+        'native-url': require.resolve('native-url'),
       },
       plugins: [
         // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -127,12 +97,18 @@ export const configureCommon = (
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
         // please link the files into your node_modules/ and let module-resolution kick in.
         // Make sure your source files are compiled, as they will not be processed in any way.
-        // new ModuleScopePlugin([
-        //   paths.appSrc,
-        //   ...moduleScopes,
-        //   paths.pnpmPath,
-        //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        // ]) as any,
+        new ModuleScopePlugin([
+          paths.appSrc,
+          reactRefreshRuntimeEntry,
+          reactRefreshWebpackPlugin,
+          babelRuntimeEntryHelpers,
+          babelRuntimeRegenerator,
+          reactRefreshOverlay,
+          reactRefreshRuntimeUtils,
+          miniCssHot,
+          paths.pnpmPath,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ]) as any,
       ],
       symlinks: true,
     },
@@ -179,6 +155,14 @@ export const configureCommon = (
           typescript: {
             configFile: paths.tsConfigProduction,
             build: paths.projectReferences,
+            diagnosticOptions: {
+              semantic: true,
+              syntactic: true,
+            },
+          },
+          logger: {
+            log: console.log,
+            error: console.error
           },
         }),
         new EslintWebpackLoader({

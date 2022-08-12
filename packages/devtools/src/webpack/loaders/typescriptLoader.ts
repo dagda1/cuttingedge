@@ -1,8 +1,9 @@
 import { paths } from '../../config/paths.js';
 import type { Options } from 'ts-loader';
 import type { RuleSetRule } from 'webpack';
-import { createBabelConfig } from '../../scripts/createBabelConfig.js';
 import type { ModuleFormat } from '../../types/moduleFormat.js';
+// import ReactRefreshTypeScript from 'react-refresh-typescript';
+import { createBabelConfig } from '../../scripts/createBabelConfig.js';
 
 export const createTypescriptLoader = ({
   isDevelopment,
@@ -15,6 +16,8 @@ export const createTypescriptLoader = ({
 }): RuleSetRule[] => {
   const isProduction = !isDevelopment;
 
+  // const isHot = isDevelopment && !isNode;
+
   const options: Partial<Options> = {
     silent: isDevelopment,
     configFile: isProduction ? paths.tsConfigProduction : paths.tsConfig,
@@ -22,7 +25,12 @@ export const createTypescriptLoader = ({
     happyPackMode: isDevelopment,
     projectReferences: paths.projectReferences,
     compilerOptions: {},
-    logLevel: 'WARN',
+    logLevel: 'ERROR',
+    // ...(isHot && {
+    //   getCustomTransformers: () => ({
+    //     before: [ReactRefreshTypeScript()],
+    //   }),
+    // }),
   };
 
   return [

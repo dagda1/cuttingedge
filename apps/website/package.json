@@ -15,7 +15,7 @@
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "test": "NODE_ENV=test devtools test",
     "deploy": "NODE_ENV=production pnpm build && ./bin/deploy.sh",
-    "serve": "PORT=3000 NODE_ENV=production node ./dist/server.js"
+    "serve": "PORT=3000 NODE_ENV=production node ./dist/server.mjs"
   },
   "sideEffects": [
     "**/*.css",

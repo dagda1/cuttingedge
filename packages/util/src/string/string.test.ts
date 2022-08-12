@@ -1,5 +1,6 @@
 import { padNumber, stripSpaces, capitalize } from './index';
 import { expect, it, describe } from '@jest/globals';
+import { assert } from 'assert-ts';
 
 describe('string', () => {
   it('capitalize - should have first char uppercase', () => {
@@ -15,6 +16,7 @@ describe('string', () => {
     ${'a  b  c       '} | ${'abc'} | ${'removes all kinds of sapces'}
     ${''}               | ${''}    | ${'can parse an empty string'}
   `('subject:$subject is $expected, //$message', ({ subject, expected }) => {
+    assert(!!subject, `subject is not null`);
     expect(stripSpaces(subject)).toBe(expected);
   });
 

@@ -4,6 +4,7 @@
   "description": "Cutting Typescript Config",
   "author": "Paul Cowan <engineering@frontside.com>",
   "license": "MIT",
+  "type": "module",
   "files": [
     "tsconfig.json",
     "tsconfig.test.json"

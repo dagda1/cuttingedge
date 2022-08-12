@@ -16,6 +16,7 @@ import type { DeepPartial } from '../types/deepPartial.js';
 
 const getExternals = function () {
   return [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     nodeExternals({ importType: 'module' as any }),
     nodeExternals({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -97,10 +98,10 @@ export const configure = (options: ServerBuildConfig, overrides: DeepPartial<Con
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1,
       }),
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
+      // isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment &&
         new StartServerPlugin({
-          name: 'server.js',
+          name: 'server.mjs',
           nodeArgs,
         }),
     ].filter(isPlugin),

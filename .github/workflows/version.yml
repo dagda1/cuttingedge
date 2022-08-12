@@ -36,6 +36,7 @@ jobs:
         with:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           version: 7.11.0
 =======
           version: 7.5.2
@@ -43,6 +44,9 @@ jobs:
 =======
           version: 7.8.0
 >>>>>>> 7c8e2fda5 (more module fixes)
+=======
+          version: 7.9.1
+>>>>>>> 781eaf6c3 (upgrade components)
 
       - name: echo npm dest
         run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"

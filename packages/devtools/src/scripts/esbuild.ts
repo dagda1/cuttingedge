@@ -20,7 +20,6 @@ const buildConfig = consolidateBuildConfigs();
 type ModuleFormat = Required<Pick<CommonOptions, 'format'>>['format'];
 
 async function bundle({
-  format,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   env,
   analyze,
@@ -35,9 +34,7 @@ async function bundle({
 
   assert(Array.isArray(entryPoints), `build config entries needs to be a string array`);
 
-  const fileName = `index.js`;
-  const outdir = path.join(paths.appBuild, format === 'iife' ? 'umd' : format);
-  const outfile = path.join(outdir, fileName);
+  const outdir = path.join(paths.appBuild, 'esm');
 
   const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim.js');
 
@@ -47,23 +44,22 @@ async function bundle({
 
   const result = await build({
     entryPoints,
-    outfile: format !== 'esm' ? outfile : undefined,
-    outdir: format === 'esm' ? outdir : undefined,
+    outdir,
     bundle: true,
     minify: true,
     platform: 'browser',
     sourcemap: true,
-    format,
-    target: ['es2020', 'chrome73', 'firefox67', 'safari12', 'edge18', 'node16'],
+    format: 'esm',
+    target: ['es2020', 'chrome85', 'firefox85', 'safari14', 'edge19', 'node16'],
     treeShaking: true,
     allowOverwrite: true,
     inject: [reactShimPath],
     tsconfig: paths.tsConfigProduction,
-    jsx: 'transform',
+    jsx: 'automatic',
     logLevel: 'debug',
     color: true,
     mainFields: ['module', 'main'],
-    splitting: format === 'esm',
+    splitting: true,
     metafile: analyze,
     plugins: [
       nodeExternalsPlugin({

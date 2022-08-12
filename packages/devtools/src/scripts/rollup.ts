@@ -138,10 +138,10 @@ async function generateBundledModule({
         },
       }),
       babel({
-        exclude: /\/node_modules\/(core-js)\//,
         babelHelpers: 'runtime',
         ...babelConfig,
         extensions: [...DEFAULT_EXTENSIONS, 'ts', 'tsx'],
+        sourceType: 'module'
       } as RollupBabelInputPluginOptions),
       // injectProcessEnv({
       //   NODE_ENV: env,
@@ -192,9 +192,7 @@ async function generateBundledModule({
       }) as OutputOptions,
     );
   } else {
-    const pkgName = safePackageName(packageName);
-    const extension = env === 'production' ? 'min.js' : 'js';
-    const fileName = moduleFormat === 'esm' ? `index.js` : `${pkgName}.cjs.${env}.${extension}`;
+    const fileName = `index.js`;
     const outputFileName = path.join(paths.appBuild, moduleFormat, fileName);
 
     logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);

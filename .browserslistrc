@@ -1,5 +1,6 @@
-Chrome >= 73
-ChromeAndroid >= 75
-Firefox >= 67
+Chrome >= 85
+ChromeAndroid >= 85
+Firefox >= 85
+safari >14
 last 1 year
 node 16.6

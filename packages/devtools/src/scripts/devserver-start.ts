@@ -60,8 +60,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 
     config.devServer.proxy = prepareProxy(proxySetting, paths.appPublic, paths.publicUrlOrPath);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const server = new WebpackDevServer(config.devServer as any, compiler as any) as any;
+    const server = new WebpackDevServer(config.devServer, compiler);
 
     logger.info('Starting the development server...\n');
 
