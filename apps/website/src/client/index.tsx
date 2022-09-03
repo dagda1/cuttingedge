@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { hydrate } from 'react-dom';
+import { hydrateRoot } from 'react-dom/client';
 import { loadableReady } from '@loadable/component';
 
 import { App } from '../containers/App';
@@ -25,6 +25,6 @@ if (typeof import.meta.hot !== undefined) {
 } else {
   loadableReady(() => {
     const root = document.getElementById('main');
-    hydrate(<App />, root);
+    hydrateRoot(root, <App />);
   });
 }

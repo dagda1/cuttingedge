@@ -1,5 +1,3 @@
-import type { LegacyRef, RefCallback, RefObject } from 'react';
-
 export interface Dimensions {
   width: number;
   height: number;
@@ -10,8 +8,5 @@ export interface UseParentSizeOptions {
   initialValues: Dimensions;
   transformFunc?: ({ width, height }: Dimensions) => Dimensions;
 }
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type RefType = LegacyRef<any> | RefObject<any> | RefCallback<HTMLElement>;
 
 export type UseParentSizeResult = Dimensions;
