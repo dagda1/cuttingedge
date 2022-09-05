@@ -56,7 +56,7 @@
     "csstype": "3.0.11",
     "esbuild": "0.14.34",
     "eslint": "8.17.0",
-    "node-fetch": "3.2.3",
+    "node-fetch": "3.2.10",
     "postcss": "8.4.12",
     "react": "18.1.0",
     "react-dom": "18.1.0",
@@ -104,6 +104,10 @@
         "dist/esm/index.d.ts"
       ]
     }
+  },
+  "lint-staged": {
+    "*.js": "eslint ./src/**/*.{js} --fix",
+    "*.ts": "eslint ./src/**/*.{js} --fix"
   },
   "pnpm": {
     "overrides": {

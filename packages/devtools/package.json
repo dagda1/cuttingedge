@@ -184,6 +184,10 @@
     "typescript": "4.7.3",
     "xml": "1.0.1"
   },
+  "lint-staged": {
+    "*.js": "eslint ./src/**/*.{js} --fix",
+    "*.ts": "eslint ./src/**/*.{js} --fix"
+  },
   "volta": {
     "extends": "../../package.json"
   }

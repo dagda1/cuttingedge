@@ -1,6 +1,9 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "baseBranch": "origin/main",
+  "globalDependencies": [
+    "tsconfig-base.json",
+    "tsconfig.packages.json"
+  ],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -8,7 +11,7 @@
     },
     "test": {
       "dependsOn": [],
-      "outputs": ["coverage/**/*"],
+      "outputs": [],
       "inputs": ["src/**/*.tsx", "src/**/*.ts", "src/test/**/*.ts", "src/test/**/*.tsx"]
     },
 		"lint": {

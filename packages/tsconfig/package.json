@@ -13,5 +13,9 @@
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "lint-staged": {
+    "*.js": "eslint ./src/**/*.{js} --fix",
+    "*.ts": "eslint ./src/**/*.{js} --fix"
   }
 }
