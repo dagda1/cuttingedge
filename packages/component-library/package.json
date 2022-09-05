@@ -105,11 +105,6 @@
       ]
     }
   },
-  "lint-staged": {
-    "*.js": "eslint ./src/**/*.{js} --fix",
-    "*.ts": "eslint ./src/**/*.{ts} --fix",
-    "*.tsx": "eslint ./src/**/*.{ts} --fix"
-  },
   "pnpm": {
     "overrides": {
       "@babel/core@<7.18.2": ">=7.18.2",

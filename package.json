@@ -56,6 +56,11 @@
   "volta": {
     "node": "16.15.1"
   },
+  "lint-staged": {
+    "{packages|apps}/**/*.{js,jsx,ts,tsx,mjs,cjs}": [
+      "eslint --fix"
+    ]
+  },
   "pnpm": {
     "overrides": {
       "@babel/core@<7.18.2": ">=7.18.2",

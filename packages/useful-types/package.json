@@ -15,11 +15,6 @@
   "volta": {
     "extends": "../../package.json"
   },
-  "lint-staged": {
-    "*.js": "eslint ./src/**/*.{js} --fix",
-    "*.ts": "eslint ./src/**/*.{ts} --fix",
-    "*.tsx": "eslint ./src/**/*.{ts} --fix"
-  },
   "devDependencies": {
     "@cutting/eslint-config": "workspace:*"
   }

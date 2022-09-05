@@ -77,11 +77,6 @@
   "msw": {
     "workerDirectory": "demo/public"
   },
-  "lint-staged": {
-    "*.js": "eslint ./src/**/*.{js} --fix",
-    "*.ts": "eslint ./src/**/*.{ts} --fix",
-    "*.tsx": "eslint ./src/**/*.{ts} --fix"
-  },
   "exports": {
     "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.js",
