@@ -1,5 +1,5 @@
 # production dockerfile
-FROM node:14.19.1
+FROM node:16.15.1
 
 ARG NPM_TOKEN
 ENV NPM_TOKEN $NPM_TOKEN
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make\
     nasm 
 
-RUN npm install -g pnpm@7.4.1
+RUN npm install -g pnpm@7.10.0
 
 RUN rm -rf /cutting/
 
