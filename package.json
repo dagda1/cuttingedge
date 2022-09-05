@@ -56,11 +56,6 @@
   "volta": {
     "node": "16.15.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "pnpm build && pnpm lint"
-    }
-  },
   "pnpm": {
     "overrides": {
       "@babel/core@<7.17.8": ">=7.17.8",
