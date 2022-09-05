@@ -13,15 +13,17 @@ export const keyBy = <T, K extends keyof T & PropertyKey>(array: T[], key: K) =>
 export const pickBy = <T>(
   o: T,
   predicate: <K extends keyof T>(value: T[K]) => PropertyReturn | boolean,
-): PartialShallow<T> => {
+): PartialShallow<T> | undefined | null => {
   if (isNil(o)) {
     return o;
   }
 
   const ret: PartialShallow<T> = {};
 
-  for (const [key, value] of Object.entries(o)) {
-    if (isNil(value) || !!predicate(value) === false) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  for (const [key, value] of Object.entries(o as any)) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (isNil(value) || !!predicate(value as any) === false) {
       continue;
     }
 

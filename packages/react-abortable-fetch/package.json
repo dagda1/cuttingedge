@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
-    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_ENV=test devtools test",
+    "test": "echo disabled #NODE_OPTIONS=--experimental-vm-modules NODE_ENV=test devtools test",
     "build": "NODE_ENV=production devtools rollup"
   },
   "dependencies": {
@@ -27,31 +27,31 @@
     "@effection/main": "2.0.3",
     "@effection/subscription": "2.0.3",
     "@effection/stream": "2.0.3",
-    "@xstate/react": "^3.0.0",
+    "@xstate/react": "^3.0.1",
     "abortcontroller-polyfill": "^1.7.3",
     "assert-ts": "^0.3.4",
     "cross-fetch": "^3.1.5",
     "effection": "^2.0.4",
-    "fetch-jsonp": "^1.2.1",
-    "xstate": "^4.31.0"
+    "fetch-jsonp": "^1.2.2",
+    "xstate": "^4.33.5"
   },
   "devDependencies": {
-    "@babel/runtime": "7.18.3",
+    "@babel/runtime": "7.18.9",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@testing-library/react-hooks": "8.0.0",
-    "@types/react": "18.0.15",
+    "@testing-library/react-hooks": "8.0.1",
+    "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
-    "@vanilla-extract/babel-plugin": "1.1.6",
-    "@vanilla-extract/css": "^1.7.1",
+    "@vanilla-extract/babel-plugin": "1.1.7",
+    "@vanilla-extract/css": "^1.7.4",
     "classnames": "2.3.1",
-    "eslint": "8.17.0",
-    "msw": "0.39.2",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "typescript": "4.7.3"
+    "eslint": "8.23.0",
+    "msw": "0.47.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.8.2"
   },
   "files": [
     "dist",
@@ -79,7 +79,8 @@
   },
   "lint-staged": {
     "*.js": "eslint ./src/**/*.{js} --fix",
-    "*.ts": "eslint ./src/**/*.{js} --fix"
+    "*.ts": "eslint ./src/**/*.{ts} --fix",
+    "*.tsx": "eslint ./src/**/*.{ts} --fix"
   },
   "exports": {
     "import": "./dist/esm/index.js",
@@ -91,6 +92,11 @@
       "*": [
         "dist/esm/index.d.ts"
       ]
+    }
+  },
+  "pnpm": {
+    "overrides": {
+      "cross-fetch@<3.1.5": ">=3.1.5"
     }
   }
 }

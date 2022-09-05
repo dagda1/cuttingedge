@@ -17,7 +17,7 @@ export function ErrorMessage({
   className,
 }: ErrorProps): JSX.Element {
   return (
-    <span id={id} data-selector={dataSelector} className={cs(styles.root, className)}>
+    <span id={id} data-testid={dataSelector} className={cs(styles.root, className)}>
       <span className={visuallyHidden}>Error:</span>
       {errorMessage}
     </span>

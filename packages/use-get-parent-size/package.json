@@ -27,7 +27,7 @@
     "@cutting/util": "workspace:*",
     "assert-ts": "^0.3.4",
     "resize-observer-polyfill": "^1.5.1",
-    "use-debounce": "^7.0.1"
+    "use-debounce": "^8.0.4"
   },
   "devDependencies": {
     "@vanilla-extract/sprinkles": "1.4.1",
@@ -36,19 +36,19 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@testing-library/jest-dom": "5.16.4",
-    "@testing-library/react": "13.3.0",
-    "@testing-library/react-hooks": "8.0.0",
-    "@types/react": "18.0.15",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/react-hooks": "8.0.1",
+    "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
     "@types/react-router-dom": "5.3.3",
-    "@vanilla-extract/babel-plugin": "1.1.6",
-    "@vanilla-extract/css": "^1.7.1",
-    "eslint": "8.17.0",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
+    "@vanilla-extract/babel-plugin": "1.1.7",
+    "@vanilla-extract/css": "^1.7.4",
+    "eslint": "8.23.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-router-dom": "6.3.0",
-    "typescript": "4.7.3"
+    "typescript": "4.8.2"
   },
   "peerDependencies": {
     "react": ">= 18.x.x",
@@ -59,7 +59,8 @@
   },
   "lint-staged": {
     "*.js": "eslint ./src/**/*.{js} --fix",
-    "*.ts": "eslint ./src/**/*.{js} --fix"
+    "*.ts": "eslint ./src/**/*.{ts} --fix",
+    "*.tsx": "eslint ./src/**/*.{ts} --fix"
   },
   "keywords": [
     "hotkeys",

@@ -150,7 +150,8 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
 
             const resolvedInit = { ...init, body };
 
-            let response: Response & Body = yield fetcher(request as string, resolvedInit);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            let response: Response & Body = yield fetcher(request as string, resolvedInit as any);
 
             while (!response.ok && retries.current > 0) {
               yield sleep(retryDelay);
@@ -159,7 +160,8 @@ timeout is currently ${timeout} and there are ${fetchClient.current.jobs.length}
               console.log(`request ${request} failed, ${response.status}: ${response.statusText} -- retrying`);
               console.log(`retry attempts left ${retries.current}`);
 
-              response = yield fetcher(request as string, init);
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              response = yield fetcher(request as string, resolvedInit as any);
             }
 
             if (!response.ok) {

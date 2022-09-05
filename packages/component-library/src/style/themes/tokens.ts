@@ -1,23 +1,23 @@
-import rem from 'polished/lib/helpers/rem';
+import rem from 'polished/lib/helpers/rem.js';
 import mix from 'polished/lib/color/mix';
 import { palette } from '../palette.css';
 import { getLightVariant } from '../util/a11y';
+import { rose } from 'tailwindcss/colors';
 
-const brand = '#1250C4';
 export const colors = {
-  primary: '#00703C',
+  primary: palette.green800,
   secondary: palette.gray100,
   error: palette.redError,
   notification: palette.yellow400,
-  brand: '#1250C4',
-  focus: brand,
-  critical: '#e91b0c',
-  criticalLight: '#f9e6e4',
-  positive: '#3b610f',
-  caution: '#ffc600',
-  info: brand,
-  promote: '#5736ab',
-  white: '#fff',
+  brand: palette.blue700,
+  focus: palette.blue700,
+  critical: palette.red600,
+  criticalLight: rose['100'],
+  positive: palette.lime800,
+  caution: palette.yellow400,
+  info: palette.blue700,
+  promote: palette.violet800,
+  white: palette.white,
 };
 
 type ScaleKeys<A extends readonly unknown[]> = `${keyof A & `${number}`}x`;
@@ -53,7 +53,7 @@ export const tokens = {
     }, {} as Record<BorderRadiusKeys, string>),
   },
   colors: {
-    ...colors,
+    ...colors
   },
   inputWidth: {
     width2: '5.4ex',
@@ -94,7 +94,7 @@ export const tokens = {
       promoteLight: mix(0.3, colors.promote, getLightVariant(colors.promote)),
       standard: palette.neutral900,
       invalid: colors.error,
-      focus: colors.primary,
+      focus: palette.green800,
       standardInverted: colors.white,
     },
   },
@@ -276,7 +276,7 @@ export const tokens = {
       borderWidth: '2px',
       borderColor: 'transparent',
       hoverBackgroundColor: palette.white,
-      background: colors.primary,
+      background: palette.green800,
       focusColor: palette.white,
       color: palette.white,
       marginTop: 0,
@@ -289,7 +289,7 @@ export const tokens = {
       borderColor: 'transparent',
       background: colors.secondary,
       focusColor: palette.gray300,
-      hoverBackgroundColor: colors.primary,
+      hoverBackgroundColor: palette.green800,
       color: palette.black,
       marginTop: 0,
       padding: '8px 10px 7px',
@@ -301,7 +301,7 @@ export const tokens = {
       border: 'transparent',
       background: colors.error,
       focusColor: palette.red700,
-      hoverBackgroundColor: colors.primary,
+      hoverBackgroundColor: palette.green800,
       color: palette.white,
       marginTop: 0,
       padding: '8px 10px 7px',

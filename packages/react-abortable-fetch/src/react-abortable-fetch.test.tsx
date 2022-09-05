@@ -133,7 +133,7 @@ describe('useFetch', () => {
 
   afterAll(() => server.close());
 
-  describe('nested', () => {
+  describe.only('nested', () => {
     type Vendor = {
       id: number;
       name: string;
@@ -184,7 +184,7 @@ describe('useFetch', () => {
       expect(onSuccess).toHaveBeenCalled();
       expect(onError).not.toHaveBeenCalled();
       expect(result.current.state).toBe('succeeded');
-      expect(onAbort).not.toBeCalled();
+      expect(onAbort).not.toHaveBeenCalled();
     });
   });
 
@@ -221,7 +221,7 @@ describe('useFetch', () => {
       expect(onError).not.toHaveBeenCalled();
       expect(result.current.state).toBe('succeeded');
       expect(result.current.data).toEqual({ greeting: 'hello there' });
-      expect(onAbort).not.toBeCalled();
+      expect(onAbort).not.toHaveBeenCalled();
     });
 
     it('should successfully run a single query on demand', async () => {
@@ -606,7 +606,7 @@ describe('useFetch', () => {
 
         expect(result.current.state).toBe('succeeded');
 
-        expect(onQuerySuccess).toBeCalledTimes(3);
+        expect(onQuerySuccess).toHaveBeenCalledTimes(3);
         expect(onQueryError).not.toHaveBeenCalled();
         expect(onSuccess).toHaveBeenCalled();
         expect(onError).not.toHaveBeenCalled();
@@ -645,7 +645,7 @@ describe('useFetch', () => {
         expect(result.current.state).toBe('succeeded');
 
         expect(result.current.data).toEqual(12);
-        expect(onQuerySuccess).toBeCalledTimes(3);
+        expect(onQuerySuccess).toHaveBeenCalledTimes(3);
         expect(onQueryError).not.toHaveBeenCalled();
         expect(onError).not.toHaveBeenCalled();
 
@@ -694,7 +694,7 @@ describe('useFetch', () => {
 
         expect(result.current.data).toBeUndefined();
         expect(onQuerySuccess).toHaveBeenCalled();
-        expect(onSuccess).not.toBeCalled();
+        expect(onSuccess).not.toHaveBeenCalled();
         expect(onError).toHaveBeenCalled();
         expect(onQueryError).toHaveBeenCalled();
       });
@@ -747,7 +747,7 @@ describe('useFetch', () => {
         expect(result.current.data).not.toBeDefined();
 
         expect(onQuerySuccess).not.toHaveBeenCalled();
-        expect(onSuccess).not.toBeCalled();
+        expect(onSuccess).not.toHaveBeenCalled();
         expect(onError).not.toHaveBeenCalled();
         expect(onQueryError).not.toHaveBeenCalled();
       });

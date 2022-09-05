@@ -9,13 +9,14 @@
     "tsconfig.test.json"
   ],
   "devDependencies": {
-    "@types/webpack-env": "1.17.0"
+    "@types/webpack-env": "1.18.0"
   },
   "volta": {
     "extends": "../../package.json"
   },
   "lint-staged": {
     "*.js": "eslint ./src/**/*.{js} --fix",
-    "*.ts": "eslint ./src/**/*.{js} --fix"
+    "*.ts": "eslint ./src/**/*.{ts} --fix",
+    "*.tsx": "eslint ./src/**/*.{ts} --fix"
   }
 }

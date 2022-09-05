@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-jest-import */
 import { getClientEnv } from '../config/env';
 import fs from 'fs';
 import { paths } from '../config/paths';

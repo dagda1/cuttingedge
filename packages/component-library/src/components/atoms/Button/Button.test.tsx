@@ -23,7 +23,7 @@ describe('Button', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('should add a data-selector', () => {
+  it('should add a data-testid', () => {
     const { getByTestId } = wrap({ dataSelector: 'the-button' });
 
     const button = getByTestId('the-button') as HTMLButtonElement;

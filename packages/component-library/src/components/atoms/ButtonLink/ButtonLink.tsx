@@ -33,7 +33,7 @@ export function ButtonLink({
       className={cs(className, root, buttons[buttonStyle], styles.main)}
       onClick={onClick}
       title={title}
-      data-selector={dataSelector}
+      data-testid={dataSelector}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       {...rest}

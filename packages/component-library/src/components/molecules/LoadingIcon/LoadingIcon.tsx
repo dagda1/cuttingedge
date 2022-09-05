@@ -12,7 +12,7 @@ const angles = [...range(0, 360, 30)];
 export function LoadingIcon({ darkMode }: LoadingIconProps): JSX.Element {
   return (
     <svg
-      data-selector="loading-icon"
+      data-testid="loading-icon"
       className={styles.loadingIcon}
       xmlns="http://www.w3.org/2000/svg"
       width="120px"

@@ -32,7 +32,7 @@ export function Label({
         [styles.required]: required,
         [styles.strong]: fontWeight === 'strong',
       })}
-      data-selector={dataSelector}
+      data-testid={dataSelector}
     >
       {children}
     </label>

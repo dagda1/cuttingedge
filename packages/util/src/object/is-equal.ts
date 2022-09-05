@@ -1,6 +1,7 @@
 import { assert } from 'assert-ts';
+import type { Fn } from '../functions/functions';
 
-export function isEqual<T>(left: T | T[], right: T | T[]): boolean {
+export function isEqual<T extends Record<string, unknown> | Fn>(left: T | T[], right: T | T[]): boolean {
   function getType(obj: T | T[]) {
     return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
   }
@@ -24,15 +25,15 @@ export function isEqual<T>(left: T | T[], right: T | T[]): boolean {
   function areObjectsEqual() {
     assert(!Array.isArray(left) && !Array.isArray(right), 'eiter left or right is an array');
 
+    assert(typeof left !== 'function' && typeof right !== 'function');
+
     if (Object.keys(left).length !== Object.keys(right).length) {
       return false;
     }
 
-    for (const key in left) {
-      if (Object.prototype.hasOwnProperty.call(left, key)) {
-        if (!isEqual(left[key], right[key])) {
-          return false;
-        }
+    for (const key of Object.keys(left)) {
+      if (!isEqual(left[key] as T, right[key] as T)) {
+        return false;
       }
     }
 

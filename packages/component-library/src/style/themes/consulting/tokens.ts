@@ -3,8 +3,8 @@ import { palette } from '../../palette.css';
 import type { Tokens } from '../tokens';
 
 const colors = {
-  primary: palette.yellow200,
-  secondary: palette.white,
+  primary: palette.yellow200 as string,
+  secondary: palette.white as string,
 };
 
 const buttonPadding = '14px 22px';

@@ -32,7 +32,7 @@ export function ResponsiveSVG({
 
   return (
     <div
-      data-selector="cutting-svg-container"
+      data-testid="cutting-svg-container"
       style={{
         position: 'relative',
         overflow: 'visible',

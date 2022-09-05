@@ -34,7 +34,7 @@ export function Button({
       onClick={onClick}
       disabled={disabled}
       title={title}
-      data-selector={dataSelector}
+      data-testid={dataSelector}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       {...rest}

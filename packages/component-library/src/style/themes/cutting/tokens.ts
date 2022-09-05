@@ -56,19 +56,19 @@ export const tokens: DeepPartial<Tokens> = {
       tablet: '100%',
     },
     primary: {
-      background: colors.primary,
+      background: palette.lime500,
       focusColor: colors.secondary,
       padding: buttonPadding,
     },
     secondary: {
       background: colors.secondary,
-      focusColor: colors.primary,
+      focusColor: palette.lime500,
       color: palette.white,
       padding: buttonPadding,
     },
   },
   radios: {
-    borderColor: colors.primary,
+    borderColor: palette.lime500,
   },
   links: {
     color: {

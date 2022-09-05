@@ -23,7 +23,7 @@ export function Shortcuts<R extends Record<PropertyKey, unknown>, E extends HTML
 
   return (
     <ScopedWrapperComponentType
-      data-selector={dataSelector}
+      data-testid={dataSelector}
       tabIndex={tabIndex}
       ref={ref}
       className={cs('mousetrap', className)}

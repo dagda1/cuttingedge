@@ -22,7 +22,7 @@ export function ExternalLink({
   return (
     <a
       href={href}
-      data-selector={dataSelector}
+      data-testid={dataSelector}
       rel="noopener noreferrer"
       target={blank ? '_blank' : ''}
       className={cs(styles.root, className)}
