@@ -2,6 +2,9 @@ import { globalStyle, style } from '@vanilla-extract/css';
 import { globalHeadingStyle, responsiveText } from '../../../style/typography/typography.css';
 import { vars } from '../../../style/themes/vars.css';
 import { responsiveTextStyleRule } from '../../../style/typography/typography.css';
+import { rem } from 'polished';
+import { breakpoints } from '../../../style/breakpoints';
+import { responsiveStyle } from '../../../style/responsive-style';
 
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
@@ -68,23 +71,23 @@ export const size = style({
 });
 
 globalStyle('main', {
-  border: '10px solid green'
+  display: 'grid',
   // display: 'flex',
-  // maxWidth: `${rem(breakpoints.desktop)}`,
+  maxWidth: `${rem(breakpoints.desktop)}`,
   // flexDirection: 'column',
   // flex: '1 0 auto',
-  // width: '100%',
-  // ...responsiveStyle({
-  //   mobile: {
-  //     padding: 0,
-  //   },
-  //   tablet: {
-  //     padding: vars.space['2x'],
-  //   },
-  //   desktop: {
-  //     padding: 0,
-  //   },
-  // }),
+  width: '100%',
+  ...responsiveStyle({
+    mobile: {
+      padding: 0,
+    },
+    tablet: {
+      padding: vars.space['2x'],
+    },
+    desktop: {
+      padding: 0,
+    },
+  }),
 });
 
 globalStyle('header,footer', {

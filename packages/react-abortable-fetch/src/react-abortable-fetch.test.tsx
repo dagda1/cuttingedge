@@ -119,8 +119,7 @@ const server = setupServer(
   }),
 );
 
-// eslint-disable-next-line jest/no-disabled-tests
-describe.skip('useFetch', () => {
+describe('useFetch', () => {
   beforeAll(() => server.listen());
 
   beforeEach(() => {
