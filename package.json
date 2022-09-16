@@ -52,9 +52,10 @@
     "webpack": "5.74.0",
     "whatwg-fetch": "3.6.2"
   },
-  "packageManager": "pnpm@7.10.0",
+  "packageManager": "pnpm@7.11.0",
   "volta": {
-    "node": "16.15.1"
+    "node": "16.15.1",
+    "npm": "8.19.2"
   },
   "lint-staged": {
     "{packages|apps}/**/*.{js,jsx,ts,tsx,mjs,cjs}": [
