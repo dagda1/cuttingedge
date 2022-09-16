@@ -5,10 +5,10 @@
   "main": "index.cjs",
   "license": "MIT",
   "files": [
-    "index.js",
-    "react.js",
-    "angular.js",
-    "node.js",
+    "index.cjs",
+    "react.cjs",
+    "angular.cjs",
+    "node.cjs",
     "README.md",
     "partial.html"
   ],

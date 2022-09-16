@@ -3,6 +3,7 @@ import { hydrateRoot } from 'react-dom/client';
 import { loadableReady } from '@loadable/component';
 
 import { App } from '../containers/App';
+import { assert } from 'assert-ts';
 
 const bootstrap = (Component: typeof App): void => {
   const container = document.getElementById('root');
@@ -25,6 +26,9 @@ if (typeof import.meta.hot !== undefined) {
 } else {
   loadableReady(() => {
     const root = document.getElementById('main');
+
+    assert(!!root, `no root element for main`);
+
     hydrateRoot(root, <App />);
   });
 }

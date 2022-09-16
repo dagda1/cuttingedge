@@ -1,20 +1,42 @@
-import { hydrateRoot } from 'react-dom/client'
+export const clientRouting = true
+
+import './css/index.css'
+import ReactDOM from 'react-dom/client'
 import { PageShell } from './PageShell'
-import type { PageContext } from './types'
-import type { PageContextBuiltInClient } from 'vite-plugin-ssr/client'
+import { getPageTitle } from './getPageTitle'
+import type { PageContextClient } from './types'
 
-export { render }
-
-async function render(pageContext: PageContextBuiltInClient & PageContext) {
+let root: ReactDOM.Root
+export async function render(pageContext: PageContextClient) {
   const { Page, pageProps } = pageContext
-  hydrateRoot(
-    document.getElementById('page-view')!,
+  const page = (
     <PageShell pageContext={pageContext}>
       <Page {...pageProps} />
-    </PageShell>,
+    </PageShell>
   )
+  const container = document.getElementById('page-view')!
+  if (pageContext.isHydration) {
+    root = ReactDOM.hydrateRoot(container, page)
+  } else {
+    if (!root) {
+      root = ReactDOM.createRoot(container)
+    }
+    root.render(page)
+  }
+  document.title = getPageTitle(pageContext)
 }
 
-/* To enable Client-side Routing:
-export const clientRouting = true
-// !! WARNING !! Before doing so, read https://vite-plugin-ssr.com/clientRouting */
+export function onHydrationEnd() {
+  console.log('Hydration finished; page is now interactive.')
+}
+
+export function onPageTransitionStart() {
+  console.log('Page transition start')
+  document.querySelector('body')!.classList.add('page-is-transitioning')
+}
+
+
+export function onPageTransitionEnd() {
+  console.log('Page transition end')
+  document.querySelector('body')!.classList.remove('page-is-transitioning')
+}

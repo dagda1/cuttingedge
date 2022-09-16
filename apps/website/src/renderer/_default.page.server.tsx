@@ -1,23 +1,42 @@
-import { renderToString } from 'react-dom/server'
-import { StaticRouter } from 'react-router-dom/server'
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
+import { renderToStream } from 'react-streaming/server'
+import { escapeInject } from 'vite-plugin-ssr'
+import { PageShell } from './PageShell'
+import { getPageTitle } from './getPageTitle'
+import type { PageContextServer } from './types'
 
-export { render }
-export { passToClient }
+export const passToClient = ['pageProps', 'documentProps', 'someAsyncProps']
 
-const passToClient = ['pageProps']
+export async function render(pageContext: PageContextServer) {
+  const { Page, pageProps } = pageContext
 
-async function render(pageContext) {
-  const { Page, pageProps, url } = pageContext
-  const pageHtml = renderToString(
-    <StaticRouter location={url}>
+  const stream = await renderToStream(
+    <PageShell pageContext={pageContext}>
       <Page {...pageProps} />
-    </StaticRouter>,
+    </PageShell>,
+    // We don't need streaming for a pre-rendered app.
+    // (We still use react-streaming to enable <Suspsense>.)
+    { disable: true }
   )
-  return escapeInject`<!DOCTYPE html>
+
+  const title = getPageTitle(pageContext)
+
+  const documentHtml = escapeInject`<!DOCTYPE html>
     <html>
+      <head>
+        <title>${title}</title>
+      </head>
       <body>
-        <div id="react-root">${dangerouslySkipEscape(pageHtml)}</div>
-      </body> 
+        <div id="page-view">${stream}</div>
+      </body>
     </html>`
+
+  return {
+    documentHtml,
+    // We can return a `pageContext` promise
+    pageContext: (async () => {
+      return {
+        someAsyncProps: 42
+      }
+    })()
+  }
 }
