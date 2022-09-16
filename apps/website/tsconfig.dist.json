@@ -2,12 +2,17 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./dist/esm",
-    "rootDir": "./src",
+    "outDir": "./dist",
+    "rootDir": ".",
     "noEmit": false
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "../../node_modules/@types/d3/index.d.ts"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx", 
+    "server.ts",
+    "../../node_modules/@types/d3/index.d.ts",
+    "node_modules/vite/types/*"
+  ],
   "references": [
     { "path": "../../packages/util/tsconfig.dist.json" },
     { "path": "../../packages/hooks/tsconfig.dist.json" },

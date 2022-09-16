@@ -1,5 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import rem from 'polished/lib/helpers/rem.js';
+import { rem } from 'polished'
 import { globalHeadingStyle, responsiveText } from '../../../style/typography/typography.css';
 import { responsiveStyle } from '../../../style';
 import { breakpoints } from '../../../style/breakpoints';

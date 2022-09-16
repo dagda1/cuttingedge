@@ -2,11 +2,23 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "ESNext",
-    "module": "ESNext",
-    "noEmit": true
+    "target": "ES2022",
+    "module": "ES2022",
+    "outDir": "./dist",
+    "rootDir": ".",
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "../../node_modules/@types/d3/index.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "server.ts",
+    "vite.config.ts",
+    "../../node_modules/@types/d3/index.d.ts",
+    "node_modules/vite/types/*"
+  ],
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ],
   "references": [
     { "path": "../../packages/util/tsconfig.json" },
     { "path": "../../packages/hooks/tsconfig.json" },

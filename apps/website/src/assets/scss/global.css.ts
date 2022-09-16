@@ -2,7 +2,9 @@ import { responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import lightening from '../images/lightening.jpg';
+// import lightening from '../images/lightening.jpg';
+
+// console.log({lightening});
 
 globalStyle('body', {
   fontFamily: "'Roboto' !important",
@@ -38,7 +40,7 @@ export const hidden = style({
 });
 
 globalStyle(`body`, {
-  background: `url('${lightening}') no-repeat center center fixed`,
+  // background: `url('${lightening}') no-repeat center center fixed`,
   backgroundSize: 'cover',
 });
 

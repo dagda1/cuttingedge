@@ -5,7 +5,7 @@ import { Header } from '../../components/Header';
 import { useScrollToTop } from '@cutting/hooks';
 import { CuttingEdge } from '../../constants';
 import { Helmet } from 'react-helmet';
-import { ApplicationLayoutWithRouterScroll, cuttingTheme } from '@cutting/component-library';
+import { ApplicationLayoutWithRouterScroll } from '@cutting/component-library';
 import * as styles from './ApplicationLayout.css';
 
 export interface ApplicationLayoutProps {
@@ -29,7 +29,7 @@ export function ApplicationLayout({
 
   return (
     <ApplicationLayoutWithRouterScroll
-      className={cs(cuttingTheme, className)}
+      className={cs(className)}
       headerAriaLabel="Cutting-Edge Solutions (Scotland)"
       heading={
         heading && (

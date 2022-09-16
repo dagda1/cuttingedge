@@ -58,3 +58,5 @@ stats.json
 .pnpm-*.log
 pnpm-global
 .pnpm-store
+
+.watchman-*

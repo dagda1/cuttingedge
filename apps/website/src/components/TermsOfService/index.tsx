@@ -1,6 +1,6 @@
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 
-import markdown from '../../markdown/terms-of-service.md';
+import markdown from '../../markdown/terms-of-service.mdx';
 
 export function TermsOfService(): JSX.Element {
   return (

@@ -1,5 +1,4 @@
-import rem from 'polished/lib/helpers/rem.js';
-import mix from 'polished/lib/color/mix';
+import { rem, mix } from 'polished';
 import { palette } from '../palette.css';
 import { getLightVariant } from '../util/a11y';
 import { rose } from 'tailwindcss/colors';
