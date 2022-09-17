@@ -2,9 +2,24 @@ import type { ComponentType, PropsWithChildren, ReactElement, ReactNode, Ref } f
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
+import { cuttingTheme } from '../../../style/themes/cutting/cutting.css';
 
 import * as styles from './ApplicationLayout.css';
 import { isNil } from '@cutting/util';
+import { consultingTheme } from '../../../style/themes/consulting/consultingTheme.css';
+import { salesTheme } from '../../../style/themes/sales/salesTheme.css';
+import { defaultTheme } from '../../../style/themes/default/default.css';
+
+export const themes = {
+  defaultTheme,
+  cuttingTheme,
+  consultingTheme,
+  salesTheme
+} as const;
+
+export type ThemeKeys = keyof typeof themes;
+
+export const Themes = Object.keys(themes) as ThemeKeys[];
 
 export interface ApplicationLayoutProps {
   heading?: string | JSX.Element;
@@ -15,6 +30,7 @@ export interface ApplicationLayoutProps {
   innerRef?: Ref<HTMLElement>;
   children: ReactNode;
   headerAriaLabel?: string;
+  theme: keyof typeof themes 
 }
 
 const ApplicationLayoutHeading: ComponentType<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
@@ -33,9 +49,12 @@ export function ApplicationLayout({
   footer,
   children,
   headerAriaLabel,
+  theme
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
+  const currentTheme = themes[theme];
+  
   return (
-    <>
+    <div className={currentTheme}>
       <header role="banner" className={cs({ [styles.hidden]: !header })} aria-label={headerAriaLabel}>
         <div className={styles.size}>{header}</div>
       </header>
@@ -46,7 +65,7 @@ export function ApplicationLayout({
       <footer role="contentinfo" className={cs(styles.size, { [styles.hidden]: !header }, styles.size)}>
         {footer}
       </footer>
-    </>
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import '@cutting/component-library/styles.css';
 import { useRef } from 'react';
 import { useParentSize } from '../src/useParentSize/useParentSize';
-import { ApplicationLayout, salesTheme } from '@cutting/component-library';
+import { ApplicationLayout } from '@cutting/component-library';
 
 import * as styles from './global.css';
 
@@ -10,8 +10,8 @@ export function App(): JSX.Element {
   const { width, height } = useParentSize(ref);
 
   return (
-    <div className={salesTheme}>
-      <ApplicationLayout heading="@cutting/use-get-parent-size">
+    <div>
+      <ApplicationLayout theme="salesTheme" heading="@cutting/use-get-parent-size">
         <div ref={ref} className={styles.parent}>
           <h1>Subject</h1>
         </div>

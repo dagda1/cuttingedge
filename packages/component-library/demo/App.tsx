@@ -3,22 +3,13 @@ import React, { useState } from 'react';
 import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup, Donut, Alert } from '../src';
 import { Button } from '../src/components/atoms/Button/Button';
 import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
-import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
-import { defaultTheme } from '../src/style/themes/default/default.css';
-import { cuttingTheme } from '../src/style/themes/cutting/cutting.css';
-import { salesTheme } from '../src/style/themes/sales/salesTheme.css';
-import { consultingTheme } from '../src/style/themes/consulting/consultingTheme.css';
-import cs from 'classnames';
-
-const AvailableThemes = { defaultTheme, cuttingTheme, salesTheme, consultingTheme } as const;
-
-type Theme = keyof typeof AvailableThemes;
+import { ApplicationLayout, ThemeKeys } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
 
 export function App(): JSX.Element {
-  const [theme, setTheme] = useState<Theme>('cuttingTheme');
+  const [theme, setTheme] = useState<ThemeKeys>('cuttingTheme');
 
   return (
-    <ApplicationLayout className={cs(AvailableThemes[theme], styles.background)}>
+    <ApplicationLayout theme={theme} className={styles.background}>
       <div className={styles.wrap}>
         <div className={styles.layout}>
           <div className={styles.item}>
@@ -27,14 +18,14 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <RadioGroup<Theme>
+            <RadioGroup<ThemeKeys>
               legend="Choose theme"
               legendMode="visible"
               name="theme"
               checkableLayout="inline"
               checkableSize={'large'}
               onChange={(o) => {
-                setTheme(o.target.value as Theme);
+                setTheme(o.target.value as ThemeKeys);
               }}
               options={[
                 {
