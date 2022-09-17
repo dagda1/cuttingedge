@@ -1,11 +1,11 @@
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 
-import markdown from '../../markdown/terms-of-service.mdx';
+import Markdown from '../../markdown/terms-of-service.mdx';
 
 export function TermsOfService(): JSX.Element {
   return (
     <ApplicationLayout heading="Terms of Service">
-      <div dangerouslySetInnerHTML={{ __html: markdown }} />
+      <Markdown />
     </ApplicationLayout>
   );
 }

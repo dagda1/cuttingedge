@@ -9,9 +9,13 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.dist.json && pnpm build:client && pnpm build:server && pnpm copy-files",
+    "build:client": "vite build --outDir dist/client --ssrManifest",
+    "build:server": "vite build --ssr src/client/entry-server.tsx --outDir dist/server",
     "clean": "rimraf dist/ && mkdir dist",
     "copy-files": "pnpm clean && copyfiles static/* dist/assets && copyfiles index.html dist && copyfiles -f dist/client/assets/* dist/assets copyfiles node_modules/@cutting/component-library/dist/esm/src.css* dist/assets",
-    "dev:server": "PORT=3000 nodemon --watch server.ts --watch src/server --exec 'ts-node --esm server.ts'"
+    "dev:server": "PORT=3000 nodemon --watch server.ts --watch src/server --exec 'ts-node --esm server.ts'",
+    "lint": "eslint ./src/**/*.{ts,tsx} --fix"
   },
   "sideEffects": [
     "**/*.css",
@@ -55,20 +59,11 @@
     "referrer-policy": "1.2.0",
     "regenerator-runtime": "0.13.9",
     "regression": "2.0.1",
-    "serialize-javascript": "6.0.0",
-    "serve-favicon": "2.5.0",
     "serve-static": "1.15.0",
-    "url-join": "5.0.0",
-    "webpack": "5.74.0",
-    "zlib": "1.0.5"
+    "url-join": "5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.1",
-    "@babel/plugin-proposal-numeric-separator": "7.18.6",
-    "@babel/plugin-proposal-private-methods": "7.18.6",
-    "@babel/plugin-proposal-private-property-in-object": "7.18.6",
-    "@babel/plugin-syntax-dynamic-import": "7.8.3",
-    "@babel/runtime": "7.19.0",
+
     "@cutting/devtools": "workspace:../../packages/devtools",
     "@cutting/eslint-config": "workspace:../../packages/eslint-config",
     "@cutting/tsconfig": "workspace:../../packages/tsconfig",
@@ -91,8 +86,6 @@
     "@types/react-helmet": "6.1.5",
     "@types/react-router-dom": "5.3.3",
     "@types/regression": "2.0.2",
-    "@types/serialize-javascript": "5.0.2",
-    "@types/serve-favicon": "2.5.3",
     "@types/url-join": "4.0.1",
     "@vanilla-extract/babel-plugin": "1.2.0",
     "@vanilla-extract/css": "1.9.0",
@@ -101,10 +94,6 @@
     "@vitejs/plugin-react": "2.1.0",
     "copyfiles": "2.4.1",
     "eslint": "8.23.1",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegtran": "^7.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^10.0.1",
     "install": "0.13.0",
     "nodemon": "2.0.20",
     "rimraf": "3.0.2",
@@ -114,7 +103,6 @@
     "vite-plugin-commonjs": "0.5.2",
     "vite-plugin-environment": "1.1.2",
     "vite-plugin-relay": "2.0.0",
-    "vite-plugin-mdx": "3.5.11",
     "vite-plugin-ssr": "0.4.34",
     "vite-plugin-svgr": "2.2.1",
     "vite-tsconfig-paths": "3.5.0"

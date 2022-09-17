@@ -26,6 +26,12 @@ declare module '*.md' {
   export default classes;
 }
 
+declare module '*.mdx' {
+  const classes: string;
+  export default classes;
+}
+
+
 interface ViteHotContext {
   readonly data: any
 
