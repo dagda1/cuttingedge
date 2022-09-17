@@ -10,7 +10,7 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf dist/ && mkdir dist",
-    "copy-files": "pnpm clean && copyfiles static/* dist/assets && copyfiles index.html dist && copyfiles -f dist/client/assets/* dist/assets copyfiles node_modules/@cutting/component-library/dist/esm/src.css dist/assets",
+    "copy-files": "pnpm clean && copyfiles static/* dist/assets && copyfiles index.html dist && copyfiles -f dist/client/assets/* dist/assets copyfiles node_modules/@cutting/component-library/dist/esm/src.css* dist/assets",
     "dev:server": "PORT=3000 nodemon --watch server.ts --watch src/server --exec 'ts-node --esm server.ts'"
   },
   "sideEffects": [
