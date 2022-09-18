@@ -1,5 +1,5 @@
 import { createRoot, hydrateRoot } from 'react-dom/client';
-import { App } from '../containers/App';
+import { App } from './containers/App';
 import { assert } from 'assert-ts';
 
 const container = document.getElementById('root');

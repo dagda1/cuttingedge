@@ -1,8 +1,7 @@
 import { StrictMode } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
-import { MainRoutes } from '../routes';
-// import "./index.css";
+import { MainRoutes } from './routes';
 
 export function render(url: string): string {
   return ReactDOMServer.renderToString(

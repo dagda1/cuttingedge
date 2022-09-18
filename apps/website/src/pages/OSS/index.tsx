@@ -4,7 +4,7 @@ import type { Repo } from './repos';
 import { repos } from './repos';
 
 import * as styles from './OSS.css';
-import { Github } from '../Svg/Github';
+import { Github } from '../../components/Svg/Github';
 
 export function OSS(): JSX.Element {
   return (

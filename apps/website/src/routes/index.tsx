@@ -9,31 +9,31 @@ const loadable = unwrap(loadableModule);
 
 const fallback = <div>loading....</div>;
 
-const Home = loadable(() => import('../components/Home'), {
+const Home = loadable(() => import('../pages/Home'), {
   fallback,
 });
 
-const OSS = loadable(() => import('../components/OSS'), {
+const OSS = loadable(() => import('../pages/OSS'), {
   fallback,
 });
 
-const Blog = loadable(() => import('../components/Blog'), {
+const Blog = loadable(() => import('../pages/Blog'), {
   fallback,
 });
 
-const CV = loadable(() => import('../components/cv'), {
+const CV = loadable(() => import('../pages/cv'), {
   fallback,
 });
 
-const PrivacyPolicy = loadable(() => import('../components/PrivacyPolicy'), {
+const PrivacyPolicy = loadable(() => import('../pages/PrivacyPolicy'), {
   fallback,
 });
 
-const TermsOfService = loadable(() => import('../components/TermsOfService'), {
+const TermsOfService = loadable(() => import('../pages/TermsOfService'), {
   fallback,
 });
 
-const Viz = loadable(() => import('../containers/Viz/Viz'), {
+const Viz = loadable(() => import('../pages/Viz/Viz'), {
   fallback,
 });
 
