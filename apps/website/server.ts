@@ -1,59 +1,64 @@
-import type { Request, Response, NextFunction } from 'express';
-import fs from 'fs/promises';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import express from 'express';
-import compression from 'compression';
-import serveStatic from 'serve-static';
-import { createServer as createViteServer } from 'vite';
-import { fileURLToPath } from 'url';
+import type { ViteDevServer } from 'vite';
+import { assert } from 'assert-ts';
 import { HttpStatusCode } from '@cutting/util';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD;
-const isProduction = process.env.NODE_ENV === 'production';
-
-const rootDir = process.cwd();
-
-const publicDir = path.join(rootDir, isProduction ? 'dist/public' : 'public');
-
-const resolve = (p: string) => path.resolve(__dirname, p);
-
-const getStyleSheets = async () => {
-  const assetpath = resolve('dist/assets');
-  const files = await fs.readdir(assetpath);
-  const cssAssets = files.filter((l) => l.endsWith('.css'));
-  const allContent: string[] = [];
-  for (const asset of cssAssets) {
-    const content = await fs.readFile(path.join(assetpath, asset), 'utf-8');
-    allContent.push(`<style type="text/css">${content}</style>`);
-  }
-  return allContent.join('\n');
-};
-
+const isProd = process.env.NODE_ENV === 'production';
 const PORT = Number(process.env.PORT ?? 3000);
 
-async function createServer(isProd = process.env.NODE_ENV === 'production') {
+process.env.MY_CUSTOM_SECRET = 'API_KEY_qwertyuiop';
+
+const root = process.cwd();
+
+const publicDir = path.join(root, isProd ? 'dist/public' : 'public');
+
+export async function createServer(hmrPort?: number): Promise<{
+  app: ReturnType<typeof express>;
+  vite: ViteDevServer;
+}> {
+  const resolve = (p: string) => path.resolve(__dirname, p);
+
+  const indexProd = isProd ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8') : '';
+
   const app = express();
-  const vite = await createViteServer({
-    server: { middlewareMode: true, port: PORT },
-    appType: 'custom',
-    logLevel: isTest ? 'error' : 'info',
-  });
 
-  app.use(vite.middlewares);
-  const requestHandler = express.static(resolve('assets'));
-  app.use(requestHandler);
-  app.use('/assets', requestHandler);
-
-  if (isProd) {
-    app.use(compression());
+  let vite: ViteDevServer | undefined = undefined;
+  if (!isProd) {
+    vite = await (
+      await import('vite')
+    ).createServer({
+      root,
+      logLevel: isTest ? 'error' : 'info',
+      server: {
+        middlewareMode: true,
+        watch: {
+          // During tests we edit the files too fast and sometimes chokidar
+          // misses change events, so enforce polling for consistency
+          usePolling: true,
+          interval: 100,
+        },
+        hmr: {
+          port: hmrPort,
+        },
+      },
+      appType: 'custom',
+    });
+    // use vite's connect instance as middleware
+    app.use(vite.middlewares);
+  } else {
+    app.use((await import('compression')).default());
     app.use(
-      serveStatic(resolve('dist/client'), {
+      (await import('serve-static')).default(resolve('dist/client'), {
         index: false,
       }),
     );
   }
-  const stylesheets = getStyleSheets();
 
   app.get('/download-pdf', (_, res) => {
     const CVFile = 'paulcowan-cv.pdf';
@@ -81,40 +86,59 @@ async function createServer(isProd = process.env.NODE_ENV === 'production') {
     });
   });
 
-  app.use('*', async (req: Request, res: Response, next: NextFunction) => {
-    const url = req.originalUrl;
+  assert(!!vite, `no vite`);
+
+  app.use('*', async (req, res) => {
+    assert(!!vite, `no vite`);
 
     try {
-      let template = await fs.readFile(isProd ? resolve('dist/client/index.html') : resolve('index.html'), 'utf-8');
+      const url = req.originalUrl;
 
-      template = await vite.transformIndexHtml(url, template);
+      let template, render;
+      if (!isProd) {
+        // always read fresh template in dev
+        template = fs.readFileSync(resolve('index.html'), 'utf-8');
+        template = await vite.transformIndexHtml(url, template);
+        render = (await vite.ssrLoadModule('/src/client/entry-server.tsx')).render;
+      } else {
+        template = indexProd;
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        render = (await import('./dist/server/entry-server.js')).render;
+      }
 
-      const productionBuildPath = path.join(__dirname, './dist/server/entry-server.mjs');
-      const devBuildPath = path.join(__dirname, './src/client/entry-server.tsx');
-      const { render } = await vite.ssrLoadModule(isProd ? productionBuildPath : devBuildPath);
+      const context: { url?: string } = {};
+      const appHtml = render(url, context);
 
-      const appHtml = await render(url);
-      const cssAssets = isProd ? '' : await stylesheets;
+      if (context.url) {
+        // Somewhere a `<Redirect>` was rendered
+        return res.redirect(301, context.url);
+      }
 
-      const html = template.replace(`<!--app-html-->`, appHtml).replace(`<!--head-->`, cssAssets);
+      const html = template.replace(`<!--app-html-->`, appHtml);
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {
       if (e instanceof Error) {
         !isProd && vite.ssrFixStacktrace(e);
         console.log(e.stack);
-        // If an error is caught, let Vite fix the stack trace so it maps back to
-        // your actual source code.
-        vite.ssrFixStacktrace(e);
+        res.status(500).end(e.stack);
+      } else {
+        console.error(e);
+        res.status(500).end('Internal Server Error');
       }
-
-      next(e);
     }
   });
-  const port = process.env.PORT || 7456;
-  app.listen(Number(port), '0.0.0.0', () => {
-    console.log(`App is listening on http://localhost:${port}`);
-  });
+
+  assert(!!vite, `no vite`);
+
+  return { app, vite };
 }
 
-createServer();
+if (!isTest) {
+  createServer().then(({ app }) =>
+    app.listen(PORT, () => {
+      console.log(`http://localhost:${PORT}`);
+    }),
+  );
+}
