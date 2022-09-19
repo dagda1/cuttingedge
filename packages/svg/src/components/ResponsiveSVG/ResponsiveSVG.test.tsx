@@ -33,7 +33,7 @@ function TestEr(): JSX.Element {
 
 const wrap = () => render(<TestEr />);
 
-describe('useParentSize', () => {
+describe.skip('useParentSize', () => {
   it('should set the svg viewBox attribute', () => {
     resize(200, 200);
     wrap();

@@ -17,8 +17,8 @@
   "scripts": {
     "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
     "test:types": "dtslint types --localTs ../../node_modules/typescript/lib --expectOnly",
-    "test:unit": "NODE_ENV=test vitest",
-    "test": "CI=true pnpm test:unit && pnpm test:types",
+    "test": "NODE_ENV=test vitest",
+    "test:all": "CI=true pnpm test:unit && pnpm test:types",
     "build": "NODE_ENV=production devtools rollup",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix"
   },

@@ -3,7 +3,7 @@ import type { ResponsiveSVGProps } from '../ResponsiveSVG/ResponsiveSVG.js';
 import type { UseParentSizeOptions } from '@cutting/use-get-parent-size';
 import { useEffect } from 'react';
 import { useParentSize } from '@cutting/use-get-parent-size';
-import { ResponsiveSVG } from '../ResponsiveSVG/ResponsiveSVG.js';
+import { ResponsiveSVG } from '../ResponsiveSVG/ResponsiveSVG';
 
 type Align = 'none' | 'center';
 
