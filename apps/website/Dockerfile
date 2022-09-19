@@ -1,5 +1,5 @@
 # production dockerfile
-FROM node:16.15.1
+FROM node:16.17.0
 
 ARG NPM_TOKEN
 ENV NPM_TOKEN $NPM_TOKEN
@@ -28,7 +28,7 @@ COPY ./apps/website/dist .
 
 COPY ./apps/website/package.json .
 
-RUN pnpx @pnpm/make-dedicated-lockfile@latest
+RUN pnpm --filter @cutting/website --prod deploy pruned
 
 RUN echo -n "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc-deploy
 

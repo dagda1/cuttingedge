@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 import express from 'express';
 import type { ViteDevServer } from 'vite';
 import { assert } from 'assert-ts';
-import { HttpStatusCode } from '@cutting/util';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -64,7 +63,7 @@ export async function createServer(hmrPort?: number): Promise<{
     const CVFile = 'paulcowan-cv.pdf';
     const pdfPath = ['', publicDir, 'assets', CVFile].join('/');
 
-    res.status(HttpStatusCode.Ok).download(pdfPath, CVFile, (err) => {
+    res.status(200).download(pdfPath, CVFile, (err) => {
       if (!err) {
         return;
       }
@@ -77,7 +76,7 @@ export async function createServer(hmrPort?: number): Promise<{
     const WordDoc = 'paulcowan-cv.docx';
     const wordDocPath = ['', publicDir, 'assets', WordDoc].join('/');
 
-    res.status(HttpStatusCode.Ok).download(wordDocPath, WordDoc, (err) => {
+    res.status(200).download(wordDocPath, WordDoc, (err) => {
       if (!err) {
         return;
       }

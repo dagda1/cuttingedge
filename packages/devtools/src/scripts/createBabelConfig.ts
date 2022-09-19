@@ -25,7 +25,6 @@ export function createBabelPresets(): any[] {
   ];
 }
 
-
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createBabelConfig = ({
   isDevelopment,
@@ -47,7 +46,6 @@ export const createBabelConfig = ({
     // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
     sourceType: 'module',
     plugins: [
-      ["replace-import-extension", { "extMapping": { ".js": "" }}],
       'babel-plugin-annotate-pure-calls',
       [
         '@babel/plugin-transform-runtime',

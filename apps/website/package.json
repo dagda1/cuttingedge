@@ -15,13 +15,16 @@
     "clean": "rimraf dist/ && mkdir dist",
     "copy-files": "copyfiles static/* dist/assets && copyfiles index.html dist && copyfiles -f dist/client/assets/* dist/assets copyfiles node_modules/@cutting/component-library/dist/esm/src.css* dist/assets",
     "dev:server": "PORT=3000 nodemon --watch server.ts --watch src/server --exec 'ts-node --esm server.ts'",
-    "lint": "eslint ./**/*.{ts,tsx} --fix"
+    "lint": "eslint ./**/*.{ts,tsx} --fix",
+    "serve": "NODE_ENV=production node dist/server.js",
+    "deploy": "NODE_ENV=production pnpm build && ./bin/deploy.sh"
   },
   "sideEffects": [
     "**/*.css",
     "**/*.cs.ts"
   ],
   "dependencies": {
+    "@babel/runtime": "7.19.0",
     "@cutting/component-library": "workspace:../../packages/component-library",
     "@cutting/hooks": "workspace:../../packages/hooks",
     "@cutting/svg": "workspace:../../packages/svg",
@@ -29,8 +32,8 @@
     "@cutting/use-mathjax": "workspace:../../packages/use-mathjax",
     "@cutting/util": "workspace:../../packages/util",
     "@loadable/component": "5.15.2",
-    "@mdx-js/rollup": "2.1.3",
     "@vanilla-extract/css": "1.9.0",
+    "@vanilla-extract/sprinkles": "1.5.0",
     "@visx/axis": "2.12.2",
     "@visx/curve": "2.1.0",
     "@visx/group": "2.10.0",
@@ -54,15 +57,12 @@
     "react-helmet": "6.1.0",
     "react-router": "6.4.0",
     "react-router-dom": "6.4.0",
-    "react-streaming": "0.3.3",
     "referrer-policy": "1.2.0",
-    "regenerator-runtime": "0.13.9",
     "regression": "2.0.1",
     "serve-static": "1.15.0",
     "url-join": "5.0.0"
   },
   "devDependencies": {
-    "@babel/runtime": "7.19.0",
     "@cutting/devtools": "workspace:../../packages/devtools",
     "@cutting/eslint-config": "workspace:../../packages/eslint-config",
     "@cutting/tsconfig": "workspace:../../packages/tsconfig",
@@ -70,6 +70,7 @@
     "@jest/globals": "29.0.3",
     "@mdx-js/mdx": "2.1.3",
     "@mdx-js/react": "2.1.3",
+    "@mdx-js/rollup": "2.1.3",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@types/compression": "1.7.2",
@@ -87,8 +88,6 @@
     "@types/regression": "2.0.2",
     "@types/url-join": "4.0.1",
     "@vanilla-extract/babel-plugin": "1.2.0",
-    "@vanilla-extract/css": "1.9.0",
-    "@vanilla-extract/sprinkles": "1.5.0",
     "@vanilla-extract/vite-plugin": "3.5.0",
     "@vitejs/plugin-react": "2.1.0",
     "copyfiles": "2.4.1",
@@ -96,12 +95,12 @@
     "install": "0.13.0",
     "nodemon": "2.0.20",
     "rimraf": "3.0.2",
+    "rollup": "2.79.0",
     "ts-node": "10.9.1",
     "typescript": "4.8.3",
     "vite": "3.1.1",
     "vite-plugin-commonjs": "0.5.2",
     "vite-plugin-environment": "1.1.2",
-    "vite-plugin-relay": "2.0.0",
     "vite-plugin-ssr": "0.4.34",
     "vite-plugin-svgr": "2.2.1",
     "vite-tsconfig-paths": "3.5.0"
@@ -117,7 +116,8 @@
     },
     "peerDependencyRules": {
       "allowedVersions": {
-        "react": "18.2.0"
+        "react": "18.2.0",
+        "vite": "3.1.1"
       }
     }
   }
