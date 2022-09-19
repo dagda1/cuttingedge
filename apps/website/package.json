@@ -9,7 +9,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "rimraf dist && tsc -p ./tsconfig.dist.json && pnpm build:client && pnpm build:server && pnpm copy-files && ./fix-files",
+    "build": "tsc -p ./tsconfig.json && rimraf dist && tsc -p ./tsconfig.dist.json && pnpm build:client && pnpm build:server && pnpm copy-files && ./fix-files",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "clean": "rimraf dist/ && mkdir dist",

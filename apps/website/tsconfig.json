@@ -6,6 +6,7 @@
     "module": "ES2022",
     "outDir": "./dist",
     "rootDir": ".",
+    "noEmit": true
   },
   "include": [
     "src/**/*.ts",
@@ -18,13 +19,5 @@
   "exclude": [
     "src/**/*.test.ts",
     "src/**/*.test.tsx"
-  ],
-  "references": [
-    { "path": "../../packages/util/tsconfig.json" },
-    { "path": "../../packages/hooks/tsconfig.json" },
-    { "path": "../../packages/component-library/tsconfig.json" },
-    { "path": "../../packages/svg/tsconfig.json" },
-    { "path": "../../packages/react-abortable-fetch/tsconfig.json" },
-    { "path": "../../packages/use-mathjax/tsconfig.json"}
   ]
 }

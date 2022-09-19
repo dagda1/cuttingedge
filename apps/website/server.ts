@@ -16,7 +16,7 @@ process.env.MY_CUSTOM_SECRET = 'API_KEY_qwertyuiop';
 
 const root = process.cwd();
 
-const publicDir = path.join(root, isProd ? 'dist/public' : 'public');
+const publicDir = path.join(root, isProd ? 'dist/server' : 'public');
 
 export async function createServer(hmrPort?: number): Promise<{
   app: ReturnType<typeof express>;

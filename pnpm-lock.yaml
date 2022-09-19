@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 overrides:
   '@babel/core@<7.19.1': '>=7.19.1'
   '@babel/types@<7.19.0': '>=7.19.3'
+  '@babel/runtime@<7.19.0': '>=7.19.0'
   ansi-regex@>2.1.1 <5.0.1: '=5.0.1'
   acorn@<8.8.0: '>=8.8.0'
   commander@<9.0.0: '>=9.4.0'
@@ -163,7 +164,6 @@ importers:
       vite-plugin-svgr: 2.2.1
       vite-tsconfig-paths: 3.5.0
     dependencies:
-      '@babel/runtime': 7.19.0
       '@cutting/component-library': link:../../packages/component-library
       '@cutting/hooks': link:../../packages/hooks
       '@cutting/svg': link:../../packages/svg
@@ -203,6 +203,7 @@ importers:
       serve-static: 1.15.0
       url-join: 5.0.0
     devDependencies:
+      '@babel/runtime': 7.19.0
       '@cutting/devtools': link:../../packages/devtools
       '@cutting/eslint-config': link:../../packages/eslint-config
       '@cutting/tsconfig': link:../../packages/tsconfig
@@ -248,7 +249,7 @@ importers:
   packages/component-library:
     specifiers:
       '@babel/core': '>=7.19.1'
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': '>=7.19.0'
       '@capsizecss/core': 3.0.0
       '@capsizecss/vanilla-extract': 1.0.0
       '@cutting/devtools': workspace:*
@@ -306,7 +307,7 @@ importers:
       polished: 4.2.2
     devDependencies:
       '@babel/core': 7.19.1
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': 7.19.0
       '@capsizecss/core': 3.0.0
       '@capsizecss/vanilla-extract': 1.0.0_@vanilla-extract+css@1.9.0
       '@cutting/devtools': link:../devtools
@@ -2524,12 +2525,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       core-js-pure: 3.25.1
-      regenerator-runtime: 0.13.9
-
-  /@babel/runtime/7.18.9:
-    resolution: {integrity: sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
       regenerator-runtime: 0.13.9
 
   /@babel/runtime/7.19.0:
@@ -14527,7 +14522,7 @@ packages:
     resolution: {integrity: sha512-prXSYk799h3GY3iOWnC6ZigYzMPjxN2svgjJ9shk7oMadSNX3wXy0B6F32PMJv7qtMnrIbUxoEHzbutvxR2LBQ==}
     engines: {node: '>=6.0.0', npm: '>=6.0.0', yarn: '>=1.0.0'}
     dependencies:
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': 7.19.0
       app-root-dir: 1.0.2
       core-js: 3.25.1
       dotenv: 8.6.0
@@ -16763,7 +16758,7 @@ packages:
     resolution: {integrity: sha512-Sz2Lkdxz6F2Pgnpi9U5Ng/WdWAUZxmHrNPoVlm3aAemxoy2Qy7LGjQg4uf8qKelDAUW94F4np3iH2YPf2qefcQ==}
     engines: {node: '>=10'}
     dependencies:
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': 7.19.0
 
   /posix-character-classes/0.1.1:
     resolution: {integrity: sha512-xTgYBc3fuo7Yt7JbiuFxSYGToMoz8fLoE6TC9Wx1P/u+LfeThMOAqmuyECnlBaaJb+u1m9hHiXUEtwW4OzfUJg==}
@@ -17681,7 +17676,7 @@ packages:
     dependencies:
       '@babel/core': 7.19.1
       '@babel/generator': 7.19.0
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': 7.19.0
       ast-types: 0.14.2
       commander: 9.4.0
       doctrine: 3.0.0
@@ -17754,7 +17749,7 @@ packages:
     peerDependencies:
       react: ^16.8.4 || ^17.0.0
     dependencies:
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': 7.19.0
       is-dom: 1.1.0
       prop-types: 15.8.1
       react: 18.2.0

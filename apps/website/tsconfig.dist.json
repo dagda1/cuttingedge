@@ -5,7 +5,8 @@
     "outDir": "./dist",
     "rootDir": ".",
     "module": "Node16",
-    "moduleResolution": "Node16"
+    "moduleResolution": "Node16",
+    "noEmit": false
   },
   "include": [
     "server.ts",
