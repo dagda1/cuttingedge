@@ -6,7 +6,7 @@
     "allowJs": true,
     "types": [
       "node",
-      "@types/jest",
+      "@types/vitest",
       "@cutting/useful-types"
     ]
   }

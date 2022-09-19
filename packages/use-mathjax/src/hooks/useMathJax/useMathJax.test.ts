@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
 
-// cannot import, jest pukes with mhchem_parser.js:5 error
 // import { useMathJax } from './useMathJax';
 
 describe('useMathJax', () => {

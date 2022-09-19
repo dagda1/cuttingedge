@@ -32,7 +32,6 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@testing-library/jest-dom": "5.16.5",
     "@types/mathjax": "0.0.37",
     "@types/react": "18.0.20",
     "@vanilla-extract/babel-plugin": "1.2.0",

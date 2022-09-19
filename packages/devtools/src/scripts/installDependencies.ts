@@ -18,8 +18,6 @@ const devDependencies = [
   '@vanilla-extract/babel-plugin',
   'eslint',
   'regenerator-runtime',
-  'jest',
-  'ts-jest',
   'typescript',
   'webpack',
 ];

@@ -189,7 +189,6 @@ describe('useFetch', () => {
     });
   });
 
-  // eslint-disable-next-line jest/no-disabled-tests
   describe.skip('single query', () => {
     it('should successfully run a single query', async () => {
       const { result, waitFor } = renderHook(() => useFetch(`http://localhost:3000/single`));
@@ -314,7 +313,6 @@ describe('useFetch', () => {
       });
     });
 
-    // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('single abort', () => {
       it('should abort a single call', async () => {
         const onSuccess = vi.fn();
@@ -343,7 +341,6 @@ describe('useFetch', () => {
       });
     });
 
-    // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('should reset', () => {
       it('should reset', async () => {
         const { result, waitForNextUpdate } = renderHook(() =>
@@ -366,7 +363,6 @@ describe('useFetch', () => {
       });
     });
 
-    // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('retry', () => {
       it('should retry a failing query', async () => {
         const onSuccess = vi.fn();
@@ -398,7 +394,6 @@ describe('useFetch', () => {
       });
     });
 
-    // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('timeout', () => {
       it('should should abort if request times out', async () => {
         const onSuccess = vi.fn();
@@ -701,7 +696,6 @@ describe('useFetch', () => {
       });
     });
 
-    // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('multiple query abort', () => {
       it('should stop the chain when an error occurrs', async () => {
         const onQuerySuccess = vi.fn();
@@ -755,7 +749,6 @@ describe('useFetch', () => {
     });
   });
 
-  // eslint-disable-next-line jest/no-disabled-tests
   describe.skip('multi timeout timeout', () => {
     it('should should abort if request times out', async () => {
       const onSuccess = vi.fn();

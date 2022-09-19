@@ -12,7 +12,6 @@ export default defineConfig({
     minify: false,
     commonjsOptions: {
       transformMixedEsModules: true,
-      exclude: [/^@jest/],
     },
     rollupOptions: {
       output: {

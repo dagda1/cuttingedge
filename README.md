@@ -6,7 +6,7 @@
 
  This is the main monorepo README.  The monorepo contains the following packages:
 
- 1. [@cutting/devtools](./packages/devtools/README.md) - Common [webpack](https://webpack.js.org/), [jest](https://facebook.github.io/jest/) and npm **scripts**
+ 1. [@cutting/devtools](./packages/devtools/README.md) - Common [webpack](https://webpack.js.org/), [vitest](https://github.com/vitest-dev/vitest) and npm **scripts**
  2. [@cutting/util](./packages/util/README.md) - Any common functionality applicable to all packages can be found here.
  3. [@cutting/use-shortcuts](./packages/use-shortcuts/README.md) - Effortlessly create keyboard shortcust with this react hook.
  5. [@cutting/component-library](./packages/component-library/README.md) - Common react components that can be shared among all projects.  This ensures consistency in both styling and functionality.  The [atomic design methodology](http://atomicdesign.bradfrost.com/chapter-2/) will be used to add a logical grouping to the component structure.
@@ -31,7 +31,7 @@ When these commands have finished open a browser at [http://localhost:3000](http
 
 ## Run tests
 
-A combination of the test runner [jest](https://facebook.github.io/jest/) and [react-testing-library](https://github.com/testing-library/react-testing-library) are used to unit test the code.
+A combination of the test runner [vitest](https://github.com/vitest-dev/vitest) and [react-testing-library](https://github.com/testing-library/react-testing-library) are used to unit test the code.
 
 You will need to have perviously ran `pnpm install` before running:
 

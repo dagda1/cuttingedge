@@ -3,20 +3,13 @@ module.exports = {
     MyGlobal: true,
   },
   parser: '@typescript-eslint/parser',
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:jest/recommended',
-    'plugin:jest-formatting/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   plugins: ['@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-parameter-properties': ['off'],
     '@typescript-eslint/no-namespace': ['off'],
     '@typescript-eslint/explicit-module-boundary-types': ['error', { allowArgumentsExplicitlyTypedAsAny: true }],
     '@typescript-eslint/consistent-type-imports': 'error',
-    'jest/consistent-test-it': ['error', { fn: 'it' }],
-    'jest/expect-expect': ['off'],
     'no-var': 'warn',
     '@typescript-eslint/ban-types': [
       'error',
@@ -32,7 +25,6 @@ module.exports = {
     curly: 'error',
     eqeqeq: ['error', 'always'],
     'prefer-const': 'warn',
-    'no-jest-import': ['off'],
     'prettier/prettier': [
       'error',
       {

@@ -91,8 +91,6 @@ export const paths = {
   eslintConfig: resolveApp('./.eslintrc.json'),
   gitIgnore: resolveApp('./.gitignore'),
   ossIndex: resolveApp('ossindex'),
-  ownJestConfig: resolveApp('jest.config.js'),
-  jestConfig: path.join(__dirname, '../jest/jest.config.js'),
   projectReferences: !!tsConfig.references,
   isCommonJS: isCommonJs,
   monorepoNodeModules,

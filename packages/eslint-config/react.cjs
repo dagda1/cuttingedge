@@ -19,7 +19,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['react', 'react-hooks', 'jest', 'jest-formatting'],
+  plugins: ['react', 'react-hooks'],
   rules: {
     'react-hooks/rules-of-hooks': [
       'error',

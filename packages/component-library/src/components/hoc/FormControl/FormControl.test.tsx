@@ -1,4 +1,3 @@
-/* eslint-disable jest/expect-expect */
 import { expect, it, describe } from 'vitest';
 import { Input } from '../../atoms/Input/Input';
 import type { FormControlProps } from './FormControl';

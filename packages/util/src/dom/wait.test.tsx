@@ -16,7 +16,6 @@ describe('wait', () => {
     try {
       found = await wait('#bar');
     } catch (ex) {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(found).toBeUndefined();
     }
   });

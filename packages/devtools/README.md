@@ -1,3 +1,3 @@
 # @cutting/devtools
 
-Common [webpack](https://webpack.js.org/), [jest](https://facebook.github.io/jest/) and npm scripts
+Common [webpack](https://webpack.js.org/), [vitest](https://github.com/vitest-dev/vitest) and npm scripts

@@ -65,11 +65,9 @@ All typescript rules, plus (in order):
 eslint-plugin-react/recommended (rules)
 eslint-plugin-jsx-a11y (rules)
 eslint-plugin-react-hooks (rules set manually)
-eslint-plugin-jest (rules)
 eslint-plugin-import (rules)
 eslint-config-prettier (rules)
 eslint-config-prettier/@typescript-eslint
-eslint-plugin-jest-formatting (rules)
 Overrides
 Some rules are overriden. Please see `.eslintrc.json` in the package.
 
