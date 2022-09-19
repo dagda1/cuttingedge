@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
-    "test": "echo disabled #NODE_OPTIONS=--experimental-vm-modules NODE_ENV=test devtools test",
+    "test": "echo disabled #NODE_OPTIONS=--experimental-vm-modules NODE_ENV=test vitest",
     "build": "NODE_ENV=production devtools rollup"
   },
   "dependencies": {

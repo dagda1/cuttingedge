@@ -1,5 +1,5 @@
 import { uniqueId } from './uniqueid';
-import { expect, it, describe } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 
 describe('uniqueId', () => {
   it('should be incrementing', () => {

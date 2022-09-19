@@ -12,7 +12,7 @@
   "scripts": {
     "build": "NODE_ENV=production devtools rollup",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "test": "NODE_ENV=test devtools test",
+    "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test"
   },
   "dependencies": {
@@ -26,7 +26,7 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@jest/globals": "29.0.3",
+    "@testing-library/jest-dom": "5.16.5",
     "@typescript-eslint/parser": "5.37.0",
     "@typescript-eslint/eslint-plugin": "5.37.0",
     "@vanilla-extract/babel-plugin": "1.2.0",

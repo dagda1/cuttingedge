@@ -1,5 +1,5 @@
 import { wait } from './wait';
-import { expect, it, describe } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 
 describe('wait', () => {
   it('should resolve if an html is found', async () => {

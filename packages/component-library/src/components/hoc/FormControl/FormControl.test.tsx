@@ -1,5 +1,5 @@
 /* eslint-disable jest/expect-expect */
-import { expect, it, describe } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 import { Input } from '../../atoms/Input/Input';
 import type { FormControlProps } from './FormControl';
 import { FormControl } from './FormControl';

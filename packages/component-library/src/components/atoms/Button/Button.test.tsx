@@ -1,7 +1,8 @@
-import { expect, it, describe, jest } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 import type { ButtonProps } from './Button';
 import { Button } from './Button';
 import { render, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 
 const wrap = (props: Partial<ButtonProps> = {}) => render(<Button {...{ children: 'Click Me!', ...props }} />);
 
@@ -15,7 +16,7 @@ describe('Button', () => {
   });
 
   it('should assign a click handler', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { getByText } = wrap({ onClick });
 
     fireEvent.click(getByText('Click Me!'));

@@ -1,18 +1,19 @@
-import { expect, it, describe, jest } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 import { act } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import { useParentSize } from './useParentSize';
+import { vi } from 'vitest';
 
 import ResizeObserver from 'resize-observer-polyfill';
 
-jest.mock('resize-observer-polyfill');
+vi.mock('resize-observer-polyfill');
 
 const resize = (width: number, height: number): void => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   ResizeObserver.mockImplementation((cb) => {
     cb([{ contentRect: { width, height } }]);
-    return { observe: jest.fn(), disconnect: jest.fn(), unobserve: jest.fn() };
+    return { observe: vi.fn(), disconnect: vi.fn(), unobserve: vi.fn() };
   });
 };
 

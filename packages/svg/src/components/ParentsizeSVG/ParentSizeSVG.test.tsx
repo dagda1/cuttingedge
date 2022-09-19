@@ -1,4 +1,4 @@
-import { describe, it, expect } from '@jest/globals';
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';

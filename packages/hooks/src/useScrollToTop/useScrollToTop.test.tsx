@@ -1,27 +1,28 @@
-import { expect, it, describe, beforeEach, afterEach, jest } from '@jest/globals';
+import { expect, it, describe, beforeEach, afterEach } from 'vitest';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import type { History } from 'history';
 import { render } from '@testing-library/react';
 import { useScrollToTop } from './useScrollToTop';
+import { vi } from 'vitest';
 
 describe('useScrollToTop', () => {
   let history: History;
 
   beforeEach(() => {
     history = createMemoryHistory();
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
-    jest.resetAllMocks();
-    jest.clearAllTimers();
+    vi.clearAllMocks();
+    vi.resetAllMocks();
+    vi.clearAllTimers();
   });
 
   it('should scroll to top on a new page', () => {
-    const focus = jest.fn();
-    const scrollTo = jest.fn();
+    const focus = vi.fn();
+    const scrollTo = vi.fn();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const ref: any = {
@@ -46,7 +47,7 @@ describe('useScrollToTop', () => {
       </Router>,
     );
 
-    jest.runAllTimers();
+    vi.runAllTimers();
 
     expect(scrollTo).toHaveBeenCalled();
     expect(focus).toHaveBeenCalled();

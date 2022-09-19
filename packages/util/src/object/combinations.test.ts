@@ -1,5 +1,5 @@
 import { combinations } from './combinations';
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 
 const arr = ['red', 'orange', 'yellow', 'green'];
 

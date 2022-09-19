@@ -1,15 +1,14 @@
-import { expect, describe, it } from '@jest/globals';
+import { expect, describe, it } from 'vitest';
 import { isNil } from './isNil.js';
 
 describe('isNil', () => {
-  it.each`
-    subject              | expected | message
-    ${isNil(undefined)}  | ${true}  | ${'undefined'}
-    ${isNil(null)}       | ${true}  | ${'null'}
-    ${isNil(NaN)}        | ${false} | ${'NaN'}
-    ${isNil('default')}  | ${false} | ${'string'}
-    ${isNil({ a: 'a' })} | ${false} | ${'object'}
-  `('subject:$subject is $expected, //$message', ({ subject, expected }) => {
-    expect(subject).toBe(expected);
+  it.each([
+    [undefined, true],
+    [null, true],
+    [NaN, false],
+    ['default', false],
+    [{a: 'a'}, false]
+  ])('isNil %d to be %d', (a, expected) => {
+    expect(isNil(a)).toEqual(expected)
   });
 });

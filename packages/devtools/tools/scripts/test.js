@@ -1,4 +1,4 @@
-import { getClientEnv } from '../config/env';
+import { getClientEnv } from '../config/env.js';
 import fs from 'fs';
 import { paths } from '../config/paths.js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

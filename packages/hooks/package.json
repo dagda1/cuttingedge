@@ -15,7 +15,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "test": "NODE_ENV=test devtools test",
+    "test": "NODE_ENV=test vitest",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "lint:fix": "pnpm lint --fix",
     "build": "NODE_ENV=production devtools rollup"

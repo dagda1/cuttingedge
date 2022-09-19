@@ -1,6 +1,7 @@
-import { expect, it, describe, jest } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 import { Input } from './Input';
 import { render, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 
 const wrap = (props = {}) => render(<Input {...props} />);
 
@@ -12,7 +13,7 @@ describe('<Input />', () => {
   });
 
   it('should handle keyDown', () => {
-    const onKeyDown = jest.fn();
+    const onKeyDown = vi.fn();
     const { container } = wrap({ onKeyDown });
     const input = container.querySelector('input[type="text"]') as HTMLInputElement;
 

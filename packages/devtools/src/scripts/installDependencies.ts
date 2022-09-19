@@ -10,7 +10,7 @@ const devDependencies = [
   '@cutting/eslint-config',
   '@cutting/tsconfig',
   '@cutting/useful-types',
-  '@jest/globals',
+  'vitest',
   '@types/eslint',
   '@types/node',
   '@typescript-eslint/eslint-plugin',

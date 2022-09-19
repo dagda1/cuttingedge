@@ -1,12 +1,13 @@
-import { expect, it, describe, beforeEach, beforeAll, afterEach, afterAll, jest } from '@jest/globals';
+import { expect, it, describe, beforeEach, beforeAll, afterEach, afterAll } from 'vitest';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useFetch } from './react-abortable-fetch';
+import { vi } from 'vitest';
 
 let times = 1;
 
-jest.setTimeout(30000);
+vi.setTimeout(30000);
 
 const scheduler = typeof setImmediate === 'function' ? setImmediate : setTimeout;
 
@@ -122,8 +123,8 @@ describe('useFetch', () => {
   beforeAll(() => server.listen());
 
   beforeEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   afterEach(() => {
@@ -141,9 +142,9 @@ describe('useFetch', () => {
     };
 
     it('should accumulate nested queries', async () => {
-      const onSuccess = jest.fn();
-      const onError = jest.fn();
-      const onAbort = jest.fn();
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+      const onAbort = vi.fn();
 
       const { result, waitFor } = renderHook(() =>
         useFetch<Vendor[], typeof vendors>('http://localhost:3000/vendors', {
@@ -200,10 +201,10 @@ describe('useFetch', () => {
     });
 
     it('should only call handlers once', async () => {
-      const onQuerySuccess = jest.fn();
-      const onSuccess = jest.fn();
-      const onError = jest.fn();
-      const onAbort = jest.fn();
+      const onQuerySuccess = vi.fn();
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+      const onAbort = vi.fn();
 
       const { result, waitFor } = renderHook(() =>
         useFetch(`http://localhost:3000/single`, {
@@ -263,8 +264,8 @@ describe('useFetch', () => {
       });
 
       it('should transform a value', async () => {
-        const onSuccess = jest.fn();
-        const onError = jest.fn();
+        const onSuccess = vi.fn();
+        const onError = vi.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
           useFetch<{ id?: string; name: string }, { id: string }>(`http://localhost:3000/singles/1`, {
@@ -289,8 +290,8 @@ describe('useFetch', () => {
 
     describe('single errors', () => {
       it('should return an error object', async () => {
-        const onSuccess = jest.fn();
-        const onError = jest.fn();
+        const onSuccess = vi.fn();
+        const onError = vi.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
           useFetch(`http://localhost:3000/error`, {
@@ -316,9 +317,9 @@ describe('useFetch', () => {
     // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('single abort', () => {
       it('should abort a single call', async () => {
-        const onSuccess = jest.fn();
-        const onError = jest.fn();
-        const onAbort = jest.fn();
+        const onSuccess = vi.fn();
+        const onError = vi.fn();
+        const onAbort = vi.fn();
 
         const { result } = renderHook(() =>
           useFetch(`http://localhost:3000/abortable`, {
@@ -368,11 +369,11 @@ describe('useFetch', () => {
     // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('retry', () => {
       it('should retry a failing query', async () => {
-        const onSuccess = jest.fn();
-        const onError = jest.fn();
-        const onAbort = jest.fn();
-        const onQueryError = jest.fn();
-        const onQuerySuccess = jest.fn();
+        const onSuccess = vi.fn();
+        const onError = vi.fn();
+        const onAbort = vi.fn();
+        const onQueryError = vi.fn();
+        const onQuerySuccess = vi.fn();
         const { result, waitForNextUpdate } = renderHook(() =>
           useFetch(`http://localhost:3000/flaky-connection`, {
             executeOnMount: false,
@@ -400,10 +401,10 @@ describe('useFetch', () => {
     // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('timeout', () => {
       it('should should abort if request times out', async () => {
-        const onSuccess = jest.fn();
-        const onError = jest.fn();
-        const onAbort = jest.fn();
-        jest.useFakeTimers();
+        const onSuccess = vi.fn();
+        const onError = vi.fn();
+        const onAbort = vi.fn();
+        vi.useFakeTimers();
         const { result } = renderHook(() =>
           useFetch(`http://localhost:3000/long-request`, {
             executeOnMount: false,
@@ -417,7 +418,7 @@ describe('useFetch', () => {
 
         await act(async () => {
           result.current.run();
-          jest.runOnlyPendingTimers();
+          vi.runOnlyPendingTimers();
         });
 
         await flushPromises();
@@ -452,9 +453,9 @@ describe('useFetch', () => {
   describe('multi Query', () => {
     describe('multiple urls', () => {
       it('should successfully run a multi url query', async () => {
-        const onQuerySuccess = jest.fn();
-        const onSuccess = jest.fn();
-        const onError = jest.fn();
+        const onQuerySuccess = vi.fn();
+        const onSuccess = vi.fn();
+        const onError = vi.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
           useFetch(
@@ -481,9 +482,9 @@ describe('useFetch', () => {
     });
 
     it('should successfully run a multi FetchRequestInfo query', async () => {
-      const onQuerySuccess = jest.fn();
-      const onSuccess = jest.fn();
-      const onError = jest.fn();
+      const onQuerySuccess = vi.fn();
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
 
       const { result, waitForNextUpdate } = renderHook(() =>
         useFetch(
@@ -515,10 +516,10 @@ describe('useFetch', () => {
 
     describe('builder syntax', () => {
       it('should successfully run a multi query with builder syntax', async () => {
-        const onQuerySuccess = jest.fn();
-        const onQueryError = jest.fn();
-        const onSuccess = jest.fn();
-        const onError = jest.fn();
+        const onQuerySuccess = vi.fn();
+        const onQueryError = vi.fn();
+        const onSuccess = vi.fn();
+        const onError = vi.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
           useFetch(
@@ -556,10 +557,10 @@ describe('useFetch', () => {
 
     describe('multi accumulation', () => {
       it('should accumulate values with default accumulator', async () => {
-        const onQuerySuccess = jest.fn();
-        const onQueryError = jest.fn();
-        const onSuccess = jest.fn();
-        const onError = jest.fn();
+        const onQuerySuccess = vi.fn();
+        const onQueryError = vi.fn();
+        const onSuccess = vi.fn();
+        const onError = vi.fn();
 
         const { result, waitFor } = renderHook(() =>
           useFetch(
@@ -613,10 +614,10 @@ describe('useFetch', () => {
       });
 
       it('should accumulate values with custom accumulator', async () => {
-        const onQuerySuccess = jest.fn();
-        const onQueryError = jest.fn();
-        const onError = jest.fn();
-        const onSuccess = jest.fn();
+        const onQuerySuccess = vi.fn();
+        const onQueryError = vi.fn();
+        const onError = vi.fn();
+        const onSuccess = vi.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
           useFetch<number, { answer: number }>(
@@ -655,10 +656,10 @@ describe('useFetch', () => {
 
     describe('multiple query error', () => {
       it('should stop the chain when an error occurrs', async () => {
-        const onQuerySuccess = jest.fn();
-        const onQueryError = jest.fn();
-        const onError = jest.fn();
-        const onSuccess = jest.fn();
+        const onQuerySuccess = vi.fn();
+        const onQueryError = vi.fn();
+        const onError = vi.fn();
+        const onSuccess = vi.fn();
 
         const { result, waitForNextUpdate } = renderHook(() =>
           useFetch<number, { answer: number }>(
@@ -703,11 +704,11 @@ describe('useFetch', () => {
     // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('multiple query abort', () => {
       it('should stop the chain when an error occurrs', async () => {
-        const onQuerySuccess = jest.fn();
-        const onQueryError = jest.fn();
-        const onError = jest.fn();
-        const onSuccess = jest.fn();
-        const onAbort = jest.fn();
+        const onQuerySuccess = vi.fn();
+        const onQueryError = vi.fn();
+        const onError = vi.fn();
+        const onSuccess = vi.fn();
+        const onAbort = vi.fn();
 
         const { result } = renderHook(() =>
           useFetch<number, { answer: number }>(
@@ -757,12 +758,12 @@ describe('useFetch', () => {
   // eslint-disable-next-line jest/no-disabled-tests
   describe.skip('multi timeout timeout', () => {
     it('should should abort if request times out', async () => {
-      const onSuccess = jest.fn();
-      const onError = jest.fn();
-      const onAbort = jest.fn();
-      const onQuerySuccess = jest.fn();
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+      const onAbort = vi.fn();
+      const onQuerySuccess = vi.fn();
 
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const { result, waitForNextUpdate } = renderHook(() =>
         useFetch([`http://localhost:3000/single`, `http://localhost:3000/long-request`], {
           executeOnMount: false,
@@ -781,7 +782,7 @@ describe('useFetch', () => {
       });
 
       await act(async () => {
-        jest.advanceTimersByTime(210);
+        vi.advanceTimersByTime(210);
         await waitForNextUpdate();
       });
 
@@ -793,10 +794,10 @@ describe('useFetch', () => {
     });
 
     it('should should complete if request completes before timeout', async () => {
-      const onSuccess = jest.fn();
-      const onError = jest.fn();
-      const onAbort = jest.fn();
-      const onQuerySuccess = jest.fn();
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+      const onAbort = vi.fn();
+      const onQuerySuccess = vi.fn();
 
       const { result, waitForNextUpdate } = renderHook(() =>
         useFetch(['http://localhost:3000/single', 'http://localhost:3000/long-request'], {

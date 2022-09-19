@@ -1,5 +1,5 @@
 import { pickBy, countBy, sortBy, sortedUniqBy, uniqBy, groupBy, keyBy } from './by';
-import { expect, it, describe } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 
 describe('by', () => {
   describe('pickBy', function () {

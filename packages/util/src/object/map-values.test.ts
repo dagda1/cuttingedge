@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 import { mapValues } from './map-values';
 
 describe('mapValues', () => {

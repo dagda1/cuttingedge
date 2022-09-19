@@ -1,6 +1,5 @@
 import { padNumber, stripSpaces, capitalize } from './index';
-import { expect, it, describe } from '@jest/globals';
-import { assert } from 'assert-ts';
+import { expect, it, describe } from 'vitest';
 
 describe('string', () => {
   it('capitalize - should have first char uppercase', () => {
@@ -8,18 +7,19 @@ describe('string', () => {
     expect(capitalize('foo bar')).toBe('Foo bar');
   });
 
-  it.each`
-    subject             | expected | message
-    ${null}             | ${''}    | ${'null should be empty string'}
-    ${' a b c '}        | ${'abc'} | ${'remove leading spaces'}
-    ${'  '}             | ${''}    | ${'strips to empty string'}
-    ${'a  b  c       '} | ${'abc'} | ${'removes all kinds of sapces'}
-    ${''}               | ${''}    | ${'can parse an empty string'}
-  `('subject:$subject is $expected, //$message', ({ subject, expected }) => {
-    assert(!!subject, `subject is not null`);
-    expect(stripSpaces(subject)).toBe(expected);
-  });
+  test.each([
+    [null, ''],
+     [' a b c ', 'abc'],
+    [null, ''],
+    [' a b c ','abc'],
+    ['  ',''],
+    ['a  b  c       ', 'abc'],
+    ['', '']
+  ])('stripSpaces(%s) -> %s', (a: any, expected) => {
+    expect(stripSpaces(a)).toBe(expected)
+  })
 
+  
   it('should pad number', () => {
     expect(padNumber('1')).toBe('01');
   });

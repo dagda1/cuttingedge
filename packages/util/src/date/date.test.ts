@@ -1,5 +1,5 @@
 import { isDate } from './date';
-import { expect, it, describe } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 
 describe('isDate', () => {
   it('should determine dates', () => {

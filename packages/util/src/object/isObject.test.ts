@@ -1,5 +1,5 @@
 import { isObject } from './isObject';
-import { expect, it, describe } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 
 describe('isObject', () => {
   it('should determine objects', () => {

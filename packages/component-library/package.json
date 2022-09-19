@@ -80,7 +80,7 @@
     "build": "NODE_ENV=production devtools esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
-    "test": "NODE_ENV=test devtools test",
+    "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"

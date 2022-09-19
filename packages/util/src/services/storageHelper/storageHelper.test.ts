@@ -1,5 +1,5 @@
 import { StorageHelper, MemoryStorage } from '.';
-import { expect, it, describe } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 
 describe('storageHelper', () => {
   it('should set and remove on real storage', () => {

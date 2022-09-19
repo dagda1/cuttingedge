@@ -44,7 +44,7 @@
     "build": "NODE_ENV=production devtools rollup",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
-    "test": "NODE_ENV=test devtools test",
+    "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test"
   },
   "volta": {

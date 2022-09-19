@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { it, describe, expect } from '@jest/globals';
+import { it, describe, expect } from 'vitest';
 import { useIsMounted } from './useIsMounted.js';
 
 describe('useIsMounted', () => {

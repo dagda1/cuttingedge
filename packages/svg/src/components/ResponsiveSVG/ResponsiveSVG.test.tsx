@@ -1,19 +1,20 @@
-import { describe, it, expect, jest } from '@jest/globals';
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { ResponsiveSVG } from './ResponsiveSVG.js';
+import { vi } from 'vitest';
 
 import ResizeObserver from 'resize-observer-polyfill';
 
-jest.mock('resize-observer-polyfill');
+vi.mock('resize-observer-polyfill');
 
 const resize = (width: number, height: number): void => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   ResizeObserver.mockImplementation((cb) => {
     cb([{ contentRect: { width, height } }]);
-    return { observe: jest.fn(), disconnect: jest.fn(), unobserve: jest.fn() };
+    return { observe: vi.fn(), disconnect: vi.fn(), unobserve: vi.fn() };
   });
 };
 

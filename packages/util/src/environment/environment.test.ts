@@ -1,5 +1,5 @@
 import { isTest } from '.';
-import { expect, it, describe } from '@jest/globals';
+import { expect, it, describe } from 'vitest';
 
 describe('environment', () => {
   it('should be isTest', () => {

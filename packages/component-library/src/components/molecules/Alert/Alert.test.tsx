@@ -1,4 +1,4 @@
-import { describe, it, expect } from '@jest/globals';
+import { describe, it, expect } from 'vitest';
 import type { AlertProps } from './Alert';
 import { Alert } from './Alert';
 import { render } from '@testing-library/react';

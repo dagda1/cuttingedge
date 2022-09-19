@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { describe, it, expect, afterEach, jest } from '@jest/globals';
+import { describe, it, expect, afterEach } from 'vitest';
 import { renderHook } from '@testing-library/react-hooks';
 import { useShortcuts } from './useShortcuts';
 import { ShortcutHandler } from './types/types';
 import mousetrap from 'mousetrap';
 import { KeyCode } from './types/keycodes';
+import { vi } from 'vitest';
 
 const shortcutMap = { DO_SOMETHING: 'a' };
 const handler: ShortcutHandler<any> = (action) => {
@@ -64,7 +65,7 @@ describe('useShortcuts', () => {
 
     const input = document.querySelector('input') as HTMLInputElement;
 
-    const fn = jest.fn();
+    const fn = vi.fn();
 
     const props = { shortcutMap, handler: fn, ref: { current: null } };
 

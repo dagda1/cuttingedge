@@ -16,6 +16,10 @@
     },
     "./paths.js": {
       "import": "./tools/config/paths.js"
+    },
+    "./setuptests.js": {
+      "import": "./tools/vitest/setupTests.js",
+      "require": "./tools/vitest/setupTests.js"
     }
   },
   "typesVersions": {
@@ -149,7 +153,8 @@
     "cli",
     "package",
     "init",
-    "tools"
+    "tools",
+    "setuptests.js"
   ],
   "devDependencies": {
     "@cutting/eslint-config": "workspace:*",
