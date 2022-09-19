@@ -51,10 +51,12 @@ export const createBabelConfig = ({
         '@babel/plugin-transform-runtime',
         {
           corejs: false,
-          helpers: false,
+          helpers: true,
           version: require('@babel/runtime/package.json').version,
           regenerator: false,
-          useESModules: true,
+          // have to set useESModules: false and here is why
+          // https://github.com/babel/babel/discussions/14951
+          useESModules: false,
         } as RuntimeOptions,
       ],
       '@babel/plugin-syntax-dynamic-import',

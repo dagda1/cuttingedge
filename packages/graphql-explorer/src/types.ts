@@ -1,4 +1,4 @@
-import { IntrospectionEnumValue } from 'graphql';
+import type { IntrospectionEnumValue } from 'graphql';
 
 export type SimplifiedArg = {
   name: string;

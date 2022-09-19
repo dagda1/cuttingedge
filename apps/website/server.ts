@@ -1,9 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import express from 'express';
+import express, { urlencoded } from 'express';
 import type { ViteDevServer } from 'vite';
 import { assert } from 'assert-ts';
+import helmet, { contentSecurityPolicy } from 'helmet';
+import noCache from 'nocache';
+import referrerPolicy from 'referrer-policy';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -55,6 +58,45 @@ export async function createServer(hmrPort?: number): Promise<{
     app.use(
       (await import('serve-static')).default(resolve('client'), {
         index: false,
+      }),
+    );
+  }
+
+  if (isProd) {
+    app.use(helmet({ crossOriginEmbedderPolicy: false }));
+    app.use(noCache());
+    app.use(referrerPolicy({ policy: 'no-referrer' }));
+    app.use(helmet.hidePoweredBy());
+    app.use(urlencoded({ extended: false }));
+    app.use(
+      contentSecurityPolicy({
+        directives: {
+          defaultSrc: ["'self'", 'https://covidapi.info/'],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            'https://www.googletagmanager.com/',
+            'https://www.formlets.com',
+            'https://www.google-analytics.com',
+            'https://www.opendata.nhs.scot/',
+          ],
+          connectSrc: ['https://www.google-analytics.com', 'www.google-analytics.com', 'https://www.formlets.com'],
+          styleSrc: ["'self'", "'unsafe-inline'", 'https://esm.sh', 'https://fonts.googleapis.com'],
+          imgSrc: [
+            "'self'",
+            'data:',
+            'https://www.google-analytics.com',
+            'https://www.googletagmanager.com/',
+            'https://www.trustlogo.com',
+            'https://secure.trust-provider.com/',
+            'https://cutting.scot',
+          ],
+          fontSrc: ["'self'", 'data:', 'https://fonts.gstatic.com', 'https://fonts.googleapis.com'],
+          objectSrc: ["'self'", 'blob:'],
+          frameSrc: ["'self'", 'https://www.formlets.com'],
+          manifestSrc: ['data:'],
+        },
       }),
     );
   }

@@ -138,7 +138,7 @@ async function generateBundledModule({
         },
       }),
       babel({
-        babelHelpers: 'bundled',
+        babelHelpers: 'runtime',
         ...babelConfig,
         extensions: [...DEFAULT_EXTENSIONS, 'ts', 'tsx'],
         sourceType: 'module',
