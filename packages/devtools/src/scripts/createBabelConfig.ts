@@ -9,7 +9,7 @@ const require = createRequire(import.meta.url);
 export function createBabelPresets(): any[] {
   const presetOptions: PresetOptions = {
     exclude: ['transform-typeof-symbol', '@babel/plugin-transform-regenerator'],
-    modules: "auto",
+    modules: 'auto',
     useBuiltIns: 'entry',
     corejs: 3,
   };
@@ -24,6 +24,7 @@ export function createBabelPresets(): any[] {
     ],
   ];
 }
+
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createBabelConfig = ({
@@ -46,26 +47,15 @@ export const createBabelConfig = ({
     // cacheIdentifier: getCacheIdentifier({ isDevelopment, isNode, moduleFormat }),
     sourceType: 'module',
     plugins: [
-      'babel-plugin-macros',
+      ["replace-import-extension", { "extMapping": { ".js": "" }}],
       'babel-plugin-annotate-pure-calls',
-      'babel-plugin-dev-expression',
-      [
-        '@babel/plugin-proposal-class-properties',
-        {
-          loose: true,
-        },
-      ],
-      ['@babel/plugin-proposal-decorators', { legacy: true }],
-      ['@babel/plugin-proposal-private-methods', { loose: true }],
-      ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
-      '@babel/plugin-proposal-numeric-separator',
       [
         '@babel/plugin-transform-runtime',
         {
           corejs: false,
-          helpers: true,
+          helpers: false,
           version: require('@babel/runtime/package.json').version,
-          regenerator: true,
+          regenerator: false,
           useESModules: true,
         } as RuntimeOptions,
       ],

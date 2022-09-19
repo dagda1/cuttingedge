@@ -3,4 +3,4 @@ ChromeAndroid >= 85
 Firefox >= 85
 safari >14
 last 1 year
-node 16.6
+node 16.16

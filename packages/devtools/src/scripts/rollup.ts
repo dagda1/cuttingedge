@@ -138,10 +138,10 @@ async function generateBundledModule({
         },
       }),
       babel({
-        babelHelpers: 'runtime',
+        babelHelpers: 'bundled',
         ...babelConfig,
         extensions: [...DEFAULT_EXTENSIONS, 'ts', 'tsx'],
-        sourceType: 'module'
+        sourceType: 'module',
       } as RollupBabelInputPluginOptions),
       // injectProcessEnv({
       //   NODE_ENV: env,

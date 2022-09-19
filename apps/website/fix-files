@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+sed -i -e s/'extends.js'/'extends'/g ./dist/server/entry-server.js
+sed -i -e s/'assertThisInitialized.js'/'assertThisInitialized'/g ./dist/server/entry-server.js
+sed -i -e s/'inheritsLoose.js'/'inheritsLoose'/g ./dist/server/entry-server.js
+sed -i -e s/'wrapNativeSuper.js'/'wrapNativeSuper'/g ./dist/server/entry-server.js
+sed -i -e s/'taggedTemplateLiteralLoose.js'/'taggedTemplateLiteralLoose'/g ./dist/server/entry-server.js

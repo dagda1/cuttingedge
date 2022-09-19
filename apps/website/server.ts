@@ -20,11 +20,11 @@ const publicDir = path.join(root, isProd ? 'dist/public' : 'public');
 
 export async function createServer(hmrPort?: number): Promise<{
   app: ReturnType<typeof express>;
-  vite: ViteDevServer;
+  vite: ViteDevServer | undefined;
 }> {
   const resolve = (p: string) => path.resolve(__dirname, p);
 
-  const indexProd = isProd ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8') : '';
+  const indexProd = isProd ? fs.readFileSync(resolve('client/index.html'), 'utf-8') : '';
 
   const app = express();
 
@@ -54,7 +54,7 @@ export async function createServer(hmrPort?: number): Promise<{
   } else {
     app.use((await import('compression')).default());
     app.use(
-      (await import('serve-static')).default(resolve('dist/client'), {
+      (await import('serve-static')).default(resolve('client'), {
         index: false,
       }),
     );
@@ -86,16 +86,13 @@ export async function createServer(hmrPort?: number): Promise<{
     });
   });
 
-  assert(!!vite, `no vite`);
-
   app.use('*', async (req, res) => {
-    assert(!!vite, `no vite`);
-
     try {
       const url = req.originalUrl;
 
       let template, render;
       if (!isProd) {
+        assert(!!vite, `no vite`);
         // always read fresh template in dev
         template = fs.readFileSync(resolve('index.html'), 'utf-8');
         template = await vite.transformIndexHtml(url, template);
@@ -104,7 +101,7 @@ export async function createServer(hmrPort?: number): Promise<{
         template = indexProd;
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        render = (await import('./dist/server/entry-server.js')).render;
+        render = (await import('./server/entry-server.js')).render;
       }
 
       const context: { url?: string } = {};
@@ -120,7 +117,7 @@ export async function createServer(hmrPort?: number): Promise<{
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {
       if (e instanceof Error) {
-        !isProd && vite.ssrFixStacktrace(e);
+        !isProd && vite?.ssrFixStacktrace(e);
         console.log(e.stack);
         res.status(500).end(e.stack);
       } else {
@@ -129,8 +126,6 @@ export async function createServer(hmrPort?: number): Promise<{
       }
     }
   });
-
-  assert(!!vite, `no vite`);
 
   return { app, vite };
 }

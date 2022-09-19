@@ -9,7 +9,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.dist.json && pnpm build:client && pnpm build:server && pnpm copy-files",
+    "build": "rimraf dist && tsc -p ./tsconfig.dist.json && pnpm build:client && pnpm build:server && pnpm copy-files && ./fix-files",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "clean": "rimraf dist/ && mkdir dist",
@@ -22,7 +22,6 @@
     "**/*.cs.ts"
   ],
   "dependencies": {
-    "@babel/runtime": "7.19.0",
     "@cutting/component-library": "workspace:../../packages/component-library",
     "@cutting/hooks": "workspace:../../packages/hooks",
     "@cutting/svg": "workspace:../../packages/svg",
@@ -63,7 +62,7 @@
     "url-join": "5.0.0"
   },
   "devDependencies": {
-
+    "@babel/runtime": "7.19.0",
     "@cutting/devtools": "workspace:../../packages/devtools",
     "@cutting/eslint-config": "workspace:../../packages/eslint-config",
     "@cutting/tsconfig": "workspace:../../packages/tsconfig",
@@ -111,6 +110,11 @@
     "extends": "../../package.json"
   },
   "pnpm": {
+    "overrides": {
+      "@babel/core@<7.19.1": ">=7.19.1",
+      "@babel/types@<7.19.0": ">=7.19.3",
+      "@babel/runtime@<7.19.0": ">=7.19.0"
+    },
     "peerDependencyRules": {
       "allowedVersions": {
         "react": "18.2.0"
