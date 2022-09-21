@@ -1,5 +1,16 @@
 # @cutting/react-abortable-fetch
 
+## 0.29.0
+
+### Minor Changes
+
+- d0f474b0: Release new esm versions of packages
+
+### Patch Changes
+
+- Updated dependencies [d0f474b0]
+  - @cutting/util@4.52.0
+
 ## 0.28.3
 
 ### Patch Changes

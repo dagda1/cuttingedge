@@ -1,7 +1,7 @@
 {
   "name": "@cutting/useful-types",
   "description": "Some useful types.",
-  "version": "4.36.1",
+  "version": "4.37.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
