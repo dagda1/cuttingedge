@@ -278,7 +278,6 @@ importers:
       '@types/mdx-js__react': 1.5.5
       '@types/react': 18.0.20
       '@types/react-dom': 18.0.6
-      '@types/tailwindcss': 3.1.0
       '@vanilla-extract/babel-plugin': 1.2.0
       '@vanilla-extract/css': ^1.9.0
       '@vanilla-extract/sprinkles': 1.5.0
@@ -334,7 +333,6 @@ importers:
       '@types/mdx-js__react': 1.5.5
       '@types/react': 18.0.20
       '@types/react-dom': 18.0.6
-      '@types/tailwindcss': 3.1.0
       '@vanilla-extract/babel-plugin': 1.2.0
       '@vanilla-extract/css': 1.9.0
       autoprefixer: 10.4.11_postcss@8.4.16
@@ -5736,15 +5734,6 @@ packages:
     resolution: {integrity: sha512-k7XjoXD9UbcB947U5cM93Dc4+GJeiQtGqWtySBoyHoWunifBXfHR+d/Rya+UOF3Zn5JWeBorwrB8xayT3ZXa5A==}
     dependencies:
       '@types/webpack': 4.41.32
-    dev: true
-
-  /@types/tailwindcss/3.1.0:
-    resolution: {integrity: sha512-JxPzrm609hzvF4nmOI3StLjbBEP3WWQxDDJESqR1nh94h7gyyy3XSl0hn5RBMJ9mPudlLjtaXs5YEBtLw7CnPA==}
-    deprecated: This is a stub types definition. tailwindcss provides its own type definitions, so you do not need this installed.
-    dependencies:
-      tailwindcss: 3.1.8
-    transitivePeerDependencies:
-      - ts-node
     dev: true
 
   /@types/tapable/1.0.8:
