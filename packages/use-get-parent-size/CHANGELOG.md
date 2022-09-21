@@ -1,5 +1,17 @@
 # @cutting/use-get-parent-size
 
+## 1.20.0
+
+### Minor Changes
+
+- d0f474b0: Release new esm versions of packages
+
+### Patch Changes
+
+- Updated dependencies [d0f474b0]
+  - @cutting/hooks@4.50.0
+  - @cutting/util@4.52.0
+
 ## 1.19.3
 
 ### Patch Changes

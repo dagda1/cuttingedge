@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.52.0
+
+### Minor Changes
+
+- d0f474b0: Release new esm versions of packages
+
 ## 4.51.0
 
 ### Minor Changes
