@@ -30,7 +30,7 @@
     "@babel/runtime": "7.19.0",
     "@changesets/cli": "2.24.4",
     "@cutting/devtools": "workspace:*",
-    "@cutting/tsconfig": "^4.38.0",
+    "@cutting/tsconfig": "workspace:*",
     "@testing-library/jest-dom": "5.16.5",
     "@types/node": "18.7.18",
     "@vitest/coverage-c8": "0.23.4",

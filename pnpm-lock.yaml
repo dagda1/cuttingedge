@@ -31,7 +31,7 @@ importers:
       '@babel/runtime': 7.19.0
       '@changesets/cli': 2.24.4
       '@cutting/devtools': workspace:*
-      '@cutting/tsconfig': ^4.38.0
+      '@cutting/tsconfig': workspace:*
       '@testing-library/jest-dom': 5.16.5
       '@types/node': 18.7.18
       '@vanilla-extract/vite-plugin': 3.5.0
@@ -67,7 +67,7 @@ importers:
       '@babel/runtime': 7.19.0
       '@changesets/cli': 2.24.4
       '@cutting/devtools': link:packages/devtools
-      '@cutting/tsconfig': 4.38.0
+      '@cutting/tsconfig': link:packages/tsconfig
       '@testing-library/jest-dom': 5.16.5
       '@types/node': 18.7.18
       '@vanilla-extract/vite-plugin': 3.5.0_vite@3.1.3
@@ -2660,10 +2660,6 @@ packages:
       marked: 4.1.0
       rollup: 2.79.0
     dev: false
-
-  /@cutting/tsconfig/4.38.0:
-    resolution: {integrity: sha512-pZcAI3R5mmgFBCsuwow4zyAfMIsJTjx3n4DgOGmlcIyV7S1Nu3xk/H5584g0krXCXED7VPODYVkr3YztuHR9tQ==}
-    dev: true
 
   /@definitelytyped/header-parser/0.0.130:
     resolution: {integrity: sha512-YlxMpcHRiS7fdx4soaR0JKSf4NY4jsDRmu47YGId/DsTd0uhZIlUPJKULhMKMivgdOhJKHrNvfB2pWla4Q8atA==}
@@ -7703,7 +7699,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -16240,17 +16236,6 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
-    dev: true
-
-  /promise-inflight/1.0.1_bluebird@3.7.2:
-    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
-    dependencies:
-      bluebird: 3.7.2
     dev: true
 
   /promise.allsettled/1.0.5:
