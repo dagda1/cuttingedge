@@ -64,7 +64,7 @@
     "npm": "8.19.2"
   },
   "lint-staged": {
-    "{packages|apps}/**/*.{js,jsx,ts,tsx,mjs,cjs}": [
+    "{packages,apps}/**/*.{js,jsx,ts,tsx,mjs,cjs}": [
       "eslint --fix"
     ]
   },
