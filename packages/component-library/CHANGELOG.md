@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.28.0
+
+### Minor Changes
+
+- 7100e435: kill webpack
+
+### Patch Changes
+
+- Updated dependencies [7100e435]
+  - @cutting/hooks@4.51.0
+  - @cutting/util@4.53.0
+
 ## 5.27.0
 
 ### Minor Changes

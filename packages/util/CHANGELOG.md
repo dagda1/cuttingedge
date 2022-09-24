@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.53.0
+
+### Minor Changes
+
+- 7100e435: kill webpack
+
 ## 4.52.0
 
 ### Minor Changes

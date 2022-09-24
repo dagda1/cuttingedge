@@ -1,5 +1,16 @@
 # @cutting/react-abortable-fetch
 
+## 0.30.0
+
+### Minor Changes
+
+- 7100e435: kill webpack
+
+### Patch Changes
+
+- Updated dependencies [7100e435]
+  - @cutting/util@4.53.0
+
 ## 0.29.0
 
 ### Minor Changes
