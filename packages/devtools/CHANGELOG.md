@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.57.0
+
+### Minor Changes
+
+- d0f474b0: Release new esm versions of packages
+
 ## 4.55.0
 
 ### Minor Changes
