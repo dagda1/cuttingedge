@@ -1,5 +1,18 @@
 # @cutting/svg
 
+## 4.47.0
+
+### Minor Changes
+
+- 7100e435: kill webpack
+
+### Patch Changes
+
+- Updated dependencies [7100e435]
+  - @cutting/react-abortable-fetch@0.30.0
+  - @cutting/use-get-parent-size@1.21.0
+  - @cutting/util@4.53.0
+
 ## 4.46.0
 
 ### Minor Changes

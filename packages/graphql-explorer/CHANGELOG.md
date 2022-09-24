@@ -1,5 +1,19 @@
 # @cutting/graphql-explorer
 
+## 4.39.0
+
+### Minor Changes
+
+- 7100e435: kill webpack
+
+### Patch Changes
+
+- Updated dependencies [7100e435]
+  - @cutting/component-library@5.28.0
+  - @cutting/react-abortable-fetch@0.30.0
+  - @cutting/svg@4.47.0
+  - @cutting/util@4.53.0
+
 ## 4.38.0
 
 ### Minor Changes

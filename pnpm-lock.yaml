@@ -512,7 +512,6 @@ importers:
     specifiers:
       '@babel/core': 7.19.1
       '@babel/eslint-parser': ^7.19.1
-      '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': 5.37.0
       '@typescript-eslint/parser': 5.37.0
       eslint: 8.23.1
@@ -526,7 +525,6 @@ importers:
     dependencies:
       '@babel/core': 7.19.1
       '@babel/eslint-parser': 7.19.1_zdglor7vg7osicr5spasq6cc5a
-      '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.37.0_22c5fnooleyfkzrkkgdmel5kmi
       '@typescript-eslint/parser': 5.37.0_irgkl5vooow2ydyo6aokmferha
       eslint: 8.23.1
@@ -5470,6 +5468,7 @@ packages:
 
   /@types/webpack-env/1.18.0:
     resolution: {integrity: sha512-56/MAlX5WMsPVbOg7tAxnYvNYMMWr/QJiIp6BxVSW3JJXUVzzOn64qW8TzQyMSqSUFM2+PVI4aUHcHOzIz/1tg==}
+    dev: true
 
   /@types/webpack-sources/3.2.0:
     resolution: {integrity: sha512-Ft7YH3lEVRQ6ls8k4Ff1oB4jN6oy/XmU6tQISKdhfh+1mR+viZFphS6WL0IrtDOzvefmJg5a0s7ZQoRXwqTEFg==}

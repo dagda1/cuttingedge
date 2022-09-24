@@ -1,11 +1,11 @@
 import type { Options as PresetOptions } from '@babel/preset-env';
 import type { Options as RuntimeOptions } from '@babel/plugin-transform-runtime';
 import type { ModuleFormat } from '../types/moduleFormat';
-// import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
 import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function createBabelPresets(): any[] {
   const presetOptions: PresetOptions = {
     exclude: ['transform-typeof-symbol', '@babel/plugin-transform-regenerator'],
