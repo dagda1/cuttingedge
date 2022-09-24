@@ -60,3 +60,5 @@ pnpm-global
 .pnpm-store
 
 .watchman-*
+
+vite.config.ts.timestamp-*

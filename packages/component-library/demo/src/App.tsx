@@ -1,9 +1,19 @@
 import * as styles from './global.css';
 import React, { useState } from 'react';
-import { FormInput, ExternalLink, ButtonLink, CheckboxGroup, FormTextArea, FormRadioGroup, Donut, Alert } from '../src';
-import { Button } from '../src/components/atoms/Button/Button';
-import { RadioGroup } from '../src/components/molecules/RadioGroup/RadioGroup';
-import { ApplicationLayout, ThemeKeys } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
+import {
+  FormInput,
+  ExternalLink,
+  ButtonLink,
+  CheckboxGroup,
+  FormTextArea,
+  FormRadioGroup,
+  Donut,
+  Alert,
+} from '../../src';
+import { Button } from '../../src/components/atoms/Button/Button';
+import { RadioGroup } from '../../src/components/molecules/RadioGroup/RadioGroup';
+import type { ThemeKeys } from '../../src/components/templates/ApplicationLayout/ApplicationLayout';
+import { ApplicationLayout } from '../../src/components/templates/ApplicationLayout/ApplicationLayout';
 
 export function App(): JSX.Element {
   const [theme, setTheme] = useState<ThemeKeys>('cuttingTheme');

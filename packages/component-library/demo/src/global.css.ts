@@ -1,8 +1,8 @@
 import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
-import { rem } from 'polished'
-import { palette } from '../src';
-import { atoms } from '../src/style/atoms/atoms';
-import { vars } from '../src/style/themes/vars.css';
+import { rem } from 'polished';
+import { palette } from '../../src';
+import { atoms } from '../../src/style/atoms/atoms';
+import { vars } from '../../src/style/themes/vars.css';
 
 globalFontFace('Oswald', {
   fontStyle: 'normal',

@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
-import {assert} from 'assert-ts'
+import { assert } from 'assert-ts';
 
 export const container = document.getElementById('root');
 
