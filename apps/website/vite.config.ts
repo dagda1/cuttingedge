@@ -9,6 +9,7 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths(), vanillaExtractPlugin(), svgrPlugin({ svgrOptions: { icon: true } }), mdx()],
   assetsInclude: ['src/assets/images/**.png', 'src/assets/images/**.jpg'],
   build: {
+    sourcemap: 'inline',
     minify: false,
     commonjsOptions: {
       transformMixedEsModules: true,

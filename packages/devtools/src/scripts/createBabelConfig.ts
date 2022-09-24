@@ -1,8 +1,8 @@
 import type { Options as PresetOptions } from '@babel/preset-env';
 import type { Options as RuntimeOptions } from '@babel/plugin-transform-runtime';
 import type { ModuleFormat } from '../types/moduleFormat';
-import { createRequire } from 'module';
 // import { getCacheIdentifier } from '../webpack/loaders/getCacheIdentifier';
+import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
 
