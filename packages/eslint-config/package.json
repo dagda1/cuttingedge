@@ -1,6 +1,6 @@
 {
   "name": "@cutting/eslint-config",
-  "version": "4.40.1",
+  "version": "4.41.0",
   "description": "Cutting eslint configuration definition",
   "main": "index.cjs",
   "license": "MIT",
