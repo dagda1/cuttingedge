@@ -11,6 +11,7 @@
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "dependencies": {
+    "@cutting/react-abortable-fetch": "workspace:*",
     "@cutting/use-get-parent-size": "workspace:*",
     "@cutting/util": "workspace:*",
     "classnames": "^2.3.2",
@@ -29,6 +30,7 @@
     "@vanilla-extract/babel-plugin": "1.2.0",
     "@vanilla-extract/css": "^1.9.0",
     "@vanilla-extract/sprinkles": "1.5.0",
+    "assert-ts": "0.3.4",
     "eslint": "8.23.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -41,7 +43,7 @@
   "scripts": {
     "build": "NODE_ENV=production devtools rollup",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
+    "start": "pnpm vite --host --port 9000  -l=info  --clearScreen=false",
     "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test"
   },

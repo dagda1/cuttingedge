@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
+    "start": "pnpm vite --host --port 3300 -l info",
     "test": "echo disabled #NODE_OPTIONS=--experimental-vm-modules NODE_ENV=test vitest",
     "build": "NODE_ENV=production devtools rollup"
   },

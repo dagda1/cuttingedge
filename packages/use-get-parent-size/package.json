@@ -15,7 +15,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "PORT=9999 NODE_ENV=development devtools devserver-start",
+    "start": "pnpm vite --host --port 9000  -l=info  --clearScreen=false",
     "test": "NODE_ENV=test vitest",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "lint:fix": "pnpm lint --fix",

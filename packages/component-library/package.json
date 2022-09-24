@@ -63,8 +63,7 @@
     "serve-handler": "6.1.3",
     "storybook-addon-designs": "6.3.1",
     "tailwindcss": "3.1.8",
-    "typescript": "4.8.3",
-    "webpack": "^5.74.0"
+    "typescript": "4.8.3"
   },
   "peerDependencies": {
     "react": ">= 18.x.x",
@@ -78,7 +77,7 @@
     "prebuild": "tsc",
     "build": "NODE_ENV=production devtools esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "start": "PORT=8888 NODE_ENV=development devtools devserver-start",
+    "start": "pnpm vite --host --port 7000 -l info",
     "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test",
     "storybook": "start-storybook -p 6006",

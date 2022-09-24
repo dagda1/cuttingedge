@@ -14,7 +14,7 @@ export const themes = {
   defaultTheme,
   cuttingTheme,
   consultingTheme,
-  salesTheme
+  salesTheme,
 } as const;
 
 export type ThemeKeys = keyof typeof themes;
@@ -30,7 +30,7 @@ export interface ApplicationLayoutProps {
   innerRef?: Ref<HTMLElement>;
   children: ReactNode;
   headerAriaLabel?: string;
-  theme: keyof typeof themes 
+  theme: keyof typeof themes;
 }
 
 const ApplicationLayoutHeading: ComponentType<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
@@ -49,10 +49,10 @@ export function ApplicationLayout({
   footer,
   children,
   headerAriaLabel,
-  theme
+  theme,
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   const currentTheme = themes[theme];
-  
+
   return (
     <div className={currentTheme}>
       <header role="banner" className={cs({ [styles.hidden]: !header })} aria-label={headerAriaLabel}>
