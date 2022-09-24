@@ -9,17 +9,16 @@ describe('string', () => {
 
   test.each([
     [null, ''],
-     [' a b c ', 'abc'],
+    [' a b c ', 'abc'],
     [null, ''],
-    [' a b c ','abc'],
-    ['  ',''],
+    [' a b c ', 'abc'],
+    ['  ', ''],
     ['a  b  c       ', 'abc'],
-    ['', '']
+    ['', ''],
   ])('stripSpaces(%s) -> %s', (a: any, expected) => {
-    expect(stripSpaces(a)).toBe(expected)
-  })
+    expect(stripSpaces(a)).toBe(expected);
+  });
 
-  
   it('should pad number', () => {
     expect(padNumber('1')).toBe('01');
   });

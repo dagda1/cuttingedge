@@ -9,13 +9,10 @@ import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
 import { copyAssets } from './copy-assets.js';
 import fs from 'fs';
 import { createCommand } from 'commander';
-import { consolidateBuildConfigs } from './consolidateBuildConfigs.js';
 import { readFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const buildConfig = consolidateBuildConfigs();
 
 type ModuleFormat = Required<Pick<CommonOptions, 'format'>>['format'];
 
@@ -29,8 +26,7 @@ async function bundle({
   env: 'development' | 'production';
   analyze: boolean;
 }): Promise<void> {
-  const entryPoints =
-    typeof buildConfig.client.entries === 'string' ? [buildConfig.client.entries] : buildConfig.client.entries;
+  const entryPoints = [paths.appSrc];
 
   assert(Array.isArray(entryPoints), `build config entries needs to be a string array`);
 

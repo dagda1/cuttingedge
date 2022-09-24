@@ -84,6 +84,7 @@ export function useFetch<Args extends UseFetchArgs<R, T>, R, T = R>(
   const aborter = useCallback(() => {
     console.log(`aborting at ${machine.value}`);
     abortController.current.abort();
+    send('ABORT');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [abortController.current, machine.value]);
 

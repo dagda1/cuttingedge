@@ -5,7 +5,7 @@
     "noEmit": true,
     "preserveSymlinks": false
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/react-abortable-fetch.test.mts", "src/react-abortable-fetch.test.mtsx"],
   "references": [
     { "path": "../util/tsconfig.dist.json" }
   ]

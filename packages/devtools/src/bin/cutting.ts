@@ -18,19 +18,11 @@ const args = process.argv.slice(3);
 let command = '';
 
 switch (script) {
-  case 'audit':
-    command = '../audit-parser/index.js';
-    break;
   case 'devserver-start':
   case 'init':
-  case 'node-build':
   case 'rollup':
   case 'scaffold':
-  case 'ssr-build':
-  case 'ssr-start':
-  case 'static-build':
   case 'esbuild':
-  case 'test':
   case 'ts-build': {
     command = path.join(__dirname, `../scripts/${script}.js`);
     break;
