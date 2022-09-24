@@ -1,5 +1,4 @@
 ---
-"@cutting/website": minor
 "@cutting/component-library": minor
 "@cutting/devtools": minor
 "@cutting/graphql-explorer": minor
