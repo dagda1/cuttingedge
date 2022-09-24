@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.58.0
+
+### Minor Changes
+
+- 7100e435: kill webpack
+
 ## 4.57.0
 
 ### Minor Changes
