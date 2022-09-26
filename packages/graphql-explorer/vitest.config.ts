@@ -12,7 +12,7 @@ export default defineConfig({
     vanillaExtractPlugin(),
     react({
       babel: {
-        plugins: ['@vanilla-extract/babel-plugin'],
+        plugins: [],
       },
     }),
   ],

@@ -7,7 +7,7 @@ var vitest_config_default = defineConfig({
     vanillaExtractPlugin(),
     react({
       babel: {
-        plugins: ["@vanilla-extract/babel-plugin"]
+        plugins: []
       }
     })
   ],

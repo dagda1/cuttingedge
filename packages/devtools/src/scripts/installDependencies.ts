@@ -15,7 +15,6 @@ const devDependencies = [
   '@types/node',
   '@typescript-eslint/eslint-plugin',
   '@typescript-eslint/parser',
-  '@vanilla-extract/babel-plugin',
   'eslint',
   'regenerator-runtime',
   'typescript',

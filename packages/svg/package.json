@@ -27,7 +27,6 @@
     "@testing-library/react": "^13.4.0",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
-    "@vanilla-extract/babel-plugin": "1.2.0",
     "@vanilla-extract/css": "^1.9.0",
     "@vanilla-extract/sprinkles": "1.5.0",
     "assert-ts": "0.3.4",
