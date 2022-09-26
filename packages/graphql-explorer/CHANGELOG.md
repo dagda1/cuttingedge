@@ -1,5 +1,19 @@
 # @cutting/graphql-explorer
 
+## 4.40.0
+
+### Minor Changes
+
+- 6d9b0d40: remove @vanilla-extract/babel-plugin
+
+### Patch Changes
+
+- Updated dependencies [6d9b0d40]
+  - @cutting/component-library@5.29.0
+  - @cutting/react-abortable-fetch@0.31.0
+  - @cutting/svg@4.48.0
+  - @cutting/util@4.54.0
+
 ## 4.39.0
 
 ### Minor Changes

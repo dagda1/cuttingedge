@@ -1,5 +1,18 @@
 # @cutting/svg
 
+## 4.48.0
+
+### Minor Changes
+
+- 6d9b0d40: remove @vanilla-extract/babel-plugin
+
+### Patch Changes
+
+- Updated dependencies [6d9b0d40]
+  - @cutting/react-abortable-fetch@0.31.0
+  - @cutting/use-get-parent-size@1.22.0
+  - @cutting/util@4.54.0
+
 ## 4.47.0
 
 ### Minor Changes

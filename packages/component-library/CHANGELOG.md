@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.29.0
+
+### Minor Changes
+
+- 6d9b0d40: remove @vanilla-extract/babel-plugin
+
+### Patch Changes
+
+- Updated dependencies [6d9b0d40]
+  - @cutting/hooks@4.52.0
+  - @cutting/util@4.54.0
+
 ## 5.28.0
 
 ### Minor Changes

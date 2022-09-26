@@ -1,5 +1,16 @@
 # @cutting/react-abortable-fetch
 
+## 0.31.0
+
+### Minor Changes
+
+- 6d9b0d40: remove @vanilla-extract/babel-plugin
+
+### Patch Changes
+
+- Updated dependencies [6d9b0d40]
+  - @cutting/util@4.54.0
+
 ## 0.30.0
 
 ### Minor Changes
