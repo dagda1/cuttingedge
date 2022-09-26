@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.52.0
+
+### Minor Changes
+
+- 6d9b0d40: remove @vanilla-extract/babel-plugin
+
+### Patch Changes
+
+- Updated dependencies [6d9b0d40]
+  - @cutting/util@4.54.0
+
 ## 4.51.0
 
 ### Minor Changes

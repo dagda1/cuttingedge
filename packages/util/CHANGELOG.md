@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.54.0
+
+### Minor Changes
+
+- 6d9b0d40: remove @vanilla-extract/babel-plugin
+
 ## 4.53.0
 
 ### Minor Changes
