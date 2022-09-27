@@ -1,10 +1,6 @@
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { globalStyle, style } from '@vanilla-extract/css';
 
-globalStyle('#root', {
-  border: '1px solid green',
-});
-
 const styles: ComplexStyleRule = {
   border: '1px solid red',
   background: 'grey',
@@ -14,9 +10,9 @@ const styles: ComplexStyleRule = {
   resize: 'both',
   width: '200px',
   height: '200px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  // display: 'flex',
+  // justifyContent: 'center',
+  // alignItems: 'center',
 };
 
 export const parent = style({ ...styles });

@@ -1,23 +1,20 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-export const main = style({
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
-  flexShrink: 0 /* added this */,
+globalStyle('main', {
+  display: 'grid',
+  gridTemplateRows: '[heading] 6rem [body] 0.5fr'
 });
 
-globalStyle(`${main} h1`, {
-  marginTop: 0,
-  marginBottom: 0,
-  paddingTop: 0,
-  paddingBottom: 0,
+globalStyle('main h1:first-of-type', {
+  gridRow: 'heading',
+  border: '10px solid white'
+});
+
+globalStyle('main section:first-of-type', {
+  gridRow: 'body',
+  border: '10px solid pink'
 });
 
 export const center = style({
   textAlign: 'center',
-});
-
-export const srAanchor = style({
-  outline: 0,
 });

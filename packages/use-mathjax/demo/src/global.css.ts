@@ -2,7 +2,6 @@ import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 globalStyle('#root', {
-  border: '1px solid green',
 });
 
 const styles: ComplexStyleRule = {

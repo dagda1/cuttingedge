@@ -26,11 +26,18 @@ globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
 });
 
+globalStyle('#root', {
+  gridTemplateRows: '[main] auto',
+  height: '100%',
+
+  margin: '0 auto',
+  paddingTop: vars.space['2x'],
+  paddingBottom: vars.space['2x'],
+});
+
 // TODO: make less specific
 globalStyle('#root > div,#__next > div', {
-  // display: 'flex',
-  // flexDirection: 'column',
-  // flex: 1,
+  gridRow: 'main',
 });
 
 globalStyle('html, body', {
@@ -41,42 +48,36 @@ globalStyle('html, body', {
 });
 
 globalStyle('#root', {
-  height: '100%'
-  // margin: '0 auto',
-  // display: 'flex',
-  // flexDirection: 'column',
-  // minHeight: '100%',
-  // height: 'fit-content',
-  // paddingTop: vars.space['2x'],
-  // paddingBottom: vars.space['2x'],
-});
+  display: 'grid',
+})
 
 export const size = style({
-  // ...responsiveStyle({
-  //   mobile: {
-  //     maxWidth: 'none',
-  //   },
-  //   tablet: {
-  //     maxWidth: `${rem(breakpoints.tablet)}`,
-  //     marginLeft: 'auto',
-  //     marginRight: 'auto',
-  //   },
-  //   desktop: {
-  //     maxWidth: `${rem(breakpoints.desktop)}`,
-  //   },
-  //   wide: {
-  //     maxWidth: `${rem(breakpoints.wide)}`,
-  //   },
-  // }),
+  ...responsiveStyle({
+    mobile: {
+      maxWidth: 'none',
+      border: '10px solid cyan',
+
+    },
+    tablet: {
+      maxWidth: `${rem(breakpoints.tablet)}`,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      border: '10px solid red'
+    },
+    desktop: {
+      maxWidth: `${rem(breakpoints.desktop)}`,
+      border: '10px solid green'
+    },
+    wide: {
+      maxWidth: `${rem(breakpoints.wide)}`,
+      border: '10px solid yellow'
+    },
+  }),
 });
 
 globalStyle('main', {
-  display: 'grid',
-  // display: 'flex',
+  height: '100%',
   maxWidth: `${rem(breakpoints.desktop)}`,
-  // flexDirection: 'column',
-  // flex: '1 0 auto',
-  width: '100%',
   ...responsiveStyle({
     mobile: {
       padding: 0,
