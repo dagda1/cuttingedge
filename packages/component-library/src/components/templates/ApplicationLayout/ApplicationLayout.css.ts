@@ -15,29 +15,8 @@ const bodyStyle = {
   fontWeight: vars.fontWeight.regular,
 };
 
-export const body = style({
-  ...bodyStyle,
-  color: vars.foregroundColor.body,
-  // TODO: make this the body
-  background: vars.backgroundColor.body,
-});
-
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
-});
-
-globalStyle('#root', {
-  gridTemplateRows: '[main] auto',
-  height: '100%',
-
-  margin: '0 auto',
-  paddingTop: vars.space['2x'],
-  paddingBottom: vars.space['2x'],
-});
-
-// TODO: make less specific
-globalStyle('#root > div,#__next > div', {
-  gridRow: 'main',
 });
 
 globalStyle('html, body', {
@@ -49,34 +28,63 @@ globalStyle('html, body', {
 
 globalStyle('#root', {
   display: 'grid',
-})
+  height: '100%',
+  margin: '0 auto',
+  paddingTop: vars.space['2x'],
+  paddingBottom: vars.space['2x'],
+});
+
+export const header = style({
+  gridRow: 'header',
+});
+
+export const footer = style({
+  gridRow: 'footer',
+});
+
+export const body = style({
+  ...bodyStyle,
+  color: vars.foregroundColor.body,
+  // TODO: make this the body
+  background: vars.backgroundColor.body,
+  gridRow: 'body',
+});
+
+export const container = style({
+  display: 'grid',
+  gridTemplateAreas: `
+    'header'
+    'body'
+    'footer'
+  `,
+  gridTemplateRows: 'auto 1fr auto',
+  gridTemplateColumns: '1fr',
+});
 
 export const size = style({
   ...responsiveStyle({
     mobile: {
       maxWidth: 'none',
-      border: '10px solid cyan',
-
+      // border: '10px solid cyan',
     },
     tablet: {
       maxWidth: `${rem(breakpoints.tablet)}`,
       marginLeft: 'auto',
       marginRight: 'auto',
-      border: '10px solid red'
+      // border: '10px solid red'
     },
     desktop: {
       maxWidth: `${rem(breakpoints.desktop)}`,
-      border: '10px solid green'
+      // border: '10px solid green'
     },
     wide: {
       maxWidth: `${rem(breakpoints.wide)}`,
-      border: '10px solid yellow'
+      // border: '10px solid yellow'
     },
   }),
 });
 
 globalStyle('main', {
-  height: '100%',
   maxWidth: `${rem(breakpoints.desktop)}`,
   ...responsiveStyle({
     mobile: {

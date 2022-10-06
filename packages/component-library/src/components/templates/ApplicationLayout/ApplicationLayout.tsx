@@ -3,7 +3,6 @@ import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
 import { cuttingTheme } from '../../../style/themes/cutting/cutting.css';
-
 import * as styles from './ApplicationLayout.css';
 import { isNil } from '@cutting/util';
 import { consultingTheme } from '../../../style/themes/consulting/consultingTheme.css';
@@ -54,25 +53,32 @@ export function ApplicationLayout({
   const currentTheme = themes[theme];
 
   return (
-    <div className={currentTheme}>
-      <header role="banner" className={cs({ [styles.hidden]: !header })} aria-label={headerAriaLabel}>
+    <div className={cs(styles.container, currentTheme)}>
+      <header role="banner" className={cs(styles.header, { [styles.hidden]: !header })} aria-label={headerAriaLabel}>
         <div className={styles.size}>{header}</div>
       </header>
       <main className={cs(styles.body, styles.size, className)} ref={innerRef}>
         <ApplicationLayoutHeading heading={heading} />
-        {children}
+        <section>{children}</section>
       </main>
-      <footer role="contentinfo" className={cs(styles.size, { [styles.hidden]: !header }, styles.size)}>
+      <footer role="contentinfo" className={cs(styles.footer, styles.size, { [styles.hidden]: !header }, styles.size)}>
         {footer}
       </footer>
     </div>
   );
 }
 
-export function ApplicationLayoutWithRouterScroll(props: Omit<ApplicationLayoutProps, 'innerRef'>): JSX.Element {
+export function ApplicationLayoutWithRouterScroll({
+  children,
+  ...props
+}: Omit<ApplicationLayoutProps, 'innerRef'>): JSX.Element {
   const root = useRef<HTMLDivElement>(null);
 
   useScrollToTop({ ref: root });
 
-  return <ApplicationLayout {...props} innerRef={root} />;
+  return (
+    <ApplicationLayout {...props} innerRef={root}>
+      {children}
+    </ApplicationLayout>
+  );
 }
