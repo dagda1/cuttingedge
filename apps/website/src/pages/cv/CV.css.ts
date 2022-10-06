@@ -1,21 +1,8 @@
-import { palette, responsiveStyle, vars } from '@cutting/component-library';
+import { palette, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const pdfViewer = style({
-  display: 'flex',
-
-  ...responsiveStyle({
-    mobile: {
-      flexDirection: 'column',
-    },
-    tablet: {
-      justifyContent: 'space-around',
-      flexDirection: 'row',
-    },
-    desktop: {
-      justifyContent: 'space-evenly',
-    },
-  }),
+  border: '10px solid yellow',
 });
 
 globalStyle(`${pdfViewer} h2`, {
@@ -25,7 +12,7 @@ globalStyle(`${pdfViewer} h2`, {
 globalStyle(`${pdfViewer} + iframe`, {
   marginTop: vars.space['1x'],
   marginBottom: vars.space['1x'],
-  flex: 1,
+  border: '10px solid purple',
 });
 
 export const main = style({});

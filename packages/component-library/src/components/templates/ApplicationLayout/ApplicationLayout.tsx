@@ -59,7 +59,7 @@ export function ApplicationLayout({
       </header>
       <main className={cs(styles.body, styles.size, className)} ref={innerRef}>
         <ApplicationLayoutHeading heading={heading} />
-        <section>{children}</section>
+        {children}
       </main>
       <footer role="contentinfo" className={cs(styles.footer, styles.size, { [styles.hidden]: !header }, styles.size)}>
         {footer}

@@ -48,17 +48,12 @@ export const body = style({
   // TODO: make this the body
   background: vars.backgroundColor.body,
   gridRow: 'body',
+  border: '10px solid cyan',
 });
 
 export const container = style({
   display: 'grid',
-  gridTemplateAreas: `
-    'header'
-    'body'
-    'footer'
-  `,
-  gridTemplateRows: 'auto 1fr auto',
-  gridTemplateColumns: '1fr',
+  gridTemplateRows: '[header] auto [body] 1fr [footer] auto',
 });
 
 export const size = style({
@@ -85,6 +80,10 @@ export const size = style({
 });
 
 globalStyle('main', {
+  display: 'grid',
+  gridTemplateRows: 'auto 1fr',
+  gridTemplateColumns: '1fr',
+  width: '100%',
   maxWidth: `${rem(breakpoints.desktop)}`,
   ...responsiveStyle({
     mobile: {
