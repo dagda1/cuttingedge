@@ -1,5 +1,16 @@
 # @cutting/use-mathjax
 
+## 4.46.0
+
+### Minor Changes
+
+- 3c3e166a: replace flex with css grid for main layouts
+
+### Patch Changes
+
+- @cutting/hooks@4.52.0
+- @cutting/util@4.54.0
+
 ## 4.45.0
 
 ### Minor Changes

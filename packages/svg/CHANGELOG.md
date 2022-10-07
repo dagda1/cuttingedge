@@ -1,5 +1,18 @@
 # @cutting/svg
 
+## 4.49.0
+
+### Minor Changes
+
+- 3c3e166a: replace flex with css grid for main layouts
+
+### Patch Changes
+
+- Updated dependencies [3c3e166a]
+  - @cutting/react-abortable-fetch@0.32.0
+  - @cutting/use-get-parent-size@1.23.0
+  - @cutting/util@4.54.0
+
 ## 4.48.0
 
 ### Minor Changes

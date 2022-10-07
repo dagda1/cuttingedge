@@ -1,5 +1,15 @@
 # @cutting/react-abortable-fetch
 
+## 0.32.0
+
+### Minor Changes
+
+- 3c3e166a: replace flex with css grid for main layouts
+
+### Patch Changes
+
+- @cutting/util@4.54.0
+
 ## 0.31.0
 
 ### Minor Changes
