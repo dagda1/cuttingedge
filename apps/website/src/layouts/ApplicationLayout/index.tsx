@@ -7,7 +7,6 @@ import { CuttingEdge } from '../../constants';
 import { Helmet } from 'react-helmet';
 import { ApplicationLayoutWithRouterScroll } from '@cutting/component-library';
 import * as styles from './ApplicationLayout.css';
-import { container } from './ApplicationLayout.css';
 
 export interface ApplicationLayoutProps {
   heading?: string;

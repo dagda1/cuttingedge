@@ -1,4 +1,4 @@
-import { palette, responsiveStyle, vars } from '@cutting/component-library';
+import { palette, responsiveStyle } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const container = style({
