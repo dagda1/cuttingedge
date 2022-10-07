@@ -64,8 +64,15 @@
     "npm": "8.19.2"
   },
   "lint-staged": {
-    "{packages,apps}/**/*.{js,jsx,ts,tsx,mjs,cjs}": [
-      "eslint --fix"
+    "*.{js,jsx,ts,tsx,mjs,cjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ],
+    "*.md": [
+      "node ./scripts/check-docs-quality"
     ]
   },
   "pnpm": {
