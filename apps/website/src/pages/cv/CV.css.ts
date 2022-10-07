@@ -2,7 +2,8 @@ import { palette, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const pdfViewer = style({
-  border: '10px solid yellow',
+  display: 'flex',
+  justifyContent: 'space-around',
 });
 
 globalStyle(`${pdfViewer} h2`, {
@@ -12,7 +13,8 @@ globalStyle(`${pdfViewer} h2`, {
 globalStyle(`${pdfViewer} + iframe`, {
   marginTop: vars.space['1x'],
   marginBottom: vars.space['1x'],
-  border: '10px solid purple',
+  height: '100%',
+  width: '100%',
 });
 
 export const main = style({});

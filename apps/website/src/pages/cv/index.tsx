@@ -26,8 +26,8 @@ export function CV(): JSX.Element {
             </a>
           </h2>
         ))}
-        <iframe title="CV" src={viewerUrl} />
       </section>
+      <iframe title="CV" src={viewerUrl} />
     </ApplicationLayout>
   );
 }

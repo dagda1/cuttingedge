@@ -45,10 +45,9 @@ export const footer = style({
 export const body = style({
   ...bodyStyle,
   color: vars.foregroundColor.body,
-  // TODO: make this the body
   background: vars.backgroundColor.body,
   gridRow: 'body',
-  border: '10px solid cyan',
+  padding: '1rem',
 });
 
 export const container = style({
