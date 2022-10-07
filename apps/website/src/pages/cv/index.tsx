@@ -18,7 +18,7 @@ export function CV(): JSX.Element {
 
   return (
     <ApplicationLayout className={styles.main}>
-      <div className={styles.pdfViewer}>
+      <section className={styles.pdfViewer}>
         {docs.map((doc) => (
           <h2 key={doc.file}>
             <a className={styles.link} href={doc.url}>
@@ -26,7 +26,7 @@ export function CV(): JSX.Element {
             </a>
           </h2>
         ))}
-      </div>
+      </section>
       <iframe title="CV" src={viewerUrl} />
     </ApplicationLayout>
   );

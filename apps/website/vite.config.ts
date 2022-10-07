@@ -8,6 +8,7 @@ import mdx from '@mdx-js/rollup';
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), vanillaExtractPlugin(), svgrPlugin({ svgrOptions: { icon: true } }), mdx()],
   assetsInclude: ['src/assets/images/**.png', 'src/assets/images/**.jpg'],
+  mode: '',
   build: {
     sourcemap: 'inline',
     minify: false,

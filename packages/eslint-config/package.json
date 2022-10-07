@@ -23,8 +23,8 @@
   "dependencies": {
     "@babel/core": "7.19.1",
     "@babel/eslint-parser": "^7.19.1",
-    "@typescript-eslint/eslint-plugin": "5.37.0",
-    "@typescript-eslint/parser": "5.37.0",
+    "@typescript-eslint/eslint-plugin": "5.39.0",
+    "@typescript-eslint/parser": "5.39.0",
     "eslint": "8.23.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
@@ -48,10 +48,5 @@
   },
   "volta": {
     "extends": "../../package.json"
-  },
-  "lint-staged": {
-    "*.js": "eslint ./src/**/*.{js} --fix",
-    "*.ts": "eslint ./src/**/*.{ts} --fix",
-    "*.tsx": "eslint ./src/**/*.{tsx} --fix"
   }
 }

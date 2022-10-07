@@ -134,7 +134,7 @@ describe('useFetch', () => {
 
   afterAll(() => server.close());
 
-  describe.only('nested', () => {
+  describe('nested', () => {
     type Vendor = {
       id: number;
       name: string;

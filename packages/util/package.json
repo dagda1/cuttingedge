@@ -45,10 +45,5 @@
         "dist/esm/index.d.ts"
       ]
     }
-  },
-  "lint-staged": {
-    "*.js": "eslint ./src/**/*.{js} --fix",
-    "*.ts": "eslint ./src/**/*.{ts} --fix",
-    "*.tsx": "eslint ./src/**/*.{tsx} --fix"
   }
 }

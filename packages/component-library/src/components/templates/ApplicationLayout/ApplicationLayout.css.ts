@@ -1,10 +1,10 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { rem } from 'polished'
 import { globalHeadingStyle, responsiveText } from '../../../style/typography/typography.css';
-import { responsiveStyle } from '../../../style';
-import { breakpoints } from '../../../style/breakpoints';
 import { vars } from '../../../style/themes/vars.css';
 import { responsiveTextStyleRule } from '../../../style/typography/typography.css';
+import { rem } from 'polished';
+import { breakpoints } from '../../../style/breakpoints';
+import { responsiveStyle } from '../../../style/responsive-style';
 
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
@@ -15,22 +15,8 @@ const bodyStyle = {
   fontWeight: vars.fontWeight.regular,
 };
 
-export const body = style({
-  ...bodyStyle,
-  color: vars.foregroundColor.body,
-  // TODO: make this the body
-  background: vars.backgroundColor.body,
-});
-
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
-});
-
-// TODO: make less specific
-globalStyle('#root > div,#__next > div', {
-  display: 'flex',
-  flexDirection: 'column',
-  flex: 1,
 });
 
 globalStyle('html, body', {
@@ -41,40 +27,63 @@ globalStyle('html, body', {
 });
 
 globalStyle('#root', {
+  display: 'grid',
+  height: '100%',
   margin: '0 auto',
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100%',
-  height: 'fit-content',
   paddingTop: vars.space['2x'],
   paddingBottom: vars.space['2x'],
+});
+
+export const header = style({
+  gridRow: 'header',
+});
+
+export const footer = style({
+  gridRow: 'footer',
+});
+
+export const body = style({
+  ...bodyStyle,
+  color: vars.foregroundColor.body,
+  background: vars.backgroundColor.body,
+  gridRow: 'body',
+  padding: '1rem',
+});
+
+export const container = style({
+  display: 'grid',
+  gridTemplateRows: '[header] auto [body] 1fr [footer] auto',
 });
 
 export const size = style({
   ...responsiveStyle({
     mobile: {
       maxWidth: 'none',
+      // border: '10px solid cyan',
     },
     tablet: {
       maxWidth: `${rem(breakpoints.tablet)}`,
       marginLeft: 'auto',
       marginRight: 'auto',
+      // border: '10px solid red'
     },
     desktop: {
       maxWidth: `${rem(breakpoints.desktop)}`,
+      // border: '10px solid green'
     },
     wide: {
       maxWidth: `${rem(breakpoints.wide)}`,
+      // border: '10px solid yellow'
     },
   }),
 });
 
 globalStyle('main', {
-  display: 'flex',
-  maxWidth: `${rem(breakpoints.desktop)}`,
-  flexDirection: 'column',
-  flex: '1 0 auto',
+  display: 'grid',
+  gridTemplateRows: 'auto 1fr',
+  gridTemplateColumns: '1fr',
   width: '100%',
+  maxWidth: `${rem(breakpoints.desktop)}`,
   ...responsiveStyle({
     mobile: {
       padding: 0,
