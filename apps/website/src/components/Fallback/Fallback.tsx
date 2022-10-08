@@ -1,1 +1,3 @@
-export const fallback = <div>loading....</div>;
+export function Fallback(): JSX.Element {
+  return <div>loading....</div>;
+}

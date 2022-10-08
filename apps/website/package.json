@@ -32,7 +32,6 @@
     "@cutting/use-get-parent-size": "workspace:../../packages/use-get-parent-size",
     "@cutting/use-mathjax": "workspace:../../packages/use-mathjax",
     "@cutting/util": "workspace:../../packages/util",
-    "@loadable/component": "5.15.2",
     "@vanilla-extract/css": "1.9.1",
     "@vanilla-extract/sprinkles": "1.5.0",
     "@visx/axis": "2.14.0",
