@@ -24,6 +24,8 @@ RUN mkdir -p /cutting/dist
 
 WORKDIR /cutting/dist
 
+COPY ./.npmrc .
+
 COPY ./apps/website/dist .
 
 COPY ./apps/website/package.json .
