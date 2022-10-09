@@ -15,7 +15,6 @@ const devDependencies = [
   '@typescript-eslint/eslint-plugin',
   '@typescript-eslint/parser',
   'eslint',
-  'regenerator-runtime',
   'typescript',
   'webpack',
 ];
