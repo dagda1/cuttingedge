@@ -1,5 +1,5 @@
 import { padNumber, stripSpaces, capitalize } from './index';
-import { expect, it, describe } from 'vitest';
+import { expect, it, describe, test } from 'vitest';
 
 describe('string', () => {
   it('capitalize - should have first char uppercase', () => {
@@ -15,8 +15,8 @@ describe('string', () => {
     ['  ', ''],
     ['a  b  c       ', 'abc'],
     ['', ''],
-  ])('stripSpaces(%s) -> %s', (a: any, expected) => {
-    expect(stripSpaces(a)).toBe(expected);
+  ])('stripSpaces(%s) -> %s', (a: string | null, expected) => {
+    expect(stripSpaces(a as string)).toBe(expected);
   });
 
   it('should pad number', () => {
