@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.31.0
+
+### Minor Changes
+
+- 6927f7bd: remove babel completely
+
+### Patch Changes
+
+- Updated dependencies [6927f7bd]
+  - @cutting/util@4.55.0
+  - @cutting/hooks@4.52.1
+
 ## 5.30.0
 
 ### Minor Changes

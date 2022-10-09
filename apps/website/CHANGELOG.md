@@ -1,5 +1,17 @@
 # @cutting/website
 
+## 4.29.6
+
+### Patch Changes
+
+- Updated dependencies [6927f7bd]
+  - @cutting/component-library@5.31.0
+  - @cutting/svg@4.50.0
+  - @cutting/use-get-parent-size@1.24.0
+  - @cutting/use-mathjax@4.47.0
+  - @cutting/util@4.55.0
+  - @cutting/hooks@4.52.1
+
 ## 4.29.5
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-shortcuts",
   "description": "Effortlessly create keyboard shortcuts with this react hook.",
-  "version": "4.42.0",
+  "version": "4.43.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"

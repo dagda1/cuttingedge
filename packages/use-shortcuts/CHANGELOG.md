@@ -1,5 +1,16 @@
 # @cutting/use-shortcuts
 
+## 4.43.0
+
+### Minor Changes
+
+- 6927f7bd: remove babel completely
+
+### Patch Changes
+
+- Updated dependencies [6927f7bd]
+  - @cutting/util@4.55.0
+
 ## 4.42.0
 
 ### Minor Changes
