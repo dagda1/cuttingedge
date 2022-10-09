@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.42.0
+
+### Minor Changes
+
+- 6927f7bd: remove babel completely
+
 ## 4.41.0
 
 ### Minor Changes

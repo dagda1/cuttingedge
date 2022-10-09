@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.55.0
+
+### Minor Changes
+
+- 6927f7bd: remove babel completely
+
 ## 4.54.0
 
 ### Minor Changes

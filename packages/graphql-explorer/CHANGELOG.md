@@ -1,5 +1,19 @@
 # @cutting/graphql-explorer
 
+## 4.41.0
+
+### Minor Changes
+
+- 6927f7bd: remove babel completely
+
+### Patch Changes
+
+- Updated dependencies [6927f7bd]
+  - @cutting/component-library@5.31.0
+  - @cutting/react-abortable-fetch@0.33.0
+  - @cutting/svg@4.50.0
+  - @cutting/util@4.55.0
+
 ## 4.40.1
 
 ### Patch Changes

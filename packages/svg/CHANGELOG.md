@@ -1,5 +1,18 @@
 # @cutting/svg
 
+## 4.50.0
+
+### Minor Changes
+
+- 6927f7bd: remove babel completely
+
+### Patch Changes
+
+- Updated dependencies [6927f7bd]
+  - @cutting/react-abortable-fetch@0.33.0
+  - @cutting/use-get-parent-size@1.24.0
+  - @cutting/util@4.55.0
+
 ## 4.49.0
 
 ### Minor Changes

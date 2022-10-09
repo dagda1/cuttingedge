@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.60.0
+
+### Minor Changes
+
+- 6927f7bd: remove babel completely
+
 ## 4.59.0
 
 ### Minor Changes
