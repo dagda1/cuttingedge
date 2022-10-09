@@ -1,7 +1,5 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 
-export const container = style({});
-
-globalStyle(`${container} iframe`, {
-  height: "100%",
+export const container = style({
+  display: "flex",
 });
