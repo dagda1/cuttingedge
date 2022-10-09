@@ -21,8 +21,6 @@
     "react"
   ],
   "dependencies": {
-    "@babel/core": "7.19.1",
-    "@babel/eslint-parser": "^7.19.1",
     "@typescript-eslint/eslint-plugin": "5.39.0",
     "@typescript-eslint/parser": "5.39.0",
     "eslint": "8.23.1",
@@ -35,7 +33,6 @@
     "typescript": "^4.8.3"
   },
   "peerDependencies": {
-    "@babel/eslint-parser": ">= 7.x.x",
     "@typescript-eslint/eslint-plugin": ">= 5.x.x",
     "@typescript-eslint/parser": ">= 5.x.x",
     "eslint": ">= 8.x.x",

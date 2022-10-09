@@ -26,8 +26,6 @@
     "polished": "4.2.2"
   },
   "devDependencies": {
-    "@babel/core": "7.19.1",
-    "@babel/runtime": "7.19.0",
     "@capsizecss/core": "3.0.0",
     "@capsizecss/vanilla-extract": "1.0.0",
     "@cutting/devtools": "workspace:*",
@@ -102,8 +100,6 @@
   },
   "pnpm": {
     "overrides": {
-      "@babel/core@<7.19.1": ">=7.19.1",
-      "@babel/types@<7.18.3": ">=7.18.3",
       "ansi-regex@>2.1.1 <5.0.1": "=5.0.1",
       "acorn@<8.8.0": ">=8.8.0"
     }

@@ -1,20 +1,13 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
-import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vanillaExtractPlugin(),
-    react({
-      babel: {
-        plugins: [],
-      },
-    }),
-  ],
+  plugins: [vanillaExtractPlugin(), react()],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -22,6 +15,6 @@ export default defineConfig({
     css: true,
     deps: {
       fallbackCJS: true,
-    }
+    },
   },
-})
+});

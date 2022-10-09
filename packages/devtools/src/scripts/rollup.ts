@@ -10,8 +10,6 @@ import { logger } from './logger.js';
 import resolve from '@rollup/plugin-node-resolve';
 import { assert } from 'assert-ts';
 // import injectProcessEnv from 'rollup-plugin-inject-process-env';
-import type { RollupBabelInputPluginOptions } from '@rollup/plugin-babel';
-import { babel } from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
@@ -27,11 +25,9 @@ import url from 'postcss-url';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
 import commonjs from '@rollup/plugin-commonjs';
-import { createBabelConfig } from './createBabelConfig.js';
 import { writeToPackage } from './write-package.js';
 import { csv } from '../rollup/plugins/csv.js';
 import postcssImport from 'postcss-import';
-import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { createCommand } from 'commander';
 import analyzer from 'rollup-plugin-analyzer';
 import { readFile } from 'fs/promises';
@@ -65,21 +61,9 @@ async function generateBundledModule({
 
   const minify = env === 'production';
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { ...babelConfig } = createBabelConfig({
-    isDevelopment: false,
-    isProduction: true,
-    isNode: false,
-    moduleFormat,
-  });
-
   const bundle = await rollup({
     input: entryFile,
     external: (id: string) => {
-      if (id === 'babel-plugin-transform-async-to-promises/helpers') {
-        return false;
-      }
-
       return !id.startsWith('.') && !path.isAbsolute(id);
     },
     treeshake: {
@@ -137,15 +121,6 @@ async function generateBundledModule({
           },
         },
       }),
-      babel({
-        babelHelpers: 'runtime',
-        ...babelConfig,
-        extensions: [...DEFAULT_EXTENSIONS, 'ts', 'tsx'],
-        sourceType: 'module',
-      } as RollupBabelInputPluginOptions),
-      // injectProcessEnv({
-      //   NODE_ENV: env,
-      // }),
       svgo(),
       minify &&
         terser({
