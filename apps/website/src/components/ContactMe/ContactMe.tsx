@@ -1,15 +1,12 @@
-import { ApplicationLayout } from "../../layouts/ApplicationLayout";
+import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 
-import * as styles from "./ContactMe.css";
+import * as styles from './ContactMe.css';
 
 export function ContactMe(): JSX.Element {
   return (
     <ApplicationLayout heading="Let me know how I can help" showFooter={false}>
       <div className={styles.container}>
-        <script
-          type="text/javascript"
-          src="https://www.formlets.com/static/js/iframeResizer.min.js"
-        ></script>
+        <script type="text/javascript" src="https://www.formlets.com/static/js/iframeResizer.min.js"></script>
         <iframe
           title="let me know how I can help"
           className="formlets-iframe"
@@ -17,10 +14,7 @@ export function ContactMe(): JSX.Element {
           frameBorder="0"
           width="100%"
         ></iframe>
-        <script
-          type="text/javascript"
-          src="https://www.formlets.com/static/js/iframe.js"
-        ></script>
+        <script type="text/javascript" src="https://www.formlets.com/static/js/iframe.js"></script>
       </div>
     </ApplicationLayout>
   );
