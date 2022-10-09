@@ -8,14 +8,7 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 // https://vitejs.dev/config/
 export default defineConfig({
   root: process.env.NODE_ENV === 'test' ? '.' : 'demo',
-  plugins: [
-    vanillaExtractPlugin(),
-    react({
-      babel: {
-        plugins: [],
-      },
-    }),
-  ],
+  plugins: [vanillaExtractPlugin(), react()],
   test: {
     globals: true,
     environment: 'jsdom',

@@ -16,12 +16,9 @@
     "test:ci": "CI=true pnpm test"
   },
   "dependencies": {
-    "@babel/core": "7.19.1",
-    "@babel/runtime": "7.19.0",
     "assert-ts": "^0.3.4"
   },
   "devDependencies": {
-    "@babel/plugin-transform-regenerator": "7.18.6",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",

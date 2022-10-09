@@ -25,7 +25,6 @@
     "**/*.cs.ts"
   ],
   "dependencies": {
-    "@babel/runtime": "7.19.0",
     "@cutting/component-library": "workspace:*",
     "@cutting/hooks": "workspace:*",
     "@cutting/svg": "workspace:*",
@@ -107,11 +106,6 @@
     "extends": "../../package.json"
   },
   "pnpm": {
-    "overrides": {
-      "@babel/core@<7.19.1": ">=7.19.1",
-      "@babel/types@<7.19.0": ">=7.19.3",
-      "@babel/runtime@<7.19.0": ">=7.19.0"
-    },
     "peerDependencyRules": {
       "allowedVersions": {
         "react": "18.2.0",

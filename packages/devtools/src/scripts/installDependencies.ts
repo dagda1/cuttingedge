@@ -5,7 +5,6 @@ import { logger } from './logger.js';
 const dependencies = ['assert-ts', '@cutting/util'];
 
 const devDependencies = [
-  '@babel/core',
   '@cutting/devtools',
   '@cutting/eslint-config',
   '@cutting/tsconfig',

@@ -35,7 +35,6 @@
     "xstate": "^4.33.6"
   },
   "devDependencies": {
-    "@babel/runtime": "7.19.0",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
