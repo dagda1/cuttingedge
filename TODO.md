@@ -1,0 +1,1 @@
+- [ ] Move deployment to netlify or some other hoster, maybe serverless.
