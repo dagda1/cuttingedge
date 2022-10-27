@@ -1,16 +1,17 @@
 import type { RefObject } from 'react';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router';
+import { useLayoutEffect } from 'react';
+import { usePrevious } from '../usePrevious/usePrevious';
 
 export interface UseScrollToTopProps<E = HTMLElement> {
   ref: RefObject<E>;
 }
 
 export const useScrollToTop = ({ ref }: UseScrollToTopProps): void => {
-  const { pathname } = useLocation();
+  const { pathname } = window.location;
+  const previousPathname = usePrevious(pathname);
 
-  useEffect(() => {
-    if (!ref.current) {
+  useLayoutEffect(() => {
+    if (pathname === previousPathname || !ref.current) {
       return;
     }
 
@@ -23,5 +24,5 @@ export const useScrollToTop = ({ ref }: UseScrollToTopProps): void => {
     return (): void => {
       clearTimeout(clearTimer);
     };
-  }, [pathname, ref]);
+  }, [pathname, previousPathname, ref]);
 };

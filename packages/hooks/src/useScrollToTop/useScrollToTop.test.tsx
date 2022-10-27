@@ -1,16 +1,10 @@
 import { expect, it, describe, beforeEach, afterEach } from 'vitest';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
-import type { History } from 'history';
 import { render } from '@testing-library/react';
 import { useScrollToTop } from './useScrollToTop';
 import { vi } from 'vitest';
 
 describe('useScrollToTop', () => {
-  let history: History;
-
   beforeEach(() => {
-    history = createMemoryHistory();
     vi.useFakeTimers();
   });
 
@@ -41,11 +35,7 @@ describe('useScrollToTop', () => {
       return <h1>Foo</h1>;
     }
 
-    render(
-      <Router location={history.location} navigator={history}>
-        <Comp />
-      </Router>,
-    );
+    render(<Comp />);
 
     vi.runAllTimers();
 

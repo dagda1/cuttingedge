@@ -544,15 +544,12 @@ importers:
       '@testing-library/react-hooks': 8.0.1
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
-      '@types/react-router-dom': 5.3.3
       '@vanilla-extract/css': ^1.9.1
       assert-ts: ^0.3.4
       eslint: 8.24.0
       history: ^5.3.0
       react: 18.2.0
       react-dom: 18.2.0
-      react-router: 6.4.2
-      react-router-dom: 6.4.2
       typescript: 4.8.4
     dependencies:
       '@cutting/util': link:../util
@@ -566,14 +563,11 @@ importers:
       '@testing-library/react-hooks': 8.0.1_rj7ozvcq3uehdlnj3cbwzbi5ce
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
-      '@types/react-router-dom': 5.3.3
       '@vanilla-extract/css': 1.9.1
       eslint: 8.24.0
       history: 5.3.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-router: 6.4.2_react@18.2.0
-      react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
       typescript: 4.8.4
 
   packages/react-abortable-fetch:
@@ -3426,22 +3420,22 @@ packages:
       rollup: 2.79.0
     dev: false
 
-  /@definitelytyped/header-parser/0.0.133:
-    resolution: {integrity: sha512-Mv1F76WeuzdO9qrVi9hRQHjbwmb9bU5Gw5jdmUVWHma68IeiMNYlcMeKwQua7yVM+zRvihWvEI9s4O5NxY/gAA==}
+  /@definitelytyped/header-parser/0.0.134:
+    resolution: {integrity: sha512-FvSuPPpV2j7ydIdIPRxE5Dhld9LjSkehD9V9/wntA4KotMxzW0ADkvNshGztQixoYSlrAHUguLabZ5ApIKyY3w==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.133
+      '@definitelytyped/typescript-versions': 0.0.134
       '@types/parsimmon': 1.10.6
       parsimmon: 1.18.1
     dev: true
 
-  /@definitelytyped/typescript-versions/0.0.133:
-    resolution: {integrity: sha512-tfitkEgTmOBXDfgzzlxoXSYsUqIimKV2rdLd+61Mfzcp34yZ3bdhS8+4Gnc6rdMR4+V/sa3yvy5lYZLK2HP11Q==}
+  /@definitelytyped/typescript-versions/0.0.134:
+    resolution: {integrity: sha512-2c9DYxUWvh8SFCbJIg1UmVzZuzpKFO0hWNhNS7WhXKGYlMAG2dYADjpP/IJuILlXp6/IthXYyRt6DLwx8mEfgQ==}
     dev: true
 
-  /@definitelytyped/utils/0.0.133:
-    resolution: {integrity: sha512-aRCduwfl3l+3FJDGGDA5HDVF5FwKLYVEFQ5xKEi8Yz4RZqpAXRN7xKAuQiGx1yQ57CkMRaaOgLrcGoYECSBWcA==}
+  /@definitelytyped/utils/0.0.134:
+    resolution: {integrity: sha512-YFbK2BGPjgE+aqg0uPssOC4lp+BArGk72LXhDlt/vb4J+SvM6toK8RRWcWyjbcY7TU1gJfsUD3zXX/UD0pM5Ug==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.133
+      '@definitelytyped/typescript-versions': 0.0.134
       '@qiwi/npm-registry-client': 8.9.1
       '@types/node': 14.18.32
       charm: 1.0.2
@@ -3671,7 +3665,7 @@ packages:
       '@jest/schemas': 29.0.0
       '@types/istanbul-lib-coverage': 2.0.4
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 18.8.3
+      '@types/node': 18.8.4
       '@types/yargs': 17.0.13
       chalk: 4.1.2
     dev: true
@@ -5824,7 +5818,7 @@ packages:
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 18.8.3
+      '@types/node': 18.8.4
     dev: true
 
   /@types/cookie/0.4.1:
@@ -6127,14 +6121,14 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 16.11.65
+      '@types/node': 18.8.4
     dev: true
 
   /@types/glob/8.0.0:
     resolution: {integrity: sha512-l6NQsDDyQUVeoTynNpC9uRvCUint/gSUXQA2euwmTuWGvPY5LSDUu6tkCtJB2SvGQlJQzLaKqcGZP4//7EDveA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 16.11.65
+      '@types/node': 18.8.4
     dev: true
 
   /@types/graceful-fs/4.1.5:
@@ -6271,7 +6265,7 @@ packages:
   /@types/node-fetch/2.6.2:
     resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
     dependencies:
-      '@types/node': 16.11.65
+      '@types/node': 18.8.4
       form-data: 3.0.1
     dev: true
 
@@ -6484,7 +6478,7 @@ packages:
   /@types/webpack-sources/3.2.0:
     resolution: {integrity: sha512-Ft7YH3lEVRQ6ls8k4Ff1oB4jN6oy/XmU6tQISKdhfh+1mR+viZFphS6WL0IrtDOzvefmJg5a0s7ZQoRXwqTEFg==}
     dependencies:
-      '@types/node': 18.7.18
+      '@types/node': 18.8.4
       '@types/source-list-map': 0.1.2
       source-map: 0.7.4
     dev: true
@@ -10160,7 +10154,7 @@ packages:
     peerDependencies:
       typescript: '*'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.133
+      '@definitelytyped/header-parser': 0.0.134
       command-exists: 1.2.9
       rimraf: 3.0.2
       semver: 6.3.0
@@ -10176,9 +10170,9 @@ packages:
     peerDependencies:
       typescript: '>= 3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.7.0-dev || >= 3.8.0-dev || >= 3.9.0-dev || >= 4.0.0-dev'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.133
-      '@definitelytyped/typescript-versions': 0.0.133
-      '@definitelytyped/utils': 0.0.133
+      '@definitelytyped/header-parser': 0.0.134
+      '@definitelytyped/typescript-versions': 0.0.134
+      '@definitelytyped/utils': 0.0.134
       dts-critic: 3.3.11_typescript@4.8.4
       fs-extra: 6.0.1
       json-stable-stringify: 1.0.1
@@ -13639,7 +13633,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.1.2
-      '@types/node': 18.8.3
+      '@types/node': 18.8.4
       chalk: 4.1.2
       ci-info: 3.5.0
       graceful-fs: 4.2.10
@@ -13658,7 +13652,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 16.11.65
+      '@types/node': 18.8.4
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
