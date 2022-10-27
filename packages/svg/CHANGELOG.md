@@ -1,5 +1,11 @@
 # @cutting/svg
 
+## 4.50.1
+
+### Patch Changes
+
+- @cutting/use-get-parent-size@1.24.1
+
 ## 4.50.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.53.0
+
+### Minor Changes
+
+- 073230cb: remove react-router from @cutting/hooks
+
 ## 4.52.1
 
 ### Patch Changes
