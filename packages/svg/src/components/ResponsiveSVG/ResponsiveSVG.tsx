@@ -1,12 +1,12 @@
 import type { ReactNode, Ref } from 'react';
-import type { PreserveAspectRatio } from '../../types/types';
+import type { PreserveAspectRatio, SVGAttributes } from '../../types/types';
 
 export interface Point {
   x: number;
   y: number;
 }
 
-export interface ResponsiveSVGProps {
+export type ResponsiveSVGProps = SVGAttributes<{
   width: number;
   height: number;
   origin?: Point;
@@ -15,7 +15,7 @@ export interface ResponsiveSVGProps {
   className?: string;
   hide?: boolean;
   children: ReactNode;
-}
+}>;
 
 export function ResponsiveSVG({
   height,
@@ -25,6 +25,7 @@ export function ResponsiveSVG({
   preserveAspectRatio = 'xMaxYMid meet',
   innerRef,
   className,
+  ...props
 }: ResponsiveSVGProps): JSX.Element {
   const aspect = width / height;
 
@@ -45,6 +46,7 @@ export function ResponsiveSVG({
         preserveAspectRatio={preserveAspectRatio}
         viewBox={`${origin.x} ${origin.y} ${width} ${adjustedHeight}`}
         ref={innerRef}
+        {...props}
       >
         {children}
       </svg>

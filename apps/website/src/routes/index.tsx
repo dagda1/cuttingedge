@@ -1,28 +1,28 @@
-import * as Urls from "../urls";
-import { Route, Routes } from "react-router";
-import type { Page } from "../types";
-import { ContactMe } from "../components/ContactMe";
-import { lazy, Suspense } from "react";
-import { Fallback } from "src/components/Fallback/Fallback";
+import * as Urls from '../urls';
+import { Route, Routes } from 'react-router';
+import type { Page } from '../types';
+import { ContactMe } from '../components/ContactMe';
+import { lazy, Suspense } from 'react';
+import { Fallback } from 'src/components/Fallback/Fallback';
 
-const Home = lazy(() => import("../pages/Home"));
+const Home = lazy(() => import('../pages/Home'));
 
-const OSS = lazy(() => import("../pages/OSS"));
+const OSS = lazy(() => import('../pages/OSS'));
 
-const Blog = lazy(() => import("../pages/Blog"));
+const Blog = lazy(() => import('../pages/Blog'));
 
-const CV = lazy(() => import("../pages/cv"));
+const CV = lazy(() => import('../pages/cv'));
 
-const PrivacyPolicy = lazy(() => import("../pages/PrivacyPolicy"));
+const PrivacyPolicy = lazy(() => import('../pages/PrivacyPolicy'));
 
-const TermsOfService = lazy(() => import("../pages/TermsOfService"));
+const TermsOfService = lazy(() => import('../pages/TermsOfService'));
 
-const Viz = lazy(() => import("../pages/Viz/Viz"));
+const Viz = lazy(() => import('../pages/Viz/Viz'));
 
 /* eslint-disable react/display-name */
 export const routable: Page[] = [
   {
-    heading: "Home",
+    heading: 'Home',
     path: Urls.Home,
     element: (
       <Suspense fallback={<Fallback />}>
@@ -31,7 +31,7 @@ export const routable: Page[] = [
     ),
   },
   {
-    heading: "OSS",
+    heading: 'OSS',
     path: Urls.OSS,
     element: (
       <Suspense fallback={<Fallback />}>
@@ -40,7 +40,7 @@ export const routable: Page[] = [
     ),
   },
   {
-    heading: "Blog",
+    heading: 'Blog',
     path: Urls.Blog,
     element: (
       <Suspense fallback={<Fallback />}>
@@ -49,7 +49,7 @@ export const routable: Page[] = [
     ),
   },
   {
-    heading: "CV",
+    heading: 'CV',
     path: Urls.CV,
     element: (
       <Suspense fallback={<Fallback />}>
@@ -58,7 +58,7 @@ export const routable: Page[] = [
     ),
   },
   {
-    heading: "Privacy Policy",
+    heading: 'Privacy Policy',
     path: Urls.PrivacyPolicy,
     element: (
       <Suspense fallback={<Fallback />}>
@@ -68,7 +68,7 @@ export const routable: Page[] = [
     footerPage: true,
   },
   {
-    heading: "Terms of Service",
+    heading: 'Terms of Service',
     path: Urls.TermsOfService,
     element: (
       <Suspense fallback={<Fallback />}>
@@ -78,8 +78,8 @@ export const routable: Page[] = [
     footerPage: true,
   },
   {
-    heading: "Viz",
-    path: "/viz/*",
+    heading: 'Viz',
+    path: '/viz/*',
     element: (
       <Suspense fallback={<Fallback />}>
         <Viz />
@@ -100,8 +100,6 @@ export function MainRoutes(): JSX.Element {
   );
 }
 
-export const bannerPages = routable.filter(
-  (p) => !p.footerPage && p.path !== Urls.Home
-);
+export const bannerPages = routable.filter((p) => !p.footerPage && p.path !== Urls.Home);
 
 export const footerPages = routable.filter((p) => p.footerPage);
