@@ -42,6 +42,7 @@ export const diff = style({
 
 export const tangent = style({
   stroke: palette.red,
+  fill: palette.red,
 });
 
 export const diffLabel = style({});

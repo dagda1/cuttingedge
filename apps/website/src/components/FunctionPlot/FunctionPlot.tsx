@@ -1,3 +1,5 @@
+import type { Reducer, SyntheticEvent } from 'react';
+import { useReducer } from 'react';
 import { useCallback, useMemo } from 'react';
 import { useRef } from 'react';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
@@ -16,16 +18,51 @@ import { MathJax } from '@cutting/use-mathjax';
 import { select, pointer } from 'd3-selection';
 import { getYIntercept } from '../../viz/getYIntercept';
 import { Text } from '@visx/text';
+import { match } from 'ts-pattern';
+import produce from 'immer';
 
 interface FunctionPlotProps {
   rawExpression?: string;
   minX?: number;
   maxX?: number;
 }
+const initialState = {
+  tangent: {
+    label: {
+      text: '',
+      dx: 0,
+      dy: 0,
+    },
+    diff: {
+      x: 0,
+      y: 0,
+    },
+    line: {
+      x1: 0,
+      y1: 0,
+      x2: 0,
+      y2: 0,
+    },
+  },
+};
+
+type FunctionActions = {
+  type: 'DRAW_TANGENT';
+  payload: typeof initialState['tangent'];
+};
+
+export const reducer: Reducer<typeof initialState, FunctionActions> = produce((state, action) => {
+  return match(action)
+    .with({ type: 'DRAW_TANGENT' }, ({ payload }) => {
+      state.tangent = payload;
+    })
+    .otherwise(() => state);
+});
 
 export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 }: FunctionPlotProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const tangentRef = useRef<SVGCircleElement>(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const { width, height } = useParentSize(containerRef, {
     debounceDelay: 500,
@@ -76,86 +113,90 @@ export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 
     return { xScale, yScale, xAxisPosition, yAxisPosition };
   }, [width, height, data]);
 
-  const mouseMove = useCallback(() => {
-    if (!tangentRef.current) {
-      return;
-    }
+  const mouseMove = useCallback(
+    (evt: SyntheticEvent) => {
+      if (!tangentRef.current) {
+        return;
+      }
 
-    const g = select('.tangent-group');
-    const m = pointer(select('.curve').node());
+      const m = pointer(evt, select('.curve').node());
 
-    let x = m[0];
+      let x = m[0];
 
-    console.log(m);
-    let y = yScale(
-      parse(rawExpression).evaluate({
-        x: xScale.invert(x),
-      }),
-    );
-
-    const point: Point = {
-      x: xScale.invert(x),
-      y: yScale.invert(y),
-    };
-
-    if (point.x > maxX) {
-      const maxY = data.find((d) => d.x === maxX)?.y;
-
-      assert(typeof maxY !== 'undefined', `no maxX at ${maxX}`);
-
-      point.x = maxX;
-      point.y = maxY;
-
-      x = xScale(maxX);
-      y = yScale(maxY);
-    }
-
-    g.select('.diff').attr('cx', x).attr('cy', y);
-
-    g.select('.difflabel')
-      .text(function () {
-        const xLabel = round(point.x);
-        const yLabel = round(point.y);
-
-        return `(${xLabel}, ${yLabel})`;
-      })
-      .attr('dx', x + 10)
-      .attr('dy', y + 8);
-
-    const der = derivative(rawExpression, 'x');
-
-    const gradient = der.evaluate({ x: point.x });
-
-    const yIntercept = getYIntercept(point, gradient);
-
-    const lineEquation = parse('m * x + c');
-
-    const getTangentPoint = (delta: number) => {
-      const deltaX = xScale.invert(x + delta);
-
-      const tangentPoint = {
-        x: deltaX,
-        y: lineEquation.evaluate({
-          m: gradient,
-          x: deltaX,
-          c: yIntercept,
+      let y = yScale(
+        parse(rawExpression).evaluate({
+          x: xScale.invert(x),
         }),
+      );
+
+      const point: Point = {
+        x: xScale.invert(x),
+        y: yScale.invert(y),
       };
 
-      return tangentPoint;
-    };
+      if (point.x > maxX) {
+        const maxY = data.find((d) => d.x === maxX)?.y;
 
-    const length = xScale(200);
+        assert(typeof maxY !== 'undefined', `no maxX at ${maxX}`);
 
-    const tangentPoint1 = getTangentPoint(+length);
-    const tangentPoint2 = getTangentPoint(-length);
+        point.x = maxX;
+        point.y = maxY;
 
-    g.select('.tangent')
-      .attr('x1', xScale(tangentPoint1.x))
-      .attr('y1', yScale(tangentPoint1.y))
-      .attr('x2', xScale(tangentPoint2.x))
-      .attr('y2', yScale(tangentPoint2.y));
-  }, [data, maxX, rawExpression, xScale, yScale]);
+        x = xScale(maxX);
+        y = yScale(maxY);
+      }
+
+      const der = derivative(rawExpression, 'x');
+
+      const gradient = der.evaluate({ x: point.x });
+
+      const yIntercept = getYIntercept(point, gradient);
+
+      const lineEquation = parse('m * x + c');
+
+      const getTangentPoint = (delta: number) => {
+        const deltaX = xScale.invert(x + delta);
+
+        const tangentPoint = {
+          x: deltaX,
+          y: lineEquation.evaluate({
+            m: gradient,
+            x: deltaX,
+            c: yIntercept,
+          }),
+        };
+
+        return tangentPoint;
+      };
+
+      const length = xScale(20);
+
+      const tangentPoint1 = getTangentPoint(+length);
+      const tangentPoint2 = getTangentPoint(-length);
+
+      dispatch({
+        type: 'DRAW_TANGENT',
+        payload: {
+          label: {
+            text: `(${round(point.x)}, ${round(point.y)})`,
+            dx: x + 10,
+            dy: y + 8,
+          },
+          diff: {
+            x,
+            y,
+          },
+          line: {
+            x1: xScale(tangentPoint1.x),
+            y1: yScale(tangentPoint1.y),
+            x2: xScale(tangentPoint2.x),
+            y2: yScale(tangentPoint2.y),
+          },
+        },
+      });
+    },
+    [data, maxX, rawExpression, xScale, yScale],
+  );
 
   return (
     <ApplicationLayout center heading="The (function) plot thickens...." showFooter={false}>
@@ -177,9 +218,11 @@ export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 
             className="curve"
           />
           <Group innerRef={tangentRef} className="tangent-group">
-            <Circle className={styles.diff} r={7} />
-            <Line className={styles.tangent} />
-            <Text className={styles.diffLabel} />
+            <Circle className={styles.diff} r={7} cx={state.tangent.diff.x} cy={state.tangent.diff.y} />
+            <Line className={styles.tangent} {...state.tangent.line} />
+            <Text className={styles.diffLabel} dx={state.tangent.label.dx} dy={state.tangent.label.dy}>
+              {state.tangent.label.text}
+            </Text>
           </Group>
         </ResponsiveSVG>
         <MathJax>{`$$ f(x) = ${parse(rawExpression).toTex()}$$`}</MathJax>

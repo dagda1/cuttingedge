@@ -138,6 +138,7 @@ importers:
       global: 4.4.0
       helmet: 6.0.0
       history: 5.3.0
+      immer: 9.0.16
       install: 0.13.0
       mathjs: 11.3.2
       nocache: 3.0.4
@@ -153,8 +154,10 @@ importers:
       rollup: 2.79.1
       serve-static: 1.15.0
       ts-node: 10.9.1
+      ts-pattern: 4.0.5
       typescript: 4.8.4
       url-join: 5.0.0
+      use-debounce: ^8.0.4
       vite: 3.1.6
       vite-plugin-commonjs: 0.5.2
       vite-plugin-environment: 1.1.2
@@ -191,6 +194,7 @@ importers:
       global: 4.4.0
       helmet: 6.0.0
       history: 5.3.0
+      immer: 9.0.16
       mathjs: 11.3.2
       nocache: 3.0.4
       react: 18.2.0
@@ -201,7 +205,9 @@ importers:
       referrer-policy: 1.2.0
       regression: 2.0.1
       serve-static: 1.15.0
+      ts-pattern: 4.0.5
       url-join: 5.0.0
+      use-debounce: 8.0.4_react@18.2.0
     devDependencies:
       '@cutting/devtools': link:../../packages/devtools
       '@cutting/eslint-config': link:../../packages/eslint-config
@@ -12853,6 +12859,10 @@ packages:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
 
+  /immer/9.0.16:
+    resolution: {integrity: sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ==}
+    dev: false
+
   /import-cwd/3.0.0:
     resolution: {integrity: sha512-4pnzH16plW+hgvRECbDWpQl3cqtvSofHWh44met7ESfZ8UZOWWddm8hEyDTqREJ9RbYHY8gi8DqmaelApoOGMg==}
     engines: {node: '>=8'}
@@ -19093,6 +19103,10 @@ packages:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
+
+  /ts-pattern/4.0.5:
+    resolution: {integrity: sha512-Bq44KCEt7JVaNLa148mBCJkcQf4l7jtLEBDuDdeuLynWDA+1a60P4D0rMkqSM9mOKLQbIWUddE9h3XKyKwBeqA==}
+    dev: false
 
   /ts-pnp/1.2.0_typescript@4.8.3:
     resolution: {integrity: sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==}
