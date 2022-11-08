@@ -1,4 +1,4 @@
-import type { Reducer, SyntheticEvent } from 'react';
+import type { SyntheticEvent } from 'react';
 import { useReducer } from 'react';
 import { useCallback, useMemo } from 'react';
 import { useRef } from 'react';
@@ -12,64 +12,49 @@ import { scaleLinear } from 'd3-scale';
 import { assert } from 'assert-ts';
 import { ResponsiveSVG, Group } from '@cutting/svg';
 import { Circle, Line, LinePath } from '@visx/shape';
-import { curveMonotoneX } from '@visx/curve';
+import { curveBasisOpen } from '@visx/curve';
 import * as styles from './FunctionPlot.css';
 import { MathJax } from '@cutting/use-mathjax';
 import { select, pointer } from 'd3-selection';
 import { getYIntercept } from '../../viz/getYIntercept';
 import { Text } from '@visx/text';
-import { match } from 'ts-pattern';
-import produce from 'immer';
+import { initialState, reducer } from './reducer';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { Input } from '@cutting/react-hook-form-components';
+import { Button } from '@cutting/component-library';
 
 interface FunctionPlotProps {
-  rawExpression?: string;
   minX?: number;
   maxX?: number;
 }
-const initialState = {
-  tangent: {
-    label: {
-      text: '',
-      dx: 0,
-      dy: 0,
-    },
-    diff: {
-      x: 0,
-      y: 0,
-    },
-    line: {
-      x1: 0,
-      y1: 0,
-      x2: 0,
-      y2: 0,
-    },
-  },
-};
 
-type FunctionActions = {
-  type: 'DRAW_TANGENT';
-  payload: typeof initialState['tangent'];
-};
+interface FormValues {
+  expression: string;
+}
 
-export const reducer: Reducer<typeof initialState, FunctionActions> = produce((state, action) => {
-  return match(action)
-    .with({ type: 'DRAW_TANGENT' }, ({ payload }) => {
-      state.tangent = payload;
-    })
-    .otherwise(() => state);
-});
-
-export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 }: FunctionPlotProps): JSX.Element {
+export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const tangentRef = useRef<SVGCircleElement>(null);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { register, handleSubmit } = useForm<FormValues>({ reValidateMode: 'onBlur' });
+  const form = useRef<HTMLFormElement>(null);
+
+  const onSubmit: SubmitHandler<FormValues> = ({ expression }) => {
+    dispatch({
+      type: 'SET_EXPRESSION',
+      payload: {
+        expression,
+      },
+    });
+  };
 
   const { width, height } = useParentSize(containerRef, {
     debounceDelay: 500,
   });
 
   const data: Point[] = useMemo(() => {
-    const expression = parse(rawExpression);
+    const expression = parse(state.expression);
 
     const fn = (x: number) => {
       return expression.evaluate({ x: x });
@@ -78,7 +63,7 @@ export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 
     return range(minX, maxX).map((d) => {
       return { x: d, y: fn(d) };
     });
-  }, [maxX, minX, rawExpression]);
+  }, [maxX, minX, state.expression]);
 
   const { xAxisPosition, yAxisPosition, xScale, yScale } = useMemo(() => {
     const xScale = scaleLinear().range([0, width]);
@@ -124,7 +109,7 @@ export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 
       let x = m[0];
 
       let y = yScale(
-        parse(rawExpression).evaluate({
+        parse(state.expression).evaluate({
           x: xScale.invert(x),
         }),
       );
@@ -146,7 +131,9 @@ export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 
         y = yScale(maxY);
       }
 
-      const der = derivative(rawExpression, 'x');
+      const der = derivative(state.expression, 'x');
+
+      console.log(der);
 
       const gradient = der.evaluate({ x: point.x });
 
@@ -195,7 +182,7 @@ export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 
         },
       });
     },
-    [data, maxX, rawExpression, xScale, yScale],
+    [data, maxX, state.expression, xScale, yScale],
   );
 
   return (
@@ -209,7 +196,7 @@ export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 
             <AxisLeft scale={yScale} axisLineClassName={styles.axisLine} tickStroke="#fff" />
           </Group>
           <LinePath<Point>
-            curve={curveMonotoneX}
+            curve={curveBasisOpen}
             x={(d) => xScale(d.x)}
             y={(d) => yScale(d.y)}
             data={data}
@@ -225,8 +212,22 @@ export function FunctionPlot({ rawExpression = 'x^2 + 1', minX = -10, maxX = 11 
             </Text>
           </Group>
         </ResponsiveSVG>
-        <MathJax>{`$$ f(x) = ${parse(rawExpression).toTex()}$$`}</MathJax>
       </section>
+
+      <div className={styles.form}>
+        <form onSubmit={handleSubmit(onSubmit)} method="POST" ref={form} name="SignupForm">
+          <MathJax>{`$$ f(x) = ${parse(state.expression).toTex()}$$`}</MathJax>
+          <fieldset className={styles.algebra}>
+            <Input
+              maxLength={250}
+              {...register('expression', { required: true, minLength: 3, maxLength: 80 })}
+              label="Expression"
+              required
+            />
+            <Button type="submit">Evaluate</Button>
+          </fieldset>
+        </form>
+      </div>
     </ApplicationLayout>
   );
 }

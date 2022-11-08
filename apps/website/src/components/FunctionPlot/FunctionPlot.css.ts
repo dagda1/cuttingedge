@@ -46,3 +46,17 @@ export const tangent = style({
 });
 
 export const diffLabel = style({});
+
+export const form = style({});
+
+export const algebra = style({
+  ...responsiveStyle({
+    mobile: {
+      display: 'block',
+    },
+    tablet: {
+      display: 'grid',
+      gridTemplateColumns: 'auto auto',
+    },
+  }),
+});

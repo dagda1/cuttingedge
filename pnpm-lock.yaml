@@ -85,6 +85,7 @@ importers:
       '@cutting/devtools': workspace:*
       '@cutting/eslint-config': workspace:*
       '@cutting/hooks': workspace:*
+      '@cutting/react-hook-form-components': workspace:*
       '@cutting/svg': workspace:*
       '@cutting/tsconfig': workspace:*
       '@cutting/use-get-parent-size': workspace:*
@@ -146,6 +147,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       react-helmet: 6.1.0
+      react-hook-form: 7.39.1
       react-router: 6.4.2
       react-router-dom: 6.4.2
       referrer-policy: 1.2.0
@@ -157,7 +159,6 @@ importers:
       ts-pattern: 4.0.5
       typescript: 4.8.4
       url-join: 5.0.0
-      use-debounce: ^8.0.4
       vite: 3.1.6
       vite-plugin-commonjs: 0.5.2
       vite-plugin-environment: 1.1.2
@@ -167,6 +168,7 @@ importers:
     dependencies:
       '@cutting/component-library': link:../../packages/component-library
       '@cutting/hooks': link:../../packages/hooks
+      '@cutting/react-hook-form-components': link:../../packages/react-hook-form-components
       '@cutting/svg': link:../../packages/svg
       '@cutting/use-get-parent-size': link:../../packages/use-get-parent-size
       '@cutting/use-mathjax': link:../../packages/use-mathjax
@@ -200,6 +202,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-helmet: 6.1.0_react@18.2.0
+      react-hook-form: 7.39.1_react@18.2.0
       react-router: 6.4.2_react@18.2.0
       react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
       referrer-policy: 1.2.0
@@ -207,7 +210,6 @@ importers:
       serve-static: 1.15.0
       ts-pattern: 4.0.5
       url-join: 5.0.0
-      use-debounce: 8.0.4_react@18.2.0
     devDependencies:
       '@cutting/devtools': link:../../packages/devtools
       '@cutting/eslint-config': link:../../packages/eslint-config
@@ -649,6 +651,41 @@ importers:
       msw: 0.47.4_typescript@4.8.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      typescript: 4.8.4
+
+  packages/react-hook-form-components:
+    specifiers:
+      '@cutting/component-library': workspace:*
+      '@cutting/devtools': workspace:*
+      '@cutting/eslint-config': workspace:*
+      '@cutting/tsconfig': workspace:*
+      '@cutting/useful-types': workspace:*
+      '@cutting/util': workspace:*
+      '@types/react': 18.0.21
+      '@vanilla-extract/css': ^1.9.1
+      assert-ts: ^0.3.4
+      eslint: 8.24.0
+      react: 18.2.0
+      react-dom: 18.2.0
+      react-hook-form: 7.39.1
+      react-syntax-highlighter: 15.5.0
+      typescript: 4.8.4
+    dependencies:
+      '@cutting/component-library': link:../component-library
+      '@cutting/util': link:../util
+      assert-ts: 0.3.4
+      react-hook-form: 7.39.1_react@18.2.0
+    devDependencies:
+      '@cutting/devtools': link:../devtools
+      '@cutting/eslint-config': link:../eslint-config
+      '@cutting/tsconfig': link:../tsconfig
+      '@cutting/useful-types': link:../useful-types
+      '@types/react': 18.0.21
+      '@vanilla-extract/css': 1.9.1
+      eslint: 8.24.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-syntax-highlighter: 15.5.0_react@18.2.0
       typescript: 4.8.4
 
   packages/svg:
@@ -9177,7 +9214,7 @@ packages:
       - supports-color
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   /concat-stream/1.6.2:
     resolution: {integrity: sha512-27HBghJxjiZtIk3Ycvn/4kbJk/1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw==}
@@ -12935,7 +12972,7 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       ansi-escapes: 4.3.2
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-width: 3.0.0
       external-editor: 3.1.0
@@ -14155,7 +14192,7 @@ packages:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
     engines: {node: '>=10'}
     dependencies:
-      chalk: 4.1.1
+      chalk: 4.1.2
       is-unicode-supported: 0.1.0
     dev: true
 
@@ -15594,7 +15631,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.7.0
       is-interactive: 1.0.0
@@ -17020,6 +17057,15 @@ packages:
       react: 18.2.0
       react-fast-compare: 3.2.0
       react-side-effect: 2.1.2_react@18.2.0
+    dev: false
+
+  /react-hook-form/7.39.1_react@18.2.0:
+    resolution: {integrity: sha512-MiF9PCILN5KulhSGbnjohMiTOrB47GerDTichMNP0y2cPUu1GTRFqbunOxCE9N1499YTLMV/ne4gFzqCp1rxrQ==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-inspector/5.1.1_react@18.2.0:
