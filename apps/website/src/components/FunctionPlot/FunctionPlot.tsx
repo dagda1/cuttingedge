@@ -216,9 +216,10 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
 
       <div className={styles.form}>
         <form onSubmit={handleSubmit(onSubmit)} method="POST" ref={form} name="SignupForm">
-          <MathJax>{`$$ f(x) = ${parse(state.expression).toTex()}$$`}</MathJax>
+          <MathJax className={styles.expression}>{`$$ f(x) = ${parse(state.expression).toTex()}$$`}</MathJax>
           <fieldset className={styles.algebra}>
             <Input
+              layout="horizontal"
               maxLength={250}
               {...register('expression', { required: true, minLength: 3, maxLength: 80 })}
               label="Expression"

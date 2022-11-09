@@ -49,6 +49,17 @@ export const diffLabel = style({});
 
 export const form = style({});
 
+globalStyle(`${form} button`, {
+  height: '40px',
+  padding: '0',
+  width: vars.space['15x'],
+});
+
+globalStyle(`${form} fieldset > div`, {
+  margin: 0,
+  padding: 0,
+});
+
 export const algebra = style({
   ...responsiveStyle({
     mobile: {
@@ -57,6 +68,13 @@ export const algebra = style({
     tablet: {
       display: 'grid',
       gridTemplateColumns: 'auto auto',
+      justifyContent: 'center',
     },
   }),
+});
+
+export const expression = style({
+  display: 'flex',
+  alignItems: 'center',
+  flexDirection: 'column',
 });
