@@ -3,7 +3,11 @@ import produce from 'immer';
 import type { Reducer } from 'react';
 
 export const initialState = {
-  expression: 'x^2 + 1',
+  expression: 'x^2 - 20',
+  range: {
+    minX: -10,
+    maxX: 11,
+  },
   tangent: {
     label: {
       text: '',
@@ -33,6 +37,10 @@ type FunctionActions =
       payload: {
         expression: string;
       };
+    }
+  | {
+      type: 'SET_RANGE';
+      payload: typeof initialState['range'];
     };
 
 export const reducer: Reducer<typeof initialState, FunctionActions> = produce((state, action) => {
@@ -42,6 +50,9 @@ export const reducer: Reducer<typeof initialState, FunctionActions> = produce((s
     })
     .with({ type: 'SET_EXPRESSION' }, ({ payload }) => {
       state.expression = payload.expression;
+    })
+    .with({ type: 'SET_RANGE' }, ({ payload }) => {
+      state.range = payload;
     })
     .otherwise(() => state);
 });

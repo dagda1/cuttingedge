@@ -1,4 +1,5 @@
 import type { SyntheticEvent } from 'react';
+import { useEffect } from 'react';
 import { useReducer } from 'react';
 import { useCallback, useMemo } from 'react';
 import { useRef } from 'react';
@@ -23,6 +24,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { Input } from '@cutting/react-hook-form-components';
 import { Button } from '@cutting/component-library';
+import classNames from 'classnames';
 
 interface FunctionPlotProps {
   minX?: number;
@@ -37,7 +39,10 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   const containerRef = useRef<HTMLDivElement>(null);
   const tangentRef = useRef<SVGCircleElement>(null);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { register, handleSubmit } = useForm<FormValues>({ reValidateMode: 'onBlur' });
+  const { register, handleSubmit } = useForm<FormValues>({
+    reValidateMode: 'onBlur',
+    defaultValues: { expression: state.expression },
+  });
   const form = useRef<HTMLFormElement>(null);
 
   const onSubmit: SubmitHandler<FormValues> = ({ expression }) => {
@@ -122,7 +127,9 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
       if (point.x > maxX) {
         const maxY = data.find((d) => d.x === maxX)?.y;
 
-        assert(typeof maxY !== 'undefined', `no maxX at ${maxX}`);
+        if (!maxY) {
+          return;
+        }
 
         point.x = maxX;
         point.y = maxY;
@@ -132,8 +139,6 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
       }
 
       const der = derivative(state.expression, 'x');
-
-      console.log(der);
 
       const gradient = der.evaluate({ x: point.x });
 
@@ -185,10 +190,27 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
     [data, maxX, state.expression, xScale, yScale],
   );
 
+  useEffect(() => {
+    if (!containerRef.current) {
+      return;
+    }
+
+    select('.function-svg').on('mousemove', mouseMove);
+
+    return () => {
+      select('.function-svg').on('mousemove', null);
+    };
+  }, [mouseMove]);
+
   return (
     <ApplicationLayout center heading="The (function) plot thickens...." showFooter={false}>
       <section className={styles.container} ref={containerRef}>
-        <ResponsiveSVG onMouseMove={mouseMove} width={width} height={height} className={styles.container}>
+        <ResponsiveSVG
+          onMouseMove={mouseMove}
+          width={width}
+          height={height}
+          className={classNames('function-svg', styles.container)}
+        >
           <Group transform={`translate(0, ${xAxisPosition})`}>
             <AxisBottom scale={xScale} axisLineClassName={styles.axisLine} />
           </Group>

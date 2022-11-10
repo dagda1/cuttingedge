@@ -12,7 +12,7 @@ export const container = style({
     },
     tablet: {},
     desktop: {
-      width: '75%',
+      width: '50%',
       margin: 'auto',
     },
     wide: {},
