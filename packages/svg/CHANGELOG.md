@@ -1,5 +1,15 @@
 # @cutting/svg
 
+## 4.50.2
+
+### Patch Changes
+
+- dbc72c3b: add tangent
+- Updated dependencies [dbc72c3b]
+  - @cutting/util@4.55.1
+  - @cutting/use-get-parent-size@1.24.2
+  - @cutting/react-abortable-fetch@0.33.1
+
 ## 4.50.1
 
 ### Patch Changes
