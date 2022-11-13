@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+# prepend ./dist for production build
 sed -i -e s/'extends.js'/'extends'/g ./dist/server/entry-server.js
 sed -i -e s/'assertThisInitialized.js'/'assertThisInitialized'/g ./dist/server/entry-server.js
 sed -i -e s/'inheritsLoose.js'/'inheritsLoose'/g ./dist/server/entry-server.js

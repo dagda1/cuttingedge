@@ -1,3 +1,5 @@
+import type { SVGAttributes as SvgAttributes } from 'react';
+
 export type PreserveAspectRatioAlignment =
   | 'xMinYMin'
   | 'xMidYMin'
@@ -19,3 +21,6 @@ export interface Point {
   x: number;
   y: number;
 }
+
+export type SVGAttributes<T> = T &
+  Omit<SvgAttributes<SVGSVGElement>, 'origin' | 'viewBox' | 'preserveAspectRatio' | 'children '>;

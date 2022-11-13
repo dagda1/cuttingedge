@@ -16,8 +16,8 @@ export function Maths(): JSX.Element {
       <h1>useMathJax</h1>
       <h2>direct use with the useMathJax hook</h2>
 
-        <SyntaxHighlighter language="javascript" style={docco}>
-          {`
+      <SyntaxHighlighter language="javascript" style={docco}>
+        {`
 import { useMathJax } from '@cutting/use-mathjax';
 
 export const Maths(): JSX.Element {
@@ -35,26 +35,26 @@ export const Maths(): JSX.Element {
   );
 };
 `}
-        </SyntaxHighlighter>
-        <strong>renders:</strong>
-        <div ref={ref}>
-          <p className="math">{`$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$`}</p>
-         </div>
+      </SyntaxHighlighter>
+      <strong>renders:</strong>
+      <div ref={ref}>
+        <p className="math">{`$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$`}</p>
+      </div>
 
-        <h2>Or with the MathJax component</h2>
-        <SyntaxHighlighter language="javascript" style={docco}>
-          {`
+      <h2>Or with the MathJax component</h2>
+      <SyntaxHighlighter language="javascript" style={docco}>
+        {`
 import { MathJax } from '@cutting/use-mathjax';
 
 <MathJax> {\`$$\\\\int x^2dx$$\`}</MathJax>
 <MathJax> {\`$$\\\\frac{5\\\\pi}4$$\`}</MathJax>
 <MathJax> {\`$$\\\\frac{3\\\\pi}2$$\`}</MathJax>  
 `}
-        </SyntaxHighlighter>
-        <strong>renders:</strong>
-        <MathJax> {`$$\\int x^2dx$$`}</MathJax>
-        <MathJax> {`$$\\frac{5\\pi}4$$`}</MathJax>
-        <MathJax> {`$$\\frac{3\\pi}2$$`}</MathJax>
+      </SyntaxHighlighter>
+      <strong>renders:</strong>
+      <MathJax> {`$$\\int x^2dx$$`}</MathJax>
+      <MathJax> {`$$\\frac{5\\pi}4$$`}</MathJax>
+      <MathJax> {`$$\\frac{3\\pi}2$$`}</MathJax>
     </>
   );
 }

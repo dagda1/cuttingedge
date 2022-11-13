@@ -12,6 +12,7 @@ globalStyle('footer', {
     tablet: {
       flexDirection: 'row',
     },
+    wide: {},
   }),
 });
 

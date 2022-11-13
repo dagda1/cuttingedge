@@ -55,6 +55,14 @@ export function FormControl<P, E extends HTMLElement>(Comp: ComponentType<P>): C
           className,
         )}
       >
+        <div id={errorId} aria-hidden={!invalid} role="alert">
+          {invalid && errorMessage && (
+            <ErrorMessage
+              dataSelector={errorDataSelector || `${dataSelector}-error`}
+              errorMessage={errorMessage.toString()}
+            />
+          )}
+        </div>
         <Label
           id={`${internalId.current}-label`}
           htmlFor={internalId.current}
@@ -65,14 +73,7 @@ export function FormControl<P, E extends HTMLElement>(Comp: ComponentType<P>): C
           {label}
           {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
         </Label>
-        <div id={errorId} aria-hidden={!invalid} role="alert">
-          {invalid && errorMessage && (
-            <ErrorMessage
-              dataSelector={errorDataSelector || `${dataSelector}-error`}
-              errorMessage={errorMessage.toString()}
-            />
-          )}
-        </div>
+
         <div className={styles.wrapper}>
           <Comp
             id={internalId.current}
