@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.55.1
+
+### Patch Changes
+
+- dbc72c3b: add tangent
+
 ## 4.55.0
 
 ### Minor Changes

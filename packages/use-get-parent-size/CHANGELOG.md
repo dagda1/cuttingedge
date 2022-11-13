@@ -1,5 +1,13 @@
 # @cutting/use-get-parent-size
 
+## 1.24.2
+
+### Patch Changes
+
+- Updated dependencies [dbc72c3b]
+  - @cutting/util@4.55.1
+  - @cutting/hooks@4.53.1
+
 ## 1.24.1
 
 ### Patch Changes

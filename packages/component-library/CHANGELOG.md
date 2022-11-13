@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.32.0
+
+### Minor Changes
+
+- dbc72c3b: add tangent
+
+### Patch Changes
+
+- Updated dependencies [dbc72c3b]
+  - @cutting/util@4.55.1
+  - @cutting/hooks@4.53.1
+
 ## 5.31.1
 
 ### Patch Changes

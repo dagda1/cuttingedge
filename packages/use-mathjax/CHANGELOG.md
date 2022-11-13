@@ -1,5 +1,14 @@
 # @cutting/use-mathjax
 
+## 4.47.2
+
+### Patch Changes
+
+- dbc72c3b: add tangent
+- Updated dependencies [dbc72c3b]
+  - @cutting/util@4.55.1
+  - @cutting/hooks@4.53.1
+
 ## 4.47.1
 
 ### Patch Changes
