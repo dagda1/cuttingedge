@@ -71,7 +71,7 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   }, [maxX, minX, state.expression]);
 
   const { xAxisPosition, yAxisPosition, xScale, yScale } = useMemo(() => {
-    const xScale = scaleLinear().range([0, width]);
+    const xScale = scaleLinear().range([0, height]);
     const yScale = scaleLinear().range([height, 0]);
 
     const minY = min(data, (d) => d.y);
