@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.56.0
+
+### Minor Changes
+
+- 907b7c62: bump versions
+
 ## 4.55.1
 
 ### Patch Changes

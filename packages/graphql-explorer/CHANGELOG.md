@@ -1,5 +1,19 @@
 # @cutting/graphql-explorer
 
+## 4.42.0
+
+### Minor Changes
+
+- 907b7c62: bump versions
+
+### Patch Changes
+
+- Updated dependencies [907b7c62]
+  - @cutting/component-library@5.33.0
+  - @cutting/react-abortable-fetch@0.34.0
+  - @cutting/svg@4.51.0
+  - @cutting/util@4.56.0
+
 ## 4.41.2
 
 ### Patch Changes

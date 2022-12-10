@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.61.0
+
+### Minor Changes
+
+- 907b7c62: bump versions
+
 ## 4.60.0
 
 ### Minor Changes
