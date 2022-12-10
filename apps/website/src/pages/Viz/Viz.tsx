@@ -10,7 +10,6 @@ export function Viz(): JSX.Element {
   return (
     <MathJaxProvider>
       <Routes>
-        <Route path="/function-plot" element={<FunctionPlot />} />
         <Route
           index
           element={
@@ -19,6 +18,7 @@ export function Viz(): JSX.Element {
             </Suspense>
           }
         />
+        <Route path="/function-plot" element={<FunctionPlot />} />
       </Routes>
     </MathJaxProvider>
   );

@@ -100,6 +100,6 @@ export function MainRoutes(): JSX.Element {
   );
 }
 
-export const bannerPages = routable.filter((p) => !p.footerPage && p.path !== Urls.Home);
+export const bannerPages = routable.filter((p) => !p.footerPage && p.path !== Urls.Home && p.heading !== 'Viz');
 
 export const footerPages = routable.filter((p) => p.footerPage);

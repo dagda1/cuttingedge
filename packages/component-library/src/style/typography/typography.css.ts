@@ -1,8 +1,9 @@
-import { style, StyleRule } from '@vanilla-extract/css';
+import type { StyleRule } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { createTextStyle } from '@capsizecss/vanilla-extract';
 import { vars } from '../themes/vars.css';
 import { breakpointQuery, responsiveStyle } from '../responsive-style';
-import { FontWeight } from '../types';
+import type { FontWeight } from '../types';
 
 type Vars = typeof vars;
 type HeadingDefinition = Vars['headingLevel'];
@@ -60,7 +61,7 @@ const makeTypographyRules = (
   };
 };
 
-const makeTypographyStyleRules = (textDefinition: TypographicDefinition) => {
+const makeTypographyStyleRules = (textDefinition: TypographicDefinition): StyleRule => {
   const { fontSize: mobileFontSize, lineHeight: mobileLineHeight } = textDefinition.mobile;
   const { fontSize: tabletFontSize, lineHeight: tabletLineHeight } = textDefinition.tablet;
   const { fontSize: desktopFontSize, lineHeight: desktopLineHeight } = textDefinition.desktop;
