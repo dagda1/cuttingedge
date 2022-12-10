@@ -53,7 +53,7 @@ globalStyle(`${mobileButtonContainer} svg`, {
   marginBottom: 0,
 });
 
-globalStyle(`${container} li a`, {
+globalStyle(`${container} li a:not(.submenu)`, {
   position: 'relative',
   top: '5px',
 });
@@ -163,9 +163,21 @@ export const expanded = style([
     paddingY: '2x',
   }),
 ]);
-//   @include py(2);
 
-globalStyle(`${expanded} ul li a`, {
+export const mobile = style({});
+export const closeButton = style({});
+
+globalStyle('.szh-menu__item', {
+  border: `1px solid ${palette.white}`,
+  padding: vars.space['2x'],
+  width: '100%',
+});
+
+globalStyle('.menuitem', {
+  width: '100%',
+});
+
+globalStyle(`${expanded} ul li a, ${expanded} ul li:not(${closeButton}) button`, {
   paddingTop: vars.space['1x'],
   paddingBottom: vars.space['2x'],
   marginBottom: vars.space['1x'],
@@ -215,9 +227,6 @@ globalStyle(`${horizontal}${expanded} a`, {
   width: '100%',
   display: 'inline-block',
 });
-
-export const mobile = style({});
-export const closeButton = style({});
 
 globalStyle(`ul li${horizontal}${mobile}`, {
   display: 'flex',
@@ -271,4 +280,30 @@ export const noMobile = style({
       display: 'inline',
     },
   }),
+});
+
+export const dropdown = style({
+  border: 0,
+  background: 'transparent',
+  ...responsiveStyle({
+    ...vars.text.body,
+  }),
+  textDecoration: vars.links.decoration.link,
+  color: vars.links.color.link,
+  textUnderlineOffset: '.1em',
+  lineHeight: vars.links.lineHeight,
+  cursor: 'pointer',
+  position: 'relative',
+  top: '5px',
+  fontFamily: vars.fontFamily.body,
+  selectors: {
+    [`&:hover,&:focus`]: {
+      color: vars.links.color.hover,
+      textDecorationThickness: `max(3px, .1875rem, .12em)`,
+    },
+  },
+});
+
+globalStyle(`.submenu`, {
+  marginBottom: '0 !important',
 });

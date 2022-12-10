@@ -1,3 +1,5 @@
+import * as styles from './Fallback.css';
+
 export function Fallback(): JSX.Element {
-  return <div>loading....</div>;
+  return <div className={styles.container}>loading....</div>;
 }
