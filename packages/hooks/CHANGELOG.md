@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.54.0
+
+### Minor Changes
+
+- 907b7c62: bump versions
+
+### Patch Changes
+
+- Updated dependencies [907b7c62]
+  - @cutting/util@4.56.0
+
 ## 4.53.1
 
 ### Patch Changes

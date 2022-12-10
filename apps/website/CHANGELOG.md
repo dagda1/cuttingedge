@@ -1,5 +1,18 @@
 # @cutting/website
 
+## 4.29.9
+
+### Patch Changes
+
+- Updated dependencies [907b7c62]
+  - @cutting/component-library@5.33.0
+  - @cutting/hooks@4.54.0
+  - @cutting/react-hook-form-components@0.2.0
+  - @cutting/svg@4.51.0
+  - @cutting/use-get-parent-size@1.25.0
+  - @cutting/use-mathjax@4.48.0
+  - @cutting/util@4.56.0
+
 ## 4.29.8
 
 ### Patch Changes
