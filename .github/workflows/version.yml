@@ -21,7 +21,7 @@ jobs:
       - name: setup node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
 
       - name: Cache pnpm modules
         uses: actions/cache@v2
@@ -34,7 +34,7 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
         id: install_pnpm
         with:
-          version: 7.18.1
+          version: 7.20.0
 
       - name: echo npm dest
         run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"

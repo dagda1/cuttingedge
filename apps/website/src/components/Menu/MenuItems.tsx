@@ -26,13 +26,13 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
       ))}
       <li className={cs(styles.horizontal, className)}>
         <VizMenu menuButton={<MenuButton className={styles.dropdown}>VIZ</MenuButton>}>
-          <MenuItem>
-            <NavLink className="submenu" to="/viz">
+          <MenuItem className={styles.VizMenuItem}>
+            <NavLink className={styles.submenu} to="/viz">
               SINE
             </NavLink>
           </MenuItem>
-          <MenuItem>
-            <NavLink className="submenu" to="/viz/function-plot">
+          <MenuItem className={styles.VizMenuItem}>
+            <NavLink className={styles.submenu} to="/viz/function-plot">
               FUNCTIONS
             </NavLink>
           </MenuItem>
