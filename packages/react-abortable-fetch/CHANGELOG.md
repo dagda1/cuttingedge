@@ -1,5 +1,16 @@
 # @cutting/react-abortable-fetch
 
+## 0.35.0
+
+### Minor Changes
+
+- f429be7a: upgrade to node 18
+
+### Patch Changes
+
+- Updated dependencies [f429be7a]
+  - @cutting/util@4.57.0
+
 ## 0.34.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.57.0
+
+### Minor Changes
+
+- f429be7a: upgrade to node 18
+
 ## 4.56.0
 
 ### Minor Changes

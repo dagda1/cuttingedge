@@ -1,5 +1,16 @@
 # @cutting/use-shortcuts
 
+## 4.45.0
+
+### Minor Changes
+
+- f429be7a: upgrade to node 18
+
+### Patch Changes
+
+- Updated dependencies [f429be7a]
+  - @cutting/util@4.57.0
+
 ## 4.44.0
 
 ### Minor Changes

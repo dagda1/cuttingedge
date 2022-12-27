@@ -1,5 +1,19 @@
 # @cutting/graphql-explorer
 
+## 4.43.0
+
+### Minor Changes
+
+- f429be7a: upgrade to node 18
+
+### Patch Changes
+
+- Updated dependencies [f429be7a]
+  - @cutting/component-library@5.34.0
+  - @cutting/react-abortable-fetch@0.35.0
+  - @cutting/svg@4.52.0
+  - @cutting/util@4.57.0
+
 ## 4.42.0
 
 ### Minor Changes
