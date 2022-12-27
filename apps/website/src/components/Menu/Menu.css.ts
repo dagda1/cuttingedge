@@ -296,14 +296,15 @@ export const dropdown = style({
   position: 'relative',
   top: '5px',
   fontFamily: vars.fontFamily.body,
-  selectors: {
-    [`&:hover,&:focus`]: {
-      color: vars.links.color.hover,
-      textDecorationThickness: `max(3px, .1875rem, .12em)`,
-    },
-  },
+  zIndex: 15,
 });
 
-globalStyle(`.submenu`, {
+export const VizMenuItem = style({
+  background: palette.white,
+  zIndex: 15,
+});
+
+export const submenu = style({
   marginBottom: '0 !important',
+  color: `${palette.black} !important`,
 });

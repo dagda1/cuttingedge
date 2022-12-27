@@ -23,10 +23,10 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@typescript-eslint/parser": "5.46.0",
-    "@typescript-eslint/eslint-plugin": "5.46.0",
+    "@typescript-eslint/parser": "5.47.1",
+    "@typescript-eslint/eslint-plugin": "5.47.1",
     "@vanilla-extract/css": "^1.9.2",
-    "eslint": "8.29.0",
+    "eslint": "8.30.0",
     "typescript": "4.9.4"
   },
   "volta": {
