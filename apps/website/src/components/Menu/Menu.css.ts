@@ -1,5 +1,4 @@
 import { palette, responsiveStyle, vars, atoms } from '@cutting/component-library';
-import { MenuItem } from '@szhsin/react-menu';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const full = style({
