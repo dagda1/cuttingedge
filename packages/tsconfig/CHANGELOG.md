@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.39.0
+
+### Minor Changes
+
+- f429be7a: upgrade to node 18
+
 ## 4.38.0
 
 ### Minor Changes

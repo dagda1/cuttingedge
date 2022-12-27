@@ -1,5 +1,17 @@
 # @cutting/use-get-parent-size
 
+## 1.26.0
+
+### Minor Changes
+
+- f429be7a: upgrade to node 18
+
+### Patch Changes
+
+- Updated dependencies [f429be7a]
+  - @cutting/hooks@4.55.0
+  - @cutting/util@4.57.0
+
 ## 1.25.0
 
 ### Minor Changes

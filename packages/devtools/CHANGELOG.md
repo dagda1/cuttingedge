@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.62.0
+
+### Minor Changes
+
+- f429be7a: upgrade to node 18
+
 ## 4.61.0
 
 ### Minor Changes

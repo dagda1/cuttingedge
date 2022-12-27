@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.43.0
+
+### Minor Changes
+
+- f429be7a: upgrade to node 18
+
 ## 4.42.0
 
 ### Minor Changes

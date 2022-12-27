@@ -1,5 +1,17 @@
 # @cutting/use-mathjax
 
+## 4.49.0
+
+### Minor Changes
+
+- f429be7a: upgrade to node 18
+
+### Patch Changes
+
+- Updated dependencies [f429be7a]
+  - @cutting/hooks@4.55.0
+  - @cutting/util@4.57.0
+
 ## 4.48.0
 
 ### Minor Changes
