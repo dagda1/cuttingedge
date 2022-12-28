@@ -52,7 +52,7 @@ export const tokens = {
     }, {} as Record<BorderRadiusKeys, string>),
   },
   colors: {
-    ...colors
+    ...colors,
   },
   inputWidth: {
     width2: '5.4ex',
