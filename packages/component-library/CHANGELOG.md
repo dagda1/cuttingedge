@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.35.1
+
+### Patch Changes
+
+- fcb67ea6: remove default width from sales theme
+
 ## 5.35.0
 
 ### Minor Changes
