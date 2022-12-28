@@ -52,9 +52,6 @@ export const tokens: DeepPartial<Tokens> = {
   buttons: {
     textTransform: 'uppercase',
     fontWeight: 'bold',
-    width: {
-      tablet: '100%',
-    },
     primary: {
       background: palette.lime500,
       focusColor: colors.secondary,
