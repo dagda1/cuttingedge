@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.35.0
+
+### Minor Changes
+
+- fabdf535: make default button width auto in all themes
+
 ## 5.34.0
 
 ### Minor Changes
