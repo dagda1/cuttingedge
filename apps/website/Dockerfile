@@ -1,5 +1,5 @@
 # production dockerfile
-FROM node:16.17.0
+FROM node:18.12.0
 
 ARG NPM_TOKEN
 ENV NPM_TOKEN $NPM_TOKEN
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make\
     nasm 
 
-RUN npm install -g pnpm@7.20.0
+RUN npm install -g pnpm@7.21.0
 
 RUN rm -rf /cutting/
 
@@ -32,8 +32,11 @@ COPY ./apps/website/package.json .
 
 RUN pnpm --filter @cutting/website --prod deploy pruned
 
-RUN echo -n "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc-deploy
+RUN sed -i -e s/'..\/..\/package.json'/'..\/..\/..\/package.json'/g ./pruned/package.json
+RUN sed -i -e s/'..\/..\/tsconfig-base.json'/'..\/..\/..\/tsconfig-base.json'/g ./pruned/tsconfig.json
 
-RUN pnpm install --prod
+COPY ./apps/website/pruned .
+
+RUN echo -n "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc-deploy
 
 WORKDIR /cutting/
