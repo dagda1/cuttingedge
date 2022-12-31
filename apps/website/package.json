@@ -17,7 +17,7 @@
     "start": "PORT=3000 nodemon --watch server.ts --watch src/server --exec 'ts-node --esm server.ts'",
     "lint": "eslint ./**/*.{ts,tsx} --fix",
     "serve": "NODE_ENV=production node dist/server.js",
-    "deploy:web": "NODE_ENV=production pnpm build && ./bin/deploy.sh",
+    "deploy:web": "NODE_ENV=production pnpm --filter @cutting/website --prod deploy pruned && ./bin/deploy.sh",
     "test": "NODE_ENV=test vitest"
   },
   "sideEffects": [
