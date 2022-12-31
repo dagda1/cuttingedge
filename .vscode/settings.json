@@ -1,32 +1,4 @@
 {
-  "files.exclude": {
-    "**/.coverage": true,
-    "**/.DS_Store": true,
-    "**/.git": true,
-    "**/.hg": true,
-    "**/.svn": true,
-    "**/*.feature.json": true,
-    "**/*.js": {
-      "**/*.js": { "when": "$(basename).ts" },
-      "**/*?.js": { "when": "$(basename).tsx" }
-    },
-    "**/*.js.map": true,
-    "**/*.ts*.html": true,
-    "**/cucumber.json": true,
-    "**/CVS": true,
-    "**/dist/*.*": true,
-    "**/junit.xml": true,
-    "**/node_modules": true
-  },
-  "editor.useTabStops": false,
-  "editor.tabSize": 2,
-  "search.exclude": {
-    "**/dist/*.*": true
-  },
-  "diffEditor.ignoreTrimWhitespace": false,
-  "typescript.preferences.quoteStyle": "single",
-  "editor.fontSize": 13,
-  "git.autofetch": true,
   "eslint.workingDirectories": [
     "./packages/devtools",
     "./packages/util",
