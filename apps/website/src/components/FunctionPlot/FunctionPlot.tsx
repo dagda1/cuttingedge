@@ -1,4 +1,3 @@
-import type { SyntheticEvent } from 'react';
 import { useEffect } from 'react';
 import { useReducer } from 'react';
 import { useCallback, useMemo } from 'react';
@@ -16,15 +15,13 @@ import { Circle, Line, LinePath } from '@visx/shape';
 import { curveBasisOpen } from '@visx/curve';
 import * as styles from './FunctionPlot.css';
 import { MathJax } from '@cutting/use-mathjax';
-import { select, pointer } from 'd3-selection';
 import { getYIntercept } from '../../viz/getYIntercept';
 import { Text } from '@visx/text';
-import { initialState, reducer } from './reducer';
+import { reducer, initialState } from './reducer';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { Input } from '@cutting/react-hook-form-components';
 import { Button } from '@cutting/component-library';
-import classNames from 'classnames';
 
 interface FunctionPlotProps {
   minX?: number;
@@ -38,12 +35,16 @@ interface FormValues {
 export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const tangentRef = useRef<SVGCircleElement>(null);
+  const { width, height } = useParentSize(containerRef, {
+    debounceDelay: 500,
+  });
   const [state, dispatch] = useReducer(reducer, initialState);
   const { register, handleSubmit } = useForm<FormValues>({
     reValidateMode: 'onBlur',
     defaultValues: { expression: state.expression },
   });
   const form = useRef<HTMLFormElement>(null);
+  const tickFrame = useRef<number>();
 
   const onSubmit: SubmitHandler<FormValues> = ({ expression }) => {
     dispatch({
@@ -53,10 +54,6 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
       },
     });
   };
-
-  const { width, height } = useParentSize(containerRef, {
-    debounceDelay: 500,
-  });
 
   const data: Point[] = useMemo(() => {
     const expression = parse(state.expression);
@@ -85,7 +82,10 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
     const nonNegativeXAxis = minY >= 0 && maxY >= 0;
     const positiveAndNegative = minY < 0 && maxY > 0;
 
-    xScale.domain(extent(data, (d) => d.x) as number[]);
+    const xExtent = extent(data, (d) => d.x) as [number, number];
+    xScale.domain(xExtent);
+
+    const firstX = xExtent[0];
 
     const yScaleDomain = nonNegativeXAxis ? [0, max(data, (d) => d.y)] : extent(data, (d) => d.y);
     yScale.domain(yScaleDomain as number[]);
@@ -100,18 +100,14 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
 
     const yAxisPosition = positiveXOnly ? 0 : negativeXOnly ? width : xScale(0);
 
-    return { xScale, yScale, xAxisPosition, yAxisPosition };
+    return { xScale, yScale, xAxisPosition, yAxisPosition, firstX };
   }, [width, height, data]);
 
-  const mouseMove = useCallback(
-    (evt: SyntheticEvent) => {
+  const animate = useCallback(
+    (x: number) => {
       if (!tangentRef.current) {
         return;
       }
-
-      const m = pointer(evt, select('.curve').node());
-
-      let x = m[0];
 
       let y = yScale(
         parse(state.expression).evaluate({
@@ -169,6 +165,8 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
       dispatch({
         type: 'DRAW_TANGENT',
         payload: {
+          x,
+          direction: state.tangent.direction,
           label: {
             text: `(${round(point.x)}, ${round(point.y)})`,
             dx: x + 10,
@@ -184,28 +182,32 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
             x2: xScale(tangentPoint2.x),
             y2: yScale(tangentPoint2.y),
           },
+          xScale,
         },
       });
     },
-    [data, maxX, state.expression, xScale, yScale],
+    [data, maxX, state.expression, state.tangent.direction, xScale, yScale],
   );
 
   useEffect(() => {
-    if (!containerRef.current) {
+    const x = state.tangent.x ?? xScale(minX);
+    if (typeof x === 'undefined') {
       return;
     }
 
-    select('.function-svg').on('mousemove', mouseMove);
-
+    tickFrame.current = requestAnimationFrame(() => animate(x));
     return () => {
-      select('.function-svg').on('mousemove', null);
+      if (!tickFrame.current) {
+        return;
+      }
+      cancelAnimationFrame(tickFrame.current);
     };
-  }, [mouseMove]);
+  }, [state.tangent.x, minX, xScale, animate]);
 
   return (
     <ApplicationLayout center heading="The (function) plot thickens...." showFooter={false}>
       <section className={styles.container} ref={containerRef}>
-        <ResponsiveSVG onMouseMove={mouseMove} width={width} height={height} className="function-svg">
+        <ResponsiveSVG width={width} height={height} className="function-svg">
           <Group transform={`translate(0, ${xAxisPosition})`}>
             <AxisBottom scale={xScale} axisLineClassName={styles.axisLine} />
           </Group>

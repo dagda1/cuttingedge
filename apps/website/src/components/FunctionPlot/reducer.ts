@@ -1,6 +1,58 @@
 import { match } from 'ts-pattern';
 import produce from 'immer';
 import type { Reducer } from 'react';
+import type { ScaleLinear } from 'd3-scale';
+
+export const increase = (Math.PI * 2) / 360;
+
+type Direction = 'forwards' | 'back';
+
+type State = {
+  expression: string;
+  range: {
+    minX: number;
+    maxX: number;
+  };
+  tangent: {
+    x?: number;
+    direction: Direction;
+    label: {
+      text: string;
+      dx: number;
+      dy: number;
+    };
+    diff: {
+      x: number;
+      y: number;
+    };
+    line: {
+      x1: number;
+      y1: number;
+      x2: number;
+      y2: number;
+    };
+  };
+};
+
+type FunctionActions =
+  | {
+      type: 'DRAW_TANGENT';
+      payload: Omit<State['tangent'], 'x'> &
+        Required<Pick<State['tangent'], 'x'>> & { xScale: ScaleLinear<number, number, never> };
+    }
+  | {
+      type: 'SET_EXPRESSION';
+      payload: {
+        expression: string;
+      };
+    }
+  | {
+      type: 'SET_RANGE';
+      payload: {
+        minX: number;
+        maxX: number;
+      };
+    };
 
 export const initialState = {
   expression: 'x^2 - 20',
@@ -9,6 +61,7 @@ export const initialState = {
     maxX: 11,
   },
   tangent: {
+    direction: 'forwards' as Direction,
     label: {
       text: '',
       dx: 0,
@@ -27,26 +80,37 @@ export const initialState = {
   },
 };
 
-type FunctionActions =
-  | {
-      type: 'DRAW_TANGENT';
-      payload: typeof initialState['tangent'];
-    }
-  | {
-      type: 'SET_EXPRESSION';
-      payload: {
-        expression: string;
-      };
-    }
-  | {
-      type: 'SET_RANGE';
-      payload: typeof initialState['range'];
-    };
-
-export const reducer: Reducer<typeof initialState, FunctionActions> = produce((state, action) => {
+export const reducer: Reducer<State, FunctionActions> = produce((state, action) => {
   return match(action)
     .with({ type: 'DRAW_TANGENT' }, ({ payload }) => {
-      state.tangent = payload;
+      const { x, xScale } = payload;
+      const { minX, maxX } = state.range;
+
+      const getDirection = (): Direction => {
+        if (state.tangent.direction === 'forwards') {
+          if (x >= xScale(maxX - 2)) {
+            return 'back';
+          }
+
+          return 'forwards';
+        }
+
+        if (state.tangent.direction === 'back') {
+          if (x <= xScale(minX + 1)) {
+            return 'forwards';
+          }
+
+          return 'back';
+        }
+
+        throw new Error(`no direction for ${state.tangent.direction}`);
+      };
+
+      const nextDirection = getDirection();
+
+      const nextX = nextDirection === 'forwards' ? x + 1 : x - 1;
+
+      state.tangent = { ...payload, x: nextX, direction: nextDirection };
     })
     .with({ type: 'SET_EXPRESSION' }, ({ payload }) => {
       state.expression = payload.expression;
