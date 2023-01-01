@@ -71,7 +71,7 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   }, [maxX, minX, state.expression]);
 
   const { xAxisPosition, yAxisPosition, xScale, yScale } = useMemo(() => {
-    const xScale = scaleLinear().range([0, height]);
+    const xScale = scaleLinear().range([0, width]);
     const yScale = scaleLinear().range([height, 0]);
 
     const minY = min(data, (d) => d.y);
@@ -205,12 +205,7 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   return (
     <ApplicationLayout center heading="The (function) plot thickens...." showFooter={false}>
       <section className={styles.container} ref={containerRef}>
-        <ResponsiveSVG
-          onMouseMove={mouseMove}
-          width={width}
-          height={height}
-          className={classNames('function-svg', styles.container)}
-        >
+        <ResponsiveSVG onMouseMove={mouseMove} width={width} height={height} className="function-svg">
           <Group transform={`translate(0, ${xAxisPosition})`}>
             <AxisBottom scale={xScale} axisLineClassName={styles.axisLine} />
           </Group>

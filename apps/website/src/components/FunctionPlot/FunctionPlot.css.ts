@@ -3,20 +3,7 @@ import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style, globalStyle } from '@vanilla-extract/css';
 
 export const container = style({
-  height: '100%',
-  border: '1px solid transparent',
   paddingBottom: vars.space['2x'],
-  ...responsiveStyle({
-    mobile: {
-      margin: '0',
-    },
-    tablet: {},
-    desktop: {
-      width: '50%',
-      margin: 'auto',
-    },
-    wide: {},
-  }),
 });
 
 globalStyle(`${container} text`, {
