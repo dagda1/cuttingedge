@@ -302,9 +302,20 @@ export const dropdown = style({
 export const VizMenuItem = style({
   background: palette.white,
   zIndex: 15,
+  selectors: {
+    [`&:hover,&:focus`]: {
+      background: `${palette.yellow400} !important`,
+    },
+  },
 });
 
 export const submenu = style({
   marginBottom: '0 !important',
   color: `${palette.black} !important`,
+  selectors: {
+    [`&:hover,&:focus`]: {
+      color: '#ffffff !important',
+      textDecorationThickness: `max(3px, .1875rem, .12em)`,
+    },
+  },
 });
