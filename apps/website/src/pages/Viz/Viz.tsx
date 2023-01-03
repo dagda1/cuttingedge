@@ -18,7 +18,14 @@ export function Viz(): JSX.Element {
             </Suspense>
           }
         />
-        <Route path="/function-plot" element={<FunctionPlot />} />
+        <Route
+          path="/function-plot"
+          element={
+            <Suspense fallback={<Fallback />}>
+              <FunctionPlot />
+            </Suspense>
+          }
+        />
       </Routes>
     </MathJaxProvider>
   );

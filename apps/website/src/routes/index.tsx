@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router';
 import type { Page } from '../types';
 import { ContactMe } from '../components/ContactMe';
 import { lazy, Suspense } from 'react';
-import { Fallback } from 'src/components/Fallback/Fallback';
+import { Fallback } from '../components/Fallback/Fallback';
 
 const Home = lazy(() => import('../pages/Home'));
 

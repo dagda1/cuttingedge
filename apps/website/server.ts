@@ -71,7 +71,7 @@ export async function createServer(hmrPort?: number): Promise<{
     app.use(
       contentSecurityPolicy({
         directives: {
-          defaultSrc: ["'self'", 'https://covidapi.info/'],
+          defaultSrc: ["'self'"],
           scriptSrc: [
             "'self'",
             "'unsafe-inline'",
@@ -81,7 +81,14 @@ export async function createServer(hmrPort?: number): Promise<{
             'https://www.google-analytics.com',
             'https://www.opendata.nhs.scot/',
           ],
-          connectSrc: ['https://www.google-analytics.com', 'www.google-analytics.com', 'https://www.formlets.com'],
+          connectSrc: [
+            "'self'",
+            'https://www.google-analytics.com',
+            'www.google-analytics.com',
+            'https://www.formlets.com',
+            'http://localhost',
+            'https://cutting.scot',
+          ],
           styleSrc: ["'self'", "'unsafe-inline'", 'https://esm.sh', 'https://fonts.googleapis.com'],
           imgSrc: [
             "'self'",

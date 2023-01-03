@@ -1,4 +1,4 @@
-FROM nginx:1.13
+FROM nginx:1.22
 
 ADD ./nginx/ssl /etc/nginx/ssl
 
@@ -19,5 +19,8 @@ RUN touch /etc/nginx/logs/error.log
 
 RUN chown -R root:root /etc/nginx/ssl
 RUN chmod -R 600 /etc/nginx/ssl
+RUN chown -R root:root /var/cache/nginx
+RUN chown -R nobody:nogroup /var/cache/nginx
+RUN chmod -R 600 /var/cache/nginx
 
 RUN ./setupconf.sh

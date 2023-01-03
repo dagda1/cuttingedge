@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { MainRoutes } from './routes';
 
 export function render(url: string): string {
-  return ReactDOMServer.renderToString(
+  return renderToString(
     <StrictMode>
       <StaticRouter location={url}>
         <MainRoutes />
