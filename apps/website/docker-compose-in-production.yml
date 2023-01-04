@@ -6,7 +6,7 @@ services:
     environment:
         PORT: 3000
         NODE_ENV: production
-    command: node ./dist/server.js
+    command: node ./dist/server.mjs
     restart: always
 
   nginx:

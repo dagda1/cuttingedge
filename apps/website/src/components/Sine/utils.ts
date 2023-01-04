@@ -1,6 +1,5 @@
 import type { Reducer } from 'react';
-import type { ScaleLinear } from 'd3-scale';
-import { scaleLinear } from '@visx/scale';
+import { scaleLinear, type ScaleLinear } from 'd3-scale';
 import { identity, range } from '@cutting/util';
 
 export type Dimensions = { width: number; height: number };
@@ -60,16 +59,18 @@ export const getScales = ({
 
   const radius = height / 6;
 
-  const xScale = scaleLinear({ domain: [0, 20], range: [0, width] });
-  const yScale = scaleLinear({ domain: [0, 20], range: [height, 0] });
+  const xScale = scaleLinear().domain([0, 20]).range([0, width]);
+  const yScale = scaleLinear().domain([0, 20]).range([height, 0]);
 
   const firstX = -(radius * 1.25);
 
   const initialX = xScale(20) - radius;
   const initialY = yScale(12);
 
-  const xAxisScale = scaleLinear({ domain: [0, Math.PI * 2], range: [firstX, -initialX] });
-  const yAxisScale = scaleLinear({ domain: [-1, 1], range: [radius, -radius] });
+  const xAxisScale = scaleLinear()
+    .domain([0, Math.PI * 2])
+    .range([firstX, -initialX]);
+  const yAxisScale = scaleLinear().domain([-1, 1]).range([radius, -radius]);
 
   return {
     xScale,

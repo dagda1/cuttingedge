@@ -4,21 +4,23 @@
     "baseUrl": ".",
     "outDir": "./dist",
     "rootDir": ".",
-    "module": "Node16",
-    "moduleResolution": "Node16",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2021",
     "noEmit": false
   },
   "include": [
-    "server.ts",
+    "server.mts",
     "../../node_modules/@types/d3/index.d.ts",
     "node_modules/vite/types/*"
   ],
+  "exclude": ["pruned"],
   "references": [
     { "path": "../../packages/util/tsconfig.dist.json" },
     { "path": "../../packages/hooks/tsconfig.dist.json" },
     { "path": "../../packages/component-library/tsconfig.dist.json" },
     { "path": "../../packages/svg/tsconfig.dist.json" },
     { "path": "../../packages/react-abortable-fetch/tsconfig.dist.json" },
-    { "path": "../../packages/use-mathjax/tsconfig.dist.json"}
+    { "path": "../../packages/use-mathjax/tsconfig.dist.json" }
   ]
 }

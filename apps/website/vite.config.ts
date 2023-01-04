@@ -12,10 +12,10 @@ export default defineConfig({
   mode: '',
   build: {
     sourcemap: isProduction ? false : 'inline',
-    minify: !isProduction,
-    commonjsOptions: {
-      transformMixedEsModules: true,
-    },
+    minify: isProduction,
+    // commonjsOptions: {
+    //   transformMixedEsModules: true,
+    // },
     rollupOptions: {
       output: {
         format: 'esm',

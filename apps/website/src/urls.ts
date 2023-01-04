@@ -7,3 +7,5 @@ export const DownloadWordDoc = '/download-word-doc';
 export const PrivacyPolicy = '/privacy-policy';
 export const TermsOfService = '/terms-of-service';
 export const ContactMe = '/contact-me';
+export const FunctionPlot = '/function-plot';
+export const Sine = '/sine';

@@ -11,13 +11,9 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "server.ts",
     "vite.config.ts",
     "../../node_modules/@types/d3/index.d.ts",
     "node_modules/vite/types/*"
   ],
-  "exclude": [
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx"
-  ]
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "server.mts", "pruned"]
 }
