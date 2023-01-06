@@ -53,11 +53,6 @@ globalStyle(`${mobileButtonContainer} svg`, {
   marginBottom: 0,
 });
 
-globalStyle(`${container} li a:not(.submenu)`, {
-  position: 'relative',
-  top: '5px',
-});
-
 globalStyle(`${container} a:hover`, {
   color: palette.white,
 });

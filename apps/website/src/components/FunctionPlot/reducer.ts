@@ -55,7 +55,7 @@ type FunctionActions =
     };
 
 export const initialState = {
-  expression: 'x^2 - 20',
+  expression: 'x^3',
   range: {
     minX: -10,
     maxX: 11,

@@ -13,6 +13,11 @@ export function OSS(): JSX.Element {
         <h2>Merged pull requests to public repositories</h2>
         <ul className={styles.communityList}>
           <li>
+            <ExternalLink href="https://github.com/backstage/backstage/pulls?q=is%3Apr+is%3Amerged+author%3Adagda1">
+              Very active in Backstage
+            </ExternalLink>
+          </li>
+          <li>
             <ExternalLink href="https://github.com/thefrontside/simulacrum/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1">
               Very active in Simulacrum
             </ExternalLink>
