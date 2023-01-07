@@ -54,7 +54,7 @@ export async function createServer(hmrPort?: number): Promise<{
     // use vite's connect instance as middleware
     app.use(vite.middlewares);
   } else {
-    app.use((await import('compression')).default({level: 1}));
+    app.use((await import('compression')).default({ level: 1 }));
     app.use(
       (await import('serve-static')).default(resolve('client'), {
         index: false,

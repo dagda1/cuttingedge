@@ -36,6 +36,11 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
               FUNCTIONS
             </NavLink>
           </MenuItem>
+          <MenuItem className={styles.VizMenuItem}>
+            <NavLink className={styles.submenu} to="/viz/sine2">
+              MORE SINE
+            </NavLink>
+          </MenuItem>
         </VizMenu>
       </li>
     </>

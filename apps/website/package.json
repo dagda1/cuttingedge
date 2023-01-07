@@ -14,7 +14,7 @@
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "clean": "rimraf dist/ && mkdir dist",
     "copy-files": "copyfiles static/* dist/assets && copyfiles index.html dist && copyfiles -f dist/client/assets/* dist/assets copyfiles node_modules/@cutting/component-library/dist/esm/src.css* dist/assets",
-    "start": "PORT=3000 nodemon --watch server.mts --watch src/server --exec 'ts-node --esm server.mts'",
+    "start": "PORT=3000 nodemon --watch server.mts --watch src/**/*ts* --exec 'ts-node --esm server.mts'",
     "lint": "eslint ./**/*.{ts,tsx} --fix",
     "serve": "NODE_ENV=production node dist/server.mjs",
     "deploy:web": "rm -rf ./pruned && NODE_ENV=production pnpm build && pnpm --filter @cutting/website --prod deploy pruned && ./bin/deploy.sh",
