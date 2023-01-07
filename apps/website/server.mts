@@ -20,7 +20,7 @@ const root = process.cwd();
 
 const publicDir = path.join(root, isProd ? 'dist/server' : 'public');
 
-export async function createServer(hmrPort?: number): Promise<{
+export async function createServer(): Promise<{
   app: ReturnType<typeof express>;
   vite: ViteDevServer | undefined;
 }> {
@@ -43,10 +43,7 @@ export async function createServer(hmrPort?: number): Promise<{
           // During tests we edit the files too fast and sometimes chokidar
           // misses change events, so enforce polling for consistency
           usePolling: true,
-          interval: 100,
-        },
-        hmr: {
-          port: hmrPort,
+          interval: 10,
         },
       },
       appType: 'custom',
