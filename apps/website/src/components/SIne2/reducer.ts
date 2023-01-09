@@ -110,7 +110,7 @@ export const reducer: Reducer<State, Actions> = produce((state, action) => {
       state.unitCircle.cx = hypotenuseCentre;
       state.unitCircle.cy = yScale(0);
 
-      const hypotenuse = select('.hypotenuse');
+      const hypotenuse = select(`.hypotenuse`);
 
       const hypotenuseCoords = {
         x1: hypotenuseCentre,

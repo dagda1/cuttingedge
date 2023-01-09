@@ -11,7 +11,7 @@ import { initialState, reducer, TWO_PI } from './reducer';
 import { line } from 'd3-shape';
 import { curveMonotoneX } from '@visx/curve';
 import { Arc, Circle } from '@visx/shape';
-import { hypotenuse } from '../Sine/Sine.css';
+import cs from 'classnames';
 
 const xTickValues = [0, 1.57, 3.14, 4.71, 6.28];
 const piMap = {
@@ -58,8 +58,6 @@ export function Sine2(): JSX.Element {
   useLayoutEffect(() => {
     tickFrame.current = requestAnimationFrame(() => dispatch({ type: 'TICK', payload: { xScale, yScale } }));
 
-    console.log(state.time);
-
     return () => {
       if (!tickFrame.current) {
         return;
@@ -99,7 +97,7 @@ export function Sine2(): JSX.Element {
                 y1={state.hypotenuse.y1}
                 x2={state.hypotenuse.x2}
                 y2={state.hypotenuse.y2}
-                className="hypotenuse"
+                className={cs('hypotenuse', styles.hypotenuse)}
               />
               <Arc
                 transform={`translate(${state.hypotenuse.x1}, 0)`}

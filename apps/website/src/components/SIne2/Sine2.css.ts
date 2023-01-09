@@ -56,6 +56,11 @@ export const opposite = style({
 });
 
 export const adjacent = style({
-  stroke: 'cyan',
+  stroke: steelBlue,
+  strokeWidth: thickStroke,
+});
+
+export const hypotenuse = style({
+  stroke: 'yellow',
   strokeWidth: thickStroke,
 });
