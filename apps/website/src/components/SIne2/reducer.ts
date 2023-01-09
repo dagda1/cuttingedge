@@ -139,7 +139,7 @@ export const reducer: Reducer<State, Actions> = produce((state, action) => {
       state.angle = angle;
       state.opposite = {
         x1: state.xCircle.cx,
-        y1: y0,
+        y1: 0,
         x2: state.xCircle.cx,
         y2: dy,
       };

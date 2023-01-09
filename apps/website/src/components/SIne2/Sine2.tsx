@@ -11,6 +11,7 @@ import { initialState, reducer, TWO_PI } from './reducer';
 import { line } from 'd3-shape';
 import { curveMonotoneX } from '@visx/curve';
 import { Arc, Circle } from '@visx/shape';
+import { hypotenuse } from '../Sine/Sine.css';
 
 const xTickValues = [0, 1.57, 3.14, 4.71, 6.28];
 const piMap = {
@@ -100,22 +101,38 @@ export function Sine2(): JSX.Element {
                 y2={state.hypotenuse.y2}
                 className="hypotenuse"
               />
-              {/* <Arc
-              innerRadius={8}
-              outerRadius={12}
-              startAngle={Math.PI / 2}
-              endAngle={state.angle}
-              className="inner-arc"
-            />
-            <Arc
-              innerRadius={state.radius - 1}
-              outerRadius={state.radius + 3}
-              startAngle={Math.PI / 2}
-              endAngle={state.angle}
-              className="outer-arc"
-            /> */}
+              <Arc
+                transform={`translate(${state.hypotenuse.x1}, 0)`}
+                innerRadius={8}
+                outerRadius={12}
+                startAngle={Math.PI / 2}
+                endAngle={state.angle}
+                className={styles.innerArc}
+              />
+              <Arc
+                transform={`translate(${state.hypotenuse.x1}, 0)`}
+                innerRadius={state.unitCircle.r - 1}
+                outerRadius={state.unitCircle.r + 3}
+                startAngle={Math.PI / 2}
+                endAngle={state.angle}
+                className={styles.outerArc}
+              />
               <path className={styles.sineCurve} d={sineCurve(state.sineData) as string} />
+              <Line
+                x1={state.opposite.x1}
+                y1={state.opposite.y1}
+                x2={state.opposite.x2}
+                y2={state.opposite.y2}
+                className={styles.opposite}
+              />
             </Group>
+            <Line
+              x1={state.adjacent.x1}
+              y1={state.adjacent.y1}
+              x2={state.adjacent.x2}
+              y2={state.adjacent.y2}
+              className={styles.adjacent}
+            />
           </Group>
         </ResponsiveSVG>
       </section>

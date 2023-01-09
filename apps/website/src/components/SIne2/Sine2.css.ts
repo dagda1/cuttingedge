@@ -30,7 +30,6 @@ globalStyle('tspan', {
 export const unitCircle = style({
   stroke: steelBlue,
   fill: 'none',
-  strokeWidth: thickStroke,
 });
 
 export const xCircle = style({});
@@ -38,5 +37,25 @@ export const xCircle = style({});
 export const sineCurve = style({
   fill: 'none',
   stroke: 'red',
+  strokeWidth: thickStroke,
+});
+
+export const innerArc = style({
+  stroke: 'green',
+  strokeWidth: thickStroke,
+});
+
+export const outerArc = style({
+  stroke: steelBlue,
+  strokeWidth: thickStroke,
+});
+
+export const opposite = style({
+  stroke: 'yellow',
+  strokeWidth: thickStroke,
+});
+
+export const adjacent = style({
+  stroke: 'cyan',
   strokeWidth: thickStroke,
 });
