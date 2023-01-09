@@ -16,12 +16,13 @@ interface Line {
   y2: number;
 }
 
+type Circle = { cx: number; cy: number; r: number };
+
 type State = {
   time: number;
   direction: Direction;
-  xTo: number;
-  unitCircleCx: number;
-  radius: number;
+  xCircle: Circle;
+  unitCircle: Circle;
   hypotenuse: Line;
   opposite: Line;
   adjacent: Line;
@@ -32,8 +33,11 @@ type State = {
 export const initialState: State = {
   time: 0,
   direction: 'FORWARDS',
-  radius: 0,
-  xTo: 0,
+  xCircle: {
+    cx: 0,
+    cy: 0,
+    r: 0,
+  },
   hypotenuse: {
     x1: 0,
     y1: 0,
@@ -52,7 +56,11 @@ export const initialState: State = {
     x2: 0,
     y2: 0,
   },
-  unitCircleCx: 0,
+  unitCircle: {
+    cx: 0,
+    cy: 0,
+    r: 0,
+  },
   angle: 0,
   sineData: [],
 };
@@ -85,23 +93,29 @@ export const reducer: Reducer<State, Actions> = produce((state, action) => {
       const nextTime = state.direction === 'FORWARDS' ? state.time + increase : state.time - increase;
       const nextDirection = getNextDirection(state.direction, nextTime);
 
-      const xTo = xScale(nextTime);
+      const y0 = yScale(0);
 
-      const radius = yScale(0);
+      state.xCircle = {
+        cx: xScale(nextTime),
+        cy: y0,
+        r: 10,
+      };
 
-      const unitCircleCx = 0 - radius;
+      state.unitCircle.r = Math.abs(yScale(0));
 
-      const dx = radius * Math.cos(nextTime);
-      const dy = radius * -Math.sin(nextTime);
+      const dx = state.unitCircle.r * Math.cos(nextTime);
+      const dy = state.unitCircle.r * -Math.sin(nextTime);
+      const hypotenuseCentre = state.xCircle.cx - dx;
 
-      const hypotenuseCentre = xTo - dx;
+      state.unitCircle.cx = hypotenuseCentre;
+      state.unitCircle.cy = yScale(0);
 
-      const hypotenuse = select('hypotenuse');
+      const hypotenuse = select('.hypotenuse');
 
       const hypotenuseCoords = {
         x1: hypotenuseCentre,
         y1: parseFloat(hypotenuse.attr('y1')),
-        x2: xTo,
+        x2: state.xCircle.cx,
         y2: dy,
       };
 
@@ -119,29 +133,24 @@ export const reducer: Reducer<State, Actions> = produce((state, action) => {
         state.sineData.pop();
       }
 
-      return {
-        ...state,
-        time: nextTime,
-        direction: nextDirection,
-        radius,
-        hypotenuse: {
-          ...hypotenuseCoords,
-        },
-        unitCircleCx,
-        angle,
-        opposite: {
-          x1: xTo,
-          y1: 0,
-          x2: xTo,
-          y2: dy,
-        },
-        adjacent: {
-          x1: 0,
-          y1: 0,
-          x2: xTo,
-          y2: 0,
-        },
+      state.time = nextTime;
+      state.direction = nextDirection;
+      state.hypotenuse = hypotenuseCoords;
+      state.angle = angle;
+      state.opposite = {
+        x1: state.xCircle.cx,
+        y1: y0,
+        x2: state.xCircle.cx,
+        y2: dy,
       };
+      state.adjacent = {
+        x1: 0,
+        y1: y0,
+        x2: state.xCircle.cx,
+        y2: y0,
+      };
+
+      break;
     }
     default:
       return state;

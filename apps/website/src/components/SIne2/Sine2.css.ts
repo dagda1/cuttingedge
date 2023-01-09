@@ -3,6 +3,9 @@ import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { globalStyle } from '@vanilla-extract/css';
 import { style } from '@vanilla-extract/css';
 
+const steelBlue = '#4682B4';
+const thickStroke = '5px';
+
 const styles: ComplexStyleRule = {
   stroke: palette.white,
   strokeWidth: 2,
@@ -22,4 +25,18 @@ globalStyle('line', {
 
 globalStyle('tspan', {
   fill: palette.white,
+});
+
+export const unitCircle = style({
+  stroke: steelBlue,
+  fill: 'none',
+  strokeWidth: thickStroke,
+});
+
+export const xCircle = style({});
+
+export const sineCurve = style({
+  fill: 'none',
+  stroke: 'red',
+  strokeWidth: thickStroke,
 });
