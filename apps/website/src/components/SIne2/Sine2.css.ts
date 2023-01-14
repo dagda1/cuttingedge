@@ -27,11 +27,6 @@ globalStyle('tspan', {
   fill: palette.white,
 });
 
-export const unitCircle = style({
-  stroke: steelBlue,
-  fill: 'none',
-});
-
 export const xCircle = style({});
 
 export const sineCurve = style({

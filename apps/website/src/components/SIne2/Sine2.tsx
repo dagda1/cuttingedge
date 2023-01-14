@@ -84,12 +84,6 @@ export function Sine2(): JSX.Element {
             <AxisLeft scale={yScale} axisLineClassName={styles.axisLine} tickStroke="#fff" />
           </Group>
           <Group>
-            <Circle
-              cx={state.unitCircle.cx}
-              cy={state.unitCircle.cy}
-              r={state.unitCircle.r}
-              className={styles.unitCircle}
-            />
             <Circle cx={state.xCircle.cx} cy={state.xCircle.cy} radius={10} className={styles.xCircle} />
             <Group transform={`translate(0, ${yScale(0)})`}>
               <Line
