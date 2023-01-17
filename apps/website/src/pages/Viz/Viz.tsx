@@ -6,7 +6,7 @@ import * as Urls from '../../urls';
 
 const Sine = lazy(() => import('../../components/Sine/Sine'));
 const FunctionPlot = lazy(() => import('../../components/FunctionPlot/FunctionPlot'));
-const Sine2 = lazy(() => import('../../components/Sine2/Sine2'));
+const Sine2 = lazy(() => import('../../components/BigSine/Sine2'));
 
 export function Viz(): JSX.Element {
   return (

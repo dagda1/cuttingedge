@@ -1,5 +1,4 @@
 import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
-import { rem } from 'polished';
 import { palette } from '../../src';
 import { atoms } from '../../src/style/atoms/atoms';
 import { vars } from '../../src/style/themes/vars.css';
@@ -11,7 +10,6 @@ globalFontFace('Oswald', {
 });
 
 export const wrap = style({
-  maxWidth: rem(1008),
   paddingLeft: vars.space['1x'],
   paddingRight: vars.space['2x'],
   margin: '0 auto',

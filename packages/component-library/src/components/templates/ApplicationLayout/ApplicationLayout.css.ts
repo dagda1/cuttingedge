@@ -78,12 +78,17 @@ export const size = style({
   }),
 });
 
+export const full = style({
+  marginLeft: vars.space['2x'],
+  marginRight: vars.space['2x'],
+  border: '10px solid red',
+});
+
 globalStyle('main', {
   display: 'grid',
   gridTemplateRows: 'auto 1fr',
   gridTemplateColumns: '1fr',
   width: '100%',
-  maxWidth: `${rem(breakpoints.desktop)}`,
   ...responsiveStyle({
     mobile: {
       padding: 0,
