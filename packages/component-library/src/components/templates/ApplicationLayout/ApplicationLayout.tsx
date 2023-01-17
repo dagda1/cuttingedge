@@ -20,6 +20,8 @@ export type ThemeKeys = keyof typeof themes;
 
 export const Themes = Object.keys(themes) as ThemeKeys[];
 
+type Layout = 'RESPONSIVE' | 'FULL';
+
 export interface ApplicationLayoutProps {
   heading?: string | JSX.Element;
   center?: boolean;
@@ -30,6 +32,7 @@ export interface ApplicationLayoutProps {
   children: ReactNode;
   headerAriaLabel?: string;
   theme: keyof typeof themes;
+  layout?: Layout;
 }
 
 const ApplicationLayoutHeading: ComponentType<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
@@ -49,6 +52,7 @@ export function ApplicationLayout({
   children,
   headerAriaLabel,
   theme,
+  layout = 'RESPONSIVE',
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   const currentTheme = themes[theme];
 
@@ -57,7 +61,13 @@ export function ApplicationLayout({
       <header role="banner" className={cs(styles.header, { [styles.hidden]: !header })} aria-label={headerAriaLabel}>
         <div className={styles.size}>{header}</div>
       </header>
-      <main className={cs(styles.body, styles.size, className)} ref={innerRef}>
+      <main
+        className={cs(styles.body, className, {
+          [styles.size]: layout === 'RESPONSIVE',
+          [styles.full]: layout === 'FULL',
+        })}
+        ref={innerRef}
+      >
         <ApplicationLayoutHeading heading={heading} />
         {children}
       </main>
