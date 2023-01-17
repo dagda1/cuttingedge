@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.36.0
+
+### Minor Changes
+
+- 6a0497c0: application layout can be full width
+
 ## 5.35.1
 
 ### Patch Changes
