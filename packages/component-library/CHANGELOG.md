@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.36.1
+
+### Patch Changes
+
+- fe7258f7: full style fix
+
 ## 5.36.0
 
 ### Minor Changes
