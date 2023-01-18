@@ -274,7 +274,7 @@ export const tokens = {
     primary: {
       borderWidth: '2px',
       borderColor: 'transparent',
-      hoverBackgroundColor: palette.white,
+      hoverBackgroundColor: palette.green900,
       background: palette.green800,
       focusColor: palette.white,
       color: palette.white,
