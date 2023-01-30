@@ -1,4 +1,4 @@
-import type { ComponentType, PropsWithChildren, ReactElement, ReactNode, Ref } from 'react';
+import type { ComponentType, PropsWithChildren, ReactElement, ReactNode, RefObject } from 'react';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
@@ -28,7 +28,7 @@ export interface ApplicationLayoutProps {
   className?: string;
   footer?: ReactElement;
   header?: ReactElement;
-  innerRef?: Ref<HTMLElement>;
+  innerRef?: RefObject<HTMLElement>;
   children: ReactNode;
   headerAriaLabel?: string;
   theme: keyof typeof themes;

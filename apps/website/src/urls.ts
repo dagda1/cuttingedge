@@ -9,3 +9,4 @@ export const TermsOfService = '/terms-of-service';
 export const ContactMe = '/contact-me';
 export const FunctionPlot = '/function-plot';
 export const Sine2 = '/sine2';
+export const Tan = '/tan';

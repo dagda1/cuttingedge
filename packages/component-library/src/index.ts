@@ -33,6 +33,7 @@ export { CheckboxGroup } from './components/molecules/CheckboxGroup/CheckboxGrou
 export {
   ApplicationLayout,
   ApplicationLayoutWithRouterScroll,
+  type ApplicationLayoutProps,
 } from './components/templates/ApplicationLayout/ApplicationLayout';
 export { Donut } from './components/molecules/Donut/Donut';
 export { Alert } from './components/molecules/Alert/Alert';

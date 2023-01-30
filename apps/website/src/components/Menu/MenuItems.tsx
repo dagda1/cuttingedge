@@ -41,6 +41,11 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
               MORE SINE
             </NavLink>
           </MenuItem>
+          <MenuItem className={styles.VizMenuItem}>
+            <NavLink className={styles.submenu} to="/viz/tan">
+              TAN
+            </NavLink>
+          </MenuItem>
         </VizMenu>
       </li>
     </>

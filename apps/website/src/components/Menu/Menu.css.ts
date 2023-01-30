@@ -288,8 +288,6 @@ export const dropdown = style({
   textUnderlineOffset: '.1em',
   lineHeight: vars.links.lineHeight,
   cursor: 'pointer',
-  position: 'relative',
-  top: '5px',
   fontFamily: vars.fontFamily.body,
   zIndex: 15,
 });

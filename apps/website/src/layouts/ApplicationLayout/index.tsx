@@ -1,34 +1,27 @@
 import cs from 'classnames';
-import { useRef } from 'react';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
-import { useScrollToTop } from '@cutting/hooks';
 import { CuttingEdge } from '../../constants';
 import { Helmet } from 'react-helmet';
-import { ApplicationLayoutWithRouterScroll } from '@cutting/component-library';
+import { ApplicationLayoutWithRouterScroll, type ApplicationLayoutProps as AppProps } from '@cutting/component-library';
 import * as styles from './ApplicationLayout.css';
 
-export interface ApplicationLayoutProps {
-  heading?: string;
-  center?: boolean;
-  className?: string;
+export type ApplicationLayoutProps = Pick<AppProps, 'center' | 'layout' | 'className' | 'children'> & {
   showFooter?: boolean;
-  children?: React.ReactNode;
-}
+  heading?: string;
+};
 
 export function ApplicationLayout({
   heading,
   center,
   className,
   showFooter = true,
+  layout = 'RESPONSIVE',
   children,
 }: ApplicationLayoutProps): JSX.Element {
-  const root = useRef<HTMLDivElement>(null);
-
-  useScrollToTop({ ref: root });
-
   return (
     <ApplicationLayoutWithRouterScroll
+      layout={layout}
       theme="cuttingTheme"
       className={cs(className)}
       headerAriaLabel="Cutting-Edge Solutions (Scotland)"

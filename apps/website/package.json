@@ -38,6 +38,7 @@
     "@visx/axis": "2.17.0",
     "@visx/curve": "2.17.0",
     "@visx/group": "2.17.0",
+    "@visx/scale": "^3.0.0",
     "@visx/shape": "2.17.0",
     "@visx/text": "2.17.0",
     "@szhsin/react-menu": "^3.3.1",

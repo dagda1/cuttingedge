@@ -67,7 +67,7 @@ export function Sine2(): JSX.Element {
   }, [state.time, xScale, yScale]);
 
   return (
-    <ApplicationLayout heading="SINETASTIC">
+    <ApplicationLayout layout="FULL" heading="SINETASTIC">
       <section ref={containerRef}>
         <ResponsiveSVG width={width} height={height} className="graph">
           <Group transform={`translate(0, ${xAxisPosition})`}>
@@ -75,7 +75,7 @@ export function Sine2(): JSX.Element {
               scale={xScale}
               tickValues={xTickValues}
               axisClassName={styles.axisLine}
-              tickFormat={(t) => piMap[t]}
+              tickFormat={(t) => piMap[t as number]}
               tickStroke="#fff"
               tickComponent={TickComponent}
             />
