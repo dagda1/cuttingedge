@@ -11,6 +11,7 @@ import * as styles from './Tan.css';
 import cs from 'classnames';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { SVGMathJax } from '@cutting/use-mathjax';
+import { breakpoints } from '@cutting/component-library';
 
 const Ticks = [...range(-1, 1, 0.5)];
 
@@ -36,12 +37,24 @@ const MainTicks = [
 
 const circles = 1;
 
+function getUnitCircleWidth(width: number, height: number): number {
+  if (width >= breakpoints.desktop) {
+    return height / 1.25;
+  }
+
+  if (width >= breakpoints.tablet) {
+    return width / 2;
+  }
+
+  return width / 3;
+}
+
 export function Tan(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef, { debounceDelay: 1000 });
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const left = height / 1.25;
+  const left = getUnitCircleWidth(width, height);
 
   const tickFrame = useRef<number>();
 
@@ -102,7 +115,7 @@ export function Tan(): JSX.Element {
 
   return (
     <>
-      <ApplicationLayout layout="FULL" heading="TANTASTIC" className={styles.container}>
+      <ApplicationLayout layout="FULL" center heading="TANTASTIC" className={styles.container}>
         <section ref={containerRef}>
           <ResponsiveSVG width={width} height={height}>
             <circle className={styles.unitCircle} {...state.unitCircle} />

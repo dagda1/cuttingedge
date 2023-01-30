@@ -41,7 +41,7 @@ function Sine(): JSX.Element {
   const expanded = width > 1 && height > 1;
 
   return (
-    <ApplicationLayout layout="FULL" heading="Sine of the times">
+    <ApplicationLayout layout="FULL" center heading="Sine of the times">
       <section className={styles.main} ref={containerRef}>
         <ResponsiveSVG width={width} height={height}>
           <Group x={initialX} y={initialY}>
