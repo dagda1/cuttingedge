@@ -43,10 +43,10 @@ function getUnitCircleWidth(width: number, height: number): number {
   }
 
   if (width >= breakpoints.tablet) {
-    return width / 2;
+    return height / 2;
   }
 
-  return width / 3;
+  return height / 2.5;
 }
 
 export function Tan(): JSX.Element {
@@ -115,7 +115,7 @@ export function Tan(): JSX.Element {
 
   return (
     <>
-      <ApplicationLayout layout="FULL" center heading="TANTASTIC" className={styles.container}>
+      <ApplicationLayout layout="FULL" center heading="DARK TAN" className={styles.container}>
         <section ref={containerRef}>
           <ResponsiveSVG width={width} height={height}>
             <circle className={styles.unitCircle} {...state.unitCircle} />

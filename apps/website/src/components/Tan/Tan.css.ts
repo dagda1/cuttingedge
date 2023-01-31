@@ -1,15 +1,22 @@
-import { palette } from '@cutting/component-library';
+import { palette, responsiveStyle } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const container = style({});
 
 globalStyle(`${container} tspan`, {
-  fontSize: '1rem',
+  ...responsiveStyle({
+    mobile: {
+      fontSize: '0.75rem',
+    },
+    tablet: {
+      fontSize: '1rem',
+    },
+  }),
   fill: palette.white,
 });
 
 globalStyle(`${container} foreignObject`, {
-  width: '3rem !important',
+  width: '2.25rem',
 });
 
 export const playButton = style({
@@ -18,23 +25,45 @@ export const playButton = style({
 });
 
 export const tanCurve = style({
-  strokeWidth: 8,
+  ...responsiveStyle({
+    mobile: {
+      strokeDasharray: 5,
+      strokeWidth: 3,
+    },
+    tablet: {
+      strokeDasharray: 20,
+      strokeWidth: 8,
+    },
+  }),
   fill: 'transparent',
   stroke: '#ffffff',
   strokeLinecap: 'round',
   strokeLinejoin: 'round',
-  strokeDasharray: 20,
 });
 
 export const unitCircle = style({
   fillOpacity: 0,
   stroke: '#9BC3AF',
-  strokeWidth: 10,
+  ...responsiveStyle({
+    mobile: {
+      strokeWidth: 2,
+    },
+    tablet: {
+      strokeWidth: 10,
+    },
+  }),
 });
 
 export const line = style({
   stroke: palette.white,
-  strokeWidth: 10,
+  ...responsiveStyle({
+    mobile: {
+      strokeWidth: 5,
+    },
+    tablet: {
+      strokeWidth: 10,
+    },
+  }),
 });
 
 export const hypotenuse = style({
@@ -43,7 +72,14 @@ export const hypotenuse = style({
 });
 
 export const opposite = style({
-  strokeDasharray: 8,
+  ...responsiveStyle({
+    mobile: {
+      strokeDasharray: 3,
+    },
+    tablet: {
+      strokeDasharray: 8,
+    },
+  }),
   stroke: 'cyan',
 });
 
