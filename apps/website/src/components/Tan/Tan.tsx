@@ -12,8 +12,9 @@ import cs from 'classnames';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { curveMonotoneX } from 'd3-shape';
+import { breakpoints } from '@cutting/component-library';
 
-const Ticks = [...range(-1, 1, 0.5)];
+const Ticks = [...range(-1, 1)];
 
 const MainTicks = [
   '$-4\\pi$',
@@ -37,6 +38,18 @@ const MainTicks = [
 
 const circles = 1;
 
+function getUnitCircleWidth(width: number, height: number): number {
+  if (width >= breakpoints.desktop) {
+    return height / 1.25;
+  }
+
+  if (width >= breakpoints.tablet) {
+    return height / 2;
+  }
+
+  return height / 3;
+}
+
 export function Tan(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef, { debounceDelay: 1000 });
@@ -44,7 +57,7 @@ export function Tan(): JSX.Element {
 
   const tickFrame = useRef<number>();
 
-  const unitCircleWidth = Math.min(width, height);
+  const unitCircleWidth = getUnitCircleWidth(width, height);
 
   const { xScale, yScale, mainXscale, tanXScale, tanYScale } = useMemo(() => {
     const xScale = scalePoint({
@@ -75,6 +88,7 @@ export function Tan(): JSX.Element {
     return { xScale, yScale, mainXscale, tanXScale, tanYScale };
   }, [unitCircleWidth, width]);
 
+  console.log(tanXScale.domain());
   useLayoutEffect(() => {
     tickFrame.current = requestAnimationFrame(() =>
       dispatch({
@@ -115,51 +129,53 @@ export function Tan(): JSX.Element {
   return (
     <>
       <ApplicationLayout layout="FULL" center heading="FAKE TAN" className={styles.container}>
-        <section ref={containerRef}>
+        <section className={styles.container} ref={containerRef}>
           <ResponsiveSVG width={width} height={height}>
             <Group>
-              <circle className={styles.unitCircle} {...state.unitCircle} />
-              <Group transform={`translate(${state.unitCircle.cx}, ${state.unitCircle.cy})`}>
-                <Arc
-                  innerRadius={0}
-                  outerRadius={30}
-                  startAngle={Math.PI / 2}
-                  endAngle={state.angle}
-                  fill="#E6F0E6"
-                  stroke="#8FBB8F"
-                  strokeWidth={2}
-                />
-                <Text dx={40} dy={-20}>
-                  {state.angleText}
-                </Text>
-              </Group>
-              <Group transform={`translate(0, ${state.unitCircle.cy})`}>
-                <AxisBottom scale={xScale} tickValues={[-1, -0.5, 0, 0.5, 1]} stroke="#ffffff" tickStroke="#ffffff" />
-              </Group>
-              <Group transform={`translate(${yScale(-1)}, 0)`}>
-                <AxisLeft scale={yScale} stroke="#ffffff" />
-              </Group>
-              <Group transform={`translate(${state.unitCircle.cx}, ${state.unitCircle.cy})`}>
-                <Line className={cs(styles.line, styles.hypotenuse)} {...state.hypotenuse} />
-                <Line className={cs(styles.line, styles.opposite)} {...state.opposite} />
-                <Line className={cs(styles.line, styles.tan2)} {...state.tan2} />
-                <circle className={styles.dot} {...state.circleDot} fill="#000000" />
-                <circle className={styles.dot} {...state.tanDot} fill="#000000" />
-                <Group transform={`translate(${state.hypotenuse.to.x}, ${state.hypotenuse.to.y - 10})`}>
-                  <Text>P</Text>
+              <Group transform={`translate(${width - unitCircleWidth}, 0)`}>
+                <circle className={styles.unitCircle} {...state.unitCircle} />
+                <Group transform={`translate(${state.unitCircle.cx}, ${state.unitCircle.cy})`}>
+                  <Arc
+                    innerRadius={0}
+                    outerRadius={30}
+                    startAngle={Math.PI / 2}
+                    endAngle={state.angle}
+                    fill="#E6F0E6"
+                    stroke="#8FBB8F"
+                    strokeWidth={2}
+                  />
+                  <Text dx={40} dy={-20}>
+                    {state.angleText}
+                  </Text>
+                </Group>
+                <Group transform={`translate(0, ${yScale(0)})`}>
+                  <AxisBottom scale={xScale} tickValues={[]} stroke="#ffffff" tickStroke="#ffffff" />
+                </Group>
+                <Group transform={`translate(${xScale(-1)}, 0)`}>
+                  <AxisLeft scale={yScale} stroke="#ffffff" tickValues={[]} />
+                </Group>
+                <Group transform={`translate(${state.unitCircle.cx}, ${state.unitCircle.cy})`}>
+                  <Line className={cs(styles.line, styles.hypotenuse)} {...state.hypotenuse} />
+                  <Line className={cs(styles.line, styles.opposite)} {...state.opposite} />
+                  <Line className={cs(styles.line, styles.tan2)} {...state.tan2} />
+                  <circle className={styles.dot} {...state.circleDot} fill="#000000" />
+                  <circle className={styles.dot} {...state.tanDot} fill="#000000" />
+                  <Group transform={`translate(${state.hypotenuse.to.x}, ${state.hypotenuse.to.y - 10})`}>
+                    <Text>P</Text>
+                  </Group>
                 </Group>
               </Group>
-              <Group transform={`translate(${unitCircleWidth}, 0)`}>
+              <Group>
                 <LinePath<number>
                   defined={(d) => Math.tan(d) < maxTan && Math.tan(d) > -maxTan}
                   className={styles.tanCurve}
-                  x={(d) => tanXScale(d)}
+                  x={(d) => tanXScale(state.time - d)}
                   y={(d) => tanYScale(Math.tan(d))}
                   curve={curveMonotoneX}
                   data={state.tanData}
                 />
               </Group>
-              <Group transform={`translate(${xScale(1)}, ${state.unitCircle.cy})`}>
+              <Group transform={`translate(${0}, ${yScale(0)})`}>
                 <AxisBottom
                   scale={mainXscale}
                   stroke="#ffffff"

@@ -1,7 +1,18 @@
-import { palette, responsiveStyle } from '@cutting/component-library';
+import { palette, responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const container = style({});
+
+globalStyle(`${container} section`, {
+  ...responsiveStyle({
+    mobile: {
+      marginTop: vars.space['4x'],
+    },
+    tablet: {
+      marginTop: vars.space['8x'],
+    },
+  }),
+});
 
 globalStyle(`${container} tspan`, {
   ...responsiveStyle({
@@ -93,8 +104,8 @@ export const tan = style({
 });
 
 export const tan2 = style({
-  strokeDasharray: 16,
-  stroke: palette.white,
+  strokeDasharray: 2,
+  stroke: 'red',
 });
 
 export const tan3 = style({

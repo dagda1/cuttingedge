@@ -2,16 +2,12 @@ import type { Reducer } from 'react';
 import { match } from 'ts-pattern';
 import produce from 'immer';
 import type { ScaleLinear, ScalePoint } from 'd3-scale';
-import { line } from 'd3-shape';
-import { curveMonotoneX } from '@visx/curve';
 import { assert } from 'assert-ts';
 
 export const maxTan = 3;
 
 export const initialState = {
   time: 0,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  tanCurve: (_: number[] | Iterable<number>): string | null => '',
   unitCircle: { cx: 2, cy: 5, r: 2 },
   circleDot: { cx: 0, cy: 0, r: 5 },
   tanDot: { cx: 0, cy: 0, r: 0 },
@@ -58,15 +54,15 @@ export const reducer: Reducer<State, Actions> = produce((state: State, action: A
       const maximum = tanXScale.domain()[1];
 
       if (state.tanData.length === 0) {
-        state.tanData.push(minimum);
+        state.tanData.push(maximum);
       }
 
       const top = state.tanData.slice(-1)[0];
 
-      const newTime = top + increase;
+      const newTime = top - increase;
 
-      if (newTime > maximum) {
-        state.tanData = [minimum];
+      if (newTime < minimum) {
+        state.tanData = [maximum];
       } else {
         state.tanData.push(newTime);
       }
@@ -74,24 +70,15 @@ export const reducer: Reducer<State, Actions> = produce((state: State, action: A
       state.unitCircle = {
         cx: xScale(0) as number,
         cy: yScale(0) as number,
-        r: xScale(0) as number,
+        r: (xScale(0) as number) / 2,
       };
 
       const startOfTan = xScale(1);
 
       assert(typeof startOfTan === 'number', `non mumeric startOfTan ${startOfTan}`);
 
-      state.tanCurve = line<number>()
-        .curve(curveMonotoneX)
-        .defined((d) => Math.tan(d) < maxTan && Math.tan(d) > -maxTan)
-        .x((d) => startOfTan + tanXScale(newTime + d))
-        .y((d) => {
-          console.log({ d, t: tanYScale(Math.tan(d)), x: tanXScale.domain(), y: tanYScale.domain() });
-          return tanYScale(Math.tan(d));
-        });
-
       const dx = state.unitCircle.r * Math.cos(newTime);
-      const dy = state.unitCircle.r * -Math.sin(newTime);
+      const dy = state.unitCircle.r * +Math.sin(newTime);
 
       state.circleDot = {
         cx: dx,
@@ -147,8 +134,8 @@ export const reducer: Reducer<State, Actions> = produce((state: State, action: A
       state.angle = angle + Math.PI / 2;
 
       state.opposite = {
-        from: { x: dx, y: 0 },
-        to: { x: dx, y: dy },
+        from: { x: -dx, y: 0 },
+        to: { x: -dx, y: -dy },
       };
 
       state.time = newTime;
