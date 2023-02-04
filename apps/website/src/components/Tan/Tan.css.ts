@@ -49,7 +49,7 @@ export const unitCircle = style({
       strokeWidth: 2,
     },
     tablet: {
-      strokeWidth: 10,
+      strokeWidth: 5,
     },
   }),
 });
@@ -95,4 +95,20 @@ export const tan = style({
 export const tan2 = style({
   strokeDasharray: 16,
   stroke: palette.white,
+});
+
+export const tan3 = style({
+  strokeDasharray: 32,
+  stroke: 'red',
+});
+
+export const hideTicks = style({
+  ...responsiveStyle({
+    mobile: {
+      display: 'none',
+    },
+    tablet: {
+      display: 'block',
+    },
+  }),
 });

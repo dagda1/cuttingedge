@@ -45,6 +45,6 @@ export { defaultTheme } from './style/themes/default/default.css';
 export { cuttingTheme } from './style/themes/cutting/cutting.css';
 export { salesTheme } from './style/themes/sales/salesTheme.css';
 export { palette } from './style/palette.css';
-export { breakpoints, breakpointNames } from './style/breakpoints';
+export { breakpoints, breakpointNames, getCurrentBreakpoint } from './style/breakpoints';
 export { markResetImported } from './style/reset/reset-tracker';
 export { visuallyHidden, screenReaderOnly } from './style/accessibility.css';
