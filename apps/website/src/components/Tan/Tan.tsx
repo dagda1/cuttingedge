@@ -18,23 +18,23 @@ import assert from 'assert-ts';
 const Ticks = [...range(-1, 1)];
 
 const MainTicks = [
-  '$-4\\pi$',
-  '$-3\\pi\\over 2$',
-  '$-3\\pi$',
-  '$-2\\pi\\over 2$',
-  '$-2\\pi$',
-  '$-1\\pi\\over 2$',
-  '$-\\pi$',
-  '$-\\pi\\over 2$',
-  '$0$',
-  '$\\pi\\over 2$',
-  '$\\pi$',
-  '$1\\pi\\over 2$',
-  '$2\\pi$',
-  '$2\\pi\\over 2$',
-  '$3\\pi$',
-  '$3\\pi\\over 2$',
   '$4\\pi$',
+  '$3\\pi\\over 2$',
+  '$3\\pi$',
+  '$2\\pi\\over 2$',
+  '$2\\pi$',
+  '$1\\pi\\over 2$',
+  '$-\\pi$',
+  '$\\pi\\over 2$',
+  '$0$',
+  '$-\\pi\\over 2$',
+  '$-\\pi$',
+  '$-1\\pi\\over 2$',
+  '$-2\\pi$',
+  '$-2\\pi\\over 2$',
+  '$-3\\pi$',
+  '$-3\\pi\\over 2$',
+  '$-4\\pi$',
 ];
 
 const circles = 1;
@@ -45,11 +45,10 @@ function getUnitCircleWidth(width: number, height: number): number {
   }
 
   if (width >= breakpoints.tablet) {
-    console.log('tablet');
     return height / 2;
   }
 
-  return height / 3;
+  return height / 2.5;
 }
 
 export function Tan(): JSX.Element {
@@ -122,7 +121,8 @@ export function Tan(): JSX.Element {
 
   return (
     <>
-      <ApplicationLayout layout="FULL" center heading="FAKE TAN" className={styles.container}>
+      <ApplicationLayout layout="FULL" center className={styles.container}>
+        <h1>TAN ASYMPTOTES</h1>
         <section className={styles.container} ref={containerRef}>
           <ResponsiveSVG width={width} height={height}>
             <Group>
@@ -182,6 +182,7 @@ export function Tan(): JSX.Element {
               </Group>
             </Group>
           </ResponsiveSVG>
+          <SVGMathJax>{`$f(x) = tan(x) $`}</SVGMathJax>
         </section>
       </ApplicationLayout>
     </>

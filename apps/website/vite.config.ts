@@ -37,6 +37,10 @@ export default defineConfig({
         find: '@visx/shape',
         replacement: require.resolve('@visx/shape/esm/index.js'),
       },
+      {
+        find: '@visx/scale',
+        replacement: require.resolve('@visx/scale/esm/index.js'),
+      },
     ],
   },
 });

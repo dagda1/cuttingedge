@@ -33,7 +33,6 @@ type Actions = {
     height: number;
     width: number;
     unitCircleWidth: number;
-    yAxisX: number;
   };
 };
 
@@ -64,7 +63,7 @@ export const reducer: Reducer<State, Actions> = produce((state: State, action: A
       state.unitCircle = {
         cx: xScale(0) as number,
         cy: yScale(0) as number,
-        r: (xScale(0) as number) / 2,
+        r: xScale(0) as number,
       };
 
       const head = state.tanData.slice(-1)[0];

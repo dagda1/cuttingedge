@@ -3,13 +3,17 @@ import { globalStyle, style } from '@vanilla-extract/css';
 
 export const container = style({});
 
+globalStyle(`${container} h1`, {
+  textAlign: 'center',
+});
+
 globalStyle(`${container} section`, {
   ...responsiveStyle({
     mobile: {
-      marginTop: vars.space['4x'],
+      marginTop: vars.space['8x'],
     },
     tablet: {
-      marginTop: vars.space['8x'],
+      marginTop: 0,
     },
   }),
 });
