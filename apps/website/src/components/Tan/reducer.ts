@@ -2,7 +2,6 @@ import type { Reducer } from 'react';
 import { match } from 'ts-pattern';
 import produce from 'immer';
 import type { ScaleLinear, ScalePoint } from 'd3-scale';
-import { assert } from 'assert-ts';
 
 export const maxTan = 3;
 
@@ -16,7 +15,7 @@ export const initialState = {
   angle: 0,
   angleText: '',
   tan: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
-  tan2: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
+  rearHypotenuse: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
   tan3: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
   tanX: 0,
   tanData: [] as number[],
@@ -24,24 +23,19 @@ export const initialState = {
 
 type State = typeof initialState;
 
-type Actions =
-  | {
-      type: 'TICK';
-      payload: {
-        xScale: ScalePoint<number>;
-        yScale: ScalePoint<number>;
-        tanXScale: ScaleLinear<number, number, never>;
-        tanYScale: ScaleLinear<number, number, never>;
-        height: number;
-        width: number;
-      };
-    }
-  | {
-      type: 'PLAY';
-    }
-  | {
-      type: 'PAUSE';
-    };
+type Actions = {
+  type: 'TICK';
+  payload: {
+    xScale: ScalePoint<number>;
+    yScale: ScalePoint<number>;
+    tanXScale: ScaleLinear<number, number, never>;
+    tanYScale: ScaleLinear<number, number, never>;
+    height: number;
+    width: number;
+    unitCircleWidth: number;
+    yAxisX: number;
+  };
+};
 
 export const TWO_PI = Math.PI * 2;
 
@@ -49,7 +43,7 @@ const increase = TWO_PI / 360;
 
 export const reducer: Reducer<State, Actions> = produce((state: State, action: Actions) => {
   return match(action)
-    .with({ type: 'TICK' }, ({ payload: { xScale, yScale, tanXScale, tanYScale } }) => {
+    .with({ type: 'TICK' }, ({ payload: { xScale, yScale, tanXScale } }) => {
       const minimum = tanXScale.domain()[0];
       const maximum = tanXScale.domain()[1];
 
@@ -73,12 +67,10 @@ export const reducer: Reducer<State, Actions> = produce((state: State, action: A
         r: (xScale(0) as number) / 2,
       };
 
-      const startOfTan = xScale(1);
+      const head = state.tanData.slice(-1)[0];
 
-      assert(typeof startOfTan === 'number', `non mumeric startOfTan ${startOfTan}`);
-
-      const dx = state.unitCircle.r * Math.cos(newTime);
-      const dy = state.unitCircle.r * +Math.sin(newTime);
+      const dx = state.unitCircle.r * Math.cos(head);
+      const dy = state.unitCircle.r * +Math.sin(head);
 
       state.circleDot = {
         cx: dx,
@@ -97,7 +89,7 @@ export const reducer: Reducer<State, Actions> = produce((state: State, action: A
         },
       };
 
-      state.tan2 = {
+      state.rearHypotenuse = {
         from: {
           x: 0,
           y: 0,

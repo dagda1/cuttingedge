@@ -103,14 +103,13 @@ export const tan = style({
   stroke: '#7F00FF',
 });
 
-export const tan2 = style({
+export const rearHypotenuse = style({
   strokeDasharray: 2,
   stroke: 'red',
 });
 
 export const tan3 = style({
-  strokeDasharray: 32,
-  stroke: 'red',
+  stroke: 'pink',
 });
 
 export const hideTicks = style({
