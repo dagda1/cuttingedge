@@ -1,5 +1,19 @@
 # @cutting/website
 
+## 4.29.15
+
+### Patch Changes
+
+- 7405910f: fix use-get-parentsize constant resizing problem
+- Updated dependencies [7405910f]
+  - @cutting/react-hook-form-components@0.3.5
+  - @cutting/use-get-parent-size@1.26.1
+  - @cutting/component-library@5.36.2
+  - @cutting/use-mathjax@4.49.1
+  - @cutting/hooks@4.55.1
+  - @cutting/util@4.57.1
+  - @cutting/svg@4.52.1
+
 ## 4.29.14
 
 ### Patch Changes

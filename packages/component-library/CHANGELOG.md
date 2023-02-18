@@ -1,5 +1,14 @@
 # @cutting/component-library
 
+## 5.36.2
+
+### Patch Changes
+
+- 7405910f: fix use-get-parentsize constant resizing problem
+- Updated dependencies [7405910f]
+  - @cutting/hooks@4.55.1
+  - @cutting/util@4.57.1
+
 ## 5.36.1
 
 ### Patch Changes

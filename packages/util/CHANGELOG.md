@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.57.1
+
+### Patch Changes
+
+- 7405910f: fix use-get-parentsize constant resizing problem
+
 ## 4.57.0
 
 ### Minor Changes

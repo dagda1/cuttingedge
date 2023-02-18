@@ -1,5 +1,13 @@
 # @cutting/use-get-parent-size
 
+## 1.26.1
+
+### Patch Changes
+
+- 7405910f: fix use-get-parentsize constant resizing problem
+- Updated dependencies [7405910f]
+  - @cutting/util@4.57.1
+
 ## 1.26.0
 
 ### Minor Changes

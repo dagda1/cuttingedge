@@ -1,5 +1,13 @@
 # @cutting/react-abortable-fetch
 
+## 0.35.1
+
+### Patch Changes
+
+- 7405910f: fix use-get-parentsize constant resizing problem
+- Updated dependencies [7405910f]
+  - @cutting/util@4.57.1
+
 ## 0.35.0
 
 ### Minor Changes
