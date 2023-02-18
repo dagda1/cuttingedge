@@ -3,24 +3,27 @@ import type { RefObject } from 'react';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useDebouncedCallback } from 'use-debounce';
-import { useIsMounted, useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { identity, isNil } from '@cutting/util';
 import { assert } from 'assert-ts';
+import { useLayoutEffect } from 'react';
 
 export const useParentSize = <E extends Element>(
   ref: RefObject<E>,
   {
     debounceDelay = 0,
-    initialValues = { width: 1, height: 1 },
+    initialValues = { width: 0, height: 0 },
     transformFunc = identity,
+    cuttoff = 10,
   }: Partial<UseParentSizeOptions> = {},
 ): UseParentSizeResult => {
-  const isMounted = useIsMounted();
   const [{ width, height }, setDimensions] = useState<Dimensions>({
     width: initialValues.width,
     height: initialValues.height,
   });
-  const previousDimensions = useRef<Dimensions>({ width: initialValues.width, height: initialValues.height });
+  const previousDimensions = useRef<Required<Dimensions>>({
+    width: initialValues.width,
+    height: initialValues.height,
+  });
 
   const transformer = useCallback(transformFunc, [transformFunc]);
 
@@ -38,7 +41,7 @@ export const useParentSize = <E extends Element>(
 
   const refElement = ref.current;
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (isNil(refElement)) {
       setDimensions({ width, height });
       return;
@@ -55,23 +58,24 @@ export const useParentSize = <E extends Element>(
 
       const newSize = { width: newWidth, height: newHeight };
 
-      if (previousDimensions.current?.width !== newWidth || previousDimensions.current?.height !== newHeight) {
+      const widthDiff = Math.abs(newWidth - previousDimensions.current.width);
+      const heightDiff = Math.abs(newHeight - previousDimensions.current.height);
+
+      if (widthDiff > cuttoff || heightDiff > cuttoff) {
         previousDimensions.current.height = newHeight;
         previousDimensions.current.width = newWidth;
-        if (isMounted) {
-          debouncedCallback(newSize);
-        }
+        debouncedCallback(newSize);
       }
     });
 
-    resizeObserver.observe(refElement);
+    requestAnimationFrame(() => resizeObserver.observe(refElement));
 
     return () => {
       if (!!refElement) {
         resizeObserver?.unobserve(refElement);
       }
     };
-  }, [debouncedCallback, height, isMounted, refElement, width]);
+  }, [cuttoff, debouncedCallback, height, refElement, width]);
 
   return useMemo(
     () =>

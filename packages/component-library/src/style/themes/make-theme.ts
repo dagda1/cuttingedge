@@ -13,7 +13,11 @@ const scaleCreator = (scale: 'px' | 'rem') => (v: string | number) => `${v}${sca
 const px = scaleCreator('px');
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const fontSizeToCapHeight = (grid: number, definition: any, fontMetrics: FontMetrics) => {
+const fontSizeToCapHeight = (
+  grid: number,
+  definition: any,
+  fontMetrics: Omit<FontMetrics, 'familyName' | 'xHeight' | 'xWidthAvg'>,
+) => {
   const { mobile, tablet, desktop, wide } = definition;
 
   const mobileCapHeight = getCapHeight({

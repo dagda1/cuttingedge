@@ -48,6 +48,7 @@ export const body = style({
   background: vars.backgroundColor.body,
   gridRow: 'body',
   padding: '1rem',
+  width: '100%',
 });
 
 export const container = style({
