@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.43.1
+
+### Patch Changes
+
+- 7405910f: fix use-get-parentsize constant resizing problem
+
 ## 4.43.0
 
 ### Minor Changes

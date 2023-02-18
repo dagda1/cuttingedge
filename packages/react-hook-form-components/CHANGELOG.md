@@ -1,5 +1,14 @@
 # @cutting/react-hook-form-components
 
+## 0.3.5
+
+### Patch Changes
+
+- 7405910f: fix use-get-parentsize constant resizing problem
+- Updated dependencies [7405910f]
+  - @cutting/component-library@5.36.2
+  - @cutting/util@4.57.1
+
 ## 0.3.4
 
 ### Patch Changes

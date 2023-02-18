@@ -1,5 +1,15 @@
 # @cutting/svg
 
+## 4.52.1
+
+### Patch Changes
+
+- 7405910f: fix use-get-parentsize constant resizing problem
+- Updated dependencies [7405910f]
+  - @cutting/react-abortable-fetch@0.35.1
+  - @cutting/use-get-parent-size@1.26.1
+  - @cutting/util@4.57.1
+
 ## 4.52.0
 
 ### Minor Changes
