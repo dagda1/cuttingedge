@@ -27,7 +27,7 @@ export function ResponsiveSVG({
   className,
   ...props
 }: ResponsiveSVGProps): JSX.Element {
-  const aspect = width / height;
+  const aspect = height === 0 ? 1 : width / height;
 
   const adjustedHeight = Math.ceil(width / aspect);
 

@@ -24,7 +24,7 @@ describe('useParentSize', () => {
 
     const svg = document.querySelector('svg') as SVGElement;
 
-    expect(svg.getAttribute('viewBox')).toBe('0 0 1 1');
+    expect(svg.getAttribute('viewBox')).toBe('0 0 0 0');
 
     screen.getByTestId('cutting-svg-container');
   });
@@ -42,6 +42,6 @@ describe('useParentSize', () => {
 
     const svg = document.querySelector('svg') as SVGElement;
 
-    expect(svg.querySelector('g') as SVGGElement).toHaveAttribute('transform', 'translate(0.5,-19.5) scale(1)');
+    expect(svg.querySelector('g') as SVGGElement).toHaveAttribute('transform', 'translate(0,-20) scale(1)');
   });
 });
