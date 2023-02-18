@@ -115,7 +115,7 @@ export function Tan(): JSX.Element {
 
   const yAxisPosition = mainXscale(MainTicks.slice(-1)[0]);
 
-  assert(!!yAxisPosition, 'no yAxisPositionX');
+  assert(typeof yAxisPosition !== 'undefined', 'no yAxisPositionX');
 
   const yAxisX = yAxisPosition / 2;
 

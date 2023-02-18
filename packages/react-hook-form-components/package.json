@@ -25,20 +25,20 @@
     "@cutting/component-library": "workspace:*",
     "@cutting/util": "workspace:*",
     "assert-ts": "^0.3.4",
-    "react-hook-form": "7.41.1"
+    "react-hook-form": "7.43.1"
   },
   "devDependencies": {
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@types/react": "18.0.26",
-    "@vanilla-extract/css": "^1.9.2",
-    "eslint": "8.30.0",
+    "@types/react": "18.0.28",
+    "@vanilla-extract/css": "^1.9.5",
+    "eslint": "8.34.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-syntax-highlighter": "15.5.0",
-    "typescript": "4.9.4"
+    "typescript": "4.9.5"
   },
   "peerDependencies": {
     "react": ">= 18.x.x",

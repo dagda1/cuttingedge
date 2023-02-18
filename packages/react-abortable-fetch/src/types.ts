@@ -9,7 +9,7 @@ export interface Runnable<T> {
 
 export const fetchStates = ['ready', 'loading', 'succeeded', 'error', 'aborted'] as const;
 
-export type FetchStates = typeof fetchStates[number];
+export type FetchStates = (typeof fetchStates)[number];
 
 export type ContentType = 'json' | 'text';
 export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD';
