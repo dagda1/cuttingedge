@@ -7,15 +7,22 @@ import type { FontMetrics } from '@capsizecss/core';
 import { getCapHeight } from '@capsizecss/core';
 import { precomputeValues } from '@capsizecss/vanilla-extract';
 import colors from 'tailwindcss/colors';
+import type { Breakpoint } from '../breakpoints';
 
 const scaleCreator = (scale: 'px' | 'rem') => (v: string | number) => `${v}${scale}`;
 
 const px = scaleCreator('px');
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type FontSizeText = {
+  fontSize: number;
+  rows: number;
+};
+
+export type TextDefinition = Record<Breakpoint, FontSizeText>;
+
 const fontSizeToCapHeight = (
   grid: number,
-  definition: any,
+  definition: TextDefinition,
   fontMetrics: Omit<FontMetrics, 'familyName' | 'xHeight' | 'xWidthAvg'>,
 ) => {
   const { mobile, tablet, desktop, wide } = definition;
