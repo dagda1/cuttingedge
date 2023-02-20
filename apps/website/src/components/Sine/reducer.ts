@@ -60,7 +60,7 @@ export const getScales = ({
   const xScale = scaleLinear().domain([0, 20]).range([0, width]);
   const yScale = scaleLinear().domain([0, 20]).range([height, 0]);
 
-  const radius = yScale(10);
+  const radius = yScale(12);
 
   const firstX = -(radius * 1.25);
 

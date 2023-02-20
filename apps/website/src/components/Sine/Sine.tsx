@@ -8,8 +8,8 @@ import { LinePath } from '@visx/shape';
 import { curveMonotoneX } from '@visx/curve';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import * as styles from './Sine.css';
-import type { PiMapKeys } from './utils';
-import { getScales, reducer, initialState, xTickValues, PiMap } from './utils';
+import type { PiMapKeys } from './reducer';
+import { getScales, reducer, initialState, xTickValues, PiMap } from './reducer';
 import { BottomAxis } from './BottomAxis';
 
 function Sine(): JSX.Element {
@@ -38,8 +38,6 @@ function Sine(): JSX.Element {
     };
   }, [animate, firstX, radius, state.time]);
 
-  const expanded = width > 1 && height > 1;
-
   return (
     <ApplicationLayout layout="FULL" heading="SINE OF THE TIMES">
       <section className={styles.main} ref={containerRef}>
@@ -62,38 +60,36 @@ function Sine(): JSX.Element {
             <circle className={styles.verticalGuide} {...state.verticalDot} />
             <Line className={styles.joiningLine} {...state.joiningLine} />
             <circle className={styles.axisDot} {...state.axisDot} />
-            {expanded && (
-              <>
-                <Group transform={`translate(${firstX}, 0)`}>
-                  <AxisLeft
-                    scale={yAxisScale}
-                    tickValues={[-1, 0, 1]}
-                    axisClassName={styles.axis}
-                    axisLineClassName={styles.axisLine}
-                    tickStroke="#fff"
-                  />
-                </Group>
-                <Group>
-                  <AxisBottom
-                    scale={xAxisScale}
-                    tickValues={xTickValues}
-                    tickFormat={(x) => `$${PiMap[x as unknown as PiMapKeys]}$`}
-                    axisClassName={styles.axis}
-                    axisLineClassName={styles.axisLine}
-                    tickStroke="#fff"
-                    tickComponent={BottomAxis}
-                  />
-                </Group>
-                <LinePath<{ x: number; y: number }>
-                  className={styles.sine}
-                  x={(d) => xAxisScale(d.x) ?? 0}
-                  y={(d) => yAxisScale(d.y) ?? 0}
-                  strokeWidth={1}
-                  curve={curveMonotoneX}
-                  data={state.sine}
+            <>
+              <Group transform={`translate(${firstX}, 0)`}>
+                <AxisLeft
+                  scale={yAxisScale}
+                  tickValues={[-1, 0, 1]}
+                  axisClassName={styles.axis}
+                  axisLineClassName={styles.axisLine}
+                  tickStroke="#fff"
                 />
-              </>
-            )}
+              </Group>
+              <Group>
+                <AxisBottom
+                  scale={xAxisScale}
+                  tickValues={xTickValues}
+                  tickFormat={(x) => `$${PiMap[x as unknown as PiMapKeys]}$`}
+                  axisClassName={styles.axis}
+                  axisLineClassName={styles.axisLine}
+                  tickStroke="#fff"
+                  tickComponent={BottomAxis}
+                />
+              </Group>
+              <LinePath<{ x: number; y: number }>
+                className={styles.sine}
+                x={(d) => xAxisScale(d.x) ?? 0}
+                y={(d) => yAxisScale(d.y) ?? 0}
+                strokeWidth={1}
+                curve={curveMonotoneX}
+                data={state.sine}
+              />
+            </>
           </Group>
         </ResponsiveSVG>
       </section>
