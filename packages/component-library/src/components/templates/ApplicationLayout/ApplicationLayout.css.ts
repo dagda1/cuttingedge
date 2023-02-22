@@ -84,9 +84,10 @@ export const full = style({
   marginRight: vars.space['2x'],
 });
 
+export const centerHeading = style({ textAlign: 'center' });
+
 globalStyle('main', {
   display: 'grid',
-  gridTemplateRows: 'auto 1fr',
   gridTemplateColumns: '1fr',
   ...responsiveStyle({
     mobile: {
@@ -99,6 +100,18 @@ globalStyle('main', {
       padding: 0,
     },
   }),
+});
+
+export const headingAndBodyLayout = style({
+  gridTemplateRows: 'auto 1fr',
+});
+
+export const bodyOnlyLayout = style({
+  gridTemplateRows: '1fr',
+});
+
+export const center = style({
+  placeItems: 'center',
 });
 
 globalStyle('header,footer', {

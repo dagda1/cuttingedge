@@ -1,34 +1,30 @@
-
 import * as styles from './global.css';
 import '@cutting/component-library/styles.css';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { ApplicationLayout } from '@cutting/component-library';
-import { ParentsizeSVG } from '../../src/components/ParentsizeSVG/ParentsizeSVG';
+import { ResponsiveSVG } from '../../src/components/ResponsiveSVG/ResponsiveSVG';
+import { useParentSize } from '@cutting/use-get-parent-size';
+import { scaleLinear } from 'd3-scale';
 
 export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
+  const { width, height } = useParentSize(ref);
+
+  const { radius } = useMemo(() => {
+    const xScale = scaleLinear().domain([0, 20]).range([0, width]);
+    const yScale = scaleLinear().domain([0, 20]).range([height, 0]);
+
+    const radius = yScale(12);
+
+    return { radius, xScale, yScale };
+  }, [width, height]);
+
   return (
     <ApplicationLayout heading="@cutting/svg" theme="salesTheme">
       <div className={styles.container} ref={ref}>
-        <ParentsizeSVG parentRef={ref} options={{ debounceDelay: 10 }}>
-          <rect
-            x="0"
-            y="0"
-            width={'50%'}
-            height={'50%'}
-            rx="0"
-            style={{ fill: '#ff0000', stroke: '#000000', strokeWidth: '2px' }}
-          />
-
-          <rect
-            x="0"
-            y="0"
-            width={'50%'}
-            height={'50%'}
-            rx="40"
-            style={{ fill: '#0000ff', stroke: '#000000', strokeWidth: '2px', fillOpacity: 0.7 }}
-          />
-        </ParentsizeSVG>
+        <ResponsiveSVG width={width} height={height}>
+          <circle cx={width / 2} cy={height / 2} r={radius} />
+        </ResponsiveSVG>
       </div>
     </ApplicationLayout>
   );

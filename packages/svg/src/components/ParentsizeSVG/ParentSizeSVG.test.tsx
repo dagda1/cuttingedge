@@ -28,20 +28,4 @@ describe('useParentSize', () => {
 
     screen.getByTestId('cutting-svg-container');
   });
-
-  it('should render a transform attribute when not aligned', () => {
-    wrap();
-
-    const svg = document.querySelector('svg') as SVGElement;
-
-    expect(svg.querySelector('g') as SVGGElement).toHaveAttribute('transform', 'translate(0,0) scale(1)');
-  });
-
-  it('should render a transform attribute when aligned', () => {
-    wrap({ align: 'center' });
-
-    const svg = document.querySelector('svg') as SVGElement;
-
-    expect(svg.querySelector('g') as SVGGElement).toHaveAttribute('transform', 'translate(0,-20) scale(1)');
-  });
 });

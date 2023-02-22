@@ -13,7 +13,7 @@ export type PreserveAspectRatioAlignment =
 
 export type MeetOrSlice = 'meet' | 'slice';
 
-export type PreserveAspectRatio = `${PreserveAspectRatioAlignment} ${MeetOrSlice}`;
+export type PreserveAspectRatio = `${PreserveAspectRatioAlignment} ${MeetOrSlice}` | 'none';
 
 export type AddSVGProps<Props, Element extends SVGElement> = Props & Omit<React.SVGProps<Element>, keyof Props>;
 

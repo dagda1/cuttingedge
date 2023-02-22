@@ -36,7 +36,7 @@ export function themedTemplateMaker<T>(C: ComponentType<T>): ComponentStory<type
     const chosenTheme = typeof theme === 'undefined' ? defaultTheme : theme;
 
     return (
-      <ApplicationLayout theme={chosenTheme} center>
+      <ApplicationLayout theme={chosenTheme}>
         <div className={styles.root}>
           <C {...args} />
         </div>
