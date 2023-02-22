@@ -19,13 +19,8 @@ export function App(): JSX.Element {
   const [theme, setTheme] = useState<ThemeKeys>('cuttingTheme');
 
   return (
-    <ApplicationLayout theme={theme} className={styles.background}>
+    <ApplicationLayout theme={theme} className={styles.background} heading="@cutting/component-library" centerHeading>
       <div className={styles.wrap}>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <h1>@cutting/component-library</h1>
-          </div>
-        </div>
         <div className={styles.layout}>
           <div className={styles.item}>
             <RadioGroup<ThemeKeys>

@@ -1,4 +1,4 @@
-import type { ComponentType, PropsWithChildren, ReactElement, ReactNode, RefObject } from 'react';
+import type { PropsWithChildren, ReactElement, ReactNode, RefObject } from 'react';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
@@ -24,7 +24,6 @@ type Layout = 'RESPONSIVE' | 'FULL';
 
 export interface ApplicationLayoutProps {
   heading?: string | JSX.Element;
-  center?: boolean;
   className?: string;
   footer?: ReactElement;
   header?: ReactElement;
@@ -33,15 +32,19 @@ export interface ApplicationLayoutProps {
   headerAriaLabel?: string;
   theme: keyof typeof themes;
   layout?: Layout;
+  centerHeading?: boolean;
 }
 
-const ApplicationLayoutHeading: ComponentType<Pick<ApplicationLayoutProps, 'heading'>> = ({ heading }) => {
+function ApplicationLayoutHeading({
+  heading,
+  center,
+}: Pick<ApplicationLayoutProps, 'heading'> & { center?: boolean }): JSX.Element | null {
   if (isNil(heading)) {
     return null;
   }
 
-  return typeof heading === 'string' ? <h1>{heading}</h1> : heading;
-};
+  return typeof heading === 'string' ? <h1 className={cs({ [styles.centerHeading]: center })}>{heading}</h1> : heading;
+}
 
 export function ApplicationLayout({
   heading,
@@ -52,6 +55,7 @@ export function ApplicationLayout({
   children,
   headerAriaLabel,
   theme,
+  centerHeading,
   layout = 'RESPONSIVE',
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   const currentTheme = themes[theme];
@@ -65,10 +69,12 @@ export function ApplicationLayout({
         className={cs(styles.body, className, {
           [styles.size]: layout === 'RESPONSIVE',
           [styles.full]: layout === 'FULL',
+          [styles.headingAndBodyLayout]: isNil(heading) === false,
+          [styles.bodyOnlyLayout]: isNil(heading),
         })}
         ref={innerRef}
       >
-        <ApplicationLayoutHeading heading={heading} />
+        <ApplicationLayoutHeading heading={heading} center={centerHeading} />
         {children}
       </main>
       <footer role="contentinfo" className={cs(styles.footer, styles.size, { [styles.hidden]: !header }, styles.size)}>
