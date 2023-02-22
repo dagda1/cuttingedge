@@ -1,5 +1,12 @@
 # @cutting/svg
 
+## 4.52.2
+
+### Patch Changes
+
+- 90d6df6f: better layout for ApplicationLayout
+  - @cutting/use-get-parent-size@1.26.1
+
 ## 4.52.1
 
 ### Patch Changes
