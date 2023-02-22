@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.36.3
+
+### Patch Changes
+
+- 90d6df6f: better layout for ApplicationLayout
+
 ## 5.36.2
 
 ### Patch Changes
