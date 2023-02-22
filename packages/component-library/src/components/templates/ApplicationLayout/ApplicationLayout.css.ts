@@ -110,6 +110,10 @@ export const bodyOnlyLayout = style({
   gridTemplateRows: '1fr',
 });
 
+export const center = style({
+  placeItems: 'center',
+});
+
 globalStyle('header,footer', {
   ...bodyStyle,
 });

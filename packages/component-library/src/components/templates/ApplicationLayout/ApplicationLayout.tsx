@@ -33,6 +33,7 @@ export interface ApplicationLayoutProps {
   theme: keyof typeof themes;
   layout?: Layout;
   centerHeading?: boolean;
+  center?: boolean;
 }
 
 function ApplicationLayoutHeading({
@@ -55,7 +56,8 @@ export function ApplicationLayout({
   children,
   headerAriaLabel,
   theme,
-  centerHeading,
+  centerHeading = false,
+  center = false,
   layout = 'RESPONSIVE',
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   const currentTheme = themes[theme];
@@ -71,6 +73,7 @@ export function ApplicationLayout({
           [styles.full]: layout === 'FULL',
           [styles.headingAndBodyLayout]: isNil(heading) === false,
           [styles.bodyOnlyLayout]: isNil(heading),
+          [styles.center]: center,
         })}
         ref={innerRef}
       >

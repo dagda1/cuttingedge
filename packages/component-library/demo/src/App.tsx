@@ -19,7 +19,13 @@ export function App(): JSX.Element {
   const [theme, setTheme] = useState<ThemeKeys>('cuttingTheme');
 
   return (
-    <ApplicationLayout theme={theme} className={styles.background} heading="@cutting/component-library" centerHeading>
+    <ApplicationLayout
+      theme={theme}
+      className={styles.background}
+      heading="@cutting/component-library"
+      centerHeading
+      center
+    >
       <div className={styles.wrap}>
         <div className={styles.layout}>
           <div className={styles.item}>
