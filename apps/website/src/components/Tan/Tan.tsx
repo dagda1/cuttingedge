@@ -39,7 +39,7 @@ const MainTicks = [
 
 const circles = 1;
 
-function getUnitCircleWidth(width: number, height: number): number {
+function getUnitCircleRadius(width: number, height: number): number {
   if (width >= breakpoints.desktop) {
     return height / 1.25;
   }
@@ -58,7 +58,7 @@ export function Tan(): JSX.Element {
 
   const tickFrame = useRef<number>();
 
-  const unitCircleWidth = getUnitCircleWidth(width, height);
+  const unitCircleWidth = getUnitCircleRadius(width, height);
 
   const { xScale, yScale, mainXscale, tanXScale, tanYScale } = useMemo(() => {
     const xScale = scalePoint({

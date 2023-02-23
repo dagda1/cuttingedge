@@ -30,7 +30,7 @@ globalStyle(`${container} tspan`, {
   fill: palette.white,
 });
 
-globalStyle(`${container} foreignObject`, {
+globalStyle(`${container} foreignobject`, {
   width: '2.25rem',
 });
 

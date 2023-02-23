@@ -32,6 +32,8 @@ globalStyle('#root', {
   margin: '0 auto',
   paddingTop: vars.space['2x'],
   paddingBottom: vars.space['2x'],
+  minWidth: 0,
+  minHeight: 0,
 });
 
 export const header = style({
@@ -54,6 +56,8 @@ export const body = style({
 export const container = style({
   display: 'grid',
   gridTemplateRows: '[header] auto [body] 1fr [footer] auto',
+  minWidth: 0,
+  minHeight: 0,
 });
 
 export const size = style({
@@ -88,6 +92,8 @@ export const centerHeading = style({ textAlign: 'center' });
 
 globalStyle('main', {
   display: 'grid',
+  minWidth: 0,
+  minHeight: 0,
   gridTemplateColumns: '1fr',
   ...responsiveStyle({
     mobile: {
