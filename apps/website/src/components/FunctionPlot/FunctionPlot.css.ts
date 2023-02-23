@@ -56,6 +56,8 @@ export const algebra = style({
       display: 'grid',
       gridTemplateColumns: 'auto auto',
       justifyContent: 'center',
+      minWidth: 0,
+      minHeight: 0,
     },
   }),
 });

@@ -1,4 +1,4 @@
-import { palette, vars } from '@cutting/component-library';
+import { palette, responsiveStyle, vars } from '@cutting/component-library';
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { globalStyle, style } from '@vanilla-extract/css';
 
@@ -7,7 +7,14 @@ const strokeWidth = 2;
 
 export const main = style({
   flex: 1,
-  padding: vars.space['4x'],
+  ...responsiveStyle({
+    mobile: {
+      padding: 0,
+    },
+    desktop: {
+      padding: vars.space['4x'],
+    },
+  }),
 });
 
 const styles: ComplexStyleRule = {

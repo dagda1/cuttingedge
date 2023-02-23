@@ -1,6 +1,7 @@
 import type { Reducer } from 'react';
 import { scaleLinear, type ScaleLinear } from 'd3-scale';
 import { identity, range } from '@cutting/util';
+import { breakpoints } from '@cutting/component-library';
 
 export type Dimensions = { width: number; height: number };
 
@@ -31,6 +32,14 @@ const radians = [
   { value: 2 * Math.PI, label: '${2\\pi}$' },
 ];
 
+function getUnitCircleRadius(width: number): number {
+  if (width >= breakpoints.desktop) {
+    return 12;
+  }
+
+  return 16;
+}
+
 export const getScales = ({
   width,
   height,
@@ -60,7 +69,7 @@ export const getScales = ({
   const xScale = scaleLinear().domain([0, 20]).range([0, width]);
   const yScale = scaleLinear().domain([0, 20]).range([height, 0]);
 
-  const radius = yScale(12);
+  const radius = yScale(getUnitCircleRadius(width));
 
   const firstX = -(radius * 1.25);
 
