@@ -1,5 +1,16 @@
 # @cutting/website
 
+## 4.29.17
+
+### Patch Changes
+
+- 728f4b38: add min-width:0 fix for grid and flex
+- Updated dependencies [728f4b38]
+  - @cutting/component-library@5.36.4
+  - @cutting/react-hook-form-components@0.3.7
+  - @cutting/svg@4.52.2
+  - @cutting/use-get-parent-size@1.26.1
+
 ## 4.29.16
 
 ### Patch Changes
