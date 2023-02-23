@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.36.4
+
+### Patch Changes
+
+- 728f4b38: add min-width:0 fix for grid and flex
+
 ## 5.36.3
 
 ### Patch Changes
