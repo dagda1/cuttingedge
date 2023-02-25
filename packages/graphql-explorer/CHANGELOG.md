@@ -1,5 +1,13 @@
 # @cutting/graphql-explorer
 
+## 4.43.8
+
+### Patch Changes
+
+- Updated dependencies [ce19c98e]
+  - @cutting/component-library@5.37.0
+  - @cutting/svg@4.53.0
+
 ## 4.43.7
 
 ### Patch Changes

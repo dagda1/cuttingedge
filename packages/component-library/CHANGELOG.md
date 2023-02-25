@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.37.0
+
+### Minor Changes
+
+- ce19c98e: more responsive fixes
+
 ## 5.36.4
 
 ### Patch Changes
