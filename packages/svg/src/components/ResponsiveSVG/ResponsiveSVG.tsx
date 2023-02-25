@@ -41,7 +41,7 @@ export function ResponsiveSVG({
       }}
     >
       <svg
-        style={{ overflow: 'visible' }}
+        style={{ overflow: 'visible', width: '100%', height: 'auto' }}
         className={className}
         preserveAspectRatio={preserveAspectRatio}
         viewBox={`${origin.x} ${origin.y} ${width} ${adjustedHeight}`}

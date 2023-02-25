@@ -4,16 +4,18 @@ import { Header } from '../../components/Header';
 import { CuttingEdge } from '../../constants';
 import { Helmet } from 'react-helmet';
 import { ApplicationLayoutWithRouterScroll, type ApplicationLayoutProps as AppProps } from '@cutting/component-library';
-import * as styles from './ApplicationLayout.css';
+import './ApplicationLayout.css';
 
-export type ApplicationLayoutProps = Pick<AppProps, 'center' | 'layout' | 'className' | 'children'> & {
+export type ApplicationLayoutProps = Partial<
+  Pick<AppProps, 'layout' | 'className' | 'children' | 'centerHeading' | 'center' | 'heading'>
+> & {
   showFooter?: boolean;
-  heading?: string;
 };
 
 export function ApplicationLayout({
   heading,
-  center,
+  center = false,
+  centerHeading = false,
   className,
   showFooter = true,
   layout = 'RESPONSIVE',
@@ -25,17 +27,9 @@ export function ApplicationLayout({
       theme="cuttingTheme"
       className={cs(className)}
       headerAriaLabel="Cutting-Edge Solutions (Scotland)"
-      heading={
-        heading && (
-          <h1
-            className={cs({
-              [styles.center]: center,
-            })}
-          >
-            {heading}
-          </h1>
-        )
-      }
+      heading={heading}
+      center={center}
+      centerHeading={centerHeading}
       header={
         <>
           <Helmet title={heading || CuttingEdge}>

@@ -4,6 +4,8 @@ import { style, globalStyle } from '@vanilla-extract/css';
 
 export const container = style({
   paddingBottom: vars.space['2x'],
+  width: '100%',
+  height: '100%',
 });
 
 globalStyle(`${container} text`, {
@@ -56,8 +58,6 @@ export const algebra = style({
       display: 'grid',
       gridTemplateColumns: 'auto auto',
       justifyContent: 'center',
-      minWidth: 0,
-      minHeight: 0,
     },
   }),
 });

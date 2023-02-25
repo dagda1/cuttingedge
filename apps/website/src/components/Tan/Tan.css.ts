@@ -1,7 +1,18 @@
 import { palette, responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
-export const container = style({});
+export const container = style({
+  width: '100%',
+  height: '100%',
+  ...responsiveStyle({
+    mobile: {
+      paddingRight: 0,
+    },
+    tablet: {
+      paddingRight: vars.space['4x'],
+    },
+  }),
+});
 
 globalStyle(`${container} h1`, {
   textAlign: 'center',
