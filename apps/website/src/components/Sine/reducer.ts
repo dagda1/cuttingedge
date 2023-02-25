@@ -34,10 +34,14 @@ const radians = [
 
 function getUnitCircleRadius(width: number): number {
   if (width >= breakpoints.desktop) {
-    return 12;
+    return 14;
   }
 
-  return 16;
+  if (width >= breakpoints.tablet) {
+    return 15;
+  }
+
+  return 17;
 }
 
 export const getScales = ({

@@ -13,6 +13,8 @@ const styles: ComplexStyleRule = {
 
 export const container = style({
   padding: vars.space['4x'],
+  width: '100%',
+  height: '100%',
 });
 
 export const axis = style({

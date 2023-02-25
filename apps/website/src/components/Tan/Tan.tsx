@@ -12,8 +12,8 @@ import cs from 'classnames';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { curveMonotoneX } from 'd3-shape';
-import { breakpoints } from '@cutting/component-library';
 import assert from 'assert-ts';
+import { getHeightTranslation, getUnitCircleRadius } from './helpers';
 
 const Ticks = [...range(-1, 1)];
 
@@ -39,18 +39,6 @@ const MainTicks = [
 
 const circles = 1;
 
-function getUnitCircleRadius(width: number, height: number): number {
-  if (width >= breakpoints.desktop) {
-    return height / 1.25;
-  }
-
-  if (width >= breakpoints.tablet) {
-    return height / 2;
-  }
-
-  return height / 2.5;
-}
-
 export function Tan(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef, { debounceDelay: 1000 });
@@ -58,7 +46,7 @@ export function Tan(): JSX.Element {
 
   const tickFrame = useRef<number>();
 
-  const unitCircleWidth = getUnitCircleRadius(width, height);
+  const unitCircleWidth = getUnitCircleRadius({ width, height });
 
   const { xScale, yScale, mainXscale, tanXScale, tanYScale } = useMemo(() => {
     const xScale = scalePoint({
@@ -121,11 +109,10 @@ export function Tan(): JSX.Element {
 
   return (
     <>
-      <ApplicationLayout layout="FULL" center className={styles.container}>
-        <h1>TAN ASYMPTOTES</h1>
+      <ApplicationLayout layout="FULL" heading="TAN ASYMPTOTES" centerHeading>
         <section className={styles.container} ref={containerRef}>
           <ResponsiveSVG width={width} height={height}>
-            <Group>
+            <Group transform={`translate(0, ${getHeightTranslation({ width, height })})`}>
               <Group transform={`translate(${yAxisX}, 0)`}>
                 <LinePath<number>
                   defined={(d) => Math.tan(d) < maxTan && Math.tan(d) > -maxTan}

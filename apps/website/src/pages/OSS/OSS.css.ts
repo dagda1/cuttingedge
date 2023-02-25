@@ -13,8 +13,6 @@ export const icon = style({
 export const repos = style({
   display: 'grid',
   gap: '1rem',
-  minWidth: 0,
-  minHeight: 0,
   ...responsiveStyle({
     mobile: {},
     tablet: {
