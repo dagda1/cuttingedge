@@ -1,5 +1,15 @@
 # @cutting/svg
 
+## 4.53.0
+
+### Minor Changes
+
+- ce19c98e: more responsive fixes
+
+### Patch Changes
+
+- @cutting/use-get-parent-size@1.26.1
+
 ## 4.52.2
 
 ### Patch Changes
