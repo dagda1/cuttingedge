@@ -10,7 +10,7 @@ export function getUnitCircleRadius({ width, height }: Dimensions): number {
     return height / 2;
   }
 
-  return height / 2.5;
+  return height / 3;
 }
 
 export function getHeightTranslation({ width, height }: Dimensions): number {
