@@ -1,4 +1,3 @@
-import cs from 'classnames';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 import { CuttingEdge } from '../../constants';
@@ -25,14 +24,14 @@ export function ApplicationLayout({
     <ApplicationLayoutWithRouterScroll
       layout={layout}
       theme="cuttingTheme"
-      className={cs(className)}
+      className={className}
       headerAriaLabel="Cutting-Edge Solutions (Scotland)"
       heading={heading}
       center={center}
       centerHeading={centerHeading}
       header={
         <>
-          <Helmet title={heading || CuttingEdge}>
+          <Helmet title={typeof heading === 'string' ? heading : CuttingEdge}>
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
           </Helmet>
