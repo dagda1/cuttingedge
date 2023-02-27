@@ -3,4 +3,4 @@
 "@cutting/svg": patch
 ---
 
-rename prop
+rename cuttoff to maxDifference
