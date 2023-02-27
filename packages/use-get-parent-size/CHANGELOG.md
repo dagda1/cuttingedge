@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 1.26.2
+
+### Patch Changes
+
+- f80075f8: rename cuttoff to maxDifference
+
 ## 1.26.1
 
 ### Patch Changes

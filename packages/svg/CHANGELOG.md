@@ -1,5 +1,13 @@
 # @cutting/svg
 
+## 4.53.1
+
+### Patch Changes
+
+- f80075f8: rename cuttoff to maxDifference
+- Updated dependencies [f80075f8]
+  - @cutting/use-get-parent-size@1.26.2
+
 ## 4.53.0
 
 ### Minor Changes
