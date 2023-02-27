@@ -126,14 +126,3 @@ export const rearHypotenuse = style({
 export const tan3 = style({
   stroke: 'pink',
 });
-
-export const hideTicks = style({
-  // ...responsiveStyle({
-  //   mobile: {
-  //     display: 'none',
-  //   },
-  //   tablet: {
-  //     display: 'block',
-  //   },
-  // }),
-});

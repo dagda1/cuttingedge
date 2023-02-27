@@ -140,7 +140,7 @@ export function Tan(): JSX.Element {
                   stroke="#ffffff"
                   tickStroke="#ffffff"
                   tickComponent={(props) => (
-                    <Group className={styles.hideTicks} transform={`translate(${props.x - 5}, ${props.y - 5})`}>
+                    <Group transform={`translate(${props.x - 5}, ${props.y - 5})`}>
                       <SVGMathJax>{props.formattedValue}</SVGMathJax>
                     </Group>
                   )}
