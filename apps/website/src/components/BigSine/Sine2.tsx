@@ -38,21 +38,21 @@ export function Sine2(): JSX.Element {
   const tickFrame = useRef<number>();
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { xScale, yScale, xAxisPosition, sineCurve } = useMemo(() => {
+  const { xScale, yScale, yAxisPosition, sineCurve } = useMemo(() => {
     const xScale = scaleLinear().domain([0, TWO_PI]).range([0, width]);
 
     const yScale = scaleLinear()
       .domain([-1.0, 1.0])
       .range([height - 100, 0]);
 
-    const xAxisPosition = yScale(0);
+    const yAxisPosition = yScale(0);
 
     const sineCurve = line<number>()
       .curve(curveMonotoneX)
       .x((d) => xScale(d))
       .y((d) => yScale(Math.sin(d) + 1));
 
-    return { xScale, yScale, xAxisPosition, sineCurve };
+    return { xScale, yScale, yAxisPosition, sineCurve };
   }, [height, width]);
 
   useLayoutEffect(() => {
@@ -70,7 +70,7 @@ export function Sine2(): JSX.Element {
     <ApplicationLayout center layout="FULL" heading="SINETASTIC">
       <section className={styles.container} ref={containerRef}>
         <ResponsiveSVG width={width} height={height} className="graph">
-          <Group transform={`translate(0, ${xAxisPosition})`}>
+          <Group transform={`translate(0, ${yAxisPosition})`}>
             <AxisBottom
               scale={xScale}
               tickValues={xTickValues}

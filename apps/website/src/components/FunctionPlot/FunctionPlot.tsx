@@ -8,7 +8,6 @@ import { useParentSize } from '@cutting/use-get-parent-size';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { max, min, extent, range } from 'd3-array';
 import { derivative, parse, round } from 'mathjs';
-import { scaleLinear } from 'd3-scale';
 import { assert } from 'assert-ts';
 import { ResponsiveSVG, Group } from '@cutting/svg';
 import { Circle, Line, LinePath } from '@visx/shape';
@@ -22,6 +21,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { Input } from '@cutting/react-hook-form-components';
 import { Button } from '@cutting/component-library';
+import { scaleLinear } from '@visx/scale';
 
 interface FunctionPlotProps {
   minX?: number;
@@ -68,8 +68,8 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   }, [maxX, minX, state.expression]);
 
   const { xAxisPosition, yAxisPosition, xScale, yScale } = useMemo(() => {
-    const xScale = scaleLinear().range([0, width]);
-    const yScale = scaleLinear().range([height, 0]);
+    const xScale = scaleLinear({ range: [0, width] });
+    const yScale = scaleLinear({ range: [height, 0] });
 
     const minY = min(data, (d) => d.y);
 

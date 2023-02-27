@@ -7,7 +7,7 @@ export interface UseParentSizeOptions {
   debounceDelay: number;
   initialValues: Dimensions;
   transformFunc?: ({ width, height }: Dimensions) => Dimensions;
-  cuttoff?: number;
+  maxDifference?: number;
 }
 
 export type UseParentSizeResult = Dimensions;

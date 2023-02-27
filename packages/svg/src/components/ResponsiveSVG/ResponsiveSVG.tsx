@@ -37,7 +37,7 @@ export function ResponsiveSVG({
       style={{
         position: 'relative',
         overflow: 'visible',
-        height: '1px',
+        height: '0px',
       }}
     >
       <svg

@@ -13,7 +13,7 @@ export const useParentSize = <E extends Element>(
     debounceDelay = 0,
     initialValues = { width: 0, height: 0 },
     transformFunc = identity,
-    cuttoff = 10,
+    maxDifference = 10,
   }: Partial<UseParentSizeOptions> = {},
 ): UseParentSizeResult => {
   const [{ width, height }, setDimensions] = useState<Dimensions>({
@@ -61,7 +61,7 @@ export const useParentSize = <E extends Element>(
       const widthDiff = Math.abs(newWidth - previousDimensions.current.width);
       const heightDiff = Math.abs(newHeight - previousDimensions.current.height);
 
-      if (widthDiff > cuttoff || heightDiff > cuttoff) {
+      if (widthDiff > maxDifference || heightDiff > maxDifference) {
         previousDimensions.current.height = newHeight;
         previousDimensions.current.width = newWidth;
         debouncedCallback(newSize);
@@ -75,7 +75,7 @@ export const useParentSize = <E extends Element>(
         resizeObserver?.unobserve(refElement);
       }
     };
-  }, [cuttoff, debouncedCallback, height, refElement, width]);
+  }, [maxDifference, debouncedCallback, height, refElement, width]);
 
   return useMemo(
     () =>

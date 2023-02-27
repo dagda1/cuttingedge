@@ -42,7 +42,7 @@ globalStyle(`${container} tspan`, {
 });
 
 globalStyle(`${container} foreignobject`, {
-  width: '2.25rem',
+  width: '1.75rem',
 });
 
 export const playButton = style({
@@ -125,15 +125,4 @@ export const rearHypotenuse = style({
 
 export const tan3 = style({
   stroke: 'pink',
-});
-
-export const hideTicks = style({
-  ...responsiveStyle({
-    mobile: {
-      display: 'none',
-    },
-    tablet: {
-      display: 'block',
-    },
-  }),
 });
