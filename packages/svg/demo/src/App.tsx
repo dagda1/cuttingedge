@@ -4,17 +4,25 @@ import { useMemo, useRef } from 'react';
 import { ApplicationLayout } from '@cutting/component-library';
 import { ResponsiveSVG } from '../../src/components/ResponsiveSVG/ResponsiveSVG';
 import { useParentSize } from '@cutting/use-get-parent-size';
-import { scaleLinear } from 'd3-scale';
+import { scalePoint } from '@visx/scale';
+import { range } from '@cutting/util';
 
 export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(ref);
 
-  const { radius } = useMemo(() => {
-    const xScale = scaleLinear().domain([0, 20]).range([0, width]);
-    const yScale = scaleLinear().domain([0, 20]).range([height, 0]);
+  const { xScale, yScale, radius } = useMemo(() => {
+    const xScale = scalePoint({
+      domain: [...range(10)],
+      range: [0, width],
+    });
 
-    const radius = yScale(12);
+    const yScale = scalePoint({
+      domain: [...range(10)],
+      range: [0, height],
+    });
+
+    const radius = yScale(5);
 
     return { radius, xScale, yScale };
   }, [width, height]);
@@ -23,7 +31,7 @@ export function App(): JSX.Element {
     <ApplicationLayout heading="@cutting/svg" theme="salesTheme">
       <div className={styles.container} ref={ref}>
         <ResponsiveSVG width={width} height={height}>
-          <circle cx={width / 2} cy={height / 2} r={radius} />
+          <circle cx={xScale(5)} cy={yScale(5)} r={radius} fill="#ffffff" />
         </ResponsiveSVG>
       </div>
     </ApplicationLayout>

@@ -30,6 +30,7 @@
     "@types/react-dom": "18.0.11",
     "@vanilla-extract/css": "^1.9.5",
     "@vanilla-extract/sprinkles": "1.5.1",
+    "@visx/scale": "^3.0.0",
     "d3-scale": "4.0.2",
     "assert-ts": "0.3.4",
     "eslint": "8.34.0",

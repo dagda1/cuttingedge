@@ -13,7 +13,6 @@ import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { curveMonotoneX } from 'd3-shape';
 import assert from 'assert-ts';
-import { getHeightTranslation, getUnitCircleRadius } from './helpers';
 
 const Ticks = [...range(-1, 1)];
 
@@ -46,9 +45,21 @@ export function Tan(): JSX.Element {
 
   const tickFrame = useRef<number>();
 
-  const unitCircleWidth = getUnitCircleRadius({ width, height });
+  const { xScale, yScale, mainXscale, tanXScale, tanYScale, unitCircleWidth, initialY } = useMemo(() => {
+    const wholeXScale = scaleLinear({
+      domain: [0, 10],
+      range: [0, width],
+    });
 
-  const { xScale, yScale, mainXscale, tanXScale, tanYScale } = useMemo(() => {
+    const unitCircleWidth = wholeXScale(3);
+
+    const wholeYScale = scaleLinear({
+      domain: [0, 10],
+      range: [height, 0],
+    });
+
+    const initialY = wholeYScale(9);
+
     const xScale = scalePoint({
       domain: Ticks,
       range: [0, unitCircleWidth],
@@ -74,8 +85,8 @@ export function Tan(): JSX.Element {
       range: [unitCircleWidth, 0],
     });
 
-    return { xScale, yScale, mainXscale, tanXScale, tanYScale };
-  }, [unitCircleWidth, width]);
+    return { xScale, yScale, mainXscale, tanXScale, tanYScale, unitCircleWidth, initialY };
+  }, [height, width]);
 
   useLayoutEffect(() => {
     tickFrame.current = requestAnimationFrame(() =>
@@ -112,7 +123,7 @@ export function Tan(): JSX.Element {
       <ApplicationLayout layout="FULL" heading="TAN ASYMPTOTES" centerHeading>
         <section className={styles.container} ref={containerRef}>
           <ResponsiveSVG width={width} height={height}>
-            <Group transform={`translate(0, ${getHeightTranslation({ width, height })})`}>
+            <Group transform={`translate(0, ${initialY})`}>
               <Group transform={`translate(${yAxisX}, 0)`}>
                 <LinePath<number>
                   defined={(d) => Math.tan(d) < maxTan && Math.tan(d) > -maxTan}
