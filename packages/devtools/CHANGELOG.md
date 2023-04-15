@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.0
+
+### Minor Changes
+
+- 2cbd4b74: bump all dependencies, pnpm and update renovate
+
 ## 4.62.0
 
 ### Minor Changes

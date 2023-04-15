@@ -1,5 +1,19 @@
 # @cutting/graphql-explorer
 
+## 4.44.0
+
+### Minor Changes
+
+- 2cbd4b74: bump all dependencies, pnpm and update renovate
+
+### Patch Changes
+
+- Updated dependencies [2cbd4b74]
+  - @cutting/component-library@5.38.0
+  - @cutting/svg@4.54.0
+  - @cutting/react-abortable-fetch@0.36.0
+  - @cutting/util@4.58.0
+
 ## 4.43.9
 
 ### Patch Changes

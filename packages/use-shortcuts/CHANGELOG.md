@@ -1,5 +1,16 @@
 # @cutting/use-shortcuts
 
+## 4.46.0
+
+### Minor Changes
+
+- 2cbd4b74: bump all dependencies, pnpm and update renovate
+
+### Patch Changes
+
+- Updated dependencies [2cbd4b74]
+  - @cutting/util@4.58.0
+
 ## 4.45.1
 
 ### Patch Changes
