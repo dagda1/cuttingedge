@@ -25,10 +25,10 @@
     "@cutting/util": "workspace:*",
     "assert-ts": "^0.3.4",
     "resize-observer-polyfill": "^1.5.1",
-    "use-debounce": "^9.0.3"
+    "use-debounce": "^9.0.4"
   },
   "devDependencies": {
-    "@vanilla-extract/sprinkles": "1.5.1",
+    "@vanilla-extract/sprinkles": "1.6.0",
     "@cutting/component-library": "workspace:*",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
@@ -36,17 +36,17 @@
     "@cutting/useful-types": "workspace:*",
     "@testing-library/react": "14.0.0",
     "@testing-library/react-hooks": "8.0.1",
-    "@types/react": "18.0.28",
+    "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
     "@types/react-router-dom": "5.3.3",
-    "@types/three": "^0.149.0",
-    "@vanilla-extract/css": "^1.9.5",
-    "eslint": "8.34.0",
+    "@types/three": "^0.150.1",
+    "@vanilla-extract/css": "^1.11.0",
+    "eslint": "8.38.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.8.1",
-    "three": "^0.149.0",
-    "typescript": "4.9.5"
+    "react-router-dom": "6.10.0",
+    "three": "^0.151.3",
+    "typescript": "5.0.4"
   },
   "peerDependencies": {
     "react": ">= 18.x.x",

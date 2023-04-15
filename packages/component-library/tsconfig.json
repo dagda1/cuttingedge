@@ -2,11 +2,14 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "noEmit": true,
-    "suppressImplicitAnyIndexErrors": true
+    "noEmit": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts", "test/**/*.tsx", "setupTests.ts"],
-  "references": [
-    { "path": "../util/tsconfig.dist.json" }
-  ]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "test/**/*.ts",
+    "test/**/*.tsx",
+    "setupTests.ts"
+  ],
+  "references": [{ "path": "../util/tsconfig.dist.json" }]
 }

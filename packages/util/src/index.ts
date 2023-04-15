@@ -1,4 +1,5 @@
 export type { DeepPartial } from './types/DeepPartial';
+export type { Entries } from './types/entries';
 export type { Fn } from './functions/functions';
 
 export { isDate } from './date/date.js';
