@@ -4,6 +4,7 @@ import { createTextStyle } from '@capsizecss/vanilla-extract';
 import { vars } from '../themes/vars.css';
 import { breakpointQuery, responsiveStyle } from '../responsive-style';
 import type { FontWeight } from '../types';
+import type { tokens } from '../themes/tokens';
 
 type Vars = typeof vars;
 type HeadingDefinition = Vars['headingLevel'];
@@ -95,14 +96,10 @@ export const responsiveText = {
   body: makeTypographyRules(vars.text.body, 'body'),
 };
 
+type Level = keyof (typeof tokens)['color']['foreground']['heading'];
+
 // TODO: make fontSize rem
-export const globalHeadingStyle = ({
-  weight = 'regular',
-  level,
-}: {
-  weight: FontWeight;
-  level: string;
-}): StyleRule => ({
+export const globalHeadingStyle = ({ weight = 'regular', level }: { weight: FontWeight; level: Level }): StyleRule => ({
   fontFamily: vars.fontFamily.heading,
   fontWeight: vars.fontWeight[weight],
   color: vars.foregroundColor.heading[level],

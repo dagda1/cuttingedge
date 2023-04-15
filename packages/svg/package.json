@@ -26,17 +26,17 @@
     "@testing-library/dom": "^9.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "14.4.3",
-    "@types/react": "18.0.28",
+    "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
-    "@vanilla-extract/css": "^1.9.5",
-    "@vanilla-extract/sprinkles": "1.5.1",
+    "@vanilla-extract/css": "^1.11.0",
+    "@vanilla-extract/sprinkles": "1.6.0",
     "@visx/scale": "^3.0.0",
     "d3-scale": "4.0.2",
     "assert-ts": "0.3.4",
-    "eslint": "8.34.0",
+    "eslint": "8.38.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.9.5"
+    "typescript": "5.0.4"
   },
   "peerDependencies": {
     "react": ">= 18.x.x",

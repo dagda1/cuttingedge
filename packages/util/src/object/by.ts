@@ -1,29 +1,25 @@
+import type { Entries } from 'src/types/entries.js';
+import type { DeepPartial } from '../types/DeepPartial.js';
 import { isNil } from './isNil.js';
-
-export type PartialShallow<T> = {
-  [P in keyof T]?: T[P] extends Record<string, unknown> ? Record<string, unknown> : T[P];
-};
 
 export type PropertyReturn = string | number | symbol;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const keyBy = <T, K extends keyof T & PropertyKey>(array: T[], key: K) =>
-  (array || []).reduce((r, x) => ({ ...r, [key ? x[key as PropertyKey] : x]: x }), {});
+export const keyBy = <T, K extends keyof T & string>(array: T[], key: K) =>
+  (array || []).reduce((r, x) => ({ ...r, [(key ? x[key as K] : (x as keyof T)) as K]: x }), {});
 
-export const pickBy = <T>(
+export const pickBy = <T extends Record<keyof T & string, unknown>>(
   o: T,
-  predicate: <K extends keyof T>(value: T[K]) => PropertyReturn | boolean,
-): PartialShallow<T> | undefined | null => {
+  predicate: (value: T[keyof T]) => PropertyReturn | boolean,
+): DeepPartial<T> | undefined | null => {
   if (isNil(o)) {
     return o;
   }
 
-  const ret: PartialShallow<T> = {};
+  const ret: DeepPartial<T> = {};
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  for (const [key, value] of Object.entries(o as any)) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if (isNil(value) || !!predicate(value as any) === false) {
+  for (const [key, value] of Object.entries(o) as Entries<T>) {
+    if (isNil(value) || !!predicate(value) === false) {
       continue;
     }
 
@@ -33,10 +29,13 @@ export const pickBy = <T>(
   return ret;
 };
 
-export const countBy = <T>(o: T[], predicate: (o: T) => PropertyReturn): PartialShallow<T> => {
-  const ret: PartialShallow<T> = {};
+export const countBy = <T>(
+  o: T[],
+  predicate: (o: T[keyof T]) => keyof T & string,
+): DeepPartial<Record<keyof T, number>> => {
+  const ret: DeepPartial<Record<keyof T, number>> = {};
 
-  for (const [, value] of Object.entries<T>(o)) {
+  for (const [, value] of Object.entries<T>(o) as Entries<T>) {
     const result = predicate(value);
 
     if (!ret[result]) {
@@ -47,7 +46,8 @@ export const countBy = <T>(o: T[], predicate: (o: T) => PropertyReturn): Partial
       continue;
     }
 
-    ret[result]++;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (ret as any)[result]++;
   }
 
   return ret;
