@@ -1,4 +1,4 @@
-import type { Entries } from 'src/types/entries.js';
+import type { Entries } from '../types/entries.js';
 import type { DeepPartial } from '../types/DeepPartial.js';
 import { isNil } from './isNil.js';
 
