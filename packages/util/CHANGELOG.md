@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.58.0
+
+### Minor Changes
+
+- 2cbd4b74: bump all dependencies, pnpm and update renovate
+
 ## 4.57.1
 
 ### Patch Changes

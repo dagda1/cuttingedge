@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.44.0
+
+### Minor Changes
+
+- 2cbd4b74: bump all dependencies, pnpm and update renovate
+
 ## 4.43.1
 
 ### Patch Changes

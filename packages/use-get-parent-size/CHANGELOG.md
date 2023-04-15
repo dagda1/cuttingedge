@@ -1,5 +1,16 @@
 # @cutting/use-get-parent-size
 
+## 1.27.0
+
+### Minor Changes
+
+- 2cbd4b74: bump all dependencies, pnpm and update renovate
+
+### Patch Changes
+
+- Updated dependencies [2cbd4b74]
+  - @cutting/util@4.58.0
+
 ## 1.26.2
 
 ### Patch Changes

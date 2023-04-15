@@ -1,7 +1,7 @@
 {
   "name": "@cutting/hooks",
   "description": "Cutting reusable hooks.",
-  "version": "4.55.1",
+  "version": "4.56.0",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "type": "module",
