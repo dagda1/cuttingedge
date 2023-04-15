@@ -1,5 +1,12 @@
 # @cutting/use-shortcuts
 
+## 4.46.1
+
+### Patch Changes
+
+- Updated dependencies [b743bae4]
+  - @cutting/util@4.58.1
+
 ## 4.46.0
 
 ### Minor Changes
