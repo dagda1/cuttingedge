@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.58.1
+
+### Patch Changes
+
+- b743bae4: fix type reference
+
 ## 4.58.0
 
 ### Minor Changes
