@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.56.0
+
+### Minor Changes
+
+- 2cbd4b74: bump all dependencies, pnpm and update renovate
+
+### Patch Changes
+
+- Updated dependencies [2cbd4b74]
+  - @cutting/util@4.58.0
+
 ## 4.55.1
 
 ### Patch Changes

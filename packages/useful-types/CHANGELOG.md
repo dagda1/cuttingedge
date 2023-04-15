@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.40.0
+
+### Minor Changes
+
+- 2cbd4b74: bump all dependencies, pnpm and update renovate
+
 ## 4.39.0
 
 ### Minor Changes
