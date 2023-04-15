@@ -1,34 +1,27 @@
 {
-  "baseBranches": ["main"],
-  "extends": ["config:base", "group:monorepos", ":dependencyDashboard"],
-  "dependencyDashboard": false,
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
   "automerge": true,
-  "semanticCommits": "enabled",
-  "rangeStrategy": "bump",
-  "rebaseLabel": "rebase",
-  "rebaseWhen": "auto",
-  "requiredStatusChecks": [],
-  "prConcurrentLimit": 5,
-  "updateInternalDeps": true,
-  "lockFileMaintenance": {
-    "enabled": false
+  "major": {
+    "automerge": false
   },
-  "includePaths": [
-    "apps/*",
-    "packages/*"
-  ],
+  "minor": {
+    "automerge": true
+  },
+  "rangeStrategy": "bump",
+  "separateMultipleMajor": true,
+  "labels": ["type: dependencies", "renovate"],
+  "commitMessageSuffix": "🌟",
+  "prHourlyLimit": 2,
+  "prConcurrentLimit": 5,
+  "updateNotScheduled": false,
+  "timezone": "Europe/Dublin",
+  "schedule": ["every weekend"],
+  "includePaths": ["apps/*", "packages/*"],
   "packageRules": [
     {
-      "matchPaths": ["apps/", "packages/"],
-      "updateTypes": ["major", "minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "depTypeList": ["dependencies", "devDependencies"],
-      "groupName": "all",
-      "groupSlug": "all"
-    },
-    {
-      "packagePatterns": ["eslint"],
-      "groupName": "eslint"
+      "matchDepTypes": ["dependencies", "devDependencies"],
+      "semanticCommitType": "dependency"
     }
   ]
 }
