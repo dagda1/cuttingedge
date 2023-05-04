@@ -18,8 +18,8 @@ export type ResponsiveSVGProps = SVGAttributes<{
 }>;
 
 export function ResponsiveSVG({
-  height,
-  width,
+  height = 0,
+  width = 0,
   children,
   origin = { x: 0, y: 0 },
   preserveAspectRatio = 'xMaxYMid meet',

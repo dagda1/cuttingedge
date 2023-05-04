@@ -10,9 +10,11 @@ function TestEr(props: Partial<ParentsizeSVGProps>) {
   useParentSize(ref);
 
   return (
-    <ParentsizeSVG {...props} parentRef={ref}>
-      <rect x="20%" y="20%" width="200px" height="200px" rx="20" />
-    </ParentsizeSVG>
+    <div ref={ref} style={{ width: '100vw', height: '100vh' }}>
+      <ParentsizeSVG {...props} parentRef={ref}>
+        <rect x="20%" y="20%" width="200px" height="200px" rx="20" />
+      </ParentsizeSVG>
+    </div>
   );
 }
 

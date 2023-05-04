@@ -31,6 +31,7 @@ export const useParentSize = <E extends Element>(
     ...initialContentRect,
     ...initialValues,
   } as ResizeObserverContentRect);
+  const rerenderCount = useRef(0);
   const previousContentRect = useRef<Writeable<ResizeObserverContentRect>>(initialValues as ResizeObserverContentRect);
 
   const transformer = useCallback(transformFunc, [transformFunc]);
@@ -51,7 +52,12 @@ export const useParentSize = <E extends Element>(
 
   useLayoutEffect(() => {
     if (isNil(refElement)) {
+      if (rerenderCount.current > 10) {
+        throw new Error('Maximum rerender count and no refElement Found');
+      }
+
       setContentRect({ ...contentRect } as ResizeObserverContentRect);
+      rerenderCount.current++;
       return;
     }
 
