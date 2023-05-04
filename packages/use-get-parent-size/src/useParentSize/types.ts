@@ -9,4 +9,4 @@ export interface UseParentSizeOptions {
   maxDifference?: number;
 }
 
-export type UseParentSizeResult = ResizeObserverContentRect;
+export type UseParentSizeResult = Partial<ResizeObserverContentRect>;

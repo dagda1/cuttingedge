@@ -12,6 +12,7 @@ import { line } from 'd3-shape';
 import { curveMonotoneX } from '@visx/curve';
 import { Arc, Circle } from '@visx/shape';
 import cs from 'classnames';
+import { assert } from 'assert-ts';
 
 const xTickValues = [0, 1.57, 3.14, 4.71, 6.28];
 const piMap = {
@@ -34,7 +35,12 @@ export function Sine2(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef, {
     debounceDelay: 500,
+    initialValues: { width: 0, height: 0 },
   });
+
+  assert(typeof width === 'number');
+  assert(typeof height === 'number');
+
   const tickFrame = useRef<number>();
   const [state, dispatch] = useReducer(reducer, initialState);
 

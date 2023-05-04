@@ -40,7 +40,14 @@ const circles = 1;
 
 export function Tan(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { width, height } = useParentSize(containerRef, { debounceDelay: 1000 });
+  const { width, height } = useParentSize(containerRef, {
+    debounceDelay: 1000,
+    initialValues: { width: 0, height: 0 },
+  });
+
+  assert(typeof width === 'number');
+  assert(typeof height === 'number');
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const tickFrame = useRef<number>();

@@ -89,14 +89,5 @@ export const useParentSize = <E extends Element>(
     };
   }, [maxDifference, debouncedCallback, refElement, initialValues, contentRect]);
 
-  return useMemo(
-    () => ({
-      ...contentRect,
-      ...transformer({
-        width: contentRect.width,
-        height: contentRect.height,
-      }),
-    }),
-    [contentRect, transformer],
-  );
+  return useMemo(() => transformer(contentRect), [contentRect, transformer]);
 };

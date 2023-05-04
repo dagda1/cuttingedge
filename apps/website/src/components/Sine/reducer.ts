@@ -6,7 +6,7 @@ export type Dimensions = { width: number; height: number };
 
 type SineLinear = ScaleLinear<number, number, never>;
 
-export const increase = (Math.PI * 2) / 360;
+export const increase = (Math.PI * 2) / 720;
 
 export const xTickValues = [0, 1.57, 3.14, 4.71, 6.28];
 
