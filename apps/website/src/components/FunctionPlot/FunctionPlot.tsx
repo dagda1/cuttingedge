@@ -37,7 +37,12 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   const tangentRef = useRef<SVGCircleElement>(null);
   const { width, height } = useParentSize(containerRef, {
     debounceDelay: 500,
+    initialValues: { width: 0, height: 0 },
   });
+
+  assert(typeof width === 'number');
+  assert(typeof height === 'number');
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const { register, handleSubmit } = useForm<FormValues>({
     reValidateMode: 'onBlur',

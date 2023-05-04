@@ -5,7 +5,7 @@ import type { Reducer } from 'react';
 
 export const TWO_PI = Math.PI * 2;
 
-const increase = TWO_PI / 360;
+const increase = TWO_PI / 720;
 
 type Direction = 'FORWARDS' | 'BACKWARDS';
 

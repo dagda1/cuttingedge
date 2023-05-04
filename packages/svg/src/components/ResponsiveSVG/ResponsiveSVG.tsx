@@ -7,8 +7,8 @@ export interface Point {
 }
 
 export type ResponsiveSVGProps = SVGAttributes<{
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   origin?: Point;
   preserveAspectRatio?: PreserveAspectRatio;
   innerRef?: Ref<SVGSVGElement>;

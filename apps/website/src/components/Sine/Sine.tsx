@@ -11,10 +11,15 @@ import * as styles from './Sine.css';
 import type { PiMapKeys } from './reducer';
 import { getScales, reducer, initialState, xTickValues, PiMap } from './reducer';
 import { BottomAxis } from './BottomAxis';
+import { assert } from 'assert-ts';
 
 function Sine(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { width, height } = useParentSize(containerRef);
+  const { width, height } = useParentSize(containerRef, { initialValues: { width: 0, height: 0 } });
+
+  assert(typeof width === 'number');
+  assert(typeof height === 'number');
+
   const tickFrame = useRef<number>();
   const { initialX, initialY, firstX, radius, xAxisScale, yAxisScale } = useMemo(
     () => getScales({ width, height }),
