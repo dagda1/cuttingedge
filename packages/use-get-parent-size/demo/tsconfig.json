@@ -4,8 +4,8 @@
     "target": "ESNext",
     "module": "ESNext",
     "outDir": "dist",
-    "rootDirs": [".", "../src"]
+    "rootDirs": [".", "../../src"]
   },
   "include": ["./**/*.ts", "./**/*.tsx", "../src/**/*.ts", "../src/**/*.tsx"],
-  "exclude": ["./**/*.test.ts", "./**/*.test.tsx"],
+  "exclude": ["./**/*.test.ts", "./**/*.test.tsx"]
 }
