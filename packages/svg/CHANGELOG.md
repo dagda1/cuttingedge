@@ -1,5 +1,13 @@
 # @cutting/svg
 
+## 4.54.3
+
+### Patch Changes
+
+- 79c7b329: return whole DOMRect
+- Updated dependencies [79c7b329]
+  - @cutting/use-get-parent-size@2.0.1
+
 ## 4.54.2
 
 ### Patch Changes
