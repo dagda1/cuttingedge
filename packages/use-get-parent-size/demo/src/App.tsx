@@ -1,7 +1,6 @@
 import '@cutting/component-library/styles.css';
 import { ApplicationLayout } from '@cutting/component-library';
 import { useLayoutEffect, useRef } from 'react';
-import { useParentSize } from '../../src';
 import {
   Scene,
   BoxGeometry,
@@ -14,16 +13,20 @@ import {
 } from 'three';
 
 import * as styles from './global.css';
+import { useParentSize } from '../../src/useParentSize/useParentSize';
 
 export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { width, height } = useParentSize(ref, { debounceDelay: 100 });
+  const { width, height, ...rest } = useParentSize(ref, {
+    debounceDelay: 100,
+    initialValues: { width: undefined, height: undefined },
+  });
 
   const tickFrame = useRef<number>();
 
   useLayoutEffect(() => {
-    if (!canvasRef.current) {
+    if (!canvasRef.current || !ref.current) {
       return;
     }
 
@@ -70,7 +73,7 @@ export function App(): JSX.Element {
     };
 
     run();
-  });
+  }, [height, rest, width]);
 
   return (
     <ApplicationLayout theme="salesTheme" innerRef={ref}>

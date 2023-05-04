@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@cutting/use-get-parent-size.svg)](https://www.npmjs.com/package/@cutting/use-get-parent-size)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-## install 
+## install
 
 ```sh
 pnpm add @cutting/use-get-parent-size
@@ -25,25 +25,64 @@ const { width, height } = useParentSize(ref, options);
 
 `useParentSize` takes a react [ref object](https://reactjs.org/docs/refs-and-the-dom.html) and an optional `options` object.
 
+Returns the contentRect of the observed element:
+
+```ts
+interface DOMRectReadOnly {
+  readonly bottom: number;
+  readonly height: number;
+  readonly left: number;
+  readonly right: number;
+  readonly top: number;
+  readonly width: number;
+  readonly x: number;
+  readonly y: number;
+  toJSON(): any;
+}
+```
+
 ### Options
 
 ```ts
 export interface UseParentSizeOptions {
   debounceDelay: number;
-  initialValues: Dimensions; // { width, height }
-  transformFunc?: ({ width, height }: Dimensions) => Dimensions;  // default (x) => x
+  initialValues: Partial<ResizeObserverContentRect>;
+  transformFunc?: (
+    entry: Partial<ResizeObserverContentRect>
+  ) => Partial<ResizeObserverContentRect>;
+  maxDifference?: number;
+  transformFunc?: ({ width, height }: Dimensions) => Dimensions;
 }
 ```
 
 - `debounceDelay` - an optional `number` that will throttle the speed at which reize events are raised to the calling code.
-- `initialValues` - initially, the `ref` will be `null` and no `width` or `height` values can be returned until it is mounted.  The `initialValues` option can return a specific `width` and `height` value until the `ref` actually references a valid DOM node.  e.g. `const { width, height } = useParentSize(ref, { width: 100, height: 50})`;
+- `initialValues` - initially, the `ref` will be `null` and no `width` or `height` values can be returned until it is mounted. The `initialValues` option can return a specific `width` and `height` value until the `ref` actually references a valid DOM node. e.g. `const { width, height } = useParentSize(ref, { width: 100, height: 50})`;
 
-  Default is `{ width: 1, height: 1}`
+Default is an empty DomRect:
+
+```js
+{
+ bottom: undefined,
+ height: undefined,
+ left: undefined,
+ width: undefined,
+ right: undefined,
+ top: undefined,
+ x: undefined,
+ y: undefined,
+};
+```
+
 - `transformFunc` optional function to transform the results, e.g. to halve the size of the parent
   ```ts
-  transformFunc: ({width, height}) => ({width: width / 2, height: height /2})
+  transformFunc: ({ width, height }) => ({
+    width: width / 2,
+    height: height / 2,
+  });
   ```
   Default is identity, `(x) => x`
+
+## Usage
 
 ```ts
 import { useRef } from 'react';
@@ -69,4 +108,3 @@ export function ResponsiveSVG({
   );
 };
 ```
-

@@ -1,37 +1,45 @@
-import type { Dimensions, UseParentSizeOptions, UseParentSizeResult } from './types';
+import type { ResizeObserverContentRect, UseParentSizeOptions, UseParentSizeResult, Writeable } from './types';
 import type { RefObject } from 'react';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useDebouncedCallback } from 'use-debounce';
-import { identity, isNil } from '@cutting/util';
+import { isNil } from '@cutting/util';
 import { assert } from 'assert-ts';
 import { useLayoutEffect } from 'react';
+
+const initialContentRect: Partial<ResizeObserverContentRect> = {
+  bottom: undefined,
+  height: undefined,
+  left: undefined,
+  width: undefined,
+  right: undefined,
+  top: undefined,
+  x: undefined,
+  y: undefined,
+};
 
 export const useParentSize = <E extends Element>(
   ref: RefObject<E>,
   {
     debounceDelay = 0,
-    initialValues = { width: 0, height: 0 },
-    transformFunc = identity,
+    initialValues = initialContentRect,
+    transformFunc = (o: Partial<ResizeObserverContentRect>) => o as ResizeObserverContentRect,
     maxDifference = 10,
   }: Partial<UseParentSizeOptions> = {},
 ): UseParentSizeResult => {
-  const [{ width, height }, setDimensions] = useState<Dimensions>({
-    width: initialValues.width,
-    height: initialValues.height,
-  });
-  const previousDimensions = useRef<Required<Dimensions>>({
-    width: initialValues.width,
-    height: initialValues.height,
-  });
+  const [contentRect, setContentRect] = useState<ResizeObserverContentRect>({
+    ...initialContentRect,
+    ...initialValues,
+  } as ResizeObserverContentRect);
+  const previousContentRect = useRef<Writeable<ResizeObserverContentRect>>(initialValues as ResizeObserverContentRect);
 
   const transformer = useCallback(transformFunc, [transformFunc]);
 
   assert(!!ref, 'You must pass a valid ref to useParentSize');
 
   const debouncedCallback = useDebouncedCallback(
-    (value: Dimensions) => {
-      setDimensions(value);
+    (value: ResizeObserverContentRect) => {
+      setContentRect(value);
     },
     debounceDelay,
     {
@@ -43,7 +51,7 @@ export const useParentSize = <E extends Element>(
 
   useLayoutEffect(() => {
     if (isNil(refElement)) {
-      setDimensions({ width, height });
+      setContentRect({ ...contentRect } as ResizeObserverContentRect);
       return;
     }
 
@@ -56,15 +64,13 @@ export const useParentSize = <E extends Element>(
       const newWidth = Math.round(entry.contentRect.width);
       const newHeight = Math.round(entry.contentRect.height);
 
-      const newSize = { width: newWidth, height: newHeight };
-
-      const widthDiff = Math.abs(newWidth - previousDimensions.current.width);
-      const heightDiff = Math.abs(newHeight - previousDimensions.current.height);
+      const widthDiff = Math.abs(newWidth - (previousContentRect.current.width ?? 0));
+      const heightDiff = Math.abs(newHeight - (previousContentRect.current.height ?? 0));
 
       if (widthDiff > maxDifference || heightDiff > maxDifference) {
-        previousDimensions.current.height = newHeight;
-        previousDimensions.current.width = newWidth;
-        debouncedCallback(newSize);
+        previousContentRect.current.height = newHeight;
+        previousContentRect.current.width = newWidth;
+        debouncedCallback(entry.contentRect);
       }
     });
 
@@ -75,14 +81,16 @@ export const useParentSize = <E extends Element>(
         resizeObserver?.unobserve(refElement);
       }
     };
-  }, [maxDifference, debouncedCallback, height, refElement, width]);
+  }, [maxDifference, debouncedCallback, refElement, initialValues, contentRect]);
 
   return useMemo(
-    () =>
-      transformer({
-        width,
-        height,
+    () => ({
+      ...contentRect,
+      ...transformer({
+        width: contentRect.width,
+        height: contentRect.height,
       }),
-    [height, transformer, width],
+    }),
+    [contentRect, transformer],
   );
 };

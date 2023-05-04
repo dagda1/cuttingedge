@@ -1,2 +1,2 @@
-export type { Dimensions, UseParentSizeOptions, UseParentSizeResult } from './useParentSize/types';
+export type { UseParentSizeOptions, UseParentSizeResult, ResizeObserverContentRect } from './useParentSize/types';
 export { useParentSize } from './useParentSize/useParentSize.js';
