@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.0.0
+
+### Major Changes
+
+- f369fc43: return the entire DOMRect instead of just width and height
+
 ## 1.27.1
 
 ### Patch Changes
