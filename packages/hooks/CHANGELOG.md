@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.56.2
+
+### Patch Changes
+
+- ddbb889a: use window for isBrowser
+
 ## 4.56.1
 
 ### Patch Changes
