@@ -8,12 +8,14 @@ import { isNil } from '@cutting/util';
 import { consultingTheme } from '../../../style/themes/consulting/consultingTheme.css';
 import { salesTheme } from '../../../style/themes/sales/salesTheme.css';
 import { defaultTheme } from '../../../style/themes/default/default.css';
+import { supportTheme } from '../../../style/themes/support/supportTheme.css';
 
 export const themes = {
   defaultTheme,
   cuttingTheme,
   consultingTheme,
   salesTheme,
+  supportTheme,
 } as const;
 
 export type ThemeKeys = keyof typeof themes;
