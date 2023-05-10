@@ -1,7 +1,7 @@
 {
   "name": "@cutting/react-hook-form-components",
   "description": "components for react-hook-form.",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "type": "module",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",

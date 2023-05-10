@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.39.0
+
+### Minor Changes
+
+- 13a21fd5: add support theme
+
 ## 5.38.2
 
 ### Patch Changes
