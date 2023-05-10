@@ -15,10 +15,6 @@ const bodyStyle = {
   fontWeight: vars.fontWeight.regular,
 };
 
-globalStyle('*,*:before,*:after', {
-  boxSizing: 'border-box',
-});
-
 globalStyle('html, body', {
   margin: 0,
   padding: 0,
