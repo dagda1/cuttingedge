@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.39.1
+
+### Patch Changes
+
+- 17056fe7: add support font
+
 ## 5.39.0
 
 ### Minor Changes
