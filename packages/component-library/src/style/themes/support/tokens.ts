@@ -39,9 +39,9 @@ export const tokens: DeepPartial<Tokens> = {
   },
   typography: {
     fonts: {
-      heading: `'Signika Negative', sans-serif, Arial`,
-      body: `'Signika Negative', sans-serif, Arial`,
-      paragraphs: `'Signika Negative', sans-serif, Arial`,
+      heading: `"Bebas Neue", cursive`,
+      body: `"Bebas Neue", cursive`,
+      paragraphs: `"Bebas Neue", cursive`,
     },
   },
   buttons: {
