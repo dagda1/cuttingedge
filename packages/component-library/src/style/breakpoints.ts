@@ -2,7 +2,8 @@ export const breakpoints = {
   mobile: 0,
   tablet: 740,
   desktop: 992,
-  wide: 1500,
+  wide: 1550,
+  extraWide: 1900,
 } as const;
 
 export type Breakpoint = keyof typeof breakpoints;
@@ -27,5 +28,9 @@ export function getCurrentBreakpoint({ width }: Dimensions): Breakpoint {
     return 'desktop';
   }
 
-  return 'wide';
+  if (width < breakpoints.extraWide) {
+    return 'wide';
+  }
+
+  return 'extraWide';
 }
