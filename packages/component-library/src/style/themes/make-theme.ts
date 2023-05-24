@@ -3,30 +3,31 @@ import { mapValues } from '@cutting/util';
 import type { Tokens } from './tokens';
 import { tokens as defaultTokens } from './tokens';
 import deepmerge from 'deepmerge';
-import type { FontMetrics } from '@capsizecss/core';
 import { getCapHeight } from '@capsizecss/core';
 import { precomputeValues } from '@capsizecss/vanilla-extract';
 import colors from 'tailwindcss/colors';
 import type { Breakpoint } from '../breakpoints';
+import type { FontMetricsForTheme } from '../util/typography';
 
 const scaleCreator = (scale: 'px' | 'rem') => (v: string | number) => `${v}${scale}`;
 
 const px = scaleCreator('px');
 
-type FontSizeText = {
-  fontSize: number;
-  rows: number;
-};
+type FontSizeText =
+  | {
+      fontSize: number;
+      rows: number;
+    }
+  | {
+      fontSize: number;
+      lineGap: number;
+    };
 
 export type TextBreakpoint = Extract<Breakpoint, 'mobile' | 'tablet'>;
 
 export type TextDefinition = Record<TextBreakpoint, FontSizeText>;
 
-const fontSizeToCapHeight = (
-  grid: number,
-  definition: TextDefinition,
-  fontMetrics: Omit<FontMetrics, 'familyName' | 'xHeight' | 'xWidthAvg'>,
-) => {
+const fontSizeToCapHeight = (grid: number, definition: TextDefinition, fontMetrics: FontMetricsForTheme) => {
   const { mobile, tablet } = definition;
 
   const mobileCapHeight = getCapHeight({
@@ -39,13 +40,34 @@ const fontSizeToCapHeight = (
     fontMetrics,
   });
 
+  const mobileConfig =
+    'lineGap' in mobile
+      ? {
+          fontSize: mobile.fontSize,
+          lineGap: mobile.lineGap,
+        }
+      : {
+          fontSize: mobile.fontSize,
+          leading: mobile.rows * grid,
+        };
+
+  const tabletConfig =
+    'lineGap' in tablet
+      ? {
+          fontSize: tablet.fontSize,
+          lineGap: tablet.lineGap,
+        }
+      : {
+          fontSize: tablet.fontSize,
+          leading: tablet.rows * grid,
+        };
+
   const {
     fontSize: mobileFontSize,
     lineHeight: mobileLineHeight,
     ...mobileTrims
   } = precomputeValues({
-    fontSize: mobile.fontSize,
-    leading: mobile.rows * grid,
+    ...mobileConfig,
     fontMetrics,
   });
 
@@ -54,8 +76,7 @@ const fontSizeToCapHeight = (
     lineHeight: tabletLineHeight,
     ...tabletTrims
   } = precomputeValues({
-    fontSize: tablet.fontSize,
-    leading: tablet.rows * grid,
+    ...tabletConfig,
     fontMetrics,
   });
 
@@ -82,7 +103,13 @@ const fontSizeToCapHeight = (
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
   const { ...tokens } = deepmerge(defaultTokens, customTokens) as Tokens;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { webFont, ...typography } = tokens.typography;
   const { foreground, background } = tokens.color;
+
+  const textSize = mapValues(tokens.typography.text, (definition) =>
+    fontSizeToCapHeight(tokens.grid, definition, typography.fontMetrics),
+  );
 
   const resolvedTokens = {
     borderRadius: tokens.border.radius,
@@ -92,13 +119,11 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     backgroundColor: {
       ...background,
     },
-    fontFamily: {
-      ...tokens.typography.fonts,
-    },
+    fontFamily: typography.fontFamily,
     colors: {
       ...tokens.colors,
     },
-    fontWeight: mapValues(tokens.typography.fontWeight, String),
+    textWeight: mapValues(tokens.typography.fontWeight, String),
     inlineFieldSize: {
       standard: '2.5rem',
       small: '1.25rem',
@@ -112,12 +137,14 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     inputWidth: {
       ...tokens.inputWidth,
     },
+    textSize,
     headingLevel: mapValues(tokens.typography.heading.level, (definition) =>
       fontSizeToCapHeight(tokens.grid, definition, tokens.typography.fontMetrics),
     ),
-    text: mapValues(tokens.typography.text, (definition) =>
-      fontSizeToCapHeight(tokens.grid, definition, tokens.typography.fontMetrics),
-    ),
+    headingWeight: {
+      weak: String(tokens.typography.fontWeight[tokens.typography.heading.weight.weak]),
+      regular: String(tokens.typography.fontWeight[tokens.typography.heading.weight.regular]),
+    },
     accessibility: {
       visibleFocus: {
         outline: `${tokens.accessibility.outlineWidth} solid ${tokens.accessibility.elementFocusColor}`,

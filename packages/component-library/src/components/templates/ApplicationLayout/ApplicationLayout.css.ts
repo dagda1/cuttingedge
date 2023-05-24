@@ -1,7 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { globalHeadingStyle, responsiveText } from '~/style/typography/typography.css';
+import { globalHeadingStyle } from '~/style/typography/typography.css';
 import { vars } from '~/style/themes/vars.css';
-import { responsiveTextStyleRule } from '~/style/typography/typography.css';
 import { rem } from 'polished';
 import { breakpoints } from '~/style/breakpoints';
 import { responsiveStyle } from '~/style/responsive-style';
@@ -11,8 +10,8 @@ globalStyle('*,*:before,*:after', {
 });
 
 const bodyStyle = {
-  fontFamily: vars.fontFamily.body,
-  fontWeight: vars.fontWeight.regular,
+  fontFamily: vars.fontFamily,
+  fontWeight: vars.textWeight.regular,
 };
 
 globalStyle('html, body', {
@@ -132,10 +131,10 @@ globalStyle('header a,footer a', {
   cursor: 'pointer',
 });
 
-globalStyle('h1', globalHeadingStyle({ level: '1', weight: 'medium' }));
-globalStyle('h2', globalHeadingStyle({ level: '2', weight: 'medium' }));
-globalStyle('h3', globalHeadingStyle({ level: '3', weight: 'medium' }));
-globalStyle('h4', globalHeadingStyle({ level: '4', weight: 'medium' }));
+globalStyle('h1', globalHeadingStyle({ level: '1', weight: 'regular' }));
+globalStyle('h2', globalHeadingStyle({ level: '2', weight: 'regular' }));
+globalStyle('h3', globalHeadingStyle({ level: '3', weight: 'regular' }));
+globalStyle('h4', globalHeadingStyle({ level: '4', weight: 'regular' }));
 
 globalStyle('h1', {
   marginTop: 0,
@@ -144,11 +143,6 @@ globalStyle('h1', {
 globalStyle('h2,h3,h4', {
   marginTop: vars.space['2x'],
   marginBottom: vars.space['2x'],
-});
-
-globalStyle('p', {
-  fontFamily: vars.fontFamily.paragraphs,
-  ...responsiveTextStyleRule.body,
 });
 
 globalStyle('a:focus,a:focus h2', {
@@ -166,11 +160,9 @@ globalStyle('ul,ol', {
   marginTop: 0,
   paddingLeft: 0,
   listStyle: 'none',
-  ...responsiveTextStyleRule.body,
 });
 
 globalStyle('a, header a,footer a', {
-  ...responsiveText.body,
   textDecoration: vars.links.decoration.link,
   color: vars.links.color.link,
   textUnderlineOffset: '.1em',

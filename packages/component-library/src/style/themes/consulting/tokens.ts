@@ -38,10 +38,7 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   typography: {
-    fonts: {
-      heading: `metropolis,sans-serif`,
-      body: `metropolis,sans-serif`,
-    },
+    fontFamily: 'metropolis,sans-serif',
   },
   buttons: {
     textTransform: 'uppercase',

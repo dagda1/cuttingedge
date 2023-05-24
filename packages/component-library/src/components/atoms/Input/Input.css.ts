@@ -1,9 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css';
-import { responsiveText } from '~/style/typography/typography.css';
 
 export const root = style([
-  responsiveText.body.untrimmed,
+  // responsiveText.body.untrimmed,
   {
     height: vars.inlineFieldSize.standard,
     width: vars.width.input,

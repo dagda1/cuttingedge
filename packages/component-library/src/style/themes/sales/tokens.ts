@@ -39,11 +39,7 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   typography: {
-    fonts: {
-      heading: `'Oswald', sans-serif`,
-      body: 'Arial, sans-serif',
-      paragraphs: 'Arial, sans-serif',
-    },
+    fontFamily: `'Oswald', sans-serif`,
   },
   buttons: {
     textTransform: 'uppercase',

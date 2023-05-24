@@ -53,7 +53,7 @@ globalStyle(`${bannerContent} p`, {
 });
 
 export const subHeading = style({
-  fontWeight: vars.fontWeight.strong,
+  fontWeight: vars.textWeight.strong,
 });
 
 export const body = style({});

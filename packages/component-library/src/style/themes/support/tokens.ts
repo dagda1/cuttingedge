@@ -38,11 +38,7 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   typography: {
-    fonts: {
-      heading: `"Bebas Neue", cursive`,
-      body: `"Bebas Neue", cursive`,
-      paragraphs: `"Bebas Neue", cursive`,
-    },
+    fontFamily: `"Bebas Neue", cursive`,
   },
   buttons: {
     textTransform: 'uppercase',

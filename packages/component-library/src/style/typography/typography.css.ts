@@ -1,98 +1,27 @@
 import type { StyleRule } from '@vanilla-extract/css';
-import { style } from '@vanilla-extract/css';
-import { createTextStyle } from '@capsizecss/vanilla-extract';
+import { createThemeContract } from '@vanilla-extract/css';
+import { styleVariants, style } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css';
-import { breakpointQuery, responsiveStyle } from '~/style/responsive-style';
-import type { FontWeight } from '~/style/types';
-import type { tokens } from '~/style/themes/tokens';
+import { responsiveStyle } from '~/style/responsive-style';
+import { createTextStyle } from '@capsizecss/vanilla-extract';
+import { breakpoints } from '~/style/breakpoints';
+import { mapToProperty } from '~/style/util/map-property';
 
-type Vars = typeof vars;
-type HeadingDefinition = Vars['headingLevel'];
-type TypographicDefinition = HeadingDefinition[keyof HeadingDefinition];
+export const fontWeight = styleVariants(vars.textWeight, mapToProperty('fontWeight'));
 
-const makeTypographyRules = (
-  textDefinition: TypographicDefinition,
-  debug?: string,
-): {
-  untrimmed: string;
-  trimmed: string;
-} => {
-  const {
-    fontSize: mobileFontSize,
-    lineHeight: mobileLineHeight,
-    capsizeTrims: mobileCapsizeTrims,
-  } = textDefinition.mobile;
+export const fontFamily = style({
+  fontFamily: vars.fontFamily,
+});
 
-  const {
-    fontSize: tabletFontSize,
-    lineHeight: tabletLineHeight,
-    capsizeTrims: tabletCapsizeTrims,
-  } = textDefinition.tablet;
+interface GlobalHeadingProps {
+  weight?: keyof typeof vars.headingWeight;
+  level: keyof typeof vars.headingLevel;
+}
 
-  return {
-    untrimmed: style(
-      responsiveStyle({
-        mobile: {
-          fontSize: mobileFontSize,
-          lineHeight: mobileLineHeight,
-        },
-        tablet: {
-          fontSize: tabletFontSize,
-          lineHeight: tabletLineHeight,
-        },
-      }),
-    ),
-    trimmed: createTextStyle(
-      {
-        fontSize: mobileFontSize,
-        lineHeight: mobileLineHeight,
-        ...mobileCapsizeTrims,
-      },
-      {
-        '@media': {
-          [breakpointQuery.tablet]: {
-            fontSize: tabletFontSize,
-            lineHeight: tabletLineHeight,
-            ...tabletCapsizeTrims,
-          },
-        },
-      },
-      debug,
-    ),
-  };
-};
-
-const makeTypographyStyleRules = (textDefinition: TypographicDefinition): StyleRule => {
-  const { fontSize: mobileFontSize, lineHeight: mobileLineHeight } = textDefinition.mobile;
-  const { fontSize: tabletFontSize, lineHeight: tabletLineHeight } = textDefinition.tablet;
-
-  return responsiveStyle({
-    mobile: {
-      fontSize: mobileFontSize,
-      lineHeight: mobileLineHeight,
-    },
-    tablet: {
-      fontSize: tabletFontSize,
-      lineHeight: tabletLineHeight,
-    },
-  });
-};
-
-export const responsiveTextStyleRule = {
-  body: makeTypographyStyleRules(vars.text.body),
-};
-
-export const responsiveText = {
-  body: makeTypographyRules(vars.text.body, 'body'),
-};
-
-type Level = keyof (typeof tokens)['color']['foreground']['heading'];
-
-// TODO: make fontSize rem
-export const globalHeadingStyle = ({ weight = 'regular', level }: { weight: FontWeight; level: Level }): StyleRule => ({
-  fontFamily: vars.fontFamily.heading,
-  fontWeight: vars.fontWeight[weight],
-  color: vars.foregroundColor.heading[level],
+export const globalHeadingStyle = ({ weight = 'regular', level }: GlobalHeadingProps): StyleRule => ({
+  fontFamily: vars.fontFamily,
+  fontWeight: vars.headingWeight[weight],
+  color: vars.foregroundColor.neutral,
   ...responsiveStyle({
     mobile: {
       fontSize: vars.headingLevel[level].mobile.fontSize,
@@ -104,3 +33,53 @@ export const globalHeadingStyle = ({ weight = 'regular', level }: { weight: Font
     },
   }),
 });
+
+export const textSizeTrimmed = styleVariants(vars.textSize, ({ mobile, tablet }, variant) => [
+  createTextStyle(
+    {
+      fontSize: mobile.fontSize,
+      lineHeight: mobile.lineHeight,
+      ...mobile.capsizeTrims,
+    },
+    {
+      '@media': {
+        [breakpoints.tablet]: {
+          fontSize: tablet.fontSize,
+          lineHeight: tablet.lineHeight,
+          ...tablet.capsizeTrims,
+        },
+      },
+    },
+    `textSize_${variant}`,
+  ),
+]);
+
+export const textSizeUntrimmed = styleVariants(vars.textSize, ({ mobile, tablet }) =>
+  responsiveStyle({
+    mobile: {
+      fontSize: mobile.fontSize,
+      lineHeight: mobile.lineHeight,
+    },
+    tablet: {
+      fontSize: tablet.fontSize,
+      lineHeight: tablet.lineHeight,
+    },
+  }),
+);
+
+const textToneVars = createThemeContract({
+  critical: null,
+  caution: null,
+  info: null,
+  promote: null,
+  positive: null,
+  brandAccent: null,
+  formAccent: null,
+  neutral: null,
+  secondary: null,
+  link: null,
+});
+
+export const tone = styleVariants(textToneVars, (toneVar) => ({
+  color: toneVar,
+}));

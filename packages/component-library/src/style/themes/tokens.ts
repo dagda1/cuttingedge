@@ -2,6 +2,8 @@ import { rem, mix } from 'polished';
 import { palette } from '~/style/palette.css';
 import { getLightVariant } from '~/style/util/a11y';
 import { rose } from 'tailwindcss/colors';
+import arialMetfics from '@capsizecss/metrics/arial';
+import { extractFontMetricsForTheme } from '../util/typography';
 
 export const colors = {
   primary: palette.green800,
@@ -112,6 +114,7 @@ export const tokens = {
       },
       header: palette.black,
       footer: palette.black,
+      neutral: palette.grey['700'],
     },
     background: {
       body: palette.white,
@@ -123,75 +126,99 @@ export const tokens = {
     },
   },
   typography: {
-    fonts: {
-      heading: '"GDS Transport",arial,sans-serif',
-      body: '"GDS Transport",arial,sans-serif',
-      paragraphs: '"GDS Transport",arial,sans-serif',
-    },
-    fontMetrics: {
-      capHeight: 1456,
-      ascent: 1900,
-      descent: -500,
-      lineGap: 0,
-      unitsPerEm: 2048,
-    },
+    fontFamily: 'arial,sans-serif',
+    fontMetrics: extractFontMetricsForTheme(arialMetfics),
     webFont: null,
     fontWeight: {
       ...fontWeight,
     },
     heading: {
+      weight: {
+        weak: 'regular',
+        regular: 'medium',
+      } as const,
       level: {
         '1': {
           mobile: {
-            fontSize: 32,
-            rows: 10,
+            fontSize: 28,
+            lineGap: 11,
           },
           tablet: {
-            fontSize: 32,
-            rows: 21,
+            fontSize: 36,
+            lineGap: 14,
           },
         },
         '2': {
           mobile: {
-            fontSize: 28,
-            rows: 9,
+            fontSize: 24,
+            lineGap: 11,
           },
           tablet: {
-            fontSize: 38,
-            rows: 13,
+            fontSize: 30,
+            lineGap: 13,
           },
         },
         '3': {
           mobile: {
             fontSize: 22,
-            rows: 8,
+            lineGap: 10,
           },
           tablet: {
-            fontSize: 22,
-            rows: 8,
+            fontSize: 24,
+            lineGap: 11,
           },
         },
         '4': {
           mobile: {
-            fontSize: 18,
-            rows: 8,
+            fontSize: 20,
+            lineGap: 9,
           },
           tablet: {
-            fontSize: 18,
-            rows: 8,
+            fontSize: 20,
+            lineGap: 9,
           },
         },
       },
     },
     text: {
-      body: {
+      large: {
+        mobile: {
+          fontSize: 18,
+          lineGap: 13,
+        },
+        tablet: {
+          fontSize: 18,
+          lineGap: 13,
+        },
+      },
+      standard: {
         mobile: {
           fontSize: 16,
-          rows: 8,
+          lineGap: 12,
         },
         tablet: {
           fontSize: 16,
-          rows: 8,
+          lineGap: 12,
+        },
+      },
+      small: {
+        mobile: {
+          fontSize: 14,
+          lineGap: 10,
+        },
+        tablet: {
+          fontSize: 14,
+          lineGap: 10,
+        },
+      },
+      xsmall: {
+        mobile: {
+          fontSize: 12,
+          lineGap: 9,
+        },
+        tablet: {
+          fontSize: 12,
+          lineGap: 9,
         },
       },
     },

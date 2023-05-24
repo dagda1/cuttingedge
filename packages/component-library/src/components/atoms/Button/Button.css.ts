@@ -3,10 +3,9 @@ import { style, styleVariants } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css';
 import { responsiveStyle } from '~/style/responsive-style';
 import { atoms } from '~/style/atoms/atoms';
-import { responsiveText } from '~/style/typography/typography.css';
 
 export const root = style([
-  responsiveText.body.untrimmed,
+  // responsiveText.body.untrimmed,
   atoms({ reset: 'button' }),
   {
     cursor: 'pointer',
