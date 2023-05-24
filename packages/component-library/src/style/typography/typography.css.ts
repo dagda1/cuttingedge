@@ -65,8 +65,6 @@ const makeTypographyRules = (
 const makeTypographyStyleRules = (textDefinition: TypographicDefinition): StyleRule => {
   const { fontSize: mobileFontSize, lineHeight: mobileLineHeight } = textDefinition.mobile;
   const { fontSize: tabletFontSize, lineHeight: tabletLineHeight } = textDefinition.tablet;
-  const { fontSize: desktopFontSize, lineHeight: desktopLineHeight } = textDefinition.desktop;
-  const { fontSize: wideFontSize, lineHeight: wideLineHeight } = textDefinition.wide;
 
   return responsiveStyle({
     mobile: {
@@ -76,14 +74,6 @@ const makeTypographyStyleRules = (textDefinition: TypographicDefinition): StyleR
     tablet: {
       fontSize: tabletFontSize,
       lineHeight: tabletLineHeight,
-    },
-    desktop: {
-      fontSize: desktopFontSize,
-      lineHeight: desktopLineHeight,
-    },
-    wide: {
-      fontSize: wideFontSize,
-      lineHeight: wideLineHeight,
     },
   });
 };
@@ -111,14 +101,6 @@ export const globalHeadingStyle = ({ weight = 'regular', level }: { weight: Font
     tablet: {
       fontSize: vars.headingLevel[level].tablet.fontSize,
       lineHeight: vars.headingLevel[level].tablet.lineHeight,
-    },
-    desktop: {
-      fontSize: vars.headingLevel[level].desktop.fontSize,
-      lineHeight: vars.headingLevel[level].desktop.lineHeight,
-    },
-    wide: {
-      fontSize: vars.headingLevel[level].wide.fontSize,
-      lineHeight: vars.headingLevel[level].wide.lineHeight,
     },
   }),
 });

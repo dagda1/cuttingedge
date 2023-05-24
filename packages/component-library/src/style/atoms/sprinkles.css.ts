@@ -1,7 +1,7 @@
 import { defineProperties, createSprinkles, createMapValueFn } from '@vanilla-extract/sprinkles';
 import { breakpoints } from '../breakpoints';
 import { vars } from '../themes/vars.css';
-import { rem } from 'polished'
+import { rem } from 'polished';
 
 export const unresponsiveProperties = {
   background: vars.backgroundColor,
@@ -40,6 +40,7 @@ const responsiveAtomicProperties = defineProperties({
     tablet: { '@media': `screen and (min-width: ${rem(breakpoints.tablet)})` },
     desktop: { '@media': `screen and (min-width: ${rem(breakpoints.desktop)})` },
     wide: { '@media': `screen and (min-width: ${rem(breakpoints.wide)})` },
+    extraWide: { '@media': `screen and (min-width: ${rem(breakpoints.extraWide)})` },
   },
   defaultCondition: 'mobile',
   properties: {

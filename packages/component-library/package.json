@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@capsizecss/core": "3.1.0",
+    "@capsizecss/metrics": "^1.1.1",
     "@capsizecss/vanilla-extract": "1.0.0",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",

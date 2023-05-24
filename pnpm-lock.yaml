@@ -395,6 +395,9 @@ importers:
       '@capsizecss/core':
         specifier: 3.1.0
         version: 3.1.0
+      '@capsizecss/metrics':
+        specifier: ^1.1.1
+        version: 1.1.1
       '@capsizecss/vanilla-extract':
         specifier: 1.0.0
         version: 1.0.0(@vanilla-extract/css@1.11.0)
@@ -2771,6 +2774,10 @@ packages:
       csstype: 3.1.2
     dev: true
 
+  /@capsizecss/metrics@1.1.1:
+    resolution: {integrity: sha512-YFONV2KvBPYr3FCJTMCZ5rkTHbaVCqO37VYJo9HrrzU2aLcWk5JPQln64yMmKtWUj5Pwi1vIqeFqCoYQxd20gg==}
+    dev: true
+
   /@capsizecss/vanilla-extract@1.0.0(@vanilla-extract/css@1.11.0):
     resolution: {integrity: sha512-/cY34CgCAmuf6SmpgPXmDJaIdJOaRe37MsoeZIeZme4k0F0HFts+poTxq4m8UtBH7LRxpUkfUHDoRO9OYjjVBg==}
     peerDependencies:
@@ -2994,22 +3001,22 @@ packages:
       rollup: 2.79.1
     dev: false
 
-  /@definitelytyped/header-parser@0.0.159:
-    resolution: {integrity: sha512-y+zr9ahjiFz7BLW1HeMWrx7xNxfBTDU0loJqzRh9WPHVdSrMsk+JQBSlubed/EZ1hgFZ6m93FRzBRCGIj8kBYg==}
+  /@definitelytyped/header-parser@0.0.162:
+    resolution: {integrity: sha512-OdllVVEFQ7ePyLM6PxTVL5Sa+EHkf1EuWqFCE+2jbDh5Mh356tiy8mgvhJ3ZtvxViCxJQ9Ew3wtzdELcg0qWqg==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.159
+      '@definitelytyped/typescript-versions': 0.0.162
       '@types/parsimmon': 1.10.6
       parsimmon: 1.18.1
     dev: true
 
-  /@definitelytyped/typescript-versions@0.0.159:
-    resolution: {integrity: sha512-9TWRPpOo3CWYUyS3QCu8goJbAhS3qAE/LWFc+Qy6Wb8vsUAwMTioCtPPsYyqrPDbatXvPFrOr182hE1OFvEFSA==}
+  /@definitelytyped/typescript-versions@0.0.162:
+    resolution: {integrity: sha512-o9cXltHGl/AqL0kjHqSgc04voBDozfIv/va29DVUTTOcNtJtoMlnMVmpWLo4lmOMuPAlTm9w+O0tBT+jqVhWzw==}
     dev: true
 
-  /@definitelytyped/utils@0.0.159:
-    resolution: {integrity: sha512-zm+Gsw39sD2EANlJmmNXgtpIzXO3QmBq5nZx6Y95RD/s2AypDaBw0eauO1wWji6I45tJOAgPZEvfmjjaxfoyhA==}
+  /@definitelytyped/utils@0.0.162:
+    resolution: {integrity: sha512-UM4RmI87WwqaNiC/XwsuyFNim9wOOMKHrHuoTH88/Q4nrFrSYrXZvy7Css+29wLJY1qhpLYrf1pux/zLetIHHw==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.159
+      '@definitelytyped/typescript-versions': 0.0.162
       '@qiwi/npm-registry-client': 8.9.1
       '@types/node': 14.18.36
       charm: 1.0.2
@@ -10004,7 +10011,7 @@ packages:
     peerDependencies:
       typescript: '*'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.159
+      '@definitelytyped/header-parser': 0.0.162
       command-exists: 1.2.9
       rimraf: 3.0.2
       semver: 6.3.0
@@ -10020,9 +10027,9 @@ packages:
     peerDependencies:
       typescript: '>= 3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.7.0-dev || >= 3.8.0-dev || >= 3.9.0-dev || >= 4.0.0-dev'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.159
-      '@definitelytyped/typescript-versions': 0.0.159
-      '@definitelytyped/utils': 0.0.159
+      '@definitelytyped/header-parser': 0.0.162
+      '@definitelytyped/typescript-versions': 0.0.162
+      '@definitelytyped/utils': 0.0.162
       dts-critic: 3.3.11(typescript@5.0.4)
       fs-extra: 6.0.1
       json-stable-stringify: 1.0.2
@@ -11441,7 +11448,7 @@ packages:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
     os: [darwin]
-    deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
+    deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
