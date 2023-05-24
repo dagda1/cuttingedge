@@ -18,14 +18,16 @@ type FontSizeText = {
   rows: number;
 };
 
-export type TextDefinition = Record<Breakpoint, FontSizeText>;
+export type TextBreakpoint = Extract<Breakpoint, 'mobile' | 'tablet'>;
+
+export type TextDefinition = Record<TextBreakpoint, FontSizeText>;
 
 const fontSizeToCapHeight = (
   grid: number,
   definition: TextDefinition,
   fontMetrics: Omit<FontMetrics, 'familyName' | 'xHeight' | 'xWidthAvg'>,
 ) => {
-  const { mobile, tablet, desktop, wide } = definition;
+  const { mobile, tablet } = definition;
 
   const mobileCapHeight = getCapHeight({
     fontSize: mobile.fontSize,
@@ -34,16 +36,6 @@ const fontSizeToCapHeight = (
 
   const tabletCapHeight = getCapHeight({
     fontSize: tablet.fontSize,
-    fontMetrics,
-  });
-
-  const desktopCapHeight = getCapHeight({
-    fontSize: desktop.fontSize,
-    fontMetrics,
-  });
-
-  const wideCapHeight = getCapHeight({
-    fontSize: wide.fontSize,
     fontMetrics,
   });
 
@@ -67,26 +59,6 @@ const fontSizeToCapHeight = (
     fontMetrics,
   });
 
-  const {
-    fontSize: desktopFontSize,
-    lineHeight: desktopLineHeight,
-    ...desktopTrims
-  } = precomputeValues({
-    fontSize: desktop.fontSize,
-    leading: desktop.rows * grid,
-    fontMetrics,
-  });
-
-  const {
-    fontSize: wideFontSize,
-    lineHeight: wideLineHeight,
-    ...wideTrims
-  } = precomputeValues({
-    fontSize: wide.fontSize,
-    leading: wide.rows * grid,
-    fontMetrics,
-  });
-
   return {
     mobile: {
       fontSize: mobileFontSize,
@@ -102,22 +74,6 @@ const fontSizeToCapHeight = (
       capHeight: px(tabletCapHeight),
       capsizeTrims: {
         ...tabletTrims,
-      },
-    },
-    desktop: {
-      fontSize: desktopFontSize,
-      lineHeight: desktopLineHeight,
-      capHeight: px(desktopCapHeight),
-      capsizeTrims: {
-        ...desktopTrims,
-      },
-    },
-    wide: {
-      fontSize: wideFontSize,
-      lineHeight: wideLineHeight,
-      capHeight: px(wideCapHeight),
-      capsizeTrims: {
-        ...wideTrims,
       },
     },
   };

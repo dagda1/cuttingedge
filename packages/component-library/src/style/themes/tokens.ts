@@ -150,14 +150,6 @@ export const tokens = {
             fontSize: 32,
             rows: 21,
           },
-          desktop: {
-            fontSize: 48,
-            rows: 21,
-          },
-          wide: {
-            fontSize: 60,
-            rows: 21,
-          },
         },
         '2': {
           mobile: {
@@ -165,14 +157,6 @@ export const tokens = {
             rows: 9,
           },
           tablet: {
-            fontSize: 38,
-            rows: 13,
-          },
-          desktop: {
-            fontSize: 38,
-            rows: 13,
-          },
-          wide: {
             fontSize: 38,
             rows: 13,
           },
@@ -186,14 +170,6 @@ export const tokens = {
             fontSize: 22,
             rows: 8,
           },
-          desktop: {
-            fontSize: 22,
-            rows: 8,
-          },
-          wide: {
-            fontSize: 22,
-            rows: 8,
-          },
         },
         '4': {
           mobile: {
@@ -201,14 +177,6 @@ export const tokens = {
             rows: 8,
           },
           tablet: {
-            fontSize: 18,
-            rows: 8,
-          },
-          desktop: {
-            fontSize: 18,
-            rows: 8,
-          },
-          wide: {
             fontSize: 18,
             rows: 8,
           },
@@ -223,14 +191,6 @@ export const tokens = {
         },
         tablet: {
           fontSize: 16,
-          rows: 8,
-        },
-        desktop: {
-          fontSize: 19,
-          rows: 8,
-        },
-        wide: {
-          fontSize: 19,
           rows: 8,
         },
       },

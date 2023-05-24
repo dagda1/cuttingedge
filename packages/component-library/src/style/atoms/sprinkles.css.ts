@@ -40,6 +40,7 @@ const responsiveAtomicProperties = defineProperties({
     tablet: { '@media': `screen and (min-width: ${rem(breakpoints.tablet)})` },
     desktop: { '@media': `screen and (min-width: ${rem(breakpoints.desktop)})` },
     wide: { '@media': `screen and (min-width: ${rem(breakpoints.wide)})` },
+    extraWide: { '@media': `screen and (min-width: ${rem(breakpoints.extraWide)})` },
   },
   defaultCondition: 'mobile',
   properties: {

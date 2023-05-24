@@ -13,6 +13,7 @@ export const breakpointQuery = mapValues(
   readonly tablet: string;
   readonly desktop: string;
   readonly wide: string;
+  readonly extraWide: string;
 };
 
 const makeMediaQuery = (breakpoint: keyof typeof breakpointQuery) => (styles?: CSSProps) =>
@@ -26,6 +27,7 @@ const mediaQuery = {
   tablet: makeMediaQuery('tablet'),
   desktop: makeMediaQuery('desktop'),
   wide: makeMediaQuery('wide'),
+  extraWide: makeMediaQuery('extraWide'),
 };
 
 interface ResponsiveStyle {
@@ -33,16 +35,18 @@ interface ResponsiveStyle {
   tablet?: CSSProps;
   desktop?: CSSProps;
   wide?: CSSProps;
+  extraWide?: CSSProps;
 }
 
-export const responsiveStyle = ({ mobile, tablet, desktop, wide }: ResponsiveStyle): StyleRule => ({
+export const responsiveStyle = ({ mobile, tablet, desktop, wide, extraWide }: ResponsiveStyle): StyleRule => ({
   ...omit(mobile as CSSProps, '@media' as any),
-  ...(tablet || desktop || wide
+  ...(tablet || desktop || wide || extraWide
     ? {
         '@media': {
           ...mediaQuery.tablet(tablet ?? {}),
           ...mediaQuery.desktop(desktop ?? {}),
           ...mediaQuery.wide(wide ?? {}),
+          ...mediaQuery.extraWide(extraWide ?? {}),
         },
       }
     : {}),
