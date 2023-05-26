@@ -1,7 +1,8 @@
 import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
-import { palette } from '../../src';
 import { atoms } from '../../src/style/atoms/atoms';
 import { vars } from '../../src/style/themes/vars.css';
+import { palette } from '../../src/style/palette.css';
+import { responsiveStyle } from '../../src/style/responsive-style';
 
 globalFontFace('Oswald', {
   fontStyle: 'normal',
@@ -31,6 +32,14 @@ export const layout = style({
 });
 
 export const item = style([
+  responsiveStyle({
+    mobile: {
+      flex: 'auto',
+    },
+    tablet: {
+      flex: '1 0 auto',
+    },
+  }),
   atoms({
     reset: 'div',
     ...{
@@ -40,11 +49,7 @@ export const item = style([
       },
       display: {
         mobile: 'block',
-        tablet: 'inline-block',
-      },
-      flex: {
-        mobile: 'auto',
-        tablet: '1 0 auto',
+        tablet: 'inlineBlock',
       },
     },
   }),

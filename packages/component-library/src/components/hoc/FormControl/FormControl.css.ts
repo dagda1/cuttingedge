@@ -7,7 +7,7 @@ export const root = style([
   atoms({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'flexStart',
   }),
   {
     font: 'inherit',

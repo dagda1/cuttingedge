@@ -112,6 +112,7 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
   );
 
   const resolvedTokens = {
+    touchableSize: px(tokens.touchableSize * tokens.grid),
     borderRadius: tokens.border.radius,
     borderColor: tokens.border.color,
     borderWidth: mapValues(tokens.border.width, px),
@@ -214,6 +215,7 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     radios: {
       ...tokens.radios,
     },
+    contentWidth: mapValues(tokens.contentWidth, px),
     transition: tokens.transitions,
   };
 

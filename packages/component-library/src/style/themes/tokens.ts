@@ -114,7 +114,7 @@ export const tokens = {
       },
       header: palette.black,
       footer: palette.black,
-      neutral: palette.grey['700'],
+      neutral: palette.gray700,
     },
     background: {
       body: palette.white,
@@ -222,6 +222,13 @@ export const tokens = {
         },
       },
     },
+  },
+  touchableSize: 12,
+  contentWidth: {
+    xsmall: 400,
+    small: 660,
+    medium: 940,
+    large: 1308,
   },
   grid: 4,
   width: {

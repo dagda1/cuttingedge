@@ -280,15 +280,12 @@ export const noMobile = style({
 export const dropdown = style({
   border: 0,
   background: 'transparent',
-  ...responsiveStyle({
-    ...vars.text.body,
-  }),
   textDecoration: vars.links.decoration.link,
   color: vars.links.color.link,
   textUnderlineOffset: '.1em',
   lineHeight: vars.links.lineHeight,
   cursor: 'pointer',
-  fontFamily: vars.fontFamily.body,
+  fontFamily: vars.fontFamily,
   zIndex: 15,
 });
 

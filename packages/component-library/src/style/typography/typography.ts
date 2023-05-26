@@ -3,20 +3,13 @@ import * as styles from './typography.css';
 export interface TextStyleProps {
   weight?: keyof typeof styles.fontWeight;
   size?: keyof typeof styles.textSizeUntrimmed;
-  tone?: keyof typeof styles.tone;
   baseline: boolean;
 }
 
-export function textStyles({
-  weight = 'regular',
-  size = 'standard',
-  tone = 'neutral',
-  baseline,
-}: TextStyleProps): string[] {
+export function textStyles({ weight = 'regular', size = 'standard', baseline }: TextStyleProps): string[] {
   return [
     styles.fontFamily,
     styles.fontWeight[weight],
-    styles.tone[tone],
     (baseline ? styles.textSizeTrimmed : styles.textSizeUntrimmed)[size],
   ];
 }

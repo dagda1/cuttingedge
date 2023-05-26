@@ -1,6 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { globalHeadingStyle } from '~/style/typography/typography.css';
-import { vars } from '~/style/themes/vars.css';
+import { vars } from '../../../style/themes/vars.css';
 import { rem } from 'polished';
 import { breakpoints } from '~/style/breakpoints';
 import { responsiveStyle } from '~/style/responsive-style';
@@ -130,11 +129,6 @@ globalStyle('footer', {
 globalStyle('header a,footer a', {
   cursor: 'pointer',
 });
-
-globalStyle('h1', globalHeadingStyle({ level: '1', weight: 'regular' }));
-globalStyle('h2', globalHeadingStyle({ level: '2', weight: 'regular' }));
-globalStyle('h3', globalHeadingStyle({ level: '3', weight: 'regular' }));
-globalStyle('h4', globalHeadingStyle({ level: '4', weight: 'regular' }));
 
 globalStyle('h1', {
   marginTop: 0,
