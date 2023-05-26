@@ -20,7 +20,7 @@ export const invalid = style({
 export const required = style({
   '::before': {
     content: "'*'",
-    marginRight: vars.space['1x'],
+    marginRight: vars.space['xxsmall'],
   },
 });
 

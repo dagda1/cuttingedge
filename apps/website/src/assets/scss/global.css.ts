@@ -6,7 +6,7 @@ globalStyle('body', {
   backgroundColor: vars.backgroundColor.body,
   ...responsiveStyle({
     mobile: {
-      padding: `0 ${vars.space['2x']}`,
+      padding: `0 ${vars.space['xsmall']}`,
     },
     tablet: {
       padding: 0,
@@ -23,11 +23,11 @@ export const covid = style({});
 globalStyle(`${covid} h1`, {
   marginTop: '-20px',
   fontSize: '2rem',
-  marginBottom: vars.space['2x'],
+  marginBottom: vars.space['xsmall'],
 });
 
 globalStyle(`${covid} svg:first-of-type`, {
-  marginBottom: vars.space['2x'],
+  marginBottom: vars.space['xsmall'],
 });
 
 export const hidden = style({

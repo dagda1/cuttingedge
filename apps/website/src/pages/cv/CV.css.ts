@@ -18,8 +18,8 @@ globalStyle(`${pdfViewer} h2`, {
 });
 
 globalStyle(`${pdfViewer} + iframe`, {
-  marginTop: vars.space['1x'],
-  marginBottom: vars.space['1x'],
+  marginTop: vars.space['xxsmall'],
+  marginBottom: vars.space['xxsmall'],
   height: '100%',
   width: '100%',
 });

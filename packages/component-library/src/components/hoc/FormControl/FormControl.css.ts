@@ -15,22 +15,22 @@ export const root = style([
     fontSize: 'inherit',
     ...responsiveStyle({
       mobile: {
-        marginBottom: vars.space['1x'],
+        marginBottom: vars.space['xxsmall'],
       },
       tablet: {
-        marginBottom: vars.space['2x'],
+        marginBottom: vars.space['xsmall'],
       },
     }),
   },
 ]);
 
 export const error = style({
-  paddingLeft: vars.space['1x'],
+  paddingLeft: vars.space['xxsmall'],
   borderLeft: `5px solid ${vars.foregroundColor.error}`,
 });
 
 export const highlight = style({
-  paddingLeft: vars.space['1x'],
+  paddingLeft: vars.space['xxsmall'],
   borderLeft: `5px solid ${vars.buttons.primary.background}`,
 });
 
@@ -47,13 +47,13 @@ export const horizontal = style(
   responsiveStyle({
     mobile: {
       display: 'flex',
-      marginTop: vars.space['1x'],
+      marginTop: vars.space['xxsmall'],
     },
     tablet: {
       flexDirection: 'row',
       flexWrap: 'wrap',
       alignItems: 'center',
-      marginTop: vars.space['2x'],
+      marginTop: vars.space['xsmall'],
     },
   }),
 );
@@ -115,11 +115,11 @@ export const Full = style({
 });
 
 globalStyle(`.${root} label`, {
-  marginBottom: vars.space['1x'],
+  marginBottom: vars.space['xxsmall'],
 });
 
 globalStyle(`.${root}.${horizontal} label`, {
-  marginRight: vars.space['1x'],
+  marginRight: vars.space['xxsmall'],
 });
 
 globalStyle(`.${root} [role=alert]`, {

@@ -31,8 +31,8 @@ export const footer = style([
   },
   atoms({
     marginBottom: {
-      mobile: '2x',
-      tablet: 'none',
+      mobile: 'xsmall',
+      tablet: 'xxsmall',
     },
     flexDirection: {
       mobile: 'column',
@@ -140,8 +140,8 @@ export const social = style({
 
 globalStyle(`${social} li`, {
   display: 'inline-block',
-  marginRight: vars.space['2x'],
-  paddingRight: vars.space['2x'],
+  marginRight: vars.space['xsmall'],
+  paddingRight: vars.space['xsmall'],
   borderRight: '1px solid #333',
   height: '20px',
   lineHeight: '21px',

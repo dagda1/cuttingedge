@@ -12,7 +12,7 @@ const styles: ComplexStyleRule = {
 };
 
 export const container = style({
-  padding: vars.space['4x'],
+  padding: vars.space['medium'],
   width: '100%',
   height: '100%',
 });

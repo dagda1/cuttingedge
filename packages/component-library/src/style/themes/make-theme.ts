@@ -129,15 +129,9 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
       standard: '2.5rem',
       small: '1.25rem',
     },
-    space: {
-      ...tokens.space,
-    },
-    width: {
-      ...tokens.width,
-    },
-    inputWidth: {
-      ...tokens.inputWidth,
-    },
+    space: mapValues(tokens.space, (sp) => px(sp * tokens.grid)),
+    width: tokens.width,
+    inputWidth: tokens.inputWidth,
     textSize,
     headingLevel: mapValues(tokens.typography.heading.level, (definition) =>
       fontSizeToCapHeight(tokens.grid, definition, tokens.typography.fontMetrics),

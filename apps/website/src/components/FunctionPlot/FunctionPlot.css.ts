@@ -3,7 +3,7 @@ import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style, globalStyle } from '@vanilla-extract/css';
 
 export const container = style({
-  paddingBottom: vars.space['2x'],
+  paddingBottom: vars.space['xsmall'],
   width: '100%',
   height: '100%',
 });
@@ -41,7 +41,7 @@ export const form = style({});
 globalStyle(`${form} button`, {
   height: '40px',
   padding: '0',
-  width: vars.space['15x'],
+  width: vars.space['xxlarge'],
 });
 
 globalStyle(`${form} fieldset > div`, {

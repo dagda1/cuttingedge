@@ -12,8 +12,8 @@ globalFontFace('Oswald', {
 
 export const wrap = style({
   maxWidth: rem(1008),
-  paddingLeft: vars.space['1x'],
-  paddingRight: vars.space['2x'],
+  paddingLeft: vars.space['xxsmall'],
+  paddingRight: vars.space['xsmall'],
   margin: '0 auto',
 });
 
@@ -37,8 +37,8 @@ export const item = style([
     reset: 'div',
     ...{
       paddingLeft: {
-        mobile: '1x',
-        tablet: '3x',
+        mobile: 'xxsmall',
+        tablet: 'small',
       },
       display: {
         mobile: 'block',

@@ -12,7 +12,7 @@ export const main = style({
       padding: 0,
     },
     desktop: {
-      padding: vars.space['4x'],
+      padding: vars.space['medium'],
     },
   }),
 });

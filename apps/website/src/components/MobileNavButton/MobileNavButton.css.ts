@@ -9,7 +9,7 @@ const buttonStyles: ComplexStyleRule = {
   background: 'transparent',
   border: 'none',
   padding: '0',
-  marginTop: vars.space['1x'],
+  marginTop: vars.space['xxsmall'],
 };
 
 export const MobileNavButtonActive = style([{ ...buttonStyles, color: '#0000' }]);

@@ -21,18 +21,6 @@ export const colors = {
   white: palette.white,
 };
 
-type ScaleKeys<A extends readonly unknown[]> = `${keyof A & `${number}`}x`;
-
-const spacing = [
-  0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12.5, 13, 13.5, 14, 14.5,
-  15, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20,
-] as const;
-
-type SpaceKeys = ScaleKeys<typeof spacing>;
-
-const borderRadius = [1, 2, 4, 8, 16, 32] as const;
-type BorderRadiusKeys = ScaleKeys<typeof borderRadius>;
-
 const fontWeight = {
   regular: 400,
   medium: 500,
@@ -41,17 +29,15 @@ const fontWeight = {
 
 export const tokens = {
   space: {
-    none: '0',
-    ...spacing.reduce((acc, curr, i) => {
-      acc[`${i + 1}x` as SpaceKeys] = `${curr}rem`;
-      return acc;
-    }, {} as Record<SpaceKeys, string>),
-  },
-  borderRadius: {
-    ...borderRadius.reduce((acc, curr, i) => {
-      acc[`${i + 1}x` as BorderRadiusKeys] = `${curr}px`;
-      return acc;
-    }, {} as Record<BorderRadiusKeys, string>),
+    gutter: 6,
+    xxsmall: 1,
+    xsmall: 2,
+    small: 3,
+    medium: 5,
+    large: 8,
+    xlarge: 11,
+    xxlarge: 15,
+    xxxlarge: 20,
   },
   colors: {
     ...colors,

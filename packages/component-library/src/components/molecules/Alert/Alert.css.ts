@@ -4,7 +4,7 @@ import { vars } from '~/style/themes/vars.css';
 
 export const banner = style([
   atoms({
-    marginY: '1x',
+    marginY: 'xxsmall',
   }),
   {
     border: '5px solid transparent',
@@ -14,8 +14,8 @@ export const banner = style([
 globalStyle(`${banner} h2`, {
   color: vars.banners.titleColor,
   margin: 0,
-  fontSize: vars.space['3x'],
-  lineHeight: vars.space['3x'],
+  fontSize: vars.space['small'],
+  lineHeight: vars.space['small'],
 });
 
 export const success = style({

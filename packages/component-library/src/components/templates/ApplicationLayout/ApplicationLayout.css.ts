@@ -24,8 +24,8 @@ globalStyle('#root', {
   display: 'grid',
   height: '100%',
   margin: '0 auto',
-  paddingTop: vars.space['2x'],
-  paddingBottom: vars.space['2x'],
+  paddingTop: vars.space['xsmall'],
+  paddingBottom: vars.space['xsmall'],
 });
 
 export const header = style({
@@ -74,8 +74,8 @@ export const size = style({
 });
 
 export const full = style({
-  marginLeft: vars.space['2x'],
-  marginRight: vars.space['2x'],
+  marginLeft: vars.space['xsmall'],
+  marginRight: vars.space['xsmall'],
 });
 
 export const centerHeading = style({ textAlign: 'center' });
@@ -88,7 +88,7 @@ globalStyle('main', {
       padding: 0,
     },
     tablet: {
-      padding: vars.space['2x'],
+      padding: vars.space['xsmall'],
     },
     desktop: {
       padding: 0,
@@ -113,7 +113,7 @@ globalStyle('header,footer', {
 });
 
 globalStyle('footer', {
-  padding: vars.space['1x'],
+  padding: vars.space['xxsmall'],
 });
 
 globalStyle('header', {
@@ -135,8 +135,8 @@ globalStyle('h1', {
 });
 
 globalStyle('h2,h3,h4', {
-  marginTop: vars.space['2x'],
-  marginBottom: vars.space['2x'],
+  marginTop: vars.space['xsmall'],
+  marginBottom: vars.space['xsmall'],
 });
 
 globalStyle('a:focus,a:focus h2', {

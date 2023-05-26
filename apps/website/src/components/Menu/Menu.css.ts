@@ -36,7 +36,7 @@ globalStyle(`${container} li:not(:last-of-type)`, {
       marginRight: 'auto',
     },
     tablet: {
-      marginRight: vars.space['2x'],
+      marginRight: vars.space['xsmall'],
     },
   }),
 });
@@ -90,10 +90,10 @@ globalStyle(`li${contact} a`, {
 globalStyle(`${container} div:not(.expanded):not(${contact}) ul li`, {
   ...responsiveStyle({
     mobile: {
-      marginRight: vars.space['1x'],
+      marginRight: vars.space['xxsmall'],
     },
     tablet: {
-      marginRight: vars.space['2x'],
+      marginRight: vars.space['xsmall'],
     },
   }),
 });
@@ -155,7 +155,7 @@ export const expanded = style([
     display: 'block',
   },
   atoms({
-    paddingY: '2x',
+    paddingY: 'xsmall',
   }),
 ]);
 
@@ -164,7 +164,7 @@ export const closeButton = style({});
 
 globalStyle('.szh-menu__item', {
   border: `1px solid ${palette.white}`,
-  padding: vars.space['2x'],
+  padding: vars.space['xsmall'],
   width: '100%',
 });
 
@@ -173,10 +173,10 @@ globalStyle('.menuitem', {
 });
 
 globalStyle(`${expanded} ul li a, ${expanded} ul li:not(${closeButton}) button`, {
-  paddingTop: vars.space['1x'],
-  paddingBottom: vars.space['2x'],
-  marginBottom: vars.space['1x'],
-  paddingLeft: vars.space['1x'],
+  paddingTop: vars.space['xxsmall'],
+  paddingBottom: vars.space['xsmall'],
+  marginBottom: vars.space['xxsmall'],
+  paddingLeft: vars.space['xxsmall'],
   display: 'flex',
   justifyContent: 'center',
   flex: 1,
@@ -209,8 +209,8 @@ export const menuMobileButtonContainer = style([
     verticalAlign: 'middle',
   },
   atoms({
-    marginLeft: '1x',
-    marginRight: '2x',
+    marginLeft: 'xxsmall',
+    marginRight: 'xsmall',
   }),
 ]);
 
@@ -226,7 +226,7 @@ globalStyle(`${horizontal}${expanded} a`, {
 globalStyle(`ul li${horizontal}${mobile}`, {
   display: 'flex',
   border: `1px solid ${palette.white}`,
-  marginBottom: vars.space['2x'],
+  marginBottom: vars.space['xsmall'],
   color: palette.white,
   justifyContent: 'center',
 });
@@ -240,7 +240,7 @@ globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  marginRight: vars.space['2x'],
+  marginRight: vars.space['xsmall'],
   borderRadius: '32px',
   background: palette.white,
   color: '#141414',

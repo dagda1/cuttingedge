@@ -27,7 +27,7 @@ globalStyle(`${item} input`, {
 globalStyle(`${item} label`, {
   // ...responsiveTextStyleRule.body,
   fontWeight: vars.textWeight.regular,
-  paddingLeft: vars.space['1x'],
+  paddingLeft: vars.space['xxsmall'],
   display: 'inline-block',
   touchAction: 'manipulation',
   boxSizing: 'border-box',
@@ -102,7 +102,7 @@ export const inline = style([
 ]);
 
 globalStyle(`${inline}:not(${small}) label`, {
-  marginRight: vars.space['1x'],
+  marginRight: vars.space['xxsmall'],
   marginTop: '4px',
 });
 

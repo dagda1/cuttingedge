@@ -5,7 +5,7 @@ import { atoms } from '~/style/atoms/atoms';
 export const root = style([
   // responsiveText.body.untrimmed,
   atoms({
-    marginBottom: '1x',
+    marginBottom: 'xxsmall',
   }),
   {
     color: vars.foregroundColor.error,

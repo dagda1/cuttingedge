@@ -13,7 +13,7 @@ export const srOnlyLegend = style({
 
 export const legend = style({
   // ...responsiveTextStyleRule.body,
-  marginBottom: vars.space['1x'],
+  marginBottom: vars.space['xxsmall'],
 });
 
 export const inline = style({

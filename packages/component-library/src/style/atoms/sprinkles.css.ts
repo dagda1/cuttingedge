@@ -1,7 +1,17 @@
+import type { ConditionalValue, RequiredConditionalValue } from '@vanilla-extract/sprinkles';
 import { defineProperties, createSprinkles, createMapValueFn } from '@vanilla-extract/sprinkles';
 import { breakpointNames, breakpoints } from '../breakpoints';
 import { vars } from '~/style/themes/vars.css';
 import { rem } from 'polished';
+
+export type OptionalResponsiveValue<Value extends string | number> = ConditionalValue<
+  typeof responsiveAtomicProperties,
+  Value
+>;
+export type RequiredResponsiveValue<Value extends string | number> = RequiredConditionalValue<
+  typeof responsiveAtomicProperties,
+  Value
+>;
 
 const sizes = {
   full: '100%',
