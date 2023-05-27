@@ -876,8 +876,8 @@ importers:
         specifier: ^3.1.6
         version: 3.1.6
       effection:
-        specifier: ^3.0.0-alpha.7
-        version: 3.0.0-alpha.7
+        specifier: ^2.0.6
+        version: 2.0.6
       fetch-jsonp:
         specifier: ^1.2.3
         version: 1.2.3
@@ -9020,9 +9020,16 @@ packages:
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  /effection@3.0.0-alpha.7:
-    resolution: {integrity: sha512-V3z0AaYjY2UgkowRWSBysOZCt9q743bW/nKyzi9w9ln8YWerA1jNrgT9P7PKH53p0/iW2zF2KbLyNOSW0M10HQ==}
-    engines: {node: '>= 16'}
+  /effection@2.0.6:
+    resolution: {integrity: sha512-Bc8pXBrNQFumPLAmwj6mh7JeZFbLRoPYkqhU8WkVAuwHCQZh2xHE5zxaceL1nWR78ZuqFwwXlrTODDQLIkeQBw==}
+    dependencies:
+      '@effection/channel': 2.0.4
+      '@effection/core': 2.2.1
+      '@effection/events': 2.0.4
+      '@effection/fetch': 2.0.5
+      '@effection/main': 2.1.1
+      '@effection/stream': 2.0.4
+      '@effection/subscription': 2.0.4
     dev: false
 
   /electron-to-chromium@1.4.411:
