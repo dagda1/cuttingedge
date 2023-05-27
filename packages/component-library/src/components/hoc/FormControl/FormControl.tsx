@@ -4,9 +4,9 @@ import { useRef } from 'react';
 import { Label } from '../../atoms/Label';
 import { prefixId } from '../../../utl';
 import * as styles from './FormControl.css';
-import type { vars } from '../../../style/themes/vars.css';
+import type { vars } from '~/style/themes/vars.css';
 import { ErrorMessage } from '../../atoms/ErrorMessage/ErrorMessage';
-import type { FontWeight } from '../../../style/types';
+import type { FontWeight } from '~/style/types';
 
 export type Layout = 'vertical' | 'horizontal';
 

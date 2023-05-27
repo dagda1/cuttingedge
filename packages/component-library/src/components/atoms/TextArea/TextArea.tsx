@@ -1,7 +1,7 @@
 import type { Ref, TextareaHTMLAttributes } from 'react';
 import cs from 'classnames';
 import * as styles from './TextArea.css';
-import { root, invalid as elmentInvalid } from '../Input/Input.css';
+import { root, invalid as elmentInvalid } from '~/components/atoms/Input/Input.css';
 
 export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   invalid?: boolean;

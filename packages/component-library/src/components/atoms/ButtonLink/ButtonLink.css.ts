@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '../../../style/themes/vars.css';
+import { vars } from '~/style/themes/vars.css';
 
 export const main = style({
   padding: '18px 32px',

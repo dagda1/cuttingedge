@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { vars } from '../../../style/themes/vars.css';
-import { responsiveTextStyleRule } from '../../../style/typography/typography.css';
+import { vars } from '~/style/themes/vars.css';
+import { responsiveTextStyleRule } from '~/style/typography/typography.css';
 
 export const item = style({
   position: 'relative',

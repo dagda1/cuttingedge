@@ -1,10 +1,10 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { globalHeadingStyle, responsiveText } from '../../../style/typography/typography.css';
-import { vars } from '../../../style/themes/vars.css';
-import { responsiveTextStyleRule } from '../../../style/typography/typography.css';
+import { globalHeadingStyle, responsiveText } from '~/style/typography/typography.css';
+import { vars } from '~/style/themes/vars.css';
+import { responsiveTextStyleRule } from '~/style/typography/typography.css';
 import { rem } from 'polished';
-import { breakpoints } from '../../../style/breakpoints';
-import { responsiveStyle } from '../../../style/responsive-style';
+import { breakpoints } from '~/style/breakpoints';
+import { responsiveStyle } from '~/style/responsive-style';
 
 globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',

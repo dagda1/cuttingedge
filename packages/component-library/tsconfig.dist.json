@@ -4,11 +4,17 @@
     "baseUrl": "./",
     "outDir": "./dist/esm",
     "rootDir": "./src",
-    "noEmit": false
+    "noEmit": false,
+    "paths": {
+      "~/*": ["src/*"]
+    }
   },
-  "references": [
-    { "path": "../util/tsconfig.dist.json" }
-  ],
+  "references": [{ "path": "../util/tsconfig.dist.json" }],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "./src/setupTests.ts", "**/*.stories.tsx"]
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "./src/setupTests.ts",
+    "**/*.stories.tsx"
+  ]
 }

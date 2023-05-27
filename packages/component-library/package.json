@@ -60,7 +60,8 @@
     "serve-handler": "6.1.5",
     "storybook-addon-designs": "6.3.1",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "vite-tsconfig-paths": "4.2.0"
   },
   "peerDependencies": {
     "react": ">= 18.x.x",

@@ -2,13 +2,13 @@ import type { PropsWithChildren, ReactElement, ReactNode, RefObject } from 'reac
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
-import { cuttingTheme } from '../../../style/themes/cutting/cutting.css';
+import { cuttingTheme } from '~/style/themes/cutting/cutting.css';
 import * as styles from './ApplicationLayout.css';
 import { isNil } from '@cutting/util';
-import { consultingTheme } from '../../../style/themes/consulting/consultingTheme.css';
-import { salesTheme } from '../../../style/themes/sales/salesTheme.css';
-import { defaultTheme } from '../../../style/themes/default/default.css';
-import { supportTheme } from '../../../style/themes/support/supportTheme.css';
+import { consultingTheme } from '~/style/themes/consulting/consultingTheme.css';
+import { salesTheme } from '~/style/themes/sales/salesTheme.css';
+import { defaultTheme } from '~/style/themes/default/default.css';
+import { supportTheme } from '~/style/themes/support/supportTheme.css';
 
 export const themes = {
   defaultTheme,

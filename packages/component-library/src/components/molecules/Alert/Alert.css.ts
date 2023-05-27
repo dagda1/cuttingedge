@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { atoms } from '../../../style/atoms/atoms';
-import { vars } from '../../../style/themes/vars.css';
+import { atoms } from '~/style/atoms/atoms';
+import { vars } from '~/style/themes/vars.css';
 
 export const banner = style([
   atoms({

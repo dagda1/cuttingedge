@@ -1,8 +1,8 @@
 import type { HTMLAttributes } from 'react';
 import cs from 'classnames';
-import type { StandardProps } from '../../../types';
+import type { StandardProps } from '~/types';
 import * as styles from './ErrorMessage.css';
-import { visuallyHidden } from '../../../style/accessibility.css';
+import { visuallyHidden } from '~/style/accessibility.css';
 
 export type ErrorProps = StandardProps<HTMLAttributes<HTMLUListElement>> & {
   errorMessage: string;

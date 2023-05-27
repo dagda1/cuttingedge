@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '../../../style/themes/vars.css';
-import { responsiveText } from '../../../style/typography/typography.css';
+import { vars } from '~/style/themes/vars.css';
+import { responsiveText } from '~/style/typography/typography.css';
 
 export const root = style([
   responsiveText.body.untrimmed,
