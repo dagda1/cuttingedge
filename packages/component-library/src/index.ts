@@ -19,6 +19,8 @@ export type {
 } from './components/hoc/FormControl/types';
 export type { AlertType, AlertProps } from './components/molecules/Alert/Alert';
 
+export { Heading } from './components/atoms/Heading/Heading';
+export { Text } from './components/atoms/Text/Text';
 export { ExternalLink } from './components/atoms/ExternalLink/ExternalLink';
 export { Input } from './components/atoms/Input/Input';
 export { Label } from './components/atoms/Label';
