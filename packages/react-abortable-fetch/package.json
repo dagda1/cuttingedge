@@ -30,7 +30,7 @@
     "abortcontroller-polyfill": "^1.7.5",
     "assert-ts": "^0.3.4",
     "cross-fetch": "^3.1.6",
-    "effection": "^3.0.0-alpha.7",
+    "effection": "^2.0.6",
     "fetch-jsonp": "^1.2.3",
     "xstate": "^4.37.2"
   },

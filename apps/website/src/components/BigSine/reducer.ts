@@ -1,6 +1,6 @@
 import type { ScaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
-import produce from 'immer';
+import { produce } from 'immer';
 import type { Reducer } from 'react';
 
 export const TWO_PI = Math.PI * 2;
