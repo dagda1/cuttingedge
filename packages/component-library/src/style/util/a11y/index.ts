@@ -1,4 +1,4 @@
-import {setLightness, getLuminance, parseToHsl, parseToRgb, toColorString, hslToColorString} from 'polished';
+import { setLightness, getLuminance, parseToHsl, parseToRgb, toColorString, hslToColorString } from 'polished';
 
 const AA_TEXT_CONTRAST = 4.52;
 

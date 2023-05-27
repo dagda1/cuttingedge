@@ -1,7 +1,7 @@
 import { defineProperties, createSprinkles, createMapValueFn } from '@vanilla-extract/sprinkles';
-import { breakpoints } from '../breakpoints';
-import { vars } from '../themes/vars.css';
-import { rem } from 'polished'
+import { breakpoints } from '~/style/breakpoints';
+import { vars } from '~/style/themes/vars.css';
+import { rem } from 'polished';
 
 export const unresponsiveProperties = {
   background: vars.backgroundColor,

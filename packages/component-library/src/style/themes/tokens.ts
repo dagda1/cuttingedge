@@ -1,6 +1,6 @@
 import { rem, mix } from 'polished';
-import { palette } from '../palette.css';
-import { getLightVariant } from '../util/a11y';
+import { palette } from '~/style/palette.css';
+import { getLightVariant } from '~/style/util/a11y';
 import { rose } from 'tailwindcss/colors';
 
 export const colors = {

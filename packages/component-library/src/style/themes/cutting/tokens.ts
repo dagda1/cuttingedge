@@ -1,6 +1,6 @@
 import type { DeepPartial } from '@cutting/util';
-import type { Tokens } from '../tokens';
-import { palette } from '../../palette.css';
+import type { Tokens } from '~/style/themes/tokens';
+import { palette } from '~/style/palette.css';
 
 const colors = {
   primary: palette.lime500,

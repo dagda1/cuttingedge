@@ -1,10 +1,10 @@
 import type { StyleRule } from '@vanilla-extract/css';
 import { style } from '@vanilla-extract/css';
 import { createTextStyle } from '@capsizecss/vanilla-extract';
-import { vars } from '../themes/vars.css';
-import { breakpointQuery, responsiveStyle } from '../responsive-style';
-import type { FontWeight } from '../types';
-import type { tokens } from '../themes/tokens';
+import { vars } from '~/style/themes/vars.css';
+import { breakpointQuery, responsiveStyle } from '~/style/responsive-style';
+import type { FontWeight } from '~/style/types';
+import type { tokens } from '~/style/themes/tokens';
 
 type Vars = typeof vars;
 type HeadingDefinition = Vars['headingLevel'];

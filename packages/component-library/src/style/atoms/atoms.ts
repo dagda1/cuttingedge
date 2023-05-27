@@ -1,5 +1,5 @@
-import * as resetStyles from '../reset/reset.css';
-import type { vars } from '../themes/vars.css';
+import * as resetStyles from '~/style/reset/reset.css';
+import type { vars } from '~/style/themes/vars.css';
 
 import { sprinkles } from './sprinkles.css';
 
