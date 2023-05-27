@@ -10,6 +10,10 @@
   "schedule": ["every weekend"],
   "packageRules": [
     {
+      "depTypeList": ["peerDependencies"],
+      "enabled": false
+    },
+    {
       "updateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     },
