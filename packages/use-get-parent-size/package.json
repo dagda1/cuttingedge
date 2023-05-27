@@ -52,7 +52,7 @@
     "react": ">= 18.x.x",
     "react-dom": ">= 18.x.x",
     "resize-observer-polyfill": ">= ^1.5.x",
-    "use-debounce": ">= 9.0.x"
+    "use-debounce": ">= 9.0.4"
   },
   "volta": {
     "extends": "../../package.json"
