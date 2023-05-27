@@ -1,3 +1,5 @@
+import { mapValues, omit } from '@cutting/util';
+
 export const breakpoints = {
   mobile: 0,
   tablet: 740,
@@ -5,6 +7,8 @@ export const breakpoints = {
   wide: 1550,
   extraWide: 1900,
 } as const;
+
+export const breakpointQuery = mapValues(omit(breakpoints, 'mobile'), (bp) => `screen and (min-width: ${bp}px)`);
 
 export type Breakpoint = keyof typeof breakpoints;
 

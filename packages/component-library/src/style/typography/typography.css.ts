@@ -4,7 +4,7 @@ import { createTextStyle } from '@capsizecss/vanilla-extract';
 
 import { vars } from '~/style/themes/vars.css';
 import { mapToProperty } from '../util/map-property';
-import { breakpoints } from '../breakpoints';
+import { breakpointQuery } from '../breakpoints';
 import { responsiveStyle } from '../responsive-style';
 
 export const fontFamily = style({
@@ -22,7 +22,7 @@ export const textSizeTrimmed = styleVariants(vars.textSize, ({ mobile, tablet },
     },
     {
       '@media': {
-        [breakpoints.tablet]: {
+        [breakpointQuery.tablet]: {
           fontSize: tablet.fontSize,
           lineHeight: tablet.lineHeight,
           ...tablet.capsizeTrims,
@@ -57,7 +57,7 @@ export const heading = styleVariants(vars.headingLevel, ({ mobile, tablet }, var
     },
     {
       '@media': {
-        [breakpoints.tablet]: {
+        [breakpointQuery.tablet]: {
           fontSize: tablet.fontSize,
           lineHeight: tablet.lineHeight,
           ...tablet.capsizeTrims,
