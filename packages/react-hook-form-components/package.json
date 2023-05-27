@@ -25,16 +25,16 @@
     "@cutting/component-library": "workspace:*",
     "@cutting/util": "workspace:*",
     "assert-ts": "^0.3.4",
-    "react-hook-form": "7.43.9"
+    "react-hook-form": "7.44.1"
   },
   "devDependencies": {
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@types/react": "18.0.35",
+    "@types/react": "18.2.7",
     "@vanilla-extract/css": "^1.11.0",
-    "eslint": "8.38.0",
+    "eslint": "8.41.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-syntax-highlighter": "15.5.0",
