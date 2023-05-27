@@ -41,7 +41,7 @@
     "@storybook/manager-webpack5": "6.5.16",
     "@storybook/react": "6.5.16",
     "@testing-library/react": "14.0.0",
-    "@types/babel__core": "7.20.0",
+    "@types/babel__core": "7.20.1",
     "@types/dedent": "0.7.0",
     "@types/mdx-js__react": "1.5.5",
     "@types/react": "18.0.35",
