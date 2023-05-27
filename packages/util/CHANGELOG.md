@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.58.2
+
+### Patch Changes
+
+- e2d4179f: update dependencies
+
 ## 4.58.1
 
 ### Patch Changes

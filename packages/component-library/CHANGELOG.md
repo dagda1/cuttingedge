@@ -1,5 +1,14 @@
 # @cutting/component-library
 
+## 5.39.2
+
+### Patch Changes
+
+- e2d4179f: update dependencies
+- Updated dependencies [e2d4179f]
+  - @cutting/hooks@4.56.3
+  - @cutting/util@4.58.2
+
 ## 5.39.1
 
 ### Patch Changes

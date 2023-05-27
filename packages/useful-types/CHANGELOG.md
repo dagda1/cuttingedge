@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.40.1
+
+### Patch Changes
+
+- e2d4179f: update dependencies
+
 ## 4.40.0
 
 ### Minor Changes

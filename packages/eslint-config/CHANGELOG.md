@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.44.1
+
+### Patch Changes
+
+- e2d4179f: update dependencies
+
 ## 4.44.0
 
 ### Minor Changes
