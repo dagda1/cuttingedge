@@ -1,7 +1,7 @@
 import type { ComponentProps, Ref } from 'react';
 import { forwardRef } from 'react';
 import { FormInput, FormTextArea } from '@cutting/component-library';
-import type { UseFormRegister, UseFormReturn } from 'react-hook-form';
+import type { FieldValues, UseFormRegister, UseFormReturn } from 'react-hook-form';
 
 declare module 'react' {
   function forwardRef<T, P = Record<string, unknown>>(
@@ -15,11 +15,8 @@ export type FormProps<C extends Controls, E> = ComponentProps<C> & {
   required?: boolean;
   className?: string;
   errors?: E;
-  // TODO: remove any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-} & ReturnType<UseFormRegister<any>> &
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Partial<Pick<UseFormReturn<any>, 'setValue'>>;
+} & ReturnType<UseFormRegister<FieldValues>> &
+  Partial<Pick<UseFormReturn<FieldValues>, 'setValue'>>;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createFormComponent(Component: Controls) {

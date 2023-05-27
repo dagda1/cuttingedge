@@ -1,9 +1,9 @@
 import type { ComponentProps } from 'react';
-import { TextArea } from '~/components/atoms/TextArea/TextArea';
-import { Input } from '~/components/atoms/Input/Input';
-import { FormControl } from '~/components/hoc/FormControl/FormControl';
-import { CheckboxGroup } from '~/components/molecules/CheckboxGroup/CheckboxGroup';
-import { RadioGroup } from '~/components/molecules/RadioGroup/RadioGroup';
+import { TextArea } from '../../atoms/TextArea/TextArea';
+import { Input } from '../../atoms/Input/Input';
+import { FormControl } from '../../hoc/FormControl/FormControl';
+import { CheckboxGroup } from '../CheckboxGroup/CheckboxGroup';
+import { RadioGroup } from '../RadioGroup/RadioGroup';
 
 export const FormInput = FormControl(Input);
 export const FormTextArea = FormControl(TextArea);
