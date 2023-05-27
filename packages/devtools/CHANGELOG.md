@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.1
+
+### Patch Changes
+
+- e2d4179f: update dependencies
+
 ## 4.63.0
 
 ### Minor Changes

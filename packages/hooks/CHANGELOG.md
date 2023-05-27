@@ -1,5 +1,13 @@
 # @cutting/hooks
 
+## 4.56.3
+
+### Patch Changes
+
+- e2d4179f: update dependencies
+- Updated dependencies [e2d4179f]
+  - @cutting/util@4.58.2
+
 ## 4.56.2
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @cutting/use-get-parent-size
 
+## 2.0.2
+
+### Patch Changes
+
+- e2d4179f: update dependencies
+- Updated dependencies [e2d4179f]
+  - @cutting/util@4.58.2
+
 ## 2.0.1
 
 ### Patch Changes
