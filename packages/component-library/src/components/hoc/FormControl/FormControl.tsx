@@ -1,5 +1,5 @@
 import cs from 'classnames';
-import type { ReactNode, InputHTMLAttributes, ComponentType } from 'react';
+import type { ReactNode, InputHTMLAttributes, FunctionComponent } from 'react';
 import { useRef } from 'react';
 import { Label } from '~/components/atoms/Label';
 import { prefixId } from '~/utl';
@@ -25,7 +25,9 @@ export type FormControlProps<E> = {
   width?: keyof typeof vars.inputWidth;
 } & InputHTMLAttributes<E> & { rows?: number; cols?: number };
 
-export function FormControl<P, E extends HTMLElement>(Comp: ComponentType<P>): ComponentType<FormControlProps<E> & P> {
+export function FormControl<P, E extends HTMLElement>(
+  Comp: FunctionComponent<P>,
+): FunctionComponent<FormControlProps<E> & P> {
   function FormControlWrapper({
     id,
     invalid,

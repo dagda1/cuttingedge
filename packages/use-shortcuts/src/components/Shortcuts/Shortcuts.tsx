@@ -6,7 +6,7 @@ import type { ShortcutsProps } from './types';
 
 export function Shortcuts<R extends Record<PropertyKey, unknown>, E extends HTMLElement = HTMLElement>({
   tabIndex = -1,
-  ScopedWrapperComponentType = 'div',
+  ScopedWrapperFunctionComponent = 'div',
   shortcutMap,
   handler,
   className,
@@ -22,13 +22,13 @@ export function Shortcuts<R extends Record<PropertyKey, unknown>, E extends HTML
   });
 
   return (
-    <ScopedWrapperComponentType
+    <ScopedWrapperFunctionComponent
       data-testid={dataSelector}
       tabIndex={tabIndex}
       ref={ref}
       className={cs('mousetrap', className)}
     >
       {children}
-    </ScopedWrapperComponentType>
+    </ScopedWrapperFunctionComponent>
   );
 }

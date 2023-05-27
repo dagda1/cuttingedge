@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react';
+import type { FunctionComponent } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
 import { assert } from 'assert-ts';
@@ -10,7 +10,7 @@ assert(!!container, `no container found for #root`);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const root = createRoot(container);
 
-const render = (Component: ComponentType) => {
+const render = (Component: FunctionComponent) => {
   root.render(<Component />);
 };
 

@@ -13,5 +13,5 @@ export interface ShortcutsProps<
   handler: ShortcutHandler<keyof R>;
   ref?: RefObject<E>;
 
-  ScopedWrapperComponentType?: FC<C> | string;
+  ScopedWrapperFunctionComponent?: FC<C> | string;
 }
