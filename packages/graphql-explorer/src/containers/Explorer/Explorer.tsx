@@ -9,6 +9,7 @@ import { LoadingOverlay } from '@cutting/component-library';
 import type { SimplifiedIntrospectionWithIds } from '../../types';
 import { getSchema } from '../../introspection/get-schema';
 import { getTypeGraph } from '../../introspection/get-type-graph';
+import { Heading } from '@cutting/component-library';
 
 export interface ExplorerProps {
   gatewayUrl: string;
@@ -49,7 +50,7 @@ export function Explorer({ gatewayUrl }: ExplorerProps): JSX.Element {
     console.log(error);
     return (
       <div className={styles.error}>
-        <h2>{error?.message}</h2>
+        <Heading level="2">{error?.message}</Heading>
       </div>
     );
   }

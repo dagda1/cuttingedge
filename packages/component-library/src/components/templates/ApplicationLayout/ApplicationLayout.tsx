@@ -9,6 +9,7 @@ import { consultingTheme } from '~/style/themes/consulting/consultingTheme.css';
 import { salesTheme } from '~/style/themes/sales/salesTheme.css';
 import { defaultTheme } from '~/style/themes/default/default.css';
 import { supportTheme } from '~/style/themes/support/supportTheme.css';
+import { Heading } from '~/components/atoms/Heading/Heading';
 
 export const themes = {
   defaultTheme,
@@ -46,7 +47,13 @@ function ApplicationLayoutHeading({
     return null;
   }
 
-  return typeof heading === 'string' ? <h1 className={cs({ [styles.centerHeading]: center })}>{heading}</h1> : heading;
+  return typeof heading === 'string' ? (
+    <Heading level="1" className={cs({ [styles.centerHeading]: center })}>
+      {heading}
+    </Heading>
+  ) : (
+    heading
+  );
 }
 
 export function ApplicationLayout({

@@ -2,7 +2,7 @@ import { ExternalLink } from '@cutting/component-library';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
 import type { Repo } from './repos';
 import { repos } from './repos';
-
+import { Heading } from '@cutting/component-library';
 import * as styles from './OSS.css';
 import { Github } from '../../components/Svg/Github';
 
@@ -10,7 +10,7 @@ export function OSS(): JSX.Element {
   return (
     <ApplicationLayout heading="Open Source Contributions">
       <div className={styles.container}>
-        <h2>Merged pull requests to public repositories</h2>
+        <Heading level="2">Merged pull requests to public repositories</Heading>
         <ul className={styles.communityList}>
           <li>
             <ExternalLink href="https://github.com/backstage/backstage/pulls?q=is%3Apr+is%3Amerged+author%3Adagda1">
@@ -47,7 +47,7 @@ export function OSS(): JSX.Element {
             </ExternalLink>
           </li>
         </ul>
-        <h2>My Work</h2>
+        <Heading level="2">My Work</Heading>
         <div className={styles.repos}>
           {repos.map((repo: Repo, i: number) => (
             <div className={styles.repo} key={i}>
@@ -56,7 +56,7 @@ export function OSS(): JSX.Element {
                   <Github />
                 </div>
                 <div>
-                  <h2>{repo.name}</h2>
+                  <Heading level="2">{repo.name}</Heading>
                 </div>
                 <div>{repo.description}</div>
               </ExternalLink>
@@ -64,9 +64,9 @@ export function OSS(): JSX.Element {
           ))}
         </div>
         <div>
-          <h2>
+          <Heading level="2">
             For full list of github repos <ExternalLink href="https://github.com/dagda1">click here</ExternalLink>
-          </h2>
+          </Heading>
         </div>
       </div>
     </ApplicationLayout>

@@ -7,6 +7,7 @@ import { MenuItems, MobileMenuItems } from './MenuItems';
 
 import * as styles from './Menu.css';
 import { Cow } from '../Svg/Cow';
+import { Heading } from '@cutting/component-library';
 
 export interface MenuState {
   isExpanded: boolean;
@@ -30,11 +31,11 @@ export function Menu(): JSX.Element {
             </NavLink>
           </li>
           <li>
-            <h2>
+            <Heading level="2">
               <NavLink aria-label="home" className={styles.name} to={urls.Home}>
                 Paul Cowan
               </NavLink>
-            </h2>
+            </Heading>
           </li>
           <li className={cs(styles['contact'], styles.horizontal)}>
             <NavLink

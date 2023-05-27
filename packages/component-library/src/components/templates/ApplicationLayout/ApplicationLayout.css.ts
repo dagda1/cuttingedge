@@ -130,15 +130,6 @@ globalStyle('header a,footer a', {
   cursor: 'pointer',
 });
 
-globalStyle('h1', {
-  marginTop: 0,
-});
-
-globalStyle('h2,h3,h4', {
-  marginTop: vars.space['xsmall'],
-  marginBottom: vars.space['xsmall'],
-});
-
 globalStyle('a:focus,a:focus h2', {
   ...vars.accessibility.accessibleOutline,
   color: vars.foregroundColor.body,

@@ -1,6 +1,7 @@
 import { posts } from './posts';
 import { ExternalLink } from '@cutting/component-library';
 import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { Heading } from '@cutting/component-library';
 
 export function Blog(): JSX.Element {
   return (
@@ -14,7 +15,7 @@ export function Blog(): JSX.Element {
       {posts.map((post, i) => (
         <div key={i}>
           <ExternalLink href={post.link} blank={false}>
-            <h2>{post.title}</h2>
+            <Heading level="2">{post.title}</Heading>
           </ExternalLink>
           <p>{post.summary}</p>
           <p>
