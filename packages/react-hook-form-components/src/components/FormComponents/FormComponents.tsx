@@ -22,6 +22,9 @@ export function createFormComponent<C extends FunctionComponent<any>>(Component:
   });
 }
 
+// TODO: remove annotations.  Currently weird type error
+// The inferred type of 'Input' cannot be named without a reference to '@cutting/component-library/node_modules/@types/react'.
+// This is likely not portable. A type annotation is necessary.
 export const Input: (props: FormProps<typeof FormInput>) => JSX.Element | null = createFormComponent(FormInput);
 export const TextArea: (props: FormProps<typeof FormTextArea>) => JSX.Element | null =
   createFormComponent(FormTextArea);

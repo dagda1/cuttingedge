@@ -16,7 +16,8 @@
   "license": "MIT",
   "scripts": {
     "start": "echo no demo",
-    "test": "echo no tests yet",
+    "test": "NODE_ENV=test vitest",
+    "test:ci": "CI=true pnpm test",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "lint:fix": "pnpm lint --fix",
     "build": "NODE_ENV=production devtools rollup"
@@ -39,6 +40,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-syntax-highlighter": "15.5.0",
+    "@testing-library/react": "14.0.0",
     "typescript": "5.0.4"
   },
   "peerDependencies": {
