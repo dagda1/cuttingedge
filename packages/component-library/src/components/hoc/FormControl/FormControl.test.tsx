@@ -1,9 +1,13 @@
 import { expect, it, describe } from 'vitest';
 import { Input } from '../../atoms/Input/Input';
-import type { FormControlProps } from './FormControl';
 import { FormControl } from './FormControl';
 import type { RenderResult } from '@testing-library/react';
 import { render } from '@testing-library/react';
+import type { FormControlProps, FormElementFromComponent } from './types';
+import type { TypeOf } from 'ts-expect';
+import { expectType } from 'ts-expect';
+import { TextArea } from '~/components/atoms/TextArea/TextArea';
+import type { HTMLAttributes } from 'react';
 
 const FormInput = FormControl(Input);
 
@@ -11,6 +15,28 @@ const wrap = (props?: Partial<FormControlProps<HTMLInputElement>>): RenderResult
   render(<FormInput value={props?.value} label="label" {...props} />);
 
 describe('FormControl', () => {
+  describe('types', () => {
+    it('should type input element', () => {
+      const input = FormControl(Input);
+      type I = FormElementFromComponent<typeof input>;
+
+      expectType<TypeOf<HTMLInputElement, I>>(true);
+
+      const textarea = FormControl(TextArea);
+      type T = FormElementFromComponent<typeof textarea>;
+
+      expectType<TypeOf<HTMLTextAreaElement, T>>(true);
+
+      const Div = (props: HTMLAttributes<HTMLDivElement>) => <div {...props}>Hello</div>;
+
+      const div = FormControl(Div);
+
+      type D = FormElementFromComponent<typeof div>;
+
+      expectType<TypeOf<HTMLDivElement, D>>(true);
+    });
+  });
+
   it('should wrap component with label', () => {
     const { getByText } = wrap();
 

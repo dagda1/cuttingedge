@@ -1,33 +1,15 @@
 import cs from 'classnames';
-import type { ReactNode, InputHTMLAttributes, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 import { useRef } from 'react';
 import { Label } from '~/components/atoms/Label';
 import { prefixId } from '~/utl';
 import * as styles from './FormControl.css';
-import type { vars } from '~/style/themes/vars.css';
 import { ErrorMessage } from '~/components/atoms/ErrorMessage/ErrorMessage';
-import type { FontWeight } from '~/style/types';
+import type { FormControlProps, FormElementFromComponent } from './types';
 
-export type Layout = 'vertical' | 'horizontal';
-
-export type FormControlProps<E> = {
-  additionalLabel?: ReactNode;
-  className?: string;
-  errorDataSelector?: string;
-  errorMessage?: string;
-  highlight?: boolean;
-  invalid?: boolean;
-  label: string;
-  required?: boolean;
-  fontWeight?: FontWeight;
-  layout?: Layout;
-  dataSelector?: string;
-  width?: keyof typeof vars.inputWidth;
-} & InputHTMLAttributes<E> & { rows?: number; cols?: number };
-
-export function FormControl<P, E extends HTMLElement>(
+export function FormControl<P>(
   Comp: FunctionComponent<P>,
-): FunctionComponent<FormControlProps<E> & P> {
+): FunctionComponent<FormControlProps<FormElementFromComponent<typeof Comp>> & P> {
   function FormControlWrapper({
     id,
     invalid,
@@ -44,7 +26,7 @@ export function FormControl<P, E extends HTMLElement>(
     layout = 'vertical',
     width = 'width100',
     ...rest
-  }: FormControlProps<E> & P): JSX.Element {
+  }: FormControlProps<FormElementFromComponent<typeof Comp>> & P): JSX.Element {
     const internalId = useRef(id || name || prefixId());
 
     const errorId = `${internalId.current}-error`;

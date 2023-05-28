@@ -9,7 +9,7 @@ export type {
 } from './components/molecules/FormControls/FormControls';
 export type { Breakpoint } from './style/breakpoints';
 
-export type { FormControlProps } from './components/hoc/FormControl/FormControl';
+export type { FormControlProps } from './components/hoc/FormControl/types';
 export type { AlertType, AlertProps } from './components/molecules/Alert/Alert';
 
 export { ExternalLink } from './components/atoms/ExternalLink/ExternalLink';
