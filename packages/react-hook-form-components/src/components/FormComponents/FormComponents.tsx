@@ -1,23 +1,11 @@
-import type { ComponentProps, FunctionComponent, InputHTMLAttributes, Ref } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { FunctionComponent, Ref } from 'react';
 import { forwardRef } from 'react';
 import { FormInput, FormTextArea } from '@cutting/component-library';
 import type { FieldValues, UseFormRegister, UseFormReturn } from 'react-hook-form';
+import type { FormElementFromComponent, ComponentProps } from '@cutting/component-library';
 
-declare module 'react' {
-  function forwardRef<T, P = Record<string, unknown>>(
-    render: (props: P, ref: React.Ref<T>) => React.ReactElement | null,
-  ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
-}
-
-type Controls = typeof FormInput | typeof FormTextArea;
-
-type InputElement<C extends Controls> = C extends FunctionComponent<infer P>
-  ? P extends InputHTMLAttributes<infer E>
-    ? E
-    : never
-  : never;
-
-export type FormProps<C extends Controls> = ComponentProps<C> & {
+export type FormProps<C extends FunctionComponent<any>> = ComponentProps<C> & {
   required?: boolean;
   className?: string;
   errors?: unknown;
@@ -26,24 +14,14 @@ export type FormProps<C extends Controls> = ComponentProps<C> & {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createFormComponent<C extends FunctionComponent<any>>(Component: C) {
-  return forwardRef(function ReactHookFormComponent(
-    { onChange, onBlur, name, label, className, ...props }: FormProps<typeof Component>,
-    ref: Ref<InputElement<typeof Component>>,
-  ): JSX.Element {
-    return (
-      <Component
-        innerRef={ref}
-        className={className}
-        label={label}
-        name={name}
-        onChange={onChange}
-        onBlur={onBlur}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
-      />
-    );
+  return forwardRef<FormElementFromComponent<typeof Component>, ComponentProps<C>>(function ReactHookFormComponent(
+    props: FormProps<typeof Component>,
+    ref: Ref<FormElementFromComponent<typeof Component>>,
+  ) {
+    return <Component innerRef={ref} {...(props as any)} />;
   });
 }
 
-export const Input = createFormComponent(FormInput);
-export const TextArea = createFormComponent(FormTextArea);
+export const Input: (props: FormProps<typeof FormInput>) => JSX.Element | null = createFormComponent(FormInput);
+export const TextArea: (props: FormProps<typeof FormTextArea>) => JSX.Element | null =
+  createFormComponent(FormTextArea);
