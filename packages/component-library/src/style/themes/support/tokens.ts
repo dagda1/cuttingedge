@@ -2,7 +2,7 @@ import type { DeepPartial } from '@cutting/util';
 import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
 import { extractFontMetricsForTheme } from '~/style/util/typography';
-import rubikMetrics from '@capsizecss/metrics/rubik';
+import bebasNeue from '@capsizecss/metrics/bebasNeue';
 
 const colors = {
   primary: palette.lime500,
@@ -42,7 +42,7 @@ export const tokens: DeepPartial<Tokens> = {
   typography: {
     webFont: 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap',
     fontFamily: 'Bebas Neue,Rubik',
-    fontMetrics: extractFontMetricsForTheme(rubikMetrics),
+    fontMetrics: extractFontMetricsForTheme(bebasNeue),
     heading: {
       weight: {
         weak: 'regular',
@@ -51,22 +51,22 @@ export const tokens: DeepPartial<Tokens> = {
       level: {
         '1': {
           mobile: {
-            fontSize: 28,
-            lineGap: 11,
+            fontSize: 96,
+            lineGap: 24,
           },
           tablet: {
-            fontSize: 36,
-            lineGap: 14,
+            fontSize: 128,
+            lineGap: 194,
           },
         },
         '2': {
           mobile: {
-            fontSize: 24,
-            lineGap: 11,
+            fontSize: 60,
+            lineGap: 60,
           },
           tablet: {
-            fontSize: 30,
-            lineGap: 13,
+            fontSize: 80,
+            lineGap: 24,
           },
         },
         '3': {

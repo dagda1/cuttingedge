@@ -27,6 +27,7 @@ export { Label } from './components/atoms/Label';
 export { ErrorMessage } from './components/atoms/ErrorMessage/ErrorMessage';
 export { Button } from './components/atoms/Button/Button';
 export { ButtonLink } from './components/atoms/ButtonLink/ButtonLink';
+export { Strong } from './components/atoms/Strong/Strong';
 export * from './components/atoms/Button/Button.css';
 export * from './components/atoms/ButtonLink/ButtonLink.css';
 export { LoadingOverlay } from './components/molecules/LoadingIcon/LoadingOverlay';
