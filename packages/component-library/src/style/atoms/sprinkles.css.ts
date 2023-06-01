@@ -18,6 +18,11 @@ const sizes = {
   touchable: vars.touchableSize,
 };
 
+export const space = {
+  ...vars.space,
+  none: 0,
+} as const;
+
 export const unresponsiveProperties = {
   overflow: ['hidden', 'scroll', 'visible', 'auto'],
   userSelect: ['none'],
@@ -75,14 +80,14 @@ const responsiveAtomicProperties = defineProperties({
       full: '9999px',
       ...vars.borderRadius,
     },
-    paddingTop: vars.space,
-    paddingBottom: vars.space,
-    paddingRight: vars.space,
-    paddingLeft: vars.space,
-    marginTop: vars.space,
-    marginBottom: vars.space,
-    marginRight: vars.space,
-    marginLeft: vars.space,
+    paddingTop: space,
+    paddingBottom: space,
+    paddingRight: space,
+    paddingLeft: space,
+    marginTop: space,
+    marginBottom: space,
+    marginRight: space,
+    marginLeft: space,
     alignItems: {
       flexStart: 'flex-start',
       center: 'center',

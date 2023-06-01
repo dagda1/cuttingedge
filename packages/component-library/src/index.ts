@@ -47,6 +47,7 @@ export {
 } from './components/templates/ApplicationLayout/ApplicationLayout';
 export { Donut } from './components/molecules/Donut/Donut';
 export { Alert } from './components/molecules/Alert/Alert';
+export { Stack } from './components/molecules/Stack/Stack';
 
 export { responsiveStyle } from './style/responsive-style';
 export { atoms } from './style/atoms/atoms';

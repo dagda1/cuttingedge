@@ -1,11 +1,12 @@
-import * as resetStyles from '~/style/reset/reset.css';
-import type { vars } from '~/style/themes/vars.css';
+import * as resetStyles from '../reset/reset.css';
+import type { vars } from '../themes/vars.css';
 
-import { sprinkles } from './sprinkles.css';
+import { type RequiredResponsiveValue, sprinkles } from './sprinkles.css';
 
 type Sprinkles = Parameters<typeof sprinkles>[0];
 
 export type Space = keyof typeof vars.space | 'none';
+export type ResponsiveSpace = RequiredResponsiveValue<Space>;
 
 export interface Atoms extends Sprinkles {
   reset?: keyof JSX.IntrinsicElements;

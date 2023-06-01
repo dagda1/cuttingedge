@@ -366,6 +366,9 @@ importers:
       polished:
         specifier: 4.2.2
         version: 4.2.2
+      react-is:
+        specifier: ^18.2.0
+        version: 18.2.0
     devDependencies:
       '@capsizecss/core':
         specifier: 3.1.1
@@ -430,6 +433,9 @@ importers:
       '@types/react-dom':
         specifier: 18.2.5
         version: 18.2.5
+      '@types/react-is':
+        specifier: ^17.0.3
+        version: 17.0.3
       '@vanilla-extract/css':
         specifier: ^1.11.1
         version: 1.11.1
@@ -6109,6 +6115,12 @@ packages:
 
   /@types/react-helmet@6.1.6:
     resolution: {integrity: sha512-ZKcoOdW/Tg+kiUbkFCBtvDw0k3nD4HJ/h/B9yWxN4uDO8OkRksWTO+EL+z/Qu3aHTeTll3Ro0Cc/8UhwBCMG5A==}
+    dependencies:
+      '@types/react': 18.2.12
+    dev: true
+
+  /@types/react-is@17.0.3:
+    resolution: {integrity: sha512-aBTIWg1emtu95bLTLx0cpkxwGW3ueZv71nE2YFBpL8k/z5czEW8yYpOo8Dp+UUAFAtKwNaOsh/ioSeQnWlZcfw==}
     dependencies:
       '@types/react': 18.2.12
     dev: true
@@ -15179,7 +15191,6 @@ packages:
 
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
-    dev: true
 
   /react-refresh@0.14.0:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
