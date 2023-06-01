@@ -1,4 +1,4 @@
-export type { StandardProps } from './types';
+export type { StandardProps, Taggable } from './types';
 export type { FontWeight } from './style/types';
 export type { CheckableGroupProps } from './components/molecules/CheckableGroup/CheckableGroup';
 export type {
@@ -45,9 +45,11 @@ export {
   ApplicationLayoutWithRouterScroll,
   type ApplicationLayoutProps,
 } from './components/templates/ApplicationLayout/ApplicationLayout';
+export { ContentBlock } from './components/templates/ContentBlock/ContentBlock';
+export { PageBlock } from './components/templates/PageBlock/PageBlock';
 export { Donut } from './components/molecules/Donut/Donut';
 export { Alert } from './components/molecules/Alert/Alert';
-export { Stack } from './components/molecules/Stack/Stack';
+export { Stack, type ReactNodeNoStrings } from './components/molecules/Stack/Stack';
 
 export { responsiveStyle } from './style/responsive-style';
 export { atoms } from './style/atoms/atoms';

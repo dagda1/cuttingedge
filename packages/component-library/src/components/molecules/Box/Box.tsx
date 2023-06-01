@@ -57,22 +57,6 @@ export const Box = forwardRef<HTMLElement, BoxProps>(({ component = 'div', class
     ...nativeProps,
     ref,
   });
-  // return background || boxShadow ? (
-  //   <ColoredBox
-  //     component={component}
-  //     background={background}
-  //     boxShadow={boxShadow}
-  //     className={combinedClasses}
-  //     ref={ref}
-  //     {...nativeProps}
-  //   />
-  // ) : (
-  //   createElement(component, {
-  //     className: combinedClasses,
-  //     ...nativeProps,
-  //     ref,
-  //   })
-  // );
 });
 
 Box.displayName = 'Box';

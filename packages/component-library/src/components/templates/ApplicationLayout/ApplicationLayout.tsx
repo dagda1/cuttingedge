@@ -1,4 +1,4 @@
-import type { PropsWithChildren, ReactElement, ReactNode, RefObject } from 'react';
+import type { PropsWithChildren, ReactElement, RefObject } from 'react';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
@@ -10,6 +10,9 @@ import { salesTheme } from '~/style/themes/sales/salesTheme.css';
 import { defaultTheme } from '~/style/themes/default/default.css';
 import { supportTheme } from '~/style/themes/support/supportTheme.css';
 import { Heading } from '~/components/atoms/Heading/Heading';
+import { PageBlock } from '../PageBlock/PageBlock';
+import type { ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
+import { Stack } from '~/components/molecules/Stack/Stack';
 
 export const themes = {
   defaultTheme,
@@ -31,7 +34,7 @@ export interface ApplicationLayoutProps {
   footer?: ReactElement;
   header?: ReactElement;
   innerRef?: RefObject<HTMLElement>;
-  children: ReactNode;
+  children: ReactNodeNoStrings;
   headerAriaLabel?: string;
   theme: keyof typeof themes;
   layout?: Layout;
@@ -86,8 +89,10 @@ export function ApplicationLayout({
         })}
         ref={innerRef}
       >
-        <ApplicationLayoutHeading heading={heading} center={centerHeading} />
-        {children}
+        <PageBlock component="section">
+          <ApplicationLayoutHeading heading={heading} center={centerHeading} />
+          <Stack space="small">{children}</Stack>
+        </PageBlock>
       </main>
       <footer role="contentinfo" className={cs(styles.footer, styles.size, { [styles.hidden]: !header }, styles.size)}>
         {footer}

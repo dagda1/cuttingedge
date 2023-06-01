@@ -30,8 +30,6 @@ export type TextDefinition = Record<TextBreakpoint, FontSizeText>;
 const fontSizeToCapHeight = (grid: number, definition: TextDefinition, fontMetrics: FontMetricsForTheme) => {
   const { mobile, tablet } = definition;
 
-  console.log(grid);
-
   const mobileCapHeight = getCapHeight({
     fontSize: mobile.fontSize,
     fontMetrics,

@@ -16,7 +16,6 @@ export interface TypographyProps extends Pick<BoxProps, 'id' | 'component'> {
   children?: ReactNode;
   icon?: ReactElement<UseIconProps>;
   align?: BoxProps['textAlign'];
-  truncate?: boolean;
   maxLines?: number;
   className?: string;
 }

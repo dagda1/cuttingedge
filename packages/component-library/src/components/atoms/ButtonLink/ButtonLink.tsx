@@ -1,7 +1,7 @@
-import type { DetailedHTMLProps, AnchorHTMLAttributes, MouseEventHandler } from 'react';
+import type { DetailedHTMLProps, AnchorHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import cs from 'classnames';
 import { identity } from '@cutting/util';
-import type { StandardProps } from '~/types';
+import type { StandardProps, Taggable } from '~/types';
 import type { ButtonStyle } from '~/components/atoms/Button/Button.css';
 import { root, buttons } from '~/components/atoms/Button/Button.css';
 import * as styles from './ButtonLink.css';
@@ -9,6 +9,7 @@ import * as styles from './ButtonLink.css';
 export type ButtonLinkProps = StandardProps<
   DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
 > & {
+  Component?: Taggable<ButtonLinkProps>;
   onClick?: MouseEventHandler;
   buttonStyle?: ButtonStyle;
   ariaLabel?: string;
@@ -16,6 +17,7 @@ export type ButtonLinkProps = StandardProps<
 };
 
 export function ButtonLink({
+  Component = `a`,
   onClick = identity,
   className,
   buttonStyle = 'primary',
@@ -28,7 +30,7 @@ export function ButtonLink({
   ...rest
 }: ButtonLinkProps): JSX.Element {
   return (
-    <a
+    <Component
       href={href}
       className={cs(className, root, buttons[buttonStyle], styles.main)}
       onClick={onClick}
@@ -39,6 +41,6 @@ export function ButtonLink({
       {...rest}
     >
       {children}
-    </a>
+    </Component>
   );
 }

@@ -20,12 +20,6 @@ globalStyle('#root', {
 
 export const covid = style({});
 
-globalStyle(`${covid} h1`, {
-  marginTop: '-20px',
-  fontSize: '2rem',
-  marginBottom: vars.space['xsmall'],
-});
-
 globalStyle(`${covid} svg:first-of-type`, {
   marginBottom: vars.space['xsmall'],
 });

@@ -27,9 +27,9 @@ import { responsiveStyle } from '../../src/style/responsive-style';
 // });
 
 export const wrap = style({
-  paddingLeft: vars.space['xxsmall'],
-  paddingRight: vars.space['xsmall'],
-  margin: '0 auto',
+  // paddingLeft: vars.space['xxsmall'],
+  // paddingRight: vars.space['xsmall'],
+  // margin: '0 auto',
 });
 
 globalStyle('body', {
@@ -48,14 +48,9 @@ export const layout = style({
 });
 
 export const item = style([
-  responsiveStyle({
-    mobile: {
-      flex: 'auto',
-    },
-    tablet: {
-      flex: '1 0 auto',
-    },
-  }),
+  {
+    flex: 'auto',
+  },
   atoms({
     reset: 'div',
     ...{

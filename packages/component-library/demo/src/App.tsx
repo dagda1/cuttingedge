@@ -11,6 +11,7 @@ import {
   Alert,
   Heading,
   Text,
+  Stack,
 } from '../../src';
 import { Button } from '../../src/components/atoms/Button/Button';
 import { RadioGroup } from '../../src/components/molecules/RadioGroup/RadioGroup';
@@ -21,8 +22,8 @@ export function App(): JSX.Element {
   const [theme, setTheme] = useState<ThemeKeys>('supportTheme');
 
   return (
-    <ApplicationLayout theme={theme} className={styles.background} heading="@cutting/component-library" centerHeading>
-      <div className={styles.wrap}>
+    <ApplicationLayout theme={theme} className={styles.background} heading="cutting component library" centerHeading>
+      <Stack space="medium">
         <div className={styles.layout}>
           <div className={styles.item}>
             <RadioGroup<ThemeKeys>
@@ -67,10 +68,12 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level="1">H1 heading</Heading>
-            <Heading level="2">H2 heading</Heading>
-            <Heading level="3">H3 heading</Heading>
-            <Heading level="4">H4 heading</Heading>
+            <Stack space="small">
+              <Heading level="1">H1 heading</Heading>
+              <Heading level="2">H2 heading</Heading>
+              <Heading level="3">H3 heading</Heading>
+              <Heading level="4">H4 heading</Heading>
+            </Stack>
           </div>
         </div>
         <div className={styles.layout}>
@@ -407,7 +410,7 @@ export function App(): JSX.Element {
             </Alert>
           </div>
         </div>
-      </div>
+      </Stack>
     </ApplicationLayout>
   );
 }
