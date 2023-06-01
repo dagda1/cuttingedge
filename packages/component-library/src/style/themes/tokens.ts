@@ -114,7 +114,7 @@ export const tokens = {
   typography: {
     fontFamily: 'arial,sans-serif',
     fontMetrics: extractFontMetricsForTheme(arialMetfics),
-    webFont: null,
+    webFont: null as unknown as string,
     fontWeight: {
       ...fontWeight,
     },

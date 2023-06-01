@@ -38,6 +38,7 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   typography: {
+    webFont: 'https://fonts.googleapis.com/css?family=Roboto:100,100&amp;display=swap',
     fontFamily: "'Roboto'",
     fontWeight: {
       regular: 900,

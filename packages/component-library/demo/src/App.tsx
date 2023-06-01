@@ -9,6 +9,8 @@ import {
   FormRadioGroup,
   Donut,
   Alert,
+  Heading,
+  Text,
 } from '../../src';
 import { Button } from '../../src/components/atoms/Button/Button';
 import { RadioGroup } from '../../src/components/molecules/RadioGroup/RadioGroup';
@@ -66,7 +68,46 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <h2>Donuts</h2>
+            <Heading level="2">Headings</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level="1">H1 heading</Heading>
+            <Heading level="2">H2 heading</Heading>
+            <Heading level="3">H3 heading</Heading>
+            <Heading level="4">H4 heading</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level="2">
+              H2 heading with lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and
+              lots and lots and lots and lots and lots and lots of text
+            </Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level="2">Paragaphs</Heading>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Text component="p">A paragraph</Text>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Text component="p">
+              A paragraph with lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and
+              lots and lots and lots and lots and lots and lots of text
+            </Text>
+          </div>
+        </div>
+        <div className={styles.layout}>
+          <div className={styles.item}>
+            <Heading level="2">Donuts</Heading>
           </div>
         </div>
         <div className={styles.layout}>
@@ -78,7 +119,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <h2>Links</h2>
+            <Heading level="2">Links</Heading>
           </div>
         </div>
         <div className={styles.layout}>
@@ -99,7 +140,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <h2>Buttons</h2>
+            <Heading level="2">Buttons</Heading>
           </div>
         </div>
         <div className={styles.layout}>
@@ -120,7 +161,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <h2>Checkbox Group</h2>
+            <Heading level="2">Checkbox Group</Heading>
           </div>
         </div>
         <div className={styles.layout}>
@@ -203,7 +244,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <h2>Radio Group</h2>
+            <Heading level="2">Radio Group</Heading>
           </div>
         </div>
         <div className={styles.layout}>
@@ -288,7 +329,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <h2>TextArea</h2>
+            <Heading level="2">TextArea</Heading>
           </div>
         </div>
         <div className={styles.layout}>
@@ -308,7 +349,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <h2>Input</h2>
+            <Heading level="2">Input</Heading>
           </div>
         </div>
         <div className={styles.layout}>
@@ -352,7 +393,7 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <h2>Alerts</h2>
+            <Heading level="2">Alerts</Heading>
           </div>
         </div>
         <div className={styles.layout}>
@@ -370,29 +411,6 @@ export function App(): JSX.Element {
             <Alert type="warning" bannerHeading="Training outcome recorded and trainee withdrawn">
               <p>Huston we have a problem</p>
             </Alert>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <h2>Headings</h2>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <h1>H1 headings</h1>
-            <h2>H2 headings</h2>
-            <h3>H3 headings</h3>
-            <h4>H4 headings</h4>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <h2>Paragaphs</h2>
-          </div>
-        </div>
-        <div className={styles.layout}>
-          <div className={styles.item}>
-            <p>A paragraph</p>
           </div>
         </div>
       </div>

@@ -10,6 +10,18 @@ globalFontFace('Oswald', {
   src: "url('https://fonts.googleapis.com/css?Oswald:wght@700&family=Cardo&display=swap')",
 });
 
+globalFontFace('Roboto', {
+  fontStyle: 'normal',
+  fontWeight: 600,
+  src: "url('https://fonts.googleapis.com/css?family=Roboto:100,100&amp;display=swap')",
+});
+
+globalFontFace('"Bebas Neue"', {
+  src: "url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap')",
+  fontStyle: 'normal',
+  fontWeight: 400,
+});
+
 export const wrap = style({
   paddingLeft: vars.space['xxsmall'],
   paddingRight: vars.space['xsmall'],

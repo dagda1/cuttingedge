@@ -1,6 +1,8 @@
 import type { DeepPartial } from '@cutting/util';
 import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
+import { extractFontMetricsForTheme } from '~/style/util/typography';
+import rubikMetrics from '@capsizecss/metrics/rubik';
 
 const colors = {
   primary: palette.lime500,
@@ -38,7 +40,99 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   typography: {
-    fontFamily: `"Bebas Neue", cursive`,
+    webFont: 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap',
+    fontFamily: 'Bebas Neue,Rubik',
+    fontMetrics: extractFontMetricsForTheme(rubikMetrics),
+    heading: {
+      weight: {
+        weak: 'regular',
+        regular: 'medium',
+      } as const,
+      level: {
+        '1': {
+          mobile: {
+            fontSize: 28,
+            lineGap: 11,
+          },
+          tablet: {
+            fontSize: 36,
+            lineGap: 14,
+          },
+        },
+        '2': {
+          mobile: {
+            fontSize: 24,
+            lineGap: 11,
+          },
+          tablet: {
+            fontSize: 30,
+            lineGap: 13,
+          },
+        },
+        '3': {
+          mobile: {
+            fontSize: 22,
+            lineGap: 10,
+          },
+          tablet: {
+            fontSize: 24,
+            lineGap: 11,
+          },
+        },
+        '4': {
+          mobile: {
+            fontSize: 20,
+            lineGap: 9,
+          },
+          tablet: {
+            fontSize: 20,
+            lineGap: 9,
+          },
+        },
+      },
+    },
+    text: {
+      large: {
+        mobile: {
+          fontSize: 18,
+          lineGap: 13,
+        },
+        tablet: {
+          fontSize: 18,
+          lineGap: 13,
+        },
+      },
+      standard: {
+        mobile: {
+          fontSize: 16,
+          lineGap: 12,
+        },
+        tablet: {
+          fontSize: 16,
+          lineGap: 12,
+        },
+      },
+      small: {
+        mobile: {
+          fontSize: 14,
+          lineGap: 10,
+        },
+        tablet: {
+          fontSize: 14,
+          lineGap: 10,
+        },
+      },
+      xsmall: {
+        mobile: {
+          fontSize: 12,
+          lineGap: 9,
+        },
+        tablet: {
+          fontSize: 12,
+          lineGap: 9,
+        },
+      },
+    },
   },
   buttons: {
     textTransform: 'uppercase',

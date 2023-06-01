@@ -58,3 +58,4 @@ export { palette } from './style/palette.css';
 export { breakpoints, breakpointNames, getCurrentBreakpoint } from './style/breakpoints';
 export { markResetImported } from './style/reset/reset-tracker';
 export { visuallyHidden, screenReaderOnly } from './style/accessibility.css';
+export { makeWebFonts } from './style/util/typography';
