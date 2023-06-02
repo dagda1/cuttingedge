@@ -3,7 +3,7 @@ import type { RefObject } from 'react';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useDebouncedCallback } from 'use-debounce';
-import { isNil } from '@cutting/util';
+import { identity, isNil } from '@cutting/util';
 import { assert } from 'assert-ts';
 import { useLayoutEffect } from 'react';
 
@@ -25,6 +25,7 @@ export const useParentSize = <E extends Element>(
     initialValues = initialContentRect,
     transformFunc = (o: Partial<ResizeObserverContentRect>) => o as ResizeObserverContentRect,
     maxDifference = 10,
+    callback = identity,
   }: Partial<UseParentSizeOptions> = {},
 ): UseParentSizeResult => {
   const [contentRect, setContentRect] = useState<ResizeObserverContentRect>({
@@ -41,6 +42,7 @@ export const useParentSize = <E extends Element>(
   const debouncedCallback = useDebouncedCallback(
     (value: ResizeObserverContentRect) => {
       setContentRect(value);
+      callback(value);
     },
     debounceDelay,
     {
@@ -80,7 +82,7 @@ export const useParentSize = <E extends Element>(
       }
     });
 
-    requestAnimationFrame(() => resizeObserver.observe(refElement));
+    requestAnimationFrame(() => resizeObserver?.observe(refElement));
 
     return () => {
       if (!!refElement) {
