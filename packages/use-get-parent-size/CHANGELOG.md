@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.1.0
+
+### Minor Changes
+
+- 406f9e7e: add callback option to useParentSize
+
 ## 2.0.2
 
 ### Patch Changes
