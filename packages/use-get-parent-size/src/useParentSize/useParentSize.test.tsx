@@ -78,4 +78,20 @@ describe('useParentSize', () => {
       height: 100,
     });
   });
+
+  it('should call the callback option', async () => {
+    const ref: { current: null | HTMLDivElement } = { current: document.createElement('div') };
+
+    const callback = vi.fn();
+    resize(200, 200);
+
+    renderHook(() =>
+      useParentSize(ref, {
+        callback,
+        maxDifference: -1,
+      }),
+    );
+
+    expect(callback).toHaveBeenCalledTimes(1);
+  });
 });

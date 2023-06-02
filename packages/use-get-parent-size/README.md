@@ -52,6 +52,7 @@ export interface UseParentSizeOptions {
   ) => Partial<ResizeObserverContentRect>;
   maxDifference?: number;
   transformFunc?: ({ width, height }: Dimensions) => Dimensions;
+  callback?(entry: ResizeObserverContentRect): void;
 }
 ```
 
@@ -74,13 +75,19 @@ Default is an empty DomRect:
 ```
 
 - `transformFunc` optional function to transform the results, e.g. to halve the size of the parent
+
   ```ts
   transformFunc: ({ width, height }) => ({
     width: width / 2,
     height: height / 2,
   });
   ```
+
   Default is identity, `(x) => x`
+
+- `maxDifference` (default 10) - useParentSize stores the current DomRect values in memory and if a resize event occurrs, these values are checked against the new DomRect values after the resize. If the difference between the two values is greater than the `maxDifference` option then clients are notified.
+
+- `callback` a function can be provided that is executed on each resize.
 
 ## Usage
 
