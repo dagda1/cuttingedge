@@ -20,7 +20,7 @@ import type { ThemeKeys } from '../../src/components/templates/ApplicationLayout
 import { ApplicationLayout } from '../../src/components/templates/ApplicationLayout/ApplicationLayout';
 
 export function App(): JSX.Element {
-  const [theme, setTheme] = useState<ThemeKeys>('supportTheme');
+  const [theme, setTheme] = useState<ThemeKeys>('cuttingTheme');
 
   return (
     <ApplicationLayout theme={theme} className={styles.background} heading="cutting component library" centerHeading>
@@ -44,6 +44,7 @@ export function App(): JSX.Element {
                 {
                   value: 'cuttingTheme',
                   content: 'cutting',
+                  checked: true,
                 },
                 {
                   value: 'consultingTheme',
@@ -56,7 +57,6 @@ export function App(): JSX.Element {
                 {
                   value: 'supportTheme',
                   content: 'support',
-                  checked: true,
                 },
               ]}
             />

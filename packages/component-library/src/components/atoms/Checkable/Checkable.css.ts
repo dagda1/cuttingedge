@@ -76,7 +76,7 @@ globalStyle(`${item} input[type="radio"] + label:after`, {
 });
 
 globalStyle(`${item} input:focus + label:before`, {
-  borderWidth: '4px',
+  borderWidth: vars.space['xxsmall'],
   boxShadow: `0 0 0 4px ${vars.accessibility.accessibleOutline.backgroundColor} !important`,
 });
 
@@ -101,12 +101,17 @@ export const inline = style([
   },
 ]);
 
+globalStyle(`${item}${small}:not(${inline})`, {
+  marginBottom: 0,
+});
+
 globalStyle(`${inline}:not(${small}) label`, {
-  marginRight: vars.space['xxsmall'],
-  marginTop: '4px',
+  marginRight: vars.space['xsmall'],
+  marginLeft: vars.space['xxsmall'],
+  marginTop: vars.space['xxsmall'],
 });
 
 globalStyle(`${inline}${small} label`, {
   paddingLeft: 0,
-  marginTop: '4px',
+  marginTop: vars.space['xxsmall'],
 });
