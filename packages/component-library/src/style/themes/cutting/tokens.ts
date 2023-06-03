@@ -53,7 +53,7 @@ export const tokens: DeepPartial<Tokens> = {
       level: {
         '1': {
           mobile: {
-            fontSize: 48,
+            fontSize: 32,
             lineGap: 11,
           },
           tablet: {
@@ -63,11 +63,11 @@ export const tokens: DeepPartial<Tokens> = {
         },
         '2': {
           mobile: {
-            fontSize: 24,
+            fontSize: 28,
             lineGap: 11,
           },
           tablet: {
-            fontSize: 30,
+            fontSize: 38,
             lineGap: 13,
           },
         },
@@ -96,22 +96,22 @@ export const tokens: DeepPartial<Tokens> = {
     text: {
       large: {
         mobile: {
-          fontSize: 18,
+          fontSize: 19,
           lineGap: 13,
         },
         tablet: {
-          fontSize: 18,
+          fontSize: 22,
           lineGap: 13,
         },
       },
       standard: {
         mobile: {
           fontSize: 16,
-          lineGap: 12,
+          lineGap: 10,
         },
         tablet: {
-          fontSize: 16,
-          lineGap: 12,
+          fontSize: 19,
+          lineGap: 13,
         },
       },
       small: {
@@ -120,7 +120,7 @@ export const tokens: DeepPartial<Tokens> = {
           lineGap: 10,
         },
         tablet: {
-          fontSize: 14,
+          fontSize: 17,
           lineGap: 10,
         },
       },
@@ -130,7 +130,7 @@ export const tokens: DeepPartial<Tokens> = {
           lineGap: 9,
         },
         tablet: {
-          fontSize: 12,
+          fontSize: 15,
           lineGap: 9,
         },
       },

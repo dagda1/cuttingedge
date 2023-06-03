@@ -1,8 +1,8 @@
-import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { atoms } from '../../src/style/atoms/atoms';
 import { vars } from '../../src/style/themes/vars.css';
 import { palette } from '../../src/style/palette.css';
-import { responsiveStyle } from '../../src/style/responsive-style';
+import { cuttingTheme } from '~/index';
 
 // globalFontFace('Oswald', {
 //   fontStyle: 'normal',
@@ -65,3 +65,12 @@ export const item = style([
     },
   }),
 ]);
+
+globalStyle(`${cuttingTheme} h1`, {
+  marginTop: 0,
+  marginBottom: 0,
+  paddingTop: 0,
+  paddingBottom: 0,
+  textShadow:
+    '0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 55px #ffffff,0 0 75px #ffffff',
+});

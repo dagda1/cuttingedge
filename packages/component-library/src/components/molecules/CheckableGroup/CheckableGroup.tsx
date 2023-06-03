@@ -7,6 +7,7 @@ import cs from 'classnames';
 import * as styles from './Checkable.css';
 import type { Checkbox } from '../../atoms/Checkbox/Checkbox';
 import { Text } from '~/components/atoms/Text/Text';
+import { Stack } from '../Stack/Stack';
 
 export type CheckableOption<V extends CheckableValueType> = CheckableProps<V> & { content: ReactNode };
 
@@ -73,37 +74,39 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
 
     return (
       <fieldset className={styles.fieldset}>
-        <Text
-          component="legend"
-          className={cs(styles.legend, { [styles.srOnlyLegend]: legendMode === 'screen-reader-only' })}
-        >
-          {legend}
-        </Text>
-        <div
-          className={cs(className, {
-            [styles.inline]: checkableLayout === 'inline',
-          })}
-        >
-          {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
-          {options.map(({ id, checked, name, content, ...option }) => {
-            return (
-              <Comp
-                key={id}
-                id={id}
-                name={name}
-                checkableLayout={checkableLayout}
-                checkableSize={checkableSize}
-                checked={!!selectedValues.find((x) => x.id === id)?.checked}
-                onChange={changeHandler}
-                onBlur={onBlur as FocusEventHandler<HTMLInputElement>}
-                innerRef={innerRef}
-                {...option}
-              >
-                {typeof content === 'string' ? <Text>{content}</Text> : content}
-              </Comp>
-            );
-          })}
-        </div>
+        <Stack space="xxsmall" dividers>
+          <Text
+            component="legend"
+            className={cs(styles.legend, { [styles.srOnlyLegend]: legendMode === 'screen-reader-only' })}
+          >
+            {legend}
+          </Text>
+          <div
+            className={cs(className, {
+              [styles.inline]: checkableLayout === 'inline',
+            })}
+          >
+            {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
+            {options.map(({ id, checked, name, content, ...option }) => {
+              return (
+                <Comp
+                  key={id}
+                  id={id}
+                  name={name}
+                  checkableLayout={checkableLayout}
+                  checkableSize={checkableSize}
+                  checked={!!selectedValues.find((x) => x.id === id)?.checked}
+                  onChange={changeHandler}
+                  onBlur={onBlur as FocusEventHandler<HTMLInputElement>}
+                  innerRef={innerRef}
+                  {...option}
+                >
+                  {typeof content === 'string' ? <Text>{content}</Text> : content}
+                </Comp>
+              );
+            })}
+          </div>
+        </Stack>
       </fieldset>
     );
   };

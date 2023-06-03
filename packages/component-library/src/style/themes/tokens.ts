@@ -169,22 +169,22 @@ export const tokens = {
     text: {
       large: {
         mobile: {
-          fontSize: 18,
+          fontSize: 19,
           lineGap: 13,
         },
         tablet: {
-          fontSize: 18,
+          fontSize: 22,
           lineGap: 13,
         },
       },
       standard: {
         mobile: {
           fontSize: 16,
-          lineGap: 12,
+          lineGap: 10,
         },
         tablet: {
-          fontSize: 16,
-          lineGap: 12,
+          fontSize: 19,
+          lineGap: 13,
         },
       },
       small: {
@@ -193,7 +193,7 @@ export const tokens = {
           lineGap: 10,
         },
         tablet: {
-          fontSize: 14,
+          fontSize: 17,
           lineGap: 10,
         },
       },
@@ -203,7 +203,7 @@ export const tokens = {
           lineGap: 9,
         },
         tablet: {
-          fontSize: 12,
+          fontSize: 15,
           lineGap: 9,
         },
       },
