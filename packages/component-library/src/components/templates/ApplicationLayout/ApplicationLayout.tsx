@@ -29,7 +29,7 @@ export const Themes = Object.keys(themes) as ThemeKeys[];
 type Layout = 'RESPONSIVE' | 'FULL';
 
 export interface ApplicationLayoutProps {
-  heading?: string | JSX.Element;
+  heading?: string;
   className?: string;
   footer?: ReactElement;
   header?: ReactElement;
@@ -50,12 +50,10 @@ function ApplicationLayoutHeading({
     return null;
   }
 
-  return typeof heading === 'string' ? (
+  return (
     <Heading level="1" className={cs({ [styles.centerHeading]: center })}>
       {heading}
     </Heading>
-  ) : (
-    heading
   );
 }
 

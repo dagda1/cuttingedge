@@ -22,10 +22,10 @@ export const footer = style([
     flexShrink: 0,
     ...responsiveStyle({
       mobile: {
-        fontSize: '14px',
+        // fontSize: '14px',
       },
       tablet: {
-        fontSize: '19px',
+        // fontSize: '19px',
       },
     }),
   },

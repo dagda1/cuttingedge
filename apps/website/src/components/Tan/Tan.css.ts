@@ -32,10 +32,10 @@ globalStyle(`${container} section`, {
 globalStyle(`${container} tspan`, {
   ...responsiveStyle({
     mobile: {
-      fontSize: '0.75rem',
+      // fontSize: '0.75rem',
     },
     tablet: {
-      fontSize: '1rem',
+      // fontSize: '1rem',
     },
   }),
   fill: palette.white,

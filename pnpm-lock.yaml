@@ -209,6 +209,9 @@ importers:
       react-hook-form:
         specifier: 7.44.3
         version: 7.44.3(react@18.2.0)
+      react-is:
+        specifier: ^18.2.0
+        version: 18.2.0
       react-router:
         specifier: 6.13.0
         version: 6.13.0(react@18.2.0)
@@ -288,6 +291,9 @@ importers:
       '@types/react-helmet':
         specifier: 6.1.6
         version: 6.1.6
+      '@types/react-is':
+        specifier: ^17.0.3
+        version: 17.0.3
       '@types/react-router-dom':
         specifier: 5.3.3
         version: 5.3.3

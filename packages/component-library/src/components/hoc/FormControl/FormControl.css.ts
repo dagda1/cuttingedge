@@ -10,7 +10,7 @@ export const root = style([
     justifyContent: 'flexStart',
   }),
   {
-    font: 'inherit',
+    // font: 'inherit',
     fontFamily: 'inherit',
     fontSize: 'inherit',
     ...responsiveStyle({

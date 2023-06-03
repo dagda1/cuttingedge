@@ -4,7 +4,7 @@ import { style } from '@vanilla-extract/css';
 
 const buttonStyles: ComplexStyleRule = {
   borderRadius: '32px',
-  fontSize: '18px',
+  // fontSize: '18px',
   transition: 'none',
   background: 'transparent',
   border: 'none',

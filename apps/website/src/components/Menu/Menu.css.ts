@@ -65,14 +65,14 @@ export const contact = style([
   {
     backgroundColor: '#FF8B45',
     borderRadius: '1rem',
-    fontSize: '1.25rem',
+    // fontSize: '1.25rem',
     ...responsiveStyle({
       mobile: {
         padding: '.5rem .75rem',
       },
       tablet: {
         top: '0 !important',
-        fontSize: '2rem',
+        // fontSize: '2rem',
         padding: '1rem 2rem',
       },
     }),
@@ -244,7 +244,7 @@ globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
   borderRadius: '32px',
   background: palette.white,
   color: '#141414',
-  fontSize: '18px',
+  // fontSize: '18px',
   height: '32px',
   left: '12px',
   top: '8px',

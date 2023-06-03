@@ -72,7 +72,7 @@ globalStyle(`${shape} div:after`, {
   top: `${halfBase}px`,
   textAlign: 'center',
   color: '#fff',
-  fontSize: '1.75em',
+  // fontSize: '1.75em',
   textTransform: 'uppercase',
   left: '50%',
   transform: 'translateX(-50%)',

@@ -8,10 +8,16 @@ globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
 });
 
-const bodyStyle = {
+// const bodyStyle = {
+//   fontFamily: vars.fontFamily,
+//   fontWeight: vars.textWeight.regular,
+// };
+
+globalStyle('html', {
+  fontSize: '100%',
   fontFamily: vars.fontFamily,
   fontWeight: vars.textWeight.regular,
-};
+});
 
 globalStyle('html, body', {
   margin: 0,
@@ -37,7 +43,7 @@ export const footer = style({
 });
 
 export const body = style({
-  ...bodyStyle,
+  // ...bodyStyle,
   color: vars.foregroundColor.body,
   background: vars.backgroundColor.body,
   gridRow: 'body',
@@ -78,7 +84,7 @@ export const full = style({
   marginRight: vars.space['xsmall'],
 });
 
-export const centerHeading = style({ textAlign: 'center' });
+export const centerHeading = style({ textAlign: 'center', border: '10px solid red' });
 
 globalStyle('main', {
   display: 'grid',
@@ -109,11 +115,11 @@ export const center = style({
 });
 
 globalStyle('header,footer', {
-  ...bodyStyle,
+  // ...bodyStyle,
 });
 
 globalStyle('footer', {
-  padding: vars.space['xxsmall'],
+  // padding: vars.space['xxsmall'],
 });
 
 globalStyle('header', {
@@ -148,21 +154,21 @@ globalStyle('ul,ol', {
 });
 
 globalStyle('a, header a,footer a', {
-  textDecoration: vars.links.decoration.link,
-  color: vars.links.color.link,
-  textUnderlineOffset: '.1em',
-  lineHeight: vars.links.lineHeight,
+  // textDecoration: vars.links.decoration.link,
+  // color: vars.links.color.link,
+  // textUnderlineOffset: '.1em',
+  // lineHeight: vars.links.lineHeight,
 });
 
 globalStyle('a:focus', {
-  ...vars.accessibility.linkFocus,
+  // ...vars.accessibility.linkFocus,
 });
 
 globalStyle('a:active', {
-  color: vars.links.color.active,
+  // color: vars.links.color.active,
 });
 
 globalStyle('a:hover,a:focus', {
-  color: vars.links.color.hover,
-  textDecorationThickness: `max(3px, .1875rem, .12em)`,
+  // color: vars.links.color.hover,
+  // textDecorationThickness: `max(3px, .1875rem, .12em)`,
 });

@@ -4,6 +4,8 @@ import { identity } from '@cutting/util';
 import type { StandardProps, Taggable } from '~/types';
 import type { ButtonStyle } from '~/components/atoms/Button/Button.css';
 import { Text } from '../Text/Text';
+import * as styles from './TextLink.css';
+import * as typographyStyles from '~/style/typography/typography.css';
 
 export type TextLinkProps = StandardProps<
   DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
@@ -30,7 +32,7 @@ export function TextLink({
   return (
     <Component
       href={href}
-      className={cs(className)}
+      className={cs(styles.base, typographyStyles.fontWeight.medium, className)}
       onClick={onClick}
       title={title}
       data-testid={dataSelector}
