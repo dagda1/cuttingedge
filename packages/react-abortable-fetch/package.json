@@ -44,7 +44,7 @@
     "@types/react-dom": "18.2.4",
     "@vanilla-extract/css": "^1.11.0",
     "classnames": "2.3.2",
-    "eslint": "8.41.0",
+    "eslint": "8.42.0",
     "msw": "1.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
