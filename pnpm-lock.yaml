@@ -203,8 +203,8 @@ importers:
         specifier: 6.1.0
         version: 6.1.0(react@18.2.0)
       react-hook-form:
-        specifier: 7.44.1
-        version: 7.44.1(react@18.2.0)
+        specifier: 7.44.3
+        version: 7.44.3(react@18.2.0)
       react-router:
         specifier: 6.11.2
         version: 6.11.2(react@18.2.0)
@@ -929,8 +929,8 @@ importers:
         specifier: ^0.3.4
         version: 0.3.4
       react-hook-form:
-        specifier: 7.44.1
-        version: 7.44.1(react@18.2.0)
+        specifier: 7.44.3
+        version: 7.44.3(react@18.2.0)
     devDependencies:
       '@cutting/devtools':
         specifier: workspace:*
@@ -14763,8 +14763,8 @@ packages:
       react-side-effect: 2.1.2(react@18.2.0)
     dev: false
 
-  /react-hook-form@7.44.1(react@18.2.0):
-    resolution: {integrity: sha512-ZVmDuQQCq6agpVE2eoGjH3ZMDgo/aFV4JVobUQGOQ0/tgfcY/WY30mBSVnxmFOpzS+iSqD2ax7hw9Thg5F931A==}
+  /react-hook-form@7.44.3(react@18.2.0):
+    resolution: {integrity: sha512-/tHId6p2ViAka1wECMw8FEPn/oz/w226zehHrJyQ1oIzCBNMIJCaj6ZkQcv+MjDxYh9MWR7RQic7Qqwe4a5nkw==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
