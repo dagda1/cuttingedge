@@ -12,6 +12,7 @@ import {
   Heading,
   Text,
   Stack,
+  TextLink,
 } from '../../src';
 import { Button } from '../../src/components/atoms/Button/Button';
 import { RadioGroup } from '../../src/components/molecules/RadioGroup/RadioGroup';
@@ -128,6 +129,11 @@ export function App(): JSX.Element {
             <ExternalLink href="//cutting.scot" target="_blank">
               External Link
             </ExternalLink>
+          </div>
+          <div className={styles.item}>
+            <TextLink href="//cutting.scot" target="_blank">
+              Text Link
+            </TextLink>
           </div>
           <div className={styles.item}>
             <ButtonLink href="//cutting.scot" target="_blank">

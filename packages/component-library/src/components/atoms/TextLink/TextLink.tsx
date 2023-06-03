@@ -3,24 +3,21 @@ import cs from 'classnames';
 import { identity } from '@cutting/util';
 import type { StandardProps, Taggable } from '~/types';
 import type { ButtonStyle } from '~/components/atoms/Button/Button.css';
-import { root, buttons } from '~/components/atoms/Button/Button.css';
-import * as styles from './ButtonLink.css';
 
-export type ButtonLinkProps = StandardProps<
+export type TextLinkProps = StandardProps<
   DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
 > & {
-  Component?: Taggable<ButtonLinkProps>;
+  Component?: Taggable<TextLinkProps>;
   onClick?: MouseEventHandler;
   buttonStyle?: ButtonStyle;
   ariaLabel?: string;
   ariaLabelledBy?: string;
 };
 
-export function ButtonLink({
+export function TextLink({
   Component = `a`,
   onClick = identity,
   className,
-  buttonStyle = 'primary',
   children,
   title,
   dataSelector,
@@ -28,11 +25,11 @@ export function ButtonLink({
   ariaLabelledBy,
   href,
   ...rest
-}: ButtonLinkProps): JSX.Element {
+}: TextLinkProps): JSX.Element {
   return (
     <Component
       href={href}
-      className={cs(className, root, buttons[buttonStyle], styles.main)}
+      className={cs(className)}
       onClick={onClick}
       title={title}
       data-testid={dataSelector}
