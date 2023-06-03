@@ -1,6 +1,7 @@
 import type { AnchorHTMLAttributes, PropsWithChildren } from 'react';
 import cs from 'classnames';
 import * as styles from './ExternalLink.css';
+import { Text } from '../Text/Text';
 
 export interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   dataSelector?: string;
@@ -30,7 +31,7 @@ export function ExternalLink({
       aria-labelledby={ariaLabelledBy}
       {...rest}
     >
-      {children}
+      {typeof children === 'string' ? <Text>{children}</Text> : children}
     </a>
   );
 }

@@ -43,7 +43,7 @@ export const bannerHeading = style({
 
 export const bannerContent = style({
   background: vars.banners.backgroundColor,
-  padding: '20px',
+  padding: '10px 10px 20px',
   color: vars.banners.color,
 });
 
@@ -55,5 +55,3 @@ globalStyle(`${bannerContent} p`, {
 export const subHeading = style({
   fontWeight: vars.textWeight.strong,
 });
-
-export const body = style({});

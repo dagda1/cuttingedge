@@ -3,6 +3,7 @@ import cs from 'classnames';
 import type { StandardProps } from '~/types';
 import * as styles from './ErrorMessage.css';
 import { visuallyHidden } from '~/style/accessibility.css';
+import { Text } from '~/components/atoms/Text/Text';
 
 export type ErrorProps = StandardProps<HTMLAttributes<HTMLUListElement>> & {
   errorMessage: string;
@@ -17,9 +18,9 @@ export function ErrorMessage({
   className,
 }: ErrorProps): JSX.Element {
   return (
-    <span id={id} data-testid={dataSelector} className={cs(styles.root, className)}>
+    <Text id={id} dataTestid={dataSelector} className={cs(styles.root, className)}>
       <span className={visuallyHidden}>Error:</span>
       {errorMessage}
-    </span>
+    </Text>
   );
 }

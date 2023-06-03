@@ -71,22 +71,22 @@ export const tokens: DeepPartial<Tokens> = {
         },
         '3': {
           mobile: {
-            fontSize: 22,
-            lineGap: 10,
+            fontSize: 28,
+            lineGap: 12,
           },
           tablet: {
-            fontSize: 24,
-            lineGap: 11,
+            fontSize: 31,
+            lineGap: 15,
           },
         },
         '4': {
           mobile: {
-            fontSize: 20,
-            lineGap: 9,
+            fontSize: 22,
+            lineGap: 13,
           },
           tablet: {
-            fontSize: 20,
-            lineGap: 9,
+            fontSize: 25,
+            lineGap: 13,
           },
         },
       },
@@ -94,22 +94,22 @@ export const tokens: DeepPartial<Tokens> = {
     text: {
       large: {
         mobile: {
-          fontSize: 18,
+          fontSize: 19,
           lineGap: 13,
         },
         tablet: {
-          fontSize: 19,
+          fontSize: 22,
           lineGap: 13,
         },
       },
       standard: {
         mobile: {
           fontSize: 16,
-          lineGap: 12,
+          lineGap: 10,
         },
         tablet: {
           fontSize: 19,
-          lineGap: 12,
+          lineGap: 13,
         },
       },
       small: {

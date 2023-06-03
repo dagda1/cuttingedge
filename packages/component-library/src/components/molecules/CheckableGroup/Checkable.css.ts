@@ -12,7 +12,6 @@ export const srOnlyLegend = style({
 });
 
 export const legend = style({
-  // ...responsiveTextStyleRule.body,
   marginBottom: vars.space['xxsmall'],
 });
 

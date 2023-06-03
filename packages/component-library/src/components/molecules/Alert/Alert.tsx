@@ -2,6 +2,9 @@ import type { ReactNode } from 'react';
 import cs from 'classnames';
 import * as styles from './Alert.css';
 import { capitalize } from '@cutting/util';
+import { Heading } from '~/components/atoms/Heading/Heading';
+import { Text } from '~/components/atoms/Text/Text';
+import { Stack } from '../Stack/Stack';
 
 export type AlertType = 'success' | 'warning' | 'error';
 
@@ -24,13 +27,17 @@ export function Alert({ type, title = capitalize(type), bannerHeading, children 
       data-disable-auto-focus="true"
     >
       <div className={styles.bannerHeading}>
-        <h2 className="notification-banner__title" id="notification-banner-title">
+        <Heading level="2" className="notification-banner__title" id="notification-banner-title">
           {title}
-        </h2>
+        </Heading>
       </div>
       <div className={styles.bannerContent}>
-        <p className={styles.subHeading}>{bannerHeading}</p>
-        <p className={styles.body}>{children}</p>
+        <Stack space="small">
+          <Text component="p" className={styles.subHeading}>
+            {bannerHeading}
+          </Text>
+          <Text component="p">{children}</Text>
+        </Stack>
       </div>
     </div>
   );

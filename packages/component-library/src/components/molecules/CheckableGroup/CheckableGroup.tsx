@@ -6,6 +6,7 @@ import cs from 'classnames';
 
 import * as styles from './Checkable.css';
 import type { Checkbox } from '../../atoms/Checkbox/Checkbox';
+import { Text } from '~/components/atoms/Text/Text';
 
 export type CheckableOption<V extends CheckableValueType> = CheckableProps<V> & { content: ReactNode };
 
@@ -72,9 +73,12 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
 
     return (
       <fieldset className={styles.fieldset}>
-        <legend className={cs(styles.legend, { [styles.srOnlyLegend]: legendMode === 'screen-reader-only' })}>
+        <Text
+          component="legend"
+          className={cs(styles.legend, { [styles.srOnlyLegend]: legendMode === 'screen-reader-only' })}
+        >
           {legend}
-        </legend>
+        </Text>
         <div
           className={cs(className, {
             [styles.inline]: checkableLayout === 'inline',
@@ -95,7 +99,7 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
                 innerRef={innerRef}
                 {...option}
               >
-                {content}
+                {typeof content === 'string' ? <Text>{content}</Text> : content}
               </Comp>
             );
           })}

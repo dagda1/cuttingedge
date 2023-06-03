@@ -3,6 +3,7 @@ import cs from 'classnames';
 import { identity } from '@cutting/util';
 import type { StandardProps, Taggable } from '~/types';
 import type { ButtonStyle } from '~/components/atoms/Button/Button.css';
+import { Text } from '../Text/Text';
 
 export type TextLinkProps = StandardProps<
   DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
@@ -37,7 +38,7 @@ export function TextLink({
       aria-labelledby={ariaLabelledBy}
       {...rest}
     >
-      {children}
+      {typeof children === 'string' ? <Text>{children}</Text> : children}
     </Component>
   );
 }

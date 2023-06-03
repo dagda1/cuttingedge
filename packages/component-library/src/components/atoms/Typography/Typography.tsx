@@ -18,6 +18,7 @@ export interface TypographyProps extends Pick<BoxProps, 'id' | 'component'> {
   align?: BoxProps['textAlign'];
   maxLines?: number;
   className?: string;
+  dataTestid?: string;
 }
 
 export function Typography({
@@ -27,12 +28,13 @@ export function Typography({
   align,
   maxLines,
   icon,
+  dataTestid,
   children,
 }: TypographyProps): JSX.Element {
   const contents = typeof maxLines === 'number' ? <MaxLines lines={maxLines}>{children}</MaxLines> : children;
 
   return (
-    <Box id={id} display="block" component={component} textAlign={align} className={className}>
+    <Box dataTestid={dataTestid} id={id} display="block" component={component} textAlign={align} className={className}>
       {icon ? (
         <Box component="span" display="flex" justifyContent={alignToFlexAlign(align)}>
           <Box

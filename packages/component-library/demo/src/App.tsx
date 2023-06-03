@@ -79,9 +79,9 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            <Heading level="2">
-              H2 heading with lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and
-              lots and lots and lots and lots and lots and lots of text
+            <Heading level="4">
+              H2 heading with lots and lots and lots and lots and lots and lots of and lots of and lots of and lots of
+              and lots of and lots of and lots of text
             </Heading>
           </div>
         </div>
@@ -122,15 +122,6 @@ export function App(): JSX.Element {
         </div>
         <div className={styles.layout}>
           <div className={styles.item}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#">A link</a>
-          </div>
-          <div className={styles.item}>
-            <ExternalLink href="//cutting.scot" target="_blank">
-              External Link
-            </ExternalLink>
-          </div>
-          <div className={styles.item}>
             <TextLink href="//cutting.scot" target="_blank">
               Text Link
             </TextLink>
@@ -139,6 +130,11 @@ export function App(): JSX.Element {
             <ButtonLink href="//cutting.scot" target="_blank">
               Button Link
             </ButtonLink>
+          </div>
+          <div className={styles.item}>
+            <ExternalLink href="//cutting.scot" target="_blank">
+              External Link
+            </ExternalLink>
           </div>
         </div>
         <div className={styles.layout}>

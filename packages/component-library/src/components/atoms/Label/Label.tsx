@@ -2,6 +2,7 @@ import cs from 'classnames';
 import * as styles from './Label.css';
 import type { FontWeight } from '~/style/types';
 import type { PropsWithChildren } from 'react';
+import { Text } from '~/components/atoms/Text/Text';
 
 export interface LabelProps {
   id?: string;
@@ -34,7 +35,7 @@ export function Label({
       })}
       data-testid={dataSelector}
     >
-      {children}
+      {typeof children === 'string' ? <Text>{children}</Text> : children}
     </label>
   );
 }

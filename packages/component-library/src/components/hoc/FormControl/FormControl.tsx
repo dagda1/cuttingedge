@@ -6,6 +6,7 @@ import { prefixId } from '~/utl';
 import * as styles from './FormControl.css';
 import { ErrorMessage } from '~/components/atoms/ErrorMessage/ErrorMessage';
 import type { FormControlProps, FormElementFromComponent } from './types';
+import { Text } from '~/components/atoms/Text/Text';
 
 export function FormControl<P>(
   Comp: FunctionComponent<P>,
@@ -54,8 +55,8 @@ export function FormControl<P>(
           fontWeight={fontWeight}
           dataSelector={`${dataSelector}-label`}
         >
-          {label}
-          {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
+          {typeof label === 'string' ? <Text>{label}</Text> : label}
+          {additionalLabel && <Text className={styles.label__additional}>{additionalLabel}</Text>}
         </Label>
 
         <div className={styles.wrapper}>

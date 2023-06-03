@@ -15,7 +15,7 @@ describe('<ExternalLink />', () => {
     expect(a.href).toBe('http://blah.com/');
     expect(a.target).toBe('_blank');
     expect(a.rel).toBe('noopener noreferrer');
-    expect(a.innerHTML).toBe('Blah');
+    expect(a.querySelector('span')?.innerHTML).toBe('Blah');
   });
 
   it('should add aria-label and aria-labelledby attributes', () => {

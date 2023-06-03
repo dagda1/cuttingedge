@@ -4,6 +4,7 @@ import { identity } from '@cutting/util';
 import type { StandardProps } from '~/types';
 import type { ButtonStyle } from './Button.css';
 import { root, buttons, disabled as disabledStyle } from './Button.css';
+import { Text } from '../Text/Text';
 
 export type ButtonProps = StandardProps<
   DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
@@ -39,7 +40,7 @@ export function Button({
       aria-labelledby={ariaLabelledBy}
       {...rest}
     >
-      {children}
+      <Text>{children}</Text>
     </button>
   );
 }

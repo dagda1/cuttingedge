@@ -12,12 +12,16 @@ export interface TextProps extends TypographyProps {
   size?: TextStyleProps['size'];
   weight?: TextStyleProps['weight'];
   baseline?: TextStyleProps['baseline'];
+  dataTestid?: string;
+  className?: string;
 }
 
 export function Text({
   size: sizeProp,
   weight: weightProp,
   baseline = true,
+  dataTestid,
+  className,
   ...typographyProps
 }: TextProps): JSX.Element {
   assert(!useContext(TextContext), 'Text components should not be nested within each other');
@@ -39,7 +43,11 @@ export function Text({
 
   return (
     <TextContext.Provider value={textStylingProps}>
-      <Typography {...typographyProps} className={cs(textStyles(textStylingProps).join(' '))} />
+      <Typography
+        dataTestid={dataTestid}
+        {...typographyProps}
+        className={cs(className, textStyles(textStylingProps).join(' '))}
+      />
     </TextContext.Provider>
   );
 }
