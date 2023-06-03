@@ -5,6 +5,7 @@ import type { StandardProps, Taggable } from '~/types';
 import type { ButtonStyle } from '~/components/atoms/Button/Button.css';
 import { root, buttons } from '~/components/atoms/Button/Button.css';
 import * as styles from './ButtonLink.css';
+import { Text } from '../Text/Text';
 
 export type ButtonLinkProps = StandardProps<
   DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
@@ -40,7 +41,7 @@ export function ButtonLink({
       aria-labelledby={ariaLabelledBy}
       {...rest}
     >
-      {children}
+      <Text>{children}</Text>
     </Component>
   );
 }
