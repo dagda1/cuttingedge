@@ -18,19 +18,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "noFallthroughCasesInSwitch": true,
-    "lib": [
-      "es5",
-      "es2015",
-      "es2016",
-      "ES2019",
-      "dom"
-    ],
-    "types": [
-      "node",
-      "@cutting/useful-types"
-    ],
-    "typeRoots": [
-      "../../node_modules/@types"
-    ]
+    "lib": ["es5", "es2015", "es2016", "ES2019", "dom"],
+    "types": ["node", "@cutting/useful-types"]
   }
 }

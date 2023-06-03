@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { FunctionComponent, Ref } from 'react';
+import type { FunctionComponent, ReactNode, Ref } from 'react';
 import { forwardRef } from 'react';
 import { FormInput, FormTextArea } from '@cutting/component-library';
 import type { FieldValues, UseFormRegister, UseFormReturn } from 'react-hook-form';
@@ -25,6 +25,5 @@ export function createFormComponent<C extends FunctionComponent<any>>(Component:
 // TODO: remove annotations.  Currently weird type error
 // The inferred type of 'Input' cannot be named without a reference to '@cutting/component-library/node_modules/@types/react'.
 // This is likely not portable. A type annotation is necessary.
-export const Input: (props: FormProps<typeof FormInput>) => JSX.Element | null = createFormComponent(FormInput);
-export const TextArea: (props: FormProps<typeof FormTextArea>) => JSX.Element | null =
-  createFormComponent(FormTextArea);
+export const Input: (props: FormProps<typeof FormInput>) => ReactNode = createFormComponent(FormInput);
+export const TextArea: (props: FormProps<typeof FormTextArea>) => ReactNode = createFormComponent(FormTextArea);
