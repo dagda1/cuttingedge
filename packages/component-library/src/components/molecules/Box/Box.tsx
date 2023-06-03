@@ -14,7 +14,7 @@ export interface BoxProps extends BoxBaseProps, Omit<AllHTMLAttributes<HTMLEleme
   component?: ElementType;
 }
 
-export const Box = forwardRef<HTMLElement, BoxProps>(({ component = 'div', className, data, ...restProps }, ref) => {
+export const Box = forwardRef<HTMLElement, BoxProps>(({ component = 'div', className, ...restProps }, ref) => {
   const atomProps: Record<string, unknown> = {};
   const nativeProps: Record<string, unknown> = {};
 
