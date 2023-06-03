@@ -330,8 +330,8 @@ importers:
         specifier: 1.1.3
         version: 1.1.3(vite@4.3.9)
       vite-plugin-ssr:
-        specifier: 0.4.130
-        version: 0.4.130(vite@4.3.9)
+        specifier: 0.4.131
+        version: 0.4.131(vite@4.3.9)
       vite-plugin-svgr:
         specifier: 3.2.0
         version: 3.2.0(rollup@3.23.0)(vite@4.3.9)
@@ -17467,8 +17467,8 @@ packages:
       vite: 4.3.9(@types/node@20.2.5)
     dev: true
 
-  /vite-plugin-ssr@0.4.130(vite@4.3.9):
-    resolution: {integrity: sha512-EYyTeOviS6P7bFod1FxV+mglRckEh+jWdFYMMnoT7zz2MQyCSQQs/mZ/EXPyeqPY4PwvwAY3MzPbb0bPdUA+PA==}
+  /vite-plugin-ssr@0.4.131(vite@4.3.9):
+    resolution: {integrity: sha512-M8ay5UuQUEMBHhg87BVhXGjPV+/xO3PZWzZ63S8J8rX4Xv+sQbnDswGYm/TJ+Ga/9NTgrFDAKqUfEb3pEpd+Aw==}
     engines: {node: '>=12.19.0'}
     hasBin: true
     peerDependencies:
