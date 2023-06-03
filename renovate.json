@@ -7,7 +7,7 @@
   "rebaseWhen": "auto",
   "requiredStatusChecks": [],
   "timezone": "Europe/Dublin",
-  "schedule": ["every weekend"],
+  "schedule": ["before 8am every weekend"],
   "packageRules": [
     {
       "packageNames": ["node", "pnpm"],
