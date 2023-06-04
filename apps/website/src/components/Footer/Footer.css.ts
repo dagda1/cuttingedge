@@ -2,76 +2,63 @@ import { vars, atoms, responsiveStyle, palette } from '@cutting/component-librar
 import { style, globalStyle } from '@vanilla-extract/css';
 
 globalStyle('footer', {
-  display: 'flex',
-  flexShrink: 0,
+  display: 'grid',
+  //   flexShrink: 0,
   width: '100%',
-  ...responsiveStyle({
-    mobile: {
-      flexDirection: 'column',
-    },
-    tablet: {
-      flexDirection: 'row',
-    },
-    wide: {},
-  }),
+  border: '10px solid red',
+  gridTemplateColumns: '1fr 1fr',
+  //   ...responsiveStyle({
+  //     mobile: {
+  //       flexDirection: 'column',
+  //     },
+  //     tablet: {
+  //       flexDirection: 'row',
+  //     },
+  //     wide: {},
+  //   }),
 });
 
-export const footer = style([
-  {
-    display: 'flex',
-    flexShrink: 0,
-    ...responsiveStyle({
-      mobile: {
-        // fontSize: '14px',
-      },
-      tablet: {
-        // fontSize: '19px',
-      },
-    }),
-  },
-  atoms({
-    marginBottom: {
-      mobile: 'xsmall',
-      tablet: 'xxsmall',
-    },
-    flexDirection: {
-      mobile: 'column',
-      tablet: 'row',
-    },
-  }),
-]);
-
 export const left = style({
-  display: 'flex',
+  display: 'grid',
+  gridTemplateColumns: 'auto 1fr',
+  border: '10px solid blue',
   ...responsiveStyle({
     mobile: {
-      flexDirection: 'column',
-      flex: 'auto',
+      // flexDirection: 'column',
+      // flex: 'auto',
     },
     tablet: {
-      flexDirection: 'row',
-      flex: '0 0 33.333%',
+      // flexDirection: 'row',
+      // flex: '0 0 33.333%',
     },
   }),
 });
 
 export const right = style({
+  border: '10px solid green',
   ...responsiveStyle({
     mobile: {
-      flexDirection: 'column',
-      flex: 'auto',
+      // flexDirection: 'column',
+      // flex: 'auto',
     },
     tablet: {
-      flexDirection: 'row',
-      flex: '0 0 66.666%',
+      // flexDirection: 'row',
+      // flex: '0 0 66.666%',
     },
   }),
 });
 
 export const logoContainer = style({
   width: '40px',
-  display: 'inline-block',
-  verticalAlign: 'middle',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+export const logo = style({
+  border: '10px solid white',
+  width: '100%',
+  display: 'flex',
 });
 
 globalStyle(`${logoContainer} svg`, {
@@ -84,26 +71,35 @@ globalStyle(`${logoContainer} svg path`, {
 });
 
 globalStyle(`${logoContainer} > div`, {
-  marginTop: '-5px',
-  paddingTop: 0,
+  // marginTop: '-5px',
+  // paddingTop: 0,
 });
 
-export const links = style([
-  {
-    textAlign: 'center',
-    flex: '0 0 50%',
-  },
-  atoms({
-    textAlign: {
-      mobile: 'center',
-      tablet: 'left',
-    },
-  }),
-]);
+export const links = style({});
+// {
+//   textAlign: 'center',
+//   flex: '0 0 50%',
+// },
+// atoms({
+//   textAlign: {
+//     mobile: 'center',
+//     tablet: 'left',
+//   },
+// }),
+// ]);
+
+globalStyle(`${links} ul`, {
+  display: 'grid',
+  height: '100%',
+  placeItems: 'center',
+});
+globalStyle(`${links} ul li`, {
+  display: 'block',
+});
 
 export const name = style({
   display: 'inline-block',
-  marginLeft: '5px',
+  // marginLeft: '5px',
 });
 
 export const seal = style({
@@ -111,18 +107,6 @@ export const seal = style({
   position: 'relative',
   top: '3px',
 });
-
-export const logo = style([
-  {
-    flex: '0 0 50%',
-  },
-  atoms({
-    textAlign: {
-      mobile: 'center',
-      tablet: 'left',
-    },
-  }),
-]);
 
 export const contact = style([
   atoms({
@@ -140,8 +124,8 @@ export const social = style({
 
 globalStyle(`${social} li`, {
   display: 'inline-block',
-  marginRight: vars.space['xsmall'],
-  paddingRight: vars.space['xsmall'],
+  // marginRight: vars.space['xsmall'],
+  // paddingRight: vars.space['xsmall'],
   borderRight: '1px solid #333',
   height: '20px',
   lineHeight: '21px',

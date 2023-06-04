@@ -1,11 +1,11 @@
 import { footerPages } from '~/routes';
-import { NavLink } from 'react-router-dom';
-import { ExternalLink } from '@cutting/component-library';
+import { ExternalLink, Text } from '@cutting/component-library';
 
 import * as styles from './Footer.css';
 import { Cow } from '../Svg/Cow';
 import { Github } from '../Svg/Github';
 import { Twitter } from '../Svg/Twitter';
+import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 export function Footer(): JSX.Element {
   return (
@@ -13,17 +13,17 @@ export function Footer(): JSX.Element {
       <div className={styles.left}>
         <div className={styles.logo}>
           <div className={styles.logoContainer}>
-            <div>
-              <Cow />
-            </div>
+            <Cow />
           </div>
-          <span className={styles.name}>Paul Cowan</span>
+          <Text component="span" className={styles.name}>
+            Paul Cowan
+          </Text>
         </div>
         <div className={styles.links}>
           <ul>
             {footerPages.map((page) => (
               <li key={page.path}>
-                <NavLink to={page.path}>{page.heading}</NavLink>
+                <TextNavLink to={page.path}>{page.heading}</TextNavLink>
               </li>
             ))}
           </ul>
@@ -46,7 +46,9 @@ export function Footer(): JSX.Element {
             </ul>
             <ExternalLink href="mailto:paul.cowan@cutting.scot">paul.cowan@cutting.scot</ExternalLink>
           </div>
-          <div className={styles.copyright}>Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</div>
+          <Text component="div" className={styles.copyright}>
+            Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved
+          </Text>
         </div>
       </div>
     </>

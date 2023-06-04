@@ -54,6 +54,9 @@ export { PageBlock } from './components/templates/PageBlock/PageBlock';
 export { Donut } from './components/molecules/Donut/Donut';
 export { Alert } from './components/molecules/Alert/Alert';
 export { Stack, type ReactNodeNoStrings } from './components/molecules/Stack/Stack';
+export { Columns } from './components/molecules/Columns/Columns';
+export { Column } from './components/molecules/Column/Column';
+export { Tiles } from './components/molecules/Tiles/Tiles';
 
 export { responsiveStyle } from './style/responsive-style';
 export { atoms } from './style/atoms/atoms';
