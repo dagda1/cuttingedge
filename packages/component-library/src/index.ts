@@ -21,13 +21,15 @@ export type { AlertType, AlertProps } from './components/molecules/Alert/Alert';
 
 export { Heading } from './components/atoms/Heading/Heading';
 export { Text } from './components/atoms/Text/Text';
+export { useGetTextStyles } from './components/atoms/Text/useGetTextStyles';
 export { ExternalLink } from './components/atoms/ExternalLink/ExternalLink';
 export { Input } from './components/atoms/Input/Input';
 export { Label } from './components/atoms/Label';
 export { ErrorMessage } from './components/atoms/ErrorMessage/ErrorMessage';
 export { Button } from './components/atoms/Button/Button';
 export { ButtonLink } from './components/atoms/ButtonLink/ButtonLink';
-export { TextLink } from './components/atoms/TextLink/TextLink';
+export { TextLink, getLinkStyles } from './components/atoms/TextLink/TextLink';
+export { TextContext } from './components/atoms/Text/TextContext';
 export { Strong } from './components/atoms/Strong/Strong';
 export * from './components/atoms/Button/Button.css';
 export * from './components/atoms/ButtonLink/ButtonLink.css';

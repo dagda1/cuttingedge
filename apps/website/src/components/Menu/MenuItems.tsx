@@ -1,7 +1,7 @@
 import { bannerPages } from '../../routes';
 import cs from 'classnames';
-import { NavLink } from 'react-router-dom';
 import { Menu as VizMenu, MenuItem, MenuButton } from '@szhsin/react-menu';
+import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 import * as styles from './Menu.css';
 
@@ -15,36 +15,36 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
     <>
       {bannerPages.map((page) => (
         <li key={page.heading} className={cs(styles.horizontal, className)}>
-          <NavLink
+          <TextNavLink
             to={page.path?.includes('*') ? page.path.slice(0, -2) : page.path}
             className={({ isActive }) => cs(page.className, { [styles.active]: isActive })}
             onClick={collapse}
           >
             {page.heading}
-          </NavLink>
+          </TextNavLink>
         </li>
       ))}
       <li className={cs(styles.horizontal, className)}>
         <VizMenu menuButton={<MenuButton className={styles.dropdown}>VIZ</MenuButton>}>
           <MenuItem className={styles.VizMenuItem}>
-            <NavLink className={styles.submenu} to="/viz">
+            <TextNavLink className={styles.submenu} to="/viz">
               SINE
-            </NavLink>
+            </TextNavLink>
           </MenuItem>
           <MenuItem className={styles.VizMenuItem}>
-            <NavLink className={styles.submenu} to="/viz/function-plot">
+            <TextNavLink className={styles.submenu} to="/viz/function-plot">
               FUNCTIONS
-            </NavLink>
+            </TextNavLink>
           </MenuItem>
           <MenuItem className={styles.VizMenuItem}>
-            <NavLink className={styles.submenu} to="/viz/sine2">
+            <TextNavLink className={styles.submenu} to="/viz/sine2">
               MORE SINE
-            </NavLink>
+            </TextNavLink>
           </MenuItem>
           <MenuItem className={styles.VizMenuItem}>
-            <NavLink className={styles.submenu} to="/viz/tan">
+            <TextNavLink className={styles.submenu} to="/viz/tan">
               TAN
-            </NavLink>
+            </TextNavLink>
           </MenuItem>
         </VizMenu>
       </li>

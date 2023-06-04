@@ -240,7 +240,7 @@ globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  marginRight: vars.space['xsmall'],
+  marginRight: vars.space['medium'],
   borderRadius: '32px',
   background: palette.white,
   color: '#141414',

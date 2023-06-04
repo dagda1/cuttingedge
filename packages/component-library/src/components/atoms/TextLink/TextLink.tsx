@@ -1,4 +1,5 @@
 import type { DetailedHTMLProps, AnchorHTMLAttributes, MouseEventHandler } from 'react';
+import { useMemo } from 'react';
 import cs from 'classnames';
 import { identity } from '@cutting/util';
 import type { StandardProps, Taggable } from '~/types';
@@ -17,6 +18,8 @@ export type TextLinkProps = StandardProps<
   ariaLabelledBy?: string;
 };
 
+export const getLinkStyles = (): string => cs(styles.base, typographyStyles.fontWeight.medium);
+
 export function TextLink({
   Component = `a`,
   onClick = identity,
@@ -29,10 +32,11 @@ export function TextLink({
   href,
   ...rest
 }: TextLinkProps): JSX.Element {
+  const linkStyles = useMemo(() => getLinkStyles(), []);
   return (
     <Component
       href={href}
-      className={cs(styles.base, typographyStyles.fontWeight.medium, className)}
+      className={cs(linkStyles, className)}
       onClick={onClick}
       title={title}
       data-testid={dataSelector}
