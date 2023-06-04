@@ -7,6 +7,9 @@ import { textStyles } from '../../../style/typography/typography';
 import { TextContext } from './TextContext';
 import { useDefaultTextProps } from './defaultTextProps';
 import cs from 'classnames';
+import * as styles from './Text.css';
+
+type Layout = 'inline' | 'block';
 
 export interface TextProps extends TypographyProps {
   size?: TextStyleProps['size'];
@@ -14,6 +17,7 @@ export interface TextProps extends TypographyProps {
   baseline?: TextStyleProps['baseline'];
   dataTestid?: string;
   className?: string;
+  layout?: Layout;
 }
 
 export function Text({
@@ -21,6 +25,7 @@ export function Text({
   weight: weightProp,
   baseline = true,
   dataTestid,
+  layout = 'block',
   className,
   ...typographyProps
 }: TextProps): JSX.Element {
@@ -46,7 +51,7 @@ export function Text({
       <Typography
         dataTestid={dataTestid}
         {...typographyProps}
-        className={cs(className, textStyles(textStylingProps).join(' '))}
+        className={cs({ [styles.inline]: layout === 'inline' }, className, textStyles(textStylingProps).join(' '))}
       />
     </TextContext.Provider>
   );
