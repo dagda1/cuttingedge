@@ -1,5 +1,5 @@
-import { ApplicationLayout } from '../../layouts/ApplicationLayout';
-import * as Urls from '../../urls';
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+import * as Urls from '~/urls';
 
 import * as styles from './CV.css';
 

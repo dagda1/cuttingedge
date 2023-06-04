@@ -1,4 +1,4 @@
-import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import * as styles from './Sine2.css';
 import { useLayoutEffect, useMemo, useReducer, useRef } from 'react';

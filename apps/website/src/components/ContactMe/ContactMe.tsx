@@ -1,4 +1,4 @@
-import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 import * as styles from './ContactMe.css';
 

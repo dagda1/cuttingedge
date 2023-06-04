@@ -1,5 +1,5 @@
-import { Pyramid } from '../../components/Pyramid';
-import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { Pyramid } from '~/components/Pyramid';
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 export function Home(): JSX.Element {
   return (

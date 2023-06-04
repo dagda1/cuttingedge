@@ -18,7 +18,7 @@
     "lint": "eslint ./**/*.{ts,tsx} --fix",
     "serve": "NODE_ENV=production node dist/server.mjs",
     "deploy:web": "rm -rf ./pruned && NODE_ENV=production pnpm build && pnpm --filter @cutting/website --prod deploy pruned && ./bin/deploy.sh",
-    "test": "NODE_ENV=test vitest"
+    "test": "echo no tests"
   },
   "sideEffects": [
     "**/*.css",

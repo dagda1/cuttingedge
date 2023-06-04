@@ -1,6 +1,6 @@
-import { Footer } from '../../components/Footer';
-import { Header } from '../../components/Header';
-import { CuttingEdge } from '../../constants';
+import { Footer } from '~/components/Footer';
+import { Header } from '~/components/Header';
+import { CuttingEdge } from '~/constants';
 import { Helmet } from 'react-helmet';
 import { ApplicationLayoutWithRouterScroll, type ApplicationLayoutProps as AppProps } from '@cutting/component-library';
 import './ApplicationLayout.css';

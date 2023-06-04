@@ -6,7 +6,10 @@
     "module": "ES2022",
     "outDir": "./dist",
     "rootDir": ".",
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "~/*": ["src/*"]
+    }
   },
   "include": [
     "src/**/*.ts",

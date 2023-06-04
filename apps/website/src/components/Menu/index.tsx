@@ -1,11 +1,11 @@
 import cs from 'classnames';
 import { useState } from 'react';
-import * as urls from '../../urls';
+import * as urls from '~/urls';
 import { MobileNavButton } from '../MobileNavButton';
 import { MenuItems, MobileMenuItems } from './MenuItems';
 
 import * as styles from './Menu.css';
-import { Cow } from '../Svg/Cow';
+import { Cow } from '~/components/Svg/Cow';
 import { Heading } from '@cutting/component-library';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 

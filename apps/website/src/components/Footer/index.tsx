@@ -1,4 +1,4 @@
-import { footerPages } from '../../routes';
+import { footerPages } from '~/routes';
 import { NavLink } from 'react-router-dom';
 import { ExternalLink } from '@cutting/component-library';
 

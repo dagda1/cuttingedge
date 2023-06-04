@@ -1,7 +1,7 @@
-import { bannerPages } from '../../routes';
+import { bannerPages } from '~/routes';
 import cs from 'classnames';
 import { Menu as VizMenu, MenuItem, MenuButton } from '@szhsin/react-menu';
-import { TextNavLink } from '../TextNavLink/TextNavLink';
+import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
 
 import * as styles from './Menu.css';
 

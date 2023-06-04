@@ -1,10 +1,10 @@
 import { ExternalLink } from '@cutting/component-library';
-import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import type { Repo } from './repos';
 import { repos } from './repos';
 import { Heading } from '@cutting/component-library';
 import * as styles from './OSS.css';
-import { Github } from '../../components/Svg/Github';
+import { Github } from '~/components/Svg/Github';
 
 export function OSS(): JSX.Element {
   return (

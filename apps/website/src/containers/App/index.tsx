@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
-import { MainRoutes } from '../../routes';
+import { MainRoutes } from '~/routes';
 import { BrowserRouter as Router } from 'react-router-dom';
-import * as styles from '../../assets/scss/global.css';
+import * as styles from '~/assets/scss/global.css';
 
 export function App(): JSX.Element {
   return (

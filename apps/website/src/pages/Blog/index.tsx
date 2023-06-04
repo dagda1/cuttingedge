@@ -1,6 +1,6 @@
 import { posts } from './posts';
 import { ExternalLink } from '@cutting/component-library';
-import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { Heading } from '@cutting/component-library';
 
 export function Blog(): JSX.Element {
