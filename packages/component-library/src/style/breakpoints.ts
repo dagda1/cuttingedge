@@ -12,7 +12,7 @@ export const breakpointQuery = mapValues(omit(breakpoints, 'mobile'), (bp) => `s
 
 export type Breakpoint = keyof typeof breakpoints;
 
-export const breakpointNames = ['mobile', 'tablet', 'desktop', 'wide'] as const;
+export const breakpointNames = ['mobile', 'tablet', 'desktop', 'wide', 'extraWide'] as const;
 
 export interface Dimensions {
   width: number;

@@ -1,5 +1,10 @@
 import type { ConditionalValue, RequiredConditionalValue } from '@vanilla-extract/sprinkles';
-import { defineProperties, createSprinkles, createMapValueFn } from '@vanilla-extract/sprinkles';
+import {
+  defineProperties,
+  createSprinkles,
+  createMapValueFn,
+  createNormalizeValueFn,
+} from '@vanilla-extract/sprinkles';
 import { breakpointNames, breakpoints } from '../breakpoints';
 import { vars } from '~/style/themes/vars.css';
 import { rem } from 'polished';
@@ -136,3 +141,5 @@ export const sprinkles = createSprinkles(
 );
 
 export const mapResponsiveValue = createMapValueFn(responsiveAtomicProperties);
+
+export const normalizeResponsiveValue = createNormalizeValueFn(responsiveAtomicProperties);
