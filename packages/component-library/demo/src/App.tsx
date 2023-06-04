@@ -23,7 +23,7 @@ export function App(): JSX.Element {
   const [theme, setTheme] = useState<ThemeKeys>('cuttingTheme');
 
   return (
-    <ApplicationLayout theme={theme} className={styles.background} heading="cutting component library" centerHeading>
+    <ApplicationLayout theme={theme} className={styles.background} heading="cutting component library">
       <Stack space="medium">
         <div className={styles.layout}>
           <div className={styles.item}>

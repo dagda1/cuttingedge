@@ -7,6 +7,7 @@ import { MenuItems, MobileMenuItems } from './MenuItems';
 import * as styles from './Menu.css';
 import { Cow } from '~/components/Svg/Cow';
 import { Heading } from '@cutting/component-library';
+import { NavLink } from 'react-router-dom';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 export interface MenuState {
@@ -26,22 +27,21 @@ export function Menu(): JSX.Element {
       <div className={styles.full}>
         <ul>
           <li className={styles.logoContainer}>
-            <TextNavLink aria-label="home" to={urls.Home}>
+            <NavLink aria-label="home" to={urls.Home}>
               <Cow />
-            </TextNavLink>
+            </NavLink>
           </li>
           <li>
-            <Heading level="2">
-              <TextNavLink aria-label="home" className={styles.name} to={urls.Home}>
-                Paul Cowan
-              </TextNavLink>
-            </Heading>
+            <TextNavLink aria-label="home" className={styles.name} to={urls.Home}>
+              <Heading level="2">Paul Cowan</Heading>
+            </TextNavLink>
           </li>
-          <li className={cs(styles['contact'], styles.horizontal)}>
+          <li className={cs(styles.contact, styles.horizontal)}>
             <TextNavLink
               to={urls.ContactMe}
               className={({ isActive }) => (isActive ? styles.active : '')}
               onClick={collapse}
+              size="large"
             >
               Contact
             </TextNavLink>

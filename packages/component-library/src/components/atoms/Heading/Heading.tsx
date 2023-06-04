@@ -4,6 +4,7 @@ import * as typographyStyles from '../../../style/typography/typography.css';
 import type { TypographyProps } from '../Typography/Typography';
 import { Typography } from '../Typography/Typography';
 import cs from 'classnames';
+import * as styles from './Heading.css';
 
 const resolveDefaultComponent = {
   '1': 'h1',
@@ -16,9 +17,10 @@ export interface HeadingProps extends TypographyProps {
   level: keyof typeof typographyStyles.heading;
   weight?: keyof typeof typographyStyles.headingWeight;
   children: ReactNode;
+  center?: boolean;
 }
 
-export function Heading({ level, weight, component, ...typographyProps }: HeadingProps): JSX.Element {
+export function Heading({ level, weight, component, center = false, ...typographyProps }: HeadingProps): JSX.Element {
   return (
     <HeadingContext.Provider value={true}>
       <Typography
@@ -28,6 +30,7 @@ export function Heading({ level, weight, component, ...typographyProps }: Headin
           typographyStyles.fontFamily,
           typographyStyles.headingWeight[weight || 'regular'],
           typographyStyles.heading[level],
+          { [styles.center]: center },
         )}
       />
     </HeadingContext.Provider>

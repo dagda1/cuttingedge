@@ -84,8 +84,6 @@ export const full = style({
   marginRight: vars.space['xsmall'],
 });
 
-export const centerHeading = style({ textAlign: 'center', border: '10px solid red' });
-
 globalStyle('main', {
   display: 'grid',
   gridTemplateColumns: '1fr',

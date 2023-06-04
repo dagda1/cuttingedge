@@ -2,6 +2,7 @@ import { bannerPages } from '~/routes';
 import cs from 'classnames';
 import { Menu as VizMenu, MenuItem, MenuButton } from '@szhsin/react-menu';
 import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
+import { Text } from '@cutting/component-library';
 
 import * as styles from './Menu.css';
 
@@ -25,7 +26,13 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
         </li>
       ))}
       <li className={cs(styles.horizontal, className)}>
-        <VizMenu menuButton={<MenuButton className={styles.dropdown}>VIZ</MenuButton>}>
+        <VizMenu
+          menuButton={
+            <MenuButton className={styles.dropdown}>
+              <Text>VIZ</Text>
+            </MenuButton>
+          }
+        >
           <MenuItem className={styles.VizMenuItem}>
             <TextNavLink className={styles.submenu} to="/viz">
               SINE

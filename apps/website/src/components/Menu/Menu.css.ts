@@ -65,15 +65,13 @@ export const contact = style([
   {
     backgroundColor: '#FF8B45',
     borderRadius: '1rem',
-    // fontSize: '1.25rem',
     ...responsiveStyle({
       mobile: {
-        padding: '.5rem .75rem',
+        padding: '.75rem .75rem',
       },
       tablet: {
         top: '0 !important',
-        // fontSize: '2rem',
-        padding: '1rem 2rem',
+        padding: '2rem 2rem',
       },
     }),
   },

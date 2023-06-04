@@ -51,7 +51,7 @@ function ApplicationLayoutHeading({
   }
 
   return (
-    <Heading level="1" className={cs({ [styles.centerHeading]: center })}>
+    <Heading level="1" center={center}>
       {heading}
     </Heading>
   );
