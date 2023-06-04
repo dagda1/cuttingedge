@@ -57,6 +57,8 @@ export { Stack, type ReactNodeNoStrings } from './components/molecules/Stack/Sta
 export { Columns } from './components/molecules/Columns/Columns';
 export { Column } from './components/molecules/Column/Column';
 export { Tiles } from './components/molecules/Tiles/Tiles';
+export { Card } from './components/molecules/Card/Card';
+export { Inline } from './components/molecules/Inline/Inline';
 
 export { responsiveStyle } from './style/responsive-style';
 export { atoms } from './style/atoms/atoms';
