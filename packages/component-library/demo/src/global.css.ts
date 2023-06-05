@@ -40,32 +40,6 @@ export const background = style({
   background: vars.backgroundColor.body,
 });
 
-export const layout = style({
-  display: 'flex',
-  flex: 1,
-  textAlign: 'left',
-  flexFlow: 'row wrap',
-});
-
-export const item = style([
-  {
-    flex: 'auto',
-  },
-  atoms({
-    reset: 'div',
-    ...{
-      paddingLeft: {
-        mobile: 'xxsmall',
-        tablet: 'small',
-      },
-      display: {
-        mobile: 'block',
-        tablet: 'inlineBlock',
-      },
-    },
-  }),
-]);
-
 globalStyle(`${cuttingTheme} h1`, {
   marginTop: 0,
   marginBottom: 0,

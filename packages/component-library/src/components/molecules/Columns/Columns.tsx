@@ -8,7 +8,7 @@ import { resolveCollapsibleAlignmentProps } from '~/style/util/collapsibleAlignm
 import type { ResponsiveSpace } from '~/style/atoms/atoms';
 import { normalizeResponsiveValue } from '~/style/atoms/sprinkles.css';
 import { negativeMargin } from '~/style/negativeMargin/negativeMargin';
-// import cs from 'classnames';
+import cs from 'classnames';
 
 export interface ColumnsProps extends CollapsibleAlignmentProps {
   space: ResponsiveSpace;
@@ -55,18 +55,20 @@ export function Columns({
     reverse,
   });
 
-  const c = negativeMargin('left', {
-    mobile: collapseMobile ? 'none' : mobileSpace,
-    tablet: collapseTablet ? 'none' : tabletSpace,
-    desktop: collapseDesktop ? 'none' : desktopSpace,
-    wide: wideSpace,
-    extraWide: extraWideSpace,
-  });
-
-  console.log(c);
-
   return (
-    <Box component={component} {...collapsibleAlignmentProps}>
+    <Box
+      component={component}
+      {...collapsibleAlignmentProps}
+      className={cs(
+        negativeMargin('left', {
+          mobile: collapseMobile ? 'none' : mobileSpace,
+          tablet: collapseTablet ? 'none' : tabletSpace,
+          desktop: collapseDesktop ? 'none' : desktopSpace,
+          wide: wideSpace,
+          extraWide: extraWideSpace,
+        }),
+      )}
+    >
       <ColumnsContext.Provider
         value={{
           collapseMobile,
