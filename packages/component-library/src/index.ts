@@ -59,6 +59,7 @@ export { Column } from './components/molecules/Column/Column';
 export { Tiles } from './components/molecules/Tiles/Tiles';
 export { Card } from './components/molecules/Card/Card';
 export { Inline } from './components/molecules/Inline/Inline';
+export { List } from './components/molecules/List/List';
 
 export { responsiveStyle } from './style/responsive-style';
 export { atoms } from './style/atoms/atoms';

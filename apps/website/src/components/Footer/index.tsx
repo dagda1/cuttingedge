@@ -1,5 +1,5 @@
 import { footerPages } from '~/routes';
-import { ExternalLink, Text } from '@cutting/component-library';
+import { Column, Columns, ExternalLink, Text } from '@cutting/component-library';
 
 import * as styles from './Footer.css';
 import { Cow } from '../Svg/Cow';
@@ -9,8 +9,8 @@ import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 export function Footer(): JSX.Element {
   return (
-    <>
-      <div className={styles.left}>
+    <Columns space="large">
+      <Column>
         <div className={styles.logo}>
           <div className={styles.logoContainer}>
             <Cow />
@@ -28,8 +28,8 @@ export function Footer(): JSX.Element {
             ))}
           </ul>
         </div>
-      </div>
-      <div className={styles.right}>
+      </Column>
+      <Column>
         <div className={styles.contact}>
           <div>
             <ul className={styles.social}>
@@ -50,7 +50,7 @@ export function Footer(): JSX.Element {
             Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved
           </Text>
         </div>
-      </div>
-    </>
+      </Column>
+    </Columns>
   );
 }

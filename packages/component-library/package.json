@@ -22,8 +22,6 @@
     "classnames": "^2.3.2",
     "dedent": "0.7.0",
     "deepmerge": "4.3.1",
-    "lodash.omit": "^4.5.0",
-    "lodash.mapvalues": "^4.6.0",
     "polished": "4.2.2",
     "react-is": "^18.2.0"
   },
@@ -46,8 +44,6 @@
     "@testing-library/react": "14.0.0",
     "@types/babel__core": "7.20.1",
     "@types/dedent": "0.7.0",
-    "@types/lodash.mapvalues": "^4.6.7",
-    "@types/lodash.omit": "^4.5.7",
     "@types/mdx-js__react": "1.5.5",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",

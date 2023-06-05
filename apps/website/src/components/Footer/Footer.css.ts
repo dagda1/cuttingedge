@@ -18,36 +18,6 @@ globalStyle('footer', {
   //   }),
 });
 
-export const left = style({
-  display: 'grid',
-  gridTemplateColumns: 'auto 1fr',
-  border: '10px solid blue',
-  ...responsiveStyle({
-    mobile: {
-      // flexDirection: 'column',
-      // flex: 'auto',
-    },
-    tablet: {
-      // flexDirection: 'row',
-      // flex: '0 0 33.333%',
-    },
-  }),
-});
-
-export const right = style({
-  border: '10px solid green',
-  ...responsiveStyle({
-    mobile: {
-      // flexDirection: 'column',
-      // flex: 'auto',
-    },
-    tablet: {
-      // flexDirection: 'row',
-      // flex: '0 0 66.666%',
-    },
-  }),
-});
-
 export const logoContainer = style({
   width: '40px',
   display: 'flex',

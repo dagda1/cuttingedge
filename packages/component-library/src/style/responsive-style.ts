@@ -1,7 +1,6 @@
-import omit from 'lodash.omit';
-import mapValues from 'lodash.mapValues';
 import type { StyleRule } from '@vanilla-extract/css';
 import { breakpoints } from './breakpoints';
+import { omit, mapValues } from '@cutting/util';
 
 type CSSProps = Omit<StyleRule, '@media' | '@supports'>;
 
@@ -29,16 +28,18 @@ interface ResponsiveStyle {
   extraWide?: CSSProps;
 }
 
-export const responsiveStyle = ({ mobile, tablet, desktop, wide }: ResponsiveStyle): StyleRule => ({
-  ...omit(mobile, '@media'),
-  ...(tablet || desktop || wide
-    ? {
-        '@media': {
-          ...mediaQuery.tablet(tablet ?? {}),
-          ...mediaQuery.desktop(desktop ?? {}),
-          ...mediaQuery.wide(wide ?? {}),
-          ...mediaQuery.extraWide(wide ?? {}),
-        },
-      }
-    : {}),
-});
+export const responsiveStyle = ({ mobile, tablet, desktop, wide }: ResponsiveStyle): StyleRule => {
+  return {
+    ...(omit(mobile, '@media' as keyof CSSProps) ?? {}),
+    ...(tablet || desktop || wide
+      ? {
+          '@media': {
+            ...mediaQuery.tablet(tablet ?? {}),
+            ...mediaQuery.desktop(desktop ?? {}),
+            ...mediaQuery.wide(wide ?? {}),
+            ...mediaQuery.extraWide(wide ?? {}),
+          },
+        }
+      : {}),
+  };
+};
