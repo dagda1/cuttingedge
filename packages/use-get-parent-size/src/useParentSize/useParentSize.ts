@@ -3,7 +3,7 @@ import type { RefObject } from 'react';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useDebouncedCallback } from 'use-debounce';
-import { identity, isNil } from '@cutting/util';
+import { identity, isNil } from './util';
 import { assert } from 'assert-ts';
 import { useLayoutEffect } from 'react';
 

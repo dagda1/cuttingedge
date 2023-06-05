@@ -1052,9 +1052,6 @@ importers:
 
   packages/use-get-parent-size:
     dependencies:
-      '@cutting/util':
-        specifier: workspace:*
-        version: link:../util
       assert-ts:
         specifier: ^0.3.4
         version: 0.3.4
