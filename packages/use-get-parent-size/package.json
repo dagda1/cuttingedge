@@ -22,7 +22,6 @@
     "build": "NODE_ENV=production devtools rollup"
   },
   "dependencies": {
-    "@cutting/util": "workspace:*",
     "assert-ts": "^0.3.4",
     "resize-observer-polyfill": "^1.5.1",
     "use-debounce": "^9.0.4"
