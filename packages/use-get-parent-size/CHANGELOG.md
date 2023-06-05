@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.1.1
+
+### Patch Changes
+
+- f0d92534: remove @cutting/util from use-get-parent-size
+
 ## 2.1.0
 
 ### Minor Changes
