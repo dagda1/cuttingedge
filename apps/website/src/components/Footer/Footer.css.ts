@@ -1,22 +1,22 @@
 import { vars, atoms, responsiveStyle, palette } from '@cutting/component-library';
 import { style, globalStyle } from '@vanilla-extract/css';
 
-globalStyle('footer', {
-  display: 'grid',
-  //   flexShrink: 0,
-  width: '100%',
-  border: '10px solid red',
-  gridTemplateColumns: '1fr 1fr',
-  //   ...responsiveStyle({
-  //     mobile: {
-  //       flexDirection: 'column',
-  //     },
-  //     tablet: {
-  //       flexDirection: 'row',
-  //     },
-  //     wide: {},
-  //   }),
-});
+// globalStyle('footer', {
+//   display: 'grid',
+//   //   flexShrink: 0,
+//   width: '100%',
+//   border: '10px solid red',
+//   gridTemplateColumns: '1fr 1fr',
+//   //   ...responsiveStyle({
+//   //     mobile: {
+//   //       flexDirection: 'column',
+//   //     },
+//   //     tablet: {
+//   //       flexDirection: 'row',
+//   //     },
+//   //     wide: {},
+//   //   }),
+// });
 
 export const logoContainer = style({
   width: '40px',
@@ -26,7 +26,7 @@ export const logoContainer = style({
 });
 
 export const logo = style({
-  border: '10px solid white',
+  border: '10px solid red',
   width: '100%',
   display: 'flex',
 });
@@ -59,44 +59,44 @@ export const links = style({});
 // ]);
 
 globalStyle(`${links} ul`, {
-  display: 'grid',
-  height: '100%',
-  placeItems: 'center',
+  // display: 'grid',
+  // height: '100%',
+  // placeItems: 'center',
 });
 globalStyle(`${links} ul li`, {
-  display: 'block',
+  // display: 'block',
 });
 
 export const name = style({
-  display: 'inline-block',
+  // display: 'inline-block',
   // marginLeft: '5px',
 });
 
 export const seal = style({
-  paddingTop: 0,
-  position: 'relative',
-  top: '3px',
+  // paddingTop: 0,
+  // position: 'relative',
+  // top: '3px',
 });
 
 export const contact = style([
-  atoms({
-    textAlign: {
-      mobile: 'center',
-      tablet: 'right',
-    },
-  }),
+  // atoms({
+  //   textAlign: {
+  //     mobile: 'center',
+  //     tablet: 'right',
+  //   },
+  // }),
 ]);
 
 export const social = style({
-  display: 'inline-block',
-  verticalAlign: 'top',
+  // display: 'inline-block',
+  // verticalAlign: 'top',
 });
 
 globalStyle(`${social} li`, {
-  display: 'inline-block',
+  // display: 'inline-block',
   // marginRight: vars.space['xsmall'],
   // paddingRight: vars.space['xsmall'],
-  borderRight: '1px solid #333',
+  // borderRight: '1px solid #333',
   height: '20px',
   lineHeight: '21px',
 });
@@ -112,17 +112,17 @@ globalStyle(`${social} li a`, {
 });
 
 globalStyle(`${social} svg`, {
-  width: '100%',
-  height: 'auto',
+  // width: '100%',
+  // height: 'auto',
 });
 
 export const email = style({
-  display: 'inline-block',
-  verticalAlign: 'top',
-  position: 'relative',
-  top: '-3px',
+  // display: 'inline-block',
+  // verticalAlign: 'top',
+  // position: 'relative',
+  // top: '-3px',
 });
 
 export const copyright = style({
-  marginTop: '-15px',
+  // marginTop: '-15px',
 });
