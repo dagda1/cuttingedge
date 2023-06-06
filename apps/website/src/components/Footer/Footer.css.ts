@@ -21,14 +21,13 @@ import { style, globalStyle } from '@vanilla-extract/css';
 export const logoContainer = style({
   width: '40px',
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  // justifyContent: 'center',
+  // alignItems: 'center',
 });
 
 export const logo = style({
-  border: '10px solid red',
-  width: '100%',
-  display: 'flex',
+  // width: '100%',
+  // display: 'flex',
 });
 
 globalStyle(`${logoContainer} svg`, {
@@ -87,12 +86,7 @@ export const contact = style([
   // }),
 ]);
 
-export const social = style({
-  // display: 'inline-block',
-  // verticalAlign: 'top',
-});
-
-globalStyle(`${social} li`, {
+globalStyle(`${contact} li`, {
   // display: 'inline-block',
   // marginRight: vars.space['xsmall'],
   // paddingRight: vars.space['xsmall'],
@@ -101,17 +95,17 @@ globalStyle(`${social} li`, {
   lineHeight: '21px',
 });
 
-globalStyle(`${social} a`, {
+globalStyle(`${contact} a`, {
   height: '20px',
   lineHeight: '21px',
 });
 
-globalStyle(`${social} li a`, {
+globalStyle(`${contact} li a`, {
   display: 'inline-block',
   width: '20px',
 });
 
-globalStyle(`${social} svg`, {
+globalStyle(`${contact} svg`, {
   // width: '100%',
   // height: 'auto',
 });
@@ -126,3 +120,5 @@ export const email = style({
 export const copyright = style({
   // marginTop: '-15px',
 });
+
+globalStyle('footer', {});

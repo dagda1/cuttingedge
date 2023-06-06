@@ -71,7 +71,7 @@ const CharacterBullet = ({ length = 1, children }: CharacterBulletProps) => (
 );
 
 type ListTypeCharacter = {
-  type?: 'bullet' | 'number' | 'alpha' | 'roman';
+  type?: 'bullet' | 'number' | 'alpha' | 'roman' | 'none';
   icon?: never;
 };
 
@@ -103,7 +103,7 @@ export function List({
 
   return (
     <DefaultTextPropsProvider size={size}>
-      <Stack component={/^(bullet|icon)$/.test(type) ? 'ul' : 'ol'} space={space}>
+      <Stack component={/^(bullet|icon|none)$/.test(type) ? 'ul' : 'ol'} space={space}>
         {Children.map(listItems, (listItem, index) => {
           const resolvedIndex = index + (start - 1);
 
@@ -118,6 +118,10 @@ export function List({
                   aria-hidden
                 >
                   {(() => {
+                    if (type === 'none') {
+                      return null;
+                    }
+
                     if (type === 'number') {
                       return <CharacterBullet length={lastNumberLength}>{resolvedIndex + 1}</CharacterBullet>;
                     }

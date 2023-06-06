@@ -1,5 +1,5 @@
 import { footerPages } from '~/routes';
-import { Column, Columns, ContentBlock, ExternalLink, Text } from '@cutting/component-library';
+import { Column, Columns, ContentBlock, ExternalLink, Inline, Box, Stack, Text } from '@cutting/component-library';
 
 import * as styles from './Footer.css';
 import { Cow } from '../Svg/Cow';
@@ -12,45 +12,49 @@ export function Footer(): JSX.Element {
     <ContentBlock width="large">
       <Columns space="large">
         <Column>
-          <div className={styles.logo}>
-            <div className={styles.logoContainer}>
-              <Cow />
+          <Inline space="large" alignY="top">
+            <div className={styles.logo}>
+              <Inline alignY="center">
+                <div className={styles.logoContainer}>
+                  <Cow />
+                </div>
+                <Text component="span" className={styles.name}>
+                  Paul Cowan
+                </Text>
+              </Inline>
             </div>
-            <Text component="span" className={styles.name}>
-              Paul Cowan
-            </Text>
-          </div>
-          <div className={styles.links}>
-            <ul>
-              {footerPages.map((page) => (
-                <li key={page.path}>
-                  <TextNavLink to={page.path}>{page.heading}</TextNavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div className={styles.links}>
+              <Stack space="large">
+                {footerPages.map((page) => (
+                  <TextNavLink key={page.path} to={page.path}>
+                    {page.heading}
+                  </TextNavLink>
+                ))}
+              </Stack>
+            </div>
+          </Inline>
         </Column>
         <Column>
-          <div className={styles.contact}>
-            <div>
-              <ul className={styles.social}>
-                <li>
-                  <ExternalLink href="https://github.com/dagda1" ariaLabel="Github profile">
-                    <Github />
-                  </ExternalLink>
-                </li>
-                <li>
-                  <ExternalLink href="https://twitter.com/dagda1" ariaLabel="twitter profile">
-                    <Twitter />
-                  </ExternalLink>
-                </li>
-              </ul>
-              <ExternalLink href="mailto:paul.cowan@cutting.scot">paul.cowan@cutting.scot</ExternalLink>
-            </div>
-            <Text component="div" className={styles.copyright}>
-              Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved
-            </Text>
-          </div>
+          <Stack space="medium">
+            <Box>
+              <Inline space="large">
+                <ExternalLink href="https://github.com/dagda1" ariaLabel="Github profile">
+                  {/* <Github /> */}
+                  Github
+                </ExternalLink>
+                <ExternalLink href="https://twitter.com/dagda1" ariaLabel="twitter profile">
+                  {/* <Twitter /> */}
+                  Twitter
+                </ExternalLink>
+                <ExternalLink href="mailto:paul.cowan@cutting.scot">paul.cowan@cutting.scot</ExternalLink>
+              </Inline>
+            </Box>
+            <Box>
+              <Text component="div" className={styles.copyright}>
+                Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved
+              </Text>
+            </Box>
+          </Stack>
         </Column>
       </Columns>
     </ContentBlock>
