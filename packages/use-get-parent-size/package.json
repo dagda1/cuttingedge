@@ -1,6 +1,6 @@
 {
   "name": "@cutting/use-get-parent-size",
-  "description": "Sizes an SVG document to the containing parent using the resize-observer.",
+  "description": "Get resize events of an observed DOM element's height, width etc. from a resize-observer.",
   "version": "2.1.1",
   "module": "dist/esm/index.js",
   "type": "module",
