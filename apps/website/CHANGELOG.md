@@ -1,5 +1,13 @@
 # @cutting/website
 
+## 4.29.30
+
+### Patch Changes
+
+- Updated dependencies [0f482989]
+  - @cutting/use-get-parent-size@2.1.2
+  - @cutting/svg@4.54.7
+
 ## 4.29.29
 
 ### Patch Changes
