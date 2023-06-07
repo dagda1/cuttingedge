@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.1.2
+
+### Patch Changes
+
+- afc4da52: Use 500 for debounceDelay default
+
 ## 2.1.1
 
 ### Patch Changes
