@@ -1,4 +1,4 @@
-import { ContentBlock, ExternalLink, List, Tiles, Stack, Text } from '@cutting/component-library';
+import { ContentBlock, ExternalLink, List, Tiles, Stack, Text, Card, Box } from '@cutting/component-library';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import type { Repo } from './repos';
 import { repos } from './repos';
@@ -33,19 +33,21 @@ export function OSS(): JSX.Element {
             </ExternalLink>
           </List>
           <Heading level="2">My Work</Heading>
-          <Tiles space="large" columns={{ mobile: 1, tablet: 2, extraWide: 4 }}>
+          <Tiles space="large" columns={{ mobile: 1, tablet: 2 }}>
             {repos.map((repo: Repo, i: number) => (
-              <div className={styles.repo} key={i}>
-                <ExternalLink href={repo.link}>
-                  <Stack space="large">
-                    <div className={styles.icon}>
-                      <Github />
-                    </div>
-                    <Heading level="2">{repo.name}</Heading>
-                    <Text>{repo.description}</Text>
-                  </Stack>
-                </ExternalLink>
-              </div>
+              <Card height="full" key={i}>
+                <Box width="full" className={styles.repo}>
+                  <ExternalLink href={repo.link}>
+                    <Stack space="large">
+                      <div className={styles.icon}>
+                        <Github />
+                      </div>
+                      <Heading level="2">{repo.name}</Heading>
+                      <Text>{repo.description}</Text>
+                    </Stack>
+                  </ExternalLink>
+                </Box>
+              </Card>
             ))}
           </Tiles>
           <div>

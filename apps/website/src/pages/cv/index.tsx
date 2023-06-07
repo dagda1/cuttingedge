@@ -2,6 +2,7 @@ import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import * as Urls from '~/urls';
 
 import * as styles from './CV.css';
+import { Text } from '@cutting/component-library';
 
 const docs = [
   { file: 'paulcowan-cv.pdf', url: Urls.DownloadPdf, text: 'pdf' },
@@ -22,7 +23,7 @@ export function CV(): JSX.Element {
         {docs.map((doc) => (
           <h2 key={doc.file}>
             <a className={styles.link} href={doc.url}>
-              <span>DOWNLOAD {doc.text}</span>
+              <Text component="span">DOWNLOAD {doc.text}</Text>
             </a>
           </h2>
         ))}
