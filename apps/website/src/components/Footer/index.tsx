@@ -3,8 +3,8 @@ import { Column, Columns, ContentBlock, ExternalLink, Inline, Box, Stack, Text }
 
 import * as styles from './Footer.css';
 import { Cow } from '../Svg/Cow';
-import { Github } from '../Svg/Github';
-import { Twitter } from '../Svg/Twitter';
+// import { Github } from '../Svg/Github';
+// import { Twitter } from '../Svg/Twitter';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 export function Footer(): JSX.Element {
@@ -12,9 +12,9 @@ export function Footer(): JSX.Element {
     <ContentBlock width="large">
       <Columns space="large">
         <Column>
-          <Inline space="large" alignY="top">
+          <Inline space="large">
             <div className={styles.logo}>
-              <Inline alignY="center">
+              <Inline space="small">
                 <div className={styles.logoContainer}>
                   <Cow />
                 </div>

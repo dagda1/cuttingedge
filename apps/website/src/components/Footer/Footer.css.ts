@@ -1,4 +1,4 @@
-import { vars, atoms, responsiveStyle, palette } from '@cutting/component-library';
+import { palette } from '@cutting/component-library';
 import { style, globalStyle } from '@vanilla-extract/css';
 
 // globalStyle('footer', {
