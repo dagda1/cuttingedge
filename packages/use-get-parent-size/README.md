@@ -56,7 +56,7 @@ export interface UseParentSizeOptions {
 }
 ```
 
-- `debounceDelay` - an optional `number` that will throttle the speed at which reize events are raised to the calling code.
+- `debounceDelay` - default 500ms. an optional `number` that will throttle the speed at which reize events are raised to the calling code.
 - `initialValues` - initially, the `ref` will be `null` and no `width` or `height` values can be returned until it is mounted. The `initialValues` option can return a specific `width` and `height` value until the `ref` actually references a valid DOM node. e.g. `const { width, height } = useParentSize(ref, { width: 100, height: 50})`;
 
 Default is an empty DomRect:
@@ -91,6 +91,8 @@ Default is an empty DomRect:
 
 ## Usage
 
+### Used to properly resize an svg
+
 ```ts
 import { useRef } from 'react';
 import type { UseParentSizeOptions } from '@cutting/use-get-parent-size';
@@ -114,4 +116,19 @@ export function ResponsiveSVG({
     </div>
   );
 };
+```
+
+### Used with callback only
+
+```ts
+const Pipeline = () => {
+  const controller = useVisualizationController();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useParentSize(containerRef, {
+    callback: () => {
+      controller.getGraph().fit(70);
+    },
+    debounceDelay: 500,
+  });
 ```
