@@ -1,13 +1,13 @@
 import { expect, it, describe } from 'vitest';
-import { ExternalLink } from './ExternalLink';
+import { TextLink } from './TextLink';
 import { render } from '@testing-library/react';
 
-describe('<ExternalLink />', () => {
+describe('<TextLink />', () => {
   it('should render target and rel props', () => {
     const { getByTestId } = render(
-      <ExternalLink dataSelector="the-a" href="http://blah.com/">
+      <TextLink external dataSelector="the-a" href="http://blah.com/">
         Blah
-      </ExternalLink>,
+      </TextLink>,
     );
 
     const a = getByTestId('the-a') as HTMLAnchorElement;
@@ -20,9 +20,9 @@ describe('<ExternalLink />', () => {
 
   it('should add aria-label and aria-labelledby attributes', () => {
     const { getByLabelText } = render(
-      <ExternalLink ariaLabel="label" ariaLabelledBy="labelled by" dataSelector="the-a" href="http://blah.com/">
+      <TextLink external ariaLabel="label" ariaLabelledBy="labelled by" dataSelector="the-a" href="http://blah.com/">
         Blah
-      </ExternalLink>,
+      </TextLink>,
     );
 
     const button = getByLabelText('label') as HTMLAnchorElement;

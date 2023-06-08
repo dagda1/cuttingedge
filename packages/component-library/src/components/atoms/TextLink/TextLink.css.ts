@@ -27,3 +27,7 @@ export const base = style({
     color: vars.foregroundColor.linkVisited,
   },
 });
+
+export const underline = style({
+  textDecoration: 'underline',
+});

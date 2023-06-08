@@ -2,7 +2,7 @@ import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import * as Urls from '~/urls';
 
 import * as styles from './CV.css';
-import { Text } from '@cutting/component-library';
+import { Box, TextLink } from '@cutting/component-library';
 
 const docs = [
   { file: 'paulcowan-cv.pdf', url: Urls.DownloadPdf, text: 'pdf' },
@@ -18,17 +18,18 @@ export function CV(): JSX.Element {
   const viewerUrl = `/pdfjs/web/viewer.html?file=${pdfUrl}&fileName=${CVFile}&openFile=true&download=true&viewBookmark=true`;
 
   return (
-    <ApplicationLayout className={styles.main}>
-      <section className={styles.pdfViewer}>
-        {docs.map((doc) => (
-          <h2 key={doc.file}>
-            <a className={styles.link} href={doc.url}>
-              <Text component="span">DOWNLOAD {doc.text}</Text>
-            </a>
-          </h2>
-        ))}
-      </section>
-      <iframe title="CV" src={viewerUrl} />
+    <ApplicationLayout>
+      <Box display="flex" justifyContent="spaceBetween" marginBottom="medium">
+        {docs.map((doc) => {
+          const text = `DOWNLOAD ${doc.text}`;
+          return (
+            <TextLink href={doc.url} size="large" key={doc.url}>
+              {text}
+            </TextLink>
+          );
+        })}
+      </Box>
+      <iframe className={styles.pdfViewer} title="CV" src={viewerUrl} />
     </ApplicationLayout>
   );
 }

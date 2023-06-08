@@ -1,5 +1,5 @@
 import { footerPages } from '~/routes';
-import { Column, Columns, ContentBlock, ExternalLink, Inline, Box, Stack, Text } from '@cutting/component-library';
+import { Column, Columns, ContentBlock, TextLink, Inline, Box, Stack, Text } from '@cutting/component-library';
 
 import * as styles from './Footer.css';
 import { Cow } from '../Svg/Cow';
@@ -38,15 +38,17 @@ export function Footer(): JSX.Element {
           <Stack space="medium">
             <Box>
               <Inline space="large">
-                <ExternalLink href="https://github.com/dagda1" ariaLabel="Github profile">
+                <TextLink external href="https://github.com/dagda1" ariaLabel="Github profile">
                   {/* <Github /> */}
                   Github
-                </ExternalLink>
-                <ExternalLink href="https://twitter.com/dagda1" ariaLabel="twitter profile">
+                </TextLink>
+                <TextLink external href="https://twitter.com/dagda1" ariaLabel="twitter profile">
                   {/* <Twitter /> */}
                   Twitter
-                </ExternalLink>
-                <ExternalLink href="mailto:paul.cowan@cutting.scot">paul.cowan@cutting.scot</ExternalLink>
+                </TextLink>
+                <TextLink external href="mailto:paul.cowan@cutting.scot">
+                  paul.cowan@cutting.scot
+                </TextLink>
               </Inline>
             </Box>
             <Box>

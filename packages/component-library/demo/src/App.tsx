@@ -2,7 +2,6 @@ import * as styles from './global.css';
 import React, { useState } from 'react';
 import {
   FormInput,
-  ExternalLink,
   ButtonLink,
   CheckboxGroup,
   FormTextArea,
@@ -120,9 +119,9 @@ export function App(): JSX.Element {
               </ButtonLink>
             </Column>
             <Column>
-              <ExternalLink href="//cutting.scot" target="_blank">
+              <TextLink external href="//cutting.scot" target="_blank">
                 External Link
-              </ExternalLink>
+              </TextLink>
             </Column>
           </Columns>
         </ContentBlock>

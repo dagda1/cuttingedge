@@ -4,6 +4,7 @@ import cs from 'classnames';
 import { identity } from '@cutting/util';
 import type { StandardProps, Taggable } from '~/types';
 import type { ButtonStyle } from '~/components/atoms/Button/Button.css';
+import type { TextProps } from '../Text/Text';
 import { Text } from '../Text/Text';
 import * as styles from './TextLink.css';
 import * as typographyStyles from '~/style/typography/typography.css';
@@ -16,7 +17,10 @@ export type TextLinkProps = StandardProps<
   buttonStyle?: ButtonStyle;
   ariaLabel?: string;
   ariaLabelledBy?: string;
-};
+  underline?: boolean;
+  external?: boolean;
+  blank?: boolean;
+} & TextProps;
 
 export const getLinkStyles = (): string => cs(styles.base, typographyStyles.fontWeight.medium);
 
@@ -29,6 +33,9 @@ export function TextLink({
   dataSelector,
   ariaLabel,
   ariaLabelledBy,
+  underline = true,
+  external = false,
+  blank = true,
   href,
   ...rest
 }: TextLinkProps): JSX.Element {
@@ -36,15 +43,17 @@ export function TextLink({
   return (
     <Component
       href={href}
-      className={cs(linkStyles, className)}
+      className={cs(linkStyles, className, { [styles.underline]: underline })}
       onClick={onClick}
       title={title}
       data-testid={dataSelector}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
+      rel={external ? 'noopener noreferrer' : undefined}
+      target={external && blank ? '_blank' : ''}
       {...rest}
     >
-      {typeof children === 'string' ? <Text>{children}</Text> : children}
+      {typeof children === 'string' ? <Text {...rest}>{children}</Text> : children}
     </Component>
   );
 }

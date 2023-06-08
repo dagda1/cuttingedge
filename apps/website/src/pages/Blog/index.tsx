@@ -1,5 +1,5 @@
 import { posts } from './posts';
-import { ContentBlock, ExternalLink, Inline, Stack, Text } from '@cutting/component-library';
+import { ContentBlock, TextLink, Inline, Stack, Text } from '@cutting/component-library';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { Heading } from '@cutting/component-library';
 
@@ -10,22 +10,22 @@ export function Blog(): JSX.Element {
         <Stack space="medium">
           <Inline space="none">
             <Text>I blog professionally for&nbsp;</Text>
-            <ExternalLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</ExternalLink>
+            <TextLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</TextLink>
           </Inline>
           <Inline space="none">
             <Text>My personal blog is&nbsp;</Text>
-            <ExternalLink href="https://thesoftwaresimpleton.com/">here</ExternalLink>
+            <TextLink href="https://thesoftwaresimpleton.com/">here</TextLink>
           </Inline>
           {posts.map((post, i) => (
             <Stack space="medium" key={i}>
-              <ExternalLink href={post.link} blank={false}>
+              <TextLink href={post.link} blank={false}>
                 <Heading level="2">{post.title}</Heading>
-              </ExternalLink>
+              </TextLink>
               <Text component="p">{post.summary}</Text>
               <p>
-                <ExternalLink href={post.link} blank={false}>
+                <TextLink href={post.link} blank={false}>
                   Read More
-                </ExternalLink>
+                </TextLink>
               </p>
             </Stack>
           ))}
