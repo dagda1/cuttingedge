@@ -18,8 +18,8 @@ export function CV(): JSX.Element {
   const viewerUrl = `/pdfjs/web/viewer.html?file=${pdfUrl}&fileName=${CVFile}&openFile=true&download=true&viewBookmark=true`;
 
   return (
-    <ApplicationLayout>
-      <Box display="flex" justifyContent="spaceBetween" marginBottom="medium">
+    <ApplicationLayout display="flex">
+      <Box display={{ mobile: 'block', desktop: 'flex' }} justifyContent="spaceBetween" marginBottom="medium">
         {docs.map((doc) => {
           const text = `DOWNLOAD ${doc.text}`;
           return (

@@ -6,7 +6,10 @@ import { ApplicationLayoutWithRouterScroll, type ApplicationLayoutProps as AppPr
 import './ApplicationLayout.css';
 
 export type ApplicationLayoutProps = Partial<
-  Pick<AppProps, 'layout' | 'className' | 'children' | 'centerHeading' | 'center' | 'heading'>
+  Pick<
+    AppProps,
+    'layout' | 'className' | 'children' | 'centerHeading' | 'center' | 'heading' | 'display' | 'flexDirection'
+  >
 > & {
   showFooter?: boolean;
 };
@@ -19,6 +22,7 @@ export function ApplicationLayout({
   showFooter = true,
   layout = 'RESPONSIVE',
   children,
+  ...rest
 }: ApplicationLayoutProps): JSX.Element {
   return (
     <ApplicationLayoutWithRouterScroll
@@ -39,6 +43,7 @@ export function ApplicationLayout({
         </>
       }
       footer={showFooter ? <Footer /> : undefined}
+      {...rest}
     >
       <>{children}</>
     </ApplicationLayoutWithRouterScroll>

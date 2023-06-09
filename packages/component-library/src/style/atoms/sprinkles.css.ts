@@ -129,6 +129,8 @@ const responsiveAtomicProperties = defineProperties({
   },
 });
 
+export type ResponsiveAtomicProperties = typeof responsiveAtomicProperties;
+
 const unresponsiveAtomicProperties = defineProperties({
   properties: unresponsiveProperties,
 });

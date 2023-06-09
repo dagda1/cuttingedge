@@ -23,7 +23,6 @@ export type { TextProps } from './components/atoms/Text/Text';
 export { Heading } from './components/atoms/Heading/Heading';
 export { Text } from './components/atoms/Text/Text';
 export { useGetTextStyles } from './components/atoms/Text/useGetTextStyles';
-export { ExternalLink } from './components/atoms/ExternalLink/ExternalLink';
 export { Input } from './components/atoms/Input/Input';
 export { Label } from './components/atoms/Label';
 export { ErrorMessage } from './components/atoms/ErrorMessage/ErrorMessage';

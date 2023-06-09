@@ -12,7 +12,7 @@ import { supportTheme } from '~/style/themes/support/supportTheme.css';
 import { Heading } from '~/components/atoms/Heading/Heading';
 import { PageBlock } from '../PageBlock/PageBlock';
 import type { ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
-import { Stack } from '~/components/molecules/Stack/Stack';
+import type { ResponsiveAtomicProperties } from '~/style/atoms/sprinkles.css';
 
 export const themes = {
   defaultTheme,
@@ -40,6 +40,8 @@ export interface ApplicationLayoutProps {
   layout?: Layout;
   centerHeading?: boolean;
   center?: boolean;
+  display?: keyof ResponsiveAtomicProperties['styles']['display']['values'];
+  flexDirection?: keyof ResponsiveAtomicProperties['styles']['flexDirection']['values'];
 }
 
 function ApplicationLayoutHeading({
@@ -68,6 +70,7 @@ export function ApplicationLayout({
   theme,
   centerHeading = false,
   center = false,
+  display,
   layout = 'RESPONSIVE',
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   const currentTheme = themes[theme];
@@ -87,9 +90,9 @@ export function ApplicationLayout({
         })}
         ref={innerRef}
       >
-        <PageBlock component="section">
+        <PageBlock component="section" display={display}>
           <ApplicationLayoutHeading heading={heading} center={centerHeading} />
-          <Stack space="small">{children}</Stack>
+          {children}
         </PageBlock>
       </main>
       <footer role="contentinfo" className={cs(styles.footer, styles.size, { [styles.hidden]: !header }, styles.size)}>

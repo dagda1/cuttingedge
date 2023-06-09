@@ -18,6 +18,9 @@ export function OSS(): JSX.Element {
             >
               Very active in Backstage
             </TextLink>
+            <TextLink href="https://github.com/thefrontside/effection/pulls?q=is%3Apr+author%3Adagda1">
+              Active in Effection
+            </TextLink>
             <TextLink
               external
               href="https://github.com/thefrontside/simulacrum/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1"
