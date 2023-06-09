@@ -364,8 +364,8 @@ importers:
         version: 4.2.2
     devDependencies:
       '@capsizecss/core':
-        specifier: 3.1.0
-        version: 3.1.0
+        specifier: 3.1.1
+        version: 3.1.1
       '@capsizecss/vanilla-extract':
         specifier: 1.0.0
         version: 1.0.0(@vanilla-extract/css@1.11.0)
@@ -2820,8 +2820,8 @@ packages:
       '@brillout/import': 0.2.3
     dev: true
 
-  /@capsizecss/core@3.1.0:
-    resolution: {integrity: sha512-MoHbXUMqJtYL+idLVSQY57OPRyPaUBGN0o1Im0JElmfRVV+X1i1i5QsQTuEJpJgYFwi4jsck7A+jt6X7XB0p8w==}
+  /@capsizecss/core@3.1.1:
+    resolution: {integrity: sha512-1YxfErFXdxcyDyc8peDwH2hiJF5U8sBY5i5HX0f/tpvabbu40w9r8VHYMOOw9Fox5O/+kf2gAhyfVe+sLnaaBA==}
     dependencies:
       csstype: 3.1.2
     dev: true
@@ -2831,7 +2831,7 @@ packages:
     peerDependencies:
       '@vanilla-extract/css': ^1.2.1
     dependencies:
-      '@capsizecss/core': 3.1.0
+      '@capsizecss/core': 3.1.1
       '@vanilla-extract/css': 1.11.0
     dev: true
 
