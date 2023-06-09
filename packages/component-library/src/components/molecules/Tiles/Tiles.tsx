@@ -1,4 +1,5 @@
 import { Children } from 'react';
+import type { BoxProps } from '../Box/Box';
 import { Box } from '../Box/Box';
 import { Divider } from '../Divider/Divider';
 import * as styles from './Tiles.css';
@@ -16,10 +17,17 @@ export interface TilesProps {
   space: RequiredResponsiveValue<Space>;
   columns: RequiredResponsiveValue<1 | 2 | 3 | 4 | 5 | 6>;
   dividers?: boolean;
+  width?: BoxProps['width'];
 }
 
-export const Tiles = ({ children, space = 'none', columns = 1, dividers = false }: TilesProps): JSX.Element => (
-  <Box className={cs(negativeMargin('top', space))}>
+export const Tiles = ({
+  children,
+  space = 'none',
+  columns = 1,
+  dividers = false,
+  width = 'full',
+}: TilesProps): JSX.Element => (
+  <Box width={width} className={cs(negativeMargin('top', space))}>
     <Box display="flex" flexWrap="wrap" className={cs(negativeMargin('left', space))}>
       {Children.map(flattenChildren(children), (child, i) => (
         <Box
@@ -32,12 +40,7 @@ export const Tiles = ({ children, space = 'none', columns = 1, dividers = false 
             styles.columnsWide,
           )}
         >
-          <Box
-            height="full"
-            // This needs to be a separate element to support IE11.
-            paddingTop={space}
-            paddingLeft={space}
-          >
+          <Box height="full" paddingTop={space} paddingLeft={space}>
             {dividers && i > 0 ? (
               <Box
                 paddingBottom={space}
