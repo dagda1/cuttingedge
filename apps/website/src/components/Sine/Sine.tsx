@@ -44,7 +44,7 @@ function Sine(): JSX.Element {
   }, [animate, firstX, radius, state.time]);
 
   return (
-    <ApplicationLayout heading="SINE OF THE TIMES">
+    <ApplicationLayout heading="SINE OF THE TIMES" display="flex" justifyContent="center">
       <section className={styles.main} ref={containerRef}>
         <ResponsiveSVG width={width} height={height}>
           <Group x={initialX} y={initialY}>

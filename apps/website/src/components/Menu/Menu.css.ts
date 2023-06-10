@@ -97,18 +97,7 @@ globalStyle(`${container} div:not(.expanded):not(${contact}) ul li`, {
 });
 
 export const logoContainer = style({
-  width: '75px',
   display: 'inline-block',
-  marginRight: 0,
-  marginLeft: '-19px',
-  ...responsiveStyle({
-    mobile: {
-      width: '75px',
-    },
-    tablet: {
-      width: '100px',
-    },
-  }),
 });
 
 export const selected = style({

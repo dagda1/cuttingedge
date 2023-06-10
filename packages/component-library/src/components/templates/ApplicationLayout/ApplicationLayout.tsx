@@ -42,6 +42,8 @@ export interface ApplicationLayoutProps {
   center?: boolean;
   display?: keyof ResponsiveAtomicProperties['styles']['display']['values'];
   flexDirection?: keyof ResponsiveAtomicProperties['styles']['flexDirection']['values'];
+  justifyContent?: keyof ResponsiveAtomicProperties['styles']['justifyContent']['values'];
+  alignItems?: keyof ResponsiveAtomicProperties['styles']['alignItems']['values'];
 }
 
 function ApplicationLayoutHeading({
@@ -70,8 +72,8 @@ export function ApplicationLayout({
   theme,
   centerHeading = false,
   center = false,
-  display,
   layout = 'RESPONSIVE',
+  ...pageBlockProps
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   const currentTheme = themes[theme];
 
@@ -90,7 +92,7 @@ export function ApplicationLayout({
         })}
         ref={innerRef}
       >
-        <PageBlock component="section" display={display}>
+        <PageBlock component="section" {...pageBlockProps}>
           <ApplicationLayoutHeading heading={heading} center={centerHeading} />
           {children}
         </PageBlock>

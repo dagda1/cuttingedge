@@ -5,10 +5,10 @@ import { MobileNavButton } from '../MobileNavButton';
 import { MenuItems, MobileMenuItems } from './MenuItems';
 
 import * as styles from './Menu.css';
-import { Cow } from '~/components/Svg/Cow';
 import { Heading } from '@cutting/component-library';
 import { NavLink } from 'react-router-dom';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
+import cow from '~/assets/images/cow-logo.png';
 
 export interface MenuState {
   isExpanded: boolean;
@@ -28,7 +28,7 @@ export function Menu(): JSX.Element {
         <ul>
           <li className={styles.logoContainer}>
             <NavLink aria-label="home" to={urls.Home}>
-              <Cow />
+              <img src={cow} alt="cutting-edge logo" />
             </NavLink>
           </li>
           <li>

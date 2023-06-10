@@ -8,7 +8,16 @@ import './ApplicationLayout.css';
 export type ApplicationLayoutProps = Partial<
   Pick<
     AppProps,
-    'layout' | 'className' | 'children' | 'centerHeading' | 'center' | 'heading' | 'display' | 'flexDirection'
+    | 'layout'
+    | 'className'
+    | 'children'
+    | 'centerHeading'
+    | 'center'
+    | 'heading'
+    | 'display'
+    | 'flexDirection'
+    | 'justifyContent'
+    | 'alignItems'
   >
 > & {
   showFooter?: boolean;

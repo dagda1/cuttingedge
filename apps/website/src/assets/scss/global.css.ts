@@ -17,6 +17,10 @@ import { globalStyle, style } from '@vanilla-extract/css';
 //   paddingTop: '0 !important',
 // });
 
+globalStyle('footer', {
+  border: '10px solid green',
+});
+
 export const hidden = style({
   display: 'none',
 });

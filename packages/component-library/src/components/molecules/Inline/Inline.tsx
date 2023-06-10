@@ -50,6 +50,7 @@ export function Inline({
       component={component === 'span' ? component : undefined}
       display={component === 'span' ? 'block' : undefined}
       className={cs(negativeMargin('top', space))}
+      style={{ border: '10px solid red' }}
     >
       <Box
         component={component}

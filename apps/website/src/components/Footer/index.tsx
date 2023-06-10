@@ -1,29 +1,17 @@
-import { footerPages } from '~/routes';
-import { Column, Columns, ContentBlock, TextLink, Inline, Box, Stack, Text } from '@cutting/component-library';
-
-import * as styles from './Footer.css';
-import { Cow } from '../Svg/Cow';
+import { Column, Columns, TextLink, Inline, Box, Stack, Text, PageBlock } from '@cutting/component-library';
+import cow from '~/assets/images/cow-logo-small2.png';
 // import { Github } from '../Svg/Github';
 // import { Twitter } from '../Svg/Twitter';
-import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 export function Footer(): JSX.Element {
   return (
-    <ContentBlock width="large">
-      <Columns space="large">
+    <PageBlock width="large">
+      <Columns space="small">
         <Column>
-          <Inline space="large">
-            <div className={styles.logo}>
-              <Inline space="small">
-                <div className={styles.logoContainer}>
-                  <Cow />
-                </div>
-                <Text component="span" className={styles.name}>
-                  Paul Cowan
-                </Text>
-              </Inline>
-            </div>
-            <div className={styles.links}>
+          <Inline space="small" component="span">
+            <img src={cow} alt="cutting-edge cow logo" />
+            <Text component="span">Paul Cowan</Text>
+            {/* <div className={styles.links}>
               <Stack space="large">
                 {footerPages.map((page) => (
                   <TextNavLink key={page.path} to={page.path}>
@@ -31,7 +19,7 @@ export function Footer(): JSX.Element {
                   </TextNavLink>
                 ))}
               </Stack>
-            </div>
+            </div> */}
           </Inline>
         </Column>
         <Column>
@@ -51,14 +39,14 @@ export function Footer(): JSX.Element {
                 </TextLink>
               </Inline>
             </Box>
-            <Box>
+            {/* <Box>
               <Text component="div" className={styles.copyright}>
                 Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved
               </Text>
-            </Box>
+            </Box> */}
           </Stack>
         </Column>
       </Columns>
-    </ContentBlock>
+    </PageBlock>
   );
 }

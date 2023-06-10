@@ -1,4 +1,3 @@
-import { palette } from '@cutting/component-library';
 import { style, globalStyle } from '@vanilla-extract/css';
 
 // globalStyle('footer', {
@@ -17,32 +16,6 @@ import { style, globalStyle } from '@vanilla-extract/css';
 //   //     wide: {},
 //   //   }),
 // });
-
-export const logoContainer = style({
-  width: '40px',
-  display: 'flex',
-  // justifyContent: 'center',
-  // alignItems: 'center',
-});
-
-export const logo = style({
-  // width: '100%',
-  // display: 'flex',
-});
-
-globalStyle(`${logoContainer} svg`, {
-  width: '100%',
-  height: 'auto',
-});
-
-globalStyle(`${logoContainer} svg path`, {
-  fill: palette.white,
-});
-
-globalStyle(`${logoContainer} > div`, {
-  // marginTop: '-5px',
-  // paddingTop: 0,
-});
 
 export const links = style({});
 // {
@@ -64,11 +37,6 @@ globalStyle(`${links} ul`, {
 });
 globalStyle(`${links} ul li`, {
   // display: 'block',
-});
-
-export const name = style({
-  // display: 'inline-block',
-  // marginLeft: '5px',
 });
 
 export const seal = style({
