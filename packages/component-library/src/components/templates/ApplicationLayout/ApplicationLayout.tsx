@@ -85,7 +85,7 @@ export function ApplicationLayout({
         </header>
       )}
       <main
-        className={cs(styles.body, className, {
+        className={cs(styles.main, className, {
           [styles.size]: layout === 'RESPONSIVE',
           [styles.full]: layout === 'FULL',
           [styles.headingAndBodyLayout]: isNil(heading) === false,

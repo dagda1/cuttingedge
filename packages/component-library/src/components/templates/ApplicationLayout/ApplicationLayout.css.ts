@@ -8,11 +8,6 @@ globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
 });
 
-// const bodyStyle = {
-//   fontFamily: vars.fontFamily,
-//   fontWeight: vars.textWeight.regular,
-// };
-
 globalStyle('html', {
   fontSize: '100%',
   fontFamily: vars.fontFamily,
@@ -42,12 +37,10 @@ export const footer = style({
   gridRow: 'footer',
 });
 
-export const body = style({
-  // ...bodyStyle,
+export const main = style({
   color: vars.foregroundColor.body,
   background: vars.backgroundColor.body,
   gridRow: 'body',
-  padding: '1rem',
   width: '100%',
 });
 
@@ -86,19 +79,7 @@ export const full = style({
 });
 
 globalStyle('main', {
-  display: 'grid',
-  gridTemplateColumns: '1fr',
-  ...responsiveStyle({
-    mobile: {
-      padding: 0,
-    },
-    tablet: {
-      padding: vars.space['xsmall'],
-    },
-    desktop: {
-      padding: 0,
-    },
-  }),
+  // display: 'grid',
 });
 
 export const headingAndBodyLayout = style({

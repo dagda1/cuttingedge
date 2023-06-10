@@ -1,7 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
 globalStyle('footer', {
-  border: '10px solid green',
+  width: '100%',
 });
 
 export const hidden = style({
@@ -11,10 +11,6 @@ export const hidden = style({
 globalStyle(`body`, {
   background: `url('${'/lightening.jpg'}') no-repeat center center fixed`,
   backgroundSize: 'cover',
-});
-
-export const footer = style({
-  width: '100%',
 });
 
 globalStyle('h1', {
