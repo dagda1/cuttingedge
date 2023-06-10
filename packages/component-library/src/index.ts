@@ -60,7 +60,7 @@ export { Card } from './components/molecules/Card/Card';
 export { Box } from './components/molecules/Box/Box';
 export { Inline } from './components/molecules/Inline/Inline';
 export { List } from './components/molecules/List/List';
-
+export { Divider } from './components/molecules/Divider/Divider';
 export { responsiveStyle } from './style/responsive-style';
 export { atoms } from './style/atoms/atoms';
 export { vars } from './style/themes/vars.css';

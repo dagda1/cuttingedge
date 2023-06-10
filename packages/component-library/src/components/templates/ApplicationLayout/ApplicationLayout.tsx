@@ -13,6 +13,7 @@ import { Heading } from '~/components/atoms/Heading/Heading';
 import { PageBlock } from '../PageBlock/PageBlock';
 import type { ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
 import type { ResponsiveAtomicProperties } from '~/style/atoms/sprinkles.css';
+import { Box } from '~/components/molecules/Box/Box';
 
 export const themes = {
   defaultTheme,
@@ -78,7 +79,11 @@ export function ApplicationLayout({
   const currentTheme = themes[theme];
 
   return (
-    <div className={cs(styles.container, currentTheme)}>
+    <Box
+      paddingBottom={{ mobile: 'small', tablet: 'medium' }}
+      paddingX={{ mobile: 'xxsmall', tablet: 'medium' }}
+      className={cs(styles.container, currentTheme)}
+    >
       {header && (
         <header role="banner" className={cs(styles.header, { [styles.hidden]: !header })} aria-label={headerAriaLabel}>
           <div className={styles.size}>{header}</div>
@@ -107,7 +112,7 @@ export function ApplicationLayout({
           {footer}
         </footer>
       )}
-    </div>
+    </Box>
   );
 }
 

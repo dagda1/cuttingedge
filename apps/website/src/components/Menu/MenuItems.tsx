@@ -2,7 +2,7 @@ import { bannerPages } from '~/routes';
 import cs from 'classnames';
 import { Menu as VizMenu, MenuItem, MenuButton } from '@szhsin/react-menu';
 import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
-import { Text } from '@cutting/component-library';
+import { Box, Text } from '@cutting/component-library';
 
 import * as styles from './Menu.css';
 
@@ -15,7 +15,12 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
   return (
     <>
       {bannerPages.map((page) => (
-        <li key={page.heading} className={cs(styles.horizontal, className)}>
+        <Box
+          component="li"
+          key={page.heading}
+          className={cs(styles.horizontal, className)}
+          marginRight={{ mobile: 'medium' }}
+        >
           <TextNavLink
             to={page.path?.includes('*') ? page.path.slice(0, -2) : page.path}
             className={({ isActive }) => cs(page.className, { [styles.active]: isActive })}
@@ -23,9 +28,9 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
           >
             {page.heading}
           </TextNavLink>
-        </li>
+        </Box>
       ))}
-      <li className={cs(styles.horizontal, className)}>
+      <Box component="li" className={cs(styles.horizontal, className)}>
         <VizMenu
           menuButton={
             <MenuButton className={styles.dropdown}>
@@ -54,7 +59,7 @@ export function MenuItems({ collapse, className }: MenuItemsProps): JSX.Element 
             </TextNavLink>
           </MenuItem>
         </VizMenu>
-      </li>
+      </Box>
     </>
   );
 }

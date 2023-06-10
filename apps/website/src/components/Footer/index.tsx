@@ -25,8 +25,8 @@ export function Footer(): JSX.Element {
           </Stack>
         </Column>
         <Column width="1/2">
-          <Stack space="xxsmall">
-            <Inline space="small" aign="center" alignY="center">
+          <Stack space={{ mobile: 'xsmall', tablet: 'xxsmall' }}>
+            <Inline space="small" align={{ mobile: 'center', tablet: 'left' }} alignY="center">
               <TextLink external href="mailto:paul.cowan@cutting.scot">
                 paul.cowan@cutting.scot
               </TextLink>

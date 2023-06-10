@@ -2,43 +2,38 @@ import type { StyleRule } from '@vanilla-extract/css';
 import { style, styleVariants } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css';
 import { responsiveStyle } from '~/style/responsive-style';
-import { atoms } from '~/style/atoms/atoms';
 
-export const root = style([
-  // responsiveText.body.untrimmed,
-  atoms({ reset: 'button' }),
-  {
-    cursor: 'pointer',
-    textTransform: vars.buttons.textTransform,
-    fontWeight: vars.buttons.fontWeight,
-    touchAction: 'manipulation',
-    boxShadow: `0 2px 0 #002d18`,
-    ...responsiveStyle({
-      mobile: {
-        width: vars.buttons.width.mobile,
-      },
-      tablet: {
-        width: vars.buttons.width.tablet,
-      },
-    }),
-    ':active': {
-      top: '2px',
+export const root = style({
+  cursor: 'pointer',
+  textTransform: vars.buttons.textTransform,
+  fontWeight: vars.buttons.fontWeight,
+  touchAction: 'manipulation',
+  boxShadow: `0 2px 0 #002d18`,
+  ...responsiveStyle({
+    mobile: {
+      width: vars.buttons.width.mobile,
     },
-    ':focus': {
-      borderColor: vars.accessibility.accessibleOutline.backgroundColor,
-      color: vars.foregroundColor.body,
-      background: vars.accessibility.accessibleOutline.backgroundColor,
+    tablet: {
+      width: vars.buttons.width.tablet,
     },
-    ':focus-visible': {
-      outline: '3px solid transparent',
-    },
-    ':hover': {
-      borderColor: vars.accessibility.accessibleOutline.backgroundColor,
-      color: vars.foregroundColor.body,
-      background: vars.accessibility.accessibleOutline.backgroundColor,
-    },
+  }),
+  ':active': {
+    top: '2px',
   },
-]);
+  ':focus': {
+    borderColor: vars.accessibility.accessibleOutline.backgroundColor,
+    color: vars.foregroundColor.body,
+    background: vars.accessibility.accessibleOutline.backgroundColor,
+  },
+  ':focus-visible': {
+    outline: '3px solid transparent',
+  },
+  ':hover': {
+    borderColor: vars.accessibility.accessibleOutline.backgroundColor,
+    color: vars.foregroundColor.body,
+    background: vars.accessibility.accessibleOutline.backgroundColor,
+  },
+});
 
 export const primary: StyleRule = {
   ...vars.buttons.primary,
