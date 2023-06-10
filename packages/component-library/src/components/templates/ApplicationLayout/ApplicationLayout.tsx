@@ -79,15 +79,17 @@ export function ApplicationLayout({
 
   return (
     <div className={cs(styles.container, currentTheme)}>
-      <header role="banner" className={cs(styles.header, { [styles.hidden]: !header })} aria-label={headerAriaLabel}>
-        <div className={styles.size}>{header}</div>
-      </header>
+      {header && (
+        <header role="banner" className={cs(styles.header, { [styles.hidden]: !header })} aria-label={headerAriaLabel}>
+          <div className={styles.size}>{header}</div>
+        </header>
+      )}
       <main
         className={cs(styles.body, className, {
           [styles.size]: layout === 'RESPONSIVE',
           [styles.full]: layout === 'FULL',
           [styles.headingAndBodyLayout]: isNil(heading) === false,
-          [styles.bodyOnlyLayout]: isNil(heading),
+          [styles.bodyOnlyLayout]: isNil(heading) && isNil(footer),
           [styles.center]: center,
         })}
         ref={innerRef}
@@ -97,9 +99,14 @@ export function ApplicationLayout({
           {children}
         </PageBlock>
       </main>
-      <footer role="contentinfo" className={cs(styles.footer, styles.size, { [styles.hidden]: !header }, styles.size)}>
-        {footer}
-      </footer>
+      {footer && (
+        <footer
+          role="contentinfo"
+          className={cs(styles.footer, styles.size, { [styles.hidden]: !header }, styles.size)}
+        >
+          {footer}
+        </footer>
+      )}
     </div>
   );
 }

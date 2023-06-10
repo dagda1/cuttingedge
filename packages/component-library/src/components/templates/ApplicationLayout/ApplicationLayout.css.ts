@@ -54,6 +54,7 @@ export const body = style({
 export const container = style({
   display: 'grid',
   gridTemplateRows: '[header] auto [body] 1fr [footer] auto',
+  padding: '1rem',
 });
 
 export const size = style({

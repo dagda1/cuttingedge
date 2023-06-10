@@ -11,11 +11,11 @@ import cs from 'classnames';
 
 export const validInlineComponents = ['div', 'span', 'ol', 'ul'] as const;
 
-export interface InlineProps extends CollapsibleAlignmentProps {
+export type InlineProps = CollapsibleAlignmentProps & {
   space: ResponsiveSpace;
   component?: (typeof validInlineComponents)[number];
   children: ReactNodeNoStrings;
-}
+};
 
 export function Inline({
   space = 'none',
@@ -50,7 +50,6 @@ export function Inline({
       component={component === 'span' ? component : undefined}
       display={component === 'span' ? 'block' : undefined}
       className={cs(negativeMargin('top', space))}
-      style={{ border: '10px solid red' }}
     >
       <Box
         component={component}

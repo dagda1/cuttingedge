@@ -10,11 +10,11 @@ import { normalizeResponsiveValue } from '~/style/atoms/sprinkles.css';
 import { negativeMargin } from '~/style/negativeMargin/negativeMargin';
 import cs from 'classnames';
 
-export interface ColumnsProps extends CollapsibleAlignmentProps {
+export type ColumnsProps = CollapsibleAlignmentProps & {
   space: ResponsiveSpace;
   children: Array<ReactElement<ColumnProps> | null> | ReactElement<ColumnProps> | null;
   component?: (typeof validColumnsComponents)[number];
-}
+};
 
 export function Columns({
   children,
