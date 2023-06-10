@@ -832,8 +832,8 @@ importers:
         specifier: workspace:*
         version: link:../util
       '@effection/channel':
-        specifier: 2.0.4
-        version: 2.0.4
+        specifier: 2.0.5
+        version: 2.0.5
       '@effection/core':
         specifier: 2.2.1
         version: 2.2.1
@@ -2835,6 +2835,13 @@ packages:
       '@vanilla-extract/css': 1.11.1
     dev: true
 
+  /@chainsafe/abort-controller@3.0.1:
+    resolution: {integrity: sha512-oyq0qgFJDIIgLpyPwTv4j/sHX/MITatFzY3/b42VSldyZfnUC1lYBx5RwFvzBv1Sq4APOj2VCZO23pDRwy5kew==}
+    engines: {node: '>=6.5'}
+    dependencies:
+      event-target-shim: 5.0.1
+    dev: false
+
   /@changesets/apply-release-plan@6.1.3:
     resolution: {integrity: sha512-ECDNeoc3nfeAe1jqJb5aFQX7CqzQhD2klXRez2JDb/aVpGUbX673HgKrnrgJRuQR/9f2TtLoYIzrGB9qwD77mg==}
     dependencies:
@@ -3066,10 +3073,24 @@ packages:
       '@effection/stream': 2.0.4
     dev: false
 
+  /@effection/channel@2.0.5:
+    resolution: {integrity: sha512-Tq1BHVOKcH2Gd5Wsp1kqW1uKU+ZnXxb/wAXeRx57ciOY3bB6+0uOf1GdL9U8YQW5h2WQPBx76RykYLBhgVs9Cw==}
+    dependencies:
+      '@effection/core': 2.2.2
+      '@effection/events': 2.0.5
+      '@effection/stream': 2.0.5
+    dev: false
+
   /@effection/core@2.2.1:
     resolution: {integrity: sha512-uYItornfIcdEya1NrRbatPQyRc1DR+o1RNtpYkVyXMSf3bpShsPADdqPJmxTvGaa2CK6mLkZ+6onUNz06tsPWA==}
     dependencies:
       abort-controller: 3.0.0
+    dev: false
+
+  /@effection/core@2.2.2:
+    resolution: {integrity: sha512-JdOTXLrflRyBTgvTHwX9l0ItWfcEPUGiUFKhqnMDJT6lf2FUnQ85oKTrDZXco2sQjXKuMtO0dwzmKngos2cTIQ==}
+    dependencies:
+      '@chainsafe/abort-controller': 3.0.1
     dev: false
 
   /@effection/events@2.0.4:
@@ -3077,6 +3098,13 @@ packages:
     dependencies:
       '@effection/core': 2.2.1
       '@effection/stream': 2.0.4
+    dev: false
+
+  /@effection/events@2.0.5:
+    resolution: {integrity: sha512-xhF5hX8+ZmCvLuRSSCHwVudm/vm1/U9M9xi8+h0jwECt/2PV26vz+8ZDXbJGh9eF+0TZ+tIHto/X+7bTiRtQxg==}
+    dependencies:
+      '@effection/core': 2.2.2
+      '@effection/stream': 2.0.5
     dev: false
 
   /@effection/fetch@2.0.5:
@@ -3103,10 +3131,23 @@ packages:
       '@effection/subscription': 2.0.4
     dev: false
 
+  /@effection/stream@2.0.5:
+    resolution: {integrity: sha512-uALkQhCjgc7moeY3H8FG/plfYvgVTmxGOyJscgopRKYJIIuagswD0HD8RiSu1C21PuaUDCqfjMO3LIyNamcIqQ==}
+    dependencies:
+      '@effection/core': 2.2.2
+      '@effection/subscription': 2.0.5
+    dev: false
+
   /@effection/subscription@2.0.4:
     resolution: {integrity: sha512-flr7bu4a9t3WuDAXodH2Y2LId8pPb3UEUtwYsUaGBWNxLJJ51t3uCdPybf57L5h4/bqxAwJosd3gyhAhKzxk0Q==}
     dependencies:
       '@effection/core': 2.2.1
+    dev: false
+
+  /@effection/subscription@2.0.5:
+    resolution: {integrity: sha512-Vsufl5Ywum2HgIjruhh4OJefvFnxYCWXtWZY/yVK3X2rovgdXr2IKphfO00VsXKeP4Uez4BhuiuFF5tq2DKDnw==}
+    dependencies:
+      '@effection/core': 2.2.2
     dev: false
 
   /@emotion/hash@0.9.1:

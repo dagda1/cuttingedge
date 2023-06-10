@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@cutting/util": "workspace:*",
-    "@effection/channel": "2.0.4",
+    "@effection/channel": "2.0.5",
     "@effection/core": "2.2.1",
     "@effection/events": "2.0.4",
     "@effection/fetch": "2.0.5",
