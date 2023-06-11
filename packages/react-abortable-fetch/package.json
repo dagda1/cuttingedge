@@ -22,7 +22,7 @@
     "@effection/channel": "2.0.5",
     "@effection/core": "2.2.2",
     "@effection/events": "2.0.5",
-    "@effection/fetch": "2.0.5",
+    "@effection/fetch": "2.0.6",
     "@effection/main": "2.1.1",
     "@effection/subscription": "2.0.4",
     "@effection/stream": "2.0.4",
