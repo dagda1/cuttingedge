@@ -869,8 +869,8 @@ importers:
         specifier: ^3.1.6
         version: 3.1.6
       effection:
-        specifier: ^2.0.6
-        version: 2.0.6
+        specifier: ^2.0.7
+        version: 2.0.7
       fetch-jsonp:
         specifier: ^1.2.3
         version: 1.2.3
@@ -3070,14 +3070,6 @@ packages:
       tar-stream: 2.2.0
     dev: true
 
-  /@effection/channel@2.0.4:
-    resolution: {integrity: sha512-JlopFnlubIGEKEwmoENsNqj2Tfxt0Xz6P8wFnmKVOajT9ggsFKgIaD3DwZ8ndJnHM+mw5BvKMaPGuuL7r3Pvuw==}
-    dependencies:
-      '@effection/core': 2.2.1
-      '@effection/events': 2.0.4
-      '@effection/stream': 2.0.4
-    dev: false
-
   /@effection/channel@2.0.5:
     resolution: {integrity: sha512-Tq1BHVOKcH2Gd5Wsp1kqW1uKU+ZnXxb/wAXeRx57ciOY3bB6+0uOf1GdL9U8YQW5h2WQPBx76RykYLBhgVs9Cw==}
     dependencies:
@@ -3086,23 +3078,10 @@ packages:
       '@effection/stream': 2.0.5
     dev: false
 
-  /@effection/core@2.2.1:
-    resolution: {integrity: sha512-uYItornfIcdEya1NrRbatPQyRc1DR+o1RNtpYkVyXMSf3bpShsPADdqPJmxTvGaa2CK6mLkZ+6onUNz06tsPWA==}
-    dependencies:
-      abort-controller: 3.0.0
-    dev: false
-
   /@effection/core@2.2.2:
     resolution: {integrity: sha512-JdOTXLrflRyBTgvTHwX9l0ItWfcEPUGiUFKhqnMDJT6lf2FUnQ85oKTrDZXco2sQjXKuMtO0dwzmKngos2cTIQ==}
     dependencies:
       '@chainsafe/abort-controller': 3.0.1
-    dev: false
-
-  /@effection/events@2.0.4:
-    resolution: {integrity: sha512-7CsWy1h9JON+ZtIcQTcld4MWLs7JS09ncmiO1bLFQE3BaIEBjs98E89WtfGg66bXvlTYC0wTC7it03CcA/QEbA==}
-    dependencies:
-      '@effection/core': 2.2.1
-      '@effection/stream': 2.0.4
     dev: false
 
   /@effection/events@2.0.5:
@@ -3110,15 +3089,6 @@ packages:
     dependencies:
       '@effection/core': 2.2.2
       '@effection/stream': 2.0.5
-    dev: false
-
-  /@effection/fetch@2.0.5:
-    resolution: {integrity: sha512-NWrZYBgmNx686aslxf4J8CuquMIFVcG3LnONkGWQ41agDAX2lqQUOa5pAtUqj1hvEtb+l3lNawvpWbqFuNYYzA==}
-    dependencies:
-      '@effection/core': 2.2.1
-      cross-fetch: 3.1.5
-    transitivePeerDependencies:
-      - encoding
     dev: false
 
   /@effection/fetch@2.0.6(mocha@10.2.0):
@@ -3130,14 +3100,6 @@ packages:
     transitivePeerDependencies:
       - encoding
       - mocha
-    dev: false
-
-  /@effection/main@2.1.1:
-    resolution: {integrity: sha512-NwQ4hN+Crja/8At8QCr2vXyTkd5kDdwnl1UqqspSm88y3YdVH/B8yvw89Y3j+E0teo3COY/zu5NcS/VnxkMnLQ==}
-    dependencies:
-      '@effection/core': 2.2.1
-      chalk: 4.1.2
-      stacktrace-parser: 0.1.10
     dev: false
 
   /@effection/main@2.1.2:
@@ -3153,17 +3115,10 @@ packages:
     peerDependencies:
       mocha: ^10.0.0
     dependencies:
-      effection: 2.0.7(mocha@10.2.0)
+      effection: 2.0.7
       mocha: 10.2.0
     transitivePeerDependencies:
       - encoding
-    dev: false
-
-  /@effection/stream@2.0.4:
-    resolution: {integrity: sha512-XXDiUbX+2zBAFlV6r5HfwLzm1Ko1Had13HUNTJFR+fmtkb5uG9Y6eJuViphaYg0VBbsZTJfgTAZWzN4PsBT9Lg==}
-    dependencies:
-      '@effection/core': 2.2.1
-      '@effection/subscription': 2.0.4
     dev: false
 
   /@effection/stream@2.0.5:
@@ -3171,12 +3126,6 @@ packages:
     dependencies:
       '@effection/core': 2.2.2
       '@effection/subscription': 2.0.5
-    dev: false
-
-  /@effection/subscription@2.0.4:
-    resolution: {integrity: sha512-flr7bu4a9t3WuDAXodH2Y2LId8pPb3UEUtwYsUaGBWNxLJJ51t3uCdPybf57L5h4/bqxAwJosd3gyhAhKzxk0Q==}
-    dependencies:
-      '@effection/core': 2.2.1
     dev: false
 
   /@effection/subscription@2.0.5:
@@ -6718,13 +6667,6 @@ packages:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
     dev: true
 
-  /abort-controller@3.0.0:
-    resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
-    engines: {node: '>=6.5'}
-    dependencies:
-      event-target-shim: 5.0.1
-    dev: false
-
   /abortcontroller-polyfill@1.7.5:
     resolution: {integrity: sha512-JMJ5soJWP18htbbxJjG7bG6yuI6pRhgJ0scHHTfkUjf6wjP912xZWvM+A4sJK3gqd9E8fcPbDnOefbA9Th/FIQ==}
 
@@ -9166,21 +9108,7 @@ packages:
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  /effection@2.0.6:
-    resolution: {integrity: sha512-Bc8pXBrNQFumPLAmwj6mh7JeZFbLRoPYkqhU8WkVAuwHCQZh2xHE5zxaceL1nWR78ZuqFwwXlrTODDQLIkeQBw==}
-    dependencies:
-      '@effection/channel': 2.0.4
-      '@effection/core': 2.2.1
-      '@effection/events': 2.0.4
-      '@effection/fetch': 2.0.5
-      '@effection/main': 2.1.1
-      '@effection/stream': 2.0.4
-      '@effection/subscription': 2.0.4
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
-  /effection@2.0.7(mocha@10.2.0):
+  /effection@2.0.7:
     resolution: {integrity: sha512-I9ndFvtByvHbvOHwMp1NM7vlLDT0RBOu1YlIfBece46VASSot0oPnAfoGdc1YKoQShQLjigvHZ6OqZYUAxUcXg==}
     dependencies:
       '@effection/channel': 2.0.5
@@ -9192,7 +9120,6 @@ packages:
       '@effection/subscription': 2.0.5
     transitivePeerDependencies:
       - encoding
-      - mocha
     dev: false
 
   /electron-to-chromium@1.4.411:
