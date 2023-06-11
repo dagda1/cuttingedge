@@ -38,7 +38,7 @@
   "dependencies": {
     "@cutting/rollup-plugin-md": "0.5.0",
     "@rbnlffl/rollup-plugin-eslint": "5.0.0",
-    "@rollup/plugin-commonjs": "25.0.0",
+    "@rollup/plugin-commonjs": "25.0.1",
     "@rollup/plugin-json": "6.0.0",
     "@rollup/plugin-node-resolve": "15.1.0",
     "@rollup/pluginutils": "5.0.2",
