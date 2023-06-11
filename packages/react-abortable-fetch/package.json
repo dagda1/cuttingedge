@@ -25,7 +25,7 @@
     "@effection/fetch": "2.0.6",
     "@effection/main": "2.1.2",
     "@effection/subscription": "2.0.4",
-    "@effection/stream": "2.0.4",
+    "@effection/stream": "2.0.5",
     "@xstate/react": "^3.2.2",
     "abortcontroller-polyfill": "^1.7.5",
     "assert-ts": "^0.3.4",
