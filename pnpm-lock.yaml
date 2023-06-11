@@ -854,8 +854,8 @@ importers:
         specifier: 2.0.5
         version: 2.0.5
       '@effection/subscription':
-        specifier: 2.0.4
-        version: 2.0.4
+        specifier: 2.0.5
+        version: 2.0.5
       '@xstate/react':
         specifier: ^3.2.2
         version: 3.2.2(@types/react@18.2.11)(react@18.2.0)(xstate@4.37.2)
