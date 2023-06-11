@@ -41,6 +41,12 @@ export const main = style({
   width: '100%',
 });
 
+globalStyle('header', {
+  minHeight: '124px',
+  maxHeight: '124px',
+  border: '10px solid red',
+});
+
 export const container = style({
   display: 'grid',
   gridTemplateRows: '[header] auto [body] 1fr [footer] auto',
@@ -67,10 +73,6 @@ export const size = style({
   //     // border: '10px solid yellow'
   //   },
   // }),
-});
-
-globalStyle('main', {
-  // display: 'grid',
 });
 
 export const headingAndBodyLayout = style({

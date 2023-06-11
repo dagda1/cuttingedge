@@ -25,27 +25,25 @@ export function Menu(): JSX.Element {
 
   return (
     <Box component="nav" width="full">
-      <Box
-        component="ul"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        style={{ border: '10px solid green' }}
-      >
+      <Box component="ul" display="flex" justifyContent="center" alignItems="center">
         <Box component="li" marginRight={{ mobile: 'medium' }}>
           <NavLink aria-label="home" to={urls.Home}>
-            <img
-              srcSet={`${cowMobile} 75w, ${cow} 100w`}
-              sizes={`(max-width: 740px) 75px,
+            <Box className={styles.logoContainer}>
+              <img
+                srcSet={`${cowMobile} 75w, ${cow} 100w`}
+                sizes={`(max-width: 740px) 75px,
          100px`}
-              src={cow}
-              alt="cutting-edge logo"
-            />
+                src={cow}
+                alt="cutting-edge logo"
+              />
+            </Box>
           </NavLink>
         </Box>
         <Box component="li" marginRight={{ mobile: 'medium' }}>
           <TextNavLink aria-label="home" className={styles.name} to={urls.Home}>
-            <Heading level="2">Paul Cowan</Heading>
+            <Heading className={styles.mainHeading} level="2">
+              Paul Cowan
+            </Heading>
           </TextNavLink>
         </Box>
         <Box component="li" className={cs(styles.contact, styles.horizontal)} marginRight={{ mobile: 'medium' }}>

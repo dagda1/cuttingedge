@@ -1,47 +1,12 @@
 import { palette, responsiveStyle, vars, atoms } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
-export const full = style({
-  display: 'flex',
-  justifyContent: 'center',
-});
-
-export const container = style({});
-
-globalStyle(`${container} h2`, {
-  marginTop: 0,
-  marginBottom: 0,
-  paddingTop: 0,
-  paddingBottom: 0,
-  textShadow: `0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 55px #ffffff, 0 0 75px #ffffff`,
-});
-
-globalStyle(`${container} ul`, {
-  marginBottom: 0,
-});
-
-globalStyle(`${container} svg path`, {
-  fill: palette.white,
-});
-
-globalStyle(`${container} ul li`, {
-  display: 'inline-block',
-  verticalAlign: 'middle',
-  position: 'relative',
-});
-
-globalStyle(`${container} li:not(:last-of-type)`, {
-  ...responsiveStyle({
-    mobile: {
-      marginRight: 'auto',
-    },
-    tablet: {
-      marginRight: vars.space['small'],
-    },
-  }),
-});
 export const mobileButtonContainer = style({
   verticalAlign: 'middle',
+});
+
+export const mainHeading = style({
+  textShadow: `0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 55px #ffffff, 0 0 75px #ffffff`,
 });
 
 globalStyle(`${mobileButtonContainer} button`, {
@@ -51,14 +16,6 @@ globalStyle(`${mobileButtonContainer} button`, {
 
 globalStyle(`${mobileButtonContainer} svg`, {
   marginBottom: 0,
-});
-
-globalStyle(`${container} a:hover`, {
-  color: palette.white,
-});
-
-globalStyle(`${container} li h2 a`, {
-  top: 0,
 });
 
 export const contact = style([
@@ -87,27 +44,14 @@ globalStyle(`li${contact} a`, {
   }),
 });
 
-globalStyle(`${container} div:not(.expanded):not(${contact}) ul li`, {
-  ...responsiveStyle({
-    mobile: {
-      marginRight: vars.space['xxsmall'],
-    },
-    tablet: {
-      marginRight: vars.space['xsmall'],
-    },
-  }),
-});
-
 export const logoContainer = style({
-  width: '75px',
-  display: 'inline-block',
-  marginRight: 0,
-  marginLeft: '-19px',
   ...responsiveStyle({
     mobile: {
+      height: '75px',
       width: '75px',
     },
     tablet: {
+      height: '100px',
       width: '100px',
     },
   }),
@@ -116,11 +60,6 @@ export const logoContainer = style({
 export const selected = style({
   width: '100%',
   border: `1px solid ${vars.colors.error}`,
-});
-
-globalStyle(`${logoContainer} svg`, {
-  width: '100%',
-  height: 'auto',
 });
 
 export const active = style({
@@ -234,6 +173,20 @@ globalStyle(`ul li${horizontal}${mobile}`, {
 globalStyle(`ul li${horizontal}${mobile}${closeButton}`, {
   display: 'flex',
   justifyContent: 'flex-end',
+});
+
+export const responsiveImageContainer = style({
+  width: '100%',
+  paddingBottom: '56.25%' /* 9/16 = aspect ratio of image */,
+  position: 'relative',
+});
+
+globalStyle(`${responsiveImageContainer} img`, {
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0,
 });
 
 globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
