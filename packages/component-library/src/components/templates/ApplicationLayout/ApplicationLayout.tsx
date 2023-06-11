@@ -27,8 +27,6 @@ export type ThemeKeys = keyof typeof themes;
 
 export const Themes = Object.keys(themes) as ThemeKeys[];
 
-type Layout = 'RESPONSIVE' | 'FULL';
-
 export interface ApplicationLayoutProps {
   heading?: string;
   className?: string;
@@ -38,7 +36,6 @@ export interface ApplicationLayoutProps {
   children: ReactNodeNoStrings;
   headerAriaLabel?: string;
   theme: keyof typeof themes;
-  layout?: Layout;
   centerHeading?: boolean;
   center?: boolean;
   display?: keyof ResponsiveAtomicProperties['styles']['display']['values'];
@@ -73,7 +70,6 @@ export function ApplicationLayout({
   theme,
   centerHeading = false,
   center = false,
-  layout = 'RESPONSIVE',
   ...pageBlockProps
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   const currentTheme = themes[theme];
@@ -85,14 +81,12 @@ export function ApplicationLayout({
       className={cs(styles.container, currentTheme)}
     >
       {header && (
-        <header role="banner" className={cs(styles.header, { [styles.hidden]: !header })} aria-label={headerAriaLabel}>
+        <header role="banner" className={cs(styles.header)} aria-label={headerAriaLabel}>
           <div className={styles.size}>{header}</div>
         </header>
       )}
       <main
         className={cs(styles.main, className, {
-          [styles.size]: layout === 'RESPONSIVE',
-          [styles.full]: layout === 'FULL',
           [styles.headingAndBodyLayout]: isNil(heading) === false,
           [styles.bodyOnlyLayout]: isNil(heading) && isNil(footer),
           [styles.center]: center,
@@ -105,10 +99,7 @@ export function ApplicationLayout({
         </PageBlock>
       </main>
       {footer && (
-        <footer
-          role="contentinfo"
-          className={cs(styles.footer, styles.size, { [styles.hidden]: !header }, styles.size)}
-        >
+        <footer role="contentinfo" className={cs(styles.footer, styles.size, styles.size)}>
           {footer}
         </footer>
       )}

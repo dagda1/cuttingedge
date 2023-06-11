@@ -3,7 +3,7 @@ import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { repos } from './repos';
 import { Heading } from '@cutting/component-library';
 import * as styles from './OSS.css';
-import { Github } from '~/components/Svg/Github';
+import github from '~/assets/images/github-medium.png';
 
 export function OSS(): JSX.Element {
   return (
@@ -56,7 +56,7 @@ export function OSS(): JSX.Element {
                 <TextLink external href={repo.link}>
                   <Stack space="medium">
                     <div className={styles.icon}>
-                      <Github />
+                      <img src={github} alt="github" />
                     </div>
                     <Heading level="2">{repo.name}</Heading>
                     <Text>{repo.description}</Text>
