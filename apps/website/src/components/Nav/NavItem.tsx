@@ -2,17 +2,17 @@ import { Box } from '@cutting/component-library';
 import type { ResponsiveSpace } from '@cutting/component-library';
 import type { ReactNode } from 'react';
 
-export type MenuItemDisplay = 'SubmenuMobile' | 'Always';
-export type MenuItemProps = { marginRight?: ResponsiveSpace } & {
+export type NavItemDisplay = 'SubmenuMobile' | 'Always';
+export type NavItemProps = { marginRight?: ResponsiveSpace } & {
   children: ReactNode;
-  display: MenuItemDisplay;
+  display: NavItemDisplay;
 };
 
-export function MenuItem({
+export function NavItem({
   children,
   marginRight = { mobile: 'xxsmall', desktop: 'medium' },
   display = 'SubmenuMobile',
-}: MenuItemProps): JSX.Element {
+}: NavItemProps): JSX.Element {
   return (
     <Box
       display={{

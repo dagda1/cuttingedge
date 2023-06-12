@@ -1,33 +1,34 @@
 import type { ReactElement } from 'react';
-import { Children, useMemo, useState } from 'react';
-import * as styles from './Menu.css';
+import { Children, Fragment, useMemo, useState } from 'react';
+import * as styles from './Nav.css';
 import { Box, type BoxProps } from '@cutting/component-library';
 import cs from 'classnames';
 import Hamburger from 'hamburger-react';
-import type { MenuItemProps } from './MenuItem';
+import type { NavItemProps } from './NavItem';
+import { NavItems } from './NavItems';
 
 export interface MenuState {
   isExpanded: boolean;
 }
 
-type MenuProps = Pick<BoxProps, 'width' | 'display' | 'justifyContent' | 'alignItems' | 'className'> & {
-  children: ReactElement<MenuItemProps>;
+type NavProps = Pick<BoxProps, 'width' | 'display' | 'justifyContent' | 'alignItems' | 'className'> & {
+  children: ReactElement<NavItemProps>;
 };
 
-export function Menu({
+export function Nav({
   width = 'full',
   display = 'flex',
   justifyContent = { mobile: 'flexStart', desktop: 'center' },
   alignItems = 'center',
   children,
-}: MenuProps): JSX.Element {
+}: NavProps): JSX.Element {
   const [open, setOpen] = useState(false);
   const desktopItems = useMemo(
     () =>
       Children.toArray(children.props.children)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .filter((m: any) => m.props.display === 'Always')
-        .map((m) => <>{m}</>),
+        .map((m, i) => <Fragment key={i}>{m}</Fragment>),
     [children.props.children],
   );
   const mobileMenuItems = useMemo(
@@ -35,14 +36,14 @@ export function Menu({
       Children.toArray(children.props.children)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .filter((m: any) => m.props.display !== 'Always')
-        .map((m) => <>{m}</>),
+        .map((m, i) => <Fragment key={i}>{m}</Fragment>),
     [children.props.children],
   );
 
   return (
     <Box component="nav" width={width} className={styles.container}>
       <Box component="ul" display={display} justifyContent={justifyContent} alignItems={alignItems}>
-        <>
+        <NavItems>
           {desktopItems}
           <Box
             component="li"
@@ -63,7 +64,7 @@ export function Menu({
           >
             {mobileMenuItems}
           </Box>
-        </>
+        </NavItems>
       </Box>
     </Box>
   );

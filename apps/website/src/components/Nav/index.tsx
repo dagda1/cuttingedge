@@ -1,13 +1,13 @@
 import * as urls from '~/urls';
-import * as styles from './Menu.css';
+import * as styles from './Nav.css';
 import { Box, Heading, ResponsiveImage, Text } from '@cutting/component-library';
 import { NavLink } from 'react-router-dom';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 import cow from '~/assets/images/cow-logo.png';
 import cowMobile from '~/assets/images/cow-mobile.png';
 import cs from 'classnames';
-import { Menu as MNU } from './Menu';
-import { MenuItem } from './MenuItem';
+import { Nav } from './Nav';
+import { NavItem } from './NavItem';
 import { bannerPages } from '~/routes';
 import { Menu as VizMenu, MenuItem as VizMenuItem, MenuButton } from '@szhsin/react-menu';
 
@@ -18,9 +18,9 @@ export interface MenuState {
 export function Menu(): JSX.Element {
   return (
     <>
-      <MNU>
+      <Nav>
         <>
-          <MenuItem display="Always">
+          <NavItem display="Always">
             <NavLink aria-label="home" to={urls.Home}>
               <ResponsiveImage
                 mobile={{ src: cowMobile, dimensions: { width: 75, height: 75 } }}
@@ -29,13 +29,13 @@ export function Menu(): JSX.Element {
                 alt="cutting-edge logo"
               />
             </NavLink>
-          </MenuItem>
-          <MenuItem display="Always">
+          </NavItem>
+          <NavItem display="Always">
             <TextNavLink aria-label="home" to={urls.Home}>
               <Heading level="2">Paul Cowan</Heading>
             </TextNavLink>
-          </MenuItem>
-          <MenuItem display="Always">
+          </NavItem>
+          <NavItem display="Always">
             <Box
               className={styles.contact}
               borderRadius="full"
@@ -51,18 +51,18 @@ export function Menu(): JSX.Element {
                 Contact
               </TextNavLink>
             </Box>
-          </MenuItem>
+          </NavItem>
           {bannerPages.map((page, i) => (
-            <MenuItem display="SubmenuMobile" key={i}>
+            <NavItem display="SubmenuMobile" key={i}>
               <TextNavLink
                 to={page.path?.includes('*') ? page.path.slice(0, -2) : page.path}
                 className={({ isActive }) => cs(page.className, { [styles.active]: isActive })}
               >
                 {page.heading}
               </TextNavLink>
-            </MenuItem>
+            </NavItem>
           ))}
-          <MenuItem display="SubmenuMobile">
+          <NavItem display="SubmenuMobile">
             <VizMenu
               menuButton={
                 <MenuButton className={styles.dropdown}>
@@ -91,9 +91,9 @@ export function Menu(): JSX.Element {
                 </TextNavLink>
               </VizMenuItem>
             </VizMenu>
-          </MenuItem>
+          </NavItem>
         </>
-      </MNU>
+      </Nav>
     </>
   );
 }

@@ -8,6 +8,9 @@ export const pdfViewer = style({
       height: '85%',
     },
     desktop: {
+      height: '90%',
+    },
+    wide: {
       height: '95%',
     },
   }),
