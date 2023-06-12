@@ -50,7 +50,7 @@ export function OSS(): JSX.Element {
             </TextLink>
           </Stack>
           <Heading level="2">My Work</Heading>
-          <Tiles space="small" columns={{ mobile: 1, tablet: 2, extraWide: 4 }}>
+          <Tiles space="small" columns={{ mobile: 1, tablet: 2, wide: 4 }}>
             {repos.map((repo, i) => (
               <Box width="full" className={styles.repo} key={i}>
                 <TextLink external href={repo.link}>

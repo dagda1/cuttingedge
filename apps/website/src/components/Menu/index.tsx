@@ -42,7 +42,14 @@ export function Menu(): JSX.Element {
             <Heading level="2">Paul Cowan</Heading>
           </TextNavLink>
         </Box>
-        <Box component="li" className={cs(styles.contact, styles.horizontal)} marginRight={{ mobile: 'medium' }}>
+        <Box
+          component="li"
+          className={cs(styles.contact, styles.horizontal)}
+          marginRight={{ mobile: 'medium' }}
+          borderRadius="full"
+          paddingX={{ mobile: 'small', desktop: 'medium' }}
+          paddingY={{ mobile: 'small', desktop: 'large' }}
+        >
           <TextNavLink
             to={urls.ContactMe}
             className={({ isActive }) => (isActive ? styles.active : '')}
