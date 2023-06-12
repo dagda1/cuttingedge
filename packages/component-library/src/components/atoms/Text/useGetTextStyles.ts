@@ -10,15 +10,16 @@ export function useGetTextStyles(): string {
 
   assert(!!textContext, `you need to wrap the component in <Text /> or <Heading />`);
 
-  const { size, weight, baseline } = textContext;
+  const { size, weight, baseline, tone } = textContext;
 
   const textStylingProps = useMemo(
     () => ({
       size,
       weight,
       baseline,
+      tone,
     }),
-    [size, weight, baseline],
+    [size, weight, baseline, tone],
   );
 
   return cs(textStyles(textStylingProps).join(' '), base);

@@ -20,7 +20,7 @@ function TextNavLinkWrapper({ Component = NavLink, className, ...props }: Props)
 
 export function TextNavLink({ size, weight, ...props }: Props): JSX.Element {
   return (
-    <Text size={size} weight={weight}>
+    <Text size={size} weight={weight} tone="link">
       <TextNavLinkWrapper {...props} />
     </Text>
   );

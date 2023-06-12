@@ -118,9 +118,7 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     borderColor: tokens.border.color,
     borderWidth: mapValues(tokens.border.width, px),
     foregroundColor: foreground,
-    backgroundColor: {
-      ...background,
-    },
+    backgroundColor: background,
     fontFamily: typography.fontFamily,
     colors: {
       ...tokens.colors,

@@ -19,7 +19,7 @@ export function CV(): JSX.Element {
 
   return (
     <ApplicationLayout display="flex">
-      <Box display={{ mobile: 'flex', tablet: 'block' }}>
+      <Box marginBottom={{ mobile: 'xxsmall', desktop: 'medium' }}>
         <Tiles space={{ mobile: 'small', tablet: 'none' }} columns={{ mobile: 1, tablet: 2 }}>
           {docs.map((doc) => {
             const text = `DOWNLOAD ${doc.text}`;

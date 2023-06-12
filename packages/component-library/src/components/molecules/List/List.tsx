@@ -83,6 +83,7 @@ type ListTypeIcon = {
 export type ListProps = {
   children: StackProps['children'];
   size?: TextProps['size'];
+  tone?: TextProps['tone'];
   space?: StackProps['space'];
   start?: number;
 } & (ListTypeIcon | ListTypeCharacter);
@@ -95,7 +96,7 @@ export function List({
   start = 1,
   ...restProps
 }: ListProps): JSX.Element {
-  const { size } = useDefaultTextProps({
+  const { size, tone } = useDefaultTextProps({
     size: sizeProp,
   });
   const listItems = flattenChildren(children) as ReactNodeNoStrings[];
@@ -109,7 +110,7 @@ export function List({
 
           return (
             <Box display="flex">
-              <Text component="div" size={size}>
+              <Text component="div" size={size} tone={tone}>
                 <Box
                   display="flex"
                   alignItems={/^(bullet|icon)$/.test(type) ? 'center' : undefined}

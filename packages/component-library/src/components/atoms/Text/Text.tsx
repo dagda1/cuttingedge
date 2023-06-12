@@ -13,6 +13,7 @@ type Layout = 'inline' | 'block';
 
 export interface TextProps extends TypographyProps {
   size?: TextStyleProps['size'];
+  tone?: TextStyleProps['tone'];
   weight?: TextStyleProps['weight'];
   baseline?: TextStyleProps['baseline'];
   dataTestid?: string;
@@ -22,6 +23,7 @@ export interface TextProps extends TypographyProps {
 
 export function Text({
   size: sizeProp,
+  tone: toneProp,
   weight: weightProp,
   baseline = true,
   dataTestid,
@@ -31,19 +33,23 @@ export function Text({
 }: TextProps): JSX.Element {
   assert(!useContext(TextContext), 'Text components should not be nested within each other');
 
-  const { size, weight } = useDefaultTextProps({
+  const { size, weight, tone } = useDefaultTextProps({
     size: sizeProp,
     weight: weightProp,
+    tone: toneProp,
   });
+
+  console.log(tone);
 
   // Prevent re-renders when context values haven't changed
   const textStylingProps = useMemo(
     () => ({
       size,
+      tone,
       weight,
       baseline,
     }),
-    [size, weight, baseline],
+    [size, tone, weight, baseline],
   );
 
   return (

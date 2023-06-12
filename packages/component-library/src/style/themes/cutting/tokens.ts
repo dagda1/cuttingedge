@@ -23,6 +23,7 @@ export const tokens: DeepPartial<Tokens> = {
       link: palette.neutral400,
       linkHover: palette.white,
       linkVisited: palette.neutral100,
+      neutral: palette.neutral400,
       body: palette.white,
       header: palette.white,
       heading: {

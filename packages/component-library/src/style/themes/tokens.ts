@@ -19,6 +19,7 @@ export const colors = {
   info: palette.blue700,
   promote: palette.violet800,
   white: palette.white,
+  neutral: palette.gray700,
 };
 
 const fontWeight = {
@@ -69,25 +70,28 @@ export const tokens = {
     },
     color: {
       caution: colors.caution,
-      cautionLight: mix(0.6, colors.caution, getLightVariant(colors.caution)),
       critical: colors.critical,
-      criticalLight: mix(0.3, colors.critical, colors.criticalLight),
       field: '#999999',
       info: colors.info,
       infoLight: mix(0.3, colors.info, getLightVariant(colors.info)),
       positive: colors.positive,
-      positiveLight: mix(0.3, colors.positive, getLightVariant(colors.positive)),
       promote: colors.promote,
-      promoteLight: mix(0.3, colors.promote, getLightVariant(colors.promote)),
       standard: palette.neutral900,
       invalid: colors.error,
       focus: palette.green800,
-      standardInverted: colors.white,
     },
   },
   color: {
     foreground: {
+      caution: colors.caution,
+      critical: colors.critical,
+      focus: palette.green800,
+      info: colors.info,
+      neutral: colors.neutral,
+      secondary: colors.secondary,
       link: palette.neutral900,
+      positive: colors.positive,
+      promote: colors.promote,
       linkHover: palette.white,
       linkVisited: palette.neutral700,
       error: colors.error,
@@ -100,7 +104,6 @@ export const tokens = {
       },
       header: palette.black,
       footer: palette.black,
-      neutral: palette.gray700,
     },
     background: {
       body: palette.white,
