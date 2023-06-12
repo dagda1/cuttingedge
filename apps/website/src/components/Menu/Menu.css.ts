@@ -5,7 +5,9 @@ export const mobileButtonContainer = style({
   verticalAlign: 'middle',
 });
 
-export const mainHeading = style({
+export const container = style({});
+
+globalStyle(`${container} h2`, {
   textShadow: `0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 55px #ffffff, 0 0 75px #ffffff`,
 });
 
@@ -44,36 +46,14 @@ globalStyle(`li${contact} a`, {
   }),
 });
 
-export const logoContainer = style({
-  ...responsiveStyle({
-    mobile: {
-      height: '75px',
-      width: '75px',
-    },
-    tablet: {
-      height: '100px',
-      width: '100px',
-    },
-  }),
-});
-
-export const selected = style({
-  width: '100%',
-  border: `1px solid ${vars.colors.error}`,
-});
-
 export const active = style({
-  color: '#ffffff',
+  color: 'blue',
   fontStyle: 'bold',
 });
 
 globalStyle(`${contact} ${active}`, {
   background: 'inherit',
   padding: '0',
-});
-
-export const name = style({
-  color: 'inherit',
 });
 
 export const expandable = style({
@@ -173,20 +153,6 @@ globalStyle(`ul li${horizontal}${mobile}`, {
 globalStyle(`ul li${horizontal}${mobile}${closeButton}`, {
   display: 'flex',
   justifyContent: 'flex-end',
-});
-
-export const responsiveImageContainer = style({
-  width: '100%',
-  paddingBottom: '56.25%' /* 9/16 = aspect ratio of image */,
-  position: 'relative',
-});
-
-globalStyle(`${responsiveImageContainer} img`, {
-  position: 'absolute',
-  width: '100%',
-  height: '100%',
-  top: 0,
-  left: 0,
 });
 
 globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {

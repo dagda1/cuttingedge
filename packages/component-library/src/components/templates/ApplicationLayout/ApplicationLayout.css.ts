@@ -41,38 +41,9 @@ export const main = style({
   width: '100%',
 });
 
-globalStyle('header', {
-  minHeight: '124px',
-  maxHeight: '124px',
-  border: '10px solid red',
-});
-
 export const container = style({
   display: 'grid',
   gridTemplateRows: '[header] auto [body] 1fr [footer] auto',
-});
-
-export const size = style({
-  // ...responsiveStyle({
-  //   mobile: {
-  //     maxWidth: 'none',
-  //     // border: '10px solid cyan',
-  //   },
-  //   tablet: {
-  //     maxWidth: `${rem(breakpoints.tablet)}`,
-  //     marginLeft: 'auto',
-  //     marginRight: 'auto',
-  //     // border: '10px solid red'
-  //   },
-  //   desktop: {
-  //     maxWidth: `${rem(breakpoints.desktop)}`,
-  //     // border: '10px solid green'
-  //   },
-  //   wide: {
-  //     maxWidth: `${rem(breakpoints.wide)}`,
-  //     // border: '10px solid yellow'
-  //   },
-  // }),
 });
 
 export const headingAndBodyLayout = style({
@@ -86,62 +57,3 @@ export const bodyOnlyLayout = style({
 export const center = style({
   placeItems: 'center',
 });
-
-// globalStyle('header,footer', {
-//   // ...bodyStyle,
-// });
-
-// globalStyle('footer', {
-//   // padding: vars.space['xxsmall'],
-// });
-
-// globalStyle('header', {
-//   background: vars.backgroundColor.header,
-//   color: vars.foregroundColor.header,
-// });
-
-// globalStyle('footer', {
-//   background: vars.backgroundColor.footer,
-//   color: vars.foregroundColor.footer,
-// });
-
-// globalStyle('header a,footer a', {
-//   cursor: 'pointer',
-// });
-
-// globalStyle('a:focus,a:focus h2', {
-//   ...vars.accessibility.accessibleOutline,
-//   color: vars.foregroundColor.body,
-//   boxShadow: 'initial',
-// });
-
-// export const hidden = style({
-//   display: 'none',
-//   outline: 'none',
-// });
-
-// globalStyle('ul,ol', {
-//   marginTop: 0,
-//   paddingLeft: 0,
-//   listStyle: 'none',
-// });
-
-// globalStyle('a, header a,footer a', {
-//   // textDecoration: vars.links.decoration.link,
-//   // color: vars.links.color.link,
-//   // textUnderlineOffset: '.1em',
-//   // lineHeight: vars.links.lineHeight,
-// });
-
-// globalStyle('a:focus', {
-//   // ...vars.accessibility.linkFocus,
-// });
-
-// globalStyle('a:active', {
-//   // color: vars.links.color.active,
-// });
-
-// globalStyle('a:hover,a:focus', {
-//   // color: vars.links.color.hover,
-//   // textDecorationThickness: `max(3px, .1875rem, .12em)`,
-// });

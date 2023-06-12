@@ -82,7 +82,7 @@ export function ApplicationLayout({
     >
       {header && (
         <header role="banner" className={cs(styles.header)} aria-label={headerAriaLabel}>
-          <div className={styles.size}>{header}</div>
+          <div>{header}</div>
         </header>
       )}
       <main
@@ -99,7 +99,7 @@ export function ApplicationLayout({
         </PageBlock>
       </main>
       {footer && (
-        <footer role="contentinfo" className={cs(styles.footer, styles.size, styles.size)}>
+        <footer role="contentinfo" className={styles.footer}>
           {footer}
         </footer>
       )}
