@@ -9,7 +9,7 @@ import type { Space } from '~/style/atoms/atoms';
 import { negativeMargin } from '~/style/negativeMargin/negativeMargin';
 import flattenChildren from '~/style/util/flatten-children';
 import cs from 'classnames';
-import { resolveResponsiveProp } from '~/style/util/resoloveResponsiveProp';
+import { resolveResponsiveProp } from '~/style/util/resolveResponsiveProp';
 import { mapResponsiveValue } from '~/style/atoms/sprinkles.css';
 
 export interface TilesProps {

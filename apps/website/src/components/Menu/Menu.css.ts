@@ -1,23 +1,14 @@
 import { palette, responsiveStyle, vars, atoms } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
-export const mobileButtonContainer = style({
-  verticalAlign: 'middle',
-});
-
 export const container = style({});
 
 globalStyle(`${container} h2`, {
   textShadow: `0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 55px #ffffff, 0 0 75px #ffffff`,
 });
 
-globalStyle(`${mobileButtonContainer} button`, {
-  position: 'absolute',
-  top: '-1rem',
-});
-
-globalStyle(`${mobileButtonContainer} svg`, {
-  marginBottom: 0,
+export const currentColor = style({
+  color: vars.foregroundColor.neutral,
 });
 
 export const contact = style([
@@ -47,19 +38,21 @@ export const expandable = style({
   backgroundColor: palette.black,
   zIndex: 10,
   padding: '1rem',
+  width: '100vw',
+  height: '100vh',
 });
 
 export const expanded = style([
   {
-    display: 'block',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   atoms({
     paddingY: 'large',
   }),
 ]);
-
-export const mobile = style({});
-export const closeButton = style({});
 
 globalStyle('.szh-menu__item', {
   border: `1px solid ${palette.white}`,
@@ -71,36 +64,41 @@ globalStyle('.menuitem', {
   width: '100%',
 });
 
-globalStyle(`${expanded} ul li a, ${expanded} ul li:not(${closeButton}) button`, {
-  paddingTop: vars.space['xxsmall'],
-  paddingBottom: vars.space['small'],
-  marginBottom: vars.space['xxsmall'],
-  paddingLeft: vars.space['xxsmall'],
+globalStyle(`.hamburger-react`, {
+  zIndex: 11,
+});
+
+globalStyle(`${expanded} ul`, {
+  padding: `${vars.space['large']}`,
+  display: 'flex',
+  flex: 1,
+  flexDirection: 'column',
+  justifyContent: 'center',
+});
+
+globalStyle(`${expanded} li`, {
+  border: `1px solid ${palette.white}`,
+  paddingTop: `${vars.space['xsmall']} !important`,
+  paddingBottom: `${vars.space['medium']} !important`,
+  marginBottom: `${vars.space['xsmall']} !important`,
+  paddingLeft: `${vars.space['xsmall']} !important`,
+  width: '100%',
   display: 'flex',
   justifyContent: 'center',
-  flex: 1,
 });
 
-export const horizontal = style({
+globalStyle(`${expanded} a`, {
   display: 'block',
-  selectors: {
-    [`&:hover`]: {
-      color: palette.gray300,
-    },
-  },
+  width: '100%',
+  height: '100%',
+  marginTop: vars.space['medium'],
+  fontWeight: 'bold',
+  textTransform: 'uppercase',
 });
 
-globalStyle(`${horizontal} a`, {
-  display: 'block',
-});
-
-globalStyle(`li.${horizontal}:not(${contact})`, {
-  ...responsiveStyle({
-    mobile: { display: 'none' },
-    tablet: {
-      display: 'inline-block',
-    },
-  }),
+globalStyle(`${expanded} li:hover`, {
+  background: palette.gray200,
+  color: `${palette.white} !important`,
 });
 
 export const menuMobileButtonContainer = style([
@@ -112,59 +110,6 @@ export const menuMobileButtonContainer = style([
     marginRight: 'large',
   }),
 ]);
-
-globalStyle(`${horizontal}${expanded}`, {
-  display: 'block',
-});
-
-globalStyle(`${horizontal}${expanded} a`, {
-  width: '100%',
-  display: 'inline-block',
-});
-
-globalStyle(`ul li${horizontal}${mobile}`, {
-  display: 'flex',
-  border: `1px solid ${palette.white}`,
-  marginBottom: vars.space['small'],
-  color: palette.white,
-  justifyContent: 'center',
-});
-
-globalStyle(`ul li${horizontal}${mobile}${closeButton}`, {
-  display: 'flex',
-  justifyContent: 'flex-end',
-});
-
-globalStyle(`ul li${horizontal}${mobile}${closeButton} button`, {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginRight: vars.space['small'],
-  borderRadius: '32px',
-  background: palette.white,
-  color: '#141414',
-  fontSize: '18px',
-  height: '32px',
-  left: '12px',
-  top: '8px',
-  transition: 'none',
-  width: '32px',
-});
-
-globalStyle(`ul li${horizontal}${mobile}${closeButton} button:before`, {
-  position: 'absolute',
-  // -webkit-transform: translate(-50%, -50%),
-  left: '50%',
-  top: '50%',
-  transform: 'translate(-50%, -50%)',
-  // -webkit-font-smoothing: antialiased,
-  fontFamily: 'icomoon',
-  fontStyle: 'normal',
-  fontVariant: 'normal',
-  lineHeight: 1,
-  textIndent: 0,
-  textTransform: 'none',
-});
 
 export const noMobile = style({
   display: 'none !important',
@@ -185,6 +130,10 @@ export const dropdown = style({
   lineHeight: vars.links.lineHeight,
   cursor: 'pointer',
   zIndex: 15,
+});
+
+globalStyle(`${dropdown} ul`, {
+  listStyle: 'none',
 });
 
 export const VizMenuItem = style({

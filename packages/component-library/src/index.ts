@@ -41,6 +41,8 @@ export {
   FormTextArea,
   FormRadioGroup,
 } from './components/molecules/FormControls/FormControls';
+export type { ResponsiveAtomicProperties } from './style/atoms/sprinkles.css';
+export type { ResponsiveSpace, Space } from './style/atoms/atoms';
 export { RadioGroup } from './components/molecules/RadioGroup/RadioGroup';
 export { CheckboxGroup } from './components/molecules/CheckboxGroup/CheckboxGroup';
 export {
@@ -57,7 +59,7 @@ export { Columns } from './components/molecules/Columns/Columns';
 export { Column } from './components/molecules/Column/Column';
 export { Tiles } from './components/molecules/Tiles/Tiles';
 export { Card } from './components/molecules/Card/Card';
-export { Box } from './components/molecules/Box/Box';
+export { Box, type BoxProps } from './components/molecules/Box/Box';
 export { Inline } from './components/molecules/Inline/Inline';
 export { List } from './components/molecules/List/List';
 export { Divider } from './components/molecules/Divider/Divider';
