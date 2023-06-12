@@ -48,7 +48,7 @@ export function Menu(): JSX.Element {
           marginRight={{ mobile: 'medium' }}
           borderRadius="full"
           paddingX={{ mobile: 'small', desktop: 'medium' }}
-          paddingY={{ mobile: 'small', desktop: 'large' }}
+          paddingY={{ mobile: 'medium', desktop: 'large' }}
         >
           <TextNavLink
             to={urls.ContactMe}
