@@ -39,8 +39,6 @@ export function Text({
     tone: toneProp,
   });
 
-  console.log(tone);
-
   // Prevent re-renders when context values haven't changed
   const textStylingProps = useMemo(
     () => ({

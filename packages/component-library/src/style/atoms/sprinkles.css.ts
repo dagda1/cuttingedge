@@ -59,7 +59,7 @@ export const unresponsiveProperties = {
   transition: vars.transition,
 } as const;
 
-export type UnresponsiveProperties = keyof typeof unresponsiveProperties;
+export type UnresponsiveProperties = typeof unresponsiveProperties;
 
 const responsiveAtomicProperties = defineProperties({
   conditions: {

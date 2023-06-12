@@ -12,7 +12,7 @@ import { supportTheme } from '~/style/themes/support/supportTheme.css';
 import { Heading } from '~/components/atoms/Heading/Heading';
 import { PageBlock } from '../PageBlock/PageBlock';
 import type { ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
-import type { ResponsiveAtomicProperties } from '~/style/atoms/sprinkles.css';
+import type { ResponsiveAtomicProperties, UnresponsiveProperties } from '~/style/atoms/sprinkles.css';
 import { Box } from '~/components/molecules/Box/Box';
 
 export const themes = {
@@ -27,7 +27,18 @@ export type ThemeKeys = keyof typeof themes;
 
 export const Themes = Object.keys(themes) as ThemeKeys[];
 
-export interface ApplicationLayoutProps {
+type ContainerBoxPropsKeys = keyof Pick<
+  ResponsiveAtomicProperties['styles'],
+  'display' | 'justifyContent' | 'alignItems' | 'flexGrow' | 'flexShrink' | 'flexDirection'
+>;
+
+export type ContainerBoxProps = Partial<{
+  [K in ContainerBoxPropsKeys]: keyof ResponsiveAtomicProperties['styles'][K]['values'];
+}> & {
+  height?: keyof Pick<UnresponsiveProperties, 'height'>['height'];
+};
+
+export type ApplicationLayoutProps = {
   heading?: string;
   className?: string;
   footer?: ReactElement;
@@ -38,11 +49,7 @@ export interface ApplicationLayoutProps {
   theme: keyof typeof themes;
   centerHeading?: boolean;
   center?: boolean;
-  display?: keyof ResponsiveAtomicProperties['styles']['display']['values'];
-  flexDirection?: keyof ResponsiveAtomicProperties['styles']['flexDirection']['values'];
-  justifyContent?: keyof ResponsiveAtomicProperties['styles']['justifyContent']['values'];
-  alignItems?: keyof ResponsiveAtomicProperties['styles']['alignItems']['values'];
-}
+} & ContainerBoxProps;
 
 function ApplicationLayoutHeading({
   heading,

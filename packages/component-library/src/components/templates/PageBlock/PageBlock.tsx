@@ -3,7 +3,7 @@ import { ContentBlock, type ContentBlockProps } from '../ContentBlock/ContentBlo
 import { Box } from '~/components/molecules/Box/Box';
 import { atoms } from '~/style/atoms/atoms';
 import cs from 'classnames';
-import type { ApplicationLayoutProps } from '../ApplicationLayout/ApplicationLayout';
+import type { ContainerBoxProps } from '../ApplicationLayout/ApplicationLayout';
 
 export const validPageBlockComponents = ['div', 'article', 'aside', 'main', 'section', 'nav'] as const;
 
@@ -13,7 +13,7 @@ type Props = {
   children: ReactNode;
   width?: Extract<ContentBlockProps['width'], 'medium' | 'large'>;
   component?: (typeof validPageBlockComponents)[number];
-} & Pick<ApplicationLayoutProps, 'display' | 'flexDirection' | 'justifyContent' | 'alignItems'>;
+} & ContainerBoxProps;
 
 export function PageBlock({
   children,
@@ -23,10 +23,11 @@ export function PageBlock({
   flexDirection,
   justifyContent,
   alignItems,
+  height,
 }: Props): JSX.Element {
   const component = componentProp && validPageBlockComponents.includes(componentProp) ? componentProp : 'div';
 
-  const classes = cs(display && atoms({ reset: component, display, flexDirection, justifyContent, alignItems }));
+  const classes = cs(atoms({ reset: component, display, flexDirection, justifyContent, alignItems, height }));
 
   return (
     <Box className={classes} component={component} paddingX={gutters}>
