@@ -1,13 +1,11 @@
 import * as urls from '~/urls';
 import * as styles from './Nav.css';
-import { Box, Heading, ResponsiveImage, Text } from '@cutting/component-library';
+import { Box, Heading, Nav, NavItem, NavItems, ResponsiveImage, Text } from '@cutting/component-library';
 import { NavLink } from 'react-router-dom';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 import cow from '~/assets/images/cow-logo.png';
 import cowMobile from '~/assets/images/cow-mobile.png';
 import cs from 'classnames';
-import { Nav } from './Nav';
-import { NavItem } from './NavItem';
 import { bannerPages } from '~/routes';
 import { Menu as VizMenu, MenuItem as VizMenuItem, MenuButton } from '@szhsin/react-menu';
 
@@ -19,7 +17,7 @@ export function Menu(): JSX.Element {
   return (
     <>
       <Nav>
-        <>
+        <NavItems>
           <NavItem display="Always">
             <NavLink aria-label="home" to={urls.Home}>
               <ResponsiveImage
@@ -92,7 +90,7 @@ export function Menu(): JSX.Element {
               </VizMenuItem>
             </VizMenu>
           </NavItem>
-        </>
+        </NavItems>
       </Nav>
     </>
   );

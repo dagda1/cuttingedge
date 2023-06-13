@@ -1,11 +1,11 @@
 import type { ReactElement } from 'react';
 import { Children, Fragment, useMemo, useState } from 'react';
 import * as styles from './Nav.css';
-import { Box, type BoxProps } from '@cutting/component-library';
 import cs from 'classnames';
 import Hamburger from 'hamburger-react';
 import type { NavItemProps } from './NavItem';
 import { NavItems } from './NavItems';
+import { Box, type BoxProps } from '../Box/Box';
 
 export interface MenuState {
   isExpanded: boolean;
