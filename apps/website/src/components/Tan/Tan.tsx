@@ -127,7 +127,7 @@ export function Tan(): JSX.Element {
 
   return (
     <>
-      <ApplicationLayout heading="TAN ASYMPTOTES" centerHeading>
+      <ApplicationLayout heading="TAN ASYMPTOTES" centerHeading display="flex" height="full">
         <section className={styles.container} ref={containerRef}>
           <ResponsiveSVG width={width} height={height}>
             <Group transform={`translate(0, ${initialY})`}>

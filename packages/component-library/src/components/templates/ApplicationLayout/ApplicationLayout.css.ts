@@ -39,6 +39,7 @@ export const main = style({
   background: vars.backgroundColor.body,
   gridRow: 'body',
   width: '100%',
+  display: 'block',
 });
 
 export const container = style({

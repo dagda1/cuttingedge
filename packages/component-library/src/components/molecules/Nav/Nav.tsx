@@ -18,7 +18,7 @@ type NavProps = Pick<BoxProps, 'width' | 'display' | 'justifyContent' | 'alignIt
 export function Nav({
   width = 'full',
   display = 'flex',
-  justifyContent = { mobile: 'flexStart', desktop: 'center' },
+  justifyContent = { mobile: 'spaceBetween', desktop: 'center' },
   alignItems = 'center',
   children,
 }: NavProps): JSX.Element {

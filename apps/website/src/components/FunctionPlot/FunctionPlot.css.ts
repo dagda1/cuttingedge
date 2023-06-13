@@ -3,9 +3,11 @@ import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style, globalStyle } from '@vanilla-extract/css';
 
 export const container = style({
-  paddingBottom: vars.space['xsmall'],
-  width: '100%',
-  height: '100%',
+  // paddingBottom: vars.space['xsmall'],
+  // width: '100%',
+  // height: '100%',
+  border: '10px solid gold',
+  flex: 1,
 });
 
 globalStyle(`${container} text`, {

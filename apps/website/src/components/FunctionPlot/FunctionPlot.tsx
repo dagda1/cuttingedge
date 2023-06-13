@@ -210,8 +210,15 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   }, [state.tangent.x, minX, xScale, animate]);
 
   return (
-    <ApplicationLayout centerHeading heading="The (function) plot thickens...." showFooter={false}>
-      <section className={styles.container} ref={containerRef}>
+    <ApplicationLayout
+      centerHeading
+      heading="The (function) plot thickens...."
+      display="flex"
+      height="full"
+      flexDirection="column"
+      showFooter={false}
+    >
+      <section ref={containerRef} className={styles.container}>
         <ResponsiveSVG width={width} height={height} className="function-svg">
           <Group transform={`translate(0, ${xAxisPosition})`}>
             <AxisBottom scale={xScale} axisLineClassName={styles.axisLine} />

@@ -29,6 +29,7 @@ globalStyle(`${dropdown} ul`, {
 
 export const VizMenuItem = style({
   background: palette.white,
+  border: '10px solid red',
   zIndex: 15,
   selectors: {
     [`&:hover,&:focus`]: {
@@ -46,4 +47,20 @@ export const submenu = style({
       textDecorationThickness: `max(3px, .1875rem, .12em)`,
     },
   },
+});
+
+globalStyle('.szh-menu', {
+  padding: 0,
+});
+
+globalStyle('.szh-menu__item', {
+  border: `1px solid ${palette.white}`,
+  width: '100%',
+});
+
+globalStyle('[role=menuitem]', {
+  display: 'inline-block',
+  padding: vars.space['medium'],
+  zIndex: 33,
+  position: 'relative',
 });

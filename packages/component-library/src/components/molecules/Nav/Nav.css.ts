@@ -41,16 +41,6 @@ export const expanded = style([
   }),
 ]);
 
-globalStyle('.szh-menu__item', {
-  border: `1px solid ${palette.white}`,
-  padding: vars.space['small'],
-  width: '100%',
-});
-
-globalStyle('.menuitem', {
-  width: '100%',
-});
-
 globalStyle(`.hamburger-react`, {
   zIndex: 11,
 });
