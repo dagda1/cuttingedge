@@ -26,17 +26,12 @@ import { cuttingTheme } from '~/index';
 //   border: '1px solid red !important',
 // });
 
-export const wrap = style({
-  // paddingLeft: vars.space['xxsmall'],
-  // paddingRight: vars.space['xsmall'],
-  // margin: '0 auto',
-});
-
 globalStyle('body', {
   background: palette.black,
 });
 
 export const background = style({
+  marginTop: vars.space['large'],
   background: vars.backgroundColor.body,
 });
 

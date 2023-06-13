@@ -27,7 +27,7 @@ export function PageBlock({
 }: Props): JSX.Element {
   const component = componentProp && validPageBlockComponents.includes(componentProp) ? componentProp : 'div';
 
-  const classes = cs(atoms({ reset: component, display, flexDirection, justifyContent, alignItems, height }));
+  const classes = cs(atoms({ display, flexDirection, justifyContent, alignItems, height }));
 
   return (
     <Box className={classes} component={component} paddingX={gutters}>

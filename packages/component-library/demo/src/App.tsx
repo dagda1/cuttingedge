@@ -26,7 +26,7 @@ export function App(): JSX.Element {
 
   return (
     <ApplicationLayout theme={theme} className={styles.background} heading="cutting component library">
-      <Stack space="medium">
+      <Stack space="large">
         <ContentBlock width="large">
           <RadioGroup<ThemeKeys>
             legend="Choose theme"
