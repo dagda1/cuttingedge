@@ -1,12 +1,13 @@
+import { PageBlock } from '@cutting/component-library';
 import { Pyramid } from '~/components/Pyramid';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 export function Home(): JSX.Element {
   return (
-    <ApplicationLayout heading="Elite Frontend developer" height="full" centerHeading>
-      <div>
+    <ApplicationLayout heading="Elite Frontend developer" centerHeading>
+      <PageBlock>
         <Pyramid />
-      </div>
+      </PageBlock>
     </ApplicationLayout>
   );
 }

@@ -10,10 +10,10 @@ import { salesTheme } from '~/style/themes/sales/salesTheme.css';
 import { defaultTheme } from '~/style/themes/default/default.css';
 import { supportTheme } from '~/style/themes/support/supportTheme.css';
 import { Heading } from '~/components/atoms/Heading/Heading';
-import { PageBlock } from '../PageBlock/PageBlock';
 import type { ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
-import type { ResponsiveAtomicProperties, UnresponsiveProperties } from '~/style/atoms/sprinkles.css';
+import type { ResponsiveAtomicProperties } from '~/style/atoms/sprinkles.css';
 import { Box } from '~/components/molecules/Box/Box';
+import { PageBlock } from '../PageBlock/PageBlock';
 
 export const themes = {
   defaultTheme,
@@ -27,16 +27,11 @@ export type ThemeKeys = keyof typeof themes;
 
 export const Themes = Object.keys(themes) as ThemeKeys[];
 
-type ContainerBoxPropsKeys = keyof Pick<
-  ResponsiveAtomicProperties['styles'],
-  'display' | 'justifyContent' | 'alignItems' | 'flexGrow' | 'flexShrink' | 'flexDirection'
->;
+type ContainerBoxPropsKeys = keyof Pick<ResponsiveAtomicProperties['styles'], 'justifyContent' | 'alignItems'>;
 
 export type ContainerBoxProps = Partial<{
   [K in ContainerBoxPropsKeys]: keyof ResponsiveAtomicProperties['styles'][K]['values'];
-}> & {
-  height?: keyof Pick<UnresponsiveProperties, 'height'>['height'];
-};
+}>;
 
 export type ApplicationLayoutProps = {
   heading?: string;
@@ -60,9 +55,11 @@ function ApplicationLayoutHeading({
   }
 
   return (
-    <Heading level="1" center={center}>
-      {heading}
-    </Heading>
+    <PageBlock>
+      <Heading level="1" center={center}>
+        {heading}
+      </Heading>
+    </PageBlock>
   );
 }
 
@@ -77,7 +74,6 @@ export function ApplicationLayout({
   theme,
   centerHeading = false,
   center = false,
-  ...pageBlockProps
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   const currentTheme = themes[theme];
 
@@ -94,14 +90,14 @@ export function ApplicationLayout({
       )}
       <main
         className={cs(styles.main, className, {
+          [styles.headingAndBodyLayout]: isNil(heading) === false,
+          [styles.bodyOnlyLayout]: isNil(heading) && isNil(footer),
           [styles.center]: center,
         })}
         ref={innerRef}
       >
-        <PageBlock component="section" {...pageBlockProps}>
-          <ApplicationLayoutHeading heading={heading} center={centerHeading} />
-          {children}
-        </PageBlock>
+        <ApplicationLayoutHeading heading={heading} center={centerHeading} />
+        {children}
       </main>
       {footer && (
         <footer role="contentinfo" className={styles.footer}>

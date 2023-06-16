@@ -47,6 +47,14 @@ export const container = style({
   gridTemplateRows: '[header] auto [body] 1fr [footer] auto',
 });
 
+export const headingAndBodyLayout = style({
+  gridTemplateRows: 'auto 1fr',
+});
+
+export const bodyOnlyLayout = style({
+  gridTemplateRows: '1fr',
+});
+
 export const center = style({
   placeItems: 'center',
 });

@@ -19,15 +19,12 @@ export function PageBlock({
   children,
   width = 'large',
   component: componentProp,
-  display,
-  flexDirection,
   justifyContent,
   alignItems,
-  height,
 }: Props): JSX.Element {
   const component = componentProp && validPageBlockComponents.includes(componentProp) ? componentProp : 'div';
 
-  const classes = cs(atoms({ display, flexDirection, justifyContent, alignItems, height }));
+  const classes = cs(atoms({ justifyContent, alignItems, display: 'flex' }));
 
   return (
     <Box style={{ border: '10px solid blue' }} className={classes} component={component} paddingX={gutters}>
