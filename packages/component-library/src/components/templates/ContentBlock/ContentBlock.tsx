@@ -10,7 +10,7 @@ export interface ContentBlockProps {
 
 export function ContentBlock({ width = 'medium', children }: ContentBlockProps): JSX.Element {
   return (
-    <Box style={{ border: '10px solid red' }} width="full" maxWidth={width} className={styles.marginAuto}>
+    <Box width="full" maxWidth={width} className={styles.marginAuto}>
       {children}
     </Box>
   );

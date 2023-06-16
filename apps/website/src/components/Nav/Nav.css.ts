@@ -29,7 +29,6 @@ globalStyle(`${dropdown} ul`, {
 
 export const VizMenuItem = style({
   background: palette.white,
-  border: '10px solid red',
   zIndex: 15,
   selectors: {
     [`&:hover,&:focus`]: {

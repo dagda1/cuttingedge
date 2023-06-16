@@ -27,7 +27,7 @@ export function PageBlock({
   const classes = cs(atoms({ justifyContent, alignItems, display: 'flex' }));
 
   return (
-    <Box style={{ border: '10px solid blue' }} className={classes} component={component} paddingX={gutters}>
+    <Box className={classes} component={component} paddingX={gutters}>
       <ContentBlock width={width}>{children}</ContentBlock>
     </Box>
   );
