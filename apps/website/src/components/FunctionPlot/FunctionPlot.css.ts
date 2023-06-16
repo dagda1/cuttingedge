@@ -38,8 +38,8 @@ export const form = style({});
 
 globalStyle(`${form} button`, {
   height: '40px',
-  padding: '0',
-  width: vars.space['xxlarge'],
+  padding: '0 10px',
+  color: '#ffffff !important',
 });
 
 globalStyle(`${form} fieldset > div`, {
