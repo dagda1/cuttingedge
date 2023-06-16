@@ -94,8 +94,6 @@ export function ApplicationLayout({
       )}
       <main
         className={cs(styles.main, className, {
-          [styles.headingAndBodyLayout]: isNil(heading) === false,
-          [styles.bodyOnlyLayout]: isNil(heading) && isNil(footer),
           [styles.center]: center,
         })}
         ref={innerRef}

@@ -3,7 +3,7 @@ import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 export function Home(): JSX.Element {
   return (
-    <ApplicationLayout heading="Elite Frontend developer" centerHeading>
+    <ApplicationLayout heading="Elite Frontend developer" height="full" centerHeading>
       <div>
         <Pyramid />
       </div>
