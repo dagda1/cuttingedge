@@ -33,7 +33,7 @@
     "@visx/scale": "^3.0.0",
     "d3-scale": "4.0.2",
     "assert-ts": "0.3.4",
-    "eslint": "8.42.0",
+    "eslint": "8.43.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.1.3"
