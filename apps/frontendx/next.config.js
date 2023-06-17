@@ -2,7 +2,7 @@ import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 import MDX from '@next/mdx';
 
 const withMDX = MDX({
-  extension: /\.mdx?$/,
+  extension: /\.mdx?$/
 });
 
 const CDN = 'https://d966n3f4vz4e1.cloudfront.net';
@@ -26,55 +26,53 @@ function createContentSecurityPolicy() {
     `prefetch-src 'self' ${CDN} ${ESM}`,
     `connect-src 'self' ${CRM} ${NEWSLETTER} ${CDN} ${TRACKING} ${ESM} https://cdn.plyr.io https://www.google-analytics.com`,
     `frame-ancestors 'self' https://www.googletagmanager.com`,
-    `form-action 'self' ${NEWSLETTER} ${CRM} ${CDN};`,
+    `form-action 'self' ${NEWSLETTER} ${CRM} ${CDN};`
   ].join(';');
 }
 
 const securityHeaders = [
   {
     key: 'X-XSS-Protection',
-    value: '1; mode=block',
+    value: '1; mode=block'
   },
   {
     key: 'X-Content-Type-Options',
-    value: 'nosniff',
+    value: 'nosniff'
   },
   {
     key: 'Content-Security-Policy',
-    value: createContentSecurityPolicy(),
+    value: createContentSecurityPolicy()
   },
   {
     key: 'Referrer-Policy',
-    value: 'strict-origin-when-cross-origin',
+    value: 'strict-origin-when-cross-origin'
   },
   {
     key: 'X-Frame-Options',
-    value: 'DENY',
-  },
+    value: 'DENY'
+  }
 ];
 
 const withVanillaExtract = createVanillaExtractPlugin();
 
 /** @type {import('next').NextConfig}*/
 const nextConfig = {
-  withVanillaExtract,
-  withMDX,
   async headers() {
     return isProduction
       ? [
           {
             source: '/(.*)',
-            headers: securityHeaders,
-          },
+            headers: securityHeaders
+          }
         ]
       : [];
   },
   images: {
-    minimumCacheTTL: 31536000,
+    minimumCacheTTL: 31536000
   },
-  assetPrefix: isProduction ? CDN : '',
+  assetPrefix: isProduction ? CDN : undefined,
   poweredByHeader: false,
-  compress: false,
+  compress: false
 };
 
-export default nextConfig;
+export default withVanillaExtract(withMDX(nextConfig));
