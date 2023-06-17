@@ -5,7 +5,7 @@
     "build": "NODE_ENV=production tsc -p ./tsconfig.build.json",
     "lint": "pnpm eslint ./src/**/*.ts --fix",
     "test": "NODE_ENV=test vitest",
-    "test:ci": "CI=true yarn test",
+    "test:ci": "CI=true pnpm test",
     "watch": "PORT=4000 nodemon"
   },
   "type": "module",

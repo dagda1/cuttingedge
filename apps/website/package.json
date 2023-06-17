@@ -63,14 +63,9 @@
     "react-dom": "18.2.0",
     "react-helmet": "6.1.0",
     "react-hook-form": "7.44.3",
-<<<<<<< HEAD
+    "react-is": "^18.2.0",
     "react-router": "6.13.0",
     "react-router-dom": "6.13.0",
-=======
-    "react-is": "^18.2.0",
-    "react-router": "6.11.2",
-    "react-router-dom": "6.11.2",
->>>>>>> 69e15e02 (refactor TextLink)
     "referrer-policy": "1.2.0",
     "regression": "2.0.1",
     "serve-static": "1.15.0",
