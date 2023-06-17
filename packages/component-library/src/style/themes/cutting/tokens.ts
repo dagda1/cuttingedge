@@ -1,6 +1,8 @@
 import type { DeepPartial } from '@cutting/util';
 import type { Tokens } from '~/style/themes/tokens';
 import { palette } from '~/style/palette.css';
+import { extractFontMetricsForTheme } from '~/style/util/typography';
+import roboto from '@capsizecss/metrics/roboto';
 
 const colors = {
   primary: palette.lime500,
@@ -15,24 +17,18 @@ export const tokens: DeepPartial<Tokens> = {
       standard: 20,
     },
   },
-  colors: {
-    ...colors,
-  },
   color: {
     foreground: {
+      primary: palette.white,
+      secondary: palette.sky900,
       link: palette.neutral400,
       linkHover: palette.white,
       linkVisited: palette.neutral100,
       neutral: palette.neutral400,
-      body: palette.white,
-      header: palette.white,
-      heading: {
-        '1': palette.white,
-        '2': palette.white,
-        '3': palette.white,
-        '4': palette.white,
-      },
-      footer: palette.white,
+      h1: palette.white,
+      h2: palette.white,
+      h3: palette.white,
+      h4: palette.white,
     },
     background: {
       body: 'transparent',
@@ -43,6 +39,7 @@ export const tokens: DeepPartial<Tokens> = {
   },
   typography: {
     webFont: 'https://fonts.googleapis.com/css?family=Roboto:100,100&amp;display=swap',
+    fontMetrics: extractFontMetricsForTheme(roboto),
     fontFamily: "'Roboto'",
     fontWeight: {
       regular: 900,
@@ -151,7 +148,6 @@ export const tokens: DeepPartial<Tokens> = {
     secondary: {
       background: colors.secondary,
       focusColor: palette.lime500,
-      color: palette.white,
       padding: buttonPadding,
     },
   },

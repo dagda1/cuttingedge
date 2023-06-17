@@ -7,6 +7,8 @@ import { root, buttons } from '~/components/atoms/Button/Button.css';
 import * as styles from './ButtonLink.css';
 import { Text } from '../Text/Text';
 
+type ButtonTone = 'critical' | 'neutral';
+
 export type ButtonLinkProps = StandardProps<
   DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
 > & {
@@ -15,6 +17,7 @@ export type ButtonLinkProps = StandardProps<
   buttonStyle?: ButtonStyle;
   ariaLabel?: string;
   ariaLabelledBy?: string;
+  tone?: ButtonTone;
 };
 
 export function ButtonLink({
@@ -41,7 +44,7 @@ export function ButtonLink({
       aria-labelledby={ariaLabelledBy}
       {...rest}
     >
-      <Text>{children}</Text>
+      <Text tone={buttonStyle}>{children}</Text>
     </Component>
   );
 }

@@ -5,10 +5,11 @@ import { Intro } from '../components/Intro/Intro';
 import { Clients } from '../components/Clients/Clients';
 import { C2Testimonial } from '../components/Testimonials/C2';
 import { DSTestimonial } from '../components/Testimonials/DS';
+import { PageBlock } from '@cutting/component-library';
 
 export default function Articles(): JSX.Element {
   return (
-    <>
+    <PageBlock>
       <Intro />
       <Problems />
       <DSTestimonial />
@@ -16,6 +17,6 @@ export default function Articles(): JSX.Element {
       <C2Testimonial />
       <Clients />
       <Services />
-    </>
+    </PageBlock>
   );
 }

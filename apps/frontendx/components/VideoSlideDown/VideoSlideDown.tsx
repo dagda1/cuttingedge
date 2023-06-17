@@ -1,6 +1,7 @@
 import { SlideDown } from 'react-slidedown';
 import type { ReactNode } from 'react';
 import { ContactButtons } from '../Intro/ContactButtons';
+import { Heading } from '@cutting/component-library';
 
 export interface VideoSlideDownProps {
   children: ReactNode;
@@ -12,7 +13,7 @@ export function VideoSlideDown({ children, open }: VideoSlideDownProps): JSX.Ele
     <SlideDown>
       {open && (
         <div>
-          {children ? <div>{children}</div> : <h2>CONTENT COMING SOON</h2>}
+          {children ? <div>{children}</div> : <Heading level="2">CONTENT COMING SOON</Heading>}
           <ContactButtons callType="chat" />
         </div>
       )}

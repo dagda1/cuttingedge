@@ -8,6 +8,8 @@ import { useRouter } from 'next/router';
 import { useStateMachine } from 'little-state-machine';
 import { updateHealthcheck } from '../../../state/updateHealthcheck';
 import { VideoPlayer } from '../../../components/VideoPlayer/VideoPlayer';
+import { Heading } from '@cutting/component-library';
+import { Text } from '@cutting/component-library';
 
 export function Build({ nextPage, children }: StepComponent): JSX.Element {
   const router = useRouter();
@@ -30,19 +32,21 @@ export function Build({ nextPage, children }: StepComponent): JSX.Element {
   return (
     <div>
       <Testimonial>
-        <p>
+        <Text component="p">
           An effective workflow will make your good developers great and your great ones exceptional, while a bad
           workflow will compromise even your best engineer’s productivity.
-        </p>
+        </Text>
       </Testimonial>
 
-      <p>
+      <Text component="p">
         We believe everything starts with continuous integration. When a developer merges a feature branch back into the
         main branch, the building, versioning, and automated testing should occur without any manual intervention.{' '}
-      </p>
-      <p>We believe in reproducible and predictable builds that are automated with the correct tooling.</p>
+      </Text>
+      <Text component="p">
+        We believe in reproducible and predictable builds that are automated with the correct tooling.
+      </Text>
 
-      <h2>Examples of what we look for are:</h2>
+      <Heading level="2">Examples of what we look for are:</Heading>
       <form onSubmit={handleSubmit(onSubmit)} method="POST">
         <YesNo
           errors={errors}

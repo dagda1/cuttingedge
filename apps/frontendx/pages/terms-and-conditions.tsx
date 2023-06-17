@@ -1,22 +1,23 @@
 import { FullPageLayout } from '../components/Layouts/FullPageLayout';
+import { Text } from '@cutting/component-library';
 
 export function TermsAndConditions(): JSX.Element {
   return (
     <FullPageLayout heading="Web Site Terms and Conditions of Use">
       <div>
-        <p>Web Site Terms and Conditions of Use</p>
+        <Text>Web Site Terms and Conditions of Use</Text>
         <ol>
           <li>
-            <p>
+            <Text>
               Terms By accessing this web site, you are agreeing to be bound by these web site Terms and Conditions of
               Use, all applicable laws and regulations, and agree that you are responsible for compliance with any
               applicable local laws. If you do not agree with any of these terms, you are prohibited from using or
               accessing this site. The materials contained in this web site are protected by applicable copyright and
               trade mark law.
-            </p>
+            </Text>
           </li>
           <li>
-            <p>
+            <Text>
               Use License Permission is granted to temporarily download one copy of the materials (information or
               software) on CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED&apos;s web site for personal, non-commercial
               transitory viewing only. This is the grant of a license, not a transfer of title, and under this license
@@ -28,10 +29,10 @@ export function TermsAndConditions(): JSX.Element {
               restrictions and may be terminated by CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED at any time. Upon
               terminating your viewing of these materials or upon the termination of this license, you must destroy any
               downloaded materials in your possession whether in electronic or printed format.
-            </p>
+            </Text>
           </li>
           <li>
-            <p>
+            <Text>
               Disclaimer The materials on CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED&apos;s web site are provided
               &apos;as is&apos;. CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED makes no warranties, expressed or implied,
               and hereby disclaims and negates all other warranties, including without limitation, implied warranties or
@@ -40,10 +41,10 @@ export function TermsAndConditions(): JSX.Element {
               or make any representations concerning the accuracy, likely results, or reliability of the use of the
               materials on its Internet web site or otherwise relating to such materials or on any sites linked to this
               site.
-            </p>
+            </Text>
           </li>
           <li>
-            <p>
+            <Text>
               Limitations In no event shall CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED or its suppliers be liable for any
               damages (including, without limitation, damages for loss of data or profit, or due to business
               interruption,) arising out of the use or inability to use the materials on CUTTING-EDGE SOLUTIONS
@@ -52,47 +53,47 @@ export function TermsAndConditions(): JSX.Element {
               of the possibility of such damage. Because some jurisdictions do not allow limitations on implied
               warranties, or limitations of liability for consequential or incidental damages, these limitations may not
               apply to you.
-            </p>
+            </Text>
           </li>
           <li>
-            <p>
+            <Text>
               Revisions and Errata The materials appearing on CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED&apos;s web site
               could include technical, typographical, or photographic errors. CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED
               does not warrant that any of the materials on its web site are accurate, complete, or current.
               CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED may make changes to the materials contained on its web site at
               any time without notice. CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED does not, however, make any commitment
               to update the materials.
-            </p>
+            </Text>
           </li>
           <li>
-            <p>
+            <Text>
               Links CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED has not reviewed all of the sites linked to its Internet
               web site and is not responsible for the contents of any such linked site. The inclusion of any link does
               not imply endorsement by CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED of the site. Use of any such linked web
               site is at the user&apos;s own risk.
-            </p>
+            </Text>
           </li>
           <li>
-            <p>
+            <Text>
               Site Terms of Use Modifications CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED may revise these terms of use
               for its web site at any time without notice. By using this web site you are agreeing to be bound by the
               then current version of these Terms and Conditions of Use.
-            </p>
+            </Text>
           </li>
           <li>
-            <p>
+            <Text>
               Governing Law Any claim relating to CUTTING-EDGE SOLUTIONS (SCOTLAND) LIMITED&apos;s web site shall be
               governed by the laws of the United Kingdom without regard to its conflict of law provisions.
-            </p>
+            </Text>
           </li>
         </ol>
-        <p>General Terms and Conditions applicable to Use of a Web Site.</p>
-        <p>
+        <Text>General Terms and Conditions applicable to Use of a Web Site.</Text>
+        <Text>
           Privacy Policy Your privacy is very important to us. Accordingly, we have developed this Policy in order for
           you to understand how we collect, use, communicate and disclose and make use of personal information. The
           following outlines our privacy policy.
-        </p>
-        <p>
+        </Text>
+        <Text>
           Before or at the time of collecting personal information, we will identify the purposes for which information
           is being collected. We will collect and use of personal information solely with the objective of fulfilling
           those purposes specified by us and for other compatible purposes, unless we obtain the consent of the
@@ -105,7 +106,7 @@ export function TermsAndConditions(): JSX.Element {
           available to customers information about our policies and practices relating to the management of personal
           information. We are committed to conducting our business in accordance with these principles in order to
           ensure that the confidentiality of personal information is protected and maintained.
-        </p>
+        </Text>
       </div>
     </FullPageLayout>
   );

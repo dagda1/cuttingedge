@@ -22,7 +22,7 @@ export const root = style({
   },
   ':focus': {
     borderColor: vars.accessibility.accessibleOutline.backgroundColor,
-    color: vars.foregroundColor.body,
+    color: vars.foregroundColor.neutral,
     background: vars.accessibility.accessibleOutline.backgroundColor,
   },
   ':focus-visible': {
@@ -30,7 +30,7 @@ export const root = style({
   },
   ':hover': {
     borderColor: vars.accessibility.accessibleOutline.backgroundColor,
-    color: vars.foregroundColor.body,
+    color: vars.foregroundColor.neutral,
     background: vars.accessibility.accessibleOutline.backgroundColor,
   },
 });

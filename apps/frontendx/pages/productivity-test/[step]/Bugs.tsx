@@ -8,6 +8,8 @@ import { useRouter } from 'next/router';
 import { useStateMachine } from 'little-state-machine';
 import { updateHealthcheck } from '../../../state/updateHealthcheck';
 import { VideoPlayer } from '../../../components/VideoPlayer/VideoPlayer';
+import { Heading } from '@cutting/component-library';
+import { Text } from '@cutting/component-library';
 
 export function Bugs({ nextPage, children }: StepComponent): JSX.Element {
   const router = useRouter();
@@ -31,26 +33,26 @@ export function Bugs({ nextPage, children }: StepComponent): JSX.Element {
   return (
     <div>
       <Testimonial>
-        <p>Some estimates claim developers can spend as much as 75% of their time fixing bugs.</p>
-        <p>Our mission is to fix bugs before they happen.</p>
+        <Text component="p">Some estimates claim developers can spend as much as 75% of their time fixing bugs.</Text>
+        <Text component="p">Our mission is to fix bugs before they happen.</Text>
       </Testimonial>
 
-      <p>
+      <Text component="p">
         The hidden cost of dealing with bugs is enormous. Whole days are lost as people from many different teams are
         sucked into the reporting, tracking, recreating and resolution process.
-      </p>
+      </Text>
 
-      <p>
+      <Text component="p">
         Being able to spin up a development environment with the exact same versions of the code that caused the bug
         will save a lot of time and money.
-      </p>
+      </Text>
 
-      <p>
+      <Text component="p">
         Being able to mock out large parts of the code like authentication and 3rd party APIs are just two things we use
         to slash the time it takes to fix a bug.
-      </p>
+      </Text>
 
-      <h2>Examples of what we look for are:</h2>
+      <Heading level="2">Examples of what we look for are:</Heading>
 
       <form onSubmit={handleSubmit(onSubmit)} method="POST">
         <YesNo

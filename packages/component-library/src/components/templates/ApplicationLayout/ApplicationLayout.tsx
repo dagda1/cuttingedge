@@ -5,7 +5,6 @@ import cs from 'classnames';
 import { cuttingTheme } from '~/style/themes/cutting/cutting.css';
 import * as styles from './ApplicationLayout.css';
 import { isNil } from '@cutting/util';
-import { consultingTheme } from '~/style/themes/consulting/consultingTheme.css';
 import { salesTheme } from '~/style/themes/sales/salesTheme.css';
 import { defaultTheme } from '~/style/themes/default/default.css';
 import { supportTheme } from '~/style/themes/support/supportTheme.css';
@@ -18,7 +17,6 @@ import { PageBlock } from '../PageBlock/PageBlock';
 export const themes = {
   defaultTheme,
   cuttingTheme,
-  consultingTheme,
   salesTheme,
   supportTheme,
 } as const;

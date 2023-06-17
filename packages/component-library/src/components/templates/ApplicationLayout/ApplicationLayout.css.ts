@@ -35,7 +35,7 @@ export const footer = style({
 });
 
 export const main = style({
-  color: vars.foregroundColor.body,
+  color: vars.foregroundColor.neutral,
   background: vars.backgroundColor.body,
   gridRow: 'body',
   width: '100%',

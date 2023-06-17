@@ -15,12 +15,6 @@ globalStyle(`${main} ul li:first-of-type`, {
   marginTop: '0',
 });
 
-export const heading = style([
-  atoms({
-    marginY: 'medium',
-  }),
-]);
-
 export const borderedHeading = style({
   marginTop: vars.space['large'],
   borderTop: '1px dotted #0098d8',

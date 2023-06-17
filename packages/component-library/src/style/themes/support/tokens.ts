@@ -17,20 +17,17 @@ export const tokens: DeepPartial<Tokens> = {
       standard: 20,
     },
   },
-  colors: {
-    ...colors,
-  },
   color: {
     foreground: {
-      body: palette.white,
-      heading: {
-        '1': palette.white,
-        '2': palette.white,
-        '3': palette.white,
-        '4': palette.white,
-      },
-      header: palette.white,
-      footer: palette.white,
+      secondary: palette.sky900,
+      link: palette.neutral400,
+      linkHover: palette.white,
+      linkVisited: palette.neutral100,
+      neutral: palette.neutral400,
+      h1: palette.white,
+      h2: palette.white,
+      h3: palette.white,
+      h4: palette.white,
     },
     background: {
       body: palette.black,
@@ -145,7 +142,6 @@ export const tokens: DeepPartial<Tokens> = {
     secondary: {
       background: colors.secondary,
       focusColor: colors.primary,
-      color: palette.white,
       padding: buttonPadding,
     },
   },

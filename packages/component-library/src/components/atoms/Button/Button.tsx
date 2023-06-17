@@ -48,7 +48,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         aria-labelledby={ariaLabelledBy}
         {...rest}
       >
-        <Text>{children}</Text>
+        <Text tone={buttonStyle}>{children}</Text>
       </Box>
     );
   },

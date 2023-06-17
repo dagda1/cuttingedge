@@ -120,9 +120,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     foregroundColor: foreground,
     backgroundColor: background,
     fontFamily: typography.fontFamily,
-    colors: {
-      ...tokens.colors,
-    },
     textWeight: mapValues(tokens.typography.fontWeight, String),
     inlineFieldSize: {
       standard: '2.5rem',
@@ -178,7 +175,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         borderBottomColor: tokens.buttons.primary.borderBottomColor,
         borderBottomWidth: '2px',
         background: tokens.buttons.primary.background,
-        color: tokens.buttons.primary.color,
         padding: tokens.buttons.primary.padding,
         ':hover': {
           background: tokens.buttons.primary.focusColor,
@@ -189,7 +185,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         borderBottomColor: tokens.buttons.secondary.borderBottomColor,
         borderBottomWidth: '2px',
         background: tokens.buttons.secondary.background,
-        color: tokens.buttons.secondary.color,
         padding: tokens.buttons.secondary.padding,
         ':hover': {
           background: tokens.buttons.secondary.focusColor,
@@ -198,7 +193,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
       warning: {
         border: `${tokens.buttons.warning.borderWidth} solid ${tokens.buttons.warning.borderWidth}`,
         background: tokens.buttons.warning.background,
-        color: tokens.buttons.warning.color,
         padding: tokens.buttons.secondary.padding,
         ':hover': {
           background: tokens.buttons.warning.focusColor,

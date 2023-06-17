@@ -4,6 +4,9 @@ node_modules
 # testing
 .coverage
 
+.next
+out
+
 # production
 /build
 .build.es*

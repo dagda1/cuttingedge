@@ -6,6 +6,7 @@ import cs from 'classnames';
 import { useTyped } from '../../hooks/useTyped/useTyped';
 import { useJarallax } from '../../hooks/useJarallax/useJarallax';
 import { FullPageLayout } from '../Layouts/FullPageLayout';
+import { Heading } from '@cutting/component-library';
 
 export function Intro(): JSX.Element {
   const heading = useRef<HTMLSpanElement>(null);
@@ -16,10 +17,10 @@ export function Intro(): JSX.Element {
   return (
     <FullPageLayout className={cs(styles.main, styles.fullHeight)}>
       <div className={styles.container}>
-        <h1>Are your frontend developers taking forever to ship quality features?</h1>
-        <h2>
+        <Heading level="1">Are your frontend developers taking forever to ship quality features?</Heading>
+        <Heading level="2">
           <span ref={heading}></span>
-        </h2>
+        </Heading>
         <FadeIn delay={1700} transitionDuration={1000}>
           <Scroller />
         </FadeIn>

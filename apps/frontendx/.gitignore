@@ -2,8 +2,10 @@
 .vercel
 
 # next.js
-/.next/
-/out/
+.next
+out
+
+public/*.css
 
 # yarn
 .yarn/*
@@ -12,6 +14,8 @@
 .pnp.*
 
 .terraform
+
+
 
 *.tfstate
 *.tfstate.*

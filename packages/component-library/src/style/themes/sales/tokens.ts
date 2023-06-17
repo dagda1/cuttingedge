@@ -1,7 +1,9 @@
 import type { DeepPartial } from '@cutting/util';
-import { slate } from 'tailwindcss/colors';
+// import { slate } from 'tailwindcss/colors';
 import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
+import { extractFontMetricsForTheme } from '~/style/util/typography';
+import oswald from '@capsizecss/metrics/oswald';
 
 const colors = {
   primary: palette.lime500,
@@ -16,20 +18,18 @@ export const tokens: DeepPartial<Tokens> = {
       standard: 20,
     },
   },
-  colors: {
-    ...colors,
-  },
   color: {
     foreground: {
-      body: slate[300],
-      heading: {
-        '1': palette.yellow400,
-        '2': slate[300],
-        '3': slate[300],
-        '4': slate[300],
-      },
-      header: slate[300],
-      footer: palette.white,
+      link: palette.neutral400,
+      linkHover: palette.white,
+      linkVisited: palette.neutral100,
+      neutral: '#C3CFDD',
+      primary: palette.white,
+      secondary: palette.sky900,
+      h1: palette.yellow400,
+      h2: palette.yellow400,
+      h3: palette.yellow400,
+      h4: palette.yellow400,
     },
     background: {
       body: palette.gray800,
@@ -39,7 +39,99 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   typography: {
-    fontFamily: `'Oswald', sans-serif`,
+    webFont: 'https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Sora&display=swap',
+    fontFamily: '"Oswald", sans-serif',
+    fontMetrics: extractFontMetricsForTheme(oswald),
+    heading: {
+      weight: {
+        weak: 'regular',
+        regular: 'medium',
+      } as const,
+      level: {
+        '1': {
+          mobile: {
+            fontSize: 50,
+            lineGap: 30,
+          },
+          tablet: {
+            fontSize: 80,
+            lineGap: 24,
+          },
+        },
+        '2': {
+          mobile: {
+            fontSize: 26,
+            lineGap: 30,
+          },
+          tablet: {
+            fontSize: 38,
+            lineGap: 24,
+          },
+        },
+        '3': {
+          mobile: {
+            fontSize: 28,
+            lineGap: 12,
+          },
+          tablet: {
+            fontSize: 31,
+            lineGap: 15,
+          },
+        },
+        '4': {
+          mobile: {
+            fontSize: 22,
+            lineGap: 13,
+          },
+          tablet: {
+            fontSize: 25,
+            lineGap: 13,
+          },
+        },
+      },
+    },
+    text: {
+      large: {
+        mobile: {
+          fontSize: 19,
+          lineGap: 13,
+        },
+        tablet: {
+          fontSize: 22,
+          lineGap: 13,
+        },
+      },
+      standard: {
+        mobile: {
+          fontSize: 16,
+          lineGap: 10,
+        },
+        tablet: {
+          fontSize: 19,
+          lineGap: 13,
+        },
+      },
+      small: {
+        mobile: {
+          fontSize: 14,
+          lineGap: 10,
+        },
+        tablet: {
+          fontSize: 17,
+          lineGap: 10,
+        },
+      },
+      xsmall: {
+        mobile: {
+          fontSize: 12,
+          lineGap: 9,
+        },
+        tablet: {
+          fontSize: 15,
+          lineGap: 9,
+        },
+      },
+    },
   },
   buttons: {
     textTransform: 'uppercase',
@@ -52,7 +144,6 @@ export const tokens: DeepPartial<Tokens> = {
     secondary: {
       background: colors.secondary,
       focusColor: colors.primary,
-      color: palette.white,
       padding: buttonPadding,
     },
   },

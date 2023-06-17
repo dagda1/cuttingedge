@@ -4,20 +4,14 @@ import type { Post } from '../../types';
 import { formatDate } from '../../util/date';
 import { post, container } from './blog.css';
 import { Tag } from '../Tag/Tag';
+import { Heading } from '@cutting/component-library';
 
 const MAX_DISPLAY = 10;
 
 export function Blog({ posts }: { posts: Post['frontMatter'][] }): JSX.Element {
   return (
     <FullPageLayout heading="Tips from the front" className={container}>
-      {/* <PageSEO title={siteMetadata.title} description={siteMetadata.description} /> */}
       <div>
-        {/* <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Latest
-          </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">{siteMetadata.description}</p>
-        </div> */}
         <ul>
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
             const { slug, date, title, summary } = frontMatter;
@@ -39,9 +33,9 @@ export function Blog({ posts }: { posts: Post['frontMatter'][] }): JSX.Element {
                     <div>
                       <div>
                         <div>
-                          <h2>
+                          <Heading level="2">
                             <Link href={`/blog/${slug}`}>{title}</Link>
-                          </h2>
+                          </Heading>
                         </div>
                         <div>{summary}</div>
                       </div>

@@ -1,30 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { atoms } from '../../src/style/atoms/atoms';
 import { vars } from '../../src/style/themes/vars.css';
 import { palette } from '../../src/style/palette.css';
 import { cuttingTheme } from '~/index';
-
-// globalFontFace('Oswald', {
-//   fontStyle: 'normal',
-//   fontWeight: 200,
-//   src: "url('https://fonts.googleapis.com/css?Oswald:wght@700&family=Cardo&display=swap')",
-// });
-
-// globalFontFace('Roboto', {
-//   fontStyle: 'normal',
-//   fontWeight: 600,
-//   src: "url('https://fonts.googleapis.com/css?family=Roboto:100,100&amp;display=swap')",
-// });
-
-// globalFontFace('"Bebas Neue"', {
-//   src: "url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap')",
-//   fontStyle: 'normal',
-//   fontWeight: 400,
-// });
-
-// globalStyle('h1', {
-//   border: '1px solid red !important',
-// });
 
 globalStyle('body', {
   background: palette.black,

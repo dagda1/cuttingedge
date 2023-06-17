@@ -6,7 +6,7 @@ export const workWithUsButtonContainer = style({
 });
 
 globalStyle(`${workWithUsButtonContainer} button`, {
-  background: vars.colors.primary,
+  background: vars.backgroundColor.body,
   boxShadow: 'none',
   display: 'inline',
   color: palette.white,

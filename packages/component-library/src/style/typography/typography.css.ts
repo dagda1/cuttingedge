@@ -84,6 +84,7 @@ export const touchableText = styleVariants(vars.textSize, (textDefinition) =>
 );
 
 const textToneVars = createThemeContract({
+  primary: null,
   critical: null,
   caution: null,
   info: null,
@@ -91,10 +92,16 @@ const textToneVars = createThemeContract({
   positive: null,
   neutral: null,
   secondary: null,
+  warning: null,
   link: null,
+  h1: null,
+  h2: null,
+  h3: null,
+  h4: null,
 });
 
 const textTones = assignVars(textToneVars, {
+  primary: vars.foregroundColor.primary,
   critical: vars.foregroundColor.critical,
   caution: vars.foregroundColor.caution,
   info: vars.foregroundColor.info,
@@ -103,6 +110,11 @@ const textTones = assignVars(textToneVars, {
   neutral: vars.foregroundColor.neutral,
   secondary: vars.foregroundColor.secondary,
   link: vars.foregroundColor.link,
+  warning: vars.foregroundColor.error,
+  h1: vars.foregroundColor.h1,
+  h2: vars.foregroundColor.h2,
+  h3: vars.foregroundColor.h3,
+  h4: vars.foregroundColor.h4,
 });
 
 export const tone = styleVariants(textToneVars, (toneVar) => ({ color: textTones[toneVar] }));

@@ -27,7 +27,7 @@ export function Alert({ type, title = capitalize(type), bannerHeading, children 
       data-disable-auto-focus="true"
     >
       <div className={styles.bannerHeading}>
-        <Heading level="2" className="notification-banner__title" id="notification-banner-title">
+        <Heading level="2" id="notification-banner-title">
           {title}
         </Heading>
       </div>

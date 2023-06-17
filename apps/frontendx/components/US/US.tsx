@@ -2,6 +2,7 @@ import * as styles from './US.css';
 import { PageLayout } from '../Layouts/PageLayout';
 import cs from 'classnames';
 import { getImageSrc } from '../../util/image';
+import { Heading } from '@cutting/component-library';
 
 const Images = [
   { img: '/react.svg', alt: 'react' },
@@ -29,7 +30,9 @@ export function US(): JSX.Element {
     <PageLayout className={styles.main}>
       <Packages packages={Images.slice(0, 3)} className={styles.topImages} />
       <div className={styles.heading}>
-        <h1>We are the frontend experts you need to get your frontend team operating like a well-oiled machine</h1>
+        <Heading level="1">
+          We are the frontend experts you need to get your frontend team operating like a well-oiled machine
+        </Heading>
       </div>
       <Packages packages={Images.slice(3)} className={styles.bottomImages} />
     </PageLayout>

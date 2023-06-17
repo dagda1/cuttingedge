@@ -14,27 +14,21 @@ export const banner = style([
 globalStyle(`${banner} h2`, {
   color: vars.banners.titleColor,
   margin: 0,
-  fontSize: vars.space['small'],
-  lineHeight: vars.space['small'],
 });
 
 export const success = style({
-  borderColor: vars.colors.primary,
-  backgroundColor: vars.colors.primary,
+  borderColor: vars.buttons.primary.background,
+  backgroundColor: vars.buttons.primary.background,
 });
 
 export const warning = style({
-  borderColor: vars.colors.caution,
-  backgroundColor: vars.colors.caution,
-});
-
-globalStyle(`${warning} h2`, {
-  color: vars.colors.white,
+  borderColor: vars.foregroundColor.caution,
+  backgroundColor: vars.foregroundColor.caution,
 });
 
 export const error = style({
-  borderColor: vars.colors.error,
-  backgroundColor: vars.colors.error,
+  borderColor: vars.foregroundColor.critical,
+  backgroundColor: vars.foregroundColor.critical,
 });
 
 export const bannerHeading = style({
@@ -44,7 +38,7 @@ export const bannerHeading = style({
 export const bannerContent = style({
   background: vars.banners.backgroundColor,
   padding: '10px 10px 20px',
-  color: vars.banners.color,
+  color: vars.foregroundColor.neutral,
 });
 
 globalStyle(`${bannerContent} p`, {

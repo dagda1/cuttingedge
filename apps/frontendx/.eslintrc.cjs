@@ -5,5 +5,6 @@ module.exports = {
     '@next/next/no-img-element': ['off'],
     'eslint-disable jest/consistent-test-it': ['off'],
     'no-done-callback': ['off'],
+    '@next/next/no-html-link-for-pages': ['error', 'apps/frontenddx/pages/'],
   },
 };

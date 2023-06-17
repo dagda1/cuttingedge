@@ -8,6 +8,8 @@ import { useStateMachine } from 'little-state-machine';
 import { updateHealthcheck } from '../../../state/updateHealthcheck';
 import { Testimonial } from '../../../components/Testimonial/Testimonial';
 import { VideoPlayer } from '../../../components/VideoPlayer/VideoPlayer';
+import { Heading } from '@cutting/component-library';
+import { Text } from '@cutting/component-library';
 
 export function Communication({ nextPage, children }: StepComponent): JSX.Element {
   const router = useRouter();
@@ -30,15 +32,17 @@ export function Communication({ nextPage, children }: StepComponent): JSX.Elemen
   return (
     <div>
       <Testimonial>
-        <p>Only when all ambiguity and vagueness is 100% irradicated, is a task is ready to start.</p>
+        <Text component="p">
+          Only when all ambiguity and vagueness is 100% irradicated, is a task is ready to start.
+        </Text>
       </Testimonial>
 
-      <p>
+      <Text component="p">
         When you work with us, we have a scorched earth policy towards ambiguity and vagueness. We can show you how to
         iterate the initial UI development without wasting precious development time.
-      </p>
+      </Text>
 
-      <h2>Examples of what we look for are:</h2>
+      <Heading level="2">Examples of what we look for are:</Heading>
       <form onSubmit={handleSubmit(onSubmit)} method="POST">
         <YesNo
           errors={errors}

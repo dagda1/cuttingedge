@@ -21,7 +21,7 @@ class FrontendDXDocument extends Document<DocumentInitialProps> {
             integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC"
             crossOrigin="anonymous"
           ></link>
-          <link href="https://esm.sh/@cutting/component-library@5.30.0/dist/esm/src.css" rel="stylesheet" />
+          <link href="/src.css" rel="stylesheet" />
         </Head>
         <body>
           {isProduction && (

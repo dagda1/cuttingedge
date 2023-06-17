@@ -1,7 +1,6 @@
 import { posts } from './posts';
-import { TextLink, Inline, Stack, Text, PageBlock } from '@cutting/component-library';
+import { TextLink, Inline, Stack, Text, PageBlock, Heading } from '@cutting/component-library';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
-import { Heading } from '@cutting/component-library';
 
 export function Blog(): JSX.Element {
   return (
@@ -22,11 +21,11 @@ export function Blog(): JSX.Element {
                 <Heading level="2">{post.title}</Heading>
               </TextLink>
               <Text component="p">{post.summary}</Text>
-              <p>
+              <Text component="p">
                 <TextLink href={post.link} blank={false}>
                   Read More
                 </TextLink>
-              </p>
+              </Text>
             </Stack>
           ))}
         </Stack>

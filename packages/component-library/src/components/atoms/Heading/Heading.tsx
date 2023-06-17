@@ -20,6 +20,13 @@ export interface HeadingProps extends TypographyProps {
   center?: boolean;
 }
 
+export const HeadingColorMap: Record<HeadingProps['level'], string> = {
+  '1': typographyStyles.tone.h1,
+  '2': typographyStyles.tone.h2,
+  '3': typographyStyles.tone.h3,
+  '4': typographyStyles.tone.h1,
+};
+
 export function Heading({ level, weight, component, center = false, ...typographyProps }: HeadingProps): JSX.Element {
   return (
     <HeadingContext.Provider value={true}>
@@ -30,6 +37,7 @@ export function Heading({ level, weight, component, center = false, ...typograph
           typographyStyles.fontFamily,
           typographyStyles.headingWeight[weight || 'regular'],
           typographyStyles.heading[level],
+          HeadingColorMap[level],
           { [styles.center]: center },
         )}
       />

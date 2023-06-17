@@ -7,8 +7,9 @@ import { Questions } from '../../../types';
 import { useRouter } from 'next/router';
 import { useStateMachine } from 'little-state-machine';
 import { updateHealthcheck } from '../../../state/updateHealthcheck';
-import { TextLink } from '@cutting/component-library';
+import { Heading, TextLink } from '@cutting/component-library';
 import { VideoPlayer } from '../../../components/VideoPlayer/VideoPlayer';
+import { Text } from '@cutting/component-library';
 
 export function Development({ nextPage, children }: StepComponent): JSX.Element {
   const router = useRouter();
@@ -31,27 +32,27 @@ export function Development({ nextPage, children }: StepComponent): JSX.Element 
   return (
     <div>
       <Testimonial>
-        <p>
+        <Text component="p">
           By working on developer experience, you work on increasing your team&apos;s morale, productivity, speed, and
           engagement.
-        </p>
-        <p>
+        </Text>
+        <Text component="p">
           Our definition of developer experience is to remove all the external tasks that stop developers working on
           features.
-        </p>
+        </Text>
       </Testimonial>
-      <p>
+      <Text component="p">
         One survey found that developers only{' '}
         <TextLink external href="https://services.google.com/fh/files/misc/state-of-devops-2018.pdf">
           spent 30-40%
         </TextLink>{' '}
         of their time on feature development.
-      </p>
-      <p>
+      </Text>
+      <Text component="p">
         Improving the overall developer experience is essential to increasing your team&apos;s productivity and morale.
-      </p>
-      <p>Once developers are free from hidden friction, they are free to work 100% on features.</p>
-      <h2>Examples of what we look for are:</h2>
+      </Text>
+      <Text component="p">Once developers are free from hidden friction, they are free to work 100% on features.</Text>
+      <Heading level="2">Examples of what we look for are:</Heading>
       <form onSubmit={handleSubmit(onSubmit)} method="POST">
         <YesNo
           errors={errors}

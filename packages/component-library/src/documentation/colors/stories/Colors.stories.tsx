@@ -6,7 +6,7 @@ import * as styles from './Colors.css';
 function ColorList() {
   return (
     <div>
-      {Object.entries(vars.colors).map(([key, value]) => (
+      {Object.entries(vars.foregroundColor).map(([key, value]) => (
         <div key={key} className={styles.container}>
           <div className={styles.color} style={{ background: value as string }}></div>
           <div>{key}</div>

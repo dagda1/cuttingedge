@@ -75,9 +75,6 @@ globalStyle('dl,dd,dt', {
   verticalAlign: 'baseline',
 });
 
-globalStyle('h1', {
-  marginBottom: vars.space['small'],
-});
 
 export const cookieContainer = style({
   alignItems: 'center !important',

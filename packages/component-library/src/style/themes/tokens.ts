@@ -1,26 +1,7 @@
-import { rem, mix } from 'polished';
+import { rem } from 'polished';
 import { palette } from '~/style/palette.css';
-import { getLightVariant } from '~/style/util/a11y';
-import { rose } from 'tailwindcss/colors';
 import arialMetfics from '@capsizecss/metrics/arial';
 import { extractFontMetricsForTheme } from '../util/typography';
-
-export const colors = {
-  primary: palette.green800,
-  secondary: palette.gray100,
-  error: palette.redError,
-  notification: palette.yellow400,
-  brand: palette.blue700,
-  focus: palette.blue700,
-  critical: palette.red600,
-  criticalLight: rose['100'],
-  positive: palette.lime800,
-  caution: palette.yellow400,
-  info: palette.blue700,
-  promote: palette.violet800,
-  white: palette.white,
-  neutral: palette.gray700,
-};
 
 const fontWeight = {
   regular: 400,
@@ -39,9 +20,6 @@ export const tokens = {
     xlarge: 11,
     xxlarge: 15,
     xxxlarge: 20,
-  },
-  colors: {
-    ...colors,
   },
   inputWidth: {
     width2: '5.4ex',
@@ -69,41 +47,36 @@ export const tokens = {
       large: 2,
     },
     color: {
-      caution: colors.caution,
-      critical: colors.critical,
+      caution: palette.yellow400,
+      critical: palette.red600,
       field: '#999999',
-      info: colors.info,
-      infoLight: mix(0.3, colors.info, getLightVariant(colors.info)),
-      positive: colors.positive,
-      promote: colors.promote,
+      info: palette.blue700,
+      positive: palette.lime800,
+      promote: palette.violet800,
       standard: palette.neutral900,
-      invalid: colors.error,
+      invalid: palette.redError,
       focus: palette.green800,
     },
   },
   color: {
     foreground: {
-      caution: colors.caution,
-      critical: colors.critical,
-      focus: palette.green800,
-      info: colors.info,
-      neutral: colors.neutral,
-      secondary: colors.secondary,
+      error: palette.white,
+      caution: palette.yellow400,
+      critical: palette.red600,
+      focus: palette.blue700,
+      info: palette.blue700,
+      neutral: palette.gray700,
+      secondary: palette.neutral950,
       link: palette.neutral900,
-      positive: colors.positive,
-      promote: colors.promote,
+      positive: palette.lime800,
+      primary: palette.white,
+      promote: palette.violet800,
       linkHover: palette.white,
       linkVisited: palette.neutral700,
-      error: colors.error,
-      body: palette.black,
-      heading: {
-        '1': palette.black,
-        '2': palette.black,
-        '3': palette.black,
-        '4': palette.black,
-      },
-      header: palette.black,
-      footer: palette.black,
+      h1: palette.gray700,
+      h2: palette.gray700,
+      h3: palette.gray700,
+      h4: palette.gray700,
     },
     background: {
       body: palette.white,
@@ -225,8 +198,8 @@ export const tokens = {
   },
   accessibility: {
     outlineWidth: '3px',
-    elementFocusColor: colors.notification,
-    accessibleOutlineColor: colors.notification,
+    elementFocusColor: palette.yellow400,
+    accessibleOutlineColor: palette.yellow400,
     outlineOffset: '0',
     linkFocusColor: palette.black,
     boxShadowColor: palette.black,
@@ -260,7 +233,6 @@ export const tokens = {
       hoverBackgroundColor: palette.green900,
       background: palette.green800,
       focusColor: palette.white,
-      color: palette.white,
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
@@ -269,10 +241,9 @@ export const tokens = {
     secondary: {
       borderWidth: '2px',
       borderColor: 'transparent',
-      background: colors.secondary,
+      background: palette.gray100,
       focusColor: palette.gray300,
       hoverBackgroundColor: palette.green800,
-      color: palette.black,
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
@@ -281,10 +252,9 @@ export const tokens = {
     warning: {
       borderWidth: '2px',
       border: 'transparent',
-      background: colors.error,
+      background: palette.redError,
       focusColor: palette.red700,
       hoverBackgroundColor: palette.green800,
-      color: palette.white,
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
