@@ -43,7 +43,7 @@
     "eslint": "8.43.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.11.2",
+    "react-router-dom": "6.13.0",
     "three": "^0.153.0",
     "typescript": "5.1.3"
   },
