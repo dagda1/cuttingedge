@@ -5,7 +5,8 @@
 .next
 out
 
-public/*.css
+src.css
+src.css.map
 
 # yarn
 .yarn/*

@@ -70,45 +70,12 @@ export const left = style({
   }),
 });
 
-export const logoContainer = style({
-  width: '300px',
-});
-
-globalStyle(`${logoContainer} img`, {
-  maxWidth: '100%',
-});
-
 export const logo = style({
   textAlign: 'center',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   flex: 1,
-});
-
-globalStyle(`${logoContainer} a`, {
-  display: 'block',
-  ...responsiveStyle({
-    mobile: {
-      padding: 0,
-    },
-    tablet: {
-      padding: vars.space['small'],
-    },
-  }),
-});
-
-globalStyle(`${logoContainer} svg`, {
-  width: '100%',
-  height: 'auto',
-  ...responsiveStyle({
-    mobile: {
-      textAlign: 'initial',
-    },
-    tablet: {
-      textAlign: 'center',
-    },
-  }),
 });
 
 globalStyle(`${logo} h2`, {
