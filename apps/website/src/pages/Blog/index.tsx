@@ -21,11 +21,11 @@ export function Blog(): JSX.Element {
                 <Heading level="2">{post.title}</Heading>
               </TextLink>
               <Text component="p">{post.summary}</Text>
-              <Text component="p">
+              <p>
                 <TextLink href={post.link} blank={false}>
                   Read More
                 </TextLink>
-              </Text>
+              </p>
             </Stack>
           ))}
         </Stack>

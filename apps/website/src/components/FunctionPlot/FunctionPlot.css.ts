@@ -1,4 +1,4 @@
-import { palette, responsiveStyle, vars } from '@cutting/component-library';
+import { palette, responsiveStyle } from '@cutting/component-library';
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style, globalStyle } from '@vanilla-extract/css';
 
