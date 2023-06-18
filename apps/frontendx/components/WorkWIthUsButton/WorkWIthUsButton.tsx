@@ -12,11 +12,6 @@ export function WorkWithUsButton(): JSX.Element {
             PRODUCTIVITY ROADMAP
           </LinkWrapper>
         </MenuItem>
-        {/* <MenuItem>
-          <LinkWrapper linkType="anchor" href={`/retainer`}>
-            FRONTEND ON DEMAND
-          </LinkWrapper>
-        </MenuItem> */}
         <MenuItem>
           <LinkWrapper linkType="anchor" href={`/consult`}>
             STRATEGY CONSULT

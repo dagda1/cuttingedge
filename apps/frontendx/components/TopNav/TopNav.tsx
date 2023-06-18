@@ -9,7 +9,6 @@ import { ResponsiveImage, Nav, NavItem, NavItems } from '@cutting/component-libr
 
 const NavLinks: { content: ReactNode; href: string }[] = [
   { content: <strong>Healthcheck</strong>, href: '/productivity-test/1' },
-  // { content: 'Subscribe', href: '/subscribe' },
   { content: 'Blog', href: '/blog' },
   { content: 'About', href: '/about' },
   { content: 'Contact', href: '/contact' },

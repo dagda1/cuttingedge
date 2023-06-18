@@ -14,6 +14,7 @@ import Script from 'next/script';
 import { GTM_ID } from '../constants';
 import { useRouter } from 'next/router';
 import { pageview } from '../util/gtm';
+import '@cutting/component-library/styles.css';
 
 declare module 'little-state-machine' {
   interface GlobalState {
