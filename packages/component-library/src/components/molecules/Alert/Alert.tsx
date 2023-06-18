@@ -33,10 +33,12 @@ export function Alert({ type, title = capitalize(type), bannerHeading, children 
       </div>
       <div className={styles.bannerContent}>
         <Stack space="small">
-          <Text component="p" className={styles.subHeading}>
+          <Text weight="regular" component="p">
             {bannerHeading}
           </Text>
-          <Text component="p">{children}</Text>
+          <Text weight="regular" component="p">
+            {children}
+          </Text>
         </Stack>
       </div>
     </div>

@@ -12,7 +12,7 @@ export const banner = style([
 ]);
 
 globalStyle(`${banner} h2`, {
-  color: vars.banners.titleColor,
+  color: vars.foregroundColor.primary,
   margin: 0,
 });
 
@@ -44,8 +44,4 @@ export const bannerContent = style({
 globalStyle(`${bannerContent} p`, {
   margin: 0,
   padding: 0,
-});
-
-export const subHeading = style({
-  fontWeight: vars.textWeight.strong,
 });
