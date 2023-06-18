@@ -18,7 +18,7 @@ const NavLinks: { content: ReactNode; href: string }[] = [
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export function TopNav(): JSX.Element {
   return (
-    <Nav display="flex">
+    <Nav>
       <NavItems>
         <NavItem display="Always">
           <Link href="/" passHref>

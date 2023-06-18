@@ -1,5 +1,5 @@
 import { globalStyle, globalFontFace, style } from '@vanilla-extract/css';
-import { palette, responsiveStyle, vars } from '@cutting/component-library';
+import { palette, responsiveStyle } from '@cutting/component-library';
 
 globalFontFace('Oswald', {
   fontStyle: 'normal',
@@ -74,7 +74,6 @@ globalStyle('dl,dd,dt', {
   font: 'inherit',
   verticalAlign: 'baseline',
 });
-
 
 export const cookieContainer = style({
   alignItems: 'center !important',

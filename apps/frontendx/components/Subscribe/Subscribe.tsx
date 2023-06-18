@@ -2,7 +2,7 @@ import { SignupForm } from '../SignupForm/SignupForm';
 import * as styles from './Subscribe.css';
 import cs from 'classnames';
 import { FullPageLayout } from '../Layouts/FullPageLayout';
-import { Heading } from '@cutting/component-library/*';
+import { Heading } from '@cutting/component-library';
 
 export function Subscribe(): JSX.Element {
   return (

@@ -1,5 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { atoms, palette, vars } from '@cutting/component-library';
+import { palette, vars } from '@cutting/component-library';
 
 export const main = style({
   position: 'relative',

@@ -2,7 +2,7 @@ import * as styles from './DXVideo.css';
 import { FullPageLayout } from '../Layouts/FullPageLayout';
 import { VideoPlayer } from '../VideoPlayer/VideoPlayer';
 import { ContactButtons } from '../Intro/ContactButtons';
-import { Heading } from '@cutting/component-library/';
+import { Heading } from '@cutting/component-library';
 
 export default function DXVideo({
   heading,
