@@ -5,8 +5,8 @@ export const base = style({
   padding: 0,
   border: 0,
   boxSizing: 'border-box',
-  fontSize: '100%',
-  font: 'inherit',
+  // fontSize: '100%',
+  // font: 'inherit',
   verticalAlign: 'baseline',
   WebkitTapHighlightColor: 'transparent',
 });

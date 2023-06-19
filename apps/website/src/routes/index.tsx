@@ -1,23 +1,23 @@
-import * as Urls from '../urls';
+import * as Urls from '~/urls';
 import { Route, Routes } from 'react-router';
-import type { Page } from '../types';
-import { ContactMe } from '../components/ContactMe';
+import type { Page } from '~/types';
+import { ContactMe } from '~/components/ContactMe';
 import { lazy, Suspense } from 'react';
-import { Fallback } from '../components/Fallback/Fallback';
+import { Fallback } from '~/components/Fallback/Fallback';
 
-const Home = lazy(() => import('../pages/Home'));
+const Home = lazy(() => import('~/pages/Home'));
 
-const OSS = lazy(() => import('../pages/OSS'));
+const OSS = lazy(() => import('~/pages/OSS'));
 
-const Blog = lazy(() => import('../pages/Blog'));
+const Blog = lazy(() => import('~/pages/Blog'));
 
-const CV = lazy(() => import('../pages/cv'));
+const CV = lazy(() => import('~/pages/cv'));
 
-const PrivacyPolicy = lazy(() => import('../pages/PrivacyPolicy'));
+const PrivacyPolicy = lazy(() => import('~/pages/PrivacyPolicy'));
 
-const TermsOfService = lazy(() => import('../pages/TermsOfService'));
+const TermsOfService = lazy(() => import('~/pages/TermsOfService'));
 
-const Viz = lazy(() => import('../pages/Viz/Viz'));
+const Viz = lazy(() => import('~/pages/Viz/Viz'));
 
 /* eslint-disable react/display-name */
 export const routable: Page[] = [

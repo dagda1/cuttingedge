@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useReducer } from 'react';
 import { useCallback, useMemo } from 'react';
 import { useRef } from 'react';
-import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import type { Point } from '@cutting/svg';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { AxisBottom, AxisLeft } from '@visx/axis';
@@ -14,7 +14,7 @@ import { Circle, Line, LinePath } from '@visx/shape';
 import { curveBasisOpen } from '@visx/curve';
 import * as styles from './FunctionPlot.css';
 import { MathJax } from '@cutting/use-mathjax';
-import { getYIntercept } from '../../viz/getYIntercept';
+import { getYIntercept } from '~/viz/getYIntercept';
 import { Text } from '@visx/text';
 import { reducer, initialState } from './reducer';
 import type { SubmitHandler } from 'react-hook-form';
@@ -211,7 +211,7 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
 
   return (
     <ApplicationLayout centerHeading heading="The (function) plot thickens...." showFooter={false}>
-      <section className={styles.container} ref={containerRef}>
+      <section ref={containerRef} className={styles.container}>
         <ResponsiveSVG width={width} height={height} className="function-svg">
           <Group transform={`translate(0, ${xAxisPosition})`}>
             <AxisBottom scale={xScale} axisLineClassName={styles.axisLine} />

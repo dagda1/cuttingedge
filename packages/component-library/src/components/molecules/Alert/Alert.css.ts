@@ -4,7 +4,7 @@ import { vars } from '~/style/themes/vars.css';
 
 export const banner = style([
   atoms({
-    marginY: '1x',
+    marginY: 'xxsmall',
   }),
   {
     border: '5px solid transparent',
@@ -12,29 +12,23 @@ export const banner = style([
 ]);
 
 globalStyle(`${banner} h2`, {
-  color: vars.banners.titleColor,
+  color: vars.foregroundColor.primary,
   margin: 0,
-  fontSize: vars.space['3x'],
-  lineHeight: vars.space['3x'],
 });
 
 export const success = style({
-  borderColor: vars.colors.primary,
-  backgroundColor: vars.colors.primary,
+  borderColor: vars.buttons.primary.background,
+  backgroundColor: vars.buttons.primary.background,
 });
 
 export const warning = style({
-  borderColor: vars.colors.caution,
-  backgroundColor: vars.colors.caution,
-});
-
-globalStyle(`${warning} h2`, {
-  color: vars.colors.white,
+  borderColor: vars.foregroundColor.caution,
+  backgroundColor: vars.foregroundColor.caution,
 });
 
 export const error = style({
-  borderColor: vars.colors.error,
-  backgroundColor: vars.colors.error,
+  borderColor: vars.foregroundColor.critical,
+  backgroundColor: vars.foregroundColor.critical,
 });
 
 export const bannerHeading = style({
@@ -43,17 +37,11 @@ export const bannerHeading = style({
 
 export const bannerContent = style({
   background: vars.banners.backgroundColor,
-  padding: '20px',
-  color: vars.banners.color,
+  padding: '10px 10px 20px',
+  color: vars.foregroundColor.neutral,
 });
 
 globalStyle(`${bannerContent} p`, {
   margin: 0,
   padding: 0,
 });
-
-export const subHeading = style({
-  fontWeight: vars.fontWeight.strong,
-});
-
-export const body = style({});

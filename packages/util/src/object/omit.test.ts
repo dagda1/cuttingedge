@@ -18,4 +18,8 @@ describe('omit', () => {
 
     expect(omit(a, '@media')).toEqual({ left: 20 });
   });
+
+  it('should return an empty object for undefined', () => {
+    expect(omit(undefined, '@media')).toEqual({});
+  });
 });

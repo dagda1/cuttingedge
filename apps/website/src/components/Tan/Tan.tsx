@@ -9,7 +9,7 @@ import { Arc, LinePath } from '@visx/shape';
 import { Text } from '@visx/text';
 import * as styles from './Tan.css';
 import cs from 'classnames';
-import { ApplicationLayout } from '../../layouts/ApplicationLayout';
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { curveMonotoneX } from 'd3-shape';
 import assert from 'assert-ts';
@@ -127,7 +127,7 @@ export function Tan(): JSX.Element {
 
   return (
     <>
-      <ApplicationLayout layout="FULL" heading="TAN ASYMPTOTES" centerHeading>
+      <ApplicationLayout heading="TAN ASYMPTOTES" centerHeading>
         <section className={styles.container} ref={containerRef}>
           <ResponsiveSVG width={width} height={height}>
             <Group transform={`translate(0, ${initialY})`}>

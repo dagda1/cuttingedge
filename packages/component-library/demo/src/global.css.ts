@@ -1,51 +1,22 @@
-import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
-import { palette } from '../../src';
-import { atoms } from '../../src/style/atoms/atoms';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { vars } from '../../src/style/themes/vars.css';
-
-globalFontFace('Oswald', {
-  fontStyle: 'normal',
-  fontWeight: 200,
-  src: "url('https://fonts.googleapis.com/css?Oswald:wght@700&family=Cardo&display=swap')",
-});
-
-export const wrap = style({
-  paddingLeft: vars.space['1x'],
-  paddingRight: vars.space['2x'],
-  margin: '0 auto',
-});
+import { palette } from '../../src/style/palette.css';
+import { cuttingTheme } from '~/index';
 
 globalStyle('body', {
   background: palette.black,
 });
 
 export const background = style({
+  marginTop: vars.space['large'],
   background: vars.backgroundColor.body,
 });
 
-export const layout = style({
-  display: 'flex',
-  flex: 1,
-  textAlign: 'left',
-  flexFlow: 'row wrap',
+globalStyle(`${cuttingTheme} h1`, {
+  marginTop: 0,
+  marginBottom: 0,
+  paddingTop: 0,
+  paddingBottom: 0,
+  textShadow:
+    '0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 55px #ffffff,0 0 75px #ffffff',
 });
-
-export const item = style([
-  atoms({
-    reset: 'div',
-    ...{
-      paddingLeft: {
-        mobile: '1x',
-        tablet: '3x',
-      },
-      display: {
-        mobile: 'block',
-        tablet: 'inline-block',
-      },
-      flex: {
-        mobile: 'auto',
-        tablet: '1 0 auto',
-      },
-    },
-  }),
-]);

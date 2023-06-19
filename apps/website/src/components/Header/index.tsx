@@ -1,4 +1,4 @@
-import { Menu } from '../Menu';
+import { Menu } from '../Nav';
 
 export function Header(): JSX.Element {
   return (

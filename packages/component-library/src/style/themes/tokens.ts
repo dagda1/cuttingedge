@@ -1,35 +1,7 @@
-import { rem, mix } from 'polished';
+import { rem } from 'polished';
 import { palette } from '~/style/palette.css';
-import { getLightVariant } from '~/style/util/a11y';
-import { rose } from 'tailwindcss/colors';
-
-export const colors = {
-  primary: palette.green800,
-  secondary: palette.gray100,
-  error: palette.redError,
-  notification: palette.yellow400,
-  brand: palette.blue700,
-  focus: palette.blue700,
-  critical: palette.red600,
-  criticalLight: rose['100'],
-  positive: palette.lime800,
-  caution: palette.yellow400,
-  info: palette.blue700,
-  promote: palette.violet800,
-  white: palette.white,
-};
-
-type ScaleKeys<A extends readonly unknown[]> = `${keyof A & `${number}`}x`;
-
-const spacing = [
-  0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12.5, 13, 13.5, 14, 14.5,
-  15, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20,
-] as const;
-
-type SpaceKeys = ScaleKeys<typeof spacing>;
-
-const borderRadius = [1, 2, 4, 8, 16, 32] as const;
-type BorderRadiusKeys = ScaleKeys<typeof borderRadius>;
+import arialMetfics from '@capsizecss/metrics/arial';
+import { extractFontMetricsForTheme } from '../util/typography';
 
 const fontWeight = {
   regular: 400,
@@ -39,20 +11,15 @@ const fontWeight = {
 
 export const tokens = {
   space: {
-    none: '0',
-    ...spacing.reduce((acc, curr, i) => {
-      acc[`${i + 1}x` as SpaceKeys] = `${curr}rem`;
-      return acc;
-    }, {} as Record<SpaceKeys, string>),
-  },
-  borderRadius: {
-    ...borderRadius.reduce((acc, curr, i) => {
-      acc[`${i + 1}x` as BorderRadiusKeys] = `${curr}px`;
-      return acc;
-    }, {} as Record<BorderRadiusKeys, string>),
-  },
-  colors: {
-    ...colors,
+    gutter: 6,
+    xxsmall: 1,
+    xsmall: 2,
+    small: 3,
+    medium: 5,
+    large: 8,
+    xlarge: 11,
+    xxlarge: 15,
+    xxxlarge: 20,
   },
   inputWidth: {
     width2: '5.4ex',
@@ -80,38 +47,36 @@ export const tokens = {
       large: 2,
     },
     color: {
-      caution: colors.caution,
-      cautionLight: mix(0.6, colors.caution, getLightVariant(colors.caution)),
-      critical: colors.critical,
-      criticalLight: mix(0.3, colors.critical, colors.criticalLight),
+      caution: palette.yellow400,
+      critical: palette.red600,
       field: '#999999',
-      info: colors.info,
-      infoLight: mix(0.3, colors.info, getLightVariant(colors.info)),
-      positive: colors.positive,
-      positiveLight: mix(0.3, colors.positive, getLightVariant(colors.positive)),
-      promote: colors.promote,
-      promoteLight: mix(0.3, colors.promote, getLightVariant(colors.promote)),
+      info: palette.blue700,
+      positive: palette.lime800,
+      promote: palette.violet800,
       standard: palette.neutral900,
-      invalid: colors.error,
+      invalid: palette.redError,
       focus: palette.green800,
-      standardInverted: colors.white,
     },
   },
   color: {
     foreground: {
+      error: palette.white,
+      caution: palette.yellow400,
+      critical: palette.red600,
+      focus: palette.blue700,
+      info: palette.blue700,
+      neutral: palette.gray700,
+      secondary: palette.neutral950,
       link: palette.neutral900,
+      positive: palette.lime800,
+      primary: palette.white,
+      promote: palette.violet800,
       linkHover: palette.white,
       linkVisited: palette.neutral700,
-      error: colors.error,
-      body: palette.black,
-      heading: {
-        '1': palette.black,
-        '2': palette.black,
-        '3': palette.black,
-        '4': palette.black,
-      },
-      header: palette.black,
-      footer: palette.black,
+      h1: palette.gray700,
+      h2: palette.gray700,
+      h3: palette.gray700,
+      h4: palette.gray700,
     },
     background: {
       body: palette.white,
@@ -123,118 +88,109 @@ export const tokens = {
     },
   },
   typography: {
-    fonts: {
-      heading: '"GDS Transport",arial,sans-serif',
-      body: '"GDS Transport",arial,sans-serif',
-      paragraphs: '"GDS Transport",arial,sans-serif',
-    },
-    fontMetrics: {
-      capHeight: 1456,
-      ascent: 1900,
-      descent: -500,
-      lineGap: 0,
-      unitsPerEm: 2048,
-    },
-    webFont: null,
+    fontFamily: 'arial,sans-serif',
+    fontMetrics: extractFontMetricsForTheme(arialMetfics),
+    webFont: null as unknown as string,
     fontWeight: {
       ...fontWeight,
     },
     heading: {
+      weight: {
+        weak: 'regular',
+        regular: 'medium',
+      } as const,
       level: {
         '1': {
           mobile: {
-            fontSize: 32,
-            rows: 10,
+            fontSize: 28,
+            lineGap: 11,
           },
           tablet: {
-            fontSize: 32,
-            rows: 21,
-          },
-          desktop: {
-            fontSize: 48,
-            rows: 21,
-          },
-          wide: {
-            fontSize: 60,
-            rows: 21,
+            fontSize: 36,
+            lineGap: 14,
           },
         },
         '2': {
           mobile: {
-            fontSize: 28,
-            rows: 9,
+            fontSize: 24,
+            lineGap: 11,
           },
           tablet: {
-            fontSize: 38,
-            rows: 13,
-          },
-          desktop: {
-            fontSize: 38,
-            rows: 13,
-          },
-          wide: {
-            fontSize: 38,
-            rows: 13,
+            fontSize: 30,
+            lineGap: 13,
           },
         },
         '3': {
           mobile: {
             fontSize: 22,
-            rows: 8,
+            lineGap: 10,
           },
           tablet: {
-            fontSize: 22,
-            rows: 8,
-          },
-          desktop: {
-            fontSize: 22,
-            rows: 8,
-          },
-          wide: {
-            fontSize: 22,
-            rows: 8,
+            fontSize: 24,
+            lineGap: 11,
           },
         },
         '4': {
           mobile: {
-            fontSize: 18,
-            rows: 8,
+            fontSize: 20,
+            lineGap: 9,
           },
           tablet: {
-            fontSize: 18,
-            rows: 8,
-          },
-          desktop: {
-            fontSize: 18,
-            rows: 8,
-          },
-          wide: {
-            fontSize: 18,
-            rows: 8,
+            fontSize: 20,
+            lineGap: 9,
           },
         },
       },
     },
     text: {
-      body: {
+      large: {
         mobile: {
-          fontSize: 16,
-          rows: 8,
+          fontSize: 19,
+          lineGap: 13,
         },
         tablet: {
+          fontSize: 22,
+          lineGap: 13,
+        },
+      },
+      standard: {
+        mobile: {
           fontSize: 16,
-          rows: 8,
+          lineGap: 10,
         },
-        desktop: {
+        tablet: {
           fontSize: 19,
-          rows: 8,
+          lineGap: 13,
         },
-        wide: {
-          fontSize: 19,
-          rows: 8,
+      },
+      small: {
+        mobile: {
+          fontSize: 14,
+          lineGap: 10,
+        },
+        tablet: {
+          fontSize: 17,
+          lineGap: 10,
+        },
+      },
+      xsmall: {
+        mobile: {
+          fontSize: 12,
+          lineGap: 9,
+        },
+        tablet: {
+          fontSize: 15,
+          lineGap: 9,
         },
       },
     },
+  },
+  touchableSize: 12,
+  contentWidth: {
+    xsmall: 400,
+    small: 660,
+    medium: 940,
+    large: 1308,
   },
   grid: 4,
   width: {
@@ -242,8 +198,8 @@ export const tokens = {
   },
   accessibility: {
     outlineWidth: '3px',
-    elementFocusColor: colors.notification,
-    accessibleOutlineColor: colors.notification,
+    elementFocusColor: palette.yellow400,
+    accessibleOutlineColor: palette.yellow400,
     outlineOffset: '0',
     linkFocusColor: palette.black,
     boxShadowColor: palette.black,
@@ -277,7 +233,6 @@ export const tokens = {
       hoverBackgroundColor: palette.green900,
       background: palette.green800,
       focusColor: palette.white,
-      color: palette.white,
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
@@ -286,10 +241,9 @@ export const tokens = {
     secondary: {
       borderWidth: '2px',
       borderColor: 'transparent',
-      background: colors.secondary,
+      background: palette.gray100,
       focusColor: palette.gray300,
       hoverBackgroundColor: palette.green800,
-      color: palette.black,
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,
@@ -298,10 +252,9 @@ export const tokens = {
     warning: {
       borderWidth: '2px',
       border: 'transparent',
-      background: colors.error,
+      background: palette.redError,
       focusColor: palette.red700,
       hoverBackgroundColor: palette.green800,
-      color: palette.white,
       marginTop: 0,
       padding: '8px 10px 7px',
       fontWeight: fontWeight.regular,

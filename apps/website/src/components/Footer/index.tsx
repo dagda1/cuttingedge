@@ -1,54 +1,46 @@
-import { footerPages } from '../../routes';
-import { NavLink } from 'react-router-dom';
-import { ExternalLink } from '@cutting/component-library';
-
-import * as styles from './Footer.css';
-import { Cow } from '../Svg/Cow';
-import { Github } from '../Svg/Github';
-import { Twitter } from '../Svg/Twitter';
+import { Column, Columns, TextLink, Inline, Stack, Text, PageBlock } from '@cutting/component-library';
+import cow from '~/assets/images/cow-logo-small2.png';
+import { footerPages } from '~/routes';
+import { TextNavLink } from '../TextNavLink/TextNavLink';
+import github from '~/assets/images/github.png';
+import twitter from '~/assets/images/twitter.png';
 
 export function Footer(): JSX.Element {
   return (
-    <>
-      <div className={styles.left}>
-        <div className={styles.logo}>
-          <div className={styles.logoContainer}>
-            <div>
-              <Cow />
-            </div>
-          </div>
-          <span className={styles.name}>Paul Cowan</span>
-        </div>
-        <div className={styles.links}>
-          <ul>
+    <PageBlock>
+      <Columns align="center" space="xsmall" alignY="top" collapseBelow="tablet">
+        <Column>
+          <Inline alignY="center">
+            <img src={cow} alt="cutting-edge cow logo" />
+            <Text component="span">Paul Cowan</Text>
+          </Inline>
+        </Column>
+        <Column>
+          <Stack space="medium">
             {footerPages.map((page) => (
-              <li key={page.path}>
-                <NavLink to={page.path}>{page.heading}</NavLink>
-              </li>
+              <TextNavLink key={page.path} to={page.path}>
+                {page.heading}
+              </TextNavLink>
             ))}
-          </ul>
-        </div>
-      </div>
-      <div className={styles.right}>
-        <div className={styles.contact}>
-          <div>
-            <ul className={styles.social}>
-              <li>
-                <ExternalLink href="https://github.com/dagda1" ariaLabel="Github profile">
-                  <Github />
-                </ExternalLink>
-              </li>
-              <li>
-                <ExternalLink href="https://twitter.com/dagda1" ariaLabel="twitter profile">
-                  <Twitter />
-                </ExternalLink>
-              </li>
-            </ul>
-            <ExternalLink href="mailto:paul.cowan@cutting.scot">paul.cowan@cutting.scot</ExternalLink>
-          </div>
-          <div className={styles.copyright}>Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</div>
-        </div>
-      </div>
-    </>
+          </Stack>
+        </Column>
+        <Column width="1/2">
+          <Stack space={{ mobile: 'xsmall', tablet: 'xxsmall' }}>
+            <Inline space="small" align={{ mobile: 'center', tablet: 'left' }} alignY="center">
+              <TextLink external href="mailto:paul.cowan@cutting.scot">
+                paul.cowan@cutting.scot
+              </TextLink>
+              <TextLink external href="https://github.com/dagda1" ariaLabel="Github profile">
+                <img src={github} alt="github" />
+              </TextLink>
+              <TextLink external href="https://twitter.com/dagda1" ariaLabel="twitter profile">
+                <img src={twitter} alt="twitter" />
+              </TextLink>
+            </Inline>
+            <Text size="xsmall">Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</Text>
+          </Stack>
+        </Column>
+      </Columns>
+    </PageBlock>
   );
 }

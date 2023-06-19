@@ -2,13 +2,6 @@ import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { keyframes, style } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css';
 
-// const getColour = (score: number) =>
-//   score < Math.ceil(topScore / 2)
-//     ? vars.colors.error
-//     : Math.ceil((topScore / 3) * 2)
-//     ? vars.colors.secondary
-//     : vars.colors.primary;
-
 export const donutFill = keyframes({
   to: {
     strokeDasharray: '0 100',
@@ -43,12 +36,12 @@ const isNegativeAndCircle: ComplexStyleRule = {
 
 export const donutFrame = style({
   ...frameAndCircle,
-  stroke: vars.colors.error,
+  stroke: vars.foregroundColor.critical,
 });
 
 export const donutCircle = style({
   ...frameAndCircle,
-  stroke: vars.colors.primary,
+  stroke: vars.buttons.primary.background,
   strokeLinecap: 'round',
   transform: 'rotate(-90deg)',
   transformOrigin: '50% 50%',

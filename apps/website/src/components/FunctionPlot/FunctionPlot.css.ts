@@ -1,11 +1,9 @@
-import { palette, responsiveStyle, vars } from '@cutting/component-library';
+import { palette, responsiveStyle } from '@cutting/component-library';
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style, globalStyle } from '@vanilla-extract/css';
 
 export const container = style({
-  paddingBottom: vars.space['2x'],
-  width: '100%',
-  height: '100%',
+  flex: 1,
 });
 
 globalStyle(`${container} text`, {
@@ -40,8 +38,8 @@ export const form = style({});
 
 globalStyle(`${form} button`, {
   height: '40px',
-  padding: '0',
-  width: vars.space['15x'],
+  padding: '0 10px',
+  color: '#ffffff !important',
 });
 
 globalStyle(`${form} fieldset > div`, {

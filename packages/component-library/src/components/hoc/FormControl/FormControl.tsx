@@ -6,6 +6,8 @@ import { prefixId } from '~/utl';
 import * as styles from './FormControl.css';
 import { ErrorMessage } from '~/components/atoms/ErrorMessage/ErrorMessage';
 import type { FormControlProps, FormElementFromComponent } from './types';
+import { Text } from '~/components/atoms/Text/Text';
+import { Stack } from '~/components/molecules/Stack/Stack';
 
 export function FormControl<P>(
   Comp: FunctionComponent<P>,
@@ -47,16 +49,24 @@ export function FormControl<P>(
             />
           )}
         </div>
-        <Label
-          id={`${internalId.current}-label`}
-          htmlFor={internalId.current}
-          required={required}
-          fontWeight={fontWeight}
-          dataSelector={`${dataSelector}-label`}
-        >
-          {label}
-          {additionalLabel && <span className={styles.label__additional}>{additionalLabel}</span>}
-        </Label>
+        <Stack space="small">
+          <Label
+            id={`${internalId.current}-label`}
+            htmlFor={internalId.current}
+            required={required}
+            fontWeight={fontWeight}
+            dataSelector={`${dataSelector}-label`}
+          >
+            {typeof label === 'string' ? (
+              <Text layout="inline" component="span">
+                {label}
+              </Text>
+            ) : (
+              label
+            )}
+            {additionalLabel && <Text className={styles.label__additional}>{additionalLabel}</Text>}
+          </Label>
+        </Stack>
 
         <div className={styles.wrapper}>
           <Comp

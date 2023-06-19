@@ -1,19 +1,22 @@
-import type { PropsWithChildren, ReactElement, ReactNode, RefObject } from 'react';
+import type { PropsWithChildren, ReactElement, RefObject } from 'react';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
 import { cuttingTheme } from '~/style/themes/cutting/cutting.css';
 import * as styles from './ApplicationLayout.css';
 import { isNil } from '@cutting/util';
-import { consultingTheme } from '~/style/themes/consulting/consultingTheme.css';
 import { salesTheme } from '~/style/themes/sales/salesTheme.css';
 import { defaultTheme } from '~/style/themes/default/default.css';
 import { supportTheme } from '~/style/themes/support/supportTheme.css';
+import { Heading } from '~/components/atoms/Heading/Heading';
+import type { ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
+import type { ResponsiveAtomicProperties } from '~/style/atoms/sprinkles.css';
+import { Box } from '~/components/molecules/Box/Box';
+import { PageBlock } from '../PageBlock/PageBlock';
 
 export const themes = {
   defaultTheme,
   cuttingTheme,
-  consultingTheme,
   salesTheme,
   supportTheme,
 } as const;
@@ -22,21 +25,24 @@ export type ThemeKeys = keyof typeof themes;
 
 export const Themes = Object.keys(themes) as ThemeKeys[];
 
-type Layout = 'RESPONSIVE' | 'FULL';
+type ContainerBoxPropsKeys = keyof Pick<ResponsiveAtomicProperties['styles'], 'justifyContent' | 'alignItems'>;
 
-export interface ApplicationLayoutProps {
-  heading?: string | JSX.Element;
+export type ContainerBoxProps = Partial<{
+  [K in ContainerBoxPropsKeys]: keyof ResponsiveAtomicProperties['styles'][K]['values'];
+}>;
+
+export type ApplicationLayoutProps = {
+  heading?: string;
   className?: string;
   footer?: ReactElement;
   header?: ReactElement;
   innerRef?: RefObject<HTMLElement>;
-  children: ReactNode;
+  children: ReactNodeNoStrings;
   headerAriaLabel?: string;
   theme: keyof typeof themes;
-  layout?: Layout;
   centerHeading?: boolean;
   center?: boolean;
-}
+} & ContainerBoxProps;
 
 function ApplicationLayoutHeading({
   heading,
@@ -46,7 +52,13 @@ function ApplicationLayoutHeading({
     return null;
   }
 
-  return typeof heading === 'string' ? <h1 className={cs({ [styles.centerHeading]: center })}>{heading}</h1> : heading;
+  return (
+    <PageBlock>
+      <Heading level="1" center={center}>
+        {heading}
+      </Heading>
+    </PageBlock>
+  );
 }
 
 export function ApplicationLayout({
@@ -60,21 +72,24 @@ export function ApplicationLayout({
   theme,
   centerHeading = false,
   center = false,
-  layout = 'RESPONSIVE',
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
   const currentTheme = themes[theme];
 
   return (
-    <div className={cs(styles.container, currentTheme)}>
-      <header role="banner" className={cs(styles.header, { [styles.hidden]: !header })} aria-label={headerAriaLabel}>
-        <div className={styles.size}>{header}</div>
-      </header>
+    <Box
+      paddingBottom={{ mobile: 'small', tablet: 'medium' }}
+      paddingX={{ mobile: 'xxsmall', tablet: 'medium' }}
+      className={cs(styles.container, currentTheme)}
+    >
+      {header && (
+        <header role="banner" className={cs(styles.header)} aria-label={headerAriaLabel}>
+          <div>{header}</div>
+        </header>
+      )}
       <main
-        className={cs(styles.body, className, {
-          [styles.size]: layout === 'RESPONSIVE',
-          [styles.full]: layout === 'FULL',
+        className={cs(styles.main, className, {
           [styles.headingAndBodyLayout]: isNil(heading) === false,
-          [styles.bodyOnlyLayout]: isNil(heading),
+          [styles.bodyOnlyLayout]: isNil(heading) && isNil(footer),
           [styles.center]: center,
         })}
         ref={innerRef}
@@ -82,10 +97,12 @@ export function ApplicationLayout({
         <ApplicationLayoutHeading heading={heading} center={centerHeading} />
         {children}
       </main>
-      <footer role="contentinfo" className={cs(styles.footer, styles.size, { [styles.hidden]: !header }, styles.size)}>
-        {footer}
-      </footer>
-    </div>
+      {footer && (
+        <footer role="contentinfo" className={styles.footer}>
+          {footer}
+        </footer>
+      )}
+    </Box>
   );
 }
 

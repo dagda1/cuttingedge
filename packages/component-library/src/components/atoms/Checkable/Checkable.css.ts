@@ -1,10 +1,9 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css';
-import { responsiveTextStyleRule } from '~/style/typography/typography.css';
 
 export const item = style({
   position: 'relative',
-  fontWeight: vars.fontWeight.regular,
+  fontWeight: vars.textWeight.regular,
   display: 'flex',
   alignItems: 'center',
   minHeight: '40px',
@@ -26,9 +25,9 @@ globalStyle(`${item} input`, {
 });
 
 globalStyle(`${item} label`, {
-  ...responsiveTextStyleRule.body,
-  fontWeight: vars.fontWeight.regular,
-  paddingLeft: vars.space['1x'],
+  // ...responsiveTextStyleRule.body,
+  fontWeight: vars.textWeight.regular,
+  paddingLeft: vars.space['xxsmall'],
   display: 'inline-block',
   touchAction: 'manipulation',
   boxSizing: 'border-box',
@@ -77,7 +76,7 @@ globalStyle(`${item} input[type="radio"] + label:after`, {
 });
 
 globalStyle(`${item} input:focus + label:before`, {
-  borderWidth: '4px',
+  borderWidth: vars.space['xxsmall'],
   boxShadow: `0 0 0 4px ${vars.accessibility.accessibleOutline.backgroundColor} !important`,
 });
 
@@ -102,12 +101,17 @@ export const inline = style([
   },
 ]);
 
+globalStyle(`${item}${small}:not(${inline})`, {
+  marginBottom: 0,
+});
+
 globalStyle(`${inline}:not(${small}) label`, {
-  marginRight: vars.space['1x'],
-  marginTop: '4px',
+  marginRight: vars.space['xsmall'],
+  marginLeft: vars.space['xxsmall'],
+  marginTop: vars.space['xxsmall'],
 });
 
 globalStyle(`${inline}${small} label`, {
   paddingLeft: 0,
-  marginTop: '4px',
+  marginTop: vars.space['xxsmall'],
 });

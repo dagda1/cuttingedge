@@ -1,7 +1,6 @@
 /* eslint-disable react/display-name */
 import { defaultTheme } from '../../style/themes/default/default.css';
 import { cuttingTheme } from '../../style/themes/cutting/cutting.css';
-import { consultingTheme } from '../../style/themes/consulting/consultingTheme.css';
 import { salesTheme } from '../../style/themes/sales/salesTheme.css';
 import type { StoryObj } from '@storybook/react';
 import type { FunctionComponent } from 'react';
@@ -11,7 +10,6 @@ import * as styles from './Stories.css';
 const themes = {
   defaultTheme,
   cuttingTheme,
-  consultingTheme,
   salesTheme,
 } as const;
 

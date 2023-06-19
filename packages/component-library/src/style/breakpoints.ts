@@ -1,13 +1,18 @@
+import { mapValues, omit } from '@cutting/util';
+
 export const breakpoints = {
   mobile: 0,
   tablet: 740,
   desktop: 992,
-  wide: 1500,
+  wide: 1550,
+  extraWide: 1900,
 } as const;
+
+export const breakpointQuery = mapValues(omit(breakpoints, 'mobile'), (bp) => `screen and (min-width: ${bp}px)`);
 
 export type Breakpoint = keyof typeof breakpoints;
 
-export const breakpointNames = ['mobile', 'tablet', 'desktop', 'wide'] as const;
+export const breakpointNames = ['mobile', 'tablet', 'desktop', 'wide', 'extraWide'] as const;
 
 export interface Dimensions {
   width: number;
@@ -27,5 +32,9 @@ export function getCurrentBreakpoint({ width }: Dimensions): Breakpoint {
     return 'desktop';
   }
 
-  return 'wide';
+  if (width < breakpoints.extraWide) {
+    return 'wide';
+  }
+
+  return 'extraWide';
 }

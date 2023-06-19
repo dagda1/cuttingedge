@@ -3,29 +3,32 @@ import { mapValues } from '@cutting/util';
 import type { Tokens } from './tokens';
 import { tokens as defaultTokens } from './tokens';
 import deepmerge from 'deepmerge';
-import type { FontMetrics } from '@capsizecss/core';
 import { getCapHeight } from '@capsizecss/core';
 import { precomputeValues } from '@capsizecss/vanilla-extract';
 import colors from 'tailwindcss/colors';
 import type { Breakpoint } from '../breakpoints';
+import type { FontMetricsForTheme } from '../util/typography';
 
 const scaleCreator = (scale: 'px' | 'rem') => (v: string | number) => `${v}${scale}`;
 
 const px = scaleCreator('px');
 
-type FontSizeText = {
-  fontSize: number;
-  rows: number;
-};
+type FontSizeText =
+  | {
+      fontSize: number;
+      rows: number;
+    }
+  | {
+      fontSize: number;
+      lineGap: number;
+    };
 
-export type TextDefinition = Record<Breakpoint, FontSizeText>;
+export type TextBreakpoint = Extract<Breakpoint, 'mobile' | 'tablet'>;
 
-const fontSizeToCapHeight = (
-  grid: number,
-  definition: TextDefinition,
-  fontMetrics: Omit<FontMetrics, 'familyName' | 'xHeight' | 'xWidthAvg'>,
-) => {
-  const { mobile, tablet, desktop, wide } = definition;
+export type TextDefinition = Record<TextBreakpoint, FontSizeText>;
+
+const fontSizeToCapHeight = (grid: number, definition: TextDefinition, fontMetrics: FontMetricsForTheme) => {
+  const { mobile, tablet } = definition;
 
   const mobileCapHeight = getCapHeight({
     fontSize: mobile.fontSize,
@@ -37,23 +40,34 @@ const fontSizeToCapHeight = (
     fontMetrics,
   });
 
-  const desktopCapHeight = getCapHeight({
-    fontSize: desktop.fontSize,
-    fontMetrics,
-  });
+  const mobileConfig =
+    'lineGap' in mobile
+      ? {
+          fontSize: mobile.fontSize,
+          lineGap: mobile.lineGap,
+        }
+      : {
+          fontSize: mobile.fontSize,
+          leading: mobile.rows * grid,
+        };
 
-  const wideCapHeight = getCapHeight({
-    fontSize: wide.fontSize,
-    fontMetrics,
-  });
+  const tabletConfig =
+    'lineGap' in tablet
+      ? {
+          fontSize: tablet.fontSize,
+          lineGap: tablet.lineGap,
+        }
+      : {
+          fontSize: tablet.fontSize,
+          leading: tablet.rows * grid,
+        };
 
   const {
     fontSize: mobileFontSize,
     lineHeight: mobileLineHeight,
     ...mobileTrims
   } = precomputeValues({
-    fontSize: mobile.fontSize,
-    leading: mobile.rows * grid,
+    ...mobileConfig,
     fontMetrics,
   });
 
@@ -62,28 +76,7 @@ const fontSizeToCapHeight = (
     lineHeight: tabletLineHeight,
     ...tabletTrims
   } = precomputeValues({
-    fontSize: tablet.fontSize,
-    leading: tablet.rows * grid,
-    fontMetrics,
-  });
-
-  const {
-    fontSize: desktopFontSize,
-    lineHeight: desktopLineHeight,
-    ...desktopTrims
-  } = precomputeValues({
-    fontSize: desktop.fontSize,
-    leading: desktop.rows * grid,
-    fontMetrics,
-  });
-
-  const {
-    fontSize: wideFontSize,
-    lineHeight: wideLineHeight,
-    ...wideTrims
-  } = precomputeValues({
-    fontSize: wide.fontSize,
-    leading: wide.rows * grid,
+    ...tabletConfig,
     fontMetrics,
   });
 
@@ -104,64 +97,45 @@ const fontSizeToCapHeight = (
         ...tabletTrims,
       },
     },
-    desktop: {
-      fontSize: desktopFontSize,
-      lineHeight: desktopLineHeight,
-      capHeight: px(desktopCapHeight),
-      capsizeTrims: {
-        ...desktopTrims,
-      },
-    },
-    wide: {
-      fontSize: wideFontSize,
-      lineHeight: wideLineHeight,
-      capHeight: px(wideCapHeight),
-      capsizeTrims: {
-        ...wideTrims,
-      },
-    },
   };
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
   const { ...tokens } = deepmerge(defaultTokens, customTokens) as Tokens;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { webFont, ...typography } = tokens.typography;
   const { foreground, background } = tokens.color;
 
+  const textSize = mapValues(tokens.typography.text, (definition) =>
+    fontSizeToCapHeight(tokens.grid, definition, typography.fontMetrics),
+  );
+
   const resolvedTokens = {
+    touchableSize: px(tokens.touchableSize * tokens.grid),
+    grid: px(tokens.grid),
     borderRadius: tokens.border.radius,
     borderColor: tokens.border.color,
     borderWidth: mapValues(tokens.border.width, px),
     foregroundColor: foreground,
-    backgroundColor: {
-      ...background,
-    },
-    fontFamily: {
-      ...tokens.typography.fonts,
-    },
-    colors: {
-      ...tokens.colors,
-    },
-    fontWeight: mapValues(tokens.typography.fontWeight, String),
+    backgroundColor: background,
+    fontFamily: typography.fontFamily,
+    textWeight: mapValues(tokens.typography.fontWeight, String),
     inlineFieldSize: {
       standard: '2.5rem',
       small: '1.25rem',
     },
-    space: {
-      ...tokens.space,
-    },
-    width: {
-      ...tokens.width,
-    },
-    inputWidth: {
-      ...tokens.inputWidth,
-    },
+    space: mapValues(tokens.space, (sp) => px(sp * tokens.grid)),
+    width: tokens.width,
+    inputWidth: tokens.inputWidth,
+    textSize,
     headingLevel: mapValues(tokens.typography.heading.level, (definition) =>
       fontSizeToCapHeight(tokens.grid, definition, tokens.typography.fontMetrics),
     ),
-    text: mapValues(tokens.typography.text, (definition) =>
-      fontSizeToCapHeight(tokens.grid, definition, tokens.typography.fontMetrics),
-    ),
+    headingWeight: {
+      weak: String(tokens.typography.fontWeight[tokens.typography.heading.weight.weak]),
+      regular: String(tokens.typography.fontWeight[tokens.typography.heading.weight.regular]),
+    },
     accessibility: {
       visibleFocus: {
         outline: `${tokens.accessibility.outlineWidth} solid ${tokens.accessibility.elementFocusColor}`,
@@ -201,7 +175,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         borderBottomColor: tokens.buttons.primary.borderBottomColor,
         borderBottomWidth: '2px',
         background: tokens.buttons.primary.background,
-        color: tokens.buttons.primary.color,
         padding: tokens.buttons.primary.padding,
         ':hover': {
           background: tokens.buttons.primary.focusColor,
@@ -212,7 +185,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
         borderBottomColor: tokens.buttons.secondary.borderBottomColor,
         borderBottomWidth: '2px',
         background: tokens.buttons.secondary.background,
-        color: tokens.buttons.secondary.color,
         padding: tokens.buttons.secondary.padding,
         ':hover': {
           background: tokens.buttons.secondary.focusColor,
@@ -221,7 +193,6 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
       warning: {
         border: `${tokens.buttons.warning.borderWidth} solid ${tokens.buttons.warning.borderWidth}`,
         background: tokens.buttons.warning.background,
-        color: tokens.buttons.warning.color,
         padding: tokens.buttons.secondary.padding,
         ':hover': {
           background: tokens.buttons.warning.focusColor,
@@ -231,6 +202,7 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     radios: {
       ...tokens.radios,
     },
+    contentWidth: mapValues(tokens.contentWidth, px),
     transition: tokens.transitions,
   };
 

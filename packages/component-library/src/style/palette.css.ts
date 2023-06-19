@@ -49,6 +49,7 @@ export const palette: Record<string, string> = {
   neutral700: neutral['700'],
   neutral800: neutral['800'],
   neutral900: neutral['900'],
+  neutral950: neutral['950'],
 
   teal50: teal['50'],
   teal100: teal['100'],

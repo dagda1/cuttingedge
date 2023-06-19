@@ -1,31 +1,13 @@
-import { palette, responsiveStyle } from '@cutting/component-library';
+import { palette } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
-
-export const container = style({
-  display: 'flex',
-  flexDirection: 'column',
-});
 
 export const icon = style({
   width: '50px',
 });
 
-export const repos = style({
-  display: 'grid',
-  gap: '1rem',
-  ...responsiveStyle({
-    mobile: {},
-    tablet: {
-      gridTemplateColumns: 'repeat(2, 1fr)',
-    },
-    desktop: {
-      gridTemplateColumns: 'repeat(4, 1fr)',
-    },
-  }),
-});
-
 export const repo = style({
   width: '100%',
+  height: '100%',
 });
 
 globalStyle(`${repo} a`, {
@@ -43,12 +25,4 @@ globalStyle(`${repo} a`, {
 
 globalStyle(`${repo} a:hover`, {
   borderColor: palette.white,
-});
-
-export const communityList = style({});
-
-globalStyle(`${communityList} li`, {});
-
-globalStyle(`${communityList} a`, {
-  textDecoration: 'underline',
 });

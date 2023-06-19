@@ -8,6 +8,6 @@ export const root = style([
     width: '50%',
   },
   atoms({
-    padding: '2x',
+    padding: 'xsmall',
   }),
 ]);

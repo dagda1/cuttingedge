@@ -6,14 +6,14 @@ export interface Repo {
 
 export const repos: Repo[] = [
   {
-    name: '@cutting/react-abortable-fetch',
-    description: 'The useQuery I needed',
-    link: 'https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch',
+    name: 'backstage',
+    description: 'Active contributor to backstage',
+    link: 'https://github.com/backstage/backstage/pulls?q=is%3Apr+author%3A%40me+is%3Amerged',
   },
   {
-    name: 'use-shortcuts',
-    description: 'Effortlessly create keyboard shortcuts with this react hook.',
-    link: 'https://github.com/dagda1/cuttingedge/tree/main/packages/use-shortcuts',
+    name: 'use-get-parent-size',
+    description: `Get resize events of an observed DOM element's height, width etc. from a resize-observer.`,
+    link: 'https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch',
   },
   {
     name: 'use-mathjax',
@@ -21,8 +21,8 @@ export const repos: Repo[] = [
     link: 'https://github.com/dagda1/cuttingedge/tree/main/packages/use-mathjax',
   },
   {
-    name: 'bigtest',
-    description: 'Active contributor to bigtest',
-    link: 'https://github.com/thefrontside/bigtest/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1',
+    name: 'use-shortcuts',
+    description: 'Effortlessly create keyboard shortcuts with this react hook.',
+    link: 'https://github.com/dagda1/cuttingedge/tree/main/packages/use-shortcuts',
   },
 ];

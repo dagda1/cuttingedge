@@ -1,5 +1,5 @@
 import { globalStyle, keyframes, style } from '@vanilla-extract/css';
-import { responsiveStyle } from '@cutting/component-library';
+import { responsiveStyle, vars } from '@cutting/component-library';
 
 const spinY = keyframes({
   from: {
@@ -76,6 +76,7 @@ globalStyle(`${shape} div:after`, {
   textTransform: 'uppercase',
   left: '50%',
   transform: 'translateX(-50%)',
+  fontFamily: vars.fontFamily,
 });
 
 export const front = style({

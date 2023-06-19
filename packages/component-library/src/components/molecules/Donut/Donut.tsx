@@ -1,6 +1,7 @@
 import * as styles from './Donut.css';
 import cs from 'classnames';
 import { useMemo, useRef } from 'react';
+import { Strong } from '~/components/atoms/Strong/Strong';
 
 export function Donut({ score, size = 34 }: { score: number; size?: number }): JSX.Element {
   const halfSize = useRef(size / 2);
@@ -29,7 +30,7 @@ export function Donut({ score, size = 34 }: { score: number; size?: number }): J
       </svg>
 
       <div className={styles.donutText}>
-        <strong>{score}%</strong>
+        <Strong>{score}%</Strong>
       </div>
     </div>
   );

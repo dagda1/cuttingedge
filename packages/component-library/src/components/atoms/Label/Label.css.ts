@@ -1,12 +1,11 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css';
-import { responsiveText } from '~/style/typography/typography.css';
 
 export const root = style([
-  responsiveText.body.untrimmed,
+  // responsiveText.body.untrimmed,
   {
     display: 'block',
-    fontWeight: vars.fontWeight.regular,
+    fontWeight: vars.textWeight.regular,
     lineHeight: '1.31579',
   },
 ]);
@@ -21,10 +20,10 @@ export const invalid = style({
 export const required = style({
   '::before': {
     content: "'*'",
-    marginRight: vars.space['1x'],
+    marginRight: vars.space['xxsmall'],
   },
 });
 
 export const strong = style({
-  fontWeight: vars.fontWeight.strong,
+  fontWeight: vars.textWeight.strong,
 });

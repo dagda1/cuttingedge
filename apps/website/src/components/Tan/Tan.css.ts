@@ -9,7 +9,7 @@ export const container = style({
       paddingRight: 0,
     },
     tablet: {
-      paddingRight: vars.space['4x'],
+      paddingRight: vars.space['medium'],
     },
   }),
 });
@@ -21,7 +21,7 @@ globalStyle(`${container} h1`, {
 globalStyle(`${container} section`, {
   ...responsiveStyle({
     mobile: {
-      marginTop: vars.space['8x'],
+      marginTop: vars.space['large'],
     },
     tablet: {
       marginTop: 0,
@@ -32,10 +32,10 @@ globalStyle(`${container} section`, {
 globalStyle(`${container} tspan`, {
   ...responsiveStyle({
     mobile: {
-      fontSize: '0.75rem',
+      // fontSize: '0.75rem',
     },
     tablet: {
-      fontSize: '1rem',
+      // fontSize: '1rem',
     },
   }),
   fill: palette.white,

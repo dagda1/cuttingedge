@@ -10,7 +10,7 @@ describe('Button', () => {
   it('should render a button and text', () => {
     const { getByText } = wrap();
 
-    const button = getByText('Click Me!') as HTMLButtonElement;
+    const button = getByText('Click Me!').parentElement as HTMLButtonElement;
 
     expect(button.type).toBe('button');
   });

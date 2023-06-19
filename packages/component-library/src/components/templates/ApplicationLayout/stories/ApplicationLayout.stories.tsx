@@ -31,7 +31,7 @@ export default {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Template: ComponentStory<typeof ApplicationLayout> = ({ theme, children, ...rest }: any) => {
   return (
-    <ApplicationLayout theme={theme} className={atoms({ padding: '3x' })} {...rest}>
+    <ApplicationLayout theme={theme} className={atoms({ padding: 'xsmall' })} {...rest}>
       {children}
     </ApplicationLayout>
   );
