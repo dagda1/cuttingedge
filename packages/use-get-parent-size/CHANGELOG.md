@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.1.3
+
+### Patch Changes
+
+- 7058f9e4: useIsomorphicLayoutEffect
+
 ## 2.1.2
 
 ### Patch Changes

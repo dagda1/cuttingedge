@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.40.0
+
+### Minor Changes
+
+- 1703a12d: update responsive breakpoints
+
 ## 5.39.2
 
 ### Patch Changes
