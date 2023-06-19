@@ -71,9 +71,11 @@
     "vite-tsconfig-paths": "4.2.0"
   },
   "peerDependencies": {
+    "hamburger-react": "^2.x.x",
     "react": ">= 18.x.x",
     "react-dom": ">= 18.x.x",
-    "react-router": ">= 6.x.x"
+    "react-router": ">= 6.x.x",
+    "react-is": ">= 18.x.x"
   },
   "volta": {
     "extends": "../../package.json"

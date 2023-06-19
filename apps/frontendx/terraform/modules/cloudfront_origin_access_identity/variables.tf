@@ -1,3 +1,0 @@
-variable "comment" {
-  type = string
-}
