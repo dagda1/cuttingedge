@@ -83,10 +83,5 @@
         "dist/esm/index.d.ts"
       ]
     }
-  },
-  "pnpm": {
-    "overrides": {
-      "cross-fetch@<3.1.5": ">=3.1.5"
-    }
   }
 }

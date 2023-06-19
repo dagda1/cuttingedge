@@ -1,5 +1,7 @@
 import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 import MDX from '@next/mdx';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const withMDX = MDX({
   extension: /\.mdx?$/,
@@ -55,8 +57,11 @@ const securityHeaders = [
 
 const withVanillaExtract = createVanillaExtractPlugin();
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 /** @type {import('next').NextConfig}*/
 const nextConfig = {
+  output: 'standalone',
   async headers() {
     return isProduction
       ? [
@@ -74,8 +79,13 @@ const nextConfig = {
   poweredByHeader: false,
   compress: false,
   swcMinify: true,
+  reactStrictMode: true,
+  productionBrowserSourceMaps: true,
   experimental: {
     appDir: false,
+    outputFileTracingRoot: path.join(__dirname, '../../'),
+    esmExternals: true,
+    externalDir: true,
   },
 };
 

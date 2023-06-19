@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import * as styles from './Layout.css';
 import { ApplicationLayout } from '@cutting/component-library';
-import { TopNav } from '../TopNav/TopNav';
+// import { TopNav } from '../TopNav/TopNav';
 import cs from 'classnames';
-import { Footer } from '../Footer/Footer';
+// import { Footer } from '../Footer/Footer';
 import { useRouter } from 'next/router';
 
 interface LayoutProps {
@@ -54,8 +54,8 @@ export function Layout({
       </Head>
       <ApplicationLayout
         theme="salesTheme"
-        header={<TopNav />}
-        footer={<Footer />}
+        // header={<TopNav />}
+        // footer={<Footer />}
         center
         className={cs(styles.layout, className)}
       >

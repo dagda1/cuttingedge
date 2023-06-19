@@ -41,13 +41,13 @@ export function Development({ nextPage, children }: StepComponent): JSX.Element 
           features.
         </Text>
       </Testimonial>
-      <Text component="p">
+      <p>
         One survey found that developers only{' '}
         <TextLink external href="https://services.google.com/fh/files/misc/state-of-devops-2018.pdf">
           spent 30-40%
         </TextLink>{' '}
         of their time on feature development.
-      </Text>
+      </p>
       <Text component="p">
         Improving the overall developer experience is essential to increasing your team&apos;s productivity and morale.
       </Text>
