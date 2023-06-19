@@ -73,6 +73,10 @@ const nextConfig = {
   assetPrefix: isProduction ? CDN : undefined,
   poweredByHeader: false,
   compress: false,
+  swcMinify: true,
+  experimental: {
+    appDir: false,
+  },
 };
 
 export default withVanillaExtract(withMDX(nextConfig));

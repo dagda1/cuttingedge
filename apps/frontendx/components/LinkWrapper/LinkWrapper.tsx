@@ -46,7 +46,7 @@ export function LinkWrapper({ className, linkType, as, onClick, ...props }: Link
     [onClick, props.href],
   );
   return (
-    <Link href={props.href} as={as} passHref>
+    <Link href={props.href} as={as} passHref legacyBehavior>
       <Tag onClick={clickHandler} {...props} className={cs(styles.root, className)} />
     </Link>
   );

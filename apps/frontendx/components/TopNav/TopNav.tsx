@@ -20,15 +20,13 @@ export function TopNav(): JSX.Element {
     <Nav>
       <NavItems>
         <NavItem display="Always">
-          <Link href="/" passHref>
-            <a>
-              <ResponsiveImage
-                mobile={{ src: getImageSrc('/frontenddx_mobile.png'), dimensions: { width: 160, height: 40 } }}
-                tablet={{ src: getImageSrc('/frontenddx_tablet.png'), dimensions: { width: 268, height: 67 } }}
-                src={getImageSrc('/frontenddx_tablet.png')}
-                alt="cutting-edge logo"
-              />
-            </a>
+          <Link href="/">
+            <ResponsiveImage
+              mobile={{ src: getImageSrc('/frontenddx_mobile.png'), dimensions: { width: 160, height: 40 } }}
+              tablet={{ src: getImageSrc('/frontenddx_tablet.png'), dimensions: { width: 268, height: 67 } }}
+              src={getImageSrc('/frontenddx_tablet.png')}
+              alt="cutting-edge logo"
+            />
           </Link>
         </NavItem>
         <NavItem display="Always">
