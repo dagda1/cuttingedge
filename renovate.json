@@ -8,6 +8,9 @@
   "requiredStatusChecks": [],
   "timezone": "Europe/Dublin",
   "schedule": ["before 8am every weekend"],
+  "lockFileMaintenance": {
+    "enabled": false
+  },
   "packageRules": [
     {
       "packageNames": ["node", "pnpm"],

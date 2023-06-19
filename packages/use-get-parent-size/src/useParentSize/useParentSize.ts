@@ -5,7 +5,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 import { useDebouncedCallback } from 'use-debounce';
 import { identity, isNil } from './util';
 import { assert } from 'assert-ts';
-import { useLayoutEffect } from 'react';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 const initialContentRect: Partial<ResizeObserverContentRect> = {
   bottom: undefined,
@@ -52,7 +52,7 @@ export const useParentSize = <E extends Element>(
 
   const refElement = ref.current;
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (isNil(refElement)) {
       if (rerenderCount.current > 10) {
         throw new Error('Maximum rerender count and no refElement Found');

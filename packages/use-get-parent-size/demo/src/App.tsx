@@ -1,6 +1,6 @@
 import '@cutting/component-library/styles.css';
 import { ApplicationLayout } from '@cutting/component-library';
-import { useLayoutEffect, useRef } from 'react';
+import { useRef } from 'react';
 import {
   Scene,
   BoxGeometry,
