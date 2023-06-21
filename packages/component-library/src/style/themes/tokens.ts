@@ -80,10 +80,6 @@ export const tokens = {
     },
     background: {
       body: palette.white,
-      heading: palette.white,
-      header: palette.white,
-      footer: palette.white,
-      input: palette.white,
       focus: palette.blue100,
     },
   },

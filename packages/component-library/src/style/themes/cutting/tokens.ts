@@ -32,9 +32,6 @@ export const tokens: DeepPartial<Tokens> = {
     },
     background: {
       body: 'transparent',
-      heading: 'transparent',
-      header: 'transparent',
-      footer: 'transparent',
     },
   },
   typography: {

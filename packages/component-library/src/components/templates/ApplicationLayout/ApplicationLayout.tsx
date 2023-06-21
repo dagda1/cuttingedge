@@ -9,10 +9,10 @@ import { salesTheme } from '~/style/themes/sales/salesTheme.css';
 import { defaultTheme } from '~/style/themes/default/default.css';
 import { supportTheme } from '~/style/themes/support/supportTheme.css';
 import { Heading } from '~/components/atoms/Heading/Heading';
-import type { ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
+import { type ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
 import type { ResponsiveAtomicProperties } from '~/style/atoms/sprinkles.css';
 import { Box } from '~/components/molecules/Box/Box';
-import { PageBlock } from '../PageBlock/PageBlock';
+import { ContentBlock } from '../ContentBlock/ContentBlock';
 
 export const themes = {
   defaultTheme,
@@ -53,11 +53,13 @@ function ApplicationLayoutHeading({
   }
 
   return (
-    <PageBlock>
-      <Heading level="1" center={center}>
-        {heading}
-      </Heading>
-    </PageBlock>
+    <Box marginY={{ mobile: 'small', desktop: 'large' }}>
+      <ContentBlock>
+        <Heading level="1" center={center}>
+          {heading}
+        </Heading>
+      </ContentBlock>
+    </Box>
   );
 }
 
@@ -77,7 +79,7 @@ export function ApplicationLayout({
 
   return (
     <Box
-      paddingBottom={{ mobile: 'small', tablet: 'medium' }}
+      paddingBottom={{ mobile: 'medium', tablet: 'large' }}
       paddingX={{ mobile: 'xxsmall', tablet: 'medium' }}
       className={cs(styles.container, currentTheme)}
     >

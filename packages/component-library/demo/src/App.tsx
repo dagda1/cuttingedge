@@ -15,6 +15,7 @@ import {
   ContentBlock,
   Columns,
   Column,
+  Hamburger,
 } from '../../src';
 import { Button } from '../../src/components/atoms/Button/Button';
 import { RadioGroup } from '../../src/components/molecules/RadioGroup/RadioGroup';
@@ -22,12 +23,14 @@ import type { ThemeKeys } from '../../src/components/templates/ApplicationLayout
 import { ApplicationLayout } from '../../src/components/templates/ApplicationLayout/ApplicationLayout';
 
 export function App(): JSX.Element {
-  const [theme, setTheme] = useState<ThemeKeys>('salesTheme');
+  const [theme, setTheme] = useState<ThemeKeys>('supportTheme');
+  const [open, setOpen] = useState(false);
 
   return (
     <ApplicationLayout theme={theme} className={styles.background} heading="cutting component library">
       <Stack space="large">
         <ContentBlock width="large">
+          <Hamburger open={open} setOpen={setOpen} variant={theme === 'defaultTheme' ? 'dark' : 'light'} />
           <RadioGroup<ThemeKeys>
             legend="Choose theme"
             legendMode="visible"
@@ -49,11 +52,11 @@ export function App(): JSX.Element {
               {
                 value: 'salesTheme',
                 content: 'sales',
-                checked: true,
               },
               {
                 value: 'supportTheme',
                 content: 'support',
+                checked: true,
               },
             ]}
           />

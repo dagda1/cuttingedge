@@ -63,6 +63,7 @@ export { Box, type BoxProps } from './components/molecules/Box/Box';
 export { Inline } from './components/molecules/Inline/Inline';
 export { List } from './components/molecules/List/List';
 export { Divider } from './components/molecules/Divider/Divider';
+export { Hamburger } from './components/molecules/Hamburger/Hamburger';
 export * from './components/molecules/Nav';
 
 export { ResponsiveImage } from './components/molecules/ResponsiveImage/ResponsiveImage';

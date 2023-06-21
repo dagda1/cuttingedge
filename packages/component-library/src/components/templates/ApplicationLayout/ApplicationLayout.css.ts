@@ -20,7 +20,7 @@ globalStyle('html, body', {
 
 globalStyle('body', {
   color: vars.foregroundColor.neutral,
-  background: vars.backgroundColor.body,
+  backgroundColor: vars.backgroundColor.body,
 });
 
 globalStyle('#root', {

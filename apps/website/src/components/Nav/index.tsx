@@ -16,7 +16,7 @@ export interface MenuState {
 export function Menu(): JSX.Element {
   return (
     <>
-      <Nav>
+      <Nav hamburgerVariant="light">
         <NavItems>
           <NavItem display="Always">
             <NavLink aria-label="home" to={urls.Home}>

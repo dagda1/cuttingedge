@@ -31,9 +31,6 @@ export const tokens: DeepPartial<Tokens> = {
     },
     background: {
       body: palette.black,
-      header: palette.black,
-      heading: palette.black,
-      footer: palette.black,
     },
   },
   typography: {
@@ -91,11 +88,11 @@ export const tokens: DeepPartial<Tokens> = {
     text: {
       large: {
         mobile: {
-          fontSize: 96,
+          fontSize: 30,
           lineGap: 30,
         },
         tablet: {
-          fontSize: 128,
+          fontSize: 48,
           lineGap: 24,
         },
       },

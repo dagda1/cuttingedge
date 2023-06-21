@@ -2,10 +2,11 @@ import type { ReactElement } from 'react';
 import { Children, Fragment, useMemo, useState } from 'react';
 import * as styles from './Nav.css';
 import cs from 'classnames';
-// import Hamburger from 'hamburger-react';
 import type { NavItemProps } from './NavItem';
 import { NavItems } from './NavItems';
 import { Box, type BoxProps } from '../Box/Box';
+import type { HamburgerVariants } from '../Hamburger/Hamburger';
+import { Hamburger } from '../Hamburger/Hamburger';
 
 export interface MenuState {
   isExpanded: boolean;
@@ -13,6 +14,7 @@ export interface MenuState {
 
 type NavProps = Pick<BoxProps, 'width' | 'display' | 'justifyContent' | 'alignItems' | 'className'> & {
   children: ReactElement<NavItemProps>;
+  hamburgerVariant?: HamburgerVariants;
 };
 
 export function Nav({
@@ -20,9 +22,10 @@ export function Nav({
   display = 'flex',
   justifyContent = { mobile: 'spaceBetween', desktop: 'center' },
   alignItems = 'center',
+  hamburgerVariant = 'dark',
   children,
 }: NavProps): JSX.Element {
-  const [open] = useState(false);
+  const [open, setOpen] = useState(false);
   const desktopItems = useMemo(
     () =>
       Children.toArray(children.props.children)
@@ -51,8 +54,7 @@ export function Nav({
             marginRight={{ mobile: 'xxsmall', desktop: 'medium' }}
             className={styles.currentColor}
           >
-            <></>
-            {/* <Hamburger toggle={setOpen} toggled={open} /> */}
+            <Hamburger variant={hamburgerVariant} setOpen={setOpen} open={open} />
           </Box>
           {mobileMenuItems}
           <Box

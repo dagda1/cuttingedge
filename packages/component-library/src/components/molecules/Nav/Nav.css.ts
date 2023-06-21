@@ -14,36 +14,34 @@ export const currentColor = style({
   color: vars.foregroundColor.neutral,
 });
 
-export const expandable = style({
-  display: 'none',
-  position: 'absolute',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  overflow: 'auto',
-  backgroundColor: palette.black,
-  zIndex: 10,
-  padding: '1rem',
-  width: '100vw',
-  height: '100vh',
-});
-
-export const expanded = style([
+export const expandable = style([
   {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    overflow: 'auto',
+    backgroundColor: palette.black,
+    zIndex: 10,
+    padding: '1rem',
+    width: '100vw',
+    height: '100vh',
+    transition: 'transform 0.3s ease-in-out',
+    transform: 'translateX(-100%)',
   },
   atoms({
     paddingY: 'large',
   }),
 ]);
 
-globalStyle(`.hamburger-react`, {
-  zIndex: 11,
-});
+export const expanded = style([
+  {
+    transform: 'translateX(0)',
+  },
+]);
 
 globalStyle(`${expanded} ul`, {
   padding: `${vars.space['large']}`,

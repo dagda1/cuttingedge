@@ -33,9 +33,6 @@ export const tokens: DeepPartial<Tokens> = {
     },
     background: {
       body: palette.gray800,
-      header: palette.gray800,
-      heading: palette.gray800,
-      footer: palette.gray800,
     },
   },
   typography: {

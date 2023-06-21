@@ -3,7 +3,6 @@ import { Header } from '~/components/Header';
 import { CuttingEdge } from '~/constants';
 import { Helmet } from 'react-helmet';
 import { ApplicationLayoutWithRouterScroll, type ApplicationLayoutProps } from '@cutting/component-library';
-import './ApplicationLayout.css';
 
 export function ApplicationLayout({
   heading,
