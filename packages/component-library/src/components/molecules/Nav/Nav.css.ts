@@ -43,7 +43,7 @@ export const expanded = style([
   },
 ]);
 
-globalStyle(`${expanded} ul`, {
+globalStyle(`${expanded} ul:not(.szh-menu)`, {
   padding: `${vars.space['large']}`,
   display: 'flex',
   flex: 1,

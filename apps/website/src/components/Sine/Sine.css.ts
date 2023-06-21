@@ -1,11 +1,20 @@
-import { palette } from '@cutting/component-library';
+import { palette, responsiveStyle, vars } from '@cutting/component-library';
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 const strokeColor = palette.white;
 const strokeWidth = 2;
 
-export const main = style({});
+export const main = style({
+  ...responsiveStyle({
+    mobile: {
+      padding: vars.space['xxsmall'],
+    },
+    tablet: {
+      padding: vars.space['large'],
+    },
+  }),
+});
 
 const styles: ComplexStyleRule = {
   stroke: strokeColor,

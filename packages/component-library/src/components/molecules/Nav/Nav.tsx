@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { Children, Fragment, useMemo, useState } from 'react';
+import { Children, Fragment, useMemo } from 'react';
 import * as styles from './Nav.css';
 import cs from 'classnames';
 import type { NavItemProps } from './NavItem';
@@ -15,6 +15,8 @@ export interface MenuState {
 type NavProps = Pick<BoxProps, 'width' | 'display' | 'justifyContent' | 'alignItems' | 'className'> & {
   children: ReactElement<NavItemProps>;
   hamburgerVariant?: HamburgerVariants;
+  open: boolean;
+  setOpen(open: boolean): void;
 };
 
 export function Nav({
@@ -23,9 +25,10 @@ export function Nav({
   justifyContent = { mobile: 'spaceBetween', desktop: 'center' },
   alignItems = 'center',
   hamburgerVariant = 'dark',
+  open,
+  setOpen,
   children,
 }: NavProps): JSX.Element {
-  const [open, setOpen] = useState(false);
   const desktopItems = useMemo(
     () =>
       Children.toArray(children.props.children)

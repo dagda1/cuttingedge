@@ -1,9 +1,9 @@
-import { Menu } from '../Nav';
+import { TopNav } from '../Nav';
 
 export function Header(): JSX.Element {
   return (
     <div>
-      <Menu />
+      <TopNav />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import * as Urls from '~/urls';
 
 import * as styles from './CV.css';
-import { Tiles, TextLink, Box } from '@cutting/component-library';
+import { Tiles, TextLink, PageBlock } from '@cutting/component-library';
 
 const docs = [
   { file: 'paulcowan-cv.pdf', url: Urls.DownloadPdf, text: 'pdf' },
@@ -19,7 +19,7 @@ export function CV(): JSX.Element {
 
   return (
     <ApplicationLayout>
-      <Box marginBottom={{ mobile: 'medium', tablet: 'large', desktop: 'medium' }}>
+      <PageBlock>
         <Tiles space={{ mobile: 'small', tablet: 'large' }} columns={{ mobile: 1, tablet: 2 }}>
           {docs.map((doc) => {
             const text = `DOWNLOAD ${doc.text}`;
@@ -31,7 +31,7 @@ export function CV(): JSX.Element {
           })}
         </Tiles>
         <iframe className={styles.pdfViewer} title="CV" src={viewerUrl} />
-      </Box>
+      </PageBlock>
     </ApplicationLayout>
   );
 }

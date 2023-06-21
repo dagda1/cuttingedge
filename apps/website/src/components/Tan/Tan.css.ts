@@ -6,10 +6,10 @@ export const container = style({
   height: '100%',
   ...responsiveStyle({
     mobile: {
-      paddingRight: 0,
+      padding: vars.space['xxsmall'],
     },
     tablet: {
-      paddingRight: vars.space['medium'],
+      padding: vars.space['large'],
     },
   }),
 });

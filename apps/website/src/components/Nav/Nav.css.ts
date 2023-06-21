@@ -1,4 +1,4 @@
-import { palette, vars } from '@cutting/component-library';
+import { palette, responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const contact = style([
@@ -21,6 +21,43 @@ export const dropdown = style({
   lineHeight: vars.links.lineHeight,
   cursor: 'pointer',
   zIndex: 15,
+});
+
+globalStyle(`${dropdown} + div`, {
+  ...responsiveStyle({
+    mobile: {
+      width: '100%',
+    },
+    desktop: {
+      width: 'auto',
+    },
+  }),
+});
+
+globalStyle(`${dropdown} + div ul`, {
+  ...responsiveStyle({
+    mobile: {
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    desktop: {
+      width: 'auto',
+    },
+  }),
+});
+
+globalStyle(`${dropdown} + div ul li`, {
+  ...responsiveStyle({
+    mobile: {
+      border: 'none',
+      width: '80%',
+    },
+    desktop: {
+      width: '100%',
+    },
+  }),
 });
 
 globalStyle(`${dropdown} ul`, {
