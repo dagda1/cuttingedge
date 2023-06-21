@@ -91,12 +91,12 @@ export const tokens: DeepPartial<Tokens> = {
     text: {
       large: {
         mobile: {
-          fontSize: 19,
-          lineGap: 13,
+          fontSize: 96,
+          lineGap: 30,
         },
         tablet: {
-          fontSize: 22,
-          lineGap: 13,
+          fontSize: 128,
+          lineGap: 24,
         },
       },
       standard: {

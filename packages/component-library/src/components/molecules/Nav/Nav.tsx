@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 import { Children, Fragment, useMemo, useState } from 'react';
 import * as styles from './Nav.css';
 import cs from 'classnames';
-import Hamburger from 'hamburger-react';
+// import Hamburger from 'hamburger-react';
 import type { NavItemProps } from './NavItem';
 import { NavItems } from './NavItems';
 import { Box, type BoxProps } from '../Box/Box';
@@ -22,7 +22,7 @@ export function Nav({
   alignItems = 'center',
   children,
 }: NavProps): JSX.Element {
-  const [open, setOpen] = useState(false);
+  const [open] = useState(false);
   const desktopItems = useMemo(
     () =>
       Children.toArray(children.props.children)
@@ -51,7 +51,8 @@ export function Nav({
             marginRight={{ mobile: 'xxsmall', desktop: 'medium' }}
             className={styles.currentColor}
           >
-            <Hamburger toggle={setOpen} toggled={open} />
+            <></>
+            {/* <Hamburger toggle={setOpen} toggled={open} /> */}
           </Box>
           {mobileMenuItems}
           <Box
