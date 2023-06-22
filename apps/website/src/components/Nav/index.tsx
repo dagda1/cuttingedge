@@ -19,7 +19,7 @@ export function TopNav(): JSX.Element {
   const toggle = useCallback(() => setOpen(!open), [open]);
 
   return (
-    <Nav open={open} setOpen={toggle} hamburgerVariant="light">
+    <Nav open={open} toggle={toggle} hamburgerVariant="light">
       <NavItems>
         <NavItem display="Always">
           <NavLink aria-label="home" to={urls.Home}>

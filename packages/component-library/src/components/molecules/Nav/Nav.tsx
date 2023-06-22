@@ -16,7 +16,7 @@ type NavProps = Pick<BoxProps, 'width' | 'display' | 'justifyContent' | 'alignIt
   children: ReactElement<NavItemProps>;
   hamburgerVariant?: HamburgerVariants;
   open: boolean;
-  setOpen(open: boolean): void;
+  toggle(open: boolean): void;
 };
 
 export function Nav({
@@ -26,7 +26,7 @@ export function Nav({
   alignItems = 'center',
   hamburgerVariant = 'dark',
   open,
-  setOpen,
+  toggle,
   children,
 }: NavProps): JSX.Element {
   const desktopItems = useMemo(
@@ -57,7 +57,7 @@ export function Nav({
             marginRight={{ mobile: 'xxsmall', desktop: 'medium' }}
             className={styles.currentColor}
           >
-            <Hamburger variant={hamburgerVariant} setOpen={setOpen} open={open} />
+            <Hamburger variant={hamburgerVariant} setOpen={toggle} open={open} />
           </Box>
           {mobileMenuItems}
           <Box
