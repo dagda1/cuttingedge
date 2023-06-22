@@ -1,15 +1,5 @@
-import { responsiveStyle, vars } from '@cutting/component-library';
+import { responsiveStyle } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
-
-export const imageHolder = style({
-  height: '100%',
-  margin: 'auto',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'relative',
-  padding: '0 10vw',
-});
 
 export const caption = style({
   paddingLeft: '5rem',

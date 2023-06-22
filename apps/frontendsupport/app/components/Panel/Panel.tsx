@@ -1,6 +1,6 @@
 import type { ReactNode, Ref } from 'react';
 import cs from 'classnames';
-import * as styles from './Panel.css';
+import { Box } from '@cutting/component-library';
 
 interface PanelProps {
   className?: string;
@@ -9,5 +9,5 @@ interface PanelProps {
 }
 
 export function Panel({ className, innerRef, ...props }: PanelProps) {
-  return <section className={cs('panel', styles.panel, className)} ref={innerRef} {...props} />;
+  return <Box height="screen" className={cs('panel', className)} ref={innerRef} {...props} />;
 }

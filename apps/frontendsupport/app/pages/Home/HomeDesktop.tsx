@@ -8,12 +8,10 @@ import { Clients } from '../Panels/Clients/Clients';
 import { Final } from '../Panels/Final/Final';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { assert } from 'assert-ts';
-import cs from 'classnames';
-import * as styles from './HomeDesktop.css';
 import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { Intro } from '../Panels/Intro/Intro';
-import { breakpoints } from '@cutting/component-library';
+import { Box, breakpoints } from '@cutting/component-library';
 
 export function HomeDesktop(): JSX.Element {
   const dimensionsRef = useRef<HTMLDivElement>(null);
@@ -108,15 +106,21 @@ export function HomeDesktop(): JSX.Element {
 
   return (
     <>
-      <div ref={panelsContainer} className={cs('panels-container', styles.panels)}>
+      <Box
+        display={{ mobile: 'none', desktop: 'flex' }}
+        flexWrap="nowrap"
+        flexDirection="row"
+        ref={panelsContainer}
+        className={'panels-container'}
+      >
         <Intro />
         <HelpPanel innerRef={dimensionsRef} />
         <Frameworks />
         <OSS />
         <Clients />
         <Final />
-      </div>
-      <BreakGlass breakglassRef={breakglassRef} className={styles.breaking} />
+      </Box>
+      <BreakGlass breakglassRef={breakglassRef} />
     </>
   );
 }

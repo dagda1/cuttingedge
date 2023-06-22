@@ -7,11 +7,12 @@ import * as panelStyles from '../Panels.css';
 import * as styles from './Frameworks.css';
 import { TextLink } from '@cutting/component-library';
 import { Caption } from '~/components/Caption/Caption';
+import { ImageHolder } from '~/components/ImageHolder/ImageHolder';
 
 export function Frameworks(): JSX.Element {
   return (
     <Panel>
-      <div className={panelStyles.imageHolder}>
+      <ImageHolder>
         <div className={cs(panelStyles.tripleImages, 'frameworks')}>
           <figure className={styles.typescript}>
             <img alt="typescript" src={typescript} />
@@ -30,7 +31,7 @@ export function Frameworks(): JSX.Element {
             </TextLink>
           </h2>
         </Caption>
-      </div>
+      </ImageHolder>
     </Panel>
   );
 }

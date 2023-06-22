@@ -6,11 +6,12 @@ import ember from '~/images/emberjs.png';
 import bigtest from '~/images/bigtest.png';
 import { Heading } from '@cutting/component-library';
 import { Caption } from '~/components/Caption/Caption';
+import { ImageHolder } from '~/components/ImageHolder/ImageHolder';
 
 export function OSS(): JSX.Element {
   return (
     <Panel>
-      <div className={panelStyles.imageHolder}>
+      <ImageHolder>
         <div className={cs(panelStyles.tripleImages, 'oss')}>
           <figure>
             <img alt="ember" src={ember} />
@@ -25,7 +26,7 @@ export function OSS(): JSX.Element {
         <Caption>
           <Heading level="2">Having worked with...</Heading>
         </Caption>
-      </div>
+      </ImageHolder>
     </Panel>
   );
 }

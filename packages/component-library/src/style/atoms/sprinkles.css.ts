@@ -80,6 +80,7 @@ const responsiveAtomicProperties = defineProperties({
       flex: 'flex',
       grid: 'grid',
     },
+    overscrollBehavior: ['none', 'auto', 'contain', 'revert', 'revert-layer', 'initial'],
     position: ['relative', 'absolute', 'fixed'],
     borderRadius: {
       none: '0px',
