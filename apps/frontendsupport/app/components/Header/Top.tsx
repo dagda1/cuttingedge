@@ -1,11 +1,12 @@
 import type { NavLinkProps } from '@remix-run/react';
-import { NavLink } from '@remix-run/react';
 import { Nav, NavItem, NavItems } from '@cutting/component-library';
 import { CTAButton } from '../CTAButton/CTAButton';
+import type { ReactNode } from 'react';
 import { useCallback, useState } from 'react';
+import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 const MenuItems: NavLinkProps[] = [
-  { to: '/', children: 'Frontend Support' },
+  // { to: '/', children: 'Frontend Support' },
   { to: '/posts', children: 'Blog' },
 ];
 
@@ -17,13 +18,18 @@ export function TopNav(): JSX.Element {
     <Nav open={open} toggle={toggle} hamburgerVariant="light">
       <NavItems>
         <NavItem display="Always">
-          <CTAButton link="/contact">GET IN TOUCH</CTAButton>
+          <TextNavLink size="standard" to={'/'}>
+            Frontend Support
+          </TextNavLink>
         </NavItem>
         {MenuItems.map(({ to, children }, i) => (
           <NavItem display="SubmenuMobile" key={i}>
-            <NavLink to={to}>{children}</NavLink>
+            <TextNavLink to={to}>{children as ReactNode}</TextNavLink>
           </NavItem>
         ))}
+        <NavItem display="Always">
+          <CTAButton link="/contact">GET IN TOUCH</CTAButton>
+        </NavItem>
       </NavItems>
     </Nav>
   );

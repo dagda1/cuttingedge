@@ -30,7 +30,6 @@ export const space = {
 } as const;
 
 export const unresponsiveProperties = {
-  overflow: ['hidden', 'scroll', 'visible', 'auto'],
   userSelect: ['none'],
   outline: ['none'],
   opacity: [0],
@@ -51,8 +50,6 @@ export const unresponsiveProperties = {
   bottom: [0],
   left: [0],
   right: [0],
-  height: sizes,
-  width: sizes,
   minWidth: {
     0: '0%',
   },
@@ -105,6 +102,8 @@ const responsiveAtomicProperties = defineProperties({
       center: 'center',
       flexEnd: 'flex-end',
       spaceBetween: 'space-between',
+      spaceAround: 'space-around',
+      spaceEvently: 'space-evenly',
     },
     flexDirection: {
       row: 'row',
@@ -119,6 +118,11 @@ const responsiveAtomicProperties = defineProperties({
     flexShrink: [0],
     flexGrow: [0, 1],
     textAlign: ['left', 'center', 'right'],
+    height: { ...sizes, ...space },
+    width: { ...sizes, ...space },
+    overflow: ['hidden', 'scroll', 'visible', 'auto'],
+    overflowX: ['hidden', 'scroll', 'visible', 'auto'],
+    overflowY: ['hidden', 'scroll', 'visible', 'auto'],
   },
   responsiveArray: breakpointNames,
   shorthands: {
