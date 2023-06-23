@@ -1,0 +1,167 @@
+---
+title: 'Boost your productivity with typescript project references'
+date: '2022-04-01T00:00:00.000Z'
+summary: 'By separating into multiple projects, you can greatly improve the speed of typechecking and compiling, reduce memory usage when using an editor, and improve enforcement of the logical groupings of your program.'
+tags: ['typescript']
+---
+If you have a typescript codebase in a monorepo that is not using [typescript project references](https://www.typescriptlang.org/docs/handbook/project-references.html) then you are missing a trick.
+
+Typescript project references have been around since typescript 3.0 and allow you to specify dependant packages in the `tsconfig.json` that the current package depends on. When you build a package with dependencies, then the dependencies get built first.
+
+The `tsconfig.json` below specifies that this package references a `common` package and that the `common` package is built before the current package.
+
+```json
+{
+  "extends": "../tsconfig-base.json",
+  "compilerOptions": {
+    "outDir": "../lib/animals",
+    "rootDir": ".",
+  },
+  "references": [
+    { "path": "../core" }
+  ]
+}
+```
+Project references are specified via a `references` array of objects with a `path` property. The `path` property is a relative path to a different location containing a `tsconfig.json` file.
+
+If the project were not using project references, then all packages would have to be built individually, which can be a huge drag if there are multiple dependant packages. 
+
+## Building incrementally
+The `-b` or `--build` switch is added to the [tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html) compiler when transpiling a package that that has project references:
+
+```bash
+ > tsc -b                           # Use the tsconfig.json in the current directory
+ > tsc -b src                       # Use src/tsconfig.json
+ > tsc -b foo/prd.tsconfig.json bar # Use foo/prd.tsconfig.json and bar/tsconfig.json
+```
+A successful build will output a `tsconfig.tsbuildinfo`, used in subsequent builds to ensure only new code or changed code is built for a faster build time.  The `tsconfig.tsbuildinfo` file contains the signatures and timestamps of all files required to build the whole project.  On subsequent builds, typescript will use that information to detect the least costly way to type-check and emit changes to your project.
+
+## Watch all packages in the monorepo for changes
+What has really boosted my typescript development is the ability to have `tsc` watch for changes in every package of a monorepo.
+
+I have a script like this running the whole time I am developing:
+
+```json
+"watch": "tsc -b ./tsconfig.packages.json --watch"
+```
+When the `watch` script is running, any typescript changes in the whole monorepo will result in a new efficient build:
+
+![tsc watching for changes](./watch.png)
+
+## Monorepo project structure
+In most monorepos, the individual package nodes are in a folder named `packages`.  Below is an example monorepo with the various `tsconfig.json` files strategically placed with surgical precision:
+```
+tsconfig.base.json         # base tsconfig.json that all packages will extend
+tsconfig.packages.json     # tsconfig.json that is used to watch eveything
+all packages
+/package.json
+/packages
+  /common                  # Common utitliies used by all package
+    /src
+      .index.ts            # entry point for package
+    /tsconfig.json         # Config file for 'common' project
+    /package.json
+  /web                     # Depends on 'common'
+    /src
+      .index.ts            # entry point for package
+    /tsconfig.json         # Config file for 'web' project
+  /api                     # Depends on 'common'
+    /src
+      .index.ts            # entry point for package
+    /tsconfig.json         # Config file for 'api' project
+    /package.json
+```
+At the root folder is a `tsconfig.base.json` file that is extended by all packages in the monorepo:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "paths": {
+      "common": ["packages/common/src"],
+      "web": ["packages/web/src"],
+      "api": ["packages/api/src"]
+    }
+  }
+}
+```
+There is actually a lot going on here:
+- `"composite": true` instructs `tsc` that there are project references
+- `"declarationMap": true` adds source maps for `.d.ts` declaration files.  It means `Go to Definition` in vscode will go to the actual file and not the `.d.ts` file.
+- The `paths` field contains an object with each object key (common, web or API in this example) pointing to a package's location.  With this set, we can import packages without a nasty relative or absolute path.
+  e.g.  `import { a } from 'web';`
+
+In this example, each package extends `tsconfig.base.json` using the `extends` option of `tsconfig`.
+
+```json
+{
+  "extends": "../tsconfig-base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+  },
+  "references": [
+    { "path": "../core" }
+  ]
+}
+```
+## Watching and building
+The `tsconfig.packages.json` at the root of the project structure references all packages that we want to watch or build:
+
+```json
+{
+  "files": [],
+  "references": [
+  {
+    "path": "./packages/common"
+  },
+  {
+    "path": "./packages/web"
+  },
+  {
+    "path": "./packages/api"
+  }
+ ]
+}
+```
+With this structure in place, we can now build all packages in one swoop.
+
+```bash
+tsc -b ./tsconfig.packages.json
+```
+or watch 
+
+```bash
+tsc -b ./tsconfig.packages.json
+```
+## useful switches
+The following switches are handy when working with project references:
+- --verbose: Prints out verbose logging to explain what is going on (may be combined with any other flag)
+- --dry: Shows what would be done but does not actually build anything
+- --clean: Deletes the outputs of the specified projects (may be combined with - --dry)
+- --force: Act as if all projects are out of date
+- --watch: Watch mode (may not be combined with any flag except --verbose)
+
+## Webpack
+
+Bundlers like webpack and rollup did not offer support for project references for quite some time, and rollup only has partial support.  This has not helped adoption.
+
+### webpack ts-loader
+
+When configuring the webpack loader `ts-loader`, you need to set the `projectReferences` option to true:
+
+```js
+{
+  test: /\.tsx?$/,
+  use: {
+    loader: 'ts-loader',
+    options: {
+      projectReferences: true,
+    },
+  },
+},
+```
+## Epilogue
+I do most of my main development in monorepo's these days, both in client projects and my own personal dev.  If I use typescript as my main language, then I will enable project references just like I have outlined here.  I find them a great productivity boost that not everyone is using.

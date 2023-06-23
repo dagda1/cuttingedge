@@ -1,0 +1,36 @@
+name: Mozilla Observatory Test
+
+on:
+  pull_request:
+
+jobs:
+  observatory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Temporary Vercel Preview URL
+        uses: patrickedqvist/wait-for-vercel-preview@v1.2.0
+        id: vercel_preview_url
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          max_timeout: 600 # 10 minutes
+          check_interval: 10
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Test Observatory
+        uses: simonireilly/observatory-github-action@v0.0.2-beta.0
+        id: observatory
+        with:
+          web_host: ${{ steps.vercel_preview_url.outputs.url }}
+      - name: Create commit comment
+        uses: peter-evans/commit-comment@v1
+        with:
+          body: '# Branch PR ${{ steps.observatory.outputs.observatory-report }}'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
