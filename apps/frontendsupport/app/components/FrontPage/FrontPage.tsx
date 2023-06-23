@@ -1,5 +1,4 @@
 import type { LegacyRef, Ref } from 'react';
-import * as styles from './FrontPage.css';
 import { Scroller } from '../Scroller/Scroller';
 import { Box, Heading, PageBlock, Stack } from '@cutting/component-library';
 import { CTAButton } from '../CTAButton/CTAButton';
@@ -19,7 +18,6 @@ export function FrontPage({ className, innerRef, buttonRef, ...props }: PageProp
         alignItems="center"
         justifyContent="center"
         ref={innerRef}
-        style={{ border: '10px solid red' }}
       >
         <Stack space="large" align="center">
           <Heading center level="1">

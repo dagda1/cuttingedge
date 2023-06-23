@@ -111,6 +111,7 @@ export function HomeDesktop(): JSX.Element {
         flexWrap="nowrap"
         flexDirection="row"
         ref={panelsContainer}
+        overscrollBehavior="none"
         className={'panels-container'}
       >
         <Intro />

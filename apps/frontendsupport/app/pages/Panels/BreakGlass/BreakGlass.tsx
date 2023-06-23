@@ -14,17 +14,17 @@ export function BreakGlass({ breakglassRef, className }: BreakGlassProps): JSX.E
   return (
     <Box
       display={{ mobile: 'none', desktop: 'flex' }}
+      position="relative"
+      width="full"
       justifyContent="center"
       alignItems="center"
-      width="full"
-      paddingX="xxlarge"
-      position="relative"
       ref={breakglassRef}
-      className={cs('breaking', 'breaking-glass', className)}
+      paddingX="large"
+      className={cs('breaking', 'breaking-glass', styles.breaking, className)}
     >
       <img alt="breaking glass left" className="bglass-left glass" src={breakglassLeft} />
       <img alt="breaking glass right" className="bglass-right glass" src={breakglassRight} />
-      <Box position="relative" className={styles.services}>
+      <Box position="absolute" className={styles.services}>
         <Heading level="1">Our Services</Heading>
       </Box>
     </Box>
