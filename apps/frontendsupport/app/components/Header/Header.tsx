@@ -6,7 +6,7 @@ export function Header(): JSX.Element {
     <Box component="header" position="fixed" width="full" zIndex="sticky" style={{ background: 'inherit' }}>
       <Box
         height="xxxlarge"
-        paddingX={{ mobile: 'medium' }}
+        paddingX={{ mobile: 'medium', tablet: 'medium' }}
         display="flex"
         alignItems="center"
         justifyContent="spaceAround"

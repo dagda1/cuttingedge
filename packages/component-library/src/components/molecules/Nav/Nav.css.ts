@@ -22,7 +22,6 @@ export const expandable = style([
     alignItems: 'center',
     position: 'absolute',
     top: 0,
-    left: 0,
     overflow: 'auto',
     backgroundColor: palette.black,
     zIndex: 10,
@@ -31,6 +30,14 @@ export const expandable = style([
     height: '100vh',
     transition: 'transform 0.3s ease-in-out',
     transform: 'translateX(-100%)',
+    ...responsiveStyle({
+      mobile: {
+        left: 0,
+      },
+      tablet: {
+        left: '-20px',
+      },
+    }),
   },
   atoms({
     paddingY: 'large',
@@ -56,7 +63,7 @@ globalStyle(`${expanded} li`, {
   paddingTop: `${vars.space['xsmall']} !important`,
   paddingBottom: `${vars.space['medium']} !important`,
   marginBottom: `${vars.space['xsmall']} !important`,
-  paddingLeft: `${vars.space['xsmall']} !important`,
+  // paddingLeft: `${vars.space['xsmall']} !important`,
   width: '100%',
   display: 'flex',
   justifyContent: 'center',

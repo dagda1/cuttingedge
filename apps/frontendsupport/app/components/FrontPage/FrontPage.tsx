@@ -11,22 +11,13 @@ interface PageProps {
 export function FrontPage({ className, innerRef, buttonRef, ...props }: PageProps): JSX.Element {
   return (
     <PageBlock>
-      <Box
-        height="screen"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        ref={innerRef}
-      >
-        <Stack space="large" align="center">
+      <Box height="screen" display="flex" flexDirection="column" justifyContent="center" ref={innerRef}>
+        <Stack space="xxxlarge" align="center">
           <Heading center level="1">
             STRUGGLING TO DELIVER FRONTEND FEATURES?
           </Heading>
           <CTAButton link="#">FIND OUT HOW WE CAN HELP</CTAButton>
-          <div>
-            <Scroller />
-          </div>
+          <Scroller />
         </Stack>
       </Box>
     </PageBlock>
