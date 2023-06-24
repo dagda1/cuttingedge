@@ -13,6 +13,13 @@ export function Frameworks(): JSX.Element {
   return (
     <Panel>
       <ImageHolder>
+        <Caption>
+          <h2>
+            <TextLink size="large" external href="https://cutting.scot/oss">
+              With 350+ merged pull requests into....
+            </TextLink>
+          </h2>
+        </Caption>
         <div className={cs(panelStyles.tripleImages, 'frameworks')}>
           <figure className={styles.typescript}>
             <img alt="typescript" src={typescript} />
@@ -24,13 +31,6 @@ export function Frameworks(): JSX.Element {
             <img alt="react" src={react} />
           </figure>
         </div>
-        <Caption>
-          <h2>
-            <TextLink external href="https://cutting.scot/oss">
-              With 350+ merged pull requests into....
-            </TextLink>
-          </h2>
-        </Caption>
       </ImageHolder>
     </Panel>
   );

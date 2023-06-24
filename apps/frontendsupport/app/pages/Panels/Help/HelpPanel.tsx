@@ -14,7 +14,7 @@ interface HelpPanelProps {
 
 export function HelpPanel({ innerRef }: HelpPanelProps): JSX.Element {
   return (
-    <Panel className={styles.main} innerRef={innerRef}>
+    <Panel innerRef={innerRef}>
       <ImageHolder>
         <div className={styles.doubleImages}>
           <figure>

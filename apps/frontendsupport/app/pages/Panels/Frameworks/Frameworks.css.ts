@@ -11,11 +11,9 @@ export const typescript = style({
     },
     desktop: {
       top: '-28rem',
-      border: '10px solid purple',
     },
     wide: {
       top: '-40rem',
-      border: '10px solid red',
     },
   }),
 });

@@ -28,11 +28,9 @@ globalStyle(`${tripleImages}.frameworks figure:first-child`, {
     },
     desktop: {
       top: '-28rem',
-      border: '10px solid purple',
     },
     wide: {
       top: '-40rem',
-      border: '10px solid red',
     },
   }),
 });
@@ -83,7 +81,6 @@ globalStyle(`${tripleImages}.clients figure:first-child`, {
   height: '50vh',
   top: '-9rem',
   right: '-15rem',
-  border: '10px solid red',
   position: 'absolute',
 });
 

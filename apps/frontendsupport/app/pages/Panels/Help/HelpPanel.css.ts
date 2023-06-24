@@ -39,7 +39,3 @@ export const headings = style({
 globalStyle(`${headings} h2:not(:last-of-type)`, {
   marginRight: vars.space['xxxlarge'],
 });
-
-export const main = style({
-  border: '10px solid red',
-});
