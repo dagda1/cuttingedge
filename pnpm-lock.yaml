@@ -299,8 +299,8 @@ importers:
         specifier: 6.1.6
         version: 6.1.6
       '@types/react-is':
-        specifier: ^17.0.3
-        version: 17.0.3
+        specifier: ^17.0.4
+        version: 17.0.4
       '@types/react-router-dom':
         specifier: 5.3.3
         version: 5.3.3
@@ -450,8 +450,8 @@ importers:
         specifier: 18.2.5
         version: 18.2.5
       '@types/react-is':
-        specifier: ^17.0.3
-        version: 17.0.3
+        specifier: ^17.0.4
+        version: 17.0.4
       '@vanilla-extract/css':
         specifier: ^1.11.1
         version: 1.11.1
@@ -6117,8 +6117,8 @@ packages:
       '@types/react': 18.2.12
     dev: true
 
-  /@types/react-is@17.0.3:
-    resolution: {integrity: sha512-aBTIWg1emtu95bLTLx0cpkxwGW3ueZv71nE2YFBpL8k/z5czEW8yYpOo8Dp+UUAFAtKwNaOsh/ioSeQnWlZcfw==}
+  /@types/react-is@17.0.4:
+    resolution: {integrity: sha512-FLzd0K9pnaEvKz4D1vYxK9JmgQPiGk1lu23o1kqGsLeT0iPbRSF7b76+S5T9fD8aRa0B8bY7I/3DebEj+1ysBA==}
     dependencies:
       '@types/react': 18.2.12
     dev: true
