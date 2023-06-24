@@ -10,7 +10,7 @@ import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { Intro } from '../Panels/Intro/Intro';
 import { Box, breakpoints } from '@cutting/component-library';
-import { Reasons } from '../Panels/Reasons/Reasons';
+import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { OSS } from '../Panels/OSS/OSS';
 
 export function HomeDesktop(): JSX.Element {
@@ -26,7 +26,6 @@ export function HomeDesktop(): JSX.Element {
   }, [right]);
 
   useIsomorphicLayoutEffect(() => {
-    console.log(dimensionsRef.current);
     function main() {
       console.log({ right, desktop: breakpoints.desktop });
       if (right < breakpoints.desktop || document.querySelector('.pin-spacer')) {
@@ -58,32 +57,34 @@ export function HomeDesktop(): JSX.Element {
           id: '4',
         });
 
-        gsap.utils.toArray<HTMLDivElement>('.parallax').forEach((text) => {
+        gsap.utils.toArray<HTMLDivElement>('.parallax').forEach((el) => {
           gsap
             .timeline({
               defaults: { ease: 'none' },
               scrollTrigger: {
                 containerAnimation: scrollTween,
-                trigger: text,
+                trigger: el,
                 start: 'left right',
                 end: 'left left',
                 scrub: true,
               },
             })
-            .fromTo(text, { x: 250 }, { x: -250 }, 0);
+            .fromTo(el, { x: 250 }, { x: -250 }, 0);
         });
 
         const tl = gsap
           .timeline({
             scrollTrigger: {
               trigger: '.breaking',
-              start: 'top 20%',
-              end: 'bottom 80%',
-              scrub: 1,
+              start: 'center 65%',
+              end: 'center 51%',
+              scrub: 10,
               markers: true,
             },
           })
-          .to(breakglassRef.current, { justifyContent: 'space-between', ease: 'none' });
+          .to(breakglassRef.current, { justifyContent: 'space-between', ease: 'none' })
+          .to('.glass', { autoAlpha: 0, ease: 'none' })
+          .fromTo('.services', { autoAlpha: 0, ease: 'none' }, { autoAlpha: 1, ease: 'none' });
 
         ScrollTrigger.create({
           start: (_) => tl.scrollTrigger!.end,
@@ -94,7 +95,6 @@ export function HomeDesktop(): JSX.Element {
         });
       });
       return () => {
-        console.log(ctx);
         return ctx && ctx.revert();
       };
     }
@@ -116,7 +116,7 @@ export function HomeDesktop(): JSX.Element {
       >
         <Intro />
         <HelpPanel innerRef={dimensionsRef} />
-        <Reasons />
+        <Frameworks />
         <OSS />
         <Clients />
         <Final />
