@@ -33,7 +33,7 @@
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
     "@types/mathjax": "0.0.37",
-    "@types/react": "18.2.12",
+    "@types/react": "18.2.14",
     "@vanilla-extract/css": "^1.11.1",
     "eslint": "8.43.0",
     "react": "18.2.0",
