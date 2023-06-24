@@ -1,15 +1,12 @@
 import { Panel } from '~/components/Panel/Panel';
-import * as styles from './Final.css';
-import cs from 'classnames';
-import { Heading } from '@cutting/component-library';
-import { Caption } from '~/components/Caption/Caption';
+import { Box, Heading } from '@cutting/component-library';
 
 export function Final(): JSX.Element {
   return (
-    <Panel className={cs('final', styles.final)}>
-      <Caption>
+    <Panel className="final">
+      <Box height="screen" display="flex" justifyContent="center" alignItems="center">
         <Heading level="2">We live and breathe frontend development</Heading>
-      </Caption>
+      </Box>
     </Panel>
   );
 }

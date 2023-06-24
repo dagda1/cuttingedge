@@ -1,24 +1,21 @@
-import cs from 'classnames';
 import { Panel } from '~/components/Panel/Panel';
-import * as panelStyles from '../Panels.css';
-import lloyds from '~/images/lloyds_bank_logo.jpeg';
-import waitrose from '~/images/waitrose.svg';
+import lloyds from '~/images/lloyds_bank_logo.png';
+import waitrose from '~/images/waitrose.png';
 import volvo from '~/images/volvo.png';
+import { MotionImage } from '~/components/MotionImage/MotionImage';
+import { Box, Heading } from '@cutting/component-library';
 
 export function Clients(): JSX.Element {
   return (
-    <Panel className="green">
-      <div className={cs(panelStyles.tripleImages, 'clients')}>
-        <figure>
-          <img alt="Lloyds Bank" src={lloyds} />
-        </figure>
-        <figure className="parallax">
-          <img alt="Waitrosse" src={waitrose} />
-        </figure>
-        <figure className="parallax">
-          <img alt="volvo ocean race" src={volvo} />
-        </figure>
-      </div>
+    <Panel>
+      <Box height="full" position="relative" display="flex" flexDirection="column" justifyContent="spaceEvenly">
+        <MotionImage type="parallax" alt="Lloyds Bank" src={lloyds} />
+        <Heading level="2">We have worked with the big names.</Heading>
+        <Box display="flex">
+          <MotionImage type="static" alt="Waitrosse" src={waitrose} />
+          <MotionImage type="parallax" alt="volvo ocean race" src={volvo} />
+        </Box>
+      </Box>
     </Panel>
   );
 }

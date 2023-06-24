@@ -2,8 +2,6 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useRef } from 'react';
 import { HelpPanel } from '../Panels/Help/HelpPanel';
-import { Frameworks } from '../Panels/Frameworks/Frameworks';
-import { OSS } from '../Panels/OSS/OSS';
 import { Clients } from '../Panels/Clients/Clients';
 import { Final } from '../Panels/Final/Final';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
@@ -12,6 +10,8 @@ import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { Intro } from '../Panels/Intro/Intro';
 import { Box, breakpoints } from '@cutting/component-library';
+import { Reasons } from '../Panels/Reasons/Reasons';
+import { OSS } from '../Panels/OSS/OSS';
 
 export function HomeDesktop(): JSX.Element {
   const dimensionsRef = useRef<HTMLDivElement>(null);
@@ -116,7 +116,7 @@ export function HomeDesktop(): JSX.Element {
       >
         <Intro />
         <HelpPanel innerRef={dimensionsRef} />
-        <Frameworks />
+        <Reasons />
         <OSS />
         <Clients />
         <Final />

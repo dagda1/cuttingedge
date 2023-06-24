@@ -27,7 +27,14 @@ export const HeadingColorMap: Record<HeadingProps['level'], string> = {
   '4': typographyStyles.tone.h1,
 };
 
-export function Heading({ level, weight, component, center = false, ...typographyProps }: HeadingProps): JSX.Element {
+export function Heading({
+  level,
+  weight,
+  component,
+  className,
+  center = false,
+  ...typographyProps
+}: HeadingProps): JSX.Element {
   return (
     <HeadingContext.Provider value={true}>
       <Typography
@@ -38,6 +45,7 @@ export function Heading({ level, weight, component, center = false, ...typograph
           typographyStyles.headingWeight[weight || 'regular'],
           typographyStyles.heading[level],
           HeadingColorMap[level],
+          className,
           { [styles.center]: center },
         )}
       />

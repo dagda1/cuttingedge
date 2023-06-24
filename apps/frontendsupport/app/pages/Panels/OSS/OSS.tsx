@@ -1,32 +1,21 @@
-import cs from 'classnames';
 import { Panel } from '~/components/Panel/Panel';
-import * as panelStyles from '../Panels.css';
 import backstage from '~/images/backstage.png';
 import ember from '~/images/emberjs.png';
-import bigtest from '~/images/bigtest.png';
-import { Heading } from '@cutting/component-library';
-import { Caption } from '~/components/Caption/Caption';
-import { ImageHolder } from '~/components/ImageHolder/ImageHolder';
+import { MotionImage } from '~/components/MotionImage/MotionImage';
+import { Box, TextLink } from '@cutting/component-library';
 
 export function OSS(): JSX.Element {
   return (
     <Panel>
-      <ImageHolder>
-        <div className={cs(panelStyles.tripleImages, 'oss')}>
-          <figure>
-            <img alt="ember" src={ember} />
-          </figure>
-          <figure className="parallax">
-            <img alt="Backstage" src={backstage} />
-          </figure>
-          <figure className="parallax">
-            <img alt="Bigtest" src={bigtest} />
-          </figure>
-        </div>
-        <Caption>
-          <Heading level="2">Having worked with...</Heading>
-        </Caption>
-      </ImageHolder>
+      <Box height="full" position="relative" display="flex" flexDirection="column" justifyContent="spaceEvenly">
+        <MotionImage type="parallax" alt="ember" src={ember} />
+        <h2>
+          <TextLink size="large" external href="https://cutting.scot/oss">
+            We have 350+ merged pull requests into many, many popular open source projects
+          </TextLink>
+        </h2>
+        <MotionImage type="static" alt="Backstage" src={backstage} />
+      </Box>
     </Panel>
   );
 }

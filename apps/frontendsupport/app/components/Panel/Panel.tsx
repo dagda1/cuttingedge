@@ -8,6 +8,19 @@ interface PanelProps {
   innerRef?: Ref<HTMLDivElement>;
 }
 
-export function Panel({ className, innerRef, ...props }: PanelProps) {
-  return <Box height="screen" className={cs('panel', className)} ref={innerRef} {...props} />;
+export function Panel({ className, innerRef, children, ...props }: PanelProps) {
+  return (
+    <Box
+      height="screen"
+      width="screen"
+      className={cs('panel', className)}
+      ref={innerRef}
+      {...props}
+      style={{ marginRight: '30vw' }}
+    >
+      <Box height="screen" width="screen">
+        {children}
+      </Box>
+    </Box>
+  );
 }

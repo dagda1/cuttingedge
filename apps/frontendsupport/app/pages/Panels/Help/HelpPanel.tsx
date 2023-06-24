@@ -3,10 +3,9 @@ import { Panel } from '~/components/Panel/Panel';
 import painText from '~/images/paintext_wide.png';
 import pain from '~/images/pain_wide.png';
 import * as styles from './HelpPanel.css';
-import * as panelStyles from '../Panels.css';
 import cs from 'classnames';
-import { Heading } from '@cutting/component-library';
-import { ImageHolder } from '~/components/ImageHolder/ImageHolder';
+import { Box, Heading, Stack } from '@cutting/component-library';
+import { MotionImage } from '~/components/MotionImage/MotionImage';
 
 interface HelpPanelProps {
   innerRef: Ref<HTMLDivElement>;
@@ -15,22 +14,18 @@ interface HelpPanelProps {
 export function HelpPanel({ innerRef }: HelpPanelProps): JSX.Element {
   return (
     <Panel innerRef={innerRef}>
-      <ImageHolder>
-        <div className={styles.doubleImages}>
-          <figure>
-            <img alt="software pain" src={pain} />
-          </figure>
-          <figure className="parallax">
-            <img alt="software pain" src={painText} />
-          </figure>
-        </div>
+      <Box height="full" display="flex" alignItems="center" justifyContent="center" position="relative">
+        <Box position="relative" display="flex" justifyContent="spaceBetween">
+          <Stack space="medium">
+            <Heading className={cs(styles.heading, 'parallax')} level="2">
+              You have to get it right first time
+            </Heading>
 
-        <div className={cs(styles.headings, panelStyles.caption)}>
-          <Heading level="2">You have to get it right first time</Heading>
-          <Heading level="2">You need access to industry experts</Heading>
-          <Heading level="2">Your team are more familiar with backend development.</Heading>
-        </div>
-      </ImageHolder>
+            <MotionImage type="static" position="absolute" alt="software pain" src={pain} />
+            <MotionImage type="parallax" alt="software pain" src={painText} />
+          </Stack>
+        </Box>
+      </Box>
     </Panel>
   );
 }

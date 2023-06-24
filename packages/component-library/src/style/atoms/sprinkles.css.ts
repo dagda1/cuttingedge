@@ -103,7 +103,7 @@ const responsiveAtomicProperties = defineProperties({
       flexEnd: 'flex-end',
       spaceBetween: 'space-between',
       spaceAround: 'space-around',
-      spaceEvently: 'space-evenly',
+      spaceEvenly: 'space-evenly',
     },
     flexDirection: {
       row: 'row',
