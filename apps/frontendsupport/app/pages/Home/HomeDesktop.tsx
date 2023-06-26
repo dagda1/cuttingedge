@@ -12,6 +12,7 @@ import { Intro } from '../Panels/Intro/Intro';
 import { Box, breakpoints } from '@cutting/component-library';
 import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { OSS } from '../Panels/OSS/OSS';
+import { Services } from '../Panels/Services/Services';
 
 export function HomeDesktop(): JSX.Element {
   const dimensionsRef = useRef<HTMLDivElement>(null);
@@ -122,6 +123,7 @@ export function HomeDesktop(): JSX.Element {
         <Final />
       </Box>
       <BreakGlass breakglassRef={breakglassRef} />
+      {/* <Services /> */}
     </>
   );
 }

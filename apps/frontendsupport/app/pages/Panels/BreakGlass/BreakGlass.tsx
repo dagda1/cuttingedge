@@ -12,19 +12,21 @@ interface BreakGlassProps {
 
 export function BreakGlass({ breakglassRef, className }: BreakGlassProps): JSX.Element {
   return (
-    <Box
-      display={{ mobile: 'none', desktop: 'flex' }}
-      position="relative"
-      width="full"
-      justifyContent="center"
-      alignItems="center"
-      ref={breakglassRef}
-      className={cs('breaking', 'breaking-glass', styles.breaking, className)}
-    >
-      <img alt="breaking glass left" className="bglass-left glass" src={breakglassLeft} />
-      <img alt="breaking glass right" className="bglass-right glass" src={breakglassRight} />
-      <Box position="absolute" className={cs('services', styles.services)}>
-        <Heading level="1">Our Services</Heading>
+    <Box display="flex" justifyContent="center" className={cs('breaking-glass', styles.breaking, className)}>
+      <Box
+        display={{ mobile: 'none', desktop: 'flex' }}
+        position="relative"
+        width="full"
+        justifyContent="center"
+        alignItems="center"
+        ref={breakglassRef}
+        className={cs('breaking', styles.splitter)}
+      >
+        <img alt="breaking glass left" className="bglass-left glass" src={breakglassLeft} />
+        <img alt="breaking glass right" className="bglass-right glass" src={breakglassRight} />
+        <Box position="absolute" className={cs('services', styles.services)}>
+          <Heading level="1">Our Services</Heading>
+        </Box>
       </Box>
     </Box>
   );

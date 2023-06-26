@@ -4,6 +4,10 @@ export const breaking = style({
   minHeight: '100vh',
 });
 
+export const splitter = style({
+  width: '60%',
+});
+
 globalStyle(`${breaking} img`, {
   zIndex: 3,
 });
