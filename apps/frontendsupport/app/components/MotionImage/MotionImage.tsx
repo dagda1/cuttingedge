@@ -2,7 +2,7 @@ import type { ImgHTMLAttributes } from 'react';
 import cs from 'classnames';
 import { Box, type BoxProps } from '@cutting/component-library';
 
-type MotionImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'alt'> & {
+export type MotionImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'alt'> & {
   type: 'parallax' | 'static';
   alt: string;
 } & Pick<BoxProps, 'position'>;
