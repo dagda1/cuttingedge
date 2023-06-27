@@ -28,7 +28,6 @@ export function HomeDesktop(): JSX.Element {
 
   useIsomorphicLayoutEffect(() => {
     function main() {
-      console.log({ right, desktop: breakpoints.desktop });
       if (right < breakpoints.desktop || document.querySelector('.pin-spacer')) {
         return;
       }
@@ -100,9 +99,7 @@ export function HomeDesktop(): JSX.Element {
       };
     }
 
-    setTimeout(() => {
-      main();
-    }, 1000);
+    setTimeout(main, 1000);
   }, [right, width]);
 
   return (
