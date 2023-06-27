@@ -7,12 +7,4 @@ export const panel = style({
       marginRight: '20vw',
     },
   }),
-  selectors: {
-    '&.final': {
-      marginRight: '0',
-    },
-    '&.clients': {
-      marginRight: '0',
-    },
-  },
 });

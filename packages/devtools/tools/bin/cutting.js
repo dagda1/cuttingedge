@@ -14,9 +14,7 @@ const args = process.argv.slice(3);
 let command = '';
 switch (script) {
     case 'devserver-start':
-    case 'init':
     case 'rollup':
-    case 'scaffold':
     case 'esbuild':
     case 'ts-build': {
         command = path.join(__dirname, `../scripts/${script}.js`);

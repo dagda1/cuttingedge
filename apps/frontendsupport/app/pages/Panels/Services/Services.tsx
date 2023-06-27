@@ -1,21 +1,19 @@
-import { Panel } from '~/components/Panel/Panel';
 import { Box, Heading } from '@cutting/component-library';
 
 export function Services(): JSX.Element {
   return (
-    <Panel>
-      <Box
-        height="screen"
-        width="screen"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        position="relative"
-      >
-        <Box position="relative" display="flex" justifyContent="spaceBetween">
-          <Heading level="2">You have to get it right first time</Heading>
+    <Box height="full" width="full" className={'breaking-glass'}>
+      <Box width="full" marginTop="xxxlarge">
+        <Heading level="2">Work with us</Heading>
+      </Box>
+      <Box height="full" display="flex" width="full" style={{ border: '10px solid yellow' }}>
+        <Box style={{ border: '10px solid blue' }}>
+          <Heading level="2">Project</Heading>
+        </Box>
+        <Box style={{ border: '10px solid red' }}>
+          <Heading level="2">Strategy Consultation</Heading>
         </Box>
       </Box>
-    </Panel>
+    </Box>
   );
 }

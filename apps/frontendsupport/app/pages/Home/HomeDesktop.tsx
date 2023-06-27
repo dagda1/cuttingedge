@@ -79,7 +79,7 @@ export function HomeDesktop(): JSX.Element {
               trigger: '.breaking',
               start: 'center 65%',
               end: 'center 51%',
-              scrub: 10,
+              scrub: 5,
               markers: true,
             },
           })

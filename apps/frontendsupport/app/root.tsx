@@ -5,11 +5,11 @@ import katex from 'katex/dist/katex.min.css';
 import displacement from '~/images/displacement.jpg';
 import normalMap from '~/images/NormalMap2.png';
 import { cssBundleHref } from '@remix-run/css-bundle';
-import * as styles from './global.css';
-import { ApplicationLayout, supportTheme } from '@cutting/component-library';
-import cs from 'classnames';
+import './global.css';
+import { supportTheme } from '@cutting/component-library';
 import cuttingStyles from '@cutting/component-library/styles.css';
 import cssStyles from '~/styles.css';
+import { Header } from './components/Header/Header';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -58,13 +58,14 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className={cs(supportTheme, styles.body)}>
-        <ApplicationLayout theme="supportTheme">
+      <body className={supportTheme}>
+        <Header />
+        <main>
           <Outlet />
           {/* <ScrollRestoration /> */}
           <Scripts />
           <LiveReload />
-        </ApplicationLayout>
+        </main>
       </body>
     </html>
   );

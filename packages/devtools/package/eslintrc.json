@@ -1,7 +1,0 @@
-{
-  "root": true,
-  "extends": ["@cutting/eslint-config/node"],
-  "rules": {
-    "no-done-callback": ["off"]
-  }
-}
