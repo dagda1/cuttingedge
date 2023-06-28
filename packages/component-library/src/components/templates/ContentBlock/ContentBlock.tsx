@@ -6,6 +6,7 @@ import { Box } from '../../molecules/Box/Box';
 export interface ContentBlockProps {
   children: ReactNode;
   width?: BoxProps['maxWidth'];
+  height?: BoxProps['height'];
 }
 
 export function ContentBlock({ width = 'medium', children }: ContentBlockProps): JSX.Element {

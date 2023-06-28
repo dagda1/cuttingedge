@@ -50,6 +50,8 @@ export const Card = ({ children, component = 'div', tone, height, ...restProps }
     ]);
   }
 
+  console.log(borderRadius);
+
   return (
     <Box
       component={component}

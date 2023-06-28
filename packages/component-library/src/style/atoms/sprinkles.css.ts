@@ -29,6 +29,27 @@ export const space = {
   none: 0,
 } as const;
 
+const boxShadow = {
+  ...vars.shadow,
+  borderCaution: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.caution}`,
+  borderCritical: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.critical}`,
+  borderCriticalLarge: `inset 0 0 0 ${vars.borderWidth.large} ${vars.borderColor.critical}`,
+  borderField: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.field}`,
+  borderInfo: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.info}`,
+  borderPositive: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.positive}`,
+  borderPromote: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.promote}`,
+  outlineFocus: `0 0 0 ${vars.focusRingSize} ${vars.borderColor.focus}`,
+};
+
+export const colorProperties = {
+  background: vars.backgroundColor,
+  boxShadow,
+} as const;
+
+export type BoxShadow = keyof typeof boxShadow;
+
+export type Background = keyof typeof vars.backgroundColor;
+
 export const unresponsiveProperties = {
   userSelect: ['none'],
   outline: ['none'],
@@ -141,9 +162,14 @@ const unresponsiveAtomicProperties = defineProperties({
   properties: unresponsiveProperties,
 });
 
+const colorAtomicProperties = defineProperties({
+  properties: colorProperties,
+});
+
 export const sprinkles = createSprinkles(
   unresponsiveAtomicProperties,
   responsiveAtomicProperties,
+  colorAtomicProperties,
   // TODO: pseudo properties
   // pseudoAtomicProperties,
 );

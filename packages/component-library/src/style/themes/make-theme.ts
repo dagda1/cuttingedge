@@ -204,6 +204,8 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
     },
     contentWidth: mapValues(tokens.contentWidth, px),
     transition: tokens.transitions,
+    shadow: tokens.shadows,
+    focusRingSize: px(tokens.focusRingSize),
   };
 
   return resolvedTokens;

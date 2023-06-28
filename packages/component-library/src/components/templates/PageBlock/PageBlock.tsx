@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import { ContentBlock, type ContentBlockProps } from '../ContentBlock/ContentBlock';
+import type { BoxProps } from '~/components/molecules/Box/Box';
 import { Box } from '~/components/molecules/Box/Box';
 import { atoms } from '~/style/atoms/atoms';
 import cs from 'classnames';
@@ -13,11 +14,13 @@ type Props = {
   children: ReactNode;
   width?: Extract<ContentBlockProps['width'], 'medium' | 'large'>;
   component?: (typeof validPageBlockComponents)[number];
+  height?: BoxProps['height'];
 } & ContainerBoxProps;
 
 export function PageBlock({
   children,
   width = 'large',
+  height,
   component: componentProp,
   justifyContent,
   alignItems,
@@ -27,8 +30,10 @@ export function PageBlock({
   const classes = cs(atoms({ justifyContent, alignItems, display: 'flex' }));
 
   return (
-    <Box className={classes} component={component} paddingX={gutters}>
-      <ContentBlock width={width}>{children}</ContentBlock>
+    <Box height={height} className={classes} component={component} paddingX={gutters}>
+      <ContentBlock height={height} width={width}>
+        {children}
+      </ContentBlock>
     </Box>
   );
 }

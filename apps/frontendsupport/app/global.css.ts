@@ -7,6 +7,7 @@ globalStyle('*,*:before,*:after', {
 globalStyle('body,main', {
   overflowX: 'hidden',
   overflowY: 'scroll',
+  height: '100%',
 });
 
 export const header = style({

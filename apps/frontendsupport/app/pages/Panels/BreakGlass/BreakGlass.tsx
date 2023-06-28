@@ -4,6 +4,7 @@ import breakglassRight from '~/images/breakglass-right.png';
 import cs from 'classnames';
 import * as styles from './BreakingGlass.css';
 import { Box, Heading } from '@cutting/component-library';
+import { Services } from '../Services/Services';
 
 interface BreakGlassProps {
   breakglassRef: Ref<HTMLDivElement>;
@@ -12,7 +13,7 @@ interface BreakGlassProps {
 
 export function BreakGlass({ breakglassRef, className }: BreakGlassProps): JSX.Element {
   return (
-    <Box display="flex" justifyContent="center" className={cs('breaking-glass', styles.breaking, className)}>
+    <Box display="flex" justifyContent="center" className={cs('green', styles.breaking, className)}>
       <Box
         display={{ mobile: 'none', desktop: 'flex' }}
         position="relative"
@@ -25,7 +26,7 @@ export function BreakGlass({ breakglassRef, className }: BreakGlassProps): JSX.E
         <img alt="breaking glass left" className="bglass-left glass" src={breakglassLeft} />
         <img alt="breaking glass right" className="bglass-right glass" src={breakglassRight} />
         <Box position="absolute" className={cs('services', styles.services)}>
-          <Heading level="1">Our Services</Heading>
+          <Services />
         </Box>
       </Box>
     </Box>

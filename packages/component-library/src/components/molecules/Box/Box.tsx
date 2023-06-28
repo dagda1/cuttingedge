@@ -47,6 +47,8 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
       }, [userClasses]);
     }
 
+    console.log(atomProps);
+
     const atomicClasses = atoms({
       reset: typeof component === 'string' ? component : 'div',
       ...atomProps,

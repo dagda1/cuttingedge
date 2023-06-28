@@ -11,7 +11,7 @@ const isTest = process.env.NODE_ENV === 'test';
 // https://vitejs.dev/config/
 export default defineConfig({
   root: isTest ? '.' : 'demo',
-  plugins: [vanillaExtractPlugin(), tsconfigPaths(), react()],
+  plugins: [vanillaExtractPlugin(), tsconfigPaths({ root: '../../' }), react()],
   test: {
     globals: true,
     environment: 'jsdom',
