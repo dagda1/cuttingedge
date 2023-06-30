@@ -50,14 +50,13 @@ export const Card = ({ children, component = 'div', tone, height, ...restProps }
     ]);
   }
 
-  console.log(borderRadius);
-
   return (
     <Box
       component={component}
       position="relative"
       padding="gutter"
       borderRadius={resolvedRounding}
+      boxShadow="borderNeutralLight"
       height={height === 'full' ? height : undefined}
     >
       {tone ? <Keyline borderRadius={resolvedRounding} /> : null}

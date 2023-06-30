@@ -39,6 +39,7 @@ const boxShadow = {
   borderPositive: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.positive}`,
   borderPromote: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.promote}`,
   outlineFocus: `0 0 0 ${vars.focusRingSize} ${vars.borderColor.focus}`,
+  borderNeutralLight: `inset 0 0 0 ${vars.borderWidth.standard} ${vars.borderColor.neutralLight}`,
 };
 
 export const colorProperties = {

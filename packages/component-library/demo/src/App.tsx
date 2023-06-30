@@ -16,11 +16,13 @@ import {
   Columns,
   Column,
   Hamburger,
+  Card,
 } from '../../src';
 import { Button } from '../../src/components/atoms/Button/Button';
 import { RadioGroup } from '../../src/components/molecules/RadioGroup/RadioGroup';
 import type { ThemeKeys } from '../../src/components/templates/ApplicationLayout/ApplicationLayout';
 import { ApplicationLayout } from '../../src/components/templates/ApplicationLayout/ApplicationLayout';
+import { range } from '@cutting/util';
 
 export function App(): JSX.Element {
   const [theme, setTheme] = useState<ThemeKeys>('supportTheme');
@@ -60,6 +62,20 @@ export function App(): JSX.Element {
               },
             ]}
           />
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Heading level="2">Cards</Heading>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Columns space="large" align="left" collapseBelow="tablet">
+            {[...range(3)].map((score) => (
+              <Column key={score}>
+                <Card rounded>
+                  <Heading level="2">{score}</Heading>
+                </Card>
+              </Column>
+            ))}
+          </Columns>
         </ContentBlock>
         <ContentBlock width="large">
           <Heading level="2">Headings</Heading>

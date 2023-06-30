@@ -56,6 +56,7 @@ export const tokens = {
       standard: palette.neutral900,
       invalid: palette.redError,
       focus: palette.green800,
+      neutralLight: palette.grey20,
     },
   },
   shadows: {

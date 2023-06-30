@@ -16,6 +16,9 @@ export const tokens: DeepPartial<Tokens> = {
     width: {
       standard: 20,
     },
+    color: {
+      neutralLight: palette.white,
+    },
   },
   color: {
     foreground: {

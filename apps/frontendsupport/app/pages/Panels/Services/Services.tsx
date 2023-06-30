@@ -4,7 +4,9 @@ export function Services(): JSX.Element {
   return (
     <Box height="screen" className="green" marginTop="xxxlarge">
       <PageBlock>
-        <Heading level="2">Work with us</Heading>
+        <Heading center level="2">
+          Work with us
+        </Heading>
         <Tiles columns={{ mobile: 1, tablet: 2 }} space="large">
           <Card rounded height="full" tone="promote">
             <Heading level="2">Project</Heading>
