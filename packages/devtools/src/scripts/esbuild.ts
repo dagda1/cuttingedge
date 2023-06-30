@@ -11,9 +11,6 @@ import fs from 'fs';
 import { createCommand } from 'commander';
 import { readFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import tsPaths from 'esbuild-ts-paths';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -61,7 +58,6 @@ async function bundle({
     splitting: true,
     metafile: analyze,
     plugins: [
-      tsPaths(),
       nodeExternalsPlugin({
         packagePath: paths.appPackageJson,
       }),
