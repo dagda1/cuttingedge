@@ -329,8 +329,8 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3
       '@vanilla-extract/sprinkles':
-        specifier: ^1.6.0
-        version: 1.6.0(@vanilla-extract/css@1.11.1)
+        specifier: ^1.6.1
+        version: 1.6.1(@vanilla-extract/css@1.11.1)
       esbuild:
         specifier: ^0.17.16
         version: 0.17.19
@@ -395,8 +395,8 @@ importers:
         specifier: 1.11.1
         version: 1.11.1
       '@vanilla-extract/sprinkles':
-        specifier: 1.6.0
-        version: 1.6.0(@vanilla-extract/css@1.11.1)
+        specifier: 1.6.1
+        version: 1.6.1(@vanilla-extract/css@1.11.1)
       '@visx/axis':
         specifier: 3.1.0
         version: 3.1.0(react@18.2.0)
@@ -724,8 +724,8 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3
       '@vanilla-extract/sprinkles':
-        specifier: 1.6.0
-        version: 1.6.0(@vanilla-extract/css@1.11.1)
+        specifier: 1.6.1
+        version: 1.6.1(@vanilla-extract/css@1.11.1)
       autoprefixer:
         specifier: 10.4.14
         version: 10.4.14(postcss@8.4.24)
@@ -1056,8 +1056,8 @@ importers:
         specifier: ^1.11.1
         version: 1.11.1
       '@vanilla-extract/sprinkles':
-        specifier: 1.6.0
-        version: 1.6.0(@vanilla-extract/css@1.11.1)
+        specifier: 1.6.1
+        version: 1.6.1(@vanilla-extract/css@1.11.1)
       abortcontroller-polyfill:
         specifier: 1.7.5
         version: 1.7.5
@@ -1321,8 +1321,8 @@ importers:
         specifier: ^1.11.1
         version: 1.11.1
       '@vanilla-extract/sprinkles':
-        specifier: 1.6.0
-        version: 1.6.0(@vanilla-extract/css@1.11.1)
+        specifier: 1.6.1
+        version: 1.6.1(@vanilla-extract/css@1.11.1)
       '@visx/scale':
         specifier: ^3.0.0
         version: 3.0.0
@@ -1396,8 +1396,8 @@ importers:
         specifier: ^1.11.1
         version: 1.11.1
       '@vanilla-extract/sprinkles':
-        specifier: 1.6.0
-        version: 1.6.0(@vanilla-extract/css@1.11.1)
+        specifier: 1.6.1
+        version: 1.6.1(@vanilla-extract/css@1.11.1)
       eslint:
         specifier: 8.43.0
         version: 8.43.0
@@ -9548,8 +9548,8 @@ packages:
   /@vanilla-extract/private@1.0.3:
     resolution: {integrity: sha512-17kVyLq3ePTKOkveHxXuIJZtGYs+cSoev7BlP+Lf4916qfDhk/HBjvlYDe8egrea7LNPHKwSZJK/bzZC+Q6AwQ==}
 
-  /@vanilla-extract/sprinkles@1.6.0(@vanilla-extract/css@1.11.1):
-    resolution: {integrity: sha512-TDc/bKyYmt6PDd7/39a5HXUa+4mBI9PO0uw0jmxFMqe9EzrFEVevyRsjJ9KGK09ACItvVUotz98LIJTeliCbpQ==}
+  /@vanilla-extract/sprinkles@1.6.1(@vanilla-extract/css@1.11.1):
+    resolution: {integrity: sha512-N/RGKwGAAidBupZ436RpuweRQHEFGU+mvAqBo8PRMAjJEmHoPDttV8RObaMLrJHWLqvX+XUMinHUnD0hFRQISw==}
     peerDependencies:
       '@vanilla-extract/css': ^1.0.0
     dependencies:
