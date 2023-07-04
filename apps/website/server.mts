@@ -7,6 +7,8 @@ import { assert } from 'assert-ts';
 import helmet, { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
 import referrerPolicy from 'referrer-policy';
+import puppeteer from 'puppeteer';
+// import sharp from 'sharp';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -19,6 +21,11 @@ process.env.MY_CUSTOM_SECRET = 'API_KEY_qwertyuiop';
 const root = process.cwd();
 
 const publicDir = path.join(root, isProd ? 'dist/server' : 'public');
+
+const defaultViewport = {
+  height: 1200,
+  width: 630,
+};
 
 export async function createServer(): Promise<{
   app: ReturnType<typeof express>;
@@ -131,9 +138,88 @@ export async function createServer(): Promise<{
     });
   });
 
+  app.get('/og-image', async (req, res) => {
+    const url = req.query.url;
+
+    if (!url) {
+      return res.status(400).send('Missing URL parameter');
+    }
+
+    try {
+      const launchBrowser = puppeteer.launch({
+        headless: 'new',
+        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+        args: [
+          '--font-render-hinting=none',
+          '--disable-dev-shm-usage',
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-extensions',
+        ],
+      });
+      const browser = await launchBrowser;
+      const page = await browser.newPage();
+
+      await page.setCacheEnabled(false);
+
+      await page.setViewport(defaultViewport);
+
+      await page.setUserAgent(
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.198 Safari/537.36',
+      );
+
+      await page.setCacheEnabled(false);
+
+      await page.goto(url as string, { waitUntil: 'networkidle0' });
+
+      const element = await page.$('#root');
+      if (!element) {
+        res.status(500).send('Error occurred while generating OG image');
+        res.status(500).send('no #root');
+        return;
+      }
+
+      const boundingBox = await element.boundingBox();
+      if (!boundingBox) {
+        console.error("Could'nt get element.boundingBox");
+        res.status(500).send('Error occurred while generating OG image');
+        return;
+      }
+
+      const screenshot = await page.screenshot({
+        type: 'png',
+        clip: { ...boundingBox, height: boundingBox.height },
+      });
+
+      await element.dispose();
+      await browser.close();
+
+      // const final = await sharp(screenshot).resize({ width: 1200, height: 630 }).toBuffer();
+
+      await browser.close();
+
+      res.setHeader('Content-Type', 'image/png');
+      res.send(screenshot);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error occurred while generating OG image');
+    }
+  });
+
   app.use('*', async (req, res) => {
     try {
       const url = req.originalUrl;
+
+      // console.log(req.baseUrl);
+      // console.log(req.url);
+
+      // console.dir(`${req.protocol}://${req.get('host')}`, { depth: 3 });
+
+      const baseUrl = `${req.protocol}://${req.get('host')}`;
+      const ogUrl = `${baseUrl}${req.originalUrl}`;
+      const ogImage = `${baseUrl}/og-image?url=${encodeURI(ogUrl)}`;
+
+      console.log({ ogUrl });
 
       let template, render;
       if (!isProd) {
@@ -157,7 +243,7 @@ export async function createServer(): Promise<{
         return res.redirect(301, context.url);
       }
 
-      const html = template.replace(`<!--app-html-->`, appHtml);
+      const html = template.replace(`<!--app-html-->`, appHtml).replace('@url', ogUrl).replace('@image', ogImage);
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {
@@ -178,7 +264,7 @@ export async function createServer(): Promise<{
 if (!isTest) {
   createServer().then(({ app }) =>
     app.listen(PORT, () => {
-      console.log(`http://localhost:${PORT}`);
+      console.log(`fuck http://localhost:${PORT}`);
     }),
   );
 }
