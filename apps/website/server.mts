@@ -1,3 +1,4 @@
+import { mkdir, writeFile, readFile } from 'fs/promises';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -8,7 +9,7 @@ import helmet, { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
 import referrerPolicy from 'referrer-policy';
 import puppeteer from 'puppeteer';
-// import sharp from 'sharp';
+import sharp from 'sharp';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -23,8 +24,8 @@ const root = process.cwd();
 const publicDir = path.join(root, isProd ? 'dist/server' : 'public');
 
 const defaultViewport = {
-  height: 1200,
-  width: 630,
+  height: 630,
+  width: 1200,
 };
 
 export async function createServer(): Promise<{
@@ -139,16 +140,39 @@ export async function createServer(): Promise<{
   });
 
   app.get('/og-image', async (req, res) => {
+    const isContainer = process.env.OS_ENV === 'container';
     const url = req.query.url;
 
-    if (!url) {
+    if (typeof url !== 'string') {
       return res.status(400).send('Missing URL parameter');
     }
 
     try {
+      const slug = new URL(url).pathname.replace(/\//g, '') || 'home';
+
+      console.log({ url, slug });
+      const ogCache = path.join(process.cwd(), '.cache', 'ogimages');
+      const imagePath = `${ogCache}/${slug}_ogimage.png`;
+      // note pptrCache to prevent [`ENOSPC: no space left on device`](https://github.com/puppeteer/puppeteer/issues/6414)
+      const pptrCache = path.join(process.cwd(), '.cache', 'pptr');
+      await Promise.all([
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        mkdir(pptrCache, { recursive: true }).catch(() => {}),
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        mkdir(ogCache, { recursive: true }).catch(() => {}),
+      ]);
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      const cachedImage = await readFile(imagePath).catch(() => {});
+
+      if (cachedImage) {
+        console.log('cached');
+        res.setHeader('Content-Type', 'image/png');
+        res.send(cachedImage);
+        return;
+      }
+
       const launchBrowser = puppeteer.launch({
         headless: 'new',
-        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
         args: [
           '--font-render-hinting=none',
           '--disable-dev-shm-usage',
@@ -156,6 +180,8 @@ export async function createServer(): Promise<{
           '--disable-setuid-sandbox',
           '--disable-extensions',
         ],
+        userDataDir: pptrCache,
+        ...(isContainer && { executablePath: 'google-chrome-stable' }),
       });
       const browser = await launchBrowser;
       const page = await browser.newPage();
@@ -170,12 +196,11 @@ export async function createServer(): Promise<{
 
       await page.setCacheEnabled(false);
 
-      await page.goto(url as string, { waitUntil: 'networkidle0' });
+      await page.goto(url as string, { waitUntil: 'networkidle0', timeout: 50000 });
 
       const element = await page.$('#root');
       if (!element) {
         res.status(500).send('Error occurred while generating OG image');
-        res.status(500).send('no #root');
         return;
       }
 
@@ -194,12 +219,12 @@ export async function createServer(): Promise<{
       await element.dispose();
       await browser.close();
 
-      // const final = await sharp(screenshot).resize({ width: 1200, height: 630 }).toBuffer();
+      const final = await sharp(screenshot).resize({ width: 1200, height: 630 }).toBuffer();
 
-      await browser.close();
+      await writeFile(imagePath, final);
 
       res.setHeader('Content-Type', 'image/png');
-      res.send(screenshot);
+      res.send(final);
     } catch (error) {
       console.error(error);
       res.status(500).send('Error occurred while generating OG image');
@@ -210,16 +235,9 @@ export async function createServer(): Promise<{
     try {
       const url = req.originalUrl;
 
-      // console.log(req.baseUrl);
-      // console.log(req.url);
-
-      // console.dir(`${req.protocol}://${req.get('host')}`, { depth: 3 });
-
       const baseUrl = `${req.protocol}://${req.get('host')}`;
       const ogUrl = `${baseUrl}${req.originalUrl}`;
       const ogImage = `${baseUrl}/og-image?url=${encodeURI(ogUrl)}`;
-
-      console.log({ ogUrl });
 
       let template, render;
       if (!isProd) {
@@ -264,7 +282,7 @@ export async function createServer(): Promise<{
 if (!isTest) {
   createServer().then(({ app }) =>
     app.listen(PORT, () => {
-      console.log(`fuck http://localhost:${PORT}`);
+      console.log(`http://localhost:${PORT}`);
     }),
   );
 }
