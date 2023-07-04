@@ -60,7 +60,6 @@
     "mathjs": "11.8.2",
     "nocache": "4.0.0",
     "puppeteer": "^20.7.4",
-    "sharp": "^0.32.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-helmet": "6.1.0",

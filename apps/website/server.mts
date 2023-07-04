@@ -9,7 +9,6 @@ import helmet, { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
 import referrerPolicy from 'referrer-policy';
 import puppeteer from 'puppeteer';
-import sharp from 'sharp';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -219,12 +218,12 @@ export async function createServer(): Promise<{
       await element.dispose();
       await browser.close();
 
-      const final = await sharp(screenshot).resize({ width: 1200, height: 630 }).toBuffer();
+      // const final = await sharp(screenshot).resize({ width: 1200, height: 630 }).toBuffer();
 
-      await writeFile(imagePath, final);
+      await writeFile(imagePath, screenshot);
 
       res.setHeader('Content-Type', 'image/png');
-      res.send(final);
+      res.send(screenshot);
     } catch (error) {
       console.error(error);
       res.status(500).send('Error occurred while generating OG image');
