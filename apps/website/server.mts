@@ -149,7 +149,6 @@ export async function createServer(): Promise<{
     try {
       const slug = new URL(url).pathname.replace(/\//g, '') || 'home';
 
-      console.log({ url, slug });
       const ogCache = path.join(process.cwd(), '.cache', 'ogimages');
       const imagePath = `${ogCache}/${slug}_ogimage.png`;
       // note pptrCache to prevent [`ENOSPC: no space left on device`](https://github.com/puppeteer/puppeteer/issues/6414)
@@ -260,7 +259,10 @@ export async function createServer(): Promise<{
         return res.redirect(301, context.url);
       }
 
-      const html = template.replace(`<!--app-html-->`, appHtml).replace('@url', ogUrl).replace('@image', ogImage);
+      const html = template
+        .replace(`<!--app-html-->`, appHtml)
+        .replace(/\@url/g, ogUrl)
+        .replace(/\@image/g, ogImage);
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {

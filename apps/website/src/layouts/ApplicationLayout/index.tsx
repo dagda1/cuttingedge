@@ -25,8 +25,6 @@ export function ApplicationLayout({
         <>
           <Helmet title={typeof heading === 'string' ? heading : CuttingEdge}>
             <meta charSet="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-            <meta property="og:title" content={heading} />
           </Helmet>
           <Header />
         </>
