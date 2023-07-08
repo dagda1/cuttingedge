@@ -29,7 +29,7 @@
     "@xstate/react": "^3.2.2",
     "abortcontroller-polyfill": "^1.7.5",
     "assert-ts": "^0.3.4",
-    "cross-fetch": "^3.1.7",
+    "cross-fetch": "^3.1.8",
     "effection": "^2.0.7",
     "fetch-jsonp": "^1.2.3",
     "xstate": "^4.37.2"
