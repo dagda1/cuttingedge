@@ -5,11 +5,16 @@ module.exports = {
     unstable_vanillaExtract: true,
     unstable_dev: true,
     v2_errorBoundary: true,
+    v2_meta: true,
   },
   ignoredRouteFiles: ['**/.*', '**/*.css.ts'],
   publicPath: '/_static/build/',
   server: './server.js',
   serverBuildPath: 'server/index.js',
+  serverMainFields: ['main', 'module'], // default value, can be removed
+  serverMinify: false, // default value, can be removed
+  serverModuleFormat: 'cjs', // default value, can be removed
+  serverPlatform: 'node', // default value, can be removed
   // appDirectory: "app",
   // assetsBuildDirectory: "public/build",
   serverDependenciesToBundle: [

@@ -1,12 +1,12 @@
-import { LightSource } from '~/effects/Lightsource';
-import { Canvas } from '@react-three/fiber';
-import { ACESFilmicToneMapping, LinearToneMapping } from 'three';
-import { Suspense } from 'react';
-import { Loader } from '@react-three/drei';
-import { Leva } from 'leva';
-import { Background } from '~/effects/Background';
-import Effects from '~/effects/Effects';
-import { Cursor } from '~/components/Cursor/Cursor';
+// import { LightSource } from '~/effects/Lightsource';
+// import { Canvas } from '@react-three/fiber';
+// import { ACESFilmicToneMapping, LinearToneMapping } from 'three';
+// import { Suspense } from 'react';
+// import { Loader } from '@react-three/drei';
+// import { Leva } from 'leva';
+// import { Background } from '~/effects/Background';
+// import Effects from '~/effects/Effects';
+// import { Cursor } from '~/components/Cursor/Cursor';
 import { Home as HomePage } from '~/pages/Home/Home';
 
 export default function Home() {
@@ -34,7 +34,7 @@ export default function Home() {
 
       {/* <Overlay /> */}
       <HomePage />
-      <Loader />
+      {/* <Loader /> */}
     </>
   );
 }

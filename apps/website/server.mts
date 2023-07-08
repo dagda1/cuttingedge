@@ -151,7 +151,6 @@ export async function createServer(): Promise<{
 
       const ogCache = path.join(process.cwd(), '.cache', 'ogimages');
       const imagePath = `${ogCache}/${slug}_ogimage.png`;
-      // note pptrCache to prevent [`ENOSPC: no space left on device`](https://github.com/puppeteer/puppeteer/issues/6414)
       const pptrCache = path.join(process.cwd(), '.cache', 'pptr');
       await Promise.all([
         // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -197,12 +196,14 @@ export async function createServer(): Promise<{
       await page.goto(url as string, { waitUntil: 'networkidle0', timeout: 50000 });
 
       const element = await page.$('#root');
+
       if (!element) {
         res.status(500).send('Error occurred while generating OG image');
         return;
       }
 
       const boundingBox = await element.boundingBox();
+
       if (!boundingBox) {
         console.error("Could'nt get element.boundingBox");
         res.status(500).send('Error occurred while generating OG image');
