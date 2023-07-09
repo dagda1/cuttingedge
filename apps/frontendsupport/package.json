@@ -42,7 +42,7 @@
     "is-buffer": "^2.0.5",
     "is-plain-obj": "^4.1.0",
     "js-yaml": "^4.1.0",
-    "katex": "^0.16.7",
+    "katex": "^0.16.8",
     "leva": "^0.9.35",
     "maath": "^0.5.3",
     "mdast-util-to-markdown": "^1.5.0",
