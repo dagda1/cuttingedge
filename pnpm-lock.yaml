@@ -214,7 +214,7 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       micromark-util-chunked:
-        specifier: ^1.0.0
+        specifier: ^1.1.0
         version: 1.1.0
       polished:
         specifier: ^4.2.2
