@@ -238,8 +238,8 @@ importers:
         specifier: ^6.1.1
         version: 6.1.1
       rehype-citation:
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^1.0.2
+        version: 1.0.2
       rehype-highlight:
         specifier: ^6.0.0
         version: 6.0.0
@@ -20990,8 +20990,8 @@ packages:
       unist-util-visit: 4.1.2
     dev: false
 
-  /rehype-citation@1.0.1:
-    resolution: {integrity: sha512-l50kEikJQBNQNgfsIBNlxkyzsA7Ia6fZ03hKpNP8h67dH54ILMBNyrU0L3J77B2WcjXQDYpMrFYTcznI1YFtiQ==}
+  /rehype-citation@1.0.2:
+    resolution: {integrity: sha512-FEvO2mOvUKeyj0FuN3ASNrerEqQkaBWFdrbRJLEsxho0Kfjhx905fjeOzjDFQ+8iL0wVgK/ml3x7vhgjOc7ITw==}
     dependencies:
       '@citation-js/core': 0.6.8
       '@citation-js/date': 0.5.1
@@ -21000,7 +21000,7 @@ packages:
       '@citation-js/plugin-bibtex': 0.6.8(@citation-js/core@0.6.8)
       '@citation-js/plugin-csl': 0.6.8(@citation-js/core@0.6.8)
       citeproc: 2.4.63
-      cross-fetch: 3.1.6
+      cross-fetch: 3.1.8
       hast-util-from-dom: 4.2.0
       hast-util-from-parse5: 7.1.2
       parse5: 6.0.1
