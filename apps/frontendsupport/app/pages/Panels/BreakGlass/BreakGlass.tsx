@@ -3,7 +3,7 @@ import breakglassLeft from '~/images/breakglass-left.png';
 import breakglassRight from '~/images/breakglass-right.png';
 import cs from 'classnames';
 import * as styles from './BreakingGlass.css';
-import { Box, Heading } from '@cutting/component-library';
+import { Box } from '@cutting/component-library';
 import { Services } from '../Services/Services';
 
 interface BreakGlassProps {
@@ -21,11 +21,11 @@ export function BreakGlass({ breakglassRef, className }: BreakGlassProps): JSX.E
         justifyContent="center"
         alignItems="center"
         ref={breakglassRef}
-        className={cs('breaking', styles.splitter)}
+        className="breaking"
       >
         <img alt="breaking glass left" className="bglass-left glass" src={breakglassLeft} />
         <img alt="breaking glass right" className="bglass-right glass" src={breakglassRight} />
-        <Box position="absolute" className={cs('services', styles.services)}>
+        <Box position="absolute" className="services">
           <Services />
         </Box>
       </Box>

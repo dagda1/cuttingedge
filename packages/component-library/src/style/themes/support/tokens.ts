@@ -24,6 +24,7 @@ export const tokens: DeepPartial<Tokens> = {
     foreground: {
       secondary: palette.white,
       info: '#FFD700',
+      promote: '#ffff00',
       link: palette.neutral400,
       linkHover: palette.white,
       linkVisited: palette.neutral100,

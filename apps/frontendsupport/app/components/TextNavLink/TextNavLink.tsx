@@ -6,17 +6,22 @@ import cs from 'classnames';
 import * as styles from './TextNavLink.css';
 import { forwardRef } from 'react';
 
-type Props = NavLinkProps & { Component?: Taggable<NavLinkProps> } & Omit<TextProps, 'className'>;
+type Props = NavLinkProps & { Component?: Taggable<NavLinkProps> } & { underline?: boolean } & Omit<
+    TextProps,
+    'className'
+  >;
 
-const TextNavLinkWrapper = forwardRef<HTMLAnchorElement, Props>(({ Component = NavLink, className, ...props }, ref) => {
-  const linkStyles = useGetTextStyles();
-  const classes =
-    typeof className === 'function'
-      ? (p: { isActive: boolean; isPending: boolean }) => cs(className(p), linkStyles, styles.main)
-      : cs(className, linkStyles, styles.main);
+const TextNavLinkWrapper = forwardRef<HTMLAnchorElement, Props>(
+  ({ Component = NavLink, className, underline, ...props }, ref) => {
+    const linkStyles = useGetTextStyles();
+    const classes =
+      typeof className === 'function'
+        ? (p: { isActive: boolean; isPending: boolean }) => cs(className(p), linkStyles, styles.main)
+        : cs(className, linkStyles, styles.main, { [styles.underline]: underline });
 
-  return <Component ref={ref} className={classes} {...props} />;
-});
+    return <Component ref={ref} className={classes} {...props} />;
+  },
+);
 
 TextNavLinkWrapper.displayName = 'TextNavLinkWrapper';
 

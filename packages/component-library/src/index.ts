@@ -19,6 +19,7 @@ export type {
 } from './components/hoc/FormControl/types';
 export type { AlertType, AlertProps } from './components/molecules/Alert/Alert';
 export type { TextProps } from './components/atoms/Text/Text';
+export type { ListProps } from './components/molecules/List/List';
 
 export { Heading } from './components/atoms/Heading/Heading';
 export { Text } from './components/atoms/Text/Text';

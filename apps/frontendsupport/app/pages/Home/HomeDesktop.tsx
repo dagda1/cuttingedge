@@ -80,6 +80,7 @@ export function HomeDesktop(): JSX.Element {
               end: 'center 51%',
               scrub: 5,
               markers: true,
+              once: true,
             },
           })
           .to(breakglassRef.current, { justifyContent: 'space-between', ease: 'none' })
@@ -114,9 +115,9 @@ export function HomeDesktop(): JSX.Element {
       >
         <Intro />
         <HelpPanel innerRef={dimensionsRef} />
-        <Frameworks />
+        {/* <Frameworks />
         <OSS />
-        <Clients />
+        <Clients /> */}
         <Final />
       </Box>
       <BreakGlass breakglassRef={breakglassRef} />
