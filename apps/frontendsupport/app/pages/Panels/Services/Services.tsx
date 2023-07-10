@@ -35,6 +35,7 @@ export function Services(): JSX.Element {
           <Service
             heading="Support and bug fixing"
             actionText="We can do that within the next 24 hours!"
+            buttonText="Book an emergency call"
             link="mentoring"
           >
             <Text tone="info">Need an urgent bug fix?</Text>

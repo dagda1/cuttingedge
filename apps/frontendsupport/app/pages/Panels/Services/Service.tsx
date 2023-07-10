@@ -9,9 +9,16 @@ type ServiceProps = Pick<ListProps, 'children'> & {
   actionText: ReactNode;
   children: ReactNode;
   link: string;
+  buttonText?: string;
 };
 
-export function Service({ heading, actionText, link, children }: ServiceProps): JSX.Element {
+export function Service({
+  heading,
+  actionText,
+  link,
+  buttonText = 'Find out more',
+  children,
+}: ServiceProps): JSX.Element {
   return (
     <Card height="full" rounded tone="formAccent">
       <Box marginY="small" display="flex" flexDirection="column" justifyContent="spaceBetween" height="full">
@@ -34,7 +41,7 @@ export function Service({ heading, actionText, link, children }: ServiceProps): 
             className={styles.action}
           >
             <TextNavLink size="large" to={link} underline>
-              Find out more
+              {buttonText}
             </TextNavLink>
           </Box>
         </Stack>
