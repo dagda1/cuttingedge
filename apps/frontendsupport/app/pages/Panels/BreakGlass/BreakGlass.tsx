@@ -25,7 +25,7 @@ export function BreakGlass({ breakglassRef, className }: BreakGlassProps): JSX.E
       >
         <img alt="breaking glass left" className="bglass-left glass" src={breakglassLeft} />
         <img alt="breaking glass right" className="bglass-right glass" src={breakglassRight} />
-        <Box position="absolute" className="services">
+        <Box position="absolute" className="services" width="full">
           <Services />
         </Box>
       </Box>

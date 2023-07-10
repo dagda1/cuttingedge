@@ -21,7 +21,7 @@ export function Service({
 }: ServiceProps): JSX.Element {
   return (
     <Card height="full" rounded tone="formAccent">
-      <Box marginY="small" display="flex" flexDirection="column" justifyContent="spaceBetween" height="full">
+      <Box display="flex" flexDirection="column" justifyContent="spaceBetween" height="full">
         <Heading center level="2">
           {heading}
         </Heading>
@@ -29,18 +29,18 @@ export function Service({
           {children}
         </List>
 
-        <Stack space="xxlarge" align="center">
-          <Text tone="promote" component="p" size="large">
+        <Stack space="medium" align="center">
+          <Text tone="promote" component="p" size="standard">
             {actionText}
           </Text>
 
           <Box
             display="inlineBlock"
-            padding="large"
-            marginY={{ mobile: 'small', desktop: 'medium', wide: 'large' }}
+            padding="medium"
             className={styles.action}
+            marginY={{ mobile: 'small', desktop: 'small', wide: 'large' }}
           >
-            <TextNavLink size="large" to={link} underline>
+            <TextNavLink size="standard" to={link} underline>
               {buttonText}
             </TextNavLink>
           </Box>

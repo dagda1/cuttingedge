@@ -23,7 +23,7 @@ export const tokens: DeepPartial<Tokens> = {
   color: {
     foreground: {
       secondary: palette.white,
-      info: '#FFD700',
+      info: '#F5DEB3',
       promote: '#ffff00',
       link: palette.neutral400,
       linkHover: palette.white,
@@ -103,12 +103,12 @@ export const tokens: DeepPartial<Tokens> = {
       },
       standard: {
         mobile: {
-          fontSize: 16,
-          lineGap: 10,
-        },
-        tablet: {
           fontSize: 19,
           lineGap: 13,
+        },
+        tablet: {
+          fontSize: 22,
+          lineGap: 19,
         },
       },
       small: {
