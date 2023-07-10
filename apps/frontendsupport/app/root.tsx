@@ -25,7 +25,7 @@ export const meta: V2_MetaFunction = ({ location, data }) => {
   return [
     { charset: 'utf-8' },
     { title: 'Frontend Support' },
-    { viewport: 'width=device-width,initial-scale=1' },
+    { viewport: 'width=device-width, initial-scale=1, maximum-scale=1' },
     { 'content-type': 'text/html; charset=UTF-8' },
     { 'og:url': location.pathname },
     { 'og:type': 'website' },

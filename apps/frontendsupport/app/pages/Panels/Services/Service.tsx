@@ -25,7 +25,7 @@ export function Service({
         <Heading center level="2">
           {heading}
         </Heading>
-        <List type="bullet" size="large">
+        <List type="bullet" size="standard">
           {children}
         </List>
 

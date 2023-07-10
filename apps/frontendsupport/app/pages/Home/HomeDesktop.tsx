@@ -115,9 +115,9 @@ export function HomeDesktop(): JSX.Element {
       >
         <Intro />
         <HelpPanel innerRef={dimensionsRef} />
-        {/* <Frameworks />
+        <Frameworks />
         <OSS />
-        <Clients /> */}
+        <Clients />
         <Final />
       </Box>
       <BreakGlass breakglassRef={breakglassRef} />
