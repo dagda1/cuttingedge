@@ -60,12 +60,12 @@ export const tokens: DeepPartial<Tokens> = {
         },
         '2': {
           mobile: {
-            fontSize: 60,
-            lineGap: 30,
+            fontSize: 30,
+            lineGap: 15,
           },
           tablet: {
-            fontSize: 80,
-            lineGap: 24,
+            fontSize: 40,
+            lineGap: 14,
           },
         },
         '3': {
