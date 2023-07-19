@@ -18,11 +18,6 @@ globalStyle('html, body', {
   textSizeAdjust: '100%',
 });
 
-globalStyle('body', {
-  color: vars.foregroundColor.neutral,
-  background: vars.backgroundColor.body,
-});
-
 globalStyle('#root', {
   display: 'grid',
   height: '100%',

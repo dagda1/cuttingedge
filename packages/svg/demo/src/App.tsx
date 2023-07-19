@@ -9,7 +9,7 @@ import { range } from '@cutting/util';
 
 export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
-  const { width, height } = useParentSize(ref);
+  const { width = 1, height = 1 } = useParentSize(ref);
 
   const { xScale, yScale, radius } = useMemo(() => {
     const xScale = scalePoint({
