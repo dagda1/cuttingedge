@@ -25,7 +25,7 @@ import { ApplicationLayout } from '../../src/components/templates/ApplicationLay
 import { range } from '@cutting/util';
 
 export function App(): JSX.Element {
-  const [theme, setTheme] = useState<ThemeKeys>('cuttingTheme');
+  const [theme, setTheme] = useState<ThemeKeys>('supportTheme');
   const [open, setOpen] = useState(false);
 
   return (
@@ -49,7 +49,6 @@ export function App(): JSX.Element {
               {
                 value: 'cuttingTheme',
                 content: 'cutting',
-                checked: true,
               },
               {
                 value: 'salesTheme',
@@ -58,6 +57,7 @@ export function App(): JSX.Element {
               {
                 value: 'supportTheme',
                 content: 'support',
+                checked: true,
               },
             ]}
           />
