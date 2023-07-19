@@ -36,9 +36,7 @@ export function Alert({ type, title = capitalize(type), bannerHeading, children 
           <Text weight="regular" component="p">
             {bannerHeading}
           </Text>
-          <Text weight="regular" component="p">
-            {children}
-          </Text>
+          <Text weight="regular">{children}</Text>
         </Stack>
       </div>
     </div>
