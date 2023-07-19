@@ -63,6 +63,10 @@ async function bundle({
       }),
       vanillaExtractPlugin(),
     ],
+    loader: {
+      '.png': 'file',
+      '.jpg': 'file',
+    },
   }).catch((err) => {
     console.error(err);
     process.exit(1);

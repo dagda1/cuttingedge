@@ -39,7 +39,7 @@ export type ApplicationLayoutProps = {
   innerRef?: RefObject<HTMLElement>;
   children: ReactNodeNoStrings;
   headerAriaLabel?: string;
-  theme: keyof typeof themes;
+  theme?: keyof typeof themes;
   centerHeading?: boolean;
   center?: boolean;
 } & ContainerBoxProps;
@@ -75,7 +75,7 @@ export function ApplicationLayout({
   centerHeading = false,
   center = false,
 }: PropsWithChildren<ApplicationLayoutProps>): JSX.Element {
-  const currentTheme = themes[theme];
+  const currentTheme = theme ? themes[theme] : undefined;
 
   return (
     <Box
@@ -90,9 +90,9 @@ export function ApplicationLayout({
       )}
       <main
         className={cs(styles.main, className, {
-          [styles.headingAndBodyLayout]: isNil(heading) === false,
-          [styles.bodyOnlyLayout]: isNil(heading) && isNil(footer),
-          [styles.center]: center,
+          // [styles.headingAndBodyLayout]: isNil(heading) === false,
+          // [styles.bodyOnlyLayout]: isNil(heading) && isNil(footer),
+          // [styles.center]: center,
         })}
         ref={innerRef}
       >

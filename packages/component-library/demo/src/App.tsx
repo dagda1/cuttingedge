@@ -25,14 +25,13 @@ import { ApplicationLayout } from '../../src/components/templates/ApplicationLay
 import { range } from '@cutting/util';
 
 export function App(): JSX.Element {
-  const [theme, setTheme] = useState<ThemeKeys>('supportTheme');
+  const [theme, setTheme] = useState<ThemeKeys>('cuttingTheme');
   const [open, setOpen] = useState(false);
 
   return (
     <ApplicationLayout theme={theme} className={styles.background} heading="cutting component library">
       <Stack space="large">
         <ContentBlock width="large">
-          <Hamburger open={open} setOpen={setOpen} variant={theme === 'defaultTheme' ? 'dark' : 'light'} />
           <RadioGroup<ThemeKeys>
             legend="Choose theme"
             legendMode="visible"
@@ -50,6 +49,7 @@ export function App(): JSX.Element {
               {
                 value: 'cuttingTheme',
                 content: 'cutting',
+                checked: true,
               },
               {
                 value: 'salesTheme',
@@ -58,10 +58,15 @@ export function App(): JSX.Element {
               {
                 value: 'supportTheme',
                 content: 'support',
-                checked: true,
               },
             ]}
           />
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Heading level="2">Hamburger Menu</Heading>
+          <Stack space="medium">
+            <Hamburger open={open} setOpen={setOpen} variant={theme === 'defaultTheme' ? 'dark' : 'light'} />
+          </Stack>
         </ContentBlock>
         <ContentBlock width="large">
           <Heading level="2">Cards</Heading>
@@ -400,13 +405,13 @@ export function App(): JSX.Element {
               </Alert>
             </Column>
             <Column>
-              <Alert type="error" bannerHeading="Training outcome recorded and trainee withdrawn">
-                <p>Huston we have a problem</p>
+              <Alert type="warning" bannerHeading="Training outcome recorded and trainee withdrawn">
+                <p>Houston we might have a problem</p>
               </Alert>
             </Column>
             <Column>
-              <Alert type="warning" bannerHeading="Training outcome recorded and trainee withdrawn">
-                <p>Huston we have a problem</p>
+              <Alert type="error" bannerHeading="Training outcome recorded and trainee withdrawn">
+                <p>Houston we have a problem</p>
               </Alert>
             </Column>
           </Columns>

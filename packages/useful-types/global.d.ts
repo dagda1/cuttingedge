@@ -32,6 +32,17 @@ declare module '*.mdx' {
 }
 
 
+declare module "*.png" {
+  const value: any;
+  export default value;
+}
+
+declare module "*.jpg" {
+  const value: any;
+  export default value;
+}
+
+
 interface ViteHotContext {
   readonly data: any
 
@@ -56,9 +67,4 @@ interface ImportMeta {
   url: string
 
   readonly hot?: ViteHotContext
-}
-
-declare module "*.png" {
-  const value: any;
-  export default value;
 }
