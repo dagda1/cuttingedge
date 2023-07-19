@@ -12,6 +12,8 @@ import cssStyles from '~/styles.css';
 import { Header } from './components/Header/Header';
 import og from '~/images/og.png';
 import { URL } from '~/utils/url.server';
+import * as styles from './root.css';
+import cs from 'classnames';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const baseUrl = `${new URL(request.url).protocol}://${request.headers.get('host')}`;
@@ -21,7 +23,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export const meta: V2_MetaFunction = ({ location, data }) => {
   const ogImage = `${data.baseUrl}${og}`;
-  console.dir(data, { depth: 3 });
   return [
     { charset: 'utf-8' },
     { title: 'Frontend Support' },
@@ -85,7 +86,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className={supportTheme}>
+      <body className={cs(supportTheme, styles.body)}>
         <Header />
         <main>
           <Outlet />

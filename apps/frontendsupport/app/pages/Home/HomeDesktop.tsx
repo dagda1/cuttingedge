@@ -12,12 +12,12 @@ import { Intro } from '../Panels/Intro/Intro';
 import { Box, breakpoints } from '@cutting/component-library';
 import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { OSS } from '../Panels/OSS/OSS';
-import { Services } from '../Panels/Services/Services';
 
 export function HomeDesktop(): JSX.Element {
   const dimensionsRef = useRef<HTMLDivElement>(null);
   const panelsContainer = useRef<HTMLDivElement>(null);
   const breakglassRef = useRef<HTMLDivElement>(null);
+  const ctx = useRef<gsap.Context>();
 
   const { right = 1, width = 1 } = useParentSize(breakglassRef, { debounceDelay: 500 });
 
@@ -28,13 +28,13 @@ export function HomeDesktop(): JSX.Element {
 
   useIsomorphicLayoutEffect(() => {
     function main() {
-      if (right < breakpoints.desktop || document.querySelector('.pin-spacer')) {
+      if (right < breakpoints.desktop || document.querySelector('.pin-spacer') || ctx.current) {
         return;
       }
 
       assert(!!breakglassRef.current);
 
-      const ctx = gsap.context(() => {
+      ctx.current = gsap.context(() => {
         assert(!!panelsContainer.current);
 
         let scrollTween = gsap.to(panelsContainer.current, {
@@ -80,7 +80,6 @@ export function HomeDesktop(): JSX.Element {
               end: 'center 51%',
               scrub: 5,
               markers: true,
-              once: true,
             },
           })
           .to(breakglassRef.current, { justifyContent: 'space-between', ease: 'none' })
@@ -95,12 +94,13 @@ export function HomeDesktop(): JSX.Element {
           pinReparent: true,
         });
       });
-      return () => {
-        return ctx && ctx.revert();
-      };
     }
 
     setTimeout(main, 1000);
+    return () => {
+      console.log({ ctx: ctx.current });
+      ctx.current?.revert();
+    };
   }, [right, width]);
 
   return (
