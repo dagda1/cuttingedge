@@ -108,26 +108,6 @@ export function HomeMobile(): JSX.Element {
           alignItems="center"
           className={styles.bg}
         >
-          <Heading level="2">When you have to get it right first time</Heading>
-        </Box>
-      </Box>
-      <Box
-        component="section"
-        className="section"
-        position="relative"
-        height="screen"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Box
-          width="full"
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          className={styles.bg}
-        >
           <Stack space="large">
             <Heading level="2">When you have to get it right first time</Heading>
             <Heading level="2">When your team are more familiar with backend development.</Heading>
