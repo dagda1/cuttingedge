@@ -3,7 +3,7 @@ import { Service } from './Service';
 
 export function Services(): JSX.Element {
   return (
-    <Box className="green" marginTop="xlarge" display="flex" alignItems="center" justifyContent="center" width="full">
+    <Box marginTop="xlarge" display="flex" alignItems="center" justifyContent="center" width="full">
       <Stack space="small" align="center">
         <Tiles columns={{ mobile: 1, tablet: 1, desktop: 2 }} space="medium">
           <Service heading="Rescue Package" actionText="It's time to call in the cavalry." link="/services/rescue">

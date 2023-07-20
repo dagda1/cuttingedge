@@ -12,12 +12,14 @@ import { Intro } from '../Panels/Intro/Intro';
 import { Box, breakpoints } from '@cutting/component-library';
 import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { OSS } from '../Panels/OSS/OSS';
+import { useNavigate } from '@remix-run/react';
 
 export function HomeDesktop(): JSX.Element {
   const dimensionsRef = useRef<HTMLDivElement>(null);
   const panelsContainer = useRef<HTMLDivElement>(null);
   const breakglassRef = useRef<HTMLDivElement>(null);
   const ctx = useRef<gsap.Context>();
+  const navigate = useNavigate();
 
   const { right = 1, width = 1 } = useParentSize(breakglassRef, { debounceDelay: 500 });
 
@@ -34,7 +36,7 @@ export function HomeDesktop(): JSX.Element {
 
       assert(!!breakglassRef.current);
 
-      ctx.current = gsap.context(() => {
+      ctx.current = gsap.context((self) => {
         assert(!!panelsContainer.current);
 
         let scrollTween = gsap.to(panelsContainer.current, {
@@ -72,36 +74,29 @@ export function HomeDesktop(): JSX.Element {
             .fromTo(el, { x: 250 }, { x: -250 }, 0);
         });
 
-        const tl = gsap
+        gsap
           .timeline({
             scrollTrigger: {
               trigger: '.breaking',
               start: 'center 65%',
               end: 'center 51%',
-              scrub: 5,
+              scrub: 1,
               markers: true,
             },
           })
           .to(breakglassRef.current, { justifyContent: 'space-between', ease: 'none' })
           .to('.glass', { autoAlpha: 0, ease: 'none' })
-          .fromTo('.services', { autoAlpha: 0, ease: 'none' }, { autoAlpha: 1, ease: 'none' });
-
-        ScrollTrigger.create({
-          start: (_) => tl.scrollTrigger!.end,
-          end: 'max',
-          pin: '.breaking',
-          pinSpacing: false,
-          pinReparent: true,
-        });
+          .eventCallback('onComplete', () => {
+            navigate('/services/home');
+          });
       });
     }
 
     setTimeout(main, 1000);
     return () => {
-      console.log({ ctx: ctx.current });
       ctx.current?.revert();
     };
-  }, [right, width]);
+  }, [navigate, right, width]);
 
   return (
     <>
@@ -121,7 +116,6 @@ export function HomeDesktop(): JSX.Element {
         <Final />
       </Box>
       <BreakGlass breakglassRef={breakglassRef} />
-      {/* <Services /> */}
     </>
   );
 }
