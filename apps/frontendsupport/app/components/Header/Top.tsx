@@ -6,7 +6,9 @@ import { useCallback, useState } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 const MenuItems: NavLinkProps[] = [
-  // { to: '/', children: 'Frontend Support' },
+  { to: '/services/home', children: 'Services' },
+  { to: '/works', children: 'Works' },
+  { to: '/works', children: 'Testimonials' },
   { to: '/posts', children: 'Blog' },
 ];
 

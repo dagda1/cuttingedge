@@ -36,7 +36,7 @@ export function HomeDesktop(): JSX.Element {
 
       assert(!!breakglassRef.current);
 
-      ctx.current = gsap.context((self) => {
+      ctx.current = gsap.context(() => {
         assert(!!panelsContainer.current);
 
         let scrollTween = gsap.to(panelsContainer.current, {
