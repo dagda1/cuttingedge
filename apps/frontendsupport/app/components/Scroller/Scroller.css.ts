@@ -1,6 +1,6 @@
 import { globalStyle, style, keyframes } from '@vanilla-extract/css';
 import { palette } from '@cutting/component-library';
-import cue from '~/images/cue.svg';
+import cue from '~/images/arrowdown.png';
 
 const pulse = keyframes({
   '0%': {
@@ -34,7 +34,7 @@ globalStyle(`${scroller} p`, {
 
 export const arrow = style({
   animation: `${pulse} 1.5s infinite`,
-  width: '9px',
-  height: '32px',
+  width: '100px',
+  height: '100px',
   backgroundImage: `url(${cue})`,
 });

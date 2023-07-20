@@ -11,10 +11,8 @@ interface PanelProps {
 
 export function Panel({ className, innerRef, children, ...props }: PanelProps) {
   return (
-    <Box height="screen" width="screen" className={cs(styles.panel, 'panel', className)} ref={innerRef} {...props}>
-      <Box height="screen" width="screen">
-        {children}
-      </Box>
+    <Box height="screen" width="full" className={cs(styles.panel, 'panel', className)} ref={innerRef} {...props}>
+      {children}
     </Box>
   );
 }

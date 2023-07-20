@@ -1,4 +1,4 @@
-import { palette, responsiveStyle } from '@cutting/component-library';
+import { responsiveStyle } from '@cutting/component-library';
 import { style } from '@vanilla-extract/css';
 
 export const bg = style({
@@ -11,14 +11,6 @@ export const bg = style({
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
-});
-
-export const heading = style({
-  color: palette.white,
-  textShadow: '1px 1px 3px black',
-  zIndex: 1,
-  fontSize: '3em',
-  fontWeight: 400,
 });
 
 export const panels = style({
