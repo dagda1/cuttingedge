@@ -15,9 +15,9 @@ export function MobileContainer({ children }: MobileContainerProps): JSX.Element
       display="flex"
       alignItems="center"
       justifyContent="center"
-      marginX={{ mobile: 'medium', desktop: 'none' }}
     >
-      <div className={styles.bg}>{children}</div>
+      <Box className={styles.bg}></Box>
+      {children}
     </Box>
   );
 }

@@ -2,7 +2,7 @@ import type { DetailedHTMLProps, AnchorHTMLAttributes, MouseEventHandler } from 
 import { useMemo } from 'react';
 import cs from 'classnames';
 import { identity } from '@cutting/util';
-import type { StandardProps, Taggable } from '~/types';
+import type { StandardProps, Taggable } from '../../../types';
 import type { ButtonStyle } from './../../atoms/Button/Button.css';
 import type { TextProps } from '../Text/Text';
 import { Text } from '../Text/Text';

@@ -5,7 +5,7 @@ import { CTAButton } from '../CTAButton/CTAButton';
 export function FrontPage(): JSX.Element {
   return (
     <PageBlock>
-      <Box height="screen" display="flex" flexDirection="column" justifyContent="center">
+      <Box height="screen" width="full" display="flex" flexDirection="column" justifyContent="center">
         <Stack space="xxxlarge" align="center">
           <Heading center level="1">
             STRUGGLING TO DELIVER FRONTEND FEATURES?

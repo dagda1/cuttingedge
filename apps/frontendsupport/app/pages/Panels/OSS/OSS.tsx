@@ -25,7 +25,7 @@ export function OSS(): JSX.Element {
   return (
     <Panel>
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
-        <Box component="h2" display="flex" justifyContent="center">
+        <Box display="flex" justifyContent="center">
           <TextLink size="large" external href="https://cutting.scot/oss">
             We have 350+ merged pull requests into many, many popular open source projects
           </TextLink>

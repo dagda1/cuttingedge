@@ -1,5 +1,4 @@
-import { globalStyle, style, keyframes } from '@vanilla-extract/css';
-import { palette } from '@cutting/component-library';
+import { keyframes, style } from '@vanilla-extract/css';
 import cue from '~/images/arrowdown.png';
 
 const pulse = keyframes({
@@ -18,23 +17,17 @@ const pulse = keyframes({
 });
 
 export const scroller = style({
-  color: palette.white,
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
   opacity: 1,
 });
 
-globalStyle(`${scroller} p`, {
-  transition: 'all .6s cubic-bezier(.19,1,.22,1)',
-  transitionDelay: '.1s',
-  fontSize: '1.5rem',
-  fontStyle: 'italic',
-});
-
 export const arrow = style({
   animation: `${pulse} 1.5s infinite`,
   width: '100px',
   height: '100px',
-  backgroundImage: `url(${cue})`,
+  background: `url(${cue}) no-repeat center center fixed`,
+  position: 'relative',
+  left: '50px',
 });
