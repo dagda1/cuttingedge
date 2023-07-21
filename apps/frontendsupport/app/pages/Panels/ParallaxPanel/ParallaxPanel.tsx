@@ -1,7 +1,7 @@
 import { Box } from '@cutting/component-library';
 import type { MotionImageProps } from '../../../components/MotionImage/MotionImage';
-import { MotionImage } from '../../../components/MotionImage/MotionImage';
 import type { ReactNode } from 'react';
+import { Image } from '@unpic/react';
 
 export interface ParallaxPanelProps {
   children: ReactNode;
@@ -21,7 +21,7 @@ export function ParallaxPanel({ topImages, children, bottomImages }: ParallaxPan
     >
       <Box display="flex" justifyContent="spaceAround" alignItems="center">
         {topImages.map(({ src, ...props }) => (
-          <MotionImage key={src} src={src} {...props} />
+          <Image key={src} src={src as string} {...props} />
         ))}
       </Box>
       <Box display="flex" justifyContent="center">
@@ -29,7 +29,7 @@ export function ParallaxPanel({ topImages, children, bottomImages }: ParallaxPan
       </Box>
       <Box display="flex" justifyContent="spaceAround" alignItems="center">
         {bottomImages.map(({ src, ...props }) => (
-          <MotionImage key={src} src={src} {...props} />
+          <Image key={src} src={src as string} {...props} />
         ))}
       </Box>
     </Box>

@@ -25,9 +25,6 @@ export const scroller = style({
 
 export const arrow = style({
   animation: `${pulse} 1.5s infinite`,
-  width: '100px',
-  height: '100px',
-  background: `url(${cue}) no-repeat center center fixed`,
   position: 'relative',
-  left: '50px',
+  left: '25px',
 });
