@@ -1,24 +1,54 @@
 import { Panel } from '~/components/Panel/Panel';
-import lloyds from '~/images/lloyds_bank_logo.png';
-import waitrose from '~/images/waitrose.png';
-import volvo from '~/images/volvo.png';
 import { Heading } from '@cutting/component-library';
-import apple from '~/images/apple.png';
-import disclosure from '~/images/disclosure.png';
-import hp from '~/images/hp.png';
 import type { ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel';
 import { ParallaxPanel } from '../ParallaxPanel/ParallaxPanel';
 
 const topImages: ParallaxPanelProps['topImages'] = [
-  { type: 'parallax', alt: 'Lloyds Bank', src: lloyds },
-  { type: 'parallax', alt: 'apple', src: apple },
-  { type: 'parallax', alt: 'Disclosure Scotland', src: disclosure },
+  {
+    type: 'parallax',
+    alt: 'Lloyds Bank',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953390/frontendsupport/lloyds_bank_logo_lyiwxl.png',
+    width: 200,
+    height: 184,
+  },
+  {
+    type: 'parallax',
+    alt: 'apple',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953392/frontendsupport/apple_aqbapa.png',
+    width: 225,
+    height: 225,
+  },
+  {
+    type: 'parallax',
+    alt: 'Disclosure Scotland',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953391/frontendsupport/disclosure_zsbzpj.png',
+    width: 284,
+    height: 177,
+  },
 ];
 
 const bottomImages: ParallaxPanelProps['bottomImages'] = [
-  { type: 'parallax', alt: 'Waitrose', src: waitrose },
-  { type: 'parallax', alt: 'Volovo Ocean Race', src: volvo },
-  { type: 'parallax', alt: 'HP', src: hp },
+  {
+    type: 'parallax',
+    alt: 'Waitrose',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953388/frontendsupport/waitrose_sp7a2j.png',
+    width: 300,
+    height: 200,
+  },
+  {
+    type: 'parallax',
+    alt: 'Volovo Ocean Race',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953388/frontendsupport/volvo_xx4ww7.png',
+    width: 200,
+    height: 200,
+  },
+  {
+    type: 'parallax',
+    alt: 'HP',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953391/frontendsupport/hp_xizk21.png',
+    width: 225,
+    height: 225,
+  },
 ];
 
 export function Clients(): JSX.Element {

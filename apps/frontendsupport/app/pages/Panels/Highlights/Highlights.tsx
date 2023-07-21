@@ -5,11 +5,11 @@ import contributor from '~/images/contributor.png';
 import { ParallaxPanel, type ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel';
 
 const topImages: ParallaxPanelProps['topImages'] = [
-  { type: 'parallax', alt: 'Backstage contributor of the month', src: contributor },
+  { type: 'parallax', alt: 'Backstage contributor of the month', src: contributor, width: 400, height: 296 },
 ];
 
 const bottomImages: ParallaxPanelProps['bottomImages'] = [
-  { type: 'parallax', alt: 'logrocket writer', src: logrocket },
+  { type: 'parallax', alt: 'logrocket writer', src: logrocket, width: 400, height: 256 },
 ];
 
 export function Highlights(): JSX.Element {
