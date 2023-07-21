@@ -10,7 +10,7 @@ export function FrontPage(): JSX.Element {
           <Heading center level="1">
             STRUGGLING TO DELIVER FRONTEND FEATURES?
           </Heading>
-          <CTAButton link="/services/home">FIND OUT HOW WE CAN HELP</CTAButton>
+          <CTAButton link="/services/home">FIND OUT MORE</CTAButton>
           <Scroller />
         </Stack>
       </Box>

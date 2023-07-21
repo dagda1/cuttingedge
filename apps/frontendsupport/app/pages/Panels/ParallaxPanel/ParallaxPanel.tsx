@@ -11,13 +11,22 @@ export interface ParallaxPanelProps {
 
 export function ParallaxPanel({ topImages, children, bottomImages }: ParallaxPanelProps): JSX.Element {
   return (
-    <Box height="full" position="relative" display="flex" flexDirection="column" justifyContent="spaceEvenly">
+    <Box
+      height="full"
+      position="relative"
+      display="flex"
+      flexDirection="column"
+      justifyContent="spaceEvenly"
+      marginX={{ mobile: 'medium', desktop: 'none' }}
+    >
       <Box display="flex" justifyContent="spaceAround" alignItems="center">
         {topImages.map(({ src, ...props }) => (
           <MotionImage key={src} src={src} {...props} />
         ))}
       </Box>
-      {children}
+      <Box display="flex" justifyContent="center">
+        {children}
+      </Box>
       <Box display="flex" justifyContent="spaceAround" alignItems="center">
         {bottomImages.map(({ src, ...props }) => (
           <MotionImage key={src} src={src} {...props} />

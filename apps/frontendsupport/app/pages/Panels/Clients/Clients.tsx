@@ -11,12 +11,12 @@ import { ParallaxPanel } from '../ParallaxPanel/ParallaxPanel';
 
 const topImages: ParallaxPanelProps['topImages'] = [
   { type: 'parallax', alt: 'Lloyds Bank', src: lloyds },
-  { type: 'static', alt: 'apple', src: apple },
+  { type: 'parallax', alt: 'apple', src: apple },
   { type: 'parallax', alt: 'Disclosure Scotland', src: disclosure },
 ];
 
 const bottomImages: ParallaxPanelProps['bottomImages'] = [
-  { type: 'static', alt: 'Waitrose', src: waitrose },
+  { type: 'parallax', alt: 'Waitrose', src: waitrose },
   { type: 'parallax', alt: 'Volovo Ocean Race', src: volvo },
   { type: 'parallax', alt: 'HP', src: hp },
 ];

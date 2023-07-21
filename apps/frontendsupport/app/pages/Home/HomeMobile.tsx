@@ -4,10 +4,13 @@ import { useParentSize } from '@cutting/use-get-parent-size';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { Box, Heading, Stack } from '@cutting/component-library';
+import { Box, Heading } from '@cutting/component-library';
 import { FrontPage } from '~/components/FrontPage/FrontPage';
 import { OSS } from '../Panels/OSS/OSS';
 import { Highlights } from '../Panels/Highlights/Highlights';
+import { MobileContainer } from './MobileContainer';
+import { Frameworks } from '../Panels/Frameworks/Frameworks';
+import { Clients } from '../Panels/Clients/Clients';
 
 export function HomeMobile(): JSX.Element {
   const panelsContainer = useRef<HTMLDivElement>(null);
@@ -78,90 +81,31 @@ export function HomeMobile(): JSX.Element {
 
   return (
     <Box width="full" height="full" ref={panelsContainer}>
-      <Box
-        component="section"
-        className="section"
-        position="relative"
-        height="screen"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <div className={styles.bg}>
-          <FrontPage />
-        </div>
-      </Box>
-      <Box
-        component="section"
-        className="section"
-        position="relative"
-        height="screen"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Box
-          width="full"
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          className={styles.bg}
-        >
-          <Stack space="large">
-            <Heading level="2">When you have to get it right first time</Heading>
-            <Heading level="2">When your team are more familiar with backend development.</Heading>
-            <Heading level="2">When the deadline is looming.</Heading>
-            <Heading level="2">When need that killer frontend feature.</Heading>
-          </Stack>
+      <MobileContainer>
+        <FrontPage />
+      </MobileContainer>
+      <MobileContainer>
+        <Box width="full" height="full" display="flex" justifyContent="center" alignItems="center" flexGrow={1}>
+          <Heading level="2">We can help if.....</Heading>
         </Box>
-      </Box>
-      <Box
-        component="section"
-        className="section"
-        position="relative"
-        height="screen"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Box style={{ border: '10px solid yellow' }} className={styles.bg}>
-          <OSS />
+      </MobileContainer>
+      <MobileContainer>
+        <Frameworks />
+      </MobileContainer>
+      <MobileContainer>
+        <OSS />
+      </MobileContainer>
+      <MobileContainer>
+        <Highlights />
+      </MobileContainer>
+      <MobileContainer>
+        <Clients />
+      </MobileContainer>
+      <MobileContainer>
+        <Box height="full" width="full" display="flex" justifyContent="center" alignItems="center" paddingX="medium">
+          <Heading level="2">We live and breathe frontend development</Heading>
         </Box>
-      </Box>
-      <Box
-        component="section"
-        className="section"
-        position="relative"
-        height="screen"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <div className={styles.bg}>
-          <Highlights />
-        </div>
-      </Box>
-      <Box
-        component="section"
-        className="section"
-        position="relative"
-        height="screen"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <div className={styles.bg}></div>
-        <Heading level="1">Nice, right?</Heading>
-      </Box>
+      </MobileContainer>
     </Box>
-    // <div ref={panelsContainer} className={styles.panels}>
-    //   <Intro />
-    //   <HelpPanel innerRef={dimensionsRef} />
-    //   {/* <Frameworks />
-    //   <OSS />
-    //   <Clients />
-    //   <Final /> */}
-    // </div>
   );
 }
