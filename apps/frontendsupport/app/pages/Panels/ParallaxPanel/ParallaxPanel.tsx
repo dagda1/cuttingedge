@@ -21,7 +21,7 @@ export function ParallaxPanel({ topImages, children, bottomImages }: ParallaxPan
     >
       <Box display="flex" justifyContent="spaceAround" alignItems="center">
         {topImages.map(({ src, ...props }) => (
-          <Image key={src} src={src as string} {...props} />
+          <Image key={src} src={src as string} className="parallax" {...props} />
         ))}
       </Box>
       <Box display="flex" justifyContent="center">
@@ -29,7 +29,7 @@ export function ParallaxPanel({ topImages, children, bottomImages }: ParallaxPan
       </Box>
       <Box display="flex" justifyContent="spaceAround" alignItems="center">
         {bottomImages.map(({ src, ...props }) => (
-          <Image key={src} src={src as string} {...props} />
+          <Image key={src} src={src as string} className="parallax" {...props} />
         ))}
       </Box>
     </Box>

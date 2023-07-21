@@ -1,23 +1,53 @@
 import { Heading, Stack } from '@cutting/component-library';
 import { Panel } from '~/components/Panel/Panel';
-import typescript from '~/images/typescript.png';
-import react from '~/images/react.png';
-import graphql from '~/images/graphql3.png';
-import vite from '~/images/vite.png';
-import eslint from '~/images/eslint.png';
-import turborepo from '~/images/turborepo.png';
 import { ParallaxPanel, type ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel';
 
 const topImages: ParallaxPanelProps['topImages'] = [
-  { type: 'parallax', alt: 'typescript', src: typescript },
-  { type: 'parallax', alt: 'replace webpack with vite', src: vite },
-  { type: 'parallax', alt: 'eslint', src: eslint },
+  {
+    type: 'parallax',
+    alt: 'typescript',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953388/frontendsupport/typescript_gfu3xk.png',
+    width: 175,
+    height: 133,
+  },
+  {
+    type: 'parallax',
+    alt: 'replace webpack with vite',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953389/frontendsupport/vite_dhhklu.png',
+    width: 300,
+    height: 158,
+  },
+  {
+    type: 'parallax',
+    alt: 'eslint',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953392/frontendsupport/eslint_qkkjiw.png',
+    width: 347,
+    height: 145,
+  },
 ];
 
 const bottomImages: ParallaxPanelProps['bottomImages'] = [
-  { type: 'parallax', alt: 'React', src: react },
-  { type: 'parallax', alt: 'Turborepo', src: turborepo },
-  { type: 'parallax', alt: 'graphql', src: graphql },
+  {
+    type: 'parallax',
+    alt: 'React',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953389/frontendsupport/react_ejegqn.png',
+    width: 200,
+    height: 200,
+  },
+  {
+    type: 'parallax',
+    alt: 'Turborepo',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953389/frontendsupport/turborepo_etzeks.png',
+    width: 300,
+    height: 168,
+  },
+  {
+    type: 'parallax',
+    alt: 'graphql',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953390/frontendsupport/graphql3_o0lvcj.png',
+    width: 200,
+    height: 226,
+  },
 ];
 
 export function Frameworks(): JSX.Element {
