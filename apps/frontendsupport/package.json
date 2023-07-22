@@ -77,7 +77,7 @@
     "use-debounce": "^9.0.4"
   },
   "devDependencies": {
-    "@architect/architect": "^10.11.2",
+    "@architect/architect": "^10.13.3",
     "@babel/runtime": "^7.22.6",
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
