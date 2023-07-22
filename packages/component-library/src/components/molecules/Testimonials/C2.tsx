@@ -4,12 +4,12 @@ import { Text } from '~/components/atoms/Text/Text';
 
 export function C2Testimonial(): JSX.Element {
   return (
-    <Box marginY="large">
+    <Box marginY="medium">
       <Testimonial from="Richard McGlave (Continuity2)" url="http://continuity2.com">
         <Text component="p">
           Frontend DX <strong>eradicated the manual steps in our development pipeline</strong> that stopped our
           developers from working on features.
-        </Text>{' '}
+        </Text>
         <Text component="p">
           Thanks to their help, we were able to refactor our application to use modern frontend techniques.
         </Text>

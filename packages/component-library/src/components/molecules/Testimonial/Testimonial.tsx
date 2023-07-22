@@ -1,6 +1,7 @@
 import { TextLink } from '~/components/atoms/TextLink/TextLink';
 import * as styles from './Testimonial.css';
-import type { ReactNode } from 'react';
+import type { ReactNodeNoStrings } from '../Stack/Stack';
+import { Stack } from '../Stack/Stack';
 
 export function Testimonial({
   from,
@@ -9,12 +10,17 @@ export function Testimonial({
 }: {
   from?: string;
   url?: string;
-  children: ReactNode;
+  children: ReactNodeNoStrings;
 }): JSX.Element {
   return (
     <div className={styles.root}>
       <figure>
-        <blockquote>{children}</blockquote>
+        <blockquote>
+          <Stack space="medium">
+            {children}
+            <hr />
+          </Stack>
+        </blockquote>
         {!!url && !!from && (
           <figcaption>
             <cite>
