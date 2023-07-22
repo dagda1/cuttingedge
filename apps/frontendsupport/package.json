@@ -20,7 +20,7 @@
     "@react-three/drei": "^9.65.3",
     "@react-three/fiber": "^8.12.1",
     "@react-three/postprocessing": "^2.7.1",
-    "@studio-freight/lenis": "^1.0.16",
+    "@studio-freight/lenis": "^1.0.19",
     "@remix-run/architect": "^1.15.0",
     "@remix-run/css-bundle": "^1.16.0",
     "@remix-run/node": "^1.15.0",
