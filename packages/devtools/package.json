@@ -119,5 +119,10 @@
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild@<0.18.15": ">=0.18.15"
+    }
   }
 }
