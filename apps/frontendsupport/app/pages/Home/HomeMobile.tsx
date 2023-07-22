@@ -80,7 +80,7 @@ export function HomeMobile(): JSX.Element {
   }, [right, width]);
 
   return (
-    <Box width="full" height="full" ref={panelsContainer}>
+    <Box height="full" ref={panelsContainer}>
       <MobileContainer>
         <FrontPage />
       </MobileContainer>

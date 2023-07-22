@@ -1,13 +1,13 @@
-import { FrontPage } from '~/components/FrontPage/FrontPage';
 // import { HomeDesktop } from './HomeDesktop';
 import { HomeMobile } from './HomeMobile';
+import { Box } from '@cutting/component-library';
 
 export function Home(): JSX.Element {
   return (
-    <div>
+    <Box height="full">
       {/* <FrontPage /> */}
       {/* <HomeDesktop /> */}
       <HomeMobile />
-    </div>
+    </Box>
   );
 }

@@ -28,7 +28,7 @@ export function ParallaxPanel({ topImages, children, bottomImages }: ParallaxPan
       position="relative"
       display="flex"
       flexDirection="column"
-      justifyContent="spaceEvenly"
+      justifyContent="spaceAround"
       marginX={{ mobile: 'medium', desktop: 'none' }}
     >
       <ImagesContainer images={topImages} />

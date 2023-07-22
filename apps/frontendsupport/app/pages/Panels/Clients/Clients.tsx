@@ -37,17 +37,17 @@ const bottomImages: ParallaxPanelProps['bottomImages'] = [
   },
   {
     type: 'parallax',
-    alt: 'Volovo Ocean Race',
-    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953388/frontendsupport/volvo_xx4ww7.png',
-    width: 200,
-    height: 200,
-  },
-  {
-    type: 'parallax',
     alt: 'HP',
     src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953391/frontendsupport/hp_xizk21.png',
     width: 225,
     height: 225,
+  },
+  {
+    type: 'parallax',
+    alt: 'Volovo Ocean Race',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953388/frontendsupport/volvo_xx4ww7.png',
+    width: 200,
+    height: 200,
   },
 ];
 

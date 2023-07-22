@@ -56,7 +56,7 @@ export function OSS(): JSX.Element {
     <Panel>
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
         <Box display="flex" justifyContent="center">
-          <TextLink size="large" external href="https://cutting.scot/oss">
+          <TextLink tone="primary" size="large" external href="https://cutting.scot/oss">
             We have 350+ merged pull requests into many, many popular open source projects
           </TextLink>
         </Box>
