@@ -144,6 +144,9 @@ importers:
       '@studio-freight/lenis':
         specifier: ^1.0.19
         version: 1.0.19
+      '@unpic/placeholder':
+        specifier: ^0.1.2
+        version: 0.1.2
       '@unpic/react':
         specifier: ^0.0.33
         version: 0.0.33(react-dom@18.2.0)(react@18.2.0)
@@ -9750,6 +9753,12 @@ packages:
       unpic: 3.9.0
     dev: false
 
+  /@unpic/placeholder@0.1.2:
+    resolution: {integrity: sha512-O++tS97biojo5sqn5TeTt+jUjl5gWOdIQuOXe8YluTJWq4L0GM6VuTkaspNpsmxHfioJw/6YBirzOpG4t87l8Q==}
+    dependencies:
+      blurhash: 2.0.5
+    dev: false
+
   /@unpic/react@0.0.33(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-DEMOnNDCb/o5RYgFwIIu03jjf/BuDwISHPaD0vGgYA5LMuNVA0SmS0qC1mIGOc3l7D7aQA10gg6GM7HkCIecwQ==}
     peerDependencies:
@@ -11267,6 +11276,10 @@ packages:
   /blueimp-md5@2.19.0:
     resolution: {integrity: sha512-DRQrD6gJyy8FbiE4s+bDoXS9hiW3Vbx5uCdwvcCf3zLHL+Iv7LtGHLpr+GZV8rHG8tK766FGYBwRbu8pELTt+w==}
     dev: true
+
+  /blurhash@2.0.5:
+    resolution: {integrity: sha512-cRygWd7kGBQO3VEhPiTgq4Wc43ctsM+o46urrmPOiuAe+07fzlSB9OJVdpgDL0jPqXUVQ9ht7aq7kxOeJHRK+w==}
+    dev: false
 
   /bn.js@4.12.0:
     resolution: {integrity: sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==}

@@ -1,9 +1,19 @@
 import { Box, Stack, Text, Tiles } from '@cutting/component-library';
 import { Service } from './Service';
+import * as styles from './Service.css';
 
 export function Services(): JSX.Element {
   return (
-    <Box marginTop="xlarge" display="flex" alignItems="center" justifyContent="center" width="full">
+    <Box
+      className={styles.background}
+      marginTop="xlarge"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      width="full"
+      height="full"
+      position="relative"
+    >
       <Stack space="small" align="center">
         <Tiles columns={{ mobile: 1, tablet: 1, desktop: 2 }} space="medium">
           <Service heading="Rescue Package" actionText="It's time to call in the cavalry." link="/services/rescue">

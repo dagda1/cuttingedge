@@ -22,7 +22,7 @@ export const tokens: DeepPartial<Tokens> = {
   },
   color: {
     foreground: {
-      secondary: palette.white,
+      secondary: palette.black,
       info: '#F5DEB3',
       promote: '#ffff00',
       link: palette.neutral400,

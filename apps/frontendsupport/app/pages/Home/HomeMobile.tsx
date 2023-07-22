@@ -11,6 +11,7 @@ import { Highlights } from '../Panels/Highlights/Highlights';
 import { MobileContainer } from './MobileContainer';
 import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { Clients } from '../Panels/Clients/Clients';
+import { Services } from '../Panels/Services/Services';
 
 export function HomeMobile(): JSX.Element {
   const panelsContainer = useRef<HTMLDivElement>(null);
@@ -50,7 +51,7 @@ export function HomeMobile(): JSX.Element {
         for (const [i, section] of sections) {
           const bg = section.querySelector(`.${styles.bg}`);
 
-          bg.style.backgroundImage = `url(https://picsum.photos/1600/800?random=${i})`;
+          // bg.style.backgroundImage = `url(https://picsum.photos/1600/800?random=${i})`;
 
           gsap.fromTo(
             bg,
@@ -81,29 +82,29 @@ export function HomeMobile(): JSX.Element {
 
   return (
     <Box height="full" ref={panelsContainer}>
-      <MobileContainer>
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690025905/struggle_yderkl.png">
         <FrontPage />
       </MobileContainer>
-      <MobileContainer>
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690027223/help_dkoexr.png">
         <Box width="full" height="full" display="flex" justifyContent="center" alignItems="center" flexGrow={1}>
           <Heading level="2">We can help if.....</Heading>
         </Box>
       </MobileContainer>
-      <MobileContainer>
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690027609/relief_wril3a.png">
         <Frameworks />
       </MobileContainer>
-      <MobileContainer>
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028703/blueskies_mpewpy.png">
         <OSS />
       </MobileContainer>
-      <MobileContainer>
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028841/dusk_kg7et9.png">
         <Highlights />
       </MobileContainer>
-      <MobileContainer>
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028939/clients_bwtgkq.png">
         <Clients />
       </MobileContainer>
       <MobileContainer>
-        <Box height="full" width="full" display="flex" justifyContent="center" alignItems="center" paddingX="medium">
-          <Heading level="2">We live and breathe frontend development</Heading>
+        <Box flexDirection="column" display="flex" justifyContent="center" alignItems="center">
+          <Services />
         </Box>
       </MobileContainer>
     </Box>

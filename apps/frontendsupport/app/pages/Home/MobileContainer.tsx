@@ -4,8 +4,9 @@ import * as styles from './HomeMobile.css';
 
 interface MobileContainerProps {
   children: ReactNode;
+  backgroundImage?: string;
 }
-export function MobileContainer({ children }: MobileContainerProps): JSX.Element {
+export function MobileContainer({ backgroundImage, children }: MobileContainerProps): JSX.Element {
   return (
     <Box
       component="section"
@@ -16,7 +17,10 @@ export function MobileContainer({ children }: MobileContainerProps): JSX.Element
       alignItems="center"
       justifyContent="center"
     >
-      <Box className={styles.bg}></Box>
+      <Box
+        style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
+        className={styles.bg}
+      ></Box>
       {children}
     </Box>
   );

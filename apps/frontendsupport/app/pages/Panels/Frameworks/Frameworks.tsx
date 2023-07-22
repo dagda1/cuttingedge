@@ -56,16 +56,16 @@ export function Frameworks(): JSX.Element {
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
         <List>
           <Text size="large" tone="primary">
-            When you have to get it right first time
+            You have to get it right first time
           </Text>
           <Text tone="primary" size="large">
-            When your team are more familiar with backend development.
+            Your team are more familiar with backend development.
           </Text>
           <Text tone="primary" size="large">
-            When the deadline is looming.
+            Yhe deadline is looming.
           </Text>
           <Text tone="primary" size="large">
-            When you need that killer frontend feature.
+            You need that killer frontend feature.
           </Text>
         </List>
       </ParallaxPanel>
