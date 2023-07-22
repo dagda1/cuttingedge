@@ -1,5 +1,5 @@
 import { Heading, Stack, Text, List } from '@cutting/component-library';
-
+import { ContactButtons } from '@cutting/react-hook-form-components';
 export default function Critical(): JSX.Element {
   return (
     <Stack space={{ mobile: 'small', desktop: 'large', wide: 'large' }}>
@@ -18,6 +18,7 @@ export default function Critical(): JSX.Element {
       <Text component="p" size="large" tone="info" align="center">
         Break the emergency glass and speak to us. We have the experience and the expertise to turn this around.
       </Text>
+      <ContactButtons callType="frontend-strategy-consult" />
     </Stack>
   );
 }

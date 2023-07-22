@@ -3,15 +3,17 @@
   "description": "components for react-hook-form.",
   "version": "0.4.6",
   "type": "module",
-  "module": "dist/esm/index.js",
+  "module": "dist/esm/src.js",
   "types": "dist/esm/index.d.ts",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "files": [
-    "dist"
+    "dist/**/*"
   ],
   "license": "MIT",
   "scripts": {
@@ -20,7 +22,7 @@
     "test:ci": "CI=true pnpm test",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "lint:fix": "pnpm lint --fix",
-    "build": "NODE_ENV=production devtools rollup"
+    "build": "NODE_ENV=production devtools esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json"
   },
   "dependencies": {
     "@cutting/component-library": "workspace:*",
@@ -28,7 +30,8 @@
     "assert-ts": "^0.3.4",
     "react-hook-form": "7.44.3",
     "react-is": "^18.2.0",
-    "reactjs-popup": "^2.0.5"
+    "reactjs-popup": "^2.0.5",
+    "react-calendly": "^4.1.1"
   },
   "devDependencies": {
     "@cutting/devtools": "workspace:*",
@@ -65,7 +68,15 @@
     "extends": "../../package.json"
   },
   "exports": {
-    "import": "./dist/esm/index.js"
+    ".": {
+      "import": "./dist/esm/src.js"
+    },
+    "./styles.css": {
+      "import": "./dist/esm/src.css"
+    },
+    "./package.json": {
+      "import": "./package.json"
+    }
   },
   "typesVersions": {
     "*": {

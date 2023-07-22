@@ -8,6 +8,7 @@ import { cssBundleHref } from '@remix-run/css-bundle';
 import './global.css';
 import { supportTheme } from '@cutting/component-library';
 import cuttingStyles from '@cutting/component-library/styles.css';
+import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
 import cssStyles from '~/styles.css';
 import { Header } from './components/Header/Header';
 import og from '~/images/og.png';
@@ -70,6 +71,10 @@ export const links: LinksFunction = () => [
   {
     rel: 'stylesheet',
     href: cuttingStyles as unknown as string,
+  },
+  {
+    rel: 'stylesheet',
+    href: hookFormStyles as unknown as string,
   },
   {
     rel: 'stylesheet',

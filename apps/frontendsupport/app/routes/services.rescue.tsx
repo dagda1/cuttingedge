@@ -1,4 +1,5 @@
 import { Heading, Redhatestimonial, Stack, Text } from '@cutting/component-library';
+import { ContactButtons } from '@cutting/react-hook-form-components';
 
 export default function Rescue(): JSX.Element {
   return (
@@ -19,6 +20,7 @@ export default function Rescue(): JSX.Element {
       <Text component="p" size="large" tone="info" align="center">
         Get in touch with us today – your rescue team is waiting.
       </Text>
+      <ContactButtons callType="frontend-productivity-transformation" />
     </Stack>
   );
 }
