@@ -31,9 +31,9 @@ const bottomImages: ParallaxPanelProps['bottomImages'] = [
   {
     type: 'parallax',
     alt: 'Enzyme',
-    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953391/frontendsupport/enzyme_gomfqm.png',
-    width: 284,
-    height: 177,
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1690023477/enzyme_pidmy1.png',
+    width: 200,
+    height: 125,
   },
   {
     type: 'parallax',

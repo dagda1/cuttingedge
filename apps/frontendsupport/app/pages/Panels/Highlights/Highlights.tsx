@@ -1,4 +1,4 @@
-import { Box, Heading, Stack } from '@cutting/component-library';
+import { Box, List, Text } from '@cutting/component-library';
 import { Panel } from '~/components/Panel/Panel';
 import logrocket from '~/images/logrocket.png';
 import contributor from '~/images/contributor.png';
@@ -17,10 +17,14 @@ export function Highlights(): JSX.Element {
     <Panel>
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
         <Box display="flex" alignItems="center" flexDirection="column" justifyContent="center">
-          <Stack space="large">
-            <Heading level="2">Contributor of the month for Spotify Backstage.</Heading>
-            <Heading level="2">Professional writing for logrocket.</Heading>
-          </Stack>
+          <List>
+            <Text size="large" tone="primary">
+              Contributor of the month for Spotify Backstage.
+            </Text>
+            <Text size="large" tone="primary">
+              Professional writing for logrocket.
+            </Text>
+          </List>
         </Box>
       </ParallaxPanel>
     </Panel>
