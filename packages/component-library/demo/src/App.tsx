@@ -17,6 +17,7 @@ import {
   Column,
   Hamburger,
   Card,
+  Redhatestimonial,
 } from '../../src';
 import { Button } from '../../src/components/atoms/Button/Button';
 import { RadioGroup } from '../../src/components/molecules/RadioGroup/RadioGroup';
@@ -61,6 +62,9 @@ export function App(): JSX.Element {
               },
             ]}
           />
+        </ContentBlock>
+        <ContentBlock>
+          <Redhatestimonial />
         </ContentBlock>
         <ContentBlock width="large">
           <Heading level="2">Hamburger Menu</Heading>

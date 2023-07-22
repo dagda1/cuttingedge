@@ -11,8 +11,6 @@ export const loader: LoaderFunction = async () => {
 export default function Posts() {
   const posts = useLoaderData<Post[]>();
 
-  console.dir(posts);
-
   return (
     <div>
       <h1 className="text-3xl font-bold underline">Posts</h1>

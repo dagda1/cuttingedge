@@ -66,6 +66,8 @@ export { List } from './components/molecules/List/List';
 export { Divider } from './components/molecules/Divider/Divider';
 export { Hamburger } from './components/molecules/Hamburger/Hamburger';
 export * from './components/molecules/Nav';
+export * from './components/molecules/Testimonials';
+export * from './components/molecules/Testimonial/Testimonial';
 
 export { ResponsiveImage } from './components/molecules/ResponsiveImage/ResponsiveImage';
 export { responsiveStyle } from './style/responsive-style';
