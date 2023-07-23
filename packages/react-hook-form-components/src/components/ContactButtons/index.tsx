@@ -37,7 +37,7 @@ const isClient = typeof window !== 'undefined';
 export function ContactButtons({
   callType,
   buttonStyle = 'secondary',
-  rootElementId = 'root',
+  rootElementId,
   justify = 'flexStart',
 }: {
   callType: CallType;

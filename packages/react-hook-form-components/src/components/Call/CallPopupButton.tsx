@@ -7,9 +7,13 @@ import { useState } from 'react';
 export const CallPopupButton = ({
   callType,
   children = 'BOOK A CALL',
-  rootElementId = 'root',
+  rootElementId,
 }: CallProps & { children?: ReactNode }): JSX.Element => {
   const [open, setOpen] = useState(false);
+
+  const rootElement = rootElementId
+    ? (global?.document?.getElementById(rootElementId) as HTMLElement)
+    : (global?.document?.querySelector('main') as HTMLElement);
 
   return (
     <>
@@ -17,7 +21,7 @@ export const CallPopupButton = ({
         url={`https://calendly.com/dagda1/${callType}`}
         open={open}
         onModalClose={() => setOpen(false)}
-        rootElement={global?.document?.getElementById(rootElementId) as HTMLElement}
+        rootElement={rootElement}
         pageSettings={{
           backgroundColor: 'ffffff',
           hideEventTypeDetails: false,
