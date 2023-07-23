@@ -97,8 +97,8 @@ importers:
         specifier: 0.32.2
         version: 0.32.2(jsdom@22.1.0)
       whatwg-fetch:
-        specifier: 3.6.2
-        version: 3.6.2
+        specifier: 3.6.17
+        version: 3.6.17
 
   apps/frontendsupport:
     dependencies:
@@ -16368,7 +16368,7 @@ packages:
     resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
     dependencies:
       node-fetch: 2.6.12
-      whatwg-fetch: 3.6.2
+      whatwg-fetch: 3.6.17
     transitivePeerDependencies:
       - encoding
     dev: true
@@ -24678,8 +24678,8 @@ packages:
       iconv-lite: 0.6.3
     dev: true
 
-  /whatwg-fetch@3.6.2:
-    resolution: {integrity: sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==}
+  /whatwg-fetch@3.6.17:
+    resolution: {integrity: sha512-c4ghIvG6th0eudYwKZY5keb81wtFz9/WeAHAoy8+r18kcWlitUIrmGFQ2rWEl4UCKUilD3zCLHOIPheHx5ypRQ==}
     dev: true
 
   /whatwg-mimetype@3.0.0:
