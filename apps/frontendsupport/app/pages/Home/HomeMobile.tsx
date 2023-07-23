@@ -85,12 +85,12 @@ export function HomeMobile(): JSX.Element {
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690025905/struggle_yderkl.png">
         <FrontPage />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690027223/help_dkoexr.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1689953398/frontendsupport/pain_gjcwoh.jpg">
         <Box width="full" height="full" display="flex" justifyContent="center" alignItems="center" flexGrow={1}>
           <Heading level="2">We can help if.....</Heading>
         </Box>
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690027609/relief_wril3a.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1689953393/frontendsupport/pain_wide_jjmyp6.png">
         <Frameworks />
       </MobileContainer>
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028703/blueskies_mpewpy.png">

@@ -2,6 +2,7 @@ import Popup from 'reactjs-popup';
 import * as styles from './ContactButtons.css';
 import type { ReactNode } from 'react';
 import { forwardRef } from 'react';
+import type { ContactFormProps } from '../ContactForm/ContactForm';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { CallPopupButton } from '../Call/CallPopupButton';
 import type { CallType } from '../Call/types';
@@ -14,37 +15,41 @@ export const ButtonWrapper = forwardRef<
   { buttonStyle: ButtonStyle; children: ReactNode; type: 'button' | 'submit' }
 >((props, ref): JSX.Element => <Button ref={ref} {...props} />);
 
-// eslint-disable-next-line react/display-name
-const closer = (buttonStyle: ButtonStyle) => (close: () => void) =>
-  (
-    <ApplicationLayout theme="salesTheme">
-      <div className={styles.modal}>
-        <button className={styles.close} onClick={close}>
-          &times;
-        </button>
-        <Box marginTop="small" width="full" display="flex" justifyContent="center" alignItems="center">
-          <Heading level="2">CONTACT FORM</Heading>
-        </Box>
-        <div className={styles.content}>
-          <ContactForm buttonStyle={buttonStyle} />
+const closer =
+  (formProps: ContactFormProps) =>
+  // eslint-disable-next-line react/display-name
+  (close: () => void) =>
+    (
+      <ApplicationLayout theme="salesTheme">
+        <div className={styles.modal}>
+          <button className={styles.close} onClick={close}>
+            &times;
+          </button>
+          <Box marginTop="small" width="full" display="flex" justifyContent="center" alignItems="center">
+            <Heading level="2">CONTACT FORM</Heading>
+          </Box>
+          <div className={styles.content}>
+            <ContactForm {...formProps} />
+          </div>
         </div>
-      </div>
-    </ApplicationLayout>
-  );
+      </ApplicationLayout>
+    );
 
 const isClient = typeof window !== 'undefined';
 
-export function ContactButtons({
-  callType,
-  buttonStyle = 'secondary',
-  rootElementId,
-  justify = 'flexStart',
-}: {
+type ContactButtonsProps = {
   callType: CallType;
   rootElementId?: string;
   buttonStyle?: ButtonStyle;
   justify?: 'flexStart' | 'center' | 'flexEnd';
-}): JSX.Element {
+} & ContactFormProps;
+
+export function ContactButtons({
+  callType,
+  rootElementId = 'portal',
+  justify = 'flexStart',
+  ...formProps
+}: ContactButtonsProps): JSX.Element {
   return (
     <Box justifyContent={justify} className={styles.callButton}>
       <CallPopupButton callType={callType} rootElementId={rootElementId} />
@@ -59,7 +64,7 @@ export function ContactButtons({
           nested
         >
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {closer(buttonStyle) as any}
+          {closer(formProps) as any}
         </Popup>
       )}
     </Box>

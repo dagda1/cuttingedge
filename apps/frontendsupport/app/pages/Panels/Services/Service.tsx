@@ -34,12 +34,7 @@ export function Service({
             {actionText}
           </Text>
 
-          <Box
-            display="inlineBlock"
-            padding="medium"
-            className={styles.action}
-            marginY={{ mobile: 'small', desktop: 'small', wide: 'large' }}
-          >
+          <Box display="inlineBlock" padding="medium" marginY={{ mobile: 'small', desktop: 'small', wide: 'large' }}>
             <TextNavLink size="standard" to={link} underline>
               {buttonText}
             </TextNavLink>

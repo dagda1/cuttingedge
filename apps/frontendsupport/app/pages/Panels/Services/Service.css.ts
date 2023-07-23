@@ -11,7 +11,7 @@ export const background = style({
       right: 0,
       bottom: 0,
       left: 0,
-      opacity: 0.25,
+      opacity: 0.2,
     },
   },
 });

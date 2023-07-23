@@ -15,9 +15,15 @@ interface FormValues {
   Description: string;
   xnQsjsdp: '3c84483c277d4654a1b4c396d146b27715022726817867cc0082152855bd1c7f';
   xmIwtLD: '9844a94925d654edab46a3a8cdca457ecc6f6e5c04366bcb4f13d54f1180f14f';
-  returnUrl: 'https&#x3a;&#x2f;&#x2f;www.frontenddx.com';
+  returnUrl: string;
 }
-export function ContactForm({ buttonStyle = 'secondary' }: { buttonStyle?: ButtonStyle }): JSX.Element {
+
+export interface ContactFormProps {
+  buttonStyle?: ButtonStyle;
+  returnUrl?: string;
+}
+
+export function ContactForm({ returnUrl, buttonStyle = 'secondary' }: ContactFormProps): JSX.Element {
   const form = useRef<HTMLFormElement>(null);
   const botChecker = useRef<HTMLInputElement>(null);
 
@@ -87,7 +93,7 @@ export function ContactForm({ buttonStyle = 'secondary' }: { buttonStyle?: Butto
           type="text"
           style={{ display: 'none' }}
           name="returnURL"
-          defaultValue="https&#x3a;&#x2f;&#x2f;www.frontenddx.com"
+          defaultValue={returnUrl ?? location.origin}
         ></input>
       </form>
     </div>

@@ -18,9 +18,14 @@ export function Redhatestimonial(): JSX.Element {
         </Text>
         <Text component="p">
           All these challenges went away with Paul. He was able to quickly deliver functionality that could be put in
-          front of the client for feedback. Paul could then quickly change/add functionality based on that feedback.
-          Within a few cycles we were delivering exactly what the client wanted, making everyone happy. Paul&apos;s
-          quality is amazing, as is his ability to explain his code and architectural approaches.
+          front of the client for feedback.
+        </Text>
+        <Text component="p">Paul could then quickly change/add functionality based on that feedback.</Text>
+        <Text component="p">
+          Within a few cycles we were delivering exactly what the client wanted, making everyone happy.
+        </Text>
+        <Text component="p">
+          Paul&apos;s quality is amazing, as is his ability to explain his code and architectural approaches.
         </Text>
         <Text component="p">I would highly recommend Paul</Text>
       </Testimonial>

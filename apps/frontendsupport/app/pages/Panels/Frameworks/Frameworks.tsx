@@ -62,7 +62,7 @@ export function Frameworks(): JSX.Element {
             Your team are more familiar with backend development.
           </Text>
           <Text tone="primary" size="large">
-            Yhe deadline is looming.
+            The deadline is looming.
           </Text>
           <Text tone="primary" size="large">
             You need that killer frontend feature.

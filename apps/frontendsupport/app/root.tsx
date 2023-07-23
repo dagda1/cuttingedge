@@ -95,6 +95,7 @@ export default function App() {
       </head>
       <body className={cs(supportTheme, styles.body)}>
         <Header />
+        <div id="portal" />
         <main>
           <Outlet />
           {/* <ScrollRestoration /> */}
