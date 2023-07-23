@@ -1,11 +1,9 @@
 import { Box, Stack, Text, Tiles } from '@cutting/component-library';
 import { Service } from './Service';
-import * as styles from './Service.css';
 
 export function Services(): JSX.Element {
   return (
     <Box
-      className={styles.background}
       marginTop="xlarge"
       display="flex"
       alignItems="center"

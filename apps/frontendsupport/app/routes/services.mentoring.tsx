@@ -17,7 +17,7 @@ export default function Mentoring(): JSX.Element {
       <Text component="p" size="large" tone="info" align="center">
         Get in touch with us today
       </Text>
-      <ContactButtons callType="one-shot-migration" />
+      <ContactButtons justify="center" callType="mentoring" />
     </Stack>
   );
 }

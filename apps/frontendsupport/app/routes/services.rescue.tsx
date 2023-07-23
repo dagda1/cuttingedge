@@ -20,7 +20,7 @@ export default function Rescue(): JSX.Element {
       <Text component="p" size="large" tone="info" align="center">
         Get in touch with us today – your rescue team is waiting.
       </Text>
-      <ContactButtons callType="frontend-productivity-transformation" />
+      <ContactButtons justify="center" callType="rescue" />
     </Stack>
   );
 }

@@ -18,7 +18,7 @@ export default function Critical(): JSX.Element {
       <Text component="p" size="large" tone="info" align="center">
         Break the emergency glass and speak to us. We have the experience and the expertise to turn this around.
       </Text>
-      <ContactButtons callType="frontend-strategy-consult" />
+      <ContactButtons justify="center" callType="critical" />
     </Stack>
   );
 }

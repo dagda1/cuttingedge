@@ -6,7 +6,7 @@ import { ContactForm } from '../ContactForm/ContactForm';
 import { CallPopupButton } from '../Call/CallPopupButton';
 import type { CallType } from '../Call/types';
 import type { ButtonStyle } from '@cutting/component-library';
-import { ApplicationLayout, Button } from '@cutting/component-library';
+import { ApplicationLayout, Box, Button, Heading } from '@cutting/component-library';
 
 // eslint-disable-next-line react/display-name
 export const ButtonWrapper = forwardRef<
@@ -22,7 +22,9 @@ const closer = (buttonStyle: ButtonStyle) => (close: () => void) =>
         <button className={styles.close} onClick={close}>
           &times;
         </button>
-        <div className={styles.header}>CONTACT FORM</div>
+        <Box marginTop="small" width="full" display="flex" justifyContent="center" alignItems="center">
+          <Heading level="2">CONTACT FORM</Heading>
+        </Box>
         <div className={styles.content}>
           <ContactForm buttonStyle={buttonStyle} />
         </div>
@@ -33,16 +35,20 @@ const closer = (buttonStyle: ButtonStyle) => (close: () => void) =>
 export function ContactButtons({
   callType,
   buttonStyle = 'secondary',
+  rootElementId = 'root',
+  justify = 'flexStart',
 }: {
   callType: CallType;
+  rootElementId?: string;
   buttonStyle?: ButtonStyle;
+  justify?: 'flexStart' | 'center' | 'flexEnd';
 }): JSX.Element {
   return (
-    <div className={styles.callButton}>
-      <CallPopupButton callType={callType} />
+    <Box justifyContent={justify} className={styles.callButton}>
+      <CallPopupButton callType={callType} rootElementId={rootElementId} />
       <Popup
         trigger={
-          <ButtonWrapper type="button" buttonStyle="secondary">
+          <ButtonWrapper type="button" buttonStyle="primary">
             CONTACT BY EMAIL
           </ButtonWrapper>
         }
@@ -52,6 +58,6 @@ export function ContactButtons({
         {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         {closer(buttonStyle) as any}
       </Popup>
-    </div>
+    </Box>
   );
 }

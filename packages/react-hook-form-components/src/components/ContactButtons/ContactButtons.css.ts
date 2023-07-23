@@ -29,15 +29,9 @@ export const close = style({
   display: 'block',
   padding: '2px 5px',
   lineHeight: '20px',
-  right: '-10px',
+  right: '15px',
   top: '-10px',
   borderRadius: '18px',
-});
-
-export const header = style({
-  width: '100%',
-  textAlign: 'center',
-  padding: '5px',
 });
 
 export const content = style({

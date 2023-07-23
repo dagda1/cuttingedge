@@ -21,7 +21,7 @@ export function TopNav(): JSX.Element {
       <NavItems>
         <NavItem display="Always">
           <TextNavLink size="standard" to={'/'}>
-            Frontend Support
+            Frontend Rescue
           </TextNavLink>
         </NavItem>
         {MenuItems.map(({ to, children }, i) => (
