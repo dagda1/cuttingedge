@@ -122,13 +122,13 @@ importers:
         version: 2.3.0(esbuild@0.18.15)
       '@react-three/drei':
         specifier: ^9.65.3
-        version: 9.65.3(@react-three/fiber@8.12.1)(@types/three@0.150.1)(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
+        version: 9.65.3(@react-three/fiber@8.13.5)(@types/three@0.150.1)(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
       '@react-three/fiber':
-        specifier: ^8.12.1
-        version: 8.12.1(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
+        specifier: ^8.13.5
+        version: 8.13.5(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
       '@react-three/postprocessing':
         specifier: ^2.7.1
-        version: 2.7.1(@react-three/fiber@8.12.1)(react@18.2.0)(three@0.151.3)
+        version: 2.7.1(@react-three/fiber@8.13.5)(react@18.2.0)(three@0.151.3)
       '@remix-run/architect':
         specifier: ^1.15.0
         version: 1.15.0
@@ -6623,7 +6623,7 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@react-spring/three@9.6.1(@react-three/fiber@8.12.1)(react@18.2.0)(three@0.151.3):
+  /@react-spring/three@9.6.1(@react-three/fiber@8.13.5)(react@18.2.0)(three@0.151.3):
     resolution: {integrity: sha512-Tyw2YhZPKJAX3t2FcqvpLRb71CyTe1GvT3V+i+xJzfALgpk10uPGdGaQQ5Xrzmok1340DAeg2pR/MCfaW7b8AA==}
     peerDependencies:
       '@react-three/fiber': '>=6.0'
@@ -6634,7 +6634,7 @@ packages:
       '@react-spring/core': 9.6.1(react@18.2.0)
       '@react-spring/shared': 9.6.1(react@18.2.0)
       '@react-spring/types': 9.6.1
-      '@react-three/fiber': 8.12.1(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
+      '@react-three/fiber': 8.13.5(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
       react: 18.2.0
       three: 0.151.3
     dev: false
@@ -6643,7 +6643,7 @@ packages:
     resolution: {integrity: sha512-POu8Mk0hIU3lRXB3bGIGe4VHIwwDsQyoD1F394OK7STTiX9w4dG3cTLljjYswkQN+hDSHRrj4O36kuVa7KPU8Q==}
     dev: false
 
-  /@react-three/drei@9.65.3(@react-three/fiber@8.12.1)(@types/three@0.150.1)(react-dom@18.2.0)(react@18.2.0)(three@0.151.3):
+  /@react-three/drei@9.65.3(@react-three/fiber@8.13.5)(@types/three@0.150.1)(react-dom@18.2.0)(react@18.2.0)(three@0.151.3):
     resolution: {integrity: sha512-kVyrCtyCE3gN8On0ndf9798jCVcYHxNF22rWBsIi82SgskHnYIKBde5S6Udvwb4RWL34Y+vz4103MLmjcgMwxg==}
     peerDependencies:
       '@react-three/fiber': '>=8.0'
@@ -6655,8 +6655,8 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.6
-      '@react-spring/three': 9.6.1(@react-three/fiber@8.12.1)(react@18.2.0)(three@0.151.3)
-      '@react-three/fiber': 8.12.1(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
+      '@react-spring/three': 9.6.1(@react-three/fiber@8.13.5)(react@18.2.0)(three@0.151.3)
+      '@react-three/fiber': 8.13.5(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
       '@use-gesture/react': 10.2.27(react@18.2.0)
       camera-controls: 2.6.0(three@0.151.3)
       detect-gpu: 5.0.29
@@ -6682,8 +6682,8 @@ packages:
       - '@types/three'
     dev: false
 
-  /@react-three/fiber@8.12.1(react-dom@18.2.0)(react@18.2.0)(three@0.151.3):
-    resolution: {integrity: sha512-5KHuXAQsvR7drbL33G/3Fzj9+DkVvSrsQfebLnuVtzQdPApoom4rH8MixTakhGsTheedY1/2s4H1GS82V0+JeA==}
+  /@react-three/fiber@8.13.5(react-dom@18.2.0)(react@18.2.0)(three@0.151.3):
+    resolution: {integrity: sha512-x9QdsaB/Wm/6NGvRXQahPPWfn2dQce7Fg3C2r00NNzyDdqRKw32YavL+WEqjZOOd0nvFpzv7FtaKc+VCOTR59w==}
     peerDependencies:
       expo: '>=43.0'
       expo-asset: '>=8.4'
@@ -6712,19 +6712,19 @@ packages:
       react-reconciler: 0.27.0(react@18.2.0)
       react-use-measure: 2.1.1(react-dom@18.2.0)(react@18.2.0)
       scheduler: 0.21.0
-      suspend-react: 0.0.8(react@18.2.0)
+      suspend-react: 0.1.3(react@18.2.0)
       three: 0.151.3
       zustand: 3.7.2(react@18.2.0)
     dev: false
 
-  /@react-three/postprocessing@2.7.1(@react-three/fiber@8.12.1)(react@18.2.0)(three@0.151.3):
+  /@react-three/postprocessing@2.7.1(@react-three/fiber@8.13.5)(react@18.2.0)(three@0.151.3):
     resolution: {integrity: sha512-FhmQB7INWKaecxq8u155cpbPWM2AM9SDazGmHMsW1r0IZy5aqsI1IWCxA+jJD1V7p6y0zXabssEqZ7JaANkiig==}
     peerDependencies:
       '@react-three/fiber': '>=7.0'
       react: '>=17.0 || 18.2.0'
       three: '>=0.136.0'
     dependencies:
-      '@react-three/fiber': 8.12.1(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
+      '@react-three/fiber': 8.13.5(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
       postprocessing: 6.30.2(three@0.151.3)
       react: 18.2.0
       react-merge-refs: 1.1.0
@@ -22909,6 +22909,14 @@ packages:
 
   /suspend-react@0.0.8(react@18.2.0):
     resolution: {integrity: sha512-ZC3r8Hu1y0dIThzsGw0RLZplnX9yXwfItcvaIzJc2VQVi8TGyGDlu92syMB5ulybfvGLHAI5Ghzlk23UBPF8xg==}
+    peerDependencies:
+      react: '>=17.0 || 18.2.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /suspend-react@0.1.3(react@18.2.0):
+    resolution: {integrity: sha512-aqldKgX9aZqpoDp3e8/BZ8Dm7x1pJl+qI3ZKxDN0i/IQTWUwBx/ManmlVJ3wowqbno6c2bmiIfs+Um6LbsjJyQ==}
     peerDependencies:
       react: '>=17.0 || 18.2.0'
     dependencies:
