@@ -8,7 +8,7 @@ import { TextNavLink } from '../TextNavLink/TextNavLink';
 const MenuItems: NavLinkProps[] = [
   { to: '/services/home', children: 'Services' },
   { to: '/works', children: 'Works' },
-  { to: '/works', children: 'Testimonials' },
+  { to: '/testimonials', children: 'Testimonials' },
   { to: '/posts', children: 'Blog' },
 ];
 
