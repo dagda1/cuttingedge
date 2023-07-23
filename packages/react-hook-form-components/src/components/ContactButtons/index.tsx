@@ -32,6 +32,8 @@ const closer = (buttonStyle: ButtonStyle) => (close: () => void) =>
     </ApplicationLayout>
   );
 
+const isClient = typeof window !== 'undefined';
+
 export function ContactButtons({
   callType,
   buttonStyle = 'secondary',
@@ -46,18 +48,20 @@ export function ContactButtons({
   return (
     <Box justifyContent={justify} className={styles.callButton}>
       <CallPopupButton callType={callType} rootElementId={rootElementId} />
-      <Popup
-        trigger={
-          <ButtonWrapper type="button" buttonStyle="primary">
-            CONTACT BY EMAIL
-          </ButtonWrapper>
-        }
-        modal
-        nested
-      >
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-        {closer(buttonStyle) as any}
-      </Popup>
+      {isClient && (
+        <Popup
+          trigger={
+            <ButtonWrapper type="button" buttonStyle="primary">
+              CONTACT BY EMAIL
+            </ButtonWrapper>
+          }
+          modal
+          nested
+        >
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          {closer(buttonStyle) as any}
+        </Popup>
+      )}
     </Box>
   );
 }
