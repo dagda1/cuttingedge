@@ -127,8 +127,8 @@ importers:
         specifier: ^8.13.5
         version: 8.13.5(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
       '@react-three/postprocessing':
-        specifier: ^2.7.1
-        version: 2.7.1(@react-three/fiber@8.13.5)(react@18.2.0)(three@0.151.3)
+        specifier: ^2.15.0
+        version: 2.15.0(@react-three/fiber@8.13.5)(@types/three@0.150.1)(react@18.2.0)(three@0.151.3)
       '@remix-run/architect':
         specifier: ^1.15.0
         version: 1.15.0
@@ -6717,20 +6717,22 @@ packages:
       zustand: 3.7.2(react@18.2.0)
     dev: false
 
-  /@react-three/postprocessing@2.7.1(@react-three/fiber@8.13.5)(react@18.2.0)(three@0.151.3):
-    resolution: {integrity: sha512-FhmQB7INWKaecxq8u155cpbPWM2AM9SDazGmHMsW1r0IZy5aqsI1IWCxA+jJD1V7p6y0zXabssEqZ7JaANkiig==}
+  /@react-three/postprocessing@2.15.0(@react-three/fiber@8.13.5)(@types/three@0.150.1)(react@18.2.0)(three@0.151.3):
+    resolution: {integrity: sha512-kldXieRcn8tB3bIVwRAFa1ojG11tkuMLAFYOra32E7y9n1nhVU4FKx+GxmblHSiRWpvGnEje/kYxDKTPjKj4eA==}
     peerDependencies:
-      '@react-three/fiber': '>=7.0'
-      react: '>=17.0 || 18.2.0'
-      three: '>=0.136.0'
+      '@react-three/fiber': '>=8.0'
+      react: '>=18.0 || 18.2.0'
+      three: '>= 0.138.0'
     dependencies:
       '@react-three/fiber': 8.13.5(react-dom@18.2.0)(react@18.2.0)(three@0.151.3)
-      postprocessing: 6.30.2(three@0.151.3)
+      maath: 0.6.0(@types/three@0.150.1)(three@0.151.3)
+      n8ao: 1.6.8(postprocessing@6.32.2)(three@0.151.3)
+      postprocessing: 6.32.2(three@0.151.3)
       react: 18.2.0
-      react-merge-refs: 1.1.0
-      screen-space-reflections: 2.5.0(postprocessing@6.30.2)(three@0.151.3)
       three: 0.151.3
       three-stdlib: 2.23.10(three@0.151.3)
+    transitivePeerDependencies:
+      - '@types/three'
     dev: false
 
   /@remix-run/architect@1.15.0:
@@ -17241,6 +17243,16 @@ packages:
       three: 0.151.3
     dev: false
 
+  /maath@0.6.0(@types/three@0.150.1)(three@0.151.3):
+    resolution: {integrity: sha512-dSb2xQuP7vDnaYqfoKzlApeRcR2xtN8/f7WV/TMAkBC8552TwTLtOO0JTcSygkYMjNDPoo6V01jTw/aPi4JrMw==}
+    peerDependencies:
+      '@types/three': '>=0.144.0'
+      three: '>=0.144.0'
+    dependencies:
+      '@types/three': 0.150.1
+      three: 0.151.3
+    dev: false
+
   /magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
@@ -18523,6 +18535,16 @@ packages:
       object-assign: 4.1.1
       thenify-all: 1.6.0
     dev: true
+
+  /n8ao@1.6.8(postprocessing@6.32.2)(three@0.151.3):
+    resolution: {integrity: sha512-3xaBaoMIplgPdBK+9mZefa8stWEoA2673h2734wYMxm/hUkMLENMhzymDe+WZueFQq93ly4xpl5s1NJrQBzFOQ==}
+    peerDependencies:
+      postprocessing: '>=6.30.0'
+      three: '>=0.137'
+    dependencies:
+      postprocessing: 6.32.2(three@0.151.3)
+      three: 0.151.3
+    dev: false
 
   /nan@2.17.0:
     resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
@@ -20126,6 +20148,15 @@ packages:
     engines: {node: '>= 0.13.2'}
     peerDependencies:
       three: '>= 0.138.0 < 0.152.0'
+    dependencies:
+      three: 0.151.3
+    dev: false
+
+  /postprocessing@6.32.2(three@0.151.3):
+    resolution: {integrity: sha512-BpjIHeElXRmkcqO6p8Pi6W1uDcivQa2FVQ/Swnoo32Cg5bq/bb0mh9hXSHeCkIBD0W4D2KU8Fg7jBICztcN9iQ==}
+    engines: {node: '>= 0.13.2'}
+    peerDependencies:
+      three: '>= 0.138.0 < 0.155.0'
     dependencies:
       three: 0.151.3
     dev: false
@@ -21994,16 +22025,6 @@ packages:
       ajv-formats: 2.1.1(ajv@8.12.0)
       ajv-keywords: 5.1.0(ajv@8.12.0)
     dev: true
-
-  /screen-space-reflections@2.5.0(postprocessing@6.30.2)(three@0.151.3):
-    resolution: {integrity: sha512-fWSDMhJS0xwD3LTxRRch7Lb9NzxsR66sCmtDmAA7i+OGnghUrBBsrha85ng7StnCBaLq/BKmZ97dLxWd1XgWdQ==}
-    peerDependencies:
-      postprocessing: '>=6.28.0'
-      three: '>=0.141.0'
-    dependencies:
-      postprocessing: 6.30.2(three@0.151.3)
-      three: 0.151.3
-    dev: false
 
   /section-matter@1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
