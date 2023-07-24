@@ -7,10 +7,10 @@ export default function Services(): JSX.Element {
       <PageBlock>
         <Box component="section">
           <Stack space="medium">
-            <Heading level="1">Our story</Heading>
+            <Heading level="1">My story</Heading>
             <Box>
               <Image
-                src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690189715/me_jifefm.png"
+                src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690230987/me_voddxj.png"
                 layout="constrained"
                 width={200}
                 height={200}
@@ -26,7 +26,7 @@ export default function Services(): JSX.Element {
               My passion is and always has been frontend development. I love the instant visual feedback that is unique
               to frontend development.
             </Text>
-            <Inline>
+            <Inline space={{ mobile: 'small', wide: 'none' }} alignY="center">
               <Text>I am an open-source fanatic with over&nbsp;</Text>
               <TextLink
                 tone="promote"
@@ -40,7 +40,7 @@ export default function Services(): JSX.Element {
               </TextLink>
               <Text>into many, many, many open source repositories.</Text>
             </Inline>
-            <Inline>
+            <Inline component="span" alignY="center" space={{ mobile: 'small', wide: 'none' }}>
               <Text>I write professionally for&nbsp;</Text>
               <TextLink tone="promote" external href="https://blog.logrocket.com/author/paulcowan/">
                 logrocket
@@ -50,13 +50,13 @@ export default function Services(): JSX.Element {
                 personal blog.
               </TextLink>
             </Inline>
-            <Inline>
+            <Inline component="span" alignY="center" space={{ mobile: 'small', wide: 'none' }}>
               <Text>
                 I have over 20 years of experience working on some exceptional frontend pieces of work for companies
                 such as&nbsp;
               </Text>
               <List>
-                <Inline>
+                <Inline component="span" alignY="center" space={{ mobile: 'small', wide: 'none' }}>
                   <Text>The digital transformation of disclosure scotland for both the&nbsp;</Text>{' '}
                   <TextLink tone="promote" external href="https://basic.apply.disclosure.scot/">
                     basic disclosure&nbsp;

@@ -15,7 +15,6 @@ const MenuItems: NavLinkProps[] = [
 export function TopNav(): JSX.Element {
   const [open, setOpen] = useState(false);
   const toggle = useCallback(() => setOpen(!open), [open]);
-
   return (
     <Nav open={open} toggle={toggle} hamburgerVariant="light">
       <NavItems>
@@ -26,7 +25,9 @@ export function TopNav(): JSX.Element {
         </NavItem>
         {MenuItems.map(({ to, children }, i) => (
           <NavItem display="SubmenuMobile" key={i}>
-            <TextNavLink to={to}>{children as ReactNode}</TextNavLink>
+            <TextNavLink to={to} onClick={toggle}>
+              {children as ReactNode}
+            </TextNavLink>
           </NavItem>
         ))}
         <NavItem display="Always">

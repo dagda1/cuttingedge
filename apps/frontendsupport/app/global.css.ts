@@ -4,9 +4,9 @@ globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
 });
 
-globalStyle('body,main', {
+globalStyle('main', {
   overflowX: 'hidden',
-  overflowY: 'scroll',
+  overflowY: 'hidden',
 });
 
 export const header = style({

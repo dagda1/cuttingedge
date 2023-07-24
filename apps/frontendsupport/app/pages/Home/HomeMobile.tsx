@@ -40,8 +40,8 @@ export function HomeMobile(): JSX.Element {
               defaults: { ease: 'none' },
               scrollTrigger: {
                 trigger: el,
-                start: 'left right',
-                end: 'left left',
+                start: 'top bottom',
+                end: 'top top',
                 scrub: true,
               },
             })
@@ -50,8 +50,6 @@ export function HomeMobile(): JSX.Element {
 
         for (const [i, section] of sections) {
           const bg = section.querySelector(`.${styles.bg}`);
-
-          // bg.style.backgroundImage = `url(https://picsum.photos/1600/800?random=${i})`;
 
           gsap.fromTo(
             bg,

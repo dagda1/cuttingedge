@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderFunction, MetaFunction, V2_MetaFunction } from '@remix-run/node';
+import type { LinksFunction, LoaderFunction, V2_MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import rehypeStyles from './rehype.css';
 import katex from 'katex/dist/katex.min.css';
@@ -6,7 +6,7 @@ import displacement from '~/images/displacement.jpg';
 import normalMap from '~/images/NormalMap2.png';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import './global.css';
-import { supportTheme, Text } from '@cutting/component-library';
+import { supportTheme } from '@cutting/component-library';
 import cuttingStyles from '@cutting/component-library/styles.css';
 import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
 import cssStyles from '~/styles.css';
@@ -15,7 +15,8 @@ import og from '~/images/og.png';
 import { URL } from '~/utils/url.server';
 import * as styles from './root.css';
 import cs from 'classnames';
-import CookieConsent from 'react-cookie-consent';
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const baseUrl = `${new URL(request.url).protocol}://${request.headers.get('host')}`;
@@ -91,6 +92,9 @@ export default function App() {
   return (
     <html lang="en">
       <head>
+        {isProduction && (
+          <script defer data-domain="frontendrescue.com" src="https://plausible.io/js/script.js"></script>
+        )}
         <Meta />
         <Links />
       </head>
@@ -99,25 +103,9 @@ export default function App() {
         <div id="portal" />
         <main>
           <Outlet />
-          {/* <ScrollRestoration /> */}
+          <ScrollRestoration />
           <Scripts />
           <LiveReload />
-          <CookieConsent
-            location="bottom"
-            buttonText="Accept"
-            declineButtonText="Reject"
-            enableDeclineButton
-            expires={365}
-            containerClasses={styles.cookieContainer}
-            contentClasses={styles.cookieContent}
-            buttonWrapperClasses={styles.buttonWrapper}
-            // onAccept={grantConsent}
-            // onDecline={revokeConsent}
-            // containerClasses={cookieContainer}
-            // buttonWrapperClasses={buttonWrapper}
-          >
-            <Text>This website uses cookies for analytics.</Text>
-          </CookieConsent>
         </main>
       </body>
     </html>
