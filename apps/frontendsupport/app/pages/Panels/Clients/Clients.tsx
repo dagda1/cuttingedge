@@ -55,9 +55,7 @@ export function Clients(): JSX.Element {
   return (
     <Panel className="clients">
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
-        <Text size="large" tone="secondary">
-          We have worked with the big names.
-        </Text>
+        <Text size="large">We have worked with the big names.</Text>
       </ParallaxPanel>
     </Panel>
   );

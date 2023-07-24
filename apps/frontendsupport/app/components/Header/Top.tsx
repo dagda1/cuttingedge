@@ -7,9 +7,9 @@ import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 const MenuItems: NavLinkProps[] = [
   { to: '/services/home', children: 'Services' },
-  { to: '/works', children: 'Works' },
   { to: '/testimonials', children: 'Testimonials' },
   { to: '/posts', children: 'Blog' },
+  { to: '/about', children: 'About' },
 ];
 
 export function TopNav(): JSX.Element {
