@@ -63,8 +63,9 @@ export default function Services(): JSX.Element {
                   </TextLink>
                   <Text>and the&nbsp;</Text>
                   <TextLink tone="promote" external href="https://csg.apply.disclosure.scot/">
-                    PVG scheme
+                    PVG scheme&nbsp;
                   </TextLink>
+                  <Text>digital online forms that replaced legacy or paper based alternatives.</Text>
                 </Inline>
                 <TextLink tone="promote" external href="https://waitrose.com">
                   waitrose
