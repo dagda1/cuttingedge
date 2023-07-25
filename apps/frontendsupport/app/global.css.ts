@@ -4,9 +4,14 @@ globalStyle('*,*:before,*:after', {
   boxSizing: 'border-box',
 });
 
-globalStyle('main', {
+globalStyle('html,body', {
+  height: '100%',
+  margin: 0,
+});
+
+globalStyle('body', {
   overflowX: 'hidden',
-  overflowY: 'hidden',
+  overflowY: 'scroll',
 });
 
 export const header = style({

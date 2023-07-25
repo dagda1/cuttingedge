@@ -99,11 +99,11 @@ export default function App() {
         <Links />
       </head>
       <body className={cs(supportTheme, styles.body)}>
-        <Header />
+        {/* <Header /> */}
         <div id="portal" />
         <main>
           <Outlet />
-          <ScrollRestoration />
+          {/* <ScrollRestoration /> */}
           <Scripts />
           <LiveReload />
         </main>
