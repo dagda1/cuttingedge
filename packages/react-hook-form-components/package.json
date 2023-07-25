@@ -17,7 +17,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "echo no demo",
+    "start": "pnpm vite --host --port 9000  -l=info  --clearScreen=false",
     "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",

@@ -20,7 +20,7 @@ const closer =
   // eslint-disable-next-line react/display-name
   (close: () => void) =>
     (
-      <ApplicationLayout theme="salesTheme">
+      <ApplicationLayout theme="salesTheme" className={styles.modalContainer}>
         <div className={styles.modal}>
           <button className={styles.close} onClick={close}>
             &times;
@@ -51,12 +51,12 @@ export function ContactButtons({
   ...formProps
 }: ContactButtonsProps): JSX.Element {
   return (
-    <Box justifyContent={justify} className={styles.callButton}>
+    <Box justifyContent={justify} width="full" display="flex" className={styles.callButton}>
       <CallPopupButton callType={callType} rootElementId={rootElementId} />
       {isClient && (
         <Popup
           trigger={
-            <ButtonWrapper type="button" buttonStyle="primary">
+            <ButtonWrapper type="button" buttonStyle="secondary">
               CONTACT BY EMAIL
             </ButtonWrapper>
           }

@@ -1,4 +1,4 @@
-import { Box, Stack, Text, Tiles } from '@cutting/component-library';
+import { Box, Heading, Stack, Text, Tiles } from '@cutting/component-library';
 import { Service } from './Service';
 import cs from 'classnames';
 import { bg } from '~/pages/Home/HomeMobile.css';
@@ -9,6 +9,7 @@ export function Services(): JSX.Element {
     <>
       <Box className={cs(bg, background)}></Box>
       <Stack space="small" align="center">
+        <Heading level="1">Services</Heading>
         <Tiles columns={{ mobile: 1, tablet: 1, desktop: 2 }} space="medium">
           <Service heading="Rescue Package" actionText="It's time to call in the cavalry." link="/services/rescue">
             <Text tone="info">Are you grappling with a seemingly impossible frontend feature?</Text>

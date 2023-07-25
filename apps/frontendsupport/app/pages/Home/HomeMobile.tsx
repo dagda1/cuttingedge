@@ -4,7 +4,7 @@ import { useParentSize } from '@cutting/use-get-parent-size';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { Box, Heading, Stack } from '@cutting/component-library';
+import { Box, Heading } from '@cutting/component-library';
 import { FrontPage } from '~/components/FrontPage/FrontPage';
 import { OSS } from '../Panels/OSS/OSS';
 import { Highlights } from '../Panels/Highlights/Highlights';
@@ -101,10 +101,7 @@ export function HomeMobile(): JSX.Element {
         <Clients />
       </MobileContainer>
       <MobileContainer height={{ mobile: 'full', tablet: 'screen' }}>
-        <Stack space="medium" align="center">
-          <Heading level="1">Services</Heading>
-          <Services />
-        </Stack>
+        <Services />
       </MobileContainer>
     </Box>
   );

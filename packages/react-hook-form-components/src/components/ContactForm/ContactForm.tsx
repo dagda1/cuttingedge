@@ -93,7 +93,7 @@ export function ContactForm({ returnUrl, buttonStyle = 'secondary' }: ContactFor
           type="text"
           style={{ display: 'none' }}
           name="returnURL"
-          defaultValue={returnUrl ?? location.origin}
+          defaultValue={returnUrl ?? typeof location !== 'undefined' ? location.origin : '/'}
         ></input>
       </form>
     </div>
