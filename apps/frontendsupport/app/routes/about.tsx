@@ -6,7 +6,7 @@ export default function Services(): JSX.Element {
     <Box marginTop="xxxlarge" display="flex" justifyContent="center">
       <PageBlock>
         <Box component="section">
-          <Stack space="medium">
+          <Stack space="large">
             <Heading level="1">My story</Heading>
             <Box>
               <Image

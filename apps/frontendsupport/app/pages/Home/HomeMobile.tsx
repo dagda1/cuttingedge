@@ -88,19 +88,19 @@ export function HomeMobile(): JSX.Element {
           <Heading level="2">We can help if.....</Heading>
         </Box>
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1689953393/frontendsupport/pain_wide_jjmyp6.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1689953393/frontendsupport/pain_wide_jjmyp6.png">
         <Frameworks />
       </MobileContainer>
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028703/blueskies_mpewpy.png">
         <OSS />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028841/dusk_kg7et9.png">
+      {/* <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028841/dusk_kg7et9.png">
         <Highlights />
-      </MobileContainer>
+      </MobileContainer> */}
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690191864/clients_ipmkwv.png">
         <Clients />
       </MobileContainer>
-      <MobileContainer height={{ mobile: 'full', tablet: 'screen' }}>
+      <MobileContainer height={{ mobile: 'full', desktop: 'screen' }}>
         <Services />
       </MobileContainer>
     </Box>

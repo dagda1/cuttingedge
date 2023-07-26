@@ -5,6 +5,13 @@ import { ParallaxPanel, type ParallaxPanelProps } from '../ParallaxPanel/Paralla
 const topImages: ParallaxPanelProps['bottomImages'] = [
   {
     type: 'parallax',
+    alt: 'graphql',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953390/frontendsupport/graphql3_o0lvcj.png',
+    width: 200,
+    height: 226,
+  },
+  {
+    type: 'parallax',
     alt: 'React',
     src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953389/frontendsupport/react_ejegqn.png',
     width: 200,
@@ -17,29 +24,22 @@ const topImages: ParallaxPanelProps['bottomImages'] = [
     width: 300,
     height: 168,
   },
-  {
-    type: 'parallax',
-    alt: 'graphql',
-    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953390/frontendsupport/graphql3_o0lvcj.png',
-    width: 200,
-    height: 226,
-  },
 ];
 
 const bottomImages: ParallaxPanelProps['topImages'] = [
-  {
-    type: 'parallax',
-    alt: 'typescript',
-    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953388/frontendsupport/typescript_gfu3xk.png',
-    width: 175,
-    height: 133,
-  },
   {
     type: 'parallax',
     alt: 'vite',
     src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1690022550/vite_zxmski.png',
     width: 200,
     height: 200,
+  },
+  {
+    type: 'parallax',
+    alt: 'typescript',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953388/frontendsupport/typescript_gfu3xk.png',
+    width: 175,
+    height: 133,
   },
   {
     type: 'parallax',

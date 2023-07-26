@@ -66,6 +66,7 @@ export function Nav({
               mobile: 'xsmall',
               desktop: 'none',
             }}
+            display={{ mobile: 'flex', desktop: 'none' }}
             className={cs(styles.expandable, { [styles.expanded]: open })}
           >
             {mobileMenuItems}

@@ -3,7 +3,7 @@ import type { MotionImageProps } from '../../../components/MotionImage/MotionIma
 import type { ReactNode } from 'react';
 import { Image } from '@unpic/react';
 
-type Images = [MotionImageProps] | [MotionImageProps, MotionImageProps, MotionImageProps];
+type Images = [MotionImageProps, MotionImageProps, MotionImageProps];
 
 export interface ParallaxPanelProps {
   children: ReactNode;
@@ -11,13 +11,36 @@ export interface ParallaxPanelProps {
   bottomImages: Images;
 }
 
-export function ImagesContainer({ images }: { images: Images }): JSX.Element {
+type Resolution = 'mobile' | 'tablet';
+
+export function ImageContainer({ images, resolution }: { images: Images; resolution: Resolution }): JSX.Element {
+  const resolvedImages = resolution === 'mobile' ? [images[1]] : images;
+
   return (
-    <Box display="flex" justifyContent="spaceAround" alignItems="center">
-      {images.map(({ src, ...props }) => (
+    <Box
+      justifyContent="spaceAround"
+      alignItems="center"
+      display={{
+        mobile: resolution === 'mobile' ? 'flex' : 'none',
+        tablet: resolution === 'tablet' ? 'flex' : 'none',
+      }}
+    >
+      {resolvedImages.map(({ src, ...props }) => (
         <Image key={src} src={src as string} layout="constrained" className="parallax" {...props} />
       ))}
     </Box>
+  );
+}
+
+export function ImagesContainer({ images }: { images: Images }): JSX.Element {
+  const resolutions: Resolution[] = ['mobile', 'tablet'];
+
+  return (
+    <>
+      {resolutions.map((resolution) => (
+        <ImageContainer key={resolution} resolution={resolution} images={images} />
+      ))}
+    </>
   );
 }
 

@@ -16,7 +16,6 @@ export const currentColor = style({
 
 export const expandable = style([
   {
-    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',

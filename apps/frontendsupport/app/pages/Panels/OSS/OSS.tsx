@@ -7,23 +7,23 @@ const topImages: ParallaxPanelProps['topImages'] = [
   {
     type: 'parallax',
     alt: 'redux-form',
-    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/c_scale,w_150/v1689953389/frontendsupport/redux-form_rajm5q.png',
-    width: 150,
-    height: 108,
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953389/frontendsupport/redux-form_rajm5q.png',
+    width: 306,
+    height: 165,
   },
   {
     type: 'parallax',
     alt: 'Backstage',
-    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/c_scale,h_150,w_150/v1689953392/frontendsupport/backstage_tymu1h.png',
-    width: 150,
-    height: 150,
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953392/frontendsupport/backstage_tymu1h.png',
+    width: 300,
+    height: 300,
   },
   {
     type: 'parallax',
     alt: 'React JSON schema form',
-    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/c_scale,w_150/v1690387086/rjsf_ygpxse.png',
-    width: 150,
-    height: 150,
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1690387086/rjsf_ygpxse.png',
+    width: 250,
+    height: 250,
   },
 ];
 
@@ -55,7 +55,7 @@ export function OSS(): JSX.Element {
   return (
     <Panel>
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
-        <Box display="flex" justifyContent="center">
+        <Box display="flex" justifyContent="center" paddingX={{ mobile: 'small', tablet: 'none' }}>
           <TextLink tone="primary" size="large" external href="https://cutting.scot/oss">
             We have 350+ merged pull requests into many, many popular open source projects
           </TextLink>

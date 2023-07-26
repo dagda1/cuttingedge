@@ -1,13 +1,11 @@
 import { Box, Heading, Stack, Text, Tiles } from '@cutting/component-library';
 import { Service } from './Service';
-import cs from 'classnames';
-import { bg } from '~/pages/Home/HomeMobile.css';
 import { background } from './Service.css';
 
 export function Services(): JSX.Element {
   return (
     <>
-      <Box className={cs(bg, background)}></Box>
+      <Box className={background}></Box>
       <Stack space="small" align="center">
         <Heading level="1">Services</Heading>
         <Tiles columns={{ mobile: 1, tablet: 1, desktop: 2 }} space="medium">
