@@ -1,37 +1,16 @@
 import { responsiveStyle } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
-export const root = style({
-  display: 'flex',
-  flexDirection: 'column',
-  ...responsiveStyle({
-    mobile: {},
-    tablet: {
-      alignItems: 'center',
-    },
-  }),
-});
-
-globalStyle(`${root} h1`, {
-  marginBottom: '0',
-});
-
-globalStyle(`${root} fieldset`, {
-  border: 'none',
-});
-
 export const container = style({
-  display: 'flex',
-  flexDirection: 'column',
   ...responsiveStyle({
     mobile: {
       width: '100%',
     },
     tablet: {
-      width: '75vw',
+      width: '75%',
     },
     desktop: {
-      width: '50vw',
+      width: '33%',
     },
   }),
 });
@@ -53,21 +32,9 @@ globalStyle(`${buttonContainer} button`, {
       width: '100%',
     },
     tablet: {
-      width: '50%',
+      width: 'auto',
     },
   }),
-});
-
-export const header = style({
-  ...responsiveStyle({
-    mobile: {
-      textAlign: 'left',
-    },
-    tablet: {
-      textAlign: 'center',
-    },
-  }),
-  position: 'relative',
 });
 
 export const hidden = style({

@@ -8,15 +8,8 @@ export default function Contact(): JSX.Element {
   return (
     <>
       <Box className={cs(bg, background)}></Box>
-      <Box
-        marginTop="xxxlarge"
-        display="flex"
-        justifyContent="center"
-        width="full"
-        height="full"
-        style={{ border: '10px solid gold' }}
-      >
-        <Stack space="large">
+      <Box marginTop="xxxlarge" width="full" height="full">
+        <Stack space="large" align="center">
           <Heading level="2">Let's Talk</Heading>
           <Text component="p">How can we help?</Text>
           <ContactForm />

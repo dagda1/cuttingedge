@@ -11,7 +11,7 @@ globalStyle('html,body', {
 
 globalStyle('body', {
   overflowX: 'hidden',
-  overflowY: 'scroll',
+  overflowY: 'auto',
 });
 
 export const header = style({

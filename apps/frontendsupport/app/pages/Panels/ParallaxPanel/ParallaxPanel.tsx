@@ -24,11 +24,11 @@ export function ImagesContainer({ images }: { images: Images }): JSX.Element {
 export function ParallaxPanel({ topImages, children, bottomImages }: ParallaxPanelProps): JSX.Element {
   return (
     <Box height="full" position="relative" display="flex" flexDirection="column" justifyContent="spaceAround">
-      {/* <ImagesContainer images={topImages} /> */}
+      <ImagesContainer images={topImages} />
       <Box display="flex" justifyContent="center">
         {children}
       </Box>
-      {/* <ImagesContainer images={bottomImages} /> */}
+      <ImagesContainer images={bottomImages} />
     </Box>
   );
 }

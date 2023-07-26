@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import { assert } from 'assert-ts';
 import { CRM } from '../../constants';
 import type { ButtonStyle } from '@cutting/component-library';
-import { Button } from '@cutting/component-library';
+import { Box, Button } from '@cutting/component-library';
 
 interface FormValues {
   'Last Name': string;
@@ -39,7 +39,7 @@ export function ContactForm({ returnUrl, buttonStyle = 'secondary' }: ContactFor
   };
 
   return (
-    <div className={styles.container}>
+    <Box width="full" className={styles.container}>
       <form onSubmit={handleSubmit(onSubmit)} name="WebToLeads397786000000274681" method="POST" ref={form}>
         <fieldset>
           <Input
@@ -96,6 +96,6 @@ export function ContactForm({ returnUrl, buttonStyle = 'secondary' }: ContactFor
           defaultValue={returnUrl ?? typeof location !== 'undefined' ? location.origin : '/'}
         ></input>
       </form>
-    </div>
+    </Box>
   );
 }
