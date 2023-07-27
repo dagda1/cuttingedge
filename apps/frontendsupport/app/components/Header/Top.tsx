@@ -6,10 +6,10 @@ import { useCallback, useState } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 const MenuItems: NavLinkProps[] = [
-  { to: '/services/home', children: 'Services' },
-  { to: '/testimonials', children: 'Testimonials' },
-  { to: '/posts', children: 'Blog' },
-  { to: '/about', children: 'About' },
+  { to: '/services/home', children: 'SERVICES' },
+  { to: '/testimonials', children: 'TESTIMONIALS' },
+  { to: '/posts', children: 'BLOG' },
+  { to: '/about', children: 'ABOUT' },
 ];
 
 export function TopNav(): JSX.Element {
@@ -20,7 +20,7 @@ export function TopNav(): JSX.Element {
       <NavItems>
         <NavItem display="Always">
           <TextNavLink size="standard" to={'/'}>
-            Frontend Rescue
+            FRONTEND RESCUE
           </TextNavLink>
         </NavItem>
         {MenuItems.map(({ to, children }, i) => (

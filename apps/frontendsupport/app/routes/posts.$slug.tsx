@@ -5,7 +5,7 @@ import { type LoaderFunction, json } from '@remix-run/node';
 import { Link, useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
 import { Box, Heading, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
-import type { TextLinkProps } from '@cutting/component-library';
+import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
 
 type LoaderData = {
   frontmatter: any;
@@ -49,11 +49,11 @@ export default function PostRoute() {
   return (
     <Box marginTop="xxxlarge">
       <PageBlock>
-        <Link to="/">← Back to blog index</Link>
+        <TextNavLink to="/">← Back to blog index</TextNavLink>
         {frontmatter.image && (
           <Stack space="small">
             <Text component="p">
-              Credit: <a href={frontmatter.image.credit.url}>{frontmatter.image.credit.text}</a>
+              Credit: <TextLink href={frontmatter.image.credit.url}>{frontmatter.image.credit.text}</TextLink>
             </Text>
           </Stack>
         )}

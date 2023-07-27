@@ -1,4 +1,4 @@
-import { List, Text } from '@cutting/component-library';
+import { Box, List, Text } from '@cutting/component-library';
 import { Panel } from '~/components/Panel/Panel';
 import { ParallaxPanel, type ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel';
 
@@ -54,20 +54,22 @@ export function Frameworks(): JSX.Element {
   return (
     <Panel>
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
-        <List>
-          <Text size="large" tone="primary">
-            You have to get it right first time
-          </Text>
-          <Text tone="primary" size="large">
-            Your team are more familiar with backend development.
-          </Text>
-          <Text tone="primary" size="large">
-            The deadline is looming.
-          </Text>
-          <Text tone="primary" size="large">
-            You need that killer frontend feature.
-          </Text>
-        </List>
+        <Box marginLeft="small">
+          <List>
+            <Text size="large" tone="primary">
+              You have to get it right first time
+            </Text>
+            <Text tone="primary" size="large">
+              Your team are more familiar with backend development.
+            </Text>
+            <Text tone="primary" size="large">
+              The deadline is looming.
+            </Text>
+            <Text tone="primary" size="large">
+              You need that killer frontend feature.
+            </Text>
+          </List>
+        </Box>
       </ParallaxPanel>
     </Panel>
   );

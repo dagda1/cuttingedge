@@ -2,7 +2,7 @@ import type { DeepPartial } from '@cutting/util';
 import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
 import { extractFontMetricsForTheme } from '~/style/util/typography';
-import bebasNeue from '@capsizecss/metrics/bebasNeue';
+import oswald from '@capsizecss/metrics/oswald';
 
 const colors = {
   primary: palette.lime500,
@@ -22,7 +22,7 @@ export const tokens: DeepPartial<Tokens> = {
   },
   color: {
     foreground: {
-      secondary: '#ffff00',
+      secondary: palette.neutral600,
       info: '#F5DEB3',
       promote: '#ffff00',
       link: palette.neutral400,
@@ -39,9 +39,9 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   typography: {
-    webFont: 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap',
-    fontFamily: 'Bebas Neue,Rubik',
-    fontMetrics: extractFontMetricsForTheme(bebasNeue),
+    webFont: 'https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Sora&display=swap',
+    fontFamily: '"Oswald", sans-serif',
+    fontMetrics: extractFontMetricsForTheme(oswald),
     heading: {
       weight: {
         weak: 'regular',
@@ -50,22 +50,22 @@ export const tokens: DeepPartial<Tokens> = {
       level: {
         '1': {
           mobile: {
-            fontSize: 96,
+            fontSize: 50,
             lineGap: 30,
           },
           tablet: {
-            fontSize: 128,
+            fontSize: 80,
             lineGap: 24,
           },
         },
         '2': {
           mobile: {
-            fontSize: 50,
-            lineGap: 16,
+            fontSize: 26,
+            lineGap: 30,
           },
           tablet: {
-            fontSize: 70,
-            lineGap: 20,
+            fontSize: 38,
+            lineGap: 24,
           },
         },
         '3': {
@@ -93,22 +93,22 @@ export const tokens: DeepPartial<Tokens> = {
     text: {
       large: {
         mobile: {
-          fontSize: 30,
-          lineGap: 10,
-        },
-        tablet: {
-          fontSize: 48,
-          lineGap: 24,
-        },
-      },
-      standard: {
-        mobile: {
           fontSize: 19,
           lineGap: 13,
         },
         tablet: {
           fontSize: 22,
-          lineGap: 19,
+          lineGap: 13,
+        },
+      },
+      standard: {
+        mobile: {
+          fontSize: 16,
+          lineGap: 10,
+        },
+        tablet: {
+          fontSize: 19,
+          lineGap: 13,
         },
       },
       small: {
