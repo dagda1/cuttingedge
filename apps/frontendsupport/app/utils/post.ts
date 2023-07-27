@@ -21,7 +21,7 @@ export type PostMarkdownAttributes = {
 const root = process.cwd();
 
 export async function getPost(slug: string) {
-  const source = await fs.readFile(path.join(`${__dirname}/../blog-posts`, `${slug}.mdx`), 'utf-8');
+  const source = await fs.readFile(path.join(`${__dirname}/../blog-posts`, `${slug}/index.md`), 'utf-8');
 
   const { default: remarkGfm } = await import('remark-gfm');
   const { default: rehypeAutolinkHeadings } = await import('rehype-autolink-headings');
@@ -100,7 +100,7 @@ export async function getPosts() {
 
   const posts = await Promise.all(
     postsPath.map(async (dirent) => {
-      const file = await fs.readFile(path.join(`${__dirname}/../blog-posts`, dirent.name));
+      const file = await fs.readFile(path.join(`${__dirname}/../blog-posts`, dirent.name, 'index.md'));
       const { attributes } = parseFrontMatter(file.toString());
 
       return {

@@ -11,7 +11,9 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ params }) => {
   const slug = params.slug;
-  if (!slug) throw new Response('Not found', { status: 404 });
+  if (!slug) {
+    throw new Response('Not found', { status: 404 });
+  }
 
   console.dir({ slug, a: __dirname });
 
