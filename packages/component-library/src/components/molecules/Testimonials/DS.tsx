@@ -10,16 +10,14 @@ export function DSTestimonial(): JSX.Element {
         url="https://www.mygov.scot/about-disclosure-scotland"
       >
         <Text component="p">
-          Frontend DX were part of a challenging transformation programme. They were able to adapt and deliver under
-          ever changing circumstances as the team grew and the complexity of the business and technical solution
-          increased.
+          Paul was part of a challenging transformation programme. He was able to adapt and deliver under ever changing
+          circumstances as the team grew and the complexity of the business and technical solution increased.
         </Text>
         <Text component="strong">
-          Frontend DX&apos;s involvement laid the foundations that helped develop a significant public-facing digital
-          offering.
+          Paul&apos;s involvement laid the foundations that helped develop a significant public-facing digital offering.
         </Text>
         <Text component="p">
-          Their experience took the risk away from the frontend, and contributed to building a robust software platform.
+          His experience took the risk away from the frontend, and contributed to building a robust software platform.
         </Text>
       </Testimonial>
     </Box>

@@ -88,10 +88,10 @@ export function HomeMobile(): JSX.Element {
           <Heading level="2">We can help if.....</Heading>
         </Box>
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1689953393/frontendsupport/pain_wide_jjmyp6.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_50/v1690453218/rescue_xxxdk2.png">
         <Frameworks />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028703/blueskies_mpewpy.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1690453264/code_mmdqb8.png">
         <OSS />
       </MobileContainer>
       {/* <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028841/dusk_kg7et9.png">

@@ -11,7 +11,7 @@ export function C2Testimonial(): JSX.Element {
           working on features.
         </Text>
         <Text component="p">
-          Thanks to their help, we were able to refactor our application to use modern frontend techniques.
+          Thanks to his help, we were able to refactor our application to use modern frontend techniques.
         </Text>
         <Text component="p"> This has allowed us to scale our business and gain competitive advantage.</Text>
       </Testimonial>

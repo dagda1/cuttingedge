@@ -1,5 +1,19 @@
-import { style } from '@vanilla-extract/css';
+import { assignVars, createThemeContract, style } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css';
+
+const textLinkVars = createThemeContract({
+  color: null,
+  colorHover: null,
+  textDecoration: null,
+  textDecorationHover: null,
+});
+
+const weakLinkVars = assignVars(textLinkVars, {
+  color: 'inherit',
+  colorHover: 'inherit',
+  textDecoration: 'underline',
+  textDecorationHover: 'underline',
+});
 
 export const base = style({
   color: vars.foregroundColor.link,
@@ -30,4 +44,8 @@ export const base = style({
 
 export const underline = style({
   textDecoration: 'underline',
+});
+
+export const weakLink = style({
+  vars: weakLinkVars,
 });

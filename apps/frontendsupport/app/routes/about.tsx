@@ -1,4 +1,4 @@
-import { Box, Heading, PageBlock, TextLink, Text, Inline, Stack, List } from '@cutting/component-library';
+import { Box, Heading, PageBlock, TextLink, Text, Stack, List } from '@cutting/component-library';
 import { Image } from '@unpic/react';
 
 export default function Services(): JSX.Element {
@@ -17,19 +17,18 @@ export default function Services(): JSX.Element {
                 alt="Paul Cowan (CEO)"
               />
             </Box>
-            <h2>
-              <TextLink tone="promote" external href="https://www.linkedin.com/in/paul-cowan-19bb1116/">
+            <Heading level="2">
+              <TextLink external href="https://www.linkedin.com/in/paul-cowan-19bb1116/">
                 Paul Cowan (CEO)
               </TextLink>
-            </h2>
+            </Heading>
             <Text>
               My passion is and always has been frontend development. I love the instant visual feedback that is unique
               to frontend development.
             </Text>
-            <Inline space={{ mobile: 'small', wide: 'none' }} alignY="center">
-              <Text>I am an open-source fanatic with over&nbsp;</Text>
+            <Text component="p">
+              I am an open-source fanatic with over&nbsp;
               <TextLink
-                tone="promote"
                 external
                 href="https://github.com/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1+-user%3Adagda1"
                 data-testid="external-link"
@@ -38,53 +37,54 @@ export default function Services(): JSX.Element {
               >
                 140+ merged pull requests in the past 12 months&nbsp;
               </TextLink>
-              <Text>into many, many, many open source repositories.</Text>
-            </Inline>
-            <Inline component="span" alignY="center" space={{ mobile: 'small', wide: 'none' }}>
-              <Text>I write professionally for&nbsp;</Text>
-              <TextLink tone="promote" external href="https://blog.logrocket.com/author/paulcowan/">
+              into many, many, many open source repositories.
+            </Text>
+            <Text component="p">
+              I write professionally for&nbsp;
+              <TextLink external href="https://blog.logrocket.com/author/paulcowan/">
                 logrocket
               </TextLink>
-              <Text>&nbsp;and my own&nbsp;</Text>
-              <TextLink tone="promote" external href="https://thesoftwaresimpleton.com">
+              &nbsp;and my own&nbsp;
+              <TextLink external href="https://thesoftwaresimpleton.com">
                 personal blog.
               </TextLink>
-            </Inline>
-            <Inline component="span" alignY="center" space={{ mobile: 'small', wide: 'none' }}>
+            </Text>
+            <Text component="p">
+              I have over 20 years of experience working on some exceptional frontend pieces of work for companies such
+              as&nbsp;
+            </Text>
+            <List>
               <Text>
-                I have over 20 years of experience working on some exceptional frontend pieces of work for companies
-                such as&nbsp;
+                The digital transformation of disclosure scotland for both the&nbsp;
+                <TextLink external href="https://basic.apply.disclosure.scot/">
+                  basic disclosure&nbsp;
+                </TextLink>
+                and the&nbsp;
+                <TextLink external href="https://csg.apply.disclosure.scot/">
+                  PVG scheme&nbsp;
+                </TextLink>
+                digital online forms that replaced legacy or paper based alternatives.
               </Text>
-              <List>
-                <Inline component="span" alignY="center" space={{ mobile: 'small', wide: 'none' }}>
-                  <Text>The digital transformation of disclosure scotland for both the&nbsp;</Text>{' '}
-                  <TextLink tone="promote" external href="https://basic.apply.disclosure.scot/">
-                    basic disclosure&nbsp;
-                  </TextLink>
-                  <Text>and the&nbsp;</Text>
-                  <TextLink tone="promote" external href="https://csg.apply.disclosure.scot/">
-                    PVG scheme&nbsp;
-                  </TextLink>
-                  <Text>digital online forms that replaced legacy or paper based alternatives.</Text>
-                </Inline>
-                <TextLink tone="promote" external href="https://waitrose.com">
+              <Text>
+                <TextLink external href="https://waitrose.com">
                   waitrose
                 </TextLink>
+              </Text>
+              <Text tone="primary">
                 <TextLink
-                  tone="promote"
                   external
                   href="https://www.volvogroup.com/en/about-us/history-and-r-d-milestones/volvo-ocean-race.html"
                 >
                   the Volvo ocean race
                 </TextLink>
-              </List>
-            </Inline>
+              </Text>
+            </List>
             <Text>
               I put a lot of my success as a frontend developer down to my ability to construct the best frontend
               development environment to allow development teams to flourish.
             </Text>
             <Text>
-              At 50+ years of age, I have more experience than most and I get results at a fraction of the time.
+              At 53 years of age, I have more experience than most and I get results in a fraction of the time.
             </Text>
           </Stack>
         </Box>

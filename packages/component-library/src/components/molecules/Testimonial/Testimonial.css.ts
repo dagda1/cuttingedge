@@ -19,22 +19,24 @@ globalStyle(`${root} blockquote`, {
   padding: `${vars.space['xsmall']} ${vars.space['xsmall']} ${vars.space['xsmall']} ${vars.space['small']}`,
 });
 
-globalStyle(`${root} blockquote:before`, {
-  display: 'block',
-  height: 0,
-  marginLeft: '-.95em',
-  font: 'italic 400%/1 Cochin,Georgia,"Times New Roman", serif',
-  color: palette.white,
+globalStyle(`${root} blockquote::before`, {
   content: '"”"',
-});
-
-globalStyle(`${root} blockquote:after`, {
   display: 'block',
   position: 'absolute',
   right: vars.space['xsmall'],
   bottom: vars.space['large'],
   height: 0,
+  font: 'italic 400%/1 Cochin,Georgia,"Times New Roman", serif',
+  color: palette.white,
+});
+
+globalStyle(`${root} blockquote:after`, {
   content: '"”"',
+  display: 'block',
+  position: 'absolute',
+  right: vars.space['xsmall'],
+  bottom: vars.space['large'],
+  height: 0,
   font: 'italic 400%/1 Cochin,Georgia,"Times New Roman", serif',
   color: palette.white,
 });

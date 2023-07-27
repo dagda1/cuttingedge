@@ -1,5 +1,5 @@
 import { Panel } from '~/components/Panel/Panel';
-import { Box, TextLink } from '@cutting/component-library';
+import { Box, Heading, TextLink } from '@cutting/component-library';
 import type { ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel';
 import { ParallaxPanel } from '../ParallaxPanel/ParallaxPanel';
 
@@ -56,9 +56,11 @@ export function OSS(): JSX.Element {
     <Panel>
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
         <Box display="flex" justifyContent="center" paddingX={{ mobile: 'small', tablet: 'none' }}>
-          <TextLink tone="primary" size="large" external href="https://cutting.scot/oss">
-            We have 350+ merged pull requests into many, many popular open source projects
-          </TextLink>
+          <Heading level="2">
+            <TextLink external href="https://cutting.scot/oss">
+              We have 350+ merged pull requests into many, many popular open source projects
+            </TextLink>
+          </Heading>
         </Box>
       </ParallaxPanel>
     </Panel>

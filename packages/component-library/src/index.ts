@@ -29,7 +29,7 @@ export { Label } from './components/atoms/Label';
 export { ErrorMessage } from './components/atoms/ErrorMessage/ErrorMessage';
 export { Button } from './components/atoms/Button/Button';
 export { ButtonLink } from './components/atoms/ButtonLink/ButtonLink';
-export { TextLink, getLinkStyles } from './components/atoms/TextLink/TextLink';
+export { TextLink } from './components/atoms/TextLink/TextLink';
 export { TextContext } from './components/atoms/Text/TextContext';
 export { Strong } from './components/atoms/Strong/Strong';
 export * from './components/atoms/Button/Button.css';
