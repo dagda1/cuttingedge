@@ -10,4 +10,4 @@ In this post, we'll walk through the essentials of responsive images, why they'r
 
 ## Warning!!
 
-Implementing responsive images can be challenging. It could lead to slow load times and bad user experiences if not done correctly.
+Implementing responsive images can be challenging. It could lead to slow load times and bad user experiences if not done correctly. [link](https://google.com)

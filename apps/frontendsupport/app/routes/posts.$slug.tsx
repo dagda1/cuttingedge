@@ -1,13 +1,32 @@
 import { getMDXComponent } from 'mdx-bundler/client';
+import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 import { type LoaderFunction, json } from '@remix-run/node';
 import { Link, useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
+import { Box, Heading, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
+import type { TextLinkProps } from '@cutting/component-library';
 
 type LoaderData = {
   frontmatter: any;
   code: string;
 };
+
+interface Props {
+  children?: ReactNode;
+}
+
+function Paragraph({ children }: Props): JSX.Element {
+  return <Text component="p">{children}</Text>;
+}
+
+function Heading1({ children }: Props): JSX.Element {
+  return <Heading level="2">{children}</Heading>;
+}
+
+function Heading2({ children }: Props): JSX.Element {
+  return <Heading level="2">{children}</Heading>;
+}
 
 export const loader: LoaderFunction = async ({ params }) => {
   const slug = params.slug;
@@ -15,9 +34,8 @@ export const loader: LoaderFunction = async ({ params }) => {
     throw new Response('Not found', { status: 404 });
   }
 
-  console.dir({ slug, a: __dirname });
-
   const post = await getPost(slug);
+
   if (post) {
     const { frontmatter, code } = post;
     return json({ frontmatter, code });
@@ -29,25 +47,27 @@ export default function PostRoute() {
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <>
-      <Link to="/">← Back to blog index</Link>
-      {frontmatter.image && (
-        <div className="mb-6 -mt-6">
-          <div className="text-center">
-            {/* <div>
-              <img src={frontmatter.image.url} className="object-cover object-center w-full" />
-            </div> */}
-            <p className="mt-2 text-sm text-slate-600">
+    <Box marginTop="xxxlarge">
+      <PageBlock>
+        <Link to="/">← Back to blog index</Link>
+        {frontmatter.image && (
+          <Stack space="small">
+            <Text component="p">
               Credit: <a href={frontmatter.image.credit.url}>{frontmatter.image.credit.text}</a>
-            </p>
-          </div>
-        </div>
-      )}
+            </Text>
+          </Stack>
+        )}
 
-      <h1 className="my-20">{frontmatter.title}</h1>
+        <Heading level="1" className="my-20">
+          {frontmatter.title}
+        </Heading>
 
-      <Component attributes={frontmatter} />
-      {/* <div className="hero">Sign up to get notified about new posts.</div> */}
-    </>
+        <Component
+          components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
+          attributes={frontmatter}
+        />
+        {/* <div className="hero">Sign up to get notified about new posts.</div> */}
+      </PageBlock>
+    </Box>
   );
 }

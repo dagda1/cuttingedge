@@ -38,11 +38,7 @@ export async function getPost(slug: string) {
 
   const remarkInlineCodeLanguage = await remarkInlineCodeLanguageCreator();
 
-  if (process.platform === 'win32') {
-    process.env.ESBUILD_BINARY_PATH = path.join(root, 'node_modules', 'esbuild', 'esbuild.exe');
-  } else {
-    process.env.ESBUILD_BINARY_PATH = path.join(root, 'node_modules', 'esbuild', 'bin', 'esbuild');
-  }
+  process.env.ESBUILD_BINARY_PATH = path.join(root, 'node_modules', 'esbuild', 'bin', 'esbuild');
 
   const post = await bundleMDX({
     source,

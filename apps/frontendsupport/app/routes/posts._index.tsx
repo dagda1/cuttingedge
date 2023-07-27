@@ -3,6 +3,8 @@ import { Link, useLoaderData } from '@remix-run/react';
 import { getPosts } from '~/utils/post';
 import type { Post } from '~/utils/post';
 import { type LoaderFunction } from '@remix-run/node';
+import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
+import { Box, List, PageBlock } from '@cutting/component-library';
 
 export const loader: LoaderFunction = async () => {
   return getPosts();
@@ -12,15 +14,16 @@ export default function Posts() {
   const posts = useLoaderData<Post[]>();
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Posts</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <Link to={`/posts/${post.slug}`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Box marginTop="xxxlarge" display="flex" justifyContent="center">
+      <PageBlock>
+        <List type="none">
+          {posts.map((post) => (
+            <TextNavLink key={post.slug} underline to={`/posts/${post.slug}`}>
+              {post.title}
+            </TextNavLink>
+          ))}
+        </List>
+      </PageBlock>
+    </Box>
   );
 }
