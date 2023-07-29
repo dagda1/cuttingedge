@@ -18,7 +18,7 @@
     "@cutting/use-get-parent-size": "workspace:*",
     "@mdx-js/esbuild": "^2.3.0",
     "@react-three/drei": "^9.79.3",
-    "@react-three/fiber": "^8.13.5",
+    "@react-three/fiber": "^8.13.6",
     "@react-three/postprocessing": "^2.15.0",
     "@studio-freight/lenis": "^1.0.19",
     "@remix-run/architect": "^1.15.0",
