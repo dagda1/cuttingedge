@@ -60,7 +60,7 @@ export async function getPost(slug: string) {
         ...(options.rehypePlugins ?? []),
         rehypeAutolinkHeadings,
         rehypeSlug,
-        rehypeToc,
+        [rehypeToc, { position: 'afterbegin' }],
         rehypeKatex,
         [rehypeCitation, { path: path.join(root, 'data') }],
         [rehypePrismPlus, { ignoreMissing: true }],

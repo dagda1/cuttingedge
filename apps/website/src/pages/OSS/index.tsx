@@ -16,37 +16,37 @@ export function OSS(): JSX.Element {
               external
               href="https://github.com/backstage/backstage/pulls?q=is%3Apr+is%3Amerged+author%3Adagda1"
             >
-              Very active in Backstage
+              <Text>Very active in Backstage</Text>
             </TextLink>
             <TextLink href="https://github.com/thefrontside/effection/pulls?q=is%3Apr+author%3Adagda1">
-              Active in Effection
+              <Text>Active in Effection</Text>
             </TextLink>
             <TextLink
               external
               href="https://github.com/thefrontside/simulacrum/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1"
             >
-              Very active in Simulacrum
+              <Text>Very active in Simulacrum</Text>
             </TextLink>
             <TextLink
               external
               href="https://github.com/jaredpalmer/after.js/pulls?q=is%3Apr+author%3Adagda1+is%3Aclosed"
             >
-              Numerous commits to afterjs
+              <Text>Numerous commits to afterjs</Text>
             </TextLink>
             <TextLink external href="https://github.com/hshoff/vx/pull/355">
-              vx polygon component
+              <Text>vx polygon component</Text>
             </TextLink>
             <TextLink external href="https://github.com/emberjs/ember.js/pull/2938">
-              Emberjs - keyhandler test helper
+              <Text>Emberjs - keyhandler test helper</Text>
             </TextLink>
             <TextLink external href="https://github.com/bvaughn/react-window/pull/1">
-              react-window
+              <Text>react-window</Text>
             </TextLink>
             <TextLink external href="https://github.com/airbnb/enzyme/pull/1408">
-              enzyme
+              <Text>enzyme</Text>
             </TextLink>
             <TextLink external href="https://github.com/pulls?q=is%3Apr+author%3Adagda1+is%3Apublic+is%3Amerged">
-              And many, many, many others....
+              <Text>And many, many, many others....</Text>
             </TextLink>
           </Stack>
           <Heading level="2">My Work</Heading>

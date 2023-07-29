@@ -8,12 +8,16 @@ export function Blog(): JSX.Element {
       <PageBlock>
         <Stack space="medium">
           <Inline space="none">
-            <Text>I blog professionally for&nbsp;</Text>
-            <TextLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</TextLink>
+            <Text>
+              I blog professionally for&nbsp;
+              <TextLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</TextLink>
+            </Text>
           </Inline>
           <Inline space="none">
-            <Text>My personal blog is&nbsp;</Text>
-            <TextLink href="https://thesoftwaresimpleton.com/">here</TextLink>
+            <Text>
+              My personal blog is&nbsp;
+              <TextLink href="https://thesoftwaresimpleton.com/">here</TextLink>
+            </Text>
           </Inline>
           {posts.map((post, i) => (
             <Stack space="medium" key={i}>
@@ -23,7 +27,7 @@ export function Blog(): JSX.Element {
               <Text component="p">{post.summary}</Text>
               <p>
                 <TextLink href={post.link} blank={false}>
-                  Read More
+                  <Text>Read More</Text>
                 </TextLink>
               </p>
             </Stack>

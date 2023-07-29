@@ -2,7 +2,7 @@ import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import * as Urls from '~/urls';
 
 import * as styles from './CV.css';
-import { Tiles, TextLink, PageBlock } from '@cutting/component-library';
+import { Tiles, TextLink, PageBlock, Text } from '@cutting/component-library';
 
 const docs = [
   { file: 'paulcowan-cv.pdf', url: Urls.DownloadPdf, text: 'pdf' },
@@ -24,9 +24,9 @@ export function CV(): JSX.Element {
           {docs.map((doc) => {
             const text = `DOWNLOAD ${doc.text}`;
             return (
-              <TextLink href={doc.url} size="large" key={doc.url}>
-                {text}
-              </TextLink>
+              <Text size="large" key={doc.url}>
+                <TextLink href={doc.url}>{text}</TextLink>
+              </Text>
             );
           })}
         </Tiles>
