@@ -8,7 +8,7 @@ export async function remarkInlineCodeLanguageCreator() {
         const className = `language-typescript`;
 
         node.type = 'html';
-        node.value = `<code class="${className}">${escapeHtml(node.value)}</code>`;
+        node.value = `<code class="${className} cutting-inline">${escapeHtml(node.value)}</code>`;
       });
   };
 }

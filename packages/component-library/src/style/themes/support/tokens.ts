@@ -38,6 +38,7 @@ export const tokens: DeepPartial<Tokens> = {
       body: palette.black,
     },
   },
+  grid: 4,
   typography: {
     webFont: 'https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Sora&display=swap',
     fontFamily: '"Oswald", sans-serif',
@@ -51,21 +52,21 @@ export const tokens: DeepPartial<Tokens> = {
         '1': {
           mobile: {
             fontSize: 50,
-            lineGap: 30,
+            lineGap: 12,
           },
           tablet: {
             fontSize: 80,
-            lineGap: 24,
+            lineGap: 20,
           },
         },
         '2': {
           mobile: {
             fontSize: 26,
-            lineGap: 30,
+            lineGap: 14,
           },
           tablet: {
             fontSize: 38,
-            lineGap: 24,
+            lineGap: 20,
           },
         },
         '3': {
@@ -94,7 +95,7 @@ export const tokens: DeepPartial<Tokens> = {
       large: {
         mobile: {
           fontSize: 19,
-          lineGap: 13,
+          lineGap: 16,
         },
         tablet: {
           fontSize: 22,

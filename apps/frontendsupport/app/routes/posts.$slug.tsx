@@ -2,7 +2,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 import { type LoaderFunction, json } from '@remix-run/node';
-import { Link, useLoaderData } from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
 import { Box, Heading, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
 import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
@@ -51,21 +51,19 @@ export default function PostRoute() {
       <PageBlock>
         <TextNavLink to="/">← Back to blog index</TextNavLink>
         {frontmatter.image && (
-          <Stack space="small">
-            <Text component="p">
-              Credit: <TextLink href={frontmatter.image.credit.url}>{frontmatter.image.credit.text}</TextLink>
-            </Text>
-          </Stack>
+          <Text component="p">
+            Credit: <TextLink href={frontmatter.image.credit.url}>{frontmatter.image.credit.text}</TextLink>
+          </Text>
         )}
 
-        <Heading level="1" className="my-20">
-          {frontmatter.title}
-        </Heading>
+        <Heading level="1">{frontmatter.title}</Heading>
 
-        <Component
-          components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
-          attributes={frontmatter}
-        />
+        <Stack space="xxlarge">
+          <Component
+            components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
+            attributes={frontmatter}
+          />
+        </Stack>
         {/* <div className="hero">Sign up to get notified about new posts.</div> */}
       </PageBlock>
     </Box>
