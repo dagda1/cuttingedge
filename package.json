@@ -45,7 +45,7 @@
     "lint-staged": "13.2.3",
     "node-fetch": "3.3.1",
     "prettier": "2.8.8",
-    "turbo": "1.10.9",
+    "turbo": "1.10.12",
     "typescript": "5.1.6",
     "vite": "4.3.9",
     "vitest": "0.32.2",
