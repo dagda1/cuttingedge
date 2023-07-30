@@ -4,23 +4,23 @@ import { render } from '@testing-library/react';
 
 describe('<TextLink />', () => {
   it('should render target and rel props', () => {
-    const { getByTestId } = render(
-      <TextLink external dataSelector="the-a" href="http://blah.com/">
+    const { getByRole } = render(
+      <TextLink external href="http://blah.com/" blank>
         Blah
       </TextLink>,
     );
 
-    const a = getByTestId('the-a') as HTMLAnchorElement;
+    const a = getByRole('link') as HTMLAnchorElement;
 
     expect(a.href).toBe('http://blah.com/');
     expect(a.target).toBe('_blank');
     expect(a.rel).toBe('noopener noreferrer');
-    expect(a.querySelector('span')?.innerHTML).toBe('Blah');
+    expect(a?.innerHTML).toBe('Blah');
   });
 
   it('should add aria-label and aria-labelledby attributes', () => {
     const { getByLabelText } = render(
-      <TextLink external ariaLabel="label" ariaLabelledBy="labelled by" dataSelector="the-a" href="http://blah.com/">
+      <TextLink external ariaLabel="label" ariaLabelledBy="labelled by" href="http://blah.com/">
         Blah
       </TextLink>,
     );
