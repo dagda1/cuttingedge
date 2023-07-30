@@ -91,9 +91,12 @@ export const tokens = {
     },
   },
   typography: {
-    fontFamily: 'arial,sans-serif',
+    fontFamily: {
+      heading: 'arial,sans-serif',
+      text: 'arial,sans-serif',
+    },
     fontMetrics: extractFontMetricsForTheme(arialMetfics),
-    webFont: null as unknown as string,
+    webFont: null as unknown as { heading: string; text: string },
     fontWeight: {
       ...fontWeight,
     },

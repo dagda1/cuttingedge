@@ -13,7 +13,7 @@ globalStyle(`${root} blockquote`, {
   background: palette.white,
   borderLeft: '0.5rem solid transparent',
   width: '100%',
-  margin: `${vars.space['medium']} 0 ${vars.space['xsmall']} 0}`,
+  margin: `${vars.space['medium']} 0 ${vars.space['xsmall']} 0`,
   padding: `${vars.space['xsmall']} ${vars.space['xsmall']} ${vars.space['xsmall']} ${vars.space['small']}`,
 });
 

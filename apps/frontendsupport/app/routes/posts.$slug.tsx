@@ -5,7 +5,6 @@ import { type LoaderFunction, json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
 import { Box, Heading, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
-import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
 import type { FrontMatter } from '~/types';
 
 type LoaderData = {
@@ -18,7 +17,11 @@ interface Props {
 }
 
 function Paragraph({ children }: Props): JSX.Element {
-  return <Text component="p">{children}</Text>;
+  return (
+    <Box component="p" marginY="large">
+      <Text>{children}</Text>
+    </Box>
+  );
 }
 
 function Heading1({ children }: Props): JSX.Element {
@@ -26,7 +29,11 @@ function Heading1({ children }: Props): JSX.Element {
 }
 
 function Heading2({ children }: Props): JSX.Element {
-  return <Heading level="2">{children}</Heading>;
+  return (
+    <Box marginTop="large">
+      <Heading level="2">{children}</Heading>
+    </Box>
+  );
 }
 
 export const loader: LoaderFunction = async ({ params }) => {

@@ -64,25 +64,25 @@ With this configuration, any tests that match the `'**/*.setup.ts'` glob will ru
 
 Below is the test file, `login.setup.ts`, that logs the user in:
 
-```ts:login.ts
-import { test as setup, expect } from '@playwright/test';
-import fs from 'fs';
+```ts {1,4,14-19} showLineNumbers
+import { test as setup, expect } from "@playwright/test";
+import fs from "fs";
 
-const STORAGE_STATE = path.join(__dirname, 'playwright/.auth/auth.json');
+const STORAGE_STATE = path.join(__dirname, "playwright/.auth/auth.json");
 
-setup('authenticate', async ({ page }) => {
-  await page.goto('/');
-  await page.getByRole('textbox', { name: 'SOEID' }).fill('test');
-  await page.getByRole('textbox', { name: 'Password' }).fill('test');
-  await page.keyboard.press('Enter');
+setup("authenticate", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("textbox", { name: "SOEID" }).fill("test");
+  await page.getByRole("textbox", { name: "Password" }).fill("test");
+  await page.keyboard.press("Enter");
 
   await expect(page.locator('[href*="/parodos"]')).toBeVisible();
 
   const sessionStorage = await page.evaluate(() =>
-    JSON.stringify(sessionStorage),
+    JSON.stringify(sessionStorage)
   );
 
-  fs.writeFileSync(STORAGE_STATE, JSON.stringify(sessionStorage), 'utf-8');
+  fs.writeFileSync(STORAGE_STATE, JSON.stringify(sessionStorage), "utf-8");
 });
 ```
 
