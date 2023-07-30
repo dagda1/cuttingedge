@@ -6,9 +6,10 @@ import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
 import { Box, Heading, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
 import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
+import type { FrontMatter } from '~/types';
 
 type LoaderData = {
-  frontmatter: any;
+  frontmatter: FrontMatter;
   code: string;
 };
 
@@ -46,18 +47,18 @@ export default function PostRoute() {
   const { code, frontmatter } = useLoaderData<LoaderData>();
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
+  console.dir({ frontmatter }, { depth: 8 });
+
   return (
     <Box marginTop="xxxlarge">
       <PageBlock>
-        <TextNavLink to="/">← Back to blog index</TextNavLink>
+        {/* <TextNavLink to="/">← Back to blog index</TextNavLink>
         {frontmatter.image && (
           <Text component="p">
             Credit: <TextLink href={frontmatter.image.credit.url}>{frontmatter.image.credit.text}</TextLink>
           </Text>
-        )}
-
-        <Heading level="1">{frontmatter.title}</Heading>
-
+        )} */}
+        <Heading level="1">{frontmatter.meta.title}</Heading>
         <Stack space="xxlarge">
           <Component
             components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}

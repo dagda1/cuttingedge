@@ -6,8 +6,9 @@ import remarkFootnotes from 'remark-footnotes';
 import remarkMdxImages from 'remark-mdx-images';
 import remarkBreaks from 'remark-breaks';
 import { remarkCodeTitles } from './remark-code-title';
-
 import { remarkInlineCodeLanguageCreator } from './remark-inline-code-language';
+import type { FrontMatter } from '~/types';
+import readingTime from 'reading-time';
 
 export type Post = {
   slug: string;
@@ -86,7 +87,15 @@ export async function getPost(slug: string) {
     throw e;
   });
 
-  return post;
+  return {
+    ...post,
+    frontmatter: {
+      meta: {
+        readingTime: readingTime(post.code),
+        ...post.frontmatter.meta,
+      },
+    },
+  };
 }
 
 export async function getPosts() {
@@ -97,12 +106,13 @@ export async function getPosts() {
   const posts = await Promise.all(
     postsPath.map(async (dirent) => {
       const file = await fs.readFile(path.join(`${__dirname}/../blog-posts`, dirent.name, 'index.md'));
-      const { attributes } = parseFrontMatter(file.toString());
+      const { attributes } = parseFrontMatter(file.toString()) as { attributes: FrontMatter };
 
       return {
         slug: dirent.name.replace(/\.mdx/, ''),
         //@ts-ignore
         title: attributes.meta.title,
+        date: new Date(attributes.meta.date).toISOString(),
       };
     }),
   );
