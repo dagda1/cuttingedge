@@ -36,7 +36,7 @@
     "@vanilla-extract/sprinkles": "1.6.1",
     "@visx/axis": "3.3.0",
     "@visx/curve": "3.3.0",
-    "@visx/group": "3.0.0",
+    "@visx/group": "3.3.0",
     "@visx/scale": "^3.0.0",
     "@visx/shape": "3.0.0",
     "@visx/text": "3.0.0",
