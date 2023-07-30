@@ -48,6 +48,7 @@ export function ContactButtons({
   callType,
   rootElementId = 'portal',
   justify = 'flexStart',
+  buttonStyle = 'warning',
   ...formProps
 }: ContactButtonsProps): JSX.Element {
   return (
@@ -56,7 +57,7 @@ export function ContactButtons({
       {isClient && (
         <Popup
           trigger={
-            <ButtonWrapper type="button" buttonStyle="secondary">
+            <ButtonWrapper type="button" buttonStyle={buttonStyle}>
               CONTACT BY EMAIL
             </ButtonWrapper>
           }

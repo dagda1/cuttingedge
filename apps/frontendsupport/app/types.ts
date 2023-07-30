@@ -5,6 +5,7 @@ export interface FrontMatter {
     slug: string;
     title: string;
     summary: string;
+    description: string;
     date: string;
     tags: string[];
     readingTime?: ReadTimeResults;
@@ -12,3 +13,5 @@ export interface FrontMatter {
     image?: string;
   };
 }
+
+export type FrontMatterMeta = FrontMatter['meta'];

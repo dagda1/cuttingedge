@@ -3,7 +3,11 @@ import { ContactButtons } from '@cutting/react-hook-form-components';
 export default function Critical(): JSX.Element {
   return (
     <Stack space={{ mobile: 'small', desktop: 'large', wide: 'large' }}>
-      <Heading level="2">24 Hour emergency fix turnaround</Heading>
+      <Heading level="1">24 Hour emergency fix turnaround</Heading>
+      <Heading level="2">When you need answers now</Heading>
+      <Text component="p" size="large" tone="info">
+        What you get:
+      </Text>
       <List>
         <Text size="large" tone="primary">
           A 60-minute consultation call with an industry expert.

@@ -58,7 +58,7 @@ export function FormControl<P>(
             dataSelector={`${dataSelector}-label`}
           >
             {typeof label === 'string' ? (
-              <Text layout="inline" component="span">
+              <Text layout="inline" component="span" tone="primary">
                 {label}
               </Text>
             ) : (

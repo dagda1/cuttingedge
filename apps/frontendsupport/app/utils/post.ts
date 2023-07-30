@@ -7,13 +7,8 @@ import remarkMdxImages from 'remark-mdx-images';
 import remarkBreaks from 'remark-breaks';
 import { remarkCodeTitles } from './remark-code-title';
 import { remarkInlineCodeLanguageCreator } from './remark-inline-code-language';
-import type { FrontMatter } from '~/types';
+import type { FrontMatter, FrontMatterMeta } from '~/types';
 import readingTime from 'reading-time';
-
-export type Post = {
-  slug: string;
-  title: string;
-};
 
 export type PostMarkdownAttributes = {
   title: string;
@@ -101,18 +96,23 @@ export async function getPosts() {
     withFileTypes: true,
   });
 
-  const posts = await Promise.all(
-    postsPath.map(async (dirent) => {
-      const file = await fs.readFile(path.join(`${__dirname}/../blog-posts`, dirent.name, 'index.md'));
-      const { attributes } = parseFrontMatter(file.toString()) as { attributes: FrontMatter };
+  const posts: FrontMatterMeta[] = [];
 
-      return {
-        slug: dirent.name.replace(/\.mdx/, ''),
-        //@ts-ignore
-        title: attributes.meta.title,
-        date: new Date(attributes.meta.date).toISOString(),
-      };
-    }),
-  );
-  return posts;
+  for (const dirent of postsPath) {
+    const file = await fs.readFile(path.join(`${__dirname}/../blog-posts`, dirent.name, 'index.md'));
+
+    const {
+      attributes: {
+        meta: { date, slug, ...meta },
+      },
+    } = parseFrontMatter(file.toString()) as { attributes: FrontMatter };
+
+    posts.push({
+      slug: dirent.name.replace(/\.mdx/, ''),
+      date: new Date(date).toISOString(),
+      ...meta,
+    });
+  }
+
+  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }

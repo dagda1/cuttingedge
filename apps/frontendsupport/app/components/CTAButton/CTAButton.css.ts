@@ -18,7 +18,7 @@ export const ctaButton = style([
   atoms({
     display: 'inlineBlock',
     borderRadius: 'full',
-    paddingY: 'medium',
+    paddingY: 'small',
     paddingX: {
       mobile: 'small',
       desktop: 'medium',

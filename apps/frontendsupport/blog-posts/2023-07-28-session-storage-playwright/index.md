@@ -1,9 +1,10 @@
 ---
 meta:
-  title: Persisting authentication state in sessionStorage across tests with Playwright
+  title: Store authentication state across Playwright tests in applications that use sessionStorage
   description: I found the Playwright docs helpful but confusing about how to store authentication state across tests in browser sessionStorage
   date: "2023-07-31T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1690741574/playwright_iofvmm.png"
+  tags: ["playwright", "testing"]
 ---
 
 [Playwright](https://playwright.dev/) is my choice for end-to-end (e2e) testing. A common problem in any end-to-end testing framework is authenticating or logging in a user before each test. However, Playwright has a great solution by giving an API to store the authenticated browser state in the page context's [storageState](https://playwright.dev/docs/api/class-apirequestcontext#api-request-context-storage-state). The `storageState` contains a snapshot of the current cookies and localStorage.

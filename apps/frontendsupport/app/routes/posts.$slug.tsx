@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { type LoaderFunction, json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
-import { Box, Heading, List, PageBlock, Text, TextLink } from '@cutting/component-library';
+import { Box, Heading, PageBlock, Text, TextLink } from '@cutting/component-library';
 import type { FrontMatter } from '~/types';
 import { Image } from '@unpic/react';
 
