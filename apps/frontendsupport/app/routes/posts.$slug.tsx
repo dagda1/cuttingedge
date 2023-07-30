@@ -4,8 +4,9 @@ import { useMemo } from 'react';
 import { type LoaderFunction, json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
-import { Box, Heading, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
+import { Box, Heading, List, PageBlock, Text, TextLink } from '@cutting/component-library';
 import type { FrontMatter } from '~/types';
+import { Image } from '@unpic/react';
 
 type LoaderData = {
   frontmatter: FrontMatter;
@@ -25,7 +26,11 @@ function Paragraph({ children }: Props): JSX.Element {
 }
 
 function Heading1({ children }: Props): JSX.Element {
-  return <Heading level="2">{children}</Heading>;
+  return (
+    <Box marginTop="xxlarge" style={{ border: '10px solid green' }}>
+      <Heading level="1">{children}</Heading>
+    </Box>
+  );
 }
 
 function Heading2({ children }: Props): JSX.Element {
@@ -54,25 +59,15 @@ export default function PostRoute() {
   const { code, frontmatter } = useLoaderData<LoaderData>();
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
-  console.dir({ frontmatter }, { depth: 8 });
-
   return (
-    <Box marginTop="xxxlarge">
+    <Box style={{ marginTop: '6rem' }}>
       <PageBlock>
-        {/* <TextNavLink to="/">← Back to blog index</TextNavLink>
-        {frontmatter.image && (
-          <Text component="p">
-            Credit: <TextLink href={frontmatter.image.credit.url}>{frontmatter.image.credit.text}</TextLink>
-          </Text>
-        )} */}
         <Heading level="1">{frontmatter.meta.title}</Heading>
-        <Stack space="xxlarge">
-          <Component
-            components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
-            attributes={frontmatter}
-          />
-        </Stack>
-        {/* <div className="hero">Sign up to get notified about new posts.</div> */}
+        {frontmatter.meta.image && <Image layout="constrained" width={600} height={400} src={frontmatter.meta.image} />}
+        <Component
+          components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
+          attributes={frontmatter}
+        />
       </PageBlock>
     </Box>
   );

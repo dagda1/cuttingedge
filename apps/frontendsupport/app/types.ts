@@ -9,5 +9,6 @@ export interface FrontMatter {
     tags: string[];
     readingTime?: ReadTimeResults;
     fileName?: string;
+    image?: string;
   };
 }

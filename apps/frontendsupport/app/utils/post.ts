@@ -27,7 +27,6 @@ export async function getPost(slug: string) {
   const { default: remarkGfm } = await import('remark-gfm');
   const { default: rehypeAutolinkHeadings } = await import('rehype-autolink-headings');
 
-  const { default: rehypeToc } = await import('rehype-toc');
   const { default: rehypeSlug } = await import('rehype-slug');
   const { default: remarkMath } = await import('remark-math');
 
@@ -61,7 +60,6 @@ export async function getPost(slug: string) {
         ...(options.rehypePlugins ?? []),
         rehypeAutolinkHeadings,
         rehypeSlug,
-        [rehypeToc, { position: 'afterbegin' }],
         rehypeKatex,
         [rehypeCitation, { path: path.join(root, 'data') }],
         [rehypePrismPlus, { ignoreMissing: true }],

@@ -3,6 +3,7 @@ meta:
   title: Persisting authentication state in sessionStorage across tests with Playwright
   description: I found the Playwright docs helpful but confusing about how to store authentication state across tests in browser sessionStorage
   date: "2023-07-31T00:00:00.000Z"
+  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1690741574/playwright_iofvmm.png"
 ---
 
 [Playwright](https://playwright.dev/) is my choice for end-to-end (e2e) testing. A common problem in any end-to-end testing framework is authenticating or logging in a user before each test. However, Playwright has a great solution by giving an API to store the authenticated browser state in the page context's [storageState](https://playwright.dev/docs/api/class-apirequestcontext#api-request-context-storage-state). The `storageState` contains a snapshot of the current cookies and localStorage.
@@ -11,7 +12,7 @@ If this authenticated browser state, e.g. an authentication token, is stored in 
 
 If, however, you use `sessionStorage`, then unfortunately, this is not covered. The [docs](https://playwright.dev/docs/auth#session-storage) say that using sessionStoarge to store authentication tokens is rare, which differs from my experience.
 
-The docs do, though, give a [code snippet](https://playwright.dev/docs/auth#session-storage) that took me a while to understand, and it is really two snippets, one for persisting the sessionStorage and one for rehydrating the sessionStorage before each test.
+The docs do, though, give a [code snippet](https://playwright.dev/docs/auth#session-storage)(below) that took me a while to understand, and it is really two snippets, one for persisting the sessionStorage and one for rehydrating the sessionStorage before each test.
 
 ```ts
 // Get session storage and store as env variable
@@ -36,7 +37,7 @@ await context.addInitScript((storage) => {
 }, sessionStorage);
 ```
 
-I will give a more detailed explanation that removes the confusion and ambiguity.
+I will give step-by-step instructions that remove the confusion and ambiguity.
 
 ## Project references
 
@@ -95,7 +96,7 @@ import { test as setup, expect } from "@playwright/test";
 The first task in persisting the sessionStorage is to persist a snapshot of the current sessionStorage to a file at the following location:
 
 ```ts
-export const STORAGE_STATE = path.join(__dirname, "playwright/.auth/user.json");
+export const STORAGE_STATE = path.join(__dirname, "playwright/.auth/auth.json");
 ```
 
 After the test runs, the following code retrieves the sessionStorage state and saves it to a file in the path specified above:
