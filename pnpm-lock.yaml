@@ -401,8 +401,8 @@ importers:
         specifier: 3.3.0
         version: 3.3.0(react@18.2.0)
       '@visx/curve':
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.3.0
+        version: 3.3.0
       '@visx/group':
         specifier: 3.3.0
         version: 3.3.0(react@18.2.0)
