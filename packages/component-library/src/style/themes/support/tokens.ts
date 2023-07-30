@@ -40,9 +40,12 @@ export const tokens: DeepPartial<Tokens> = {
   },
   grid: 4,
   typography: {
-    webFont: 'https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Sora&display=swap',
-    fontFamily: '"Oswald", sans-serif',
+    webFont: 'https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Sora&display=swap',
+    fontFamily: '"Oswald"',
     fontMetrics: extractFontMetricsForTheme(oswald),
+    fontWeight: {
+      regular: 300,
+    },
     heading: {
       weight: {
         weak: 'regular',
@@ -105,11 +108,11 @@ export const tokens: DeepPartial<Tokens> = {
       standard: {
         mobile: {
           fontSize: 16,
-          lineGap: 10,
+          lineGap: 9,
         },
         tablet: {
           fontSize: 19,
-          lineGap: 13,
+          lineGap: 11,
         },
       },
       small: {
