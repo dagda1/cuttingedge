@@ -12,6 +12,7 @@ export function Header(): JSX.Element {
         justifyContent="spaceAround"
         paddingY="small"
         overflowX="hidden"
+        width="full"
       >
         <TopNav />
       </Box>

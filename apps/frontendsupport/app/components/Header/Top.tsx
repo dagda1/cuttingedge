@@ -5,6 +5,7 @@ import type { ReactNode } from 'react';
 import { useCallback, useState } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 import { Image } from '@unpic/react';
+import * as styles from './Top.css';
 
 const MenuItems: NavLinkProps[] = [
   { to: '/services/home', children: 'SERVICES' },
@@ -20,7 +21,7 @@ export function TopNav(): JSX.Element {
     <Nav open={open} toggle={toggle} hamburgerVariant="light">
       <NavItems>
         <NavItem display="Always">
-          <Box display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" width="full" className={styles.logo}>
             <Image
               src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690799896/fire_qfnfwc.png"
               alt="Frontend Rescue"

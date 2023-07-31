@@ -6,7 +6,7 @@ import type { ContactFormProps } from '../ContactForm/ContactForm';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { CallPopupButton } from '../Call/CallPopupButton';
 import type { CallType } from '../Call/types';
-import type { ButtonStyle } from '@cutting/component-library';
+import type { ApplicationLayoutProps, ButtonStyle } from '@cutting/component-library';
 import { ApplicationLayout, Box, Button, Heading } from '@cutting/component-library';
 
 // eslint-disable-next-line react/display-name
@@ -42,6 +42,7 @@ type ContactButtonsProps = {
   rootElementId?: string;
   buttonStyle?: ButtonStyle;
   justify?: 'flexStart' | 'center' | 'flexEnd';
+  theme: ApplicationLayoutProps['theme'];
 } & ContactFormProps;
 
 export function ContactButtons({

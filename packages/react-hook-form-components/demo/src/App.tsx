@@ -8,7 +8,7 @@ export function App(): JSX.Element {
     <ApplicationLayout heading="@cutting/svg" theme="supportTheme">
       <ContactForm />
       <div className={styles.container}>
-        <ContactButtons justify="center" callType="rescue" />
+        <ContactButtons justify="center" callType="rescue" theme="supportTheme" />
       </div>
     </ApplicationLayout>
   );
