@@ -14,6 +14,7 @@ import * as styles from './root.css';
 import cs from 'classnames';
 
 const isProduction = process.env.NODE_ENV === 'production';
+const isDevelopment = !isProduction;
 
 export const loader: LoaderFunction = async ({ request }) => {
   const baseUrl = `${new URL(request.url).protocol}://${request.headers.get('host')}`;
@@ -94,7 +95,7 @@ export default function App() {
           <Outlet />
           <ScrollRestoration />
           <Scripts />
-          <LiveReload />
+          {isDevelopment && <LiveReload />}
         </main>
       </body>
     </html>

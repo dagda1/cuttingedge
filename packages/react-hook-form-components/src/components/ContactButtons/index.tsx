@@ -1,48 +1,12 @@
-import Popup from 'reactjs-popup';
+import { Modal } from 'flowbite-react';
 import * as styles from './ContactButtons.css';
-import type { ReactNode } from 'react';
-import { forwardRef } from 'react';
 import type { ContactFormProps } from '../ContactForm/ContactForm';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { CallPopupButton } from '../Call/CallPopupButton';
 import type { CallType } from '../Call/types';
 import type { ButtonStyle } from '@cutting/component-library';
-import { Box, Button, Heading } from '@cutting/component-library';
-
-// eslint-disable-next-line react/display-name
-export const ButtonWrapper = forwardRef<
-  HTMLButtonElement,
-  { buttonStyle: ButtonStyle; children: ReactNode; type: 'button' | 'submit' }
->((props, ref): JSX.Element => <Button ref={ref} {...props} />);
-
-const closer =
-  (formProps: ContactFormProps) =>
-  // eslint-disable-next-line react/display-name
-  (close: () => void) =>
-    (
-      <Box className={styles.modalContainer} width="full" zIndex="modal">
-        <Box
-          className={styles.modal}
-          width="full"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-        >
-          <button className={styles.close} onClick={close}>
-            &times;
-          </button>
-          <Box marginTop="small" width="full" display="flex" justifyContent="center" alignItems="center">
-            <Heading level="2">CONTACT FORM</Heading>
-          </Box>
-          <Box className={styles.content}>
-            <ContactForm {...formProps} />
-          </Box>
-        </Box>
-      </Box>
-    );
-
-const isClient = typeof window !== 'undefined';
+import { Box, Button, Text } from '@cutting/component-library';
+import { useState } from 'react';
 
 type ContactButtonsProps = {
   callType: CallType;
@@ -58,24 +22,36 @@ export function ContactButtons({
   buttonStyle = 'warning',
   ...formProps
 }: ContactButtonsProps): JSX.Element {
+  const [openModal, setOpenModal] = useState<string | undefined>();
+  const props = { openModal, setOpenModal };
   return (
     <Box justifyContent={justify} width="full" display="flex" className={styles.callButton}>
       <CallPopupButton callType={callType} rootElementId={rootElementId} />
-      {isClient && (
-        <Popup
-          trigger={
-            <ButtonWrapper type="button" buttonStyle={buttonStyle}>
-              CONTACT BY EMAIL
-            </ButtonWrapper>
-          }
-          className={styles.popup}
-          modal
-          nested
-        >
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {closer(formProps) as any}
-        </Popup>
-      )}
+      <Button buttonStyle={buttonStyle} onClick={() => props.setOpenModal('default')}>
+        CONTACT BY EMAIL
+      </Button>
+      <Modal show={props.openModal === 'default'} onClose={() => props.setOpenModal(undefined)}>
+        <Modal.Header>{''}</Modal.Header>
+        <Modal.Body>
+          <Box display="flex" justifyContent="center" width="full">
+            <Text size="large" tone="info">
+              CONTACT FORM
+            </Text>
+          </Box>
+          <Box
+            className={styles.modal}
+            width="full"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
+            <Box className={styles.content}>
+              <ContactForm {...formProps} />
+            </Box>
+          </Box>
+        </Modal.Body>
+      </Modal>
     </Box>
   );
 }

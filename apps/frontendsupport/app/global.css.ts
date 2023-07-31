@@ -15,6 +15,11 @@ globalStyle('body', {
   overflowY: 'auto',
 });
 
+globalStyle('main', {
+  height: '100%',
+  overflow: 'auto',
+});
+
 globalStyle('.cutting-inline', {
   background: 'transparent !important',
   color: `${vars.foregroundColor.promote} !important`,

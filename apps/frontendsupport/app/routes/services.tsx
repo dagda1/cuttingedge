@@ -3,7 +3,7 @@ import { Outlet } from '@remix-run/react';
 
 export default function Services(): JSX.Element {
   return (
-    <Box marginTop="xxxlarge" display="flex" justifyContent="center">
+    <Box marginTop="xxxlarge" display="flex" justifyContent="center" height="full">
       <PageBlock>
         <Outlet />
       </PageBlock>

@@ -5,14 +5,7 @@ import { Image } from '@unpic/react';
 export function Highlights(): JSX.Element {
   return (
     <Panel>
-      <Box
-        display="flex"
-        justifyContent="spaceAround"
-        alignItems="center"
-        flexDirection="column"
-        style={{ border: '10px solid green' }}
-        height="full"
-      >
+      <Box display="flex" justifyContent="spaceAround" alignItems="center" flexDirection="column" height="full">
         <Stack space="large" align="center">
           <Heading center level="2">
             <TextLink
