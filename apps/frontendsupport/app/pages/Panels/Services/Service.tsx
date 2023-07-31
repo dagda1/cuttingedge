@@ -29,7 +29,7 @@ export function Service({
         </List>
 
         <Stack space="medium" align="center">
-          <Text tone="promote" component="p" size="standard">
+          <Text tone="promote" size="standard">
             {actionText}
           </Text>
 
