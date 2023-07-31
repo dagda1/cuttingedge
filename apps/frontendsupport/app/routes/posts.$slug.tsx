@@ -27,7 +27,7 @@ function Paragraph({ children }: Props): JSX.Element {
 
 function Heading1({ children }: Props): JSX.Element {
   return (
-    <Box marginTop="xxlarge" style={{ border: '10px solid green' }}>
+    <Box marginTop="xxlarge">
       <Heading level="1">{children}</Heading>
     </Box>
   );

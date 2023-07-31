@@ -11,15 +11,40 @@ globalStyle(`${callButton} button:first-child`, {
   marginRight: vars.space['small'],
 });
 
-export const modalContainer = style({
+globalStyle('.popup-content', {
+  margin: vars.space['small'],
   ...responsiveStyle({
-    mobile: {
-      width: '90vw',
+    wide: {
+      width: '33%',
+    },
+    desktop: {
+      width: '50%',
     },
     tablet: {
-      width: '100%',
+      width: '75%',
+    },
+    mobile: {
+      width: '95%',
     },
   }),
+});
+
+export const modalContainer = style({
+  border: `1px solid ${vars.foregroundColor.primary}`,
+  borderRadius: vars.borderRadius.large,
+  backgroundColor: vars.backgroundColor.secondary,
+  ...responsiveStyle({
+    mobile: {
+      display: 'block',
+    },
+    tablet: {
+      display: 'inline-flex',
+    },
+  }),
+});
+
+export const popup = style({
+  width: '100%',
 });
 
 export const modal = style({});

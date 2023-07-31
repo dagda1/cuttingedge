@@ -50,7 +50,7 @@ export default function Services(): JSX.Element {
               </TextLink>
             </Text>
             <Text component="p">
-              I have over 20 years of experience working on some exceptional frontend pieces of work for companies such
+              I have over 20+ years of experience working on some exceptional frontend pieces of work for companies such
               as&nbsp;
             </Text>
             <List>

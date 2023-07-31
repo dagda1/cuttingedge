@@ -88,6 +88,7 @@ export const tokens = {
     background: {
       body: palette.white,
       focus: palette.blue100,
+      secondary: palette.white,
     },
   },
   typography: {

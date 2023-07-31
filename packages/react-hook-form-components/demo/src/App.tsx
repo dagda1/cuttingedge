@@ -5,10 +5,10 @@ import * as styles from './global.css';
 
 export function App(): JSX.Element {
   return (
-    <ApplicationLayout heading="@cutting/svg" theme="supportTheme">
+    <ApplicationLayout heading="@cutting/react-hook-form-components" theme="supportTheme">
       <ContactForm />
       <div className={styles.container}>
-        <ContactButtons justify="center" callType="rescue" theme="supportTheme" />
+        <ContactButtons justify="center" callType="rescue" />
       </div>
     </ApplicationLayout>
   );

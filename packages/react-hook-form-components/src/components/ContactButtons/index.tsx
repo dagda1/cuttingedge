@@ -6,8 +6,8 @@ import type { ContactFormProps } from '../ContactForm/ContactForm';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { CallPopupButton } from '../Call/CallPopupButton';
 import type { CallType } from '../Call/types';
-import type { ApplicationLayoutProps, ButtonStyle } from '@cutting/component-library';
-import { ApplicationLayout, Box, Button, Heading } from '@cutting/component-library';
+import type { ButtonStyle } from '@cutting/component-library';
+import { Box, Button, Heading } from '@cutting/component-library';
 
 // eslint-disable-next-line react/display-name
 export const ButtonWrapper = forwardRef<
@@ -20,19 +20,26 @@ const closer =
   // eslint-disable-next-line react/display-name
   (close: () => void) =>
     (
-      <ApplicationLayout theme="salesTheme" className={styles.modalContainer}>
-        <div className={styles.modal}>
+      <Box className={styles.modalContainer} width="full" zIndex="modal">
+        <Box
+          className={styles.modal}
+          width="full"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+        >
           <button className={styles.close} onClick={close}>
             &times;
           </button>
           <Box marginTop="small" width="full" display="flex" justifyContent="center" alignItems="center">
             <Heading level="2">CONTACT FORM</Heading>
           </Box>
-          <div className={styles.content}>
+          <Box className={styles.content}>
             <ContactForm {...formProps} />
-          </div>
-        </div>
-      </ApplicationLayout>
+          </Box>
+        </Box>
+      </Box>
     );
 
 const isClient = typeof window !== 'undefined';
@@ -42,7 +49,6 @@ type ContactButtonsProps = {
   rootElementId?: string;
   buttonStyle?: ButtonStyle;
   justify?: 'flexStart' | 'center' | 'flexEnd';
-  theme: ApplicationLayoutProps['theme'];
 } & ContactFormProps;
 
 export function ContactButtons({
@@ -62,6 +68,7 @@ export function ContactButtons({
               CONTACT BY EMAIL
             </ButtonWrapper>
           }
+          className={styles.popup}
           modal
           nested
         >
