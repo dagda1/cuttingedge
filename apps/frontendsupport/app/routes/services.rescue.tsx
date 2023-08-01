@@ -13,18 +13,18 @@ export default function Rescue(): JSX.Element {
           <Text>Do you need help right now?</Text>
         </List>
         <Heading level="2">Let me provide the answers</Heading>
-        <Redhatestimonial />
-        <Text component="p" size="large" tone="info" align="center">
+        <ContactButtons callType="rescue" />
+        <Text component="p" size="large" tone="info">
           With over{' '}
           <TextLink external href="https://cutting.scot/oss">
             150+ merged pull requests
           </TextLink>{' '}
           into many public open-source repositories.
         </Text>
-        <Text component="p" size="large" tone="info" align="center">
+        <Text component="p" size="large" tone="info">
           I can provide the answers you need and quicker than anyone else out there.
         </Text>
-        <ContactButtons justify="center" callType="rescue" />
+        <Redhatestimonial />
       </Stack>
     </Box>
   );

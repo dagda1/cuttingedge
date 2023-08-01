@@ -8,11 +8,11 @@ export default function Consultancy(): JSX.Element {
       <Heading level="2">Need help getting the answers you want?</Heading>
       <Text component="p">We can get your critical frontend feature out the door with the minimum of fuss.</Text>
       <Text component="p">We can upskill your team to take this feature forward and beyond.</Text>
-      <C2Testimonial />
-      <Text component="p" size="large" tone="info" align="center">
+      <Text component="p" size="large" tone="info">
         Get in touch with us today
       </Text>
-      <ContactButtons justify="center" callType="consulting" />
+      <ContactButtons callType="consulting" />
+      <C2Testimonial />
     </Stack>
   );
 }

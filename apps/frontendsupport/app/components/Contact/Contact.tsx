@@ -7,7 +7,7 @@ export function Contact(): JSX.Element {
   return (
     <>
       <Box className={background}></Box>
-      <Box marginTop="xxxlarge" width="full" height="full" position="relative" zIndex="modal">
+      <Box paddingTop="xxxlarge" width="full" height="full" position="relative" zIndex="dropdown">
         <Stack space="large" align="center">
           <Heading level="1">Let's Talk</Heading>
           <Heading level="2">How can we help?</Heading>

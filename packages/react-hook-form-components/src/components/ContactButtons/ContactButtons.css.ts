@@ -1,4 +1,4 @@
-import { responsiveStyle, vars } from '@cutting/component-library';
+import { palette, responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const callButton = style({});
@@ -15,7 +15,9 @@ export const popup = style({
   width: '100%',
 });
 
-export const modal = style({});
+export const modal = style({
+  zIndex: 310,
+});
 
 globalStyle(`${modal} fieldset`, {
   border: 'none',
@@ -52,7 +54,6 @@ globalStyle('relative', {
 
 globalStyle('[data-testid="modal-overlay"]', {
   background: 'rgba(17, 24, 39, 0.5)',
-  // border: '10px solid green',
   display: 'flex',
   overflowY: 'auto',
   overflowX: 'hidden',
@@ -68,7 +69,6 @@ globalStyle('[data-testid="modal-overlay"]', {
 });
 
 globalStyle('[role="dialog"]', {
-  // border: '10px solid pink',
   background: vars.backgroundColor.secondary,
   boxShadow:
     'rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px',
@@ -95,14 +95,12 @@ globalStyle('[role="dialog"]', {
 });
 
 globalStyle('.bg-white', {
-  // border: '10px solid green',
   display: 'flex',
   flexDirection: 'column',
   maxHeight: '90vh',
 });
 
 globalStyle('.border-b', {
-  // border: '10px solid cyan',
   padding: '1.25rem',
   display: 'flex',
   justifyContent: 'space-between',
@@ -110,13 +108,11 @@ globalStyle('.border-b', {
 });
 
 globalStyle('button[aria-label="Close"]', {
-  // border: '10px solid white',
   fontSize: '.875rem',
   lineHeight: '1.25rem',
-  backgroundColor: 'transparent',
   borderRadius: '0.5rem',
   display: 'inline-flex',
   alignItems: 'center',
   marginLeft: 'auto',
-  color: vars.foregroundColor.primary,
+  color: palette.black,
 });

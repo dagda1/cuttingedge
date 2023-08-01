@@ -12,11 +12,11 @@ export default function Mentoring(): JSX.Element {
         We're about transforming the way your team collaborates, enhancing their ability to strategize frontend
         development.
       </Text>
-      <DSTestimonial />
-      <Text component="p" size="large" tone="info" align="center">
+      <Text component="p" size="large" tone="info">
         Get in touch with us today
       </Text>
-      <ContactButtons justify="center" callType="mentoring" />
+      <ContactButtons callType="mentoring" />
+      <DSTestimonial />
     </Stack>
   );
 }

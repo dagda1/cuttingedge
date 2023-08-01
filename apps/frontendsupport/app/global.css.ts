@@ -7,17 +7,17 @@ globalStyle('*,*:before,*:after', {
 
 globalStyle('html,body', {
   height: '100%',
+  scrollBehavior: 'auto',
   margin: 0,
 });
 
 globalStyle('body', {
   overflowX: 'hidden',
-  overflowY: 'auto',
+  overflowY: 'scroll',
 });
 
 globalStyle('main', {
   height: '100%',
-  overflow: 'auto',
 });
 
 globalStyle('.cutting-inline', {

@@ -4,7 +4,7 @@ import * as styles from './About.css';
 
 export function About(): JSX.Element {
   return (
-    <Box marginTop="xxxlarge" display="flex" justifyContent="center">
+    <Box paddingTop="xxxlarge" display="flex" justifyContent="center">
       <PageBlock>
         <Box component="section">
           <Stack space="large">

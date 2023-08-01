@@ -6,7 +6,7 @@ import { CallPopupButton } from '../Call/CallPopupButton';
 import type { CallType } from '../Call/types';
 import type { ButtonStyle } from '@cutting/component-library';
 import { Box, Button, Text } from '@cutting/component-library';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 type ContactButtonsProps = {
   callType: CallType;
@@ -23,14 +23,16 @@ export function ContactButtons({
   ...formProps
 }: ContactButtonsProps): JSX.Element {
   const [openModal, setOpenModal] = useState<string | undefined>();
-  const props = { openModal, setOpenModal };
+
+  const close = useCallback(() => setOpenModal(undefined), []);
+
   return (
     <Box justifyContent={justify} width="full" display="flex" className={styles.callButton}>
       <CallPopupButton callType={callType} rootElementId={rootElementId} />
-      <Button buttonStyle={buttonStyle} onClick={() => props.setOpenModal('default')}>
+      <Button buttonStyle={buttonStyle} onClick={() => setOpenModal('default')}>
         CONTACT BY EMAIL
       </Button>
-      <Modal show={props.openModal === 'default'} onClose={() => props.setOpenModal(undefined)}>
+      <Modal show={openModal === 'default'} onClose={close} dismissible>
         <Modal.Header>{''}</Modal.Header>
         <Modal.Body>
           <Box display="flex" justifyContent="center" width="full">

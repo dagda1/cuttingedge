@@ -7,7 +7,7 @@
     "build": "remix build",
     "dev:remix": "remix watch",
     "dev:arc": "cross-env NODE_ENV=development arc sandbox",
-    "dev": "NODE_ENV=development rm -rf ./.cache &&  npm-run-all build --parallel \"dev:*\"",
+    "dev": "NODE_ENV=development npm-run-all build --parallel \"dev:*\"",
     "lint": "eslint './**/*.{ts,tsx,js}' -c ./.eslintrc.js --fix",
     "start": "cross-env NODE_ENV=production arc sandbox",
     "typecheck": "tsc"

@@ -19,10 +19,10 @@ export default function Critical(): JSX.Element {
           Two weeks of email support
         </Text>
       </List>
-      <Text component="p" size="large" tone="info" align="center">
+      <Text component="p" size="large" tone="info">
         Break the emergency glass and speak to us. We have the experience and the expertise to turn this around.
       </Text>
-      <ContactButtons justify="center" callType="critical" />
+      <ContactButtons callType="critical" />
     </Stack>
   );
 }

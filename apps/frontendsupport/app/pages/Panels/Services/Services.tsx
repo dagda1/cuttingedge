@@ -44,7 +44,7 @@ export function Services(): JSX.Element {
         <Text component="p" tone="info">
           Or simply email or book a call.
         </Text>
-        <Box zIndex="modal">
+        <Box zIndex="sticky">
           <ContactButtons justify="center" callType="chat" />
         </Box>
       </Stack>

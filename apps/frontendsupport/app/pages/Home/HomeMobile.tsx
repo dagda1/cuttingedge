@@ -25,50 +25,41 @@ export function HomeMobile(): JSX.Element {
 
   useIsomorphicLayoutEffect(() => {
     function main() {
-      if (right < 100 || document.querySelector('.pin-spacer') || ctx.current) {
+      if (right < 100 || document.querySelector('.pin-spacer') || ctx.current || innerWidth < 1210) {
         return;
       }
 
-      let getRatio = (el: HTMLElement) => window.innerHeight / (window.innerHeight + el.offsetHeight);
-
       ctx.current = gsap.context(() => {
-        const sections = [...gsap.utils.toArray<any>('.section').entries()];
-
         gsap.utils.toArray<HTMLDivElement>('.parallax').forEach((el) => {
           gsap
             .timeline({
               defaults: { ease: 'none' },
               scrollTrigger: {
                 trigger: el,
-                start: 'top bottom',
-                end: 'top top',
                 scrub: true,
               },
             })
             .fromTo(el, { opacity: 0 }, { opacity: 1 }, 0);
         });
 
-        for (const [i, section] of sections) {
-          const bg = section.querySelector(`.${styles.bg}`);
+        gsap.utils.toArray<HTMLDivElement>('.section').forEach((section, i) => {
+          const bg = section.querySelector(`.${styles.bg}`) as HTMLDivElement;
 
-          gsap.fromTo(
-            bg,
-            {
-              backgroundPosition: () => (i ? `50% ${-window.innerHeight * getRatio(section)}px` : '50% 0px'),
-            },
-            {
-              backgroundPosition: () => `50% ${window.innerHeight * (1 - getRatio(section))}px`,
+          const height = bg.offsetHeight;
+
+          if (i) {
+            bg.style.backgroundPosition = `50% ${height / 2}px`;
+
+            gsap.to(bg, {
+              backgroundPosition: `50% ${-(height / 2)}px`,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
-                start: () => (i ? 'top bottom' : 'top top'),
-                end: 'bottom top',
                 scrub: true,
-                invalidateOnRefresh: true, // to make it responsive
               },
-            },
-          );
-        }
+            });
+          }
+        });
       });
     }
 
@@ -83,24 +74,24 @@ export function HomeMobile(): JSX.Element {
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690025905/struggle_yderkl.png">
         <FrontPage />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1689953398/frontendsupport/pain_gjcwoh.jpg">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_50/v1690894100/vr_fmjy7g.png">
         <Box width="full" height="full" display="flex" justifyContent="center" alignItems="center" flexGrow={1}>
           <Heading level="2">We can help if.....</Heading>
         </Box>
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_50/v1690453218/rescue_xxxdk2.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028841/dusk_kg7et9.png">
         <Frameworks />
       </MobileContainer>
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1690453264/code_mmdqb8.png">
         <OSS />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028841/dusk_kg7et9.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690191864/clients_ipmkwv.png">
         <Highlights />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690191864/clients_ipmkwv.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1690893685/html_kg05e7.png">
         <Clients />
       </MobileContainer>
-      <MobileContainer height={{ mobile: 'full', desktop: 'screen' }}>
+      <MobileContainer height={{ mobile: 'auto', desktop: 'screen' }}>
         <Services />
       </MobileContainer>
     </Box>

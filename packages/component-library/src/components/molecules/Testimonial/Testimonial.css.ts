@@ -18,14 +18,14 @@ globalStyle(`${root} blockquote`, {
 });
 
 globalStyle(`${root} blockquote::before`, {
-  content: '"”"',
+  content: '“',
   display: 'block',
-  position: 'absolute',
   right: vars.space['xsmall'],
   bottom: vars.space['large'],
   height: 0,
   font: 'italic 400%/1 Cochin,Georgia,"Times New Roman", serif',
   color: palette.white,
+  marginLeft: '-0.95em',
 });
 
 globalStyle(`${root} blockquote:after`, {

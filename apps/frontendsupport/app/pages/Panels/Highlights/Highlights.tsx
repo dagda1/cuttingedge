@@ -1,6 +1,5 @@
-import { Box, Heading, Stack, TextLink } from '@cutting/component-library';
+import { Box, Heading, Redhatestimonial, Stack, TextLink } from '@cutting/component-library';
 import { Panel } from '~/components/Panel/Panel';
-import { Image } from '@unpic/react';
 
 export function Highlights(): JSX.Element {
   return (
@@ -15,25 +14,7 @@ export function Highlights(): JSX.Element {
               Backstage contributor of the month
             </TextLink>
           </Heading>
-          <Image
-            className="parallax"
-            alt="Backstage contributor of the month"
-            src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690811801/contributor_uadhgd.png"
-            width={200}
-            height={148}
-          />
-          <Heading level="2">
-            <TextLink href="https://blog.logrocket.com/author/paulcowan/" external>
-              Professional writer for logrocket and others.
-            </TextLink>
-          </Heading>
-          <Image
-            className="parallax"
-            alt="Backstage contributor of the month"
-            src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690811903/logrocket_iuq8ju.png"
-            width={200}
-            height={128}
-          />
+          <Redhatestimonial />
         </Stack>
       </Box>
       {/* <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
