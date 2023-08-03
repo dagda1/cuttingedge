@@ -1,5 +1,16 @@
 # @cutting/react-hook-form-components
 
+## 0.5.0
+
+### Minor Changes
+
+- 489ba86a: support go live
+
+### Patch Changes
+
+- Updated dependencies [489ba86a]
+  - @cutting/component-library@5.41.0
+
 ## 0.4.6
 
 ### Patch Changes

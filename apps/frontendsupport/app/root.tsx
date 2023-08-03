@@ -21,17 +21,17 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export const meta: V2_MetaFunction = ({ location, data }) => {
   return [
-    { title: 'Frontend Support' },
+    { title: 'Frontend Rescue' },
     { property: 'og:url', content: location.pathname },
-    { property: 'og:description', content: 'Elite level frontend developer.' },
+    { property: 'og:description', content: 'Frontend Rescue.' },
     { property: 'og:image', content: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1690818210/og_qsnit3.png' },
     { property: 'og:image:width', content: '704' },
     { property: 'og:image:height', content: '603' },
-    { property: 'og:title', content: 'Paul Cowan - elite frontend developer and gun for hire' },
-    { property: 'og:image:alt', content: 'Paul Cowan - elite frontend developer and gun for hire' },
-    { name: 'twitter:title', content: 'Paul Cowan - elite frontend developer and gun for hire' },
+    { property: 'og:title', content: 'Frontend Rescue' },
+    { property: 'og:image:alt', content: 'Frontend Rescue' },
+    { name: 'twitter:title', content: 'Frontend Rescue' },
     { name: 'twitter:url', content: location.pathname },
-    { name: 'twitter:description', content: 'Elite level frontend developer.' },
+    { name: 'twitter:description', content: 'Frontend Rescue.' },
     {
       name: 'twitter:image:src',
       content: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1690818210/og_qsnit3.png',
@@ -77,6 +77,10 @@ export default function App() {
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:site" content="@dagda1" />
+        <link
+          rel="shortcut icon"
+          href="https://res.cloudinary.com/ddospxsc8/image/upload/v1691081476/favicon_zzqnoz.ico"
+        />
         <Meta />
         <Links />
       </head>
