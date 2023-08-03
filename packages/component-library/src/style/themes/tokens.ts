@@ -88,12 +88,16 @@ export const tokens = {
     background: {
       body: palette.white,
       focus: palette.blue100,
+      secondary: palette.white,
     },
   },
   typography: {
-    fontFamily: 'arial,sans-serif',
+    fontFamily: {
+      heading: 'arial,sans-serif',
+      text: 'arial,sans-serif',
+    },
     fontMetrics: extractFontMetricsForTheme(arialMetfics),
-    webFont: null as unknown as string,
+    webFont: null as unknown as { heading: string; text: string },
     fontWeight: {
       ...fontWeight,
     },

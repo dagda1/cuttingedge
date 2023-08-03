@@ -7,7 +7,11 @@ import { breakpointQuery } from '../breakpoints';
 import { responsiveStyle } from '../responsive-style';
 
 export const fontFamily = style({
-  fontFamily: vars.fontFamily,
+  fontFamily: vars.fontFamily.text,
+});
+
+export const headingFontFamily = style({
+  fontFamily: vars.fontFamily.heading,
 });
 
 export const fontWeight = styleVariants(vars.textWeight, mapToProperty('fontWeight'));

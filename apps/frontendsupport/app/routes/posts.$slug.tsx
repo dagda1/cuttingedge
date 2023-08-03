@@ -1,14 +1,17 @@
 import { getMDXComponent } from 'mdx-bundler/client';
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
+import type { V2_MetaFunction } from '@remix-run/node';
 import { type LoaderFunction, json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
-import { Box, Heading, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
-import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
+import { Box, Heading, PageBlock, Text, TextLink } from '@cutting/component-library';
+import type { FrontMatter } from '~/types';
+import { Image } from '@unpic/react';
+import type { Location } from '@remix-run/react';
 
 type LoaderData = {
-  frontmatter: any;
+  frontmatter: FrontMatter;
   code: string;
 };
 
@@ -17,15 +20,27 @@ interface Props {
 }
 
 function Paragraph({ children }: Props): JSX.Element {
-  return <Text component="p">{children}</Text>;
+  return (
+    <Box component="p" marginY="large">
+      <Text>{children}</Text>
+    </Box>
+  );
 }
 
 function Heading1({ children }: Props): JSX.Element {
-  return <Heading level="2">{children}</Heading>;
+  return (
+    <Box marginTop="xxlarge">
+      <Heading level="1">{children}</Heading>
+    </Box>
+  );
 }
 
 function Heading2({ children }: Props): JSX.Element {
-  return <Heading level="2">{children}</Heading>;
+  return (
+    <Box marginTop="large">
+      <Heading level="2">{children}</Heading>
+    </Box>
+  );
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -42,29 +57,47 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 };
 
+export const meta: V2_MetaFunction = ({
+  location,
+  data: {
+    frontmatter: { meta },
+  },
+}: {
+  location: Location;
+  data: { frontmatter: FrontMatter; code: string };
+}) => {
+  return [
+    { title: meta.title },
+    { property: 'og:url', content: location.pathname },
+    { property: 'og:description', content: meta.description },
+    { property: 'og:image', content: meta.image },
+    { property: 'og:image:width', content: '600' },
+    { property: 'og:image:height', content: '400' },
+    { property: 'og:title', content: meta.title },
+    { property: 'og:image:alt', content: meta.title },
+    { name: 'twitter:title', content: meta.title },
+    { name: 'twitter:url', content: location.pathname },
+    { name: 'twitter:description', content: meta.description },
+    {
+      name: 'twitter:image:src',
+      content: meta.image,
+    },
+  ];
+};
+
 export default function PostRoute() {
   const { code, frontmatter } = useLoaderData<LoaderData>();
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <Box marginTop="xxxlarge">
+    <Box style={{ marginTop: '6rem' }}>
       <PageBlock>
-        <TextNavLink to="/">← Back to blog index</TextNavLink>
-        {frontmatter.image && (
-          <Text component="p">
-            Credit: <TextLink href={frontmatter.image.credit.url}>{frontmatter.image.credit.text}</TextLink>
-          </Text>
-        )}
-
-        <Heading level="1">{frontmatter.title}</Heading>
-
-        <Stack space="xxlarge">
-          <Component
-            components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
-            attributes={frontmatter}
-          />
-        </Stack>
-        {/* <div className="hero">Sign up to get notified about new posts.</div> */}
+        <Heading level="1">{frontmatter.meta.title}</Heading>
+        {frontmatter.meta.image && <Image layout="constrained" width={600} height={400} src={frontmatter.meta.image} />}
+        <Component
+          components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
+          attributes={frontmatter}
+        />
       </PageBlock>
     </Box>
   );

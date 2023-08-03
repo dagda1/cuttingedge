@@ -23,7 +23,7 @@ export interface ContactFormProps {
   returnUrl?: string;
 }
 
-export function ContactForm({ returnUrl, buttonStyle = 'secondary' }: ContactFormProps): JSX.Element {
+export function ContactForm({ returnUrl, buttonStyle = 'primary' }: ContactFormProps): JSX.Element {
   const form = useRef<HTMLFormElement>(null);
   const botChecker = useRef<HTMLInputElement>(null);
 

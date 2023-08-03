@@ -3,7 +3,7 @@ import { background } from '~/pages/Panels/Services/Service.css';
 
 export default function Testimonials(): JSX.Element {
   return (
-    <Box marginTop="xxxlarge" display="flex" justifyContent="center">
+    <Box paddingTop="xxxlarge" display="flex" justifyContent="center">
       <Box className={background}></Box>
       <PageBlock>
         <Stack space="large">

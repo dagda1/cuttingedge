@@ -1,3 +1,43 @@
+.code-highlight {
+  float: left; /* 1 */
+  min-width: 100%; /* 2 */
+}
+
+.code-line {
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: -16px;
+  margin-right: -16px;
+  border-left-width: 4px;
+  border-left-color: rgba(31, 41, 55, 0); /* Set code block color */
+}
+
+.code-line.inserted {
+  background-color: rgba(16, 185, 129, 0.2); /* Set inserted line (+) color */
+}
+
+.code-line.deleted {
+  background-color: rgba(239, 68, 68, 0.2); /* Set deleted line (-) color */
+}
+
+.highlight-line {
+  margin-left: -16px;
+  margin-right: -16px;
+  background-color: rgba(135, 145, 161, 0.5); 
+	border-left: 6px solid rgb(59, 130, 246);
+}
+
+.line-number::before {
+  display: inline-block;
+  width: 1rem;
+  text-align: right;
+  margin-right: 16px;
+  margin-left: -8px;
+  color: rgb(156, 163, 175); /* Line number color */
+  content: attr(line);
+}
+
 .remark-code-title {
   margin-bottom: -0.6rem;
   padding: 0.5em 1em;

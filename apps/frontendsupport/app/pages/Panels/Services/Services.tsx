@@ -1,6 +1,7 @@
 import { Box, Heading, Stack, Text, Tiles } from '@cutting/component-library';
 import { Service } from './Service';
 import { background } from './Service.css';
+import { ContactButtons } from '@cutting/react-hook-form-components';
 
 export function Services(): JSX.Element {
   return (
@@ -40,6 +41,12 @@ export function Services(): JSX.Element {
             <Text tone="info">Need answers now?</Text>
           </Service>
         </Tiles>
+        <Text component="p" tone="info">
+          Or simply email or book a call.
+        </Text>
+        <Box zIndex="sticky">
+          <ContactButtons justify="center" callType="chat" />
+        </Box>
       </Stack>
     </>
   );

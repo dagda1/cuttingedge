@@ -13,19 +13,19 @@ globalStyle(`${root} blockquote`, {
   background: palette.white,
   borderLeft: '0.5rem solid transparent',
   width: '100%',
-  margin: `${vars.space['medium']} 0 ${vars.space['xsmall']} 0}`,
+  margin: `${vars.space['medium']} 0 ${vars.space['xsmall']} 0`,
   padding: `${vars.space['xsmall']} ${vars.space['xsmall']} ${vars.space['xsmall']} ${vars.space['small']}`,
 });
 
 globalStyle(`${root} blockquote::before`, {
-  content: '"”"',
+  content: '“',
   display: 'block',
-  position: 'absolute',
   right: vars.space['xsmall'],
   bottom: vars.space['large'],
   height: 0,
   font: 'italic 400%/1 Cochin,Georgia,"Times New Roman", serif',
   color: palette.white,
+  marginLeft: '-0.95em',
 });
 
 globalStyle(`${root} blockquote:after`, {

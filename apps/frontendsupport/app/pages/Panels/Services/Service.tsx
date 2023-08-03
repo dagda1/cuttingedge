@@ -1,7 +1,6 @@
 import { Box, Card, Heading, List, Stack, Text } from '@cutting/component-library';
 import type { ReactNode } from 'react';
 import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
-import * as styles from './Service.css';
 import type { ListProps } from '@cutting/component-library';
 
 type ServiceProps = Pick<ListProps, 'children'> & {
@@ -21,7 +20,7 @@ export function Service({
 }: ServiceProps): JSX.Element {
   return (
     <Card height="full" rounded tone="formAccent">
-      <Box display="flex" flexDirection="column" justifyContent="spaceBetween" height="full">
+      <Box display="flex" flexDirection="column" justifyContent="spaceBetween" height="full" marginTop="small">
         <Heading center level="2">
           {heading}
         </Heading>
@@ -30,7 +29,7 @@ export function Service({
         </List>
 
         <Stack space="medium" align="center">
-          <Text tone="promote" component="p" size="standard">
+          <Text tone="promote" size="standard">
             {actionText}
           </Text>
 

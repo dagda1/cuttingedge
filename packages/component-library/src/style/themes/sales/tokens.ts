@@ -36,8 +36,14 @@ export const tokens: DeepPartial<Tokens> = {
     },
   },
   typography: {
-    webFont: 'https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Sora&display=swap',
-    fontFamily: '"Oswald", sans-serif',
+    webFont: {
+      heading: 'https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Sora&display=swap',
+      text: 'https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Sora&display=swap',
+    },
+    fontFamily: {
+      heading: '"Oswald"',
+      text: '"Oswald"',
+    },
     fontMetrics: extractFontMetricsForTheme(oswald),
     heading: {
       weight: {

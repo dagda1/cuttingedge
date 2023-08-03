@@ -11,18 +11,12 @@ export const bg = style({
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
-});
-
-export const panels = style({
-  flexWrap: 'nowrap',
-  overscrollBehavior: 'none',
-  flexDirection: 'column',
   ...responsiveStyle({
     mobile: {
-      display: 'flex',
+      backgroundAttachment: 'scroll',
     },
     desktop: {
-      display: 'none',
+      backgroundAttachment: 'fixed',
     },
   }),
 });

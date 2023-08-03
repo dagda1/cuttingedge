@@ -1,24 +1,30 @@
-import { Box, Heading, Redhatestimonial, Stack, Text } from '@cutting/component-library';
+import { Box, Heading, List, Redhatestimonial, Stack, Text, TextLink } from '@cutting/component-library';
 import { ContactButtons } from '@cutting/react-hook-form-components';
 
 export default function Rescue(): JSX.Element {
   return (
     <Box marginBottom="large">
       <Stack space={{ mobile: 'small', desktop: 'large', wide: 'large' }}>
-        <Heading level="2">Get back on track now</Heading>
-        <Text component="p">We don't stop at fixing the problem. We turn challenges into opportunities.</Text>
-        <Text component="p">
-          Once we've set your project back on track, we equip your team with the knowledge and tools needed to maintain
-          momentum and avoid similar hiccups in the future.
+        <Heading level="1">Do you have a frontend development problem that is blocking your team?</Heading>
+        <List>
+          <Text>Got a tricky situation stopping you from shipping features to your customers?</Text>
+          <Text>Need a quick injection from an industry expert?</Text>
+          <Text>Do you want to take the risk out of frontend development?</Text>
+          <Text>Do you need help right now?</Text>
+        </List>
+        <Heading level="2">Let me provide the answers</Heading>
+        <ContactButtons callType="rescue" />
+        <Text component="p" size="large" tone="info">
+          With over{' '}
+          <TextLink external href="https://cutting.scot/oss">
+            150+ merged pull requests
+          </TextLink>{' '}
+          into many public open-source repositories.
         </Text>
-        <Text component="p">
-          Ready to pull your frontend project out of the abyss and set it soaring to new heights?
+        <Text component="p" size="large" tone="info">
+          I can provide the answers you need and quicker than anyone else out there.
         </Text>
         <Redhatestimonial />
-        <Text component="p" size="large" tone="info" align="center">
-          Get in touch with us today – your rescue team is waiting.
-        </Text>
-        <ContactButtons justify="center" callType="rescue" />
       </Stack>
     </Box>
   );

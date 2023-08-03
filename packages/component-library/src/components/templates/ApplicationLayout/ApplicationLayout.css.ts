@@ -7,7 +7,7 @@ globalStyle('*,*:before,*:after', {
 
 globalStyle('html', {
   fontSize: '100%',
-  fontFamily: vars.fontFamily,
+  fontFamily: vars.fontFamily.text,
   fontWeight: vars.textWeight.regular,
 });
 

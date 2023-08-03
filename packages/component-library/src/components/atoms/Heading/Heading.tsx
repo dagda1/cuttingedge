@@ -41,7 +41,7 @@ export function Heading({
         {...typographyProps}
         component={component || resolveDefaultComponent[level]}
         className={cs(
-          typographyStyles.fontFamily,
+          typographyStyles.headingFontFamily,
           typographyStyles.headingWeight[weight || 'regular'],
           typographyStyles.heading[level],
           HeadingColorMap[level],

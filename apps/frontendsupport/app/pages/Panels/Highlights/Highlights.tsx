@@ -1,21 +1,23 @@
-import { Box, List, Text } from '@cutting/component-library';
+import { Box, Heading, Redhatestimonial, Stack, TextLink } from '@cutting/component-library';
 import { Panel } from '~/components/Panel/Panel';
-import logrocket from '~/images/logrocket.png';
-import contributor from '~/images/contributor.png';
-import { ParallaxPanel, type ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel';
-
-const topImages: ParallaxPanelProps['topImages'] = [
-  { type: 'parallax', alt: 'Backstage contributor of the month', src: contributor, width: 400, height: 296 },
-];
-
-const bottomImages: ParallaxPanelProps['bottomImages'] = [
-  { type: 'parallax', alt: 'logrocket writer', src: logrocket, width: 400, height: 256 },
-];
 
 export function Highlights(): JSX.Element {
   return (
     <Panel>
-      <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
+      <Box display="flex" justifyContent="spaceAround" alignItems="center" flexDirection="column" height="full">
+        <Stack space="large" align="center">
+          <Heading center level="2">
+            <TextLink
+              href="https://www.linkedin.com/posts/paul-cowan-19bb1116_backstage-activity-7043616692878401537-EQbh?utm_source=share&utm_medium=member_desktop"
+              external
+            >
+              Backstage contributor of the month
+            </TextLink>
+          </Heading>
+          <Redhatestimonial />
+        </Stack>
+      </Box>
+      {/* <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
         <Box display="flex" alignItems="center" flexDirection="column" justifyContent="center">
           <List>
             <Text size="large" tone="primary">
@@ -26,7 +28,7 @@ export function Highlights(): JSX.Element {
             </Text>
           </List>
         </Box>
-      </ParallaxPanel>
+      </ParallaxPanel> */}
     </Panel>
   );
 }

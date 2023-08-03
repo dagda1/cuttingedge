@@ -21,6 +21,7 @@ export type RequiredResponsiveValue<Value extends string | number> = RequiredCon
 const sizes = {
   full: '100%',
   screen: '100vh',
+  auto: 'auto',
   touchable: vars.touchableSize,
 };
 

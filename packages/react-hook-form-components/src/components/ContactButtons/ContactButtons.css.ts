@@ -1,4 +1,4 @@
-import { responsiveStyle, vars } from '@cutting/component-library';
+import { palette, responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const callButton = style({});
@@ -11,18 +11,13 @@ globalStyle(`${callButton} button:first-child`, {
   marginRight: vars.space['small'],
 });
 
-export const modalContainer = style({
-  ...responsiveStyle({
-    mobile: {
-      width: '90vw',
-    },
-    tablet: {
-      width: '100%',
-    },
-  }),
+export const popup = style({
+  width: '100%',
 });
 
-export const modal = style({});
+export const modal = style({
+  zIndex: 310,
+});
 
 globalStyle(`${modal} fieldset`, {
   border: 'none',
@@ -42,4 +37,82 @@ export const close = style({
 export const content = style({
   width: '100%',
   padding: '10px 5px',
+  margin: vars.space['small'],
+});
+
+globalStyle('h-full', {
+  height: '100%',
+});
+
+globalStyle('w-full', {
+  width: '100%',
+});
+
+globalStyle('relative', {
+  position: 'relative',
+});
+
+globalStyle('[data-testid="modal-overlay"]', {
+  background: 'rgba(17, 24, 39, 0.5)',
+  display: 'flex',
+  overflowY: 'auto',
+  overflowX: 'hidden',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  zIndex: 300,
+});
+
+globalStyle('[role="dialog"]', {
+  background: vars.backgroundColor.secondary,
+  boxShadow:
+    'rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px',
+  borderRadius: vars.borderRadius.large,
+  zIndex: 33,
+  width: '100%',
+  height: 'auto',
+  padding: '1rem',
+  position: 'relative',
+  ...responsiveStyle({
+    wide: {
+      width: '50%',
+    },
+    desktop: {
+      width: '60%',
+    },
+    tablet: {
+      width: '75%',
+    },
+    mobile: {
+      width: '95%',
+    },
+  }),
+});
+
+globalStyle('.bg-white', {
+  display: 'flex',
+  flexDirection: 'column',
+  maxHeight: '90vh',
+});
+
+globalStyle('.border-b', {
+  padding: '1.25rem',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+});
+
+globalStyle('button[aria-label="Close"]', {
+  fontSize: '.875rem',
+  lineHeight: '1.25rem',
+  borderRadius: '0.5rem',
+  display: 'inline-flex',
+  alignItems: 'center',
+  marginLeft: 'auto',
+  color: palette.black,
 });

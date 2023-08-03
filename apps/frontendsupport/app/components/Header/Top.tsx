@@ -1,9 +1,11 @@
-import type { NavLinkProps } from '@remix-run/react';
-import { Nav, NavItem, NavItems } from '@cutting/component-library';
+import { NavLink, type NavLinkProps } from '@remix-run/react';
+import { Box, Nav, NavItem, NavItems, vars } from '@cutting/component-library';
 import { CTAButton } from '../CTAButton/CTAButton';
 import type { ReactNode } from 'react';
 import { useCallback, useState } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
+import { Image } from '@unpic/react';
+import * as styles from './Top.css';
 
 const MenuItems: NavLinkProps[] = [
   { to: '/services/home', children: 'SERVICES' },
@@ -19,9 +21,20 @@ export function TopNav(): JSX.Element {
     <Nav open={open} toggle={toggle} hamburgerVariant="light">
       <NavItems>
         <NavItem display="Always">
-          <TextNavLink size="standard" to={'/'}>
-            FRONTEND RESCUE
-          </TextNavLink>
+          <Box display="flex" alignItems="center" width="full" className={styles.logo}>
+            <NavLink to="/">
+              <Image
+                src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690799896/fire_qfnfwc.png"
+                alt="Frontend Rescue"
+                width={38}
+                height={45}
+                style={{ position: 'relative', top: '-5px', marginRight: vars.space['small'] }}
+              />
+            </NavLink>
+            <TextNavLink size="standard" to={'/'}>
+              FRONTEND RESCUE
+            </TextNavLink>
+          </Box>
         </NavItem>
         {MenuItems.map(({ to, children }, i) => (
           <NavItem display="SubmenuMobile" key={i}>

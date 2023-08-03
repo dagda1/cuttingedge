@@ -64,6 +64,26 @@ export function App(): JSX.Element {
           />
         </ContentBlock>
         <ContentBlock>
+          <Stack space="medium">
+            <Text component="p">
+              Jurgen Klopp&apos;s side started slowly at the Singapore National Stadium but scored three quick-fire
+              goals before half-time to put the game beyond Leicester. Nunez, Bobby Clark and Diogo Jota netted for
+              Jurgen Klopp&apos;s men in an eight-minute blitz after the Foxes began well.
+            </Text>
+            <Text component="p">
+              Similarly to their win over Karlsruher and draw against Greuther Furth, Klopp decided to rotate his squad
+              at half-time with 23 players handed game time. As the game wore on, Liverpool created more chances and
+              they eventually scored a fourth in the 65th minute as Ben Doak headed home to wrap up the win for the
+              Reds.
+            </Text>
+            <Text component="p">
+              After scoring twice and grabbing one assist in Liverpool&apos;s 4-4 draw with Greuther Furth on Monday,
+              Nunez continued his impressive pre-season form with a goal against Leicester. The Uruguayan, who struggled
+              for service during the opening half an hour, didn&apos;t pass up his first clear-cut chance of the game.
+            </Text>
+          </Stack>
+        </ContentBlock>
+        <ContentBlock>
           <Redhatestimonial />
         </ContentBlock>
         <ContentBlock width="large">
