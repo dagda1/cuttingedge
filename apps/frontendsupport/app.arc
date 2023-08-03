@@ -12,4 +12,4 @@ frontend-rescue
 runtime nodejs16.x
 profile default
 region eu-west-2
-architecture arm64
+architecture x86_64

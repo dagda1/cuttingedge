@@ -12,10 +12,6 @@ import { Header } from './components/Header/Header';
 import { URL } from '~/utils/url.server';
 import * as styles from './root.css';
 import cs from 'classnames';
-import { process } from '~/utils/process.server';
-
-const isProduction = process.env.NODE_ENV === 'production';
-const isDevelopment = !isProduction;
 
 export const loader: LoaderFunction = async ({ request }) => {
   const baseUrl = `${new URL(request.url).protocol}://${request.headers.get('host')}`;
@@ -74,9 +70,7 @@ export default function App() {
   return (
     <html lang="en">
       <head>
-        {isProduction && (
-          <script defer data-domain="frontendrescue.com" src="https://plausible.io/js/script.js"></script>
-        )}
+        <script defer data-domain="frontendrescue.com" src="https://plausible.io/js/script.js"></script>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta property="og:site_name" content="Cutting-Edge Solutions" />
@@ -93,7 +87,7 @@ export default function App() {
           <Outlet />
           <ScrollRestoration />
           <Scripts />
-          {isDevelopment && <LiveReload />}
+          {/* <LiveReload /> */}
         </main>
       </body>
     </html>

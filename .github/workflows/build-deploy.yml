@@ -5,7 +5,7 @@ on: [ push, pull_request ]
 jobs:
   build:
     environment: CI
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/blog' || startsWith(github.ref, 'refs/tags/v')
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
     name: build and deploy to aws lambda
     runs-on: ubuntu-latest
     env:
