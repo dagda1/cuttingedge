@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.0
+
+### Minor Changes
+
+- 489ba86a: support go live
+
 ## 5.40.0
 
 ### Minor Changes
