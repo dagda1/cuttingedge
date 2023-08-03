@@ -1,12 +1,14 @@
 import { getMDXComponent } from 'mdx-bundler/client';
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
+import type { V2_MetaFunction } from '@remix-run/node';
 import { type LoaderFunction, json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
 import { Box, Heading, PageBlock, Text, TextLink } from '@cutting/component-library';
 import type { FrontMatter } from '~/types';
 import { Image } from '@unpic/react';
+import type { Location } from '@remix-run/react';
 
 type LoaderData = {
   frontmatter: FrontMatter;
@@ -53,6 +55,34 @@ export const loader: LoaderFunction = async ({ params }) => {
     const { frontmatter, code } = post;
     return json({ frontmatter, code });
   }
+};
+
+export const meta: V2_MetaFunction = ({
+  location,
+  data: {
+    frontmatter: { meta },
+  },
+}: {
+  location: Location;
+  data: { frontmatter: FrontMatter; code: string };
+}) => {
+  return [
+    { title: meta.title },
+    { property: 'og:url', content: location.pathname },
+    { property: 'og:description', content: meta.description },
+    { property: 'og:image', content: meta.image },
+    { property: 'og:image:width', content: '600' },
+    { property: 'og:image:height', content: '400' },
+    { property: 'og:title', content: meta.title },
+    { property: 'og:image:alt', content: meta.title },
+    { name: 'twitter:title', content: meta.title },
+    { name: 'twitter:url', content: location.pathname },
+    { name: 'twitter:description', content: meta.description },
+    {
+      name: 'twitter:image:src',
+      content: meta.image,
+    },
+  ];
 };
 
 export default function PostRoute() {

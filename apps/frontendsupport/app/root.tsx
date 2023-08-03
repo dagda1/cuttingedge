@@ -12,6 +12,7 @@ import { Header } from './components/Header/Header';
 import { URL } from '~/utils/url.server';
 import * as styles from './root.css';
 import cs from 'classnames';
+import { process } from '~/utils/process.server';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = !isProduction;
@@ -24,15 +25,8 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export const meta: V2_MetaFunction = ({ location, data }) => {
   return [
-    { charset: 'utf-8' },
     { title: 'Frontend Support' },
-    {
-      name: 'viewport',
-      content: 'width=device-width,initial-scale=1',
-    },
     { property: 'og:url', content: location.pathname },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:site_name', content: 'Cutting-Edge Solutions' },
     { property: 'og:description', content: 'Elite level frontend developer.' },
     { property: 'og:image', content: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1690818210/og_qsnit3.png' },
     { property: 'og:image:width', content: '704' },
@@ -40,8 +34,6 @@ export const meta: V2_MetaFunction = ({ location, data }) => {
     { property: 'og:title', content: 'Paul Cowan - elite frontend developer and gun for hire' },
     { property: 'og:image:alt', content: 'Paul Cowan - elite frontend developer and gun for hire' },
     { name: 'twitter:title', content: 'Paul Cowan - elite frontend developer and gun for hire' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:site', content: '@dagda1' },
     { name: 'twitter:url', content: location.pathname },
     { name: 'twitter:description', content: 'Elite level frontend developer.' },
     {
@@ -85,6 +77,12 @@ export default function App() {
         {isProduction && (
           <script defer data-domain="frontendrescue.com" src="https://plausible.io/js/script.js"></script>
         )}
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta property="og:site_name" content="Cutting-Edge Solutions" />
+        <meta property="og:type" content="website" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content="@dagda1" />
         <Meta />
         <Links />
       </head>

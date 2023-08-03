@@ -1,4 +1,4 @@
-import type { NavLinkProps } from '@remix-run/react';
+import { NavLink, type NavLinkProps } from '@remix-run/react';
 import { Box, Nav, NavItem, NavItems, vars } from '@cutting/component-library';
 import { CTAButton } from '../CTAButton/CTAButton';
 import type { ReactNode } from 'react';
@@ -22,13 +22,15 @@ export function TopNav(): JSX.Element {
       <NavItems>
         <NavItem display="Always">
           <Box display="flex" alignItems="center" width="full" className={styles.logo}>
-            <Image
-              src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690799896/fire_qfnfwc.png"
-              alt="Frontend Rescue"
-              width={38}
-              height={45}
-              style={{ position: 'relative', top: '-5px', marginRight: vars.space['small'] }}
-            />
+            <NavLink to="/">
+              <Image
+                src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690799896/fire_qfnfwc.png"
+                alt="Frontend Rescue"
+                width={38}
+                height={45}
+                style={{ position: 'relative', top: '-5px', marginRight: vars.space['small'] }}
+              />
+            </NavLink>
             <TextNavLink size="standard" to={'/'}>
               FRONTEND RESCUE
             </TextNavLink>

@@ -57,19 +57,18 @@ globalStyle(`${expanded} ul:not(.szh-menu)`, {
   justifyContent: 'center',
 });
 
-globalStyle(`${expanded} li`, {
-  border: `1px solid ${palette.white}`,
-  paddingTop: `${vars.space['xsmall']} !important`,
-  paddingBottom: `${vars.space['medium']} !important`,
-  marginBottom: `${vars.space['xsmall']} !important`,
-  // paddingLeft: `${vars.space['xsmall']} !important`,
+globalStyle(`${expanded} li, ${expanded} span`, {
   width: '100%',
-  display: 'flex',
-  justifyContent: 'center',
+  display: 'block',
 });
 
 globalStyle(`${expanded} a`, {
-  display: 'block',
+  border: `1px solid ${palette.white}`,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  paddingTop: `${vars.space['medium']} !important`,
+  paddingBottom: `${vars.space['medium']} !important`,
   width: '100%',
   height: '100%',
   marginTop: vars.space['medium'],
@@ -77,7 +76,7 @@ globalStyle(`${expanded} a`, {
   textTransform: 'uppercase',
 });
 
-globalStyle(`${expanded} li:hover`, {
+globalStyle(`${expanded} a:hover`, {
   background: palette.gray200,
   color: `${palette.white} !important`,
 });
@@ -101,3 +100,19 @@ export const noMobile = style({
     },
   }),
 });
+
+// globalStyle(`${expanded} li`, {
+//   zIndex: 300,
+//   border: '10px solid blue',
+//   width: '100%',
+//   pointerEvents: 'all',
+// });
+
+// globalStyle(`${expanded} a`, {
+//   zIndex: 300,
+//   border: '10px solid green',
+//   width: '100%',
+//   height: '100%',
+//   display: 'block',
+//   pointerEvents: 'all',
+// });

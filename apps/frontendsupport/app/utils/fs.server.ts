@@ -1,1 +1,3 @@
-export { readFile, mkdir, writeFile } from 'fs/promises';
+export { readFile, mkdir, writeFile, readdir } from 'fs/promises';
+
+export { existsSync } from 'fs';

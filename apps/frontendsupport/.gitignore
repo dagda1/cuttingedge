@@ -2,6 +2,9 @@ node_modules
 .cache
 /server/.cache
 /server/index.js*
+/server/blog-posts
+/server/package*.json
+/server/*.arc
 /public/build
 preferences.arc
 sam.json

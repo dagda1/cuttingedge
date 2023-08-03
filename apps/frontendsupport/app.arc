@@ -1,5 +1,5 @@
 @app
-remix-architect-app
+frontend-rescue
 
 @http
 /*
@@ -8,7 +8,8 @@ remix-architect-app
 
 @static
 
-# @aws
-# profile default
-# region us-west-1
-  
+@aws
+runtime nodejs16.x
+profile default
+region eu-west-2
+architecture arm64
