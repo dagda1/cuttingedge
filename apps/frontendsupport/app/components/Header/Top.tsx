@@ -28,7 +28,7 @@ export function TopNav(): JSX.Element {
                 alt="Frontend Rescue"
                 width={38}
                 height={45}
-                style={{ position: 'relative', top: '-5px', marginRight: vars.space['small'] }}
+                style={{ position: 'relative', top: '-5px', marginRight: vars.space['medium'] }}
               />
             </NavLink>
             <TextNavLink size="standard" to={'/'}>
