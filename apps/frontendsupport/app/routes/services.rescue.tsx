@@ -1,5 +1,6 @@
 import { Box, Heading, List, Redhatestimonial, Stack, Text, TextLink } from '@cutting/component-library';
 import { ContactButtons } from '@cutting/react-hook-form-components';
+import { contactFomProps } from '~/constants';
 
 export default function Rescue(): JSX.Element {
   return (
@@ -13,7 +14,7 @@ export default function Rescue(): JSX.Element {
           <Text>Do you need help right now?</Text>
         </List>
         <Heading level="2">Let me provide the answers</Heading>
-        <ContactButtons callType="rescue" />
+        <ContactButtons callType="rescue" {...contactFomProps} />
         <Text component="p" size="large" tone="info">
           With over{' '}
           <TextLink external href="https://cutting.scot/oss">

@@ -1,5 +1,4 @@
 import { keyframes, style } from '@vanilla-extract/css';
-import cue from '~/images/arrowdown.png';
 
 const pulse = keyframes({
   '0%': {

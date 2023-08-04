@@ -1,5 +1,6 @@
 import { Heading, C2Testimonial, Stack, Text } from '@cutting/component-library';
 import { ContactButtons } from '@cutting/react-hook-form-components';
+import { contactFomProps } from '~/constants';
 export default function Consultancy(): JSX.Element {
   return (
     <Stack space={{ mobile: 'small', desktop: 'large', wide: 'large' }}>
@@ -11,7 +12,7 @@ export default function Consultancy(): JSX.Element {
       <Text component="p" size="large" tone="info">
         Get in touch with us today
       </Text>
-      <ContactButtons callType="consulting" />
+      <ContactButtons callType="consulting" {...contactFomProps} />
       <C2Testimonial />
     </Stack>
   );

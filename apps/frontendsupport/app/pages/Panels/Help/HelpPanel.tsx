@@ -21,8 +21,8 @@ export function HelpPanel({ innerRef }: HelpPanelProps): JSX.Element {
               You have to get it right first time
             </Heading>
 
-            <MotionImage type="static" position="absolute" alt="software pain" src={pain} />
-            <MotionImage type="parallax" alt="software pain" src={painText} />
+            <MotionImage width={1} height={1} type="static" position="absolute" alt="software pain" src={pain} />
+            <MotionImage width={1} height={1} type="parallax" alt="software pain" src={painText} />
           </Stack>
         </Box>
       </Box>
