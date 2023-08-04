@@ -12,6 +12,7 @@ import { MobileContainer } from './MobileContainer';
 import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { Clients } from '../Panels/Clients/Clients';
 import { Services } from '../Panels/Services/Services';
+import { Scroller } from '~/components/Scroller/Scroller';
 
 export function HomeMobile(): JSX.Element {
   const panelsContainer = useRef<HTMLDivElement>(null);
@@ -75,8 +76,19 @@ export function HomeMobile(): JSX.Element {
         <FrontPage />
       </MobileContainer>
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_50/v1690894100/vr_fmjy7g.png">
-        <Box width="full" height="full" display="flex" justifyContent="center" alignItems="center" flexGrow={1}>
+        <Box
+          width="full"
+          height="full"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          flexGrow={1}
+        >
           <Heading level="2">We can help if.....</Heading>
+          <Box marginY="xxlarge">
+            <Scroller />
+          </Box>
         </Box>
       </MobileContainer>
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028841/dusk_kg7et9.png">

@@ -1,3 +1,4 @@
+import { responsiveStyle } from '@cutting/component-library';
 import { keyframes, style } from '@vanilla-extract/css';
 
 const pulse = keyframes({
@@ -25,5 +26,12 @@ export const scroller = style({
 export const arrow = style({
   animation: `${pulse} 1.5s infinite`,
   position: 'relative',
-  left: '25px',
+  ...responsiveStyle({
+    mobile: {
+      left: 0,
+    },
+    tablet: {
+      left: '25px',
+    },
+  }),
 });
