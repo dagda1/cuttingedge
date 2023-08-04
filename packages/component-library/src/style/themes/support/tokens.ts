@@ -104,11 +104,11 @@ export const tokens: DeepPartial<Tokens> = {
     text: {
       large: {
         mobile: {
-          fontSize: 19,
-          lineGap: 16,
+          fontSize: 22,
+          lineGap: 9,
         },
         tablet: {
-          fontSize: 22,
+          fontSize: 25,
           lineGap: 13,
         },
       },

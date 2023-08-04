@@ -1,5 +1,11 @@
 # @cutting/react-hook-form-components
 
+## 0.5.1
+
+### Patch Changes
+
+- 4637953e: parameterise zoho props for ContactForm
+
 ## 0.5.0
 
 ### Minor Changes
