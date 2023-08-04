@@ -2,6 +2,7 @@ import { Box, Heading, Stack, Text, Tiles } from '@cutting/component-library';
 import { Service } from './Service';
 import { background } from './Service.css';
 import { ContactButtons } from '@cutting/react-hook-form-components';
+import { contactFomProps } from '~/constants';
 
 export function Services(): JSX.Element {
   return (
@@ -45,7 +46,7 @@ export function Services(): JSX.Element {
           Or simply email or book a call.
         </Text>
         <Box zIndex="sticky">
-          <ContactButtons justify="center" callType="chat" />
+          <ContactButtons justify="center" callType="chat" {...contactFomProps} />
         </Box>
       </Stack>
     </>

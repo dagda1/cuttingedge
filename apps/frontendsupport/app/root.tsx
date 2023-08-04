@@ -77,6 +77,7 @@ export default function App() {
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:site" content="@dagda1" />
+        <meta name="author" content="Paul Cowan" />
         <link
           rel="shortcut icon"
           href="https://res.cloudinary.com/ddospxsc8/image/upload/v1691081476/favicon_zzqnoz.ico"
