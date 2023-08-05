@@ -38,9 +38,18 @@ jobs:
       - name: Build App
         run: pnpm build
 
-      - name: Deploy app
+      - name: Deploy app to staging
+        if: github.ref == 'refs/heads/main'
         working-directory: apps/frontendsupport
-        run: pnpm arc deploy
+        run: pnpm arc deploy --staging
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Deploy app to production
+        if: startsWith(github.ref, 'refs/tags/v')
+        working-directory: apps/frontendsupport
+        run: pnpm arc deploy --production
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
