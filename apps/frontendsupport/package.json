@@ -27,7 +27,7 @@
     "@remix-run/react": "^1.15.0",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@unpic/placeholder": "^0.1.2",
-    "@unpic/react": "^0.0.33",
+    "@unpic/react": "^0.0.34",
     "assert-ts": "^0.3.4",
     "classnames": "^2.3.2",
     "cross-env": "^7.0.3",
