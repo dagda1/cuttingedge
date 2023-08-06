@@ -40,8 +40,8 @@ importers:
         specifier: 3.8.2
         version: 3.8.2(@types/node@20.4.8)(ts-node@10.9.1)(vite@4.3.9)
       '@vitejs/plugin-react':
-        specifier: 4.0.3
-        version: 4.0.3(vite@4.3.9)
+        specifier: 4.0.4
+        version: 4.0.4(vite@4.3.9)
       '@vitest/coverage-v8':
         specifier: 0.32.2
         version: 0.32.2(vitest@0.32.2)
@@ -594,8 +594,8 @@ importers:
         specifier: 3.8.2
         version: 3.8.2(@types/node@20.4.8)(ts-node@10.9.1)(vite@4.3.9)
       '@vitejs/plugin-react':
-        specifier: 4.0.3
-        version: 4.0.3(vite@4.3.9)
+        specifier: 4.0.4
+        version: 4.0.4(vite@4.3.9)
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -2749,7 +2749,7 @@ packages:
     resolution: {integrity: sha512-F3fZga2uv09wFdEjEQIJxXALXfz0+JaOb7SabvVMmjHxeVTuGW8wgE8Vp1Hd7O+zMTYtcfEISGRzPkeiaPPsvg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.21.5
+      '@babel/types': 7.22.5
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
       jsesc: 2.5.2
@@ -2984,7 +2984,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.21.5
+      '@babel/types': 7.22.5
     dev: true
 
   /@babel/parser@7.22.7:
@@ -4045,13 +4045,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.22.5
-      '@babel/generator': 7.21.9
+      '@babel/generator': 7.22.9
       '@babel/helper-environment-visitor': 7.22.5
       '@babel/helper-function-name': 7.22.5
       '@babel/helper-hoist-variables': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
-      '@babel/parser': 7.21.9
-      '@babel/types': 7.21.5
+      '@babel/parser': 7.22.7
+      '@babel/types': 7.22.5
       debug: 4.3.4(supports-color@8.1.1)
       globals: 11.12.0
     transitivePeerDependencies:
@@ -9874,8 +9874,8 @@ packages:
       internmap: 2.0.3
     dev: false
 
-  /@vitejs/plugin-react@4.0.3(vite@4.3.9):
-    resolution: {integrity: sha512-pwXDog5nwwvSIzwrvYYmA2Ljcd/ZNlcsSG2Q9CNDBwnsd55UGAyr2doXtB5j+2uymRCnCfExlznzzSFbBRcoCg==}
+  /@vitejs/plugin-react@4.0.4(vite@4.3.9):
+    resolution: {integrity: sha512-7wU921ABnNYkETiMaZy7XqpueMnpu5VxvVps13MjmCo+utBdD79sZzrApHawHtVX66cCJQQTXFcjH0y9dSUK8g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.2.0 || 4.3.9
