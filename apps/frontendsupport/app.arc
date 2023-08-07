@@ -11,5 +11,5 @@ frontend-rescue
 @aws
 runtime nodejs16.x
 profile default
-region eu-west-2
+region us-east-1
 architecture x86_64
