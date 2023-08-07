@@ -54,6 +54,26 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+      - name: Invalidate Cloudfront cache staging
+        if: github.ref == 'refs/heads/main'
+        uses: imehedi/actions-awscli-v2@latest
+        with:
+            args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_STAGING_ID }} --paths "/*" --no-cli-pager
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-1"
+
+      - name: Invalidate Cloudfront cache Production
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: imehedi/actions-awscli-v2@latest
+        with:
+            args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_PRODUCTION_ID }} --paths "/*" --no-cli-pager
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-1"
+
       - name: WebPageTest Staging
         if: github.ref == 'refs/heads/main'
         uses: WPO-Foundation/webpagetest-github-action@main
