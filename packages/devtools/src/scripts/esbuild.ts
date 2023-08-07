@@ -61,7 +61,8 @@ async function bundle({
       nodeExternalsPlugin({
         packagePath: paths.appPackageJson,
       }),
-      vanillaExtractPlugin(),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vanillaExtractPlugin() as any,
     ],
     loader: {
       '.png': 'file',
