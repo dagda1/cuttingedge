@@ -1,10 +1,18 @@
 import { Box, DSTestimonial, Heading, List, Stack, TextLink } from '@cutting/component-library';
 import { Panel } from '~/components/Panel/Panel';
+import * as styles from './Highlights.css';
 
 export function Highlights(): JSX.Element {
   return (
     <Panel>
-      <Box display="flex" justifyContent="spaceAround" alignItems="center" flexDirection="column" height="full">
+      <Box
+        display="flex"
+        justifyContent="spaceAround"
+        alignItems="center"
+        flexDirection="column"
+        height="full"
+        className={styles.container}
+      >
         <Stack space="large" align="center">
           <List space="large">
             <Heading center level="2">
@@ -24,18 +32,6 @@ export function Highlights(): JSX.Element {
           <DSTestimonial />
         </Stack>
       </Box>
-      {/* <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
-        <Box display="flex" alignItems="center" flexDirection="column" justifyContent="center">
-          <List>
-            <Text size="large" tone="primary">
-              Contributor of the month for Spotify Backstage.
-            </Text>
-            <Text size="large" tone="primary">
-              Professional writing for logrocket.
-            </Text>
-          </List>
-        </Box>
-      </ParallaxPanel> */}
     </Panel>
   );
 }

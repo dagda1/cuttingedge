@@ -10,7 +10,7 @@ import { OSS } from '../Panels/OSS/OSS';
 import { Highlights } from '../Panels/Highlights/Highlights';
 import { MobileContainer } from './MobileContainer';
 import { Frameworks } from '../Panels/Frameworks/Frameworks';
-import { Clients } from '../Panels/Clients/Clients';
+import { Clients } from '../Panels/Final/Clients/Clients';
 import { Services } from '../Panels/Services/Services';
 import { Scroller } from '~/components/Scroller/Scroller';
 
@@ -97,7 +97,7 @@ export function HomeMobile(): JSX.Element {
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1690453264/code_mmdqb8.png">
         <OSS />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690191864/clients_ipmkwv.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_70/v1690191864/clients_ipmkwv.png">
         <Highlights />
       </MobileContainer>
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1690893685/html_kg05e7.png">
