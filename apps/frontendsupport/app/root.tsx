@@ -92,7 +92,7 @@ export default function App() {
           <Outlet />
           <ScrollRestoration />
           <Scripts />
-          {/* <LiveReload /> */}
+          <LiveReload />
         </main>
       </body>
     </html>

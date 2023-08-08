@@ -26,7 +26,7 @@ export function HomeMobile(): JSX.Element {
 
   useIsomorphicLayoutEffect(() => {
     function main() {
-      if (right < 100 || document.querySelector('.pin-spacer') || ctx.current || innerWidth < 1210) {
+      if (right < 100 || document.querySelector('.pin-spacer')) {
         return;
       }
 
