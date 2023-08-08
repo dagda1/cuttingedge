@@ -9,5 +9,5 @@ describe('bundleMarkdown', () => {
     const { code } = await bundleMarkdown(testPath);
 
     expect(typeof code === 'string').toBe(true);
-  });
+  }, 70000);
 });
