@@ -17,6 +17,7 @@
     "@cutting/util": "workspace:*",
     "@cutting/component-library": "workspace:*",
     "@cutting/hooks": "workspace:*",
+    "@cutting/markdown": "workspace:*",
     "@cutting/use-get-parent-size": "workspace:*",
     "@cutting/react-hook-form-components": "workspace:*",
     "@mdx-js/esbuild": "^2.3.0",

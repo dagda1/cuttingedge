@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "./dist/esm",
+    "rootDir": "./src",
+    "noEmit": false
+  },
+  "references": [{ "path": "../util/tsconfig.dist.json" }],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+}

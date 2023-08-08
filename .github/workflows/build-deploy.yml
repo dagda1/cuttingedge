@@ -75,7 +75,6 @@ jobs:
           AWS_DEFAULT_REGION: "us-east-1"
 
       - name: WebPageTest Staging
-        if: github.ref == 'refs/heads/main'
         uses: WPO-Foundation/webpagetest-github-action@main
         with:
           apiKey: ${{ secrets.WPT_API_KEY }}
