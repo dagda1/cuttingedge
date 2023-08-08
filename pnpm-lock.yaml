@@ -108,6 +108,9 @@ importers:
       '@cutting/hooks':
         specifier: workspace:*
         version: link:../../packages/hooks
+      '@cutting/markdown':
+        specifier: workspace:*
+        version: link:../../packages/markdown
       '@cutting/react-hook-form-components':
         specifier: workspace:*
         version: link:../../packages/react-hook-form-components
@@ -1140,6 +1143,9 @@ importers:
 
   packages/markdown:
     dependencies:
+      '@cutting/util':
+        specifier: workspace:*
+        version: link:../util
       esbuild:
         specifier: ^0.18.17
         version: 0.18.17
