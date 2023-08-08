@@ -1,5 +1,12 @@
 # @cutting/frontend-support
 
+## 0.1.10
+
+### Patch Changes
+
+- Updated dependencies [281f756d]
+  - @cutting/markdown@0.1.1
+
 ## 0.1.9
 
 ### Patch Changes
