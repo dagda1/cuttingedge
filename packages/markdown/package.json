@@ -49,10 +49,10 @@
     "eslint": "8.43.0",
     "typescript": "5.1.6"
   },
-  "peerDependencies": {
-    "react": ">= 18.x.x",
-    "react-dom": ">= 18.x.x"
-  },
+  "files": [
+    "dist/**/*",
+    "test.md"
+  ],
   "scripts": {
     "build": "NODE_ENV=production devtools rollup",
     "lint": "eslint ./src/**/*.ts --fix",
