@@ -1,5 +1,11 @@
 # @cutting/frontend-support
 
+## 0.1.9
+
+### Patch Changes
+
+- 62b631cf: bump support
+
 ## 0.1.2
 
 ### Patch Changes
