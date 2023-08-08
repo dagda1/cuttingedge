@@ -1,6 +1,6 @@
 {
   "name": "@cutting/frontend-support",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "sideEffects": false,
   "scripts": {
