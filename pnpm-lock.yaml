@@ -191,7 +191,7 @@ importers:
         version: 4.1.0
       isbot:
         specifier: latest
-        version: 3.6.13
+        version: 3.6.10
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -1134,6 +1134,118 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      typescript:
+        specifier: 5.1.6
+        version: 5.1.6
+
+  packages/markdown:
+    dependencies:
+      esbuild:
+        specifier: ^0.18.17
+        version: 0.18.17
+      format:
+        specifier: ^0.2.2
+        version: 0.2.2
+      front-matter:
+        specifier: ^4.0.2
+        version: 4.0.2
+      github-slugger:
+        specifier: ^2.0.0
+        version: 2.0.0
+      image-size:
+        specifier: ^1.0.2
+        version: 1.0.2
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.0
+      katex:
+        specifier: ^0.16.8
+        version: 0.16.8
+      leva:
+        specifier: ^0.9.35
+        version: 0.9.35(@types/react-dom@18.2.7)(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)
+      maath:
+        specifier: ^0.5.3
+        version: 0.5.3(@types/three@0.152.1)(three@0.153.0)
+      mdast-util-to-markdown:
+        specifier: ^1.5.0
+        version: 1.5.0
+      mdx-bundler:
+        specifier: ^9.2.1
+        version: 9.2.1(esbuild@0.18.17)
+      react:
+        specifier: '>= 18.x.x || 18.2.0'
+        version: 18.2.0
+      react-dom:
+        specifier: '>= 18.x.x'
+        version: 18.2.0(react@18.2.0)
+      reading-time:
+        specifier: ^1.5.0
+        version: 1.5.0
+      rehype-autolink-headings:
+        specifier: ^6.1.1
+        version: 6.1.1
+      rehype-citation:
+        specifier: ^1.0.2
+        version: 1.0.2
+      rehype-highlight:
+        specifier: ^6.0.0
+        version: 6.0.0
+      rehype-katex:
+        specifier: ^6.0.3
+        version: 6.0.3
+      rehype-preset-minify:
+        specifier: ^6.0.0
+        version: 6.0.0
+      rehype-prism-plus:
+        specifier: ^1.5.1
+        version: 1.5.1
+      rehype-raw:
+        specifier: ^6.1.1
+        version: 6.1.1
+      rehype-slug:
+        specifier: ^5.1.0
+        version: 5.1.0
+      rehype-toc:
+        specifier: ^3.0.2
+        version: 3.0.2
+      remark-breaks:
+        specifier: ^3.0.3
+        version: 3.0.3
+      remark-footnotes:
+        specifier: ^4.0.1
+        version: 4.0.1
+      remark-gfm:
+        specifier: ^3.0.1
+        version: 3.0.1
+      remark-math:
+        specifier: ^5.1.1
+        version: 5.1.1
+      remark-mdx-images:
+        specifier: ^2.0.0
+        version: 2.0.0
+      resize-observer-polyfill:
+        specifier: ^1.5.1
+        version: 1.5.1
+      unist-util-visit:
+        specifier: ^4.1.2
+        version: 4.1.2
+    devDependencies:
+      '@cutting/devtools':
+        specifier: workspace:*
+        version: link:../devtools
+      '@cutting/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@cutting/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@cutting/useful-types':
+        specifier: workspace:*
+        version: link:../useful-types
+      eslint:
+        specifier: 8.43.0
+        version: 8.43.0
       typescript:
         specifier: 5.1.6
         version: 5.1.6
@@ -10521,6 +10633,7 @@ packages:
 
   /anymatch@2.0.0:
     resolution: {integrity: sha512-5teOsQWABXHHBFP9y3skS5P3d/WfWXpv3FUpy+LorMrNYaT9pI4oLMQX7jzQ2KklNpGpWHzdCXTDT2Y3XGlZBw==}
+    requiresBuild: true
     dependencies:
       micromatch: 3.1.10
       normalize-path: 2.1.1
@@ -10550,6 +10663,7 @@ packages:
 
   /are-we-there-yet@1.1.7:
     resolution: {integrity: sha512-nxwy40TuMiUGqMyRHgCSWZ9FM4VAoRP4xUYSTv5ImRog+h9yISPbVH7H8fASCIzYn9wlEv4zvFL7uKDMCFQm3g==}
+    requiresBuild: true
     dependencies:
       delegates: 1.0.0
       readable-stream: 2.3.8
@@ -11072,6 +11186,7 @@ packages:
   /binary-extensions@1.13.1:
     resolution: {integrity: sha512-Un7MIEDdUC5gNpcGDV97op1Ywk748MpHcFTHoYs6qnj1Z3j7I53VG3nwZhKzoBZmbdRNnb6WRdFlwl7tSDuZGw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -11081,6 +11196,7 @@ packages:
 
   /bindings@1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     optional: true
@@ -11607,6 +11723,7 @@ packages:
   /chokidar@2.1.8:
     resolution: {integrity: sha512-ZmZUazfOzf0Nve7duiCKD23PFSCs4JPoYyccjUFF3aQkQadqBhfzhjkwBH2mNOG9cTBwhamM37EIsIkZw3nRgg==}
     deprecated: Chokidar 2 does not receive security updates since 2019. Upgrade to chokidar 3 with 15x fewer dependencies
+    requiresBuild: true
     dependencies:
       anymatch: 2.0.0
       async-each: 1.0.6
@@ -11792,6 +11909,7 @@ packages:
   /code-point-at@1.1.0:
     resolution: {integrity: sha512-RpAVKQA5T63xEj6/giIbUEtZwJ4UFIc3ZtvEkiaUERylqe8xb5IvqcgOurZLahv93CLKfxcw5YI+DZcUBRyLXA==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -14419,6 +14537,7 @@ packages:
 
   /file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     optional: true
 
   /file-uri-to-path@2.0.0:
@@ -14860,6 +14979,7 @@ packages:
 
   /gauge@2.7.4:
     resolution: {integrity: sha512-14x4kjc6lkD3ltw589k0NrPD6cCNTD6CWoVUNpB85+DrtONoZn+Rug6xZU5RvSC4+TZPxA5AnBibQYAvZn41Hg==}
+    requiresBuild: true
     dependencies:
       aproba: 1.2.0
       console-control-strings: 1.1.0
@@ -15006,6 +15126,7 @@ packages:
 
   /glob-parent@3.1.0:
     resolution: {integrity: sha512-E8Ak/2+dZY6fnzlR7+ueWvhsH1SjHr4jjss4YS/h4py44jY9MhK/VFdaZJAWDz6BbL21KeteKxFSFpq8OS5gVA==}
+    requiresBuild: true
     dependencies:
       is-glob: 3.1.0
       path-dirname: 1.0.2
@@ -16142,6 +16263,7 @@ packages:
   /is-binary-path@1.0.1:
     resolution: {integrity: sha512-9fRVlXc0uCxEDj1nQzaWONSpbTfx0FmJfzHF7pwlI8DkWGoHBBea4Pg5Ky0ojwwxQmnSifgbKkI06Qv0Ljgj+Q==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       binary-extensions: 1.13.1
     dev: true
@@ -16277,6 +16399,7 @@ packages:
   /is-fullwidth-code-point@1.0.0:
     resolution: {integrity: sha512-1pqUqRjkhPJ9miNq9SwMfdvi6lBJcd6eFxvfaivQhaH3SgisfiuudvFntdKOmxuee/77l+FPjKrQjWvmPjWrRw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       number-is-nan: 1.0.1
     dev: true
@@ -16311,6 +16434,7 @@ packages:
   /is-glob@3.1.0:
     resolution: {integrity: sha512-UFpDDrPgM6qpnFNI+rh/p3bUaq9hKLZN8bMUWzxmcnZVS3omf4IPK+BrewlnWjO1WmUsMYuSjKh4UJuV4+Lqmw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       is-extglob: 2.1.1
     dev: true
@@ -16584,8 +16708,8 @@ packages:
   /isarray@2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
 
-  /isbot@3.6.13:
-    resolution: {integrity: sha512-uoP4uK5Dc2CrabmK+Gue1jTL+scHiCc1c9rblRpJwG8CPxjLIv8jmGyyGRGkbPOweayhkskdZsEQXG6p+QCQrg==}
+  /isbot@3.6.10:
+    resolution: {integrity: sha512-+I+2998oyP4oW9+OTQD8TS1r9P6wv10yejukj+Ksj3+UR5pUhsZN3f8W7ysq0p1qxpOVNbl5mCuv0bCaF8y5iQ==}
     engines: {node: '>=12'}
     dev: false
 
@@ -17477,6 +17601,16 @@ packages:
     dependencies:
       '@types/three': 0.152.1
       three: 0.151.3
+    dev: false
+
+  /maath@0.5.3(@types/three@0.152.1)(three@0.153.0):
+    resolution: {integrity: sha512-ut63A4zTd9abtpi+sOHW1fPWPtAFrjK0E17eAthx1k93W/T2cWLKV5oaswyotJVDvvW1EXSdokAqhK5KOu0Qdw==}
+    peerDependencies:
+      '@types/three': '>=0.144.0'
+      three: '>=0.144.0'
+    dependencies:
+      '@types/three': 0.152.1
+      three: 0.153.0
     dev: false
 
   /magic-string@0.25.9:
@@ -18776,6 +18910,7 @@ packages:
 
   /napi-macros@2.0.0:
     resolution: {integrity: sha512-A0xLykHtARfueITVDernsAWdtIMbOJgKgcluwENp3AlsKN/PloyO10HtmoqnFAQAcxPkgZN7wdfPfEd0zNGxbg==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -18818,6 +18953,7 @@ packages:
 
   /node-addon-api@1.7.2:
     resolution: {integrity: sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==}
+    requiresBuild: true
     optional: true
 
   /node-domexception@1.0.0:
@@ -18863,6 +18999,7 @@ packages:
   /node-gyp-build@4.1.1:
     resolution: {integrity: sha512-dSq1xmcPDKPZ2EED2S6zw/b9NKsqzXRE6dVr8TVQnI3FJOTteUMuqF3Qqs6LZg+mLGYJWqQzMbIjMtJqTv87nQ==}
     hasBin: true
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -18959,6 +19096,7 @@ packages:
   /normalize-path@2.1.1:
     resolution: {integrity: sha512-3pKJwH184Xo/lnH6oyP1q2pMd7HcypqqmRs91/6/i2CGtWwIKGCkOOMTm/zXbgTEWHw1uNpNi/igc3ePOYHb6w==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       remove-trailing-separator: 1.1.0
     dev: true
@@ -19046,6 +19184,7 @@ packages:
   /number-is-nan@1.0.1:
     resolution: {integrity: sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -19533,6 +19672,7 @@ packages:
 
   /path-dirname@1.0.2:
     resolution: {integrity: sha512-ALzNPpyNq9AqXMBjeymIjFDAkAFH06mHJH/cSBHAgU0s4vfpBn6b2nf8tiRLvagKD8RbTpq2FKTBg7cl9l3c7Q==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -20914,6 +21054,7 @@ packages:
   /readdirp@2.2.1:
     resolution: {integrity: sha512-1JU/8q+VgFZyxwrJ+SVIOsh+KywWGpds3NTqikiKpDMZWScmAYyKIgqkO+ARvNWJfXeXR1zxz7aHF4u4CyH6vQ==}
     engines: {node: '>=0.10'}
+    requiresBuild: true
     dependencies:
       graceful-fs: 4.2.11
       micromatch: 3.1.10
@@ -21558,6 +21699,7 @@ packages:
 
   /remove-trailing-separator@1.1.0:
     resolution: {integrity: sha512-/hS+Y0u3aOfIETiaiirUFwDBDzmXPvO+jAfKTitUngIPzdKc6Z0LoFjM/CK5PL4C+eKwHohlHAb6H0VFfmmUsw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -22668,6 +22810,7 @@ packages:
   /string-width@1.0.2:
     resolution: {integrity: sha512-0XsVpQLnVCXHJfyEs8tC0zpTVIr5PKKsQtkT29IwupnPTjtPmQ3xT/4yCREF9hYkV/3M3kzcUTSAZT6a6h81tw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       code-point-at: 1.1.0
       is-fullwidth-code-point: 1.0.0
@@ -23202,7 +23345,6 @@ packages:
 
   /three@0.153.0:
     resolution: {integrity: sha512-OCP2/uQR6GcDpSLnJt/3a4mdS0kNWcbfUXIwLoEMgLzEUIVIYsSDwskpmOii/AkDM+BBwrl6+CKgrjX9+E2aWg==}
-    dev: true
 
   /through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}
@@ -23948,6 +24090,7 @@ packages:
   /upath@1.2.0:
     resolution: {integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dev: true
     optional: true
 
