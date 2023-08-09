@@ -8,11 +8,12 @@ import type { ComponentProps } from '@cutting/component-library';
 export type FormProps<C extends FunctionComponent<any>> = ComponentProps<C> & {
   className?: string;
   errors: FieldErrors;
-} & Omit<ControllerProps, 'render'>;
+} & Omit<ControllerProps, 'render' | 'control'> &
+  Required<Pick<ControllerProps, 'control'>>;
 
 export function createFormComponent<C extends FunctionComponent<any>>(
   Component: C,
-): (props: FormProps<typeof Component> & Omit<ControllerProps, 'render'>) => JSX.Element {
+): (props: FormProps<typeof Component>) => JSX.Element {
   return function ReactHookFormComponent({
     name,
     rules,

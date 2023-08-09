@@ -53,11 +53,15 @@ export const algebra = style({
       display: 'block',
     },
     tablet: {
-      display: 'grid',
-      gridTemplateColumns: 'auto auto',
+      display: 'flex',
+      alignItems: 'auto',
       justifyContent: 'center',
     },
   }),
+});
+
+globalStyle(`${algebra} button`, {
+  alignSelf: 'flex-end',
 });
 
 export const expression = style({
