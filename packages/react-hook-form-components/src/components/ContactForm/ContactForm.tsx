@@ -34,12 +34,16 @@ export function ContactForm({
   const form = useRef<HTMLFormElement>(null);
   const botChecker = useRef<HTMLInputElement>(null);
 
-  const { register, handleSubmit } = useForm<FormValues>({ reValidateMode: 'onBlur' });
+  const {
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm<FormValues>({ reValidateMode: 'onBlur' });
 
   const onSubmit: SubmitHandler<FormValues> = () => {
     assert(!!form?.current, `no active form in submitHandler`);
     assert(!!botChecker.current, `no botChecker`);
-    assert(botChecker.current.value === '', `someone has set the bot!!!!`);
+    assert(botChecker.current.value === '', `intruderbot alert!!!!`);
 
     form.current.action = CRM;
     form.current.submit();
@@ -47,34 +51,62 @@ export function ContactForm({
 
   return (
     <Box width="full" className={styles.container}>
-      <form onSubmit={handleSubmit(onSubmit)} name={formName} method="POST" ref={form}>
+      <form onSubmit={handleSubmit(onSubmit)} name={formName} method="POST" ref={form} noValidate>
         <fieldset>
           <Input
-            maxLength={250}
-            {...register('Last Name', { required: true, minLength: 3, maxLength: 250 })}
+            name="Last Name"
+            rules={{
+              required: 'Last name is required',
+              minLength: { value: 3, message: 'Must have at least 3 characters' },
+              maxLength: { value: 250, message: 'maxiumum 250 characters' },
+            }}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            control={control as any}
             label="What's your name"
+            errorMessage="Last Name is required"
             required
+            errors={errors}
           />
           <Input
             maxLength={250}
-            {...register('Email', { required: true, minLength: 3, maxLength: 250 })}
+            name="Email"
+            rules={{
+              required: 'Email is required',
+              minLength: { value: 3, message: 'Must have at least 3 characters' },
+              maxLength: { value: 250, message: 'maxiumum 250 characters' },
+            }}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            control={control as any}
             label="What's your email"
-            type="email"
             required
+            errors={errors}
           />
 
           <Input
-            maxLength={250}
-            {...register('Company', { required: false, minLength: 3, maxLength: 250 })}
+            name="Company"
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            control={control as any}
+            rules={{
+              minLength: { value: 3, message: 'Must have at least 3 characters' },
+              maxLength: { value: 250, message: 'maxiumum 250 characters' },
+            }}
             label="Which Company"
+            errors={errors}
           />
 
           <TextArea
-            maxLength={250}
-            {...register('Description', { required: true, minLength: 3, maxLength: 250 })}
+            name="Description"
+            rules={{
+              required: 'Description is required',
+              minLength: { value: 3, message: 'Must have at least 3 characters' },
+              maxLength: { value: 250, message: 'maxiumum 250 characters' },
+            }}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            control={control as any}
             label="How can we help you"
             rows={3}
             required
+            errors={errors}
           />
           <div className={styles.buttonContainer}>
             <Button type="submit" buttonStyle={buttonStyle}>

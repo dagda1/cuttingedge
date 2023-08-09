@@ -67,7 +67,7 @@ export const tokens = {
   focusRingSize: 3,
   color: {
     foreground: {
-      error: palette.white,
+      error: palette.red600,
       caution: palette.yellow400,
       critical: palette.red600,
       focus: palette.blue700,

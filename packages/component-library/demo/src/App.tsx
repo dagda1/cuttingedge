@@ -63,132 +63,47 @@ export function App(): JSX.Element {
             ]}
           />
         </ContentBlock>
-        <ContentBlock>
-          <Stack space="medium">
-            <Text component="p">
-              Jurgen Klopp&apos;s side started slowly at the Singapore National Stadium but scored three quick-fire
-              goals before half-time to put the game beyond Leicester. Nunez, Bobby Clark and Diogo Jota netted for
-              Jurgen Klopp&apos;s men in an eight-minute blitz after the Foxes began well.
-            </Text>
-            <Text component="p">
-              Similarly to their win over Karlsruher and draw against Greuther Furth, Klopp decided to rotate his squad
-              at half-time with 23 players handed game time. As the game wore on, Liverpool created more chances and
-              they eventually scored a fourth in the 65th minute as Ben Doak headed home to wrap up the win for the
-              Reds.
-            </Text>
-            <Text component="p">
-              After scoring twice and grabbing one assist in Liverpool&apos;s 4-4 draw with Greuther Furth on Monday,
-              Nunez continued his impressive pre-season form with a goal against Leicester. The Uruguayan, who struggled
-              for service during the opening half an hour, didn&apos;t pass up his first clear-cut chance of the game.
-            </Text>
-          </Stack>
-        </ContentBlock>
-        <ContentBlock>
-          <Redhatestimonial />
+        <ContentBlock width="large">
+          <Heading level="2">Inputs</Heading>
         </ContentBlock>
         <ContentBlock width="large">
-          <Heading level="2">Hamburger Menu</Heading>
-          <Stack space="medium">
-            <Hamburger open={open} setOpen={setOpen} variant={theme === 'defaultTheme' ? 'dark' : 'light'} />
-          </Stack>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Heading level="2">Cards</Heading>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Columns space="large" align="left" collapseBelow="tablet">
-            {[...range(3)].map((score) => (
-              <Column key={score}>
-                <Card rounded>
-                  <Heading level="2">{score}</Heading>
-                </Card>
-              </Column>
-            ))}
-          </Columns>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Heading level="2">Headings</Heading>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Stack space="small">
-            <Heading level="1">H1 heading</Heading>
-            <Heading level="2">H2 heading</Heading>
-            <Heading level="3">H3 heading</Heading>
-            <Heading level="4">H4 heading</Heading>
-          </Stack>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Heading level="4">
-            H2 heading with lots and lots and lots and lots and lots and lots of and lots of and lots of and lots of and
-            lots of and lots of and lots of text
-          </Heading>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Heading level="2">Paragaphs</Heading>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Text component="p">A paragraph</Text>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Text component="p">
-            A paragraph with lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and
-            lots and lots and lots and lots and lots and lots of text
-          </Text>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Heading level="2">Donuts</Heading>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Columns space="large" align="left" collapseBelow="tablet">
-            {[0, 50, 100].map((score) => (
-              <Column key={score}>
-                <Donut score={score} />
-              </Column>
-            ))}
-          </Columns>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Heading level="2">Links</Heading>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Columns space="large" align="left" alignY="top">
+          <Columns space="large">
             <Column>
-              <TextLink href="//cutting.scot" target="_blank">
-                Text Link
-              </TextLink>
+              <FormInput
+                highlight
+                label="Highlight"
+                maxLength={100}
+                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                  console.log(e);
+                  return true;
+                }}
+              />
             </Column>
             <Column>
-              <ButtonLink href="//cutting.scot" target="_blank">
-                Button Link
-              </ButtonLink>
+              <FormInput label="Invalid" invalid errorMessage="Error Message" />
             </Column>
             <Column>
-              <TextLink external href="//cutting.scot" target="_blank">
-                External Link
-              </TextLink>
+              <FormInput label="Invalid &amp; required" invalid required errorMessage="Error Message" />
+            </Column>
+            <Column>
+              <FormInput
+                fontWeight="regular"
+                label="This is a really, really, really, really, really, really, really, really, really, really long bit of text"
+              />
             </Column>
           </Columns>
         </ContentBlock>
         <ContentBlock width="large">
-          <Heading level="2">Buttons</Heading>
-        </ContentBlock>
-        <ContentBlock width="large">
-          <Columns space="large" align="left" alignY="top">
-            <Column>
-              <Button buttonStyle="primary">Primary</Button>
-            </Column>
-            <Column>
-              <Button buttonStyle="secondary">Secondary</Button>
-            </Column>
-            <Column>
-              <Button buttonStyle="warning">Warning</Button>
-            </Column>
-            <Column>
-              <Button disabled buttonStyle="primary">
-                Disabled
-              </Button>
-            </Column>
-          </Columns>
+          <FormInput
+            layout="horizontal"
+            label="Horizontal"
+            maxLength={100}
+            onKeyDown={() => {
+              return true;
+            }}
+            invalid
+            errorMessage="foo bar"
+          />
         </ContentBlock>
         <ContentBlock width="large">
           <Heading level="2">Checkbox Group</Heading>
@@ -377,46 +292,51 @@ export function App(): JSX.Element {
           </Column>
         </ContentBlock>
         <ContentBlock width="large">
-          <Heading level="2">Inputs</Heading>
+          <Heading level="2">Buttons</Heading>
         </ContentBlock>
         <ContentBlock width="large">
-          <Columns space="large">
+          <Columns space="large" align="left" alignY="top">
             <Column>
-              <FormInput
-                highlight
-                label="Highlight"
-                maxLength={100}
-                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-                  console.log(e);
-                  return true;
-                }}
-              />
+              <Button buttonStyle="primary">Primary</Button>
             </Column>
             <Column>
-              <FormInput label="Invalid" invalid errorMessage="Error Message" />
+              <Button buttonStyle="secondary">Secondary</Button>
             </Column>
             <Column>
-              <FormInput label="Invalid &amp; required" invalid required errorMessage="Error Message" />
+              <Button buttonStyle="warning">Warning</Button>
             </Column>
             <Column>
-              <FormInput
-                fontWeight="regular"
-                label="This is a really, really, really, really, really, really, really, really, really, really long bit of text"
-              />
+              <Button disabled buttonStyle="primary">
+                Disabled
+              </Button>
             </Column>
           </Columns>
         </ContentBlock>
         <ContentBlock width="large">
-          <FormInput
-            layout="horizontal"
-            label="Horizontal"
-            maxLength={100}
-            onKeyDown={() => {
-              return true;
-            }}
-            invalid
-            errorMessage="foo bar"
-          />
+          <Heading level="2">Cards</Heading>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Columns space="large" align="left" collapseBelow="tablet">
+            {[...range(3)].map((score) => (
+              <Column key={score}>
+                <Card rounded>
+                  <Heading level="2">{score}</Heading>
+                </Card>
+              </Column>
+            ))}
+          </Columns>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Heading level="2">Donuts</Heading>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Columns space="large" align="left" collapseBelow="tablet">
+            {[0, 50, 100].map((score) => (
+              <Column key={score}>
+                <Donut score={score} />
+              </Column>
+            ))}
+          </Columns>
         </ContentBlock>
         <ContentBlock width="large">
           <Heading level="2">Alerts</Heading>
@@ -439,6 +359,86 @@ export function App(): JSX.Element {
               </Alert>
             </Column>
           </Columns>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Heading level="2">Headings</Heading>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Stack space="small">
+            <Heading level="1">H1 heading</Heading>
+            <Heading level="2">H2 heading</Heading>
+            <Heading level="3">H3 heading</Heading>
+            <Heading level="4">H4 heading</Heading>
+          </Stack>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Heading level="4">
+            H2 heading with lots and lots and lots and lots and lots and lots of and lots of and lots of and lots of and
+            lots of and lots of and lots of text
+          </Heading>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Heading level="2">Paragaphs</Heading>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Text component="p">A paragraph</Text>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Text component="p">
+            A paragraph with lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and
+            lots and lots and lots and lots and lots and lots of text
+          </Text>
+        </ContentBlock>
+        <ContentBlock>
+          <Stack space="medium">
+            <Text component="p">
+              Jurgen Klopp&apos;s side started slowly at the Singapore National Stadium but scored three quick-fire
+              goals before half-time to put the game beyond Leicester. Nunez, Bobby Clark and Diogo Jota netted for
+              Jurgen Klopp&apos;s men in an eight-minute blitz after the Foxes began well.
+            </Text>
+            <Text component="p">
+              Similarly to their win over Karlsruher and draw against Greuther Furth, Klopp decided to rotate his squad
+              at half-time with 23 players handed game time. As the game wore on, Liverpool created more chances and
+              they eventually scored a fourth in the 65th minute as Ben Doak headed home to wrap up the win for the
+              Reds.
+            </Text>
+            <Text component="p">
+              After scoring twice and grabbing one assist in Liverpool&apos;s 4-4 draw with Greuther Furth on Monday,
+              Nunez continued his impressive pre-season form with a goal against Leicester. The Uruguayan, who struggled
+              for service during the opening half an hour, didn&apos;t pass up his first clear-cut chance of the game.
+            </Text>
+          </Stack>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Heading level="2">Links</Heading>
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Columns space="large" align="left" alignY="top">
+            <Column>
+              <TextLink href="//cutting.scot" target="_blank">
+                Text Link
+              </TextLink>
+            </Column>
+            <Column>
+              <ButtonLink href="//cutting.scot" target="_blank">
+                Button Link
+              </ButtonLink>
+            </Column>
+            <Column>
+              <TextLink external href="//cutting.scot" target="_blank">
+                External Link
+              </TextLink>
+            </Column>
+          </Columns>
+        </ContentBlock>
+        <ContentBlock>
+          <Redhatestimonial />
+        </ContentBlock>
+        <ContentBlock width="large">
+          <Heading level="2">Hamburger Menu</Heading>
+          <Stack space="medium">
+            <Hamburger open={open} setOpen={setOpen} variant={theme === 'defaultTheme' ? 'dark' : 'light'} />
+          </Stack>
         </ContentBlock>
       </Stack>
     </ApplicationLayout>
