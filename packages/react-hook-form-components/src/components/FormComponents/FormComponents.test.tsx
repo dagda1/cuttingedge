@@ -5,9 +5,27 @@ import type { FormInput } from '@cutting/component-library';
 import { render } from '@testing-library/react';
 import type { RenderResult } from '@testing-library/react';
 
-const wrap = (props?: FormProps<typeof FormInput>): RenderResult =>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  render(<Input value={props?.value} label="label" {...(props as any)} />);
+import { useForm } from 'react-hook-form';
+import { useRef } from 'react';
+
+function Form(props: FormProps<typeof FormInput>) {
+  const form = useRef<HTMLFormElement>(null);
+  const {
+    control,
+    formState: { errors },
+  } = useForm({ defaultValues: { test: '' } });
+
+  return (
+    <form ref={form} noValidate>
+      <Input name="test" value={props?.value} label="label" {...(props as any)} errors={errors} control={control} />
+    </form>
+  );
+}
+
+const wrap = (props?: FormProps<typeof FormInput>): RenderResult => {
+  return render(<Form {...props} />);
+};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 
 describe('Form Components', () => {
   it('should wrap component with label', () => {
