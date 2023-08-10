@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.1
+
+### Patch Changes
+
+- ae243232: Use Control in react-hook-form
+
 ## 5.41.0
 
 ### Minor Changes
