@@ -8,7 +8,8 @@ import type { RenderResult } from '@testing-library/react';
 import { useForm } from 'react-hook-form';
 import { useRef } from 'react';
 
-function Form(props: FormProps<typeof FormInput>) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function Form(props: any) {
   const form = useRef<HTMLFormElement>(null);
   const {
     control,
@@ -17,7 +18,8 @@ function Form(props: FormProps<typeof FormInput>) {
 
   return (
     <form ref={form} noValidate>
-      <Input name="test" value={props?.value} label="label" {...(props as any)} errors={errors} control={control} />
+      eslint-disable-next-line @typescript-eslint/no-explicit-any
+      <Input name="test" value={props?.value} label="label" {...props} errors={errors} control={control} />
     </form>
   );
 }

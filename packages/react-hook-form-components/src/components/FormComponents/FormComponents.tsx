@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { FunctionComponent, ReactNode } from 'react';
+import { forwardRef, type FunctionComponent, type ReactNode } from 'react';
 import { FormInput, FormTextArea } from '@cutting/component-library';
 import type { ControllerProps, FieldErrors } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
@@ -23,13 +23,18 @@ export function createFormComponent<C extends FunctionComponent<any>>(
   }: FormProps<typeof Component> & Omit<ControllerProps, 'render'>): JSX.Element {
     const error = errors[name];
 
+    // eslint-disable-next-line react/display-name
+    const Wrapped = forwardRef<any, any>((props, ref) => {
+      return <Component ref={ref} {...props} />;
+    });
+
     return (
       <Controller
         name={name}
         rules={rules}
         control={control}
         render={({ field }) => (
-          <Component {...(props as any)} {...field} invalid={!!error} errorMessage={error?.message} />
+          <Wrapped {...(props as any)} {...field} invalid={!!error} errorMessage={error?.message} />
         )}
       />
     );

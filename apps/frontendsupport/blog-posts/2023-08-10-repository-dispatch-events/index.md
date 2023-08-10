@@ -49,7 +49,7 @@ I faced a problem running [webpage-test](https://www.webpagetest.org/) on a stag
 
 Below is the code that creates the dispatch event for an event I have named `trigger-webpage-test-for-frontendsupport`
 
-```yml:build-and-deploy.yml
+```yml:build-and-deploy.yml {6} showLineNumbers
 - name: Trigger webpage test
   uses: peter-evans/repository-dispatch@v1
   with:
@@ -60,7 +60,7 @@ Below is the code that creates the dispatch event for an event I have named `tri
 
 The action that runs web-page-test in a different file:
 
-```yml:webpage.test.yml {14-17} showLineNumbers
+```yml:webpage.test.yml {3-5} showLineNumbers
 name: run webpage test for frontendrescue
 
 on:

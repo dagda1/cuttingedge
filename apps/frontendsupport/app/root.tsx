@@ -7,11 +7,13 @@ import './global.css';
 import { supportTheme } from '@cutting/component-library';
 import cuttingStyles from '@cutting/component-library/styles.css';
 import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
+import { FormContextProvider } from '@cutting/react-hook-form-components';
 import cssStyles from '~/styles.css';
 import { Header } from './components/Header/Header';
 import { URL } from '~/utils/url.server';
 import * as styles from './root.css';
 import cs from 'classnames';
+import { contactFormProps } from './constants';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const baseUrl = `${new URL(request.url).protocol}://${request.headers.get('host')}`;
@@ -89,7 +91,10 @@ export default function App() {
         <div id="portal" />
         <Header />
         <main>
-          <Outlet />
+          <FormContextProvider {...contactFormProps}>
+            <Outlet />
+          </FormContextProvider>
+
           <ScrollRestoration />
           <Scripts />
           <LiveReload />

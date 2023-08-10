@@ -2,7 +2,6 @@ import { Box, Heading, Stack } from '@cutting/component-library';
 import { background } from '~/pages/Panels/Services/Service.css';
 import { ContactForm } from '@cutting/react-hook-form-components';
 import * as styles from './Contact.css';
-import { contactFomProps } from '~/constants';
 
 export function Contact(): JSX.Element {
   return (
@@ -13,7 +12,7 @@ export function Contact(): JSX.Element {
           <Heading level="1">Let's Talk</Heading>
           <Heading level="2">How can we help?</Heading>
           <Box className={styles.container}>
-            <ContactForm {...contactFomProps} />
+            <ContactForm />
           </Box>
         </Stack>
       </Box>
