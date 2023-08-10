@@ -1,13 +1,11 @@
 ---
 meta:
-  title: Triggering a github action from a different file
+  title: How to trigger a GitHub action from a different GitHub action file
   description: trigger a github action from a different file by using repository dispatch events
   date: "2023-08-10T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1691673246/github_wt7a34.png"
   tags: ["github-actions", "continuous-integration"]
 ---
-
-# How to trigger a GitHub action from a different GitHub action file
 
 It is easy to run one Github action job after another by using the [needs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds) keyword.
 
