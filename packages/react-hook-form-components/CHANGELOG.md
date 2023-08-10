@@ -1,5 +1,13 @@
 # @cutting/react-hook-form-components
 
+## 0.5.2
+
+### Patch Changes
+
+- ae243232: Use Control in react-hook-form
+- Updated dependencies [ae243232]
+  - @cutting/component-library@5.41.1
+
 ## 0.5.1
 
 ### Patch Changes
