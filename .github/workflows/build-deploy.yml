@@ -72,8 +72,9 @@ jobs:
           AWS_DEFAULT_REGION: "us-east-1"
 
       - name: Trigger webpage test
+        if: github.event_name == 'pull_request'
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           repository: dagda1/cuttingedge
           event-type: trigger-webpage-test-for-frontendsupport
