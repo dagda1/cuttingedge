@@ -38,6 +38,7 @@ jobs:
         run: pnpm build
 
       - name: Deploy app to staging
+        if: github.event_name == 'pull_request'
         working-directory: apps/frontendsupport
         run: pnpm arc deploy --staging -v --prune
         env:
