@@ -44,7 +44,12 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   assert(typeof height === 'number');
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { register, handleSubmit } = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm<FormValues>({
     reValidateMode: 'onBlur',
     defaultValues: { expression: state.expression },
   });
@@ -239,15 +244,20 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
       </section>
 
       <div className={styles.form}>
-        <form onSubmit={handleSubmit(onSubmit)} method="POST" ref={form} name="SignupForm">
+        <form onSubmit={handleSubmit(onSubmit)} method="POST" ref={form} name="SignupForm" noValidate>
           <MathJax className={styles.expression}>{`$$ f(x) = ${parse(state.expression).toTex()}$$`}</MathJax>
           <fieldset className={styles.algebra}>
             <Input
               layout="horizontal"
-              maxLength={250}
-              {...register('expression', { required: true, minLength: 3, maxLength: 80 })}
+              {...register('expression', {
+                required: 'expression is required',
+                minLength: { value: 3, message: 'min length' },
+                maxLength: { value: 250, message: 'expression exceeded 250 characters' },
+              })}
               label="Expression"
-              required
+              errors={errors}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              control={control as any}
             />
             <Button type="submit">Evaluate</Button>
           </fieldset>

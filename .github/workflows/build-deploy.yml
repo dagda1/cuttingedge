@@ -5,7 +5,6 @@ on: [ push, pull_request ]
 jobs:
   build:
     environment: CI
-    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
     name: build and deploy to aws lambda
     runs-on: ubuntu-latest
     env:
@@ -39,7 +38,6 @@ jobs:
         run: pnpm build
 
       - name: Deploy app to staging
-        if: github.ref == 'refs/heads/main'
         working-directory: apps/frontendsupport
         run: pnpm arc deploy --staging -v --prune
         env:
@@ -55,7 +53,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Invalidate Cloudfront cache staging
-        if: github.ref == 'refs/heads/main'
         uses: imehedi/actions-awscli-v2@latest
         with:
             args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_STAGING_ID }} --paths "/*" --no-cli-pager
@@ -74,23 +71,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: "us-east-1"
 
-      - name: WebPageTest Staging
-        uses: WPO-Foundation/webpagetest-github-action@main
+      - name: Trigger webpage test
+        uses: peter-evans/repository-dispatch@v1
         with:
-          apiKey: ${{ secrets.WPT_API_KEY }}
-          urls: |
-            https://staging.frontendrescue.com/
-            https://staging.frontendrescue.com/posts/2023-07-28-session-storage-playwright
-          label: 'GitHub Action Test'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: WebPageTest Production
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: WPO-Foundation/webpagetest-github-action@main
-        with:
-          apiKey: ${{ secrets.WPT_API_KEY }}
-          urls: |
-            https://frontendrescue.com/
-            https://frontendrescue.com/posts/2023-07-28-session-storage-playwright
-          label: 'GitHub Action Test'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
+          repository: dagda1/cuttingedge
+          event-type: trigger-webpage-test-for-frontendsupport

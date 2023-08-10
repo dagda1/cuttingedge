@@ -1,25 +1,39 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { FunctionComponent, ReactNode, Ref } from 'react';
-import { forwardRef } from 'react';
+import type { FunctionComponent, ReactNode } from 'react';
 import { FormInput, FormTextArea } from '@cutting/component-library';
-import type { FieldValues, UseFormRegister, UseFormReturn } from 'react-hook-form';
-import type { FormElementFromComponent, ComponentProps } from '@cutting/component-library';
+import type { ControllerProps, FieldErrors } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
+import type { ComponentProps } from '@cutting/component-library';
 
 export type FormProps<C extends FunctionComponent<any>> = ComponentProps<C> & {
-  required?: boolean;
   className?: string;
-  errors?: unknown;
-} & ReturnType<UseFormRegister<FieldValues>> &
-  Partial<Pick<UseFormReturn<FieldValues>, 'setValue'>>;
+  errors: FieldErrors;
+} & Omit<ControllerProps, 'render' | 'control'> &
+  Required<Pick<ControllerProps, 'control'>>;
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function createFormComponent<C extends FunctionComponent<any>>(Component: C) {
-  return forwardRef<FormElementFromComponent<typeof Component>, ComponentProps<C>>(function ReactHookFormComponent(
-    props: FormProps<typeof Component>,
-    ref: Ref<FormElementFromComponent<typeof Component>>,
-  ) {
-    return <Component innerRef={ref} {...(props as any)} />;
-  });
+export function createFormComponent<C extends FunctionComponent<any>>(
+  Component: C,
+): (props: FormProps<typeof Component>) => JSX.Element {
+  return function ReactHookFormComponent({
+    name,
+    rules,
+    control,
+    errors,
+    ...props
+  }: FormProps<typeof Component> & Omit<ControllerProps, 'render'>): JSX.Element {
+    const error = errors[name];
+
+    return (
+      <Controller
+        name={name}
+        rules={rules}
+        control={control}
+        render={({ field }) => (
+          <Component {...(props as any)} {...field} invalid={!!error} errorMessage={error?.message} />
+        )}
+      />
+    );
+  };
 }
 
 // TODO: remove annotations.  Currently weird type error

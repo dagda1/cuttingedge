@@ -114,7 +114,7 @@ const textTones = assignVars(textToneVars, {
   neutral: vars.foregroundColor.neutral,
   secondary: vars.foregroundColor.secondary,
   link: vars.foregroundColor.link,
-  warning: vars.foregroundColor.error,
+  warning: vars.foregroundColor.primary,
   h1: vars.foregroundColor.h1,
   h2: vars.foregroundColor.h2,
   h3: vars.foregroundColor.h3,
