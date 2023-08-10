@@ -1,5 +1,14 @@
 # @cutting/frontend-support
 
+## 0.1.11
+
+### Patch Changes
+
+- Updated dependencies [ae243232]
+  - @cutting/react-hook-form-components@0.5.2
+  - @cutting/component-library@5.41.1
+  - @cutting/use-get-parent-size@2.1.3
+
 ## 0.1.10
 
 ### Patch Changes

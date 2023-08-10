@@ -1,4 +1,4 @@
-name: Second Workflow
+name: run webpage test for frontendrescue
 
 on:
   repository_dispatch:
