@@ -4,8 +4,6 @@ export const container = style({
   background: 'grey',
   color: 'white',
   resize: 'both',
-  width: '100%',
-  height: '100%',
 });
 
 globalStyle('svg', {

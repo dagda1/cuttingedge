@@ -7,30 +7,21 @@ import { assert } from 'assert-ts';
 import { CRM } from '../../constants';
 import type { ButtonStyle } from '@cutting/component-library';
 import { Box, Button } from '@cutting/component-library';
+import { useFormContext } from './FormContext';
 
 interface FormValues {
   'Last Name': string;
   Company: string;
   Email: string;
   Description: string;
-  xnQsjsdp: string;
-  xmIwtLD: string;
-  returnUrl: string;
+  buttonStyle?: ButtonStyle;
 }
 
-export type ContactFormProps = {
-  buttonStyle?: ButtonStyle;
-  returnUrl?: string;
-  formName: string;
-} & Pick<FormValues, 'xmIwtLD' | 'xnQsjsdp'>;
+export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'buttonStyle'>): JSX.Element {
+  const formContext = useFormContext();
 
-export function ContactForm({
-  returnUrl,
-  xmIwtLD,
-  xnQsjsdp,
-  formName,
-  buttonStyle = 'primary',
-}: ContactFormProps): JSX.Element {
+  const { formName, xnQsjsdp, xmIwtLD, returnUrl } = formContext;
+
   const form = useRef<HTMLFormElement>(null);
   const botChecker = useRef<HTMLInputElement>(null);
 
@@ -118,12 +109,7 @@ export function ContactForm({
         <input ref={botChecker} type="hidden" name="zc_gad" id="zc_gad" value=""></input>
         <input type="text" style={{ display: 'none' }} name="xmIwtLD" defaultValue={xmIwtLD}></input>
         <input type="text" style={{ display: 'none' }} name="actionType" defaultValue="TGVhZHM="></input>
-        <input
-          type="text"
-          style={{ display: 'none' }}
-          name="returnURL"
-          defaultValue={returnUrl ?? typeof location !== 'undefined' ? location.origin : '/'}
-        ></input>
+        <input type="text" style={{ display: 'none' }} name="returnURL" defaultValue={returnUrl ?? '/'}></input>
       </form>
     </Box>
   );

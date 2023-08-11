@@ -1,6 +1,5 @@
 import { Modal } from 'flowbite-react';
 import * as styles from './ContactButtons.css';
-import type { ContactFormProps } from '../ContactForm/ContactForm';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { CallPopupButton } from '../Call/CallPopupButton';
 import type { CallType } from '../Call/types';
@@ -13,14 +12,13 @@ type ContactButtonsProps = {
   rootElementId?: string;
   buttonStyle?: ButtonStyle;
   justify?: 'flexStart' | 'center' | 'flexEnd';
-} & ContactFormProps;
+};
 
 export function ContactButtons({
   callType,
   rootElementId = 'portal',
   justify = 'flexStart',
   buttonStyle = 'warning',
-  ...formProps
 }: ContactButtonsProps): JSX.Element {
   const [openModal, setOpenModal] = useState<string | undefined>();
 
@@ -49,7 +47,7 @@ export function ContactButtons({
             flexDirection="column"
           >
             <Box className={styles.content}>
-              <ContactForm {...formProps} />
+              <ContactForm />
             </Box>
           </Box>
         </Modal.Body>
