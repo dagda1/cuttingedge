@@ -5,7 +5,7 @@ import { ContactButtons } from '@cutting/react-hook-form-components';
 
 export function Services(): JSX.Element {
   return (
-    <>
+    <Box marginBottom="xxxlarge">
       <Box className={background}></Box>
       <Stack space="small" align="center">
         <Heading level="1">Services</Heading>
@@ -48,6 +48,6 @@ export function Services(): JSX.Element {
           <ContactButtons justify="center" callType="chat" />
         </Box>
       </Stack>
-    </>
+    </Box>
   );
 }

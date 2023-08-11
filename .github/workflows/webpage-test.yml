@@ -5,7 +5,8 @@ on:
     types: [trigger-webpage-test-for-frontendsupport]
 
 jobs:
-  deploy:
+  web-page-test:
+    environment: CI
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
