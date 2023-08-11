@@ -93,7 +93,6 @@ export default function App() {
         <main>
           <FormContextProvider {...contactFormProps}>
             <Outlet />
-            <h1>Aye aye</h1>
           </FormContextProvider>
 
           <ScrollRestoration />

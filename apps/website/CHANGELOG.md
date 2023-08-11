@@ -1,5 +1,12 @@
 # @cutting/website
 
+## 4.29.35
+
+### Patch Changes
+
+- Updated dependencies [e69f8fdd]
+  - @cutting/react-hook-form-components@0.5.3
+
 ## 4.29.34
 
 ### Patch Changes
