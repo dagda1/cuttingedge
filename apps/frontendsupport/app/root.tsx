@@ -1,5 +1,5 @@
 import type { LinksFunction, LoaderFunction, V2_MetaFunction } from '@remix-run/node';
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import rehypeStyles from './rehype.css';
 import katex from 'katex/dist/katex.min.css';
 import { cssBundleHref } from '@remix-run/css-bundle';
@@ -93,11 +93,12 @@ export default function App() {
         <main>
           <FormContextProvider {...contactFormProps}>
             <Outlet />
+            <h1>Aye aye</h1>
           </FormContextProvider>
 
           <ScrollRestoration />
           <Scripts />
-          <LiveReload />
+          {/* <LiveReload /> */}
         </main>
       </body>
     </html>
