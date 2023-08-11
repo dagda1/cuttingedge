@@ -4,7 +4,7 @@ import { useParentSize } from '@cutting/use-get-parent-size';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { Box, Divider, Heading } from '@cutting/component-library';
+import { Box, Heading } from '@cutting/component-library';
 import { FrontPage } from '~/components/FrontPage/FrontPage';
 import { OSS } from '../Panels/OSS/OSS';
 import { Highlights } from '../Panels/Highlights/Highlights';

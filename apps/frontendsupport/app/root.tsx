@@ -1,5 +1,6 @@
 import type { LinksFunction, LoaderFunction, V2_MetaFunction } from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+// import { LiveReload } from '@remix-run/react';
 import rehypeStyles from './rehype.css';
 import katex from 'katex/dist/katex.min.css';
 import { cssBundleHref } from '@remix-run/css-bundle';
