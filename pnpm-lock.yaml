@@ -624,8 +624,8 @@ importers:
         specifier: 4.4.9
         version: 4.4.9(@types/node@20.4.10)
       vite-plugin-commonjs:
-        specifier: 0.7.1
-        version: 0.7.1
+        specifier: 0.8.2
+        version: 0.8.2
       vite-plugin-environment:
         specifier: 1.1.3
         version: 1.1.3(vite@4.4.9)
@@ -24453,11 +24453,12 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-commonjs@0.7.1:
-    resolution: {integrity: sha512-pRkI+pKW3NygFGTiLRejEntiJL0N+yC1wpnzne2bQ/bAqYwZWAzFU7XgU6EC8GE898ZAKfAZ6bhDP+uL+pM61Q==}
+  /vite-plugin-commonjs@0.8.2:
+    resolution: {integrity: sha512-UJlvuioutS7Tno3p3Dqxkr0G4xXt8ILYsJzOiyvFlEsyAxFRofsBGHN/Sl15q0Y4vtvvC7+QZCc6GuUxOM6Cmg==}
     dependencies:
       acorn: 8.10.0
       fast-glob: 3.3.1
+      magic-string: 0.30.1
       vite-plugin-dynamic-import: 1.5.0
     dev: true
 
