@@ -209,7 +209,7 @@ importers:
         version: 3.3.0
       maath:
         specifier: ^0.5.3
-        version: 0.5.3(@types/three@0.152.1)(three@0.151.3)
+        version: 0.5.3(@types/three@0.155.0)(three@0.151.3)
       mdast-util-to-markdown:
         specifier: ^1.5.0
         version: 1.5.0
@@ -1172,7 +1172,7 @@ importers:
         version: 0.9.35(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
       maath:
         specifier: ^0.5.3
-        version: 0.5.3(@types/three@0.152.1)(three@0.153.0)
+        version: 0.5.3(@types/three@0.155.0)(three@0.155.0)
       mdast-util-to-markdown:
         specifier: ^1.5.0
         version: 1.5.0
@@ -1526,8 +1526,8 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
       '@types/three':
-        specifier: ^0.152.1
-        version: 0.152.1
+        specifier: ^0.155.0
+        version: 0.155.0
       '@vanilla-extract/css':
         specifier: ^1.12.0
         version: 1.12.0
@@ -1547,8 +1547,8 @@ importers:
         specifier: 6.13.0
         version: 6.13.0(react-dom@18.2.0)(react@18.2.0)
       three:
-        specifier: ^0.153.0
-        version: 0.153.0
+        specifier: ^0.155.0
+        version: 0.155.0
       typescript:
         specifier: 5.1.6
         version: 5.1.6
@@ -9440,14 +9440,15 @@ packages:
       '@types/jest': 29.5.3
     dev: true
 
-  /@types/three@0.152.1:
-    resolution: {integrity: sha512-PMOCQnx9JRmq+2OUGTPoY9h1hTWD2L7/nmuW/SyNq1Vbq3Lwt3MNdl3wYSa4DvLTGv62NmIXD9jYdAOwohwJyw==}
+  /@types/three@0.155.0:
+    resolution: {integrity: sha512-IzdbqXsGsbG0flvq9D5L9pZRwySQQps2bGcizLYEsfvK3dM+B0sqKR6S+xAOXbouXemfDmHttrcQjVOM46YnAw==}
     dependencies:
       '@tweenjs/tween.js': 18.6.4
       '@types/stats.js': 0.17.0
       '@types/webxr': 0.5.2
       fflate: 0.6.10
       lil-gui: 0.17.0
+      meshoptimizer: 0.18.1
 
   /@types/through@0.0.30:
     resolution: {integrity: sha512-FvnCJljyxhPM3gkRgWmxmDZyAQSiBQQWLI0A0VFL0K7W1oRUrPJSqNO0NvTnLkBcotdlp3lKvaT0JrnyRDkzOg==}
@@ -17596,24 +17597,24 @@ packages:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
 
-  /maath@0.5.3(@types/three@0.152.1)(three@0.151.3):
+  /maath@0.5.3(@types/three@0.155.0)(three@0.151.3):
     resolution: {integrity: sha512-ut63A4zTd9abtpi+sOHW1fPWPtAFrjK0E17eAthx1k93W/T2cWLKV5oaswyotJVDvvW1EXSdokAqhK5KOu0Qdw==}
     peerDependencies:
       '@types/three': '>=0.144.0'
       three: '>=0.144.0'
     dependencies:
-      '@types/three': 0.152.1
+      '@types/three': 0.155.0
       three: 0.151.3
     dev: false
 
-  /maath@0.5.3(@types/three@0.152.1)(three@0.153.0):
+  /maath@0.5.3(@types/three@0.155.0)(three@0.155.0):
     resolution: {integrity: sha512-ut63A4zTd9abtpi+sOHW1fPWPtAFrjK0E17eAthx1k93W/T2cWLKV5oaswyotJVDvvW1EXSdokAqhK5KOu0Qdw==}
     peerDependencies:
       '@types/three': '>=0.144.0'
       three: '>=0.144.0'
     dependencies:
-      '@types/three': 0.152.1
-      three: 0.153.0
+      '@types/three': 0.155.0
+      three: 0.155.0
     dev: false
 
   /magic-string@0.25.9:
@@ -18148,6 +18149,9 @@ packages:
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
+
+  /meshoptimizer@0.18.1:
+    resolution: {integrity: sha512-ZhoIoL7TNV4s5B6+rx5mC//fw8/POGyNxS/DZyCJeiZ12ScLfVwRE/GfsxwiTkMYYD5DmK2/JXnEVXqL4rF+Sw==}
 
   /methods@1.1.2:
     resolution: {integrity: sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==}
@@ -23350,8 +23354,8 @@ packages:
     resolution: {integrity: sha512-+vbuqxFy8kzLeO5MgpBHUvP/EAiecaDwDuOPPDe6SbrZr96kccF0ktLngXc7xA7bzyd3N0t2f6mw3Z9y6JCojQ==}
     dev: false
 
-  /three@0.153.0:
-    resolution: {integrity: sha512-OCP2/uQR6GcDpSLnJt/3a4mdS0kNWcbfUXIwLoEMgLzEUIVIYsSDwskpmOii/AkDM+BBwrl6+CKgrjX9+E2aWg==}
+  /three@0.155.0:
+    resolution: {integrity: sha512-sNgCYmDijnIqkD/bMfk+1pHg3YzsxW7V2ChpuP6HCQ8NiZr3RufsXQr8M3SSUMjW4hG+sUk7YbyuY0DncaDTJQ==}
 
   /through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}
