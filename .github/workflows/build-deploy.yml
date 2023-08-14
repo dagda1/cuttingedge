@@ -38,9 +38,9 @@ jobs:
         run: pnpm build
 
       - name: Deploy app to staging
-        if: github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/main'
         working-directory: apps/frontendsupport
-        run: pnpm arc deploy --staging -v --prune
+        run: NODE_ENV=production pnpm arc deploy --staging -v --prune
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -48,16 +48,16 @@ jobs:
       - name: Deploy app to production
         if: startsWith(github.ref, 'refs/tags/v')
         working-directory: apps/frontendsupport
-        run: pnpm arc deploy --production -v --prune
+        run: NODE_ENV=production pnpm arc deploy --production -v --prune
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Invalidate Cloudfront cache staging
-        if: github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/main'
         uses: imehedi/actions-awscli-v2@latest
         with:
-            args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_STAGING_ID }} --paths '/*' --no-cli-pager
+            args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_STAGING_ID }} --paths "/*" --no-cli-pager
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -67,7 +67,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         uses: imehedi/actions-awscli-v2@latest
         with:
-            args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_PRODUCTION_ID }} --paths '/*' --no-cli-pager
+            args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_PRODUCTION_ID }} --paths "/*" --no-cli-pager
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
