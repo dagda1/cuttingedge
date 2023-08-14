@@ -2,8 +2,6 @@
 module.exports = {
   future: {
     v2_routeConvention: true,
-    unstable_vanillaExtract: true,
-    unstable_dev: true,
     v2_errorBoundary: true,
     v2_meta: true,
   },

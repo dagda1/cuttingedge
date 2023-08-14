@@ -23,8 +23,8 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@typescript-eslint/parser": "5.62.0",
-    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "6.4.0",
+    "@typescript-eslint/eslint-plugin": "6.4.0",
     "@vanilla-extract/css": "^1.12.0",
     "eslint": "8.47.0",
     "typescript": "5.1.6"

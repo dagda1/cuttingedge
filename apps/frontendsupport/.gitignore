@@ -5,6 +5,7 @@ node_modules
 /server/blog-posts
 /server/package*.json
 /server/*.arc
+/server/metafile.*
 /public/build
 preferences.arc
 sam.json
