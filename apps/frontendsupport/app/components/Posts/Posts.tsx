@@ -2,7 +2,7 @@ import { Box, Heading, Inline, List, PageBlock, Stack, Text, vars } from '@cutti
 import { Image } from '@unpic/react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 import * as styles from './Posts.css';
-import type { PostData } from '@cutting/markdown/dist/esm/bundleMarkdown';
+import type { PostData } from '@cutting/markdown';
 
 interface PostsProps {
   posts: PostData[];
