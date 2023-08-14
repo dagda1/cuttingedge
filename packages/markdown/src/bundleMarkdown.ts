@@ -9,6 +9,7 @@ import type { FrontMatter, FrontMatterMeta } from './types';
 import readingTime from 'reading-time';
 import { join } from 'path';
 import { readFile, readdir } from 'fs/promises';
+import { DateTime } from 'luxon';
 
 export type MarkdownAttributes = {
   title: string;
@@ -90,12 +91,14 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
   };
 }
 
-export async function getPosts(postsRootPath: string): Promise<FrontMatterMeta[]> {
+export type PostData = FrontMatterMeta & { formattedDate: string };
+
+export async function getPosts(postsRootPath: string): Promise<PostData[]> {
   const postsPath = await readdir(postsRootPath, {
     withFileTypes: true,
   });
 
-  const posts: FrontMatterMeta[] = [];
+  const posts: PostData[] = [];
 
   for (const dirent of postsPath) {
     const file = await readFile(join(postsRootPath, dirent.name, 'index.md'));
@@ -110,6 +113,7 @@ export async function getPosts(postsRootPath: string): Promise<FrontMatterMeta[]
     posts.push({
       slug: dirent.name.replace(/\.mdx/, ''),
       date: new Date(date).toISOString(),
+      formattedDate: DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL),
       ...meta,
     });
   }

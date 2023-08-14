@@ -1,7 +1,6 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, Ref } from 'react';
 import cs from 'classnames';
 import * as styles from './CTAButton.css';
-import type { Ref } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 interface CTAButtonProps {

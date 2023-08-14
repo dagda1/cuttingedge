@@ -1,12 +1,11 @@
 import { Box, Heading, Inline, List, PageBlock, Stack, Text, vars } from '@cutting/component-library';
 import { Image } from '@unpic/react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
-import { DateTime } from 'luxon';
-import type { FrontMatterMeta } from '~/types';
 import * as styles from './Posts.css';
+import type { PostData } from '@cutting/markdown/dist/esm/bundleMarkdown';
 
 interface PostsProps {
-  posts: FrontMatterMeta[];
+  posts: PostData[];
 }
 
 export function Posts({ posts }: PostsProps): JSX.Element {
@@ -31,7 +30,7 @@ export function Posts({ posts }: PostsProps): JSX.Element {
                       </TextNavLink>
                     </Heading>
                     <Text component="p">{post.description}</Text>
-                    <Text tone="promote">{DateTime.fromISO(post.date).toLocaleString()}</Text>
+                    <Text tone="promote">{post.formattedDate}</Text>
                   </Stack>
                 </Inline>
               </Box>

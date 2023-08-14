@@ -1,8 +1,8 @@
 import { getMDXComponent } from 'mdx-bundler/client';
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
-import type { V2_MetaFunction } from '@remix-run/node';
-import { type LoaderFunction, json } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import type { V2_MetaFunction, type LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
 import { Box, Heading, PageBlock, Text, TextLink } from '@cutting/component-library';

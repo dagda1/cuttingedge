@@ -1,6 +1,5 @@
-import type { Taggable } from '@cutting/component-library';
-import { useGetTextStyles } from '@cutting/component-library';
-import { Text, type TextProps } from '@cutting/component-library';
+import type { Taggable, type TextProps } from '@cutting/component-library';
+import { useGetTextStyles, Text } from '@cutting/component-library';
 import { NavLink, type NavLinkProps } from '@remix-run/react';
 import cs from 'classnames';
 import * as styles from './TextNavLink.css';
