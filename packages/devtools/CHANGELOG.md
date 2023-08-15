@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.2
+
+### Patch Changes
+
+- 45397d9a: major dependency update
+
 ## 4.63.1
 
 ### Patch Changes
