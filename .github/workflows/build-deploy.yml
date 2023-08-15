@@ -40,20 +40,13 @@ jobs:
       - name: Create .env file
         working-directory: apps/frontendsupport
         run: |
-          cat << EOF > "preferences.arc"
-          # The @env pragma is synced (and overwritten) by running arc env
-          @env
-
-          staging
-            GIT_COMMIT "$(git rev-parse HEAD)"
-
-          production
-            GIT_COMMIT "$(git rev-parse HEAD)"
+          cat << EOF > ".env"
+          GIT_COMMIT="$(git rev-parse HEAD)"
           EOF
 
       - name: echo heredoc
         working-directory: apps/frontendsupport
-        run: cat ./.env
+        run: cat .env
 
       - name: Deploy app to staging
         if: github.ref == 'refs/heads/main'
