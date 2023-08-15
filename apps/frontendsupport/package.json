@@ -4,7 +4,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "cross-env NODE_ENV=production remix build && cp -rf blog-posts server",
+    "build": "cross-env NODE_ENV=production remix build && rm -rf server/blog-posts/* && cp -rf blog-posts server",
     "dev:remix": "remix watch",
     "dev:arc": "cross-env NODE_ENV=development arc sandbox",
     "dev": "cross-env NODE_ENV=development npm-run-all build --parallel \"dev:*\"",

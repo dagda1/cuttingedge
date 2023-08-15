@@ -11,5 +11,6 @@ preferences.arc
 sam.json
 sam.yaml
 .env
+.env*
 *.map
 .DS_Store

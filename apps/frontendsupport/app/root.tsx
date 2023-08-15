@@ -1,5 +1,5 @@
-import type { LinksFunction, LoaderFunction, V2_MetaFunction } from '@remix-run/node';
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { json, type LinksFunction, type V2_MetaFunction } from '@remix-run/node';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
 // import { LiveReload } from '@remix-run/react';
 import rehypeStyles from './rehype.css';
 import katex from 'katex/dist/katex.min.css';
@@ -11,16 +11,17 @@ import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
 import { FormContextProvider } from '@cutting/react-hook-form-components';
 import cssStyles from '~/styles.css';
 import { Header } from './components/Header/Header';
-import { URL } from '~/utils/url.server';
 import * as styles from './root.css';
 import cs from 'classnames';
 import { contactFormProps } from './constants';
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const baseUrl = `${new URL(request.url).protocol}://${request.headers.get('host')}`;
-
-  return { baseUrl };
-};
+export async function loader() {
+  return json({
+    ENV: {
+      GIT_COMMIT: process.env.GIT_COMMIT,
+    },
+  });
+}
 
 export const meta: V2_MetaFunction = ({ location, data }) => {
   return [
@@ -70,6 +71,8 @@ export const links: LinksFunction = () => [
 ];
 
 export default function App() {
+  const data = useLoaderData<typeof loader>();
+
   return (
     <html lang="en">
       <head>
@@ -100,6 +103,7 @@ export default function App() {
           <Scripts />
           {/* <LiveReload /> */}
         </main>
+        {`<!-- ${data.ENV.GIT_COMMIT} -->`}
       </body>
     </html>
   );
