@@ -7,6 +7,7 @@ node_modules
 /server/*.arc
 /server/metafile.*
 /public/build
+/server/metafile.*
 preferences.arc
 sam.json
 sam.yaml
