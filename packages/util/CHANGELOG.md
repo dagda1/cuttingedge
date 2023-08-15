@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.58.3
+
+### Patch Changes
+
+- 45397d9a: major dependency update
+
 ## 4.58.2
 
 ### Patch Changes
