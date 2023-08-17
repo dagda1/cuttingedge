@@ -1,29 +1,37 @@
 ---
 meta:
-  title: Bottom and top types in  typescript
+  title: Understanding Top and Bottom Types in TypeScript
   description: In TypeScript, there are two top types unknown and any, and never is the only bottom type
   date: "2023-08-12T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1691776328/top_yaehmt.png"
-  tags: ["typescript"]
+  tags: ["github-actions", "continuous-integration"]
 ---
 
-The concept of a **bottom** type and a **top** type is a construct that exists in mathematical type theory and exists in many programming languages. It exists in typescript and it is an important concept that is often ignored.
+Bottom and top types play foundational roles in type systems, helping to define the structure and relationships of types.
+
+In formal type theory
+
+The concept of a **bottom** type and a **top** exists in many programming language type systems, including Typescript. They don't get a lot of mention, but knowledge of the underlying theory can help you to understand type systems significantly.
 
 Typescript has two top types, `any` and `unknown` and `never` is the bottom type.
 
-## Top type
+But before we start, let us get a couple of definitions for important concepts.
 
-You will often see this quote when describing what a top type is:
+## supertypes and subtypes
 
-> A top type is a supertype of every other type.
+In category theory, if you had a type $$B$$ that is a subtype of another type $$A$$. Then $$A$$ is a supertype of $$B$$.
 
-A `type` is really a set of all the possible values that can be bound to a variable or argument.
+Using types $$A$$ and $$B$$ as examples is a bit too abstract, below is a simple object hiearchy with `Dog` as a supertype and `Pitbull` and `Alsation` as subtypes of the supertype `Dog`.
 
-In basic object oriented programming, we know that a subtype variable or function argument can be bound to a supertype.
+```ts
+class Dog {}
+class Pitbull extends Dog {}
+class Alsation extends Dog {}
+```
 
-For example, the `walkies` function below takes a `dog` argument that is a supertype and can be bound to the subtypes `Pitbull` and `Alsation`.
+The walkies function below takes a `dog` argument of type `Dog`. The `dog` argument can be bound to the subtypes `Pitbull` and `Alsation`.
 
-```javascript
+```ts {5,7-11}
 class Dog {}
 class Pitbull extends Dog {}
 class Alsation extends Dog {}
@@ -34,7 +42,61 @@ walkies(new Pitbull());
 walkies(new Alsation());
 ```
 
-In the same way, a top type means that **all** other types in the type system are subtypes of the top type and as such we can assign anything to the top types, e.g.
+## Top type
+
+A top-level type or top type is also known as the universal supertype because all other types are subtypes of the top type. There is nothing above the top type.
+
+In Typescript, there is the `any` top type and the `unknown` top type, which have very different behaviours.
+
+### any
+
+The `any` type is the most permissive type in Typescript. When you declare a variable as ``any`, you can:
+
+Assing any value to it
+Access any of its properties
+Call it as a function
+Assign it to any other variable
+
+It turns off the type checking for variables declared with this type, making it very flexible but risky, as you might inadvertently introduce runtime errors.
+
+```ts
+let anything: any = "hello";
+anything = 42;
+let num: number = anything; // no error, even if anything isn't a number
+anything.someRandomMethod(); // TypeScript won't complain
+```
+
+### unknown
+
+Introduced in Typescrip 3.0, `unknown` is also a top type, but it is more permissive regarding operations. With `unknown` you can assign any variable value but can't perform operations on that variable without first asserting or narrowing the type.
+You can't access arbitrary properties on an unknown variable.
+You can't call/construct an unknown variable.
+You can only use it on the right side of the assignment if the left side is unknown.
+It's a safer alternative to any when you want to describe a value that comes from a dynamic source (like user input or a third-party library), and ensure that you perform proper type checking before operating on it.
+
+```ts
+let mystery: unknown = "hello";
+mystery = 42;
+
+// Following would result in errors:
+// let num: number = mystery;
+// mystery.someRandomMethod();
+
+// To use the value, you have to perform type checking or assertions:
+if (typeof mystery === "number") {
+  let num: number = mystery; // This is safe now.
+}
+```
+
+What about {}? Is {} a top type?
+
+> A top type is a supertype of every other type.
+
+A `type` is a set of all the possible values bound to a variable or argument.
+
+In basic object-oriented programming, we know that a subtype variable or function argument can be bound to a supertype.
+
+In the same way, a top type means that **all** other types in the type system are subtypes of the top type, and as such, we can assign anything to the top types, e.g.
 
 ```javascript
 let n: unknown = 5;
@@ -55,7 +117,7 @@ topUnknown("8");
 
 ### The infamous any type
 
-Using `any` is an escape hatch that basically tells the tsc compiler to stay out of the way and let me get on with things without any compile time type checks.
+Using `any` is an escape hatch that tells the tsc compiler to stay out of the way and let me get on with things without compiling time type checks.
 
 ```javascript
 const func = (dog: any) => {
@@ -75,11 +137,11 @@ The goal of `unknown` is to have a type in its least capable form. While anythin
 
 ### Type narrowing
 
-Type narrowing is a crucial concept in typescript and I don't think enough is made of the concept.
+Type narrowing is a crucial concept in Typescript and I don't think enough is made of the concept.
 
-In the example below, [type guards](https://basarat.gitbooks.io/typescript/docs/const.html) are used to narrow the function argument `value` on line 17 below to the more specialised `Dog` or `Pitbull` types.
+In the example below, [type guards](https://basarat.gitbooks.io/typescript/docs/const.html) are used to narrow the function argument `value` on line 17 below to the more specialized `Dog` or `Pitbull` types.
 
-```ts showLineNumbers
+```javascript{numberLines:true}
 interface Dog {
   bark: () => void;
 }
@@ -90,14 +152,14 @@ interface Pitbull extends Dog {
 
 const isDog = (value: any): value is Dog => {
   return value && !!value.bark;
-};
+}
 
 const isPitbull = (value: any): value is Pitbull => {
   return value && value.attack;
-};
+}
 
 const walkies = (value: unknown) => {
-  if (isPitbull(value)) {
+  if (isPitbull(value)){
     value.bark();
     value.attack();
     return;
@@ -112,10 +174,10 @@ const walkies = (value: unknown) => {
   // value.bark();
   // but with unknown we ge†
   // TypeError: Object is of type 'unknown'.
-};
+}
 ```
 
-You cannot do much with the `unknown` type directly but you can use type guards to narrow the type to more specialised type-checking blocks of code operating on narrowed types. If we use `any` we get no type checking for our `unknown` type.
+You cannot do much with the `unknown` type directly but you can use type guards to narrow the type to more specialized type-checking blocks of code operating on narrowed types. If we use `any` we get no type checking for our `unknown` type.
 
 If you cast your mind back a few paragraphs to the somewhat dry explanation of what a top type is:
 
@@ -125,7 +187,7 @@ If you cast your mind back a few paragraphs to the somewhat dry explanation of w
 const walkies = (value: unknown) => {
 ```
 
-As `unknown` is the supertype of every type in the same way as `Dog` is the supertype of `Pitbull` then it can accept any type but unlike `any`, we cannot just start invoking methods, instead the type is narrowed using type guards to guarantee that we are dealing with a more specialised type.
+As `unknown` is the supertype of every type in the same way as `Dog` is the supertype of `Pitbull` then it can accept any type but unlike `any`, we cannot just start invoking methods, instead the type is narrowed using type guards to guarantee that we are dealing with a more specialized type.
 
 With the introduction of `unknown`, there really is very little reason to use `any` these days which basically is an instruction to forget the type system altogether.
 
@@ -159,7 +221,7 @@ The first use of `never` is what we have just covered, it is to type functions t
 
 Another very important use is to prune unwanted values from conditional types.
 
-If we look at the definition for the typescript built in type `Extract`
+If we look at the definition for the Typescript built in type `Extract`
 
 ```javascript
 /**
@@ -168,9 +230,9 @@ If we look at the definition for the typescript built in type `Extract`
 type Extract<T, U> = T extends U ? T : never;
 ```
 
-We could use `Extract` to create a more specialised `TameDog` that does not bite like this:
+We could use `Extract` to create a more specialized `TameDog` that does not bite like this:
 
-```ts showLineNumbers
+```javascript{numberLines:true}
 // type TameDog = {
 //   bark: () => void;
 //   walk: () => void;
@@ -179,13 +241,13 @@ type TameDog = Pick<Dog, Extract<keyof Dog, "bark" | "walk" | "meow">>;
 
 const doggy: TameDog = {
   bark() {
-    console.log("woof woof");
+    console.log('woof woof');
   },
 
   walk() {
-    console.log("good doggy");
-  },
-};
+    console.log('good doggy');
+  }
+}
 ```
 
 `Extract` on line 5 will distribute over all values in a union but as `meow` is not a key of `Dog`, it will return never from the conditional expression and be excluded from the new union of values passed into the `Pick` type.
