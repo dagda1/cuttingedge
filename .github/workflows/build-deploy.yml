@@ -37,12 +37,22 @@ jobs:
       - name: Build App
         run: pnpm build
 
-      - name: Create .env file
+      - name: Set arc environment variables
         working-directory: apps/frontendsupport
         run: |
-          cat << EOF > ".env"
-          GIT_COMMIT="$(git rev-parse HEAD)"
-          EOF
+          FLAGS=""
+          if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
+            echo "startWith"
+            FLAGS="--production"
+          fi
+
+          echo "main = ${{ github.ref == 'refs/heads/main' }}"
+          
+          if [[ "${{ github.ref == 'refs/heads/main' }}" == true ]]; then
+            FLAGS="--staging"
+          fi
+
+          pnpm arc env -e $FLAGS --add GIT_COMMIT $(git rev-parse HEAD)
 
       - name: Deploy app to staging
         if: github.ref == 'refs/heads/main'
