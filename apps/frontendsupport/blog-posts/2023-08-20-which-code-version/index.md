@@ -1,10 +1,10 @@
 ---
 meta:
   title: How to pinpoint which version of the code is running in any environment
-  description: It is common to have multiple staging, UAT and production environments running different code versions.  Being able to tell at a glance which version of the code is in that environment is critical.
+  description: Being able to tell at a glance which version of the code is in which environment is critical.
   date: "2023-08-20T00:00:00.000Z"
-  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1690741574/playwright_iofvmm.png"
-  tags: ["playwright", "testing"]
+  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1692537961/versioning_hbcf7r.png"
+  tags: ["github-actions", "continuous-integration", "devops"]
 ---
 
 It is common to have multiple staging, UAT and production environments running different code versions. With frontend code, it is often possible to visually check frontend features such as menu items or visible features that only appear in a specific code version. Visually checking is time-consuming and doomed to failure in most cases.
@@ -23,9 +23,9 @@ The hash in the markup can then be checked with the [git show command](https://g
 
 I used to parse the version of the code from the package.json file, but this is only sometimes reliable. The version number field of a package.json file will probably not get updated on each commit, while a git commit hash certainly will.
 
-## Never commit environment variables to source control
+## Never commit environment variables into source control
 
-It should be evident today, but checking `.env` files of anything into source control will soon become a security hazard. Environment variables should be part of the deployment process, even for something as seemingly innocuous as a git commit hash.
+Checking `.env` files of anything into source control will soon become a security hazard. The retrieval and setting of environment variable values should be part of the continuous integration/deployment process (CICD), even for something as seemingly innocuous as a git commit hash.
 
 In this example, the identifier is rendered into a [remix-run](https://remix.run/docs/en/main) application that deploys to AWS using [aws architect](https://arc.codes/docs/en/get-started/quickstart).
 
@@ -49,15 +49,6 @@ The following github action sets an environment variable called `GIT_COMMIT`:
 
 Or, in a different application, you could create a `.env` file on the file before uploading it to the target server:
 
-````yml
-- name: Deploy
-  if: github.ref == 'refs/heads/main'
-  working-directory: apps/frontendsupport
-  run: NODE_ENV=production pnpm arc deploy --staging -v --prune
-  env:
-    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
 ```yml
 - name: Create .env file
   working-directory: apps/frontendsupport
@@ -65,9 +56,9 @@ Or, in a different application, you could create a `.env` file on the file befor
     cat << EOF > ".env"
     GIT_COMMIT="$(git rev-parse HEAD)"
     EOF
-````
+```
 
-Remix has the concept of [loader functions](https://remix.run/docs/en/1.19.3/route/loader) that provide data to the component rendering the current route
+Once the environment variable is set, it is available in the application, depending on the build/deployment framework. Remix has the concept of [loader functions](https://remix.run/docs/en/1.19.3/route/loader) on the server that provides data to the component rendering the current route
 
 ```ts
 export async function loader() {
@@ -79,10 +70,10 @@ export async function loader() {
 }
 ```
 
-The hash can then be rendered into the markup.
+The hash is then rendered into the markup.
 
 ```ts
 <div style={{ display: "none" }}>{data.ENV.GIT_COMMIT}</div>
 ```
 
-I have been using this trick for a long time, and I find it invaluable when determining which version of the code is in which environment.
+I have been using this trick for a long time and find it invaluable when determining which version of the code is in which environment.
