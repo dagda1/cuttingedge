@@ -42,17 +42,21 @@ jobs:
         run: |
           FLAGS=""
           if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
-            echo "startWith"
             FLAGS="--production"
           fi
-
-          echo "main = ${{ github.ref == 'refs/heads/main' }}"
           
           if [[ "${{ github.ref == 'refs/heads/main' }}" == true ]]; then
             FLAGS="--staging"
           fi
+          echo --------------------
+          echo "${{ startsWith(github.ref, 'refs/tags/v') }}"
+          echo $FLAGS
+          echo --------------------
 
           pnpm arc env -e $FLAGS --add GIT_COMMIT $(git rev-parse HEAD)
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Deploy app to staging
         if: github.ref == 'refs/heads/main'
