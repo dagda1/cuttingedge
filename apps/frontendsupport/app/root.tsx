@@ -103,7 +103,7 @@ export default function App() {
           <Scripts />
           {/* <LiveReload /> */}
         </main>
-        {`<!-- ${data?.ENV?.GIT_COMMIT} -->`}
+        <div style={{ display: 'none' }}>{data?.ENV?.GIT_COMMIT}</div>
       </body>
     </html>
   );
