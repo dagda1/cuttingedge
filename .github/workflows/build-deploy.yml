@@ -2,27 +2,31 @@ name: Build and deploy
 
 on: [ push, pull_request ]
 
+env:
+  CI: true
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: "us-east-1"
+  
 jobs:
-  build:
+  deploy:
     environment: CI
-    name: build and deploy to aws lambda
+    name: build and deploy to AWS
     runs-on: ubuntu-latest
-    env:
-      CI: true
     steps:
       - uses: pnpm/action-setup@v2.4.0
         with:
           version: 8.6.12
-
+    
       - name: Checkout Repo
         uses: actions/checkout@v3
-
+    
       - name: Setup Node.js 16.x
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: 'pnpm'
-
+    
       - name: Cache pnpm modules
         uses: actions/cache@v3
         with:
@@ -42,57 +46,41 @@ jobs:
         run: |
           FLAGS=""
           if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
+            FLAGS="production"
+          fi
+          
+          if [[ "${{ github.ref == 'refs/heads/main' }}" == true ]]; then
+            FLAGS="staging"
+          fi
+
+          pnpm arc env -e $FLAGS --add GIT_COMMIT $(git rev-parse HEAD)
+  
+      - name: run architect deploy
+        if: github.ref == 'refs/heads/main'
+        working-directory: apps/frontendsupport
+        run: |
+          FLAGS=""
+          if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
             FLAGS="--production"
           fi
           
           if [[ "${{ github.ref == 'refs/heads/main' }}" == true ]]; then
             FLAGS="--staging"
           fi
-          echo --------------------
-          echo "${{ startsWith(github.ref, 'refs/tags/v') }}"
-          echo $FLAGS
-          echo --------------------
-
-          pnpm arc env -e $FLAGS --add GIT_COMMIT $(git rev-parse HEAD)
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Deploy app to staging
-        if: github.ref == 'refs/heads/main'
-        working-directory: apps/frontendsupport
-        run: NODE_ENV=production pnpm arc deploy --staging -v --prune
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Deploy app to production
-        if: startsWith(github.ref, 'refs/tags/v')
-        working-directory: apps/frontendsupport
-        run: NODE_ENV=production pnpm arc deploy --production -v --prune
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          
+          NODE_ENV=production pnpm arc deploy $FLAGS -v --prune
 
       - name: Invalidate Cloudfront cache staging
         if: github.ref == 'refs/heads/main'
         uses: imehedi/actions-awscli-v2@latest
         with:
             args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_STAGING_ID }} --paths "/*" --no-cli-pager
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "us-east-1"
 
       - name: Invalidate Cloudfront cache Production
         if: startsWith(github.ref, 'refs/tags/v')
         uses: imehedi/actions-awscli-v2@latest
         with:
             args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_PRODUCTION_ID }} --paths "/*" --no-cli-pager
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "us-east-1"
 
       - name: Trigger webpage test
         if: github.event_name == 'pull_request'
