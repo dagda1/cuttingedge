@@ -45,7 +45,7 @@ jobs:
         working-directory: apps/frontendsupport
         run: |
           FLAGS=""
-          if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
+          if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == "true" ]]; then
             FLAGS="production"
           else
             FLAGS="staging"
@@ -54,11 +54,11 @@ jobs:
           pnpm arc env -e $FLAGS --add GIT_COMMIT $(git rev-parse HEAD)
   
       - name: run architect deploy
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
         working-directory: apps/frontendsupport
         run: |
           FLAGS=""
-          if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
+          if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == "true" ]]; then
             FLAGS="--production"
           else
             FLAGS="--staging"
