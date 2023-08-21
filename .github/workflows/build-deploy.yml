@@ -47,9 +47,7 @@ jobs:
           FLAGS=""
           if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
             FLAGS="production"
-          fi
-          
-          if [[ "${{ github.ref == 'refs/heads/main' }}" == true ]]; then
+          else
             FLAGS="staging"
           fi
 
@@ -62,9 +60,7 @@ jobs:
           FLAGS=""
           if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
             FLAGS="--production"
-          fi
-          
-          if [[ "${{ github.ref == 'refs/heads/main' }}" == true ]]; then
+          else
             FLAGS="--staging"
           fi
           
