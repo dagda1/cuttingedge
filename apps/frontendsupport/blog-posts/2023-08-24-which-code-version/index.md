@@ -25,7 +25,7 @@ The hash in the markup can then be an input for the [git show command](https://g
 
 I used to parse the version of the code from the package.json file, but this is only sometimes reliable. The version number field of a `package.json`` file will probably not get updated on each commit, while a git commit hash certainly will.
 
-## CI/CDs pipeline is the only place where environment variables should be assigned values
+## CI/CD pipeline is the only place where environment variables should be assigned values
 
 Checking `.env` files of anything into source control will soon become a security hazard. The retrieval and setting of environment variable values should be part of the continuous integration/deployment process (CI/CD), even for something as seemingly innocuous as a git commit hash. Please do not rely on a developer to set this value before each deploy. Every value must be assigned as part of the automated release process.
 
@@ -66,7 +66,7 @@ module.exports = {
   set: {
     env({ arc, inventory }) {
       return {
-        API_SECRET: process.env.GIT_COMMIT,
+        GIT_COMMIT: process.env.GIT_COMMIT,
       };
     },
   },
