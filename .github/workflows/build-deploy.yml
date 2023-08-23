@@ -41,20 +41,8 @@ jobs:
       - name: Build App
         run: pnpm build
 
-      - name: Set arc environment variables
-        working-directory: apps/frontendsupport
-        run: |
-          FLAGS=""
-          if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
-            FLAGS="production"
-          else
-            FLAGS="staging"
-          fi
-
-          pnpm arc env -e $FLAGS --add GIT_COMMIT $(git rev-parse HEAD)
-  
       - name: run architect deploy
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') || github.event_name == 'pull_request'
         working-directory: apps/frontendsupport
         run: |
           FLAGS=""
@@ -64,7 +52,9 @@ jobs:
             FLAGS="--staging"
           fi
           
-          NODE_ENV=production pnpm arc deploy $FLAGS -v --prune
+          GIT_COMMIT="$(git rev-parse HEAD)" pnpm arc deploy $FLAGS -v --prune
+        env:
+          NODE_ENV: production
 
       - name: Invalidate Cloudfront cache staging
         if: github.ref == 'refs/heads/main'

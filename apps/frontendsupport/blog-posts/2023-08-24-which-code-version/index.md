@@ -2,7 +2,7 @@
 meta:
   title: How to pinpoint which version of the code is running in any environment
   description: Being able to tell at a glance which version of the code is in which environment is critical.
-  date: "2023-08-20T00:00:00.000Z"
+  date: "2023-08-24T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1692637878/versioning_gsg8au.png"
   tags: ["github-actions", "continuous-integration", "devops"]
 ---
