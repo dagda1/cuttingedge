@@ -1,6 +1,6 @@
 # @cutting/frontend-support
 
-## 0.1.18
+## 0.1.19
 
 ### Patch Changes
 
