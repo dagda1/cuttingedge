@@ -33,7 +33,7 @@ Each route can also define a [loader function](https://remix.run/docs/en/1.19.3/
 
 My `posts._index.tsx` file that defines the default export for the component that renders the HTML and the loader function is below:
 
-```ts:posts._index.tsx
+```ts:posts._index.tsx {1,5} showLineNumbers
 export const loader: LoaderFunction = async () => {
   return getPosts();
 };

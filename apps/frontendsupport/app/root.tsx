@@ -19,6 +19,7 @@ export async function loader() {
   return json({
     ENV: {
       GIT_COMMIT: process.env.GIT_COMMIT,
+      API_SECRET: process.env.API_SECRET,
     },
   });
 }
@@ -72,6 +73,8 @@ export const links: LinksFunction = () => [
 
 export default function App() {
   const data = useLoaderData<typeof loader>();
+
+  console.dir({ data });
 
   return (
     <html lang="en">
