@@ -4,14 +4,13 @@ import { useParentSize } from '@cutting/use-get-parent-size';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { Box, Heading } from '@cutting/component-library';
+import { Box } from '@cutting/component-library';
 import { FrontPage } from '~/components/FrontPage/FrontPage';
 import { OSS } from '../Panels/OSS/OSS';
 import { Highlights } from '../Panels/Highlights/Highlights';
 import { MobileContainer } from './MobileContainer';
 import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { Services } from '../Panels/Services/Services';
-import { Scroller } from '~/components/Scroller/Scroller';
 import { Clients } from '../Panels/Clients/Clients';
 
 export function HomeMobile(): JSX.Element {
@@ -74,22 +73,6 @@ export function HomeMobile(): JSX.Element {
     <Box height="full" ref={panelsContainer}>
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690025905/struggle_yderkl.png">
         <FrontPage />
-      </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_50/v1690894100/vr_fmjy7g.png">
-        <Box
-          width="full"
-          height="full"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-          flexGrow={1}
-        >
-          <Heading level="2">We can help if.....</Heading>
-          <Box marginY="xxlarge">
-            <Scroller />
-          </Box>
-        </Box>
       </MobileContainer>
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1690028841/dusk_kg7et9.png">
         <Frameworks />

@@ -1,4 +1,4 @@
-import { Box, List, Text } from '@cutting/component-library';
+import { Box, Heading, List, Text } from '@cutting/component-library';
 import { Panel } from '~/components/Panel/Panel';
 import { ParallaxPanel, type ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel';
 
@@ -55,6 +55,7 @@ export function Frameworks(): JSX.Element {
     <Panel>
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
         <Box marginLeft="small">
+          <Heading level="1">We can help when</Heading>
           <List>
             <Text size="large" tone="primary">
               You have to get it right first time
