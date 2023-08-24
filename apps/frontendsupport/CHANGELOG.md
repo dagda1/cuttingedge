@@ -1,5 +1,15 @@
 # @cutting/frontend-support
 
+## 0.1.27
+
+### Patch Changes
+
+- 78f04db2: change support font
+- Updated dependencies [78f04db2]
+  - @cutting/component-library@5.41.3
+  - @cutting/react-hook-form-components@0.5.5
+  - @cutting/use-get-parent-size@2.1.4
+
 ## 0.1.19
 
 ### Patch Changes

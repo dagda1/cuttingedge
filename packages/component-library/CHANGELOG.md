@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.3
+
+### Patch Changes
+
+- 78f04db2: change support font
+
 ## 5.41.2
 
 ### Patch Changes
