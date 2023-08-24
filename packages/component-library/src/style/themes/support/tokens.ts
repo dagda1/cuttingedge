@@ -115,21 +115,21 @@ export const tokens: DeepPartial<Tokens> = {
       standard: {
         mobile: {
           fontSize: 16,
-          lineGap: 7,
+          lineGap: 9,
         },
         tablet: {
           fontSize: 19,
-          lineGap: 9,
+          lineGap: 11,
         },
       },
       small: {
         mobile: {
           fontSize: 14,
-          lineGap: 10,
+          lineGap: 12,
         },
         tablet: {
           fontSize: 17,
-          lineGap: 10,
+          lineGap: 13,
         },
       },
       xsmall: {

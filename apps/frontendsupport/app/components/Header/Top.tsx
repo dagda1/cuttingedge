@@ -36,6 +36,11 @@ export function TopNav(): JSX.Element {
             </TextNavLink>
           </Box>
         </NavItem>
+        <NavItem display="SubmenuMobile">
+          <CTAButton clickHandler={toggle} link="/contact">
+            CONTACT
+          </CTAButton>
+        </NavItem>
         {MenuItems.map(({ to, children }, i) => (
           <NavItem display="SubmenuMobile" key={i}>
             <TextNavLink to={to} onClick={toggle}>
@@ -43,11 +48,6 @@ export function TopNav(): JSX.Element {
             </TextNavLink>
           </NavItem>
         ))}
-        <NavItem display="SubmenuMobile">
-          <CTAButton clickHandler={toggle} link="/contact">
-            Contact
-          </CTAButton>
-        </NavItem>
       </NavItems>
     </Nav>
   );

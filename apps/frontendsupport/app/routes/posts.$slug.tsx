@@ -92,7 +92,9 @@ export default function PostRoute() {
   return (
     <Box style={{ marginTop: '6rem' }}>
       <PageBlock>
-        <Heading level="1">{frontmatter.meta.title}</Heading>
+        <Box marginBottom="small">
+          <Heading level="1">{frontmatter.meta.title}</Heading>
+        </Box>
         {frontmatter.meta.image && <Image layout="constrained" width={600} height={400} src={frontmatter.meta.image} />}
         <Component
           components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
