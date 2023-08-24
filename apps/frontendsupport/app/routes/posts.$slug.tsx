@@ -1,5 +1,5 @@
 import { getMDXComponent } from 'mdx-bundler/client';
-import type { ReactNode } from 'react';
+import type { DetailedHTMLProps, ReactNode } from 'react';
 import { useMemo } from 'react';
 import { json } from '@remix-run/node';
 import type { V2_MetaFunction, LoaderFunction } from '@remix-run/node';
@@ -41,6 +41,13 @@ function Heading2({ children }: Props): JSX.Element {
       <Heading level="2">{children}</Heading>
     </Box>
   );
+}
+
+function Img({
+  src,
+  alt,
+}: DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>): JSX.Element {
+  return <Image src={src as string} alt={alt} layout="constrained" width={600} height={300} />;
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -95,7 +102,7 @@ export default function PostRoute() {
         <Heading level="1">{frontmatter.meta.title}</Heading>
         {frontmatter.meta.image && <Image layout="constrained" width={600} height={400} src={frontmatter.meta.image} />}
         <Component
-          components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
+          components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any, img: Img }}
           attributes={frontmatter}
         />
       </PageBlock>

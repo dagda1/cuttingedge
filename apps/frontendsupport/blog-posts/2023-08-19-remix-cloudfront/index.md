@@ -13,7 +13,7 @@ I launched the [sales website](https://frontendrescue.com/) that you are current
 
 That is until I clicked on one of the links that I had posted on Linkedin, and instead of viewing a beautifully crafted HTML-rendered page, I looked in horror as the browser rendered a blob of JSON in all its non-HTML drabness:
 
-![loader json](https://res.cloudinary.com/ddospxsc8/image/upload/v1692448790/loader-json_obuzuq.png)
+![loader json](https://res.cloudinary.com/ddospxsc8/image/upload/v1692892010/loader-json_xjgnwt.png)
 
 Looking at this JSON in the browser was like a sucker punch to the solar plexus. My sales website is about building my authority as a frontend expert. This JSON blob in the browser contradicts this highly. My anxious mind was conjuring up images of prospective clients looking disgusted at this glaring bug.
 
@@ -25,7 +25,7 @@ Looking at this JSON in the browser was like a sucker punch to the solar plexus.
 
 I followed [remix-run's v2 naming convention](https://remix.run/docs/en/1.19.3/file-conventions/route-files-v2) to the letter, and the `posts._index.tsx` file is the route that lists all the blog posts for the `/posts` route.
 
-![route code files](https://res.cloudinary.com/ddospxsc8/image/upload/v1692450524/routes_r4hmfb.png)
+![route code files](https://res.cloudinary.com/ddospxsc8/image/upload/v1692892307/routes2_kuva4m.png)
 
 If a [remix-run](https://remix.run/docs/en/1.19.3/file-conventions/route-files-v2) route has a function that is both a default export and a react component, then that component will render the HTML for that route.
 
