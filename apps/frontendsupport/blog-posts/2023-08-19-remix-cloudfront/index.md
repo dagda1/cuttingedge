@@ -13,7 +13,7 @@ I launched the [sales website](https://frontendrescue.com/) that you are current
 
 That is until I clicked on one of the links that I had posted on Linkedin, and instead of viewing a beautifully crafted HTML-rendered page, I looked in horror as the browser rendered a blob of JSON in all its non-HTML drabness:
 
-![loader json](https://res.cloudinary.com/ddospxsc8/image/upload/v1692448790/loader-json_obuzuq.png)
+![loader json](https://res.cloudinary.com/ddospxsc8/image/upload/v1692892010/loader-json_xjgnwt.png)
 
 Looking at this JSON in the browser was like a sucker punch to the solar plexus. My sales website is about building my authority as a frontend expert. This JSON blob in the browser contradicts this highly. My anxious mind was conjuring up images of prospective clients looking disgusted at this glaring bug.
 

@@ -20,6 +20,10 @@ globalStyle('main', {
   height: '100%',
 });
 
+globalStyle('img', {
+  maxWidth: '100%',
+});
+
 globalStyle('.cutting-inline', {
   background: 'transparent !important',
   color: `${vars.foregroundColor.promote} !important`,
