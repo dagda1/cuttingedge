@@ -1,4 +1,4 @@
-import type { ReactNode, Ref } from 'react';
+import type { MouseEventHandler, ReactNode } from 'react';
 import cs from 'classnames';
 import * as styles from './CTAButton.css';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
@@ -7,12 +7,12 @@ interface CTAButtonProps {
   children: ReactNode;
   className?: string;
   link: string;
-  innerRef?: Ref<HTMLAnchorElement>;
+  clickHandler?: MouseEventHandler<HTMLAnchorElement>;
 }
 
-export function CTAButton({ children, link, className, innerRef }: CTAButtonProps): JSX.Element {
+export function CTAButton({ children, link, className, clickHandler }: CTAButtonProps): JSX.Element {
   return (
-    <TextNavLink size="large" ref={innerRef} to={link} className={cs(styles.ctaButton, className)}>
+    <TextNavLink onClick={clickHandler} size="large" to={link} className={cs(styles.ctaButton, className)}>
       {children}
     </TextNavLink>
   );
