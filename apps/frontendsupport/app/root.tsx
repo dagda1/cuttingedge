@@ -78,7 +78,7 @@ export default function App() {
       <head>
         <script defer data-domain="frontendrescue.com" src="https://plausible.io/js/script.js"></script>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
         <meta property="og:site_name" content="Cutting-Edge Solutions" />
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
