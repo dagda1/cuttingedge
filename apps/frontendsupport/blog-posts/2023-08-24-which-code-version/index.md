@@ -19,7 +19,7 @@ A git commit hash is a perfect identifier to pinpoint what version of the code i
 
 The hash in the markup can then be an input for the [git show command](https://git-scm.com/docs/git-show), which can display a nice git diff of precisely which commit this hash is pointing at.
 
-![git show result](https://res.cloudinary.com/ddospxsc8/image/upload/v1692819323/git-show_dgaicf.png)
+![git show result](https://res.cloudinary.com/ddospxsc8/image/upload/v1692890916/git-show2_pvhq29.png)
 
 ## What makes a suitable identifier?
 
