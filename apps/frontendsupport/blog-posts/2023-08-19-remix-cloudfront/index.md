@@ -3,7 +3,7 @@ meta:
   title: remix-run route returning the loader function's JSON instead of HTML because of missing AWS Cloudfront cache keys
   Description: I had a very troubling bug whereby hitting a route in a remix-run application returned the loader function's JSON and not the default export's HTML
   date: "2023-08-19T00:00:00.000Z"
-  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1692456792/remix_j9t9rx.png"
+  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1692905654/remix2_b9upfh.png"
   tags: ["remix", "react", "aws"]
 ---
 
