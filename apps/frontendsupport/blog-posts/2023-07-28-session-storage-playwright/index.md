@@ -1,7 +1,7 @@
 ---
 meta:
   title: Store authentication state across Playwright tests in applications that use sessionStorage
-  description: I found the Playwright docs helpful but confusing about how to store authentication state across tests if your application stores tokens in sessionStorage.
+  description: How to store authentication state across tests if your application stores tokens in sessionStorage.
   date: "2023-07-31T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1690741574/playwright_iofvmm.png"
   tags: ["playwright", "testing"]

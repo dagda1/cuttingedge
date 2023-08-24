@@ -31,7 +31,7 @@ export function TopNav(): JSX.Element {
                 style={{ position: 'relative', top: '-5px', marginRight: vars.space['medium'] }}
               />
             </NavLink>
-            <TextNavLink size="standard" to={'/'}>
+            <TextNavLink size="large" to={'/'}>
               FRONTEND RESCUE
             </TextNavLink>
           </Box>
@@ -43,8 +43,10 @@ export function TopNav(): JSX.Element {
             </TextNavLink>
           </NavItem>
         ))}
-        <NavItem display="Always">
-          <CTAButton link="/contact">GET IN TOUCH</CTAButton>
+        <NavItem display="SubmenuMobile">
+          <CTAButton clickHandler={toggle} link="/contact">
+            Contact
+          </CTAButton>
         </NavItem>
       </NavItems>
     </Nav>

@@ -2,7 +2,7 @@ import type { DeepPartial } from '@cutting/util';
 import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
 import { extractFontMetricsForTheme } from '~/style/util/typography';
-import oswald from '@capsizecss/metrics/oswald';
+import montserrat from '@capsizecss/metrics/montserrat';
 
 const colors = {
   primary: palette.lime500,
@@ -43,13 +43,13 @@ export const tokens: DeepPartial<Tokens> = {
   typography: {
     webFont: {
       heading: 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap',
-      text: 'https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Sora&display=swap',
+      text: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap',
     },
     fontFamily: {
       heading: 'Bebas Neue,Rubik',
-      text: '"Oswald"',
+      text: '"Montserrat"',
     },
-    fontMetrics: extractFontMetricsForTheme(oswald),
+    fontMetrics: extractFontMetricsForTheme(montserrat),
     fontWeight: {
       regular: 300,
     },
