@@ -1,5 +1,12 @@
 # @cutting/markdown
 
+## 0.1.3
+
+### Patch Changes
+
+- 19f8a94a: bottom an top types post
+- 19f8a94a: bottom and top types post
+
 ## 0.1.2
 
 ### Patch Changes
