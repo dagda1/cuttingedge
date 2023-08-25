@@ -28,7 +28,7 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
   const { default: rehypeSlug } = await import('rehype-slug');
   const { default: remarkMath } = await import('remark-math');
 
-  const { default: rehypeKatex } = await import('rehype-katex');
+  const { default: rehypeKatex } = await import('rehype-mathjax');
   const { default: rehypeCitation } = await import('rehype-citation');
   const { default: rehypePrismPlus } = await import('rehype-prism-plus');
   const { default: rehypeRaw } = await import('rehype-raw');
