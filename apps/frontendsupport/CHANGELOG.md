@@ -1,5 +1,15 @@
 # @cutting/frontend-support
 
+## 0.1.28
+
+### Patch Changes
+
+- 19f8a94a: bottom an top types post
+- 19f8a94a: bottom and top types post
+- Updated dependencies [19f8a94a]
+- Updated dependencies [19f8a94a]
+  - @cutting/markdown@0.1.3
+
 ## 0.1.27
 
 ### Patch Changes
