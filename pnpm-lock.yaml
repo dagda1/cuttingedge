@@ -311,8 +311,8 @@ importers:
         version: 9.0.4(react@18.2.0)
     devDependencies:
       '@architect/architect':
-        specifier: ^10.14.0
-        version: 10.14.0
+        specifier: ^10.14.1
+        version: 10.14.1
       '@babel/runtime':
         specifier: ^7.22.10
         version: 7.22.10
@@ -1730,13 +1730,13 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.19
 
-  /@architect/architect@10.14.0:
-    resolution: {integrity: sha512-gi9yYJac/Iq4J2QsJveDKpnNzzgaPjT9INS7CNpDcG0S8IEPUD6cs3l3H9+LPZvF95zCVaeSK5/VHods5dJ+5Q==}
+  /@architect/architect@10.14.1:
+    resolution: {integrity: sha512-gDWba/BB5rQCbchMRhSZ/aqT+F5LEHiA+KPv9XDebvIZ4iPn+lTfkZ0ZoP0EzURnjkQK8yjbsa1RDEgJcwIzkw==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
       '@architect/create': 4.2.3
-      '@architect/deploy': 4.6.0
+      '@architect/deploy': 4.6.1
       '@architect/destroy': 3.0.13
       '@architect/env': 3.0.12
       '@architect/hydrate': 3.3.0
@@ -1781,8 +1781,8 @@ packages:
       minimist: 1.2.8
     dev: true
 
-  /@architect/deploy@4.6.0:
-    resolution: {integrity: sha512-pwfVHRCLBfidQk2IWfj+sjK6xHGyu6l7Z1K8oOoxDY0eIIxEO9GuTrQtI7wUrsWLREAeTt+Frli/tru/PvGW5A==}
+  /@architect/deploy@4.6.1:
+    resolution: {integrity: sha512-URWRkmeKYle04PiHBzW5FSjC2a+XHB9Xlt0rvuoHnHMEwyxAsZ+sgCVeP9uUE3vjtymLJUMrIHudNVbr/kvNSA==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
@@ -4540,22 +4540,22 @@ packages:
       rollup: 2.79.1
     dev: false
 
-  /@definitelytyped/header-parser@0.0.165:
-    resolution: {integrity: sha512-UJkrgsNvY0qa2sbUdIcdT4P1iGi0MxvZ/TUB3psidyOAmqDbyPprlPbQwLp34k7NI+RQBRQogb8j4Dez4vRuLA==}
+  /@definitelytyped/header-parser@0.0.169:
+    resolution: {integrity: sha512-6aI0ETYbHRuf5GR/WMq+emPsimC8cOLig6Ncq+JcBLM3cZqEpZV2HQkxEzL5grBLi5ClCX6GtyUrPIpEZsL2UA==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.165
+      '@definitelytyped/typescript-versions': 0.0.169
       '@types/parsimmon': 1.10.6
       parsimmon: 1.18.1
     dev: true
 
-  /@definitelytyped/typescript-versions@0.0.165:
-    resolution: {integrity: sha512-aLAAhpNPWTSSxKL3B60z9NIxYqeU+K0OfjGDim8D4BlBn2EXBb43h5leQVb+w2YtIQhkUJAAN9bFYzp+beNf1g==}
+  /@definitelytyped/typescript-versions@0.0.169:
+    resolution: {integrity: sha512-DFpgq0aDTIuGG2mkvm5uq0Fhzr5ysIiNd6CeqQRXP+596LgK06pdaScWCG7eEFfWWBsS2Y9amGVV6sXTJ1Nl/w==}
     dev: true
 
-  /@definitelytyped/utils@0.0.165:
-    resolution: {integrity: sha512-Bg4l1XLfuIb+4/S3AVO5ozFO7XMybxr5m+6FNVkw/HVt/IYiuwR5hDfm7FLlJHw1TYsF8AsIXIu3S9fRlrNntw==}
+  /@definitelytyped/utils@0.0.169:
+    resolution: {integrity: sha512-iua4RM/3Dc4aNKAa138r1xpKB3iE6RPV4uIfVu19aiwNtJnlSrjHMvFqOQvqU5Sv78TraIZ/ScKwSJQYnNlrtA==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.165
+      '@definitelytyped/typescript-versions': 0.0.169
       '@qiwi/npm-registry-client': 8.9.1
       '@types/node': 14.18.54
       charm: 1.0.2
@@ -10540,7 +10540,6 @@ packages:
   /acorn-walk@8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
-    dev: true
 
   /acorn@6.4.2:
     resolution: {integrity: sha512-XtGIhXwF8YM8bJhGxG5kXgjkEuNGLTkoYqVE+KMR+aspr4KGYmKYg7yUe3KghyQ9yheNwLnjmzh/7+gfDBmHCQ==}
@@ -13273,7 +13272,7 @@ packages:
     peerDependencies:
       typescript: '*'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.165
+      '@definitelytyped/header-parser': 0.0.169
       command-exists: 1.2.9
       rimraf: 3.0.2
       semver: 6.3.1
@@ -13289,9 +13288,9 @@ packages:
     peerDependencies:
       typescript: '>= 3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.7.0-dev || >= 3.8.0-dev || >= 3.9.0-dev || >= 4.0.0-dev'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.165
-      '@definitelytyped/typescript-versions': 0.0.165
-      '@definitelytyped/utils': 0.0.165
+      '@definitelytyped/header-parser': 0.0.169
+      '@definitelytyped/typescript-versions': 0.0.169
+      '@definitelytyped/utils': 0.0.169
       dts-critic: 3.3.11(typescript@5.1.6)
       fs-extra: 6.0.1
       json-stable-stringify: 1.0.2
