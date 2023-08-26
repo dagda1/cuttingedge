@@ -4,6 +4,7 @@ meta:
   description: In TypeScript, there are two top types unknown and any, and never is the only bottom type
   date: "2023-08-28T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1692641451/top_dc610r.png"
+
   tags: ["github-actions", "continuous-integration"]
 ---
 
@@ -11,13 +12,15 @@ In the ever-evolving landscape of TypeScript, understanding fundamental concepts
 
 Typescript has two top types, `any` and `unknown` and `never` is the bottom type.
 
-But before we start, let us get a couple of definitions for important concepts.
+A top type is the supertype of all types, and the bottom type can be known as the subtype of all types.
+
+Before progressing further, let us define what a supertype and subtype are.
 
 ## supertypes and subtypes
 
-A supertype is a generalized entity that can represent common properties. Entities like `Animal` or `Vehicle` are good examples of supertypes.
+A `supertype` is a generalized entity that can represent common properties. Supertypes exist higher up the hierarchy or near the top because they are more generic and cover more cases. Entities like `Animal` or `Vehicle` are good examples of supertypes.
 
-A subtype is a specialized version of a supertype, e.g. a `Dog` is a subtype of the Animal supertype or a `Car` is a subtype of `Vehicle`.
+A `subtype` is a specialized version of a supertype, e.g. a `Dog` is a subtype of the Animal supertype or a `Car` is a subtype of `Vehicle`. Subtypes exist lower down the hierarchy or near the bottom.
 
 Below is a simple object hierarchy with `Dog` as a supertype and `Pitbull` and `Alsation` as subtypes of the supertype `Dog`.
 
@@ -68,10 +71,11 @@ anything.someRandomMethod(); // TypeScript won't complain
 
 Introduced in Typescrip 3.0, `unknown` is also a top type, but it is much less permissive regarding operations. With `unknown`, you can assign any variable value but can't perform operations on that variable without first asserting or narrowing the type.
 
-You can't access arbitrary properties on an unknown variable.
-You can't call/construct an unknown variable.
-You can only use it on the right side of the assignment if the left side is unknown.
-`unknown` is a safer alternative to `any` when you want to describe a value that comes from a dynamic source (like user input or a third-party library), and ensure that you perform proper type checking before operating on it.
+- You cannot access arbitrary properties on an unknown variable.
+- You cannot call/construct an unknown variable.
+- You can only use it on the right side of the assignment if the left side is unknown.
+
+`unknown` is a safer alternative to `any` when you want to describe a value from a dynamic source (like user input or a third-party library) and ensure that you perform proper type checking before operating on it.
 
 ```ts
 let mystery: unknown = "hello";
@@ -80,7 +84,6 @@ mystery = 42;
 //following would result in errors:
 // let num: number = mystery;
 // mystery.someRandomMethod();
-
 // To use the value, you have to perform type checking or assertions:
 if (typeof mystery === "number") {
   let num: number = mystery; // This is safe now.
@@ -101,9 +104,9 @@ A better way to think of the bottom type is that if a function returns the botto
 
 The `never` type in Typescript is not a direct equivalent to the formal definition of a bottom type but is the closest in terms of concept. Where `never` deviates from the formal definition is that `never` can be assigned to any other type.
 
-Examples of the bottom type are:
+Examples of functions that return never:
 
-- A function that throws an error:
+#### A function that throws an error:
 
 ```ts
 function throwError(message: string): never {
@@ -111,7 +114,7 @@ function throwError(message: string): never {
 }
 ```
 
-- A function with an unreachable end:
+#### A function with an unreachable end:
 
 ```ts
 function infiniteLoop(): never {
@@ -121,10 +124,11 @@ function infiniteLoop(): never {
 
 ### Practical uses of never
 
-The `never` type has some very practical uses:
+The `never` type has some efficient uses:
 
-- Using type assertions with never:
-  If you're doing exhaustive type checks, you can leverage the never type to ensure at compile-time that all cases of a union are handled.
+#### Using type assertions with never
+
+If you're doing exhaustive type checks, you can leverage the never type to ensure that all cases of a union are handled at compile-time.
 
 ```ts
 type Fruit = "apple" | "orange" | "banana";
@@ -146,7 +150,7 @@ function getFruitInfo(fruit: Fruit) {
 }
 ```
 
-- Filtering uinion types
+#### Filtering union types
 
 ```ts
 type Exclude<T, U> = T extends U ? never : T;
@@ -154,7 +158,7 @@ type Exclude<T, U> = T extends U ? never : T;
 type T1 = Exclude<"a" | "b" | "c", "a" | "b">; // Result: 'c'
 ```
 
-The `Exclude` built-in utility type in TypeScript will filter out any types in T that extend U. Any type in T that matches U will evaluate to never and effectively be removed from the union.
+The `Exclude` built-in utility type in TypeScript will filter out any types in `T` that extend `U`. Any type in `T` that matches `U` will evaluate to `never` and effectively be removed from the union.
 
 One interesting case is the `IsNever` type below:
 
@@ -165,7 +169,7 @@ type Test1 = IsNever<never>; // true
 type Test2 = IsNever<string>; // false
 ```
 
-It is worth noting that both `[T]` and `[never]` have square brackets around them. Why do we need to that?
+It is worth noting that both `[T]` and `[never]` have square brackets around them. Why do we need to do that?
 
 Consider the following where neither `T` or `never` are tuples:
 
@@ -182,12 +186,12 @@ The reason is that `never` is a bottom type that never distributes. It is like a
 ## TLDR;
 
 - The top type $$\top$$ is the supertype of all types
-- `any` and `unknown` are top types in typescript
+- `any` and `unknown` are top types in Typescript
 - The bottom type $$\bot$$ is the subtype of all types
-- `never` is the closest to a bottom type in typescript
+- `never` is the closest to a bottom type in Typescript
 
-As the top type, the `any` type provides flexibility and can be a bridge when transitioning from JavaScript to TypeScript or when dealing with complex, unknown type scenarios. But with its power comes the responsibility to use it judiciously to avoid undermining the type safety that TypeScript offers.
+As the top type, the `any` type provides flexibility and can be a bridge when transitioning from JavaScript to TypeScript or when dealing with complex, unknown type scenarios. However, with its power comes the responsibility to use it judiciously to avoid undermining the type safety that TypeScript offers.
 
-On the other hand, the never type, representing the bottom type, serves as a tool for exhaustive type checks and unreachable code paths. It's a testament to TypeScript's design that even such a theoretical concept has real-world utility, aiding in writing safer and more maintainable code.
+On the other hand, the `never` type, representing the bottom type, serves as a tool for exhaustive type checks and unreachable code paths. It's a testament to TypeScript's design that even such a theoretical concept has real-world utility, aiding in writing safer and more maintainable code.
 
-For those intrigued by these concepts, diving deeper into type theory and how other languages handle top and bottom types can be rewarding. As TypeScript continues to grow and evolve, having a solid grasp of these foundational ideas will undoubtedly serve us well in navigating and mastering the intricacies of this powerful language.
+Diving deeper into type theory and how other languages handle top and bottom types can be rewarding for those intrigued by these concepts. As TypeScript continues to grow and evolve, having a solid grasp of these foundational ideas will undoubtedly serve us well in navigating and mastering the intricacies of this powerful language.

@@ -1,11 +1,12 @@
 import { getMDXComponent } from 'mdx-bundler/client';
 import type { ReactNode } from 'react';
-import { useMemo } from 'react';
+import { Children, isValidElement, useMemo } from 'react';
 import { json } from '@remix-run/node';
 import type { V2_MetaFunction, LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
-import { Box, Heading, PageBlock, Text, TextLink } from '@cutting/component-library';
+import type { ReactNodeNoStrings } from '@cutting/component-library';
+import { Box, Heading, List, PageBlock, Text, TextLink } from '@cutting/component-library';
 import type { FrontMatter } from '~/types';
 import { Image } from '@unpic/react';
 import type { Location } from '@remix-run/react';
@@ -40,6 +41,48 @@ function Heading2({ children }: Props): JSX.Element {
     <Box marginTop="large">
       <Heading level="2">{children}</Heading>
     </Box>
+  );
+}
+
+function Heading3({ children }: Props): JSX.Element {
+  return (
+    <Box marginTop="large">
+      <Heading level="3">{children}</Heading>
+    </Box>
+  );
+}
+
+function Heading4({ children }: Props): JSX.Element {
+  return (
+    <Box marginTop="large">
+      <Heading level="4">{children}</Heading>
+    </Box>
+  );
+}
+
+function Ul({ children }: Props): JSX.Element {
+  if (!children || typeof children === 'string' || typeof children === 'boolean' || typeof children === 'number') {
+    return children as unknown as JSX.Element;
+  }
+
+  return (
+    <List>
+      {
+        Children.toArray(children).map((child, i) => {
+          if (!isValidElement(child)) {
+            return child;
+          }
+
+          const childChildren = child.props.children;
+
+          return (
+            <Text key={i} component="span">
+              {childChildren}
+            </Text>
+          );
+        }) as ReactNodeNoStrings
+      }
+    </List>
   );
 }
 
@@ -97,7 +140,15 @@ export default function PostRoute() {
         </Box>
         {frontmatter.meta.image && <Image layout="constrained" width={600} height={400} src={frontmatter.meta.image} />}
         <Component
-          components={{ p: Paragraph, h1: Heading1, h2: Heading2, a: TextLink as any }}
+          components={{
+            p: Paragraph,
+            h1: Heading1,
+            h2: Heading2,
+            h3: Heading3,
+            h4: Heading4,
+            a: TextLink as any,
+            ul: Ul,
+          }}
           attributes={frontmatter}
         />
       </PageBlock>
