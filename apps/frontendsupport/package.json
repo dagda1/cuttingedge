@@ -86,7 +86,7 @@
   },
   "devDependencies": {
     "@architect/architect": "^10.14.1",
-    "@babel/runtime": "^7.22.10",
+    "@babel/runtime": "^7.22.11",
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
     "@remix-run/dev": "^1.19.3",
