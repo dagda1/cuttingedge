@@ -22,7 +22,7 @@ interface Props {
 
 function Paragraph({ children }: Props): JSX.Element {
   return (
-    <Box component="p" marginY="large">
+    <Box component="p" marginTop="medium" marginBottom="large">
       <Text>{children}</Text>
     </Box>
   );

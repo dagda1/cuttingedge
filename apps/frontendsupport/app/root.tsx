@@ -1,5 +1,5 @@
 import { json, type LinksFunction, type V2_MetaFunction } from '@remix-run/node';
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, LiveReload } from '@remix-run/react';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
 import rehypeStyles from './rehype.css';
 import katex from 'katex/dist/katex.min.css';
 import { cssBundleHref } from '@remix-run/css-bundle';
@@ -102,7 +102,7 @@ export default function App() {
         </main>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
+        {/* <LiveReload /> */}
       </body>
     </html>
   );

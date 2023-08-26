@@ -37,62 +37,9 @@ walkies(new Alsation());
 
 The walkies function below takes a `dog` argument of type `Dog`. The `dog` argument can be bound to the `Pitbull` and `Alsation` subtypes.
 
-## Top type
-
-A top-level type or top type is also known as the universal supertype because all other types are subtypes of the top type. There is nothing above the top type. The $$\top$$ symbol commonly denotes the top type.
-
-The critical aspects of the top type are:
-
-- Represents a type that can hold a value of any other type.
-- It is the universal type, encompassing all possible values.
-- All other types are subtypes of the top type.
-
-Typescript has the `any` and `unknown` top types, which have very different behaviours.
-
-### any
-
-The `any` type is the most permissive type in Typescript. When you declare a variable as `any`, you can:
-
-- Assign any value to it
-- Access any of its properties
-- Call it as a function
-- Assign it to any other variable
-
-Declaring a variable as `any` effectively turns off the type checking, making it very flexible but risky, as you might inadvertently introduce runtime errors.
-
-```ts
-let anything: any = "hello";
-anything = 42;
-let num: number = anything; // no error, even if anything isn't a number
-anything.someRandomMethod(); // TypeScript won't complain
-```
-
-### unknown
-
-Introduced in Typescrip 3.0, `unknown` is also a top type, but it is much less permissive regarding operations. With `unknown`, you can assign any variable value but can't perform operations on that variable without first asserting or narrowing the type.
-
-- You cannot access arbitrary properties on an unknown variable.
-- You cannot call/construct an unknown variable.
-- You can only use it on the right side of the assignment if the left side is unknown.
-
-`unknown` is a safer alternative to `any` when you want to describe a value from a dynamic source (like user input or a third-party library) and ensure that you perform proper type checking before operating on it.
-
-```ts
-let mystery: unknown = "hello";
-mystery = 42;
-
-//following would result in errors:
-// let num: number = mystery;
-// mystery.someRandomMethod();
-// To use the value, you have to perform type checking or assertions:
-if (typeof mystery === "number") {
-  let num: number = mystery; // This is safe now.
-}
-```
-
 ## Bottom Type
 
-At the other end of the hierarchy of types is the bottom type.
+We will break with tradition and start at the end of the hierarchy of types, the bottom type.
 
 Wikipedia gives the following explanation, while slightly confusing, enforces the point that no type can be a subtype of the bottom type and is therefore at the bottom of the hierarchy:
 
@@ -182,6 +129,59 @@ type O = IsNever<never>; // never;
 Wut? Why am I not getting true or false here??
 
 The reason is that `never` is a bottom type that never distributes. It is like a union with 0 members, and the distribution effectively stops dead, which is why `never` is returned.
+
+## Top type
+
+A top-level type or top type is also known as the universal supertype because all other types are subtypes of the top type. There is nothing above the top type. The $$\top$$ symbol commonly denotes the top type.
+
+The critical aspects of the top type are:
+
+- Represents a type that can hold a value of any other type.
+- It is the universal type, encompassing all possible values.
+- All other types are subtypes of the top type.
+
+Typescript has the `any` and `unknown` top types, which have very different behaviours.
+
+### any
+
+The `any` type is the most permissive type in Typescript. When you declare a variable as `any`, you can:
+
+- Assign any value to it
+- Access any of its properties
+- Call it as a function
+- Assign it to any other variable
+
+Declaring a variable as `any` effectively turns off the type checking, making it very flexible but risky, as you might inadvertently introduce runtime errors.
+
+```ts
+let anything: any = "hello";
+anything = 42;
+let num: number = anything; // no error, even if anything isn't a number
+anything.someRandomMethod(); // TypeScript won't complain
+```
+
+### unknown
+
+Introduced in Typescrip 3.0, `unknown` is also a top type, but it is much less permissive regarding operations. With `unknown`, you can assign any variable value but can't perform operations on that variable without first asserting or narrowing the type.
+
+- You cannot access arbitrary properties on an unknown variable.
+- You cannot call/construct an unknown variable.
+- You can only use it on the right side of the assignment if the left side is unknown.
+
+`unknown` is a safer alternative to `any` when you want to describe a value from a dynamic source (like user input or a third-party library) and ensure that you perform proper type checking before operating on it.
+
+```ts
+let mystery: unknown = "hello";
+mystery = 42;
+
+//following would result in errors:
+// let num: number = mystery;
+// mystery.someRandomMethod();
+// To use the value, you have to perform type checking or assertions:
+if (typeof mystery === "number") {
+  let num: number = mystery; // This is safe now.
+}
+```
 
 ## TLDR;
 

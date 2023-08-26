@@ -329,3 +329,7 @@ pre[class*="language-"] > code[class*="language-"] {
 	box-shadow: inset 5px 0 0 #f7d87c;
 	z-index: 0;
 }
+
+blockquote, blockquote p, blockquote span {
+	color: #ffffff !important;
+}
