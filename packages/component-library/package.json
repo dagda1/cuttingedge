@@ -45,7 +45,7 @@
     "@types/babel__core": "7.20.1",
     "@types/dedent": "0.7.0",
     "@types/mdx-js__react": "1.5.5",
-    "@types/react": "18.2.20",
+    "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "@vanilla-extract/css": "^1.12.0",
     "@types/react-is": "^18.2.1",
