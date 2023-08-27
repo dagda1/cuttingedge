@@ -950,8 +950,8 @@ importers:
         specifier: 20.5.6
         version: 20.5.6
       '@types/papaparse':
-        specifier: 5.3.7
-        version: 5.3.7
+        specifier: 5.3.8
+        version: 5.3.8
       '@types/postcss-import':
         specifier: 14.0.0
         version: 14.0.0
@@ -9402,8 +9402,8 @@ packages:
     resolution: {integrity: sha512-WKG4gTr8przEZBiJ5r3s8ZIAoMXNbOgQ+j/d5O4X3x6kZJRLNvyUJuUK/KoG3+8BaOHPhp2m7WC6JKKeovDSzQ==}
     dev: true
 
-  /@types/papaparse@5.3.7:
-    resolution: {integrity: sha512-f2HKmlnPdCvS0WI33WtCs5GD7X1cxzzS/aduaxSu3I7TbhWlENjSPs6z5TaB9K0J+BH1jbmqTaM+ja5puis4wg==}
+  /@types/papaparse@5.3.8:
+    resolution: {integrity: sha512-ArKIEOOWULbhi53wkAiRy1ze4wvrTfhpAj7Yfzva+EkmX2sV8PpFB+xqzJfzXNzK4me95FJH9QZt5NXFVGzOoQ==}
     dependencies:
       '@types/node': 20.5.6
     dev: true
