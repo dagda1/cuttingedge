@@ -10,7 +10,7 @@ meta:
 
 ## Why never Matters
 
-In a language that aims to bring strong typing to JavaScript, a type that indicates the absence of a value seems paradoxical at first. However, the `never` type has several critical use cases that can make your code more robust and self-explanatory. It is often used in functions that never return or throw an error, in exhaustive type checks, and in advanced pattern-matching scenarios.
+In a language that aims to bring strong typing to JavaScript, a type that indicates the absence of a value seems paradoxical at first. However, the `never` type has several critical use cases that can make your code more robust and self-explanatory.
 
 ### top and bottom types
 
@@ -24,7 +24,7 @@ Before progressing further, let us define what a supertype and subtype are.
 
 A `supertype` is a generalized entity that can represent common properties. Supertypes exist higher up the hierarchy or near the top because they are more generic and cover more cases. Entities like `Animal` or `Vehicle` are good examples of supertypes.
 
-A `subtype` is a specialized version of a supertype, e.g. a `Dog` is a subtype of the Animal supertype or a `Car` is a subtype of `Vehicle`. Subtypes exist lower down the hierarchy or near the bottom.
+A `subtype` is a specialized version of a supertype, e.g. a `Dog` is a subtype of the `Animal` supertype or a `Car` is a subtype of `Vehicle`. Subtypes exist lower down the hierarchy or near the bottom.
 
 Below is a simple object hierarchy with `Dog` as a supertype and `Pitbull` and `Alsation` as subtypes of the supertype `Dog`.
 
@@ -181,7 +181,7 @@ type Exclude<T, U> = T extends U ? never : T;
 type T1 = Exclude<"a" | "b" | "c", "a" | "b">; // Result: 'c'
 ```
 
-The Exclude type iterates over each member of the union `T` and checks if it extends any type in the union `U`. If it does, it excludes that member from the resulting union by turning it into `never`.
+The `Exclude` type iterates over each member of the union `T` and checks if it extends any type in the union `U`. If it does, it excludes that member from the resulting union by turning it into `never`.
 
 You can also use `never` to conditionally filter types in more complex scenarios, for instance, filtering out types that have a certain property:
 
