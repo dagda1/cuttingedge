@@ -57,7 +57,7 @@
 pre[class*="language-"],
 code[class*="language-"] {
 	color: #d4d4d4;
-	font-size: 11px;
+	font-size: 11px !important;
 	text-shadow: none;
 	font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
 	direction: ltr;
@@ -73,13 +73,6 @@ code[class*="language-"] {
 	-moz-hyphens: none;
 	-ms-hyphens: none;
 	hyphens: none;
-}
-
-@media (max-width: 740px) {
-	pre[class*="language-"],
-	code[class*="language-"] {
-		font-size: 11px;
-	}
 }
 
 @media (min-width: 740px) {
