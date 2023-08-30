@@ -1,0 +1,25 @@
+{
+  "name": "threejs-starter-vite",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint './**/*.{ts,tsx,js}' -c ./.eslintrc.json --fix",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@cutting/component-library": "workspace:*",
+    "assert-ts": "^0.3.4",
+    "lil-gui": "^0.18.2",
+    "three": "^0.155.0"
+  },
+  "devDependencies": {
+    "@cutting/eslint-config": "workspace:*",
+    "@cutting/useful-types": "workspace:*",
+    "@types/three": "^0.155.0",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/esm",
+    "rootDir": "./src",
+    "noEmit": false,
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
+  "references": [
+    { "path": "../../packages/component-library/tsconfig.dist.json" }
+  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "./src/setupTests.ts",
+    "**/*.stories.tsx"
+  ]
+}
