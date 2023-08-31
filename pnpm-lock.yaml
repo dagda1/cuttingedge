@@ -391,6 +391,9 @@ importers:
       assert-ts:
         specifier: ^0.3.4
         version: 0.3.4
+      gsap:
+        specifier: ^3.12.2
+        version: 3.12.2
       lil-gui:
         specifier: ^0.18.2
         version: 0.18.2
@@ -413,6 +416,9 @@ importers:
       vite:
         specifier: ^4.4.9
         version: 4.4.9(@types/node@20.5.6)
+      vite-tsconfig-paths:
+        specifier: ^4.2.0
+        version: 4.2.0(typescript@5.1.6)(vite@4.4.9)
 
   apps/website:
     dependencies:
@@ -4577,22 +4583,22 @@ packages:
       rollup: 2.79.1
     dev: false
 
-  /@definitelytyped/header-parser@0.0.174:
-    resolution: {integrity: sha512-F6XD7eOWJoTGMlamrjQlvVtYdDS2aSG30nrIkXiXh23xkJcetT2Z15xoZnryEkIK3nGBfhqT5qH3zQ7v9lNSrQ==}
+  /@definitelytyped/header-parser@0.0.175:
+    resolution: {integrity: sha512-10dur1Gd9SIFHIIkCpsZXRmGeCODy3Ne5ExwH2bkNOZzAG4S6ectSx2N/HxOngePz8V00OhOW+FANWOAbIPtnw==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.174
+      '@definitelytyped/typescript-versions': 0.0.175
       '@types/parsimmon': 1.10.6
       parsimmon: 1.18.1
     dev: true
 
-  /@definitelytyped/typescript-versions@0.0.174:
-    resolution: {integrity: sha512-N977SrDvGZeJV1TXJRi6LFJraiuNHkppCGdmgYaM9ejKuPJmx73IcMEcIR6jDDrylie/Bevq39eziQm6/KY+ZA==}
+  /@definitelytyped/typescript-versions@0.0.175:
+    resolution: {integrity: sha512-LtGSBkkskTHI3WCpmMoklF2XU4c0Qqnq2E0LZjsel+m8PihQAP0QAsDB/rSr7Y7WsDGxcxPc3bKNQax+6fqHSw==}
     dev: true
 
-  /@definitelytyped/utils@0.0.174:
-    resolution: {integrity: sha512-8RdGh7mcz1Vm4q8rFptm4nIfyt01C88nOzqrayXDW2Dwcj3E1Vt10fnD938vnXVweErZRuatwQe8fUGO4kZd4g==}
+  /@definitelytyped/utils@0.0.175:
+    resolution: {integrity: sha512-VLthuKhIHe+/sG0YEpVAM9OCVMxPlyaYGCeos5N42+NgumeKApa+BsGh6e+aH4EY4kaee+lgC36MwRxBAjiuYA==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.174
+      '@definitelytyped/typescript-versions': 0.0.175
       '@qiwi/npm-registry-client': 8.9.1
       '@types/node': 14.18.54
       charm: 1.0.2
@@ -10021,7 +10027,7 @@ packages:
   /@vanilla-extract/vite-plugin@3.8.2(@types/node@20.5.6)(ts-node@10.9.1)(vite@4.4.9):
     resolution: {integrity: sha512-i0vpuBUoh10Obl0hJr0dWQa6M3Udu/irm4tnsg1lUze8DXTbv3ctHmVu/wrRZHKw1EzzW/v+nLoJJRvisApspQ==}
     peerDependencies:
-      vite: ^2.2.3 || ^3.0.0 || ^4.0.3 || 4.3.9
+      vite: ^2.2.3 || ^3.0.0 || ^4.0.3 || 4.3hre.9
     dependencies:
       '@vanilla-extract/integration': 6.2.1(@types/node@20.5.6)
       outdent: 0.8.0
@@ -10142,7 +10148,7 @@ packages:
     resolution: {integrity: sha512-7wU921ABnNYkETiMaZy7XqpueMnpu5VxvVps13MjmCo+utBdD79sZzrApHawHtVX66cCJQQTXFcjH0y9dSUK8g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      vite: ^4.2.0 || 4.3.9
+      vite: ^4.2.0 || 4.3hre.9
     dependencies:
       '@babel/core': 7.22.10
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.22.10)
@@ -13301,7 +13307,7 @@ packages:
     peerDependencies:
       typescript: '*'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.174
+      '@definitelytyped/header-parser': 0.0.175
       command-exists: 1.2.9
       rimraf: 3.0.2
       semver: 6.3.1
@@ -13317,9 +13323,9 @@ packages:
     peerDependencies:
       typescript: '>= 3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.7.0-dev || >= 3.8.0-dev || >= 3.9.0-dev || >= 4.0.0-dev'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.174
-      '@definitelytyped/typescript-versions': 0.0.174
-      '@definitelytyped/utils': 0.0.174
+      '@definitelytyped/header-parser': 0.0.175
+      '@definitelytyped/typescript-versions': 0.0.175
+      '@definitelytyped/utils': 0.0.175
       dts-critic: 3.3.11(typescript@5.1.6)
       fs-extra: 6.0.1
       json-stable-stringify: 1.0.2
@@ -24791,7 +24797,7 @@ packages:
   /vite-plugin-environment@1.1.3(vite@4.4.9):
     resolution: {integrity: sha512-9LBhB0lx+2lXVBEWxFZC+WO7PKEyE/ykJ7EPWCq95NEcCpblxamTbs5Dm3DLBGzwODpJMEnzQywJU8fw6XGGGA==}
     peerDependencies:
-      vite: '>= 2.7 || 4.3.9'
+      vite: '>= 2.7 || 4.3hre.9'
     dependencies:
       vite: 4.4.9(@types/node@20.5.6)
     dev: true
@@ -24802,7 +24808,7 @@ packages:
     hasBin: true
     peerDependencies:
       react-streaming: '>=0.3.5'
-      vite: '>=3.1.0 || 4.3.9'
+      vite: '>=3.1.0 || 4.3hre.9'
     peerDependenciesMeta:
       react-streaming:
         optional: true
@@ -24825,7 +24831,7 @@ packages:
   /vite-plugin-svgr@3.2.0(rollup@3.28.0)(vite@4.4.9):
     resolution: {integrity: sha512-Uvq6niTvhqJU6ga78qLKBFJSDvxWhOnyfQSoKpDPMAGxJPo5S3+9hyjExE5YDj6Lpa4uaLkGc1cBgxXov+LjSw==}
     peerDependencies:
-      vite: ^2.6.0 || 3 || 4 || 4.3.9
+      vite: ^2.6.0 || 3 || 4 || 4.3hre.9
     dependencies:
       '@rollup/pluginutils': 5.0.3(rollup@3.28.0)
       '@svgr/core': 7.0.0
