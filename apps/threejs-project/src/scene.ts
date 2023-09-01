@@ -9,7 +9,7 @@ import {
   AxesHelper,
   Group,
 } from 'three';
-import gsap from 'gsap';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 function run() {
   const canvas = document.querySelector('#scene');
@@ -25,7 +25,7 @@ function run() {
   scene.add(group);
 
   const mesh = new Mesh(
-    new BoxGeometry(1, 1, 1),
+    new BoxGeometry(1, 1, 1, 5, 5, 5),
     new MeshBasicMaterial({
       color: 0xff0000,
     }),
@@ -34,21 +34,29 @@ function run() {
   group.add(mesh);
 
   const sizes = {
-    width: 800,
-    height: 600,
+    width: window.innerWidth,
+    height: window.innerHeight,
   };
 
-  const camera = new PerspectiveCamera(75, sizes.width / sizes.height);
+  window.addEventListener('resize', () => {
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+  });
+
+  const camera = new PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
   camera.position.z = 3;
   scene.add(camera);
+
+  const controls = new OrbitControls(camera, canvas as HTMLElement);
+  controls.enableDamping = true;
 
   const renderer = new WebGLRenderer({ canvas });
 
   renderer.setSize(sizes.width, sizes.height);
 
-  gsap.to(mesh.position, { duration: 1, delay: 1, x: 2 });
-
   const tick = () => {
+    controls.update();
+
     renderer.render(scene, camera);
 
     window.requestAnimationFrame(tick);
