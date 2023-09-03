@@ -1,27 +1,30 @@
 ---
 meta:
-  title: 5 Things that should be Automated in a TypeScript Monorepo
+  title: 5 Things that should be Automated in a TypeScript/Javascript Monorepo
   description: Spend more time on the beach/golf course with these tips
   date: "2023-09-04T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1693756658/automation_alcvc3.png"
 
-  tags: ["github-actions", "continuous-integration"]
+  tags: ["github-actions", "continuous-integration", "devops"]
 ---
 
-Managing a TypeScript monorepo can be a complex task with various moving parts. Automation ensures that everything runs smoothly, from dependency management to deployment. Automate these five things in a TypeScript monorepo to enhance productivity and maintainability.
+Managing a TypeScript monorepo can be a complex task with various moving parts. Automation ensures that everything runs smoothly, from dependency management to deployment. Automate these five things in a TypeScript or JavaScript monorepo to enhance productivity and maintainability.
 
 ## 1. Renovate for package.json Updates
 
 ### Why Automate This?
 
-Managing dependencies is a common pain point in monorepos. Updating each package.json can be cumbersome, especially when multiple packages are within the monorepo.
+I've included this first because managing dependencies is a huge pain point in monorepos. Leaving the updating of each `package.json` file to a developer or, even worse, developers often leads to failures, especially when multiple packages are within the monorepo.
 
 ### How to Automate
 
 Use [renovate](https://github.com/renovatebot/renovate) to scan the monorepo repository automatically and generate Pull Requests to update dependencies. I like to confine my PRs to the weekend to keep the noise down, but this is all configurable through the extensive config options.
+
+Below is a view of some PRs created by the excellent [renovate](https://github.com/renovatebot/renovate).
+
 ![renovate pull requests](https://res.cloudinary.com/ddospxsc8/image/upload/v1693757509/renovate_pozccg.png).
 
-Each PR includes scores for confidence and adoptions as well as the release notes from the PR for the dependency that is updated:
+Each PR includes scores for confidence and adoptions for the dependency as well as the release notes from the PR for the dependency that is updated:
 
 ![renovate PR with confidence score and release notes](https://res.cloudinary.com/ddospxsc8/image/upload/v1693758376/renovate2_gzi3v1.png).
 
@@ -79,26 +82,60 @@ Below is an example `renovate.json` for a monorepo that I control:
 
 ### Why Automate This?
 
-In a monorepo, tracking changes across multiple packages can get chaotic. A versioning system helps maintain order.
+In a monorepo, tracking changes across multiple packages can get chaotic. Leaving this to the diligence of the developer will always lead to problems. A versioning system helps maintain order. A naive approach is to use git commit messages to update the `CHANGELOG.md`. Dated git commit messages will lead to a suboptimal `CHANGELOG`.
 
 ### How to Automate
 
 [Adobe changesets](https://github.com/changesets/changesets) offers a way to automate versioning and changelog updates. It provides commands to create changesets that describe the changes in your code.
 
-An interactive CLI will prompt the user for inputs to create the changeset:
-![changeset CLI](https://res.cloudinary.com/ddospxsc8/image/upload/v1693758875/changesets_oqpref.png)
+An interactive CLI will prompt the user for inputs to create the changeset and provide a proper message for the `CHANGELOG`:
 
-The following two links provide full information on how to get started with changesets:
+![CLI](https://res.cloudinary.com/ddospxsc8/image/upload/v1693807287/changesets2_eyatop.png)
 
-1. [using changesets](https://github.com/changesets/changesets/blob/main/docs/intro-to-using-changesets.md)
-2. [changesets CLI](https://github.com/changesets/changesets/blob/main/packages/cli/README.md)
+The following two links provide complete information on how to get started with changesets:
+
+- [using changesets](https://github.com/changesets/changesets/blob/main/docs/intro-to-using-changesets.md)
+- [changesets CLI](https://github.com/changesets/changesets/blob/main/packages/cli/README.md)
 
 ### Benefits
 
 - Streamlined versioning across multiple packages.
 - Automatic generation of a detailed changelog.
+  ![changelog](https://res.cloudinary.com/ddospxsc8/image/upload/v1693761122/changelog_zearai.png)
 
-## 3. TurboRepo for Build and Test Acceleration
+## 3. Automate performance metrics
+
+### Why Automate This?
+
+Staying on top of performance metrics is critical. Do not wait until your users start complaining. You should know exactly where you stand on every commit.
+
+### How to Automate
+
+I use [WebpageTest](https://www.webpagetest.org/), which offers detailed performance metrics and allows tests from multiple geographical locations, simulating various browsers and network conditions. WebpageTest enables developers to identify bottlenecks, optimize for different user scenarios, and improve overall user experience.
+
+I have the following step in a GitHub action that supplies an array of URLs for WebpageTest to test.
+
+```yml
+- name: Trigger webpage test
+  if: github.event_name == 'pull_request'
+  uses: peter-evans/repository-dispatch@v1
+  with:
+    token: ${{ secrets.GITHUB_TOKEN }}
+    repository: dagda1/cuttingedge
+    event-type: trigger-webpage-test-for-frontendsupport
+```
+
+WebpageTest will automatically send an email and add a comment on the pull request for every commit to a pull request with detailed metrics:
+![webpage test pull request comment](https://res.cloudinary.com/ddospxsc8/image/upload/v1693762721/webpagetest_krq5ku.png)
+
+### Benefits
+
+Know the moment performance starts going south
+Communicate performance metrics to all stakeholders
+
+## 4. TurboRepo for Build and Test Acceleration
+
+![turborepo](https://res.cloudinary.com/ddospxsc8/image/upload/v1693760354/turborepo_w1wh1z.png)
 
 ### Why Automate This?
 
@@ -113,15 +150,17 @@ Building and testing in a monorepo can be slow, especially as the codebase grows
 - Faster build and test cycles.
 - Resource optimization, as only relevant tasks are executed.
 
-## 4. Automated Deployment
+## 5. Automated Deployment
 
 ### Why Automate This?
 
-It seems ridiculous to think manual deployments still happen, but I have included automated deployments just in case anyone is still practising the dark art of throwing the dice and hoping for a six each time. Manual deployments are error-prone and can be a bottleneck in the development process.
-How to Automate
+It seems ridiculous to think manual deployments still happen. However, I have included automated deployments just in case anyone is still practising the dark art of throwing the dice and hoping for a six each time. Manual deployments are error-prone and can be a bottleneck in the development process.
+
+### How to Automate
+
 Use CI/CD pipelines with tools like GitHub Actions or GitLab CI/CD to automate the deployment process.
 
-The website that you are currently reading uses the github action below to deploy a [remix-run](https://remix.run/) application that deploys an [AWS architect](https://arc.codes/docs/en/get-started/quickstart) application to both `production` and `staging` variants depending on the context that the action is run in.
+The website that you are currently reading uses the GitHub action below to deploy a [remix-run](https://remix.run/) application that deploys an [AWS architect](https://arc.codes/docs/en/get-started/quickstart) application to both `production` and `staging` variants depending on the context that the action is run in.
 
 ```yml
 name: Build and deploy
