@@ -57,7 +57,6 @@ jobs:
           NODE_ENV: production
 
       - name: Invalidate Cloudfront cache staging
-        if: github.ref == 'refs/heads/main'
         uses: imehedi/actions-awscli-v2@latest
         with:
             args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_STAGING_ID }} --paths "/*" --no-cli-pager
@@ -68,10 +67,13 @@ jobs:
         with:
             args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_PRODUCTION_ID }} --paths "/*" --no-cli-pager
 
-      - name: Trigger webpage test
+      - name: WebPageTest Staging
         if: github.event_name == 'pull_request'
-        uses: peter-evans/repository-dispatch@v1
+        uses: WPO-Foundation/webpagetest-github-action@main
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: dagda1/cuttingedge
-          event-type: trigger-webpage-test-for-frontendsupport
+          apiKey: ${{ secrets.WPT_API_KEY }}
+          urls: |
+            https://staging.frontendrescue.com/
+            https://staging.frontendrescue.com/posts/2023-07-28-session-storage-playwright
+          label: 'GitHub Action Test'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
