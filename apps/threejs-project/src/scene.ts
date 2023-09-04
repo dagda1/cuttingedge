@@ -1,15 +1,18 @@
 import { assert } from 'assert-ts';
 import {
   Scene,
-  BoxGeometry,
   MeshBasicMaterial,
   Mesh,
   PerspectiveCamera,
   WebGLRenderer,
-  AxesHelper,
-  Group,
+  BoxGeometry,
+  TextureLoader,
+  LoadingManager,
+  MirroredRepeatWrapping,
+  NearestFilter,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import './style.css';
 
 function run() {
   const canvas = document.querySelector('#scene');
@@ -18,34 +21,46 @@ function run() {
 
   const scene = new Scene();
 
-  const axesHelper = new AxesHelper(2);
-  scene.add(axesHelper);
+  const geometry = new BoxGeometry(1, 1, 1);
 
-  const group = new Group();
-  scene.add(group);
+  const loadingManager = new LoadingManager();
+  const textureLoader = new TextureLoader(loadingManager);
+  const colorTexture = textureLoader.load('/textures/door/color.jpg');
 
-  const mesh = new Mesh(
-    new BoxGeometry(1, 1, 1, 5, 5, 5),
-    new MeshBasicMaterial({
-      color: 0xff0000,
-    }),
-  );
+  colorTexture.wrapS = MirroredRepeatWrapping;
+  colorTexture.wrapT = MirroredRepeatWrapping;
+  colorTexture.generateMipmaps = false;
+  colorTexture.minFilter = NearestFilter;
+  colorTexture.magFilter = NearestFilter;
+  const material = new MeshBasicMaterial({
+    map: colorTexture,
+  });
 
-  group.add(mesh);
+  const mesh = new Mesh(geometry, material);
+
+  scene.add(mesh);
 
   const sizes = {
     width: window.innerWidth,
     height: window.innerHeight,
   };
 
+  const camera = new PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
+  camera.position.x = 1;
+  camera.position.y = 1;
+  camera.position.z = 1;
+  scene.add(camera);
+
   window.addEventListener('resize', () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
-  });
 
-  const camera = new PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-  camera.position.z = 3;
-  scene.add(camera);
+    camera.aspect = sizes.height / sizes.width;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  });
 
   const controls = new OrbitControls(camera, canvas as HTMLElement);
   controls.enableDamping = true;
@@ -53,6 +68,7 @@ function run() {
   const renderer = new WebGLRenderer({ canvas });
 
   renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   const tick = () => {
     controls.update();
