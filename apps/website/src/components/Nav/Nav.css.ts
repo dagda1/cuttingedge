@@ -7,6 +7,11 @@ export const contact = style([
   },
 ]);
 
+globalStyle(`${contact} a`, {
+  color: vars.foregroundColor.neutral,
+  background: 'transparent',
+});
+
 export const active = style({
   color: 'blue',
   fontStyle: 'bold',

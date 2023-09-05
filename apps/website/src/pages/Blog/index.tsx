@@ -9,13 +9,19 @@ export function Blog(): JSX.Element {
         <Stack space="medium">
           <Inline space="none">
             <Text>
-              I blog professionally for&nbsp;
+              I have blogged professionally for&nbsp;
               <TextLink href="https://blog.logrocket.com/author/paulcowan/">Logrocket</TextLink>
             </Text>
           </Inline>
           <Inline space="none">
             <Text>
-              My personal blog is&nbsp;
+              My latest blog is&nbsp;
+              <TextLink href="https://frontendrescue.com/posts">here</TextLink>
+            </Text>
+          </Inline>
+          <Inline space="none">
+            <Text>
+              My old personal blog is&nbsp;
               <TextLink href="https://thesoftwaresimpleton.com/">here</TextLink>
             </Text>
           </Inline>

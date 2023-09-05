@@ -7,6 +7,17 @@ export interface Post {
 // eslint:disable
 export const posts: Post[] = [
   {
+    title: 'Frustrations with React Hooks',
+    summary:
+      'My most popular blog post.  While the response to Hooks has been overwhelmingly positive, we are going to look at some of the not so popular parts of React',
+    link: 'https://blog.logrocket.com/frustrations-with-react-hooks/',
+  },
+  {
+    title: '5 Things that should be Automated in a TypeScript/Javascript Monorepo',
+    summary: 'Spend more time on the beach/golf course with these tips',
+    link: 'https://frontendrescue.com/posts/2023-09-04-5-things-to-automate',
+  },
+  {
     title: 'Put the TypeScript enums and booleans away',
     summary: 'How discriminated unions or algebraic data types are a better fit for modelling state',
     link: 'https://blog.logrocket.com/put-the-typescript-enums-and-booleans-away/',
@@ -27,12 +38,6 @@ export const posts: Post[] = [
     title: 'Automated testing is not working',
     summary: 'Many, many reasons why we are on the wrong tract',
     link: 'https://blog.logrocket.com/automated-testing-is-not-working/',
-  },
-  {
-    title: 'Frustrations with React Hooks',
-    summary:
-      'While the response to Hooks has been overwhelmingly positive, we are going to look at some of the not so popular parts of React',
-    link: 'https://blog.logrocket.com/frustrations-with-react-hooks/',
   },
   {
     title: 'Cypress.io: the Selenium killer',

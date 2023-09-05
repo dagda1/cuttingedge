@@ -26,17 +26,19 @@ export function Footer(): JSX.Element {
         </Column>
         <Column width="1/2">
           <Stack space={{ mobile: 'xsmall', tablet: 'xxsmall' }}>
-            <Inline space="small" align={{ mobile: 'center', tablet: 'left' }} alignY="center">
-              <TextLink external href="mailto:paul.cowan@cutting.scot">
-                paul.cowan@cutting.scot
-              </TextLink>
-              <TextLink external href="https://github.com/dagda1" ariaLabel="Github profile">
-                <img src={github} alt="github" />
-              </TextLink>
-              <TextLink external href="https://twitter.com/dagda1" ariaLabel="twitter profile">
-                <img src={twitter} alt="twitter" />
-              </TextLink>
-            </Inline>
+            <Text>
+              <Inline space="small" align={{ mobile: 'center', tablet: 'left' }} alignY="center">
+                <TextLink external href="mailto:paul.cowan@cutting.scot">
+                  paul.cowan@cutting.scot
+                </TextLink>
+                <TextLink external href="https://github.com/dagda1" ariaLabel="Github profile">
+                  <img src={github} alt="github" />
+                </TextLink>
+                <TextLink external href="https://twitter.com/dagda1" ariaLabel="twitter profile">
+                  <img src={twitter} alt="twitter" />
+                </TextLink>
+              </Inline>
+            </Text>
             <Text size="xsmall">Copyright © Cutting-Edge Solutions (Scotland) inc. All rights reserved</Text>
           </Stack>
         </Column>

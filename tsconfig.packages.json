@@ -11,6 +11,9 @@
       "path": "./packages/hooks/tsconfig.dist.json"
     },
     {
+      "path": "./packages/markdown/tsconfig.dist.json"
+    },
+    {
       "path": "./packages/use-get-parent-size/tsconfig.dist.json"
     },
     {

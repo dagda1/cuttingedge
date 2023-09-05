@@ -6,6 +6,9 @@
     "rootDir": "./src",
     "noEmit": false
   },
-  "references": [{ "path": "../util/tsconfig.dist.json" }],
+  "references": [
+    { "path": "../util/tsconfig.dist.json" },
+    { "path": "../component-library/tsconfig.dist.json" }
+  ],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
 }

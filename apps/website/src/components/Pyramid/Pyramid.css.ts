@@ -85,6 +85,7 @@ export const front = style({
   selectors: {
     [`&:after`]: {
       content: 'D3',
+      fontFamily: vars.fontFamily.text,
     },
   },
 });
@@ -95,6 +96,7 @@ export const back = style({
   selectors: {
     [`&:after`]: {
       content: 'node',
+      fontFamily: vars.fontFamily.text,
     },
   },
 });
@@ -105,6 +107,7 @@ export const left = style({
   selectors: {
     [`&:after`]: {
       content: 'TYPESCRIPT',
+      fontFamily: vars.fontFamily.text,
     },
   },
 });
@@ -115,6 +118,7 @@ export const right = style({
   selectors: {
     [`&:after`]: {
       content: 'REACT',
+      fontFamily: vars.fontFamily.text,
     },
   },
 });
