@@ -415,9 +415,11 @@ export function App(): JSX.Element {
         <ContentBlock width="large">
           <Columns space="large" align="left" alignY="top">
             <Column>
-              <TextLink href="//cutting.scot" target="_blank">
-                Text Link
-              </TextLink>
+              <Text>
+                <TextLink href="//cutting.scot" target="_blank">
+                  Text Link
+                </TextLink>
+              </Text>
             </Column>
             <Column>
               <ButtonLink href="//cutting.scot" target="_blank">
@@ -425,9 +427,11 @@ export function App(): JSX.Element {
               </ButtonLink>
             </Column>
             <Column>
-              <TextLink external href="//cutting.scot" target="_blank">
-                External Link
-              </TextLink>
+              <Text>
+                <TextLink external href="//cutting.scot" target="_blank">
+                  External Link
+                </TextLink>
+              </Text>
             </Column>
           </Columns>
         </ContentBlock>

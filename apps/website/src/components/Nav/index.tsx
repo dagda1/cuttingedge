@@ -43,7 +43,11 @@ export function TopNav(): JSX.Element {
             paddingX={{ mobile: 'xsmall', desktop: 'medium' }}
             paddingY={{ mobile: 'medium', desktop: 'large' }}
           >
-            <TextNavLink to={urls.ContactMe} className={({ isActive }) => (isActive ? styles.active : '')} size="large">
+            <TextNavLink
+              to={urls.ContactMe}
+              className={({ isActive }) => (isActive ? styles.active : styles.contact)}
+              size="large"
+            >
               Contact
             </TextNavLink>
           </Box>
