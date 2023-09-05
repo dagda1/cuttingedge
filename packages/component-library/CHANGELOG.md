@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.4
+
+### Patch Changes
+
+- 3c2866a8: TextLink changes
+
 ## 5.41.3
 
 ### Patch Changes
