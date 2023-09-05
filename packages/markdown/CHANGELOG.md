@@ -1,5 +1,11 @@
 # @cutting/markdown
 
+## 0.1.4
+
+### Patch Changes
+
+- 3c2866a8: TextLink changes
+
 ## 0.1.3
 
 ### Patch Changes

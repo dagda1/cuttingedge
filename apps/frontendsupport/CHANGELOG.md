@@ -1,5 +1,16 @@
 # @cutting/frontend-support
 
+## 0.1.33
+
+### Patch Changes
+
+- 3c2866a8: TextLink changes
+- Updated dependencies [3c2866a8]
+  - @cutting/component-library@5.41.4
+  - @cutting/markdown@0.1.4
+  - @cutting/react-hook-form-components@0.5.6
+  - @cutting/use-get-parent-size@2.1.4
+
 ## 0.1.28
 
 ### Patch Changes
