@@ -3,6 +3,7 @@ import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
 import { extractFontMetricsForTheme } from '~/style/util/typography';
 import montserrat from '@capsizecss/metrics/montserrat';
+import { helveticaNowDisplayMedium } from './font.css';
 
 const colors = {
   primary: palette.lime500,
@@ -25,9 +26,9 @@ export const tokens: DeepPartial<Tokens> = {
       secondary: palette.neutral600,
       info: '#F5DEB3',
       promote: '#ffff00',
-      link: palette.neutral400,
+      link: palette.white,
       linkHover: palette.neutral700,
-      linkVisited: palette.white,
+      linkVisited: palette.neutral400,
       neutral: palette.neutral400,
       h1: palette.white,
       h2: palette.white,
@@ -46,8 +47,8 @@ export const tokens: DeepPartial<Tokens> = {
       text: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap',
     },
     fontFamily: {
-      heading: 'Bebas Neue,Rubik',
-      text: '"Montserrat"',
+      heading: `${helveticaNowDisplayMedium}, sans-serif`,
+      text: `${helveticaNowDisplayMedium}, sans-serif`,
     },
     fontMetrics: extractFontMetricsForTheme(montserrat),
     fontWeight: {

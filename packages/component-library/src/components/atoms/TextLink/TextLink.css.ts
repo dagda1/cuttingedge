@@ -21,7 +21,7 @@ export const base = style({
   textDecorationThickness: '0.1em',
   textUnderlineOffset: 3,
   ':hover': {
-    color: 'hover',
+    color: vars.foregroundColor.linkHover,
     textDecoration: 'none',
     /*
       Duplicating the thickness rule due to inconsistent support

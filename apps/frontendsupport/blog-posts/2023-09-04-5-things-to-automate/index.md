@@ -181,7 +181,7 @@ jobs:
     steps:
       - uses: pnpm/action-setup@v2.4.0
         with:
-          version: 8.6.12
+          version: 8.7.4
 
       - name: Checkout Repo
         uses: actions/checkout@v3
