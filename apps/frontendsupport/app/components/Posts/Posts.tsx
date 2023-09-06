@@ -13,7 +13,7 @@ export function Posts({ posts }: PostsProps): JSX.Element {
     <Box style={{ marginTop: '6rem' }} display="flex" justifyContent="center">
       <PageBlock>
         <Stack space="medium">
-          <Heading level="1">Leading from the front(end)</Heading>
+          <Heading level="1">leading from the front(end)</Heading>
           <List type="none">
             {posts.map((post) => (
               <Box
