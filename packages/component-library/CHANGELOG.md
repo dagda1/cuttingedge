@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.5
+
+### Patch Changes
+
+- 89210c92: Change support font and slim services
+
 ## 5.41.4
 
 ### Patch Changes
