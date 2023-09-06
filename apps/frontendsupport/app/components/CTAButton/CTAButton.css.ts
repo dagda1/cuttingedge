@@ -4,7 +4,6 @@ import { style } from '@vanilla-extract/css';
 export const ctaButton = style([
   {
     border: `2px solid ${palette.white}`,
-    fontWeight: 'bold',
     ...responsiveStyle({
       mobile: {
         fontSize: '1.5rem',
