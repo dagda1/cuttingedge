@@ -36,7 +36,9 @@ export function Services(): JSX.Element {
     <Box marginBottom="xxxlarge">
       <Box className={background}></Box>
       <Stack space="small" align="center">
-        <Heading level="1">Services</Heading>
+        <Box marginBottom="medium">
+          <Heading level="1">Services</Heading>
+        </Box>
         <Tiles columns={{ mobile: 1, tablet: 1, desktop: 2 }} space="medium">
           {services.map(({ copy, ...props }) => (
             <Service key={props.heading} {...props}>
@@ -48,7 +50,9 @@ export function Services(): JSX.Element {
             </Service>
           ))}
         </Tiles>
-        <Heading level="2">For anything else, simply email or book a call.</Heading>
+        <Box marginY="medium">
+          <Heading level="2">For anything else, please email or book a call.</Heading>
+        </Box>
         <Box zIndex="sticky">
           <ContactButtons justify="center" callType="chat" />
         </Box>

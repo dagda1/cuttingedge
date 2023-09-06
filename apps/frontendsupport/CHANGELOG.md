@@ -1,5 +1,15 @@
 # @cutting/frontend-support
 
+## 0.1.35
+
+### Patch Changes
+
+- 89210c92: Change support font and slim services
+- Updated dependencies [89210c92]
+  - @cutting/component-library@5.41.5
+  - @cutting/react-hook-form-components@0.5.7
+  - @cutting/use-get-parent-size@2.1.4
+
 ## 0.1.33
 
 ### Patch Changes
