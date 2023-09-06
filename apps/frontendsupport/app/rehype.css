@@ -344,6 +344,6 @@ pre[class*="language-"] > code[class*="language-"] {
 	z-index: 0;
 }
 
-blockquote, blockquote p, blockquote span {
+.post blockquote, .post blockquote p, .post blockquote span {
 	color: #ffffff !important;
 }

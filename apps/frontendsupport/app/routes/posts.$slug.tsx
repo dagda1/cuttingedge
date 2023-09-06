@@ -133,7 +133,7 @@ export default function PostRoute() {
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <Box style={{ marginTop: '6rem' }}>
+    <Box style={{ marginTop: '6rem' }} className="post">
       <PageBlock>
         <Box marginBottom="small">
           <Heading level="1">{frontmatter.meta.title}</Heading>
