@@ -1,5 +1,11 @@
 # @cutting/frontend-support
 
+## 0.1.37
+
+### Patch Changes
+
+- c09df9f3: update critical copy
+
 ## 0.1.36
 
 ### Patch Changes
