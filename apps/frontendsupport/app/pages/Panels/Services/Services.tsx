@@ -25,7 +25,7 @@ const Critical: Service = {
   heading: 'Critical bug fix in 24 hours',
   link: '/services/critical',
   actionText: 'Money back guarantee if not satisfied',
-  copy: ['You need answers right now'],
+  copy: ['You need an answer in the next 24 hours'],
   buttonText: 'Book an emergency call',
 };
 

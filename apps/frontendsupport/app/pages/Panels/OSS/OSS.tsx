@@ -58,7 +58,7 @@ export function OSS(): JSX.Element {
         <Box display="flex" justifyContent="center" paddingX={{ mobile: 'small', tablet: 'none' }}>
           <Heading level="2">
             <TextLink external href="https://cutting.scot/oss">
-              We have 350+ merged pull requests into many, many popular open source projects
+              We have 250+ merged pull requests into many, many popular open source projects
             </TextLink>
           </Heading>
         </Box>
