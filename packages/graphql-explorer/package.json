@@ -2,7 +2,7 @@
   "name": "@cutting/graphql-explorer",
   "private": true,
   "description": "Swagger for graphql.....init",
-  "version": "4.44.17",
+  "version": "4.44.18",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"

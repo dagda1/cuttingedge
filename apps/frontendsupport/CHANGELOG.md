@@ -1,5 +1,15 @@
 # @cutting/frontend-support
 
+## 0.1.36
+
+### Patch Changes
+
+- c730897f: upgrade pnpm
+- Updated dependencies [c730897f]
+  - @cutting/react-hook-form-components@0.5.8
+  - @cutting/component-library@5.41.6
+  - @cutting/use-get-parent-size@2.1.4
+
 ## 0.1.35
 
 ### Patch Changes
