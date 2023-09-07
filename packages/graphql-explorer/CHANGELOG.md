@@ -1,5 +1,14 @@
 # @cutting/graphql-explorer
 
+## 4.44.18
+
+### Patch Changes
+
+- c730897f: upgrade pnpm
+- Updated dependencies [c730897f]
+  - @cutting/component-library@5.41.6
+  - @cutting/svg@4.54.9
+
 ## 4.44.17
 
 ### Patch Changes

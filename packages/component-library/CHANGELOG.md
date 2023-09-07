@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.6
+
+### Patch Changes
+
+- c730897f: upgrade pnpm
+
 ## 5.41.5
 
 ### Patch Changes
