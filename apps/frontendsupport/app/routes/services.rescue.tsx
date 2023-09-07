@@ -6,25 +6,43 @@ export default function Rescue(): JSX.Element {
     <Box marginBottom="large">
       <Stack space={{ mobile: 'small', desktop: 'large', wide: 'large' }}>
         <Heading level="1">Do you have a frontend development problem that is blocking your team?</Heading>
-        <List>
-          <Text>Got a tricky situation stopping you from shipping features to your customers?</Text>
-          <Text>Need a quick injection from an industry expert?</Text>
-          <Text>Do you want to take the risk out of frontend development?</Text>
-          <Text>Do you need help right now?</Text>
-        </List>
-        <Heading level="2">Let me provide the answers</Heading>
-        <ContactButtons callType="rescue" />
         <Text component="p" size="large" tone="info">
           With over{' '}
           <TextLink external href="https://cutting.scot/oss">
             150+ merged pull requests
           </TextLink>{' '}
-          into many public open-source repositories.
-        </Text>
-        <Text component="p" size="large" tone="info">
-          I can provide the answers you need and quicker than anyone else out there.
+          into many public open-source repositories, we can provide the precise answers you need quicker than anyone
+          else.
         </Text>
         <Redhatestimonial />
+        <Heading level="2">How it works</Heading>
+        <List>
+          <Text>
+            Step one is an online initial consultation with all the relevant stakeholders to get to the heart of the
+            problem. The talk is a fact-finding mission, and there will be no premature solutionising.
+          </Text>
+          <Text>
+            We will compile a step-by-step plan to get your project back on track or how to implement the feature you
+            are struggling with. The plan is played back to your team to reach an initial agreement without too much{' '}
+            <TextLink external href="https://en.wikipedia.org/wiki/Big_design_up_front">
+              big design up front
+            </TextLink>
+            .
+          </Text>
+          <Text>
+            We develop the solution with regular feedback from you and your team to ensure the goals are being reached.
+            Pair programming between us and your existing team is available to increase{' '}
+            <TextLink external href="https://www.agilealliance.org/glossary/collective-ownership/">
+              code ownership
+            </TextLink>{' '}
+            and decrease handover.
+          </Text>
+          <Text>
+            Once the solution is in place, we can help with support and maintenance, including any training your staff
+            requires.
+          </Text>
+        </List>
+        <ContactButtons callType="rescue" />
       </Stack>
     </Box>
   );
