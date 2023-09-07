@@ -51,7 +51,7 @@ export function Services(): JSX.Element {
           ))}
         </Tiles>
         <Box marginY="medium">
-          <Heading level="2">For anything else, please email or book a call.</Heading>
+          <Heading level="2">For any other work, please email or book a call.</Heading>
         </Box>
         <Box zIndex="sticky">
           <ContactButtons justify="center" callType="chat" />
