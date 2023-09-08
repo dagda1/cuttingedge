@@ -48,7 +48,13 @@ export function Nav({
 
   return (
     <Box component="nav" width={width} className={styles.container}>
-      <Box component="ul" display={display} justifyContent={justifyContent} alignItems={alignItems}>
+      <Box
+        className={styles.navList}
+        component="ul"
+        display={display}
+        justifyContent={justifyContent}
+        alignItems={alignItems}
+      >
         <NavItems>
           {desktopItems}
           <Box

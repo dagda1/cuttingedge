@@ -11,11 +11,19 @@ import {
   useInteractions,
   FloatingFocusManager,
 } from '@floating-ui/react';
+import type { ReactNode } from 'react';
 import { useState } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 import cs from 'classnames';
 import * as styles from './VizPopover.css';
 import * as navStyles from './Nav.css';
+
+const Links: { to: `/${string}`; children: ReactNode }[] = [
+  { to: '/viz', children: 'SINE' },
+  { to: '/function-plot', children: 'FUNCTIONS' },
+  { to: '/sine2', children: 'MORE SINE' },
+  { to: '/viz/tan', children: 'TAN' },
+];
 
 export function Popover(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,18 +55,11 @@ export function Popover(): JSX.Element {
             {...getFloatingProps()}
           >
             <List type="none">
-              <TextNavLink onClick={() => setIsOpen(false)} className={navStyles.submenu} to="/viz">
-                SINE
-              </TextNavLink>
-              <TextNavLink onClick={() => setIsOpen(false)} className={navStyles.submenu} to="/viz/function-plot">
-                FUNCTIONS
-              </TextNavLink>
-              <TextNavLink onClick={() => setIsOpen(false)} className={navStyles.submenu} to="/viz/sine2">
-                MORE SINE
-              </TextNavLink>
-              <TextNavLink onClick={() => setIsOpen(false)} className={navStyles.submenu} to="/viz/tan">
-                TAN
-              </TextNavLink>
+              {Links.map(({ to, children }) => (
+                <TextNavLink key={to} onClick={() => setIsOpen(false)} className={navStyles.submenu} to={to}>
+                  {children}
+                </TextNavLink>
+              ))}
             </List>
           </div>
         </FloatingFocusManager>

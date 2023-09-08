@@ -5,6 +5,7 @@ export const popoverButton = style({
   background: 'transparent',
   border: 'none',
   cursor: 'pointer',
+  outline: 'none',
 });
 
 globalStyle(`${popoverButton} span:hover`, {
@@ -21,15 +22,20 @@ export const popover = style({
   textAlign: 'left',
 });
 
-globalStyle(`${popover} ul`, {
-  paddingTop: vars.space.xxsmall,
-  paddingBottom: vars.space.xxsmall,
+globalStyle(`${popover} ul li a`, {
+  color: `${palette.black} !important`,
+  display: 'flex',
+  alignItems: 'center',
+  paddingRight: vars.space.xsmall,
+  paddingBottom: vars.space.xsmall,
+  cursor: 'pointer',
 });
 
 globalStyle(`${popover} li:hover`, {
   background: `${palette.yellow400} !important`,
+  color: `${palette.white} !important`,
 });
 
-globalStyle(`${popover} a:visited`, {
-  color: vars.foregroundColor.secondary,
+globalStyle(`${popover} li a:hover`, {
+  color: `${palette.white} !important`,
 });

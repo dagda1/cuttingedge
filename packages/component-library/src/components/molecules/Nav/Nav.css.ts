@@ -14,6 +14,8 @@ export const currentColor = style({
   color: vars.foregroundColor.neutral,
 });
 
+export const navList = style({});
+
 export const expandable = style([
   {
     flexDirection: 'column',
@@ -49,20 +51,12 @@ export const expanded = style([
   },
 ]);
 
-globalStyle(`${expanded} ul:not(.szh-menu)`, {
-  padding: `${vars.space['large']}`,
-  display: 'flex',
-  flex: 1,
-  flexDirection: 'column',
-  justifyContent: 'center',
-});
-
-globalStyle(`${expanded} li, ${expanded} span`, {
+globalStyle(`${expanded} > li, ${expanded} span`, {
   width: '100%',
   display: 'block',
 });
 
-globalStyle(`${expanded} a`, {
+globalStyle(`${expanded} a, ${expanded} button`, {
   border: `1px solid ${palette.white}`,
   display: 'flex',
   justifyContent: 'center',

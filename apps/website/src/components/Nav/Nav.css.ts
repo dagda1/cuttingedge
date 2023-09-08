@@ -68,39 +68,11 @@ globalStyle(`${dropdown} ul`, {
   listStyle: 'none',
 });
 
-export const VizMenuItem = style({
-  background: palette.white,
-  zIndex: 15,
-  selectors: {
-    [`&:hover,&:focus`]: {
-      background: `${palette.yellow400} !important`,
-    },
-  },
-});
-
 export const submenu = style({
-  marginBottom: '0 !important',
-  color: `${palette.black} !important`,
+  color: `${palette.black}`,
   selectors: {
     [`&:hover,&:focus`]: {
-      color: '#ffffff !important',
       textDecorationThickness: `max(3px, .1875rem, .12em)`,
     },
   },
-});
-
-globalStyle('.szh-menu', {
-  padding: 0,
-});
-
-globalStyle('.szh-menu__item', {
-  border: `1px solid ${palette.white}`,
-  width: '100%',
-});
-
-globalStyle('[role=menuitem]', {
-  display: 'inline-block',
-  padding: vars.space['medium'],
-  zIndex: 33,
-  position: 'relative',
 });
