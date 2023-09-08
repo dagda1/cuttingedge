@@ -20,7 +20,7 @@ const topImages: ParallaxPanelProps['bottomImages'] = [
   {
     type: 'parallax',
     alt: 'Turborepo',
-    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953389/frontendsupport/turborepo_etzeks.png',
+    src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1693760354/turborepo_w1wh1z.png',
     width: 300,
     height: 168,
   },
