@@ -6,7 +6,6 @@ export const contact = style([
     backgroundColor: '#FF8B45',
   },
 ]);
-
 globalStyle(`${contact} a`, {
   color: vars.foregroundColor.neutral,
   background: 'transparent',
