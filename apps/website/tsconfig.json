@@ -16,7 +16,10 @@
     "src/**/*.tsx",
     "vite.config.ts",
     "../../node_modules/@types/d3/index.d.ts",
-    "node_modules/vite/types/*"
+    "node_modules/vite/types/*",
+    "node_modules/@floating-ui/dom/src/types.d.ts",
+    "node_modules/@floating-ui/react-dom/src/types.d.ts",
+    "node_modules/@floating-ui/react/src/types.d.ts"
   ],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "server.mts", "pruned"]
 }
