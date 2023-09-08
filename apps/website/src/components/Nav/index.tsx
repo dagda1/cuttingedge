@@ -1,25 +1,25 @@
 import * as urls from '~/urls';
 import * as styles from './Nav.css';
-import { Box, Heading, Nav, NavItem, NavItems, ResponsiveImage, Text } from '@cutting/component-library';
+import { Box, Heading, Nav, NavItem, NavItems, ResponsiveImage } from '@cutting/component-library';
 import { NavLink } from 'react-router-dom';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 import cow from '~/assets/images/cow-logo.png';
 import cowMobile from '~/assets/images/cow-mobile.png';
 import cs from 'classnames';
 import { bannerPages } from '~/routes';
-import { Menu as VizMenu, MenuItem as VizMenuItem, MenuButton } from '@szhsin/react-menu';
 import { useCallback, useState } from 'react';
+import { VizPopover } from './VizPopover';
 
 export interface MenuState {
   isExpanded: boolean;
 }
 
 export function TopNav(): JSX.Element {
-  const [open, setOpen] = useState(false);
-  const toggle = useCallback(() => setOpen(!open), [open]);
+  const [navOpen, setNavOpen] = useState(false);
+  const toggle = useCallback(() => setNavOpen(!navOpen), [navOpen]);
 
   return (
-    <Nav open={open} toggle={toggle} hamburgerVariant="light">
+    <Nav open={navOpen} toggle={toggle} hamburgerVariant="light">
       <NavItems>
         <NavItem display="Always">
           <NavLink aria-label="home" to={urls.Home}>
@@ -64,39 +64,7 @@ export function TopNav(): JSX.Element {
           </NavItem>
         ))}
         <NavItem display="SubmenuMobile">
-          <VizMenu
-            onMenuChange={({ open }) => {
-              if (!open) {
-                setOpen(false);
-              }
-            }}
-            menuButton={
-              <MenuButton className={styles.dropdown}>
-                <Text>VIZ</Text>
-              </MenuButton>
-            }
-          >
-            <VizMenuItem className={styles.VizMenuItem}>
-              <TextNavLink className={styles.submenu} to="/viz">
-                SINE
-              </TextNavLink>
-            </VizMenuItem>
-            <VizMenuItem className={styles.VizMenuItem}>
-              <TextNavLink className={styles.submenu} to="/viz/function-plot">
-                FUNCTIONS
-              </TextNavLink>
-            </VizMenuItem>
-            <VizMenuItem className={styles.VizMenuItem}>
-              <TextNavLink className={styles.submenu} to="/viz/sine2">
-                MORE SINE
-              </TextNavLink>
-            </VizMenuItem>
-            <VizMenuItem className={styles.VizMenuItem}>
-              <TextNavLink className={styles.submenu} to="/viz/tan">
-                TAN
-              </TextNavLink>
-            </VizMenuItem>
-          </VizMenu>
+          <VizPopover />
         </NavItem>
       </NavItems>
     </Nav>
