@@ -17,7 +17,7 @@ import cs from 'classnames';
 import * as styles from './VizPopover.css';
 import * as navStyles from './Nav.css';
 
-export function VizPopover(): JSX.Element {
+export function Popover(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
@@ -47,16 +47,16 @@ export function VizPopover(): JSX.Element {
             {...getFloatingProps()}
           >
             <List type="none">
-              <TextNavLink className={navStyles.submenu} to="/viz">
+              <TextNavLink onClick={() => setIsOpen(false)} className={navStyles.submenu} to="/viz">
                 SINE
               </TextNavLink>
-              <TextNavLink className={navStyles.submenu} to="/viz/function-plot">
+              <TextNavLink onClick={() => setIsOpen(false)} className={navStyles.submenu} to="/viz/function-plot">
                 FUNCTIONS
               </TextNavLink>
-              <TextNavLink className={navStyles.submenu} to="/viz/sine2">
+              <TextNavLink onClick={() => setIsOpen(false)} className={navStyles.submenu} to="/viz/sine2">
                 MORE SINE
               </TextNavLink>
-              <TextNavLink className={navStyles.submenu} to="/viz/tan">
+              <TextNavLink onClick={() => setIsOpen(false)} className={navStyles.submenu} to="/viz/tan">
                 TAN
               </TextNavLink>
             </List>
