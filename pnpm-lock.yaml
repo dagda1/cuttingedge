@@ -576,6 +576,12 @@ importers:
       '@cutting/useful-types':
         specifier: workspace:*
         version: link:../../packages/useful-types
+      '@floating-ui/dom':
+        specifier: ^1.5.1
+        version: 1.5.1
+      '@floating-ui/react-dom':
+        specifier: ^2.0.2
+        version: 2.0.2(react-dom@18.2.0)(react@18.2.0)
       '@mdx-js/mdx':
         specifier: 2.3.0
         version: 2.3.0
@@ -5499,16 +5505,6 @@ packages:
       '@floating-ui/core': 1.4.1
       '@floating-ui/utils': 0.1.1
 
-  /@floating-ui/react-dom@2.0.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-rZtAmSht4Lry6gdhAJDrCp/6rKN7++JnL1/Anbr/DdeyYXQPxvg/ivrbYvJulbRf4vL8b212suwMM2lxbv+RQA==}
-    peerDependencies:
-      react: '>=18.2.0 || 18.2.0'
-      react-dom: '>=18.2.0'
-    dependencies:
-      '@floating-ui/dom': 1.5.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
   /@floating-ui/react-dom@2.0.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-5qhlDvjaLmAst/rKb3VdlCinwTF4EYMiVxuuc/HVUjs46W0zgtbMmAZ1UTsDrRTxRmUEzl92mOtWbeeXL26lSQ==}
     peerDependencies:
@@ -5526,7 +5522,7 @@ packages:
       react: '>=18.2.0 || 18.2.0'
       react-dom: '>=18.2.0'
     dependencies:
-      '@floating-ui/react-dom': 2.0.1(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.0.2(react-dom@18.2.0)(react@18.2.0)
       aria-hidden: 1.2.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)

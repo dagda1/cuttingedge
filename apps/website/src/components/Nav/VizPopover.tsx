@@ -18,11 +18,11 @@ import * as styles from './VizPopover.css';
 import * as navStyles from './Nav.css';
 
 export function VizPopover(): JSX.Element {
-  const [vizIsOpen, setVizIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
-    open: vizIsOpen,
-    onOpenChange: setVizIsOpen,
+    open: isOpen,
+    onOpenChange: setIsOpen,
     middleware: [offset(10), flip({ fallbackAxisSideDirection: 'end' }), shift()],
     whileElementsMounted: autoUpdate,
   });
@@ -38,7 +38,7 @@ export function VizPopover(): JSX.Element {
       <button className={styles.popoverButton} ref={refs.setReference} {...getReferenceProps()}>
         <Text>VIZ</Text>
       </button>
-      {vizIsOpen && (
+      {isOpen && (
         <FloatingFocusManager context={context} modal={false}>
           <div
             className={cs(styles.popover, 'Popover')}
