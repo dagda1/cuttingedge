@@ -311,8 +311,8 @@ importers:
         version: 9.0.4(react@18.2.0)
     devDependencies:
       '@architect/architect':
-        specifier: ^10.14.1
-        version: 10.14.1
+        specifier: ^10.14.2
+        version: 10.14.2
       '@babel/runtime':
         specifier: ^7.22.11
         version: 7.22.11
@@ -1767,8 +1767,8 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.19
 
-  /@architect/architect@10.14.1:
-    resolution: {integrity: sha512-gDWba/BB5rQCbchMRhSZ/aqT+F5LEHiA+KPv9XDebvIZ4iPn+lTfkZ0ZoP0EzURnjkQK8yjbsa1RDEgJcwIzkw==}
+  /@architect/architect@10.14.2:
+    resolution: {integrity: sha512-NFlwV4P7aVlpxUQNs+vcftnoEYzhEg4ImN3zZCnSXmMh8cWu2/OOhAaY7T8yy4Tg5IxS2k1CwNw13uAcf+QdkA==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
@@ -1776,10 +1776,10 @@ packages:
       '@architect/deploy': 4.6.1
       '@architect/destroy': 3.0.13
       '@architect/env': 3.0.12
-      '@architect/hydrate': 3.3.0
+      '@architect/hydrate': 3.3.1
       '@architect/inventory': 3.6.1
       '@architect/logs': 4.0.10
-      '@architect/sandbox': 5.8.0
+      '@architect/sandbox': 5.8.2
       '@architect/utils': 3.1.9
       '@aws-sdk/client-apigatewaymanagementapi': 3.388.0
       '@aws-sdk/client-dynamodb': 3.388.0
@@ -1824,7 +1824,7 @@ packages:
     hasBin: true
     dependencies:
       '@architect/create': 4.2.3
-      '@architect/hydrate': 3.3.0
+      '@architect/hydrate': 3.3.1
       '@architect/inventory': 3.6.1
       '@architect/package': 8.5.1
       '@architect/utils': 3.1.9
@@ -1885,8 +1885,8 @@ packages:
       uid-safe: 2.1.5
     dev: false
 
-  /@architect/hydrate@3.3.0:
-    resolution: {integrity: sha512-YyOjVPvjNsaUirt0saDDf/cAZEyXw3rCzLfhQcxsjpd3cwlQn6yKeYjfKT85Ge6qgmpxS/j4o4LvA0ZET61K6A==}
+  /@architect/hydrate@3.3.1:
+    resolution: {integrity: sha512-1glad5yjXZhJdp5T730k4iTXo6pOSjt+NUfFi6u2V8AAcm6CC+w/VXL5thJ1gbjUGQtUT7+KPuBTnnylKcVWuQ==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
@@ -1940,14 +1940,14 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@architect/sandbox@5.8.0:
-    resolution: {integrity: sha512-q1Zl1Oq2f6xKS5Te2B/9UCJrbwtFgJAXbkJfPYmnaX+2XmWAS34pOnhT0TyeeCbBCi7nIJ8PVdyYyYhkwg5CfA==}
+  /@architect/sandbox@5.8.2:
+    resolution: {integrity: sha512-yuM83nWHNtmVSmXcNp5Q6WusZHp4nIZabkmKSqSGzuQFCgJMYDaWDpQLY5wsubf0ktivkKzy7dDUb2V1+IRW1A==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
       '@architect/asap': 6.0.3
       '@architect/create': 4.2.3
-      '@architect/hydrate': 3.3.0
+      '@architect/hydrate': 3.3.1
       '@architect/inventory': 3.6.1
       '@architect/utils': 3.1.9
       '@aws-sdk/client-apigatewaymanagementapi': 3.388.0
@@ -4582,22 +4582,22 @@ packages:
       rollup: 2.79.1
     dev: false
 
-  /@definitelytyped/header-parser@0.0.176:
-    resolution: {integrity: sha512-HYxONYeC2CesHiL/JD26eCloPHexsNkyzFfqCCyXoNBcr2+0dgGhDoJ6gjNgwYeKo3NZVfCR6ZYrEzH/MWjTBA==}
+  /@definitelytyped/header-parser@0.0.177:
+    resolution: {integrity: sha512-siVtuvnQxXr4KhD14VV7AzFR0Xb+qcRxJWRQ4AogGkPakd5/ufljAXJ6fBq6HRB57Vy4MmgV9R0irfcMhdaK1A==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.176
+      '@definitelytyped/typescript-versions': 0.0.177
       '@types/parsimmon': 1.10.6
       parsimmon: 1.18.1
     dev: true
 
-  /@definitelytyped/typescript-versions@0.0.176:
-    resolution: {integrity: sha512-1iwxOE5w+gFF+GXTjGyz3nMZXGmqcjEEGJg3NjnB59hYQ5qANogOkS98V+XdRU9LMTvOTtfVSDFEhr32TmMDKA==}
+  /@definitelytyped/typescript-versions@0.0.177:
+    resolution: {integrity: sha512-PcSKwrB0zhpFq9KadHU7iVkqszg/4TqDlF+xrXNsMpFk523RC7S7HXdPNR3j55774fwvoIRudMbr96v2J+WNKg==}
     dev: true
 
-  /@definitelytyped/utils@0.0.176:
-    resolution: {integrity: sha512-NN07S3EDPIkzkSDWo5s+wc2MkhmT72O/rkAnK+ezi54wuur4QpyoJxjN2yy+4wdNAFPECFddnlUE08u1j9Ffaw==}
+  /@definitelytyped/utils@0.0.177:
+    resolution: {integrity: sha512-okfO4lAV3rRnvCYYqfPT3ZSqfM4Wwg+02ClzszV5AV0htYKiDn8KpdfM73Fm2DCoqeKuKlMPmtc5VtuRK6vCRg==}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.176
+      '@definitelytyped/typescript-versions': 0.0.177
       '@qiwi/npm-registry-client': 8.9.1
       '@types/node': 14.18.54
       charm: 1.0.2
@@ -13314,7 +13314,7 @@ packages:
     peerDependencies:
       typescript: '*'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.176
+      '@definitelytyped/header-parser': 0.0.177
       command-exists: 1.2.9
       rimraf: 3.0.2
       semver: 6.3.1
@@ -13330,9 +13330,9 @@ packages:
     peerDependencies:
       typescript: '>= 3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.7.0-dev || >= 3.8.0-dev || >= 3.9.0-dev || >= 4.0.0-dev'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.176
-      '@definitelytyped/typescript-versions': 0.0.176
-      '@definitelytyped/utils': 0.0.176
+      '@definitelytyped/header-parser': 0.0.177
+      '@definitelytyped/typescript-versions': 0.0.177
+      '@definitelytyped/utils': 0.0.177
       dts-critic: 3.3.11(typescript@5.1.6)
       fs-extra: 6.0.1
       json-stable-stringify: 1.0.2
