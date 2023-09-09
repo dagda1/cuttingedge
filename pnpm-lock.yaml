@@ -592,8 +592,8 @@ importers:
         specifier: 1.7.3
         version: 1.7.3
       '@types/csurf':
-        specifier: 1.11.2
-        version: 1.11.2
+        specifier: 1.11.3
+        version: 1.11.3
       '@types/d3':
         specifier: 7.4.0
         version: 7.4.0
@@ -8967,8 +8967,8 @@ packages:
       '@types/vinyl': 2.0.7
     dev: true
 
-  /@types/csurf@1.11.2:
-    resolution: {integrity: sha512-9bc98EnwmC1S0aSJiA8rWwXtgXtXHHOQOsGHptImxFgqm6CeH+mIOunHRg6+/eg2tlmDMX3tY7XrWxo2M/nUNQ==}
+  /@types/csurf@1.11.3:
+    resolution: {integrity: sha512-PxiVZGf+pntWr7IsDW5ny/xUN4deDgW5BdVvtGQrshK+qfo5oqn4ihys2Mgl2AVfUs3GfKxZkxpzn3AQyJY5Sg==}
     dependencies:
       '@types/express-serve-static-core': 4.17.35
     dev: true
