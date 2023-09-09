@@ -29,7 +29,7 @@
     "@types/node": "20.5.9",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
-    "@vitest/coverage-v8": "0.34.3",
+    "@vitest/coverage-v8": "0.34.4",
     "@vitejs/plugin-react": "4.0.4",
     "@vanilla-extract/vite-plugin": "3.9.0",
     "core-js": "3.32.1",
@@ -48,7 +48,7 @@
     "turbo": "1.10.13",
     "typescript": "5.1.6",
     "vite": "4.4.9",
-    "vitest": "0.34.3",
+    "vitest": "0.34.4",
     "whatwg-fetch": "3.6.18"
   },
   "packageManager": "pnpm@8.7.4",
