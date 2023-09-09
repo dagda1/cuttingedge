@@ -65,7 +65,6 @@ export function Nav({
           >
             <Hamburger variant={hamburgerVariant} setOpen={toggle} open={open} />
           </Box>
-          {mobileMenuItems}
           <Box
             component="ul"
             padding={{

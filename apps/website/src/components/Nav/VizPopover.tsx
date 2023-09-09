@@ -26,7 +26,7 @@ const Links: { to: `/${string}`; children: ReactNode }[] = [
 ];
 
 export function Popover(): JSX.Element {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,

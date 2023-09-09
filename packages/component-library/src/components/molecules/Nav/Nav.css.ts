@@ -51,9 +51,10 @@ export const expanded = style([
   },
 ]);
 
-globalStyle(`${expanded} > li, ${expanded} span`, {
-  width: '100%',
+globalStyle(`${expanded} li`, {
+  marginBottom: vars.space.medium,
   display: 'block',
+  width: '100%',
 });
 
 globalStyle(`${expanded} a, ${expanded} button`, {
@@ -65,9 +66,23 @@ globalStyle(`${expanded} a, ${expanded} button`, {
   paddingBottom: `${vars.space['medium']} !important`,
   width: '100%',
   height: '100%',
-  marginTop: vars.space['medium'],
   fontWeight: 'bold',
   textTransform: 'uppercase',
+});
+
+globalStyle(`${expanded} li ul li`, {
+  paddingBottom: 0,
+  paddingTop: 0,
+  marginBottom: 0,
+  borderBottom: `1px solid ${vars.foregroundColor.secondary}`,
+});
+
+globalStyle(`${expanded} li ul li a`, {
+  border: 'none',
+  paddingBottom: 0,
+  paddingTop: 0,
+  marginTop: 0,
+  height: 0,
 });
 
 globalStyle(`${expanded} a:hover`, {
@@ -94,19 +109,3 @@ export const noMobile = style({
     },
   }),
 });
-
-// globalStyle(`${expanded} li`, {
-//   zIndex: 300,
-//   border: '10px solid blue',
-//   width: '100%',
-//   pointerEvents: 'all',
-// });
-
-// globalStyle(`${expanded} a`, {
-//   zIndex: 300,
-//   border: '10px solid green',
-//   width: '100%',
-//   height: '100%',
-//   display: 'block',
-//   pointerEvents: 'all',
-// });
