@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     react(),
     tsconfigPaths(),
-    vanillaExtractPlugin({ identifiers: 'debug', emitCssInSsr: true }),
+    vanillaExtractPlugin({ emitCssInSsr: true }),
     svgrPlugin({ svgrOptions: { icon: true } }),
     mdx(),
   ],

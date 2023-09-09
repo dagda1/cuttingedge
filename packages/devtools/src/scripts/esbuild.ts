@@ -62,7 +62,7 @@ async function bundle({
         packagePath: paths.appPackageJson,
       }),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vanillaExtractPlugin({ identifiers: 'debug' }) as any,
+      vanillaExtractPlugin() as any,
     ],
     loader: {
       '.png': 'file',
