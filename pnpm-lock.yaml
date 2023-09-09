@@ -975,8 +975,8 @@ importers:
         specifier: 7.9.2
         version: 7.9.2
       '@types/copy':
-        specifier: 0.3.2
-        version: 0.3.2
+        specifier: 0.3.3
+        version: 0.3.3
       '@types/fs-extra':
         specifier: 11.0.1
         version: 11.0.1
@@ -8961,8 +8961,8 @@ packages:
   /@types/cookie@0.4.1:
     resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
 
-  /@types/copy@0.3.2:
-    resolution: {integrity: sha512-mvoL7JK2ldr0oXJlOcp9VYlSwWsjPkIMDf4dQzhRJKE74IcFB2bljgf5xNk6yguHU9BSXRBsAyxGWlSL1ANg0Q==}
+  /@types/copy@0.3.3:
+    resolution: {integrity: sha512-A5r2oYWTSGhrEd2uADXL0LpBWydF1T33Pyx0zHqQWwfHqEWo5szHJfr2St4SxwXw4bCe8a+lJZAsevry/3MYZQ==}
     dependencies:
       '@types/vinyl': 2.0.7
     dev: true
