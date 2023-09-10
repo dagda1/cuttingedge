@@ -22,20 +22,19 @@ export const popover = style({
   textAlign: 'left',
 });
 
-globalStyle(`${popover} ul li a`, {
-  color: `${palette.black} !important`,
-  display: 'flex',
-  alignItems: 'center',
-  paddingRight: vars.space.xsmall,
-  paddingBottom: vars.space.xsmall,
-  cursor: 'pointer',
-});
+// globalStyle(`${popover} ul li a`, {
+//   color: `${palette.black} !important`,
+//   display: 'flex',
+//   alignItems: 'center',
+//   paddingRight: vars.space.xsmall,
+//   paddingBottom: vars.space.xsmall,
+//   cursor: 'pointer',
+// });
 
-globalStyle(`${popover} li:hover`, {
-  background: `${palette.yellow400} !important`,
-  color: `${palette.white} !important`,
-});
+// globalStyle(`${popover} li:hover`, {
+//   background: `${palette.yellow400} !important`,
+// });
 
-globalStyle(`${popover} li a:hover`, {
-  color: `${palette.white} !important`,
-});
+// globalStyle(`${popover} li a:hover`, {
+//   background: 'inherit',
+// });
