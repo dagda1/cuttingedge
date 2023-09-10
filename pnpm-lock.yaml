@@ -899,8 +899,8 @@ importers:
         specifier: 11.1.1
         version: 11.1.1
       inquirer:
-        specifier: 9.2.10
-        version: 9.2.10
+        specifier: 9.2.11
+        version: 9.2.11
       papaparse:
         specifier: 5.4.1
         version: 5.4.1
@@ -16205,8 +16205,8 @@ packages:
       wrap-ansi: 6.2.0
     dev: true
 
-  /inquirer@9.2.10:
-    resolution: {integrity: sha512-tVVNFIXU8qNHoULiazz612GFl+yqNfjMTbLuViNJE/d860Qxrd3NMrse8dm40VUQLOQeULvaQF8lpAhvysjeyA==}
+  /inquirer@9.2.11:
+    resolution: {integrity: sha512-B2LafrnnhbRzCWfAdOXisUzL89Kg8cVJlYmhqoi3flSiV/TveO+nsXwgKr9h9PIo+J1hz7nBSk6gegRIMBBf7g==}
     engines: {node: '>=14.18.0'}
     dependencies:
       '@ljharb/through': 2.3.9
