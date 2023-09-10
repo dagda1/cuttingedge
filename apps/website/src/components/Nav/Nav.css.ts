@@ -1,4 +1,4 @@
-import { palette, vars } from '@cutting/component-library';
+import { vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const contact = style([
@@ -14,13 +14,4 @@ globalStyle(`${contact} a`, {
 export const active = style({
   color: 'blue',
   fontStyle: 'bold',
-});
-
-export const submenu = style({
-  color: `${palette.black}`,
-  selectors: {
-    [`&:hover,&:focus`]: {
-      textDecorationThickness: `max(3px, .1875rem, .12em)`,
-    },
-  },
 });

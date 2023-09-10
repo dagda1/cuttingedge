@@ -16,17 +16,16 @@ import { useState } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 import cs from 'classnames';
 import * as styles from './VizPopover.css';
-import * as navStyles from './Nav.css';
 
 const Links: { to: `/${string}`; children: ReactNode }[] = [
   { to: '/viz', children: 'SINE' },
-  { to: '/function-plot', children: 'FUNCTIONS' },
-  { to: '/sine2', children: 'MORE SINE' },
+  { to: '/viz/function-plot', children: 'FUNCTIONS' },
+  { to: '/viz/sine2', children: 'MORE SINE' },
   { to: '/viz/tan', children: 'TAN' },
 ];
 
 export function Popover(): JSX.Element {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
@@ -56,7 +55,7 @@ export function Popover(): JSX.Element {
           >
             <List type="none">
               {Links.map(({ to, children }) => (
-                <TextNavLink key={to} onClick={() => setIsOpen(false)} className={navStyles.submenu} to={to}>
+                <TextNavLink key={to} onClick={() => setIsOpen(false)} to={to}>
                   {children}
                 </TextNavLink>
               ))}

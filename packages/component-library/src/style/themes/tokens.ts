@@ -89,6 +89,7 @@ export const tokens = {
       body: palette.white,
       focus: palette.blue100,
       secondary: palette.white,
+      linkHover: palette.blue100,
     },
   },
   typography: {
