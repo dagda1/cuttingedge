@@ -48,7 +48,7 @@
     "js-yaml": "^4.1.0",
     "katex": "^0.16.8",
     "leva": "^0.9.35",
-    "luxon": "^3.4.2",
+    "luxon": "^3.4.3",
     "maath": "^0.7.0",
     "mathjax-full": "3.2.2",
     "mdast-util-to-markdown": "^2.1.0",
