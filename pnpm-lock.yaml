@@ -579,9 +579,6 @@ importers:
       '@floating-ui/dom':
         specifier: ^1.5.1
         version: 1.5.1
-      '@floating-ui/react-dom':
-        specifier: ^2.0.2
-        version: 2.0.2(react-dom@18.2.0)(react@18.2.0)
       '@mdx-js/mdx':
         specifier: 2.3.0
         version: 2.3.0
@@ -693,6 +690,9 @@ importers:
       '@cutting/util':
         specifier: workspace:*
         version: link:../util
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
       assert-ts:
         specifier: ^0.3.4
         version: 0.3.4

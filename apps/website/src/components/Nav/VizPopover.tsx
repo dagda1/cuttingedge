@@ -1,21 +1,7 @@
-import { Text, List } from '@cutting/component-library';
-import {
-  useFloating,
-  autoUpdate,
-  offset,
-  flip,
-  shift,
-  useDismiss,
-  useRole,
-  useClick,
-  useInteractions,
-  FloatingFocusManager,
-} from '@floating-ui/react';
-import type { ReactNode } from 'react';
-import { useState } from 'react';
+import { List, Popover } from '@cutting/component-library';
+
+import { useState, type ReactNode } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
-import cs from 'classnames';
-import * as styles from './VizPopover.css';
 
 const Links: { to: `/${string}`; children: ReactNode }[] = [
   { to: '/viz', children: 'SINE' },
@@ -24,45 +10,17 @@ const Links: { to: `/${string}`; children: ReactNode }[] = [
   { to: '/viz/tan', children: 'TAN' },
 ];
 
-export function Popover(): JSX.Element {
+export function VizPopover(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-
-  const { refs, floatingStyles, context } = useFloating({
-    open: isOpen,
-    onOpenChange: setIsOpen,
-    middleware: [offset(10), flip({ fallbackAxisSideDirection: 'end' }), shift()],
-    whileElementsMounted: autoUpdate,
-  });
-
-  const click = useClick(context);
-  const dismiss = useDismiss(context);
-  const role = useRole(context);
-
-  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
-
   return (
-    <>
-      <button className={styles.popoverButton} ref={refs.setReference} {...getReferenceProps()}>
-        <Text>VIZ</Text>
-      </button>
-      {isOpen && (
-        <FloatingFocusManager context={context} modal={false}>
-          <div
-            className={cs(styles.popover, 'Popover')}
-            ref={refs.setFloating}
-            style={floatingStyles}
-            {...getFloatingProps()}
-          >
-            <List type="none">
-              {Links.map(({ to, children }) => (
-                <TextNavLink key={to} onClick={() => setIsOpen(false)} to={to}>
-                  {children}
-                </TextNavLink>
-              ))}
-            </List>
-          </div>
-        </FloatingFocusManager>
-      )}
-    </>
+    <Popover isOpen={isOpen} setIsOpen={setIsOpen} heading="VIZ">
+      <List type="none">
+        {Links.map(({ to, children }) => (
+          <TextNavLink key={to} onClick={() => setIsOpen(false)} to={to}>
+            {children}
+          </TextNavLink>
+        ))}
+      </List>
+    </Popover>
   );
 }

@@ -8,7 +8,7 @@ import cowMobile from '~/assets/images/cow-mobile.png';
 import cs from 'classnames';
 import { bannerPages } from '~/routes';
 import { useCallback, useState } from 'react';
-import { Popover } from './VizPopover';
+import { VizPopover } from './VizPopover';
 
 export interface MenuState {
   isExpanded: boolean;
@@ -64,7 +64,7 @@ export function TopNav(): JSX.Element {
           </NavItem>
         ))}
         <NavItem display="SubmenuMobile">
-          <Popover />
+          <VizPopover />
         </NavItem>
       </NavItems>
     </Nav>

@@ -79,7 +79,6 @@
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
     "@floating-ui/dom": "^1.5.1",
-    "@floating-ui/react-dom": "^2.0.2",
     "@mdx-js/mdx": "2.3.0",
     "@mdx-js/react": "2.3.0",
     "@mdx-js/rollup": "2.3.0",

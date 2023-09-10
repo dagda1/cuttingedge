@@ -1,5 +1,5 @@
-import { palette, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { vars } from '~/style/themes/vars.css';
 
 export const popoverButton = style({
   background: 'transparent',
@@ -15,8 +15,8 @@ globalStyle(`${popoverButton} span:hover`, {
 export const popover = style({
   width: 'max-content',
   maxWidth: '100vw',
-  backgroundColor: 'white',
-  border: '1px solid #ddd',
+  backgroundColor: `${vars.foregroundColor.primary}`,
+  border: `1px solid ${vars.borderColor.neutralLight}`,
   fontSize: '90%',
   borderRadius: '4px',
   textAlign: 'left',
@@ -24,7 +24,7 @@ export const popover = style({
 });
 
 globalStyle(`${popover} ul li a`, {
-  color: `${palette.black} !important`,
+  color: `${vars.foregroundColor.secondary} !important`,
   display: 'flex',
   alignItems: 'center',
   paddingRight: vars.space.xsmall,
