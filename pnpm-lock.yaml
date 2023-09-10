@@ -139,8 +139,8 @@ importers:
         specifier: ^1.19.3
         version: 1.19.3(react-dom@18.2.0)(react@18.2.0)
       '@studio-freight/lenis':
-        specifier: ^1.0.19
-        version: 1.0.19
+        specifier: ^1.0.22
+        version: 1.0.22
       '@unpic/placeholder':
         specifier: ^0.1.2
         version: 0.1.2
@@ -8496,8 +8496,8 @@ packages:
       resolve-from: 5.0.0
     dev: true
 
-  /@studio-freight/lenis@1.0.19:
-    resolution: {integrity: sha512-0DZdjDaJqhYVxzcbj6Dpv/BHS/RLc4f6XYu/n0t0fUKatuvO5vtXW4gW4GHgJPiPIpamct7bg8hpihbjZ6fqpw==}
+  /@studio-freight/lenis@1.0.22:
+    resolution: {integrity: sha512-CU4VT2rZjrpp4bSqpIYe+qA4vK0yZeIl2lM0tcU5mX5k03smhCAAiDiLjgXJ1mrU9za6cU0O8C69zTOVbSBpwg==}
     dev: false
 
   /@svgr/babel-plugin-add-jsx-attribute@7.0.0(@babel/core@7.22.10):

@@ -21,7 +21,7 @@
     "@cutting/use-get-parent-size": "workspace:*",
     "@cutting/react-hook-form-components": "workspace:*",
     "@mdx-js/esbuild": "^2.3.0",
-    "@studio-freight/lenis": "^1.0.19",
+    "@studio-freight/lenis": "^1.0.22",
     "@remix-run/architect": "^1.19.3",
     "@remix-run/css-bundle": "^1.19.3",
     "@remix-run/node": "^1.19.3",
