@@ -4,19 +4,21 @@ import { useGetTextStyles } from '@cutting/component-library';
 import { Text, type TextProps } from '@cutting/component-library';
 import { NavLink } from 'react-router-dom';
 import cs from 'classnames';
-import * as styles from './TextNavLink.css';
+import { forwardRef } from 'react';
 
 type Props = NavLinkProps & { Component?: Taggable<NavLinkProps> } & Omit<TextProps, 'className'>;
 
-function TextNavLinkWrapper({ Component = NavLink, className, ...props }: Props): JSX.Element {
+const TextNavLinkWrapper = forwardRef<HTMLAnchorElement, Props>(({ Component = NavLink, className, ...props }, ref) => {
   const linkStyles = useGetTextStyles();
   const classes =
     typeof className === 'function'
-      ? (p: { isActive: boolean; isPending: boolean }) => cs(className(p), linkStyles, styles.main)
-      : cs(className, linkStyles, styles.main);
+      ? (p: { isActive: boolean; isPending: boolean }) => cs(className(p), linkStyles)
+      : cs(className, linkStyles);
 
-  return <Component className={classes} {...props} />;
-}
+  return <Component ref={ref} className={classes} {...props} />;
+});
+
+TextNavLinkWrapper.displayName = 'TextNavLinkWrapper';
 
 export function TextNavLink({ size, weight, ...props }: Props): JSX.Element {
   return (

@@ -70,6 +70,7 @@ export * from './components/molecules/Testimonials';
 export * from './components/molecules/Testimonial/Testimonial';
 
 export { ResponsiveImage } from './components/molecules/ResponsiveImage/ResponsiveImage';
+export { Popover } from './components/molecules/Popover/Popover';
 export { responsiveStyle } from './style/responsive-style';
 export { atoms } from './style/atoms/atoms';
 export { vars } from './style/themes/vars.css';

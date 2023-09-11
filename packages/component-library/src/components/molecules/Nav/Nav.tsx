@@ -29,7 +29,7 @@ export function Nav({
   toggle,
   children,
 }: NavProps): JSX.Element {
-  const desktopItems = useMemo(
+  const permanentMenuItems = useMemo(
     () =>
       Children.toArray(children.props.children)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,7 +37,7 @@ export function Nav({
         .map((m, i) => <Fragment key={i}>{m}</Fragment>),
     [children.props.children],
   );
-  const mobileMenuItems = useMemo(
+  const responsiveMenuItems = useMemo(
     () =>
       Children.toArray(children.props.children)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,9 +48,15 @@ export function Nav({
 
   return (
     <Box component="nav" width={width} className={styles.container}>
-      <Box component="ul" display={display} justifyContent={justifyContent} alignItems={alignItems}>
+      <Box
+        className={styles.navList}
+        component="ul"
+        display={display}
+        justifyContent={justifyContent}
+        alignItems={alignItems}
+      >
         <NavItems>
-          {desktopItems}
+          {permanentMenuItems}
           <Box
             component="li"
             display={{ mobile: 'block', desktop: 'none' }}
@@ -59,7 +65,7 @@ export function Nav({
           >
             <Hamburger variant={hamburgerVariant} setOpen={toggle} open={open} />
           </Box>
-          {mobileMenuItems}
+          {responsiveMenuItems}
           <Box
             component="ul"
             padding={{
@@ -69,7 +75,7 @@ export function Nav({
             display={{ mobile: 'flex', desktop: 'none' }}
             className={cs(styles.expandable, { [styles.expanded]: open })}
           >
-            {mobileMenuItems}
+            {responsiveMenuItems}
           </Box>
         </NavItems>
       </Box>
