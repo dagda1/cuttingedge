@@ -83,3 +83,4 @@ export { breakpoints, breakpointNames, getCurrentBreakpoint } from './style/brea
 export { markResetImported } from './style/reset/reset-tracker';
 export { visuallyHidden, screenReaderOnly } from './style/accessibility.css';
 export { makeWebFonts } from './style/util/typography';
+export * from './utl/zindex';
