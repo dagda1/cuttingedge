@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.3
+
+### Patch Changes
+
+- 4521ab80: add <Popover /> component
+
 ## 4.63.2
 
 ### Patch Changes
