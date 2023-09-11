@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.9
+
+### Patch Changes
+
+- 46dbc744: use zIndex object
+
 ## 5.41.8
 
 ### Patch Changes
