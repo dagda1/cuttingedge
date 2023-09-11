@@ -29,7 +29,7 @@ export const popover = style([
 ]);
 
 globalStyle(`${popover} ul li a`, {
-  color: `${vars.foregroundColor.secondary} !important`,
+  color: `${vars.foregroundColor.secondary}`,
   display: 'flex',
   alignItems: 'center',
   paddingRight: vars.space.xsmall,
@@ -42,5 +42,5 @@ globalStyle(`${popover} li:hover`, {
 });
 
 globalStyle(`${popover} li a:hover`, {
-  color: `${vars.foregroundColor.linkHover} !important`,
+  color: `${vars.foregroundColor.primary}`,
 });

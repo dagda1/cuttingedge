@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "audit-packages": "devtools each-pkg devtools audit",
+    "knip": "knip",
     "all": "pnpm i && pnpm build && pnpm lint && pnpm test",
     "build": "turbo run build",
     "build:tsc": "tsc -b ./tsconfig.packages.json",
@@ -42,6 +42,7 @@
     "follow-redirects": "1.15.2",
     "husky": "8.0.3",
     "jsdom": "22.1.0",
+    "knip": "^2.22.0",
     "lint-staged": "13.3.0",
     "node-fetch": "3.3.2",
     "prettier": "2.8.8",
