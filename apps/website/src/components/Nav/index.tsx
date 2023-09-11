@@ -18,6 +18,8 @@ export function TopNav(): JSX.Element {
   const [navOpen, setNavOpen] = useState(false);
   const toggle = useCallback(() => setNavOpen(!navOpen), [navOpen]);
 
+  const hideExpanded = useCallback(() => setNavOpen(false), []);
+
   return (
     <Nav open={navOpen} toggle={toggle} hamburgerVariant="light">
       <NavItems>
@@ -64,7 +66,7 @@ export function TopNav(): JSX.Element {
           </NavItem>
         ))}
         <NavItem display="SubmenuMobile">
-          <VizPopover />
+          <VizPopover hideExpanded={hideExpanded} />
         </NavItem>
       </NavItems>
     </Nav>
