@@ -1,5 +1,13 @@
 # @cutting/component-library
 
+## 5.41.7
+
+### Patch Changes
+
+- 4521ab80: add <Popover /> component
+  - @cutting/hooks@4.56.4
+  - @cutting/util@4.58.3
+
 ## 5.41.6
 
 ### Patch Changes
