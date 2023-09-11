@@ -1,5 +1,12 @@
 # @cutting/website
 
+## 4.29.44
+
+### Patch Changes
+
+- Updated dependencies [bab1082d]
+  - @cutting/svg@4.54.10
+
 ## 4.29.43
 
 ### Patch Changes
