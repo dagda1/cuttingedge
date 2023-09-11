@@ -15,6 +15,7 @@ export type ResponsiveSVGProps = SVGAttributes<{
   className?: string;
   hide?: boolean;
   children: ReactNode;
+  overflow?: 'hidden' | 'visible';
 }>;
 
 export function ResponsiveSVG({
@@ -25,6 +26,7 @@ export function ResponsiveSVG({
   preserveAspectRatio = 'xMaxYMid meet',
   innerRef,
   className,
+  overflow = 'visible',
   ...props
 }: ResponsiveSVGProps): JSX.Element {
   const aspect = height === 0 ? 1 : width / height;
@@ -41,7 +43,7 @@ export function ResponsiveSVG({
       }}
     >
       <svg
-        style={{ overflow: 'visible', width: '100%', height: 'auto' }}
+        style={{ overflow, width: '100%', height: 'auto' }}
         className={className}
         preserveAspectRatio={preserveAspectRatio}
         viewBox={`${origin.x} ${origin.y} ${width} ${adjustedHeight}`}

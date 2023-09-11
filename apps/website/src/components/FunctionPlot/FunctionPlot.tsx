@@ -217,7 +217,7 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   return (
     <ApplicationLayout centerHeading heading="The (function) plot thickens...." showFooter={false}>
       <section ref={containerRef} className={styles.container}>
-        <ResponsiveSVG width={width} height={height} className="function-svg">
+        <ResponsiveSVG width={width} height={height} overflow="hidden" className="function-svg">
           <Group transform={`translate(0, ${xAxisPosition})`}>
             <AxisBottom scale={xScale} axisLineClassName={styles.axisLine} />
           </Group>
@@ -233,7 +233,7 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
             stroke="#fff"
             className="curve"
           />
-          <Group innerRef={tangentRef} className="tangent-group">
+          <Group innerRef={tangentRef} className={styles.tangentGroup}>
             <Circle className={styles.diff} r={7} cx={state.tangent.diff.x} cy={state.tangent.diff.y} />
             <Line className={styles.tangent} {...state.tangent.line} />
             <Text className={styles.diffLabel} dx={state.tangent.label.dx} dy={state.tangent.label.dy}>

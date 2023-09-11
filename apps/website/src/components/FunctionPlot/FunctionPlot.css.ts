@@ -1,4 +1,4 @@
-import { palette, responsiveStyle } from '@cutting/component-library';
+import { palette, responsiveStyle, ZIndex } from '@cutting/component-library';
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style, globalStyle } from '@vanilla-extract/css';
 
@@ -30,9 +30,16 @@ export const diff = style({
 export const tangent = style({
   stroke: palette.red,
   fill: palette.red,
+  zIndex: ZIndex.none,
 });
 
-export const diffLabel = style({});
+export const diffLabel = style({
+  zIndex: ZIndex.none,
+});
+
+export const tangentGroup = style({
+  zIndex: ZIndex.none,
+});
 
 export const form = style({});
 

@@ -76,7 +76,7 @@ globalStyle(`${shape} div:after`, {
   textTransform: 'uppercase',
   left: '50%',
   transform: 'translateX(-50%)',
-  fontFamily: vars.fontFamily,
+  fontFamily: vars.fontFamily.text,
 });
 
 export const front = style({
