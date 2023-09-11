@@ -1,5 +1,11 @@
 # @cutting/svg
 
+## 4.54.10
+
+### Patch Changes
+
+- bab1082d: make ResponsiveSVG overflow prop
+
 ## 4.54.9
 
 ### Patch Changes
