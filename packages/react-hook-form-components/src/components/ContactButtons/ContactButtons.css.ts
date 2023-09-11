@@ -1,4 +1,4 @@
-import { atoms, palette, responsiveStyle, vars } from '@cutting/component-library';
+import { palette, responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const callButton = style({});
@@ -15,7 +15,9 @@ export const popup = style({
   width: '100%',
 });
 
-export const modal = style([atoms({ zIndex: 'modal' })]);
+export const modal = style({
+  zIndex: 310,
+});
 
 globalStyle(`${modal} fieldset`, {
   border: 'none',
@@ -63,6 +65,7 @@ globalStyle('[data-testid="modal-overlay"]', {
   left: 0,
   right: 0,
   bottom: 0,
+  zIndex: 300,
 });
 
 globalStyle('[role="dialog"]', {
