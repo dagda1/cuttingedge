@@ -60,6 +60,7 @@ export const unresponsiveProperties = {
     0: 0,
     1: 1,
     2: 2,
+    none: -1,
     dropdownBackdrop: 90,
     dropdown: 100,
     sticky: 200,

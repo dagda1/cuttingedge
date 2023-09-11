@@ -120,6 +120,9 @@ importers:
       '@cutting/util':
         specifier: workspace:*
         version: link:../../packages/util
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
       '@jsdevtools/rehype-toc':
         specifier: ^3.0.2
         version: 3.0.2
@@ -138,9 +141,6 @@ importers:
       '@remix-run/react':
         specifier: ^1.19.3
         version: 1.19.3(react-dom@18.2.0)(react@18.2.0)
-      '@studio-freight/lenis':
-        specifier: ^1.0.22
-        version: 1.0.22
       '@unpic/placeholder':
         specifier: ^0.1.2
         version: 0.1.2
@@ -8514,10 +8514,6 @@ packages:
       regenerator-runtime: 0.13.11
       resolve-from: 5.0.0
     dev: true
-
-  /@studio-freight/lenis@1.0.22:
-    resolution: {integrity: sha512-CU4VT2rZjrpp4bSqpIYe+qA4vK0yZeIl2lM0tcU5mX5k03smhCAAiDiLjgXJ1mrU9za6cU0O8C69zTOVbSBpwg==}
-    dev: false
 
   /@svgr/babel-plugin-add-jsx-attribute@7.0.0(@babel/core@7.22.10):
     resolution: {integrity: sha512-khWbXesWIP9v8HuKCl2NU2HNAyqpSQ/vkIl36Nbn4HIwEYSRWL0H7Gs6idJdha2DkpFDWlsqMELvoCE8lfFY6Q==}

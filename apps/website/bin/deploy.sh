@@ -18,3 +18,5 @@ docker tag website-server:latest 313095418189.dkr.ecr.us-east-1.amazonaws.com/we
 
 docker push 313095418189.dkr.ecr.us-east-1.amazonaws.com/website_server:latest
 docker push 313095418189.dkr.ecr.us-east-1.amazonaws.com/website_nginx:latest
+
+rm -rf ./pruned

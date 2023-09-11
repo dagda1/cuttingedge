@@ -18,7 +18,7 @@ const weakLinkVars = assignVars(textLinkVars, {
 export const base = style({
   color: vars.foregroundColor.link,
   textDecoration: 'none',
-  textDecorationThickness: '0.1em',
+  textDecorationThickness: '0.08em',
   textUnderlineOffset: 3,
   ':hover': {
     color: vars.foregroundColor.linkHover,
@@ -32,13 +32,21 @@ export const base = style({
       We also cannot use the long-form `text-decoration-line` due
       to browser support policy of Edge 16+.
     */
-    textDecorationThickness: '0.1em',
+    textDecorationThickness: '0.8em',
   },
-  ':focus': {
-    color: 'inherit',
+  ':focus-visible': {
+    color: textLinkVars.colorHover,
+    outline: `${vars.focusRingSize} solid ${vars.borderColor.focus}`,
+    outlineOffset: '0.2em',
+    borderRadius: vars.borderRadius.small,
   },
-  ':visited': {
-    color: vars.foregroundColor.linkVisited,
+});
+
+export const visited = style({
+  selectors: {
+    '&:visited': {
+      color: vars.foregroundColor.linkVisited,
+    },
   },
 });
 

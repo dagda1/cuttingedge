@@ -38,6 +38,7 @@ export const tokens = {
   },
   border: {
     radius: {
+      small: '2px',
       standard: '4px',
       large: '6px',
       xlarge: '10px',

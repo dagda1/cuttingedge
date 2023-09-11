@@ -25,7 +25,6 @@ export const expandable = style([
     top: 0,
     overflow: 'auto',
     backgroundColor: palette.black,
-    zIndex: 10,
     padding: '1rem',
     width: '100vw',
     height: '100vh',
@@ -42,6 +41,7 @@ export const expandable = style([
   },
   atoms({
     paddingY: 'large',
+    zIndex: 'modal',
   }),
 ]);
 
