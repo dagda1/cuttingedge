@@ -39,7 +39,6 @@ export const diffLabel = style({
 
 export const tangentGroup = style({
   zIndex: ZIndex.none,
-  fill: 'red',
 });
 
 export const form = style({});
