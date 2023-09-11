@@ -66,6 +66,7 @@ export const useLinkStyles = ({
   weight,
   hitArea = 'standard',
   underline,
+  showVisited = false,
 }: Pick<TextLinkProps, 'weight' | 'showVisited' | 'hitArea' | 'underline'> & {
   reset?: Atoms['reset'] | false;
 }): string => {
@@ -81,7 +82,8 @@ export const useLinkStyles = ({
   return cs(
     styles.base,
     linkStyles,
-    typographyStyles.fontWeight.medium,
+    weight !== 'weak' ? typographyStyles.fontWeight.medium : undefined,
+    showVisited ? styles.visited : undefined,
     reset !== false
       ? atoms({
           reset: typeof reset === 'string' ? reset : 'a',

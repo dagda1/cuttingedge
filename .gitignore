@@ -67,3 +67,5 @@ pnpm-global
 vite.config.ts.timestamp-*
 
 pruned
+
+knip.txt
