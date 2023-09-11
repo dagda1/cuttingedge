@@ -12,9 +12,10 @@ export function Highlights(): JSX.Element {
         flexDirection="column"
         height="full"
         className={styles.container}
+        position="relative"
       >
         <Stack space="large" align="center">
-          <List space="large">
+          <List space="large" type="none">
             <Heading center level="2">
               <TextLink
                 href="https://www.linkedin.com/posts/paul-cowan-19bb1116_backstage-activity-7043616692878401537-EQbh?utm_source=share&utm_medium=member_desktop"

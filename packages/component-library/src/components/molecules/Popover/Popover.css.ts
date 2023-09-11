@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { atoms } from '~/style/atoms/atoms';
 import { vars } from '~/style/themes/vars.css';
+import { ZIndex } from '~/utl/zindex';
 
 export const popoverButton = style({
   background: 'transparent',
@@ -22,10 +22,8 @@ export const popover = style([
     fontSize: '90%',
     borderRadius: '4px',
     textAlign: 'left',
+    zIndex: ZIndex.modal,
   },
-  atoms({
-    zIndex: 'modal',
-  }),
 ]);
 
 globalStyle(`${popover} ul li a`, {

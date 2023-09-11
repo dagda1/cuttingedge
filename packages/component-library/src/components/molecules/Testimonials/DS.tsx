@@ -7,7 +7,7 @@ export function DSTestimonial(): JSX.Element {
     <Box marginY="medium">
       <Testimonial
         from="Paul Kearney (Consulting Lead Product Manager Disclosure Scotland Apr. 2017 - Feb. 2020)"
-        url="https://www.mygov.scot/about-disclosure-scotland"
+        url="https://www.linkedin.com/in/pauljkearney/"
       >
         <Text component="p" tone="secondary">
           Paul was part of a challenging transformation programme. He was able to adapt and deliver under ever changing

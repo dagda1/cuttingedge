@@ -1,27 +1,30 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { palette } from '~/style';
+import { ZIndex } from '~/utl/zindex';
 
-export const container = style({
-  position: 'relative',
-  top: '5%',
-  right: '0',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-around',
-  width: '2rem',
-  height: '2rem',
-  background: 'transparent',
-  border: 'none',
-  cursor: 'pointer',
-  padding: 0,
-  zIndex: 11,
+export const container = style([
+  {
+    position: 'relative',
+    top: '5%',
+    right: '0',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    width: '2rem',
+    height: '2rem',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    padding: 0,
+    zIndex: ZIndex.notification,
 
-  selectors: {
-    '&:focus': {
-      outline: 'none',
+    selectors: {
+      '&:focus': {
+        outline: 'none',
+      },
     },
   },
-});
+]);
 
 globalStyle(`${container} div`, {
   width: '2rem',

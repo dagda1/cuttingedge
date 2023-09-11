@@ -3,6 +3,7 @@ import { atoms } from '~/style/atoms/atoms';
 import { palette } from '~/style/palette.css';
 import { responsiveStyle } from '~/style/responsive-style';
 import { vars } from '~/style/themes/vars.css';
+import { ZIndex } from '~/utl/zindex';
 
 export const container = style({});
 
@@ -38,10 +39,10 @@ export const expandable = style([
         left: '-20px',
       },
     }),
+    zIndex: ZIndex.modal,
   },
   atoms({
     paddingY: 'large',
-    zIndex: 'modal',
   }),
 ]);
 
