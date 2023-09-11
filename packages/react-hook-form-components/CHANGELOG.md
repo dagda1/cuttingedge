@@ -1,5 +1,13 @@
 # @cutting/react-hook-form-components
 
+## 0.5.10
+
+### Patch Changes
+
+- 4e6e1348: make visited configurable and z-index on expandable
+- Updated dependencies [4e6e1348]
+  - @cutting/component-library@5.41.8
+
 ## 0.5.9
 
 ### Patch Changes

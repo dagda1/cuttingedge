@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.8
+
+### Patch Changes
+
+- 4e6e1348: make visited configurable and z-index on expandable
+
 ## 5.41.7
 
 ### Patch Changes
