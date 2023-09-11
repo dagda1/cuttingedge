@@ -1,5 +1,12 @@
 # threejs-starter-vite
 
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [46dbc744]
+  - @cutting/component-library@5.41.9
+
 ## 1.0.5
 
 ### Patch Changes

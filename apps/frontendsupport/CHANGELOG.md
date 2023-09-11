@@ -1,5 +1,15 @@
 # @cutting/frontend-support
 
+## 0.1.40
+
+### Patch Changes
+
+- 46dbc744: use zIndex object
+- Updated dependencies [46dbc744]
+  - @cutting/component-library@5.41.9
+  - @cutting/react-hook-form-components@0.5.11
+  - @cutting/use-get-parent-size@2.1.4
+
 ## 0.1.39
 
 ### Patch Changes

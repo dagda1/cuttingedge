@@ -1,5 +1,12 @@
 # @cutting/react-hook-form-components
 
+## 0.5.11
+
+### Patch Changes
+
+- Updated dependencies [46dbc744]
+  - @cutting/component-library@5.41.9
+
 ## 0.5.10
 
 ### Patch Changes
