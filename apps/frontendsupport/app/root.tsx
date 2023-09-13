@@ -22,12 +22,33 @@ export async function loader() {
   });
 }
 
+const CRM = 'https://crm.zoho.eu/crm/WebToLeadForm';
+const TRACKING = 'https://salesiq.zoho.eu';
+const NEWSLETTER = 'https://maillist-manage.eu/weboptin.zc';
+const CDN = 'https://res.cloudinary.com';
+
+const contentSecurityPolicy = [
+  `base-uri 'self' ${CDN}`,
+  `default-src 'none'`,
+  `script-src 'self' ${CDN} ${TRACKING} 'unsafe-inline' 'unsafe-eval' https://plausible.io https://www.google-analytics.com`,
+  `style-src 'self' ${CDN} https://fonts.googleapis.com https://fonts.googleapis.com 'unsafe-inline' data:`,
+  `img-src 'self' ${CDN} https://www.google-analytics.com https://assets.calendly.com data: blob:`,
+  `font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com`,
+  `frame-src 'self' https://plausible.io https://calendly.com`,
+  `media-src 'self' ${CDN} https://cdn.plyr.io`,
+  `connect-src 'self' ${CRM} ${NEWSLETTER} ${CDN} ${TRACKING} https://cdn.plyr.io https://www.google-analytics.com ws://localhost:2222`,
+  `frame-ancestors 'self' https://plausible.io`,
+  `form-action 'self' ${NEWSLETTER} ${CRM} ${CDN};`,
+].join(';');
+
 export const headers: HeadersFunction = () => {
   return {
     'X-XSS-Protection': '1; mode=block',
     'X-Content-Type-Options': 'nosniff',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'X-Frame-Options': 'DENY',
+    'Strict-Transport-Security': 'max-age=63072000',
+    'Content-Security-Policy': contentSecurityPolicy,
   };
 };
 
