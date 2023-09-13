@@ -77,3 +77,17 @@ jobs:
             https://staging.frontendrescue.com/posts/2023-07-28-session-storage-playwright
           label: 'GitHub Action Test'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Mozilla Observatory tests
+        if: github.event_name == 'pull_request'
+        uses: simonireilly/observatory-github-action@v0.0.2-beta.0
+        id: observatory
+        with:
+          web_host: https://staging.frontendrescue.com
+
+      - name: Create commit comment
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/commit-comment@v1
+        with:
+          body: '# Branch PR ${{ steps.observatory.outputs.observatory-report }}'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
