@@ -1,5 +1,11 @@
 # @cutting/frontend-support
 
+## 0.1.41
+
+### Patch Changes
+
+- 23317411: Mozilla observatory post
+
 ## 0.1.40
 
 ### Patch Changes
