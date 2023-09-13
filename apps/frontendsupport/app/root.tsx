@@ -1,4 +1,4 @@
-import { json, type LinksFunction, type V2_MetaFunction } from '@remix-run/node';
+import { json, type LinksFunction, type V2_MetaFunction, type HeadersFunction } from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
 import rehypeStyles from './rehype.css';
 import katex from 'katex/dist/katex.min.css';
@@ -21,6 +21,15 @@ export async function loader() {
     },
   });
 }
+
+export const headers: HeadersFunction = () => {
+  return {
+    'X-XSS-Protection': '1; mode=block',
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'X-Frame-Options': 'DENY',
+  };
+};
 
 export const meta: V2_MetaFunction = ({ location, data }) => {
   return [
