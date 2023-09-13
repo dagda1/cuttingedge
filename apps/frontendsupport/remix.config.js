@@ -4,6 +4,7 @@ module.exports = {
     v2_routeConvention: true,
     v2_errorBoundary: true,
     v2_meta: true,
+    v2_headers: true,
   },
   ignoredRouteFiles: ['**/.*', '**/*.css.ts'],
   publicPath: '/_static/build/',
