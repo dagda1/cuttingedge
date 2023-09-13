@@ -30,7 +30,7 @@ const CDN = 'https://res.cloudinary.com';
 const contentSecurityPolicy = [
   `base-uri 'self' ${CDN}`,
   `default-src 'none'`,
-  `script-src 'self' ${CDN} ${TRACKING} 'unsafe-inline' https://plausible.io https://www.google-analytics.com`,
+  `script-src 'self' ${CDN} ${TRACKING} 'unsafe-inline' 'unsafe-eval' https://plausible.io https://www.google-analytics.com`,
   `style-src 'self' ${CDN} https://fonts.googleapis.com https://fonts.googleapis.com 'unsafe-inline' data:`,
   `img-src 'self' ${CDN} https://www.google-analytics.com https://assets.calendly.com data: blob:`,
   `font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com`,
