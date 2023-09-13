@@ -10,8 +10,8 @@ import {
   SphereGeometry,
   PlaneGeometry,
   DirectionalLight,
-  DirectionalLightHelper,
-  TextureLoader,
+  // DirectionalLightHelper,
+  // TextureLoader,
   LinearSRGBColorSpace,
   // Clock,
   PCFSoftShadowMap,
@@ -28,8 +28,8 @@ function run() {
   const gui = new GUI();
   const scene = new Scene();
 
-  const textureLoader = new TextureLoader();
-  const simpleShadow = textureLoader.load('/textures/simpleShadow.jpg');
+  // const textureLoader = new TextureLoader();
+  // const simpleShadow = textureLoader.load('/textures/simpleShadow.jpg');
 
   const ambientLight = new AmbientLight(0xffffff, 0.5);
   gui.add(ambientLight, 'intensity').min(0).max(1).step(0.001);
