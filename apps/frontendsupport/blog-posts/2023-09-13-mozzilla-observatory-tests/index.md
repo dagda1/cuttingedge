@@ -43,7 +43,7 @@ When I first added the steps below, I got the following terrible score of **15/1
 
 ![bad mozilla observatory score](https://res.cloudinary.com/ddospxsc8/image/upload/v1694638552/observatory-before_gxmbqt.png).
 
-## Fixing the fixable
+## A little work yields incredible results
 
 The site you are looking at is a [remix-run application](https://remix.run/docs/en/main) and I was able to add the following HTTP headers based on the observations returned from Mozilla observatory.
 
@@ -57,7 +57,7 @@ const contentSecurityPolicy = [
   `font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com`,
   `frame-src 'self' https://plausible.io https://calendly.com`,
   `media-src 'self' ${CDN} https://cdn.plyr.io`,
-  `connect-src 'self' ${CRM} ${NEWSLETTER} ${CDN} ${TRACKING} https://cdn.plyr.io https://www.google-analytics.com`,
+  `connect-src 'self' ${CRM} ${NEWSLETTER} ${CDN} ${TRACKING} https://cdn.plyr.io https://plausible.io`,
   `frame-ancestors 'self' https://plausible.io`,
   `form-action 'self' ${NEWSLETTER} ${CRM} ${CDN};`,
 ].join(";");
@@ -78,10 +78,54 @@ After I committed this change, the score has gone up to an unfathomable **105/10
 
 ![better Mozilla Observatory score](https://res.cloudinary.com/ddospxsc8/image/upload/v1694638552/observatory_after_yhj0gh.png).
 
+## Running Observatory tests against a dynamic URL
+
+I use Mozilla Observatory on another website that is hosted on [Vercel](https://vercel.com/), which comes with an excellent [preview deployments feature](https://vercel.com/docs/deployments/preview-deployments) that creates a preview on every commit that is accessible by a dynamic URL. I have the following GitHub action that waits for the preview URL before running the tests:
+
+```yml {11,31} showLineNumbers
+name: Mozilla Observatory Test
+
+on:
+  pull_request:
+
+jobs:
+  observatory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Temporary Vercel Preview URL
+        uses: patrickedqvist/wait-for-vercel-preview@v1.2.0
+        id: vercel_preview_url
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          max_timeout: 600 # 10 minutes
+          check_interval: 10
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Test Observatory
+        uses: simonireilly/observatory-github-action@v0.0.2-beta.0
+        id: observatory
+        with:
+          web_host: ${{ steps.vercel_preview_url.outputs.url }}
+
+      - name: Create commit comment
+        uses: peter-evans/commit-comment@v1
+        with:
+          body: "# Branch PR ${{ steps.observatory.outputs.observatory-report }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
 ## TLDR!
 
-Mozilla observatory tests are not a comprehensive suite of tests and will not catch things such as SQL injection, but for the website, you are currently reading, the observatory tests are adequate.
+Mozilla observatory tests are not a comprehensive suite of tests and will not catch things such as SQL injection, but for the website you are currently reading, the observatory tests are adequate.
 
-I would generally advocate using something like [AWS WAF](https://aws.amazon.com/waf/), which does make your frontend incredibly secure and can take care of most of the [OWASP top 10 vulnerabilities](https://owasp.org/www-project-top-ten/) if not all.
+If you want to put security concerns to bed, I would generally advocate using something like [AWS WAF](https://aws.amazon.com/waf/), which does make your frontend incredibly secure and can take care of most of the [OWASP top 10 vulnerabilities](https://owasp.org/www-project-top-ten/) if not all.
 
 The main takeaway is that you should be ready for anything that comes your way. Do not have a frantic owner or client screaming blue murder because your website has been hacked. Be proactive, be vigilant.....behave!
