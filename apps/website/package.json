@@ -78,7 +78,7 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@floating-ui/dom": "^1.5.1",
+    "@floating-ui/dom": "^1.5.3",
     "@mdx-js/mdx": "2.3.0",
     "@mdx-js/react": "2.3.0",
     "@mdx-js/rollup": "2.3.0",
