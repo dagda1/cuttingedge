@@ -92,6 +92,8 @@ jobs:
           body: '# Branch PR ${{ steps.observatory.outputs.observatory-report }}'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Wait for 3 minutes
+        run: sleep 180s
+
       - name: Warm cloudfront cache
-        if: startsWith(github.ref, 'refs/tags/v')
         run: node scripts/warm-cache.mjs
