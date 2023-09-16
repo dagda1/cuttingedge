@@ -95,7 +95,7 @@
     "@types/babel__plugin-transform-runtime": "7.9.2",
     "@types/babel__preset-env": "7.9.2",
     "@types/copy": "0.3.3",
-    "@types/fs-extra": "11.0.1",
+    "@types/fs-extra": "11.0.2",
     "@types/inquirer": "9.0.3",
     "@types/node": "20.6.0",
     "@types/papaparse": "5.3.8",
