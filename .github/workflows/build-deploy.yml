@@ -92,9 +92,9 @@ jobs:
           body: '# Branch PR ${{ steps.observatory.outputs.observatory-report }}'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Wait for 4 minutes
+      - name: Wait for 5 minutes
         if: startsWith(github.ref, 'refs/tags/v')
-        run: sleep 240s
+        run: sleep 300s
 
       - name: Warm cloudfront cache
         if: startsWith(github.ref, 'refs/tags/v')
