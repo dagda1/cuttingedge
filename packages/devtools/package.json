@@ -93,7 +93,7 @@
     "@cutting/useful-types": "workspace:*",
     "@types/babel__core": "7.20.2",
     "@types/babel__plugin-transform-runtime": "7.9.3",
-    "@types/babel__preset-env": "7.9.2",
+    "@types/babel__preset-env": "7.9.3",
     "@types/copy": "0.3.3",
     "@types/fs-extra": "11.0.2",
     "@types/inquirer": "9.0.3",
