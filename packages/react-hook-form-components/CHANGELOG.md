@@ -1,5 +1,13 @@
 # @cutting/react-hook-form-components
 
+## 0.5.12
+
+### Patch Changes
+
+- ebd13c8c: Add forwardRef to FormControl HOC
+- Updated dependencies [ebd13c8c]
+  - @cutting/component-library@5.41.10
+
 ## 0.5.11
 
 ### Patch Changes
