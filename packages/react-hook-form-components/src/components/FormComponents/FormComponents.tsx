@@ -1,32 +1,32 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { forwardRef, type FunctionComponent, type ReactNode } from 'react';
 import { FormInput, FormTextArea } from '@cutting/component-library';
 import type { ControllerProps, FieldErrors } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
-import type { ComponentProps } from '@cutting/component-library';
+import type { ComponentProps, FormElementFromComponent } from '@cutting/component-library';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type FormProps<C extends FunctionComponent<any>> = ComponentProps<C> & {
   className?: string;
   errors: FieldErrors;
 } & Omit<ControllerProps, 'render' | 'control'> &
   Required<Pick<ControllerProps, 'control'>>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function createFormComponent<C extends FunctionComponent<any>>(
   Component: C,
-): (props: FormProps<typeof Component>) => JSX.Element {
-  return function ReactHookFormComponent({
-    name,
-    rules,
-    control,
-    errors,
-    ...props
-  }: FormProps<typeof Component> & Omit<ControllerProps, 'render'>): JSX.Element {
+): ({ ref, ...props }: FormProps<typeof Component>) => JSX.Element {
+  const F = forwardRef<
+    FormElementFromComponent<typeof Component>,
+    FormProps<typeof Component> & Omit<ControllerProps, 'render'>
+  >(({ name, rules, control, errors, ...props }, ref) => {
     const error = errors[name];
 
-    // eslint-disable-next-line react/display-name
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const Wrapped = forwardRef<any, any>((props, ref) => {
-      return <Component ref={ref} {...props} />;
+      return <Component {...props} ref={ref} />;
     });
+
+    Wrapped.displayName = 'WrappedFormComponent';
 
     return (
       <Controller
@@ -34,11 +34,17 @@ export function createFormComponent<C extends FunctionComponent<any>>(
         rules={rules}
         control={control}
         render={({ field }) => (
-          <Wrapped {...(props as any)} {...field} invalid={!!error} errorMessage={error?.message} />
+          <Wrapped {...(props as any)} {...field} invalid={!!error} errorMessage={error?.message} ref={ref} />
         )}
       />
     );
-  };
+  });
+
+  F.displayName = 'FormComponent';
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return F;
 }
 
 // TODO: remove annotations.  Currently weird type error

@@ -13,23 +13,16 @@ import { ResponsiveSVG, Group } from '@cutting/svg';
 import { Circle, Line, LinePath } from '@visx/shape';
 import { curveBasisOpen } from '@visx/curve';
 import * as styles from './FunctionPlot.css';
-import { MathJax } from '@cutting/use-mathjax';
 import { getYIntercept } from '~/viz/getYIntercept';
 import { Text } from '@visx/text';
 import { reducer, initialState } from './reducer';
 import type { SubmitHandler } from 'react-hook-form';
-import { useForm } from 'react-hook-form';
-import { Input } from '@cutting/react-hook-form-components';
-import { Button } from '@cutting/component-library';
 import { scaleLinear } from '@visx/scale';
+import { ExpressionForm, type FormValues } from './ExpressionForm';
 
 interface FunctionPlotProps {
   minX?: number;
   maxX?: number;
-}
-
-interface FormValues {
-  expression: string;
 }
 
 export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.Element {
@@ -44,26 +37,17 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   assert(typeof height === 'number');
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    control,
-  } = useForm<FormValues>({
-    reValidateMode: 'onBlur',
-    defaultValues: { expression: state.expression },
-  });
-  const form = useRef<HTMLFormElement>(null);
+
   const tickFrame = useRef<number>();
 
-  const onSubmit: SubmitHandler<FormValues> = ({ expression }) => {
+  const onSubmit: SubmitHandler<FormValues> = useCallback(({ expression }) => {
     dispatch({
       type: 'SET_EXPRESSION',
       payload: {
         expression,
       },
     });
-  };
+  }, []);
 
   const data: Point[] = useMemo(() => {
     const expression = parse(state.expression);
@@ -242,27 +226,7 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
           </Group>
         </ResponsiveSVG>
       </section>
-
-      <div className={styles.form}>
-        <form onSubmit={handleSubmit(onSubmit)} method="POST" ref={form} name="SignupForm" noValidate>
-          <MathJax className={styles.expression}>{`$$ f(x) = ${parse(state.expression).toTex()}$$`}</MathJax>
-          <fieldset className={styles.algebra}>
-            <Input
-              layout="horizontal"
-              {...register('expression', {
-                required: 'expression is required',
-                minLength: { value: 3, message: 'min length' },
-                maxLength: { value: 250, message: 'expression exceeded 250 characters' },
-              })}
-              label="Expression"
-              errors={errors}
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              control={control as any}
-            />
-            <Button type="submit">Evaluate</Button>
-          </fieldset>
-        </form>
-      </div>
+      <ExpressionForm onSubmit={onSubmit} expression={state.expression} />
     </ApplicationLayout>
   );
 }
