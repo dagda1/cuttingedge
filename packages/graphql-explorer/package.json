@@ -24,7 +24,7 @@
     "@cutting/svg": "workspace:*",
     "@cutting/util": "workspace:*",
     "assert-ts": "^0.3.4",
-    "graphql": "^16.7.1"
+    "graphql": "^16.8.1"
   },
   "devDependencies": {
     "@cutting/devtools": "workspace:*",
