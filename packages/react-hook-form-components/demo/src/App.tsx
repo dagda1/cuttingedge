@@ -1,9 +1,9 @@
 import '@cutting/component-library/styles.css';
-import { ApplicationLayout, Box } from '@cutting/component-library';
-import { ContactButtons, ContactForm } from '../../src';
-import * as styles from './global.css';
+import { ApplicationLayout, Button } from '@cutting/component-library';
+import { Input } from '../../src';
 import type { ReactNode } from 'react';
 import { FormContextProvider } from '../../src/components/ContactForm/FormContext';
+import { useForm } from 'react-hook-form';
 
 const contactFomProps = {
   formName: 'WebToLeads397786000002563014',
@@ -21,12 +21,33 @@ function Layout({ children }: { children: ReactNode }): JSX.Element {
 }
 
 export function App(): JSX.Element {
+  const {
+    register,
+    formState: { errors },
+    control,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } = useForm<any>({
+    reValidateMode: 'onBlur',
+    defaultValues: { expression: '' },
+  });
+
   return (
     <Layout>
-      <ContactForm />
-      <Box width="full" height="full" className={styles.container}>
-        <ContactButtons justify="center" callType="rescue" />
-      </Box>
+      <form method="POST" name="SignupForm" noValidate>
+        <Input
+          layout="horizontal"
+          {...register('expression', {
+            required: 'expression is required',
+            minLength: { value: 3, message: 'min length' },
+            maxLength: { value: 250, message: 'expression exceeded 250 characters' },
+          })}
+          label="Expression"
+          errors={errors}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          control={control as any}
+        />
+        <Button type="submit">Evaluate</Button>
+      </form>
     </Layout>
   );
 }

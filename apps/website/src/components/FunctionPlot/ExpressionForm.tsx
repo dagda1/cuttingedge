@@ -1,4 +1,4 @@
-import { memo, useRef } from 'react';
+import { memo } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import * as styles from './FunctionPlot.css';
 import { MathJax } from '@cutting/use-mathjax';
@@ -16,8 +16,6 @@ interface FormProps {
 }
 
 function Form({ onSubmit, expression }: FormProps): JSX.Element {
-  const form = useRef<HTMLFormElement>(null);
-
   const {
     register,
     handleSubmit,
@@ -30,7 +28,7 @@ function Form({ onSubmit, expression }: FormProps): JSX.Element {
 
   return (
     <div className={styles.form}>
-      <form onSubmit={handleSubmit(onSubmit)} method="POST" ref={form} name="SignupForm" noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} method="POST" name="SignupForm" noValidate>
         <MathJax className={styles.expression}>{`$$ f(x) = ${parse(expression).toTex()}$$`}</MathJax>
         <fieldset className={styles.algebra}>
           <Input
