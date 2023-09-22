@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.10
+
+### Patch Changes
+
+- ebd13c8c: Add forwardRef to FormControl HOC
+
 ## 5.41.9
 
 ### Patch Changes
