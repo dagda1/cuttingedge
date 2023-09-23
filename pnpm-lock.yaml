@@ -610,8 +610,8 @@ importers:
         specifier: 3.0.7
         version: 3.0.7
       '@types/d3-scale':
-        specifier: ^4.0.4
-        version: 4.0.4
+        specifier: ^4.0.5
+        version: 4.0.5
       '@types/d3-selection':
         specifier: ^3.0.6
         version: 3.0.6
@@ -9147,8 +9147,8 @@ packages:
     dependencies:
       '@types/d3-time': 3.0.0
 
-  /@types/d3-scale@4.0.4:
-    resolution: {integrity: sha512-eq1ZeTj0yr72L8MQk6N6heP603ubnywSDRfNpi5enouR112HzGLS6RIvExCzZTraFF4HdzNpJMwA/zGiMoHUUw==}
+  /@types/d3-scale@4.0.5:
+    resolution: {integrity: sha512-w/C++3W394MHzcLKO2kdsIn5KKNTOqeQVzyPSGPLzQbkPw/jpeaGtSRlakcKevGgGsjJxGsbqS0fPrVFDbHrDA==}
     dependencies:
       '@types/d3-time': 3.0.0
     dev: true
@@ -9220,7 +9220,7 @@ packages:
       '@types/d3-polygon': 3.0.0
       '@types/d3-quadtree': 3.0.2
       '@types/d3-random': 3.0.1
-      '@types/d3-scale': 4.0.4
+      '@types/d3-scale': 4.0.5
       '@types/d3-scale-chromatic': 3.0.0
       '@types/d3-selection': 3.0.6
       '@types/d3-shape': 3.1.1
