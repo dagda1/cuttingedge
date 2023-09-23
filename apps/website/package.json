@@ -85,7 +85,7 @@
     "@testing-library/react": "14.0.0",
     "@types/compression": "1.7.3",
     "@types/csurf": "1.11.3",
-    "@types/d3": "7.4.0",
+    "@types/d3": "7.4.1",
     "@types/d3-scale": "^4.0.4",
     "@types/d3-array": "3.0.7",
     "@types/d3-selection": "^3.0.6",
