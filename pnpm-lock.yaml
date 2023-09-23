@@ -613,8 +613,8 @@ importers:
         specifier: ^4.0.5
         version: 4.0.5
       '@types/d3-selection':
-        specifier: ^3.0.6
-        version: 3.0.6
+        specifier: ^3.0.7
+        version: 3.0.7
       '@types/express':
         specifier: 4.17.17
         version: 4.17.17
@@ -9046,13 +9046,13 @@ packages:
   /@types/d3-axis@3.0.2:
     resolution: {integrity: sha512-uGC7DBh0TZrU/LY43Fd8Qr+2ja1FKmH07q2FoZFHo1eYl8aj87GhfVoY1saJVJiq24rp1+wpI6BvQJMKgQm8oA==}
     dependencies:
-      '@types/d3-selection': 3.0.6
+      '@types/d3-selection': 3.0.7
     dev: true
 
   /@types/d3-brush@3.0.2:
     resolution: {integrity: sha512-2TEm8KzUG3N7z0TrSKPmbxByBx54M+S9lHoP2J55QuLU0VSQ9mE96EJSAOVNEqd1bbynMjeTS9VHmz8/bSw8rA==}
     dependencies:
-      '@types/d3-selection': 3.0.6
+      '@types/d3-selection': 3.0.7
     dev: true
 
   /@types/d3-chord@3.0.2:
@@ -9079,7 +9079,7 @@ packages:
   /@types/d3-drag@3.0.2:
     resolution: {integrity: sha512-qmODKEDvyKWVHcWWCOVcuVcOwikLVsyc4q4EBJMREsoQnR2Qoc2cZQUyFUPgO9q4S3qdSqJKBsuefv+h0Qy+tw==}
     dependencies:
-      '@types/d3-selection': 3.0.6
+      '@types/d3-selection': 3.0.7
     dev: true
 
   /@types/d3-dsv@3.0.1:
@@ -9153,8 +9153,8 @@ packages:
       '@types/d3-time': 3.0.0
     dev: true
 
-  /@types/d3-selection@3.0.6:
-    resolution: {integrity: sha512-2ACr96USZVjXR9KMD9IWi1Epo4rSDKnUtYn6q2SPhYxykvXTw9vR77lkFNruXVg4i1tzQtBxeDMx0oNvJWbF1w==}
+  /@types/d3-selection@3.0.7:
+    resolution: {integrity: sha512-qoj2O7KjfqCobmtFOth8FMvjwMVPUAAmn6xiUbLl1ld7vQCPgffvyV5BBcEFfqWdilAUm+3zciU/3P3vZrUMlg==}
     dev: true
 
   /@types/d3-shape@1.3.8:
@@ -9186,14 +9186,14 @@ packages:
   /@types/d3-transition@3.0.3:
     resolution: {integrity: sha512-/S90Od8Id1wgQNvIA8iFv9jRhCiZcGhPd2qX0bKF/PS+y0W5CrXKgIiELd2CvG1mlQrWK/qlYh3VxicqG1ZvgA==}
     dependencies:
-      '@types/d3-selection': 3.0.6
+      '@types/d3-selection': 3.0.7
     dev: true
 
   /@types/d3-zoom@3.0.3:
     resolution: {integrity: sha512-OWk1yYIIWcZ07+igN6BeoG6rqhnJ/pYe+R1qWFM2DtW49zsoSjgb9G5xB0ZXA8hh2jAzey1XuRmMSoXdKw8MDA==}
     dependencies:
       '@types/d3-interpolate': 3.0.1
-      '@types/d3-selection': 3.0.6
+      '@types/d3-selection': 3.0.7
     dev: true
 
   /@types/d3@7.4.1:
@@ -9222,7 +9222,7 @@ packages:
       '@types/d3-random': 3.0.1
       '@types/d3-scale': 4.0.5
       '@types/d3-scale-chromatic': 3.0.0
-      '@types/d3-selection': 3.0.6
+      '@types/d3-selection': 3.0.7
       '@types/d3-shape': 3.1.1
       '@types/d3-time': 3.0.0
       '@types/d3-time-format': 4.0.0
