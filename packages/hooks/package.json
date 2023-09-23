@@ -31,7 +31,7 @@
     "@cutting/useful-types": "workspace:*",
     "@testing-library/react": "14.0.0",
     "@testing-library/react-hooks": "8.0.1",
-    "@types/react": "18.2.21",
+    "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "@vanilla-extract/css": "^1.13.0",
     "eslint": "8.47.0",
