@@ -151,8 +151,8 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       '@unpic/react':
-        specifier: ^0.0.34
-        version: 0.0.34(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.0.35
+        version: 0.0.35(react-dom@18.2.0)(react@18.2.0)
       assert-ts:
         specifier: ^0.3.4
         version: 0.3.4
@@ -9988,8 +9988,8 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@unpic/core@0.0.29:
-    resolution: {integrity: sha512-4NGSkqdj1riFC+kkS906QUtl9QkUmOVQjMClUGdqjLIeKDAE9oxZ+/ZO9NhiDGYpatHIYaBtd4rM3W4atcaHPg==}
+  /@unpic/core@0.0.30:
+    resolution: {integrity: sha512-lCf6UGN12xILPirFk4m0J8MxWVBZSVC8lo/xV0hPSICzf6iDHp/5Nra7XC6fyA4hLRP5fvDdLM1qggioQOojfg==}
     dependencies:
       unpic: 3.10.0
     dev: false
@@ -10000,8 +10000,8 @@ packages:
       blurhash: 2.0.5
     dev: false
 
-  /@unpic/react@0.0.34(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-828oJZsUQbj1M0elskgh+0hhXZDRxE59w7f4Websl9qe103VRfW8wMfNGzmnilCJIjaQCFXgVmu8Wxs+OpVisQ==}
+  /@unpic/react@0.0.35(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Bqze7lJxN4hZ6G9mkPMREEzv7yeddbFq7AY3WTOnCs00KJ5Nha6iSTWVRAVHT3nnGegi7bk3qfDK1MTAYVlz6g==}
     peerDependencies:
       next: '>=12'
       react: '>=18.2.0 || 18.2.0'
@@ -10010,7 +10010,7 @@ packages:
       next:
         optional: true
     dependencies:
-      '@unpic/core': 0.0.29
+      '@unpic/core': 0.0.30
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
