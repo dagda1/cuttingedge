@@ -139,18 +139,20 @@ export default function PostRoute() {
           <Heading level="1">{frontmatter.meta.title}</Heading>
         </Box>
         {frontmatter.meta.image && <Image layout="constrained" width={600} height={400} src={frontmatter.meta.image} />}
-        <Component
-          components={{
-            p: Paragraph,
-            h1: Heading1,
-            h2: Heading2,
-            h3: Heading3,
-            h4: Heading4,
-            a: TextLink as any,
-            ul: Ul,
-          }}
-          attributes={frontmatter}
-        />
+        <Box paddingX={{ mobile: 'small', desktop: 'none' }}>
+          <Component
+            components={{
+              p: Paragraph,
+              h1: Heading1,
+              h2: Heading2,
+              h3: Heading3,
+              h4: Heading4,
+              a: TextLink as any,
+              ul: Ul,
+            }}
+            attributes={frontmatter}
+          />
+        </Box>
       </PageBlock>
     </Box>
   );

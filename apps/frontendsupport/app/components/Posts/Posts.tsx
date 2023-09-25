@@ -29,7 +29,9 @@ export function Posts({ posts }: PostsProps): JSX.Element {
                         {post.title}
                       </TextNavLink>
                     </Heading>
-                    <Text component="p">{post.description}</Text>
+                    <Box paddingY={{ mobile: 'medium', desktop: 'none' }}>
+                      <Text component="p">{post.description}</Text>
+                    </Box>
                     <Text tone="promote">{post.formattedDate}</Text>
                   </Stack>
                 </Inline>
