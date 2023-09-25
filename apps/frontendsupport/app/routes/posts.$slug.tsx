@@ -11,6 +11,9 @@ import type { FrontMatter } from '~/types';
 import { Image } from '@unpic/react';
 import type { Location } from '@remix-run/react';
 
+import { blurhashToCssGradientString } from '@unpic/placeholder';
+const blurhash = 'UJENPQ8^DNDh${R-%gx^_NMyofbc%fo~S5WA';
+
 type LoaderData = {
   frontmatter: FrontMatter;
   code: string;
@@ -132,13 +135,17 @@ export default function PostRoute() {
   const { code, frontmatter } = useLoaderData<LoaderData>();
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
+  const placeholder = blurhashToCssGradientString(blurhash);
+
   return (
     <Box style={{ marginTop: '6rem' }} className="post">
       <PageBlock>
         <Box marginBottom="small">
           <Heading level="1">{frontmatter.meta.title}</Heading>
         </Box>
-        {frontmatter.meta.image && <Image layout="constrained" width={600} height={400} src={frontmatter.meta.image} />}
+        {frontmatter.meta.image && (
+          <Image layout="constrained" width={600} height={400} src={frontmatter.meta.image} background={placeholder} />
+        )}
         <Box paddingX={{ mobile: 'small', desktop: 'none' }}>
           <Component
             components={{
