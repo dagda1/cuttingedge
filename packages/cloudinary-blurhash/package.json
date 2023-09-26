@@ -1,0 +1,56 @@
+{
+  "name": "@cutting/cloudinary-blurhash",
+  "version": "0.1.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagda1/cuttingedge.git"
+  },
+  "module": "dist/esm/index.js",
+  "type": "module",
+  "sideEffects": false,
+  "types": "dist/esm/index.d.ts",
+  "keywords": [],
+  "author": "Paul Cowan <paul.cowan@cutting.scot>",
+  "dependencies": {
+    "@unpic/pixels": "^1.2.0",
+    "blurhash": "^2.0.5",
+    "chalk": "^5.3.0",
+    "cloudinary": "^1.41.0",
+    "dotenv": "^16.3.1",
+    "log-update": "^5.0.1",
+    "node-fetch": "3.3.2"
+  },
+  "devDependencies": {
+    "@cutting/devtools": "workspace:*",
+    "@cutting/eslint-config": "workspace:*",
+    "@cutting/tsconfig": "workspace:*",
+    "@cutting/useful-types": "workspace:*",
+    "eslint": "8.47.0",
+    "typescript": "5.1.6"
+  },
+  "files": [
+    "dist/**/*",
+    "test.md"
+  ],
+  "scripts": {
+    "build": "NODE_ENV=production devtools rollup",
+    "lint": "eslint ./src/**/*.ts --fix",
+    "start": "echo no demo yet",
+    "test": "echo not tests yet",
+    "test:ci": "echo no tests yet"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "exports": {
+    "import": "./dist/esm/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
+  }
+}
