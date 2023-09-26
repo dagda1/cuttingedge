@@ -22,7 +22,7 @@ export function Posts({ posts }: PostsProps): JSX.Element {
                 style={{ border: `1px solid ${vars.foregroundColor.primary}` }}
               >
                 <Inline alignY="center" space="medium">
-                  {post.image && <Image src={post.image} width={150} height={100} />}
+                  {post.image && <Image loading="lazy" src={post.image} width={150} height={100} />}
                   <Stack space="medium">
                     <Heading level="2">
                       <TextNavLink key={post.slug} underline to={`/posts/${post.slug}`}>

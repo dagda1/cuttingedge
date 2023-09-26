@@ -26,7 +26,7 @@ export function ImageContainer({ images, resolution }: { images: Images; resolut
       }}
     >
       {resolvedImages.map(({ src, ...props }) => (
-        <Image key={src} src={src as string} layout="constrained" className="parallax" {...props} />
+        <Image key={src} src={src as string} layout="constrained" className="parallax" {...props} loading="lazy" />
       ))}
     </Box>
   );

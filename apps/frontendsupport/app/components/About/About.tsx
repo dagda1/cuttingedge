@@ -16,6 +16,7 @@ export function About(): JSX.Element {
                 width={200}
                 height={200}
                 alt="Paul Cowan (CEO)"
+                loading="lazy"
               />
             </Box>
             <Heading level="2">
