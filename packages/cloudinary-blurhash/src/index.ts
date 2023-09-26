@@ -1,10 +1,10 @@
 import { createCommand } from 'commander';
 import { generateBlurhashFile } from './generateBlurhashFile';
 
-export const program = createCommand('rollup');
+export const program = createCommand('generate-blur-hash');
 
 program
-  .description('generate low quality placeholder LQIP using blurhash')
+  .description('generate low quality placeholder (LQIP) using blurhash')
   .option('-f, --file <file>', 'the name of the the json file', './blurhash_image_map.json')
   .parse(process.argv)
   .action(async function ({ file }: { file: string }) {

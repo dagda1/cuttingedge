@@ -322,6 +322,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.22.15
         version: 7.22.15
+      '@cutting/cloudinary-blurhash':
+        specifier: workspace:*
+        version: link:../../packages/cloudinary-blurhash
       '@esbuild-plugins/node-resolve':
         specifier: ^0.2.2
         version: 0.2.2(esbuild@0.19.2)
