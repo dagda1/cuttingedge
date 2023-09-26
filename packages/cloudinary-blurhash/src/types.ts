@@ -37,3 +37,9 @@ export interface Resource {
 export type SearchResults<A extends AssetTypes> = Record<A, SearcResultTotals> & {
   resources: Resource[];
 };
+
+export interface BlurHashImage {
+  id: string;
+  url: string;
+  blurhash: string;
+}

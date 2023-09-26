@@ -4,9 +4,11 @@ import { v2 } from 'cloudinary';
 // import chalk from 'chalk';
 // import logUpdate from 'log-update';
 import { config } from 'dotenv';
-import type { SearchResults, SubFolder } from './types';
+import type { BlurHashImage, SearchResults, SubFolder } from './types';
 import { getPixels } from '@unpic/pixels';
 import { encode } from 'blurhash';
+import chalk from 'chalk';
+import logUpdate from 'log-update';
 
 config();
 
@@ -22,49 +24,77 @@ console.log(v2.config());
 
 // const jsonFile = './data/map.json';
 
-// // Helper functions
-// const percentage = (partialValue: number, totalValue: number) => ((100 * partialValue) / totalValue).toFixed(2);
+// Helper functions
+const percentage = (partialValue: number, totalValue: number) => ((100 * partialValue) / totalValue).toFixed(2);
 
-// const parseHrtimeToSeconds = (hrtime: [number, number]) => {
-//   const seconds = (hrtime[0] + hrtime[1] / 1e9).toFixed(3);
-//   return seconds;
-// };
+const parseHrtimeToSeconds = (hrtime: [number, number]) => {
+  const seconds = (hrtime[0] + hrtime[1] / 1e9).toFixed(3);
+  return seconds;
+};
 
-// const updateLogs = (a: unknown, b: unknown, c: unknown, d: unknown) =>
-//   logUpdate(
-//     `\n${a} Processed.\n\n${b} images remaining to process\n\n${c} images processed ✅\n\nProcess started ${d}s ago`,
-//   );
+const updateLogs = (a: unknown, b: unknown, c: unknown, d: unknown) =>
+  logUpdate(
+    `\n${a} Processed.\n\n${b} images remaining to process\n\n${c} images processed ✅\n\nProcess started ${d}s ago`,
+  );
 
 const MainFolder = 'frontendsupport';
 
-// Main function
 export async function main(): Promise<void> {
-  // const startTime = process.hrtime();
-  const folder: SubFolder = await v2.api.sub_folders('frontendsupport');
+  const startTime = process.hrtime();
+  const folder: SubFolder = await v2.api.sub_folders(MainFolder);
 
-  const allFolders = folder.folders.map((folderItem) => {
-    return folderItem.path;
-  });
+  const allFolders = [
+    MainFolder,
+    ...folder.folders.map((folderItem) => {
+      return folderItem.path;
+    }),
+  ];
+  const blurhashImages: BlurHashImage[] = [];
 
-  const results: SearchResults<'images'> = await v2.search
-    .expression(`folder:${MainFolder} AND resource_type:image`)
-    .max_results(100)
-    .execute();
+  console.dir({ allFolders });
 
-  const imageUrls = results.resources.map(({ secure_url, width, height }) => ({ secure_url, width, height }));
+  for (const folder of allFolders) {
+    const results: SearchResults<'images'> = await v2.search
+      .expression(`folder:${folder} AND resource_type:image`)
+      .max_results(100)
+      .execute();
 
-  for (const image of imageUrls) {
-    const imgData = await getPixels(image.secure_url);
+    const images = results.resources.map(({ secure_url, width, height }) => ({ secure_url, width, height }));
 
-    const data = Uint8ClampedArray.from(imgData.data);
+    console.clear();
+    console.log(`About to process ${chalk.green(images.length)} images`);
 
-    const blurhash = encode(data, imgData.width, imgData.height, 4, 4);
+    for (const image of images) {
+      const imgData = await getPixels(image.secure_url);
 
-    console.log(blurhash);
+      const data = Uint8ClampedArray.from(imgData.data);
+
+      const blurhash = encode(data, imgData.width, imgData.height, 4, 4);
+
+      const urlPrts = image.secure_url.split('/');
+
+      blurhashImages.push({
+        id: urlPrts.slice(-1)[0],
+        url: image.secure_url,
+        blurhash,
+      });
+
+      const elapsedSeconds = parseHrtimeToSeconds(process.hrtime(startTime));
+
+      updateLogs(
+        chalk.green.bold(`${percentage(blurhashImages.length, images.length)}%`),
+        chalk.green.bold(`${images.length - blurhashImages.length}`),
+        chalk.green.bold(`${blurhashImages.length}`),
+        chalk.green.bold(elapsedSeconds),
+      );
+    }
   }
-  console.dir({ allFolders, imageUrls }, { depth: 33 });
+
+  console.dir({ blurhashImages }, { depth: 33 });
 }
 
-main().catch((err) => {
-  console.log(err);
-});
+try {
+  await main();
+} catch (err) {
+  console.error(err);
+}
