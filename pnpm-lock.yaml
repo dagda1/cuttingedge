@@ -721,6 +721,9 @@ importers:
       '@cutting/useful-types':
         specifier: workspace:*
         version: link:../useful-types
+      commander:
+        specifier: 11.0.0
+        version: 11.0.0
       eslint:
         specifier: 8.47.0
         version: 8.47.0

@@ -4,13 +4,6 @@ export interface SubFolder {
 
 export type AssetType = 'image';
 
-type AssetTypes = `${AssetType}s`;
-
-interface SearcResultTotals {
-  total_count: number;
-  time: number;
-}
-
 export interface Resource {
   asset_id: string;
   public_id: string;
@@ -34,9 +27,11 @@ export interface Resource {
   access_mode: 'public';
 }
 
-export type SearchResults<A extends AssetTypes> = Record<A, SearcResultTotals> & {
+export interface SearchResults {
+  total_count: number;
+  time: number;
   resources: Resource[];
-};
+}
 
 export interface BlurHashImage {
   id: string;

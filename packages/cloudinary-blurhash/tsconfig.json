@@ -5,9 +5,5 @@
     "rootDir": "src",
     "noEmit": true
   },
-  "references": [
-    { "path": "../util/tsconfig.dist.json" },
-    { "path": "../component-library/tsconfig.dist.json" }
-  ],
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
