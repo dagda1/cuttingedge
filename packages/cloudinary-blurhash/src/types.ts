@@ -42,4 +42,6 @@ export interface BlurHashImage {
   id: string;
   url: string;
   blurhash: string;
+  width: number;
+  height: number;
 }

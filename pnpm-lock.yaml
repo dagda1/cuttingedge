@@ -708,9 +708,6 @@ importers:
       log-update:
         specifier: ^5.0.1
         version: 5.0.1
-      node-fetch:
-        specifier: 3.3.2
-        version: 3.3.2
     devDependencies:
       '@cutting/devtools':
         specifier: workspace:*

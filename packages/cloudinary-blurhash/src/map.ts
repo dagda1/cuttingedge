@@ -1,8 +1,5 @@
 import { v2 } from 'cloudinary';
-// import fetch from 'node-fetch';
 // import { promises } from 'fs';
-// import chalk from 'chalk';
-// import logUpdate from 'log-update';
 import { config } from 'dotenv';
 import type { BlurHashImage, SearchResults, SubFolder } from './types';
 import { getPixels } from '@unpic/pixels';
@@ -24,7 +21,6 @@ console.log(v2.config());
 
 // const jsonFile = './data/map.json';
 
-// Helper functions
 const percentage = (partialValue: number, totalValue: number) => ((100 * partialValue) / totalValue).toFixed(2);
 
 const parseHrtimeToSeconds = (hrtime: [number, number]) => {
@@ -51,8 +47,6 @@ export async function main(): Promise<void> {
   ];
   const blurhashImages: BlurHashImage[] = [];
 
-  console.dir({ allFolders });
-
   for (const folder of allFolders) {
     const results: SearchResults<'images'> = await v2.search
       .expression(`folder:${folder} AND resource_type:image`)
@@ -77,6 +71,8 @@ export async function main(): Promise<void> {
         id: urlPrts.slice(-1)[0],
         url: image.secure_url,
         blurhash,
+        width: image.width,
+        height: image.height,
       });
 
       const elapsedSeconds = parseHrtimeToSeconds(process.hrtime(startTime));
@@ -97,4 +93,5 @@ try {
   await main();
 } catch (err) {
   console.error(err);
+  process.exit(1);
 }
