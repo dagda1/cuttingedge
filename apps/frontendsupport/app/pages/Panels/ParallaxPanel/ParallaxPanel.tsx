@@ -26,14 +26,7 @@ export function ImageContainer({ images, resolution }: { images: Images; resolut
       }}
     >
       {resolvedImages.map(({ src, ...props }) => (
-        <LazyLoadedImage
-          key={src}
-          src={src as string}
-          layout="constrained"
-          className="parallax"
-          {...props}
-          loading="lazy"
-        />
+        <LazyLoadedImage key={src} src={src as string} layout="constrained" className="parallax" {...props} />
       ))}
     </Box>
   );

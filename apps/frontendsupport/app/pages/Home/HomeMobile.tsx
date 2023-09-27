@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import * as styles from './HomeMobile.css';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -12,6 +11,7 @@ import { MobileContainer } from './MobileContainer';
 import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { Services } from '../Panels/Services/Services';
 import { Clients } from '../Panels/Clients/Clients';
+import { bgRepeat } from '~/components/LazyBackgroundImage/LazyBackgroundImage.css';
 
 export function HomeMobile(): JSX.Element {
   const panelsContainer = useRef<HTMLDivElement>(null);
@@ -43,15 +43,16 @@ export function HomeMobile(): JSX.Element {
         });
 
         gsap.utils.toArray<HTMLDivElement>('.section').forEach((section, i) => {
-          const bg = section.querySelector(`.${styles.bg}`) as HTMLDivElement;
+          const backgroundDiv = section.querySelector(bgRepeat) as HTMLDivElement;
+          console.log({ bgRepeat });
 
-          if (bg) {
-            const height = bg.offsetHeight;
+          if (backgroundDiv) {
+            const height = backgroundDiv.offsetHeight;
 
             if (i) {
-              bg.style.backgroundPosition = `50% ${height / 2}px`;
+              backgroundDiv.style.backgroundPosition = `50% ${height / 2}px`;
 
-              gsap.to(bg, {
+              gsap.to(backgroundDiv, {
                 backgroundPosition: `50% ${-(height / 2)}px`,
                 ease: 'none',
                 scrollTrigger: {
