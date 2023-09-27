@@ -45,25 +45,27 @@ export function HomeMobile(): JSX.Element {
         gsap.utils.toArray<HTMLDivElement>('.section').forEach((section, i) => {
           const bg = section.querySelector(`.${styles.bg}`) as HTMLDivElement;
 
-          const height = bg.offsetHeight;
+          if (bg) {
+            const height = bg.offsetHeight;
 
-          if (i) {
-            bg.style.backgroundPosition = `50% ${height / 2}px`;
+            if (i) {
+              bg.style.backgroundPosition = `50% ${height / 2}px`;
 
-            gsap.to(bg, {
-              backgroundPosition: `50% ${-(height / 2)}px`,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: section,
-                scrub: true,
-              },
-            });
+              gsap.to(bg, {
+                backgroundPosition: `50% ${-(height / 2)}px`,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: section,
+                  scrub: true,
+                },
+              });
+            }
           }
         });
       });
     }
 
-    setTimeout(main, 1000);
+    setTimeout(main, 5000);
     return () => {
       ctx.current?.revert();
     };
@@ -86,9 +88,18 @@ export function HomeMobile(): JSX.Element {
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1690893685/html_kg05e7.png">
         <Clients />
       </MobileContainer>
-      <MobileContainer height={{ mobile: 'auto', desktop: 'screen' }}>
+      <Box
+        component="section"
+        className="section"
+        position="relative"
+        height={{ mobile: 'auto', desktop: 'screen' }}
+        width="full"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
         <Services />
-      </MobileContainer>
+      </Box>
     </Box>
   );
 }

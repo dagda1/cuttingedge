@@ -1,6 +1,6 @@
 import { Box, Heading, PageBlock, TextLink, Text, Stack, List } from '@cutting/component-library';
-import { Image } from '@unpic/react';
 import * as styles from './About.css';
+import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 
 export function About(): JSX.Element {
   return (
@@ -10,11 +10,9 @@ export function About(): JSX.Element {
           <Stack space="large">
             <Heading level="1">My story</Heading>
             <Box>
-              <Image
+              <LazyLoadedImage
                 src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690230987/me_voddxj.png"
                 layout="constrained"
-                width={200}
-                height={200}
                 alt="Paul Cowan (CEO)"
                 loading="lazy"
               />
