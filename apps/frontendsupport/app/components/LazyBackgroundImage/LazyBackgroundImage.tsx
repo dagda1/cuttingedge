@@ -31,10 +31,6 @@ export function LazyBackgroundImage({
   }, []);
 
   useIsomorphicLayoutEffect(() => {
-    if (!global.IntersectionObserver) {
-      return;
-    }
-
     const observer = new IntersectionObserver(callback, {
       rootMargin: '0px',
       threshold: 0.1,
@@ -54,7 +50,7 @@ export function LazyBackgroundImage({
   }, [callback]);
 
   const style = useMemo(() => {
-    if (!global.IntersectionObserver || visible) {
+    if (visible) {
       return { backgroundImage: `url(${backgroundImage})` };
     }
     const { blurhash } = getImagePropsFromMap(backgroundImage);
@@ -65,7 +61,7 @@ export function LazyBackgroundImage({
     <Box
       ref={containerRef}
       style={
-        backgroundStyle === 'repeat' || visible == false
+        !global.IntersectionObserver || backgroundStyle === 'repeat' || visible == false
           ? style
           : assignInlineVars({ [styles.backgroundImage]: `url('${backgroundImage}') no-repeat center center fixed` })
       }
