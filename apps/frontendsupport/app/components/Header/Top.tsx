@@ -29,6 +29,7 @@ export function TopNav(): JSX.Element {
                 width={38}
                 height={45}
                 style={{ position: 'relative', top: '-5px', marginRight: vars.space['medium'] }}
+                loading="eager"
               />
             </NavLink>
             <TextNavLink size="large" to={'/'}>
