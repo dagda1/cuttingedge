@@ -1,7 +1,6 @@
 import { Box, PageBlock } from '@cutting/component-library';
 import { Outlet, useLocation } from '@remix-run/react';
-import { background } from '~/components/Posts/Posts.css';
-import cs from 'classnames';
+import { LazyBackgroundImage } from '~/components/LazyBackgroundImage/LazyBackgroundImage';
 
 export default function Services(): JSX.Element {
   const { pathname } = useLocation();
@@ -10,7 +9,12 @@ export default function Services(): JSX.Element {
     <Box paddingTop="xxxlarge" display="flex" justifyContent="center" height="full">
       <PageBlock>
         <Outlet />
-        <Box className={cs({ [background]: pathname !== '/services/home' })} />
+        {pathname !== '/services/home' && (
+          <LazyBackgroundImage
+            backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1690453264/code_mmdqb8.png"
+            backgroundStyle="static"
+          />
+        )}
       </PageBlock>
     </Box>
   );

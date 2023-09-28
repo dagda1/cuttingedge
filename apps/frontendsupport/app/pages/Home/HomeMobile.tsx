@@ -44,7 +44,6 @@ export function HomeMobile(): JSX.Element {
 
         gsap.utils.toArray<HTMLDivElement>('.section').forEach((section, i) => {
           const backgroundDiv = section.querySelector(bgRepeat) as HTMLDivElement;
-          console.log({ bgRepeat });
 
           if (backgroundDiv) {
             const height = backgroundDiv.offsetHeight;

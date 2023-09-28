@@ -1,5 +1,7 @@
 import { responsiveStyle } from '@cutting/component-library';
-import { style } from '@vanilla-extract/css';
+import { style, createVar } from '@vanilla-extract/css';
+
+export const backgroundImage = createVar();
 
 export const bg = style({});
 
@@ -7,9 +9,9 @@ export const bgStatic = style({
   selectors: {
     '&:before': {
       content: '""',
-      background: `url('https://res.cloudinary.com/ddospxsc8/image/upload/v1689953393/frontendsupport/pain_wide_jjmyp6.png') no-repeat center center fixed`,
-      backgroundSize: 'cover',
+      backgroundSize: 'cover !important',
       position: 'absolute',
+      background: backgroundImage,
       top: 0,
       right: 0,
       bottom: 0,
