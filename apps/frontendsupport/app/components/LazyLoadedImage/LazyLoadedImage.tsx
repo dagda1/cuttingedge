@@ -1,4 +1,4 @@
-import { blurhashToCssGradientString } from '@unpic/placeholder';
+import { blurhashToGradientCssObject } from '@unpic/placeholder';
 import { Image, type ImageProps } from '@unpic/react';
 import { useMemo } from 'react';
 import { getImagePropsFromMap } from './getImagePropsFromMap';
@@ -19,7 +19,7 @@ export function LazyLoadedImage({
 
   const { blurhash, ...imageProps } = image;
 
-  const placeholder = useMemo(() => blurhashToCssGradientString(blurhash), [blurhash]);
+  const placeholderStyle = useMemo(() => blurhashToGradientCssObject(blurhash), [blurhash]);
 
   return (
     <Image
@@ -27,7 +27,7 @@ export function LazyLoadedImage({
       layout={layout as any}
       width={width ?? imageProps.width}
       height={height ?? imageProps.height}
-      background={placeholder}
+      style={placeholderStyle}
       src={src}
       {...props}
     />

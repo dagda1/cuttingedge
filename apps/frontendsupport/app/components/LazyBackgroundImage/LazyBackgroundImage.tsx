@@ -31,6 +31,10 @@ export function LazyBackgroundImage({
   }, []);
 
   useIsomorphicLayoutEffect(() => {
+    if (!global.IntersectionObserver) {
+      return;
+    }
+
     const observer = new IntersectionObserver(callback, {
       rootMargin: '0px',
       threshold: 0.1,
@@ -50,7 +54,7 @@ export function LazyBackgroundImage({
   }, [callback]);
 
   const style = useMemo(() => {
-    if (visible) {
+    if (!global.IntersectionObserver || visible) {
       return { backgroundImage: `url(${backgroundImage})` };
     }
     const { blurhash } = getImagePropsFromMap(backgroundImage);

@@ -86,6 +86,10 @@ function Ul({ children }: Props): JSX.Element {
   );
 }
 
+function Img({ alt, src }: { alt: string; src: string }): JSX.Element {
+  return <LazyLoadedImage src={src} alt={alt} />;
+}
+
 export const loader: LoaderFunction = async ({ params }) => {
   const slug = params.slug;
   if (!slug) {
@@ -151,6 +155,7 @@ export default function PostRoute() {
               h4: Heading4,
               a: TextLink as any,
               ul: Ul,
+              img: Img,
             }}
             attributes={frontmatter}
           />
