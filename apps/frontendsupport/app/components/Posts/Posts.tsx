@@ -1,4 +1,4 @@
-import { Box, Heading, Inline, List, PageBlock, Stack, Text, vars } from '@cutting/component-library';
+import { Box, Heading, List, PageBlock, Stack, Text, vars } from '@cutting/component-library';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 import * as styles from './Posts.css';
 import type { PostData } from '@cutting/markdown';
@@ -22,8 +22,10 @@ export function Posts({ posts }: PostsProps): JSX.Element {
                   padding={{ mobile: 'small', desktop: 'none' }}
                   style={{ border: `1px solid ${vars.foregroundColor.primary}` }}
                 >
-                  <Inline alignY="center" space="medium">
-                    {post.image && <LazyLoadedImage loading="lazy" src={post.image} width={150} height={100} />}
+                  <Box display={{ mobile: 'block', desktop: 'flex' }} alignItems="center">
+                    <Box marginRight="small">
+                      {post.image && <LazyLoadedImage loading="lazy" src={post.image} width={150} height={100} />}
+                    </Box>
                     <Stack space="medium">
                       <Heading level="2">
                         <TextNavLink key={post.slug} underline to={`/posts/${post.slug}`}>
@@ -35,7 +37,7 @@ export function Posts({ posts }: PostsProps): JSX.Element {
                       </Box>
                       <Text tone="promote">{post.formattedDate}</Text>
                     </Stack>
-                  </Inline>
+                  </Box>
                 </Box>
               );
             })}

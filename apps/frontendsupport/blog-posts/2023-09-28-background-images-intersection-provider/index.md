@@ -1,6 +1,6 @@
 ---
 meta:
-  title: Lazy loading CSS background images with low-quality image placeholders (LQIP) in a React Application with the IntersectionObserver
+  title: Lazy loading background images with blurred placeholders with the IntersectionObserver and React
   description:
   date: "2023-09-28T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1695913334/IntersectionObserver_uowf3b.png"
@@ -218,7 +218,9 @@ const style = useMemo(() => {
 return <Box ref={containerRef} style={style}></Box>;
 ```
 
-TLDR;
-With a combination of the `LazyLoadedImage` and the `LazyBackgroundImage`, we can load the images on demand:
+## TLDR;
 
-![lazy loaded images](https://res.cloudinary.com/ddospxsc8/image/upload/v1695932869/lazy-loaded-images_dbee9f.gif).
+With a combination of the `LazyLoadedImage` and the `LazyBackgroundImage` components, we can load the images on demand as the user scrolls down the screen.
+
+Only one large background image is loaded when the home page first loads.
+![lazy loaded images](https://res.cloudinary.com/ddospxsc8/image/upload/v1695935341/webpage-results_nmkrr3.png).

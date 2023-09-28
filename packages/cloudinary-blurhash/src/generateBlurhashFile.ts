@@ -32,7 +32,10 @@ export async function generateBlurhashFile(fileName: string): Promise<void> {
 
     const blurhashImages: BlurHashImage[] = [];
 
-    const results: SearchResults = await v2.search.expression('format=(NOT ico)').max_results(1000).execute();
+    const results: SearchResults = await v2.search
+      .expression('format=(NOT ico and NOT gif)')
+      .max_results(1000)
+      .execute();
 
     const images = results.resources.map(({ secure_url, width, height }) => ({ secure_url, width, height }));
 

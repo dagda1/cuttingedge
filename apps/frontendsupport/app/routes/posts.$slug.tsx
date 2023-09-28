@@ -10,6 +10,7 @@ import { Box, Heading, List, PageBlock, Text, TextLink } from '@cutting/componen
 import type { FrontMatter } from '~/types';
 import type { Location } from '@remix-run/react';
 import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
+import { Image } from '@unpic/react';
 
 type LoaderData = {
   frontmatter: FrontMatter;
@@ -87,6 +88,9 @@ function Ul({ children }: Props): JSX.Element {
 }
 
 function Img({ alt, src }: { alt: string; src: string }): JSX.Element {
+  if (src.endsWith('gif')) {
+    return <Image layout="fullWidth" src={src} alt={alt} />;
+  }
   return <LazyLoadedImage src={src} alt={alt} />;
 }
 
@@ -155,7 +159,7 @@ export default function PostRoute() {
               h4: Heading4,
               a: TextLink as any,
               ul: Ul,
-              img: Img,
+              img: Img as any,
             }}
             attributes={frontmatter}
           />
