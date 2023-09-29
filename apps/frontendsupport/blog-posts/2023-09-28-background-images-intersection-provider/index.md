@@ -3,17 +3,25 @@ meta:
   title: Lazy loading background images with blurred placeholders with the IntersectionObserver and React
   description:
   date: "2023-09-28T00:00:00.000Z"
-  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1695913334/IntersectionObserver_uowf3b.png"
+  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1695993562/lazy-loaded_k1bco2.gif"
   tags: ["performance", "react", "typescript"]
 ---
 
+## The desired outcome
+
+Looking at the animated gif above, you can see the images getting lazy loaded in the network tab of the Chrome dev tools panel on the right as the user scrolls down the page.
+
+How did I achieve this result? Now we know the outcome, let me explain the process.
+
+## Know your performance metrics on every commit
+
 In a recent post titled [5 Things that should be Automated in a TypeScript/Javascript Monorepo](https://frontendrescue.com/posts/2023-09-04-5-things-to-automate), I mentioned the importance of automating performance testing.
 
-I like adding performance metrics as a git comment on every pull request commit to highlight any problems. I used [webpagetest](https://www.webpagetest.org/) to run the tests, and the results highlighted the unnecessary loading of all the large images on the site's home page.
+I have a GitHub action that adds performance metrics as a git comment on every pull request commit to highlight any problems. I use [webpagetest](https://www.webpagetest.org/) to run the tests, and the results highlight the unnecessary loading of all the large images on the website you are currently viewing's home page.
 
 ![webpage test results](https://res.cloudinary.com/ddospxsc8/image/upload/v1695914718/webpagetest-images_glttuy.png).
 
-The home page comprises five large background images, with each image filling the whole viewport as the user scrolls down. Loading them all up front is not good practice. A better idea is to lazy load the images as the user scrolls down the page.
+The home page is comprised of five large background images, each filling the whole viewport as the user scrolls down. Loading all these images eagerly is a wasteful performance hit. A better idea is to lazy load the images as the user scrolls down the page.
 
 ## Why not use the img tag's loading attribute?
 
@@ -23,21 +31,29 @@ The loading attribute on an `<img>` element can be used to instruct the browser 
 <img src="image.jpg" alt="lazy loaded" loading="lazy" />
 ```
 
-Unfortunately, the large images in question are set using `background-image` CSS property:
+Unfortunately, the large images in question are set using the `background-image` CSS property:
 
 ```css
-background-image: url(https://res.cloudinary.com/ddospxsc8/image/upload/v1690025905/struggle_yderkl.png);
+background-image: url(https://res.cloudinary.com/666/image/upload/v66/struggle_yderkl.png);
 ```
 
 ## Low Quality Image Placeholders (LQIP)
 
-Lazy loading is one part of the challenge, and the other is to prevent the user from staring at a blank space until the image has loaded. It is currently good practice to provide a low-quality blurred image that bares a representation of the actual image, like you can see on my blog listing below:
+Lazy loading is one part of the challenge, and another is to prevent the user from staring at a blank space until the image has loaded. It is currently good practice to provide a low-quality blurred image that bares a representation of the actual image, as you can see on my blog listing below:
 
 ![blurred images](https://res.cloudinary.com/ddospxsc8/image/upload/v1695918932/blurhash_vnbpuj.png).
 
+A low-quality placeholder resembling the original image fills the space until the actual images are loaded and ready to view. The placeholder has significantly less download size in kilobytes.
+
+Once the image has loaded, the placeholder is replaced with the actual image.
+
+![real images](https://res.cloudinary.com/ddospxsc8/image/upload/v1696001710/posts_vz2ffl.png)
+
+The [blurhash](https://github.com/woltapp/blurhash) package can help us create a low-quality image placeholder from an image.
+
 ### blurhash
 
-[blurhash](https://blurha.sh/) generates compact representations of a placeholder for an image. Generating blurhashes is not the sort of operation you want to do at runtime, and all my images are stored in [cloudinary](https://cloudinary.com/ip/gr-sea-gg-brand-home-base) so I created [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) that will iterate all the images of a cloudinary account and create a JSON file with the image properties and the burhash that looks like this:
+[blurhash](https://blurha.sh/) generates compact representations of a placeholder for an image. Developing blurhashes is an expensive operation and not the sort of operation you want to do at runtime. All the images on this website are stored in [cloudinary](https://cloudinary.com/ip/gr-sea-gg-brand-home-base), so I created [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) that will iterate all the images of a Cloudinary account and create a JSON file with the image properties and the burhash that looks like this:
 
 ```json showLineNumbers {5}
 [
@@ -52,9 +68,9 @@ Lazy loading is one part of the challenge, and the other is to prevent the user 
 ]
 ```
 
-BlurHash takes an image and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. The string is highlighted on line 5 of the above code sample.
+BlurHash takes an image and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. The string is highlighted on line 5 of the JSON in the above sample, which my [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) package generated.
 
-For HTML `img` elements, I use this `LazyLoadedImage` component that is listed below:
+For HTML `img` elements, I use the `LazyLoadedImage` component that is listed below:
 
 ```tsx showLineNumbers {1,2,18,22,30}
 import { blurhashToGradientCssObject } from "@unpic/placeholder";
@@ -99,13 +115,13 @@ export function LazyLoadedImage({
 }
 ```
 
-I use [@unpic/placeholder](https://github.com/ascorbic/unpic-placeholder) to transform the blurhash into a style object that I pass as a prop to the [@unpic/react](https://github.com/ascorbic/unpic-img) component that I use for responsive images.
+I use [@unpic/placeholder](https://github.com/ascorbic/unpic-placeholder) to transform the [blurhash](https://blurha.sh/) into a style object that I pass as a prop to the [@unpic/react](https://github.com/ascorbic/unpic-img) component that I use for responsive images.
 
-I get the blurhash from the JSON file I generated with my package on line 18.
+I get the [blurhash](https://blurha.sh/) from the JSON file I generated with my package on line 18.
 
 The `blurhashToGradientCssObject` function will return the style object from the blurhash on line 22.
 
-The rendered CSS will look something like this:
+The rendered `img` tag and style attribute will look something like this:
 
 ```HTML
 <img loading="lazy" style="object-fit:cover;max-width:600px;max-height:400px;aspect-ratio:1.5;width:100%;background-image:radial-gradient(at 0 0,#ffffff,#00000000 50%),radial-gradient(at 33% 0,#fefefc,#00000000 50%),radial-gradient(at 67% 0,#edecee,#00000000 50%),radial-gradient(at 100% 0,#f4f4f6,#00000000 50%),radial-gradient(at 0 50%,#fdfffe,#00000000 50%),radial-gradient(at 33% 50%,#f9f8f7,#00000000 50%),radial-gradient(at 67% 50%,#e5e6e9,#00000000 50%),radial-gradient(at 100% 50%,#edeef1,#00000000 50%),radial-gradient(at 0 100%,#fbffff,#00000000 50%),radial-gradient(at 33% 100%,#fafbfa,#00000000 50%),radial-gradient(at 67% 100%,#e0e5eb,#00000000 50%),radial-gradient(at 100% 100%,#e4eaf1,#00000000 50%)" decoding="async" sizes="(min-width: 600px) 600px, 100vw" srcset="<rest>">
@@ -174,7 +190,7 @@ export function LazyBackgroundImage({
 }
 ```
 
-Lines 8-14 creates a callback that is passed as an argument to the `IntersectionObserver` constructor:
+Lines 8-14 create a callback that is passed as an argument to the `IntersectionObserver` constructor:
 
 ```ts showLineNumbers {
 const callback = useCallback((entries: IntersectionObserverEntry[]) => {
@@ -186,7 +202,7 @@ const callback = useCallback((entries: IntersectionObserverEntry[]) => {
 }, []);
 ```
 
-The callback is passed an array of `IntersectionObserverEntry` objects, which is a wrapper around the element that is being observed. The entry has an `isIntersecting` property that is true when the element is in the viewport.
+The callback is passed an array of `IntersectionObserverEntry` objects, which is a wrapper around the HTML element that is being observed. The entry has an `isIntersecting` property that is true when the element is in the viewport.
 
 Lines 21-24 create the intersection observer:
 
@@ -204,7 +220,7 @@ On line 28, the observer is told which element to observe.
 observer.observe(containerRef.current);
 ```
 
-On lines 39-45, we create a style object that initially has the blurhash CSS that gets swapped out for the background image when the observed HTML element is in the viewport.
+On lines 39-45, a style object is created that initially has the blurhash CSS that gets swapped out for the background image when the observed HTML element is in the viewport.
 
 ```ts
 const style = useMemo(() => {

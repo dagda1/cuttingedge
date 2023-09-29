@@ -3,6 +3,7 @@ import { TextNavLink } from '../TextNavLink/TextNavLink';
 import * as styles from './Posts.css';
 import type { PostData } from '@cutting/markdown';
 import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
+import { Image } from '@unpic/react';
 
 interface PostsProps {
   posts: PostData[];
@@ -16,6 +17,7 @@ export function Posts({ posts }: PostsProps): JSX.Element {
           <Heading level="1">leading from the front(end)</Heading>
           <List type="none">
             {posts.map((post) => {
+              const ImageComponent = post.image?.endsWith('gif') ? Image : LazyLoadedImage;
               return (
                 <Box
                   key={post.slug}
@@ -24,7 +26,7 @@ export function Posts({ posts }: PostsProps): JSX.Element {
                 >
                   <Box display={{ mobile: 'block', desktop: 'flex' }} alignItems="center">
                     <Box marginRight="small">
-                      {post.image && <LazyLoadedImage loading="lazy" src={post.image} width={150} height={100} />}
+                      {post.image && <ImageComponent loading="lazy" src={post.image} width={150} height={100} />}
                     </Box>
                     <Stack space="medium">
                       <Heading level="2">
