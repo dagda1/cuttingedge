@@ -21,8 +21,6 @@ function BlurhashImage({
 
   const placeholderStyle = useMemo(() => blurhashToGradientCssObject(blurhash), [blurhash]);
 
-  console.dir({ placeholderStyle });
-
   return (
     <Image
       loading={loading}

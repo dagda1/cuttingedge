@@ -17,7 +17,7 @@ How did I achieve this result? Now we know the outcome, let me explain the proce
 
 In a recent post titled [5 Things that should be Automated in a TypeScript/Javascript Monorepo](https://frontendrescue.com/posts/2023-09-04-5-things-to-automate), I mentioned the importance of automating performance testing.
 
-I have a GitHub action that adds performance metrics as a git comment on every pull request commit to highlight any problems. I use [webpagetest](https://www.webpagetest.org/) to run the tests, and the results highlight the unnecessary loading of all the large images on the website you are currently viewing's home page.
+I have a GitHub action that adds performance metrics as a comment to a pull request on every commit that highlights any problems. I use [webpagetest](https://www.webpagetest.org/) to run the tests, and the results highlight the unnecessary loading of all the large images on the website you are currently viewing's home page.
 
 ![webpage test results](https://res.cloudinary.com/ddospxsc8/image/upload/v1695914718/webpagetest-images_glttuy.png).
 
@@ -68,7 +68,7 @@ The [blurhash](https://github.com/woltapp/blurhash) package can help us create a
 ]
 ```
 
-BlurHash takes an image and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. The string is highlighted on line 5 of the JSON in the above sample, which my [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) package generated.
+[BlurHash](https://blurha.sh/) takes an image and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. The string is highlighted on line 5 of the JSON in the above sample, which my [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) package generated.
 
 For HTML `img` elements, I use the `LazyLoadedImage` component that is listed below:
 
@@ -115,11 +115,11 @@ export function LazyLoadedImage({
 }
 ```
 
-I use [@unpic/placeholder](https://github.com/ascorbic/unpic-placeholder) to transform the [blurhash](https://blurha.sh/) into a style object that I pass as a prop to the [@unpic/react](https://github.com/ascorbic/unpic-img) component that I use for responsive images.
+I use [@unpic/placeholder](https://github.com/ascorbic/unpic-placeholder) to transform the [blurhash](https://blurha.sh/) into a style object that I pass as a prop to the [@unpic/react](https://github.com/ascorbic/unpic-img) `Image` component that I use for responsive images.
 
-I get the [blurhash](https://blurha.sh/) from the JSON file I generated with my package on line 18.
+I get the [blurhash](https://blurha.sh/) from the JSON file I generated with my package on line 18 of the above code sample.
 
-The `blurhashToGradientCssObject` function will return the style object from the blurhash on line 22.
+The `blurhashToGradientCssObject` function will return the style object from the [blurhash](https://blurha.sh/) on line 22.
 
 The rendered `img` tag and style attribute will look something like this:
 
@@ -131,13 +131,13 @@ That takes care of the best practices for low-quality blurred image placeholders
 
 ## Can we please get to the IntersectionObserver!!
 
-When the image is set with the `background-image` CSS property, things are a little trickier, and this is when the [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) finally makes an appearance.
+When the image is set with the `background-image` CSS property, lazy loading the image is a little trickier, and this is when the [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) finally makes an appearance.
 
-Intersection Observer API is a relatively new API in browsers. It makes it simple to detect when an element enters the viewport, and you can execute a callback when it does.
+The IntersectionObserver API is relatively new in browsers. It makes it simple to detect when an element enters the viewport, and you can execute a callback when it does.
 
 I use the following `LazyBackgroundImage` component:
 
-```tsx showLineNumbers {8-14,21-24,28}
+```tsx showLineNumbers {8-14,21-24,28,40-44}
 interface LazyBackgroundImageProps {
   backgroundImage: string;
 }
@@ -202,7 +202,7 @@ const callback = useCallback((entries: IntersectionObserverEntry[]) => {
 }, []);
 ```
 
-The callback is passed an array of `IntersectionObserverEntry` objects, which is a wrapper around the HTML element that is being observed. The entry has an `isIntersecting` property that is true when the element is in the viewport.
+The callback is passed an array of `IntersectionObserverEntry` objects, which is a wrapper around the HTML element that is being observed. The [entry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) has an [isIntersecting](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting) property that is true when the element is in the viewport.
 
 Lines 21-24 create the intersection observer:
 
@@ -220,7 +220,7 @@ On line 28, the observer is told which element to observe.
 observer.observe(containerRef.current);
 ```
 
-On lines 39-45, a style object is created that initially has the blurhash CSS that gets swapped out for the background image when the observed HTML element is in the viewport.
+On lines 39-45, a style object that initially has the [blurhash](https://blurha.sh/) CSS object is created. This object gets swapped for the background image when the observed HTML element is in the viewport.
 
 ```ts
 const style = useMemo(() => {
@@ -240,3 +240,4 @@ With a combination of the `LazyLoadedImage` and the `LazyBackgroundImage` compon
 
 Only one large background image is loaded when the home page first loads.
 ![lazy loaded images](https://res.cloudinary.com/ddospxsc8/image/upload/v1695935341/webpage-results_nmkrr3.png).
+I consider this case closed.

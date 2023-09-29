@@ -4,4 +4,4 @@
 "@cutting/@cutting/cloudinary-blurhash": patch
 ---
 
-responsive fixes for support
+responsive and performance fixes for support
