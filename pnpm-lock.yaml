@@ -1685,8 +1685,8 @@ importers:
         specifier: workspace:*
         version: link:../useful-types
       '@types/mathjax':
-        specifier: 0.0.37
-        version: 0.0.37
+        specifier: 0.0.38
+        version: 0.0.38
       '@types/react':
         specifier: 18.2.22
         version: 18.2.22
@@ -9524,6 +9524,11 @@ packages:
 
   /@types/mathjax@0.0.37:
     resolution: {integrity: sha512-y0WSZBtBNQwcYipTU/BhgeFu1EZNlFvUNCmkMXV9kBQZq7/o5z82dNVyH3yy2Xv5zzeNeQoHSL4Xm06+EQiH+g==}
+    dev: false
+
+  /@types/mathjax@0.0.38:
+    resolution: {integrity: sha512-IkEb2t/4ka+znLl4jEE1i+5AiC2dCEAtlm52Md6b1cNpme3wN13yfErGuu+O+5tB5q9tvFvKF6lvP6Vmy5W8OA==}
+    dev: true
 
   /@types/mdast@3.0.12:
     resolution: {integrity: sha512-DT+iNIRNX884cx0/Q1ja7NyUPpZuv0KPyL5rGNxm1WC1OtHstl7n4Jb7nk+xacNShQMbczJjt8uFzznpp6kYBg==}
