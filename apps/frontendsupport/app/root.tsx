@@ -77,26 +77,33 @@ export const links: LinksFunction = () => [
   {
     rel: 'preload',
     href: rehypeStyles,
+    as: 'style',
   },
   {
     rel: 'preload',
     href: katex,
+
+    as: 'style',
   },
   {
     rel: 'preload',
     href: cuttingStyles as unknown as string,
+    as: 'style',
   },
   {
     rel: 'preload',
     href: hookFormStyles as unknown as string,
+    as: 'style',
   },
   {
     rel: 'preload',
     href: cssBundleHref as string,
+    as: 'style',
   },
   {
     rel: 'preload',
     href: cssStyles,
+    as: 'style',
   },
 
   {
