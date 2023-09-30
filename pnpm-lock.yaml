@@ -1051,8 +1051,8 @@ importers:
         specifier: 14.0.1
         version: 14.0.1
       '@types/rollup-plugin-size-snapshot':
-        specifier: 0.10.1
-        version: 0.10.1
+        specifier: 0.10.2
+        version: 0.10.2
       '@types/validate-npm-package-name':
         specifier: 4.0.0
         version: 4.0.0
@@ -9699,8 +9699,8 @@ packages:
       '@types/node': 20.6.4
     dev: true
 
-  /@types/rollup-plugin-size-snapshot@0.10.1:
-    resolution: {integrity: sha512-pp4NF2q+zHYhN5w1tIabgRjl5NjXuWCG7DZB7AlHG+irIL4n5dJJP/5Ekbui3BRmbH6obM+g6bmU8oOTmWkJ9g==}
+  /@types/rollup-plugin-size-snapshot@0.10.2:
+    resolution: {integrity: sha512-q66v4Mg6fWRZnxYJy2qzZSSQLEtTawucSGJVApZsIZmd5mV23e0dA/1s7iPYLLa9kAzaj0/a3WRsWQsEnMBdJw==}
     dependencies:
       '@types/node': 20.6.4
       rollup: 0.63.5
