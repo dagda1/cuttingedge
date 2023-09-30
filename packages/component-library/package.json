@@ -55,7 +55,7 @@
     "@vanilla-extract/dynamic": "^2.0.3",
     "autoprefixer": "10.4.15",
     "csstype": "3.1.2",
-    "esbuild": "0.19.2",
+    "esbuild": "0.19.4",
     "eslint": "8.47.0",
     "node-fetch": "3.3.2",
     "postcss": "8.4.29",

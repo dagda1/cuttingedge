@@ -7,7 +7,7 @@
   "rebaseWhen": "auto",
   "requiredStatusChecks": [],
   "timezone": "Europe/Dublin",
-  "schedule": ["after 1pm every weekend"],
+  "schedule": ["after 1pm every weekend", "before 6pm every weekend"],
   "lockFileMaintenance": {
     "enabled": false
   },
