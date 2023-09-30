@@ -1,12 +1,8 @@
 import parseFrontMatter from 'front-matter';
 import { bundleMDX } from 'mdx-bundler';
-import remarkFootnotes from 'remark-footnotes';
-import remarkMdxImages from 'remark-mdx-images';
-import remarkBreaks from 'remark-breaks';
 import { remarkCodeTitles } from './remark/remark-code-title';
 import { remarkInlineCodeLanguageCreator } from './remark/remark-inline-code-language';
 import type { FrontMatter, FrontMatterMeta } from './types';
-import readingTime from 'reading-time';
 import { join } from 'path';
 import { readFile, readdir } from 'fs/promises';
 import { DateTime } from 'luxon';
@@ -20,16 +16,12 @@ const root = process.cwd();
 type Matter = ReturnType<typeof bundleMDX>;
 
 export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
+  const startTime = performance.now();
   const source = await readFile(markdownPath, 'utf-8');
 
-  const { default: remarkGfm } = await import('remark-gfm');
-  const { default: rehypeAutolinkHeadings } = await import('rehype-autolink-headings');
-
-  const { default: rehypeSlug } = await import('rehype-slug');
   const { default: remarkMath } = await import('remark-math');
 
-  const { default: rehypeKatex } = await import('rehype-mathjax');
-  const { default: rehypeCitation } = await import('rehype-citation');
+  const { default: rehypeMathjax } = await import('rehype-mathjax');
   const { default: rehypePrismPlus } = await import('rehype-prism-plus');
   const { default: rehypeRaw } = await import('rehype-raw');
   const { default: rehypePresetMinify } = await import('rehype-preset-minify');
@@ -43,20 +35,13 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
     mdxOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        remarkMdxImages,
-        remarkGfm,
-        remarkBreaks,
         remarkCodeTitles,
         remarkInlineCodeLanguage,
-        [remarkFootnotes, { inlineNotes: true }],
         remarkMath,
       ];
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        rehypeAutolinkHeadings,
-        rehypeSlug,
-        rehypeKatex,
-        [rehypeCitation, { path: join(root, 'data') }],
+        rehypeMathjax,
         [rehypePrismPlus, { ignoreMissing: true }],
         rehypePresetMinify,
         [
@@ -80,15 +65,22 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
     throw e;
   });
 
-  return {
+  const result = {
     ...post,
     frontmatter: {
       meta: {
-        readingTime: readingTime(post.code),
         ...post.frontmatter.meta,
       },
     },
   };
+
+  const endTime = performance.now();
+
+  console.log('==============================');
+  console.log(`bundleMdx took ${endTime - startTime} ms`);
+  console.log('==============================');
+
+  return result;
 }
 
 export type PostData = FrontMatterMeta & { formattedDate: string };

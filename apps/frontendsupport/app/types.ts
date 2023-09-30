@@ -1,5 +1,3 @@
-import type { ReadTimeResults } from 'reading-time';
-
 export type FrontMatterMeta = {
   slug: string;
   title: string;
@@ -7,7 +5,6 @@ export type FrontMatterMeta = {
   description: string;
   date: string;
   tags: string[];
-  readingTime?: ReadTimeResults;
   fileName?: string;
   image?: string;
 };

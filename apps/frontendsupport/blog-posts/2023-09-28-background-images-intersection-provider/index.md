@@ -1,6 +1,6 @@
 ---
 meta:
-  title: Lazy loading background images with blurred placeholders with the IntersectionObserver and React
+  title: Lazy loading background images with low quality image placeholders with the IntersectionObserver and React
   description:
   date: "2023-09-28T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1695993562/lazy-loaded_k1bco2.gif"
@@ -10,8 +10,6 @@ meta:
 ## The desired outcome
 
 Looking at the animated gif above, you can see the images getting lazy loaded in the network tab of the Chrome dev tools panel on the right as the user scrolls down the page.
-
-How did I achieve this result? Now we know the outcome, let me explain the process.
 
 ## Know your performance metrics on every commit
 
@@ -68,9 +66,9 @@ The [blurhash](https://github.com/woltapp/blurhash) package can help us create a
 ]
 ```
 
-[BlurHash](https://blurha.sh/) takes an image and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. The string is highlighted on line 5 of the JSON in the above sample, which my [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) package generated.
+[BlurHash](https://blurha.sh/) takes an image and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. The string is highlighted on line 5 of the JSON in the above sample, which my [npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) package generated.
 
-For HTML `img` elements, I use the `LazyLoadedImage` component that is listed below:
+For lazy loading of ordinary HTML `<img />` elements, I use the `LazyLoadedImage` component that is listed below:
 
 ```tsx showLineNumbers {1,2,18,22,30}
 import { blurhashToGradientCssObject } from "@unpic/placeholder";
@@ -202,7 +200,7 @@ const callback = useCallback((entries: IntersectionObserverEntry[]) => {
 }, []);
 ```
 
-The callback is passed an array of `IntersectionObserverEntry` objects, which is a wrapper around the HTML element that is being observed. The [entry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) has an [isIntersecting](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting) property that is true when the element is in the viewport.
+The callback is passed an array of `IntersectionObserverEntry` objects, which is a wrapper around the HTML elements that are being observed. The [entry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) has an [isIntersecting](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting) property that is true when the element is in the viewport.
 
 Lines 21-24 create the intersection observer:
 
