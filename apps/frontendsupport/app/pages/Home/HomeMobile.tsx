@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import * as styles from './HomeMobile.css';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -12,6 +11,7 @@ import { MobileContainer } from './MobileContainer';
 import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { Services } from '../Panels/Services/Services';
 import { Clients } from '../Panels/Clients/Clients';
+import { bgRepeat } from '~/components/LazyBackgroundImage/LazyBackgroundImage.css';
 
 export function HomeMobile(): JSX.Element {
   const panelsContainer = useRef<HTMLDivElement>(null);
@@ -43,27 +43,29 @@ export function HomeMobile(): JSX.Element {
         });
 
         gsap.utils.toArray<HTMLDivElement>('.section').forEach((section, i) => {
-          const bg = section.querySelector(`.${styles.bg}`) as HTMLDivElement;
+          const backgroundDiv = section.querySelector(bgRepeat) as HTMLDivElement;
 
-          const height = bg.offsetHeight;
+          if (backgroundDiv) {
+            const height = backgroundDiv.offsetHeight;
 
-          if (i) {
-            bg.style.backgroundPosition = `50% ${height / 2}px`;
+            if (i) {
+              backgroundDiv.style.backgroundPosition = `50% ${height / 2}px`;
 
-            gsap.to(bg, {
-              backgroundPosition: `50% ${-(height / 2)}px`,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: section,
-                scrub: true,
-              },
-            });
+              gsap.to(backgroundDiv, {
+                backgroundPosition: `50% ${-(height / 2)}px`,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: section,
+                  scrub: true,
+                },
+              });
+            }
           }
         });
       });
     }
 
-    setTimeout(main, 1000);
+    setTimeout(main, 5000);
     return () => {
       ctx.current?.revert();
     };
@@ -86,9 +88,18 @@ export function HomeMobile(): JSX.Element {
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_20/v1690893685/html_kg05e7.png">
         <Clients />
       </MobileContainer>
-      <MobileContainer height={{ mobile: 'auto', desktop: 'screen' }}>
+      <Box
+        component="section"
+        className="section"
+        position="relative"
+        height={{ mobile: 'auto', desktop: 'screen' }}
+        width="full"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
         <Services />
-      </MobileContainer>
+      </Box>
     </Box>
   );
 }

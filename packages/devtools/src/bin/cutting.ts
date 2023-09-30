@@ -18,6 +18,7 @@ const args = process.argv.slice(3);
 let command = '';
 
 switch (script) {
+  case 'generate-blurhash':
   case 'devserver-start':
   case 'rollup':
   case 'esbuild':

@@ -708,9 +708,6 @@ importers:
       cloudinary:
         specifier: ^1.41.0
         version: 1.41.0
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
       log-update:
         specifier: ^5.0.1
         version: 5.0.1

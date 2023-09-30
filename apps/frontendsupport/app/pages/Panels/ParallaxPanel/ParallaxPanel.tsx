@@ -1,7 +1,7 @@
 import { Box } from '@cutting/component-library';
 import type { MotionImageProps } from '../../../components/MotionImage/MotionImage';
 import type { ReactNode } from 'react';
-import { Image } from '@unpic/react';
+import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
 
 type Images = [MotionImageProps, MotionImageProps, MotionImageProps];
 
@@ -26,7 +26,7 @@ export function ImageContainer({ images, resolution }: { images: Images; resolut
       }}
     >
       {resolvedImages.map(({ src, ...props }) => (
-        <Image key={src} src={src as string} layout="constrained" className="parallax" {...props} />
+        <LazyLoadedImage key={src} src={src as string} layout="constrained" className="parallax" {...props} />
       ))}
     </Box>
   );

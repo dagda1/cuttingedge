@@ -1,4 +1,3 @@
-// import { HomeDesktop } from './HomeDesktop';
 import { HomeMobile } from './HomeMobile';
 import { Box } from '@cutting/component-library';
 

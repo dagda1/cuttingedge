@@ -1,10 +1,13 @@
 import { Box, Heading } from '@cutting/component-library';
-import { background } from '~/pages/Panels/Services/Service.css';
+import { LazyBackgroundImage } from '~/components/LazyBackgroundImage/LazyBackgroundImage';
 
 export default function ContactConfirmation(): JSX.Element {
   return (
     <>
-      <Box className={background}></Box>
+      <LazyBackgroundImage
+        backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1689953393/frontendsupport/pain_wide_jjmyp6.png"
+        backgroundStyle="static"
+      />
       <Box paddingTop="xxxlarge" width="full" height="full" display="flex" alignItems="center" justifyContent="center">
         <Heading level="1">Thank you for your enquiry, we'll get back to you soon.</Heading>
       </Box>

@@ -1,7 +1,7 @@
 import { Box, Heading, Stack, Text, Tiles } from '@cutting/component-library';
 import { Service } from './Service';
-import { background } from './Service.css';
 import { ContactButtons } from '@cutting/react-hook-form-components';
+import { LazyBackgroundImage } from '~/components/LazyBackgroundImage/LazyBackgroundImage';
 
 type Service = {
   heading: string;
@@ -34,7 +34,10 @@ const services: Service[] = [Rescue, Critical];
 export function Services(): JSX.Element {
   return (
     <Box marginBottom="xxxlarge">
-      <Box className={background}></Box>
+      <LazyBackgroundImage
+        backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1689953393/frontendsupport/pain_wide_jjmyp6.png"
+        backgroundStyle="static"
+      />
       <Stack space="small" align="center">
         <Box marginBottom="medium">
           <Heading level="1">Services</Heading>

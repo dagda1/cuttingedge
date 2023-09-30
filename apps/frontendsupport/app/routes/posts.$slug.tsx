@@ -8,8 +8,9 @@ import { getPost } from '~/utils/post';
 import type { ReactNodeNoStrings } from '@cutting/component-library';
 import { Box, Heading, List, PageBlock, Text, TextLink } from '@cutting/component-library';
 import type { FrontMatter } from '~/types';
-import { Image } from '@unpic/react';
 import type { Location } from '@remix-run/react';
+import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
+import { Image } from '@unpic/react';
 
 type LoaderData = {
   frontmatter: FrontMatter;
@@ -86,6 +87,13 @@ function Ul({ children }: Props): JSX.Element {
   );
 }
 
+function Img({ alt, src }: { alt: string; src: string }): JSX.Element {
+  if (src.endsWith('gif')) {
+    return <Image layout="fullWidth" src={src} alt={alt} />;
+  }
+  return <LazyLoadedImage src={src} alt={alt} />;
+}
+
 export const loader: LoaderFunction = async ({ params }) => {
   const slug = params.slug;
   if (!slug) {
@@ -138,19 +146,24 @@ export default function PostRoute() {
         <Box marginBottom="small">
           <Heading level="1">{frontmatter.meta.title}</Heading>
         </Box>
-        {frontmatter.meta.image && <Image layout="constrained" width={600} height={400} src={frontmatter.meta.image} />}
-        <Component
-          components={{
-            p: Paragraph,
-            h1: Heading1,
-            h2: Heading2,
-            h3: Heading3,
-            h4: Heading4,
-            a: TextLink as any,
-            ul: Ul,
-          }}
-          attributes={frontmatter}
-        />
+        {frontmatter.meta.image && (
+          <LazyLoadedImage loading="lazy" layout="constrained" width={600} height={400} src={frontmatter.meta.image} />
+        )}
+        <Box paddingX={{ mobile: 'small', desktop: 'none' }}>
+          <Component
+            components={{
+              p: Paragraph,
+              h1: Heading1,
+              h2: Heading2,
+              h3: Heading3,
+              h4: Heading4,
+              a: TextLink as any,
+              ul: Ul,
+              img: Img as any,
+            }}
+            attributes={frontmatter}
+          />
+        </Box>
       </PageBlock>
     </Box>
   );

@@ -12,6 +12,7 @@ export function Scroller(): JSX.Element {
           width={100}
           height={100}
           alt="Scroller"
+          loading="eager"
         />
       </div>
     </div>
