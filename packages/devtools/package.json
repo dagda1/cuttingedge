@@ -99,7 +99,7 @@
     "@types/inquirer": "9.0.3",
     "@types/node": "20.6.4",
     "@types/papaparse": "5.3.9",
-    "@types/postcss-import": "14.0.0",
+    "@types/postcss-import": "14.0.1",
     "@types/rollup-plugin-size-snapshot": "0.10.1",
     "@types/validate-npm-package-name": "4.0.0",
     "@typescript-eslint/eslint-plugin": "6.4.0",
