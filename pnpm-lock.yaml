@@ -43,8 +43,8 @@ importers:
         specifier: 3.9.0
         version: 3.9.0(@types/node@20.8.0)(ts-node@10.9.1)(vite@4.4.9)
       '@vitejs/plugin-react':
-        specifier: 4.0.4
-        version: 4.0.4(vite@4.4.9)
+        specifier: 4.1.0
+        version: 4.1.0(vite@4.4.9)
       '@vitest/coverage-v8':
         specifier: 0.34.6
         version: 0.34.6(vitest@0.34.6)
@@ -652,8 +652,8 @@ importers:
         specifier: 3.9.0
         version: 3.9.0(@types/node@20.8.0)(ts-node@10.9.1)(vite@4.4.9)
       '@vitejs/plugin-react':
-        specifier: 4.0.4
-        version: 4.0.4(vite@4.4.9)
+        specifier: 4.1.0
+        version: 4.1.0(vite@4.4.9)
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -10329,8 +10329,8 @@ packages:
       d3-time-format: 4.1.0
       internmap: 2.0.3
 
-  /@vitejs/plugin-react@4.0.4(vite@4.4.9):
-    resolution: {integrity: sha512-7wU921ABnNYkETiMaZy7XqpueMnpu5VxvVps13MjmCo+utBdD79sZzrApHawHtVX66cCJQQTXFcjH0y9dSUK8g==}
+  /@vitejs/plugin-react@4.1.0(vite@4.4.9):
+    resolution: {integrity: sha512-rM0SqazU9iqPUraQ2JlIvReeaxOoRj6n+PzB1C0cBzIbd8qP336nC39/R9yPi3wVcah7E7j/kdU1uCUqMEU4OQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.2.0 || 4.4.9
@@ -10338,6 +10338,7 @@ packages:
       '@babel/core': 7.22.20
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.22.20)
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.22.20)
+      '@types/babel__core': 7.20.2
       react-refresh: 0.14.0
       vite: 4.4.9(@types/node@20.8.0)
     transitivePeerDependencies:
