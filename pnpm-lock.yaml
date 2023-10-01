@@ -241,8 +241,8 @@ importers:
         specifier: ^4.2.2
         version: 4.2.2
       postprocessing:
-        specifier: 6.33.0
-        version: 6.33.0(three@0.155.0)
+        specifier: 6.33.1
+        version: 6.33.1(three@0.155.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -20943,11 +20943,11 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
-  /postprocessing@6.33.0(three@0.155.0):
-    resolution: {integrity: sha512-W6KGnF8OVyPtB9f5o2z8abJOefDeT9aoOrI/HmMmJM6/gXTKRc66MrL+qNoGmeeA3moWWsTk0mc9M+shN3vXaA==}
+  /postprocessing@6.33.1(three@0.155.0):
+    resolution: {integrity: sha512-dUxDGNgBzkTYjzkDVDBIFqZ6zLbzeaqwk8r3ZCMrv08MBX1c68goS8CKvwYvZtltacKnSSBv5f66HQgSSEOEBQ==}
     engines: {node: '>= 0.13.2'}
     peerDependencies:
-      three: '>= 0.138.0 < 0.156.0'
+      three: '>= 0.138.0 < 0.157.0'
     dependencies:
       three: 0.155.0
     dev: false
