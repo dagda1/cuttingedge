@@ -2,7 +2,7 @@ import type { DeepPartial } from '@cutting/util';
 import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
 import { extractFontMetricsForTheme } from '~/style/util/typography';
-import montserrat from '@capsizecss/metrics/montserrat';
+import helveticaNeue from '@capsizecss/metrics/helveticaNeue';
 import { helveticaNowDisplayMedium } from './font.css';
 
 const colors = {
@@ -42,15 +42,11 @@ export const tokens: DeepPartial<Tokens> = {
   },
   grid: 4,
   typography: {
-    webFont: {
-      heading: 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap',
-      text: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap',
-    },
     fontFamily: {
       heading: `${helveticaNowDisplayMedium}, sans-serif`,
       text: `${helveticaNowDisplayMedium}, sans-serif`,
     },
-    fontMetrics: extractFontMetricsForTheme(montserrat),
+    fontMetrics: extractFontMetricsForTheme(helveticaNeue),
     fontWeight: {
       regular: 300,
     },
