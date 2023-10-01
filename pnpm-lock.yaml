@@ -178,8 +178,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1
       flowbite-react:
-        specifier: ^0.5.0
-        version: 0.5.0(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3)
+        specifier: ^0.6.3
+        version: 0.6.3(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3)
       format:
         specifier: ^0.2.2
         version: 0.2.2
@@ -1491,8 +1491,8 @@ importers:
         specifier: 8.47.0
         version: 8.47.0
       flowbite-react:
-        specifier: ^0.5.0
-        version: 0.5.0(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3)
+        specifier: ^0.6.3
+        version: 0.6.3(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -15099,8 +15099,8 @@ packages:
   /flatted@3.2.9:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
 
-  /flowbite-react@0.5.0(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3):
-    resolution: {integrity: sha512-OoJ0Dbv0ZuunTkPwa802wL3kalUWQ7YBh1t4It5uVfAYs5KUvOqhXIygdlVMawnmq3+xkMPbUZkWh1sDxVb3nw==}
+  /flowbite-react@0.6.3(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-xiRQdovcHNa3kTe00pVIULTeWt4eDU8c4iyx0ytSF2wRsNc4kai5BM0on3wEg+FEq3EmzrUmuCiD24QxU9rofw==}
     peerDependencies:
       react: '>=18.2.0 || 18.2.0'
       react-dom: '>=18.2.0'
