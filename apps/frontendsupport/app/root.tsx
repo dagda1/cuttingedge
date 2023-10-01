@@ -73,30 +73,36 @@ export const meta: V2_MetaFunction = ({ location, data }) => {
 };
 
 export const links: LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com', crossOrigin: 'anonymous' },
   {
     rel: 'preload',
     href: rehypeStyles,
+    as: 'style',
   },
   {
     rel: 'preload',
     href: katex,
+
+    as: 'style',
   },
   {
     rel: 'preload',
     href: cuttingStyles as unknown as string,
+    as: 'style',
   },
   {
     rel: 'preload',
     href: hookFormStyles as unknown as string,
+    as: 'style',
   },
   {
     rel: 'preload',
     href: cssBundleHref as string,
+    as: 'style',
   },
   {
     rel: 'preload',
     href: cssStyles,
+    as: 'style',
   },
 
   {

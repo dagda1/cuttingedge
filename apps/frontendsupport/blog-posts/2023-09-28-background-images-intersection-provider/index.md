@@ -1,6 +1,6 @@
 ---
 meta:
-  title: Lazy loading background images with blurred placeholders with the IntersectionObserver and React
+  title: Lazy loading background images with blurred placeholders with the IntersectionObserver and React and blurhash
   description:
   date: "2023-09-28T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1695993562/lazy-loaded_k1bco2.gif"
