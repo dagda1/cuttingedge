@@ -86,7 +86,7 @@
   },
   "devDependencies": {
     "@architect/architect": "^10.14.2",
-    "@babel/runtime": "^7.22.15",
+    "@babel/runtime": "^7.23.1",
     "@cutting/cloudinary-blurhash": "workspace:*",
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
