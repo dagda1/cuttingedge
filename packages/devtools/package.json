@@ -97,7 +97,7 @@
     "@types/copy": "0.3.3",
     "@types/fs-extra": "11.0.2",
     "@types/inquirer": "9.0.3",
-    "@types/node": "20.6.4",
+    "@types/node": "20.8.0",
     "@types/papaparse": "5.3.9",
     "@types/postcss-import": "14.0.1",
     "@types/rollup-plugin-size-snapshot": "0.10.2",
