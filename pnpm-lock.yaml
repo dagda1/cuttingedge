@@ -843,8 +843,8 @@ importers:
         specifier: 1.6.1
         version: 1.6.1(@vanilla-extract/css@1.13.0)
       autoprefixer:
-        specifier: 10.4.15
-        version: 10.4.15(postcss@8.4.29)
+        specifier: 10.4.16
+        version: 10.4.16(postcss@8.4.29)
       csstype:
         specifier: 3.1.2
         version: 3.1.2
@@ -924,8 +924,8 @@ importers:
         specifier: 0.3.4
         version: 0.3.4
       autoprefixer:
-        specifier: 10.4.15
-        version: 10.4.15(postcss@8.4.29)
+        specifier: 10.4.16
+        version: 10.4.16(postcss@8.4.29)
       browserslist:
         specifier: 4.21.10
         version: 4.21.10
@@ -11298,8 +11298,8 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /autoprefixer@10.4.15(postcss@8.4.29):
-    resolution: {integrity: sha512-KCuPB8ZCIqFdA4HwKXsvz7j6gvSDNhDP7WnUjBleRkKjPdvCmHFuQ77ocavI8FT6NdvlBnE2UFr2H4Mycn8Vew==}
+  /autoprefixer@10.4.16(postcss@8.4.29):
+    resolution: {integrity: sha512-7vd3UC6xKp0HLfua5IjZlcXvGAGy7cBAXTg2lyQ/8WpNhd6SiZ8Be+xm3FyBSYJx5GKcpRCzBh7RH4/0dnY+uQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
