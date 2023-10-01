@@ -1066,8 +1066,8 @@ importers:
         specifier: 4.3.1
         version: 4.3.1
       esbuild-node-externals:
-        specifier: 1.8.0
-        version: 1.8.0(esbuild@0.19.4)
+        specifier: 1.9.0
+        version: 1.9.0(esbuild@0.19.4)
       eslint-config-prettier:
         specifier: ^9.0.0
         version: 9.0.0(eslint@8.47.0)
@@ -13913,11 +13913,11 @@ packages:
     resolution: {integrity: sha512-Twf7I2v4/1tLoIXMT8HlqaBSS5H2wQTs2wx3MNYCI8K1R1/clXyCazrcVCPm/FuO9cyV8+leEaZOWD5C253NDg==}
     dev: true
 
-  /esbuild-node-externals@1.8.0(esbuild@0.19.4):
-    resolution: {integrity: sha512-pYslmT8Bl383UnfxzHQQRpCgBNIOwAzDaYheuIeI4CODxelsN/eQroVn5STDow5QOpRalMgWUR+R8LfSgUROcw==}
+  /esbuild-node-externals@1.9.0(esbuild@0.19.4):
+    resolution: {integrity: sha512-WV6Ogvl+AZEX3vWAM0UGxqb08l3M73EUeymizKGccUC0iWlF1CwdpkZVu200bSqONamjSV0v22vf4YBahJXs8g==}
     engines: {node: '>=12'}
     peerDependencies:
-      esbuild: 0.12 - 0.18
+      esbuild: 0.12 - 0.19
     dependencies:
       esbuild: 0.19.4
       find-up: 5.0.0
