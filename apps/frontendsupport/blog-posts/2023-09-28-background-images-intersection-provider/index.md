@@ -1,17 +1,17 @@
 ---
 meta:
-  title: Lazy loading background images with blurred placeholders with the IntersectionObserver and React and blurhash
+  title: Lazy loading background images with the IntersectionObserver and React with low-quality image placeholders created with blurhash
   description:
   date: "2023-09-28T00:00:00.000Z"
   image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1695993562/lazy-loaded_k1bco2.gif"
   tags: ["performance", "react", "typescript"]
 ---
 
-## The desired outcome
+## The final result
 
 Looking at the animated gif above, you can see the images getting lazy loaded in the network tab of the Chrome dev tools panel on the right as the user scrolls down the page.
 
-How did I achieve this result? Now we know the outcome, let me explain the process.
+I run performance metrics on every git commit as I don't want to wait to be told I have performance problems.
 
 ## Know your performance metrics on every commit
 
@@ -21,11 +21,11 @@ I have a GitHub action that adds performance metrics as a comment to a pull requ
 
 ![webpage test results](https://res.cloudinary.com/ddospxsc8/image/upload/v1695914718/webpagetest-images_glttuy.png).
 
-The home page is comprised of five large background images, each filling the whole viewport as the user scrolls down. Loading all these images eagerly is a wasteful performance hit. A better idea is to lazy load the images as the user scrolls down the page.
+The home page is comprised of five large background images, each filling the whole viewport as the user scrolls down. Loading all these images up front is a wasteful performance hit. A better idea is to lazy load the images as the user scrolls down the page.
 
 ## Why not use the img tag's loading attribute?
 
-The loading attribute on an `<img>` element can be used to instruct the browser to defer the loading of off-screen images until the user scrolls near them.
+The loading attribute on an `<img>` element can instruct the browser to defer the loading of off-screen images until the user scrolls near them.
 
 ```html
 <img src="image.jpg" alt="lazy loaded" loading="lazy" />
@@ -53,7 +53,7 @@ The [blurhash](https://github.com/woltapp/blurhash) package can help us create a
 
 ### blurhash
 
-[blurhash](https://blurha.sh/) generates compact representations of a placeholder for an image. Developing blurhashes is an expensive operation and not the sort of operation you want to do at runtime. All the images on this website are stored in [cloudinary](https://cloudinary.com/ip/gr-sea-gg-brand-home-base), so I created [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) that will iterate all the images of a Cloudinary account and create a JSON file with the image properties and the burhash that looks like this:
+[blurhash](https://blurha.sh/) generates compact representations of a placeholder for an image. Developing blurhashes is an expensive operation and not the sort you want to do at runtime. All the images on this website are stored in [cloudinary](https://cloudinary.com/ip/gr-sea-gg-brand-home-base), so I created [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) that will iterate all the images of a Cloudinary account and create a JSON file with the image properties and the burhash that looks like this:
 
 ```json showLineNumbers {5}
 [
@@ -202,7 +202,7 @@ const callback = useCallback((entries: IntersectionObserverEntry[]) => {
 }, []);
 ```
 
-The callback is passed an array of `IntersectionObserverEntry` objects, which is a wrapper around the HTML element that is being observed. The [entry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) has an [isIntersecting](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting) property that is true when the element is in the viewport.
+The callback is passed an array of `IntersectionObserverEntry` objects, which are wrappers around any HTML elements that are being observed. The [entry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) has an [isIntersecting](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting) property that is true when the element is in the viewport. All the callback does is update the `visible` property of the local state with the `setVisible` call when `isIntersecting` is true, which will cause a re-render with the updated value.
 
 Lines 21-24 create the intersection observer:
 
