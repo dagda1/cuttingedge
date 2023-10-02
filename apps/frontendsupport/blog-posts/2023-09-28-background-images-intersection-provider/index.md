@@ -3,15 +3,9 @@ meta:
   title: Lazy loading background images with the IntersectionObserver and React with low-quality image placeholders created with blurhash
   description:
   date: "2023-09-28T00:00:00.000Z"
-  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1695993562/lazy-loaded_k1bco2.gif"
+  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1696266094/homepage_g99jty.png"
   tags: ["performance", "react", "typescript"]
 ---
-
-## The final result
-
-Looking at the animated gif above, you can see the images getting lazy loaded in the network tab of the Chrome dev tools panel on the right as the user scrolls down the page.
-
-I run performance metrics on every git commit as I don't want to wait to be told I have performance problems. Thanks to these metrics, I saw a problem with five large images getting downloaded to show the home page.
 
 ## Know your performance metrics on every commit
 
