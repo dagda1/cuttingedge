@@ -1,6 +1,6 @@
 {
   "name": "@cutting/cloudinary-blurhash",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generate blurhash for each image and generate a file",
   "repository": {
     "type": "git",
