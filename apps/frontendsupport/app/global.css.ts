@@ -37,6 +37,10 @@ globalStyle('.cutting-inline', {
   }),
 });
 
+globalStyle('h1', {
+  wordWrap: 'break-word',
+});
+
 export const header = style({
   background: 'inherit',
 });
