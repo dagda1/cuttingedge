@@ -74,7 +74,7 @@ The JSON file negates the need to create the [blurhash](https://blurha.sh) at ru
 
 For HTML `img` elements, I use the `LazyLoadedImage` component that is listed below:
 
-```tsx showLineNumbers {1,2,18,22,30}
+```tsx showLineNumbers {1,2,22,22,30}
 import { blurhashToGradientCssObject } from "@unpic/placeholder";
 import { Image, type ImageProps } from "@unpic/react";
 import { useMemo } from "react";
@@ -139,7 +139,7 @@ The IntersectionObserver API is relatively new in browsers. It makes it simple t
 
 I use the following `LazyBackgroundImage` component:
 
-```tsx showLineNumbers {10-16,23-27,30,42-47}
+```tsx showLineNumbers {10-16,23-27,30,42-46}
 interface LazyBackgroundImageProps {
   backgroundImage: string;
 }
@@ -222,7 +222,7 @@ On line 30, the observer is told which element to observe.
 observer.observe(containerRef.current);
 ```
 
-On lines 42-47, a style object that initially has the [blurhash](https://blurha.sh/) CSS object is created. This object gets swapped for the background image when the observed HTML element is in the viewport.
+On lines 42-46, a style object that initially has the [blurhash](https://blurha.sh/) CSS object is created. This object gets swapped for the background image when the observed HTML element is in the viewport.
 
 ```ts
 const style = useMemo(() => {
