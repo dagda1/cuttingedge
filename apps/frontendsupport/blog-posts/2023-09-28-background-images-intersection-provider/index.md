@@ -70,7 +70,7 @@ The [blurhash](https://github.com/woltapp/blurhash) package can help us create a
 
 The JSON file negates the need to create the [blurhash](https://blurha.sh) at runtime.
 
-[BlurHash](https://blurha.sh/) takes an image and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. The string is highlighted on line 5 of the JSON in the above sample, which my [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) package generated.
+[BlurHash](https://blurha.sh/) takes an image and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. The string is highlighted on line 5 of the JSON in the above sample, which my [npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) package generated.
 
 For HTML `img` elements, I use the `LazyLoadedImage` component that is listed below:
 
@@ -139,7 +139,7 @@ The IntersectionObserver API is relatively new in browsers. It makes it simple t
 
 I use the following `LazyBackgroundImage` component:
 
-```tsx showLineNumbers {8-14,21-24,28,40-44}
+```tsx showLineNumbers {10-16,23-27,30,42-47}
 interface LazyBackgroundImageProps {
   backgroundImage: string;
 }
@@ -192,7 +192,7 @@ export function LazyBackgroundImage({
 }
 ```
 
-Lines 8-14 create a callback that is passed as an argument to the `IntersectionObserver` constructor:
+Lines 10-16 create a callback that is passed as an argument to the `IntersectionObserver` constructor:
 
 ```ts showLineNumbers {
 const callback = useCallback((entries: IntersectionObserverEntry[]) => {
@@ -206,7 +206,7 @@ const callback = useCallback((entries: IntersectionObserverEntry[]) => {
 
 The callback is passed an array of `IntersectionObserverEntry` objects, which are wrappers around any HTML elements that are being observed. The [entry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) has an [isIntersecting](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting) property that is true when the element is in the viewport. All the callback does is update the `visible` property of the local state with the `setVisible` call when `isIntersecting` is true, which will cause a re-render with the updated value.
 
-Lines 21-24 create the intersection observer:
+Lines 23-27 create the intersection observer:
 
 ```ts
 const observer = new IntersectionObserver(callback, {
@@ -216,13 +216,13 @@ const observer = new IntersectionObserver(callback, {
 });
 ```
 
-On line 28, the observer is told which element to observe.
+On line 30, the observer is told which element to observe.
 
 ```ts
 observer.observe(containerRef.current);
 ```
 
-On lines 39-45, a style object that initially has the [blurhash](https://blurha.sh/) CSS object is created. This object gets swapped for the background image when the observed HTML element is in the viewport.
+On lines 42-47, a style object that initially has the [blurhash](https://blurha.sh/) CSS object is created. This object gets swapped for the background image when the observed HTML element is in the viewport.
 
 ```ts
 const style = useMemo(() => {
