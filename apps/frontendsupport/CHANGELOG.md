@@ -1,5 +1,15 @@
 # @cutting/frontend-support
 
+## 0.1.55
+
+### Patch Changes
+
+- 173f0ce5: responsive and performance fixes for support
+- Updated dependencies [173f0ce5]
+  - @cutting/component-library@5.41.11
+  - @cutting/react-hook-form-components@0.5.13
+  - @cutting/use-get-parent-size@2.1.4
+
 ## 0.1.52
 
 ### Patch Changes

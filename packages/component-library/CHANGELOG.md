@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.11
+
+### Patch Changes
+
+- 173f0ce5: responsive and performance fixes for support
+
 ## 5.41.10
 
 ### Patch Changes
