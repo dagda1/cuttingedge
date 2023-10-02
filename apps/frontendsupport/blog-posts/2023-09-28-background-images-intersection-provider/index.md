@@ -11,13 +11,13 @@ meta:
 
 Looking at the animated gif above, you can see the images getting lazy loaded in the network tab of the Chrome dev tools panel on the right as the user scrolls down the page.
 
-I run performance metrics on every git commit as I don't want to wait to be told I have performance problems.
+I run performance metrics on every git commit as I don't want to wait to be told I have performance problems. Thanks to these metrics, I saw a problem with five large images getting downloaded to show the home page.
 
 ## Know your performance metrics on every commit
 
-In a recent post titled [5 Things that should be Automated in a TypeScript/Javascript Monorepo](https://frontendrescue.com/posts/2023-09-04-5-things-to-automate), I mentioned the importance of automating performance testing.
+In a recent post titled [5 Things that should be Automated in a TypeScript/Javascript Monorepo](https://frontendrescue.com/posts/2023-09-04-5-things-to-automate), I mentioned the importance of automating performance metrics.
 
-I have a GitHub action that adds performance metrics as a comment to a pull request on every commit that highlights any problems. I use [webpagetest](https://www.webpagetest.org/) to run the tests, and the results highlight the unnecessary loading of all the large images on the website you are currently viewing's home page.
+I have a GitHub action that adds performance metrics as a comment to a pull request on every commit. I use [webpagetest](https://www.webpagetest.org/) to run the tests, and the results highlight the unnecessary loading of all the large images on the website you are currently viewing's home page.
 
 ![webpage test results](https://res.cloudinary.com/ddospxsc8/image/upload/v1695914718/webpagetest-images_glttuy.png).
 
@@ -67,6 +67,8 @@ The [blurhash](https://github.com/woltapp/blurhash) package can help us create a
   ...
 ]
 ```
+
+The JSON file negates the need to create the [blurhash](https://blurha.sh) at runtime.
 
 [BlurHash](https://blurha.sh/) takes an image and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. The string is highlighted on line 5 of the JSON in the above sample, which my [this npm package](https://www.npmjs.com/package/@cutting/cloudinary-blurhash) package generated.
 
