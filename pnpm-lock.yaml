@@ -1268,6 +1268,9 @@ importers:
       leva:
         specifier: ^0.9.35
         version: 0.9.35(@types/react-dom@18.2.8)(@types/react@18.2.24)(react-dom@18.2.0)(react@18.2.0)
+      luxon:
+        specifier: ^3.4.3
+        version: 3.4.3
       maath:
         specifier: ^0.7.0
         version: 0.7.0(@types/three@0.155.1)(three@0.155.0)
@@ -1344,6 +1347,9 @@ importers:
       '@cutting/useful-types':
         specifier: workspace:*
         version: link:../useful-types
+      '@types/luxon':
+        specifier: ^3.3.2
+        version: 3.3.2
       eslint:
         specifier: 8.47.0
         version: 8.47.0

@@ -20,6 +20,7 @@
     "js-yaml": "^4.1.0",
     "katex": "^0.16.8",
     "leva": "^0.9.35",
+    "luxon": "^3.4.3",
     "maath": "^0.7.0",
     "mathjax-full": "3.2.2",
     "mdast-util-to-markdown": "^2.1.0",
@@ -47,6 +48,7 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
+    "@types/luxon": "^3.3.2",
     "eslint": "8.47.0",
     "typescript": "5.1.6"
   },

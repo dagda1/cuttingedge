@@ -8,6 +8,14 @@ const isTest = process.env.NODE_ENV === 'test';
 export default defineConfig({
   root: isTest ? '.' : 'demo',
   plugins: [vanillaExtractPlugin(), react()],
+  // resolve: {
+  //   alias: [
+  //     {
+  //       find: 'luxon',
+  //       replacement: require.resolve('@visx/axis/esm/index.js'),
+  //     },
+  //   ],
+  // },
   test: {
     globals: true,
     environment: 'jsdom',
