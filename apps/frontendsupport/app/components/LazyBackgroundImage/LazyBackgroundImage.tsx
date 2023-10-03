@@ -33,7 +33,7 @@ export function LazyBackgroundImage({
   useIsomorphicLayoutEffect(() => {
     const observer = new IntersectionObserver(callback, {
       rootMargin: '0px',
-      threshold: 0.1,
+      threshold: 0,
       root: null,
     });
 

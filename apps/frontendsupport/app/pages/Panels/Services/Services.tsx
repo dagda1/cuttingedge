@@ -35,7 +35,7 @@ export function Services(): JSX.Element {
   return (
     <Box marginBottom="xxxlarge">
       <LazyBackgroundImage
-        backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1689953393/frontendsupport/pain_wide_jjmyp6.png"
+        backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_50/v1689953393/frontendsupport/pain_wide_jjmyp6.png"
         backgroundStyle="static"
       />
       <Stack space="small" align="center">
