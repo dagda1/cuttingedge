@@ -6,7 +6,7 @@ import { LazyBackgroundImage } from '~/components/LazyBackgroundImage/LazyBackgr
 
 interface MobileContainerProps {
   children: ReactNode;
-  backgroundImage: string;
+  backgroundImage?: string;
   height?: BoxProps['height'];
 }
 
@@ -22,10 +22,14 @@ export function MobileContainer({ backgroundImage, height = 'screen', children }
       alignItems="center"
       justifyContent="center"
     >
-      <Box className={styles.bgWrap}>
-        <LazyBackgroundImage backgroundImage={backgroundImage} backgroundStyle="repeat" />
-      </Box>
-      <LazyBackgroundImage className={styles.desktop} backgroundImage={backgroundImage} backgroundStyle="repeat" />
+      {backgroundImage && (
+        <>
+          <Box className={styles.bgWrap}>
+            <LazyBackgroundImage backgroundImage={backgroundImage} backgroundStyle="repeat" />
+          </Box>
+          <LazyBackgroundImage className={styles.desktop} backgroundImage={backgroundImage} backgroundStyle="repeat" />
+        </>
+      )}
       {children}
     </Box>
   );

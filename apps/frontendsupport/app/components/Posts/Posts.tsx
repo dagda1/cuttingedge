@@ -1,6 +1,5 @@
 import { Box, Heading, List, PageBlock, Stack, Text, vars } from '@cutting/component-library';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
-import * as styles from './Posts.css';
 import type { PostData } from '@cutting/markdown';
 import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 import { Image } from '@unpic/react';
@@ -45,7 +44,6 @@ export function Posts({ posts }: PostsProps): JSX.Element {
             })}
           </List>
         </Stack>
-        <Box className={styles.background}></Box>
       </PageBlock>
     </Box>
   );
