@@ -19,13 +19,13 @@ export function HomeMobile(): JSX.Element {
       <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_70/v1690028841/dusk_kg7et9.png">
         <Frameworks />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_05/v1690453264/code_mmdqb8.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_10/v1690453264/code_mmdqb8.png">
         <OSS />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_50/v1690191864/clients_ipmkwv.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_70/v1690191864/clients_ipmkwv.png">
         <Highlights />
       </MobileContainer>
-      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_05/v1690893685/html_kg05e7.png">
+      <MobileContainer backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/o_10/v1690893685/html_kg05e7.png">
         <Clients />
       </MobileContainer>
       <Box

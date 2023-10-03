@@ -35,7 +35,7 @@ export function About(): JSX.Element {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                140+ merged pull requests in the past 12 months&nbsp;
+                250+ merged pull requests in the past 24 months&nbsp;
               </TextLink>
               into many, many, many open source repositories.
             </Text>
