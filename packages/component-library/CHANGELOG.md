@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.12
+
+### Patch Changes
+
+- edbb8c87: change support primary colors
+
 ## 5.41.11
 
 ### Patch Changes
