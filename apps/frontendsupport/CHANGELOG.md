@@ -1,5 +1,15 @@
 # @cutting/frontend-support
 
+## 0.1.58
+
+### Patch Changes
+
+- edbb8c87: change support primary colors
+- Updated dependencies [edbb8c87]
+  - @cutting/component-library@5.41.12
+  - @cutting/react-hook-form-components@0.5.14
+  - @cutting/use-get-parent-size@2.1.4
+
 ## 0.1.55
 
 ### Patch Changes
