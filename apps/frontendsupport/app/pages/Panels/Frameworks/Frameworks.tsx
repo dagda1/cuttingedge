@@ -58,7 +58,7 @@ export function Frameworks(): JSX.Element {
           <Heading level="1">We can help when</Heading>
           <List>
             <Text size="large" tone="primary">
-              You have to get it right first time
+              When you have to get it right the first time.
             </Text>
             <Text tone="primary" size="large">
               Your team are more familiar with backend development.
