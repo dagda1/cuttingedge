@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.41.13
+
+### Patch Changes
+
+- faca43ed: h1 font-size on mobile support
+
 ## 5.41.12
 
 ### Patch Changes
