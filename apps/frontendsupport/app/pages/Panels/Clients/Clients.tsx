@@ -1,5 +1,5 @@
 import { Panel } from '~/components/Panel/Panel';
-import { Heading } from '@cutting/component-library';
+import { Box, Heading } from '@cutting/component-library';
 import type { ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel';
 import { ParallaxPanel } from '../ParallaxPanel/ParallaxPanel';
 
@@ -55,7 +55,9 @@ export function Clients(): JSX.Element {
   return (
     <Panel className="clients">
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
-        <Heading level="2">We have worked with the big names.</Heading>
+        <Heading level="2">
+          <Box margin={{ mobile: 'medium', tablet: 'none' }}>We have worked with the big names.</Box>
+        </Heading>
       </ParallaxPanel>
     </Panel>
   );

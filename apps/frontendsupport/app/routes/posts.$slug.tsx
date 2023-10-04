@@ -143,7 +143,7 @@ export default function PostRoute() {
   return (
     <Box style={{ marginTop: '6rem' }} className="post">
       <PageBlock>
-        <Box marginBottom="small">
+        <Box marginBottom="large">
           <Heading level="1">{frontmatter.meta.title}</Heading>
         </Box>
         {frontmatter.meta.image && (
