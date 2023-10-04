@@ -15,8 +15,8 @@ const topImages: ParallaxPanelProps['topImages'] = [
     type: 'parallax',
     alt: 'Backstage',
     src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953392/frontendsupport/backstage_tymu1h.png',
-    width: 300,
-    height: 300,
+    width: 200,
+    height: 200,
   },
   {
     type: 'parallax',
@@ -39,8 +39,8 @@ const bottomImages: ParallaxPanelProps['bottomImages'] = [
     type: 'parallax',
     alt: 'Ember',
     src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953391/frontendsupport/emberjs_ddnv5e.png',
-    width: 250,
-    height: 250,
+    width: 200,
+    height: 200,
   },
   {
     type: 'parallax',
