@@ -56,11 +56,11 @@ export function About(): JSX.Element {
             <List>
               <Text>
                 The digital transformation of disclosure scotland for both the&nbsp;
-                <TextLink external href="https://basic.apply.disclosure.scot/">
+                <TextLink external href="https://basic.apply.disclosure.scot">
                   basic disclosure&nbsp;
                 </TextLink>
                 and the&nbsp;
-                <TextLink external href="https://csg.apply.disclosure.scot/">
+                <TextLink external href="https://csg.apply.disclosure.scot">
                   PVG scheme&nbsp;
                 </TextLink>
                 digital online forms that replaced legacy or paper based alternatives.

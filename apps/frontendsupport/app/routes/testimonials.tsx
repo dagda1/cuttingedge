@@ -1,15 +1,21 @@
-import { Box, C2Testimonial, DSTestimonial, PageBlock, Redhatestimonial, Stack } from '@cutting/component-library';
-import { LazyBackgroundImage } from '~/components/LazyBackgroundImage/LazyBackgroundImage';
+import {
+  Box,
+  C2Testimonial,
+  DSTestimonial,
+  Heading,
+  PageBlock,
+  Redhatestimonial,
+  Stack,
+} from '@cutting/component-library';
 
 export default function Testimonials(): JSX.Element {
   return (
     <Box paddingTop="xxxlarge" display="flex" justifyContent="center">
-      <LazyBackgroundImage
-        backgroundImage="https://res.cloudinary.com/ddospxsc8/image/upload/v1689953393/frontendsupport/pain_wide_jjmyp6.png"
-        backgroundStyle="static"
-      />
       <PageBlock>
         <Stack space="large">
+          <Heading center level="1">
+            Testimonials: The True Measure of Success
+          </Heading>
           <Redhatestimonial />
           <DSTestimonial />
           <C2Testimonial />
