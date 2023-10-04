@@ -1,4 +1,4 @@
-import { Box, DSTestimonial, Heading, List, Stack, TextLink } from '@cutting/component-library';
+import { Box, C2Testimonial, Heading, List, TextLink, Stack } from '@cutting/component-library';
 import { Panel } from '~/components/Panel/Panel';
 import * as styles from './Highlights.css';
 
@@ -14,7 +14,7 @@ export function Highlights(): JSX.Element {
         className={styles.container}
         position="relative"
       >
-        <Stack space="large" align="center">
+        <Stack space={{ mobile: 'small', desktop: 'large' }} align="center">
           <List space="large" type="none">
             <Heading center level="2">
               <TextLink
@@ -30,7 +30,7 @@ export function Highlights(): JSX.Element {
               </TextLink>
             </Heading>
           </List>
-          <DSTestimonial />
+          <C2Testimonial />
         </Stack>
       </Box>
     </Panel>

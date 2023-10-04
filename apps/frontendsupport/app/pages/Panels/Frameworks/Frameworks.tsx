@@ -54,7 +54,7 @@ export function Frameworks(): JSX.Element {
   return (
     <Panel>
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
-        <Box marginLeft="small">
+        <Box marginLeft="small" height="full">
           <Heading level="1">We can help when....</Heading>
           <List>
             <Text size="large" tone="primary">
