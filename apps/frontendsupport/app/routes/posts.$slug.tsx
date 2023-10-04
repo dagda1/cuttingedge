@@ -97,7 +97,7 @@ function Img({ alt, src }: { alt: string; src: string }): JSX.Element {
 export const loader: LoaderFunction = async ({ params }) => {
   const slug = params.slug;
   if (!slug) {
-    throw new Response('Not found', { status: 404 });
+    throw new Response('404 - Not found', { status: 404 });
   }
 
   const post = await getPost(slug);
@@ -138,6 +138,7 @@ export const meta: V2_MetaFunction = ({
 
 export default function PostRoute() {
   const { code, frontmatter } = useLoaderData<LoaderData>();
+
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
   return (

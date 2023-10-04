@@ -21,7 +21,7 @@ export default function Rescue(): JSX.Element {
             A 60-minute consultation call with an industry expert.
           </Text>
           <Text size="large" tone="primary">
-            A solution document within 12 hours with bulleted action items to achieve the desired result.
+            A solution document within 24 hours with bulleted action items to achieve the desired result.
           </Text>
           <Text size="large" tone="primary">
             Two weeks of support (slack/email)

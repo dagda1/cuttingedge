@@ -13,7 +13,7 @@ export function Contact(): JSX.Element {
       <Box paddingTop="xxxlarge" width="full" height="full" position="relative" zIndex="dropdown">
         <Stack space="large" align="center">
           <Heading level="1">Let's Talk</Heading>
-          <Heading level="2">How can we help?</Heading>
+          <Heading level="2">We can help!</Heading>
           <Box className={styles.container}>
             <ContactForm />
           </Box>

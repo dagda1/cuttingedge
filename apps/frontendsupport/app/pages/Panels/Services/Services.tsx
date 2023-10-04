@@ -40,7 +40,7 @@ export function Services(): JSX.Element {
       />
       <Stack space="small" align="center">
         <Box marginBottom="medium">
-          <Heading level="1">Services</Heading>
+          <Heading level="1">Need help now?</Heading>
         </Box>
         <Tiles columns={{ mobile: 1, tablet: 1, desktop: 2 }} space="medium">
           {services.map(({ copy, ...props }) => (
@@ -54,7 +54,7 @@ export function Services(): JSX.Element {
           ))}
         </Tiles>
         <Box marginY="medium">
-          <Heading level="2">For any other work, please email or book a call.</Heading>
+          <Heading level="2">For any other type of work, please email or book a call.</Heading>
         </Box>
         <Box zIndex="sticky">
           <ContactButtons justify="center" callType="chat" />
