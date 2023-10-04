@@ -57,9 +57,11 @@ export function OSS(): JSX.Element {
       <ParallaxPanel topImages={topImages} bottomImages={bottomImages}>
         <Box display="flex" justifyContent="center" paddingX={{ mobile: 'small', tablet: 'none' }}>
           <Heading level="2">
-            <TextLink external href="https://cutting.scot/oss">
-              We have 250+ merged pull requests into many, many popular open source projects
-            </TextLink>
+            <Box margin={{ mobile: 'medium', tablet: 'none' }}>
+              <TextLink external href="https://cutting.scot/oss">
+                We have 250+ merged pull requests into many, many popular open source projects
+              </TextLink>
+            </Box>
           </Heading>
         </Box>
       </ParallaxPanel>

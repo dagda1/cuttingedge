@@ -58,8 +58,8 @@ export const tokens: DeepPartial<Tokens> = {
       level: {
         '1': {
           mobile: {
-            fontSize: 50,
-            lineGap: 12,
+            fontSize: 30,
+            lineGap: 10,
           },
           tablet: {
             fontSize: 60,
