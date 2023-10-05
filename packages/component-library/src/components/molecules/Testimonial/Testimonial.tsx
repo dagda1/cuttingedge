@@ -3,16 +3,20 @@ import { Text } from '~/components/atoms/Text/Text';
 import * as styles from './Testimonial.css';
 import type { ReactNodeNoStrings } from '../Stack/Stack';
 import { Stack } from '../Stack/Stack';
+import type { TextStyleProps } from '~/style/typography/typography';
 
 export function Testimonial({
   from,
   url,
+  tone = 'secondary',
   children,
 }: {
   from?: string;
   url?: string;
+  tone?: TextStyleProps['tone'];
   children: ReactNodeNoStrings;
 }): JSX.Element {
+  console.log(tone);
   return (
     <div className={styles.root}>
       <figure>
@@ -20,7 +24,7 @@ export function Testimonial({
           <figcaption>
             <cite>
               <TextLink href={url} external>
-                <Text tone="promote" weight="strong">
+                <Text tone={tone} weight="strong">
                   {from}
                 </Text>
               </TextLink>

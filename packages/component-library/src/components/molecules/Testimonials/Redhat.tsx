@@ -1,13 +1,15 @@
 import { Box } from '../Box/Box';
 import { Testimonial } from '../Testimonial/Testimonial';
 import { Text } from '~/components/atoms/Text/Text';
+import type { TextStyleProps } from '~/style/typography/typography';
 
-export function Redhatestimonial(): JSX.Element {
+export function Redhatestimonial({ tone }: { tone?: TextStyleProps['tone'] }): JSX.Element {
   return (
     <Box marginY="medium">
       <Testimonial
         from="Luke Shannon (Lead developer Parodos project redhat)"
         url="https://www.linkedin.com/in/luke-shannon-a41283/"
+        tone={tone}
       >
         <Text component="p" tone="secondary">
           We brought Paul into a project that had been struggling to deliver UI functionality written in React.

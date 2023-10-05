@@ -1,11 +1,12 @@
 import { Box } from '../Box/Box';
 import { Testimonial } from '../Testimonial/Testimonial';
 import { Text } from '~/components/atoms/Text/Text';
+import type { TextStyleProps } from '~/style/typography/typography';
 
-export function C2Testimonial(): JSX.Element {
+export function C2Testimonial({ tone }: { tone?: TextStyleProps['tone'] }): JSX.Element {
   return (
     <Box marginY="medium">
-      <Testimonial from="Richard McGlave (Continuity2)" url="http://continuity2.com">
+      <Testimonial tone={tone} from="Richard McGlave (Continuity2)" url="http://continuity2.com">
         <Text component="p" tone="secondary">
           Paul eradicated the manual steps in our development pipeline that stopped our developers from working on
           features.

@@ -4,8 +4,8 @@ import { vars } from '~/style/themes/vars.css';
 
 export const root = style({
   position: 'relative',
-  borderTop: '1px dotted #0098d8',
-  borderBottom: '1px dotted #0098d8',
+  // borderTop: '1px dotted #0098d8',
+  // borderBottom: '1px dotted #0098d8',
 });
 
 globalStyle(`${root} blockquote`, {
@@ -24,7 +24,7 @@ globalStyle(`${root} blockquote::before`, {
   bottom: vars.space['large'],
   height: 0,
   font: 'italic 400%/1 Cochin,Georgia,"Times New Roman", serif',
-  color: palette.white,
+  color: palette.black,
   marginLeft: '-0.95em',
 });
 
@@ -36,5 +36,5 @@ globalStyle(`${root} blockquote:after`, {
   bottom: vars.space['large'],
   height: 0,
   font: 'italic 400%/1 Cochin,Georgia,"Times New Roman", serif',
-  color: palette.white,
+  color: palette.black,
 });
