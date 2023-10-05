@@ -39,6 +39,9 @@ function BlurhashImage({
     img.src = src;
   }, [imgLoadedHandler, loaded, src]);
 
+  const resolvedWidth = layout === 'constrained' ? width ?? imageProps.width : undefined;
+  const resolvedHeight = layout === 'constrained' ? height ?? imageProps.height : undefined;
+
   return (
     <Image
       loading={loading}

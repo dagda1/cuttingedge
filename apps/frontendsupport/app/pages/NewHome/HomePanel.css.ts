@@ -8,3 +8,7 @@ export const white = style({
 globalStyle(`${white} h2 span`, {
   fontSize: '60px',
 });
+
+globalStyle(`${white} p, ${white} a, ${white} div span, ${white} h1`, {
+  color: '#000000',
+});

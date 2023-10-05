@@ -16,7 +16,6 @@ export function Testimonial({
   tone?: TextStyleProps['tone'];
   children: ReactNodeNoStrings;
 }): JSX.Element {
-  console.log(tone);
   return (
     <div className={styles.root}>
       <figure>

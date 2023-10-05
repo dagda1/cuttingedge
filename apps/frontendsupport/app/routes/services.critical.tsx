@@ -9,7 +9,7 @@ export default function Rescue(): JSX.Element {
         <Text component="p" size="large" tone="info">
           With over{' '}
           <TextLink external href="https://cutting.scot/oss">
-            150+ merged pull requests
+            250+ merged pull requests
           </TextLink>{' '}
           into many public open-source repositories, we can provide the precise answers you need quicker than anyone
           else.
