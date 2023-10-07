@@ -35,7 +35,7 @@
     "dedent": "^1.5.1",
     "escape-string-regexp": "^5.0.0",
     "extend": "^3.0.2",
-    "flowbite-react": "^0.6.3",
+    "flowbite-react": "^0.6.4",
     "fault": "^2.0.1",
     "format": "^0.2.2",
     "front-matter": "^4.0.2",
