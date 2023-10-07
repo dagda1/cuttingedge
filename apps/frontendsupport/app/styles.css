@@ -249,3 +249,8 @@
         max-width:1170px
     }
 }
+
+body {
+    scrollbar-width: thin;          /* "auto" or "thin" */
+    scrollbar-color: blue orange;
+}

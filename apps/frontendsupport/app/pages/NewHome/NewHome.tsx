@@ -7,13 +7,16 @@ import { Services } from '~/pages/Panels/Services/Services.js';
 import { HomePanel } from './HomePanel.js';
 import { horizontalLoop } from './loop.js';
 import { useRef } from 'react';
-// import breakglass from '~/breakglass.png';
+import { BreakGlass } from '../Panels/BreakGlass/BreakGlass.js';
+import { assert } from 'assert-ts';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 const clients = [
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696609565/volvo_qhsx69.png',
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696610104/lloyds_bank_logol_vnortq.png',
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696680163/apple_whmbee.png',
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696596781/hp_jlfi7z.png',
+  'https://res.cloudinary.com/ddospxsc8/image/upload/v1696691538/redhat_sms6oc.png',
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696596781/waitrose_qmcwgn.png',
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696596781/disclosure_efy46i.png',
 ] as const;
@@ -32,14 +35,35 @@ export function NewHome(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
   const savedCallback = useRef<any>();
   const id = useRef<NodeJS.Timeout>();
+  const { width, left = 1 } = useParentSize(container, { debounceDelay: 500 });
+  const breakglassRef = useRef<HTMLDivElement>(null);
+  const ctx = useRef<gsap.Context>();
 
   useIsomorphicLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    window.scrollTo(0, 0);
+  }, [left]);
+
+  useIsomorphicLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    window.scrollTo(0, 0);
+  }, [left]);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!width) {
+      return;
+    }
+
+    if (typeof id.current === 'number') {
+      savedCallback.current.refresh(true);
+      return;
+    }
+
     const boxes = gsap.utils.toArray<HTMLElement>('.box');
 
     const loop = horizontalLoop(boxes, {
       paused: true,
       paddingRight: 0,
-      draggable: false,
     });
 
     savedCallback.current = loop;
@@ -49,15 +73,53 @@ export function NewHome(): JSX.Element {
     }
 
     id.current = setInterval(tick, 2000);
+  }, [width]);
 
+  useIsomorphicLayoutEffect(() => {
     return () => {
-      clearInterval(id.current);
+      if (typeof id.current === 'number') {
+        clearInterval(id.current);
+      }
     };
   }, []);
 
+  useIsomorphicLayoutEffect(() => {
+    function main() {
+      if (!width || ctx.current) {
+        return;
+      }
+
+      console.log('got heres');
+
+      assert(!!breakglassRef.current);
+
+      ctx.current = gsap.context(() => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: '.breaking',
+              start: 'center center',
+              end: 'center 51%', // Increase scroll distance by 3000px
+              scrub: 3,
+              markers: true,
+            },
+          })
+          .to('.bglass-right', { xPercent: 300, duration: 0.4, ease: 'sine.in' })
+          .to('.bglass-left', { xPercent: -300, duration: 0.4, ease: 'sine.in' }, '<')
+          .to('.breaking', { autoAlpha: 0, display: 'none', ease: 'none' })
+          .fromTo('.services', { display: 'none,', opacity: 0, ease: 'none' }, { opacity: 1, ease: 'none' });
+      });
+    }
+
+    setTimeout(main, 1000);
+    return () => {
+      ctx.current?.revert();
+    };
+  }, [left, width]);
+
   return (
     <Box paddingBottom="large">
-      <HomePanel>
+      <HomePanel innerRef={container}>
         <Box
           width="full"
           display="flex"
@@ -82,7 +144,6 @@ export function NewHome(): JSX.Element {
           <Box
             display="flex"
             alignItems={{ mobile: 'center', desktop: 'flexStart' }}
-            // style={{ border: '10px solid red' }}
             width="full"
             flexDirection="column"
             paddingX={{ mobile: 'large', desktop: 'none' }}
@@ -101,16 +162,24 @@ export function NewHome(): JSX.Element {
           </Box>
         </Box>
       </HomePanel>
+
+      <HomePanel>
+        <LazyLoadedImage
+          width={229}
+          height={225}
+          src="https://res.cloudinary.com/ddospxsc8/image/upload/v1696698786/breakglass_pqtyvz.png"
+        />
+      </HomePanel>
       <Divider fill="#ffffff" />
       <HomePanel mode="light" flexDirection="column" paddingTop="medium">
         <Box paddingBottom="large">
           <Heading center level="1">
-            Having worked with....
+            I have worked with
           </Heading>
         </Box>
-        <HomePanel mode="light" paddingY="medium" maxWidth="large" innerRef={container}>
+        <HomePanel mode="light" paddingY="medium" maxWidth="large">
           {clients.map((c) => (
-            <Box key={c} marginRight="xxxlarge" maxWidth="large" className="box">
+            <Box key={c} marginRight="xxxlarge" className="box">
               <LazyLoadedImage layout="constrained" src={c} />
             </Box>
           ))}
@@ -138,8 +207,11 @@ export function NewHome(): JSX.Element {
           </Box>
         </Box>
       </HomePanel>
+      <HomePanel>
+        <BreakGlass breakglassRef={breakglassRef} />
+      </HomePanel>
 
-      <HomePanel paddingTop="large">
+      <HomePanel paddingTop="large" className="services">
         <Services />
       </HomePanel>
       <Divider fill="#ffffff" />

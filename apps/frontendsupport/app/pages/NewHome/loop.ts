@@ -4,7 +4,6 @@ import gsap from 'gsap';
 interface LoopConfig {
   paused: boolean;
   paddingRight: number | string;
-  draggable?: boolean;
   repeat?: number;
   onChange?(h: HTMLElement, i: number): void;
   speed?: number;
@@ -121,18 +120,18 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
       }
       timeWrap = gsap.utils.wrap(0, tl.duration());
     },
-    refresh = (deep: any) => {
+    refresh = (deep: boolean) => {
       let progress = tl.progress();
       tl.progress(0, true);
       populateWidths();
       deep && populateTimeline();
-      deep && tl.draggable ? tl.time(times[curIndex], true) : tl.progress(progress, true);
+      tl.progress(progress, true);
     },
     proxy: any;
   gsap.set(items, { x: 0 });
   populateWidths();
   populateTimeline();
-  window.addEventListener('resize', () => refresh(true));
+  // window.addEventListener('resize', () => refresh(true));
   function toIndex(index: number, vars: any) {
     vars = vars || {};
     Math.abs(index - curIndex) > length / 2 && (index += index > curIndex ? -length : length); // always go in the shortest direction
@@ -166,6 +165,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
   tl.progress(1, true).progress(0, true); // pre-render for performance
   tl.closestIndex(true);
   lastIndex = curIndex;
+  tl.refresh = refresh;
   onChange && onChange(items[curIndex], curIndex);
   return tl;
 }
