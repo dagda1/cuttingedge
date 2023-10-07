@@ -7,9 +7,16 @@ import * as styles from './HomePanel.css';
 type HomePanelProps = {
   children: ReactNode;
   mode?: 'dark' | 'light';
+  innerRef?: React.RefObject<HTMLDivElement>;
 } & Pick<BoxProps, 'height' | 'flexDirection' | 'paddingY' | 'paddingTop' | 'paddingBottom' | 'maxWidth'>;
 
-export function HomePanel({ mode = 'dark', flexDirection = 'row', children, ...rest }: HomePanelProps): JSX.Element {
+export function HomePanel({
+  mode = 'dark',
+  flexDirection = 'row',
+  innerRef,
+  children,
+  ...rest
+}: HomePanelProps): JSX.Element {
   return (
     <Box
       component="section"
@@ -20,6 +27,7 @@ export function HomePanel({ mode = 'dark', flexDirection = 'row', children, ...r
       flexDirection={flexDirection}
       justifyContent="center"
       alignItems="center"
+      ref={innerRef}
       {...rest}
     >
       {children}

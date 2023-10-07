@@ -6,14 +6,13 @@ import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage.js
 import { Services } from '~/pages/Panels/Services/Services.js';
 import { HomePanel } from './HomePanel.js';
 import { horizontalLoop } from './loop.js';
-import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 // import breakglass from '~/breakglass.png';
 
 const clients = [
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696609565/volvo_qhsx69.png',
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696610104/lloyds_bank_logol_vnortq.png',
-  'https://res.cloudinary.com/ddospxsc8/image/upload/v1696596781/apple_owtkpy.png',
+  'https://res.cloudinary.com/ddospxsc8/image/upload/v1696680163/apple_whmbee.png',
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696596781/hp_jlfi7z.png',
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696596781/waitrose_qmcwgn.png',
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696596781/disclosure_efy46i.png',
@@ -33,50 +32,31 @@ export function NewHome(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
   const savedCallback = useRef<any>();
   const id = useRef<NodeJS.Timeout>();
-  const { width } = useParentSize(container);
 
   useIsomorphicLayoutEffect(() => {
-    if (!width) {
-      return;
-    }
-
-    id.current = undefined;
-
-    clearInterval(id.current);
-
     const boxes = gsap.utils.toArray<HTMLElement>('.box');
 
     const loop = horizontalLoop(boxes, {
       paused: true,
       paddingRight: 0,
-      draggable: true,
+      draggable: false,
     });
 
     savedCallback.current = loop;
-  }, [width]);
-
-  useIsomorphicLayoutEffect(() => {
-    if ((!width && typeof savedCallback.current !== 'undefined') || typeof id.current !== 'undefined') {
-      console.log('returning');
-      return;
-    }
 
     function tick() {
-      console.log('tick');
       savedCallback.current.next({ duration: 0.4, ease: 'power1.inOut' });
     }
 
-    if (!id.current) {
-      id.current = setInterval(tick, 2000);
-    }
+    id.current = setInterval(tick, 2000);
 
     return () => {
       clearInterval(id.current);
     };
-  }, [width]);
+  }, []);
 
   return (
-    <Box paddingBottom="large" ref={container}>
+    <Box paddingBottom="large">
       <HomePanel>
         <Box
           width="full"
@@ -128,7 +108,7 @@ export function NewHome(): JSX.Element {
             Having worked with....
           </Heading>
         </Box>
-        <HomePanel mode="light" paddingY="medium" maxWidth="large">
+        <HomePanel mode="light" paddingY="medium" maxWidth="large" innerRef={container}>
           {clients.map((c) => (
             <Box key={c} marginRight="xxxlarge" maxWidth="large" className="box">
               <LazyLoadedImage layout="constrained" src={c} />
