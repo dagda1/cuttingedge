@@ -900,8 +900,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(eslint@8.47.0)(rollup@3.28.1)
       '@rollup/plugin-commonjs':
-        specifier: 25.0.4
-        version: 25.0.4(rollup@3.28.1)
+        specifier: 25.0.5
+        version: 25.0.5(rollup@3.28.1)
       '@rollup/plugin-json':
         specifier: 6.0.0
         version: 6.0.0(rollup@3.28.1)
@@ -6893,11 +6893,11 @@ packages:
       web-streams-polyfill: 3.2.1
     dev: false
 
-  /@rollup/plugin-commonjs@25.0.4(rollup@3.28.1):
-    resolution: {integrity: sha512-L92Vz9WUZXDnlQQl3EwbypJR4+DM2EbsO+/KOcEkP4Mc6Ct453EeDB2uH9lgRwj4w5yflgNpq9pHOiY8aoUXBQ==}
+  /@rollup/plugin-commonjs@25.0.5(rollup@3.28.1):
+    resolution: {integrity: sha512-xY8r/A9oisSeSuLCTfhssyDjo9Vp/eDiRLXkg1MXCcEEgEjPmLU+ZyDB20OOD0NlyDa/8SGbK5uIggF5XTx77w==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^2.68.0||^3.0.0
+      rollup: ^2.68.0||^3.0.0||^4.0.0
     peerDependenciesMeta:
       rollup:
         optional: true
