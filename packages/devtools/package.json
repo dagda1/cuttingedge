@@ -40,7 +40,7 @@
     "@rbnlffl/rollup-plugin-eslint": "5.0.0",
     "@rollup/plugin-commonjs": "25.0.5",
     "@rollup/plugin-json": "6.0.0",
-    "@rollup/plugin-node-resolve": "15.2.1",
+    "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/pluginutils": "5.0.4",
     "@testing-library/dom": "9.3.3",
     "@types/bluebird": "3.5.39",
