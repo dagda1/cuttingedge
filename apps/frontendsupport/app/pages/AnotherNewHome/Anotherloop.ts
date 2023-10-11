@@ -1,7 +1,7 @@
 import { assert } from 'assert-ts';
 import gsap from 'gsap';
 
-interface LoopConfig {
+interface AnotherLoopConfig {
   paused: boolean;
   paddingRight: number | string;
   repeat?: number;
@@ -9,7 +9,7 @@ interface LoopConfig {
   speed?: number;
 }
 
-export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
+export function anotherHorizontalLoop(items: HTMLElement[], config: AnotherLoopConfig) {
   items = gsap.utils.toArray(items);
   config = config || {};
   let onChange = config.onChange,

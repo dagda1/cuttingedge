@@ -2,23 +2,23 @@ import type { BoxProps } from '@cutting/component-library';
 import { Box } from '@cutting/component-library';
 import { type ReactNode } from 'react';
 import cs from 'classnames';
-import * as styles from './HomePanel.css';
+import * as styles from './AnotherHomePanel.css';
 
-type HomePanelProps = {
+type AnotherHomePanelProps = {
   children: ReactNode;
   mode?: 'dark' | 'light';
   innerRef?: React.RefObject<HTMLDivElement>;
   className?: string;
 } & Pick<BoxProps, 'height' | 'flexDirection' | 'paddingY' | 'paddingTop' | 'paddingBottom' | 'maxWidth'>;
 
-export function HomePanel({
+export function AnotherHomePanel({
   mode = 'dark',
   flexDirection = 'row',
   innerRef,
   className,
   children,
   ...rest
-}: HomePanelProps): JSX.Element {
+}: AnotherHomePanelProps): JSX.Element {
   return (
     <Box
       component="section"
