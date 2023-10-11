@@ -190,8 +190,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       gsap:
-        specifier: ^3.12.2
-        version: 3.12.2
+        specifier: npm:@gsap/simply@^3.12.2
+        version: /@gsap/simply@3.12.2
       image-size:
         specifier: ^1.0.2
         version: 1.0.2
@@ -5653,6 +5653,10 @@ packages:
   /@gar/promisify@1.1.3:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
+
+  /@gsap/simply@3.12.2:
+    resolution: {integrity: sha512-PnPELVeJhS8ZwHiIw1+dPrQ9UfhskYz6EeiwdI/jonsSVCUMF4kSl8OQ5fFQTHisM6B318qdtFRYl/OqwBPTrg==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.11:
     resolution: {integrity: sha512-N2brEuAadi0CcdeMXUkhbZB84eskAc8MEX1By6qEchoVywSgXPIjou4rYsl0V3Hj0ZnuGycGCjdNgockbzeWNA==}

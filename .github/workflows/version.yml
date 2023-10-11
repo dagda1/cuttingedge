@@ -34,7 +34,7 @@ jobs:
       - uses: pnpm/action-setup@v2.4.0
         id: install_pnpm
         with:
-          version: 8.8.0
+          version: 8.9.0
 
       - name: echo npm dest
         run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"
