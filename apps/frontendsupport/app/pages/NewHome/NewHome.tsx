@@ -208,7 +208,7 @@ export function NewHome(): JSX.Element {
         </Box>
       </HomePanel>
       <HomePanel>
-        <BreakGlass breakglassRef={breakglassRef} />
+        <BreakGlass container={breakglassRef} />
       </HomePanel>
 
       <HomePanel paddingTop="large" className="services">

@@ -117,7 +117,7 @@ export function HomeDesktop(): JSX.Element {
         <Clients />
         <Final />
       </Box>
-      <BreakGlass breakglassRef={breakglassRef} />
+      <BreakGlass container={breakglassRef} />
     </>
   );
 }

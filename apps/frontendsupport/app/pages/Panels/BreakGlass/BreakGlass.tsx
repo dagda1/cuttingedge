@@ -5,7 +5,8 @@ import { Box } from '@cutting/component-library';
 import { Image } from '@unpic/react';
 
 interface BreakGlassProps {
-  breakglassRef: Ref<HTMLDivElement>;
+  container: Ref<HTMLDivElement>;
+  image: Ref<HTMLImageElement>;
 }
 
 const breakingLeft =
@@ -13,7 +14,7 @@ const breakingLeft =
 const breakingRight =
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1689953391/frontendsupport/breakglass-right_myofuh.png';
 
-export function BreakGlass({ breakglassRef }: BreakGlassProps): JSX.Element {
+export function BreakGlass({ container, image }: BreakGlassProps): JSX.Element {
   return (
     <Box
       width="full"
@@ -21,7 +22,7 @@ export function BreakGlass({ breakglassRef }: BreakGlassProps): JSX.Element {
       display="flex"
       justifyContent="center"
       className={cs('breaking', styles.breaking)}
-      ref={breakglassRef}
+      ref={container}
     >
       <Image
         alt="breaking glass left"
@@ -30,6 +31,7 @@ export function BreakGlass({ breakglassRef }: BreakGlassProps): JSX.Element {
         layout="constrained"
         width={338}
         height={336}
+        ref={image}
       />
       <Image
         alt="breaking glass right"
