@@ -38,6 +38,7 @@ export function NewHome(): JSX.Element {
   const { width, left = 1 } = useParentSize(container, { debounceDelay: 500 });
   const breakglassRef = useRef<HTMLDivElement>(null);
   const ctx = useRef<gsap.Context>();
+  const imageRef = useRef<HTMLImageElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -208,7 +209,7 @@ export function NewHome(): JSX.Element {
         </Box>
       </HomePanel>
       <HomePanel>
-        <BreakGlass container={breakglassRef} />
+        <BreakGlass container={breakglassRef} image={imageRef} />
       </HomePanel>
 
       <HomePanel paddingTop="large" className="services">

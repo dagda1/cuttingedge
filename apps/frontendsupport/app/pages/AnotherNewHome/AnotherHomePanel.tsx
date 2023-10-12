@@ -9,7 +9,7 @@ type AnotherHomePanelProps = {
   mode?: 'dark' | 'light';
   innerRef?: React.RefObject<HTMLDivElement>;
   className?: string;
-} & Pick<BoxProps, 'height' | 'flexDirection' | 'paddingY' | 'paddingTop' | 'paddingBottom' | 'maxWidth'>;
+} & Pick<BoxProps, 'height' | 'flexDirection' | 'paddingY' | 'paddingTop' | 'paddingBottom' | 'maxWidth' | 'marginTop'>;
 
 export function AnotherHomePanel({
   mode = 'dark',
@@ -30,6 +30,7 @@ export function AnotherHomePanel({
       justifyContent="center"
       alignItems="center"
       ref={innerRef}
+      zIndex="dropdown"
       {...rest}
     >
       {children}

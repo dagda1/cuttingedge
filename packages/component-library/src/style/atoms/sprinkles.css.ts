@@ -29,6 +29,7 @@ const sizes = {
   '2/3': '66.6%',
   '3/4': '75%',
   touchable: vars.touchableSize,
+  maxContent: 'max-content',
 };
 
 export const space = {
@@ -61,7 +62,7 @@ export type Background = keyof typeof vars.backgroundColor;
 export const unresponsiveProperties = {
   userSelect: ['none'],
   outline: ['none'],
-  opacity: [0],
+  opacity: [0, 1],
   zIndex: {
     0: 0,
     1: 1,
