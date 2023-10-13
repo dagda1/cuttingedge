@@ -3,7 +3,6 @@ import { globalStyle, style } from '@vanilla-extract/css';
 
 export const front = style({
   height: '90vh',
-  border: '10px solid cyan',
 });
 
 export const topBubbleWrapper = style({
@@ -28,7 +27,6 @@ export const topBubble = style({
 
 globalStyle('.hero-title', {
   fontFamily: vars.fontFamily.heading,
-  fontStyle: 'italic',
   textTransform: 'uppercase',
   ...responsiveStyle({
     mobile: {
@@ -39,7 +37,15 @@ globalStyle('.hero-title', {
       fontSize: '6rem',
       lineHeight: '7rem',
     },
+    wide: {
+      fontSize: '11rem',
+      lineHeight: '13rem',
+    },
   }),
+});
+
+globalStyle('.hero-title.italic', {
+  fontStyle: 'italic',
 });
 
 globalStyle('.hero-image', {

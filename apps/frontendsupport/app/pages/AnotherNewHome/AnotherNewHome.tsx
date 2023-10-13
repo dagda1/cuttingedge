@@ -8,9 +8,12 @@ import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
-import * as styles from './AnotherHome.css';
+import * as styles from './AnotherNewHome.css';
 import cs from 'classnames';
+import { RandomImage } from './RandomImage';
+import { Image } from '@unpic/react';
 import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
+import { assert } from 'assert-ts';
 
 export function AnotherNewHome(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
@@ -21,10 +24,10 @@ export function AnotherNewHome(): JSX.Element {
   const topBubble = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
+    window.scrollTo(0, 0);
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(ScrollToPlugin);
     gsap.registerPlugin(SplitText);
-    window.scrollTo(0, 0);
   }, [width]);
 
   useIsomorphicLayoutEffect(() => {
@@ -39,23 +42,23 @@ export function AnotherNewHome(): JSX.Element {
         return;
       }
 
-      // assert(!!breakglassRef.current);
-      // assert(!!imageRef.current);
+      assert(!!breakglassRef.current);
+      assert(!!imageRef.current);
 
-      // const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
-      // console.log(imageWidth);
+      const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
+      console.log(imageWidth);
       console.log(splitText);
       console.log(topBubble);
 
       ctx.current = gsap.context(() => {
-        // assert(!!topBubble.current);
+        assert(!!topBubble.current);
 
-        // gsap.to(window, {
-        //   duration: 2,
-        //   scrollTo: { y: height, autoKill: false },
-        //   ease: 'power3',
-        //   onComplete() {},
-        // });
+        gsap.to(window, {
+          duration: 2,
+          scrollTo: { y: height, autoKill: false },
+          ease: 'power3',
+          onComplete() {},
+        });
 
         gsap
           .timeline({
@@ -88,85 +91,85 @@ export function AnotherNewHome(): JSX.Element {
             '<',
           );
 
-        // gsap
-        //   .timeline({
-        //     defaults: {
-        //       ease: 'none',
-        //     },
-        //     scrollTrigger: {
-        //       trigger: '.hero',
-        //       start: 'top top',
-        //       end: 'bottom top+=10%',
-        //       pin: true,
-        //       scrub: true,
-        //     },
-        //   })
-        //   .to(
-        //     '.hero-title',
-        //     {
-        //     y: '-10%',
-        //     duration: 0.8,
-        //     ease: 'sine.out',
-        //   },
-        //   '<',
-        // )
-        // .fromTo(
-        //   '.hero-title .split-char',
-        //   {
-        //     scaleY: 1,
-        //     opacity: 1,
-        //   },
-        //   {
-        //     scaleY: 0,
-        //     opacity: 0,
-        //     ease: 'sine.in',
-        //     transformOrigin: 'top',
-        //     stagger: 0.03,
-        //     duration: 0.5,
-        //   },
-        //   '<',
-        // )
-        // .to(
-        //   '.hero-title-rect',
-        //   {
-        //     height: 0,
-        //     duration: 0.8,
-        //     ease: 'sine.in',
-        //   },
-        //   '<',
-        // )
-        // .to(
-        //   '.hero-title-rect .radius-top',
-        //   {
-        //     scaleY: 0,
-        //     transformOrigin: 'top',
-        //     duration: 0.095,
-        //   },
-        //   '<0.25',
-        // )
-        // .to(
-        //   '.hero-title-rect',
-        //   {
-        //     borderRadius: 0,
-        //     duration: 0.15,
-        //   },
-        //   '<',
-        // );
+        gsap
+          .timeline({
+            defaults: {
+              ease: 'none',
+            },
+            scrollTrigger: {
+              trigger: '.hero',
+              start: 'top top',
+              end: 'bottom top+=10%',
+              pin: true,
+              scrub: true,
+            },
+          })
+          .to(
+            '.hero-title',
+            {
+              y: '-10%',
+              duration: 0.8,
+              ease: 'sine.out',
+            },
+            '<',
+          )
+          .fromTo(
+            '.hero-title .split-char',
+            {
+              scaleY: 1,
+              opacity: 1,
+            },
+            {
+              scaleY: 0,
+              opacity: 0,
+              ease: 'sine.in',
+              transformOrigin: 'top',
+              stagger: 0.03,
+              duration: 0.5,
+            },
+            '<',
+          )
+          .to(
+            '.hero-title-rect',
+            {
+              height: 0,
+              duration: 0.8,
+              ease: 'sine.in',
+            },
+            '<',
+          )
+          .to(
+            '.hero-title-rect .radius-top',
+            {
+              scaleY: 0,
+              transformOrigin: 'top',
+              duration: 0.095,
+            },
+            '<0.25',
+          )
+          .to(
+            '.hero-title-rect',
+            {
+              borderRadius: 0,
+              duration: 0.15,
+            },
+            '<',
+          );
 
-        // const tl = gsap
-        //   .timeline({
-        //     scrollTrigger: {
-        //       trigger: '.breaking',
-        //       start: 'top center+=20%',
-        //       end: 'top center-=10%',
-        //       scrub: true,
-        //       markers: true,
-        //       invalidateOnRefresh: true,
-        //     },
-        //   })
-        //   .to('.bglass-left', { x: -(width / 8 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
-        //   .to('.bglass-right', { x: width / 8 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<')
-        //   .to('.breaking', { background: 'transparent' });
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: '.breaking',
+              start: 'top center+=20%',
+              end: 'top center-=10%',
+              scrub: true,
+              markers: true,
+              invalidateOnRefresh: true,
+            },
+          })
+          .to('.bglass-left', { x: -(width / 8 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
+          .to('.bglass-right', { x: width / 8 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<')
+          .to('.breaking', { background: 'transparent' });
 
         // gsap
         //   .timeline({
@@ -190,16 +193,9 @@ export function AnotherNewHome(): JSX.Element {
   }, [height, width]);
 
   return (
-    <Box paddingBottom="large" ref={container} height="full">
-      {/* <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full">
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          position="fixed"
-          flexDirection="column"
-          zIndex="none"
-        >
+    <Box paddingBottom="large" ref={container} height="full" style={{ marginTop: '-5rem' }}>
+      <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full">
+        <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <LazyLoadedImage
             width={229}
             height={225}
@@ -209,7 +205,7 @@ export function AnotherNewHome(): JSX.Element {
       </Box>
       <Box className={styles.topBubbleWrapper}>
         <Box className={styles.topBubble} ref={topBubble} />
-      </Box> */}
+      </Box>
       <AnotherHomePanel mode="light" flexDirection="column" paddingTop="xxxlarge" height="full" marginTop="large">
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
@@ -218,69 +214,38 @@ export function AnotherNewHome(): JSX.Element {
               <div className="radius radius-top radius-right radius-transform-x"></div>
             </div>
             <Box height="full" display="flex" justifyContent="center" flexDirection="column">
-              <Box display="flex" justifyContent="spaceBetween">
-                <Box className="hero-image">
-                  <LazyLoadedImage
-                    layout="constrained"
-                    src="https://res.cloudinary.com/ddospxsc8/image/upload/v1691673246/github_wt7a34.png"
-                    width={100}
-                    height={100}
-                  />
-                </Box>
-                <Box className="hero-image">
-                  <LazyLoadedImage
-                    layout="constrained"
-                    src="https://res.cloudinary.com/ddospxsc8/image/upload/v1691673246/github_wt7a34.png"
-                    width={100}
-                    height={100}
-                  />
-                </Box>
-                <Box className="hero-image">
-                  <LazyLoadedImage
-                    layout="constrained"
-                    src="https://res.cloudinary.com/ddospxsc8/image/upload/v1691673246/github_wt7a34.png"
-                    width={100}
-                    height={100}
-                  />
+              <Box display="flex" alignItems="center">
+                <RandomImage delay={2000} />
+                <Box marginLeft="xxxlarge" className="hero-title italic">
+                  Frontend
                 </Box>
               </Box>
-              <Box display="flex">
-                <Box className="hero-title">Is your Team</Box>
-              </Box>
-              <Box display="flex">
-                <Box className="hero-title">Struggling </Box>
-              </Box>
-              <Box display="flex">
-                <Box className="hero-title">to deliver</Box>
-              </Box>
-              <Box display="flex">
-                <Box className="hero-title">frontend features?</Box>
-              </Box>
-              <Box display="flex" justifyContent="spaceBetween">
-                <Box className="hero-image">
-                  <LazyLoadedImage
-                    layout="constrained"
-                    src="https://res.cloudinary.com/ddospxsc8/image/upload/v1691673246/github_wt7a34.png"
-                    width={100}
-                    height={100}
-                  />
+              <Box display="flex" alignItems="center">
+                <Box className="hero-title italic" marginRight="xxxlarge">
+                  Rescue
                 </Box>
-                <Box className="hero-image">
-                  <LazyLoadedImage
-                    layout="constrained"
-                    src="https://res.cloudinary.com/ddospxsc8/image/upload/v1691673246/github_wt7a34.png"
-                    width={100}
-                    height={100}
-                  />
+                <RandomImage delay={1500} />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <RandomImage delay={2500} />
+                <Box marginLeft="xxxlarge" className="hero-title">
+                  Save
                 </Box>
-                <Box className="hero-image">
-                  <LazyLoadedImage
-                    layout="constrained"
-                    src="https://res.cloudinary.com/ddospxsc8/image/upload/v1691673246/github_wt7a34.png"
-                    width={100}
-                    height={100}
-                  />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <Box className="hero-title" marginRight="xxxlarge">
+                  Your
                 </Box>
+                <Box className="hero-title" marginRight="xxxlarge">
+                  Project
+                </Box>
+                <Image
+                  src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
+                  layout="constrained"
+                  width={109}
+                  height={144}
+                  alt="arrow down"
+                />
               </Box>
             </Box>
           </Box>
