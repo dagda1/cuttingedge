@@ -4,9 +4,7 @@ import { useState } from 'react';
 import { Image } from '@unpic/react';
 
 function randomImage(images: string[] = []): string {
-  const index = Math.floor(Math.random() * 5);
-
-  console.log(index, images);
+  // const index = Math.floor(Math.random() * 5);
 
   // return images[index];
   return `https://picsum.photos/240/152.jpg?random=${Date.now()}`;
@@ -27,7 +25,7 @@ export function RandomImage({ images, delay = 1500 }: RandomImageProps): JSX.Ele
   }, delay);
 
   return (
-    <Box className="hero-image">
+    <Box className="hero-img">
       <Image layout="constrained" loading="eager" src={image} width={240} height={152} />
     </Box>
   );

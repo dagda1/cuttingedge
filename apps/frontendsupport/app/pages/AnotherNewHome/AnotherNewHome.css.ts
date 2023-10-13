@@ -48,8 +48,8 @@ globalStyle('.hero-title.italic', {
   fontStyle: 'italic',
 });
 
-globalStyle('.hero-image', {
-  // opacity: 0,
+globalStyle('.hero-image img', {
+  opacity: 0,
 });
 
 export const hdn = style({ display: 'none' });

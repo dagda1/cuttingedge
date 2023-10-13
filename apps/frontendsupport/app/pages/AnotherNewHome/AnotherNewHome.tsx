@@ -1,4 +1,4 @@
-import { Box, Heading } from '@cutting/component-library';
+import { Box, C2Testimonial, DSTestimonial, Heading, List, Redhatestimonial, Text } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import gsap from 'gsap';
 import { AnotherHomePanel } from './AnotherHomePanel';
@@ -14,6 +14,8 @@ import { RandomImage } from './RandomImage';
 import { Image } from '@unpic/react';
 import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
 import { assert } from 'assert-ts';
+import { Clients } from '~/components/Clients/Clients';
+import { horizontalLoop } from '../NewHome/loop';
 
 export function AnotherNewHome(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
@@ -22,6 +24,10 @@ export function AnotherNewHome(): JSX.Element {
   const imageRef = useRef<HTMLImageElement>(null);
   const ctx = useRef<gsap.Context>();
   const topBubble = useRef<HTMLDivElement>(null);
+  const topPane = useRef<HTMLDivElement>(null);
+  const arrow = useRef<HTMLImageElement>(null);
+  const savedCallback = useRef<any>();
+  const id = useRef<NodeJS.Timeout>();
 
   useIsomorphicLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -31,7 +37,7 @@ export function AnotherNewHome(): JSX.Element {
   }, [width]);
 
   useIsomorphicLayoutEffect(() => {
-    const splitText = new SplitText('.hero-title', {
+    new SplitText('.hero-title', {
       type: 'lines words',
       linesClass: 'split-line',
       wordsClass: 'split-char',
@@ -44,20 +50,15 @@ export function AnotherNewHome(): JSX.Element {
 
       assert(!!breakglassRef.current);
       assert(!!imageRef.current);
+      assert(!!topPane.current);
 
       const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
-      console.log(imageWidth);
-      console.log(splitText);
-      console.log(topBubble);
 
       ctx.current = gsap.context(() => {
-        assert(!!topBubble.current);
-
         gsap.to(window, {
           duration: 2,
           scrollTo: { y: height, autoKill: false },
           ease: 'power3',
-          onComplete() {},
         });
 
         gsap
@@ -89,6 +90,19 @@ export function AnotherNewHome(): JSX.Element {
               duration: 0.8,
             },
             '<',
+          )
+          .fromTo(
+            '.hero-img img',
+            {
+              opacity: 0,
+            },
+            {
+              opacity: 1,
+              ease: 'sine.out',
+              transformOrigin: 'top',
+              duration: 0.8,
+            },
+            '<0.3',
           );
 
         gsap
@@ -98,12 +112,32 @@ export function AnotherNewHome(): JSX.Element {
             },
             scrollTrigger: {
               trigger: '.hero',
-              start: 'top top',
-              end: 'bottom top+=10%',
+              start: 'top top+=10%',
+              end: 'bottom top+=20%',
               pin: true,
               scrub: true,
+              markers: true,
             },
           })
+          .to(arrow.current, {
+            display: 'none',
+          })
+          .to(
+            '.hero-img',
+            {
+              height: 0,
+              duration: 0.8,
+            },
+            '<',
+          )
+          .to(
+            '.hero-img img',
+            {
+              y: '-40%',
+              duration: 0.8,
+            },
+            '<',
+          )
           .to(
             '.hero-title',
             {
@@ -113,12 +147,8 @@ export function AnotherNewHome(): JSX.Element {
             },
             '<',
           )
-          .fromTo(
+          .to(
             '.hero-title .split-char',
-            {
-              scaleY: 1,
-              opacity: 1,
-            },
             {
               scaleY: 0,
               opacity: 0,
@@ -128,61 +158,31 @@ export function AnotherNewHome(): JSX.Element {
               duration: 0.5,
             },
             '<',
-          )
-          .to(
-            '.hero-title-rect',
-            {
-              height: 0,
-              duration: 0.8,
-              ease: 'sine.in',
-            },
-            '<',
-          )
-          .to(
-            '.hero-title-rect .radius-top',
-            {
-              scaleY: 0,
-              transformOrigin: 'top',
-              duration: 0.095,
-            },
-            '<0.25',
-          )
-          .to(
-            '.hero-title-rect',
-            {
-              borderRadius: 0,
-              duration: 0.15,
-            },
-            '<',
           );
 
-        gsap
+        const tl = gsap
           .timeline({
             scrollTrigger: {
               trigger: '.breaking',
               start: 'top center+=20%',
               end: 'top center-=10%',
               scrub: true,
-              markers: true,
               invalidateOnRefresh: true,
             },
           })
-          .to('.bglass-left', { x: -(width / 8 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
-          .to('.bglass-right', { x: width / 8 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<')
+          .to('.bglass-left', { x: -(width / 3 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
+          .to('.bglass-right', { x: width / 3 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<')
           .to('.breaking', { background: 'transparent' });
 
-        // gsap
-        //   .timeline({
-        //     scrollTrigger: {
-        //       start: (_) => tl.scrollTrigger!.end,
-        //       end: 'max',
-        //       pin: '.breaking',
-        //       pinSpacing: false,
-        //       pinReparent: true,
-        //       invalidateOnRefresh: true,
-        //     },
-        //   })
-        //   .to('.breaking', { autoAlpha: 0, ease: 'none' });
+        gsap.timeline({
+          scrollTrigger: {
+            start: (_) => tl.scrollTrigger!.end,
+            end: 'max',
+            pin: '.breaking',
+            pinSpacing: false,
+            pinReparent: true,
+          },
+        });
       });
     }
 
@@ -192,9 +192,35 @@ export function AnotherNewHome(): JSX.Element {
     };
   }, [height, width]);
 
+  useIsomorphicLayoutEffect(() => {
+    if (!width) {
+      return;
+    }
+
+    if (typeof id.current === 'number') {
+      savedCallback.current.refresh(true);
+      return;
+    }
+
+    const boxes = gsap.utils.toArray<HTMLElement>('.box');
+
+    const loop = horizontalLoop(boxes, {
+      paused: true,
+      paddingRight: 0,
+    });
+
+    savedCallback.current = loop;
+
+    function tick() {
+      savedCallback.current.next({ duration: 0.4, ease: 'power1.inOut' });
+    }
+
+    id.current = setInterval(tick, 2000);
+  }, [width]);
+
   return (
     <Box paddingBottom="large" ref={container} height="full" style={{ marginTop: '-5rem' }}>
-      <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full">
+      <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <LazyLoadedImage
             width={229}
@@ -209,10 +235,6 @@ export function AnotherNewHome(): JSX.Element {
       <AnotherHomePanel mode="light" flexDirection="column" paddingTop="xxxlarge" height="full" marginTop="large">
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
-            <div className="hero-title-rect">
-              <div className="radius radius-bottom radius-left radius-transform-y"></div>
-              <div className="radius radius-top radius-right radius-transform-x"></div>
-            </div>
             <Box height="full" display="flex" justifyContent="center" flexDirection="column">
               <Box display="flex" alignItems="center">
                 <RandomImage delay={2000} />
@@ -240,6 +262,7 @@ export function AnotherNewHome(): JSX.Element {
                   Project
                 </Box>
                 <Image
+                  ref={arrow}
                   src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
                   layout="constrained"
                   width={109}
@@ -249,27 +272,49 @@ export function AnotherNewHome(): JSX.Element {
               </Box>
             </Box>
           </Box>
-          {/* <Box>
-            <Heading level="1">I can help when....</Heading>
-            <List space="large" type="none">
-              <Text tone="primary" size="large">
-                Your team are more familiar with backend development?
-              </Text>
-              <Text tone="primary" size="large">
-                The launch date is soon, and frontend development is at a standstill.
-              </Text>
-            </List>
-          </Box> */}
         </Box>
       </AnotherHomePanel>
       <AnotherHomePanel>
         <BreakGlass container={breakglassRef} image={imageRef} />
       </AnotherHomePanel>
       <AnotherHomePanel className={styles.front} mode="dark">
-        <Heading level="1">One</Heading>
+        <Box zIndex="modal" style={{ background: '#2574F5' }} padding="large">
+          <Heading level="1">I can help when....</Heading>
+          <List space="large" type="none">
+            <Text tone="primary" size="large">
+              Your team are more familiar with backend development?
+            </Text>
+            <Text tone="primary" size="large">
+              The launch date is soon, and frontend development is at a standstill.
+            </Text>
+          </List>
+        </Box>
       </AnotherHomePanel>
       <AnotherHomePanel className={cs('services', styles.front)}>
-        <Heading level="1">Two</Heading>
+        <AnotherHomePanel mode="light" flexDirection="column" paddingTop="medium">
+          <Box paddingBottom="large">
+            <Heading center level="1">
+              I have worked with
+            </Heading>
+          </Box>
+          <AnotherHomePanel mode="light" paddingY="medium" maxWidth="large">
+            <Clients />
+          </AnotherHomePanel>
+        </AnotherHomePanel>
+      </AnotherHomePanel>
+      <AnotherHomePanel mode="light" paddingTop="xxxlarge">
+        <Box maxWidth="large">
+          <Box display="flex" justifyContent="center" paddingX={{ mobile: 'large' }}>
+            <Heading level="1" center tone="secondary" weight="weak">
+              Testimonials: The Measure of my Success
+            </Heading>
+          </Box>
+          <Box display="flex" flexDirection={{ mobile: 'column', desktop: 'row' }}>
+            <Redhatestimonial />
+            <DSTestimonial />
+            <C2Testimonial />
+          </Box>
+        </Box>
       </AnotherHomePanel>
     </Box>
   );
