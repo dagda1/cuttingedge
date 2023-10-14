@@ -15,7 +15,7 @@ import { Image } from '@unpic/react';
 import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
 import { assert } from 'assert-ts';
 import { Clients } from '~/components/Clients/Clients';
-import { horizontalLoop } from '../NewHome/loop';
+import { horizontalLoop } from './loop';
 
 export function AnotherNewHome(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
@@ -44,13 +44,13 @@ export function AnotherNewHome(): JSX.Element {
     });
 
     function main() {
-      if (!width || ctx.current) {
+      if (!width) {
         return;
       }
 
       assert(!!breakglassRef.current);
       assert(!!imageRef.current);
-      assert(!!topPane.current);
+      // assert(!!topPane.current);
 
       const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
 
@@ -219,7 +219,12 @@ export function AnotherNewHome(): JSX.Element {
   }, [width]);
 
   return (
-    <Box paddingBottom="large" ref={container} height="full" style={{ marginTop: '-5rem' }}>
+    <Box
+      paddingBottom={{ mobile: 'large', desktop: 'none' }}
+      ref={container}
+      height="full"
+      style={{ marginTop: '-5rem' }}
+    >
       <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <LazyLoadedImage
@@ -232,43 +237,81 @@ export function AnotherNewHome(): JSX.Element {
       <Box className={styles.topBubbleWrapper}>
         <Box className={styles.topBubble} ref={topBubble} />
       </Box>
-      <AnotherHomePanel mode="light" flexDirection="column" paddingTop="xxxlarge" height="full" marginTop="large">
+      <AnotherHomePanel
+        mode="light"
+        flexDirection="column"
+        justifyContent={{ mobile: 'flexStart', desktop: 'center' }}
+        paddingTop="xxxlarge"
+        height="full"
+        marginTop="large"
+      >
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
             <Box height="full" display="flex" justifyContent="center" flexDirection="column">
+              <Box display="flex" justifyContent="flexEnd">
+                <RandomImage display="mobile" delay={1500} delay={2000} />
+              </Box>
               <Box display="flex" alignItems="center">
-                <RandomImage delay={2000} />
-                <Box marginLeft="xxxlarge" className="hero-title italic">
+                <RandomImage delay={2000} display="deskdelay={2500}top" />
+                <Box
+                  marginLeft={{ mobile: 'medium', desktop: 'xxxlarge' }}
+                  marginRight={{ mobile: 'xxxlarge', desktop: 'none' }}
+                  marginBottom={{ mobile: 'medium', desktop: 'none' }}
+                  marginTop={{ mobile: 'medium', desktop: 'none' }}
+                  className="hero-title italic"
+                >
                   Frontend
                 </Box>
               </Box>
               <Box display="flex" alignItems="center">
-                <Box className="hero-title italic" marginRight="xxxlarge">
+                <Box
+                  className="hero-title italic"
+                  marginRight={{ mobile: 'none', desktop: 'xxxlarge' }}
+                  paddingBottom={{ mobile: 'medium', desktop: 'none' }}
+                >
                   Rescue
                 </Box>
-                <RandomImage delay={1500} />
+                <RandomImage delay={1500} display="desktop" />
               </Box>
-              <Box display="flex" alignItems="center">
-                <RandomImage delay={2500} />
+              <Box display="flex" alignItems="center" paddingBottom={{ mobile: 'medium', desktop: 'none' }}>
+                <RandomImage delay={2500} display="desktop" />
                 <Box marginLeft="xxxlarge" className="hero-title">
                   Save
                 </Box>
               </Box>
-              <Box display="flex" alignItems="center">
-                <Box className="hero-title" marginRight="xxxlarge">
+              <Box display="flex" alignItems="center" paddingBottom={{ mobile: 'medium', desktop: 'none' }}>
+                <Box className="hero-title" marginRight={{ mobile: 'medium', desktop: 'xxxlarge' }}>
                   Your
                 </Box>
-                <Box className="hero-title" marginRight="xxxlarge">
+                <Box className="hero-title" marginRight={{ mobile: 'none', desktop: 'xxxlarge' }}>
                   Project
                 </Box>
-                <Image
-                  ref={arrow}
-                  src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
-                  layout="constrained"
-                  width={109}
-                  height={144}
-                  alt="arrow down"
-                />
+                <Box display={{ mobile: 'none', desktop: 'block' }}>
+                  <Image
+                    ref={arrow}
+                    src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
+                    layout="constrained"
+                    width={109}
+                    height={144}
+                    alt="arrow down"
+                  />
+                </Box>
+              </Box>
+              <Box display="flex" justifyContent="flexEnd">
+                <RandomImage display="mobile" delay={1500} />
+              </Box>
+              <Box display={{ mobile: 'flex', desktop: 'none' }} justifyContent="spaceBetween">
+                <RandomImage display="mobile" delay={2500} />
+                <Box style={{ alignSelf: 'flex-end' }}>
+                  <Image
+                    ref={arrow}
+                    src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
+                    layout="constrained"
+                    width={28}
+                    height={37}
+                    alt="arrow down"
+                  />
+                </Box>
               </Box>
             </Box>
           </Box>

@@ -30,8 +30,8 @@ globalStyle('.hero-title', {
   textTransform: 'uppercase',
   ...responsiveStyle({
     mobile: {
-      fontSize: '3rem',
-      lineHeight: '3rem',
+      fontSize: '2rem',
+      lineHeight: '2rem',
     },
     desktop: {
       fontSize: '6rem',

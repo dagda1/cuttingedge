@@ -3,6 +3,7 @@ import { Image, type ImageProps } from '@unpic/react';
 import { useCallback, useMemo, useState } from 'react';
 import { getImagePropsFromMap } from './getImagePropsFromMap';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
+import { assert } from 'assert-ts';
 
 type Layout = ImageProps['layout'];
 
@@ -41,6 +42,9 @@ function BlurhashImage({
 
   const resolvedWidth = layout === 'constrained' ? width ?? imageProps.width : undefined;
   const resolvedHeight = layout === 'constrained' ? height ?? imageProps.height : undefined;
+
+  assert(typeof resolvedWidth === 'number');
+  assert(typeof resolvedHeight === 'number');
 
   return (
     <Image
