@@ -16,6 +16,7 @@ import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
 import { assert } from 'assert-ts';
 import { Clients } from '~/components/Clients/Clients';
 import { horizontalLoop } from './loop';
+import { TopBubble } from './TopBubble/TopBubble';
 
 export function AnotherNewHome(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
@@ -234,9 +235,7 @@ export function AnotherNewHome(): JSX.Element {
           />
         </Box>
       </Box>
-      <Box className={styles.topBubbleWrapper}>
-        <Box className={styles.topBubble} ref={topBubble} />
-      </Box>
+      <TopBubble innerRef={topBubble} mode={'light'} />
       <AnotherHomePanel
         mode="light"
         flexDirection="column"
@@ -249,10 +248,10 @@ export function AnotherNewHome(): JSX.Element {
           <Box marginBottom="large" height="full">
             <Box height="full" display="flex" justifyContent="center" flexDirection="column">
               <Box display="flex" justifyContent="flexEnd">
-                <RandomImage display="mobile" delay={1500} delay={2000} />
+                <RandomImage display="mobile" delay={2000} />
               </Box>
               <Box display="flex" alignItems="center">
-                <RandomImage delay={2000} display="deskdelay={2500}top" />
+                <RandomImage delay={2000} display="desktop" />
                 <Box
                   marginLeft={{ mobile: 'medium', desktop: 'xxxlarge' }}
                   marginRight={{ mobile: 'xxxlarge', desktop: 'none' }}
