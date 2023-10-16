@@ -17,6 +17,12 @@ import { assert } from 'assert-ts';
 import { Clients } from '~/components/Clients/Clients';
 import { horizontalLoop } from './loop';
 import { TopBubble } from './TopBubble/TopBubble';
+import { range } from '@cutting/util';
+import { Dot } from './Dot/Dot';
+
+const numberOfDots = [...range(20)];
+
+console.log(numberOfDots);
 
 export function AnotherNewHome(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
@@ -41,7 +47,13 @@ export function AnotherNewHome(): JSX.Element {
     new SplitText('.hero-title', {
       type: 'lines words',
       linesClass: 'split-line',
-      wordsClass: 'split-char',
+      wordsClass: 'split-word',
+    });
+
+    new SplitText('.hero-title2', {
+      type: 'lines words',
+      linesClass: 'split-line',
+      wordsClass: 'split-word',
     });
 
     function main() {
@@ -49,62 +61,138 @@ export function AnotherNewHome(): JSX.Element {
         return;
       }
 
-      assert(!!breakglassRef.current);
-      assert(!!imageRef.current);
+      // assert(!!breakglassRef.current);
+      // assert(!!imageRef.current);
       // assert(!!topPane.current);
 
-      const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
+      // const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
 
       ctx.current = gsap.context(() => {
-        gsap.to(window, {
-          duration: 2,
-          scrollTo: { y: height, autoKill: false },
-          ease: 'power3',
-        });
+        // gsap.to(window, {
+        //   duration: 2,
+        //   scrollTo: { y: height, autoKill: false },
+        //   ease: 'power3',
+        // });
+        // gsap
+        //   .timeline({
+        //     defaults: {
+        //       ease: 'none',
+        //     },
+        //   })
+        //   .to(
+        //     '.hero',
+        //     {
+        //       opacity: 1,
+        //       duration: 0,
+        //     },
+        //     '<',
+        //   )
+        //   .fromTo(
+        //     '.hero-title .split-word',
+        //     {
+        //       scaleY: 0,
+        //       opacity: 0,
+        //     },
+        //     {
+        //       scaleY: 1,
+        //       opacity: 1,
+        //       ease: 'sine.out',
+        //       transformOrigin: 'top',
+        //       stagger: 0.03,
+        //       duration: 0.8,
+        //     },
+        //     '<',
+        //   )
+        //   .fromTo(
+        //     '.hero-img img',
+        //     {
+        //       opacity: 0,
+        //     },
+        //     {
+        //       opacity: 1,
+        //       ease: 'sine.out',
+        //       transformOrigin: 'top',
+        //       duration: 0.8,
+        //     },
+        //     '<0.3',
+        //   );
+        // gsap
+        //   .timeline({
+        //     defaults: {
+        //       ease: 'none',
+        //     },
+        //     scrollTrigger: {
+        //       trigger: '.hero',
+        //       start: 'top top+=10%',
+        //       end: 'bottom top+=20%',
+        //       pin: true,
+        //       scrub: true,
+        //       // markers: true,
+        //     },
+        //   })
+        //   .to(arrow.current, {
+        //     display: 'none',
+        //   })
+        //   .to(
+        //     '.hero-img',
+        //     {
+        //       height: 0,
+        //       duration: 0.8,
+        //     },
+        //     '<',
+        //   )
+        //   .to(
+        //     '.hero-img img',
+        //     {
+        //       y: '-40%',
+        //       duration: 0.8,
+        //     },
+        //     '<',
+        //   )
+        //   .to(
+        //     '.hero-title',
+        //     {
+        //       y: '-10%',
+        //       duration: 0.8,
+        //       ease: 'sine.out',
+        //     },
+        //     '<',
+        //   )
+        //   .to(
+        //     '.hero-title .split-word',
+        //     {
+        //       scaleY: 0,
+        //       opacity: 0,
+        //       ease: 'sine.in',
+        //       transformOrigin: 'top',
+        //       stagger: 0.03,
+        //       duration: 0.5,
+        //     },
+        //     '<',
+        //   );
 
-        gsap
-          .timeline({
-            defaults: {
-              ease: 'none',
-            },
-          })
-          .to(
-            '.hero',
-            {
-              opacity: 1,
-              duration: 0,
-            },
-            '<',
-          )
-          .fromTo(
-            '.hero-title .split-char',
-            {
-              scaleY: 0,
-              opacity: 0,
-            },
-            {
-              scaleY: 1,
-              opacity: 1,
-              ease: 'sine.out',
-              transformOrigin: 'top',
-              stagger: 0.03,
-              duration: 0.8,
-            },
-            '<',
-          )
-          .fromTo(
-            '.hero-img img',
-            {
-              opacity: 0,
-            },
-            {
-              opacity: 1,
-              ease: 'sine.out',
-              transformOrigin: 'top',
-              duration: 0.8,
-            },
-            '<0.3',
-          );
+        // const tl = gsap
+        //   .timeline({
+        //     scrollTrigger: {
+        //       trigger: '.breaking',
+        //       start: 'top center+=20%',
+        //       end: 'top center-=10%',
+        //       scrub: true,
+        //       invalidateOnRefresh: true,
+        //     },
+        //   })
+        //   .to('.bglass-left', { x: -(width / 3 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
+        //   .to('.bglass-right', { x: width / 3 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<')
+        //   .to('.breaking', { background: 'transparent' });
+        // gsap.timeline({
+        //   scrollTrigger: {
+        //     start: (_) => tl.scrollTrigger!.end,
+        //     end: 'max',
+        //     pin: '.breaking',
+        //     pinSpacing: false,
+        //     pinReparent: true,
+        //   },
+        // });
 
         gsap
           .timeline({
@@ -112,7 +200,7 @@ export function AnotherNewHome(): JSX.Element {
               ease: 'none',
             },
             scrollTrigger: {
-              trigger: '.hero',
+              trigger: '.hero2',
               start: 'top top+=10%',
               end: 'bottom top+=20%',
               pin: true,
@@ -120,36 +208,11 @@ export function AnotherNewHome(): JSX.Element {
               markers: true,
             },
           })
-          .to(arrow.current, {
-            display: 'none',
+          .to('.hero2', {
+            opacity: 1,
           })
-          .to(
-            '.hero-img',
-            {
-              height: 0,
-              duration: 0.8,
-            },
-            '<',
-          )
-          .to(
-            '.hero-img img',
-            {
-              y: '-40%',
-              duration: 0.8,
-            },
-            '<',
-          )
-          .to(
-            '.hero-title',
-            {
-              y: '-10%',
-              duration: 0.8,
-              ease: 'sine.out',
-            },
-            '<',
-          )
-          .to(
-            '.hero-title .split-char',
+          .fromTo(
+            '.hero-title2',
             {
               scaleY: 0,
               opacity: 0,
@@ -158,32 +221,15 @@ export function AnotherNewHome(): JSX.Element {
               stagger: 0.03,
               duration: 0.5,
             },
+            {
+              opacity: 1,
+              y: '-10%',
+              scaleY: 1,
+              duration: 0.8,
+              ease: 'sine.out',
+            },
             '<',
           );
-
-        const tl = gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: '.breaking',
-              start: 'top center+=20%',
-              end: 'top center-=10%',
-              scrub: true,
-              invalidateOnRefresh: true,
-            },
-          })
-          .to('.bglass-left', { x: -(width / 3 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
-          .to('.bglass-right', { x: width / 3 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<')
-          .to('.breaking', { background: 'transparent' });
-
-        gsap.timeline({
-          scrollTrigger: {
-            start: (_) => tl.scrollTrigger!.end,
-            end: 'max',
-            pin: '.breaking',
-            pinSpacing: false,
-            pinReparent: true,
-          },
-        });
       });
     }
 
@@ -226,7 +272,7 @@ export function AnotherNewHome(): JSX.Element {
       height="full"
       style={{ marginTop: '-5rem' }}
     >
-      <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
+      {/* <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <LazyLoadedImage
             width={229}
@@ -318,18 +364,46 @@ export function AnotherNewHome(): JSX.Element {
       </AnotherHomePanel>
       <AnotherHomePanel>
         <BreakGlass container={breakglassRef} image={imageRef} />
-      </AnotherHomePanel>
-      <AnotherHomePanel className={styles.front} mode="dark">
-        <Box zIndex="modal" style={{ background: '#2574F5' }} padding="large">
-          <Heading level="1">I can help when....</Heading>
-          <List space="large" type="none">
-            <Text tone="primary" size="large">
+      </AnotherHomePanel> */}
+      {[...range(2)].map((_, i) => (
+        <Dot key={i} background="#1f1f1f" />
+      ))}
+      <AnotherHomePanel mode="dark" style={{ border: '10px solid yellow' }} className="hero2" opacity={0}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          zIndex="modal"
+          width="full"
+          height="maxContent"
+        >
+          <Box>
+            <Box className="hero-title2" marginLeft={{ mobile: 'large' }}>
+              I can
+            </Box>
+            <Box className="hero-title2">help</Box>
+            <Box className="hero-title2">when....</Box>
+            {/* <List space="large" type="none">
+              <Text tone="primary" size="large">
               Your team are more familiar with backend development?
-            </Text>
-            <Text tone="primary" size="large">
+              </Text>
+              <Text tone="primary" size="large">
               The launch date is soon, and frontend development is at a standstill.
-            </Text>
-          </List>
+              </Text>
+            </List> */}
+          </Box>
+        </Box>
+      </AnotherHomePanel>
+      <AnotherHomePanel overflowX="hidden" style={{ border: '10px solid cyan' }}>
+        <Box display="flex">
+          {numberOfDots.map((_, i) => (
+            <Dot key={i} background="#1f1f1f" />
+          ))}
+          <Dot background="#ffffff" />
+          {numberOfDots.map((_, i) => (
+            <Dot key={i} background="#1f1f1f" />
+          ))}
         </Box>
       </AnotherHomePanel>
       <AnotherHomePanel className={cs('services', styles.front)}>

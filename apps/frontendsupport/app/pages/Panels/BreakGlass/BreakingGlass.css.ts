@@ -4,11 +4,6 @@ export const breaking = style({
   background: '#138F4A',
 });
 
-globalStyle(`${breaking} img`, {
-  zIndex: 3,
-  // position: 'absolute',
-});
-
 globalStyle('.bglass-left', {
   right: '50%',
 });

@@ -1,4 +1,4 @@
-import { palette } from '@cutting/component-library';
+import { palette, vars } from '@cutting/component-library';
 import { style } from '@vanilla-extract/css';
 
 export const topBubbleWrapper = style({
@@ -22,7 +22,7 @@ export const topBubble = style({
   position: 'relative',
 });
 
-export const dark = style({ background: palette.black });
+export const dark = style({ background: vars.backgroundColor.body });
 export const light = style({ background: palette.white });
 
 export const up = style({ marginTop: '-60px' });

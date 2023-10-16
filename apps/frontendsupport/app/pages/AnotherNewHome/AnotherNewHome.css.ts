@@ -25,7 +25,7 @@ export const topBubble = style({
   position: 'relative',
 });
 
-globalStyle('.hero-title', {
+globalStyle('.hero-title, .hero-title2', {
   fontFamily: vars.fontFamily.heading,
   textTransform: 'uppercase',
   ...responsiveStyle({

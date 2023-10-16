@@ -9,18 +9,7 @@ type AnotherHomePanelProps = {
   mode?: 'dark' | 'light';
   innerRef?: React.RefObject<HTMLDivElement>;
   className?: string;
-} & Pick<
-  BoxProps,
-  | 'height'
-  | 'flexDirection'
-  | 'paddingY'
-  | 'paddingTop'
-  | 'paddingBottom'
-  | 'maxWidth'
-  | 'marginTop'
-  | 'justifyContent'
-  | 'alignItems'
->;
+} & BoxProps;
 
 export function AnotherHomePanel({
   mode = 'dark',
