@@ -5,25 +5,13 @@ interface AnotherLoopConfig {
   paused: boolean;
   paddingRight: number | string;
   repeat?: number;
-  onChange?(h: HTMLElement, i: number): void;
   speed?: number;
 }
 
 export function anotherHorizontalLoop(items: HTMLElement[], config: AnotherLoopConfig) {
   items = gsap.utils.toArray(items);
   config = config || {};
-  let onChange = config.onChange,
-    lastIndex = 0,
-    tl = gsap.timeline({
-      onUpdate:
-        onChange &&
-        function () {
-          let i = tl.closestIndex();
-          if (lastIndex !== i) {
-            lastIndex = i;
-            onChange?.(items[i], i);
-          }
-        },
+  let tl = gsap.timeline({
       paused: config.paused,
       defaults: { ease: 'none' },
       onReverseComplete: () => {
@@ -164,8 +152,6 @@ export function anotherHorizontalLoop(items: HTMLElement[], config: AnotherLoopC
   tl.times = times;
   tl.progress(1, true).progress(0, true); // pre-render for performance
   tl.closestIndex(true);
-  lastIndex = curIndex;
   tl.refresh = refresh;
-  onChange && onChange(items[curIndex], curIndex);
   return tl;
 }

@@ -16,7 +16,7 @@ export function Clients(): JSX.Element {
     <>
       {clients.map((c) => (
         <Box key={c} marginRight="xxxlarge" className="box">
-          <LazyLoadedImage layout="constrained" src={c} />
+          <LazyLoadedImage layout="constrained" src={c.trim()} />
         </Box>
       ))}
     </>

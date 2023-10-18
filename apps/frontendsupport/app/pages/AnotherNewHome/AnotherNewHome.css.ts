@@ -52,4 +52,19 @@ globalStyle('.hero-image img', {
   opacity: 0,
 });
 
+globalStyle('.hero-title3', {
+  fontFamily: vars.fontFamily.heading,
+  textTransform: 'uppercase',
+  ...responsiveStyle({
+    mobile: {
+      fontSize: '1rem',
+      lineHeight: '1rem',
+    },
+    desktop: {
+      fontSize: '4rem',
+      lineHeight: '4rem',
+    },
+  }),
+});
+
 export const hdn = style({ display: 'none' });

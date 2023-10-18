@@ -8,5 +8,7 @@ interface DotProps {
 }
 
 export function Dot({ background }: DotProps): JSX.Element {
-  return <Box style={{ background }} className={cs({ [styles.white]: background === '#ffffff' }, styles.dot)}></Box>;
+  return (
+    <Box style={{ background }} className={cs({ [styles.white]: background === '#ffffff' }, styles.dot, 'dot')}></Box>
+  );
 }

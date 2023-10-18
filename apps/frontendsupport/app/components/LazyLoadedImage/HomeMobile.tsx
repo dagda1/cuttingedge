@@ -1,11 +1,11 @@
 import { Box } from '@cutting/component-library';
-import { MobileContainer } from './MobileContainer';
-import { FrontPage } from '~/components/FrontPage/FrontPage';
-import { Frameworks } from '../Panels/Frameworks/Frameworks';
-import { OSS } from '../Panels/OSS/OSS';
-import { Highlights } from '../Panels/Highlights/Highlights';
-import { Clients } from '../Panels/Clients/Clients';
-import { Services } from '../Panels/Services/Services';
+import { FrontPage } from '~/components/FrontPage/FrontPage.js';
+import { OSS } from '../../pages/Panels/OSS/OSS.js';
+import { Highlights } from '../../pages/Panels/Highlights/Highlights.js';
+import { MobileContainer } from '../../pages/Home/MobileContainer.js';
+import { Frameworks } from '../../pages/Panels/Frameworks/Frameworks.js';
+import { Services } from '../../pages/Panels/Services/Services.js';
+import { Clients } from '../../pages/Panels/Clients/Clients.js';
 
 export function HomeMobile(): JSX.Element {
   return (
