@@ -54,11 +54,11 @@
     "vitest": "0.34.6",
     "whatwg-fetch": "3.6.19"
   },
-  "packageManager": "pnpm@8.9.0",
+  "packageManager": "pnpm@8.9.2",
   "volta": {
     "node": "18.12.0",
     "npm": "9.8.1",
-    "pnpm": "8.9.0"
+    "pnpm": "8.9.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
