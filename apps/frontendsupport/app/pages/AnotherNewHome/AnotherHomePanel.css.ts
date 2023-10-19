@@ -12,3 +12,7 @@ globalStyle(`${white} h2 span`, {
 globalStyle(`${white} p, ${white} a, ${white} div span, ${white} h1, ${white} h2`, {
   color: '#000000',
 });
+
+globalStyle(`.testimonials figcaption a span, .testimonials blockquote:before, .testimonials blockquote:after`, {
+  color: '#ffffff',
+});

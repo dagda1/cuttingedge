@@ -19,6 +19,8 @@ import { horizontalLoop } from './loop';
 import { TopBubble } from './TopBubble/TopBubble';
 import { range } from '@cutting/util';
 import { Dot } from './Dot/Dot';
+import { Services } from '../Panels/Services/Services';
+import { About } from '~/components/About/About';
 
 const numberOfDots = [...range(20)];
 
@@ -79,6 +81,7 @@ export function AnotherNewHome(): JSX.Element {
           scrollTo: { y: height, autoKill: false },
           ease: 'power3',
         });
+
         gsap
           .timeline({
             defaults: {
@@ -122,6 +125,7 @@ export function AnotherNewHome(): JSX.Element {
             },
             '<0.3',
           );
+
         gsap
           .timeline({
             defaults: {
@@ -220,7 +224,6 @@ export function AnotherNewHome(): JSX.Element {
             start: 'top 75%',
             end: 'top 25%',
             scrub: true,
-            // markers: true,
           },
         });
 
@@ -295,6 +298,43 @@ export function AnotherNewHome(): JSX.Element {
             },
             '<',
           );
+
+        const testimonials = document.querySelectorAll<HTMLDivElement>('.testimonial');
+
+        gsap.to(testimonials[0], {
+          yPercent: 15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: 'testimonials',
+            start: 'center 25%', // the default values
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+
+        gsap.to(testimonials[1], {
+          yPercent: 50,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.testimonials',
+            // start: "top bottom", // the default values
+            // end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        gsap.to(testimonials[2], {
+          yPercent: -25,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.testimonials',
+            // start: "top bottom", // the default values
+            // end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        console.log(testimonials);
       });
     }
 
@@ -327,16 +367,11 @@ export function AnotherNewHome(): JSX.Element {
       savedCallback.current.next({ duration: 0.4, ease: 'power1.inOut' });
     }
 
-    id.current = setInterval(tick, 2000);
+    id.current = setInterval(tick, 1000);
   }, [width]);
 
   return (
-    <Box
-      paddingBottom={{ mobile: 'large', desktop: 'none' }}
-      ref={container}
-      height="full"
-      style={{ marginTop: '-5rem' }}
-    >
+    <Box paddingBottom="large" ref={container} height="full" style={{ marginTop: '-5rem' }}>
       <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <LazyLoadedImage
@@ -430,11 +465,6 @@ export function AnotherNewHome(): JSX.Element {
       <AnotherHomePanel>
         <BreakGlass container={breakglassRef} image={imageRef} />
       </AnotherHomePanel>
-      {[...range(2)].map((_, i) => (
-        <Box key={i}>
-          <Heading level="1">{i}</Heading>
-        </Box>
-      ))}
       <AnotherHomePanel mode="dark" className="hero2" opacity={0}>
         <Box
           display="flex"
@@ -485,19 +515,25 @@ export function AnotherNewHome(): JSX.Element {
           </AnotherHomePanel>
         </AnotherHomePanel>
       </AnotherHomePanel>
-      <AnotherHomePanel mode="light" paddingTop="xxxlarge">
+      <AnotherHomePanel>
+        <Services />
+      </AnotherHomePanel>
+      <AnotherHomePanel mode="dark" paddingTop="xxxlarge">
         <Box maxWidth="large">
           <Box display="flex" justifyContent="center" paddingX={{ mobile: 'large' }}>
             <Heading level="1" center tone="secondary" weight="weak">
               Testimonials: The Measure of my Success
             </Heading>
           </Box>
-          <Box display="flex" flexDirection={{ mobile: 'column', desktop: 'row' }}>
+          <Box display="flex" flexDirection={{ mobile: 'column', desktop: 'row' }} className="testimonials">
             <Redhatestimonial />
             <DSTestimonial />
             <C2Testimonial />
           </Box>
         </Box>
+      </AnotherHomePanel>
+      <AnotherHomePanel>
+        <About />
       </AnotherHomePanel>
     </Box>
   );
