@@ -39,17 +39,14 @@ jobs:
       - name: echo npm dest
         run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"
       
-      - name: install dependencies
-        run: pnpm install
-      
       - name: Creating .npmrc
         run: |
-          cat << EOF > "$HOME/.npmrc"
-            email=paul.cowan@cutting.scot
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
+          "${GITHUB_WORKSPACE}/scripts/create-npmrc.sh"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: install dependencies
+        run: pnpm install
       
       - name: Create PR or Publish release
         id: changesets
