@@ -32,9 +32,10 @@ jobs:
       
       - name: Creating .npmrc
         run: |
-          "${GITHUB_WORKSPACE}/scripts/create-npmrc.sh"
+          "${GITHUB_WORKSPACE}/scripts/create-npmrc.sh" "${{ secrets.NPM_TOKEN }}" "${{ secrets.GSAP_TOKEN }}"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
 
       - name: Install Dependencies
         run: pnpm i

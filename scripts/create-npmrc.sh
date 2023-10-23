@@ -1,4 +1,8 @@
 #!/bin/bash
+
+NPM_TOKEN=$1
+GSAP_TOKEN=$2
+
 cat << EOF > "$HOME/.npmrc"
 always-auth=true
 email=paul.cowan@cutting.scot
