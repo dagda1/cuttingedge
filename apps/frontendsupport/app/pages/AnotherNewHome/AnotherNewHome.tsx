@@ -10,7 +10,7 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
 import * as styles from './AnotherNewHome.css';
 import cs from 'classnames';
-import { RandomImage } from './RandomImage';
+import { RandomImage } from '../../components/RandomImage/RandomImage';
 import { Image } from '@unpic/react';
 import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
 import { assert } from 'assert-ts';
@@ -70,17 +70,17 @@ export function AnotherNewHome(): JSX.Element {
 
       assert(!!breakglassRef.current);
       assert(!!imageRef.current);
-      assert(!!topPane.current);
+      // assert(!!topPane.current);
       assert(!!dots.current);
 
       const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
 
       ctx.current = gsap.context(() => {
-        gsap.to(window, {
-          duration: 2,
-          scrollTo: { y: height, autoKill: false },
-          ease: 'power3',
-        });
+        // gsap.to(window, {
+        //   duration: 2,
+        //   scrollTo: { y: height, autoKill: false },
+        //   ease: 'power3',
+        // });
 
         gsap
           .timeline({
@@ -336,14 +336,13 @@ export function AnotherNewHome(): JSX.Element {
       });
     }
 
-    setTimeout(main, 1000);
+    // setTimeout(main, 1000);
     return () => {
       ctx.current?.revert();
     };
   }, [height, width]);
 
   useIsomorphicLayoutEffect(() => {
-    console.log({ width });
     if (!width) {
       return;
     }
@@ -365,7 +364,7 @@ export function AnotherNewHome(): JSX.Element {
 
   return (
     <Box paddingBottom="large" ref={container} height="full" style={{ marginTop: '-5rem' }}>
-      <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
+      {/* <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <LazyLoadedImage
             width={229}
@@ -374,7 +373,7 @@ export function AnotherNewHome(): JSX.Element {
           />
         </Box>
       </Box>
-      <TopBubble innerRef={topBubble} mode="light" />
+      <TopBubble innerRef={topBubble} mode="light" /> */}
       <AnotherHomePanel
         mode="light"
         flexDirection="column"
@@ -383,63 +382,24 @@ export function AnotherNewHome(): JSX.Element {
         height="full"
         marginTop="large"
       >
-        <Box opacity={0} position="relative" height="maxContent" className={cs(styles.responsive, 'hero')}>
+        <Box opacity={1} position="relative" height="maxContent" className={cs('hero')}>
           <Box marginBottom="large" height="full">
-            <Box height="full" display="flex" justifyContent="center" flexDirection="column">
-              <Box display="flex" justifyContent="flexEnd">
-                <RandomImage display="mobile" delay={2000} />
-              </Box>
-              <Box display="flex" alignItems="center">
-                <RandomImage delay={2000} display="desktop" />
-                <Box
-                  marginLeft={{ mobile: 'medium', desktop: 'xxxlarge' }}
-                  marginRight={{ mobile: 'xxxlarge', desktop: 'none' }}
-                  marginBottom={{ mobile: 'medium', desktop: 'none' }}
-                  marginTop={{ mobile: 'medium', desktop: 'none' }}
-                  className="hero-title italic"
-                >
-                  Frontend
+            <Box height="full" display="flex" justifyContent="center" style={{ border: '10px solid greeen' }}>
+              <Box display="flex" flexDirection="column">
+                <Box display="flex" alignItems="center">
+                  <RandomImage imageSet={1} display="both" delay={2000} />
+                  <Box marginLeft="large" className="hero-title italic">
+                    Is your team
+                  </Box>
                 </Box>
-              </Box>
-              <Box display="flex" alignItems="center">
-                <Box
-                  className="hero-title italic"
-                  marginRight={{ mobile: 'none', desktop: 'xxxlarge' }}
-                  paddingBottom={{ mobile: 'medium', desktop: 'none' }}
-                >
-                  Rescue
+                <Box className="hero-title italic">struggling</Box>
+                <Box display="flex" justifyContent="flexEnd">
+                  <Box className="hero-title italic">To Deliver</Box>
+                  <RandomImage imageSet={1} display="both" delay={2000} />
                 </Box>
-                <RandomImage delay={1500} display="desktop" />
-              </Box>
-              <Box display="flex" alignItems="center" paddingBottom={{ mobile: 'medium', desktop: 'none' }}>
-                <RandomImage delay={2500} display="desktop" />
-                <Box marginLeft="xxxlarge" className="hero-title">
-                  Save
-                </Box>
-              </Box>
-              <Box display="flex" alignItems="center" paddingBottom={{ mobile: 'medium', desktop: 'none' }}>
-                <Box className="hero-title" marginRight={{ mobile: 'medium', desktop: 'xxxlarge' }}>
-                  Your
-                </Box>
-                <Box className="hero-title" marginRight={{ mobile: 'none', desktop: 'xxxlarge' }}>
-                  Project
-                </Box>
-                <Box display={{ mobile: 'none', desktop: 'block' }}>
-                  <Image
-                    ref={arrow}
-                    src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
-                    layout="constrained"
-                    width={109}
-                    height={144}
-                    alt="arrow down"
-                  />
-                </Box>
-              </Box>
-              <Box display="flex" justifyContent="flexEnd">
-                <RandomImage display="mobile" delay={1500} />
+                <Box className="hero-title italic">Frontend Features?</Box>
               </Box>
               <Box display={{ mobile: 'flex', desktop: 'none' }} justifyContent="spaceBetween">
-                <RandomImage display="mobile" delay={2500} />
                 <Box style={{ alignSelf: 'flex-end' }}>
                   <Image
                     ref={arrow}

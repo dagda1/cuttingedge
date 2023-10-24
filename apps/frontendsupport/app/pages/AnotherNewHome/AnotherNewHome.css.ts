@@ -56,10 +56,12 @@ globalStyle('.hero-title, .hero-title2', {
     desktop: {
       fontSize: '6rem',
       lineHeight: '7rem',
+      // border: '10px solid red',
     },
     wide: {
-      fontSize: '9rem',
-      lineHeight: '11rem',
+      fontSize: '7rem',
+      lineHeight: '9rem',
+      // border: '10px solid blue',
     },
   }),
 });

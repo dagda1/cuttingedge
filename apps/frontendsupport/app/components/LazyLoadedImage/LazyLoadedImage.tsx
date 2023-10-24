@@ -9,13 +9,12 @@ type Layout = ImageProps['layout'];
 
 type LazyLoadedImageProps = Omit<ImageProps, 'layout'> & { layout?: Layout } & React.RefAttributes<HTMLImageElement>;
 
-function BlurhashImage({
+export function LazyLoadedImage({
   src,
   width,
   height,
   loading = 'lazy',
   layout = 'constrained',
-  ...props
 }: LazyLoadedImageProps): JSX.Element {
   const image = getImagePropsFromMap(src);
   const [loaded, setLoaded] = useState(false);
@@ -58,12 +57,4 @@ function BlurhashImage({
       {...props}
     />
   );
-}
-
-export function LazyLoadedImage(props: LazyLoadedImageProps): JSX.Element {
-  if (props.src.endsWith('gif')) {
-    return <Image {...(props as any)} />;
-  }
-
-  return <BlurhashImage {...props} />;
 }
