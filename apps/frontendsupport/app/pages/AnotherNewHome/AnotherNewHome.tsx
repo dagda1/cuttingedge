@@ -333,8 +333,6 @@ export function AnotherNewHome(): JSX.Element {
             scrub: true,
           },
         });
-
-        console.log(testimonials);
       });
     }
 
@@ -345,28 +343,23 @@ export function AnotherNewHome(): JSX.Element {
   }, [height, width]);
 
   useIsomorphicLayoutEffect(() => {
+    console.log({ width });
     if (!width) {
       return;
     }
-
     if (typeof id.current === 'number') {
       savedCallback.current.refresh(true);
       return;
     }
-
     const boxes = gsap.utils.toArray<HTMLElement>('.box');
-
     const loop = horizontalLoop(boxes, {
       paused: true,
       paddingRight: 0,
     });
-
     savedCallback.current = loop;
-
     function tick() {
       savedCallback.current.next({ duration: 0.4, ease: 'power1.inOut' });
     }
-
     id.current = setInterval(tick, 1000);
   }, [width]);
 
@@ -381,7 +374,7 @@ export function AnotherNewHome(): JSX.Element {
           />
         </Box>
       </Box>
-      <TopBubble innerRef={topBubble} mode={'light'} />
+      <TopBubble innerRef={topBubble} mode="light" />
       <AnotherHomePanel
         mode="light"
         flexDirection="column"
@@ -390,7 +383,7 @@ export function AnotherNewHome(): JSX.Element {
         height="full"
         marginTop="large"
       >
-        <Box opacity={0} position="relative" height="maxContent" className="hero">
+        <Box opacity={0} position="relative" height="maxContent" className={cs(styles.responsive, 'hero')}>
           <Box marginBottom="large" height="full">
             <Box height="full" display="flex" justifyContent="center" flexDirection="column">
               <Box display="flex" justifyContent="flexEnd">

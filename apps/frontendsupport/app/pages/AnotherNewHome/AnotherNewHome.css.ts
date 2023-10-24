@@ -5,6 +5,26 @@ export const front = style({
   height: '90vh',
 });
 
+export const responsive = style({
+  ...responsiveStyle({
+    mobile: {
+      border: '10px solid red',
+    },
+    tablet: {
+      border: '10px solid green',
+    },
+    desktop: {
+      border: '10px solid blue',
+    },
+    wide: {
+      border: '10px solid yellow',
+    },
+    extraWide: {
+      border: '10px solid cyan',
+    },
+  }),
+});
+
 export const topBubbleWrapper = style({
   width: '100%',
   maxHeight: '100%',
@@ -38,8 +58,8 @@ globalStyle('.hero-title, .hero-title2', {
       lineHeight: '7rem',
     },
     wide: {
-      fontSize: '11rem',
-      lineHeight: '13rem',
+      fontSize: '9rem',
+      lineHeight: '11rem',
     },
   }),
 });
