@@ -20,7 +20,6 @@ export type RequiredResponsiveValue<Value extends string | number> = RequiredCon
 
 const sizes = {
   full: '100%',
-  screen: '100vh',
   auto: 'auto',
   '1/8': '12.5%',
   '1/4': '25%',
@@ -152,8 +151,8 @@ const responsiveAtomicProperties = defineProperties({
     flexShrink: [0],
     flexGrow: [0, 1],
     textAlign: ['left', 'center', 'right'],
-    height: { ...sizes, ...space },
-    width: { ...sizes, ...space },
+    height: { screen: '100vh', ...sizes, ...space },
+    width: { screen: '100vw', ...sizes, ...space },
     overflow: ['hidden', 'scroll', 'visible', 'auto'],
     overflowX: ['hidden', 'scroll', 'visible', 'auto'],
     overflowY: ['hidden', 'scroll', 'visible', 'auto'],

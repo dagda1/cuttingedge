@@ -7,20 +7,31 @@ export const mobile = style({
       display: 'flex',
       alignItems: 'center',
     },
-    desktop: {
+    tablet: {
       display: 'none',
     },
   }),
 });
 
-export const desktop = style({
+export const tablet = style({
   ...responsiveStyle({
     mobile: {
       display: 'none',
     },
-    desktop: {
+    tablet: {
       display: 'flex',
       alignItems: 'center',
+    },
+  }),
+});
+
+export const container = style({
+  ...responsiveStyle({
+    mobile: {
+      minWidth: 160,
+      minHeight: 80,
+      maxWidth: 160,
+      maxHeight: 80,
     },
   }),
 });

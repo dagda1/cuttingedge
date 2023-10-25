@@ -50,18 +50,22 @@ globalStyle('.hero-title, .hero-title2', {
   textTransform: 'uppercase',
   ...responsiveStyle({
     mobile: {
-      fontSize: '2rem',
-      lineHeight: '2rem',
+      fontSize: '1.5rem',
+      lineHeight: '3rem',
+      border: '1px solid yellow',
+    },
+    tablet: {
+      fontSize: '3rem',
+      lineHeight: '5rem',
+      border: '1px solid red',
     },
     desktop: {
-      fontSize: '6rem',
-      lineHeight: '7rem',
-      // border: '10px solid red',
+      fontSize: '5rem',
+      lineHeight: '8rem',
     },
     wide: {
       fontSize: '7rem',
-      lineHeight: '9rem',
-      // border: '10px solid blue',
+      lineHeight: '10rem',
     },
   }),
 });
