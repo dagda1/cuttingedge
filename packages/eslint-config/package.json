@@ -21,8 +21,8 @@
     "react"
   ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "5.62.0",
-    "@typescript-eslint/parser": "5.62.0",
+    "@typescript-eslint/eslint-plugin": "6.4.0",
+    "@typescript-eslint/parser": "6.4.0",
     "eslint": "8.47.0",
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-jsx-a11y": "6.7.1",
@@ -33,8 +33,8 @@
     "typescript": "5.1.6"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": ">= 5.x.x",
-    "@typescript-eslint/parser": ">= 5.x.x",
+    "@typescript-eslint/eslint-plugin": ">= 6.x.x",
+    "@typescript-eslint/parser": ">= 6.x.x",
     "eslint": ">= 8.x.x",
     "eslint-config-prettier": ">= 8.x.x",
     "eslint-plugin-jsx-a11y": ">= 6.x.x",

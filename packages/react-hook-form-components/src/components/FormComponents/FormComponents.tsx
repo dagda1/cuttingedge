@@ -34,6 +34,7 @@ export function createFormComponent<C extends FunctionComponent<any>>(
         rules={rules}
         control={control}
         render={({ field }) => (
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           <Wrapped {...(props as any)} {...field} invalid={!!error} errorMessage={error?.message} ref={ref} />
         )}
       />
