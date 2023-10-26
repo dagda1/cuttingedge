@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.45.0
+
+### Minor Changes
+
+- 2235ce16: update @typescript-eslint packages
+
 ## 4.44.1
 
 ### Patch Changes
