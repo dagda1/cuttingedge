@@ -136,6 +136,7 @@ export function AnotherNewHome(): JSX.Element {
               end: 'bottom top+=20%',
               pin: true,
               scrub: true,
+              markers: true,
             },
           })
           .to(arrow.current, {
@@ -211,6 +212,7 @@ export function AnotherNewHome(): JSX.Element {
         //     },
         //   })
         //   .to('.breaking', { opacity: 0, ease: 'sine.in' });
+
         // gsap.to(dots.current, {
         //   x: () => window.innerWidth - dots.current!.clientWidth - 100,
         //   ease: 'none',
@@ -368,69 +370,77 @@ export function AnotherNewHome(): JSX.Element {
         mode="light"
         flexDirection="column"
         justifyContent="center"
-        paddingTop="small"
+        paddingTop="xxxlarge"
         height="full"
         width="full"
-        className={cs('hero', styles.responsive)}
-        opacity={1}
+        className={styles.responsive}
       >
-        <Box display="flex" flexDirection="column" height="full">
-          <Box display={{ mobile: 'flex', desktop: 'none' }} marginBottom="medium" justifyContent="flexStart">
-            <RandomImage imageSet={1} mode="mobile" delay={3000} />
-          </Box>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent={{ mobile: 'flexStart', tablet: 'flexEnd' }}
-            marginRight={{ desktop: 'xxlarge' }}
-            marginY="small"
-          >
-            <RandomImage imageSet={2} mode="desktop" delay={2000} />
-            <Box
-              marginLeft={{ mobile: 'large', desktop: 'medium' }}
-              paddingRight={{ mobile: 'large', desktop: 'none' }}
-              className="hero-title italic"
-            >
-              Is your team
+        <Box opacity={0} position="relative" height="maxContent" className="hero">
+          <Box marginBottom="large" height="full">
+            <Box display="flex" flexDirection="column" height="full">
+              <Box display={{ mobile: 'flex', desktop: 'none' }} marginBottom="medium" justifyContent="flexStart">
+                <RandomImage imageSet={1} mode="mobile" delay={3000} />
+              </Box>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent={{ mobile: 'flexStart', tablet: 'flexEnd' }}
+                marginRight={{ desktop: 'xxlarge' }}
+                marginY="small"
+              >
+                <RandomImage imageSet={2} mode="desktop" delay={2000} />
+                <Box
+                  marginLeft={{ mobile: 'large', desktop: 'medium' }}
+                  paddingRight={{ mobile: 'large', desktop: 'none' }}
+                  className="hero-title italic"
+                >
+                  Is your team
+                </Box>
+              </Box>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent={{ mobile: 'flexStart', tablet: 'center' }}
+                marginLeft={{ mobile: 'none', tablet: 'xxxlarge' }}
+                marginY="small"
+              >
+                <Box flexGrow={1} className="hero-title italic" component="span">
+                  struggling
+                </Box>
+              </Box>
+              <Box
+                width="full"
+                display="flex"
+                alignItems="center"
+                marginY="small"
+                justifyContent={{ mobile: 'center', desktop: 'spaceAround' }}
+              >
+                <RandomImage imageSet={3} mode="desktop" delay={3000} />
+                <Box className="hero-title">To Deliver</Box>
+                <RandomImage imageSet={2} mode="desktop" delay={2500} />
+              </Box>
+              <Box className="hero-title" marginY="small">
+                <Box component="span">Frontend Features?</Box>
+              </Box>
+              <Box
+                display={{ mobile: 'flex', desktop: 'none' }}
+                justifyContent="flexEnd"
+                marginTop="small"
+                width="full"
+              >
+                <RandomImage imageSet={3} mode="mobile" delay={2500} />
+              </Box>
+              <Box display="flex" justifyContent="center" marginTop="large">
+                <Image
+                  ref={arrow}
+                  src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
+                  layout="constrained"
+                  width={28}
+                  height={37}
+                  alt="arrow down"
+                />
+              </Box>
             </Box>
-          </Box>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent={{ mobile: 'flexStart', tablet: 'center' }}
-            marginLeft={{ mobile: 'none', tablet: 'xxxlarge' }}
-            marginY="small"
-          >
-            <Box flexGrow={1} className="hero-title italic" component="span">
-              struggling
-            </Box>
-          </Box>
-          <Box
-            width="full"
-            display="flex"
-            alignItems="center"
-            marginY="small"
-            justifyContent={{ mobile: 'center', desktop: 'spaceAround' }}
-          >
-            <RandomImage imageSet={3} mode="desktop" delay={3000} />
-            <Box className="hero-title">To Deliver</Box>
-            <RandomImage imageSet={2} mode="desktop" delay={2500} />
-          </Box>
-          <Box className="hero-title" marginY="small">
-            <Box component="span">Frontend Features?</Box>
-          </Box>
-          <Box display={{ mobile: 'flex', desktop: 'none' }} justifyContent="flexEnd" marginTop="small" width="full">
-            <RandomImage imageSet={3} mode="mobile" delay={2500} />
-          </Box>
-          <Box display="flex" justifyContent="center" marginTop="large">
-            <Image
-              ref={arrow}
-              src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
-              layout="constrained"
-              width={28}
-              height={37}
-              alt="arrow down"
-            />
           </Box>
         </Box>
       </AnotherHomePanel>
