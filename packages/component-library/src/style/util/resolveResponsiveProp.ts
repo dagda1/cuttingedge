@@ -10,7 +10,7 @@ export const resolveResponsiveProp = <Keys extends string | number>(
   tabletAtoms: Record<Keys, string>,
   desktopAtoms: Record<Keys, string>,
   wideAtoms: Record<Keys, string>,
-) => {
+): string => {
   if (typeof value === 'string' || typeof value === 'number') {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return mobileAtoms[value!];
