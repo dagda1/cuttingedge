@@ -7,18 +7,18 @@ export const mobile = style({
       display: 'flex',
       alignItems: 'center',
     },
-    tablet: {
+    desktop: {
       display: 'none',
     },
   }),
 });
 
-export const tablet = style({
+export const desktop = style({
   ...responsiveStyle({
     mobile: {
       display: 'none',
     },
-    tablet: {
+    desktop: {
       display: 'flex',
       alignItems: 'center',
     },

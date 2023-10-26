@@ -1,3 +1,4 @@
+import type { BoxProps } from '@cutting/component-library';
 import { Box } from '@cutting/component-library';
 import { useInterval } from '@cutting/hooks';
 import { useState } from 'react';
@@ -25,11 +26,11 @@ const images3 = [
 
 const imageSets = [images1, images2, images3];
 
-interface RandomImageProps {
+type RandomImageProps = {
   imageSet: 1 | 2 | 3;
   delay?: number;
-  display: 'mobile' | 'tablet' | 'both';
-}
+  mode: 'mobile' | 'desktop' | 'both';
+} & BoxProps;
 
 function randomImage({ imageSet }: Pick<RandomImageProps, 'imageSet'>): string {
   const images = imageSets[imageSet - 1];
@@ -37,8 +38,8 @@ function randomImage({ imageSet }: Pick<RandomImageProps, 'imageSet'>): string {
   return images[index].src;
 }
 
-export function RandomImage({ imageSet, display, delay = 1500 }: RandomImageProps): JSX.Element {
-  const dimensions = { width: 240, height: 153 };
+export function RandomImage({ imageSet, mode, delay = 1500, ...props }: RandomImageProps): JSX.Element {
+  const dimensions = mode === 'mobile' ? { width: 100, height: 80 } : { width: 240, height: 153 };
   const [image, setImage] = useState(randomImage({ imageSet }));
 
   useInterval(() => {
@@ -50,8 +51,8 @@ export function RandomImage({ imageSet, display, delay = 1500 }: RandomImageProp
   return (
     <Box
       className={cs('hero-img', styles.container, {
-        [styles.mobile]: display === 'mobile',
-        [styles.tablet]: display === 'tablet',
+        [styles.mobile]: mode === 'mobile',
+        [styles.desktop]: mode === 'desktop',
       })}
       width="full"
       height="full"

@@ -15,7 +15,7 @@ import { Image } from '@unpic/react';
 import { assert } from 'assert-ts';
 import { Clients } from '~/components/Clients/Clients';
 import { horizontalLoop } from './loop';
-import { TopBubble } from './TopBubble/TopBubble';
+// import { TopBubble } from './TopBubble/TopBubble';
 import { range } from '@cutting/util';
 import { Dot } from './Dot/Dot';
 import { Services } from '../Panels/Services/Services';
@@ -29,8 +29,8 @@ export function AnotherNewHome(): JSX.Element {
   const breakglassRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const ctx = useRef<gsap.Context>();
-  const topBubble = useRef<HTMLDivElement>(null);
-  const topPane = useRef<HTMLDivElement>(null);
+  // const topBubble = useRef<HTMLDivElement>(null);
+  // const topPane = useRef<HTMLDivElement>(null);
   const arrow = useRef<HTMLImageElement>(null);
   const savedCallback = useRef<any>();
   const id = useRef<NodeJS.Timeout>();
@@ -72,7 +72,7 @@ export function AnotherNewHome(): JSX.Element {
       // assert(!!topPane.current);
       assert(!!dots.current);
 
-      const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
+      // const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
 
       ctx.current = gsap.context(() => {
         // gsap.to(window, {
@@ -179,163 +179,154 @@ export function AnotherNewHome(): JSX.Element {
             '<',
           );
 
-        const tl = gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: '.breaking',
-              start: 'top center+=20%',
-              end: 'top center-=10%',
-              scrub: true,
-              invalidateOnRefresh: true,
-            },
-          })
-          .to('.bglass-left', { x: -(width / 3 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
-          .to('.bglass-right', { x: width / 3 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<');
-
-        const tl2 = gsap.timeline({
-          scrollTrigger: {
-            start: (_) => tl.scrollTrigger!.end,
-            end: 'max',
-            pin: '.breaking',
-            pinSpacing: false,
-            pinReparent: true,
-          },
-        });
-
-        gsap
-          .timeline({
-            scrollTrigger: {
-              start: (_) => tl2.scrollTrigger!.end,
-              end: 'max',
-              pin: '.breaking',
-              pinSpacing: false,
-              pinReparent: true,
-            },
-          })
-          .to('.breaking', { opacity: 0, ease: 'sine.in' });
-
-        gsap.to(dots.current, {
-          x: () => window.innerWidth - dots.current!.clientWidth - 100,
-          ease: 'none',
-          stagger: 0.5,
-          scrollTrigger: {
-            trigger: dots.current,
-            start: 'top 75%',
-            end: 'top 25%',
-            scrub: true,
-          },
-        });
-
-        gsap
-          .timeline({
-            defaults: {
-              ease: 'none',
-            },
-            scrollTrigger: {
-              trigger: '.hero2',
-              start: 'top 50%',
-              end: 'top 25%',
-              pin: true,
-              scrub: true,
-            },
-          })
-          .to('.hero2', {
-            opacity: 1,
-          })
-          .fromTo(
-            '.hero-title2',
-            {
-              scaleY: 0,
-              opacity: 0,
-              ease: 'sine.in',
-              transformOrigin: 'top',
-              stagger: 0.03,
-              duration: 0.5,
-            },
-            {
-              opacity: 1,
-              y: '-10%',
-              scaleY: 1,
-              duration: 0.8,
-              ease: 'sine.out',
-            },
-            '<',
-          );
-
-        gsap
-          .timeline({
-            defaults: {
-              ease: 'none',
-            },
-            scrollTrigger: {
-              trigger: '.hero3',
-              start: 'top 50%',
-              end: 'top 25%',
-              pin: true,
-              scrub: true,
-            },
-          })
-          .to('.hero3', {
-            opacity: 1,
-          })
-          .fromTo(
-            '.hero-title3 .char',
-            {
-              scaleY: 0,
-              opacity: 0,
-              ease: 'sine.in',
-              transformOrigin: 'top',
-              stagger: 0.03,
-              duration: 0.5,
-            },
-            {
-              opacity: 1,
-              y: '-10%',
-              scaleY: 1,
-              duration: 0.8,
-              ease: 'sine.out',
-            },
-            '<',
-          );
-
-        const testimonials = document.querySelectorAll<HTMLDivElement>('.testimonial');
-
-        gsap.to(testimonials[0], {
-          yPercent: 15,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: 'testimonials',
-            start: 'center 25%', // the default values
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-
-        gsap.to(testimonials[1], {
-          yPercent: 50,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.testimonials',
-            // start: "top bottom", // the default values
-            // end: "bottom top",
-            scrub: true,
-          },
-        });
-
-        gsap.to(testimonials[2], {
-          yPercent: -25,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.testimonials',
-            // start: "top bottom", // the default values
-            // end: "bottom top",
-            scrub: true,
-          },
-        });
+        // const tl = gsap
+        //   .timeline({
+        //     scrollTrigger: {
+        //       trigger: '.breaking',
+        //       start: 'top center+=20%',
+        //       end: 'top center-=10%',
+        //       scrub: true,
+        //       invalidateOnRefresh: true,
+        //     },
+        //   })
+        //   .to('.bglass-left', { x: -(width / 3 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
+        //   .to('.bglass-right', { x: width / 3 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<');
+        // const tl2 = gsap.timeline({
+        //   scrollTrigger: {
+        //     start: (_) => tl.scrollTrigger!.end,
+        //     end: 'max',
+        //     pin: '.breaking',
+        //     pinSpacing: false,
+        //     pinReparent: true,
+        //   },
+        // });
+        // gsap
+        //   .timeline({
+        //     scrollTrigger: {
+        //       start: (_) => tl2.scrollTrigger!.end,
+        //       end: 'max',
+        //       pin: '.breaking',
+        //       pinSpacing: false,
+        //       pinReparent: true,
+        //     },
+        //   })
+        //   .to('.breaking', { opacity: 0, ease: 'sine.in' });
+        // gsap.to(dots.current, {
+        //   x: () => window.innerWidth - dots.current!.clientWidth - 100,
+        //   ease: 'none',
+        //   stagger: 0.5,
+        //   scrollTrigger: {
+        //     trigger: dots.current,
+        //     start: 'top 75%',
+        //     end: 'top 25%',
+        //     scrub: true,
+        //   },
+        // });
+        // gsap
+        //   .timeline({
+        //     defaults: {
+        //       ease: 'none',
+        //     },
+        //     scrollTrigger: {
+        //       trigger: '.hero2',
+        //       start: 'top 50%',
+        //       end: 'top 25%',
+        //       pin: true,
+        //       scrub: true,
+        //     },
+        //   })
+        //   .to('.hero2', {
+        //     opacity: 1,
+        //   })
+        //   .fromTo(
+        //     '.hero-title2',
+        //     {
+        //       scaleY: 0,
+        //       opacity: 0,
+        //       ease: 'sine.in',
+        //       transformOrigin: 'top',
+        //       stagger: 0.03,
+        //       duration: 0.5,
+        //     },
+        //     {
+        //       opacity: 1,
+        //       y: '-10%',
+        //       scaleY: 1,
+        //       duration: 0.8,
+        //       ease: 'sine.out',
+        //     },
+        //     '<',
+        //   );
+        // gsap
+        //   .timeline({
+        //     defaults: {
+        //       ease: 'none',
+        //     },
+        //     scrollTrigger: {
+        //       trigger: '.hero3',
+        //       start: 'top 50%',
+        //       end: 'top 25%',
+        //       pin: true,
+        //       scrub: true,
+        //     },
+        //   })
+        //   .to('.hero3', {
+        //     opacity: 1,
+        //   })
+        //   .fromTo(
+        //     '.hero-title3 .char',
+        //     {
+        //       scaleY: 0,
+        //       opacity: 0,
+        //       ease: 'sine.in',
+        //       transformOrigin: 'top',
+        //       stagger: 0.03,
+        //       duration: 0.5,
+        //     },
+        //     {
+        //       opacity: 1,
+        //       y: '-10%',
+        //       scaleY: 1,
+        //       duration: 0.8,
+        //       ease: 'sine.out',
+        //     },
+        //     '<',
+        //   );
+        // const testimonials = document.querySelectorAll<HTMLDivElement>('.testimonial');
+        // gsap.to(testimonials[0], {
+        //   yPercent: 15,
+        //   ease: 'none',
+        //   scrollTrigger: {
+        //     trigger: 'testimonials',
+        //     start: 'center 25%', // the default values
+        //     end: 'bottom top',
+        //     scrub: true,
+        //   },
+        // });
+        // gsap.to(testimonials[1], {
+        //   yPercent: 50,
+        //   ease: 'none',
+        //   scrollTrigger: {
+        //     trigger: '.testimonials',
+        //     // start: "top bottom", // the default values
+        //     // end: "bottom top",
+        //     scrub: true,
+        //   },
+        // });
+        // gsap.to(testimonials[2], {
+        //   yPercent: -25,
+        //   ease: 'none',
+        //   scrollTrigger: {
+        //     trigger: '.testimonials',
+        //     // start: "top bottom", // the default values
+        //     // end: "bottom top",
+        //     scrub: true,
+        //   },
+        // });
       });
     }
 
-    // setTimeout(main, 1000);
+    setTimeout(main, 1000);
     return () => {
       ctx.current?.revert();
     };
@@ -362,7 +353,7 @@ export function AnotherNewHome(): JSX.Element {
   }, [width]);
 
   return (
-    <Box paddingBottom="large" ref={container} height="full" width="full" style={{ marginTop: '-5rem' }}>
+    <Box paddingBottom="large" ref={container} height="full" width="full">
       {/* <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <Image
@@ -377,54 +368,59 @@ export function AnotherNewHome(): JSX.Element {
         mode="light"
         flexDirection="column"
         justifyContent="center"
-        paddingTop="xxxlarge"
+        paddingTop="small"
         height="full"
         width="full"
-        marginTop="large"
         className={cs('hero', styles.responsive)}
         opacity={1}
       >
-        <Box display="flex" flexDirection="column" style={{ border: '10px solid cyan' }} height="full">
+        <Box display="flex" flexDirection="column" height="full">
+          <Box display={{ mobile: 'flex', desktop: 'none' }} marginBottom="medium" justifyContent="flexStart">
+            <RandomImage imageSet={1} mode="mobile" delay={3000} />
+          </Box>
           <Box
-            display={{ mobile: 'flex', tablet: 'none' }}
-            justifyContent="flexStart"
-            position="relative"
-            style={{ top: '-10px' }}
+            display="flex"
+            alignItems="center"
+            justifyContent={{ mobile: 'flexStart', tablet: 'flexEnd' }}
+            marginRight={{ desktop: 'xxlarge' }}
+            marginY="small"
           >
-            <RandomImage imageSet={1} display="mobile" delay={2000} />
-          </Box>
-          <Box display="flex" alignItems="center">
-            <RandomImage imageSet={2} display="tablet" delay={2000} />
+            <RandomImage imageSet={2} mode="desktop" delay={2000} />
             <Box
-              marginLeft={{ mobile: 'large', desktop: 'xxxlarge', tablet: 'none' }}
-              paddingRight={{ mobile: 'large' }}
+              marginLeft={{ mobile: 'large', desktop: 'medium' }}
+              paddingRight={{ mobile: 'large', desktop: 'none' }}
               className="hero-title italic"
             >
-              Is your
-            </Box>
-            <Box position="relative" style={{ top: '-50px' }}>
-              <RandomImage imageSet={2} display="mobile" delay={2000} />
+              Is your team
             </Box>
           </Box>
-          <Box className="hero-title italic" marginLeft={{ mobile: 'none', desktop: 'xxxlarge' }}>
-            team struggling
-          </Box>
-          <Box height="full" width="full" display="flex" alignItems="center">
-            <RandomImage imageSet={3} display="tablet" delay={3000} />
-            <Box
-              className="hero-title italic"
-              marginRight={{ mobile: 'xxxlarge', desktop: 'xxxlarge' }}
-              marginLeft={{ mobile: 'xxxlarge', desktop: 'xxxlarge' }}
-            >
-              To Deliver
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent={{ mobile: 'flexStart', tablet: 'center' }}
+            marginLeft={{ mobile: 'none', tablet: 'xxxlarge' }}
+            marginY="small"
+          >
+            <Box flexGrow={1} className="hero-title italic" component="span">
+              struggling
             </Box>
-            <RandomImage imageSet={2} display="tablet" delay={2500} />
           </Box>
-          <Box className="hero-title">
+          <Box
+            width="full"
+            display="flex"
+            alignItems="center"
+            marginY="small"
+            justifyContent={{ mobile: 'center', desktop: 'spaceAround' }}
+          >
+            <RandomImage imageSet={3} mode="desktop" delay={3000} />
+            <Box className="hero-title">To Deliver</Box>
+            <RandomImage imageSet={2} mode="desktop" delay={2500} />
+          </Box>
+          <Box className="hero-title" marginY="small">
             <Box component="span">Frontend Features?</Box>
           </Box>
-          <Box display={{ mobile: 'flex', tablet: 'none' }} justifyContent="flexStart">
-            <RandomImage imageSet={3} display="mobile" delay={2000} />
+          <Box display={{ mobile: 'flex', desktop: 'none' }} justifyContent="flexEnd" marginTop="small" width="full">
+            <RandomImage imageSet={3} mode="mobile" delay={2500} />
           </Box>
           <Box display="flex" justifyContent="center" marginTop="large">
             <Image
