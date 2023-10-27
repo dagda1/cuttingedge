@@ -165,7 +165,7 @@ export function AnotherNewHome(): JSX.Element {
           .to(
             '.hero-img img',
             {
-              y: '-380%',
+              y: '-40%',
               duration: 0.8,
             },
             '<',
@@ -215,8 +215,8 @@ export function AnotherNewHome(): JSX.Element {
               invalidateOnRefresh: true,
             },
           })
-          .to('.bglass-left', { x: -(width / 3 - imageWidth), duration: 1 })
-          .to('.bglass-right', { x: width / 3 - imageWidth, duration: 1 }, '<');
+          .to('.bglass-left', { x: -width, duration: 1 })
+          .to('.bglass-right', { x: width - imageWidth, duration: 1 }, '<');
 
         gsap.timeline({
           scrollTrigger: {
@@ -234,7 +234,6 @@ export function AnotherNewHome(): JSX.Element {
             scrollTrigger: {
               trigger: '.hero2',
               scrub: true,
-              markers: true,
             },
           })
           .fromTo('.breaking', { opacity: 1, scaleY: 1 }, { scaleY: 0, opacity: 0, duration: 1 });
@@ -286,42 +285,45 @@ export function AnotherNewHome(): JSX.Element {
             },
             '<',
           );
-        // gsap
-        //   .timeline({
-        //     defaults: {
-        //       ease: 'none',
-        //     },
-        //     scrollTrigger: {
-        //       trigger: '.hero3',
-        //       start: 'top 50%',
-        //       end: 'top 25%',
-        //       pin: true,
-        //       scrub: true,
-        //     },
-        //   })
-        //   .to('.hero3', {
-        //     opacity: 1,
-        //   })
-        //   .fromTo(
-        //     '.hero-title3 .char',
-        //     {
-        //       scaleY: 0,
-        //       opacity: 0,
-        //       ease: 'sine.in',
-        //       transformOrigin: 'top',
-        //       stagger: 0.03,
-        //       duration: 0.5,
-        //     },
-        //     {
-        //       opacity: 1,
-        //       y: '-10%',
-        //       scaleY: 1,
-        //       duration: 0.8,
-        //       ease: 'sine.out',
-        //     },
-        //     '<',
-        //   );
+
+        gsap
+          .timeline({
+            defaults: {
+              ease: 'none',
+            },
+            scrollTrigger: {
+              trigger: '.hero3',
+              start: 'top 50%',
+              end: 'top 25%',
+              pin: true,
+              scrub: true,
+            },
+          })
+          .to('.hero3', {
+            opacity: 1,
+          })
+          .fromTo(
+            '.hero-title3 .char',
+            {
+              scaleY: 0,
+              opacity: 0,
+              ease: 'sine.in',
+              transformOrigin: 'top',
+              stagger: 0.03,
+              duration: 0.5,
+            },
+            {
+              opacity: 1,
+              y: '-10%',
+              scaleY: 1,
+              duration: 0.8,
+              ease: 'sine.out',
+            },
+            '<',
+          );
+
         // const testimonials = document.querySelectorAll<HTMLDivElement>('.testimonial');
+
         // gsap.to(testimonials[0], {
         //   yPercent: 15,
         //   ease: 'none',
@@ -485,9 +487,7 @@ export function AnotherNewHome(): JSX.Element {
           height="maxContent"
         >
           <Box>
-            <Box className="hero-title2" marginLeft={{ mobile: 'large' }}>
-              I can
-            </Box>
+            <Box className="hero-title2">I can</Box>
             <Box className="hero-title2">help</Box>
             <Box className="hero-title2">when....</Box>
           </Box>

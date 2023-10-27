@@ -45,7 +45,7 @@ export const topBubble = style({
   position: 'relative',
 });
 
-globalStyle('.hero-title, .hero-title2', {
+globalStyle('.hero-title', {
   fontFamily: vars.fontFamily.heading,
   textTransform: 'uppercase',
   ...responsiveStyle({
@@ -76,13 +76,13 @@ globalStyle('.hero-image img', {
   opacity: 0,
 });
 
-globalStyle('.hero-title3', {
+globalStyle('.hero-title2,.hero-title3', {
   fontFamily: vars.fontFamily.heading,
   textTransform: 'uppercase',
   ...responsiveStyle({
     mobile: {
-      fontSize: '1rem',
-      lineHeight: '1rem',
+      fontSize: '2rem',
+      lineHeight: '3rem',
     },
     desktop: {
       fontSize: '4rem',
