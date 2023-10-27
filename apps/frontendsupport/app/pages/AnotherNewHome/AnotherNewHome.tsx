@@ -87,6 +87,22 @@ export function AnotherNewHome(): JSX.Element {
               ease: 'none',
             },
           })
+          .fromTo(
+            '.top-nav',
+            {
+              opacity: 0,
+              scaleY: 0,
+            },
+            {
+              scaleY: 1,
+              opacity: 1,
+              ease: 'sine.out',
+              transformOrigin: 'top',
+              stagger: 0.03,
+              duration: 0.8,
+            },
+            '<',
+          )
           .to(
             '.hero',
             {
@@ -139,9 +155,6 @@ export function AnotherNewHome(): JSX.Element {
               markers: true,
             },
           })
-          .to(arrow.current, {
-            display: 'none',
-          })
           .to(
             '.hero-img',
             {
@@ -153,7 +166,7 @@ export function AnotherNewHome(): JSX.Element {
           .to(
             '.hero-img img',
             {
-              y: '-40%',
+              y: '-380%',
               duration: 0.8,
             },
             '<',
@@ -167,8 +180,12 @@ export function AnotherNewHome(): JSX.Element {
             },
             '<',
           )
-          .to(
+          .fromTo(
             '.hero-title .split-word',
+            {
+              scaleY: 1,
+              opacity: 1,
+            },
             {
               scaleY: 0,
               opacity: 0,
@@ -178,6 +195,15 @@ export function AnotherNewHome(): JSX.Element {
               duration: 0.5,
             },
             '<',
+          )
+          .fromTo(
+            arrow.current,
+            {
+              opacity: 1,
+            },
+            {
+              opacity: 0,
+            },
           );
 
         // const tl = gsap
@@ -192,6 +218,7 @@ export function AnotherNewHome(): JSX.Element {
         //   })
         //   .to('.bglass-left', { x: -(width / 3 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
         //   .to('.bglass-right', { x: width / 3 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<');
+
         // const tl2 = gsap.timeline({
         //   scrollTrigger: {
         //     start: (_) => tl.scrollTrigger!.end,
@@ -201,6 +228,7 @@ export function AnotherNewHome(): JSX.Element {
         //     pinReparent: true,
         //   },
         // });
+
         // gsap
         //   .timeline({
         //     scrollTrigger: {
@@ -355,7 +383,7 @@ export function AnotherNewHome(): JSX.Element {
   }, [width]);
 
   return (
-    <Box paddingBottom="large" ref={container} height="full" width="full">
+    <Box paddingBottom="large" ref={container} height="full">
       {/* <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <Image
@@ -377,7 +405,7 @@ export function AnotherNewHome(): JSX.Element {
       >
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
-            <Box display="flex" flexDirection="column" height="full">
+            <Box height="full" display="flex" justifyContent="center" flexDirection="column">
               <Box display={{ mobile: 'flex', desktop: 'none' }} marginBottom="medium" justifyContent="flexStart">
                 <RandomImage imageSet={1} mode="mobile" delay={3000} />
               </Box>

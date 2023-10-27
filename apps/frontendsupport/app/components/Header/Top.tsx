@@ -10,7 +10,7 @@ export function TopNav(): JSX.Element {
   const [open, setOpen] = useState(false);
   const toggle = useCallback(() => setOpen(!open), [open]);
   return (
-    <Box width="full" maxWidth="large" opacity={0}>
+    <Box width="full" maxWidth="large" opacity={0} className="top-nav">
       <Nav open={open} toggle={toggle} justifyContent="spaceAround" hamburgerVariant="light">
         <NavItems>
           <NavItem display="Always">
