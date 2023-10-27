@@ -1,7 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const breaking = style({
-  background: '#138F4A',
+  // background: '#138F4A',
 });
 
 globalStyle('.bglass-left', {

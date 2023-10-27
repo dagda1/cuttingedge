@@ -72,7 +72,7 @@ export function AnotherNewHome(): JSX.Element {
       // assert(!!topPane.current);
       assert(!!dots.current);
 
-      // const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
+      const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
 
       ctx.current = gsap.context(() => {
         // gsap.to(window, {
@@ -152,7 +152,6 @@ export function AnotherNewHome(): JSX.Element {
               end: 'bottom top+=20%',
               pin: true,
               scrub: true,
-              markers: true,
             },
           })
           .to(
@@ -206,40 +205,39 @@ export function AnotherNewHome(): JSX.Element {
             },
           );
 
-        // const tl = gsap
-        //   .timeline({
-        //     scrollTrigger: {
-        //       trigger: '.breaking',
-        //       start: 'top center+=20%',
-        //       end: 'top center-=10%',
-        //       scrub: true,
-        //       invalidateOnRefresh: true,
-        //     },
-        //   })
-        //   .to('.bglass-left', { x: -(width / 3 - imageWidth), duration: 1, ease: 'expoScale(0.5,7,none)' })
-        //   .to('.bglass-right', { x: width / 3 - imageWidth, duration: 1, ease: 'expoScale(0.5,7,none)' }, '<');
+        const tl = gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: '.breaking',
+              start: 'top 80%',
+              end: 'max',
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          })
+          .to('.bglass-left', { x: -(width / 3 - imageWidth), duration: 1 })
+          .to('.bglass-right', { x: width / 3 - imageWidth, duration: 1 }, '<');
 
-        // const tl2 = gsap.timeline({
-        //   scrollTrigger: {
-        //     start: (_) => tl.scrollTrigger!.end,
-        //     end: 'max',
-        //     pin: '.breaking',
-        //     pinSpacing: false,
-        //     pinReparent: true,
-        //   },
-        // });
+        gsap.timeline({
+          scrollTrigger: {
+            start: (_) => tl.scrollTrigger!.end,
+            end: 'max',
+            pin: '.breaking',
+            pinSpacing: false,
+            pinReparent: true,
+            scrub: true,
+          },
+        });
 
-        // gsap
-        //   .timeline({
-        //     scrollTrigger: {
-        //       start: (_) => tl2.scrollTrigger!.end,
-        //       end: 'max',
-        //       pin: '.breaking',
-        //       pinSpacing: false,
-        //       pinReparent: true,
-        //     },
-        //   })
-        //   .to('.breaking', { opacity: 0, ease: 'sine.in' });
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: '.hero2',
+              scrub: true,
+              markers: true,
+            },
+          })
+          .fromTo('.breaking', { opacity: 1, scaleY: 1 }, { scaleY: 0, opacity: 0, duration: 1 });
 
         // gsap.to(dots.current, {
         //   x: () => window.innerWidth - dots.current!.clientWidth - 100,
@@ -252,41 +250,42 @@ export function AnotherNewHome(): JSX.Element {
         //     scrub: true,
         //   },
         // });
-        // gsap
-        //   .timeline({
-        //     defaults: {
-        //       ease: 'none',
-        //     },
-        //     scrollTrigger: {
-        //       trigger: '.hero2',
-        //       start: 'top 50%',
-        //       end: 'top 25%',
-        //       pin: true,
-        //       scrub: true,
-        //     },
-        //   })
-        //   .to('.hero2', {
-        //     opacity: 1,
-        //   })
-        //   .fromTo(
-        //     '.hero-title2',
-        //     {
-        //       scaleY: 0,
-        //       opacity: 0,
-        //       ease: 'sine.in',
-        //       transformOrigin: 'top',
-        //       stagger: 0.03,
-        //       duration: 0.5,
-        //     },
-        //     {
-        //       opacity: 1,
-        //       y: '-10%',
-        //       scaleY: 1,
-        //       duration: 0.8,
-        //       ease: 'sine.out',
-        //     },
-        //     '<',
-        //   );
+
+        gsap
+          .timeline({
+            defaults: {
+              ease: 'none',
+            },
+            scrollTrigger: {
+              trigger: '.hero2',
+              start: 'top 50%',
+              end: 'top 25%',
+              pin: true,
+              scrub: true,
+            },
+          })
+          .to('.hero2', {
+            opacity: 1,
+          })
+          .fromTo(
+            '.hero-title2',
+            {
+              scaleY: 0,
+              opacity: 0,
+              ease: 'sine.in',
+              transformOrigin: 'top',
+              stagger: 0.03,
+              duration: 0.5,
+            },
+            {
+              opacity: 1,
+              y: '-10%',
+              scaleY: 1,
+              duration: 0.8,
+              ease: 'sine.out',
+            },
+            '<',
+          );
         // gsap
         //   .timeline({
         //     defaults: {
