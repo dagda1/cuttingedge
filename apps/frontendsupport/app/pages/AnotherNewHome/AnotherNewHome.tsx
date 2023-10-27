@@ -10,7 +10,7 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
 import * as styles from './AnotherNewHome.css';
 import cs from 'classnames';
-import { RandomImage } from '../../components/RandomImage/RandomImage';
+import { RandomImage } from '~/components/RandomImage/RandomImage';
 import { Image } from '@unpic/react';
 import { assert } from 'assert-ts';
 import { Clients } from '~/components/Clients/Clients';
