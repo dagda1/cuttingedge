@@ -50,8 +50,8 @@ globalStyle('.hero-title', {
   textTransform: 'uppercase',
   ...responsiveStyle({
     mobile: {
-      fontSize: '2.75rem',
-      lineHeight: '3rem',
+      fontSize: '2rem',
+      lineHeight: '2rem',
     },
     tablet: {
       fontSize: '4rem',

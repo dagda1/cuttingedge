@@ -165,7 +165,7 @@ export function AnotherNewHome(): JSX.Element {
           .to(
             '.hero-img img',
             {
-              y: '-40%',
+              y: '-240%',
               duration: 0.8,
             },
             '<',
@@ -209,10 +209,11 @@ export function AnotherNewHome(): JSX.Element {
           .timeline({
             scrollTrigger: {
               trigger: '.breaking',
-              start: 'top 80%',
+              start: 'top 40%',
               end: 'max',
               scrub: true,
               invalidateOnRefresh: true,
+              markers: true,
             },
           })
           .to('.bglass-left', { x: -width, duration: 1 })
@@ -405,13 +406,8 @@ export function AnotherNewHome(): JSX.Element {
       >
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
-            <Box height="full" display="flex" justifyContent="center" flexDirection="column" alignItems="center">
-              <Box
-                display={{ mobile: 'flex', desktop: 'none' }}
-                width="full"
-                justifyContent="center"
-                marginBottom="large"
-              >
+            <Box height="full" display="flex" justifyContent="center" flexDirection="column">
+              <Box display={{ mobile: 'flex', desktop: 'none' }} width="full" justifyContent="center" marginTop="large">
                 <RandomImage display="flex" justifyContent="center" imageSet={1} mode="mobile" delay={3000} />
               </Box>
               <Box
@@ -467,7 +463,7 @@ export function AnotherNewHome(): JSX.Element {
                 <RandomImage display="flex" justifyContent="center" imageSet={2} mode="mobile" delay={3000} />
               </Box>
 
-              <Box display="flex" justifyContent="center" marginTop="large">
+              <Box display="flex" justifyContent="center" marginTop={{ mobile: 'none', desktop: 'large' }}>
                 <Image
                   ref={arrow}
                   src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
