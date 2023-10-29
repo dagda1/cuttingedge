@@ -399,16 +399,20 @@ export function AnotherNewHome(): JSX.Element {
         mode="light"
         flexDirection="column"
         justifyContent="center"
-        paddingTop="xxxlarge"
         height="full"
         width="full"
         className={styles.responsive}
       >
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
-            <Box height="full" display="flex" justifyContent="center" flexDirection="column">
-              <Box display={{ mobile: 'flex', desktop: 'none' }} marginBottom="medium" justifyContent="flexStart">
-                <RandomImage imageSet={1} mode="mobile" delay={3000} />
+            <Box height="full" display="flex" justifyContent="center" flexDirection="column" alignItems="center">
+              <Box
+                display={{ mobile: 'flex', desktop: 'none' }}
+                width="full"
+                justifyContent="center"
+                marginBottom="large"
+              >
+                <RandomImage display="flex" justifyContent="center" imageSet={1} mode="mobile" delay={3000} />
               </Box>
               <Box
                 display="flex"
@@ -419,21 +423,15 @@ export function AnotherNewHome(): JSX.Element {
               >
                 <RandomImage imageSet={2} mode="desktop" delay={2000} />
                 <Box
-                  marginLeft={{ mobile: 'large', desktop: 'medium' }}
-                  paddingRight={{ mobile: 'large', desktop: 'none' }}
+                  marginLeft={{ mobile: 'medium', desktop: 'medium' }}
+                  paddingRight={{ mobile: 'none', desktop: 'none' }}
                   className="hero-title italic"
                 >
                   Is your team
                 </Box>
               </Box>
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent={{ mobile: 'flexStart', tablet: 'center' }}
-                marginLeft={{ mobile: 'none', tablet: 'xxxlarge' }}
-                marginY="small"
-              >
-                <Box flexGrow={1} className="hero-title italic" component="span">
+              <Box display="flex" alignItems="center" justifyContent="center" marginY="small">
+                <Box display="flex" className="hero-title italic" component="span">
                   struggling
                 </Box>
               </Box>
@@ -448,17 +446,27 @@ export function AnotherNewHome(): JSX.Element {
                 <Box className="hero-title">To Deliver</Box>
                 <RandomImage imageSet={2} mode="desktop" delay={2500} />
               </Box>
-              <Box className="hero-title" marginY="small">
+              <Box display={{ mobile: 'none', desktop: 'block' }} className="hero-title" marginY="small">
                 <Box component="span">Frontend Features?</Box>
               </Box>
-              <Box
-                display={{ mobile: 'flex', desktop: 'none' }}
-                justifyContent="flexEnd"
-                marginTop="small"
-                width="full"
-              >
-                <RandomImage imageSet={3} mode="mobile" delay={2500} />
+              <Box display={{ mobile: 'block', desktop: 'none' }} justifyContent="center" width="full">
+                <Box display="flex" justifyContent="center" className="hero-title" marginY="small">
+                  Frontend
+                </Box>
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  className="hero-title"
+                  marginTop="medium"
+                  marginBottom="xlarge"
+                >
+                  Features?
+                </Box>
               </Box>
+              <Box display={{ mobile: 'flex', desktop: 'none' }} width="full" justifyContent="center">
+                <RandomImage display="flex" justifyContent="center" imageSet={2} mode="mobile" delay={3000} />
+              </Box>
+
               <Box display="flex" justifyContent="center" marginTop="large">
                 <Image
                   ref={arrow}

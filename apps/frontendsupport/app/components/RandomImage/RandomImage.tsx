@@ -56,6 +56,7 @@ export function RandomImage({ imageSet, mode, delay = 1500, ...props }: RandomIm
       })}
       width="full"
       height="full"
+      {...props}
     >
       <LazyLoadedImage width={dimensions.width} height={dimensions.height} alt="random" loading="lazy" src={image} />
     </Box>
