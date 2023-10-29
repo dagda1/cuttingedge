@@ -190,8 +190,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       gsap:
-        specifier: npm:@gsap/shockingly@^3.12.2
-        version: npm.greensock.com/@gsap/shockingly@3.12.2
+        specifier: ^3.12.2
+        version: 3.12.2
       image-size:
         specifier: ^1.0.2
         version: 1.0.2
@@ -404,8 +404,8 @@ importers:
         specifier: ^0.3.4
         version: 0.3.4
       gsap:
-        specifier: npm:@gsap/shockingly@^3.12.2
-        version: npm.greensock.com/@gsap/shockingly@3.12.2
+        specifier: ^3.12.2
+        version: 3.12.2
       lil-gui:
         specifier: ^0.18.2
         version: 0.18.2
@@ -16141,6 +16141,10 @@ packages:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
+  /gsap@3.12.2:
+    resolution: {integrity: sha512-EkYnpG8qHgYBFAwsgsGEqvT1WUidX0tt/ijepx7z8EUJHElykg91RvW1XbkT59T0gZzzszOpjQv7SE41XuIXyQ==}
+    dev: false
+
   /gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
     hasBin: true
@@ -26533,9 +26537,3 @@ packages:
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
-
-  npm.greensock.com/@gsap/shockingly@3.12.2:
-    resolution: {integrity: sha512-kYmkwAQ53GzBxs+e8pu/BCzUMrfJoBSEE1JI5HB6wUGDt9yuR/XTwSNfRCBzbuzy/zR9HgqubZnU59LhOiOzwA==, registry: https://npm.greensock.com/, tarball: https://npm.greensock.com/@gsap/shockingly/-/shockingly-3.12.2.tgz}
-    name: gsap
-    version: 3.12.2
-    dev: false

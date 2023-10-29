@@ -40,7 +40,7 @@
     "format": "^0.2.2",
     "front-matter": "^4.0.2",
     "github-slugger": "^2.0.0",
-    "gsap": "npm:@gsap/shockingly@^3.12.2",
+    "gsap": "^3.12.2",
     "image-size": "^1.0.2",
     "is-buffer": "^2.0.5",
     "is-plain-obj": "^4.1.0",
@@ -120,5 +120,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "pnpm": {
+    "overrides": {
+      "gsap": "npm:@gsap/shockingly@^3.12.2"
+    }
+  }
 }
