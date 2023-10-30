@@ -8,18 +8,16 @@ import { BreakGlass } from '../Panels/BreakGlass/BreakGlass.js';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
-import * as styles from './Home.css';
+import * as styles from './Home.css.js';
 import cs from 'classnames';
-import { RandomImage } from '../../components/RandomImage/RandomImage.js';
-import { Image } from '@unpic/react';
 import { assert } from 'assert-ts';
 import { Clients } from '~/components/Clients/Clients.js';
 import { horizontalLoop } from './loop.js';
 // import { TopBubble } from './TopBubble/TopBubble';
 import { range } from '@cutting/util';
-import { Dot } from './Dot/Dot.js';
 import { Services } from '../Panels/Services/Services.js';
 import { About } from '~/components/About/About.js';
+import { Dots } from './Dots/Dots.js';
 
 const numberOfDots = [...range(20)];
 
@@ -34,7 +32,6 @@ export function Home(): JSX.Element {
   const arrow = useRef<HTMLImageElement>(null);
   const savedCallback = useRef<any>();
   const id = useRef<NodeJS.Timeout>();
-  const dots = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -62,6 +59,7 @@ export function Home(): JSX.Element {
       wordsClass: 'word',
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function main() {
       if (!width) {
         return;
@@ -70,7 +68,6 @@ export function Home(): JSX.Element {
       assert(!!breakglassRef.current);
       assert(!!imageRef.current);
       // assert(!!topPane.current);
-      assert(!!dots.current);
 
       const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
 
@@ -213,7 +210,6 @@ export function Home(): JSX.Element {
               end: 'max',
               scrub: true,
               invalidateOnRefresh: true,
-              markers: true,
             },
           })
           .to('.bglass-left', { x: -width, duration: 1 })
@@ -358,7 +354,7 @@ export function Home(): JSX.Element {
       });
     }
 
-    setTimeout(main, 1000);
+    // setTimeout(main, 1000);
     return () => {
       ctx.current?.revert();
     };
@@ -396,7 +392,7 @@ export function Home(): JSX.Element {
         </Box>
       </Box>
       <TopBubble innerRef={topBubble} mode="light" /> */}
-      <HomePanel
+      {/* <HomePanel
         mode="light"
         flexDirection="column"
         justifyContent="center"
@@ -477,11 +473,12 @@ export function Home(): JSX.Element {
             </Box>
           </Box>
         </Box>
-      </HomePanel>
+      </HomePanel> */}
       <HomePanel>
         <BreakGlass container={breakglassRef} image={imageRef} />
       </HomePanel>
-      <HomePanel mode="dark" className="hero2" opacity={0}>
+      <HomePanel height="full">Remove this</HomePanel>
+      <HomePanel mode="dark" className="hero2" opacity={1}>
         <Box
           display="flex"
           flexDirection="column"
@@ -498,13 +495,7 @@ export function Home(): JSX.Element {
           </Box>
         </Box>
       </HomePanel>
-      <HomePanel overflowX="hidden">
-        <Box display="flex" className="dots" ref={dots}>
-          {numberOfDots.map((_, i) => (
-            <Dot key={i} background={i == 13 ? '#ffffff' : '#1f1f1f'} />
-          ))}
-        </Box>
-      </HomePanel>
+      <Dots width={width} />
       <HomePanel className="hero3" opacity={0}>
         <Box maxWidth="large">
           <List space="xxxlarge" type="none">
