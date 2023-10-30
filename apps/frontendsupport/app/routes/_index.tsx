@@ -1,5 +1,5 @@
-import { AnotherNewHome } from '~/pages/AnotherNewHome/AnotherNewHome.js';
+import { Home as HomePage } from '~/pages/Home/Home.js';
 
 export default function Home() {
-  return <AnotherNewHome />;
+  return <HomePage />;
 }
