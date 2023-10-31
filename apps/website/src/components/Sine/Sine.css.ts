@@ -42,3 +42,7 @@ export const axis = style({
 export const verticalGuide = style({});
 export const dot = style({});
 export const axisDot = style({});
+
+globalStyle(`${main} foreignObject`, {
+  width: '6.75rem',
+});
