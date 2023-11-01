@@ -40,7 +40,7 @@ const useStackItem = ({ align, space, component }: UseStackItemProps) =>
           flexDirection: 'column' as const,
           alignItems: alignToFlexAlign(align),
         }),
-  } as const);
+  }) as const;
 
 export interface StackProps {
   component?: (typeof validStackComponents)[number];

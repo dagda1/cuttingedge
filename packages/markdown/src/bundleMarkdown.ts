@@ -28,7 +28,9 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
   const { default: rehypeSlug } = await import('rehype-slug');
   const { default: remarkMath } = await import('remark-math');
 
-  const { default: rehypeKatex } = await import('rehype-mathjax');
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const { default: rehypeMathjax } = await import('rehype-mathjax');
   const { default: rehypeCitation } = await import('rehype-citation');
   const { default: rehypePrismPlus } = await import('rehype-prism-plus');
   const { default: rehypeRaw } = await import('rehype-raw');
@@ -55,7 +57,7 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
         ...(options.rehypePlugins ?? []),
         rehypeAutolinkHeadings,
         rehypeSlug,
-        rehypeKatex,
+        rehypeMathjax,
         [rehypeCitation, { path: join(root, 'data') }],
         [rehypePrismPlus, { ignoreMissing: true }],
         rehypePresetMinify,
