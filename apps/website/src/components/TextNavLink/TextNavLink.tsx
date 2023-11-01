@@ -12,7 +12,7 @@ const TextNavLinkWrapper = forwardRef<HTMLAnchorElement, Props>(({ Component = N
   const linkStyles = useGetTextStyles();
   const classes =
     typeof className === 'function'
-      ? (p: { isActive: boolean; isPending: boolean }) => cs(className(p), linkStyles)
+      ? (p: { isActive: boolean; isPending: boolean; isTransitioning: boolean }) => cs(className(p), linkStyles)
       : cs(className, linkStyles);
 
   return <Component ref={ref} className={classes} {...props} />;

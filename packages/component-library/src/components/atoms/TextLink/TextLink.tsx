@@ -31,7 +31,7 @@ export interface TextLinkProps extends TextLinkStyles, Omit<LinkComponentProps, 
 export type LinkComponent = ReturnType<typeof makeLinkComponent> | ComponentType<LinkComponentProps>;
 
 export const makeLinkComponent = (render: ForwardRefRenderFunction<HTMLAnchorElement, LinkComponentProps>) =>
-  ({ __forwardRef__: forwardRef(render) } as const);
+  ({ __forwardRef__: forwardRef(render) }) as const;
 
 // eslint-disable-next-line jsx-a11y/anchor-has-content
 const DefaultLinkComponent = makeLinkComponent((props, ref) => <a ref={ref} {...props} />);
