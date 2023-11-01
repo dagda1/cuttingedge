@@ -6,12 +6,13 @@ import react from '@vitejs/plugin-react';
 import mdx from '@mdx-js/rollup';
 import { isProduction } from '@cutting/util';
 import { createRequire } from 'module';
+import type { PluginOption } from 'vite';
 
 const require = createRequire(import.meta.url);
 
 export default defineConfig({
   plugins: [
-    react(),
+    react() as PluginOption,
     tsconfigPaths(),
     vanillaExtractPlugin({ emitCssInSsr: true }),
     svgrPlugin({ svgrOptions: { icon: true } }),

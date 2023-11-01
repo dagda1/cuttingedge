@@ -10,5 +10,11 @@
     { "path": "../util/tsconfig.dist.json" },
     { "path": "../component-library/tsconfig.dist.json" }
   ],
+  "files": ["node_modules/rehype-mathjax/svg.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "node_modules/rehype-mathjax/svg.d.ts"
+  ],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
 }
