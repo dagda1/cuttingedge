@@ -495,7 +495,9 @@ export function Home(): JSX.Element {
           </Box>
         </Box>
       </HomePanel>
-      <Dots width={width} />
+      <Box marginTop="xxxlarge">
+        <Dots width={width} />
+      </Box>
       <HomePanel className="hero3" opacity={0}>
         <Box maxWidth="large">
           <List space="xxxlarge" type="none">
