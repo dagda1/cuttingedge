@@ -1,5 +1,13 @@
 # @cutting/markdown
 
+## 0.1.5
+
+### Patch Changes
+
+- 9d181d61: update major dependencies
+- Updated dependencies [9d181d61]
+  - @cutting/util@4.58.4
+
 ## 0.1.4
 
 ### Patch Changes

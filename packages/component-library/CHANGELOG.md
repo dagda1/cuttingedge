@@ -1,5 +1,14 @@
 # @cutting/component-library
 
+## 5.41.14
+
+### Patch Changes
+
+- 9d181d61: update major dependencies
+- Updated dependencies [9d181d61]
+  - @cutting/hooks@4.56.5
+  - @cutting/util@4.58.4
+
 ## 5.41.13
 
 ### Patch Changes

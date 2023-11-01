@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.45.1
+
+### Patch Changes
+
+- 9d181d61: update major dependencies
+
 ## 4.45.0
 
 ### Minor Changes

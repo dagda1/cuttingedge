@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.1.3
+
+### Patch Changes
+
+- 9d181d61: update major dependencies
+
 ## 0.1.2
 
 ### Patch Changes
