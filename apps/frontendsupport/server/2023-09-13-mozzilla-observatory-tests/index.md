@@ -102,7 +102,7 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 18
           registry-url: "https://registry.npmjs.org"
 
       - uses: actions/checkout@v2
