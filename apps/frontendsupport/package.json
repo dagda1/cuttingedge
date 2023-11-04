@@ -85,7 +85,7 @@
     "use-debounce": "^9.0.4"
   },
   "devDependencies": {
-    "@architect/architect": "^10.16.0",
+    "@architect/architect": "^10.16.1",
     "@babel/runtime": "^7.23.2",
     "@cutting/cloudinary-blurhash": "workspace:*",
     "@esbuild-plugins/node-resolve": "^0.2.2",

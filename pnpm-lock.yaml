@@ -320,8 +320,8 @@ importers:
         version: 9.0.4(react@18.2.0)
     devDependencies:
       '@architect/architect':
-        specifier: ^10.16.0
-        version: 10.16.0
+        specifier: ^10.16.1
+        version: 10.16.1
       '@babel/runtime':
         specifier: ^7.23.2
         version: 7.23.2
@@ -1831,8 +1831,8 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.20
 
-  /@architect/architect@10.16.0:
-    resolution: {integrity: sha512-liQREz5CljyTXNb42+ADYe7SCKt7Bokiwk3qB56IDuYw8sqLdLm/hHBd5X/Utt1w+qKNFCC2O4GlKdyU31lp4Q==}
+  /@architect/architect@10.16.1:
+    resolution: {integrity: sha512-uVHxzAN2OnyddvZX9meMk63T+//MWTchyVPCEoRLuWmcXePKVYQ17goWaTZ71WNM+I/m0eoSzFJzdL0B6dC5Fw==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
@@ -1842,7 +1842,7 @@ packages:
       '@architect/env': 3.0.12
       '@architect/hydrate': 3.5.0
       '@architect/inventory': 3.6.2
-      '@architect/logs': 4.0.10
+      '@architect/logs': 4.1.0
       '@architect/sandbox': 5.9.2
       '@architect/utils': 3.1.9
       '@aws-sdk/client-apigatewaymanagementapi': 3.438.0
@@ -1975,8 +1975,8 @@ packages:
       lambda-runtimes: 1.1.5
     dev: true
 
-  /@architect/logs@4.0.10:
-    resolution: {integrity: sha512-MZ046B4pDoceq/myLcjLchS4hMstJvuHvAEzBWJJiHNSscRsg56AE8lfWGf53CYblfryfNCGtrvlploFdt7wGw==}
+  /@architect/logs@4.1.0:
+    resolution: {integrity: sha512-NF8JY2BRsI71aWROq7eCS6lMMt7JbfF76HXIgUqBpmtTPGHgJJMChJf4RRwPJsTK1zv8WBvWITiWImjwDystCg==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
