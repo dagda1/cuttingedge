@@ -1048,8 +1048,8 @@ importers:
         specifier: 5.3.10
         version: 5.3.10
       '@types/postcss-import':
-        specifier: 14.0.1
-        version: 14.0.1
+        specifier: 14.0.2
+        version: 14.0.2
       '@types/rollup-plugin-size-snapshot':
         specifier: 0.10.2
         version: 0.10.2
@@ -10079,8 +10079,8 @@ packages:
     resolution: {integrity: sha512-3YmXzzPAdOTVljVMkTMBdBEvlOLg2cDQaDhnnhT3nT9uDbnJzjWhKlzb+desT12Y7tGqaN6d+AbozcKzyL36Ng==}
     dev: true
 
-  /@types/postcss-import@14.0.1:
-    resolution: {integrity: sha512-tn0rPu/x0hvAHXtYB0YATwqDEYmNkWk6wp8Ah6LwKLs9bfUHsDybapSMda35V5HG/HguAltsgIyuiUk2a6JH4g==}
+  /@types/postcss-import@14.0.2:
+    resolution: {integrity: sha512-AQ9RSYVoi7wu60g/82rWmz0CKsUT5GumPSMgD9JNn25rou+/e2OeW3kpoHsql/Lz5epkPuWnRD17k6hhlP62Fw==}
     dependencies:
       postcss: 8.4.31
     dev: true
