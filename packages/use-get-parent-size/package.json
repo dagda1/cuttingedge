@@ -35,7 +35,7 @@
     "@cutting/useful-types": "workspace:*",
     "@testing-library/react": "14.0.0",
     "@testing-library/react-hooks": "8.0.1",
-    "@types/react": "18.2.33",
+    "@types/react": "18.2.35",
     "@types/react-dom": "18.2.14",
     "@types/react-router-dom": "5.3.3",
     "@types/three": "^0.158.1",
