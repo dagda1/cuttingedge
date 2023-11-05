@@ -34,7 +34,7 @@
     "@cutting/useful-types": "workspace:*",
     "@testing-library/react-hooks": "8.0.1",
     "@types/mousetrap": "1.6.13",
-    "@types/react": "18.2.33",
+    "@types/react": "18.2.35",
     "@types/react-dom": "18.2.14",
     "@vanilla-extract/css": "^1.13.0",
     "assert-ts": "0.3.4",
