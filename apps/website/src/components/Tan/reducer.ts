@@ -6,7 +6,7 @@ import type { ScaleLinear, ScalePoint } from 'd3-scale';
 export const maxTan = 3;
 
 const radians = [
-  { value: Math.PI / 2, label: '' },
+  { value: Math.PI / 2, label: '$\\frac{\\pi}2(0, 1)$' },
   { value: Math.PI / 3, label: '$\\frac{\\pi}3(\\frac{1}{2},\\frac{\\sqrt3}{2}$)' },
   { value: Math.PI / 4, label: '$\\frac{\\pi}4(\\frac{\\sqrt2}{2}, \\frac{\\sqrt2}{2})$' },
   { value: Math.PI / 6, label: '$\\frac{\\pi}6(\\frac{\\sqrt3}{2}, \\frac{1}{2})$' },

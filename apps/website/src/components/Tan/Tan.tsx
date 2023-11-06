@@ -17,7 +17,7 @@ import assert from 'assert-ts';
 
 const Ticks = [...range(-1, 1)];
 
-const MainTicks = ['$0$', '$\\pi\\over 2$', '$\\pi$', '$3\\pi\\over 2$', '$2\\pi$'];
+const MainTicks = ['$0$', '$\\pi$', '$2\\pi$', '$3\\pi$', '$4\\pi$'];
 
 const circles = 1;
 
