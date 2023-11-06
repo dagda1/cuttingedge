@@ -53,11 +53,11 @@ export const playButton = style({
 export const tanCurve = style({
   ...responsiveStyle({
     mobile: {
-      strokeDasharray: 5,
+      stroke: 5,
       strokeWidth: 3,
     },
     tablet: {
-      strokeDasharray: 20,
+      stroke: 20,
       strokeWidth: 8,
     },
   }),
@@ -78,6 +78,16 @@ export const unitCircle = style({
       strokeWidth: 5,
     },
   }),
+});
+
+export const ray = style({
+  stroke: palette.white,
+  strokeWidth: 2,
+  strokeOpacity: 0.5,
+});
+
+globalStyle(`${container} foreignObject`, {
+  width: '6.75rem',
 });
 
 export const line = style({
@@ -125,4 +135,15 @@ export const rearHypotenuse = style({
 
 export const tan3 = style({
   stroke: 'pink',
+});
+
+export const rays = style({
+  ...responsiveStyle({
+    mobile: {
+      display: 'none',
+    },
+    desktop: {
+      display: 'block',
+    },
+  }),
 });

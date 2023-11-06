@@ -1,7 +1,7 @@
 import { Group, Line, ResponsiveSVG } from '@cutting/svg';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { scalePoint, scaleLinear } from '@visx/scale';
-import { useLayoutEffect, useMemo, useReducer, useRef } from 'react';
+import { Fragment, useLayoutEffect, useMemo, useReducer, useRef } from 'react';
 import { initialState, maxTan, reducer } from './reducer';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { range } from '@cutting/util';
@@ -9,6 +9,7 @@ import { Arc, LinePath } from '@visx/shape';
 import { Text } from '@visx/text';
 import * as styles from './Tan.css';
 import cs from 'classnames';
+``;
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { curveMonotoneX } from 'd3-shape';
@@ -16,25 +17,7 @@ import assert from 'assert-ts';
 
 const Ticks = [...range(-1, 1)];
 
-const MainTicks = [
-  '$4\\pi$',
-  '$3\\pi\\over 2$',
-  '$3\\pi$',
-  '$2\\pi\\over 2$',
-  '$2\\pi$',
-  '$1\\pi\\over 2$',
-  '$-\\pi$',
-  '$\\pi\\over 2$',
-  '$0$',
-  '$-\\pi\\over 2$',
-  '$-\\pi$',
-  '$-1\\pi\\over 2$',
-  '$-2\\pi$',
-  '$-2\\pi\\over 2$',
-  '$-3\\pi$',
-  '$-3\\pi\\over 2$',
-  '$-4\\pi$',
-];
+const MainTicks = ['$0$', '$\\pi\\over 2$', '$\\pi$', '$3\\pi\\over 2$', '$2\\pi$'];
 
 const circles = 1;
 
@@ -123,25 +106,23 @@ export function Tan(): JSX.Element {
 
   assert(typeof yAxisPosition !== 'undefined', 'no yAxisPositionX');
 
-  const yAxisX = yAxisPosition / 2;
-
   return (
     <>
       <ApplicationLayout heading="TAN ASYMPTOTES" centerHeading>
         <section className={styles.container} ref={containerRef}>
           <ResponsiveSVG width={width} height={height}>
             <Group transform={`translate(0, ${initialY})`}>
-              <Group transform={`translate(${yAxisX}, 0)`}>
+              <Group transform={`translate(${unitCircleWidth * 1}, 0)`}>
                 <LinePath<number>
                   defined={(d) => Math.tan(d) < maxTan && Math.tan(d) > -maxTan}
                   className={styles.tanCurve}
-                  x={(d) => tanXScale(state.time - d)}
+                  x={(d) => tanXScale(d)}
                   y={(d) => tanYScale(Math.tan(d))}
                   curve={curveMonotoneX}
                   data={state.tanData}
                 />
               </Group>
-              <Group transform={`translate(0, ${yScale(0)})`}>
+              <Group transform={`translate(${unitCircleWidth}, ${yScale(0)})`}>
                 <AxisBottom
                   scale={mainXscale}
                   stroke="#ffffff"
@@ -153,14 +134,24 @@ export function Tan(): JSX.Element {
                   )}
                 />
               </Group>
-              <Group transform={`translate(${width - unitCircleWidth}, 0)`}>
+              <Group transform={`translate(0, 0)`}>
                 <circle className={styles.unitCircle} {...state.unitCircle} />
                 <Group transform={`translate(${state.unitCircle.cx}, ${state.unitCircle.cy})`}>
+                  <Group className={styles.rays}>
+                    {state.rays.map(({ cosX, sinY, label, offsetX, offsetY }) => (
+                      <Fragment key={label}>
+                        <Group transform={`translate(${offsetX}, ${offsetY})`}>
+                          <SVGMathJax>{label}</SVGMathJax>
+                        </Group>
+                        <Line className={styles.ray} from={{ x: 0, y: 0 }} to={{ x: cosX, y: sinY }} />
+                      </Fragment>
+                    ))}
+                  </Group>
                   <Arc
                     innerRadius={0}
                     outerRadius={30}
-                    startAngle={Math.PI / 2}
-                    endAngle={state.angle}
+                    startAngle={state.angle}
+                    endAngle={Math.PI / 2}
                     fill="#E6F0E6"
                     stroke="#8FBB8F"
                     strokeWidth={2}
@@ -172,7 +163,9 @@ export function Tan(): JSX.Element {
                 <Group transform={`translate(0, ${yScale(0)})`}>
                   <AxisBottom scale={xScale} tickValues={[]} stroke="#ffffff" tickStroke="#ffffff" />
                 </Group>
-                <AxisLeft scale={yScale} stroke="#ffffff" tickValues={[]} />
+                <Group transform={`translate(${unitCircleWidth}, 0)`}>
+                  <AxisLeft scale={yScale} stroke="#ffffff" tickValues={[]} />
+                </Group>
                 <Group transform={`translate(${state.unitCircle.cx}, ${state.unitCircle.cy})`}>
                   <Line className={cs(styles.line, styles.hypotenuse)} {...state.hypotenuse} />
                   <Line className={cs(styles.line, styles.opposite)} {...state.opposite} />

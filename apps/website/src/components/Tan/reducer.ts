@@ -5,6 +5,25 @@ import type { ScaleLinear, ScalePoint } from 'd3-scale';
 
 export const maxTan = 3;
 
+const radians = [
+  { value: Math.PI / 2, label: '' },
+  { value: Math.PI / 3, label: '$\\frac{\\pi}3(\\frac{1}{2},\\frac{\\sqrt3}{2}$)' },
+  { value: Math.PI / 4, label: '$\\frac{\\pi}4(\\frac{\\sqrt2}{2}, \\frac{\\sqrt2}{2})$' },
+  { value: Math.PI / 6, label: '$\\frac{\\pi}6(\\frac{\\sqrt3}{2}, \\frac{1}{2})$' },
+  { value: 2 * Math.PI, label: '${2\\pi}$(1,0)' },
+  { value: (11 * Math.PI) / 6, label: '$\\frac{11\\pi}6(\\frac{\\sqrt3}{2}, -\\frac{1}{2})$' },
+  { value: (7 * Math.PI) / 4, label: '$\\frac{7\\pi}4(\\frac{\\sqrt2}{2}, -\\frac{\\sqrt2}{2})$' },
+  { value: (5 * Math.PI) / 3, label: '$\\frac{5\\pi}3(\\frac{1}{2}, -\\frac{\\sqrt3}{2})$' },
+  { value: (3 * Math.PI) / 2, label: '$\\frac{3\\pi}2(0,-1)$' },
+  { value: (4 * Math.PI) / 3, label: '$\\frac{4\\pi}3(-\\frac{1}{2}, -\\frac{\\sqrt3}{2})$' },
+  { value: (5 * Math.PI) / 4, label: '$\\frac{5\\pi}4(-\\frac{\\sqrt2}{2}, -\\frac{\\sqrt2}{2})$' },
+  { value: (7 * Math.PI) / 6, label: '$\\frac{7\\pi}6(-\\frac{\\sqrt3}{2}, -\\frac{1}{2})$' },
+  { value: Math.PI, label: '$\\pi$(-1,0)' },
+  { value: (5 * Math.PI) / 6, label: '$\\frac{5\\pi}6(-\\frac{\\sqrt3}{2}, \\frac{1}{2})$' },
+  { value: (3 * Math.PI) / 4, label: '$\\frac{3\\pi}4(-\\frac{\\sqrt2}{2}, \\frac{\\sqrt2}{2})$' },
+  { value: (2 * Math.PI) / 3, label: '$\\frac{2\\pi}3(-\\frac{1}{2}, \\frac{\\sqrt3}{2})$' },
+];
+
 export const initialState = {
   time: 0,
   unitCircle: { cx: 2, cy: 5, r: 2 },
@@ -19,6 +38,15 @@ export const initialState = {
   tan3: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
   tanX: 0,
   tanData: [] as number[],
+  rays: [
+    {
+      cosX: 0,
+      sinY: 0,
+      offsetX: 0,
+      offsetY: 0,
+      label: '',
+    },
+  ],
 };
 
 type State = typeof initialState;
@@ -47,18 +75,33 @@ export const reducer: Reducer<State, Actions> = produce((state: State, action: A
       const maximum = tanXScale.domain()[1];
 
       if (state.tanData.length === 0) {
-        state.tanData.push(maximum);
+        state.tanData.push(minimum);
       }
 
       const top = state.tanData.slice(-1)[0];
 
-      const newTime = top - increase;
+      const newTime = top + increase;
 
-      if (newTime < minimum) {
-        state.tanData = [maximum];
+      if (newTime > maximum) {
+        state.tanData = [minimum];
       } else {
         state.tanData.push(newTime);
       }
+
+      state.rays = radians.map(({ value, label }) => {
+        const offsetX = value > Math.PI / 2 && value < (3 * Math.PI) / 2 ? -20 : -5;
+        const offsetY = value > 0 && value < Math.PI ? -35 : 0;
+        const cosX = state.unitCircle.r * Math.cos(value);
+        const sinY = state.unitCircle.r * -Math.sin(value);
+
+        return {
+          cosX,
+          sinY,
+          offsetX: offsetX + cosX,
+          offsetY: offsetY + sinY,
+          label,
+        };
+      });
 
       state.unitCircle = {
         cx: xScale(0) as number,
@@ -106,8 +149,8 @@ export const reducer: Reducer<State, Actions> = produce((state: State, action: A
       };
 
       let angle = Math.atan2(
-        state.hypotenuse.from.y - state.hypotenuse.to.y,
-        state.hypotenuse.from.x - state.hypotenuse.to.x,
+        state.hypotenuse.from.y + state.hypotenuse.to.y,
+        state.hypotenuse.from.x + state.hypotenuse.to.x,
       );
 
       if (angle > 0) {
