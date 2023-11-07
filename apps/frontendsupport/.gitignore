@@ -8,12 +8,16 @@ node_modules
 /server/metafile.*
 /public/build
 /server/metafile.*
+<<<<<<< HEAD
 /server/index.mjs
 /build/metafile.*
 /build/index.mjs
 /server/version.txt
 /build/version.txt
 server/version.txt
+=======
+/build/metafile.*
+>>>>>>> 2c45e33f (add vite.config.ts to support)
 preferences.arc
 pruned
 sam.json
@@ -22,3 +26,8 @@ sam.yaml
 .env*
 *.map
 .DS_Store
+build
+public/build
+server/assets
+server/manifest.*
+server/favicon.*

@@ -2,7 +2,7 @@ import * as mdxBundler from 'mdx-bundler/client/index.js';
 import type { ReactNode } from 'react';
 import { Children, isValidElement, useMemo } from 'react';
 import { json } from '@remix-run/node';
-import type { LoaderFunction } from '@remix-run/node';
+import type { MetaFunction, LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post.js';
 import type { ReactNodeNoStrings } from '@cutting/component-library';
@@ -108,14 +108,14 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 };
 
-export const meta: V2_MetaFunction = ({
+export const meta: MetaFunction = ({
   location,
   data: {
     frontmatter: { meta },
   },
 }: {
   location: Location;
-  data: { frontmatter: FrontMatter; code: string };
+  data: any;
 }) => {
   return [
     { title: meta.title },

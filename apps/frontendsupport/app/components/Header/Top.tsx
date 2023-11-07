@@ -28,6 +28,7 @@ export function TopNav(): JSX.Element {
                 alt="Frontend Rescue"
                 width={38}
                 height={45}
+                // @ts-ignore
                 style={{ position: 'relative', top: '-5px', marginRight: vars.space['medium'] }}
                 loading="eager"
               />

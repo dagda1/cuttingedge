@@ -53,7 +53,7 @@ export const headers: HeadersFunction = () => {
   };
 };
 
-export const meta: MetaFunction = ({ location, data }) => {
+export const meta: MetaFunction = ({ location }) => {
   return [
     { title: 'Frontend Rescue' },
     { property: 'og:url', content: location.pathname },
@@ -97,11 +97,6 @@ export const links: LinksFunction = () => [
   },
   {
     rel: 'preload',
-    href: cssBundleHref as string,
-    as: 'style',
-  },
-  {
-    rel: 'preload',
     href: cssStyles,
     as: 'style',
   },
@@ -117,14 +112,6 @@ export const links: LinksFunction = () => [
   {
     rel: 'stylesheet',
     href: cuttingStyles as unknown as string,
-  },
-  {
-    rel: 'stylesheet',
-    href: hookFormStyles as unknown as string,
-  },
-  {
-    rel: 'stylesheet',
-    href: cssBundleHref as string,
   },
   {
     rel: 'stylesheet',

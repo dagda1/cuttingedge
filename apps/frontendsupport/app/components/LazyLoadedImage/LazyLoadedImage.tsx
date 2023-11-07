@@ -45,8 +45,9 @@ function BlurhashImage({
       layout={layout as any}
       width={width ?? imageProps.width}
       height={height ?? imageProps.height}
-      style={placeholderStyle}
       src={src}
+      // @ts-ignore
+      style={placeholderStyle}
       onLoad={() => setLoaded(true)}
       {...props}
     />
