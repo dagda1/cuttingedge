@@ -939,11 +939,14 @@ importers:
         specifier: 0.3.2
         version: 0.3.2
       core-js:
-        specifier: 3.33.2
-        version: 3.33.2
+        specifier: 3.32.2
+        version: 3.32.2
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
+      cross-fetch:
+        specifier: ^4.0.0
+        version: 4.0.0
       dotenv:
         specifier: 16.3.1
         version: 16.3.1
@@ -12970,6 +12973,11 @@ packages:
     dependencies:
       browserslist: 4.22.1
     dev: true
+
+  /core-js@3.32.2:
+    resolution: {integrity: sha512-pxXSw1mYZPDGvTQqEc5vgIb83jGQKFGYWY76z4a7weZXUolw3G+OvpZqSRcfYOoOVUQJYEPsWeQK8pKEnUtWxQ==}
+    requiresBuild: true
+    dev: false
 
   /core-js@3.33.2:
     resolution: {integrity: sha512-XeBzWI6QL3nJQiHmdzbAOiMYqjrb7hwU7A39Qhvd/POSa/t9E1AeZyEZx3fNvp/vtM8zXwhoL0FsiS0hD0pruQ==}

@@ -1,5 +1,4 @@
 // import type { Task } from 'effection';
-import type { fetch as nativeFetch } from 'cross-fetch';
 import type fetchJsonp from 'fetch-jsonp';
 
 export interface Runnable<T> {
@@ -20,7 +19,7 @@ export type FetchRequestInfo = { url: string } & Omit<RequestInit, 'signal'>;
 
 export interface AccumulationContext {
   request: RequestInfo;
-  fetcher: typeof nativeFetch | typeof fetchJsonp;
+  fetcher: typeof fetch | typeof fetchJsonp;
 }
 
 export type Accumulator<R, T> = T extends undefined

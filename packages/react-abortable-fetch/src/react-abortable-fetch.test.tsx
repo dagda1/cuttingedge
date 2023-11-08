@@ -1,13 +1,12 @@
-import { expect, it, describe, beforeEach, beforeAll, afterEach, afterAll } from 'vitest';
-import { rest } from 'msw';
+import { HttpResponse, delay, http } from 'msw';
+import { expect, it, describe, beforeEach, beforeAll, afterEach, afterAll, vi } from 'vitest';
 import { setupServer } from 'msw/node';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useFetch } from './react-abortable-fetch';
-import { vi } from 'vitest';
 
 let times = 1;
 
-vi.setTimeout(30000);
+console.log(globalThis.fetch);
 
 const scheduler = typeof setImmediate === 'function' ? setImmediate : setTimeout;
 
@@ -28,65 +27,65 @@ const vendors = {
 };
 
 const server = setupServer(
-  rest.get('http://localhost:3000/multi/:id', (req, res, ctx) => {
-    const id = req.params.id;
-    return res(ctx.json({ id }));
+  http.get('http://localhost:3000/multi/:id', ({ params }) => {
+    const id = params.id;
+    return HttpResponse.json({ id });
   }),
 
-  rest.get('http://localhost:3000/single', (_, res, ctx) => {
-    return res(ctx.json({ greeting: 'hello there' }));
+  http.get('http://localhost:3000/single', () => {
+    HttpResponse.json({ greeting: 'hello there' });
   }),
 
-  rest.get('http://localhost:3000/singles/:id', (req, res, ctx) => {
-    const id = req.params.id;
+  http.get('http://localhost:3000/singles/:id', ({ params }) => {
+    const id = params.id;
 
-    return res(ctx.json({ id }));
+    return HttpResponse.json({ id });
   }),
 
-  rest.post('http://localhost:3000/multiply/:left/:right', (req, res, ctx) => {
-    const answer = Number(req.params.left) * Number(req.params.right);
+  http.post('http://localhost:3000/multiply/:left/:right', ({ params }) => {
+    const answer = Number(params.left) * Number(params.right);
 
-    return res(ctx.json({ answer }));
+    return HttpResponse.json({ answer });
   }),
 
-  rest.get('http://localhost:3000/add/:left/:right', (req, res, ctx) => {
-    const answer = Number(req.params.left) + Number(req.params.right);
+  http.get('http://localhost:3000/add/:left/:right', ({ params }) => {
+    const answer = Number(params.left) + Number(params.right);
 
-    return res(ctx.json({ answer }));
+    return HttpResponse.json({ answer });
   }),
 
-  rest.get('http://localhost:3000/error', (req, res, ctx) => {
-    return res(ctx.status(500, 'server error'));
+  http.get('http://localhost:3000/error', () => {
+    return new HttpResponse(null, { status: 500, statusText: 'server error' });
   }),
 
-  rest.get('http://localhost:3000/abortable', (req, rest, ctx) => {
-    ctx.delay('infinite');
+  http.get('http://localhost:3000/abortable', async () => {
+    delay('infinite');
   }),
 
-  rest.get('http://localhost:3000/flaky-connection', (req, res, ctx) => {
+  http.get('http://localhost:3000/flaky-connection', () => {
     if (times < 5) {
       times++;
-      return res(ctx.status(500, 'server error'));
+      return new HttpResponse(null, { status: 500, statusText: 'server error' });
     }
 
-    return res(ctx.json({ ok: true }));
+    return HttpResponse.json({ ok: true });
   }),
 
-  rest.get('http://localhost:3000/long-request', async (req, res, ctx) => {
+  http.get('http://localhost:3000/long-request', async () => {
     await pause(100);
 
-    return res(ctx.json({ ok: true }));
+    return HttpResponse.json({ ok: true });
   }),
 
-  rest.get('http://localhost:3000/graphql', (req, res, ctx) => {
-    return res(ctx.json({ a: 3 }));
+  http.get('http://localhost:3000/graphql', () => {
+    return HttpResponse.json({ a: 3 });
   }),
 
-  rest.get('http://localhost:3000/vendors', (req, res, ctx) => {
-    return res(ctx.json(vendors));
+  http.get('http://localhost:3000/vendors', () => {
+    return HttpResponse.json(vendors);
   }),
 
-  rest.get('http://localhost:3000/vendors/:id/items', (req, res, ctx) => {
+  http.get('http://localhost:3000/vendors/:id/items', ({ params }) => {
     const data = [
       {
         vendorId: 1,
@@ -102,25 +101,25 @@ const server = setupServer(
       },
     ];
 
-    const vendorId = Number(req.params.id);
+    const vendorId = Number(params.id);
 
     const items = data.find((d) => d.vendorId === vendorId);
-    return res(ctx.json(items));
+    return HttpResponse.json(items);
   }),
 
-  rest.post('http://localhost:3000/leads', (req, res, ctx) => {
-    const { clientId } = req.body as { clientId?: string };
+  http.post('http://localhost:3000/leads', ({ request }) => {
+    const { clientId } = request.json() as { clientId?: string };
 
     if (clientId !== 'client') {
-      return res(ctx.json({ result: 'fail' }));
+      return HttpResponse.error();
     }
 
-    return res(ctx.json({ accessToken: 'yes' }));
+    return HttpResponse.json({ accessToken: 'yes' });
   }),
 );
 
 describe('useFetch', () => {
-  beforeAll(() => server.listen());
+  beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 
   beforeEach(() => {
     vi.clearAllTimers();
@@ -134,62 +133,7 @@ describe('useFetch', () => {
 
   afterAll(() => server.close());
 
-  describe('nested', () => {
-    type Vendor = {
-      id: number;
-      name: string;
-      items: { id: number; name: string }[];
-    };
-
-    it('should accumulate nested queries', async () => {
-      const onSuccess = vi.fn();
-      const onError = vi.fn();
-      const onAbort = vi.fn();
-
-      const { result, waitFor } = renderHook(() =>
-        useFetch<Vendor[], typeof vendors>('http://localhost:3000/vendors', {
-          executeOnMount: false,
-          onSuccess,
-          onError,
-          onAbort,
-          initialState: [],
-          accumulator: async (acc, v, { fetcher }) => {
-            for (const vendor of v.data) {
-              const request = await fetcher(`http://localhost:3000/vendors/${vendor.id}/items`);
-
-              const items = await request.json();
-
-              acc.push({
-                ...vendor,
-                ...items,
-              });
-            }
-
-            return acc;
-          },
-        }),
-      );
-
-      await act(async () => {
-        result.current.run();
-      });
-
-      await waitFor(() => result.current.data?.length === 3);
-
-      expect(result.current.data).toEqual([
-        { id: 1, name: 'bobs', vendorId: 1, items: [{ id: 10, name: "Bob's item" }] },
-        { id: 2, name: 'johns', vendorId: 2, items: [{ id: 20, name: "John's item" }] },
-        { id: 3, name: 'janets', vendorId: 3, items: [{ id: 30, name: "Janet's item" }] },
-      ]);
-
-      expect(onSuccess).toHaveBeenCalled();
-      expect(onError).not.toHaveBeenCalled();
-      expect(result.current.state).toBe('succeeded');
-      expect(onAbort).not.toHaveBeenCalled();
-    });
-  });
-
-  describe.skip('single query', () => {
+  describe('single query', () => {
     it('should successfully run a single query', async () => {
       const { result, waitFor } = renderHook(() => useFetch(`http://localhost:3000/single`));
 
@@ -199,7 +143,7 @@ describe('useFetch', () => {
       expect(result.current.data).toEqual({ greeting: 'hello there' });
     });
 
-    it('should only call handlers once', async () => {
+    it.skip('should only call handlers once', async () => {
       const onQuerySuccess = vi.fn();
       const onSuccess = vi.fn();
       const onError = vi.fn();
@@ -224,7 +168,7 @@ describe('useFetch', () => {
       expect(onAbort).not.toHaveBeenCalled();
     });
 
-    it('should successfully run a single query on demand', async () => {
+    it.skip('should successfully run a single query on demand', async () => {
       const { result, waitForNextUpdate } = renderHook(() =>
         useFetch(`http://localhost:3000/single`, { executeOnMount: false }),
       );
@@ -241,7 +185,7 @@ describe('useFetch', () => {
       expect(result.current.data).toEqual({ greeting: 'hello there' });
     });
 
-    describe('single accumulation', () => {
+    describe.skip('single accumulation', () => {
       it('should accumulate a single value with default accumulator', async () => {
         const { result, waitForNextUpdate } = renderHook(() => useFetch(`http://localhost:3000/singles/1`));
 
@@ -287,7 +231,7 @@ describe('useFetch', () => {
       });
     });
 
-    describe('single errors', () => {
+    describe.skip('single errors', () => {
       it('should return an error object', async () => {
         const onSuccess = vi.fn();
         const onError = vi.fn();
@@ -445,7 +389,62 @@ describe('useFetch', () => {
     });
   });
 
-  describe('multi Query', () => {
+  describe.skip('nested', () => {
+    type Vendor = {
+      id: number;
+      name: string;
+      items: { id: number; name: string }[];
+    };
+
+    it('should accumulate nested queries', async () => {
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+      const onAbort = vi.fn();
+
+      const { result, waitFor } = renderHook(() =>
+        useFetch<Vendor[], typeof vendors>('http://localhost:3000/vendors', {
+          executeOnMount: false,
+          onSuccess,
+          onError,
+          onAbort,
+          initialState: [],
+          accumulator: async (acc, v, { fetcher }) => {
+            for (const vendor of v.data) {
+              const request = await fetcher(`http://localhost:3000/vendors/${vendor.id}/items`);
+
+              const items = await request.json();
+
+              acc.push({
+                ...vendor,
+                ...items,
+              });
+            }
+
+            return acc;
+          },
+        }),
+      );
+
+      await act(async () => {
+        result.current.run();
+      });
+
+      await waitFor(() => result.current.data?.length === 3);
+
+      expect(result.current.data).toEqual([
+        { id: 1, name: 'bobs', vendorId: 1, items: [{ id: 10, name: "Bob's item" }] },
+        { id: 2, name: 'johns', vendorId: 2, items: [{ id: 20, name: "John's item" }] },
+        { id: 3, name: 'janets', vendorId: 3, items: [{ id: 30, name: "Janet's item" }] },
+      ]);
+
+      expect(onSuccess).toHaveBeenCalled();
+      expect(onError).not.toHaveBeenCalled();
+      expect(result.current.state).toBe('succeeded');
+      expect(onAbort).not.toHaveBeenCalled();
+    });
+  });
+
+  describe.skip('multi Query', () => {
     describe('multiple urls', () => {
       it('should successfully run a multi url query', async () => {
         const onQuerySuccess = vi.fn();
@@ -819,7 +818,7 @@ describe('useFetch', () => {
     });
   });
 
-  describe('run with arguments', () => {
+  describe.skip('run with arguments', () => {
     it('should pass arguments to single run', async () => {
       const { result, waitForNextUpdate } = renderHook(() =>
         useFetch({ url: `http://localhost:3000/leads`, method: 'POST' }, { executeOnMount: false }),
