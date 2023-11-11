@@ -1027,8 +1027,8 @@ importers:
         specifier: 7.20.4
         version: 7.20.4
       '@types/babel__plugin-transform-runtime':
-        specifier: 7.9.4
-        version: 7.9.4
+        specifier: 7.9.5
+        version: 7.9.5
       '@types/babel__preset-env':
         specifier: 7.9.3
         version: 7.9.3
@@ -9537,8 +9537,8 @@ packages:
       '@babel/types': 7.23.0
     dev: true
 
-  /@types/babel__plugin-transform-runtime@7.9.4:
-    resolution: {integrity: sha512-zWIzCr0HhP+GNNvDwvLZdu4iAdEMMoy0kL65tXVPscgHurs/uqPY/UHk5uzJVLzpLmNxDBjPVabUfS1LVN6xGA==}
+  /@types/babel__plugin-transform-runtime@7.9.5:
+    resolution: {integrity: sha512-m/y2Sb3nld95N69piVZrgTn0hoBV9ng03Ch8/6duE5ss8A4OuPlbQ9CJPTRYQSerU3qhHnbUtOPRrOYcuPgljg==}
     dev: true
 
   /@types/babel__preset-env@7.9.3:
