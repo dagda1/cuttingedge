@@ -1030,8 +1030,8 @@ importers:
         specifier: 7.9.5
         version: 7.9.5
       '@types/babel__preset-env':
-        specifier: 7.9.3
-        version: 7.9.3
+        specifier: 7.9.5
+        version: 7.9.5
       '@types/copy':
         specifier: 0.3.4
         version: 0.3.4
@@ -9541,8 +9541,8 @@ packages:
     resolution: {integrity: sha512-m/y2Sb3nld95N69piVZrgTn0hoBV9ng03Ch8/6duE5ss8A4OuPlbQ9CJPTRYQSerU3qhHnbUtOPRrOYcuPgljg==}
     dev: true
 
-  /@types/babel__preset-env@7.9.3:
-    resolution: {integrity: sha512-qgNdzb7uzbraIDqZpiu3q+Ak+ZgDoPd3TGmArl9Pelky+uQYCk2wzFHRxQCjpj8aChrj1d/xaiCSZWpzfYyvMw==}
+  /@types/babel__preset-env@7.9.5:
+    resolution: {integrity: sha512-MM0iouN2V5gX13rLEdshGVkgm+Ro+qIYHvSEQz9EzjmHfTore9WEXkqH31hne/Q/6CI29XlulNeWL8vjghMZ3w==}
     dev: true
 
   /@types/babel__template@7.4.3:
