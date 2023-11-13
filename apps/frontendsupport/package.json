@@ -3,6 +3,7 @@
   "version": "0.1.69",
   "private": true,
   "sideEffects": false,
+  "type": "module",
   "scripts": {
     "build": "cross-env NODE_ENV=production remix build && rm -rf server/blog-posts/* && cp -rf blog-posts server",
     "dev:remix": "remix watch",
@@ -79,6 +80,7 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "remark-mdx-images": "^2.0.0",
+    "remix-flat-routes": "^0.6.2",
     "resize-observer-polyfill": "^1.5.1",
     "uglify-js": "^3.17.4",
     "unist-util-visit": "^5.0.0",

@@ -8,6 +8,8 @@ node_modules
 /server/metafile.*
 /public/build
 /server/metafile.*
+/server/index.mjs
+server/version.txt
 preferences.arc
 sam.json
 sam.yaml

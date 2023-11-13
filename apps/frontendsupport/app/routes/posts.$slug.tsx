@@ -1,4 +1,4 @@
-import { getMDXComponent } from 'mdx-bundler/client';
+import * as mdxBundler from 'mdx-bundler/client/index.js'
 import type { ReactNode } from 'react';
 import { Children, isValidElement, useMemo } from 'react';
 import { json } from '@remix-run/node';
@@ -139,7 +139,7 @@ export const meta: V2_MetaFunction = ({
 export default function PostRoute() {
   const { code, frontmatter } = useLoaderData<LoaderData>();
 
-  const Component = useMemo(() => getMDXComponent(code), [code]);
+  const Component = useMemo(() => mdxBundler.getMDXComponent(code), [code]);
 
   return (
     <Box style={{ marginTop: '6rem' }} className="post">
