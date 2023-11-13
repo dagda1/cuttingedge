@@ -126,9 +126,9 @@ export type ExtractType<T> = T extends {
 }
   ? U
   : T extends { [Symbol.iterator](): { next(): { done: false } } }
-  ? never
-  : T extends { [Symbol.iterator](): { next(): { value: infer U } } }
-  ? U
-  : T extends { [Symbol.iterator](): unknown }
-  ? unknown
-  : never;
+    ? never
+    : T extends { [Symbol.iterator](): { next(): { value: infer U } } }
+      ? U
+      : T extends { [Symbol.iterator](): unknown }
+        ? unknown
+        : never;

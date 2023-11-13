@@ -19,14 +19,14 @@ type UseFetchArgs<R, T> = string | string[] | FetchRequestInfo | FetchRequestInf
 type ExtractArgs<Args extends UseFetchArgs<R, T>, R, T> = Args extends { url: string }
   ? FetchRequestInfo
   : Args extends string
-  ? string
-  : Args extends string[]
-  ? string[]
-  : Args extends { url: string }[]
-  ? FetchRequestInfo[]
-  : Args extends Fn
-  ? Builder<R, T>
-  : never;
+    ? string
+    : Args extends string[]
+      ? string[]
+      : Args extends { url: string }[]
+        ? FetchRequestInfo[]
+        : Args extends Fn
+          ? Builder<R, T>
+          : never;
 
 const AbortController = global.AbortController;
 
