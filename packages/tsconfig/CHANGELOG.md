@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.40.2
+
+### Patch Changes
+
+- 0c9b02e4: remove typeRoots
+
 ## 4.40.1
 
 ### Patch Changes
