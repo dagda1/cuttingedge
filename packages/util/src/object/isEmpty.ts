@@ -31,7 +31,7 @@ export function isEmpty<T extends string | unknown[] | Record<string, unknown> |
 type Bottom<T> = T extends string
   ? Empty.String
   : T extends unknown[]
-  ? Empty.Array
-  : T extends Record<string, unknown>
-  ? Empty.Object
-  : never;
+    ? Empty.Array
+    : T extends Record<string, unknown>
+      ? Empty.Object
+      : never;

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "ES2022",
+    "module": "ES2022",
     "moduleResolution": "node",
     "strict": true,
     "jsx": "react-jsx",
@@ -18,7 +18,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "noFallthroughCasesInSwitch": true,
-    "lib": ["es5", "es2015", "es2016", "ES2019", "dom"],
+    "lib": ["es5", "es2015", "es2016", "ES2019", "ES2022", "ES2023", "dom"],
     "types": ["node", "@cutting/useful-types"]
   }
 }
