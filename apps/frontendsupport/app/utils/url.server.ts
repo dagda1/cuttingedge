@@ -1,1 +1,1 @@
-export { URL } from 'node:url';
+export { URL, fileURLToPath } from 'node:url';

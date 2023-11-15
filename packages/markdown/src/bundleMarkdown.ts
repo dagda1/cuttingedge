@@ -10,6 +10,18 @@ import readingTime from 'reading-time';
 import { join } from 'path';
 import { readFile, readdir } from 'fs/promises';
 import { DateTime } from 'luxon';
+import rehypeCitation from 'rehype-citation';
+import rehypePrismPlus from 'rehype-prism-plus';
+import rehypeRaw from 'rehype-raw';
+import rehypePresetMinify from 'rehype-preset-minify';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
+import remarkMath from 'remark-math';
+// import remarkGfm from 'remark-gfm';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import rehypeMathjax from 'rehype-mathjax';
 
 export type MarkdownAttributes = {
   title: string;
@@ -22,23 +34,10 @@ type Matter = ReturnType<typeof bundleMDX>;
 export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
   const source = await readFile(markdownPath, 'utf-8');
 
-  const { default: remarkGfm } = await import('remark-gfm');
-  const { default: rehypeAutolinkHeadings } = await import('rehype-autolink-headings');
-
-  const { default: rehypeSlug } = await import('rehype-slug');
-  const { default: remarkMath } = await import('remark-math');
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const { default: rehypeMathjax } = await import('rehype-mathjax');
-  const { default: rehypeCitation } = await import('rehype-citation');
-  const { default: rehypePrismPlus } = await import('rehype-prism-plus');
-  const { default: rehypeRaw } = await import('rehype-raw');
-  const { default: rehypePresetMinify } = await import('rehype-preset-minify');
-
   const remarkInlineCodeLanguage = await remarkInlineCodeLanguageCreator();
 
   process.env.ESBUILD_BINARY_PATH = join(root, 'node_modules', 'esbuild', 'bin', 'esbuild');
+  process.env.NODE_ENV = 'production';
 
   const post = await bundleMDX({
     source,
@@ -46,12 +45,12 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
         remarkMdxImages,
-        remarkGfm,
         remarkBreaks,
         remarkCodeTitles,
         remarkInlineCodeLanguage,
         [remarkFootnotes, { inlineNotes: true }],
         remarkMath,
+        // remarkGfm,
       ];
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),

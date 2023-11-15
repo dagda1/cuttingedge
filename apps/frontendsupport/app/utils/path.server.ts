@@ -1,1 +1,1 @@
-export { join, resolve } from 'path';
+export { join, resolve, dirname } from 'path';
