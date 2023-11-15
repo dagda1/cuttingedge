@@ -13,7 +13,7 @@
     "start": "cross-env NODE_ENV=production arc sandbox",
     "typecheck": "tsc"
   },
-  "main": "dist/index.js",
+  "module": "server.mjs",
   "dependencies": {
     "@cutting/component-library": "workspace:*",
     "@cutting/hooks": "workspace:*",

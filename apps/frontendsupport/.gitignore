@@ -9,6 +9,10 @@ node_modules
 /public/build
 /server/metafile.*
 /server/index.mjs
+/build/metafile.*
+/build/index.mjs
+/server/version.txt
+/build/version.txt
 server/version.txt
 preferences.arc
 sam.json
