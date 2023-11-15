@@ -4,7 +4,7 @@ frontend-rescue
 @http
 /*
   method any
-  src other
+  src server
 
 @static
 
