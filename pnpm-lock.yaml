@@ -312,6 +312,9 @@ importers:
       resize-observer-polyfill:
         specifier: ^1.5.1
         version: 1.5.1
+      tsx:
+        specifier: ^4.1.2
+        version: 4.1.2
       uglify-js:
         specifier: ^3.17.4
         version: 3.17.4
@@ -4702,29 +4705,31 @@ packages:
       rollup: 2.79.1
     dev: false
 
-  /@definitelytyped/header-parser@0.0.187:
-    resolution: {integrity: sha512-nib+RZ15Sh02bKFhWqLgTW7ADJObIga7kC6JxPMtJIZqK5PJisKlylHB/9Wt2N2kMIzYuKI0LDWkgQn/8WtRZQ==}
+  /@definitelytyped/header-parser@0.0.189:
+    resolution: {integrity: sha512-5zzTaVAJayCJXWgm6T3kn0V/J/TGY/5mqkfio9bGI0dlKvV/xt0gXCBUFpUT6a0buPcqpsr5eS540XftHvgThQ==}
+    engines: {node: '>=16.17.0'}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.180
-      '@definitelytyped/utils': 0.0.185
+      '@definitelytyped/typescript-versions': 0.0.181
+      '@definitelytyped/utils': 0.0.187
       semver: 7.5.4
     dev: true
 
-  /@definitelytyped/typescript-versions@0.0.180:
-    resolution: {integrity: sha512-susENartHdWecD3kvD5iaMpYOFmlEjY9JRvPqTAoWyOeEsUKQbQsxsyHm1OQkfn7YzbURuNvS+5jkSIIbIy59A==}
+  /@definitelytyped/typescript-versions@0.0.181:
+    resolution: {integrity: sha512-D3iVQSPLNg8r9xissfcrBP0dsv9hsexz1z/KXBJ97fsqSLIGIiAzaDJJnY9NLzbAOzeazk6Ezetn8k0sIlXetg==}
+    engines: {node: '>=16.17.0'}
     dev: true
 
-  /@definitelytyped/utils@0.0.185:
-    resolution: {integrity: sha512-IuE+rzrkrquNlddzBAr9tKyvln9BIVqQ1ExuKuZrPUg2RpMX+dAsNLXG7OtOEf0jfYkLli9p0moS54O2D/HjXg==}
+  /@definitelytyped/utils@0.0.187:
+    resolution: {integrity: sha512-sJlAKn7Rnqrw4qvgYudjs8vyqsOzgwWmqX20QWt7EW1c3Z1Pt7JkeaaSA3TSWDlwjP6gLGbf2pmDOBnQkAdR5w==}
+    engines: {node: '>=16.17.0'}
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.180
+      '@definitelytyped/typescript-versions': 0.0.181
       '@qiwi/npm-registry-client': 8.9.1
-      '@types/node': 14.18.63
+      '@types/node': 16.18.61
       charm: 1.0.2
-      fs-extra: 8.1.0
       minimatch: 9.0.3
       tar: 6.2.0
-      tar-stream: 2.2.0
+      tar-stream: 3.1.6
       which: 4.0.0
     dev: true
 
@@ -9972,12 +9977,12 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
-  /@types/node@14.18.63:
-    resolution: {integrity: sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==}
-    dev: true
-
   /@types/node@16.18.60:
     resolution: {integrity: sha512-ZUGPWx5vKfN+G2/yN7pcSNLkIkXEvlwNaJEd4e0ppX7W2S8XAkdc/37hM4OUNJB9sa0p12AOvGvxL4JCPiz9DA==}
+    dev: true
+
+  /@types/node@16.18.61:
+    resolution: {integrity: sha512-k0N7BqGhJoJzdh6MuQg1V1ragJiXTh8VUBAZTWjJ9cUq23SG0F0xavOwZbhiP4J3y20xd6jxKx+xNUhkMAi76Q==}
     dev: true
 
   /@types/node@18.18.8:
@@ -11726,7 +11731,6 @@ packages:
 
   /b4a@1.6.4:
     resolution: {integrity: sha512-fpWrvyVHEKyeEvbKZTVOeZF3VSKKWtJxFIxX/jaVPf+cLbGUSitjb49pHLqPV2BUNNZ0LcoeEGfE/YCpyDYHIw==}
-    dev: false
 
   /babel-code-frame@6.26.0:
     resolution: {integrity: sha512-XqYMR2dfdGMW+hd0IUZ2PwK+fGeFkOxZJ0wY+JaQAHzt1Zx8LcvpiZD2NiGkEG8qx0CfkAOr5xt76d1e8vG90g==}
@@ -13892,7 +13896,7 @@ packages:
     peerDependencies:
       typescript: '*'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.187
+      '@definitelytyped/header-parser': 0.0.189
       command-exists: 1.2.9
       rimraf: 3.0.2
       semver: 6.3.1
@@ -13908,9 +13912,9 @@ packages:
     peerDependencies:
       typescript: '>= 3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.7.0-dev || >= 3.8.0-dev || >= 3.9.0-dev || >= 4.0.0-dev'
     dependencies:
-      '@definitelytyped/header-parser': 0.0.187
-      '@definitelytyped/typescript-versions': 0.0.180
-      '@definitelytyped/utils': 0.0.185
+      '@definitelytyped/header-parser': 0.0.189
+      '@definitelytyped/typescript-versions': 0.0.181
+      '@definitelytyped/utils': 0.0.187
       dts-critic: 3.3.11(typescript@5.2.2)
       fs-extra: 6.0.1
       json-stable-stringify: 1.0.2
@@ -15116,7 +15120,6 @@ packages:
 
   /fast-fifo@1.3.2:
     resolution: {integrity: sha512-/d9sfos4yxzpwkDkuN7k2SqFKtYNmCTzgfEpz82x34IM9/zc8KGxQoXg1liNC/izpRM/MBdt44Nmx41ZWqk+FQ==}
-    dev: false
 
   /fast-glob@3.3.1:
     resolution: {integrity: sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==}
@@ -15843,7 +15846,6 @@ packages:
     resolution: {integrity: sha512-wuMsz4leaj5hbGgg4IvDU0bqJagpftG5l5cXIAvo8uZrqn0NJqwtfupTN00VnkQJPcIRrxYrm1Ue24btpCha2A==}
     dependencies:
       resolve-pkg-maps: 1.0.0
-    dev: true
 
   /get-uri@6.0.2:
     resolution: {integrity: sha512-5KLucCJobh8vBY1K07EFV4+cPZH3mrV9YeAruUseCQKHB58SGjjT2l9/eA9LD082IiuMjSlFJEcdJ27TXvbZNw==}
@@ -21883,7 +21885,6 @@ packages:
 
   /queue-tick@1.0.1:
     resolution: {integrity: sha512-kJt5qhMxoszgU/62PLP1CJytzd2NKetjSRnyuj31fDd3Rlcz3fzlFdFLD1SItunPwyqEOkca6GbV612BWfaBag==}
-    dev: false
 
   /queue@6.0.2:
     resolution: {integrity: sha512-iHZWu+q3IdFZFX36ro/lKBkSvfkztY5Y7HMiPlOUjhupPcG2JMfst2KKEpu5XndviX/3UhFbRngUPNKtgvtZiA==}
@@ -23065,7 +23066,6 @@ packages:
 
   /resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
-    dev: true
 
   /resolve-url@0.2.1:
     resolution: {integrity: sha512-ZuF55hVUQaaczgOIwqWzkEcEidmlD/xl44x1UZnhOXcYuFN2S6+rcxpG+C1N3So0wvNI3DmJICUFfu2SxhBmvg==}
@@ -24045,7 +24045,6 @@ packages:
     dependencies:
       fast-fifo: 1.3.2
       queue-tick: 1.0.1
-    dev: false
 
   /strftime@0.10.2:
     resolution: {integrity: sha512-Y6IZaTVM80chcMe7j65Gl/0nmlNdtt+KWPle5YeCAjmsBfw+id2qdaJ5MDrxUq+OmHKab+jHe7mUjU/aNMSZZg==}
@@ -24506,7 +24505,6 @@ packages:
       b4a: 1.6.4
       fast-fifo: 1.3.2
       streamx: 2.15.2
-    dev: false
 
   /tar@6.2.0:
     resolution: {integrity: sha512-/Wo7DcT0u5HUV486xg675HtjNd3BXZ6xDbzsCUZPt5iw8bTQ63bP0Raut3mvro9u+CUyq7YQd8Cx55fsZXxqLQ==}
@@ -24978,6 +24976,18 @@ packages:
       tslib: 1.14.1
       typescript: 5.2.2
     dev: true
+
+  /tsx@4.1.2:
+    resolution: {integrity: sha512-1spM1bFV6MP2s4tO4tDC7g52fsaFdtEWdO4GfGdqi20qUgPbnAJqixOyIAvCSx1DDj3YIUB4CD06owTWUsOAuQ==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+    dependencies:
+      esbuild: 0.18.20
+      get-tsconfig: 4.7.2
+      source-map-support: 0.5.21
+    optionalDependencies:
+      fsevents: 2.3.3
+    dev: false
 
   /tty-browserify@0.0.0:
     resolution: {integrity: sha512-JVa5ijo+j/sOoHGjw0sxw734b1LhBkQ3bvUGNdxnVXDCX81Yx7TFgnZygxrIIWn23hbfTaMYLwRmAxFyDuFmIw==}
