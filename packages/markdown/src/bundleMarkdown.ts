@@ -8,16 +8,15 @@ import { remarkInlineCodeLanguageCreator } from './remark/remark-inline-code-lan
 import type { FrontMatter, FrontMatterMeta } from './types';
 import readingTime from 'reading-time';
 import { join } from 'path';
+import remarkSlug from 'remark-slug';
 import { readFile, readdir } from 'fs/promises';
 import { DateTime } from 'luxon';
-import rehypeCitation from 'rehype-citation';
 import rehypePrismPlus from 'rehype-prism-plus';
 import rehypeRaw from 'rehype-raw';
 import rehypePresetMinify from 'rehype-preset-minify';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeSlug from 'rehype-slug';
 import remarkMath from 'remark-math';
-// import remarkGfm from 'remark-gfm';
+import remarkGfm from 'remark-gfm';
+import remarkAutolinkHeadings from 'remark-autolink-headings';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -49,15 +48,14 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
         remarkCodeTitles,
         remarkInlineCodeLanguage,
         [remarkFootnotes, { inlineNotes: true }],
+        [remarkAutolinkHeadings, { behavior: 'wrap' }],
+        remarkSlug,
+        remarkGfm,
         remarkMath,
-        // remarkGfm,
       ];
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        rehypeAutolinkHeadings,
-        rehypeSlug,
         rehypeMathjax,
-        [rehypeCitation, { path: join(root, 'data') }],
         [rehypePrismPlus, { ignoreMissing: true }],
         rehypePresetMinify,
         [

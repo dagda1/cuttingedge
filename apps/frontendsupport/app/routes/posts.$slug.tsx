@@ -1,4 +1,4 @@
-import * as mdxBundler from 'mdx-bundler/client/index.js'
+import * as mdxBundler from 'mdx-bundler/client/index.js';
 import type { ReactNode } from 'react';
 import { Children, isValidElement, useMemo } from 'react';
 import { json } from '@remix-run/node';
@@ -23,7 +23,7 @@ interface Props {
 
 function Paragraph({ children }: Props): JSX.Element {
   return (
-    <Box component="p" marginTop="medium" marginBottom="large">
+    <Box component="p" marginY="medium" marginBottom="large">
       <Text>{children}</Text>
     </Box>
   );
@@ -31,7 +31,7 @@ function Paragraph({ children }: Props): JSX.Element {
 
 function Heading1({ children }: Props): JSX.Element {
   return (
-    <Box marginTop="xxlarge">
+    <Box marginY="xxlarge">
       <Heading level="1">{children}</Heading>
     </Box>
   );
@@ -39,7 +39,7 @@ function Heading1({ children }: Props): JSX.Element {
 
 function Heading2({ children }: Props): JSX.Element {
   return (
-    <Box marginTop="large">
+    <Box marginY="large">
       <Heading level="2">{children}</Heading>
     </Box>
   );
@@ -47,7 +47,7 @@ function Heading2({ children }: Props): JSX.Element {
 
 function Heading3({ children }: Props): JSX.Element {
   return (
-    <Box marginTop="large">
+    <Box marginY="large">
       <Heading level="3">{children}</Heading>
     </Box>
   );
@@ -55,7 +55,7 @@ function Heading3({ children }: Props): JSX.Element {
 
 function Heading4({ children }: Props): JSX.Element {
   return (
-    <Box marginTop="large">
+    <Box marginY="large">
       <Heading level="4">{children}</Heading>
     </Box>
   );

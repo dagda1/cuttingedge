@@ -1,8 +1,8 @@
-import { flatRoutes } from 'remix-flat-routes';
+// import { flatRoutes } from 'remix-flat-routes';
 
 /** @type {import('@remix-run/dev').AppConfig} */
 export default {
-  ignoredRouteFiles: ['**/.*', '**/*.css.ts'],
+  ignoredRouteFiles: ['**/*'],
   publicPath: '/_static/build/',
   server: './server.mjs',
   serverBuildPath: 'server/index.mjs',
