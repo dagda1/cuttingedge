@@ -11,13 +11,10 @@
   "lockFileMaintenance": {
     "enabled": false
   },
+  "ignoreDeps": ["remark-gfm"],
   "packageRules": [
     {
       "packageNames": ["node", "pnpm"],
-      "enabled": false
-    },
-    {
-      "depTypeList": ["peerDependencies"],
       "enabled": false
     },
     {
@@ -25,8 +22,13 @@
       "automerge": true
     },
     {
-      "depTypeList": ["devDependencies"],
+      "depTypeList": ["dependencies", "devDependencies"],
+      "enabled": true,
       "automerge": true
+    },
+    {
+      "depTypeList": ["peerDependencies"],
+      "enabled": false
     },
     {
       "packagePatterns": ["eslint"],
