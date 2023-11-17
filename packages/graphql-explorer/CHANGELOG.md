@@ -1,5 +1,16 @@
 # @cutting/graphql-explorer
 
+## 4.44.28
+
+### Patch Changes
+
+- 00126046: bump everything
+- Updated dependencies [00126046]
+  - @cutting/component-library@5.41.15
+  - @cutting/react-abortable-fetch@0.36.5
+  - @cutting/svg@4.54.12
+  - @cutting/util@4.58.5
+
 ## 4.44.27
 
 ### Patch Changes

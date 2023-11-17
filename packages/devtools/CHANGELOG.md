@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.4
+
+### Patch Changes
+
+- 00126046: bump everything
+
 ## 4.63.3
 
 ### Patch Changes

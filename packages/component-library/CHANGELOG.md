@@ -1,5 +1,14 @@
 # @cutting/component-library
 
+## 5.41.15
+
+### Patch Changes
+
+- 00126046: bump everything
+- Updated dependencies [00126046]
+  - @cutting/hooks@4.56.6
+  - @cutting/util@4.58.5
+
 ## 5.41.14
 
 ### Patch Changes

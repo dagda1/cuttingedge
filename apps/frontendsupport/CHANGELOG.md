@@ -1,5 +1,18 @@
 # @cutting/frontend-support
 
+## 0.1.70
+
+### Patch Changes
+
+- 00126046: bump everything
+- Updated dependencies [00126046]
+  - @cutting/component-library@5.41.15
+  - @cutting/hooks@4.56.6
+  - @cutting/markdown@0.1.6
+  - @cutting/react-hook-form-components@0.5.17
+  - @cutting/use-get-parent-size@2.1.6
+  - @cutting/util@4.58.5
+
 ## 0.1.69
 
 ### Patch Changes

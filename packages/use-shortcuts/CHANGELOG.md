@@ -1,5 +1,13 @@
 # @cutting/use-shortcuts
 
+## 4.46.5
+
+### Patch Changes
+
+- 00126046: bump everything
+- Updated dependencies [00126046]
+  - @cutting/util@4.58.5
+
 ## 4.46.4
 
 ### Patch Changes

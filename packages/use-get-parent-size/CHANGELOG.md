@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.1.6
+
+### Patch Changes
+
+- 00126046: bump everything
+
 ## 2.1.5
 
 ### Patch Changes

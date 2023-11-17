@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.45.2
+
+### Patch Changes
+
+- 00126046: bump everything
+
 ## 4.45.1
 
 ### Patch Changes

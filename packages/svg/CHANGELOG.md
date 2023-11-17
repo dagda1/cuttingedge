@@ -1,5 +1,15 @@
 # @cutting/svg
 
+## 4.54.12
+
+### Patch Changes
+
+- 00126046: bump everything
+- Updated dependencies [00126046]
+  - @cutting/react-abortable-fetch@0.36.5
+  - @cutting/use-get-parent-size@2.1.6
+  - @cutting/util@4.58.5
+
 ## 4.54.11
 
 ### Patch Changes

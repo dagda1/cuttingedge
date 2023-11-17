@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.58.5
+
+### Patch Changes
+
+- 00126046: bump everything
+
 ## 4.58.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.40.3
+
+### Patch Changes
+
+- 00126046: bump everything
+
 ## 4.40.2
 
 ### Patch Changes
