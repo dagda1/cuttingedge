@@ -54,9 +54,9 @@ jobs:
         run: |
           FLAGS=""
           if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
-            FLAGS="--production --no-hydrate"
+            FLAGS="--production"
           else
-            FLAGS="--staging --no-hydrate"
+            FLAGS="--staging"
           fi
           
           GIT_COMMIT="$(git rev-parse HEAD)" pnpm arc deploy $FLAGS -v --prune

@@ -6,10 +6,11 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_ENV=production remix build && rm -rf server/blog-posts/* && cp -rf blog-posts server",
+    "deploy": "rm -rf ./pruned && pnpm --filter @cutting/frontend-support deploy --prod pruned",
     "dev:remix": "remix watch",
     "dev:arc": "cross-env NODE_ENV=development arc sandbox",
     "dev": "cross-env NODE_ENV=development npm-run-all build --parallel \"dev:*\"",
-    "lint": "eslint './**/*.{ts,tsx,js}' -c ./.eslintrc.js --fix",
+    "lint": "eslint './**/*.{ts,tsx,js}' -c ./.eslintrc.cjs --fix",
     "start": "cross-env NODE_ENV=production arc sandbox",
     "typecheck": "tsc"
   },
