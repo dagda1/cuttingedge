@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.40.2
+
+### Patch Changes
+
+- 00126046: bump everything
+
 ## 4.40.1
 
 ### Patch Changes

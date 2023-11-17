@@ -1,5 +1,13 @@
 # @cutting/markdown
 
+## 0.1.6
+
+### Patch Changes
+
+- 00126046: bump everything
+- Updated dependencies [00126046]
+  - @cutting/util@4.58.5
+
 ## 0.1.5
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @cutting/use-mathjax
 
+## 4.50.6
+
+### Patch Changes
+
+- 00126046: bump everything
+- Updated dependencies [00126046]
+  - @cutting/hooks@4.56.6
+  - @cutting/util@4.58.5
+
 ## 4.50.5
 
 ### Patch Changes

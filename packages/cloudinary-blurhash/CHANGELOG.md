@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.1.4
+
+### Patch Changes
+
+- 00126046: bump everything
+
 ## 0.1.3
 
 ### Patch Changes

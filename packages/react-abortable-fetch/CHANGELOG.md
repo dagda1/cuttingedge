@@ -1,5 +1,13 @@
 # @cutting/react-abortable-fetch
 
+## 0.36.5
+
+### Patch Changes
+
+- 00126046: bump everything
+- Updated dependencies [00126046]
+  - @cutting/util@4.58.5
+
 ## 0.36.4
 
 ### Patch Changes
