@@ -389,8 +389,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       tsx:
-        specifier: ^4.1.2
-        version: 4.1.2
+        specifier: ^4.2.0
+        version: 4.2.0
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -8569,7 +8569,7 @@ packages:
       '@babel/register': 7.22.15(@babel/core@7.23.2)
       '@storybook/node-logger': 6.5.16
       '@storybook/semver': 7.3.2
-      '@types/node': 16.18.60
+      '@types/node': 16.18.61
       '@types/pretty-hrtime': 1.0.2
       babel-loader: 8.3.0(@babel/core@7.23.2)(webpack@4.47.0)
       babel-plugin-macros: 3.1.0
@@ -13600,6 +13600,7 @@ packages:
 
   /defaults@1.0.4:
     resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==}
+    requiresBuild: true
     dependencies:
       clone: 1.0.4
 
@@ -24955,8 +24956,8 @@ packages:
       typescript: 5.2.2
     dev: true
 
-  /tsx@4.1.2:
-    resolution: {integrity: sha512-1spM1bFV6MP2s4tO4tDC7g52fsaFdtEWdO4GfGdqi20qUgPbnAJqixOyIAvCSx1DDj3YIUB4CD06owTWUsOAuQ==}
+  /tsx@4.2.0:
+    resolution: {integrity: sha512-hvAXAz4KUYNyjXOjJJgyjT7YOGFUNLC8jnODI6Omc/wGKaZ7z0FvW5d2haqg1GLfX49H3nZOpLYRlHMYGI8Wbw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
