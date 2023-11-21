@@ -604,8 +604,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0(rollup@4.4.0)
       '@testing-library/react':
-        specifier: 14.1.0
-        version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.2
+        version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@types/compression':
         specifier: 1.7.5
         version: 1.7.5
@@ -813,8 +813,8 @@ importers:
         specifier: 7.5.3
         version: 7.5.3(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@testing-library/react':
-        specifier: 14.1.0
-        version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.2
+        version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@types/babel__core':
         specifier: 7.20.4
         version: 7.20.4
@@ -1215,8 +1215,8 @@ importers:
         specifier: workspace:*
         version: link:../useful-types
       '@testing-library/react':
-        specifier: 14.1.0
-        version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.2
+        version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@testing-library/react-hooks':
         specifier: 8.0.1
         version: 8.0.1(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
@@ -1488,8 +1488,8 @@ importers:
         specifier: workspace:*
         version: link:../useful-types
       '@testing-library/react':
-        specifier: 14.1.0
-        version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.2
+        version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: 18.2.37
         version: 18.2.37
@@ -1555,8 +1555,8 @@ importers:
         specifier: ^9.3.3
         version: 9.3.3
       '@testing-library/react':
-        specifier: 14.1.0
-        version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.2
+        version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@testing-library/user-event':
         specifier: 14.5.1
         version: 14.5.1(@testing-library/dom@9.3.3)
@@ -1624,8 +1624,8 @@ importers:
         specifier: workspace:*
         version: link:../useful-types
       '@testing-library/react':
-        specifier: 14.1.0
-        version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.1.2
+        version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@testing-library/react-hooks':
         specifier: 8.0.1
         version: 8.0.1(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
@@ -9371,8 +9371,8 @@ packages:
       react-error-boundary: 3.1.4(react@18.2.0)
     dev: true
 
-  /@testing-library/react@14.1.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-hcvfZEEyO0xQoZeHmUbuMs7APJCGELpilL7bY+BaJaMP57aWc6q1etFwScnoZDheYjk4ESdlzPdQ33IbsKAK/A==}
+  /@testing-library/react@14.1.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-z4p7DVBTPjKM5qDZ0t5ZjzkpSNb+fZy1u6bzO7kk8oeGagpPCAtgh4cx1syrfp7a+QWkM021jGqjJaxJJnXAZg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=18.2.0 || 18.2.0'
