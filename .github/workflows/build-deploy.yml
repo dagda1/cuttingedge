@@ -53,9 +53,11 @@ jobs:
         working-directory: apps/frontendsupport
         run: |
           pnpm --filter @cutting/frontend-support deploy pruned
-
-          cd ./pruned
           
+          cd ./pruned
+          pwd
+          ls node_modules/.bin
+
           FLAGS=""
           if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == true ]]; then
             FLAGS="--production"
