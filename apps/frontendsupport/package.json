@@ -16,6 +16,7 @@
   },
   "module": "server.mjs",
   "dependencies": {
+    "@architect/architect": "^10.16.1",
     "@cutting/component-library": "workspace:*",
     "@cutting/hooks": "workspace:*",
     "@cutting/markdown": "workspace:*",
@@ -87,7 +88,6 @@
     "use-debounce": "^10.0.0"
   },
   "devDependencies": {
-    "@architect/architect": "^10.16.1",
     "@babel/runtime": "^7.23.2",
     "@cutting/cloudinary-blurhash": "workspace:*",
     "@esbuild-plugins/node-resolve": "^0.2.2",
