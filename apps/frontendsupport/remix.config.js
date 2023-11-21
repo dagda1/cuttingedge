@@ -2,7 +2,7 @@
 
 /** @type {import('@remix-run/dev').AppConfig} */
 export default {
-  ignoredRouteFiles: ['**/*'],
+  ignoredRouteFiles: ['**/.*', '**/*.css.ts'],
   publicPath: '/_static/build/',
   server: './server.mjs',
   serverBuildPath: 'server/index.mjs',
