@@ -27,10 +27,6 @@
       "automerge": true
     },
     {
-      "depTypeList": ["peerDependencies"],
-      "enabled": false
-    },
-    {
       "packagePatterns": ["eslint"],
       "groupName": "eslint"
     }

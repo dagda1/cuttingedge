@@ -116,7 +116,10 @@
     "uuid": "^9.0.1"
   },
   "engines": {
-    "node": ">=v14.21.3"
+    "node": ">=v18.17.1"
+  },
+  "volta": {
+    "extends": "../../package.json"
   },
   "browserslist": [
     ">0.2%",
