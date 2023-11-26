@@ -809,8 +809,8 @@ importers:
         specifier: 14.1.2
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@types/babel__core':
-        specifier: 7.20.4
-        version: 7.20.4
+        specifier: 7.20.5
+        version: 7.20.5
       '@types/dedent':
         specifier: 0.7.2
         version: 0.7.2
@@ -1023,8 +1023,8 @@ importers:
         specifier: workspace:*
         version: link:../useful-types
       '@types/babel__core':
-        specifier: 7.20.4
-        version: 7.20.4
+        specifier: 7.20.5
+        version: 7.20.5
       '@types/babel__plugin-transform-runtime':
         specifier: 7.9.5
         version: 7.9.5
@@ -9013,7 +9013,7 @@ packages:
     resolution: {integrity: sha512-iu5W0Kdd6nysN5CPkY4GRl+0BpxRTdSfBIJak7mb6xCIHSB5t1tw4BOuqMQ5EgpikRY3MWJ4gY647QkWBX3MNQ==}
     dependencies:
       '@storybook/channels': 7.5.3
-      '@types/babel__core': 7.20.4
+      '@types/babel__core': 7.20.5
       '@types/express': 4.17.21
       file-system-cache: 2.3.0
     dev: true
@@ -9440,8 +9440,8 @@ packages:
       '@types/babel__traverse': 7.20.3
     dev: true
 
-  /@types/babel__core@7.20.4:
-    resolution: {integrity: sha512-mLnSC22IC4vcWiuObSRjrLd9XcBTGf59vUSoq2jkQDJ/QQ8PMI9rSuzE+aEV8karUMbskw07bKYoUJCKTUaygg==}
+  /@types/babel__core@7.20.5:
+    resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
     dependencies:
       '@babel/parser': 7.23.0
       '@babel/types': 7.23.0
