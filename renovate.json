@@ -14,7 +14,7 @@
   "ignoreDeps": ["remark-gfm"],
   "packageRules": [
     {
-      "packageNames": ["node", "pnpm"],
+      "matchPackageNames": ["node", "pnpm"],
       "enabled": false
     },
     {
