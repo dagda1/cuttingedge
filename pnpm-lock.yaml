@@ -639,8 +639,8 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
       '@types/regression':
-        specifier: 2.0.5
-        version: 2.0.5
+        specifier: 2.0.6
+        version: 2.0.6
       '@types/url-join':
         specifier: 4.0.3
         version: 4.0.3
@@ -10072,8 +10072,8 @@ packages:
       '@types/scheduler': 0.16.5
       csstype: 3.1.2
 
-  /@types/regression@2.0.5:
-    resolution: {integrity: sha512-UxuJ3IstjMUIsRkL9TIaYl7oFwLiC2t81c6diohTsYhjCQp32VHJ+s4WXEFuRjU7yXd83qWx+0rlSJlkZBTbqw==}
+  /@types/regression@2.0.6:
+    resolution: {integrity: sha512-sa+sHOUxh9fywFuAFLCcyupFN0CKX654QUZGW5fAZCmV51I4e5nQy1xL2g/JMUW/PeDoF3Yq2lDXb7MoC3KDNg==}
     dev: true
 
   /@types/resolve@1.20.2:
