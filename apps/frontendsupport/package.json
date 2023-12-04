@@ -95,7 +95,7 @@
     "@remix-run/dev": "^2.2.0",
     "@remix-run/eslint-config": "^2.2.0",
     "@types/js-yaml": "^4.0.9",
-    "@types/luxon": "^3.3.5",
+    "@types/luxon": "^3.3.6",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vanilla-extract/css": "^1.14.0",
