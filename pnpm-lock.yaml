@@ -630,8 +630,8 @@ importers:
         specifier: 18.2.15
         version: 18.2.15
       '@types/react-helmet':
-        specifier: 6.1.9
-        version: 6.1.9
+        specifier: 6.1.11
+        version: 6.1.11
       '@types/react-is':
         specifier: ^18.2.4
         version: 18.2.4
@@ -10038,8 +10038,8 @@ packages:
     dependencies:
       '@types/react': 18.2.37
 
-  /@types/react-helmet@6.1.9:
-    resolution: {integrity: sha512-nuOeTefP4yPTWHvjGksCBKb/4hsgJxSX7aSTjTIDFXJIkZ6Wo2Y4/cmE1FO9OlYBrHjKOer/0zLwY7s4qiQBtw==}
+  /@types/react-helmet@6.1.11:
+    resolution: {integrity: sha512-0QcdGLddTERotCXo3VFlUSWO3ztraw8nZ6e3zJSgG7apwV5xt+pJUS8ewPBqT4NYB1optGLprNQzFleIY84u/g==}
     dependencies:
       '@types/react': 18.2.37
     dev: true
