@@ -48,7 +48,7 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@types/luxon": "^3.3.6",
+    "@types/luxon": "^3.3.7",
     "eslint": "8.53.0",
     "typescript": "5.2.2"
   },
