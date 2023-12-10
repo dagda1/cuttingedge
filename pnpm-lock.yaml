@@ -34,7 +34,7 @@ importers:
         version: 6.10.0(eslint@8.53.0)(typescript@5.2.2)
       '@vanilla-extract/vite-plugin':
         specifier: 3.9.2
-        version: 3.9.2(@types/node@20.9.3)(ts-node@10.9.1)(vite@4.5.1)
+        version: 3.9.2(@types/node@20.9.3)(ts-node@10.9.2)(vite@4.5.1)
       '@vitejs/plugin-react':
         specifier: 4.1.1
         version: 4.1.1(vite@4.5.1)
@@ -646,7 +646,7 @@ importers:
         version: 4.0.3
       '@vanilla-extract/vite-plugin':
         specifier: 3.9.2
-        version: 3.9.2(@types/node@20.9.3)(ts-node@10.9.1)(vite@4.5.1)
+        version: 3.9.2(@types/node@20.9.3)(ts-node@10.9.2)(vite@4.5.1)
       '@vitejs/plugin-react':
         specifier: 4.1.1
         version: 4.1.1(vite@4.5.1)
@@ -666,8 +666,8 @@ importers:
         specifier: 5.0.5
         version: 5.0.5
       ts-node:
-        specifier: 10.9.1
-        version: 10.9.1(@types/node@20.9.3)(typescript@5.2.2)
+        specifier: 10.9.2
+        version: 10.9.2(@types/node@20.9.3)(typescript@5.2.2)
       typescript:
         specifier: 5.2.2
         version: 5.2.2
@@ -7068,7 +7068,7 @@ packages:
       pidtree: 0.6.0
       postcss: 8.4.31
       postcss-discard-duplicates: 5.1.0(postcss@8.4.31)
-      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.1)
+      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.2)
       postcss-modules: 6.0.0(postcss@8.4.31)
       prettier: 2.8.8
       pretty-ms: 7.0.1
@@ -10596,7 +10596,7 @@ packages:
     dependencies:
       '@vanilla-extract/css': 1.14.0
 
-  /@vanilla-extract/vite-plugin@3.9.2(@types/node@20.9.3)(ts-node@10.9.1)(vite@4.5.1):
+  /@vanilla-extract/vite-plugin@3.9.2(@types/node@20.9.3)(ts-node@10.9.2)(vite@4.5.1):
     resolution: {integrity: sha512-WYgWiEs+nw+lNazyW0Ixp0MMgtNgPL+8fFKrol1V5XoNIzRrYPGfuLhRI7PwheSWQVGF7OOer0kUWQcLey1vOQ==}
     peerDependencies:
       vite: ^2.2.3 || ^3.0.0 || ^4.0.3 || ^5.0.0
@@ -10604,7 +10604,7 @@ packages:
       '@vanilla-extract/integration': 6.2.4(@types/node@20.9.3)
       outdent: 0.8.0
       postcss: 8.4.31
-      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.1)
+      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.2)
       vite: 4.5.1(@types/node@20.9.3)
     transitivePeerDependencies:
       - '@types/node'
@@ -21229,7 +21229,7 @@ packages:
       yaml: 1.10.2
     dev: false
 
-  /postcss-load-config@4.0.1(postcss@8.4.31)(ts-node@10.9.1):
+  /postcss-load-config@4.0.1(postcss@8.4.31)(ts-node@10.9.2):
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -21243,7 +21243,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.31
-      ts-node: 10.9.1(@types/node@20.9.3)(typescript@5.2.2)
+      ts-node: 10.9.2(@types/node@20.9.3)(typescript@5.2.2)
       yaml: 2.3.4
 
   /postcss-merge-longhand@5.1.7(postcss@8.4.31):
@@ -24464,7 +24464,7 @@ packages:
       postcss: 8.4.31
       postcss-import: 15.1.0(postcss@8.4.31)
       postcss-js: 4.0.1(postcss@8.4.31)
-      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.1)
+      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.2)
       postcss-nested: 6.0.1(postcss@8.4.31)
       postcss-selector-parser: 6.0.13
       resolve: 1.22.8
@@ -24867,8 +24867,8 @@ packages:
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  /ts-node@10.9.1(@types/node@20.9.3)(typescript@5.2.2):
-    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+  /ts-node@10.9.2(@types/node@20.9.3)(typescript@5.2.2):
+    resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
     hasBin: true
     peerDependencies:
       '@swc/core': '>=1.2.50'
