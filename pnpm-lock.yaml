@@ -425,8 +425,8 @@ importers:
         specifier: ^4.5.1
         version: 4.5.1(@types/node@20.9.3)
       vite-tsconfig-paths:
-        specifier: ^4.2.1
-        version: 4.2.1(typescript@5.2.2)(vite@4.5.1)
+        specifier: ^4.2.2
+        version: 4.2.2(typescript@5.2.2)(vite@4.5.1)
 
   apps/website:
     dependencies:
@@ -687,8 +687,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0(rollup@4.4.0)(typescript@5.2.2)(vite@4.5.1)
       vite-tsconfig-paths:
-        specifier: 4.2.1
-        version: 4.2.1(typescript@5.2.2)(vite@4.5.1)
+        specifier: 4.2.2
+        version: 4.2.2(typescript@5.2.2)(vite@4.5.1)
 
   packages/cloudinary-blurhash:
     dependencies:
@@ -884,8 +884,8 @@ importers:
         specifier: 5.2.2
         version: 5.2.2
       vite-tsconfig-paths:
-        specifier: 4.2.1
-        version: 4.2.1(typescript@5.2.2)(vite@4.5.1)
+        specifier: 4.2.2
+        version: 4.2.2(typescript@5.2.2)(vite@4.5.1)
 
   packages/devtools:
     dependencies:
@@ -25955,8 +25955,8 @@ packages:
       - typescript
     dev: true
 
-  /vite-tsconfig-paths@4.2.1(typescript@5.2.2)(vite@4.5.1):
-    resolution: {integrity: sha512-GNUI6ZgPqT3oervkvzU+qtys83+75N/OuDaQl7HmOqFTb0pjZsuARrRipsyJhJ3enqV8beI1xhGbToR4o78nSQ==}
+  /vite-tsconfig-paths@4.2.2(typescript@5.2.2)(vite@4.5.1):
+    resolution: {integrity: sha512-dq0FjyxHHDnp0uS3P12WEOX2W7NeuLzX9AWP38D7Zw2CTbFErapwQVlCiT5DMJcVWKQ1MMdTe92PZl/rBQ7qcw==}
     peerDependencies:
       vite: '*'
     peerDependenciesMeta:
