@@ -26,8 +26,8 @@
     "@testing-library/dom": "^9.3.3",
     "@testing-library/react": "14.1.2",
     "@testing-library/user-event": "14.5.1",
-    "@types/react": "18.2.37",
-    "@types/react-dom": "18.2.15",
+    "@types/react": "18.2.43",
+    "@types/react-dom": "18.2.17",
     "@vanilla-extract/css": "^1.14.0",
     "@vanilla-extract/sprinkles": "1.6.1",
     "@visx/scale": "^3.3.0",
@@ -39,8 +39,8 @@
     "typescript": "5.2.2"
   },
   "peerDependencies": {
-    "react": ">= 18.x.x",
-    "react-dom": ">= 18.x.x"
+    "react": ">= 18.2.0",
+    "react-dom": ">= 18.2.0"
   },
   "scripts": {
     "build": "NODE_ENV=production devtools rollup",
