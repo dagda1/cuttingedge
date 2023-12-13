@@ -10,9 +10,6 @@
       "@cutting/devtools": ["./packages/devtools/src"],
       "@cutting/hooks": ["./packages/hooks/src"],
       "@cutting/markdown": ["./packages/markdown/src"],
-      "@cutting/react-abortable-fetch": [
-        "./packages/react-abortable-fetch/src"
-      ],
       "@cutting/svg": ["./packages/svg/src"],
       "@cutting/use-get-parent-size": ["./packages/use-get-parent-size/src"],
       "@cutting/use-mathjax": ["./packages/use-mathjax/src"],

@@ -11,7 +11,6 @@
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@cutting/react-abortable-fetch": "workspace:*",
     "@cutting/use-get-parent-size": "workspace:*",
     "@cutting/util": "workspace:*",
     "classnames": "^2.3.2",
@@ -26,17 +25,17 @@
     "@testing-library/dom": "^9.3.3",
     "@testing-library/react": "14.1.2",
     "@testing-library/user-event": "14.5.1",
-    "@types/react": "18.2.43",
+    "@types/react": "18.2.45",
     "@types/react-dom": "18.2.17",
     "@vanilla-extract/css": "^1.14.0",
     "@vanilla-extract/sprinkles": "1.6.1",
-    "@visx/scale": "^3.3.0",
+    "@visx/scale": "^3.5.0",
     "d3-scale": "4.0.2",
     "assert-ts": "0.3.4",
-    "eslint": "8.53.0",
+    "eslint": "8.55.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.2.2"
+    "typescript": "5.3.3"
   },
   "peerDependencies": {
     "react": ">= 18.2.0",

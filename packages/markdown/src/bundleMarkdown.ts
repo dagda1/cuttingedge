@@ -1,7 +1,7 @@
 import parseFrontMatter from 'front-matter';
 import { bundleMDX } from 'mdx-bundler';
 import remarkFootnotes from 'remark-footnotes';
-import remarkMdxImages from 'remark-mdx-images';
+// import remarkMdxImages from 'remark-mdx-images';
 import remarkBreaks from 'remark-breaks';
 import { remarkCodeTitles } from './remark/remark-code-title';
 import { remarkInlineCodeLanguageCreator } from './remark/remark-inline-code-language';
@@ -43,7 +43,7 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
     mdxOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        remarkMdxImages,
+        // remarkMdxImages,
         remarkBreaks,
         remarkCodeTitles,
         remarkInlineCodeLanguage,

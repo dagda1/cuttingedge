@@ -12,21 +12,21 @@
   "dependencies": {
     "@cutting/component-library": "workspace:*",
     "assert-ts": "^0.3.4",
-    "gsap": "^3.12.2",
+    "gsap": "^3.12.3",
     "lil-gui": "^0.19.1",
-    "three": "^0.158.0"
+    "three": "^0.159.0"
   },
   "devDependencies": {
     "@cutting/eslint-config": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@types/three": "^0.158.2",
+    "@types/three": "^0.159.0",
     "vite-tsconfig-paths": "^4.2.2",
-    "typescript": "^5.2.2",
-    "vite": "^4.5.1"
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8"
   },
   "pnpm": {
     "overrides": {
-      "gsap": "npm:@gsap/shockingly@^3.12.2"
+      "gsap": "npm:@gsap/shockingly@^3.12.3"
     }
   }
 }

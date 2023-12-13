@@ -19,9 +19,6 @@ export default defineConfig({
   ],
   assetsInclude: ['src/assets/images/**.png', 'src/assets/images/**.jpg'],
   mode: '',
-  ssr: {
-    format: 'esm',
-  },
   build: {
     sourcemap: 'inline',
     minify: isProduction,

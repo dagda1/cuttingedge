@@ -13,7 +13,7 @@ export const repos: Repo[] = [
   {
     name: 'use-get-parent-size',
     description: `Get resize events of an observed DOM element's height, width etc. from a resize-observer.`,
-    link: 'https://github.com/dagda1/cuttingedge/tree/main/packages/react-abortable-fetch',
+    link: 'https://github.com/dagda1/cuttingedge/tree/main/packages/use-get-parent-size',
   },
   {
     name: 'use-mathjax',
