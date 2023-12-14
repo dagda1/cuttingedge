@@ -2,8 +2,8 @@ import type { AnchorHTMLAttributes, ComponentType, ForwardRefRenderFunction, Ref
 import { forwardRef, useContext, createContext } from 'react';
 import HeadingContext from '../Heading/HeadingContext';
 import { TextContext } from '../Text/TextContext';
-import * as styles from './TextLink.css';
-import * as typographyStyles from '../../../style/typography/typography.css';
+import * as styles from './TextLink.css.js';
+import * as typographyStyles from '../../../style/typography/typography.css.js';
 import cs from 'classnames';
 import type { Atoms } from '~/style/atoms/atoms';
 import { atoms } from '~/style/atoms/atoms';

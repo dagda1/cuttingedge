@@ -1,6 +1,6 @@
 import type { InputHTMLAttributes, Ref } from 'react';
 import cs from 'classnames';
-import * as styles from './Input.css';
+import * as styles from './Input.css.js';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean;

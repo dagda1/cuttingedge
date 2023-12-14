@@ -1,5 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { vars } from '../../src/style/themes/vars.css';
+import { vars } from '../../src/style/themes/vars.css.js';
 import { cuttingTheme } from '~/index';
 
 export const background = style({

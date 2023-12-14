@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react';
 import type { StandardProps } from '~/types';
-import { visuallyHidden } from '~/style/accessibility.css';
+import { visuallyHidden } from '~/style/accessibility.css.js';
 import { Text } from '~/components/atoms/Text/Text';
 
 export type ErrorProps = StandardProps<HTMLAttributes<HTMLUListElement>> & {

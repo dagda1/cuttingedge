@@ -1,4 +1,4 @@
-import * as styles from './global.css';
+import * as styles from './global.css.js';
 import React, { useState } from 'react';
 import {
   FormInput,

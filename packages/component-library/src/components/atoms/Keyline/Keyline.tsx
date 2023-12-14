@@ -1,6 +1,6 @@
 import type { BoxProps } from '~/components/molecules/Box/Box';
 import { Box } from '~/components/molecules/Box/Box';
-import * as styles from './Keyline.css';
+import * as styles from './Keyline.css.js';
 import cs from 'classnames';
 
 interface KeylineProps {

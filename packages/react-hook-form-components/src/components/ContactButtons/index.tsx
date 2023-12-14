@@ -1,5 +1,5 @@
 import { Modal } from 'flowbite-react';
-import * as styles from './ContactButtons.css';
+import * as styles from './ContactButtons.css.js';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { CallPopupButton } from '../Call/CallPopupButton';
 import type { CallType } from '../Call/types';

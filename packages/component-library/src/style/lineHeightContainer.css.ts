@@ -1,5 +1,5 @@
 import { styleVariants } from '@vanilla-extract/css';
-import { vars } from './themes/vars.css';
+import { vars } from './themes/vars.css.js';
 import { responsiveStyle } from './responsive-style';
 
 export const lineHeightContainer = styleVariants(vars.textSize, ({ mobile, tablet }) =>

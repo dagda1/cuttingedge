@@ -12,7 +12,7 @@ import {
   Clock,
 } from 'three';
 
-import * as styles from './global.css';
+import * as styles from './global.css.js';
 import { useParentSize } from '../../src/useParentSize/useParentSize';
 
 export function App(): JSX.Element {

@@ -6,7 +6,7 @@ import { ColumnsContext, validColumnsComponents } from './ColumnsContext';
 import type { CollapsibleAlignmentProps } from '~/style/util/collapsibleAlignmentProps';
 import { resolveCollapsibleAlignmentProps } from '~/style/util/collapsibleAlignmentProps';
 import type { ResponsiveSpace } from '~/style/atoms/atoms';
-import { normalizeResponsiveValue } from '~/style/atoms/sprinkles.css';
+import { normalizeResponsiveValue } from '~/style/atoms/sprinkles.css.js';
 import { negativeMargin } from '~/style/negativeMargin/negativeMargin';
 import cs from 'classnames';
 

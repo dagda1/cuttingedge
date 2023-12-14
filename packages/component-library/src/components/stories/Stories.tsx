@@ -1,11 +1,11 @@
 /* eslint-disable react/display-name */
-import { defaultTheme } from '../../style/themes/default/default.css';
-import { cuttingTheme } from '../../style/themes/cutting/cutting.css';
-import { salesTheme } from '../../style/themes/sales/salesTheme.css';
+import { defaultTheme } from '../../style/themes/default/default.css.js';
+import { cuttingTheme } from '../../style/themes/cutting/cutting.css.js';
+import { salesTheme } from '../../style/themes/sales/salesTheme.css.js';
 import type { StoryObj } from '@storybook/react';
 import type { FunctionComponent } from 'react';
 import { ApplicationLayout } from '../templates/ApplicationLayout/ApplicationLayout';
-import * as styles from './Stories.css';
+import * as styles from './Stories.css.js';
 
 const themes = {
   defaultTheme,

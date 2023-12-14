@@ -1,5 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { vars } from '~/style/themes/vars.css';
+import { vars } from '~/style/themes/vars.css.js';
 import { ZIndex } from '~/utl/zindex';
 
 export const popoverButton = style({

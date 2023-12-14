@@ -1,4 +1,4 @@
-import * as styles from './virtualTouchable.css';
+import * as styles from './virtualTouchable.css.js';
 
 interface UseVirtualTouchableOptions {
   xAxis: boolean;

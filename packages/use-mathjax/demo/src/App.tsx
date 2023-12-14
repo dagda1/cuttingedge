@@ -6,7 +6,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-import './global.css';
+import './global.css.js';
 export function Maths(): JSX.Element {
   const ref = useRef<HTMLParagraphElement>(null);
   useMathJax({ elements: ref.current });

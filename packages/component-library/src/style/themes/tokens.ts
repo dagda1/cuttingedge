@@ -1,5 +1,5 @@
 import { rem } from 'polished';
-import { palette } from '~/style/palette.css';
+import { palette } from '~/style/palette.css.js';
 import arialMetfics from '@capsizecss/metrics/arial';
 import { extractFontMetricsForTheme } from '../util/typography';
 

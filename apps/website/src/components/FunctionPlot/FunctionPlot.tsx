@@ -12,7 +12,7 @@ import { assert } from 'assert-ts';
 import { ResponsiveSVG, Group } from '@cutting/svg';
 import { Circle, Line, LinePath } from '@visx/shape';
 import { curveBasisOpen } from '@visx/curve';
-import * as styles from './FunctionPlot.css';
+import * as styles from './FunctionPlot.css.js';
 import { getYIntercept } from '~/viz/getYIntercept';
 import { Text } from '@visx/text';
 import { reducer, initialState } from './reducer';

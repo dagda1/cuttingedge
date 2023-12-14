@@ -7,7 +7,7 @@ import { AxisBottom, AxisLeft } from '@visx/axis';
 import { range } from '@cutting/util';
 import { Arc, LinePath } from '@visx/shape';
 import { Text } from '@visx/text';
-import * as styles from './Tan.css';
+import * as styles from './Tan.css.js';
 import cs from 'classnames';
 ``;
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';

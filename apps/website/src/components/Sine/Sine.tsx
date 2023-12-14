@@ -7,7 +7,7 @@ import { AxisBottom, AxisLeft } from '@visx/axis';
 import { LinePath } from '@visx/shape';
 import { curveMonotoneX } from '@visx/curve';
 import { SVGMathJax } from '@cutting/use-mathjax';
-import * as styles from './Sine.css';
+import * as styles from './Sine.css.js';
 import type { PiMapKeys } from './reducer';
 import { getScales, reducer, initialState, xTickValues, PiMap } from './reducer';
 import { BottomAxis } from './BottomAxis';

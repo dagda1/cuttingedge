@@ -1,7 +1,7 @@
-import * as resetStyles from '../reset/reset.css';
-import type { vars } from '../themes/vars.css';
+import * as resetStyles from '../reset/reset.css.js';
+import type { vars } from '../themes/vars.css.js';
 
-import { type RequiredResponsiveValue, sprinkles } from './sprinkles.css';
+import { type RequiredResponsiveValue, sprinkles } from './sprinkles.css.js';
 
 type Sprinkles = Parameters<typeof sprinkles>[0];
 

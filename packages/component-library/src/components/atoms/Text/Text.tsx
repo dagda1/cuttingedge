@@ -7,7 +7,7 @@ import { textStyles } from '../../../style/typography/typography';
 import { TextContext } from './TextContext';
 import { useDefaultTextProps } from './defaultTextProps';
 import cs from 'classnames';
-import * as styles from './Text.css';
+import * as styles from './Text.css.js';
 
 type Layout = 'inline' | 'block';
 

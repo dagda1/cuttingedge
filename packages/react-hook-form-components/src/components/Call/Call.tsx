@@ -1,5 +1,5 @@
 import { InlineWidget } from 'react-calendly';
-import * as styles from './Call.css';
+import * as styles from './Call.css.js';
 import type { CallProps } from './types';
 import { Box } from '@cutting/component-library/src/components/molecules/Box/Box';
 

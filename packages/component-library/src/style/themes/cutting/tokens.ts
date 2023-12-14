@@ -1,6 +1,6 @@
 import type { DeepPartial } from '@cutting/util';
 import type { Tokens } from '~/style/themes/tokens';
-import { palette } from '~/style/palette.css';
+import { palette } from '~/style/palette.css.js';
 import { extractFontMetricsForTheme } from '~/style/util/typography';
 import roboto from '@capsizecss/metrics/roboto';
 

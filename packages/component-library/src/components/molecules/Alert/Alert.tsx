@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import cs from 'classnames';
-import * as styles from './Alert.css';
+import * as styles from './Alert.css.js';
 import { capitalize } from '@cutting/util';
 import { Heading } from '~/components/atoms/Heading/Heading';
 import { Text } from '~/components/atoms/Text/Text';

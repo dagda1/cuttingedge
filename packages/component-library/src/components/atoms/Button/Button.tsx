@@ -2,8 +2,8 @@ import { type DetailedHTMLProps, type ButtonHTMLAttributes, type MouseEventHandl
 import cs from 'classnames';
 import { identity } from '@cutting/util';
 import type { StandardProps } from '~/types';
-import type { ButtonStyle } from './Button.css';
-import { root, buttons, disabled as disabledStyle } from './Button.css';
+import type { ButtonStyle } from './Button.css.js';
+import { root, buttons, disabled as disabledStyle } from './Button.css.js';
 import { Text } from '../Text/Text';
 import { Box } from '~/components/molecules/Box/Box';
 

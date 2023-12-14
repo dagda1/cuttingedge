@@ -1,7 +1,7 @@
 import cs from 'classnames';
 import { optimizeResponsiveArray } from './optimizeResponsiveArray';
-import type { OptionalResponsiveValue } from '../atoms/sprinkles.css';
-import { normalizeResponsiveValue } from '../atoms/sprinkles.css';
+import type { OptionalResponsiveValue } from '../atoms/sprinkles.css.js';
+import { normalizeResponsiveValue } from '../atoms/sprinkles.css.js';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const resolveResponsiveProp = <Keys extends string | number>(

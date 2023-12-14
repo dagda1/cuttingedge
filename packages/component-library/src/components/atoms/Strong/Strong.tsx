@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { fontWeight } from '~/style/typography/typography.css';
+import { fontWeight } from '~/style/typography/typography.css.js';
 
 export interface StrongProps {
   id?: string;

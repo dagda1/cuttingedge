@@ -1,4 +1,4 @@
-import * as styles from './Donut.css';
+import * as styles from './Donut.css.js';
 import cs from 'classnames';
 import { useMemo, useRef } from 'react';
 import { Strong } from '~/components/atoms/Strong/Strong';

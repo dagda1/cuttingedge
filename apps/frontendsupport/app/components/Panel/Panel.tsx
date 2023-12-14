@@ -1,7 +1,7 @@
 import type { ReactNode, Ref } from 'react';
 import cs from 'classnames';
 import { Box } from '@cutting/component-library';
-import * as styles from './Panel.css';
+import * as styles from './Panel.css.js';
 
 interface PanelProps {
   className?: string;

@@ -1,4 +1,4 @@
-import { Scroller } from '../Scroller/Scroller';
+import { Scroller } from '../Scroller/Scroller.js';
 import { Box, Heading, PageBlock, Stack } from '@cutting/component-library';
 // import { CTAButton } from '../CTAButton/CTAButton';
 

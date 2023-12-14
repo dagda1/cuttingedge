@@ -1,6 +1,6 @@
 import type { StyleRule } from '@vanilla-extract/css';
 import { style, styleVariants } from '@vanilla-extract/css';
-import { vars } from '~/style/themes/vars.css';
+import { vars } from '~/style/themes/vars.css.js';
 import { responsiveStyle } from '~/style/responsive-style';
 
 export const root = style({

@@ -1,8 +1,8 @@
 import { Children, type ReactElement } from 'react';
 import { assert } from 'assert-ts';
 import { Box } from '../Box/Box';
-import type { OptionalResponsiveValue } from '../../../style/atoms/sprinkles.css';
-import { mapResponsiveValue } from '../../../style/atoms/sprinkles.css';
+import type { OptionalResponsiveValue } from '../../../style/atoms/sprinkles.css.js';
+import { mapResponsiveValue } from '../../../style/atoms/sprinkles.css.js';
 import type { Align } from '../../../style/util/align';
 import { alignToFlexAlign } from '../../../style/util/align';
 import type { ResponsiveSpace } from '../../../style/atoms/atoms';

@@ -1,7 +1,7 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { Box, type BoxProps } from '../Box/Box';
 import { breakpoints, type Dimensions } from '~/style/breakpoints';
-import * as styles from './ResponsiveImage.css';
+import * as styles from './ResponsiveImage.css.js';
 
 interface Image {
   src: string;

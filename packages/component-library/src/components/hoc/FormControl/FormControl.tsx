@@ -5,7 +5,7 @@ import type { FunctionComponent, PropsWithoutRef } from 'react';
 import { forwardRef, useRef } from 'react';
 import { Label } from '~/components/atoms/Label';
 import { prefixId } from '~/utl';
-import * as styles from './FormControl.css';
+import * as styles from './FormControl.css.js';
 import { ErrorMessage } from '~/components/atoms/ErrorMessage/ErrorMessage';
 import type { FormControlProps, FormElementFromComponent } from './types';
 import { Text } from '~/components/atoms/Text/Text';

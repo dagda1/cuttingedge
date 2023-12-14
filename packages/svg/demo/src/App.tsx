@@ -1,4 +1,4 @@
-import * as styles from './global.css';
+import * as styles from './global.css.js';
 import '@cutting/component-library/styles.css';
 import { useMemo, useRef } from 'react';
 import { ApplicationLayout } from '@cutting/component-library';

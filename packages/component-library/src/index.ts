@@ -32,8 +32,8 @@ export { ButtonLink } from './components/atoms/ButtonLink/ButtonLink';
 export { TextLink, type TextLinkProps } from './components/atoms/TextLink/TextLink';
 export { TextContext } from './components/atoms/Text/TextContext';
 export { Strong } from './components/atoms/Strong/Strong';
-export * from './components/atoms/Button/Button.css';
-export * from './components/atoms/ButtonLink/ButtonLink.css';
+export * from './components/atoms/Button/Button.css.js';
+export * from './components/atoms/ButtonLink/ButtonLink.css.js';
 export { LoadingOverlay } from './components/molecules/LoadingIcon/LoadingOverlay';
 export { FormControl } from './components/hoc/FormControl/FormControl';
 export {
@@ -42,7 +42,7 @@ export {
   FormTextArea,
   FormRadioGroup,
 } from './components/molecules/FormControls/FormControls';
-export type { ResponsiveAtomicProperties } from './style/atoms/sprinkles.css';
+export type { ResponsiveAtomicProperties } from './style/atoms/sprinkles.css.js';
 export type { ResponsiveSpace, Space } from './style/atoms/atoms';
 export { RadioGroup } from './components/molecules/RadioGroup/RadioGroup';
 export { CheckboxGroup } from './components/molecules/CheckboxGroup/CheckboxGroup';
@@ -73,14 +73,14 @@ export { ResponsiveImage } from './components/molecules/ResponsiveImage/Responsi
 export { Popover } from './components/molecules/Popover/Popover';
 export { responsiveStyle } from './style/responsive-style';
 export { atoms } from './style/atoms/atoms';
-export { vars } from './style/themes/vars.css';
-export { defaultTheme } from './style/themes/default/default.css';
-export { cuttingTheme } from './style/themes/cutting/cutting.css';
-export { salesTheme } from './style/themes/sales/salesTheme.css';
-export { supportTheme } from './style/themes/support/supportTheme.css';
-export { palette } from './style/palette.css';
+export { vars } from './style/themes/vars.css.js';
+export { defaultTheme } from './style/themes/default/default.css.js';
+export { cuttingTheme } from './style/themes/cutting/cutting.css.js';
+export { salesTheme } from './style/themes/sales/salesTheme.css.js';
+export { supportTheme } from './style/themes/support/supportTheme.css.js';
+export { palette } from './style/palette.css.js';
 export { breakpoints, breakpointNames, getCurrentBreakpoint } from './style/breakpoints';
 export { markResetImported } from './style/reset/reset-tracker';
-export { visuallyHidden, screenReaderOnly } from './style/accessibility.css';
+export { visuallyHidden, screenReaderOnly } from './style/accessibility.css.js';
 export { makeWebFonts } from './style/util/typography';
 export * from './utl/zindex';

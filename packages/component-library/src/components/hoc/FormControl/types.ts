@@ -6,7 +6,7 @@ import type {
   SelectHTMLAttributes,
   TextareaHTMLAttributes,
 } from 'react';
-import type { vars } from '~/style/themes/vars.css';
+import type { vars } from '~/style/themes/vars.css.js';
 import type { FontWeight } from '~/style/types';
 
 export type Layout = 'vertical' | 'horizontal';
@@ -14,10 +14,10 @@ export type Layout = 'vertical' | 'horizontal';
 export type FormElementAttributes<E> = E extends HTMLInputElement
   ? InputHTMLAttributes<E>
   : E extends HTMLTextAreaElement
-  ? TextareaHTMLAttributes<E>
-  : E extends HTMLSelectElement
-  ? SelectHTMLAttributes<E>
-  : HTMLAttributes<E> & { name: string };
+    ? TextareaHTMLAttributes<E>
+    : E extends HTMLSelectElement
+      ? SelectHTMLAttributes<E>
+      : HTMLAttributes<E> & { name: string };
 
 export type FormControlProps<E> = {
   additionalLabel?: ReactNode;

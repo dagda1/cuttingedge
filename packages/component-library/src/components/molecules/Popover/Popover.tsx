@@ -13,7 +13,7 @@ import {
 import { Text } from '~/components/atoms/Text/Text';
 import type { ReactNode } from 'react';
 import cs from 'classnames';
-import * as styles from './Popover.css';
+import * as styles from './Popover.css.js';
 
 interface PopoverProps {
   isOpen: boolean;

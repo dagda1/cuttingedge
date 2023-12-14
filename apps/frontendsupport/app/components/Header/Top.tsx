@@ -1,11 +1,11 @@
 import { NavLink, type NavLinkProps } from '@remix-run/react';
 import { Box, Nav, NavItem, NavItems, vars } from '@cutting/component-library';
-import { CTAButton } from '../CTAButton/CTAButton';
+import { CTAButton } from '../CTAButton/CTAButton.js';
 import type { ReactNode } from 'react';
 import { useCallback, useState } from 'react';
-import { TextNavLink } from '../TextNavLink/TextNavLink';
+import { TextNavLink } from '../TextNavLink/TextNavLink.js';
 import { Image } from '@unpic/react';
-import * as styles from './Top.css';
+import * as styles from './Top.css.js';
 
 const MenuItems: NavLinkProps[] = [
   { to: '/services/home', children: 'SERVICES' },

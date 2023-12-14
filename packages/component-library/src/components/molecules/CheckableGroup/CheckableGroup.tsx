@@ -4,7 +4,7 @@ import { Radio } from '../../atoms/Radio/Radio';
 import type { CheckableLayoutProps, CheckableProps, CheckableValueType } from '../../atoms/Checkable/types';
 import cs from 'classnames';
 
-import * as styles from './Checkable.css';
+import * as styles from './Checkable.css.js';
 import type { Checkbox } from '../../atoms/Checkbox/Checkbox';
 import { Text } from '~/components/atoms/Text/Text';
 import { Stack } from '../Stack/Stack';

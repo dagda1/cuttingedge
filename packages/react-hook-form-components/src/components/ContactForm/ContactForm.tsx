@@ -1,4 +1,4 @@
-import * as styles from './ContactForm.css';
+import * as styles from './ContactForm.css.js';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { Input, TextArea } from '../FormComponents/FormComponents';

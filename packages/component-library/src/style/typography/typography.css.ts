@@ -1,7 +1,7 @@
 import { createThemeContract, style, styleVariants, assignVars } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { createTextStyle } from '@capsizecss/vanilla-extract';
-import { vars } from '~/style/themes/vars.css';
+import { vars } from '~/style/themes/vars.css.js';
 import { mapToProperty } from '../util/map-property';
 import { breakpointQuery } from '../breakpoints';
 import { responsiveStyle } from '../responsive-style';

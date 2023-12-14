@@ -6,7 +6,7 @@ import {
   createNormalizeValueFn,
 } from '@vanilla-extract/sprinkles';
 import { breakpointNames, breakpoints } from '../breakpoints';
-import { vars } from '~/style/themes/vars.css';
+import { vars } from '~/style/themes/vars.css.js';
 import { rem } from 'polished';
 
 export type OptionalResponsiveValue<Value extends string | number> = ConditionalValue<

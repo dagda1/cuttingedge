@@ -1,6 +1,6 @@
 import { TextLink } from '~/components/atoms/TextLink/TextLink';
 import { Text } from '~/components/atoms/Text/Text';
-import * as styles from './Testimonial.css';
+import * as styles from './Testimonial.css.js';
 import type { ReactNodeNoStrings } from '../Stack/Stack';
 import { Stack } from '../Stack/Stack';
 

@@ -3,8 +3,8 @@ import { type AllHTMLAttributes, type ElementType, createElement, forwardRef, us
 import dedent from 'dedent';
 import type { Atoms } from '../../../style/atoms/atoms';
 import { atoms } from '../../../style/atoms/atoms';
-import { sprinkles } from '../../../style/atoms/sprinkles.css';
-import { base as baseReset } from '../../../style/reset/reset.css';
+import { sprinkles } from '../../../style/atoms/sprinkles.css.js';
+import { base as baseReset } from '../../../style/reset/reset.css.js';
 
 export interface BoxBaseProps extends Omit<Atoms, 'reset' | 'background'> {
   className?: string;

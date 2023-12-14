@@ -1,7 +1,7 @@
 import { range } from '@cutting/util';
 import cs from 'classnames';
 
-import * as styles from './LoadingIcon.css';
+import * as styles from './LoadingIcon.css.js';
 
 export interface LoadingIconProps {
   darkMode?: boolean;

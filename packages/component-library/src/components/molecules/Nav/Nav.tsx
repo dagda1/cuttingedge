@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 import { Children, Fragment, useMemo } from 'react';
-import * as styles from './Nav.css';
+import * as styles from './Nav.css.js';
 import cs from 'classnames';
 import type { NavItemProps } from './NavItem';
 import { NavItems } from './NavItems';

@@ -1,5 +1,5 @@
 import { Box } from '../Box/Box';
-import * as styles from './Divider.css';
+import * as styles from './Divider.css.js';
 
 export function Divider(): JSX.Element {
   return (

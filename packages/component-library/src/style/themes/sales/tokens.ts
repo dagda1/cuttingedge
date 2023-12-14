@@ -1,6 +1,6 @@
 import type { DeepPartial } from '@cutting/util';
 // import { slate } from 'tailwindcss/colors';
-import { palette } from '~/style/palette.css';
+import { palette } from '~/style/palette.css.js';
 import type { Tokens } from '~/style/themes/tokens';
 import { extractFontMetricsForTheme } from '~/style/util/typography';
 import oswald from '@capsizecss/metrics/oswald';
