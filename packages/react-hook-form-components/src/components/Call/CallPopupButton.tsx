@@ -1,5 +1,5 @@
 import { PopupModal } from 'react-calendly';
-import type { CallProps } from './types';
+import type { CallProps } from './types.js';
 import { Button } from '@cutting/component-library';
 import type { ReactNode } from 'react';
 import { useState } from 'react';

@@ -1,5 +1,5 @@
 import { createVar, style } from '@vanilla-extract/css';
-import { atoms } from '../../../style/atoms/atoms';
+import { atoms } from '../../../style/atoms/atoms.js';
 
 export const base = style([
   atoms({

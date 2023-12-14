@@ -1,5 +1,5 @@
 import { type ReactNode, useContext } from 'react';
-import { Box } from '../Box/Box';
+import { Box } from '../Box/Box.js';
 import { ColumnsContext } from '../Columns/ColumnsContext';
 import * as styles from './Column.css.js';
 import cs from 'classnames';

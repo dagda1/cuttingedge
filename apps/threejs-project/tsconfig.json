@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "noEmit": true,
+    "moduleResolution": "Node",
     "paths": {
       "~/*": ["src/*"]
     }

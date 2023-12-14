@@ -1,7 +1,7 @@
-import type { Tokens } from '~/style/themes/tokens';
-import { tokens } from './tokens';
+import type { Tokens } from '~/style/themes/tokens.js';
+import { tokens } from './tokens.js';
 import { createTheme } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css.js';
-import { makeTheme } from '~/style/themes/make-theme';
+import { makeTheme } from '~/style/themes/make-theme.js';
 
 export const salesTheme = createTheme(vars, makeTheme(tokens as Tokens));

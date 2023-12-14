@@ -3,8 +3,8 @@ import { calc } from '@vanilla-extract/css-utils';
 import { createTextStyle } from '@capsizecss/vanilla-extract';
 import { vars } from '~/style/themes/vars.css.js';
 import { mapToProperty } from '../util/map-property';
-import { breakpointQuery } from '../breakpoints';
-import { responsiveStyle } from '../responsive-style';
+import { breakpointQuery } from '../breakpoints.js';
+import { responsiveStyle } from '../responsive-style.js';
 
 export const fontFamily = style({
   fontFamily: vars.fontFamily.text,

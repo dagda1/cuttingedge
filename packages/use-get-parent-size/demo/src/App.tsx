@@ -13,7 +13,7 @@ import {
 } from 'three';
 
 import * as styles from './global.css.js';
-import { useParentSize } from '../../src/useParentSize/useParentSize';
+import { useParentSize } from '../../src/useParentSize/useParentSize.js';
 
 export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);

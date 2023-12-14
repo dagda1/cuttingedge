@@ -1,7 +1,7 @@
 import type { DeepPartial } from '@cutting/util';
-import type { Tokens } from '~/style/themes/tokens';
+import type { Tokens } from '~/style/themes/tokens.js';
 import { palette } from '~/style/palette.css.js';
-import { extractFontMetricsForTheme } from '~/style/util/typography';
+import { extractFontMetricsForTheme } from '~/style/util/typography.js';
 import roboto from '@capsizecss/metrics/roboto';
 
 const colors = {

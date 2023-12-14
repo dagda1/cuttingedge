@@ -122,6 +122,9 @@ importers:
       '@cutting/use-get-parent-size':
         specifier: workspace:*
         version: link:../../packages/use-get-parent-size
+      '@cutting/useful-types':
+        specifier: workspace:*
+        version: link:../../packages/useful-types
       '@cutting/util':
         specifier: workspace:*
         version: link:../../packages/util

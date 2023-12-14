@@ -1,6 +1,6 @@
-export type { DeepPartial } from './types/DeepPartial';
-export type { Entries } from './types/entries';
-export type { Fn } from './functions/functions';
+export type { DeepPartial } from './types/DeepPartial.js';
+export type { Entries } from './types/entries.js';
+export type { Fn } from './functions/functions.js';
 
 export { isDate } from './date/date.js';
 export { isElementInViewportTop } from './dom/dom.js';

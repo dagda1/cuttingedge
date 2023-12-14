@@ -91,20 +91,15 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/esm/src.js"
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/src.js",
+      "default": "./dist/esm/src.js"
     },
     "./styles.css": {
       "import": "./dist/esm/src.css"
     },
     "./package.json": {
       "import": "./package.json"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "dist/esm/index.d.ts"
-      ]
     }
   }
 }

@@ -8,10 +8,10 @@ import { isNil } from '@cutting/util';
 import { salesTheme } from '~/style/themes/sales/salesTheme.css.js';
 import { defaultTheme } from '~/style/themes/default/default.css.js';
 import { supportTheme } from '~/style/themes/support/supportTheme.css.js';
-import { Heading } from '~/components/atoms/Heading/Heading';
-import { type ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
+import { Heading } from '~/components/atoms/Heading/Heading.js';
+import { type ReactNodeNoStrings } from '~/components/molecules/Stack/Stack.js';
 import type { ResponsiveAtomicProperties } from '~/style/atoms/sprinkles.css.js';
-import { Box } from '~/components/molecules/Box/Box';
+import { Box } from '~/components/molecules/Box/Box.js';
 import { ContentBlock } from '../ContentBlock/ContentBlock';
 
 export const themes = {

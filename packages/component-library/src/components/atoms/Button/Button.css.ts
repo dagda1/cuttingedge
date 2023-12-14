@@ -1,7 +1,7 @@
 import type { StyleRule } from '@vanilla-extract/css';
 import { style, styleVariants } from '@vanilla-extract/css';
 import { vars } from '~/style/themes/vars.css.js';
-import { responsiveStyle } from '~/style/responsive-style';
+import { responsiveStyle } from '~/style/responsive-style.js';
 
 export const root = style({
   cursor: 'pointer',

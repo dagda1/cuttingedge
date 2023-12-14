@@ -1,4 +1,4 @@
-import { Radio } from '../../atoms/Radio/Radio';
-import { CheckableGroup } from '../CheckableGroup/CheckableGroup';
+import { Radio } from '../../atoms/Radio/Radio.js';
+import { CheckableGroup } from '../CheckableGroup/CheckableGroup.js';
 
 export const RadioGroup = CheckableGroup(Radio);

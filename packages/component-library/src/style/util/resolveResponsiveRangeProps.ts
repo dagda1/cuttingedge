@@ -1,5 +1,5 @@
-import type { Breakpoint } from '../breakpoints';
-import { breakpointNames } from '../breakpoints';
+import type { Breakpoint } from '../breakpoints.js';
+import { breakpointNames } from '../breakpoints.js';
 
 export interface ResponsiveRangeProps {
   above?: Exclude<Breakpoint, 'wide'>;

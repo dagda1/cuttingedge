@@ -4,7 +4,7 @@ import { cuttingTheme } from '../../style/themes/cutting/cutting.css.js';
 import { salesTheme } from '../../style/themes/sales/salesTheme.css.js';
 import type { StoryObj } from '@storybook/react';
 import type { FunctionComponent } from 'react';
-import { ApplicationLayout } from '../templates/ApplicationLayout/ApplicationLayout';
+import { ApplicationLayout } from '../templates/ApplicationLayout/ApplicationLayout.js';
 import * as styles from './Stories.css.js';
 
 const themes = {

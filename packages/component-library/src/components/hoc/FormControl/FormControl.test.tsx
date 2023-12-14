@@ -1,12 +1,12 @@
 import { expect, it, describe } from 'vitest';
-import { Input } from '../../atoms/Input/Input';
-import { FormControl } from './FormControl';
+import { Input } from '../../atoms/Input/Input.js';
+import { FormControl } from './FormControl.js';
 import type { RenderResult } from '@testing-library/react';
 import { render } from '@testing-library/react';
-import type { FormControlProps, FormElementFromComponent } from './types';
+import type { FormControlProps, FormElementFromComponent } from './types.js';
 import type { TypeOf } from 'ts-expect';
 import { expectType } from 'ts-expect';
-import { TextArea } from '~/components/atoms/TextArea/TextArea';
+import { TextArea } from '~/components/atoms/TextArea/TextArea.js';
 import type { HTMLAttributes } from 'react';
 
 const FormInput = FormControl(Input);

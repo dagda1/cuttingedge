@@ -1,13 +1,13 @@
 import * as styles from './ContactForm.css.js';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { Input, TextArea } from '../FormComponents/FormComponents';
+import { Input, TextArea } from '../FormComponents/FormComponents.js';
 import { useRef } from 'react';
 import { assert } from 'assert-ts';
-import { CRM } from '../../constants';
+import { CRM } from '../../constants.js';
 import type { ButtonStyle } from '@cutting/component-library';
 import { Box, Button } from '@cutting/component-library';
-import { useFormContext } from './FormContext';
+import { useFormContext } from './FormContext.js';
 
 interface FormValues {
   'Last Name': string;

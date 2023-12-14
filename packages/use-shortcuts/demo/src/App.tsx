@@ -1,6 +1,6 @@
 import './global.css.js';
 import React, { useState, useCallback } from 'react';
-import type { Point } from './types';
+import type { Point } from './types.js';
 import { Box as MovableBox } from './Box';
 import { shortcutMap1, shortcutMap2 } from './shortCutMap';
 

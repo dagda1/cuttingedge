@@ -1,11 +1,11 @@
-export type { Breakpoint } from './breakpoints';
-export { responsiveStyle } from './responsive-style';
-export { atoms } from './atoms/atoms';
+export type { Breakpoint } from './breakpoints.js';
+export { responsiveStyle } from './responsive-style.js';
+export { atoms } from './atoms/atoms.js';
 export { vars } from './themes/vars.css.js';
 export { defaultTheme } from './themes/default/default.css.js';
 export { cuttingTheme } from './themes/cutting/cutting.css.js';
 export { salesTheme } from './themes/sales/salesTheme.css.js';
 export { palette } from './palette.css.js';
-export { breakpoints, breakpointNames } from './breakpoints';
-export { markResetImported } from './reset/reset-tracker';
+export { breakpoints, breakpointNames } from './breakpoints.js';
+export { markResetImported } from './reset/reset-tracker.js';
 export { visuallyHidden, screenReaderOnly } from './accessibility.css.js';

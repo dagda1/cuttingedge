@@ -1,10 +1,10 @@
 import { assert } from 'assert-ts';
 import { type ReactNode } from 'react';
-import { type BoxProps, Box } from '../Box/Box';
-import { optimizeResponsiveArray } from '~/style/util/optimizeResponsiveArray';
-import type { ResponsiveRangeProps } from '~/style/util/resolveResponsiveRangeProps';
-import { resolveResponsiveRangeProps } from '~/style/util/resolveResponsiveRangeProps';
-import { Keyline } from '~/components/atoms/Keyline/Keyline';
+import { type BoxProps, Box } from '../Box/Box.js';
+import { optimizeResponsiveArray } from '~/style/util/optimizeResponsiveArray.js';
+import type { ResponsiveRangeProps } from '~/style/util/resolveResponsiveRangeProps.js';
+import { resolveResponsiveRangeProps } from '~/style/util/resolveResponsiveRangeProps.js';
+import { Keyline } from '~/components/atoms/Keyline/Keyline.js';
 
 export const validCardComponents = ['div', 'article', 'aside', 'details', 'main', 'section'] as const;
 

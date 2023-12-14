@@ -1,8 +1,8 @@
 import { type CSSProperties, type StyleRule, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import type { breakpoints } from '../breakpoints';
+import type { breakpoints } from '../breakpoints.js';
 import { space } from '../atoms/sprinkles.css.js';
-import { responsiveStyle } from '../responsive-style';
+import { responsiveStyle } from '../responsive-style.js';
 
 const stylesForBreakpoint = (
   bp: Exclude<keyof typeof breakpoints, 'extraWide'>,

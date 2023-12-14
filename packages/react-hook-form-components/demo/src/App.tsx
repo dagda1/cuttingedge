@@ -2,7 +2,7 @@ import '@cutting/component-library/styles.css';
 import { ApplicationLayout, Button } from '@cutting/component-library';
 import { Input } from '../../src';
 import type { ReactNode } from 'react';
-import { FormContextProvider } from '../../src/components/ContactForm/FormContext';
+import { FormContextProvider } from '../../src/components/ContactForm/FormContext.js';
 import { useForm } from 'react-hook-form';
 
 const contactFomProps = {

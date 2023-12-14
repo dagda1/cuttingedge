@@ -1,5 +1,5 @@
-import type { BoxProps } from '~/components/molecules/Box/Box';
-import { Box } from '~/components/molecules/Box/Box';
+import type { BoxProps } from '~/components/molecules/Box/Box.js';
+import { Box } from '~/components/molecules/Box/Box.js';
 import * as styles from './Keyline.css.js';
 import cs from 'classnames';
 

@@ -1,7 +1,7 @@
 import { LoadingIcon } from './LoadingIcon';
 import cs from 'classnames';
 import * as styles from './LoadingIcon.css.js';
-import { Heading } from '../../atoms/Heading/Heading';
+import { Heading } from '../../atoms/Heading/Heading.js';
 export interface LoadingOverlayProps {
   busy: boolean;
   text?: string;

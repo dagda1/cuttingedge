@@ -1,4 +1,4 @@
-import type { Tokens } from './tokens';
+import type { Tokens } from './tokens.js';
 
 const makeWebFonts = (webFont: Tokens['typography']['webFont']) => {
   if (!webFont) {

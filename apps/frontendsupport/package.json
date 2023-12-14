@@ -22,6 +22,7 @@
     "@cutting/markdown": "workspace:*",
     "@cutting/react-hook-form-components": "workspace:*",
     "@cutting/use-get-parent-size": "workspace:*",
+    "@cutting/useful-types": "workspace:*",
     "@cutting/util": "workspace:*",
     "@floating-ui/react": "^0.26.4",
     "@jsdevtools/rehype-toc": "^3.0.2",

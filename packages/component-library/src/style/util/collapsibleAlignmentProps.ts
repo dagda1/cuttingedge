@@ -1,7 +1,7 @@
 import { type ReactNode, Children } from 'react';
-import { type ResponsiveRangeProps, resolveResponsiveRangeProps } from './resolveResponsiveRangeProps';
-import { optimizeResponsiveArray } from './optimizeResponsiveArray';
-import { type Align, type AlignY, alignToFlexAlign, alignYToFlexAlign } from './align';
+import { type ResponsiveRangeProps, resolveResponsiveRangeProps } from './resolveResponsiveRangeProps.js';
+import { optimizeResponsiveArray } from './optimizeResponsiveArray.js';
+import { type Align, type AlignY, alignToFlexAlign, alignYToFlexAlign } from './align.js';
 import type { OptionalResponsiveValue } from '../atoms/sprinkles.css.js';
 import { normalizeResponsiveValue } from '../atoms/sprinkles.css.js';
 

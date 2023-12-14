@@ -1,5 +1,5 @@
 import type { Properties } from 'csstype';
-import type { simplePseudos } from './simple-pseudos';
+import type { simplePseudos } from './simple-pseudos.js';
 
 export type BasicCSSProperties = Properties<string | number>;
 export type SimplePseudos = typeof simplePseudos;

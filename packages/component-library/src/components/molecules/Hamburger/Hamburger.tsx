@@ -1,4 +1,4 @@
-import { Box } from '../Box/Box';
+import { Box } from '../Box/Box.js';
 import * as styles from './Hamburger.css.js';
 import cs from 'classnames';
 

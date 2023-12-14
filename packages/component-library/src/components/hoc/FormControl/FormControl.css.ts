@@ -1,7 +1,7 @@
 import { style, globalStyle } from '@vanilla-extract/css';
-import { responsiveStyle } from '~/style/responsive-style';
+import { responsiveStyle } from '~/style/responsive-style.js';
 import { vars } from '~/style/themes/vars.css.js';
-import { atoms } from '~/style/atoms/atoms';
+import { atoms } from '~/style/atoms/atoms.js';
 
 export const root = style([
   atoms({

@@ -12,6 +12,7 @@
   "module": "tools/index.min.js",
   "exports": {
     ".": {
+      "types": "./tools/index.d.ts",
       "import": "./tools/index.min.js"
     },
     "./paths.js": {
@@ -20,13 +21,6 @@
     "./setuptests.js": {
       "import": "./tools/vitest/setupTests.js",
       "require": "./tools/vitest/setupTests.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "tools/index.d.ts"
-      ]
     }
   },
   "scripts": {
