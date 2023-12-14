@@ -1,8 +1,8 @@
 import { Box, Heading, List, PageBlock, Stack, Text, vars } from '@cutting/component-library';
-import { TextNavLink } from '../TextNavLink/TextNavLink';
 import type { PostData } from '@cutting/markdown';
-import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 import { Image } from '@unpic/react';
+import { TextNavLink } from '../TextNavLink/TextNavLink.js';
+import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage.js';
 
 interface PostsProps {
   posts: PostData[];

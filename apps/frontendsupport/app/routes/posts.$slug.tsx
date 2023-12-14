@@ -2,14 +2,14 @@ import * as mdxBundler from 'mdx-bundler/client/index.js';
 import type { ReactNode } from 'react';
 import { Children, isValidElement, useMemo } from 'react';
 import { json } from '@remix-run/node';
-import type { V2_MetaFunction, LoaderFunction } from '@remix-run/node';
+import type { LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { getPost } from '~/utils/post';
+import { getPost } from '~/utils/post.js';
 import type { ReactNodeNoStrings } from '@cutting/component-library';
 import { Box, Heading, List, PageBlock, Text, TextLink } from '@cutting/component-library';
-import type { FrontMatter } from '~/types';
+import type { FrontMatter } from '~/types.js';
 import type { Location } from '@remix-run/react';
-import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
+import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage.js';
 import { Image } from '@unpic/react';
 
 type LoaderData = {

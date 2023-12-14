@@ -1,7 +1,7 @@
 import { Box, Heading, Stack, Text, Tiles } from '@cutting/component-library';
-import { Service } from './Service';
+import { Service } from './Service.js';
 import { ContactButtons } from '@cutting/react-hook-form-components';
-import { LazyBackgroundImage } from '~/components/LazyBackgroundImage/LazyBackgroundImage';
+import { LazyBackgroundImage } from '~/components/LazyBackgroundImage/LazyBackgroundImage.js';
 
 type Service = {
   heading: string;

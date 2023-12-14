@@ -1,4 +1,4 @@
-import { HomeMobile } from './HomeMobile';
+import { HomeMobile } from './HomeMobile.js';
 import { Box } from '@cutting/component-library';
 
 export function Home(): JSX.Element {

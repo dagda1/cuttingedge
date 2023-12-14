@@ -1,6 +1,6 @@
 import { Box, Card, Heading, List, Stack, Text } from '@cutting/component-library';
 import type { ReactNode } from 'react';
-import { TextNavLink } from '~/components/TextNavLink/TextNavLink';
+import { TextNavLink } from '~/components/TextNavLink/TextNavLink.js';
 import type { ListProps } from '@cutting/component-library';
 
 type ServiceProps = Pick<ListProps, 'children'> & {

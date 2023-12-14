@@ -1,5 +1,5 @@
 import { Box, C2Testimonial, Heading, List, TextLink, Stack } from '@cutting/component-library';
-import { Panel } from '~/components/Panel/Panel';
+import { Panel } from '~/components/Panel/Panel.js';
 import * as styles from './Highlights.css.js';
 
 export function Highlights(): JSX.Element {

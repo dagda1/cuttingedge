@@ -1,7 +1,7 @@
 import { blurhashToGradientCssObject } from '@unpic/placeholder';
 import { Image, type ImageProps } from '@unpic/react';
 import { useCallback, useMemo, useState } from 'react';
-import { getImagePropsFromMap } from './getImagePropsFromMap';
+import { getImagePropsFromMap } from './getImagePropsFromMap.js';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 
 type Layout = ImageProps['layout'];

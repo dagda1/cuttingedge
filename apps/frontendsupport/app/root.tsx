@@ -1,4 +1,5 @@
-import { json, type LinksFunction, type HeadersFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import type { MetaFunction, LinksFunction, HeadersFunction } from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
 import rehypeStyles from './rehype.css';
 import katex from 'katex/dist/katex.min.css';
@@ -52,7 +53,7 @@ export const headers: HeadersFunction = () => {
   };
 };
 
-export const meta: V2_MetaFunction = ({ location, data }) => {
+export const meta: MetaFunction = ({ location, data }) => {
   return [
     { title: 'Frontend Rescue' },
     { property: 'og:url', content: location.pathname },
