@@ -52,7 +52,7 @@
     "typescript": "5.3.3",
     "vite": "5.0.10",
     "vitest": "1.0.4",
-    "whatwg-fetch": "3.6.19"
+    "whatwg-fetch": "3.6.20"
   },
   "packageManager": "pnpm@8.12.1",
   "volta": {
