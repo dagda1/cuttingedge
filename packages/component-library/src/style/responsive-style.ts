@@ -1,5 +1,5 @@
 import type { StyleRule } from '@vanilla-extract/css';
-import { breakpoints } from './breakpoints';
+import { breakpoints } from './breakpoints.js';
 import { omit, mapValues } from '@cutting/util';
 
 type CSSProps = Omit<StyleRule, '@media' | '@supports'>;

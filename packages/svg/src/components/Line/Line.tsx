@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import type { AddSVGProps, Point } from '../../types/types';
+import type { AddSVGProps, Point } from '../../types/types.js';
 
 export type LineProps = {
   className?: string;

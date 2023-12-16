@@ -1,10 +1,10 @@
 import { expect, it, describe } from 'vitest';
 import { renderHook } from '@testing-library/react-hooks';
-import { useParentSize } from './useParentSize';
+import { useParentSize } from './useParentSize.js';
 import { vi } from 'vitest';
 
 import ResizeObserver from 'resize-observer-polyfill';
-import type { ResizeObserverContentRect } from './types';
+import type { ResizeObserverContentRect } from './types.js';
 
 vi.mock('resize-observer-polyfill');
 

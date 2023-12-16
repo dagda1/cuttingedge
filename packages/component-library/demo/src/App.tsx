@@ -19,10 +19,10 @@ import {
   Card,
   Redhatestimonial,
 } from '../../src';
-import { Button } from '../../src/components/atoms/Button/Button';
-import { RadioGroup } from '../../src/components/molecules/RadioGroup/RadioGroup';
-import type { ThemeKeys } from '../../src/components/templates/ApplicationLayout/ApplicationLayout';
-import { ApplicationLayout } from '../../src/components/templates/ApplicationLayout/ApplicationLayout';
+import { Button } from '../../src/components/atoms/Button/Button.js';
+import { RadioGroup } from '../../src/components/molecules/RadioGroup/RadioGroup.js';
+import type { ThemeKeys } from '../../src/components/templates/ApplicationLayout/ApplicationLayout.js';
+import { ApplicationLayout } from '../../src/components/templates/ApplicationLayout/ApplicationLayout.js';
 import { range } from '@cutting/util';
 
 export function App(): JSX.Element {

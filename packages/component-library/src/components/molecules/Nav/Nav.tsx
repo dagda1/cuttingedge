@@ -4,9 +4,9 @@ import * as styles from './Nav.css.js';
 import cs from 'classnames';
 import type { NavItemProps } from './NavItem';
 import { NavItems } from './NavItems';
-import { Box, type BoxProps } from '../Box/Box';
-import type { HamburgerVariants } from '../Hamburger/Hamburger';
-import { Hamburger } from '../Hamburger/Hamburger';
+import { Box, type BoxProps } from '../Box/Box.js';
+import type { HamburgerVariants } from '../Hamburger/Hamburger.js';
+import { Hamburger } from '../Hamburger/Hamburger.js';
 
 export interface MenuState {
   isExpanded: boolean;

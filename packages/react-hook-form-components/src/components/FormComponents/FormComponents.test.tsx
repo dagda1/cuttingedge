@@ -1,6 +1,6 @@
 import { it, describe } from 'vitest';
-import type { FormProps } from './FormComponents';
-import { Input } from './FormComponents';
+import type { FormProps } from './FormComponents.js';
+import { Input } from './FormComponents.js';
 import type { FormInput } from '@cutting/component-library';
 import { render } from '@testing-library/react';
 import type { RenderResult } from '@testing-library/react';

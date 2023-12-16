@@ -1,3 +1,3 @@
-import { Checkable } from '~/components/atoms/Checkable/Checkable';
+import { Checkable } from '~/components/atoms/Checkable/Checkable.js';
 
 export const Checkbox = Checkable('checkbox');

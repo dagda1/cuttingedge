@@ -22,14 +22,15 @@
     "@cutting/markdown": "workspace:*",
     "@cutting/react-hook-form-components": "workspace:*",
     "@cutting/use-get-parent-size": "workspace:*",
+    "@cutting/useful-types": "workspace:*",
     "@cutting/util": "workspace:*",
     "@floating-ui/react": "^0.26.4",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@mdx-js/esbuild": "^3.0.0",
-    "@remix-run/architect": "^2.3.1",
-    "@remix-run/css-bundle": "^2.3.1",
-    "@remix-run/node": "^2.3.1",
-    "@remix-run/react": "^2.3.1",
+    "@remix-run/architect": "^2.4.0",
+    "@remix-run/css-bundle": "^2.4.0",
+    "@remix-run/node": "^2.4.0",
+    "@remix-run/react": "^2.4.0",
     "@unpic/placeholder": "^0.1.2",
     "@unpic/react": "^0.1.5",
     "assert-ts": "^0.3.4",
@@ -43,7 +44,7 @@
     "format": "^0.2.2",
     "front-matter": "^4.0.2",
     "github-slugger": "^2.0.0",
-    "gsap": "^3.12.3",
+    "gsap": "^3.12.4",
     "image-size": "^1.0.2",
     "is-buffer": "^2.0.5",
     "is-plain-obj": "^4.1.0",
@@ -92,8 +93,8 @@
     "@cutting/cloudinary-blurhash": "workspace:*",
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
-    "@remix-run/dev": "^2.3.1",
-    "@remix-run/eslint-config": "^2.3.1",
+    "@remix-run/dev": "^2.4.0",
+    "@remix-run/eslint-config": "^2.4.0",
     "@types/js-yaml": "^4.0.9",
     "@types/luxon": "^3.3.7",
     "@types/react": "^18.2.45",
@@ -113,7 +114,9 @@
     "toml": "^3.0.0",
     "tsx": "^4.6.2",
     "typescript": "^5.3.3",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "vite-tsconfig-paths": "^4.2.2",
+    "vite": "5.0.10"
   },
   "engines": {
     "node": ">=v18.17.1"
@@ -129,7 +132,7 @@
   ],
   "pnpm": {
     "overrides": {
-      "gsap": "npm:@gsap/shockingly@^3.12.3"
+      "gsap": "npm:@gsap/shockingly@^3.12.4"
     }
   }
 }

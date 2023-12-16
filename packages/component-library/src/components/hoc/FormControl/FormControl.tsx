@@ -3,13 +3,13 @@
 import cs from 'classnames';
 import type { FunctionComponent, PropsWithoutRef } from 'react';
 import { forwardRef, useRef } from 'react';
-import { Label } from '~/components/atoms/Label';
-import { prefixId } from '~/utl';
 import * as styles from './FormControl.css.js';
-import { ErrorMessage } from '~/components/atoms/ErrorMessage/ErrorMessage';
-import type { FormControlProps, FormElementFromComponent } from './types';
-import { Text } from '~/components/atoms/Text/Text';
-import { Stack } from '~/components/molecules/Stack/Stack';
+import { ErrorMessage } from '~/components/atoms/ErrorMessage/ErrorMessage.js';
+import type { FormControlProps, FormElementFromComponent } from './types.js';
+import { Text } from '~/components/atoms/Text/Text.js';
+import { Stack } from '~/components/molecules/Stack/Stack.js';
+import { Label } from '~/components/atoms/Label/Label.js';
+import { prefixId } from '~/utl/index.js';
 
 export function FormControl<P>(
   Comp: FunctionComponent<P>,

@@ -1,5 +1,5 @@
 import { assert } from 'assert-ts';
-import type { Fn } from '../functions/functions';
+import type { Fn } from '../functions/functions.js';
 
 export function isEqual<T extends Record<string, unknown> | Fn>(left: T | T[], right: T | T[]): boolean {
   function getType(obj: T | T[]) {

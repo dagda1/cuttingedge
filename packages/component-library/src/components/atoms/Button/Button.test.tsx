@@ -1,6 +1,6 @@
 import { expect, it, describe } from 'vitest';
-import type { ButtonProps } from './Button';
-import { Button } from './Button';
+import type { ButtonProps } from './Button.js';
+import { Button } from './Button.js';
 import { render, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 

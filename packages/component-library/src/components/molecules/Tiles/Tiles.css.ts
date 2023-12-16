@@ -1,6 +1,6 @@
 import { styleVariants } from '@vanilla-extract/css';
-import type { Breakpoint } from '~/style/breakpoints';
-import { responsiveStyle } from '~/style/responsive-style';
+import type { Breakpoint } from '~/style/breakpoints.js';
+import { responsiveStyle } from '~/style/responsive-style.js';
 
 const columnsWidths = {
   1: '100%',

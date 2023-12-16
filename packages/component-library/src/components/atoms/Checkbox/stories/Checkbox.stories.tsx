@@ -6,7 +6,7 @@ import type {
   CheckableLayoutProps,
   CheckableProps,
   CheckableValueType,
-} from '../../Checkable/types';
+} from '../../Checkable/types.js';
 import { Checkbox } from '../Checkbox';
 
 function SimpleCheckBox<V extends CheckableValueType>({

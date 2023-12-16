@@ -69,6 +69,7 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/src.js"
     },
     "./styles.css": {
@@ -76,13 +77,6 @@
     },
     "./package.json": {
       "import": "./package.json"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "dist/esm/index.d.ts"
-      ]
     }
   }
 }

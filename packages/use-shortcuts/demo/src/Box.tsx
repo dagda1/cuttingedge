@@ -1,8 +1,9 @@
-import React, { CSSProperties, useCallback } from 'react';
-import { Point, Box as BoxType } from './types';
+import type { CSSProperties } from 'react';
+import React, { useCallback } from 'react';
+import type { Point, Box as BoxType } from './types.js';
 import { Shortcuts } from '../../src/components/Shortcuts/Shortcuts';
-import { shortcutMap1 } from './shortCutMap';
-import { Action } from '../../src/types/types';
+import type { shortcutMap1 } from './shortCutMap';
+import type { Action } from '../../src/types/types.js';
 
 interface BoxProps {
   index: number;

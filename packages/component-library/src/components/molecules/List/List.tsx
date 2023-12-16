@@ -1,10 +1,10 @@
 import { type ReactNode, Children } from 'react';
-import { Box } from '../Box/Box';
+import { Box } from '../Box/Box.js';
 import * as styles from './List.css.js';
 import cs from 'classnames';
-import type { ReactNodeNoStrings, StackProps } from '../Stack/Stack';
-import { Stack } from '../Stack/Stack';
-import { Text, type TextProps } from '~/components/atoms/Text/Text';
+import type { ReactNodeNoStrings, StackProps } from '../Stack/Stack.js';
+import { Stack } from '../Stack/Stack.js';
+import { Text, type TextProps } from '~/components/atoms/Text/Text.js';
 import { DefaultTextPropsProvider, useDefaultTextProps } from '~/components/atoms/Text/defaultTextProps';
 import flattenChildren from '~/style/util/flatten-children';
 import { lineHeightContainer } from '~/style/lineHeightContainer.css.js';

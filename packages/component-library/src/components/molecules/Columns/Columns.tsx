@@ -1,11 +1,11 @@
 import { assert } from 'assert-ts';
 import { type ReactElement } from 'react';
-import { Box } from '../Box/Box';
-import type { ColumnProps } from '../Column/Column';
+import { Box } from '../Box/Box.js';
+import type { ColumnProps } from '../Column/Column.js';
 import { ColumnsContext, validColumnsComponents } from './ColumnsContext';
 import type { CollapsibleAlignmentProps } from '~/style/util/collapsibleAlignmentProps';
 import { resolveCollapsibleAlignmentProps } from '~/style/util/collapsibleAlignmentProps';
-import type { ResponsiveSpace } from '~/style/atoms/atoms';
+import type { ResponsiveSpace } from '~/style/atoms/atoms.js';
 import { normalizeResponsiveValue } from '~/style/atoms/sprinkles.css.js';
 import { negativeMargin } from '~/style/negativeMargin/negativeMargin';
 import cs from 'classnames';

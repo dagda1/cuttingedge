@@ -1,8 +1,8 @@
 import { type ReactElement, type ReactNode } from 'react';
-import type { BoxProps } from '../../molecules/Box/Box';
-import { Box } from '../../molecules/Box/Box';
-import { MaxLines } from '../MaxLines/MaxLines';
-import { alignToFlexAlign } from '../../../style/util/align';
+import type { BoxProps } from '../../molecules/Box/Box.js';
+import { Box } from '../../molecules/Box/Box.js';
+import { MaxLines } from '../MaxLines/MaxLines.js';
+import { alignToFlexAlign } from '../../../style/util/align.js';
 import type * as typographyStyles from '../../../style/typography/typography.css.js';
 
 type IconSize = keyof typeof typographyStyles.textSizeUntrimmed | 'fill';

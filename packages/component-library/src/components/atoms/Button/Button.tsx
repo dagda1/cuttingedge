@@ -1,11 +1,11 @@
 import { type DetailedHTMLProps, type ButtonHTMLAttributes, type MouseEventHandler, forwardRef } from 'react';
 import cs from 'classnames';
 import { identity } from '@cutting/util';
-import type { StandardProps } from '~/types';
+import type { StandardProps } from '~/types/index.js';
 import type { ButtonStyle } from './Button.css.js';
 import { root, buttons, disabled as disabledStyle } from './Button.css.js';
-import { Text } from '../Text/Text';
-import { Box } from '~/components/molecules/Box/Box';
+import { Text } from '../Text/Text.js';
+import { Box } from '~/components/molecules/Box/Box.js';
 
 export type ButtonProps = Omit<
   StandardProps<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> & {

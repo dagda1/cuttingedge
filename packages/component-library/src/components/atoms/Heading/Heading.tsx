@@ -1,8 +1,8 @@
 import { type ReactNode } from 'react';
-import HeadingContext from './HeadingContext';
+import HeadingContext from './HeadingContext.js';
 import * as typographyStyles from '../../../style/typography/typography.css.js';
-import type { TypographyProps } from '../Typography/Typography';
-import { Typography } from '../Typography/Typography';
+import type { TypographyProps } from '../Typography/Typography.js';
+import { Typography } from '../Typography/Typography.js';
 import cs from 'classnames';
 import * as styles from './Heading.css.js';
 

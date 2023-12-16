@@ -1,6 +1,6 @@
 import type { ComponentStory } from '@storybook/react';
 import { ApplicationLayout, themes } from '../ApplicationLayout';
-import { atoms } from '~/style/atoms/atoms';
+import { atoms } from '~/style/atoms/atoms.js';
 
 export default {
   title: 'templates/ApplicationLayout',

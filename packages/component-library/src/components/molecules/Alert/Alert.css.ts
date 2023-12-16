@@ -1,5 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { atoms } from '~/style/atoms/atoms';
+import { atoms } from '~/style/atoms/atoms.js';
 import { vars } from '~/style/themes/vars.css.js';
 
 export const banner = style([

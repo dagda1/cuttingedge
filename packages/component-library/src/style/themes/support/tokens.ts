@@ -1,7 +1,7 @@
 import type { DeepPartial } from '@cutting/util';
 import { palette } from '~/style/palette.css.js';
-import type { Tokens } from '~/style/themes/tokens';
-import { extractFontMetricsForTheme } from '~/style/util/typography';
+import type { Tokens } from '~/style/themes/tokens.js';
+import { extractFontMetricsForTheme } from '~/style/util/typography.js';
 import helveticaNeue from '@capsizecss/metrics/helveticaNeue';
 import { helveticaNowDisplayMedium } from './font.css.js';
 

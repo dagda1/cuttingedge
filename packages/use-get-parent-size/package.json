@@ -43,7 +43,7 @@
     "eslint": "8.55.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.20.1",
+    "react-router-dom": "6.21.0",
     "three": "^0.159.0",
     "typescript": "5.3.3"
   },
@@ -67,13 +67,7 @@
     "resize-observer"
   ],
   "exports": {
+    "types": "./dist/esm/index.d.ts",
     "import": "./dist/esm/index.js"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "dist/esm/index.d.ts"
-      ]
-    }
   }
 }

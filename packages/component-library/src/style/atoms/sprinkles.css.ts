@@ -5,7 +5,7 @@ import {
   createMapValueFn,
   createNormalizeValueFn,
 } from '@vanilla-extract/sprinkles';
-import { breakpointNames, breakpoints } from '../breakpoints';
+import { breakpointNames, breakpoints } from '../breakpoints.js';
 import { vars } from '~/style/themes/vars.css.js';
 import { rem } from 'polished';
 

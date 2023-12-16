@@ -1,5 +1,5 @@
 import type { ReactNode, Ref } from 'react';
-import type { PreserveAspectRatio, SVGAttributes } from '../../types/types';
+import type { PreserveAspectRatio, SVGAttributes } from '../../types/types.js';
 
 export interface Point {
   x: number;

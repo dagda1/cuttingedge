@@ -1,4 +1,4 @@
-import type { MathJaxProps } from './types';
+import type { MathJaxProps } from './types.js';
 import { MathJax } from './MathJax.js';
 
 type SVGMathJaxProps = MathJaxProps & { width?: number; height?: number };

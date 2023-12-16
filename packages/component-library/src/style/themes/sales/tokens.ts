@@ -1,8 +1,8 @@
 import type { DeepPartial } from '@cutting/util';
 // import { slate } from 'tailwindcss/colors';
 import { palette } from '~/style/palette.css.js';
-import type { Tokens } from '~/style/themes/tokens';
-import { extractFontMetricsForTheme } from '~/style/util/typography';
+import type { Tokens } from '~/style/themes/tokens.js';
+import { extractFontMetricsForTheme } from '~/style/util/typography.js';
 import oswald from '@capsizecss/metrics/oswald';
 
 const colors = {

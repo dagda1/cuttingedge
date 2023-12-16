@@ -1,4 +1,4 @@
-import { markResetImported } from './reset-tracker';
+import { markResetImported } from './reset-tracker.js';
 
 if (process.env.NODE_ENV === 'development') {
   markResetImported();

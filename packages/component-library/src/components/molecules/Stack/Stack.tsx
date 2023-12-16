@@ -1,12 +1,12 @@
 import { Children, type ReactElement } from 'react';
 import { assert } from 'assert-ts';
-import { Box } from '../Box/Box';
+import { Box } from '../Box/Box.js';
 import type { OptionalResponsiveValue } from '../../../style/atoms/sprinkles.css.js';
 import { mapResponsiveValue } from '../../../style/atoms/sprinkles.css.js';
 import type { Align } from '../../../style/util/align';
 import { alignToFlexAlign } from '../../../style/util/align';
-import type { ResponsiveSpace } from '../../../style/atoms/atoms';
-import { Divider } from '../Divider/Divider';
+import type { ResponsiveSpace } from '../../../style/atoms/atoms.js';
+import { Divider } from '../Divider/Divider.js';
 import { optimizeResponsiveArray } from '../../../style/util/optimizeResponsiveArray';
 import flattenChildren from '../../../style/util/flatten-children';
 
