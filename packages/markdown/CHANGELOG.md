@@ -1,5 +1,13 @@
 # @cutting/markdown
 
+## 0.1.7
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+- Updated dependencies [165f0cf]
+  - @cutting/util@4.58.6
+
 ## 0.1.6
 
 ### Patch Changes

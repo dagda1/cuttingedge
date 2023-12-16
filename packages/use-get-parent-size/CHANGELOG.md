@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.1.7
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+
 ## 2.1.6
 
 ### Patch Changes

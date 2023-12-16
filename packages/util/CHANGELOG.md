@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.58.6
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+
 ## 4.58.5
 
 ### Patch Changes

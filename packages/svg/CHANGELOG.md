@@ -1,5 +1,14 @@
 # @cutting/svg
 
+## 4.54.13
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+- Updated dependencies [165f0cf]
+  - @cutting/use-get-parent-size@2.1.7
+  - @cutting/util@4.58.6
+
 ## 4.54.12
 
 ### Patch Changes
