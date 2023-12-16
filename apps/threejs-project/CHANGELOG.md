@@ -1,5 +1,13 @@
 # threejs-starter-vite
 
+## 1.0.13
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+- Updated dependencies [165f0cf]
+  - @cutting/component-library@5.41.16
+
 ## 1.0.12
 
 ### Patch Changes

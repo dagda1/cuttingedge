@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.40.4
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+
 ## 4.40.3
 
 ### Patch Changes

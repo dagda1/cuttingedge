@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.5
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+
 ## 4.63.4
 
 ### Patch Changes

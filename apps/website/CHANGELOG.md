@@ -1,5 +1,19 @@
 # @cutting/website
 
+## 4.29.51
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+- Updated dependencies [165f0cf]
+  - @cutting/react-hook-form-components@0.5.18
+  - @cutting/use-get-parent-size@2.1.7
+  - @cutting/component-library@5.41.16
+  - @cutting/use-mathjax@4.50.7
+  - @cutting/hooks@4.56.7
+  - @cutting/util@4.58.6
+  - @cutting/svg@4.54.13
+
 ## 4.29.50
 
 ### Patch Changes

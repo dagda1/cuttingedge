@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.1.5
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+
 ## 0.1.4
 
 ### Patch Changes

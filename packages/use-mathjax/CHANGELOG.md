@@ -1,5 +1,14 @@
 # @cutting/use-mathjax
 
+## 4.50.7
+
+### Patch Changes
+
+- 165f0cf: add .js to imports
+- Updated dependencies [165f0cf]
+  - @cutting/hooks@4.56.7
+  - @cutting/util@4.58.6
+
 ## 4.50.6
 
 ### Patch Changes
