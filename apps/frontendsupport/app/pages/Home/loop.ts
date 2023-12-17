@@ -21,7 +21,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
           let i = tl.closestIndex();
           if (lastIndex !== i) {
             lastIndex = i;
-            onChange?.(items[i], i);
+            onChange?.(items[i]!, i);
           }
         },
       paused: config.paused,
@@ -31,7 +31,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
       },
     }),
     length = items.length,
-    startX = items[0].offsetLeft,
+    startX = items[0]!.offsetLeft,
     times: number[] = [],
     widths: number[] = [],
     spaceBefore: number[] = [],
@@ -40,14 +40,14 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
     indexIsDirty = false,
     pixelsPerSecond = (config.speed || 1) * 100,
     snap = (v: number) => v, // some browsers shift by a pixel to accommodate flex layouts, so for example if width is 20% the first element's width might be 242px, and the next 243px, alternating back and forth. So we snap to 5 percentage points to make things look more natural
-    container = items[0].parentNode as HTMLElement,
+    container = items[0]!.parentNode as HTMLElement,
     totalWidth: number,
     getTotalWidth = () =>
-      items[length - 1].offsetLeft +
-      (xPercents[length - 1] / 100) * widths[length - 1] -
+      items[length - 1]!.offsetLeft +
+      (xPercents[length - 1]! / 100) * widths[length - 1]! -
       startX +
-      spaceBefore[0] +
-      items[length - 1].offsetWidth * (gsap.getProperty(items[length - 1], 'scaleX') as number) +
+      spaceBefore[0]! +
+      items[length - 1]!.offsetWidth * (gsap.getProperty(items[length - 1]!, 'scaleX') as number) +
       (parseFloat(config.paddingRight as string) || 0),
     populateWidths = () => {
       assert(!!container);
@@ -56,7 +56,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
       items.forEach((el, i) => {
         widths[i] = parseFloat(gsap.getProperty(el, 'width', 'px') as string);
         xPercents[i] = snap(
-          (parseFloat(gsap.getProperty(el, 'x', 'px') as string) / widths[i]) * 100 +
+          (parseFloat(gsap.getProperty(el, 'x', 'px') as string) / widths[i]!) * 100 +
             (gsap.getProperty(el, 'xPercent') as number),
         );
         b2 = el.getBoundingClientRect();
@@ -65,7 +65,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
       });
       gsap.set(items, {
         // convert "x" to "xPercent" to make things responsive, and populate the widths/xPercents Arrays to make lookups faster.
-        xPercent: (i) => xPercents[i],
+        xPercent: (i) => xPercents[i]!,
       });
       totalWidth = getTotalWidth();
     },
@@ -76,7 +76,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
         index = 0,
         d;
       while (i--) {
-        d = Math.abs(values[i] - value);
+        d = Math.abs(values[i]! - value);
         if (d > wrap / 2) {
           d = wrap - d;
         }
@@ -92,21 +92,21 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
       tl.clear();
       for (i = 0; i < length; i++) {
         item = items[i];
-        curX = (xPercents[i] / 100) * widths[i];
-        distanceToStart = item.offsetLeft + curX - startX + spaceBefore[0];
-        distanceToLoop = distanceToStart + widths[i] * (gsap.getProperty(item, 'scaleX') as number);
+        curX = (xPercents[i]! / 100) * widths[i]!;
+        distanceToStart = item!.offsetLeft + curX - startX + spaceBefore[0]!;
+        distanceToLoop = distanceToStart + widths[i]! * (gsap.getProperty(item!, 'scaleX') as number);
         tl.to(
-          item,
+          item!,
           {
-            xPercent: snap(((curX - distanceToLoop) / widths[i]) * 100),
+            xPercent: snap(((curX - distanceToLoop) / widths[i]!) * 100),
             duration: distanceToLoop / pixelsPerSecond,
           },
           0,
         )
           .fromTo(
-            item,
+            item!,
             {
-              xPercent: snap(((curX - distanceToLoop + totalWidth) / widths[i]) * 100),
+              xPercent: snap(((curX - distanceToLoop + totalWidth) / widths[i]!) * 100),
             },
             {
               xPercent: xPercents[i],
@@ -137,17 +137,17 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
     Math.abs(index - curIndex) > length / 2 && (index += index > curIndex ? -length : length); // always go in the shortest direction
     let newIndex = gsap.utils.wrap(0, length, index),
       time = times[newIndex];
-    if (time > tl.time() !== index > curIndex && index !== curIndex) {
+    if (time! > tl.time() !== index > curIndex && index !== curIndex) {
       // if we're wrapping the timeline's playhead, make the proper adjustments
-      time += tl.duration() * (index > curIndex ? 1 : -1);
+      time! += tl.duration() * (index > curIndex ? 1 : -1);
     }
-    if (time < 0 || time > tl.duration()) {
+    if (time! < 0 || time! > tl.duration()) {
       vars.modifiers = { time: timeWrap };
     }
     curIndex = newIndex;
     vars.overwrite = true;
     gsap.killTweensOf(proxy);
-    return vars.duration === 0 ? tl.time(timeWrap(time)) : tl.tweenTo(time, vars);
+    return vars.duration === 0 ? tl.time(timeWrap(time!)) : tl.tweenTo(time!, vars);
   }
   tl.toIndex = (index: number, vars: any) => toIndex(index, vars);
   tl.closestIndex = (setCurrent: unknown) => {
@@ -166,6 +166,6 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
   tl.closestIndex(true);
   lastIndex = curIndex;
   tl.refresh = refresh;
-  onChange && onChange(items[curIndex], curIndex);
+  onChange && onChange(items[curIndex]!, curIndex);
   return tl;
 }

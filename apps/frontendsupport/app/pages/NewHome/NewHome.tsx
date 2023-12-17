@@ -4,12 +4,13 @@ import gsap from 'gsap';
 import { About } from '~/components/About/About.js';
 import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage.js';
 import { Services } from '~/pages/Panels/Services/Services.js';
-import { HomePanel } from './HomePanel.js';
-import { horizontalLoop } from './loop.js';
 import { useRef } from 'react';
 import { BreakGlass } from '../Panels/BreakGlass/BreakGlass.js';
 import { assert } from 'assert-ts';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useParentSize } from '@cutting/use-get-parent-size';
+import { HomePanel } from '../Home/HomePanel/HomePanel.js';
+import { horizontalLoop } from '../Home/loop.js';
 
 const clients = [
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696609565/volvo_qhsx69.png',

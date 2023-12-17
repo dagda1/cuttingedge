@@ -1,7 +1,7 @@
 import { Box } from '@cutting/component-library';
 import cs from 'classnames';
 
-import * as styles from './Dot.css';
+import * as styles from './Dot.css.js';
 
 interface DotProps {
   background: '#1f1f1f' | '#ffffff';

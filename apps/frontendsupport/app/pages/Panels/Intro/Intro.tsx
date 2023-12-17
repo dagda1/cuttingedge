@@ -1,4 +1,4 @@
-import { Panel } from '~/components/Panel/Panel';
+import { Panel } from '~/components/Panel/Panel.js';
 import { Box, Heading } from '@cutting/component-library';
 
 export function Intro(): JSX.Element {

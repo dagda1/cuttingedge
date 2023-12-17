@@ -7,9 +7,9 @@ import { useLoaderData } from '@remix-run/react';
 import { getPost } from '~/utils/post';
 import type { ReactNodeNoStrings } from '@cutting/component-library';
 import { Box, Heading, List, PageBlock, Text, TextLink } from '@cutting/component-library';
-import type { FrontMatter } from '~/types';
-import type { Location } from '@remix-run/react';
-import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
+import type { FrontMatter } from '~/types.js';
+import type { Location, MetaFunction } from '@remix-run/react';
+import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage.js';
 import { Image } from '@unpic/react';
 
 type LoaderData = {
@@ -108,7 +108,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 };
 
-export const meta = ({
+export const meta: MetaFunction<any> = ({
   location,
   data: {
     frontmatter: { meta },

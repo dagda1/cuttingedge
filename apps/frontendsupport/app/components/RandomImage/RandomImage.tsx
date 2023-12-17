@@ -2,9 +2,10 @@ import type { BoxProps } from '@cutting/component-library';
 import { Box } from '@cutting/component-library';
 import { useInterval } from '@cutting/hooks';
 import { useState } from 'react';
-import * as styles from './RandomImage.css';
+import * as styles from './RandomImage.css.js';
 import cs from 'classnames';
-import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
+import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage.js';
+import { assert } from 'assert-ts';
 
 const images1 = [
   { src: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1690894100/vr_fmjy7g.png' },
@@ -34,8 +35,16 @@ type RandomImageProps = {
 
 function randomImage({ imageSet }: Pick<RandomImageProps, 'imageSet'>): string {
   const images = imageSets[imageSet - 1];
+
+  assert(!!images, `no images at ${imageSet - 1}`);
+
   const index = Math.floor(Math.random() * images.length);
-  return images[index].src;
+
+  const image = images[index];
+
+  assert(!!image, `no image at index ${index}`);
+
+  return image.src;
 }
 
 export function RandomImage({ imageSet, mode, delay = 1500, ...props }: RandomImageProps): JSX.Element {

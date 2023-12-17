@@ -65,9 +65,9 @@ export { Inline } from './components/molecules/Inline/Inline';
 export { List } from './components/molecules/List/List';
 export { Divider } from './components/molecules/Divider/Divider';
 export { Hamburger } from './components/molecules/Hamburger/Hamburger';
-export * from './components/molecules/Nav/index';
-export * from './components/molecules/Testimonials/index';
-export * from './components/molecules/Testimonial/Testimonial';
+export { Nav, NavItems, NavItem } from './components/molecules/Nav/index';
+export { Redhatestimonial, C2Testimonial, DSTestimonial } from './components/molecules/Testimonials/index';
+export { Testimonial } from './components/molecules/Testimonial/Testimonial';
 
 export { ResponsiveImage } from './components/molecules/ResponsiveImage/ResponsiveImage';
 export { Popover } from './components/molecules/Popover/Popover';

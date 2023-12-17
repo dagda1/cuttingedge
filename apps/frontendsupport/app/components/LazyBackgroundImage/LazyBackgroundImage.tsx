@@ -6,6 +6,7 @@ import { blurhashToGradientCssObject } from '@unpic/placeholder';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import * as styles from './LazyBackgroundImage.css';
 import cs from 'classnames';
+import { assert } from 'assert-ts';
 
 interface LazyBackgroundImageProps {
   backgroundImage: string;
@@ -24,6 +25,8 @@ export function LazyBackgroundImage({
 
   const callback = useCallback((entries: IntersectionObserverEntry[]) => {
     const [entry] = entries;
+
+    assert(!!entry, `no IntersectionObserver entry`);
 
     if (entry.isIntersecting) {
       setVisible(true);

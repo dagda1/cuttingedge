@@ -1,8 +1,8 @@
 import { Box } from '@cutting/component-library';
-import { HomePanel } from '../HomePanel/HomePanel';
+import { HomePanel } from '../HomePanel/HomePanel.js';
 import { range } from '@cutting/util';
 import { useRef } from 'react';
-import { Dot } from './Dot/Dot';
+import { Dot } from './Dot/Dot.js';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { assert } from 'assert-ts';
 import gsap from 'gsap';
@@ -41,8 +41,14 @@ function buildSeamlessLoop(
     .concat(items)
     .concat(items)
     .forEach((_, i) => {
-      let anim = animate(items[i % items.length]);
+      const element = items[i % items.length];
+
+      assert(!!element, `no element in seamless loop at ${i % items.length}`);
+
+      let anim = animate(element);
+
       rawSequence.add(anim, i * spacing);
+
       dur || (dur = anim.duration());
     });
 
