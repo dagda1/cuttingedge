@@ -1,5 +1,5 @@
 import { Box, Heading, List, Text } from '@cutting/component-library';
-import { Panel } from '~/components/Panel/Panel.js';
+import { Panel } from '../../../components/Panel/Panel.js';
 import { ParallaxPanel, type ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel.js';
 
 const topImages: ParallaxPanelProps['bottomImages'] = [

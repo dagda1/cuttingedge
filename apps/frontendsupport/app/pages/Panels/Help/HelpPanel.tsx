@@ -5,7 +5,7 @@ import pain from '~/images/pain_wide.png';
 import * as styles from './HelpPanel.css';
 import cs from 'classnames';
 import { Box, Heading, Stack } from '@cutting/component-library';
-import { MotionImage } from '~/components/MotionImage/MotionImage.js';
+import { MotionImage } from '../../../components/MotionImage/MotionImage.js';
 
 interface HelpPanelProps {
   innerRef: Ref<HTMLDivElement>;

@@ -1,7 +1,7 @@
 import { Box } from '@cutting/component-library';
 import type { MotionImageProps } from '../../../components/MotionImage/MotionImage';
 import type { ReactNode } from 'react';
-import { LazyLoadedImage } from '~/components/LazyLoadedImage/LazyLoadedImage';
+import { LazyLoadedImage } from '../../../components/LazyLoadedImage/LazyLoadedImage.js';
 
 type Images = [MotionImageProps, MotionImageProps, MotionImageProps];
 

@@ -1,4 +1,4 @@
-import { Panel } from '~/components/Panel/Panel.js';
+import { Panel } from '../../../components/Panel/Panel.js';
 import { Box, Heading, TextLink } from '@cutting/component-library';
 import type { ParallaxPanelProps } from '../ParallaxPanel/ParallaxPanel';
 import { ParallaxPanel } from '../ParallaxPanel/ParallaxPanel';

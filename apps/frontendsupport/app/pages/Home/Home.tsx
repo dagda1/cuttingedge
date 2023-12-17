@@ -11,15 +11,14 @@ import SplitText from 'gsap/SplitText';
 import * as styles from './Home.css.js';
 import cs from 'classnames';
 import { assert } from 'assert-ts';
-import { Clients } from '~/components/Clients/Clients.js';
+import { Clients } from '../../components/Clients/Clients.js';
 import { horizontalLoop } from './loop.js';
 // import { TopBubble } from './TopBubble/TopBubble';
-import { range } from '@cutting/util';
 import { Services } from '../Panels/Services/Services.js';
-import { About } from '~/components/About/About.js';
+import { About } from '../../components/About/About.js';
 import { Dots } from './Dots/Dots.js';
 
-const numberOfDots = [...range(20)];
+// const numberOfDots = [...range(20)];
 
 export function Home(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
