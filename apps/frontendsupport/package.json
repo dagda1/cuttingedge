@@ -53,7 +53,7 @@
     "katex": "^0.16.9",
     "leva": "^0.9.35",
     "luxon": "^3.4.4",
-    "maath": "^0.10.4",
+    "maath": "^0.10.7",
     "mathjax-full": "3.2.2",
     "mdast-util-to-markdown": "^2.1.0",
     "mdx-bundler": "^10.0.1",

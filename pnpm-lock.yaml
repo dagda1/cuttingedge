@@ -216,8 +216,8 @@ importers:
         specifier: ^3.4.4
         version: 3.4.4
       maath:
-        specifier: ^0.10.4
-        version: 0.10.4(@types/three@0.159.0)(three@0.159.0)
+        specifier: ^0.10.7
+        version: 0.10.7(@types/three@0.159.0)(three@0.159.0)
       mathjax-full:
         specifier: 3.2.2
         version: 3.2.2
@@ -1222,8 +1222,8 @@ importers:
         specifier: ^3.4.4
         version: 3.4.4
       maath:
-        specifier: ^0.10.4
-        version: 0.10.4(@types/three@0.159.0)(three@0.159.0)
+        specifier: ^0.10.7
+        version: 0.10.7(@types/three@0.159.0)(three@0.159.0)
       mathjax-full:
         specifier: 3.2.2
         version: 3.2.2
@@ -6651,8 +6651,8 @@ packages:
   /@radix-ui/react-direction@1.0.1(@types/react@18.2.45)(react@18.2.0):
     resolution: {integrity: sha512-RXcvnXgyvYvBEOhCBuddKecVkoMiI10Jcm5cTI7abJRAHYfFxeu+FBQs/DvdxSYucxR5mna0dNsL6QFlds5TMA==}
     peerDependencies:
-      '@types/react': '>=18.2.12'
-      react: '>=18.2.0 || 18.2.0'
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -18625,8 +18625,8 @@ packages:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
 
-  /maath@0.10.4(@types/three@0.159.0)(three@0.159.0):
-    resolution: {integrity: sha512-neHNZ302rFJzXih8r9o1tUfMouO0WKO/as5n1kX72IZvXv5qIRJyWJ2hdXBj/dCZorvnFOBLSkY8SdPmjfeXLw==}
+  /maath@0.10.7(@types/three@0.159.0)(three@0.159.0):
+    resolution: {integrity: sha512-zQ2xd7dNOIVTjAS+hj22fyj1EFYmOJX6tzKjZ92r6WDoq8hyFxjuGA2q950tmR4iC/EKXoMQdSipkaJVuUHDTg==}
     peerDependencies:
       '@types/three': '>=0.144.0'
       three: '>=0.144.0'
