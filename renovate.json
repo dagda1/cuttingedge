@@ -8,6 +8,7 @@
   "requiredStatusChecks": [],
   "timezone": "Europe/Dublin",
   "schedule": ["after 1pm and before 6pm every weekend"],
+  "prConcurrentLimit": 20,
   "lockFileMaintenance": {
     "enabled": false
   },
