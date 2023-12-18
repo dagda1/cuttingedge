@@ -5,7 +5,7 @@ import { HomePanel } from './HomePanel/HomePanel.js';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { BreakGlass } from '../Panels/BreakGlass/BreakGlass.js';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
 import * as styles from './Home.css.js';

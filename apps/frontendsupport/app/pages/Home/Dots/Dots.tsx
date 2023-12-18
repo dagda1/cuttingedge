@@ -6,7 +6,7 @@ import { Dot } from './Dot/Dot.js';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { assert } from 'assert-ts';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 const numberOfDots = [...range(9)] as const;
 
