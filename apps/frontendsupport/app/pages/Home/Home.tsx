@@ -5,7 +5,7 @@ import { HomePanel } from './HomePanel/HomePanel.js';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { BreakGlass } from '../Panels/BreakGlass/BreakGlass.js';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
 import * as styles from './Home.css.js';
@@ -17,8 +17,6 @@ import { horizontalLoop } from './loop.js';
 import { Services } from '../Panels/Services/Services.js';
 import { About } from '../../components/About/About.js';
 import { Dots } from './Dots/Dots.js';
-
-// const numberOfDots = [...range(20)];
 
 export function Home(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
