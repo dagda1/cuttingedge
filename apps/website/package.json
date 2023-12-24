@@ -101,7 +101,7 @@
     "@vanilla-extract/vite-plugin": "3.9.3",
     "@vitejs/plugin-react": "4.2.1",
     "copyfiles": "2.4.1",
-    "eslint": "8.55.0",
+    "eslint": "8.56.0",
     "install": "0.13.0",
     "nodemon": "3.0.2",
     "rimraf": "5.0.5",
