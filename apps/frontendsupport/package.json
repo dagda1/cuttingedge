@@ -5,7 +5,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "cross-env NODE_ENV=production remix build && rm -rf server/blog-posts/* && cp -rf blog-posts server",
+    "build": "remix build",
     "dev": "remix dev --manual -c \"arc sandbox -e testing\"",
     "deploy": "rm -rf ./pruned && pnpm --filter @cutting/frontend-support deploy --prod pruned",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
@@ -45,7 +45,7 @@
     "image-size": "^1.0.2",
     "is-buffer": "^2.0.5",
     "is-plain-obj": "^4.1.0",
-    "isbot": "latest",
+    "isbot": "3.7.0",
     "js-yaml": "^4.1.0",
     "katex": "^0.16.9",
     "leva": "^0.9.35",
@@ -81,6 +81,7 @@
     "remark-slug": "^7.0.1",
     "remix-flat-routes": "^0.6.4",
     "resize-observer-polyfill": "^1.5.1",
+    "source-map-support": "^0.5.21",
     "uglify-js": "^3.17.4",
     "unist-util-visit": "^5.0.0",
     "use-debounce": "^10.0.0"
@@ -96,6 +97,7 @@
     "@types/luxon": "^3.3.7",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
+    "@types/source-map-support": "^0.5.6",
     "@vanilla-extract/css": "^1.14.0",
     "@vanilla-extract/dynamic": "^2.1.0",
     "@vanilla-extract/sprinkles": "^1.6.1",

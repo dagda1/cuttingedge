@@ -204,8 +204,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       isbot:
-        specifier: latest
-        version: 3.7.1-deprecated
+        specifier: 3.7.0
+        version: 3.7.0
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -311,6 +311,9 @@ importers:
       resize-observer-polyfill:
         specifier: ^1.5.1
         version: 1.5.1
+      source-map-support:
+        specifier: ^0.5.21
+        version: 0.5.21
       uglify-js:
         specifier: ^3.17.4
         version: 3.17.4
@@ -351,6 +354,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.18
         version: 18.2.18
+      '@types/source-map-support':
+        specifier: ^0.5.6
+        version: 0.5.10
       '@vanilla-extract/css':
         specifier: ^1.14.0
         version: 1.14.0
@@ -10210,6 +10216,12 @@ packages:
       '@types/node': 20.10.5
     dev: true
 
+  /@types/source-map-support@0.5.10:
+    resolution: {integrity: sha512-tgVP2H469x9zq34Z0m/fgPewGhg/MLClalNOiPIzQlXrSS2YrKu/xCdSCKnEDwkFha51VKEKB6A9wW26/ZNwzA==}
+    dependencies:
+      source-map: 0.6.1
+    dev: true
+
   /@types/stats.js@0.17.3:
     resolution: {integrity: sha512-pXNfAD3KHOdif9EQXZ9deK82HVNaXP5ZIF5RP2QG6OQFNTaY2YIetfrE9t528vEreGQvEPRDDc8muaoYeK0SxQ==}
 
@@ -17541,8 +17553,8 @@ packages:
   /isarray@2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
 
-  /isbot@3.7.1-deprecated:
-    resolution: {integrity: sha512-i1IhrvmVpZRMHpm55i8lhuR8xVUUlxgOYa+NuW1iL+yNdUm0wKXxpAkMenlGuOXIkXvZc7IZnIRx2/jBZ5RNLw==}
+  /isbot@3.7.0:
+    resolution: {integrity: sha512-9BcjlI89966BqWJmYdTnRub85sit931MyCthSIPtgoOsTjoW7A2MVa09HzPpYE2+G4vyAxfDvR0AbUGV0FInQg==}
     engines: {node: '>=12'}
     dev: false
 
@@ -24312,7 +24324,6 @@ packages:
   /string-width@1.0.2:
     resolution: {integrity: sha512-0XsVpQLnVCXHJfyEs8tC0zpTVIr5PKKsQtkT29IwupnPTjtPmQ3xT/4yCREF9hYkV/3M3kzcUTSAZT6a6h81tw==}
     engines: {node: '>=0.10.0'}
-    requiresBuild: true
     dependencies:
       code-point-at: 1.1.0
       is-fullwidth-code-point: 1.0.0

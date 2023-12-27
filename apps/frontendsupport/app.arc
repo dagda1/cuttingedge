@@ -1,18 +1,20 @@
 @app
 frontend-rescue
 
-@http
-/*
-  method any
-  src server
-
-@static
-
 @aws
+runtime nodejs18.x
 runtime nodejs18.x
 profile default
 region us-east-1
 architecture x86_64
 
+@http
+/*
+  method any
+  src server
+
 @plugins
-set-env src plugin-remix.js
+plugin-remix
+  src plugin-remix.js
+
+@static
