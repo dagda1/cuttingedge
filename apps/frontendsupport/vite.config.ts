@@ -19,11 +19,14 @@ export default defineConfig({
     vanillaExtractPlugin(),
   ],
   build: {
+    ssr: true,
     sourcemap: 'inline',
     minify: isProduction,
     rollupOptions: {
       output: {
         format: 'esm',
+        dir: 'build',
+        entryFileNames: 'index.mjs',
       },
     },
   },

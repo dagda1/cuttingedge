@@ -1,5 +1,5 @@
 # production dockerfile
-FROM node:18.12.0
+FROM node:18.17.1
 
 ARG NPM_TOKEN
 ENV NPM_TOKEN $NPM_TOKEN

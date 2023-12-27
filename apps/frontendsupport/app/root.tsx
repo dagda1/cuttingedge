@@ -1,15 +1,14 @@
 import { json } from '@remix-run/node';
-import type { MetaFunction, LinksFunction, HeadersFunction } from '@remix-run/node';
+import type { MetaFunction, HeadersFunction } from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
-import rehypeStyles from './rehype.css';
-import katex from 'katex/dist/katex.min.css';
-import { cssBundleHref } from '@remix-run/css-bundle';
+import './rehype.css';
+import 'katex/dist/katex.min.css';
 import './global.css.js';
 import { supportTheme } from '@cutting/component-library';
-import cuttingStyles from '@cutting/component-library/styles.css';
-import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
+import '@cutting/component-library/styles.css';
+import '@cutting/react-hook-form-components/styles.css';
 import { FormContextProvider } from '@cutting/react-hook-form-components';
-import cssStyles from '~/styles.css';
+import '~/styles.css';
 import { Header } from './components/Header/Header.js';
 import * as styles from './root.css.js';
 import cs from 'classnames';
@@ -72,52 +71,6 @@ export const meta: MetaFunction = ({ location }) => {
     },
   ];
 };
-
-export const links: LinksFunction = () => [
-  {
-    rel: 'preload',
-    href: rehypeStyles,
-    as: 'style',
-  },
-  {
-    rel: 'preload',
-    href: katex,
-
-    as: 'style',
-  },
-  {
-    rel: 'preload',
-    href: cuttingStyles as unknown as string,
-    as: 'style',
-  },
-  {
-    rel: 'preload',
-    href: hookFormStyles as unknown as string,
-    as: 'style',
-  },
-  {
-    rel: 'preload',
-    href: cssStyles,
-    as: 'style',
-  },
-
-  {
-    rel: 'stylesheet',
-    href: rehypeStyles,
-  },
-  {
-    rel: 'stylesheet',
-    href: katex,
-  },
-  {
-    rel: 'stylesheet',
-    href: cuttingStyles as unknown as string,
-  },
-  {
-    rel: 'stylesheet',
-    href: cssStyles,
-  },
-];
 
 export default function App() {
   const data = useLoaderData<typeof loader>();
