@@ -1,4 +1,4 @@
-import * as mdxBundler from 'mdx-bundler/client/index';
+import * as mdxBundler from 'mdx-bundler/client/index.js';
 import type { ReactNode } from 'react';
 import { Children, isValidElement, useMemo } from 'react';
 import { json } from '@remix-run/node';

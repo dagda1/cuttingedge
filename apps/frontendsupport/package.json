@@ -5,8 +5,9 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev --manual -c \"arc sandbox -e testing\"",
+    "copy-blog-posts": "rm -rf server/blog-posts/* && cp -rf blog-posts server",
+    "build": "cross-env NODE_ENV=production remix build && pnpm copy-blog-posts",
+    "dev": "pnpm copy-blog-posts && remix dev --manual -c \"arc sandbox -e testing\"",
     "deploy": "rm -rf ./pruned && pnpm --filter @cutting/frontend-support deploy --prod pruned",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "cross-env NODE_ENV=production arc sandbox",
