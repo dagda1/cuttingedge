@@ -2,7 +2,7 @@ import type { Ref } from 'react';
 import breakglassLeft from '~/images/breakglass-left.png';
 import breakglassRight from '~/images/breakglass-right.png';
 import cs from 'classnames';
-import * as styles from './BreakingGlass.css.js';
+import * as styles from './BreakingGlass.css';
 import { Box } from '@cutting/component-library';
 
 interface BreakGlassProps {

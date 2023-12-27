@@ -2,7 +2,7 @@ import type { Taggable, TextProps } from '@cutting/component-library';
 import { useGetTextStyles, Text } from '@cutting/component-library';
 import { NavLink, type NavLinkProps } from '@remix-run/react';
 import cs from 'classnames';
-import * as styles from './TextNavLink.css.js';
+import * as styles from './TextNavLink.css';
 import { forwardRef } from 'react';
 
 type Props = NavLinkProps & { Component?: Taggable<NavLinkProps> } & { underline?: boolean } & Omit<

@@ -4,16 +4,16 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '
 import rehypeStyles from './rehype.css';
 import katex from 'katex/dist/katex.min.css';
 import { cssBundleHref } from '@remix-run/css-bundle';
-import './global.css.js';
+import './global.css';
 import { supportTheme } from '@cutting/component-library';
 import cuttingStyles from '@cutting/component-library/styles.css';
 import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
 import { FormContextProvider } from '@cutting/react-hook-form-components';
 import cssStyles from '~/styles.css';
-import { Header } from './components/Header/Header.js';
-import * as styles from './root.css.js';
+import { Header } from './components/Header/Header';
+import * as styles from './root.css';
 import cs from 'classnames';
-import { contactFormProps } from './constants.js';
+import { contactFormProps } from './constants';
 
 export async function loader() {
   return json({

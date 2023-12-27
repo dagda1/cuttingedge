@@ -1,4 +1,4 @@
-import blurhashMap from '~/json/blurhash_image_map.json';
+import blurhashMap from '../../json/blurhash_image_map.json';
 import { assert } from 'assert-ts';
 
 export function getImagePropsFromMap(url: string) {

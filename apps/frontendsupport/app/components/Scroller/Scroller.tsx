@@ -1,4 +1,4 @@
-import * as styles from './Scroller.css.js';
+import * as styles from './Scroller.css';
 import cs from 'classnames';
 import { Image } from '@unpic/react';
 
