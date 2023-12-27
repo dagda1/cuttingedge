@@ -5,11 +5,9 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "module": "nodenext",
-    "target": "ES2022",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
-    "noUncheckedIndexedAccess": true,
+    "target": "ES2022",
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
@@ -17,7 +15,6 @@
     "paths": {
       "~/*": ["./app/*"]
     },
-    "skipLibCheck": true,
 
     // Remix takes care of building everything in `remix build`.
     "noEmit": true

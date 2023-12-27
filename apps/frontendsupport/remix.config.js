@@ -4,15 +4,7 @@
 export default {
   ignoredRouteFiles: ['**/.*', '**/*.css.ts'],
   publicPath: '/_static/build/',
-  server: './server.mjs',
+  server: 'server.ts',
   serverBuildPath: 'server/index.mjs',
-  serverMainFields: ['main', 'module'],
-  serverMinify: false,
   serverModuleFormat: 'esm',
-  serverPlatform: 'node',
-  // routes: async (defineRoutes) => {
-  //   return flatRoutes('routes', defineRoutes, {
-  //     ignoredRouteFiles: ['.*', '**/*.css', '**/*.css.ts', '**/*.test.{js,jsx,ts,tsx}', '**/__*.*'],
-  //   });
-  // },
 };

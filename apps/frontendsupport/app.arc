@@ -15,4 +15,4 @@ region us-east-1
 architecture x86_64
 
 @plugins
-set-env
+set-env src plugin-remix.js
