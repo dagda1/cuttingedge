@@ -7,4 +7,5 @@ export default {
   server: 'server.ts',
   serverBuildPath: 'server/index.mjs',
   serverModuleFormat: 'esm',
+  serverDependenciesToBundle: [/^gsap.*/],
 };
