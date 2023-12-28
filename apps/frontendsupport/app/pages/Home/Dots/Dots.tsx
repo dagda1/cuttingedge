@@ -1,8 +1,8 @@
 import { Box } from '@cutting/component-library';
-import { HomePanel } from '../HomePanel/HomePanel.js';
+import { HomePanel } from '../HomePanel/HomePanel';
 import { range } from '@cutting/util';
 import { useRef } from 'react';
-import { Dot } from './Dot/Dot.js';
+import { Dot } from './Dot/Dot';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { assert } from 'assert-ts';
 import gsap from 'gsap';

@@ -1,12 +1,12 @@
 import { build, analyzeMetafile } from 'esbuild';
-import { paths } from '../config/paths.js';
+import { paths } from '../config/paths';
 import { nodeExternalsPlugin } from 'esbuild-node-externals';
 import { assert } from 'assert-ts';
-import logger from './logger.js';
+import logger from './logger';
 import type { CommonOptions } from 'esbuild';
 import path from 'path';
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
-import { copyAssets } from './copy-assets.js';
+import { copyAssets } from './copy-assets';
 import fs from 'fs';
 import { createCommand } from 'commander';
 import { readFile } from 'fs/promises';
@@ -32,7 +32,7 @@ async function bundle({
 
   const outdir = path.join(paths.appBuild, 'esm');
 
-  const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim.js');
+  const reactShimPath = path.resolve(__dirname, '..', '..', 'react-shim');
 
   if (!fs.existsSync(reactShimPath)) {
     throw new Error(`no reactShim at ${reactShimPath}`);

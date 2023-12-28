@@ -1,11 +1,11 @@
 import type { Ref } from 'react';
-import { Panel } from '~/components/Panel/Panel.js';
+import { Panel } from '~/components/Panel/Panel';
 import painText from '~/images/paintext_wide.png';
 import pain from '~/images/pain_wide.png';
 import * as styles from './HelpPanel.css';
 import cs from 'classnames';
 import { Box, Heading, Stack } from '@cutting/component-library';
-import { MotionImage } from '../../../components/MotionImage/MotionImage.js';
+import { MotionImage } from '../../../components/MotionImage/MotionImage';
 
 interface HelpPanelProps {
   innerRef: Ref<HTMLDivElement>;

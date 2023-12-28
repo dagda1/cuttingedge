@@ -1,5 +1,5 @@
 import { Box } from '@cutting/component-library';
-import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage.js';
+import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 
 const clients = [
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696609565/volvo_qhsx69.png',

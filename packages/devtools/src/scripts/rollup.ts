@@ -6,13 +6,13 @@ import { paths } from '../config/paths.js';
 import fs from 'fs-extra';
 import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
-import { logger } from './logger.js';
+import { logger } from './logger';
 import resolve from '@rollup/plugin-node-resolve';
 import { assert } from 'assert-ts';
 import json from '@rollup/plugin-json';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
-import { copyAssets } from './copy-assets.js';
+import { copyAssets } from './copy-assets';
 import postcss from 'rollup-plugin-postcss';
 import { md } from '@cutting/rollup-plugin-md';
 // @ts-ignore
@@ -24,8 +24,8 @@ import url from 'postcss-url';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
 import commonjs from '@rollup/plugin-commonjs';
-import { writeToPackage } from './write-package.js';
-import { csv } from '../rollup/plugins/csv.js';
+import { writeToPackage } from './write-package';
+import { csv } from '../rollup/plugins/csv';
 import postcssImport from 'postcss-import';
 import { createCommand } from 'commander';
 import analyzer from 'rollup-plugin-analyzer';

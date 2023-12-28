@@ -1,6 +1,6 @@
 import { Box } from '@cutting/component-library';
-import type { Mode } from '../types.js';
-import * as styles from './TopBubble.css.js';
+import type { Mode } from '../types';
+import * as styles from './TopBubble.css';
 import type { Ref } from 'react';
 import cs from 'classnames';
 

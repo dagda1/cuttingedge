@@ -1,4 +1,4 @@
-import { TextStyleProps } from '~/style/typography/typography';
+import type { TextStyleProps } from '~/style/typography/typography';
 import { Box } from '../Box/Box';
 import { Testimonial } from '../Testimonial/Testimonial';
 import { Text } from '~/components/atoms/Text/Text';

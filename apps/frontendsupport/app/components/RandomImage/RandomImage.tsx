@@ -2,9 +2,9 @@ import type { BoxProps } from '@cutting/component-library';
 import { Box } from '@cutting/component-library';
 import { useInterval } from '@cutting/hooks';
 import { useState } from 'react';
-import * as styles from './RandomImage.css.js';
+import * as styles from './RandomImage.css';
 import cs from 'classnames';
-import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage.js';
+import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 import { assert } from 'assert-ts';
 
 const images1 = [

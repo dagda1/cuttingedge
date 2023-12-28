@@ -1,4 +1,4 @@
-import { Contact } from '../components/Contact/Contact.js';
+import { Contact } from '../components/Contact/Contact';
 
 export default function ContactUS(): JSX.Element {
   return <Contact />;

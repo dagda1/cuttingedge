@@ -1,22 +1,22 @@
 import { Box, C2Testimonial, DSTestimonial, Heading, List, Redhatestimonial, Text } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import gsap from 'gsap';
-import { HomePanel } from './HomePanel/HomePanel.js';
+import { HomePanel } from './HomePanel/HomePanel';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
-import { BreakGlass } from '../Panels/BreakGlass/BreakGlass.js';
+import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
-import * as styles from './Home.css.js';
+import * as styles from './Home.css';
 import cs from 'classnames';
 import { assert } from 'assert-ts';
-import { Clients } from '../../components/Clients/Clients.js';
-import { horizontalLoop } from './loop.js';
+import { Clients } from '../../components/Clients/Clients';
+import { horizontalLoop } from './loop';
 // import { TopBubble } from './TopBubble/TopBubble';
-import { Services } from '../Panels/Services/Services.js';
-import { About } from '../../components/About/About.js';
-import { Dots } from './Dots/Dots.js';
+import { Services } from '../Panels/Services/Services';
+import { About } from '../../components/About/About';
+import { Dots } from './Dots/Dots';
 
 export function Home(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);

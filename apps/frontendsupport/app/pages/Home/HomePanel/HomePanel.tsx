@@ -2,7 +2,7 @@ import type { BoxProps } from '@cutting/component-library';
 import { Box } from '@cutting/component-library';
 import { type ReactNode } from 'react';
 import cs from 'classnames';
-import * as styles from './HomePanel.css.js';
+import * as styles from './HomePanel.css';
 
 type HomePanelProps = {
   children: ReactNode;
