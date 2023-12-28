@@ -42,7 +42,7 @@
     "format": "^0.2.2",
     "front-matter": "^4.0.2",
     "github-slugger": "^2.0.0",
-    "gsap": "^3.12.4",
+    "gsap": "npm:@gsap/shockingly@^3.12.4",
     "image-size": "^1.0.2",
     "is-buffer": "^2.0.5",
     "is-plain-obj": "^4.1.0",
@@ -115,8 +115,8 @@
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
     "uuid": "^9.0.1",
-    "vite-tsconfig-paths": "^4.2.2",
-    "vite": "5.0.10"
+    "vite": "5.0.10",
+    "vite-tsconfig-paths": "^4.2.2"
   },
   "engines": {
     "node": ">=18.0.0"

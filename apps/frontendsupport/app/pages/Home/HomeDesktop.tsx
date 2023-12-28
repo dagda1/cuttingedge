@@ -14,6 +14,8 @@ import { Frameworks } from '../Panels/Frameworks/Frameworks';
 import { OSS } from '../Panels/OSS/OSS';
 import { useNavigate } from '@remix-run/react';
 
+console.log({ ScrollTrigger });
+
 export function HomeDesktop(): JSX.Element {
   const dimensionsRef = useRef<HTMLDivElement>(null);
   const panelsContainer = useRef<HTMLDivElement>(null);

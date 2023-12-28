@@ -53,11 +53,11 @@ export const playButton = style({
 export const tanCurve = style({
   ...responsiveStyle({
     mobile: {
-      stroke: 5,
+      stroke: '5',
       strokeWidth: 3,
     },
     tablet: {
-      stroke: 20,
+      stroke: '20',
       strokeWidth: 8,
     },
   }),
