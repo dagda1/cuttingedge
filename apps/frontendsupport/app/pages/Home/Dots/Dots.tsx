@@ -6,8 +6,8 @@ import { Dot } from './Dot/Dot';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { assert } from 'assert-ts';
 import gsap from 'gsap';
-import Observer from 'gsap/Observer';
-import { horizontalLoop } from '../loop';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { horizontalLoop } from './horizontalLoop';
 
 const numberOfDots = [...range(9)] as const;
 
@@ -20,7 +20,7 @@ export function Dots({ width }: DotsProps): JSX.Element {
   const ctx = useRef<gsap.Context>();
 
   useIsomorphicLayoutEffect(() => {
-    gsap.registerPlugin(Observer);
+    gsap.registerPlugin(ScrollTrigger);
   }, []);
 
   useIsomorphicLayoutEffect(() => {
@@ -32,13 +32,13 @@ export function Dots({ width }: DotsProps): JSX.Element {
       assert(!!dots.current);
 
       ctx.current = gsap.context(() => {
-        const loop = horizontalLoop('.dots .dot' as unknown as HTMLElement[], { repeat: -1 });
+        const loop = horizontalLoop('.dots .dot' as unknown as HTMLElement[], { repeat: -1, speed: 0.4 });
         const slow = gsap.to(loop, { timeScale: 0, duration: 0.5 });
 
         loop.timeScale(0);
 
-        Observer.create({
-          target: window,
+        ScrollTrigger.observe({
+          target: document,
           type: 'pointer,touch,wheel',
           wheelSpeed: -1,
           onChange: (self) => {
@@ -64,7 +64,7 @@ export function Dots({ width }: DotsProps): JSX.Element {
         overflow="hidden"
       >
         {numberOfDots.map((_, i) => (
-          <Dot key={i} background={i == 5000000 ? '#ffffff' : '#1f1f1f'} />
+          <Dot key={i} background={i == 5 ? '#ffffff' : '#1f1f1f'} />
         ))}
       </Box>
     </HomePanel>
