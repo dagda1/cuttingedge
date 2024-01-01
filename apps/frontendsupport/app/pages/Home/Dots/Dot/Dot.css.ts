@@ -12,6 +12,5 @@ export const dot = style({
 });
 
 export const white = style({
-  width: '18vw',
   borderRadius: '150px',
 });

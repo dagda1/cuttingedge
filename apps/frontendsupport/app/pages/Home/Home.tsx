@@ -27,7 +27,6 @@ export function Home(): JSX.Element {
   const imageRef = useRef<HTMLImageElement>(null);
   const ctx = useRef<gsap.Context>();
   const topBubble = useRef<HTMLDivElement>(null);
-  const topPane = useRef<HTMLDivElement>(null);
   const arrow = useRef<HTMLImageElement>(null);
   const savedCallback = useRef<any>();
   const id = useRef<NodeJS.Timeout>();
@@ -40,6 +39,10 @@ export function Home(): JSX.Element {
   }, [width]);
 
   useIsomorphicLayoutEffect(() => {
+    if (!width) {
+      return;
+    }
+
     new SplitText('.hero-title', {
       type: 'lines words',
       linesClass: 'split-line',
@@ -66,13 +69,12 @@ export function Home(): JSX.Element {
 
       assert(!!breakglassRef.current);
       assert(!!imageRef.current);
-      assert(!!topPane.current);
 
       const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
 
       ctx.current = gsap.context(() => {
         gsap.to(window, {
-          duration: 2,
+          duration: 1.5,
           scrollTo: { y: height, autoKill: false },
           ease: 'power3',
         });
@@ -331,7 +333,7 @@ export function Home(): JSX.Element {
           },
         });
         gsap.to(testimonials[1], {
-          yPercent: 50,
+          yPercent: 35,
           ease: 'none',
           scrollTrigger: {
             trigger: '.testimonials',
@@ -341,7 +343,7 @@ export function Home(): JSX.Element {
           },
         });
         gsap.to(testimonials[2], {
-          yPercent: -25,
+          yPercent: 75,
           ease: 'none',
           scrollTrigger: {
             trigger: '.testimonials',
@@ -353,7 +355,7 @@ export function Home(): JSX.Element {
       });
     }
 
-    setTimeout(main, 1000);
+    main();
     return () => {
       ctx.current?.revert();
     };
@@ -380,13 +382,13 @@ export function Home(): JSX.Element {
   }, [width]);
 
   return (
-    <Box paddingBottom="large" ref={container} height="full">
-      <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
+    <Box paddingBottom="xxxlarge">
+      <Box display="flex" justifyContent="center" alignItems="center" width="full" height="screen" ref={container}>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <Image
             width={229}
             height={225}
-            src="https://res.cloudinary.com/ddospxsc8/image/upload/v1696698786/breakglass_pqtyvz.png"
+            src="https://res.cloudinary.com/ddospxsc8/image/upload/v1704111722/emergency_oz5ncu.png"
           />
         </Box>
       </Box>
@@ -500,7 +502,7 @@ export function Home(): JSX.Element {
         <Box maxWidth="large">
           <List space="xxxlarge" type="none">
             <Text tone="primary" size="large" className="hero-title3">
-              Your team are more familiar with backend development?
+              Your team are more familiar with backend development.
             </Text>
             <Text tone="primary" size="large" className="hero-title3">
               The launch date is soon, and frontend development is at a standstill.
@@ -515,7 +517,7 @@ export function Home(): JSX.Element {
               I have worked with
             </Heading>
           </Box>
-          <HomePanel mode="light" paddingY="medium" maxWidth="large">
+          <HomePanel mode="light" paddingBottom="medium" maxWidth="large">
             <Clients />
           </HomePanel>
         </HomePanel>
@@ -523,7 +525,7 @@ export function Home(): JSX.Element {
       <HomePanel>
         <Services />
       </HomePanel>
-      <HomePanel mode="dark" paddingTop="xxxlarge">
+      <HomePanel mode="dark" paddingY="xxxlarge">
         <Box maxWidth="large">
           <Box display="flex" justifyContent="center" paddingX={{ mobile: 'large' }}>
             <Heading level="1" center tone="secondary" weight="weak">
