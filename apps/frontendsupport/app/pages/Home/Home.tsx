@@ -74,7 +74,7 @@ export function Home(): JSX.Element {
 
       ctx.current = gsap.context(() => {
         gsap.to(window, {
-          duration: 1.5,
+          duration: 0.5,
           scrollTo: { y: height, autoKill: false },
           ease: 'power3',
         });
@@ -236,18 +236,6 @@ export function Home(): JSX.Element {
           })
           .fromTo('.breaking', { opacity: 1, scaleY: 1 }, { scaleY: 0, opacity: 0, duration: 1 });
 
-        // gsap.to(dots.current, {
-        //   x: () => window.innerWidth - dots.current!.clientWidth - 100,
-        //   ease: 'none',
-        //   stagger: 0.5,
-        //   scrollTrigger: {
-        //     trigger: dots.current,
-        //     start: 'top 75%',
-        //     end: 'top 25%',
-        //     scrub: true,
-        //   },
-        // });
-
         gsap
           .timeline({
             defaults: {
@@ -393,14 +381,7 @@ export function Home(): JSX.Element {
         </Box>
       </Box>
       <TopBubble innerRef={topBubble} mode="light" />
-      <HomePanel
-        mode="light"
-        flexDirection="column"
-        justifyContent="center"
-        height="screen"
-        width="full"
-        className={styles.responsive}
-      >
+      <HomePanel mode="light" flexDirection="column" justifyContent="center" height="screen" width="full">
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
             <Box height="full" display="flex" justifyContent="center" flexDirection="column">
@@ -475,6 +456,25 @@ export function Home(): JSX.Element {
           </Box>
         </Box>
       </HomePanel>
+      <HomePanel mode="dark" paddingY="xxxlarge">
+        <Box maxWidth="large">
+          <Box display="flex" justifyContent="center" paddingX={{ mobile: 'large' }}>
+            <Heading level="1" center tone="secondary" weight="weak">
+              Testimonials: The Measure of my Success
+            </Heading>
+          </Box>
+          <Box
+            display="flex"
+            flexDirection={{ mobile: 'column', desktop: 'row' }}
+            className="testimonials"
+            marginBottom="xxxlarge"
+          >
+            <DSTestimonial />
+            <Redhatestimonial />
+            <C2Testimonial />
+          </Box>
+        </Box>
+      </HomePanel>
       <HomePanel>
         <BreakGlass container={breakglassRef} image={imageRef} />
       </HomePanel>
@@ -499,7 +499,7 @@ export function Home(): JSX.Element {
         <Dots width={width} />
       </Box>
       <HomePanel className="hero3" opacity={0}>
-        <Box maxWidth="large">
+        <Box maxWidth="medium">
           <List space="xxxlarge" type="none">
             <Text tone="primary" size="large" className="hero-title3">
               Your team are more familiar with backend development.
@@ -524,20 +524,6 @@ export function Home(): JSX.Element {
       </HomePanel>
       <HomePanel>
         <Services />
-      </HomePanel>
-      <HomePanel mode="dark" paddingY="xxxlarge">
-        <Box maxWidth="large">
-          <Box display="flex" justifyContent="center" paddingX={{ mobile: 'large' }}>
-            <Heading level="1" center tone="secondary" weight="weak">
-              Testimonials: The Measure of my Success
-            </Heading>
-          </Box>
-          <Box display="flex" flexDirection={{ mobile: 'column', desktop: 'row' }} className="testimonials">
-            <Redhatestimonial />
-            <DSTestimonial />
-            <C2Testimonial />
-          </Box>
-        </Box>
       </HomePanel>
       <HomePanel>
         <About />
