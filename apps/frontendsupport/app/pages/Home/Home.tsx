@@ -73,12 +73,6 @@ export function Home(): JSX.Element {
       const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
 
       ctx.current = gsap.context(() => {
-        gsap.to(window, {
-          duration: 0.5,
-          scrollTo: { y: height, autoKill: false },
-          ease: 'power3',
-        });
-
         gsap
           .timeline({
             defaults: {
@@ -371,17 +365,15 @@ export function Home(): JSX.Element {
 
   return (
     <Box paddingBottom="xxxlarge">
-      <Box display="flex" justifyContent="center" alignItems="center" width="full" height="screen" ref={container}>
-        <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
-          <Image
-            width={229}
-            height={225}
-            src="https://res.cloudinary.com/ddospxsc8/image/upload/v1704111722/emergency_oz5ncu.png"
-          />
-        </Box>
-      </Box>
       <TopBubble innerRef={topBubble} mode="light" />
-      <HomePanel mode="dark" flexDirection="column" justifyContent="center" height="screen" width="full">
+      <HomePanel
+        mode="dark"
+        flexDirection="column"
+        justifyContent="center"
+        height="screen"
+        width="full"
+        innerRef={container}
+      >
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
             <Box height="full" display="flex" justifyContent="center" flexDirection="column">
