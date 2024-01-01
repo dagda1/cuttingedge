@@ -2,8 +2,8 @@ import { assert } from 'assert-ts';
 import gsap from 'gsap';
 
 interface LoopConfig {
-  paused: boolean;
-  paddingRight: number | string;
+  paused?: boolean;
+  paddingRight?: number | string;
   repeat?: number;
   onChange?(h: HTMLElement, i: number): void;
   speed?: number;

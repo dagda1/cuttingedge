@@ -13,10 +13,12 @@ import cs from 'classnames';
 import { assert } from 'assert-ts';
 import { Clients } from '../../components/Clients/Clients';
 import { horizontalLoop } from './loop';
-// import { TopBubble } from './TopBubble/TopBubble';
+import { TopBubble } from './TopBubble/TopBubble';
 import { Services } from '../Panels/Services/Services';
 import { About } from '../../components/About/About';
 import { Dots } from './Dots/Dots';
+import { RandomImage } from '~/components/RandomImage/RandomImage';
+import { Image } from '@unpic/react';
 
 export function Home(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
@@ -24,8 +26,8 @@ export function Home(): JSX.Element {
   const breakglassRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const ctx = useRef<gsap.Context>();
-  // const topBubble = useRef<HTMLDivElement>(null);
-  // const topPane = useRef<HTMLDivElement>(null);
+  const topBubble = useRef<HTMLDivElement>(null);
+  const topPane = useRef<HTMLDivElement>(null);
   const arrow = useRef<HTMLImageElement>(null);
   const savedCallback = useRef<any>();
   const id = useRef<NodeJS.Timeout>();
@@ -64,16 +66,16 @@ export function Home(): JSX.Element {
 
       assert(!!breakglassRef.current);
       assert(!!imageRef.current);
-      // assert(!!topPane.current);
+      assert(!!topPane.current);
 
       const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
 
       ctx.current = gsap.context(() => {
-        // gsap.to(window, {
-        //   duration: 2,
-        //   scrollTo: { y: height, autoKill: false },
-        //   ease: 'power3',
-        // });
+        gsap.to(window, {
+          duration: 2,
+          scrollTo: { y: height, autoKill: false },
+          ease: 'power3',
+        });
 
         gsap
           .timeline({
@@ -316,42 +318,42 @@ export function Home(): JSX.Element {
             '<',
           );
 
-        // const testimonials = document.querySelectorAll<HTMLDivElement>('.testimonial');
+        const testimonials = document.querySelectorAll<HTMLDivElement>('.testimonial');
 
-        // gsap.to(testimonials[0], {
-        //   yPercent: 15,
-        //   ease: 'none',
-        //   scrollTrigger: {
-        //     trigger: 'testimonials',
-        //     start: 'center 25%', // the default values
-        //     end: 'bottom top',
-        //     scrub: true,
-        //   },
-        // });
-        // gsap.to(testimonials[1], {
-        //   yPercent: 50,
-        //   ease: 'none',
-        //   scrollTrigger: {
-        //     trigger: '.testimonials',
-        //     // start: "top bottom", // the default values
-        //     // end: "bottom top",
-        //     scrub: true,
-        //   },
-        // });
-        // gsap.to(testimonials[2], {
-        //   yPercent: -25,
-        //   ease: 'none',
-        //   scrollTrigger: {
-        //     trigger: '.testimonials',
-        //     // start: "top bottom", // the default values
-        //     // end: "bottom top",
-        //     scrub: true,
-        //   },
-        // });
+        gsap.to(testimonials[0], {
+          yPercent: 15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: 'testimonials',
+            start: 'center 25%', // the default values
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+        gsap.to(testimonials[1], {
+          yPercent: 50,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.testimonials',
+            // start: "top bottom", // the default values
+            // end: "bottom top",
+            scrub: true,
+          },
+        });
+        gsap.to(testimonials[2], {
+          yPercent: -25,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.testimonials',
+            // start: "top bottom", // the default values
+            // end: "bottom top",
+            scrub: true,
+          },
+        });
       });
     }
 
-    // setTimeout(main, 1000);
+    setTimeout(main, 1000);
     return () => {
       ctx.current?.revert();
     };
@@ -379,7 +381,7 @@ export function Home(): JSX.Element {
 
   return (
     <Box paddingBottom="large" ref={container} height="full">
-      {/* <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
+      <Box display="flex" justifyContent="center" alignItems="center" width="full" height="full" ref={topPane}>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" zIndex="none">
           <Image
             width={229}
@@ -388,8 +390,8 @@ export function Home(): JSX.Element {
           />
         </Box>
       </Box>
-      <TopBubble innerRef={topBubble} mode="light" /> */}
-      {/* <HomePanel
+      <TopBubble innerRef={topBubble} mode="light" />
+      <HomePanel
         mode="light"
         flexDirection="column"
         justifyContent="center"
@@ -470,11 +472,10 @@ export function Home(): JSX.Element {
             </Box>
           </Box>
         </Box>
-      </HomePanel> */}
+      </HomePanel>
       <HomePanel>
         <BreakGlass container={breakglassRef} image={imageRef} />
       </HomePanel>
-      <HomePanel height="full">Remove this</HomePanel>
       <HomePanel mode="dark" className="hero2" opacity={1}>
         <Box
           display="flex"
