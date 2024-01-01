@@ -1,8 +1,13 @@
+import { vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const white = style({
   background: '#ffffff',
   color: '#0A0A0A',
+});
+
+export const dark = style({
+  background: vars.backgroundColor.body,
 });
 
 globalStyle(`${white} h2 span`, {

@@ -22,7 +22,7 @@ export function HomePanel({
   return (
     <Box
       component="section"
-      className={cs('section', { [styles.white]: mode === 'light' }, className)}
+      className={cs('section', { [styles.white]: mode === 'light', [styles.dark]: mode === 'dark' }, className)}
       position="relative"
       width="full"
       display="flex"

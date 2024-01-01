@@ -32,7 +32,7 @@ export function Dots({ width }: DotsProps): JSX.Element {
       assert(!!dots.current);
 
       ctx.current = gsap.context(() => {
-        const loop = horizontalLoop('.dots .dot' as unknown as HTMLElement[], { repeat: -1, speed: 0.5 });
+        const loop = horizontalLoop('.dots .dot' as unknown as HTMLElement[], { repeat: -1, speed: 0.85 });
         const slow = gsap.to(loop, { timeScale: 0, duration: 0.5 });
 
         loop.timeScale(0);
@@ -64,7 +64,7 @@ export function Dots({ width }: DotsProps): JSX.Element {
         overflow="hidden"
       >
         {numberOfDots.map((_, i) => (
-          <Dot key={i} background={i == 1 ? '#ffffff' : '#1f1f1f'} />
+          <Dot key={i} background={i == 4 ? '#ffffff' : '#1f1f1f'} />
         ))}
       </Box>
     </HomePanel>

@@ -311,7 +311,7 @@ export function Home(): JSX.Element {
         const testimonials = document.querySelectorAll<HTMLDivElement>('.testimonial');
 
         gsap.to(testimonials[0], {
-          yPercent: 15,
+          yPercent: 50,
           ease: 'none',
           scrollTrigger: {
             trigger: 'testimonials',
@@ -321,7 +321,7 @@ export function Home(): JSX.Element {
           },
         });
         gsap.to(testimonials[1], {
-          yPercent: 35,
+          yPercent: 5,
           ease: 'none',
           scrollTrigger: {
             trigger: '.testimonials',
@@ -331,7 +331,7 @@ export function Home(): JSX.Element {
           },
         });
         gsap.to(testimonials[2], {
-          yPercent: 75,
+          yPercent: 70,
           ease: 'none',
           scrollTrigger: {
             trigger: '.testimonials',
@@ -381,7 +381,7 @@ export function Home(): JSX.Element {
         </Box>
       </Box>
       <TopBubble innerRef={topBubble} mode="light" />
-      <HomePanel mode="light" flexDirection="column" justifyContent="center" height="screen" width="full">
+      <HomePanel mode="dark" flexDirection="column" justifyContent="center" height="screen" width="full">
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
             <Box height="full" display="flex" justifyContent="center" flexDirection="column">

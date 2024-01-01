@@ -1,4 +1,4 @@
-import { palette, responsiveStyle, vars } from '@cutting/component-library';
+import { responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const front = style({
@@ -23,26 +23,6 @@ export const responsive = style({
       border: '10px solid cyan',
     },
   }),
-});
-
-export const topBubbleWrapper = style({
-  width: '100%',
-  maxHeight: '100%',
-  maxWidth: '100%',
-  position: 'absolute',
-  bottom: 'auto',
-  left: 0,
-  right: 0,
-  overflow: 'hidden',
-});
-
-export const topBubble = style({
-  width: '300vw',
-  height: '80vh',
-  backgroundColor: palette.white,
-  borderRadius: '50%',
-  marginLeft: '-100vw',
-  position: 'relative',
 });
 
 globalStyle('.hero-title', {
