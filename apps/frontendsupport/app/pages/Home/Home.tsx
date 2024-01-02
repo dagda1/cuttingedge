@@ -305,17 +305,17 @@ export function Home(): JSX.Element {
         const testimonials = document.querySelectorAll<HTMLDivElement>('.testimonial');
 
         gsap.to(testimonials[0], {
-          yPercent: 50,
+          yPercent: 15,
           ease: 'none',
           scrollTrigger: {
-            trigger: 'testimonials',
+            trigger: '.testimonials',
             start: 'center 25%', // the default values
             end: 'bottom top',
             scrub: true,
           },
         });
         gsap.to(testimonials[1], {
-          yPercent: 5,
+          yPercent: 50,
           ease: 'none',
           scrollTrigger: {
             trigger: '.testimonials',
@@ -325,7 +325,7 @@ export function Home(): JSX.Element {
           },
         });
         gsap.to(testimonials[2], {
-          yPercent: 70,
+          yPercent: 75,
           ease: 'none',
           scrollTrigger: {
             trigger: '.testimonials',
@@ -377,7 +377,13 @@ export function Home(): JSX.Element {
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
             <Box height="full" display="flex" justifyContent="center" flexDirection="column">
-              <Box display={{ mobile: 'flex', desktop: 'none' }} width="full" justifyContent="center" marginTop="large">
+              <Box
+                display={{ mobile: 'flex', desktop: 'none' }}
+                width="full"
+                justifyContent="center"
+                marginTop="large"
+                marginBottom="large"
+              >
                 <RandomImage display="flex" justifyContent="center" imageSet={1} mode="mobile" delay={3000} />
               </Box>
               <Box
@@ -429,7 +435,12 @@ export function Home(): JSX.Element {
                   Features?
                 </Box>
               </Box>
-              <Box display={{ mobile: 'flex', desktop: 'none' }} width="full" justifyContent="center">
+              <Box
+                display={{ mobile: 'flex', desktop: 'none' }}
+                width="full"
+                justifyContent="center"
+                marginBottom="large"
+              >
                 <RandomImage display="flex" justifyContent="center" imageSet={2} mode="mobile" delay={3000} />
               </Box>
 
@@ -460,8 +471,8 @@ export function Home(): JSX.Element {
             className="testimonials"
             marginBottom="xxxlarge"
           >
-            <DSTestimonial />
             <Redhatestimonial />
+            <DSTestimonial />
             <C2Testimonial />
           </Box>
         </Box>
