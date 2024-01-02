@@ -382,16 +382,16 @@ export function Home(): JSX.Element {
               </Box>
               <Box
                 display="flex"
-                justifyContent={{ mobile: 'flexStart', tablet: 'flexEnd' }}
+                justifyContent={{ mobile: 'flexStart', tablet: 'flexStart' }}
                 alignItems="center"
                 marginRight={{ desktop: 'large' }}
                 marginTop={{ mobile: 'small', desktop: 'xxlarge' }}
                 marginBottom="small"
               >
-                <RandomImage imageSet={2} mode="desktop" delay={2000} />
+                <RandomImage imageSet={1} mode="desktop" delay={2000} />
                 <Box
                   marginLeft={{ mobile: 'medium', desktop: 'medium' }}
-                  paddingRight={{ mobile: 'none', desktop: 'none' }}
+                  marginRight={{ mobile: 'medium', desktop: 'xxlarge' }}
                   className="hero-title italic"
                 >
                   Is your team
@@ -409,7 +409,6 @@ export function Home(): JSX.Element {
                 marginY="small"
                 justifyContent={{ mobile: 'center', desktop: 'spaceAround' }}
               >
-                <RandomImage imageSet={3} mode="desktop" delay={3000} />
                 <Box className="hero-title">To Deliver</Box>
                 <RandomImage imageSet={2} mode="desktop" delay={2500} />
               </Box>
@@ -437,7 +436,7 @@ export function Home(): JSX.Element {
               <Box display="flex" justifyContent="center" marginBottom={{ mobile: 'none', desktop: 'large' }}>
                 <Image
                   ref={arrow}
-                  src="https://res.cloudinary.com/ddospxsc8/image/upload/v1697207183/arrow_down_mfoxmp.png"
+                  src="https://res.cloudinary.com/ddospxsc8/image/upload/v1704211494/arrow_down_white_nmuhnn.png"
                   layout="constrained"
                   width={28}
                   height={37}
