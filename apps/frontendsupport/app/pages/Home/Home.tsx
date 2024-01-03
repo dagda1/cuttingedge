@@ -500,7 +500,7 @@ export function Home(): JSX.Element {
       <Box marginTop="xxxlarge">
         <Dots width={width} />
       </Box>
-      <HomePanel className="hero3" opacity={0}>
+      <HomePanel className="hero3" opacity={0} marginBottom="xxxlarge">
         <Box maxWidth="medium">
           <List space="xxxlarge" type="none">
             <Text tone="primary" size="large" className="hero-title3">
@@ -512,14 +512,14 @@ export function Home(): JSX.Element {
           </List>
         </Box>
       </HomePanel>
-      <HomePanel className={cs('services', styles.front)}>
+      <HomePanel className={cs('services', styles.front)} marginY="xxxlarge">
         <HomePanel mode="light" flexDirection="column" paddingTop="medium">
           <Box paddingBottom="large">
             <Heading center level="1">
               I have worked with
             </Heading>
           </Box>
-          <HomePanel mode="light" paddingBottom="medium" maxWidth="large">
+          <HomePanel mode="light" paddingBottom="medium" maxWidth="large" marginTop="xxxlarge">
             <Clients />
           </HomePanel>
         </HomePanel>

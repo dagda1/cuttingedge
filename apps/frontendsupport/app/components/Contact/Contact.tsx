@@ -1,7 +1,7 @@
 import { Box, Heading, Stack } from '@cutting/component-library';
 import { ContactForm } from '@cutting/react-hook-form-components';
 import * as styles from './Contact.css';
-import { LazyBackgroundImage } from '../LazyBackgroundImage/LazyBackgroundImage';
+import { LazyBackgroundImage } from '../LazyBackgroundImage/LazyBackgroundImage.js';
 
 export function Contact(): JSX.Element {
   return (

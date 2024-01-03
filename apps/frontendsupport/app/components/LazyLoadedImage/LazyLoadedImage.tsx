@@ -15,6 +15,7 @@ export function LazyLoadedImage({
   height,
   loading = 'lazy',
   layout = 'constrained',
+  ...props
 }: LazyLoadedImageProps): JSX.Element {
   const image = getImagePropsFromMap(src);
   const [loaded, setLoaded] = useState(false);

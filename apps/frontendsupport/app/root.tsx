@@ -10,10 +10,10 @@ import cuttingStyles from '@cutting/component-library/styles.css';
 import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
 import { FormContextProvider } from '@cutting/react-hook-form-components';
 import cssStyles from './styles.css';
-import { Header } from './components/Header/Header';
+import { Header } from './components/Header/Header.js';
 import * as styles from './root.css';
 import cs from 'classnames';
-import { contactFormProps } from './constants';
+import { contactFormProps } from './constants.js';
 
 export async function loader() {
   return json({

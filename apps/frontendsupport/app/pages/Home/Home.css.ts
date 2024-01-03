@@ -1,9 +1,7 @@
 import { responsiveStyle, vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
-export const front = style({
-  height: '90vh',
-});
+export const front = style({});
 
 export const responsive = style({
   ...responsiveStyle({

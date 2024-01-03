@@ -4,7 +4,7 @@ import { useInterval } from '@cutting/hooks';
 import { useState } from 'react';
 import * as styles from './RandomImage.css';
 import cs from 'classnames';
-import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
+import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage.js';
 import { assert } from 'assert-ts';
 import { buildImageUrl, extractPublicId, setConfig } from 'cloudinary-build-url';
 

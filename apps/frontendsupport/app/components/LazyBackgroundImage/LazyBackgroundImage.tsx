@@ -1,10 +1,10 @@
 import { useRef, useState, useCallback, useMemo } from 'react';
 import { Box, type BoxProps } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { getImagePropsFromMap } from '../LazyLoadedImage/getImagePropsFromMap';
+import { getImagePropsFromMap } from '../LazyLoadedImage/getImagePropsFromMap.js';
 import { blurhashToGradientCssObject } from '@unpic/placeholder';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import * as styles from './LazyBackgroundImage.css';
+import * as styles from './LazyBackgroundImage.css.js';
 import cs from 'classnames';
 import { assert } from 'assert-ts';
 
