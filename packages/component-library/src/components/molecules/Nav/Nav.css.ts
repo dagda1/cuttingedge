@@ -1,9 +1,9 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { atoms } from '~/style/atoms/atoms.js';
-import { palette } from '~/style/palette.css.js';
-import { responsiveStyle } from '~/style/responsive-style.js';
-import { vars } from '~/style/themes/vars.css.js';
-import { ZIndex } from '~/utl/zindex.js';
+import { atoms } from '~/style/atoms/atoms';
+import { palette } from '~/style/palette.css';
+import { responsiveStyle } from '~/style/responsive-style';
+import { vars } from '~/style/themes/vars.css';
+import { ZIndex } from '~/utl/zindex';
 
 export const container = style({});
 

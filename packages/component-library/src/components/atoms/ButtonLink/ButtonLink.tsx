@@ -1,11 +1,11 @@
 import type { DetailedHTMLProps, AnchorHTMLAttributes, MouseEventHandler } from 'react';
 import cs from 'classnames';
 import { identity } from '@cutting/util';
-import type { StandardProps, Taggable } from '~/types/index.js';
-import type { ButtonStyle } from '~/components/atoms/Button/Button.css.js';
-import { root, buttons } from '~/components/atoms/Button/Button.css.js';
-import * as styles from './ButtonLink.css.js';
-import { Text } from '../Text/Text.js';
+import type { StandardProps, Taggable } from '~/types/index';
+import type { ButtonStyle } from '~/components/atoms/Button/Button.css';
+import { root, buttons } from '~/components/atoms/Button/Button.css';
+import * as styles from './ButtonLink.css';
+import { Text } from '../Text/Text';
 
 type ButtonTone = 'critical' | 'neutral';
 

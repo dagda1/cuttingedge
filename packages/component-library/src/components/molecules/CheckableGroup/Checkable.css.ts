@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '~/style/themes/vars.css.js';
-import { screenReaderOnly } from '~/style/accessibility.css.js';
+import { vars } from '~/style/themes/vars.css';
+import { screenReaderOnly } from '~/style/accessibility.css';
 
 export const fieldset = style({
   border: 'none',

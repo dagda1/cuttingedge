@@ -1,13 +1,13 @@
 import type { ReactNode, ChangeEvent, InputHTMLAttributes, ChangeEventHandler, FocusEventHandler, Ref } from 'react';
 import { useState, useRef, useCallback } from 'react';
-import { Radio } from '../../atoms/Radio/Radio.js';
-import type { CheckableLayoutProps, CheckableProps, CheckableValueType } from '../../atoms/Checkable/types.js';
+import { Radio } from '../../atoms/Radio/Radio';
+import type { CheckableLayoutProps, CheckableProps, CheckableValueType } from '../../atoms/Checkable/types';
 import cs from 'classnames';
 
-import * as styles from './Checkable.css.js';
+import * as styles from './Checkable.css';
 import type { Checkbox } from '../../atoms/Checkbox/Checkbox';
-import { Text } from '~/components/atoms/Text/Text.js';
-import { Stack } from '../Stack/Stack.js';
+import { Text } from '~/components/atoms/Text/Text';
+import { Stack } from '../Stack/Stack';
 
 export type CheckableOption<V extends CheckableValueType> = CheckableProps<V> & { content: ReactNode };
 

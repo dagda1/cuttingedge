@@ -1,6 +1,6 @@
-import { Box } from '../Box/Box.js';
-import { Testimonial } from '../Testimonial/Testimonial.js';
-import { Text } from '~/components/atoms/Text/Text.js';
+import { Box } from '../Box/Box';
+import { Testimonial } from '../Testimonial/Testimonial';
+import { Text } from '~/components/atoms/Text/Text';
 
 export function DSTestimonial(): JSX.Element {
   return (

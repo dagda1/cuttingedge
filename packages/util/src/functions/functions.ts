@@ -1,5 +1,5 @@
-import { isDate } from '../date/date.js';
-import { isNil } from '../object/isNil.js';
+import { isDate } from '../date/date';
+import { isNil } from '../object/isNil';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const noop = (): void => {};

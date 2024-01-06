@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { palette } from '~/style/palette.css.js';
-import { vars } from '~/style/themes/vars.css.js';
+import { palette } from '~/style/palette.css';
+import { vars } from '~/style/themes/vars.css';
 
 export const root = style({
   position: 'relative',

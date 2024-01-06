@@ -2,7 +2,7 @@ import { TextLink, Tiles, Stack, Text, Box, Inline, PageBlock } from '@cutting/c
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { repos } from './repos';
 import { Heading } from '@cutting/component-library';
-import * as styles from './OSS.css.js';
+import * as styles from './OSS.css';
 import github from '~/assets/images/github-medium.png';
 
 export function OSS(): JSX.Element {

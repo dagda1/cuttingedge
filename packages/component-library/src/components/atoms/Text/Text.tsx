@@ -1,12 +1,12 @@
 import { useContext, useMemo } from 'react';
 import { assert } from 'assert-ts';
-import type { TextStyleProps } from '../../../style/typography/typography.js';
-import { textStyles } from '../../../style/typography/typography.js';
+import type { TextStyleProps } from '../../../style/typography/typography';
+import { textStyles } from '../../../style/typography/typography';
 import { TextContext } from './TextContext';
 import { useDefaultTextProps } from './defaultTextProps';
 import cs from 'classnames';
-import * as styles from './Text.css.js';
-import { Typography, type TypographyProps } from '../Typography/Typography.js';
+import * as styles from './Text.css';
+import { Typography, type TypographyProps } from '../Typography/Typography';
 
 type Layout = 'inline' | 'block';
 

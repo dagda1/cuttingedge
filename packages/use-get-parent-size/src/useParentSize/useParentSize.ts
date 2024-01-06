@@ -1,11 +1,11 @@
-import type { ResizeObserverContentRect, UseParentSizeOptions, UseParentSizeResult, Writeable } from './types.js';
+import type { ResizeObserverContentRect, UseParentSizeOptions, UseParentSizeResult, Writeable } from './types';
 import type { RefObject } from 'react';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useDebouncedCallback } from 'use-debounce';
 import { identity, isNil } from './util';
 import { assert } from 'assert-ts';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 const initialContentRect: Partial<ResizeObserverContentRect> = {
   bottom: undefined,

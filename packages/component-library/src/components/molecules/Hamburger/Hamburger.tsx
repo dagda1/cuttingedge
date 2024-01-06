@@ -1,5 +1,5 @@
-import { Box } from '../Box/Box.js';
-import * as styles from './Hamburger.css.js';
+import { Box } from '../Box/Box';
+import * as styles from './Hamburger.css';
 import cs from 'classnames';
 
 const hamburgerVariants = ['dark', 'light'] as const;

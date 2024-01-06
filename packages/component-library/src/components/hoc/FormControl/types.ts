@@ -6,8 +6,8 @@ import type {
   SelectHTMLAttributes,
   TextareaHTMLAttributes,
 } from 'react';
-import type { vars } from '~/style/themes/vars.css.js';
-import type { FontWeight } from '~/style/types.js';
+import type { vars } from '~/style/themes/vars.css';
+import type { FontWeight } from '~/style/types';
 
 export type Layout = 'vertical' | 'horizontal';
 

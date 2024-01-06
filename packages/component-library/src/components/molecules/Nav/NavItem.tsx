@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { Box } from '../Box/Box.js';
-import type { ResponsiveSpace } from '~/style/atoms/atoms.js';
+import { Box } from '../Box/Box';
+import type { ResponsiveSpace } from '~/style/atoms/atoms';
 
 export type NavItemDisplay = 'SubmenuMobile' | 'Always';
 

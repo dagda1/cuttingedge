@@ -1,7 +1,7 @@
 import { type ReactNode, useContext } from 'react';
-import { Box } from '../Box/Box.js';
+import { Box } from '../Box/Box';
 import { ColumnsContext } from '../Columns/ColumnsContext';
-import * as styles from './Column.css.js';
+import * as styles from './Column.css';
 import cs from 'classnames';
 import { optimizeResponsiveArray } from '~/style/util/optimizeResponsiveArray';
 

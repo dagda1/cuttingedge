@@ -1,4 +1,4 @@
-import { isNil } from './isNil.js';
+import { isNil } from './isNil';
 
 export const isObject = (value?: unknown): value is Record<string, unknown> => {
   const type = typeof value;

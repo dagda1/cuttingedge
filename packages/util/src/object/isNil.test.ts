@@ -1,5 +1,5 @@
 import { expect, describe, it } from 'vitest';
-import { isNil } from './isNil.js';
+import { isNil } from './isNil';
 
 describe('isNil', () => {
   it.each([

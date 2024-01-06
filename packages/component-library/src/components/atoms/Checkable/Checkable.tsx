@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import cs from 'classnames';
-import type { CheckableEventHandlers, CheckableLayoutProps, CheckableProps, CheckableValueType } from './types.js';
-import { Text } from '~/components/atoms/Text/Text.js';
-import * as styles from './Checkable.css.js';
+import type { CheckableEventHandlers, CheckableLayoutProps, CheckableProps, CheckableValueType } from './types';
+import { Text } from '~/components/atoms/Text/Text';
+import * as styles from './Checkable.css';
 
 export function Checkable(type: 'radio' | 'checkbox') {
   return function Radio<V extends CheckableValueType>({

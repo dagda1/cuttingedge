@@ -1,8 +1,8 @@
-import { TextLink } from '~/components/atoms/TextLink/TextLink.js';
-import { Text } from '~/components/atoms/Text/Text.js';
-import * as styles from './Testimonial.css.js';
-import type { ReactNodeNoStrings } from '../Stack/Stack.js';
-import { Stack } from '../Stack/Stack.js';
+import { TextLink } from '~/components/atoms/TextLink/TextLink';
+import { Text } from '~/components/atoms/Text/Text';
+import * as styles from './Testimonial.css';
+import type { ReactNodeNoStrings } from '../Stack/Stack';
+import { Stack } from '../Stack/Stack';
 
 export function Testimonial({
   from,

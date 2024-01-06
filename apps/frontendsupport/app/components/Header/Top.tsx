@@ -22,13 +22,12 @@ export function TopNav(): JSX.Element {
       <NavItems>
         <NavItem display="Always">
           <Box display="flex" alignItems="center" width="full" className={styles.logo}>
-            <NavLink to="/">
+            <NavLink to="/" style={{ position: 'relative', top: '-5px', marginRight: vars.space['medium'] }}>
               <Image
                 src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690799896/fire_qfnfwc.png"
                 alt="Frontend Rescue"
                 width={38}
                 height={45}
-                style={{ position: 'relative', top: '-5px', marginRight: vars.space['medium'] }}
                 loading="eager"
               />
             </NavLink>

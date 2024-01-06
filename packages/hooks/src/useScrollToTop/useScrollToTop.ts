@@ -1,6 +1,6 @@
 import type { RefObject } from 'react';
 import { useLayoutEffect } from 'react';
-import { usePrevious } from '../usePrevious/usePrevious.js';
+import { usePrevious } from '../usePrevious/usePrevious';
 
 export interface UseScrollToTopProps<E = HTMLElement> {
   ref: RefObject<E>;

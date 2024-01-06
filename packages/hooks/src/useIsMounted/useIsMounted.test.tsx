@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { it, describe, expect } from 'vitest';
-import { useIsMounted } from './useIsMounted.js';
+import { useIsMounted } from './useIsMounted';
 
 describe('useIsMounted', () => {
   it('returning a ref to the mounted state', () => {

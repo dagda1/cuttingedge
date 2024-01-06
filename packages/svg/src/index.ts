@@ -1,5 +1,5 @@
-export type { Point } from './types/types.js';
-export { ResponsiveSVG } from './components/ResponsiveSVG/ResponsiveSVG.js';
-export { ParentsizeSVG } from './components/ParentsizeSVG/ParentsizeSVG.js';
-export { Group } from './components/Group/Group.js';
-export { Line } from './components/Line/Line.js';
+export type { Point } from './types/types';
+export { ResponsiveSVG } from './components/ResponsiveSVG/ResponsiveSVG';
+export { ParentsizeSVG } from './components/ParentsizeSVG/ParentsizeSVG';
+export { Group } from './components/Group/Group';
+export { Line } from './components/Line/Line';

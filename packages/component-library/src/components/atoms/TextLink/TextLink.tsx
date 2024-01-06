@@ -1,15 +1,15 @@
 import type { AnchorHTMLAttributes, ComponentType, ForwardRefRenderFunction, Ref } from 'react';
 import { forwardRef, useContext, createContext } from 'react';
-import HeadingContext from '../Heading/HeadingContext.js';
-import { TextContext } from '../Text/TextContext.js';
-import * as styles from './TextLink.css.js';
-import * as typographyStyles from '../../../style/typography/typography.css.js';
+import HeadingContext from '../Heading/HeadingContext';
+import { TextContext } from '../Text/TextContext';
+import * as styles from './TextLink.css';
+import * as typographyStyles from '../../../style/typography/typography.css';
 import cs from 'classnames';
-import type { Atoms } from '~/style/atoms/atoms.js';
-import { atoms } from '~/style/atoms/atoms.js';
+import type { Atoms } from '~/style/atoms/atoms';
+import { atoms } from '~/style/atoms/atoms';
 import dedent from 'dedent';
 import { assert } from 'assert-ts';
-import { virtualTouchable } from '../touchable/virtualTouchable.js';
+import { virtualTouchable } from '../touchable/virtualTouchable';
 
 export interface TextLinkStyles {
   weight?: 'regular' | 'weak';

@@ -34,15 +34,15 @@ export default defineConfig({
     alias: [
       {
         find: '@visx/axis',
-        replacement: require.resolve('@visx/axis/esm/index.js'),
+        replacement: require.resolve('@visx/axis/esm/index'),
       },
       {
         find: '@visx/shape',
-        replacement: require.resolve('@visx/shape/esm/index.js'),
+        replacement: require.resolve('@visx/shape/esm/index'),
       },
       {
         find: '@visx/scale',
-        replacement: require.resolve('@visx/scale/esm/index.js'),
+        replacement: require.resolve('@visx/scale/esm/index'),
       },
     ],
   },

@@ -1,6 +1,6 @@
 import type { Properties } from 'csstype';
-import type { Breakpoint } from '~/style/breakpoints.js';
-import { responsiveStyle } from '~/style/responsive-style.js';
+import type { Breakpoint } from '~/style/breakpoints';
+import { responsiveStyle } from '~/style/responsive-style';
 
 export const mapToProperty =
   <Property extends keyof Properties<string | number>>(property: Property, breakpoint?: Breakpoint) =>

@@ -1,6 +1,6 @@
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { keyframes, style } from '@vanilla-extract/css';
-import { vars } from '~/style/themes/vars.css.js';
+import { vars } from '~/style/themes/vars.css';
 
 export const donutFill = keyframes({
   to: {

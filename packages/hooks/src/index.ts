@@ -1,5 +1,5 @@
-export { useScrollToTop } from './useScrollToTop/useScrollToTop.js';
-export { useIsMounted } from './useIsMounted/useIsMounted.js';
-export { usePrevious } from './usePrevious/usePrevious.js';
-export { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect/useIsomorphicLayoutEffect.js';
-export { useToggle } from './useToggle/useToggle.js';
+export { useScrollToTop } from './useScrollToTop/useScrollToTop';
+export { useIsMounted } from './useIsMounted/useIsMounted';
+export { usePrevious } from './usePrevious/usePrevious';
+export { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';
+export { useToggle } from './useToggle/useToggle';

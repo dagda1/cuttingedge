@@ -1,4 +1,4 @@
-import * as styles from './Pyramid.css.js';
+import * as styles from './Pyramid.css';
 
 export function Pyramid(): JSX.Element {
   return (

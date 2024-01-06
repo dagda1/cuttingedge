@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useMathJaxContext } from '../../provider/Provider/Provider.js';
+import { useMathJaxContext } from '../../provider/Provider/Provider';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 
 export interface UseMathJax {

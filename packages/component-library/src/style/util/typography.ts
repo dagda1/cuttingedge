@@ -1,5 +1,5 @@
 import type { FontMetrics } from '@capsizecss/core';
-import type { Tokens } from '../themes/tokens.js';
+import type { Tokens } from '../themes/tokens';
 
 export type FontMetricsForTheme = Pick<FontMetrics, 'capHeight' | 'ascent' | 'descent' | 'lineGap' | 'unitsPerEm'>;
 

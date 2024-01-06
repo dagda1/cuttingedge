@@ -1,4 +1,4 @@
-import { noop, isFunction, isAsyncFunction, isPromise } from './functions.js';
+import { noop, isFunction, isAsyncFunction, isPromise } from './functions';
 import { expect, it, describe } from 'vitest';
 
 describe('functions', () => {

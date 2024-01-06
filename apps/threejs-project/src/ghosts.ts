@@ -1,4 +1,4 @@
-import './style.css.js';
+import './style.css';
 import { assert } from 'assert-ts';
 import {
   Scene,

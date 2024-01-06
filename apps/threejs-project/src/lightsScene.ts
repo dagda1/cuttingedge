@@ -1,4 +1,4 @@
-import './style.css.js';
+import './style.css';
 import { assert } from 'assert-ts';
 import {
   Scene,
@@ -25,7 +25,7 @@ import {
   Clock,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper';
 
 function run() {
   const canvas = document.querySelector('#scene');

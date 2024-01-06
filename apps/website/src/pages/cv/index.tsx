@@ -1,7 +1,7 @@
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import * as Urls from '~/urls';
 
-import * as styles from './CV.css.js';
+import * as styles from './CV.css';
 import { Tiles, TextLink, PageBlock, Text } from '@cutting/component-library';
 
 const docs = [

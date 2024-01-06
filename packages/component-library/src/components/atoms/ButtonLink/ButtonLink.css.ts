@@ -1,5 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import * as styles from '../TextLink/TextLink.css.js';
+import * as styles from '../TextLink/TextLink.css';
 
 export const main = style(
   [

@@ -1,2 +1,2 @@
-export * from './ContactForm.js';
-export * from './FormContext.js';
+export * from './ContactForm';
+export * from './FormContext';

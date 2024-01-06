@@ -6,7 +6,7 @@ import type {
   CheckableLayoutProps,
   CheckableProps,
   CheckableValueType,
-} from '../../Checkable/types.js';
+} from '../../Checkable/types';
 import { Radio } from '../Radio';
 
 function SimpleRadio<V extends CheckableValueType>({

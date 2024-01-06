@@ -3,8 +3,8 @@ import fs from 'fs-extra';
 import path from 'path';
 import { paths } from '../config/paths.js';
 import { exec } from 'child_process';
-import { findFile } from './utils/finders';
-import { copyAssets } from './copy-assets';
+import { findFile } from './utils/finders.js';
+import { copyAssets } from './copy-assets.js';
 
 const isProduction = process.env.NODE_ENV === 'production';
 

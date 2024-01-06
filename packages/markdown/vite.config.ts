@@ -12,14 +12,14 @@ export default defineConfig({
   //   alias: [
   //     {
   //       find: 'luxon',
-  //       replacement: require.resolve('@visx/axis/esm/index.js'),
+  //       replacement: require.resolve('@visx/axis/esm/index'),
   //     },
   //   ],
   // },
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: '@cutting/devtools/setuptests.js',
+    setupFiles: '@cutting/devtools/setuptests',
     css: true,
     deps: {
       fallbackCJS: true,

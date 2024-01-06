@@ -1,7 +1,7 @@
 import type { ComponentMeta } from '@storybook/react';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
-import type { FormRadioGroupProps } from '../../FormControls/FormControls.js';
-import { FormRadioGroup } from '../../FormControls/FormControls.js';
+import type { FormRadioGroupProps } from '../../FormControls/FormControls';
+import { FormRadioGroup } from '../../FormControls/FormControls';
 
 function SimpleRadioGroup({ legend, errorMessage, value = 'no', ...rest }: FormRadioGroupProps): JSX.Element {
   return (

@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
-import * as styles from './ContentBlock.css.js';
-import type { BoxProps } from '../../molecules/Box/Box.js';
-import { Box } from '../../molecules/Box/Box.js';
+import * as styles from './ContentBlock.css';
+import type { BoxProps } from '../../molecules/Box/Box';
+import { Box } from '../../molecules/Box/Box';
 
 export interface ContentBlockProps {
   children: ReactNode;

@@ -1,5 +1,5 @@
 import { isObject } from '@cutting/util';
-import type { Combination, Sequence } from '../types/types.js';
+import type { Combination, Sequence } from '../types/types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isCombination = (o: any): o is Combination<typeof o> => {

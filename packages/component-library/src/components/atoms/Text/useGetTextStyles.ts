@@ -1,9 +1,9 @@
 import { useContext, useMemo } from 'react';
 import { TextContext } from './TextContext';
 import { assert } from 'assert-ts';
-import { textStyles } from '~/style/typography/typography.js';
+import { textStyles } from '~/style/typography/typography';
 import cs from 'classnames';
-import { base } from '../TextLink/TextLink.css.js';
+import { base } from '../TextLink/TextLink.css';
 
 export function useGetTextStyles(): string {
   const textContext = useContext(TextContext);

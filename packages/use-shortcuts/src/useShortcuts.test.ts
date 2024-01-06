@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect, afterEach } from 'vitest';
 import { renderHook } from '@testing-library/react-hooks';
-import { useShortcuts } from './useShortcuts.js';
-import type { ShortcutHandler } from './types/types.js';
+import { useShortcuts } from './useShortcuts';
+import type { ShortcutHandler } from './types/types';
 import mousetrap from 'mousetrap';
 import { KeyCode } from './types/keycodes';
 import { vi } from 'vitest';

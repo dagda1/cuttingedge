@@ -1,5 +1,5 @@
-import type { OptionalResponsiveValue } from '../atoms/sprinkles.css.js';
-import { mapResponsiveValue } from '../atoms/sprinkles.css.js';
+import type { OptionalResponsiveValue } from '../atoms/sprinkles.css';
+import { mapResponsiveValue } from '../atoms/sprinkles.css';
 
 export type Align = 'left' | 'center' | 'right';
 export type AlignY = 'top' | 'center' | 'bottom';

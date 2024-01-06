@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from 'react';
 import { useRef } from 'react';
 import cs from 'classnames';
-import { useShortcuts } from '../../useShortcuts.js';
-import type { ShortcutsProps } from './types.js';
+import { useShortcuts } from '../../useShortcuts';
+import type { ShortcutsProps } from './types';
 
 export function Shortcuts<R extends Record<PropertyKey, unknown>, E extends HTMLElement = HTMLElement>({
   tabIndex = -1,

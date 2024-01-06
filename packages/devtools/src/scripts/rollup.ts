@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { OutputOptions } from 'rollup';
 import { rollup } from 'rollup';
-import type { ModuleFormat } from '../types/moduleFormat';
+import type { ModuleFormat } from '../types/moduleFormat.js';
 import { paths } from '../config/paths.js';
 import fs from 'fs-extra';
 import path from 'path';
@@ -9,7 +9,6 @@ import typescript from 'rollup-plugin-typescript2';
 import { logger } from './logger.js';
 import resolve from '@rollup/plugin-node-resolve';
 import { assert } from 'assert-ts';
-// import injectProcessEnv from 'rollup-plugin-inject-process-env';
 import json from '@rollup/plugin-json';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
@@ -81,7 +80,7 @@ async function generateBundledModule({
       }),
       resolve({
         mainFields: ['module', 'browser', 'main'],
-        extensions: ['.mjs', '.cjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
+        extensions: ['.mjs', '.cjs', '', '.ts', '.tsx', '.json', '.jsx'],
       }),
       commonjs(),
       json(),
@@ -138,7 +137,7 @@ async function generateBundledModule({
     ].filter(Boolean),
   });
 
-  const extension = env === 'production' ? 'min.js' : 'js';
+  const extension = env === 'production' ? 'min' : 'js';
   const fileName = `index.${extension}`;
   const outputFileName = path.join(paths.appBuild, moduleFormat, fileName);
 

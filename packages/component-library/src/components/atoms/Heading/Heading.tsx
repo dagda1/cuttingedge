@@ -1,10 +1,10 @@
 import { type ReactNode } from 'react';
-import HeadingContext from './HeadingContext.js';
-import * as typographyStyles from '../../../style/typography/typography.css.js';
-import type { TypographyProps } from '../Typography/Typography.js';
-import { Typography } from '../Typography/Typography.js';
+import HeadingContext from './HeadingContext';
+import * as typographyStyles from '../../../style/typography/typography.css';
+import type { TypographyProps } from '../Typography/Typography';
+import { Typography } from '../Typography/Typography';
 import cs from 'classnames';
-import * as styles from './Heading.css.js';
+import * as styles from './Heading.css';
 
 const resolveDefaultComponent = {
   '1': 'h1',

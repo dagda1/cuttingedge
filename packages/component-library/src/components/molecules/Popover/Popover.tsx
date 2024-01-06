@@ -10,10 +10,10 @@ import {
   useInteractions,
   FloatingFocusManager,
 } from '@floating-ui/react';
-import { Text } from '~/components/atoms/Text/Text.js';
+import { Text } from '~/components/atoms/Text/Text';
 import type { ReactNode } from 'react';
 import cs from 'classnames';
-import * as styles from './Popover.css.js';
+import * as styles from './Popover.css';
 
 interface PopoverProps {
   isOpen: boolean;

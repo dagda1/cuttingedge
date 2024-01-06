@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 import cs from 'classnames';
-import * as styles from './Alert.css.js';
+import * as styles from './Alert.css';
 import { capitalize } from '@cutting/util';
-import { Heading } from '~/components/atoms/Heading/Heading.js';
-import { Text } from '~/components/atoms/Text/Text.js';
-import { Stack } from '../Stack/Stack.js';
+import { Heading } from '~/components/atoms/Heading/Heading';
+import { Text } from '~/components/atoms/Text/Text';
+import { Stack } from '../Stack/Stack';
 
 export type AlertType = 'success' | 'warning' | 'error';
 

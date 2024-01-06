@@ -1,4 +1,4 @@
-import { isNil } from './isNil.js';
+import { isNil } from './isNil';
 
 namespace Empty {
   export type String = '';

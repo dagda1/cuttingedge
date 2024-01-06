@@ -1,4 +1,4 @@
-import * as styles from './typography.css.js';
+import * as styles from './typography.css';
 
 export interface TextStyleProps {
   weight?: keyof typeof styles.fontWeight;

@@ -1,10 +1,10 @@
 import { type ReactNode } from 'react';
 import { ContentBlock, type ContentBlockProps } from '../ContentBlock/ContentBlock';
-import type { BoxProps } from '~/components/molecules/Box/Box.js';
-import { Box } from '~/components/molecules/Box/Box.js';
-import { atoms } from '~/style/atoms/atoms.js';
+import type { BoxProps } from '~/components/molecules/Box/Box';
+import { Box } from '~/components/molecules/Box/Box';
+import { atoms } from '~/style/atoms/atoms';
 import cs from 'classnames';
-import type { ContainerBoxProps } from '../ApplicationLayout/ApplicationLayout.js';
+import type { ContainerBoxProps } from '../ApplicationLayout/ApplicationLayout';
 
 export const validPageBlockComponents = ['div', 'article', 'aside', 'main', 'section', 'nav'] as const;
 

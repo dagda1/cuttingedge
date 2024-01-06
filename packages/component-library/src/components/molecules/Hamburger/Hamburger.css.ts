@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { palette } from '~/style';
-import { ZIndex } from '~/utl/zindex.js';
+import { ZIndex } from '~/utl/zindex';
 
 export const container = style([
   {

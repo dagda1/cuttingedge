@@ -2,16 +2,16 @@ import type { PropsWithChildren, ReactElement, RefObject } from 'react';
 import { useRef } from 'react';
 import { useScrollToTop } from '@cutting/hooks';
 import cs from 'classnames';
-import { cuttingTheme } from '~/style/themes/cutting/cutting.css.js';
-import * as styles from './ApplicationLayout.css.js';
+import { cuttingTheme } from '~/style/themes/cutting/cutting.css';
+import * as styles from './ApplicationLayout.css';
 import { isNil } from '@cutting/util';
-import { salesTheme } from '~/style/themes/sales/salesTheme.css.js';
-import { defaultTheme } from '~/style/themes/default/default.css.js';
-import { supportTheme } from '~/style/themes/support/supportTheme.css.js';
-import { Heading } from '~/components/atoms/Heading/Heading.js';
-import { type ReactNodeNoStrings } from '~/components/molecules/Stack/Stack.js';
-import type { ResponsiveAtomicProperties } from '~/style/atoms/sprinkles.css.js';
-import { Box } from '~/components/molecules/Box/Box.js';
+import { salesTheme } from '~/style/themes/sales/salesTheme.css';
+import { defaultTheme } from '~/style/themes/default/default.css';
+import { supportTheme } from '~/style/themes/support/supportTheme.css';
+import { Heading } from '~/components/atoms/Heading/Heading';
+import { type ReactNodeNoStrings } from '~/components/molecules/Stack/Stack';
+import type { ResponsiveAtomicProperties } from '~/style/atoms/sprinkles.css';
+import { Box } from '~/components/molecules/Box/Box';
 import { ContentBlock } from '../ContentBlock/ContentBlock';
 
 export const themes = {

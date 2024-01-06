@@ -1,8 +1,8 @@
 import { Modal } from 'flowbite-react';
-import * as styles from './ContactButtons.css.js';
-import { ContactForm } from '../ContactForm/ContactForm.js';
-import { CallPopupButton } from '../Call/CallPopupButton.js';
-import type { CallType } from '../Call/types.js';
+import * as styles from './ContactButtons.css';
+import { ContactForm } from '../ContactForm/ContactForm';
+import { CallPopupButton } from '../Call/CallPopupButton';
+import type { CallType } from '../Call/types';
 import type { ButtonStyle } from '@cutting/component-library';
 import { Box, Button, Text } from '@cutting/component-library';
 import { useCallback, useState } from 'react';

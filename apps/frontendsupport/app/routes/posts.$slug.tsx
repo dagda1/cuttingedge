@@ -108,7 +108,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 };
 
-export const meta: V2_MetaFunction = ({
+export const meta = ({
   location,
   data: {
     frontmatter: { meta },

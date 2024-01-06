@@ -1,1 +1,1 @@
-export * from './prefixer/index.js';
+export * from './prefixer/index';

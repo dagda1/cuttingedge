@@ -1,8 +1,8 @@
-import * as styles from './global.css.js';
+import * as styles from './global.css';
 import '@cutting/component-library/styles.css';
 import { useMemo, useRef } from 'react';
 import { ApplicationLayout } from '@cutting/component-library';
-import { ResponsiveSVG } from '../../src/components/ResponsiveSVG/ResponsiveSVG.js';
+import { ResponsiveSVG } from '../../src/components/ResponsiveSVG/ResponsiveSVG';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { scalePoint } from '@visx/scale';
 import { range } from '@cutting/util';

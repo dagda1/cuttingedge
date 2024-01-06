@@ -1,5 +1,5 @@
 import type { RefObject, FC } from 'react';
-import type { ShortcutHandler } from '../../types/types.js';
+import type { ShortcutHandler } from '../../types/types';
 
 export interface ShortcutsProps<
   R extends Record<PropertyKey, unknown>,

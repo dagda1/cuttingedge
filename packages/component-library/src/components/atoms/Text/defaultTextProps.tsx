@@ -1,5 +1,5 @@
 import { type ReactNode, createContext, useContext, useMemo } from 'react';
-import type { TextStyleProps } from '~/style/typography/typography.js';
+import type { TextStyleProps } from '~/style/typography/typography';
 
 interface DefaultTextProps {
   tone?: TextStyleProps['tone'];

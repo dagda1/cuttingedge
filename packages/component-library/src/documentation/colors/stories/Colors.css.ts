@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
-import { atoms } from '~/style/atoms/atoms.js';
-import { vars } from '~/style/themes/vars.css.js';
+import { atoms } from '~/style/atoms/atoms';
+import { vars } from '~/style/themes/vars.css';
 
 export const container = style({ display: 'flex', alignItems: 'center' });
 

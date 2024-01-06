@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { expect, it, describe } from 'vitest';
-import { bundleMarkdown } from './bundleMarkdown.js';
+import { bundleMarkdown } from './bundleMarkdown';
 
 describe('bundleMarkdown', () => {
   it('should bundle markdown', async () => {

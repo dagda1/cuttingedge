@@ -2,7 +2,7 @@ import type { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from '
 import mousetrap from 'mousetrap';
 import { useEffect, useRef } from 'react';
 import { buildShortcuts } from './buildShortcuts';
-import type { ShortcutAction, UseShortcuts, UseShortcutsResults } from './types/types.js';
+import type { ShortcutAction, UseShortcuts, UseShortcutsResults } from './types/types';
 import { clearArray } from './utils/clearArray';
 
 export const useShortcuts = <R extends Record<PropertyKey, unknown>, E extends HTMLElement = HTMLElement>({

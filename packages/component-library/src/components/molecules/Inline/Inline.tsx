@@ -1,10 +1,10 @@
 import { assert } from 'assert-ts';
 import { Children } from 'react';
-import { Box } from '../Box/Box.js';
+import { Box } from '../Box/Box';
 import type { CollapsibleAlignmentProps } from '~/style/util/collapsibleAlignmentProps';
 import { resolveCollapsibleAlignmentProps } from '~/style/util/collapsibleAlignmentProps';
-import type { ResponsiveSpace } from '~/style/atoms/atoms.js';
-import type { ReactNodeNoStrings } from '../Stack/Stack.js';
+import type { ResponsiveSpace } from '~/style/atoms/atoms';
+import type { ReactNodeNoStrings } from '../Stack/Stack';
 import { negativeMargin } from '~/style/negativeMargin/negativeMargin';
 import flattenChildren from '~/style/util/flatten-children';
 import cs from 'classnames';

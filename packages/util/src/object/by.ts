@@ -1,6 +1,6 @@
-import type { Entries } from '../types/entries.js';
-import type { DeepPartial } from '../types/DeepPartial.js';
-import { isNil } from './isNil.js';
+import type { Entries } from '../types/entries';
+import type { DeepPartial } from '../types/DeepPartial';
+import { isNil } from './isNil';
 
 export type PropertyReturn = string | number | symbol;
 

@@ -1,5 +1,5 @@
 import * as urls from '~/urls';
-import * as styles from './Nav.css.js';
+import * as styles from './Nav.css';
 import { Box, Heading, Nav, NavItem, NavItems, ResponsiveImage } from '@cutting/component-library';
 import { NavLink } from 'react-router-dom';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
