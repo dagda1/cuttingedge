@@ -1,6 +1,6 @@
 import copy from 'copy';
-import { paths } from '../config/paths';
-import logger from './logger';
+import { paths } from '../config/paths.js';
+import logger from './logger.js';
 
 export const copyAssets = (): void => {
   const patterns = ['*.scss', '*.css', '*.png', '*.jpg', '*.md', '*.svg', '*.json', '*.html', '*.csv', 'config'].map(
