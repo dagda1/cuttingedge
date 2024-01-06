@@ -1,7 +1,8 @@
 import { blurhashToCssGradientString } from '@unpic/placeholder';
 import { Image, type ImageProps } from '@unpic/react';
-import { useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { getImagePropsFromMap } from './getImagePropsFromMap';
+import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 
 type Layout = ImageProps['layout'];
 
@@ -16,10 +17,27 @@ function BlurhashImage({
   ...props
 }: LazyLoadedImageProps): JSX.Element {
   const image = getImagePropsFromMap(src);
+  const [loaded, setLoaded] = useState(false);
 
   const { blurhash, ...imageProps } = image;
 
-  const placeholderStyle = useMemo(() => blurhashToCssGradientString(blurhash), [blurhash]);
+  const placeholderStyle = useMemo(() => (loaded ? '' : blurhashToCssGradientString(blurhash)), [blurhash, loaded]);
+
+  const imgLoadedHandler = useCallback(() => setLoaded(true), []);
+
+  useIsomorphicLayoutEffect(() => {
+    if (typeof global.document === 'undefined' || loaded) {
+      return;
+    }
+
+    const img = document.createElement('img');
+
+    img.addEventListener('load', imgLoadedHandler, { once: true });
+
+    img.addEventListener('error', imgLoadedHandler);
+
+    img.src = src;
+  }, [imgLoadedHandler, loaded, src]);
 
   return (
     <Image
@@ -27,8 +45,9 @@ function BlurhashImage({
       layout={layout as any}
       width={width ?? imageProps.width}
       height={height ?? imageProps.height}
-      background={placeholderStyle as string}
+      background={placeholderStyle}
       src={src}
+      onLoad={() => setLoaded(true)}
       {...props}
     />
   );
