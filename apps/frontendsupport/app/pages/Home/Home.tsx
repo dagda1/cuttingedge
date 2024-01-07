@@ -12,7 +12,6 @@ import * as styles from './Home.css';
 import cs from 'classnames';
 import { assert } from 'assert-ts';
 import { Clients } from '../../components/Clients/Clients';
-import { horizontalLoop } from './loop';
 import { TopBubble } from './TopBubble/TopBubble';
 import { Services } from '../Panels/Services/Services';
 import { About } from '../../components/About/About';
@@ -28,8 +27,6 @@ export function Home(): JSX.Element {
   const ctx = useRef<gsap.Context>();
   const topBubble = useRef<HTMLDivElement>(null);
   const arrow = useRef<HTMLImageElement>(null);
-  const savedCallback = useRef<any>();
-  const id = useRef<NodeJS.Timeout>();
 
   useIsomorphicLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -343,26 +340,6 @@ export function Home(): JSX.Element {
     };
   }, [height, width]);
 
-  useIsomorphicLayoutEffect(() => {
-    if (!width) {
-      return;
-    }
-    if (typeof id.current === 'number') {
-      savedCallback.current.refresh(true);
-      return;
-    }
-    const boxes = gsap.utils.toArray<HTMLElement>('.box');
-    const loop = horizontalLoop(boxes, {
-      paused: true,
-      paddingRight: 0,
-    });
-    savedCallback.current = loop;
-    function tick() {
-      savedCallback.current.next({ duration: 0.4, ease: 'power1.inOut' });
-    }
-    id.current = setInterval(tick, 1000);
-  }, [width]);
-
   return (
     <Box paddingBottom="xxxlarge">
       <TopBubble innerRef={topBubble} mode="light" />
@@ -520,7 +497,7 @@ export function Home(): JSX.Element {
             </Heading>
           </Box>
           <HomePanel mode="light" paddingBottom="medium" maxWidth="large" marginTop="xxxlarge">
-            <Clients />
+            <Clients width={width} />
           </HomePanel>
         </HomePanel>
       </HomePanel>
