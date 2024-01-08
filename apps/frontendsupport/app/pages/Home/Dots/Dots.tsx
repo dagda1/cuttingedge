@@ -1,5 +1,5 @@
 import { Box } from '@cutting/component-library';
-import { HomePanel } from '../HomePanel/HomePanel';
+import { Panel } from '../Panel/Panel';
 import { range } from '@cutting/util';
 import { useRef } from 'react';
 import { Dot } from './Dot/Dot';
@@ -53,7 +53,7 @@ export function Dots({ width }: DotsProps): JSX.Element {
   }, [width]);
 
   return (
-    <HomePanel overflowX="hidden">
+    <Panel overflowX="hidden">
       <Box
         component="ul"
         className="dots"
@@ -67,6 +67,6 @@ export function Dots({ width }: DotsProps): JSX.Element {
           <Dot key={i} background={i == 4 ? '#ffffff' : '#1f1f1f'} />
         ))}
       </Box>
-    </HomePanel>
+    </Panel>
   );
 }

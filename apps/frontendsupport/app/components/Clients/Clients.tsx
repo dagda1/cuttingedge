@@ -3,7 +3,7 @@ import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { horizontalLoop } from './loop';
 import { useRef } from 'react';
 import gsap from 'gsap';
-import { HomePanel } from '~/pages/Home/HomePanel/HomePanel';
+import { Panel } from '~/pages/Home/Panel/Panel';
 import cs from 'classnames';
 import * as styles from './Clients.css';
 import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
@@ -48,21 +48,21 @@ export function Clients({ width }: ClientsProps): JSX.Element {
   }, [width]);
 
   return (
-    <HomePanel className={cs('services', styles.front)} marginY="xxxlarge">
-      <HomePanel mode="light" flexDirection="column" paddingTop="medium">
+    <Panel className={cs('services', styles.front)} marginY="xxxlarge">
+      <Panel mode="light" flexDirection="column" paddingTop="medium">
         <Box paddingBottom="large">
           <Heading center level="1">
             I have worked with
           </Heading>
         </Box>
-        <HomePanel mode="light" paddingBottom="medium">
+        <Panel mode="light" paddingBottom="medium">
           {clients.map((c) => (
             <Box key={c} marginRight="xxsmall" className="box">
               <LazyLoadedImage layout="constrained" src={c.trim()} />
             </Box>
           ))}
-        </HomePanel>
-      </HomePanel>
-    </HomePanel>
+        </Panel>
+      </Panel>
+    </Panel>
   );
 }

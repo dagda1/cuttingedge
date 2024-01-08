@@ -1,15 +1,13 @@
 import { Box, C2Testimonial, DSTestimonial, Heading, List, Redhatestimonial, Text } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import gsap from 'gsap';
-import { HomePanel } from './HomePanel/HomePanel';
+import { Panel } from './Panel/Panel';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
-import * as styles from './Home.css';
-import cs from 'classnames';
 import { assert } from 'assert-ts';
 import { Clients } from '../../components/Clients/Clients';
 import { TopBubble } from './TopBubble/TopBubble';
@@ -18,6 +16,7 @@ import { About } from '../../components/About/About';
 import { Dots } from './Dots/Dots';
 import { RandomImage } from '~/components/RandomImage/RandomImage';
 import { Image } from '@unpic/react';
+import './Home.css';
 
 export function Home(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
@@ -343,7 +342,7 @@ export function Home(): JSX.Element {
   return (
     <Box paddingBottom="xxxlarge">
       <TopBubble innerRef={topBubble} mode="light" />
-      <HomePanel
+      <Panel
         mode="dark"
         flexDirection="column"
         justifyContent="center"
@@ -434,8 +433,8 @@ export function Home(): JSX.Element {
             </Box>
           </Box>
         </Box>
-      </HomePanel>
-      <HomePanel mode="dark" paddingY="xxxlarge">
+      </Panel>
+      <Panel mode="dark" paddingY="xxxlarge">
         <Box maxWidth="large">
           <Box display="flex" justifyContent="center" paddingX={{ mobile: 'large' }}>
             <Heading level="1" center tone="secondary" weight="weak">
@@ -453,11 +452,11 @@ export function Home(): JSX.Element {
             <C2Testimonial />
           </Box>
         </Box>
-      </HomePanel>
-      <HomePanel>
+      </Panel>
+      <Panel>
         <BreakGlass container={breakglassRef} image={imageRef} />
-      </HomePanel>
-      <HomePanel mode="dark" className="hero2" opacity={1}>
+      </Panel>
+      <Panel mode="dark" className="hero2" opacity={1}>
         <Box
           display="flex"
           flexDirection="column"
@@ -473,11 +472,11 @@ export function Home(): JSX.Element {
             <Box className="hero-title2">when....</Box>
           </Box>
         </Box>
-      </HomePanel>
+      </Panel>
       <Box marginTop="xxxlarge">
         <Dots width={width} />
       </Box>
-      <HomePanel className="hero3" opacity={0} marginBottom="xxxlarge">
+      <Panel className="hero3" opacity={0} marginBottom="xxxlarge">
         <Box maxWidth="medium">
           <List space="xxxlarge" type="none">
             <Text tone="primary" size="large" className="hero-title3">
@@ -488,25 +487,14 @@ export function Home(): JSX.Element {
             </Text>
           </List>
         </Box>
-      </HomePanel>
-      <HomePanel className={cs('services', styles.front)} marginY="xxxlarge">
-        <HomePanel mode="light" flexDirection="column" paddingTop="medium">
-          <Box paddingBottom="large">
-            <Heading center level="1">
-              I have worked with
-            </Heading>
-          </Box>
-          <HomePanel mode="light" paddingBottom="medium" maxWidth="large" marginTop="xxxlarge">
-            <Clients width={width} />
-          </HomePanel>
-        </HomePanel>
-      </HomePanel>
-      <HomePanel>
+      </Panel>
+      <Clients width={width} />
+      <Panel>
         <Services />
-      </HomePanel>
-      <HomePanel>
+      </Panel>
+      <Panel>
         <About />
-      </HomePanel>
+      </Panel>
     </Box>
   );
 }

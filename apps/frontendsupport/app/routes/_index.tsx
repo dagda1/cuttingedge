@@ -1,4 +1,4 @@
-import { Home2 as HomePage } from '../pages/Home/Home2.js';
+import { Home as HomePage } from '../pages/Home/Home.js';
 
 export default function Home() {
   return <HomePage />;
