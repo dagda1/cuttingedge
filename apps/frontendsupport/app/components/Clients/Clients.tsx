@@ -7,6 +7,7 @@ import { Panel } from '~/pages/Home/Panel/Panel';
 import cs from 'classnames';
 import * as styles from './Clients.css';
 import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
+import { waitUntil } from '@cutting/util';
 
 const clients = [
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696609565/volvo_qhsx69.png',
@@ -25,26 +26,43 @@ interface ClientsProps {
 export function Clients({ width }: ClientsProps): JSX.Element {
   const id = useRef<NodeJS.Timeout>();
   const savedCallback = useRef<any>();
+  const boxRef = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     if (!width) {
       return;
     }
-    if (typeof id.current === 'number') {
-      console.log({ refresh: savedCallback.current.refresh });
-      savedCallback.current.refresh(true);
-      return;
+
+    async function main() {
+      if (!boxRef.current) {
+        return;
+      }
+
+      await waitUntil(() => {
+        console.log(`checking, current is ${boxRef.current!.getBoundingClientRect().width}`);
+        return boxRef.current!.getBoundingClientRect().width > 0;
+      });
+
+      if (typeof id.current === 'number') {
+        savedCallback.current.refresh(true);
+        return;
+      }
+
+      const boxes = gsap.utils.toArray<HTMLElement>('.box');
+
+      const loop = horizontalLoop(boxes, {
+        paused: true,
+        paddingRight: 0,
+      });
+      savedCallback.current = loop;
+      function tick() {
+        savedCallback.current.next({ duration: 0.4, ease: 'power1.inOut' });
+      }
+
+      id.current = setInterval(tick, 1000);
     }
-    const boxes = gsap.utils.toArray<HTMLElement>('.box');
-    const loop = horizontalLoop(boxes, {
-      paused: true,
-      paddingRight: 0,
-    });
-    savedCallback.current = loop;
-    function tick() {
-      savedCallback.current.next({ duration: 0.4, ease: 'power1.inOut' });
-    }
-    id.current = setInterval(tick, 1000);
+
+    main();
   }, [width]);
 
   return (
@@ -56,8 +74,8 @@ export function Clients({ width }: ClientsProps): JSX.Element {
           </Heading>
         </Box>
         <Panel mode="light" paddingBottom="medium">
-          {clients.map((c) => (
-            <Box key={c} marginRight="xxsmall" className="box">
+          {clients.map((c, i) => (
+            <Box key={c} marginRight="xxsmall" className="box" ref={i === 0 ? boxRef : undefined}>
               <LazyLoadedImage layout="constrained" src={c.trim()} />
             </Box>
           ))}

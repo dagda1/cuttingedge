@@ -21,6 +21,7 @@ export { escapeHtml } from './string/escapeHtml';
 export { StorageHelper } from './services/storageHelper/index';
 export { isProduction, isDevelopment, isTest, env, isCI } from './environment/index';
 export { isFunction, isPromise, isAsyncFunction } from './functions/functions';
+export { waitUntil } from './functions/waitUntil';
 export { unique } from './object/unique';
 export { omit } from './object/omit';
 export { isEqual } from './object/is-equal';
