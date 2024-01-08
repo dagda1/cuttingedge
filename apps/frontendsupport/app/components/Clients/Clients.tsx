@@ -1,9 +1,12 @@
-import { Box } from '@cutting/component-library';
-import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage.js';
+import { Box, Heading } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { horizontalLoop } from './loop';
 import { useRef } from 'react';
 import gsap from 'gsap';
+import { HomePanel } from '~/pages/Home/HomePanel/HomePanel';
+import cs from 'classnames';
+import * as styles from './Clients.css';
+import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 
 const clients = [
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696609565/volvo_qhsx69.png',
@@ -28,6 +31,7 @@ export function Clients({ width }: ClientsProps): JSX.Element {
       return;
     }
     if (typeof id.current === 'number') {
+      console.log({ refresh: savedCallback.current.refresh });
       savedCallback.current.refresh(true);
       return;
     }
@@ -44,12 +48,21 @@ export function Clients({ width }: ClientsProps): JSX.Element {
   }, [width]);
 
   return (
-    <>
-      {clients.map((c) => (
-        <Box key={c} marginRight="xxxlarge" className="box">
-          <LazyLoadedImage layout="constrained" src={c.trim()} />
+    <HomePanel className={cs('services', styles.front)} marginY="xxxlarge">
+      <HomePanel mode="light" flexDirection="column" paddingTop="medium">
+        <Box paddingBottom="large">
+          <Heading center level="1">
+            I have worked with
+          </Heading>
         </Box>
-      ))}
-    </>
+        <HomePanel mode="light" paddingBottom="medium">
+          {clients.map((c) => (
+            <Box key={c} marginRight="xxsmall" className="box">
+              <LazyLoadedImage layout="constrained" src={c.trim()} />
+            </Box>
+          ))}
+        </HomePanel>
+      </HomePanel>
+    </HomePanel>
   );
 }

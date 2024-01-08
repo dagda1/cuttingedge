@@ -50,8 +50,8 @@ export function LazyLoadedImage({
     <Image
       loading={loading}
       layout={layout as any}
-      width={width ?? imageProps.width}
-      height={height ?? imageProps.height}
+      width={resolvedWidth}
+      height={resolvedHeight}
       background={placeholderStyle}
       src={src}
       onLoad={() => setLoaded(true)}
