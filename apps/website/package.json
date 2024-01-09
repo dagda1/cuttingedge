@@ -32,7 +32,7 @@
     "@cutting/use-get-parent-size": "workspace:*",
     "@cutting/use-mathjax": "workspace:*",
     "@cutting/util": "workspace:*",
-    "@floating-ui/react": "^0.26.4",
+    "@floating-ui/react": "^0.26.5",
     "@vanilla-extract/css": "1.14.0",
     "@vanilla-extract/sprinkles": "1.6.1",
     "@visx/axis": "3.5.0",
