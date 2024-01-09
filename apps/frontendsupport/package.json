@@ -102,7 +102,7 @@
     "@vanilla-extract/css": "^1.14.0",
     "@vanilla-extract/dynamic": "^2.1.0",
     "@vanilla-extract/sprinkles": "^1.6.1",
-    "esbuild": "^0.19.10",
+    "esbuild": "^0.19.11",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
