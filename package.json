@@ -26,7 +26,7 @@
     "@cutting/cloudinary-blurhash": "workspace:*",
     "@cutting/devtools": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
-    "@testing-library/jest-dom": "6.1.6",
+    "@testing-library/jest-dom": "6.2.0",
     "@types/node": "20.10.7",
     "@typescript-eslint/eslint-plugin": "6.16.0",
     "@typescript-eslint/parser": "6.16.0",
