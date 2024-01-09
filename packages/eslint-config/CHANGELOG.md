@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.45.3
+
+### Patch Changes
+
+- 71ee424: add no-unused-vars rule
+
 ## 4.45.2
 
 ### Patch Changes
