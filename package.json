@@ -41,7 +41,7 @@
     "eslint-plugin-prettier": "5.1.2",
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
-    "follow-redirects": "1.15.4",
+    "follow-redirects": "1.15.5",
     "husky": "8.0.3",
     "jsdom": "23.0.1",
     "knip": "^3.9.0",
