@@ -28,7 +28,7 @@
     "@cutting/component-library": "workspace:*",
     "@cutting/util": "workspace:*",
     "assert-ts": "^0.3.4",
-    "react-hook-form": "7.49.2",
+    "react-hook-form": "7.49.3",
     "react-is": "^18.2.0",
     "react-calendly": "^4.3.0"
   },
