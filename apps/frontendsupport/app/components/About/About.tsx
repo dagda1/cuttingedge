@@ -3,7 +3,7 @@ import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 
 export function About(): JSX.Element {
   return (
-    <Box paddingTop="xxxlarge" display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center">
       <PageBlock>
         <Box component="section">
           <Stack space="large">

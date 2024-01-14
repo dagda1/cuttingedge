@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "2.27.1",
+    "@cutting/assert": "workspace:*",
     "@cutting/cloudinary-blurhash": "workspace:*",
     "@cutting/devtools": "workspace:*",
     "@cutting/tsconfig": "workspace:*",

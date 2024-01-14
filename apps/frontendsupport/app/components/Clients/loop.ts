@@ -1,4 +1,4 @@
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import gsap from 'gsap';
 
 interface LoopConfig {

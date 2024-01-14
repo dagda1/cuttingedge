@@ -3,7 +3,7 @@ import { Image, type ImageProps } from '@unpic/react';
 import { useCallback, useMemo, useState } from 'react';
 import { getImagePropsFromMap } from './getImagePropsFromMap';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 
 type Layout = ImageProps['layout'];
 

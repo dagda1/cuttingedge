@@ -6,7 +6,7 @@ import { blurhashToGradientCssObject } from '@unpic/placeholder';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import * as styles from './LazyBackgroundImage.css.js';
 import cs from 'classnames';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 
 interface LazyBackgroundImageProps {
   backgroundImage: string;

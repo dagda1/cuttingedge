@@ -5,7 +5,7 @@ import { useState } from 'react';
 import * as styles from './RandomImage.css';
 import cs from 'classnames';
 import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage.js';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { buildImageUrl, extractPublicId, setConfig } from 'cloudinary-build-url';
 
 setConfig({

@@ -34,7 +34,6 @@
     "@cutting/assert": "workspace:*",
     "classnames": "^2.5.1",
     "@unpic/react": "^0.1.5",
-    "assert-ts": "^0.3.4",
     "cloudinary-build-url": "^0.2.4",
     "cross-env": "^7.0.3",
     "dedent": "^1.5.1",

@@ -8,12 +8,11 @@ import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { Clients } from '../../components/Clients/Clients';
 import { TopBubble } from './TopBubble/TopBubble';
 import { Services } from '../Panels/Services/Services';
 import { About } from '../../components/About/About';
-import { Dots } from './Dots/Dots';
 import { RandomImage } from '~/components/RandomImage/RandomImage';
 import { Image } from '@unpic/react';
 import './Home.css';
@@ -473,9 +472,6 @@ export function Home(): JSX.Element {
           </Box>
         </Box>
       </Panel>
-      <Box marginTop="xxxlarge">
-        <Dots width={width} />
-      </Box>
       <Panel className="hero3" opacity={0} marginBottom="xxxlarge">
         <Box maxWidth="medium">
           <List space="xxxlarge" type="none">

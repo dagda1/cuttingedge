@@ -32,7 +32,7 @@ const services: Service[] = [Rescue, Critical];
 
 export function Services(): JSX.Element {
   return (
-    <Box marginBottom="xxxlarge">
+    <Box padding={{ mobile: 'small', tablet: 'none' }}>
       <Stack space="small" align="center">
         <Box marginBottom="medium">
           <Heading level="1">Need help now?</Heading>

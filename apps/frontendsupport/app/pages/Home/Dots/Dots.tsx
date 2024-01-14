@@ -4,7 +4,7 @@ import { range } from '@cutting/util';
 import { useRef } from 'react';
 import { Dot } from './Dot/Dot';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { horizontalLoop } from './horizontalLoop';
