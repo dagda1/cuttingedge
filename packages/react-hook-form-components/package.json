@@ -49,7 +49,7 @@
     "typescript": "5.3.3"
   },
   "peerDependencies": {
-    "flowbite-react": ">= 0.5.x",
+    "flowbite-react": ">= 0.7.2",
     "react": ">= 18.2.0",
     "react-dom": ">= 18.2.0",
     "react-calendly": ">= 4.1.1"
