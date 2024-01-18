@@ -4,7 +4,7 @@ import { Box, Heading, breakpoints } from '@cutting/component-library';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 
 export function Snapper(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -13,7 +13,7 @@ import cs from 'classnames';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { curveMonotoneX } from 'd3-shape';
-import assert from 'assert-ts';
+import { assert } from '@cutting/assert';
 
 const Ticks = [...range(-1, 1)];
 

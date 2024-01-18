@@ -1,4 +1,4 @@
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { Children } from 'react';
 import { Box } from '../Box/Box';
 import type { CollapsibleAlignmentProps } from '~/style/util/collapsibleAlignmentProps';

@@ -5,7 +5,7 @@ import { HelpPanel } from '../Panels/Help/HelpPanel';
 import { Clients } from '../Panels/Clients/Clients';
 import { Final } from '../Panels/Final/Final';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { Intro } from '../Panels/Intro/Intro';

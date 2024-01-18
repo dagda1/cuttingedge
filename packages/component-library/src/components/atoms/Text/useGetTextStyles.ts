@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react';
 import { TextContext } from './TextContext';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { textStyles } from '~/style/typography/typography';
 import cs from 'classnames';
 import { base } from '../TextLink/TextLink.css';

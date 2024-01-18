@@ -3,7 +3,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { Input, TextArea } from '../FormComponents/FormComponents';
 import { useRef } from 'react';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { CRM } from '../../constants';
 import type { ButtonStyle } from '@cutting/component-library';
 import { Box, Button } from '@cutting/component-library';

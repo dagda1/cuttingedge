@@ -12,7 +12,7 @@ import { line } from 'd3-shape';
 import { curveMonotoneX } from '@visx/curve';
 import { Arc, Circle } from '@visx/shape';
 import cs from 'classnames';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 
 const xTickValues = [0, 1.57, 3.14, 4.71, 6.28];
 const piMap = {

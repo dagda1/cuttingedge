@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import type { TextStyleProps } from '../../../style/typography/typography';
 import { textStyles } from '../../../style/typography/typography';
 import { TextContext } from './TextContext';

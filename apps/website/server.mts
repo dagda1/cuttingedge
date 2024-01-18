@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express, { urlencoded } from 'express';
 import type { ViteDevServer } from 'vite';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import helmet, { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
 import referrerPolicy from 'referrer-policy';

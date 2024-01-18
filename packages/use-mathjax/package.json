@@ -24,7 +24,7 @@
   "dependencies": {
     "@cutting/hooks": "workspace:*",
     "@cutting/util": "workspace:*",
-    "assert-ts": "^0.3.4",
+    "@cutting/assert": "workspace:*",
     "mathjax-full": "3.2.2"
   },
   "devDependencies": {

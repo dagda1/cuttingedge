@@ -1,5 +1,5 @@
 import { Children, type ReactElement } from 'react';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { Box } from '../Box/Box';
 import type { OptionalResponsiveValue } from '../../../style/atoms/sprinkles.css';
 import { mapResponsiveValue } from '../../../style/atoms/sprinkles.css';
