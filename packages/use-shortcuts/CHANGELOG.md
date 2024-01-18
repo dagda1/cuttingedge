@@ -1,5 +1,11 @@
 # @cutting/use-shortcuts
 
+## 4.46.7
+
+### Patch Changes
+
+- @cutting/util@4.58.7
+
 ## 4.46.6
 
 ### Patch Changes
