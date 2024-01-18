@@ -1,5 +1,11 @@
 # @cutting/markdown
 
+## 0.1.8
+
+### Patch Changes
+
+- @cutting/util@4.58.7
+
 ## 0.1.7
 
 ### Patch Changes

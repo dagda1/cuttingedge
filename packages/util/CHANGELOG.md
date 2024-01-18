@@ -1,5 +1,12 @@
 # @cutting/util
 
+## 4.58.7
+
+### Patch Changes
+
+- Updated dependencies [04ca1e3]
+  - @cutting/assert@0.1.1
+
 ## 4.58.6
 
 ### Patch Changes
