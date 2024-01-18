@@ -8,7 +8,7 @@ import cs from 'classnames';
 import type { Atoms } from '~/style/atoms/atoms';
 import { atoms } from '~/style/atoms/atoms';
 import dedent from 'dedent';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { virtualTouchable } from '../touchable/virtualTouchable';
 
 export interface TextLinkStyles {

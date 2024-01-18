@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@cutting/util": "workspace:*",
-    "assert-ts": "^0.3.4"
+    "@cutting/assert": "workspace:*"
   },
   "devDependencies": {
     "@cutting/devtools": "workspace:*",

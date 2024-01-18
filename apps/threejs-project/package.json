@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@cutting/component-library": "workspace:*",
-    "assert-ts": "^0.3.4",
+    "@cutting/assert": "workspace:*",
     "gsap": "npm:@gsap/shockingly@^3.12.4",
     "lil-gui": "^0.19.1",
     "three": "^0.160.0"

@@ -1,6 +1,6 @@
 {
-  "name": "@cutting/util",
-  "version": "4.58.6",
+  "name": "@cutting/assert",
+  "version": "0.1.0",
   "sideEffects": false,
   "repository": {
     "type": "git",
@@ -11,15 +11,11 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production devtools rollup",
-    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
+    "lint": "eslint ./src/**/*.ts --fix",
     "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test"
   },
-  "dependencies": {
-    "@cutting/assert": "workspace:*"
-  },
   "devDependencies": {
-    "@cutting/assert": "workspace:*",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",

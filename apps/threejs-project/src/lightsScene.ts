@@ -1,5 +1,5 @@
 import './style.css';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import {
   Scene,
   PerspectiveCamera,

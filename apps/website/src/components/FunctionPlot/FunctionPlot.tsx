@@ -8,7 +8,7 @@ import { useParentSize } from '@cutting/use-get-parent-size';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { max, min, extent, range } from 'd3-array';
 import { derivative, parse, round } from 'mathjs';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { ResponsiveSVG, Group } from '@cutting/svg';
 import { Circle, Line, LinePath } from '@visx/shape';
 import { curveBasisOpen } from '@visx/curve';

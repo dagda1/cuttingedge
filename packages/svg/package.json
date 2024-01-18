@@ -31,7 +31,7 @@
     "@vanilla-extract/sprinkles": "1.6.1",
     "@visx/scale": "^3.5.0",
     "d3-scale": "4.0.2",
-    "assert-ts": "0.3.4",
+    "@cutting/assert": "workspace:*",
     "eslint": "8.56.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

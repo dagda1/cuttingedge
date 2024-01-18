@@ -18,7 +18,7 @@
   "dependencies": {
     "@cutting/hooks": "workspace:*",
     "@cutting/util": "workspace:*",
-    "assert-ts": "^0.3.4",
+    "@cutting/assert": "workspace:*",
     "classnames": "^2.4.0",
     "dedent": "1.5.1",
     "deepmerge": "4.3.1",

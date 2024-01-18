@@ -1,4 +1,4 @@
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { type ReactNode } from 'react';
 import { type BoxProps, Box } from '../Box/Box';
 import { optimizeResponsiveArray } from '~/style/util/optimizeResponsiveArray';

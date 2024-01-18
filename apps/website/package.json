@@ -41,7 +41,7 @@
     "@visx/scale": "^3.5.0",
     "@visx/shape": "3.5.0",
     "@visx/text": "3.3.0",
-    "assert-ts": "0.3.4",
+    "@cutting/assert": "workspace:*",
     "classnames": "2.4.0",
     "cookie-parser": "1.4.6",
     "compression": "1.7.4",

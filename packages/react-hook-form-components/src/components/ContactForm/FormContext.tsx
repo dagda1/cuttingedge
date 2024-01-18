@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { createContext, useContext, useMemo } from 'react';
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 
 export interface ContactFormContext {
   xnQsjsdp: string;

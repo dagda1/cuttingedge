@@ -1,4 +1,4 @@
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import type { Fn } from '../functions/functions';
 
 export function isEqual<T extends Record<string, unknown> | Fn>(left: T | T[], right: T | T[]): boolean {

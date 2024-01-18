@@ -1,4 +1,4 @@
-import { assert } from 'assert-ts';
+import { assert } from '@cutting/assert';
 import { type ReactElement } from 'react';
 import { Box } from '../Box/Box';
 import type { ColumnProps } from '../Column/Column';
