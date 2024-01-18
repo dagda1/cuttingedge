@@ -26,9 +26,6 @@
       "path": "./packages/use-shortcuts/tsconfig.dist.json"
     },
     {
-      "path": "./packages/graphql-explorer/tsconfig.dist.json"
-    },
-    {
       "path": "./packages/use-mathjax/tsconfig.dist.json"
     },
     {

@@ -4,5 +4,6 @@
     "baseUrl": "./",
     "noEmit": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "references": [{ "path": "../assert/tsconfig.dist.json" }]
 }
