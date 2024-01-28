@@ -99,7 +99,7 @@
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
     "@types/source-map-support": "^0.5.10",
-    "@vanilla-extract/css": "^1.14.0",
+    "@vanilla-extract/css": "^1.14.1",
     "@vanilla-extract/dynamic": "^2.1.0",
     "@vanilla-extract/sprinkles": "^1.6.1",
     "esbuild": "^0.19.11",
