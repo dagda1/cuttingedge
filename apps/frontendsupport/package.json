@@ -88,7 +88,7 @@
     "use-debounce": "^10.0.0"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.23.8",
+    "@babel/runtime": "^7.23.9",
     "@cutting/cloudinary-blurhash": "workspace:*",
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
