@@ -201,7 +201,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
-        run: pnpm i
+        run: pnpm i --frozen-lockfile false
 
       - name: Build App
         run: pnpm build

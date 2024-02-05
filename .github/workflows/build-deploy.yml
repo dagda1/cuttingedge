@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: pnpm/action-setup@v2.4.0
         with:
-          version: 8.15.0
+          version: 8.15.1
     
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -43,7 +43,7 @@ jobs:
           GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
 
       - name: Install Dependencies
-        run: pnpm i
+        run: pnpm i --frozen-lockfile false
 
       - name: Build App
         run: pnpm build
