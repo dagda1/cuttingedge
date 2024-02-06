@@ -17,7 +17,7 @@
     "prepare": "husky install",
     "test": "CI=true turbo run test -- --coverage --run",
     "watch": "pnpm build:tsc && pnpm tsc -b ./tsconfig.packages.json --watch",
-    "ci:version": "changeset version && pnpm install --frozen-lockfile false",
+    "ci:version": "changeset version && pnpm install  --no-frozen-lockfile",
     "prerelease": "pnpm clean && pnpm install && pnpm run build",
     "release": "pnpm run prerelease && changeset publish && git push --follow-tags && git status && pnpm -r publish"
   },
