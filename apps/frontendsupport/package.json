@@ -43,7 +43,7 @@
     "front-matter": "^4.0.2",
     "github-slugger": "^2.0.0",
     "gsap": "npm:@gsap/shockingly@^3.12.4",
-    "image-size": "^1.0.2",
+    "image-size": "^1.1.1",
     "is-buffer": "^2.0.5",
     "is-plain-obj": "^4.1.0",
     "isbot": "3.7.0",
