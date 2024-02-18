@@ -38,7 +38,7 @@
     "@rollup/pluginutils": "5.1.0",
     "@testing-library/dom": "9.3.4",
     "@types/bluebird": "3.5.42",
-    "@vanilla-extract/esbuild-plugin": "2.3.1",
+    "@vanilla-extract/esbuild-plugin": "2.3.5",
     "assert-ts": "0.3.4",
     "autoprefixer": "10.4.16",
     "browserslist": "4.22.2",
