@@ -30,7 +30,7 @@
     "@remix-run/node": "^2.4.1",
     "@remix-run/react": "^2.4.1",
     "@unpic/placeholder": "^0.1.2",
-    "@unpic/react": "^0.1.5",
+    "@unpic/react": "^0.1.11",
     "@cutting/assert": "workspace:*",
     "classnames": "^2.4.0",
     "cross-env": "^7.0.3",
