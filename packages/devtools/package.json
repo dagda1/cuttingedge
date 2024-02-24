@@ -52,7 +52,7 @@
     "esbuild": "0.19.11",
     "eslint": "8.56.0",
     "fs-extra": "11.2.0",
-    "inquirer": "9.2.12",
+    "inquirer": "9.2.15",
     "papaparse": "5.4.1",
     "postcss": "8.4.33",
     "postcss-import": "15.1.0",
