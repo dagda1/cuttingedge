@@ -59,7 +59,7 @@
     "immer": "10.0.3",
     "mathjs": "12.2.1",
     "nocache": "4.0.0",
-    "puppeteer": "^21.6.1",
+    "puppeteer": "^21.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-helmet": "6.1.0",
