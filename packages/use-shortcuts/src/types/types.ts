@@ -21,11 +21,12 @@ export interface Action<T extends PropertyKey> {
 
 export type ShortcutHandler<T extends PropertyKey> = (action: Action<T>, event: ExtendedKeyboardEvent) => void;
 
-export type Combinator<T, C extends 'combination' | 'sequence'> = T extends Record<C, string | string[]>
-  ? C extends 'combination' | 'sequence'
-    ? Record<C, string | string[]>
-    : never
-  : never;
+export type Combinator<T, C extends 'combination' | 'sequence'> =
+  T extends Record<C, string | string[]>
+    ? C extends 'combination' | 'sequence'
+      ? Record<C, string | string[]>
+      : never
+    : never;
 
 export type Combination<R> = Combinator<R, 'combination'>;
 export type Sequence<R> = Combinator<R, 'sequence'>;
