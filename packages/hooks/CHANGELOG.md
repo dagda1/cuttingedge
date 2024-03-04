@@ -1,5 +1,14 @@
 # @cutting/hooks
 
+## 4.56.9
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+- Updated dependencies [2f5abbc]
+  - @cutting/assert@0.1.2
+  - @cutting/util@4.58.8
+
 ## 4.56.8
 
 ### Patch Changes

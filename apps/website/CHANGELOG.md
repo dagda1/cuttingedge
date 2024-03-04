@@ -1,5 +1,20 @@
 # @cutting/website
 
+## 4.29.53
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+- Updated dependencies [2f5abbc]
+  - @cutting/assert@0.1.2
+  - @cutting/component-library@5.41.18
+  - @cutting/hooks@4.56.9
+  - @cutting/react-hook-form-components@0.5.20
+  - @cutting/svg@4.54.15
+  - @cutting/use-get-parent-size@2.1.9
+  - @cutting/use-mathjax@4.50.9
+  - @cutting/util@4.58.8
+
 ## 4.29.52
 
 ### Patch Changes

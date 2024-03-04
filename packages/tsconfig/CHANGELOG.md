@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.40.5
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+
 ## 4.40.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.1.6
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+
 ## 0.1.5
 
 ### Patch Changes

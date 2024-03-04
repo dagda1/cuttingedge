@@ -1,5 +1,14 @@
 # threejs-starter-vite
 
+## 1.0.15
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+- Updated dependencies [2f5abbc]
+  - @cutting/assert@0.1.2
+  - @cutting/component-library@5.41.18
+
 ## 1.0.14
 
 ### Patch Changes

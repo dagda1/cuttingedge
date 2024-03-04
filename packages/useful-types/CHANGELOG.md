@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.40.3
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+
 ## 4.40.2
 
 ### Patch Changes
