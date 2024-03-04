@@ -1,5 +1,13 @@
 # @cutting/use-shortcuts
 
+## 4.46.8
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+- Updated dependencies [2f5abbc]
+  - @cutting/util@4.58.8
+
 ## 4.46.7
 
 ### Patch Changes

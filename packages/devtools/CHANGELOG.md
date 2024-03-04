@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.6
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+
 ## 4.63.5
 
 ### Patch Changes

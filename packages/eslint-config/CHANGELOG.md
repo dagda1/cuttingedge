@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.45.4
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+
 ## 4.45.3
 
 ### Patch Changes

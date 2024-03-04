@@ -1,5 +1,13 @@
 # @cutting/markdown
 
+## 0.1.9
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+- Updated dependencies [2f5abbc]
+  - @cutting/util@4.58.8
+
 ## 0.1.8
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @cutting/svg
 
+## 4.54.15
+
+### Patch Changes
+
+- 2f5abbc: update to pnpm 8.15.4
+- Updated dependencies [2f5abbc]
+  - @cutting/use-get-parent-size@2.1.9
+  - @cutting/util@4.58.8
+
 ## 4.54.14
 
 ### Patch Changes
