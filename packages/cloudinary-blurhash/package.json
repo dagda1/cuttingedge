@@ -17,7 +17,7 @@
     "@unpic/pixels": "^1.2.2",
     "blurhash": "^2.0.5",
     "chalk": "^5.3.0",
-    "cloudinary": "^1.41.3",
+    "cloudinary": "^2.0.2",
     "log-update": "^6.0.0"
   },
   "devDependencies": {
@@ -25,8 +25,8 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "commander": "11.1.0",
-    "eslint": "8.56.0",
+    "commander": "12.0.0",
+    "eslint": "8.57.0",
     "typescript": "5.3.3"
   },
   "files": [

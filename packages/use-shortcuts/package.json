@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@cutting/util": "workspace:*",
-    "classnames": "^2.4.0",
+    "classnames": "^2.5.1",
     "mousetrap": "^1.6.5"
   },
   "devDependencies": {
@@ -39,7 +39,7 @@
     "@vanilla-extract/css": "^1.14.1",
     "@cutting/assert": "workspace:*",
     "dtslint": "4.2.1",
-    "eslint": "8.56.0",
+    "eslint": "8.57.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.3.3"

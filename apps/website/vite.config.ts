@@ -10,13 +10,7 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tsconfigPaths(),
-    vanillaExtractPlugin({ emitCssInSsr: true }),
-    svgrPlugin({ svgrOptions: { icon: true } }),
-    mdx(),
-  ],
+  plugins: [react(), tsconfigPaths(), vanillaExtractPlugin(), svgrPlugin({ svgrOptions: { icon: true } }), mdx()],
   assetsInclude: ['src/assets/images/**.png', 'src/assets/images/**.jpg'],
   mode: '',
   build: {

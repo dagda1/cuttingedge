@@ -167,7 +167,7 @@ export async function createServer(): Promise<{
       }
 
       const launchBrowser = puppeteer.launch({
-        headless: 'new',
+        headless: true,
         args: [
           '--font-render-hinting=none',
           '--disable-dev-shm-usage',
