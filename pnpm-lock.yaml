@@ -193,7 +193,7 @@ importers:
         version: 2.0.0
       gsap:
         specifier: npm:@gsap/shockingly@^3.12.5
-        version: /@gsap/shockingly@3.12.5
+        version: npm.greensock.com/@gsap/shockingly@3.12.5
       image-size:
         specifier: ^1.1.1
         version: 1.1.1
@@ -419,7 +419,7 @@ importers:
         version: link:../../packages/component-library
       gsap:
         specifier: npm:@gsap/shockingly@^3.12.5
-        version: /@gsap/shockingly@3.12.5
+        version: npm.greensock.com/@gsap/shockingly@3.12.5
       lil-gui:
         specifier: ^0.19.2
         version: 0.19.2
@@ -3851,7 +3851,7 @@ packages:
     dependencies:
       '@definitelytyped/typescript-versions': 0.1.0
       '@definitelytyped/utils': 0.1.5
-      semver: 7.5.4
+      semver: 7.6.0
     dev: true
 
   /@definitelytyped/typescript-versions@0.1.0:
@@ -5048,10 +5048,6 @@ packages:
       protobufjs: 7.2.6
       yargs: 17.7.2
 
-  /@gsap/shockingly@3.12.5:
-    resolution: {integrity: sha512-JoZp6iYvOC+wkwl8zfXSqSrYCcuzTntaULCL08YMa1vonrYcr9D0K3EUe9PNpw7FYK1chjSwjjgcw3zS/O2SWg==}
-    dev: false
-
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -5976,7 +5972,7 @@ packages:
       request: 2.88.2
       retry: 0.12.0
       safe-buffer: 5.2.1
-      semver: 7.5.4
+      semver: 7.6.0
       slide: 1.1.6
       ssri: 8.0.1
     optionalDependencies:
@@ -11659,7 +11655,6 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
-    dev: false
 
   /chownr@1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
@@ -19638,7 +19633,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.13.1
-      semver: 7.5.4
+      semver: 7.6.0
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -19721,7 +19716,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       hosted-git-info: 4.1.0
-      semver: 7.5.4
+      semver: 7.6.0
       validate-npm-package-name: 3.0.0
     dev: true
 
@@ -25550,7 +25545,7 @@ packages:
       graceful-fs: 4.2.11
       neo-async: 2.6.2
     optionalDependencies:
-      chokidar: 3.5.3
+      chokidar: 3.6.0
       watchpack-chokidar2: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -26143,3 +26138,9 @@ packages:
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
+
+  npm.greensock.com/@gsap/shockingly@3.12.5:
+    resolution: {integrity: sha512-JoZp6iYvOC+wkwl8zfXSqSrYCcuzTntaULCL08YMa1vonrYcr9D0K3EUe9PNpw7FYK1chjSwjjgcw3zS/O2SWg==, tarball: https://npm.greensock.com/@gsap/shockingly/-/shockingly-3.12.5.tgz}
+    name: gsap
+    version: 3.12.5
+    dev: false
