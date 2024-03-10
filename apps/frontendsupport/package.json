@@ -93,7 +93,7 @@
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
     "@remix-run/dev": "^2.8.0",
-    "@remix-run/eslint-config": "^2.8.0",
+    "@remix-run/eslint-config": "^2.8.1",
     "@types/js-yaml": "^4.0.9",
     "@types/luxon": "^3.4.2",
     "@types/react": "^18.2.61",
