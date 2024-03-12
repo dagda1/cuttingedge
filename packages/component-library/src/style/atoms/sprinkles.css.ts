@@ -22,6 +22,12 @@ const sizes = {
   full: '100%',
   screen: '100vh',
   auto: 'auto',
+  eighth: '12.5%',
+  quarter: '25%',
+  third: '33.3%',
+  half: '50%',
+  twoThirds: '66.6%',
+  threeQuarters: '75%',
   touchable: vars.touchableSize,
 };
 

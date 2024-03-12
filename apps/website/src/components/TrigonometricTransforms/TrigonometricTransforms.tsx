@@ -3,10 +3,12 @@ import { useParentSize } from '@cutting/use-get-parent-size';
 import { useMemo, useRef } from 'react';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { getScales } from './get-scales';
-import { Box } from '@cutting/component-library';
+import { Box, Label } from '@cutting/component-library';
 import { Group, ResponsiveSVG } from '@cutting/svg';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { SVGMathJax } from '@cutting/use-mathjax';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 interface TrigonometricTransformsProps {}
 
@@ -21,7 +23,25 @@ export function TrigonometricTransforms(_props: TrigonometricTransformsProps): J
 
   return (
     <ApplicationLayout centerHeading heading="Trigonometric Transforms" showFooter={false}>
-      <Box component="section" ref={containerRef}>
+      <Box component="section" ref={containerRef} position="relative">
+        <Box width="eighth" position="absolute">
+          <Box marginBottom="xsmall">
+            <Label>A=1</Label>
+            <Slider />
+          </Box>
+          <Box marginBottom="xsmall">
+            <Label>B=1</Label>
+          </Box>
+          <Slider />
+          <Box marginBottom="xsmall">
+            <Label>C=0</Label>
+            <Slider />
+          </Box>
+          <Box marginBottom="xsmall">
+            <Label>D=0</Label>
+            <Slider />
+          </Box>
+        </Box>
         <ResponsiveSVG width={width} height={height}>
           <Group transform={`translate(0, ${yScale('0')})`}>
             <AxisBottom
