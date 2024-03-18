@@ -9,35 +9,38 @@ import { AxisBottom, AxisLeft } from '@visx/axis';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { LinePath } from '@visx/shape';
+import { curveMonotoneX } from '@visx/curve';
+import * as styles from './TrigonometricTransforms.css';
 
 interface TrigonometricTransformsProps {}
 
 export function TrigonometricTransforms(_props: TrigonometricTransformsProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef, { initialValues: { width: 0, height: 0 } });
-
   assert(typeof width === 'number');
   assert(typeof height === 'number');
 
-  const { xScale, yScale } = useMemo(() => getScales({ width, height }), [width, height]);
+  const { xScale, yScale, xSineScale, ySineScale, data } = useMemo(() => getScales({ width, height }), [width, height]);
 
+  console.log({ data });
   return (
     <ApplicationLayout centerHeading heading="Trigonometric Transforms" showFooter={false}>
-      <Box component="section" ref={containerRef} position="relative">
-        <Box width="eighth" position="absolute">
+      <Box width="1/8" component="section" ref={containerRef} position="relative">
+        <Box position="absolute">
           <Box marginBottom="xsmall">
             <Label>A=1</Label>
             <Slider />
           </Box>
-          <Box marginBottom="xsmall">
+          <Box marginBottom="small">
             <Label>B=1</Label>
           </Box>
           <Slider />
-          <Box marginBottom="xsmall">
+          <Box marginTop="small" marginBottom="small">
             <Label>C=0</Label>
             <Slider />
           </Box>
-          <Box marginBottom="xsmall">
+          <Box marginBottom="small">
             <Label>D=0</Label>
             <Slider />
           </Box>
@@ -69,6 +72,14 @@ export function TrigonometricTransforms(_props: TrigonometricTransformsProps): J
               )}
             />
           </Group>
+          <LinePath<{ x: number; y: number }>
+            x={(d) => xSineScale(d.x) ?? 0}
+            y={(d) => ySineScale(d.y) ?? 0}
+            strokeWidth={1}
+            curve={curveMonotoneX}
+            data={data}
+            className={styles.sine}
+          />
         </ResponsiveSVG>
       </Box>
     </ApplicationLayout>
