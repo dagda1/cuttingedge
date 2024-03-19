@@ -38,7 +38,7 @@
     "escape-string-regexp": "^5.0.0",
     "extend": "^3.0.2",
     "fault": "^2.0.1",
-    "flowbite-react": "^0.7.2",
+    "flowbite-react": "^0.7.3",
     "format": "^0.2.2",
     "front-matter": "^4.0.2",
     "github-slugger": "^2.0.0",
