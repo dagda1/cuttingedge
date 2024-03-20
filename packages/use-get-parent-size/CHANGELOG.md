@@ -1,5 +1,13 @@
 # @cutting/use-get-parent-size
 
+## 2.1.10
+
+### Patch Changes
+
+- 2fb3912: update dependencies
+- Updated dependencies [2fb3912]
+  - @cutting/assert@0.1.3
+
 ## 2.1.9
 
 ### Patch Changes

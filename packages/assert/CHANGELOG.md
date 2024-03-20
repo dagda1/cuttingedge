@@ -1,5 +1,11 @@
 # @cutting/assert
 
+## 0.1.3
+
+### Patch Changes
+
+- 2fb3912: update dependencies
+
 ## 0.1.2
 
 ### Patch Changes

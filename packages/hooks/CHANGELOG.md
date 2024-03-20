@@ -1,5 +1,14 @@
 # @cutting/hooks
 
+## 4.56.10
+
+### Patch Changes
+
+- 2fb3912: update dependencies
+- Updated dependencies [2fb3912]
+  - @cutting/assert@0.1.3
+  - @cutting/util@4.58.9
+
 ## 4.56.9
 
 ### Patch Changes

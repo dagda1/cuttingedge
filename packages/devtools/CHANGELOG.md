@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.7
+
+### Patch Changes
+
+- 2fb3912: update dependencies
+
 ## 4.63.6
 
 ### Patch Changes
