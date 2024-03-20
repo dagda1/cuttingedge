@@ -1,5 +1,15 @@
 # @cutting/component-library
 
+## 5.41.19
+
+### Patch Changes
+
+- 2fb3912: update dependencies
+- Updated dependencies [2fb3912]
+  - @cutting/assert@0.1.3
+  - @cutting/hooks@4.56.10
+  - @cutting/util@4.58.9
+
 ## 5.41.18
 
 ### Patch Changes

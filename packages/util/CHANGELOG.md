@@ -1,5 +1,13 @@
 # @cutting/util
 
+## 4.58.9
+
+### Patch Changes
+
+- 2fb3912: update dependencies
+- Updated dependencies [2fb3912]
+  - @cutting/assert@0.1.3
+
 ## 4.58.8
 
 ### Patch Changes
