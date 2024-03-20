@@ -15,7 +15,7 @@
     "format": "^0.2.2",
     "front-matter": "^4.0.2",
     "github-slugger": "^2.0.0",
-    "esbuild": "^0.20.1",
+    "esbuild": "^0.20.2",
     "image-size": "^1.1.1",
     "js-yaml": "^4.1.0",
     "katex": "^0.16.9",
@@ -50,7 +50,7 @@
     "@cutting/useful-types": "workspace:*",
     "@types/luxon": "^3.4.2",
     "eslint": "8.57.0",
-    "typescript": "5.3.3"
+    "typescript": "5.4.2"
   },
   "files": [
     "dist/**/*",
