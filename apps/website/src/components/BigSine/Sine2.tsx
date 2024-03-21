@@ -80,8 +80,8 @@ export function Sine2(): JSX.Element {
             <AxisBottom
               scale={xScale}
               tickValues={xTickValues}
-              axisClassName={styles.axisLine}
               tickFormat={(t) => piMap[t as number]}
+              axisClassName={styles.axisLine}
               tickStroke="#fff"
               tickComponent={TickComponent}
             />

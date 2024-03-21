@@ -1,64 +1,46 @@
 import { identity, range } from '@cutting/util';
 import type { ScaleLinear } from 'd3-scale';
-import { type ScalePoint } from 'd3-scale';
-import { scalePoint, scaleLinear } from '@visx/scale';
-import { extent } from 'd3-array';
+import { scaleLinear } from '@visx/scale';
 import type { Point } from '@cutting/svg';
+import { parse } from 'mathjs';
 
 export type Dimensions = { width: number; height: number };
 
-type TrigPoint = ScalePoint<string>;
 type TrigLinear = ScaleLinear<number, number, never>;
 
-const xTicks = [...range(-10, 10)].map((x) => (x === 0 ? '$0$' : x === 1 ? '' : `$${String(x)}\\pi$`));
-
-const yTicks = [...range(-6, 6)].map((y) => String(y));
-
-console.dir({ xTicks });
-
-interface GetScales {
-  xScale: TrigPoint;
-  yScale: TrigPoint;
-  xSineScale: TrigLinear;
-  ySineScale: TrigLinear;
-  data: Point[];
+type GetScalesProps = Dimensions & { a: number; b: number; c: number; d: number; trigFunction: string };
+interface GetScalesResult {
+  xScale: TrigLinear;
+  yScale: TrigLinear;
+  sineData: Point[];
 }
 
-export function getScales({ width, height }: Dimensions): GetScales {
+export const TWO_PI = Math.PI * 2;
+
+export function getScales({ a, b, c, d, trigFunction, width, height }: GetScalesProps): GetScalesResult {
   if (width === 1 && height === 1) {
     return {
-      xScale: identity as TrigPoint,
-      yScale: identity as TrigPoint,
-      xSineScale: identity as TrigLinear,
-      ySineScale: identity as TrigLinear,
-      data: [],
+      xScale: identity as TrigLinear,
+      yScale: identity as TrigLinear,
+      sineData: [],
     };
   }
 
-  const xScale = scalePoint({ domain: xTicks, range: [0, width] });
-  const yScale = scalePoint({ domain: yTicks, range: [height, 0] });
+  const xValues = [...range(-3 * Math.PI, 7 * Math.PI, Math.PI / 10)];
 
-  const data: Point[] = [];
-  for (let i = 0; i <= 100; i++) {
-    const x = (i / 100) * 1 * Math.PI; // Adjust frequency by multiplying
-    const y = Math.sin(x);
-    data.push({ x, y });
-  }
+  const expression = parse(`y = a*${trigFunction}(b*x-c)+d`);
 
-  const xSineScale = scaleLinear({
-    domain: extent(data, (d) => d.x) as [number, number],
-    range: [0, width],
-  });
-  const ySineScale = scaleLinear({
-    domain: [-1, 1],
-    range: [height],
-  });
+  const sineData = xValues.map((x) => ({ x, y: expression.evaluate({ a, b, c, d, x }) }));
+
+  const xScale = scaleLinear()
+    .domain([Math.PI * -2, TWO_PI])
+    .range([0, width]);
+
+  const yScale = scaleLinear().domain([-6.0, 6.0]).range([height, 0]);
 
   return {
     xScale,
     yScale,
-    xSineScale,
-    ySineScale,
-    data,
+    sineData,
   };
 }
