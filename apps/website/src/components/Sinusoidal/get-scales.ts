@@ -36,7 +36,7 @@ export function getScales({ a, b, c, d, trigFunction, width, height }: GetScales
     .domain([Math.PI * -2, TWO_PI])
     .range([0, width]);
 
-  const yScale = scaleLinear().domain([-6.0, 6.0]).range([height, 0]);
+  const yScale = scaleLinear().domain([-3, 3]).range([height, 0]);
 
   return {
     xScale,

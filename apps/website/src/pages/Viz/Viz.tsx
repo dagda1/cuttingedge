@@ -8,7 +8,7 @@ const Sine = lazy(() => import('~/components/Sine/Sine'));
 const FunctionPlot = lazy(() => import('~/components/FunctionPlot/FunctionPlot'));
 const Sine2 = lazy(() => import('~/components/BigSine/Sine2'));
 const Tan = lazy(() => import('~/components/Tan/Tan'));
-const TrigonometricTransforms = lazy(() => import('~/components/TrigonometricTransforms/TrigonometricTransforms'));
+const Sinusoidal = lazy(() => import('~/components/Sinusoidal/Sinusoidal'));
 
 export function Viz(): JSX.Element {
   return (
@@ -47,10 +47,10 @@ export function Viz(): JSX.Element {
           }
         />
         <Route
-          path={Urls.TrigonometricTransforms}
+          path={Urls.Sinusoidal}
           element={
             <Suspense fallback={<Fallback />}>
-              <TrigonometricTransforms />
+              <Sinusoidal />
             </Suspense>
           }
         />
