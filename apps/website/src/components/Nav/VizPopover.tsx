@@ -6,8 +6,8 @@ import { TextNavLink } from '../TextNavLink/TextNavLink';
 const Links: { to: `/${string}`; children: ReactNode }[] = [
   { to: '/viz', children: 'SINE' },
   {
-    to: '/viz/trigonometric-transforms',
-    children: <>TRANSFORMS</>,
+    to: '/viz/sinusoidal',
+    children: <>SINUSOIDAL</>,
   },
   { to: '/viz/function-plot', children: 'FUNCTIONS' },
   { to: '/viz/sine2', children: 'MORE SINE' },

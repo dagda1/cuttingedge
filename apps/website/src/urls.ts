@@ -10,4 +10,4 @@ export const ContactMe = '/contact-me';
 export const FunctionPlot = '/function-plot';
 export const Sine2 = '/sine2';
 export const Tan = '/tan';
-export const TrigonometricTransforms = '/trigonometric-transforms';
+export const Sinusoidal = '/sinusoidal';

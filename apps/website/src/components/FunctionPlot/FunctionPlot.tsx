@@ -20,6 +20,10 @@ import type { SubmitHandler } from 'react-hook-form';
 import { scaleLinear } from '@visx/scale';
 import { ExpressionForm, type FormValues } from './ExpressionForm';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { SVGMathJax } from '@cutting/use-mathjax';
+import { Box } from '@cutting/component-library';
+
 interface FunctionPlotProps {
   minX?: number;
   maxX?: number;
@@ -227,6 +231,9 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
         </ResponsiveSVG>
       </section>
       <ExpressionForm onSubmit={onSubmit} expression={state.expression} />
+      <Box display="none">
+        <SVGMathJax>1</SVGMathJax>
+      </Box>
     </ApplicationLayout>
   );
 }

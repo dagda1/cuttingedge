@@ -10,3 +10,5 @@ const styles: ComplexStyleRule = {
   strokeWidth,
 };
 export const sine = style({ ...styles, fill: 'none' });
+
+export const button = style({ zIndex: 33 });
