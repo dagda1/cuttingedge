@@ -65,7 +65,7 @@ jobs:
             FLAGS="--staging"
           fi
           
-          GIT_COMMIT="$(git rev-parse HEAD)" pnpm arc deploy $FLAGS -v --prune
+          GIT_COMMIT="$(git rev-parse HEAD)" pnpm arc deploy --name frontend-staging $FLAGS -v --prune
         env:
           NODE_ENV: production
 
