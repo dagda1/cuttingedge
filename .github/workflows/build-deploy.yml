@@ -52,6 +52,8 @@ jobs:
         if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') || github.event_name == 'pull_request'
         working-directory: apps/frontendsupport
         run: |
+          # N.Virginia us-east-1 production
+          # Oregon us-west-2
           pnpm --filter @cutting/frontend-support deploy pruned
           
           cd ./pruned
@@ -65,7 +67,7 @@ jobs:
             FLAGS="--staging"
           fi
           
-          GIT_COMMIT="$(git rev-parse HEAD)" pnpm arc deploy --name frontend-staging $FLAGS -v --prune
+          GIT_COMMIT="$(git rev-parse HEAD)" pnpm arc deploy $FLAGS -v --prune
         env:
           NODE_ENV: production
 

@@ -3,7 +3,6 @@ frontend-rescue
 
 @aws
 runtime nodejs18.x
-runtime nodejs18.x
 profile default
 region us-east-1
 architecture x86_64
