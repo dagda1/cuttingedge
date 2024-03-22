@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.57.0
+
+### Minor Changes
+
+- dddd0a0: redesign support home page
+
+### Patch Changes
+
+- Updated dependencies [dddd0a0]
+  - @cutting/util@4.59.0
+
 ## 4.56.10
 
 ### Patch Changes
