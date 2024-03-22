@@ -1,4 +1,4 @@
-import { TopNav } from './Top';
+import { TopNav } from './Top.js';
 import { Box } from '@cutting/component-library';
 
 export function Header(): JSX.Element {

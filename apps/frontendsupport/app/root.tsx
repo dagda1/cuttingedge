@@ -9,11 +9,11 @@ import { supportTheme } from '@cutting/component-library';
 import cuttingStyles from '@cutting/component-library/styles.css';
 import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
 import { FormContextProvider } from '@cutting/react-hook-form-components';
-import cssStyles from '~/styles.css';
-import { Header } from './components/Header/Header';
+import cssStyles from './styles.css';
+import { Header } from './components/Header/Header.js';
 import * as styles from './root.css';
 import cs from 'classnames';
-import { contactFormProps } from './constants';
+import { contactFormProps } from './constants.js';
 
 export async function loader() {
   return json({
@@ -23,24 +23,24 @@ export async function loader() {
   });
 }
 
-const CRM = 'https://crm.zoho.eu/crm/WebToLeadForm';
-const TRACKING = 'https://salesiq.zoho.eu';
-const NEWSLETTER = 'https://maillist-manage.eu/weboptin.zc';
-const CDN = 'https://res.cloudinary.com';
+// const CRM = 'https://crm.zoho.eu/crm/WebToLeadForm';
+// const TRACKING = 'https://salesiq.zoho.eu';
+// const NEWSLETTER = 'https://maillist-manage.eu/weboptin.zc';
+// const CDN = 'https://res.cloudinary.com';
 
-const contentSecurityPolicy = [
-  `base-uri 'self' ${CDN}`,
-  `default-src 'none'`,
-  `script-src 'self' ${CDN} ${TRACKING} 'unsafe-inline' 'unsafe-eval' https://plausible.io`,
-  `style-src 'self' ${CDN} https://fonts.googleapis.com https://fonts.googleapis.com 'unsafe-inline' data:`,
-  `img-src 'self' ${CDN} https://plausible.io https://assets.calendly.com data: blob:`,
-  `font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com`,
-  `frame-src 'self' https://plausible.io https://calendly.com`,
-  `media-src 'self' ${CDN} https://cdn.plyr.io`,
-  `connect-src 'self' ${CRM} ${NEWSLETTER} ${CDN} ${TRACKING} https://cdn.plyr.io https://plausible.io ws://localhost:2222`,
-  `frame-ancestors 'self' https://plausible.io`,
-  `form-action 'self' ${NEWSLETTER} ${CRM} ${CDN};`,
-].join(';');
+// const contentSecurityPolicy = [
+//   `base-uri 'self' ${CDN}`,
+//   `default-src 'none'`,
+//   `script-src 'self' ${CDN} ${TRACKING} 'unsafe-inline' 'unsafe-eval' https://plausible.io`,
+//   `style-src 'self' ${CDN} https://fonts.googleapis.com https://fonts.googleapis.com 'unsafe-inline' data:`,
+//   `img-src 'self' ${CDN} https://plausible.io https://assets.calendly.com data: blob:`,
+//   `font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com`,
+//   `frame-src 'self' https://plausible.io https://calendly.com`,
+//   `media-src 'self' ${CDN} https://cdn.plyr.io`,
+//   `connect-src 'self' ${CRM} ${NEWSLETTER} ${CDN} ${TRACKING} https://cdn.plyr.io https://plausible.io ws://localhost:2222`,
+//   `frame-ancestors 'self' https://plausible.io`,
+//   `form-action 'self' ${NEWSLETTER} ${CRM} ${CDN};`,
+// ].join(';');
 
 export const headers: HeadersFunction = () => {
   return {
@@ -49,7 +49,7 @@ export const headers: HeadersFunction = () => {
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'X-Frame-Options': 'DENY',
     'Strict-Transport-Security': 'max-age=63072000',
-    'Content-Security-Policy': contentSecurityPolicy,
+    // 'Content-Security-Policy': contentSecurityPolicy,
   };
 };
 

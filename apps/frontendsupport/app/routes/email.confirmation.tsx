@@ -1,5 +1,5 @@
 import { Box, Heading } from '@cutting/component-library';
-import { LazyBackgroundImage } from '~/components/LazyBackgroundImage/LazyBackgroundImage';
+import { LazyBackgroundImage } from '../components/LazyBackgroundImage/LazyBackgroundImage.js';
 
 export default function ContactConfirmation(): JSX.Element {
   return (

@@ -231,3 +231,26 @@
         transform:scale(1)
     }
 }
+
+@media (min-width: 768px) {
+    #root {
+        max-width:750px
+    }
+}
+
+@media (min-width: 992px) {
+    #root {
+        max-width:970px
+    }
+}
+
+@media (min-width: 1200px) {
+    #root {
+        max-width:1170px
+    }
+}
+
+body {
+    scrollbar-width: thin;          /* "auto" or "thin" */
+    scrollbar-color: blue orange;
+}

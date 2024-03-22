@@ -22,6 +22,7 @@ export function HomeDesktop(): JSX.Element {
   const breakglassRef = useRef<HTMLDivElement>(null);
   const ctx = useRef<gsap.Context>();
   const navigate = useNavigate();
+  const imageRef = useRef<HTMLImageElement>(null);
 
   const { right = 1, width = 1 } = useParentSize(breakglassRef, { debounceDelay: 500 });
 
@@ -117,7 +118,7 @@ export function HomeDesktop(): JSX.Element {
         <Clients />
         <Final />
       </Box>
-      <BreakGlass breakglassRef={breakglassRef} />
+      <BreakGlass container={breakglassRef} image={imageRef} />
     </>
   );
 }

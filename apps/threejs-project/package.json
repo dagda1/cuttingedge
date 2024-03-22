@@ -12,6 +12,7 @@
   "dependencies": {
     "@cutting/component-library": "workspace:*",
     "@cutting/assert": "workspace:*",
+    "@gsap/shockingly": "^3.12.5",
     "gsap": "npm:@gsap/shockingly@^3.12.5",
     "lil-gui": "^0.19.2",
     "three": "^0.162.0"

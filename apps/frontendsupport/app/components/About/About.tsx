@@ -1,10 +1,9 @@
 import { Box, Heading, PageBlock, TextLink, Text, Stack, List } from '@cutting/component-library';
-import * as styles from './About.css';
 import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 
 export function About(): JSX.Element {
   return (
-    <Box paddingTop="xxxlarge" display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center">
       <PageBlock>
         <Box component="section">
           <Stack space="large">
@@ -85,7 +84,6 @@ export function About(): JSX.Element {
             </Text>
           </Stack>
         </Box>
-        <Box className={styles.background}></Box>
       </PageBlock>
     </Box>
   );

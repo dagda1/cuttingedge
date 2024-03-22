@@ -4,7 +4,11 @@ import { assert } from '@cutting/assert';
 export function getImagePropsFromMap(url: string) {
   const urlParts = url.split('/');
 
-  const fileName = urlParts.slice(-1)[0];
+  let fileName = urlParts.slice(-1)[0];
+
+  if (fileName.endsWith('.png') === false) {
+    fileName = `${fileName}.png`;
+  }
 
   const image = blurhashMap.find((m) => m.id === fileName);
 

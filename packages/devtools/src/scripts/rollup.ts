@@ -11,6 +11,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import { assert } from 'assert-ts';
 import json from '@rollup/plugin-json';
 import sourceMaps from 'rollup-plugin-sourcemaps';
+// @ts-ignore
 import { terser } from 'rollup-plugin-terser';
 import { copyAssets } from './copy-assets.js';
 import postcss from 'rollup-plugin-postcss';

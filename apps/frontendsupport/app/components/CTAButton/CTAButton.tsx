@@ -1,7 +1,7 @@
 import type { MouseEventHandler, ReactNode } from 'react';
 import cs from 'classnames';
-import * as styles from './CTAButton.css';
-import { TextNavLink } from '../TextNavLink/TextNavLink';
+import * as styles from './CTAButton.css.js';
+import { TextNavLink } from '../TextNavLink/TextNavLink.js';
 
 interface CTAButtonProps {
   children: ReactNode;

@@ -3,12 +3,13 @@ import { Image, type ImageProps } from '@unpic/react';
 import { useCallback, useMemo, useState } from 'react';
 import { getImagePropsFromMap } from './getImagePropsFromMap';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
+import { assert } from '@cutting/assert';
 
 type Layout = ImageProps['layout'];
 
 type LazyLoadedImageProps = Omit<ImageProps, 'layout'> & { layout?: Layout } & React.RefAttributes<HTMLImageElement>;
 
-function BlurhashImage({
+export function LazyLoadedImage({
   src,
   width,
   height,
@@ -39,24 +40,22 @@ function BlurhashImage({
     img.src = src;
   }, [imgLoadedHandler, loaded, src]);
 
+  const resolvedWidth = layout === 'constrained' ? width ?? imageProps.width : undefined;
+  const resolvedHeight = layout === 'constrained' ? height ?? imageProps.height : undefined;
+
+  assert(typeof resolvedWidth === 'number');
+  assert(typeof resolvedHeight === 'number');
+
   return (
     <Image
       loading={loading}
       layout={layout as any}
-      width={width ?? imageProps.width}
-      height={height ?? imageProps.height}
+      width={resolvedWidth}
+      height={resolvedHeight}
       background={placeholderStyle}
       src={src}
       onLoad={() => setLoaded(true)}
       {...props}
     />
   );
-}
-
-export function LazyLoadedImage(props: LazyLoadedImageProps): JSX.Element {
-  if (props.src.endsWith('gif')) {
-    return <Image {...(props as any)} />;
-  }
-
-  return <BlurhashImage {...props} />;
 }

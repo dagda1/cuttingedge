@@ -1,10 +1,496 @@
-import { HomeMobile } from './HomeMobile';
-import { Box } from '@cutting/component-library';
+import { Box, C2Testimonial, DSTestimonial, Heading, List, Redhatestimonial, Text } from '@cutting/component-library';
+import { useIsomorphicLayoutEffect } from '@cutting/hooks';
+import gsap from 'gsap';
+import { Panel } from './Panel/Panel';
+import { useParentSize } from '@cutting/use-get-parent-size';
+import { useRef } from 'react';
+import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
+import SplitText from 'gsap/SplitText';
+import { assert } from '@cutting/assert';
+import { Clients } from '../../components/Clients/Clients';
+import { TopBubble } from './TopBubble/TopBubble';
+import { Services } from '../Panels/Services/Services';
+import { About } from '../../components/About/About';
+import { RandomImage } from '~/components/RandomImage/RandomImage';
+import { Image } from '@unpic/react';
+import './Home.css';
 
 export function Home(): JSX.Element {
+  const container = useRef<HTMLDivElement>(null);
+  const { width, height } = useParentSize(container, { debounceDelay: 500 });
+  const breakglassRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const ctx = useRef<gsap.Context>();
+  const topBubble = useRef<HTMLDivElement>(null);
+  const arrow = useRef<HTMLImageElement>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    window.scrollTo(0, 0);
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollToPlugin);
+    gsap.registerPlugin(SplitText);
+  }, [width]);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!width) {
+      return;
+    }
+
+    new SplitText('.hero-title', {
+      type: 'lines words',
+      linesClass: 'split-line',
+      wordsClass: 'split-word',
+    });
+
+    new SplitText('.hero-title2', {
+      type: 'lines words',
+      linesClass: 'split-line',
+      wordsClass: 'split-word',
+    });
+
+    new SplitText('.hero-title3', {
+      type: 'words,chars',
+      charsClass: 'char',
+      wordsClass: 'word',
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    function main() {
+      if (!width) {
+        return;
+      }
+
+      assert(!!breakglassRef.current);
+      assert(!!imageRef.current);
+
+      const imageWidth = imageRef.current.getBoundingClientRect().width / 2;
+
+      ctx.current = gsap.context(() => {
+        gsap
+          .timeline({
+            defaults: {
+              ease: 'none',
+            },
+          })
+          .fromTo(
+            '.top-nav',
+            {
+              opacity: 0,
+              scaleY: 0,
+            },
+            {
+              scaleY: 1,
+              opacity: 1,
+              ease: 'sine.out',
+              transformOrigin: 'top',
+              stagger: 0.03,
+              duration: 0.8,
+            },
+            '<',
+          )
+          .to(
+            '.hero',
+            {
+              opacity: 1,
+              duration: 0,
+            },
+            '<',
+          )
+          .fromTo(
+            '.hero-title .split-word',
+            {
+              scaleY: 0,
+              opacity: 0,
+            },
+            {
+              scaleY: 1,
+              opacity: 1,
+              ease: 'sine.out',
+              transformOrigin: 'top',
+              stagger: 0.03,
+              duration: 1,
+            },
+            '<',
+          )
+          .fromTo(
+            '.hero-img img',
+            {
+              opacity: 0,
+            },
+            {
+              opacity: 1,
+              ease: 'sine.out',
+              transformOrigin: 'top',
+              duration: 0.8,
+            },
+            '<0.3',
+          );
+
+        gsap
+          .timeline({
+            defaults: {
+              ease: 'none',
+            },
+            scrollTrigger: {
+              trigger: '.hero',
+              start: 'top top+=10%',
+              end: 'bottom top+=20%',
+              pin: true,
+              scrub: true,
+            },
+          })
+          .to(
+            '.hero-img',
+            {
+              opacity: 0,
+              duration: 3,
+            },
+            '<',
+          )
+          .to(
+            '.hero-img img',
+            {
+              y: '-140%',
+              duration: 0.8,
+            },
+            '<',
+          )
+          .to(
+            '.hero-title',
+            {
+              y: '-10%',
+              duration: 0.8,
+              ease: 'sine.out',
+            },
+            '<',
+          )
+          .fromTo(
+            '.hero-title .split-word',
+            {
+              scaleY: 1,
+              opacity: 1,
+            },
+            {
+              scaleY: 0,
+              opacity: 0,
+              ease: 'sine.in',
+              transformOrigin: 'top',
+              stagger: 0.03,
+              duration: 1,
+            },
+            '<',
+          )
+          .fromTo(
+            arrow.current,
+            {
+              opacity: 1,
+            },
+            {
+              opacity: 0,
+            },
+          );
+
+        const tl = gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: '.breaking',
+              start: 'top 50%',
+              end: 'max',
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          })
+          .to('.bglass-left', { x: -width, duration: 1 })
+          .to('.bglass-right', { x: width - imageWidth, duration: 1 }, '<');
+
+        gsap.timeline({
+          scrollTrigger: {
+            start: (_) => tl.scrollTrigger!.end,
+            end: 'max',
+            pin: '.breaking',
+            pinSpacing: false,
+            pinReparent: true,
+            scrub: true,
+          },
+        });
+
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: '.hero2',
+              scrub: true,
+            },
+          })
+          .fromTo('.breaking', { opacity: 1, scaleY: 1 }, { scaleY: 0, opacity: 0, duration: 1 });
+
+        gsap
+          .timeline({
+            defaults: {
+              ease: 'none',
+            },
+            scrollTrigger: {
+              trigger: '.hero2',
+              start: 'top 50%',
+              end: 'top 25%',
+              pin: true,
+              scrub: true,
+            },
+          })
+          .to('.hero2', {
+            opacity: 1,
+          })
+          .fromTo(
+            '.hero-title2',
+            {
+              scaleY: 0,
+              opacity: 0,
+              ease: 'sine.in',
+              transformOrigin: 'top',
+              stagger: 0.03,
+              duration: 0.5,
+            },
+            {
+              opacity: 1,
+              y: '-10%',
+              scaleY: 1,
+              duration: 0.8,
+              ease: 'sine.out',
+            },
+            '<',
+          );
+
+        gsap
+          .timeline({
+            defaults: {
+              ease: 'none',
+            },
+            scrollTrigger: {
+              trigger: '.hero3',
+              start: 'top 50%',
+              end: 'top 25%',
+              pin: true,
+              scrub: true,
+            },
+          })
+          .to('.hero3', {
+            opacity: 1,
+          })
+          .fromTo(
+            '.hero-title3 .char',
+            {
+              scaleY: 0,
+              opacity: 0,
+              ease: 'sine.in',
+              transformOrigin: 'top',
+              stagger: 0.03,
+              duration: 0.5,
+            },
+            {
+              opacity: 1,
+              y: '-10%',
+              scaleY: 1,
+              duration: 0.8,
+              ease: 'sine.out',
+            },
+            '<',
+          );
+
+        const testimonials = document.querySelectorAll<HTMLDivElement>('.testimonial');
+
+        gsap.to(testimonials[0], {
+          yPercent: 15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.testimonials',
+            start: 'center 25%', // the default values
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+        gsap.to(testimonials[1], {
+          yPercent: 50,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.testimonials',
+            // start: "top bottom", // the default values
+            // end: "bottom top",
+            scrub: true,
+          },
+        });
+        gsap.to(testimonials[2], {
+          yPercent: 75,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.testimonials',
+            // start: "top bottom", // the default values
+            // end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
+    }
+
+    main();
+    return () => {
+      ctx.current?.revert();
+    };
+  }, [height, width]);
+
   return (
-    <Box height="full">
-      <HomeMobile />
+    <Box paddingBottom="xxxlarge">
+      <TopBubble innerRef={topBubble} mode="light" />
+      <Panel
+        mode="dark"
+        flexDirection="column"
+        justifyContent="center"
+        height="screen"
+        width="full"
+        innerRef={container}
+      >
+        <Box opacity={0} position="relative" height="maxContent" className="hero">
+          <Box marginBottom="large" height="full">
+            <Box height="full" display="flex" justifyContent="center" flexDirection="column">
+              <Box
+                display={{ mobile: 'flex', desktop: 'none' }}
+                width="full"
+                justifyContent="center"
+                marginTop="large"
+                marginBottom="large"
+              >
+                <RandomImage display="flex" justifyContent="center" imageSet={1} mode="mobile" delay={3000} />
+              </Box>
+              <Box
+                display="flex"
+                justifyContent={{ mobile: 'flexStart', tablet: 'flexStart' }}
+                alignItems="center"
+                marginRight={{ desktop: 'large' }}
+                marginTop={{ mobile: 'small', desktop: 'xxlarge' }}
+                marginBottom="small"
+              >
+                <RandomImage imageSet={1} mode="desktop" delay={2000} />
+                <Box
+                  marginLeft={{ mobile: 'medium', desktop: 'medium' }}
+                  marginRight={{ mobile: 'medium', desktop: 'xxlarge' }}
+                  className="hero-title italic"
+                >
+                  Is your team
+                </Box>
+              </Box>
+              <Box display="flex" alignItems="center" justifyContent="center" marginY="small">
+                <Box display="flex" className="hero-title italic" component="span">
+                  struggling
+                </Box>
+              </Box>
+              <Box
+                width="full"
+                display="flex"
+                alignItems="center"
+                marginY="small"
+                justifyContent={{ mobile: 'center', desktop: 'spaceAround' }}
+              >
+                <Box className="hero-title">To Deliver</Box>
+                <RandomImage imageSet={2} mode="desktop" delay={2500} />
+              </Box>
+              <Box display={{ mobile: 'none', desktop: 'block' }} className="hero-title" marginY="small">
+                <Box component="span">Frontend Features?</Box>
+              </Box>
+              <Box display={{ mobile: 'block', desktop: 'none' }} justifyContent="center" width="full">
+                <Box display="flex" justifyContent="center" className="hero-title" marginY="small">
+                  Frontend
+                </Box>
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  className="hero-title"
+                  marginTop="medium"
+                  marginBottom="xlarge"
+                >
+                  Features?
+                </Box>
+              </Box>
+              <Box
+                display={{ mobile: 'flex', desktop: 'none' }}
+                width="full"
+                justifyContent="center"
+                marginBottom="large"
+              >
+                <RandomImage display="flex" justifyContent="center" imageSet={2} mode="mobile" delay={3000} />
+              </Box>
+
+              <Box display="flex" justifyContent="center" marginBottom={{ mobile: 'none', desktop: 'large' }}>
+                <Image
+                  ref={arrow}
+                  src="https://res.cloudinary.com/ddospxsc8/image/upload/v1704211494/arrow_down_white_nmuhnn.png"
+                  layout="constrained"
+                  width={28}
+                  height={37}
+                  alt="arrow down"
+                />
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Panel>
+      <Panel mode="dark" paddingY="xxxlarge">
+        <Box maxWidth="large">
+          <Box display="flex" justifyContent="center" paddingX={{ mobile: 'large' }}>
+            <Heading level="1" center tone="secondary" weight="weak">
+              Testimonials: The Measure of my Success
+            </Heading>
+          </Box>
+          <Box
+            display="flex"
+            flexDirection={{ mobile: 'column', desktop: 'row' }}
+            className="testimonials"
+            marginBottom="xxxlarge"
+          >
+            <Redhatestimonial />
+            <DSTestimonial />
+            <C2Testimonial />
+          </Box>
+        </Box>
+      </Panel>
+      <Panel>
+        <BreakGlass container={breakglassRef} image={imageRef} />
+      </Panel>
+      <Panel mode="dark" className="hero2" opacity={1}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          zIndex="modal"
+          width="full"
+          height="maxContent"
+        >
+          <Box>
+            <Box className="hero-title2">I can</Box>
+            <Box className="hero-title2">help</Box>
+            <Box className="hero-title2">when....</Box>
+          </Box>
+        </Box>
+      </Panel>
+      <Panel className="hero3" opacity={0} marginBottom="xxxlarge">
+        <Box maxWidth="medium">
+          <List space="xxxlarge" type="none">
+            <Text tone="primary" size="large" className="hero-title3">
+              Your team are more familiar with backend development.
+            </Text>
+            <Text tone="primary" size="large" className="hero-title3">
+              The launch date is soon, and frontend development is at a standstill.
+            </Text>
+          </List>
+        </Box>
+      </Panel>
+      <Clients width={width} />
+      <Panel>
+        <Services />
+      </Panel>
+      <Panel>
+        <About />
+      </Panel>
     </Box>
   );
 }

@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export const CallPopupButton = ({
   callType,
-  children = 'BOOK A CALL',
+  children = 'BOOK A FREE CALL',
   rootElementId = 'portal',
 }: CallProps & { children?: ReactNode }): JSX.Element => {
   const [open, setOpen] = useState(false);

@@ -5,6 +5,7 @@ import type { TypographyProps } from '../Typography/Typography';
 import { Typography } from '../Typography/Typography';
 import cs from 'classnames';
 import * as styles from './Heading.css';
+import type { TextStyleProps } from '~/style/typography/typography';
 
 const resolveDefaultComponent = {
   '1': 'h1',
@@ -18,6 +19,7 @@ export interface HeadingProps extends TypographyProps {
   weight?: keyof typeof typographyStyles.headingWeight;
   children: ReactNode;
   center?: boolean;
+  tone?: TextStyleProps['tone'];
 }
 
 export const HeadingColorMap: Record<HeadingProps['level'], string> = {
@@ -33,6 +35,7 @@ export function Heading({
   component,
   className,
   center = false,
+  tone,
   ...typographyProps
 }: HeadingProps): JSX.Element {
   return (
@@ -44,7 +47,7 @@ export function Heading({
           typographyStyles.headingFontFamily,
           typographyStyles.headingWeight[weight || 'regular'],
           typographyStyles.heading[level],
-          HeadingColorMap[level],
+          tone ?? HeadingColorMap[level],
           className,
           { [styles.center]: center },
         )}

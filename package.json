@@ -21,8 +21,12 @@
     "prerelease": "pnpm clean && pnpm install && pnpm run build",
     "release": "pnpm run prerelease && changeset publish && git push --follow-tags && git status && pnpm -r publish"
   },
+  "dependencies": {
+    "gsap": "^3.12.4"
+  },
   "devDependencies": {
     "@changesets/cli": "2.27.1",
+    "@cutting/assert": "workspace:*",
     "@cutting/cloudinary-blurhash": "workspace:*",
     "@cutting/devtools": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
