@@ -50,7 +50,6 @@ jobs:
 
       - name: run architect deploy
         if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') || github.event_name == 'pull_request'
-        working-directory: apps/frontendsupport
         run: |
           pnpm --filter @cutting/frontend-support deploy pruned
           
