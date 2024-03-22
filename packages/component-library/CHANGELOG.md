@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.42.0
+
+### Minor Changes
+
+- dddd0a0: redesign support home page
+
+### Patch Changes
+
+- Updated dependencies [dddd0a0]
+  - @cutting/hooks@4.57.0
+  - @cutting/util@4.59.0
+
 ## 5.41.19
 
 ### Patch Changes

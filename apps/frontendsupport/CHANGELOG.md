@@ -1,5 +1,21 @@
 # @cutting/frontend-support
 
+## 0.2.0
+
+### Minor Changes
+
+- dddd0a0: redesign support home page
+
+### Patch Changes
+
+- Updated dependencies [dddd0a0]
+  - @cutting/component-library@5.42.0
+  - @cutting/hooks@4.57.0
+  - @cutting/util@4.59.0
+  - @cutting/react-hook-form-components@0.5.22
+  - @cutting/use-get-parent-size@2.1.10
+  - @cutting/markdown@0.1.11
+
 ## 0.1.74
 
 ### Patch Changes
