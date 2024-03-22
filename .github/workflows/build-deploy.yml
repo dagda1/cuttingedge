@@ -52,8 +52,6 @@ jobs:
         if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') || github.event_name == 'pull_request'
         working-directory: apps/frontendsupport
         run: |
-          # N.Virginia us-east-1 production
-          # Oregon us-west-2
           pnpm --filter @cutting/frontend-support deploy pruned
 
           node ./replace-workspace-protocol-by-version.mjs ./pruned/package.json
