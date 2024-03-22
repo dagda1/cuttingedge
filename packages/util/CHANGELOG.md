@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.59.0
+
+### Minor Changes
+
+- dddd0a0: redesign support home page
+
 ## 4.58.9
 
 ### Patch Changes
