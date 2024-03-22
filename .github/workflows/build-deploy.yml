@@ -43,7 +43,7 @@ jobs:
           GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
 
       - name: Install Dependencies
-        run: pnpm i  --no-frozen-lockfile
+        run: pnpm i --production  --no-frozen-lockfile
 
       - name: Build App
         run: pnpm build
