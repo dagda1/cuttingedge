@@ -124,7 +124,9 @@
   "files": [
     "public",
     "public/build",
-    "server"
+    "server",
+    "app.arc",
+    "plugin-remix.js"
   ],
   "engines": {
     "node": ">=18.0.0"
