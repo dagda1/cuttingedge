@@ -118,6 +118,11 @@
     "vite": "5.2.2",
     "vite-tsconfig-paths": "^4.3.2"
   },
+  "files": [
+    "public",
+    "public/build",
+    "server"
+  ],
   "engines": {
     "node": ">=18.0.0"
   },

@@ -50,13 +50,12 @@ jobs:
 
       - name: run architect deploy
         if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') || github.event_name == 'pull_request'
+        working-directory: apps/frontendsupport
         run: |
-          cp -rf ./apps/frontendsupport/public/build ./pruned/public
+          pnpm --filter @cutting/frontend-support deploy pruned
           
           cd ./pruned
           pwd
-          echo "***listing***"
-          ls ./public
           ls node_modules/.bin
 
           FLAGS=""
