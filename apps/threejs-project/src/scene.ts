@@ -3,17 +3,76 @@ import { assert } from '@cutting/assert';
 import {
   Scene,
   WebGLRenderer,
-  LinearSRGBColorSpace,
-  PCFSoftShadowMap,
-  LineBasicMaterial,
-  Vector2,
+  PerspectiveCamera,
+  BoxGeometry,
+  MeshBasicMaterial,
+  Mesh,
   BufferGeometry,
+  LineBasicMaterial,
   Line,
-  OrthographicCamera,
+  Vector3,
+  EdgesGeometry,
+  LineSegments,
 } from 'three';
 // import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 // import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 // import { axes } from './types';
+
+type Axis = 'x' | 'y' | 'z';
+
+function createTick(scene: Scene, position: number, axis: Axis, color = 0x000000) {
+  const tickSize = 0.1;
+  let start: Vector3;
+  let end: Vector3;
+
+  function addTick(start: Vector3, end: Vector3) {
+    // Create the geometry and material for the tick mark
+    const geometry = new BufferGeometry().setFromPoints([start, end]);
+    const material = new LineBasicMaterial({ color: color });
+    const tick = new Line(geometry, material);
+
+    // Add the tick to the scene
+    scene.add(tick);
+  }
+
+  switch (axis) {
+    case 'x': {
+      start = new Vector3(position, 0, 0).add(new Vector3(0, -tickSize, 0));
+      end = new Vector3(position, 0, 0).add(new Vector3(0, tickSize, 0));
+
+      addTick(start, end);
+
+      break;
+    }
+
+    case 'y': {
+      start = new Vector3(0, position, 0).add(new Vector3(-tickSize, 0, 0));
+      end = new Vector3(0, position, 0).add(new Vector3(tickSize, 0, 0));
+
+      addTick(start, end);
+      break;
+    }
+
+    case 'z': {
+      start = new Vector3(0, 0, position).add(new Vector3(-tickSize, 0, 0));
+      end = new Vector3(0, 0, position).add(new Vector3(tickSize, 0, 0));
+
+      addTick(start, end);
+      break;
+    }
+  }
+}
+
+function createAxis(scene: Scene, start: Vector3, end: Vector3) {
+  const material = new LineBasicMaterial({ color: 0x000000 });
+  const points = [];
+  points.push(start.clone());
+  points.push(end.clone());
+
+  const geometry = new BufferGeometry().setFromPoints(points);
+  const line = new Line(geometry, material);
+  scene.add(line);
+}
 
 function run() {
   const canvas = document.querySelector<HTMLElement>('#scene');
@@ -22,21 +81,28 @@ function run() {
 
   const scene = new Scene();
 
-  const material = new LineBasicMaterial({ color: 0xffffff });
+  const cubeGeometry = new BoxGeometry(5, 5, 5);
+  const cubeMaterial = new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
+  const cube = new Mesh(cubeGeometry, cubeMaterial);
+  scene.add(cube);
 
-  // X Axis
-  const pointsX = [new Vector2(-window.innerWidth / 2), new Vector2(window.innerWidth / 2, 0)];
-  const geometryX = new BufferGeometry().setFromPoints(pointsX);
-  const xAxis = new Line(geometryX, material);
+  const edges = new EdgesGeometry(cubeGeometry);
+  const lineMaterial = new LineBasicMaterial({ color: 0x000000 }); // Black edges
+  const edgesMesh = new LineSegments(edges, lineMaterial);
+  scene.add(edgesMesh);
 
-  // Y Axis
-  const pointsY = [new Vector2(0, -window.innerHeight / 2), new Vector2(0, window.innerHeight / 2)];
-  const geometryY = new BufferGeometry().setFromPoints(pointsY);
-  const yAxis = new Line(geometryY, material);
+  const axisLength = 3;
+  createAxis(scene, new Vector3(-axisLength, 0, 0), new Vector3(axisLength, 0, 0));
+  createAxis(scene, new Vector3(0, -axisLength, 0), new Vector3(0, axisLength, 0));
+  createAxis(scene, new Vector3(0, 0, -axisLength), new Vector3(0, 0, axisLength));
 
-  // // Add axes to scene
-  scene.add(xAxis);
-  scene.add(yAxis);
+  const tickPositions = [-3, -2, -1, 0, 1, 2, 3];
+
+  tickPositions.forEach((position) => {
+    createTick(scene, position, 'x');
+    createTick(scene, position, 'y');
+    createTick(scene, position, 'z');
+  });
 
   const sizes = {
     width: window.innerWidth,
@@ -69,18 +135,16 @@ function run() {
   const renderer = new WebGLRenderer({
     canvas: canvas,
   });
-  renderer.outputColorSpace = LinearSRGBColorSpace;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = PCFSoftShadowMap;
-  renderer.setClearColor('#262837');
+
+  renderer.setClearColor(0xffffff, 1);
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   const tick = () => {
-    // Render
+    controls.update();
+
     renderer.render(scene, camera);
 
-    // Call tick again on the next frame
     window.requestAnimationFrame(tick);
   };
   tick();
