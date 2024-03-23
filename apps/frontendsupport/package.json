@@ -90,7 +90,7 @@
     "use-debounce": "^10.0.0"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.23.8",
+    "@babel/runtime": "^7.24.1",
     "@cld-apis/types": "^0.1.6",
     "@commander-js/extra-typings": "^12.0.1",
     "@cutting/cloudinary-blurhash": "workspace:*",
