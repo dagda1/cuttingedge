@@ -12,7 +12,7 @@ import { assert } from 'assert-ts';
 import json from '@rollup/plugin-json';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 // @ts-ignore
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import { copyAssets } from './copy-assets.js';
 import postcss from 'rollup-plugin-postcss';
 import { md } from '@cutting/rollup-plugin-md';
@@ -124,6 +124,7 @@ async function generateBundledModule({
       svgo(),
       minify &&
         terser({
+          // @ts-ignore
           output: { comments: false },
           compress: {
             keep_infinity: true,
