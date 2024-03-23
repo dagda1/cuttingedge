@@ -1,48 +1,55 @@
 import './style.css';
-
 import { assert } from '@cutting/assert';
+import { Vector2 } from 'three';
 import {
-  BufferGeometry,
-  Line,
+  Scene,
+  WebGLRenderer,
   LinearSRGBColorSpace,
+  PCFSoftShadowMap,
   LineBasicMaterial,
   OrthographicCamera,
-  PCFSoftShadowMap,
-  Scene,
-  Vector2,
-  WebGLRenderer,
 } from 'three';
+import { scaleLinear } from 'd3-scale';
+import { createLine, createTickMarks } from './utils/axis';
 // import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 // import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 // import { axes } from './types';
 
+const RANGE = [-10, 10];
+
 function run() {
+  const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+
+  const xScale = scaleLinear().domain(RANGE).range([0, sizes.width]);
+  const yScale = scaleLinear().domain(RANGE).range([sizes.height, 0]);
+
   const canvas = document.querySelector<HTMLElement>('#scene');
 
   assert(!!canvas, `no element at #scene`);
 
   const scene = new Scene();
 
-  const material = new LineBasicMaterial({ color: 0xffffff });
+  const lineMaterial = new LineBasicMaterial({ color: 0xffffff });
+  const tickMaterial = new LineBasicMaterial({ color: 0xffffff });
 
-  // X Axis
-  const pointsX = [new Vector2(-window.innerWidth / 2), new Vector2(window.innerWidth / 2, 0)];
-  const geometryX = new BufferGeometry().setFromPoints(pointsX);
-  const xAxis = new Line(geometryX, material);
+  const xAxisStart = new Vector2(xScale(-10), yScale(0));
+  const xAxisEnd = new Vector2(xScale(10), yScale(0));
 
-  // Y Axis
-  const pointsY = [new Vector2(0, -window.innerHeight / 2), new Vector2(0, window.innerHeight / 2)];
-  const geometryY = new BufferGeometry().setFromPoints(pointsY);
-  const yAxis = new Line(geometryY, material);
+  const xAxis = createLine(xAxisStart, xAxisEnd, lineMaterial);
 
-  // // Add axes to scene
   scene.add(xAxis);
+
+  const yAxisStart = new Vector2(xScale(0), yScale(-10));
+  const yAxisEnd = new Vector2(xScale(0), yScale(10));
+  const yAxis = createLine(yAxisStart, yAxisEnd, lineMaterial);
+
   scene.add(yAxis);
 
-  const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
+  createTickMarks(scene, xScale, yScale, xScale, 'x', tickMaterial);
+  createTickMarks(scene, xScale, yScale, yScale, 'y', tickMaterial);
 
   window.addEventListener('resize', () => {
     sizes.width = window.innerWidth;
@@ -54,18 +61,8 @@ function run() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   });
 
-  const camera = new OrthographicCamera(
-    window.innerWidth / -2, // Left
-    window.innerWidth / 2, // Right
-    window.innerHeight / 2, // Top
-    window.innerHeight / -2, // Bottom
-    1, // Near clipping plane
-    1000, // Far clipping plane
-  );
-
-  // Position the camera
-  camera.position.set(0, 0, 100);
-  camera.lookAt(0, 0, 0);
+  const camera = new OrthographicCamera(0, sizes.width, sizes.height, 0, -1, 1);
+  camera.position.z = 1;
 
   const renderer = new WebGLRenderer({
     canvas: canvas,
