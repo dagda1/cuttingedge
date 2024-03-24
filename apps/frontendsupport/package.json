@@ -120,7 +120,7 @@
     "tsx": "^4.7.1",
     "typescript": "^5.4.2",
     "uuid": "^9.0.1",
-    "vite": "5.2.2",
+    "vite": "5.2.6",
     "vite-tsconfig-paths": "^4.3.2"
   },
   "files": [
