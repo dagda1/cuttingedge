@@ -7,70 +7,15 @@ import {
   BoxGeometry,
   MeshBasicMaterial,
   Mesh,
-  BufferGeometry,
   LineBasicMaterial,
-  Line,
   Vector3,
   EdgesGeometry,
   LineSegments,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
-type Axis = 'x' | 'y' | 'z';
-
-function createTick(scene: Scene, position: number, axis: Axis, color = 0x000000) {
-  const tickSize = 0.1;
-  let start: Vector3;
-  let end: Vector3;
-
-  function addTick(start: Vector3, end: Vector3) {
-    // Create the geometry and material for the tick mark
-    const geometry = new BufferGeometry().setFromPoints([start, end]);
-    const material = new LineBasicMaterial({ color: color });
-    const tick = new Line(geometry, material);
-
-    // Add the tick to the scene
-    scene.add(tick);
-  }
-
-  switch (axis) {
-    case 'x': {
-      start = new Vector3(position, 0, 0).add(new Vector3(0, -tickSize, 0));
-      end = new Vector3(position, 0, 0).add(new Vector3(0, tickSize, 0));
-
-      addTick(start, end);
-
-      break;
-    }
-
-    case 'y': {
-      start = new Vector3(0, position, 0).add(new Vector3(-tickSize, 0, 0));
-      end = new Vector3(0, position, 0).add(new Vector3(tickSize, 0, 0));
-
-      addTick(start, end);
-      break;
-    }
-
-    case 'z': {
-      start = new Vector3(0, 0, position).add(new Vector3(-tickSize, 0, 0));
-      end = new Vector3(0, 0, position).add(new Vector3(tickSize, 0, 0));
-
-      addTick(start, end);
-      break;
-    }
-  }
-}
-
-function createAxis(scene: Scene, start: Vector3, end: Vector3) {
-  const material = new LineBasicMaterial({ color: 0x000000 });
-  const points = [];
-  points.push(start.clone());
-  points.push(end.clone());
-
-  const geometry = new BufferGeometry().setFromPoints(points);
-  const line = new Line(geometry, material);
-  scene.add(line);
-}
+// import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { addTick } from './utils/addTick';
+import { addAxis } from './utils/addAxis';
 
 function run() {
   const canvas = document.querySelector<HTMLElement>('#scene');
@@ -90,17 +35,43 @@ function run() {
   scene.add(edgesMesh);
 
   const axisLength = 3;
-  createAxis(scene, new Vector3(-axisLength, 0, 0), new Vector3(axisLength, 0, 0));
-  createAxis(scene, new Vector3(0, -axisLength, 0), new Vector3(0, axisLength, 0));
-  createAxis(scene, new Vector3(0, 0, -axisLength), new Vector3(0, 0, axisLength));
+  addAxis(scene, new Vector3(-axisLength, 0, 0), new Vector3(axisLength, 0, 0));
+  addAxis(scene, new Vector3(0, -axisLength, 0), new Vector3(0, axisLength, 0));
+  addAxis(scene, new Vector3(0, 0, -axisLength), new Vector3(0, 0, axisLength));
 
   const tickPositions = [-3, -2, -1, 0, 1, 2, 3];
 
   tickPositions.forEach((position) => {
-    createTick(scene, position, 'x');
-    createTick(scene, position, 'y');
-    createTick(scene, position, 'z');
+    addTick(scene, position, 'x');
+    addTick(scene, position, 'y');
+    addTick(scene, position, 'z');
   });
+
+  // const loader = new FontLoader();
+
+  // loader.load('/fonts/helvetiker_regular.typeface.json', function (font) {
+  //   const tickPositions = [-3, -2, -1, 0, 1, 2, 3];
+  //   const fontSize = 0.2;
+  //   const fontHeight = 0.01;
+  //   const fontColor = 0x000000;
+
+  //   tickPositions.forEach((pos) => {
+  //     const textGeometry = new TextGeometry(pos.toString(), {
+  //       font: font,
+  //       size: fontSize,
+  //       height: fontHeight,
+  //     });
+
+  //     const textMaterial = new MeshBasicMaterial({ color: fontColor });
+  //     const textMesh = new Mesh(textGeometry, textMaterial);
+
+  //     textMesh.position.x = pos - 0.5;
+  //     textMesh.position.y = pos - 0.5;
+  //     textMesh.position.z = pos - 0.5;
+
+  //     scene.add(textMesh);
+  //   });
+  // });
 
   const sizes = {
     width: window.innerWidth,
