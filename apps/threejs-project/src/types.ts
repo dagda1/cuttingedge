@@ -1,2 +1,1 @@
-export const axes = ['x', 'y'] as const;
-export type Axis = (typeof axes)[number];
+export type Axis = 'x' | 'y' | 'z';
