@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import type { ScaleLinear } from 'd3-scale';
 import type { Material, Scene } from 'three';
 import { BufferGeometry, Line, Mesh, MeshBasicMaterial, Vector2 } from 'three';
@@ -6,6 +7,17 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 
 export function createLine(start: Vector2, end: Vector2, material: Material): Line {
   const geometry = new BufferGeometry().setFromPoints([start, end]);
+=======
+import type { ColorRepresentation } from 'three';
+import { type Scene, Vector3, CylinderGeometry, MeshBasicMaterial, Mesh } from 'three';
+
+export function addAxis(scene: Scene, start: Vector3, end: Vector3, color: ColorRepresentation = 0x000000): void {
+  const direction = new Vector3().subVectors(end, start);
+  const length = direction.length();
+  const cylinderGeometry = new CylinderGeometry(0.02, 0.02, length, 8);
+  const cylinderMaterial = new MeshBasicMaterial({ color });
+  const cylinder = new Mesh(cylinderGeometry, cylinderMaterial);
+>>>>>>> 411cc3fa (add 2 vectors)
 
   return new Line(geometry, material);
 }
