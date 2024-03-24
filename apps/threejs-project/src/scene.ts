@@ -111,7 +111,9 @@ function run() {
     }
   });
 
-  for (const x of [-3, -2, -1, 1, 2, 3]) {
+  const GridPoints = [-3, -2.5, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5, 3] as const;
+
+  for (const x of GridPoints) {
     const start = new Vector3(x, 0, -AxisLength);
 
     const end = new Vector3(x, 0, AxisLength);
@@ -128,7 +130,7 @@ function run() {
     scene.add(line);
   }
 
-  for (const x of [-3, -2, -1, 1, 2, 3]) {
+  for (const x of GridPoints) {
     const start = new Vector3(-AxisLength, 0, x);
 
     const end = new Vector3(AxisLength, 0, x);
@@ -144,6 +146,10 @@ function run() {
     const line = new Line(geometry, material);
     scene.add(line);
   }
+
+  addAxis(scene, new Vector3(0, 0, 0), new Vector3(2, 2, 2), 0xff0000);
+
+  addAxis(scene, new Vector3(0, 0, 0), new Vector3(1, 0, 1), 0x0000ff);
 
   const sizes = {
     width: window.innerWidth,
