@@ -4,14 +4,13 @@ import {
   Scene,
   WebGLRenderer,
   PerspectiveCamera,
-  BoxGeometry,
   MeshBasicMaterial,
   Mesh,
   LineBasicMaterial,
   Vector3,
-  EdgesGeometry,
-  LineSegments,
   ArrowHelper,
+  BufferGeometry,
+  Line,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { addTick } from './utils/addTick';
@@ -20,6 +19,8 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import { axes } from './types';
 
+const AxisLength = 3;
+
 function run() {
   const canvas = document.querySelector<HTMLElement>('#scene');
 
@@ -27,21 +28,9 @@ function run() {
 
   const scene = new Scene();
 
-  const cubeGeometry = new BoxGeometry(5, 5, 5);
-  const cubeMaterial = new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
-  const cube = new Mesh(cubeGeometry, cubeMaterial);
-  scene.add(cube);
-
-  const edges = new EdgesGeometry(cubeGeometry);
-  const lineMaterial = new LineBasicMaterial({ color: 0x000000 }); // Black edges
-  const edgesMesh = new LineSegments(edges, lineMaterial);
-  scene.add(edgesMesh);
-
-  const axisLength = 3;
-
-  addAxis(scene, new Vector3(-axisLength, 0, 0), new Vector3(axisLength, 0, 0));
-  addAxis(scene, new Vector3(0, -axisLength, 0), new Vector3(0, axisLength, 0));
-  addAxis(scene, new Vector3(0, 0, -axisLength), new Vector3(0, 0, axisLength));
+  addAxis(scene, new Vector3(-AxisLength, 0, 0), new Vector3(AxisLength, 0, 0));
+  addAxis(scene, new Vector3(0, -AxisLength, 0), new Vector3(0, AxisLength, 0));
+  addAxis(scene, new Vector3(0, 0, -AxisLength), new Vector3(0, 0, AxisLength));
 
   const tickPositions = [-3, -2, -1, 0, 1, 2, 3];
 
@@ -59,7 +48,7 @@ function run() {
   ];
 
   for (const axis of axesInfo) {
-    const arrowHelper = new ArrowHelper(axis.dir, new Vector3(0, 0, 0), axisLength + 0.5, axis.color, arrowSize);
+    const arrowHelper = new ArrowHelper(axis.dir, new Vector3(0, 0, 0), AxisLength + 0.5, axis.color, arrowSize);
     scene.add(arrowHelper);
   }
 
@@ -77,7 +66,7 @@ function run() {
       const textMesh = new Mesh(textGeometry, textMaterial);
 
       // Position the text mesh at the end of the arrow
-      const offset = axisLength + 0.5; // Adjust based on your preference
+      const offset = AxisLength + 0.5; // Adjust based on your preference
       textMesh.position.copy(axis.dir.clone().multiplyScalar(offset));
 
       scene.add(textMesh);
@@ -120,48 +109,41 @@ function run() {
         scene.add(textMesh);
       }
     }
-
-    // for (const pos of tickPositions) {
-    //   const textGeometry = new TextGeometry(Number(pos).toString(), {
-    //     font: font,
-    //     size: fontSize,
-    //     height: fontHeight,
-    //   });
-
-    //   const textMaterial = new MeshBasicMaterial({ color: fontColor });
-    //   const textMesh = new Mesh(textGeometry, textMaterial);
-
-    //   textMesh.position.x = 0.2;
-    //   textMesh.position.y = pos - 0.1;
-    //   textMesh.position.z = 0;
-
-    //   scene.add(textMesh);
-    // }
   });
 
-  // const loader = new FontLoader();
+  for (const x of [-3, -2, -1, 1, 2, 3]) {
+    const start = new Vector3(x, 0, -AxisLength);
 
-  // loader.load('/fonts/helvetiker_regular.typeface.json', function (font) {
-  //   const tickPositions = [-3, -2, -1, 0, 1, 2, 3];
-  //   const fontSize = 0.2;
-  //   const fontHeight = 0.01;
-  //   const fontColor = 0x000000;
+    const end = new Vector3(x, 0, AxisLength);
 
-  //   tickPositions.forEach((pos) => {
-  //     const textGeometry = new TextGeometry(pos.toString(), {
-  //       font: font,
-  //       size: fontSize,
-  //       height: fontHeight,
-  //     });
+    const material = new LineBasicMaterial({ color: 0x000000 });
 
-  //     const textMaterial = new MeshBasicMaterial({ color: fontColor });
-  //     const textMesh = new Mesh(textGeometry, textMaterial);
+    const points = [];
 
-  //     textMesh.position.x = pos - 0.5;
-  //     textMesh.position.y = pos - 0.5;
-  //     textMesh.position.z = pos - 0.5;
+    points.push(start.clone());
+    points.push(end.clone());
 
-  //     scene.add(textMesh);
+    const geometry = new BufferGeometry().setFromPoints(points);
+    const line = new Line(geometry, material);
+    scene.add(line);
+  }
+
+  for (const x of [-3, -2, -1, 1, 2, 3]) {
+    const start = new Vector3(-AxisLength, 0, x);
+
+    const end = new Vector3(AxisLength, 0, x);
+
+    const material = new LineBasicMaterial({ color: 0x000000 });
+
+    const points = [];
+
+    points.push(start.clone());
+    points.push(end.clone());
+
+    const geometry = new BufferGeometry().setFromPoints(points);
+    const line = new Line(geometry, material);
+    scene.add(line);
+  }
 
   const sizes = {
     width: window.innerWidth,
