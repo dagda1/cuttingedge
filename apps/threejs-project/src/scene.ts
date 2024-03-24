@@ -40,15 +40,15 @@ function run() {
     addTick(scene, position, 'z');
   });
 
-  const arrowSize = 0.5;
+  const arrowSize = 0.1;
   const axesInfo = [
-    { dir: new Vector3(1, 0, 0), color: 0xff0000, label: 'X' },
-    { dir: new Vector3(0, 0, 1), color: 0x0000ff, label: 'Y' },
-    { dir: new Vector3(0, 1, 0), color: 0x00ff00, label: 'Z' },
+    { dir: new Vector3(1, 0, 0), color: 0x000000, label: 'X' },
+    { dir: new Vector3(0, 0, 1), color: 0x000000, label: 'Y' },
+    { dir: new Vector3(0, 1, 0), color: 0x000000, label: 'Z' },
   ];
 
   for (const axis of axesInfo) {
-    const arrowHelper = new ArrowHelper(axis.dir, new Vector3(0, 0, 0), AxisLength + 0.5, axis.color, arrowSize);
+    const arrowHelper = new ArrowHelper(axis.dir, new Vector3(0, 0, 0), AxisLength + 0.2, axis.color, arrowSize, 0.1);
     scene.add(arrowHelper);
   }
 
@@ -65,8 +65,7 @@ function run() {
       const textMaterial = new MeshBasicMaterial({ color: axis.color });
       const textMesh = new Mesh(textGeometry, textMaterial);
 
-      // Position the text mesh at the end of the arrow
-      const offset = AxisLength + 0.5; // Adjust based on your preference
+      const offset = AxisLength + 0.3;
       textMesh.position.copy(axis.dir.clone().multiplyScalar(offset));
 
       scene.add(textMesh);
@@ -111,7 +110,9 @@ function run() {
     }
   });
 
-  for (const x of [-3, -2, -1, 1, 2, 3]) {
+  const GridPoints = [-3, -2.5, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5, 3] as const;
+
+  for (const x of GridPoints) {
     const start = new Vector3(x, 0, -AxisLength);
 
     const end = new Vector3(x, 0, AxisLength);
@@ -128,7 +129,7 @@ function run() {
     scene.add(line);
   }
 
-  for (const x of [-3, -2, -1, 1, 2, 3]) {
+  for (const x of GridPoints) {
     const start = new Vector3(-AxisLength, 0, x);
 
     const end = new Vector3(AxisLength, 0, x);
@@ -144,6 +145,10 @@ function run() {
     const line = new Line(geometry, material);
     scene.add(line);
   }
+
+  addAxis(scene, new Vector3(0, 0, 0), new Vector3(2, 2, 2), 0xff0000);
+
+  addAxis(scene, new Vector3(0, 0, 0), new Vector3(1, 0, 1), 0x0000ff);
 
   const sizes = {
     width: window.innerWidth,
