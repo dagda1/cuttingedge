@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.59.1
+
+### Patch Changes
+
+- df504df: update pnpm to 8.15.5
+
 ## 4.59.0
 
 ### Minor Changes

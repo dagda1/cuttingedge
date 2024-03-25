@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.1.11
+
+### Patch Changes
+
+- df504df: update pnpm to 8.15.5
+
 ## 2.1.10
 
 ### Patch Changes

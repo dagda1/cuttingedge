@@ -1,5 +1,13 @@
 # @cutting/hooks
 
+## 4.57.1
+
+### Patch Changes
+
+- df504df: update pnpm to 8.15.5
+- Updated dependencies [df504df]
+  - @cutting/util@4.59.1
+
 ## 4.57.0
 
 ### Minor Changes

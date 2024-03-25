@@ -1,5 +1,14 @@
 # @cutting/react-hook-form-components
 
+## 0.5.23
+
+### Patch Changes
+
+- df504df: update pnpm to 8.15.5
+- Updated dependencies [df504df]
+  - @cutting/util@4.59.1
+  - @cutting/component-library@5.42.1
+
 ## 0.5.22
 
 ### Patch Changes
