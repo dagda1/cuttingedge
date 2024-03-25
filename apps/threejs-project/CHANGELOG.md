@@ -1,5 +1,12 @@
 # threejs-starter-vite
 
+## 1.0.18
+
+### Patch Changes
+
+- df504df: update pnpm to 8.15.5
+  - @cutting/component-library@5.42.1
+
 ## 1.0.17
 
 ### Patch Changes

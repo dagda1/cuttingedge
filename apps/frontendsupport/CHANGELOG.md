@@ -1,5 +1,18 @@
 # @cutting/frontend-support
 
+## 0.2.1
+
+### Patch Changes
+
+- df504df: update pnpm to 8.15.5
+- Updated dependencies [df504df]
+  - @cutting/react-hook-form-components@0.5.23
+  - @cutting/use-get-parent-size@2.1.11
+  - @cutting/markdown@0.1.12
+  - @cutting/hooks@4.57.1
+  - @cutting/util@4.59.1
+  - @cutting/component-library@5.42.1
+
 ## 0.2.0
 
 ### Minor Changes

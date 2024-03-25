@@ -1,5 +1,13 @@
 # @cutting/component-library
 
+## 5.42.1
+
+### Patch Changes
+
+- Updated dependencies [df504df]
+  - @cutting/hooks@4.57.1
+  - @cutting/util@4.59.1
+
 ## 5.42.0
 
 ### Minor Changes

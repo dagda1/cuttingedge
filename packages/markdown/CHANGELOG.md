@@ -1,5 +1,13 @@
 # @cutting/markdown
 
+## 0.1.12
+
+### Patch Changes
+
+- df504df: update pnpm to 8.15.5
+- Updated dependencies [df504df]
+  - @cutting/util@4.59.1
+
 ## 0.1.11
 
 ### Patch Changes
