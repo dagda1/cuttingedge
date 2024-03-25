@@ -53,7 +53,7 @@ jobs:
         working-directory: apps/frontendsupport
         run: |
           # N.Virginia us-east-1
-          pnpm --filter @cutting/frontend-support deploy pruned
+          pnpm --filter @cutting/frontend-support deploy pruned --prod
 
           node ./replace-workspace-protocol-by-version.mjs ./pruned/package.json
           

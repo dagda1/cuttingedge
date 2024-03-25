@@ -54,7 +54,6 @@
     "leva": "^0.9.35",
     "luxon": "^3.4.4",
     "maath": "^0.10.7",
-    "mathjax-full": "3.2.2",
     "mdast-util-to-markdown": "^2.1.0",
     "mdx-bundler": "^10.0.1",
     "micromark-extension-footnote": "^1.0.2",
