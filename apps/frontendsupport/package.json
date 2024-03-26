@@ -85,6 +85,7 @@
     "@vanilla-extract/css": "^1.14.1",
     "@vanilla-extract/dynamic": "^2.1.0",
     "@vanilla-extract/sprinkles": "^1.6.1",
+    "browserslist": "^4.23.0",
     "esbuild": "^0.20.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
