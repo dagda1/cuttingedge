@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.42.2
+
+### Patch Changes
+
+- 66ef415: remove polished
+
 ## 5.42.1
 
 ### Patch Changes
