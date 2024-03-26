@@ -10,7 +10,6 @@ import readingTime from 'reading-time';
 import { join } from 'path';
 import remarkSlug from 'remark-slug';
 import { readFile, readdir } from 'fs/promises';
-import { DateTime } from 'luxon';
 import rehypePrismPlus from 'rehype-prism-plus';
 import rehypeRaw from 'rehype-raw';
 import rehypePresetMinify from 'rehype-preset-minify';
@@ -21,6 +20,7 @@ import remarkAutolinkHeadings from 'remark-autolink-headings';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import rehypeMathjax from 'rehype-mathjax';
+import { formatDate } from './formatDate';
 
 export type MarkdownAttributes = {
   title: string;
@@ -112,7 +112,7 @@ export async function getPosts(postsRootPath: string): Promise<PostData[]> {
     posts.push({
       slug: dirent.name.replace(/\.mdx/, ''),
       date: new Date(date).toISOString(),
-      formattedDate: DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL),
+      formattedDate: formatDate(date),
       ...meta,
     });
   }
