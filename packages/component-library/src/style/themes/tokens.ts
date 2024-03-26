@@ -1,7 +1,7 @@
-import { rem } from 'polished';
 import { palette } from '~/style/palette.css';
 import arialMetfics from '@capsizecss/metrics/arial';
 import { extractFontMetricsForTheme } from '../util/typography';
+import { rem } from '~/utl/pxTo/rem';
 
 const fontWeight = {
   regular: 400,

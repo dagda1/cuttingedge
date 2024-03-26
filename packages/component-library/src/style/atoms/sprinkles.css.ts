@@ -7,7 +7,7 @@ import {
 } from '@vanilla-extract/sprinkles';
 import { breakpointNames, breakpoints } from '../breakpoints';
 import { vars } from '~/style/themes/vars.css';
-import { rem } from 'polished';
+import { rem } from '~/utl/pxTo/rem';
 
 export type OptionalResponsiveValue<Value extends string | number> = ConditionalValue<
   typeof responsiveAtomicProperties,
