@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import mdx from '@mdx-js/rollup';
 import { isProduction } from '@cutting/util';
 import { createRequire } from 'module';
@@ -11,12 +11,12 @@ const require = createRequire(import.meta.url);
 
 export default defineConfig({
   plugins: [
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    react() as any,
+    mdx(),
     tsconfigPaths(),
     vanillaExtractPlugin(),
     svgrPlugin({ svgrOptions: { icon: true } }),
-    mdx(),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    react() as any,
   ],
   assetsInclude: ['src/assets/images/**.png', 'src/assets/images/**.jpg'],
   mode: '',
