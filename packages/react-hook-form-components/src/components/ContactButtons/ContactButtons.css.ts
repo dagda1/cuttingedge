@@ -1,4 +1,4 @@
-import { palette, responsiveStyle, vars } from '@cutting/component-library';
+import { vars } from '@cutting/component-library';
 import { globalStyle, style } from '@vanilla-extract/css';
 
 export const callButton = style({});
@@ -52,48 +52,6 @@ globalStyle('relative', {
   position: 'relative',
 });
 
-globalStyle('[data-testid="modal-overlay"]', {
-  background: 'rgba(17, 24, 39, 0.5)',
-  display: 'flex',
-  overflowY: 'auto',
-  overflowX: 'hidden',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  zIndex: 300,
-});
-
-globalStyle('[role="dialog"]', {
-  background: vars.backgroundColor.secondary,
-  boxShadow:
-    'rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px',
-  borderRadius: vars.borderRadius.large,
-  zIndex: 33,
-  width: '100%',
-  height: 'auto',
-  padding: '1rem',
-  position: 'relative',
-  ...responsiveStyle({
-    wide: {
-      width: '50%',
-    },
-    desktop: {
-      width: '60%',
-    },
-    tablet: {
-      width: '75%',
-    },
-    mobile: {
-      width: '95%',
-    },
-  }),
-});
-
 globalStyle('.bg-white', {
   display: 'flex',
   flexDirection: 'column',
@@ -105,14 +63,4 @@ globalStyle('.border-b', {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'flex-start',
-});
-
-globalStyle('button[aria-label="Close"]', {
-  fontSize: '.875rem',
-  lineHeight: '1.25rem',
-  borderRadius: '0.5rem',
-  display: 'inline-flex',
-  alignItems: 'center',
-  marginLeft: 'auto',
-  color: palette.black,
 });

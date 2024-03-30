@@ -1,6 +1,6 @@
 import '@cutting/component-library/styles.css';
 import { ApplicationLayout, Button } from '@cutting/component-library';
-import { Input } from '../../src';
+import { ContactButtons, Input } from '../../src';
 import type { ReactNode } from 'react';
 import { FormContextProvider } from '../../src/components/ContactForm/FormContext';
 import { useForm } from 'react-hook-form';
@@ -33,6 +33,8 @@ export function App(): JSX.Element {
 
   return (
     <Layout>
+      <ContactButtons callType="rescue" />
+
       <form method="POST" name="SignupForm" noValidate>
         <Input
           layout="horizontal"

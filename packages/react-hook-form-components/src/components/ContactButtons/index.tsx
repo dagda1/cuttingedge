@@ -1,4 +1,3 @@
-import { Modal } from 'flowbite-react';
 import * as styles from './ContactButtons.css';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { CallPopupButton } from '../Call/CallPopupButton';
@@ -6,6 +5,7 @@ import type { CallType } from '../Call/types';
 import type { ButtonStyle } from '@cutting/component-library';
 import { Box, Button, Text } from '@cutting/component-library';
 import { useCallback, useState } from 'react';
+import { Modal } from '../Modal/Modal';
 
 type ContactButtonsProps = {
   callType: CallType;
@@ -30,9 +30,8 @@ export function ContactButtons({
       <Button buttonStyle={buttonStyle} onClick={() => setOpenModal('default')}>
         CONTACT BY EMAIL
       </Button>
-      <Modal show={openModal === 'default'} onClose={close} dismissible>
-        <Modal.Header>{''}</Modal.Header>
-        <Modal.Body>
+      <Modal isOpen={openModal === 'default'} onClose={close}>
+        <Box>
           <Box display="flex" justifyContent="center" width="full">
             <Text size="large" tone="info">
               CONTACT FORM
@@ -50,7 +49,7 @@ export function ContactButtons({
               <ContactForm />
             </Box>
           </Box>
-        </Modal.Body>
+        </Box>
       </Modal>
     </Box>
   );
