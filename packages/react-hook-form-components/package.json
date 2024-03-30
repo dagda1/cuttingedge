@@ -37,7 +37,6 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "flowbite-react": "^0.7.6",
     "@types/react": "18.2.73",
     "@types/react-dom": "18.2.23",
     "@vanilla-extract/css": "^1.14.2",
@@ -49,7 +48,6 @@
     "typescript": "5.4.3"
   },
   "peerDependencies": {
-    "flowbite-react": ">= 0.7.3",
     "react": ">= 18.2.0",
     "react-dom": ">= 18.2.0",
     "react-calendly": ">= 4.1.1"

@@ -30,7 +30,6 @@ export function Panel({
       justifyContent="center"
       alignItems="center"
       ref={innerRef}
-      zIndex="dropdown"
       {...rest}
     >
       {children}

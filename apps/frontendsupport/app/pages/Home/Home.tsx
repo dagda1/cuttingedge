@@ -10,7 +10,6 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
 import { assert } from '@cutting/assert';
 import { Clients } from '../../components/Clients/Clients';
-import { TopBubble } from './TopBubble/TopBubble';
 import { Services } from '../Panels/Services/Services';
 import { About } from '../../components/About/About';
 import { RandomImage } from '~/components/RandomImage/RandomImage';
@@ -23,7 +22,6 @@ export function Home(): JSX.Element {
   const breakglassRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const ctx = useRef<gsap.Context>();
-  const topBubble = useRef<HTMLDivElement>(null);
   const arrow = useRef<HTMLImageElement>(null);
 
   useIsomorphicLayoutEffect(() => {
@@ -340,7 +338,6 @@ export function Home(): JSX.Element {
 
   return (
     <Box paddingBottom="xxxlarge">
-      <TopBubble innerRef={topBubble} mode="light" />
       <Panel
         mode="dark"
         flexDirection="column"
@@ -461,7 +458,6 @@ export function Home(): JSX.Element {
           flexDirection="column"
           alignItems="center"
           justifyContent="center"
-          zIndex="modal"
           width="full"
           height="maxContent"
         >
