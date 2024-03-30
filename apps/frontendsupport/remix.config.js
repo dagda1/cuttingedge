@@ -4,7 +4,7 @@
 export default {
   ignoredRouteFiles: ['**/.*', '**/*.css.ts'],
   publicPath: '/_static/build/',
-  server: 'server.ts',
+  server: 'server.js',
   serverBuildPath: 'server/index.mjs',
   serverModuleFormat: 'esm',
   serverDependenciesToBundle: [/^gsap.*/],
