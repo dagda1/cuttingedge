@@ -52,7 +52,7 @@
     "flowbite-react": ">= 0.7.3",
     "react": ">= 18.2.0",
     "react-dom": ">= 18.2.0",
-    "react-calendly": ">= 4.1.1"
+    "react-calendly": ">= 4.3.0"
   },
   "keywords": [
     "react-hook-form",
