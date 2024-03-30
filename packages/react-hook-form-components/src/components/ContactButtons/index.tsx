@@ -31,21 +31,23 @@ export function ContactButtons({
         CONTACT BY EMAIL
       </Button>
       <Modal isOpen={openModal === 'default'} onClose={close}>
-        <Box display="flex" justifyContent="center" width="full">
-          <Text size="large" tone="info">
-            CONTACT FORM
-          </Text>
-        </Box>
-        <Box
-          className={styles.modal}
-          width="full"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-        >
-          <Box className={styles.content}>
-            <ContactForm />
+        <Box>
+          <Box display="flex" justifyContent="center" width="full">
+            <Text size="large" tone="info">
+              CONTACT FORM
+            </Text>
+          </Box>
+          <Box
+            className={styles.modal}
+            width="full"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
+            <Box className={styles.content}>
+              <ContactForm />
+            </Box>
           </Box>
         </Box>
       </Modal>
