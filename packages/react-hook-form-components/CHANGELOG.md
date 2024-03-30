@@ -1,5 +1,11 @@
 # @cutting/react-hook-form-components
 
+## 0.5.25
+
+### Patch Changes
+
+- e30657d: replace flowbite-react with Modal component
+
 ## 0.5.24
 
 ### Patch Changes
