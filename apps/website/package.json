@@ -106,7 +106,7 @@
     "nodemon": "3.1.0",
     "rimraf": "5.0.5",
     "ts-node": "10.9.2",
-    "typescript": "5.4.3",
+    "typescript": "5.4.4",
     "vite": "5.2.8",
     "vite-plugin-commonjs": "0.10.1",
     "vite-plugin-environment": "1.1.3",
