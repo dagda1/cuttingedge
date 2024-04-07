@@ -51,7 +51,7 @@
     "node-fetch": "3.3.2",
     "prettier": "3.2.5",
     "turbo": "1.13.2",
-    "typescript": "5.4.3",
+    "typescript": "5.4.4",
     "vite": "5.2.8",
     "vitest": "1.4.0",
     "whatwg-fetch": "3.6.20"

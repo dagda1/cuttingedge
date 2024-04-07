@@ -45,7 +45,7 @@
     "react-dom": "18.2.0",
     "react-syntax-highlighter": "15.5.0",
     "@testing-library/react": "14.2.2",
-    "typescript": "5.4.3"
+    "typescript": "5.4.4"
   },
   "peerDependencies": {
     "react": ">= 18.2.0",
