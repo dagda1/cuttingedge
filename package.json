@@ -52,7 +52,7 @@
     "prettier": "3.2.5",
     "turbo": "1.13.2",
     "typescript": "5.4.3",
-    "vite": "5.2.7",
+    "vite": "5.2.8",
     "vitest": "1.4.0",
     "whatwg-fetch": "3.6.20"
   },
