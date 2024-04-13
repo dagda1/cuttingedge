@@ -27,7 +27,7 @@
     "@cutting/useful-types": "workspace:*",
     "commander": "12.0.0",
     "eslint": "8.57.0",
-    "typescript": "5.4.4"
+    "typescript": "5.4.5"
   },
   "files": [
     "dist/**/*",
