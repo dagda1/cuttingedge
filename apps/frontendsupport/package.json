@@ -22,7 +22,7 @@
     "@cutting/use-get-parent-size": "workspace:*",
     "@cutting/useful-types": "workspace:*",
     "@cutting/util": "workspace:*",
-    "@floating-ui/react": "^0.26.11",
+    "@floating-ui/react": "^0.26.12",
     "@remix-run/architect": "^2.8.1",
     "@remix-run/css-bundle": "^2.8.1",
     "@remix-run/node": "^2.8.1",
