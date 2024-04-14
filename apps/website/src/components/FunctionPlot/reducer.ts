@@ -45,13 +45,6 @@ type FunctionActions =
       payload: {
         expression: string;
       };
-    }
-  | {
-      type: 'SET_RANGE';
-      payload: {
-        minX: number;
-        maxX: number;
-      };
     };
 
 export const initialState = {
@@ -114,9 +107,6 @@ export const reducer: Reducer<State, FunctionActions> = produce((state, action) 
     })
     .with({ type: 'SET_EXPRESSION' }, ({ payload }) => {
       state.expression = payload.expression;
-    })
-    .with({ type: 'SET_RANGE' }, ({ payload }) => {
-      state.range = payload;
     })
     .otherwise(() => state);
 });
