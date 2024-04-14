@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.8
+
+### Patch Changes
+
+- f8374ed: update dependencies and pnpm to 8.15.7
+
 ## 4.63.7
 
 ### Patch Changes

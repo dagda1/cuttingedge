@@ -1,5 +1,15 @@
 # @cutting/react-hook-form-components
 
+## 0.5.26
+
+### Patch Changes
+
+- f8374ed: update dependencies and pnpm to 8.15.7
+- Updated dependencies [f8374ed]
+  - @cutting/component-library@5.42.3
+  - @cutting/assert@0.1.4
+  - @cutting/util@4.59.2
+
 ## 0.5.25
 
 ### Patch Changes

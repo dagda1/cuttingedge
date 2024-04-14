@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.45.6
+
+### Patch Changes
+
+- f8374ed: update dependencies and pnpm to 8.15.7
+
 ## 4.45.5
 
 ### Patch Changes

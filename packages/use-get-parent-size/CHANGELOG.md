@@ -1,5 +1,13 @@
 # @cutting/use-get-parent-size
 
+## 2.1.12
+
+### Patch Changes
+
+- f8374ed: update dependencies and pnpm to 8.15.7
+- Updated dependencies [f8374ed]
+  - @cutting/assert@0.1.4
+
 ## 2.1.11
 
 ### Patch Changes
