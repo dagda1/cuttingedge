@@ -1,5 +1,14 @@
 # @cutting/hooks
 
+## 4.57.2
+
+### Patch Changes
+
+- f8374ed: update dependencies and pnpm to 8.15.7
+- Updated dependencies [f8374ed]
+  - @cutting/assert@0.1.4
+  - @cutting/util@4.59.2
+
 ## 4.57.1
 
 ### Patch Changes

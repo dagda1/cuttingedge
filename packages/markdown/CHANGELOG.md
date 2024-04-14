@@ -1,5 +1,12 @@
 # @cutting/markdown
 
+## 0.1.14
+
+### Patch Changes
+
+- Updated dependencies [f8374ed]
+  - @cutting/util@4.59.2
+
 ## 0.1.13
 
 ### Patch Changes
