@@ -2,6 +2,6 @@
 
 rm -rf ./pruned
 
-pnpm --filter @cutting/frontend-support deploy --prod pruned
+pnpm --filter @cutting/frontend-support deploy pruned
 
 find "./pruned" -type f -name '*.map' -exec rm {} +
