@@ -21,10 +21,6 @@
     "log-update": "^6.0.0"
   },
   "devDependencies": {
-    "@cutting/devtools": "workspace:*",
-    "@cutting/eslint-config": "workspace:*",
-    "@cutting/tsconfig": "workspace:*",
-    "@cutting/useful-types": "workspace:*",
     "commander": "12.0.0"
   },
   "files": [

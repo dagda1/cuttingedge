@@ -28,12 +28,8 @@
     "mathjax-full": "3.2.2"
   },
   "devDependencies": {
-    "@cutting/devtools": "workspace:*",
-    "@cutting/eslint-config": "workspace:*",
-    "@cutting/tsconfig": "workspace:*",
-    "@cutting/useful-types": "workspace:*",
     "@types/mathjax": "0.0.40",
-    "@types/react": "18.2.78",
+    "@types/react": "18.2.79",
     "@vanilla-extract/css": "^1.14.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -37,12 +37,6 @@
     "resize-observer-polyfill": "^1.5.1",
     "unist-util-visit": "^5.0.0"
   },
-  "devDependencies": {
-    "@cutting/devtools": "workspace:*",
-    "@cutting/eslint-config": "workspace:*",
-    "@cutting/tsconfig": "workspace:*",
-    "@cutting/useful-types": "workspace:*"
-  },
   "files": [
     "dist/**/*",
     "test.md"

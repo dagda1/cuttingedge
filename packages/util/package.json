@@ -18,15 +18,6 @@
   "dependencies": {
     "@cutting/assert": "workspace:*"
   },
-  "devDependencies": {
-    "@cutting/assert": "workspace:*",
-    "@cutting/devtools": "workspace:*",
-    "@cutting/eslint-config": "workspace:*",
-    "@cutting/tsconfig": "workspace:*",
-    "@cutting/useful-types": "workspace:*",
-    "@typescript-eslint/parser": "7.6.0",
-    "@typescript-eslint/eslint-plugin": "7.6.0"
-  },
   "volta": {
     "extends": "../../package.json"
   },

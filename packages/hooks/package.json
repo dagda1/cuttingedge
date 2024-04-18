@@ -25,13 +25,9 @@
     "@cutting/assert": "workspace:*"
   },
   "devDependencies": {
-    "@cutting/devtools": "workspace:*",
-    "@cutting/eslint-config": "workspace:*",
-    "@cutting/tsconfig": "workspace:*",
-    "@cutting/useful-types": "workspace:*",
     "@testing-library/react": "15.0.2",
     "@testing-library/react-hooks": "8.0.1",
-    "@types/react": "18.2.78",
+    "@types/react": "18.2.79",
     "@types/react-dom": "18.2.25",
     "@vanilla-extract/css": "^1.14.2",
     "history": "^5.3.0",
