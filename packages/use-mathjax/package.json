@@ -35,11 +35,9 @@
     "@types/mathjax": "0.0.40",
     "@types/react": "18.2.78",
     "@vanilla-extract/css": "^1.14.2",
-    "eslint": "8.57.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-syntax-highlighter": "15.5.0",
-    "typescript": "5.4.5"
+    "react-syntax-highlighter": "15.5.0"
   },
   "peerDependencies": {
     "react": ">= 18.2.0",

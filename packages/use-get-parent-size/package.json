@@ -40,12 +40,10 @@
     "@types/react-router-dom": "5.3.3",
     "@types/three": "^0.163.0",
     "@vanilla-extract/css": "^1.14.2",
-    "eslint": "8.57.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.22.3",
-    "three": "^0.163.0",
-    "typescript": "5.4.5"
+    "three": "^0.163.0"
   },
   "peerDependencies": {
     "react": ">= 18.2.0",

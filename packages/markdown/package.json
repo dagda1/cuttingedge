@@ -41,9 +41,7 @@
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
-    "@cutting/useful-types": "workspace:*",
-    "eslint": "8.57.0",
-    "typescript": "5.4.5"
+    "@cutting/useful-types": "workspace:*"
   },
   "files": [
     "dist/**/*",
