@@ -62,7 +62,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Update lock file
-        run: pnpm install --lockfile-only
+        run: pnpm install  --no-frozen-lockfile
 
       - name: Commit lock file
         uses: stefanzweifel/git-auto-commit-action@v5

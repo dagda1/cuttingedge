@@ -170,6 +170,15 @@ importers:
       '@unpic/react':
         specifier: ^0.1.11
         version: 0.1.11(react-dom@18.2.0)(react@18.2.0)
+      '@vanilla-extract/css':
+        specifier: ^1.14.2
+        version: 1.14.2
+      '@vanilla-extract/dynamic':
+        specifier: ^2.1.0
+        version: 2.1.0
+      '@vanilla-extract/sprinkles':
+        specifier: ^1.6.1
+        version: 1.6.1(@vanilla-extract/css@1.14.2)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -315,15 +324,6 @@ importers:
       '@types/source-map-support':
         specifier: ^0.5.10
         version: 0.5.10
-      '@vanilla-extract/css':
-        specifier: ^1.14.2
-        version: 1.14.2
-      '@vanilla-extract/dynamic':
-        specifier: ^2.1.0
-        version: 2.1.0
-      '@vanilla-extract/sprinkles':
-        specifier: ^1.6.1
-        version: 1.6.1(@vanilla-extract/css@1.14.2)
       browserslist:
         specifier: ^4.23.0
         version: 4.23.0
@@ -8034,7 +8034,6 @@ packages:
     resolution: {integrity: sha512-8zl0IgBYRtgD1h+56Zu13wHTiMTJSVEa4F7RWX9vTB/5Xe2KtjoiqApy/szHPVFA56c+ex6A4GpCQjT1bKXbYw==}
     dependencies:
       '@vanilla-extract/private': 1.0.4
-    dev: true
 
   /@vanilla-extract/esbuild-plugin@2.3.5(@types/node@20.12.7)(esbuild@0.20.2):
     resolution: {integrity: sha512-RF7uKVc8M35SQY2C729EvdJGAGwo/nM/M8qfmPPANVKLFnFnHsRd4DO+pYgX1YubnzN1vcLKw0WIoA7JxI3a1w==}
