@@ -40,7 +40,7 @@
     "eslint-plugin-prettier": ">= 5.1.x",
     "eslint-plugin-react": ">= 7.34.x",
     "eslint-plugin-react-hooks": ">= 4.6.z",
-    "prettier": ">= 3.2.x"
+    "prettier": ">= 3.2.5"
   },
   "volta": {
     "extends": "../../package.json"
