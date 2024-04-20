@@ -5,9 +5,9 @@ import { tokens as defaultTokens } from './tokens';
 import deepmerge from 'deepmerge';
 import { getCapHeight } from '@capsizecss/core';
 import { precomputeValues } from '@capsizecss/vanilla-extract';
-import colors from 'tailwindcss/colors';
 import type { Breakpoint } from '../breakpoints';
 import type { FontMetricsForTheme } from '../util/typography';
+import { palette } from '../palette.css';
 
 const scaleCreator = (scale: 'px' | 'rem') => (v: string | number) => `${v}${scale}`;
 
@@ -160,7 +160,7 @@ export const makeTheme = (customTokens: DeepPartial<Tokens> = {}) => {
       ...tokens.links,
     },
     banners: {
-      titleColor: colors.white,
+      titleColor: palette.white,
       color: tokens.banners.color,
       backgroundColor: tokens.banners.backgroundColor,
     },
