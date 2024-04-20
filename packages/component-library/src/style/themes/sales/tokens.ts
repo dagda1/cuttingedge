@@ -1,5 +1,4 @@
 import type { DeepPartial } from '@cutting/util';
-// import { slate } from 'tailwindcss/colors';
 import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
 import { extractFontMetricsForTheme } from '~/style/util/typography';

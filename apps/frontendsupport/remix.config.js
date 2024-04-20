@@ -8,4 +8,5 @@ export default {
   serverBuildPath: 'server/index.mjs',
   serverModuleFormat: 'esm',
   serverDependenciesToBundle: [/^gsap.*/],
+  tailwind: false,
 };
