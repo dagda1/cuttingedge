@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.42.4
+
+### Patch Changes
+
+- e33e1b4: remove tailwindcss
+
 ## 5.42.3
 
 ### Patch Changes
