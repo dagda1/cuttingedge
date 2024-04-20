@@ -17,5 +17,4 @@ plugin-remix
   src plugin-remix.js
 
 @static
-fingerprint true
 prune true
