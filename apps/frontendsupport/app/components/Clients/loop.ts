@@ -69,8 +69,10 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
 
   const populateWidths = () => {
     assert(!!container);
+
     let b1 = container.getBoundingClientRect(),
       b2;
+
     items.forEach((el, i) => {
       widths[i] = parseFloat(gsap.getProperty(el, 'width', 'px') as string);
 

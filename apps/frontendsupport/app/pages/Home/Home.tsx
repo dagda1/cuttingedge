@@ -316,6 +316,7 @@ export function Home(): JSX.Element {
         height="screen"
         width="full"
         innerRef={container}
+        marginBottom="xxxlarge"
       >
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
@@ -375,7 +376,7 @@ export function Home(): JSX.Element {
           </Box>
         </Box>
       </Panel>
-      <Panel mode="dark" paddingY="xxxlarge">
+      <Panel mode="dark" paddingY="xxxlarge" marginTop="xxxlarge">
         <Box maxWidth="large">
           <Box display="flex" justifyContent="center" paddingX={{ mobile: 'large' }}>
             <Heading level="1" center tone="secondary" weight="weak">
