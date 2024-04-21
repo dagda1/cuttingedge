@@ -12,7 +12,6 @@ import { assert } from '@cutting/assert';
 import { Clients } from '../../components/Clients/Clients';
 import { Services } from '../Panels/Services/Services';
 import { About } from '../../components/About/About';
-import { RandomImage } from '~/components/RandomImage/RandomImage';
 import { Image } from '@unpic/react';
 import './Home.css';
 
@@ -56,7 +55,7 @@ export function Home(): JSX.Element {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function main() {
-      if (!width) {
+      if (!width || width < 100) {
         return;
       }
 
@@ -111,19 +110,6 @@ export function Home(): JSX.Element {
               duration: 1,
             },
             '<',
-          )
-          .fromTo(
-            '.hero-img img',
-            {
-              opacity: 0,
-            },
-            {
-              opacity: 1,
-              ease: 'sine.out',
-              transformOrigin: 'top',
-              duration: 0.8,
-            },
-            '<0.3',
           );
 
         gsap
@@ -139,22 +125,6 @@ export function Home(): JSX.Element {
               scrub: true,
             },
           })
-          .to(
-            '.hero-img',
-            {
-              opacity: 0,
-              duration: 3,
-            },
-            '<',
-          )
-          .to(
-            '.hero-img img',
-            {
-              y: '-140%',
-              duration: 0.8,
-            },
-            '<',
-          )
           .to(
             '.hero-title',
             {
@@ -342,38 +312,22 @@ export function Home(): JSX.Element {
         mode="dark"
         flexDirection="column"
         justifyContent="center"
+        alignItems="center"
         height="screen"
         width="full"
         innerRef={container}
       >
         <Box opacity={0} position="relative" height="maxContent" className="hero">
           <Box marginBottom="large" height="full">
-            <Box height="full" display="flex" justifyContent="center" flexDirection="column">
-              <Box
-                display={{ mobile: 'flex', desktop: 'none' }}
-                width="full"
-                justifyContent="center"
-                marginTop="large"
-                marginBottom="large"
-              >
-                <RandomImage display="flex" justifyContent="center" imageSet={1} mode="mobile" delay={3000} />
-              </Box>
+            <Box height="full" display="flex" justifyContent="center" alignItems="center" flexDirection="column">
               <Box
                 display="flex"
-                justifyContent={{ mobile: 'flexStart', tablet: 'flexStart' }}
+                justifyContent="center"
                 alignItems="center"
                 marginRight={{ desktop: 'large' }}
-                marginTop={{ mobile: 'small', desktop: 'xxlarge' }}
                 marginBottom="small"
               >
-                <RandomImage imageSet={1} mode="desktop" delay={2000} />
-                <Box
-                  marginLeft={{ mobile: 'medium', desktop: 'medium' }}
-                  marginRight={{ mobile: 'medium', desktop: 'xxlarge' }}
-                  className="hero-title italic"
-                >
-                  Is your team
-                </Box>
+                <Box className="hero-title italic">Is your team</Box>
               </Box>
               <Box display="flex" alignItems="center" justifyContent="center" marginY="small">
                 <Box display="flex" className="hero-title italic" component="span">
@@ -388,7 +342,6 @@ export function Home(): JSX.Element {
                 justifyContent={{ mobile: 'center', desktop: 'spaceAround' }}
               >
                 <Box className="hero-title">To Deliver</Box>
-                <RandomImage imageSet={2} mode="desktop" delay={2500} />
               </Box>
               <Box display={{ mobile: 'none', desktop: 'block' }} className="hero-title" marginY="small">
                 <Box component="span">Frontend Features?</Box>
@@ -406,14 +359,6 @@ export function Home(): JSX.Element {
                 >
                   Features?
                 </Box>
-              </Box>
-              <Box
-                display={{ mobile: 'flex', desktop: 'none' }}
-                width="full"
-                justifyContent="center"
-                marginBottom="large"
-              >
-                <RandomImage display="flex" justifyContent="center" imageSet={2} mode="mobile" delay={3000} />
               </Box>
 
               <Box display="flex" justifyContent="center" marginBottom={{ mobile: 'none', desktop: 'large' }}>
@@ -449,7 +394,7 @@ export function Home(): JSX.Element {
           </Box>
         </Box>
       </Panel>
-      <Panel>
+      <Panel marginTop="xxxlarge">
         <BreakGlass container={breakglassRef} image={imageRef} />
       </Panel>
       <Panel mode="dark" className="hero2" opacity={1}>
