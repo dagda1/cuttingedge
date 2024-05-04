@@ -71,7 +71,7 @@
     "@vanilla-extract/sprinkles": "^1.6.1"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.24.4",
+    "@babel/runtime": "^7.24.5",
     "@cld-apis/types": "^0.1.6",
     "@commander-js/extra-typings": "^12.0.1",
     "@cutting/cloudinary-blurhash": "workspace:*",
