@@ -14,7 +14,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@architect/architect": "^11.0.10",
+    "@architect/architect": "^11.0.12",
     "@cutting/component-library": "workspace:*",
     "@cutting/hooks": "workspace:*",
     "@cutting/markdown": "workspace:*",
