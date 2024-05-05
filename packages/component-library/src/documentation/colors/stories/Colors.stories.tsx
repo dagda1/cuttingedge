@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { themedSelect, themedTemplateMaker } from '~/components/stories/Stories';
 import { vars } from '~/style/themes/vars.css';
 import * as styles from './Colors.css';
@@ -26,4 +26,4 @@ export default {
   argTypes: {
     ...themedSelect(),
   },
-} as ComponentMeta<typeof ColorList>;
+} as Meta<typeof ColorList>;

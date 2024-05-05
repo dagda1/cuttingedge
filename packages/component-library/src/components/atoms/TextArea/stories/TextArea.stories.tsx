@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { TextArea } from '../TextArea';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 
@@ -23,7 +23,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof TextArea>;
+} as Meta<typeof TextArea>;
 
 const Template = themedTemplateMaker(TextArea);
 

@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { Label } from '../Label';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 
@@ -18,7 +18,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Label>;
+} as Meta<typeof Label>;
 
 const Template = themedTemplateMaker(Label);
 

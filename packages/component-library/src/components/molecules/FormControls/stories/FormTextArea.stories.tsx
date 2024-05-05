@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { FormTextArea } from '../FormControls';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 
@@ -23,7 +23,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FormTextArea>;
+} as Meta<typeof FormTextArea>;
 
 const Template = themedTemplateMaker(FormTextArea);
 

@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { Input } from '../Input';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 
@@ -18,7 +18,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Input>;
+} as Meta<typeof Input>;
 
 const Template = themedTemplateMaker(Input);
 

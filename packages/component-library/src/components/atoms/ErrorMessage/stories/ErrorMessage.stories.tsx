@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { themedSelect, themedTemplateMaker } from '../../../stories/Stories';
 import { ErrorMessage as Label } from '../ErrorMessage';
 
@@ -8,7 +8,7 @@ export default {
   argTypes: {
     ...themedSelect(),
   },
-} as ComponentMeta<typeof Label>;
+} as Meta<typeof Label>;
 
 const Template = themedTemplateMaker(Label);
 

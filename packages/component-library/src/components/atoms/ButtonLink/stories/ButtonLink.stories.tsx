@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { themedSelect, themedTemplateMaker } from '../../../stories/Stories';
 import { ButtonLink } from '../ButtonLink';
 
@@ -13,7 +13,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ButtonLink>;
+} as Meta<typeof ButtonLink>;
 
 const Template = themedTemplateMaker(ButtonLink);
 

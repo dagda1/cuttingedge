@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import type { ReactNode } from 'react';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 import type {
@@ -22,7 +22,7 @@ export default {
   argTypes: {
     ...themedSelect(),
   },
-} as ComponentMeta<typeof SimpleCheckBox>;
+} as Meta<typeof SimpleCheckBox>;
 
 const Template = themedTemplateMaker(SimpleCheckBox);
 
