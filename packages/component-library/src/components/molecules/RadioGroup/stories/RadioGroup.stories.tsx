@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 import type { FormRadioGroupProps } from '../../FormControls/FormControls';
 import { FormRadioGroup } from '../../FormControls/FormControls';
@@ -46,7 +46,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof SimpleRadioGroup>;
+} as Meta<typeof SimpleRadioGroup>;
 
 const Template = themedTemplateMaker(SimpleRadioGroup);
 
