@@ -37,7 +37,7 @@
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-terser": "0.4.4",
     "@rollup/pluginutils": "5.1.0",
-    "@testing-library/dom": "10.0.0",
+    "@testing-library/dom": "10.1.0",
     "@types/bluebird": "3.5.42",
     "@vanilla-extract/esbuild-plugin": "2.3.5",
     "assert-ts": "^0.3.4",
