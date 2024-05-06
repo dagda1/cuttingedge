@@ -2,7 +2,7 @@ import * as styles from './ContactButtons.css';
 import { CallPopupButton } from '../Call/CallPopupButton';
 import type { CallType } from '../Call/types';
 import type { ButtonStyle } from '@cutting/component-library';
-import { Box, Button, Text } from '@cutting/component-library';
+import { Box, Button } from '@cutting/component-library';
 import { useCallback, useState } from 'react';
 import { Modal } from '../Modal/Modal';
 import { Contact } from '../Contact/Contact';
