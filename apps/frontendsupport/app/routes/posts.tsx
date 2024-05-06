@@ -1,6 +1,7 @@
 import { Box, Heading, Stack } from '@cutting/component-library';
-import { ContactButtons } from '@cutting/react-hook-form-components';
+
 import { Outlet } from '@remix-run/react';
+import { ContactButtons } from '~/components/ContactButtons';
 
 export default function Services(): JSX.Element {
   return (

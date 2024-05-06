@@ -1,6 +1,6 @@
 import { Box, Heading, Stack, Text, Tiles } from '@cutting/component-library';
 import { Service } from './Service';
-import { ContactButtons } from '@cutting/react-hook-form-components';
+import { ContactButtons } from '~/components/ContactButtons';
 
 type Service = {
   heading: string;

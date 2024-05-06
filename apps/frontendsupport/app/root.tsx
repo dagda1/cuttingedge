@@ -7,13 +7,10 @@ import { cssBundleHref } from '@remix-run/css-bundle';
 import './global.css';
 import { supportTheme } from '@cutting/component-library';
 import cuttingStyles from '@cutting/component-library/styles.css';
-import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
-import { FormContextProvider } from '@cutting/react-hook-form-components';
 import cssStyles from './styles.css';
 import { Header } from './components/Header/Header.js';
 import * as styles from './root.css';
 import cs from 'classnames';
-import { contactFormProps } from './constants.js';
 
 export async function loader() {
   return json({
@@ -92,11 +89,6 @@ export const links: LinksFunction = () => [
   },
   {
     rel: 'preload',
-    href: hookFormStyles as unknown as string,
-    as: 'style',
-  },
-  {
-    rel: 'preload',
     href: cssBundleHref as string,
     as: 'style',
   },
@@ -117,10 +109,6 @@ export const links: LinksFunction = () => [
   {
     rel: 'stylesheet',
     href: cuttingStyles as unknown as string,
-  },
-  {
-    rel: 'stylesheet',
-    href: hookFormStyles as unknown as string,
   },
   {
     rel: 'stylesheet',
@@ -157,9 +145,7 @@ export default function App() {
         <div id="portal" />
         <Header />
         <main>
-          <FormContextProvider {...contactFormProps}>
-            <Outlet />
-          </FormContextProvider>
+          <Outlet />
 
           <div style={{ display: 'none' }}>{data?.ENV?.GIT_COMMIT}</div>
         </main>

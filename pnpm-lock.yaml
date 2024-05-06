@@ -134,9 +134,6 @@ importers:
       '@cutting/markdown':
         specifier: workspace:*
         version: link:../../packages/markdown
-      '@cutting/react-hook-form-components':
-        specifier: workspace:*
-        version: link:../../packages/react-hook-form-components
       '@cutting/use-get-parent-size':
         specifier: workspace:*
         version: link:../../packages/use-get-parent-size
@@ -200,6 +197,9 @@ importers:
       gsap:
         specifier: npm:@gsap/shockingly@^3.12.5
         version: npm.greensock.com/@gsap/shockingly@3.12.5
+      iframe-resizer-react:
+        specifier: ^1.0.8
+        version: 1.0.8(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
       image-size:
         specifier: ^1.1.1
         version: 1.1.1
@@ -14144,6 +14144,26 @@ packages:
     resolution: {integrity: sha512-DUNFN5j7Tln0D+TxzloUjKB+CtVu6myn0JEFak6dG18mNt9YkQ6lzGCdafwofISZ1lLF3xRHJ98VKy9ynkcFaA==}
     dev: true
 
+  /iframe-resizer-react@1.0.8(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Lu18lxocGQoMBTI8SovBrUbkKHDIaF7A+LAPkN2CSsCFFV5PYjRLnNku7Ug9igaZlJgwnRrF6S8YI5tVVnyt8w==}
+    engines: {node: '>=8', npm: '>=5'}
+    peerDependencies:
+      prop-types: ^15.7.2
+      react: ^16.13.1
+      react-dom: ^16.13.1
+    dependencies:
+      iframe-resizer: 4.3.11
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      warning: 4.0.3
+    dev: false
+
+  /iframe-resizer@4.3.11:
+    resolution: {integrity: sha512-5QtnsmfH11GDsuC7Gxd/eNzojudX3346Gb0E+Ku8ln8AtfSq+cWCZtnhCrthrtE7f1CI2/kwHkZ9G4sFYzHP7A==}
+    engines: {node: '>=0.8.0'}
+    dev: false
+
   /ignore-by-default@1.0.1:
     resolution: {integrity: sha512-Ius2VYcGNk7T90CppJqcIkS5ooHUZyIQK+ClZfMfMNFEF9VSE73Fq+906u/CWu92x4gzZMWOwfFYckPObzdEbA==}
     dev: true
@@ -22917,6 +22937,12 @@ packages:
     engines: {node: '>=18'}
     dependencies:
       xml-name-validator: 5.0.0
+
+  /warning@4.0.3:
+    resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
 
   /watchpack-chokidar2@2.0.1:
     resolution: {integrity: sha512-nCFfBIPKr5Sh61s4LPpy1Wtfi0HE8isJ3d2Yb5/Ppw2P2B/3eVSEBjKfN0fmHJSK14+31KwMKmcrzs2GM4P0Ww==}

@@ -1,5 +1,5 @@
 import { Box, Heading, List, Redhatestimonial, Stack, Text, TextLink } from '@cutting/component-library';
-import { ContactButtons } from '@cutting/react-hook-form-components';
+import { ContactButtons } from '~/components/ContactButtons';
 
 export default function Rescue(): JSX.Element {
   return (

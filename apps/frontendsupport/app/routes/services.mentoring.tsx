@@ -1,5 +1,5 @@
 import { Heading, DSTestimonial, Stack, Text } from '@cutting/component-library';
-import { ContactButtons } from '@cutting/react-hook-form-components';
+import { ContactButtons } from '~/components/ContactButtons';
 
 export default function Mentoring(): JSX.Element {
   return (
