@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.42.5
+
+### Patch Changes
+
+- 75153de: more palette
+
 ## 5.42.4
 
 ### Patch Changes
