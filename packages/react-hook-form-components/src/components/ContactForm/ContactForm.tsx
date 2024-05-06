@@ -10,17 +10,16 @@ import { Box, Button } from '@cutting/component-library';
 import { useFormContext } from './FormContext';
 
 interface FormValues {
-  'Last Name': string;
-  Company: string;
-  Email: string;
-  Description: string;
+  'entry.200810880': string;
+  'entry.1583339514': string;
+  'entry.345343614': string;
   buttonStyle?: ButtonStyle;
 }
 
 export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'buttonStyle'>): JSX.Element {
   const formContext = useFormContext();
 
-  const { formName, xnQsjsdp, xmIwtLD, returnUrl } = formContext;
+  const { returnUrl } = formContext;
 
   const form = useRef<HTMLFormElement>(null);
   const botChecker = useRef<HTMLInputElement>(null);
@@ -31,23 +30,51 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
     control,
   } = useForm<FormValues>({ reValidateMode: 'onBlur' });
 
-  const onSubmit: SubmitHandler<FormValues> = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit: SubmitHandler<FormValues> = (data: any) => {
     assert(!!form?.current, `no active form in submitHandler`);
     assert(!!botChecker.current, `no botChecker`);
     assert(botChecker.current.value === '', `intruderbot alert!!!!`);
 
-    form.current.action = CRM;
-    form.current.submit();
+    const formData = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(data.entry)) {
+      console.log({ key, value });
+      formData.append(`entry.${key}`, value as string);
+    }
+
+    console.log(formData);
+
+    fetch(CRM, {
+      method: 'POST',
+      body: formData.toString(),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
+      .then(() => {
+        assert(!!returnUrl, `no returnUrl`);
+
+        location.href = returnUrl;
+      })
+      .catch((error) => {
+        console.error(error);
+        assert(!!returnUrl, `no returnUrl`);
+
+        location.href = returnUrl;
+      });
+    // form.current.action = CRM;
+    // form.current.submit();
   };
 
   return (
     <Box width="full" className={styles.container}>
-      <form onSubmit={handleSubmit(onSubmit)} name={formName} method="POST" ref={form} noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} method="POST" ref={form} noValidate>
         <fieldset>
           <Input
-            name="Last Name"
+            name="entry.200810880"
             rules={{
-              required: 'Last name is required',
+              required: 'Name is required',
               minLength: { value: 3, message: 'Must have at least 3 characters' },
               maxLength: { value: 250, message: 'maxiumum 250 characters' },
             }}
@@ -60,7 +87,7 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
           />
           <Input
             maxLength={250}
-            name="Email"
+            name="entry.1583339514"
             rules={{
               required: 'Email is required',
               minLength: { value: 3, message: 'Must have at least 3 characters' },
@@ -73,20 +100,8 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
             errors={errors}
           />
 
-          <Input
-            name="Company"
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            control={control as any}
-            rules={{
-              minLength: { value: 3, message: 'Must have at least 3 characters' },
-              maxLength: { value: 250, message: 'maxiumum 250 characters' },
-            }}
-            label="Which Company"
-            errors={errors}
-          />
-
           <TextArea
-            name="Description"
+            name="entry.345343614"
             rules={{
               required: 'Description is required',
               minLength: { value: 3, message: 'Must have at least 3 characters' },
@@ -105,11 +120,7 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
             </Button>
           </div>
         </fieldset>
-        <input type="text" style={{ display: 'none' }} name="xnQsjsdp" defaultValue={xnQsjsdp}></input>
         <input ref={botChecker} type="hidden" name="zc_gad" id="zc_gad" value=""></input>
-        <input type="text" style={{ display: 'none' }} name="xmIwtLD" defaultValue={xmIwtLD}></input>
-        <input type="text" style={{ display: 'none' }} name="actionType" defaultValue="TGVhZHM="></input>
-        <input type="text" style={{ display: 'none' }} name="returnURL" defaultValue={returnUrl ?? '/'}></input>
       </form>
     </Box>
   );
