@@ -22,6 +22,7 @@ export function Hamburger({ open, setOpen, variant = 'dark' }: HamburgerProps): 
         ['dark']: variant === 'dark',
         ['light']: variant === 'light',
       })}
+      zIndex="notification"
     >
       <Box />
       <Box />

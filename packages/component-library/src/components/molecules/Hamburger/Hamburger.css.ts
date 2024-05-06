@@ -1,6 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { palette } from '~/style';
-import { ZIndex } from '~/utl/zindex';
 
 export const container = style([
   {
@@ -16,7 +15,6 @@ export const container = style([
     border: 'none',
     cursor: 'pointer',
     padding: 0,
-    zIndex: ZIndex.notification,
 
     selectors: {
       '&:focus': {

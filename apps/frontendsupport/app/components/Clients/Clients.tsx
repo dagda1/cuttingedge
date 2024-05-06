@@ -38,11 +38,6 @@ export function Clients({ width }: ClientsProps): JSX.Element {
         return;
       }
 
-      await waitUntil(() => {
-        console.log(`checking, current is ${boxRef.current!.getBoundingClientRect().width}`);
-        return boxRef.current!.getBoundingClientRect().width > 0;
-      });
-
       if (typeof id.current === 'number') {
         savedCallback.current.refresh(true);
         return;
@@ -50,11 +45,18 @@ export function Clients({ width }: ClientsProps): JSX.Element {
 
       const boxes = gsap.utils.toArray<HTMLElement>('.box');
 
+      await waitUntil(() => {
+        console.log(`checking, boxes.length is ${boxes.length} & boxes[0].offsetWidth = ${boxes[0].offsetWidth}`);
+        return boxes.length === 7 && boxes[0].offsetWidth > 0;
+      }, 500);
+
       const loop = horizontalLoop(boxes, {
         paused: true,
         paddingRight: 0,
       });
+
       savedCallback.current = loop;
+
       function tick() {
         savedCallback.current.next({ duration: 0.4, ease: 'power1.inOut' });
       }
