@@ -79,7 +79,7 @@
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
     "@pnpm/find-workspace-packages": "^6.0.9",
     "@remix-run/dev": "^2.8.1",
-    "@remix-run/eslint-config": "^2.8.1",
+    "@remix-run/eslint-config": "^2.9.1",
     "@types/js-yaml": "^4.0.9",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
