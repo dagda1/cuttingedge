@@ -46,9 +46,9 @@ export function Clients({ width }: ClientsProps): JSX.Element {
       const boxes = gsap.utils.toArray<HTMLElement>('.box');
 
       await waitUntil(() => {
-        console.log(`checking, boxes.length is ${boxes.length}`);
-        return boxes.length === 7;
-      });
+        console.log(`checking, boxes.length is ${boxes.length} & boxes[0].offsetWidth = ${boxes[0].offsetWidth}`);
+        return boxes.length === 7 && boxes[0].offsetWidth > 0;
+      }, 500);
 
       const loop = horizontalLoop(boxes, {
         paused: true,
