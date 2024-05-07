@@ -1,1 +1,1 @@
-export const CRM = 'https://crm.zoho.eu/crm/WebToLeadForm';
+export const CRM = 'https://formspree.io/f/xgegdbnw';
