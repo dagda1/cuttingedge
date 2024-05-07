@@ -3,8 +3,6 @@ import { createContext, useContext, useMemo } from 'react';
 import { assert } from '@cutting/assert';
 
 export interface ContactFormContext {
-  xmIwtLD: string;
-  formName: string;
   returnUrl?: string;
 }
 

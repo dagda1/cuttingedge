@@ -10,9 +10,8 @@ import { Box, Button } from '@cutting/component-library';
 import { useFormContext } from './FormContext';
 
 interface FormValues {
-  'entry.200810880': string;
-  'entry.1583339514': string;
-  'entry.345343614': string;
+  email: string;
+  message: string;
   buttonStyle?: ButtonStyle;
 }
 
@@ -20,7 +19,6 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
   const formContext = useFormContext();
 
   const { returnUrl } = formContext;
-
   const form = useRef<HTMLFormElement>(null);
   const botChecker = useRef<HTMLInputElement>(null);
 
@@ -30,26 +28,18 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
     control,
   } = useForm<FormValues>({ reValidateMode: 'onBlur' });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit: SubmitHandler<FormValues> = (data: any) => {
+  const onSubmit: SubmitHandler<FormValues> = (data, event) => {
     assert(!!form?.current, `no active form in submitHandler`);
     assert(!!botChecker.current, `no botChecker`);
     assert(botChecker.current.value === '', `intruderbot alert!!!!`);
 
-    const formData = new URLSearchParams();
-
-    for (const [key, value] of Object.entries(data.entry)) {
-      console.log({ key, value });
-      formData.append(`entry.${key}`, value as string);
-    }
-
-    console.log(formData);
+    const formData = new FormData(event?.target);
 
     fetch(CRM, {
       method: 'POST',
-      body: formData.toString(),
+      body: formData,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
       },
     })
       .then(() => {
@@ -59,10 +49,8 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
       })
       .catch((error) => {
         console.error(error);
-        assert(!!returnUrl, `no returnUrl`);
-
-        location.href = returnUrl;
       });
+
     // form.current.action = CRM;
     // form.current.submit();
   };
@@ -72,22 +60,8 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
       <form onSubmit={handleSubmit(onSubmit)} method="POST" ref={form} noValidate>
         <fieldset>
           <Input
-            name="entry.200810880"
-            rules={{
-              required: 'Name is required',
-              minLength: { value: 3, message: 'Must have at least 3 characters' },
-              maxLength: { value: 250, message: 'maxiumum 250 characters' },
-            }}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            control={control as any}
-            label="What's your name"
-            errorMessage="Last Name is required"
-            required
-            errors={errors}
-          />
-          <Input
             maxLength={250}
-            name="entry.1583339514"
+            name="email"
             rules={{
               required: 'Email is required',
               minLength: { value: 3, message: 'Must have at least 3 characters' },
@@ -101,7 +75,7 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
           />
 
           <TextArea
-            name="entry.345343614"
+            name="message"
             rules={{
               required: 'Description is required',
               minLength: { value: 3, message: 'Must have at least 3 characters' },
