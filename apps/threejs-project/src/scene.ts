@@ -3,7 +3,6 @@ import { assert } from '@cutting/assert';
 import {
   Scene,
   WebGLRenderer,
-  PerspectiveCamera,
   MeshBasicMaterial,
   Mesh,
   LineBasicMaterial,
@@ -11,8 +10,8 @@ import {
   ArrowHelper,
   BufferGeometry,
   Line,
+  OrthographicCamera,
 } from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { addTick } from './utils/addTick';
 import { addAxis } from './utils/addAxis';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
@@ -187,8 +186,6 @@ function run() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   const tick = () => {
-    controls.update();
-
     renderer.render(scene, camera);
 
     window.requestAnimationFrame(tick);
