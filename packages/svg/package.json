@@ -19,21 +19,21 @@
   "devDependencies": {
     "@cutting/component-library": "workspace:*",
     "@testing-library/dom": "^10.1.0",
-    "@testing-library/react": "15.0.6",
+    "@testing-library/react": "15.0.7",
     "@testing-library/user-event": "14.5.2",
-    "@types/react": "18.2.79",
-    "@types/react-dom": "18.2.25",
-    "@vanilla-extract/css": "^1.14.2",
+    "@types/react": "18.3.2",
+    "@types/react-dom": "18.3.0",
+    "@vanilla-extract/css": "^1.15.1",
     "@vanilla-extract/sprinkles": "1.6.1",
     "@visx/scale": "^3.5.0",
     "d3-scale": "4.0.2",
     "@cutting/assert": "workspace:*",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "peerDependencies": {
-    "react": ">= 18.2.0",
-    "react-dom": ">= 18.2.0"
+    "react": ">= 18.3.1",
+    "react-dom": ">= 18.3.1"
   },
   "scripts": {
     "build": "NODE_ENV=production devtools rollup",
