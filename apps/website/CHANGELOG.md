@@ -1,5 +1,18 @@
 # @cutting/website
 
+## 4.29.63
+
+### Patch Changes
+
+- 6000f90: upgrade to pnpm 9.1.0
+- Updated dependencies [6000f90]
+  - @cutting/react-hook-form-components@0.5.30
+  - @cutting/use-get-parent-size@2.1.13
+  - @cutting/component-library@5.42.7
+  - @cutting/use-mathjax@4.50.14
+  - @cutting/hooks@4.57.3
+  - @cutting/svg@4.54.20
+
 ## 4.29.62
 
 ### Patch Changes

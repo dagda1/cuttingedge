@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.1.13
+
+### Patch Changes
+
+- 6000f90: upgrade to pnpm 9.1.0
+
 ## 2.1.12
 
 ### Patch Changes

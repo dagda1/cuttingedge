@@ -1,5 +1,11 @@
 # @cutting/markdown
 
+## 0.1.15
+
+### Patch Changes
+
+- 6000f90: upgrade to pnpm 9.1.0
+
 ## 0.1.14
 
 ### Patch Changes

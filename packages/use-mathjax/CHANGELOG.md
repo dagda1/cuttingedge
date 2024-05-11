@@ -1,5 +1,13 @@
 # @cutting/use-mathjax
 
+## 4.50.14
+
+### Patch Changes
+
+- 6000f90: upgrade to pnpm 9.1.0
+- Updated dependencies [6000f90]
+  - @cutting/hooks@4.57.3
+
 ## 4.50.13
 
 ### Patch Changes

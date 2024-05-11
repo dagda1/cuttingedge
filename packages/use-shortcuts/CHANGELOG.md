@@ -1,5 +1,11 @@
 # @cutting/use-shortcuts
 
+## 4.46.13
+
+### Patch Changes
+
+- 6000f90: upgrade to pnpm 9.1.0
+
 ## 4.46.12
 
 ### Patch Changes
