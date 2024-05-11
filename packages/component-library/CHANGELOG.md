@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.42.6
+
+### Patch Changes
+
+- 99c2319: remove forwardRef from FormControl
+
 ## 5.42.5
 
 ### Patch Changes

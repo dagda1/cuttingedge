@@ -1,5 +1,13 @@
 # @cutting/react-hook-form-components
 
+## 0.5.29
+
+### Patch Changes
+
+- d97621d: Use FormSpree to post ContactForm to
+- Updated dependencies [99c2319]
+  - @cutting/component-library@5.42.6
+
 ## 0.5.28
 
 ### Patch Changes

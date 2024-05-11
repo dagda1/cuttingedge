@@ -1,5 +1,14 @@
 # @cutting/frontend-support
 
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [d97621d]
+- Updated dependencies [99c2319]
+  - @cutting/react-hook-form-components@0.5.29
+  - @cutting/component-library@5.42.6
+
 ## 0.2.7
 
 ### Patch Changes
