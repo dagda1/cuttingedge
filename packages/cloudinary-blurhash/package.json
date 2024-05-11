@@ -17,7 +17,7 @@
     "@unpic/pixels": "^1.2.2",
     "blurhash": "^2.0.5",
     "chalk": "^5.3.0",
-    "cloudinary": "^2.1.0",
+    "cloudinary": "^2.2.0",
     "log-update": "^6.0.0"
   },
   "devDependencies": {

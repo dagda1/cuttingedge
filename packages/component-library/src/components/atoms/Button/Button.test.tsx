@@ -1,6 +1,8 @@
 import { expect, it, describe } from 'vitest';
 import type { ButtonProps } from './Button';
 import { Button } from './Button';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { render, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 
