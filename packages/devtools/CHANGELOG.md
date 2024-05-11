@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.9
+
+### Patch Changes
+
+- 6000f90: upgrade to pnpm 9.1.0
+
 ## 4.63.8
 
 ### Patch Changes

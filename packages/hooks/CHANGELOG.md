@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.57.3
+
+### Patch Changes
+
+- 6000f90: upgrade to pnpm 9.1.0
+
 ## 4.57.2
 
 ### Patch Changes

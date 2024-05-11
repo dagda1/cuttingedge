@@ -1,5 +1,17 @@
 # @cutting/frontend-support
 
+## 0.3.3
+
+### Patch Changes
+
+- 6000f90: upgrade to pnpm 9.1.0
+- Updated dependencies [6000f90]
+  - @cutting/react-hook-form-components@0.5.30
+  - @cutting/use-get-parent-size@2.1.13
+  - @cutting/component-library@5.42.7
+  - @cutting/markdown@0.1.15
+  - @cutting/hooks@4.57.3
+
 ## 0.3.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.1.8
+
+### Patch Changes
+
+- 6000f90: upgrade to pnpm 9.1.0
+
 ## 0.1.7
 
 ### Patch Changes
