@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.45.7
+
+### Patch Changes
+
+- 8af3233: rollback @typescript-eslint/eslint-plugin to 7.7.0 so fixAll on save works in vscode
+
 ## 4.45.6
 
 ### Patch Changes
