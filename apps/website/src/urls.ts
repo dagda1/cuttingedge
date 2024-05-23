@@ -12,3 +12,4 @@ export const Sine2 = '/sine2';
 export const Tan = '/tan';
 export const Sinusoidal = '/sinusoidal';
 export const Polar = '/polar';
+export const Dotproduct2D = '/dotproduct2d';

@@ -177,7 +177,7 @@ importers:
         version: 0.27.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@gsap/shockingly':
         specifier: ^3.12.7
-        version: 3.12.7
+        version: gsap@@gsap/shockingly@3.12.7
       '@remix-run/architect':
         specifier: ^2.16.4
         version: 2.16.4(typescript@5.8.3)
@@ -500,6 +500,9 @@ importers:
       immer:
         specifier: 10.1.1
         version: 10.1.1
+      lil-gui:
+        specifier: ^0.19.2
+        version: 0.19.2
       mathjs:
         specifier: 14.4.0
         version: 14.4.0
@@ -536,6 +539,9 @@ importers:
       serve-static:
         specifier: 2.2.0
         version: 2.2.0
+      three:
+        specifier: ^0.164.1
+        version: 0.164.1
       ts-pattern:
         specifier: 5.7.0
         version: 5.7.0
@@ -7416,6 +7422,9 @@ packages:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
 
+  gsap@@gsap/shockingly@3.12.7:
+    resolution: {integrity: sha512-uvbaCkQCdjy7bNvzBWE21dVFa32uqBzCZfYgNRikcFn2SqyQ0/fDUJkfAtme9tdkv3n+niBpdGraLjVA26tTWQ==, tarball: https://npm.greensock.com/@gsap/shockingly/-/shockingly-3.12.7.tgz}
+
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
     hasBin: true
@@ -8474,6 +8483,9 @@ packages:
 
   lie@3.3.0:
     resolution: {integrity: sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==}
+
+  lil-gui@0.19.2:
+    resolution: {integrity: sha512-nU8j4ND702ouGfQZoaTN4dfXxacvGOAVK0DtmZBVcUYUAeYQXLQAjAN50igMHiba3T5jZyKEjXZU+Ntm1Qs6ZQ==}
 
   lil-gui@0.20.0:
     resolution: {integrity: sha512-k7Ipr0ztqslMA2XvM5z5ZaWhxQtnEOwJBfI/hmSuRh6q4iMG9L0boqqrnZSzBR1jzyJ28OMl47l65ILzRe1TdA==}
@@ -10245,7 +10257,6 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
-
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qs@6.13.0:
@@ -11629,6 +11640,9 @@ packages:
 
   text-decoder@1.2.3:
     resolution: {integrity: sha512-3/o9z3X0X0fTupwsYvR03pJ/DjWuqqrfwBgTQzdWDiQSm9KitAyz/9WqsT2JQW7KV2m+bC2ol/zqpW37NHxLaA==}
+
+  three@0.164.1:
+    resolution: {integrity: sha512-iC/hUBbl1vzFny7f5GtqzVXYjMJKaTPxiCxXfrvVdBi1Sf+jhd1CAkitiFwC7mIBFCo3MrDLJG97yisoaWig0w==}
 
   three@0.175.0:
     resolution: {integrity: sha512-nNE3pnTHxXN/Phw768u0Grr7W4+rumGg/H6PgeseNJojkJtmeHJfZWi41Gp2mpXl1pg1pf1zjwR4McM1jTqkpg==}
@@ -16783,7 +16797,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.25.9(@babel/core@7.26.10)
       '@vanilla-extract/babel-plugin-debug-ids': 1.2.0
       '@vanilla-extract/css': 1.17.1(babel-plugin-macros@3.1.0)
-      esbuild: 0.17.6
+      esbuild: 0.17.19
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -20501,6 +20515,8 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
+  gsap@@gsap/shockingly@3.12.7: {}
+
   gunzip-maybe@1.4.2:
     dependencies:
       browserify-zlib: 0.1.4
@@ -21667,6 +21683,8 @@ snapshots:
   lie@3.3.0:
     dependencies:
       immediate: 3.0.6
+
+  lil-gui@0.19.2: {}
 
   lil-gui@0.20.0: {}
 
@@ -25904,6 +25922,8 @@ snapshots:
   text-decoder@1.2.3:
     dependencies:
       b4a: 1.6.7
+
+  three@0.164.1: {}
 
   three@0.175.0: {}
 

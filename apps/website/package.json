@@ -59,6 +59,7 @@
     "history": "5.3.0",
     "immer": "10.1.1",
     "mathjs": "14.4.0",
+    "lil-gui": "^0.19.2",
     "nocache": "4.0.0",
     "puppeteer": "^24.6.0",
     "rc-slider": "^11.1.8",
@@ -71,6 +72,7 @@
     "regression": "2.0.1",
     "serve-static": "2.2.0",
     "ts-pattern": "5.7.0",
+    "three": "^0.164.1",
     "url-join": "5.0.0"
   },
   "devDependencies": {
@@ -111,6 +113,11 @@
   "peerDependencies": {
     "react": "19.1.0",
     "react-dom": "19.1.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "ts-node": "10.9.2"
+    }
   },
   "volta": {
     "extends": "../../package.json"

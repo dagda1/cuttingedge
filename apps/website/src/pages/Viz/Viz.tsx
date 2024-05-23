@@ -2,6 +2,7 @@ import { MathJaxProvider } from '@cutting/use-mathjax';
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 
+import DotProduct2D from '~/components/Dotproduct2D/Dotproduct2D';
 import { Fallback } from '~/components/Fallback/Fallback';
 import * as Urls from '~/urls';
 
@@ -61,6 +62,14 @@ export function Viz(): JSX.Element {
           element={
             <Suspense fallback={<Fallback />}>
               <Polar />
+            </Suspense>
+          }
+        />
+        <Route
+          path={Urls.Dotproduct2D}
+          element={
+            <Suspense fallback={<Fallback />}>
+              <DotProduct2D />
             </Suspense>
           }
         />

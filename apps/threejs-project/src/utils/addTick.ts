@@ -33,13 +33,5 @@ export function addTick(scene: Scene, position: number, axis: Axis, color = 0x00
       addTick(start, end);
       break;
     }
-
-    case 'z': {
-      start = new Vector3(0, 0, position).add(new Vector3(-tickSize, 0, 0));
-      end = new Vector3(0, 0, position).add(new Vector3(tickSize, 0, 0));
-
-      addTick(start, end);
-      break;
-    }
   }
 }
