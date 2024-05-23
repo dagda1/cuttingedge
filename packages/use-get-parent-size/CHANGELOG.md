@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.1.14
+
+### Patch Changes
+
+- 857cd84: update all dependencies
+
 ## 2.1.13
 
 ### Patch Changes

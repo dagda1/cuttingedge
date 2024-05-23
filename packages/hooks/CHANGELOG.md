@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.57.4
+
+### Patch Changes
+
+- 857cd84: update all dependencies
+
 ## 4.57.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/markdown
 
+## 0.1.16
+
+### Patch Changes
+
+- 857cd84: update all dependencies
+
 ## 0.1.15
 
 ### Patch Changes

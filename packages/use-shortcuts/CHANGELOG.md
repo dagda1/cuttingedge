@@ -1,5 +1,11 @@
 # @cutting/use-shortcuts
 
+## 4.46.14
+
+### Patch Changes
+
+- 857cd84: update all dependencies
+
 ## 4.46.13
 
 ### Patch Changes

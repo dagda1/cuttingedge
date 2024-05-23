@@ -1,5 +1,13 @@
 # @cutting/component-library
 
+## 5.42.8
+
+### Patch Changes
+
+- 857cd84: update all dependencies
+- Updated dependencies [857cd84]
+  - @cutting/hooks@4.57.4
+
 ## 5.42.7
 
 ### Patch Changes
