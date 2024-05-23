@@ -146,7 +146,7 @@ importers:
         version: 0.26.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@gsap/shockingly':
         specifier: ^3.12.5
-        version: 3.12.5
+        version: gsap@@gsap/shockingly@3.12.5
       '@remix-run/architect':
         specifier: ^2.9.2
         version: 2.9.2(typescript@5.4.5)
@@ -605,6 +605,9 @@ importers:
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@swc/core@1.5.7)(@types/node@20.12.11)(typescript@5.4.5)
+      tsx:
+        specifier: ^4.10.1
+        version: 4.10.2
       vite:
         specifier: 5.2.11
         version: 5.2.11(@types/node@20.12.11)(terser@5.31.0)
@@ -7350,6 +7353,9 @@ packages:
   gray-matter@4.0.3:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
+
+  gsap@@gsap/shockingly@3.12.5:
+    resolution: {integrity: sha512-JoZp6iYvOC+wkwl8zfXSqSrYCcuzTntaULCL08YMa1vonrYcr9D0K3EUe9PNpw7FYK1chjSwjjgcw3zS/O2SWg==, tarball: https://npm.greensock.com/@gsap/shockingly/-/shockingly-3.12.5.tgz}
 
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
@@ -20414,6 +20420,8 @@ snapshots:
       kind-of: 6.0.3
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
+
+  gsap@@gsap/shockingly@3.12.5: {}
 
   gunzip-maybe@1.4.2:
     dependencies:
