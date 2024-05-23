@@ -28,14 +28,14 @@
     "@cutting/component-library": "workspace:*",
     "@cutting/util": "workspace:*",
     "@cutting/assert": "workspace:*",
-    "react-hook-form": "7.51.4",
+    "react-hook-form": "7.51.5",
     "react-is": "^18.3.1",
     "react-calendly": "^4.3.0"
   },
   "devDependencies": {
     "@types/react": "18.3.2",
     "@types/react-dom": "18.3.0",
-    "@vanilla-extract/css": "^1.15.1",
+    "@vanilla-extract/css": "^1.15.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-syntax-highlighter": "15.5.0",
