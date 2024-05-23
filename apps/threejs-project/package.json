@@ -15,13 +15,9 @@
     "d3-scale": "4.0.2",
     "gsap": "npm:@gsap/shockingly@^3.12.5",
     "lil-gui": "^0.19.2",
-<<<<<<< HEAD
     "three": "^0.167.1"
-=======
-    "three": "^0.165.0"
   },
   "volta": {
     "extends": "../../package.json"
->>>>>>> a83b7abe (add ticks and labels to dotproduct grid)
   }
 }
