@@ -3,6 +3,7 @@ import { Fallback } from '~/components/Fallback/Fallback';
 import { MathJaxProvider } from '@cutting/use-mathjax';
 import { Suspense, lazy } from 'react';
 import * as Urls from '~/urls';
+import DotProduct2D from '~/components/Dotproduct2D/Dotproduct2D';
 
 const Sine = lazy(() => import('~/components/Sine/Sine'));
 const FunctionPlot = lazy(() => import('~/components/FunctionPlot/FunctionPlot'));
@@ -51,6 +52,14 @@ export function Viz(): JSX.Element {
           element={
             <Suspense fallback={<Fallback />}>
               <Sinusoidal />
+            </Suspense>
+          }
+        />
+        <Route
+          path={Urls.Dotproduct2D}
+          element={
+            <Suspense fallback={<Fallback />}>
+              <DotProduct2D />
             </Suspense>
           }
         />
