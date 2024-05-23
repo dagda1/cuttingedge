@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.10
+
+### Patch Changes
+
+- 857cd84: update all dependencies
+
 ## 4.63.9
 
 ### Patch Changes
