@@ -46,7 +46,7 @@
     "follow-redirects": "1.15.6",
     "husky": "9.0.11",
     "jsdom": "24.0.0",
-    "lint-staged": "15.2.4",
+    "lint-staged": "15.2.5",
     "node-fetch": "3.3.2",
     "prettier": "3.2.5",
     "turbo": "1.13.3",
