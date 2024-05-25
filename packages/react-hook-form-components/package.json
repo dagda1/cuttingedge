@@ -33,7 +33,7 @@
     "react-calendly": "^4.3.0"
   },
   "devDependencies": {
-    "@types/react": "18.3.2",
+    "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@vanilla-extract/css": "^1.15.2",
     "react": "18.3.1",
