@@ -3,8 +3,8 @@ import { Box } from '@cutting/component-library';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
-import type { Material } from 'three';
-import { Vector2 } from 'three';
+import type { BufferGeometry, Line, Material, NormalBufferAttributes, Object3DEventMap } from 'three';
+import { CircleGeometry, DoubleSide, Mesh, MeshBasicMaterial, Vector3 } from 'three';
 import {
   Scene,
   WebGLRenderer,
@@ -17,6 +17,8 @@ import type { ScaleLinear } from 'd3-scale';
 import { scaleLinear } from 'd3-scale';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { createLine, createTickMarks } from './axes';
+import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
+import type { DragEndEvent, DragStartEvent } from './types';
 
 const RANGE = [-10, 10];
 
@@ -25,30 +27,30 @@ interface Point {
   y: number;
 }
 
-interface Line {
+interface CartesianLine {
   start: Point;
   end: Point;
 }
 
 type TwoDVector = [number, number];
 
-const LineA: Line = { start: { x: 1, y: 2 }, end: { x: 6, y: 8 } };
+const LineA: CartesianLine = { start: { x: 1, y: 2 }, end: { x: 6, y: 5 } };
 
-const LineB: Line = { start: { x: 1, y: 2 }, end: { x: 7, y: -4 } };
+const LineB: CartesianLine = { start: { x: 1, y: 2 }, end: { x: 7, y: -4 } };
 
-function directionVector(line: Line): TwoDVector {
+function directionVector(line: CartesianLine): TwoDVector {
   return [line.end.x - line.start.x, line.end.y - line.start.y];
 }
 
 function AddLineToGraph(
   xScale: ScaleLinear<number, number, never>,
   yScale: ScaleLinear<number, number, never>,
-  line: Line,
+  line: CartesianLine,
   material: Material,
 ) {
   return createLine(
-    new Vector2(xScale(line.start.x), yScale(line.start.y)),
-    new Vector2(xScale(line.end.x), yScale(line.end.y)),
+    new Vector3(xScale(line.start.x), yScale(line.start.y), 0),
+    new Vector3(xScale(line.end.x), yScale(line.end.y), 0),
     material,
   );
 }
@@ -56,8 +58,8 @@ function AddLineToGraph(
 function projectLineAOntoLineB(
   xScale: ScaleLinear<number, number, never>,
   yScale: ScaleLinear<number, number, never>,
-  lineA: Line,
-  lineB: Line,
+  lineA: CartesianLine,
+  lineB: CartesianLine,
   material: Material,
 ) {
   const directionVectorA = directionVector(lineA);
@@ -69,14 +71,33 @@ function projectLineAOntoLineB(
 
   const projbA = [directionVectorB[0] * p, directionVectorB[1] * p];
 
-  const projectionLine: Line = {
+  const projectionLine: CartesianLine = {
     start: { ...LineA.start },
     end: { x: lineA.start.x + projbA[0], y: lineA.start.y + projbA[1] },
   };
 
-  console.log({ projbA, projectionLine });
+  return AddLineToGraph(xScale, yScale, projectionLine, material);
+}
 
-  AddLineToGraph(xScale, yScale, projectionLine, material);
+function createCircle(
+  xScale: ScaleLinear<number, number, never>,
+  yScale: ScaleLinear<number, number, never>,
+  line: CartesianLine,
+  name: string,
+): Mesh {
+  const CircleRadius = 10;
+  const CircleSegments = 32;
+  const circleMaterial = new MeshBasicMaterial({ color: 0x0000ff, side: DoubleSide });
+
+  const circleGeometry = new CircleGeometry(CircleRadius, CircleSegments);
+
+  const circle = new Mesh(circleGeometry, circleMaterial);
+
+  circle.position.set(xScale(line.end.x), yScale(line.end.y), 0);
+
+  circle.name = name;
+
+  return circle;
 }
 
 export function DotProduct2D(): JSX.Element {
@@ -101,13 +122,21 @@ export function DotProduct2D(): JSX.Element {
     const lineMaterial = new LineBasicMaterial({ color: 0xffffff });
     const tickMaterial = new LineBasicMaterial({ color: 0xffffff });
     const vectorMaterial = new LineBasicMaterial({ color: 0xff0000 });
-    const projectionMaterial = new LineBasicMaterial({ color: 0x0000ff });
+    const projectionMaterial = new LineBasicMaterial({ color: 0x00ffff });
 
-    const xAxis = createLine(new Vector2(xScale(-10), yScale(0)), new Vector2(xScale(10), yScale(0)), lineMaterial);
+    const xAxis = createLine(
+      new Vector3(xScale(-10), yScale(0), 0),
+      new Vector3(xScale(10), yScale(0), 0),
+      lineMaterial,
+    );
 
     scene.add(xAxis);
 
-    const yAxis = createLine(new Vector2(xScale(0), yScale(-10)), new Vector2(xScale(0), yScale(10)), lineMaterial);
+    const yAxis = createLine(
+      new Vector3(xScale(0), yScale(-10), 0),
+      new Vector3(xScale(0), yScale(10), 0),
+      lineMaterial,
+    );
 
     scene.add(yAxis);
 
@@ -122,7 +151,26 @@ export function DotProduct2D(): JSX.Element {
 
     scene.add(lineB);
 
-    projectLineAOntoLineB(xScale, yScale, LineA, LineB, projectionMaterial);
+    const grapperA = createCircle(xScale, yScale, LineA, 'A');
+
+    scene.add(grapperA);
+
+    const grabberB = createCircle(xScale, yScale, LineB, 'B');
+
+    scene.add(grabberB);
+
+    const projectionLine = projectLineAOntoLineB(xScale, yScale, LineA, LineB, projectionMaterial);
+
+    scene.add(projectionLine);
+
+    const lines: Record<
+      string,
+      Line<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap>
+    > = {
+      lineA,
+      lineB,
+      projectionLine,
+    } as const;
 
     window.addEventListener('resize', () => {
       camera.updateProjectionMatrix();
@@ -144,6 +192,22 @@ export function DotProduct2D(): JSX.Element {
     renderer.setSize(minUnit, minUnit);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
+    const controls = new DragControls([grapperA, grabberB], camera, renderer.domElement);
+
+    controls.addEventListener('dragstart', function (_event: DragStartEvent) {});
+
+    controls.addEventListener('dragend', function (event: DragEndEvent) {
+      const line = lines[`line${event.object.name}`];
+
+      const positionAttribute = line.geometry.getAttribute('position');
+
+      positionAttribute.setX(3, event.object.position.x);
+      positionAttribute.setY(4, event.object.position.y);
+      positionAttribute.setZ(5, 0);
+
+      positionAttribute.needsUpdate = true;
+    });
+
     const tick = () => {
       renderer.render(scene, camera);
 
@@ -154,7 +218,7 @@ export function DotProduct2D(): JSX.Element {
   }, [height, width]);
 
   return (
-    <ApplicationLayout centerHeading heading="DOT PRODUCT 2D" showFooter={false}>
+    <ApplicationLayout showFooter={false} heading="dotproduct 2d" centerHeading>
       <Box component="section" ref={containerRef} display="flex" justifyContent="center">
         <canvas id="scene" ref={canvasRef}></canvas>
       </Box>
