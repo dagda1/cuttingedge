@@ -45,12 +45,9 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
-
-      - name: prune
-        run: pnpm store prune
       
       - name: install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
       
       - name: Create PR or Publish release
         id: changesets

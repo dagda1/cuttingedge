@@ -22,15 +22,26 @@ jobs:
         uses: actions/checkout@v4
     
       - name: Setup Node.js 18.x
+        id: install_pnpm
         uses: actions/setup-node@v4
         with:
           node-version: 18.x
           cache: 'pnpm'
+
+      - name: echo npm dest
+        run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"
+
+      - name: Get pnpm store directory
+        id: store-path
+        shell: bash
+        run: |
+          STORE_PATH=$(pnpm store path --silent)
+          echo "::set-output name=storePath::$STORE_PATH"
     
       - name: Cache pnpm modules
         uses: actions/cache@v4
         with:
-          path: ~/.pnpm-store
+          path: ${{ steps.store-path.outputs.storePath }}
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
@@ -43,7 +54,7 @@ jobs:
           GSAP_TOKEN: ${{ secrets.GSAP_TOKEN }}
 
       - name: Prune store
-      - run: pnpm store prune
+      - run: pnpm store prune path=$(pnpm store path --silent)
 
       - name: Install Dependencies
         run: pnpm i --no-frozen-lockfile
