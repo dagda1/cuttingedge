@@ -1,11 +1,11 @@
 import type { ScaleLinear } from 'd3-scale';
 import type { Material, Scene } from 'three';
-import { Mesh, MeshBasicMaterial, Vector2 } from 'three';
+import { Mesh, MeshBasicMaterial, Vector3 } from 'three';
 import { BufferGeometry, Line } from 'three';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 
-export function createLine(start: Vector2, end: Vector2, material: Material): Line {
+export function createLine(start: Vector3, end: Vector3, material: Material): Line {
   const geometry = new BufferGeometry().setFromPoints([start, end]);
 
   return new Line(geometry, material);
@@ -30,15 +30,15 @@ export function createTickMarks(
       let start, end, labelPos: any;
       const tickValue = tick.toString();
       if (orientation === 'x') {
-        start = new Vector2(xScale(tick), yScale(0) - tickSize);
-        end = new Vector2(xScale(tick), yScale(0) + tickSize);
-        labelPos = new Vector2(xScale(tick) - 3, yScale(0) + tickSize - 30);
+        start = new Vector3(xScale(tick), yScale(0) - tickSize, 0);
+        end = new Vector3(xScale(tick), yScale(0) + tickSize, 0);
+        labelPos = new Vector3(xScale(tick) - 3, yScale(0) + tickSize - 30, 0);
       } else if (orientation === 'y') {
-        start = new Vector2(xScale(0) - tickSize, yScale(tick));
-        end = new Vector2(xScale(0) + tickSize, yScale(tick));
-        labelPos = new Vector2(xScale(0) + tickSize - 30, yScale(tick) - 4);
+        start = new Vector3(xScale(0) - tickSize, yScale(tick), 0);
+        end = new Vector3(xScale(0) + tickSize, yScale(tick), 0);
+        labelPos = new Vector3(xScale(0) + tickSize - 30, yScale(tick) - 4, 0);
       }
-      const tickMark = createLine(start as Vector2, end as Vector2, tickMaterial);
+      const tickMark = createLine(start as Vector3, end as Vector3, tickMaterial);
       scene.add(tickMark);
 
       // Create text label
