@@ -22,7 +22,7 @@
     "release": "pnpm run prerelease && changeset publish && git push --follow-tags && git status && pnpm -r publish"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.3",
+    "@changesets/cli": "2.27.5",
     "@cutting/assert": "workspace:*",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
