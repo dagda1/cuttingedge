@@ -50,7 +50,7 @@
     "cross-env": "7.0.3",
     "cross-fetch": "^4.0.0",
     "dotenv": "16.4.5",
-    "esbuild": "0.21.3",
+    "esbuild": "0.21.4",
     "fs-extra": "11.2.0",
     "inquirer": "9.2.23",
     "papaparse": "5.4.1",
