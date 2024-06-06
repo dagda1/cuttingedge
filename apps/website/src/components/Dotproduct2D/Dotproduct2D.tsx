@@ -3,7 +3,14 @@ import { Box } from '@cutting/component-library';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { useRef } from 'react';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
-import type { BufferGeometry, Line, Material, NormalBufferAttributes, Object3DEventMap } from 'three';
+import type {
+  BufferGeometry,
+  ColorRepresentation,
+  Line,
+  Material,
+  NormalBufferAttributes,
+  Object3DEventMap,
+} from 'three';
 import { CircleGeometry, DoubleSide, Mesh, MeshBasicMaterial, Vector3 } from 'three';
 import {
   Scene,
@@ -84,10 +91,11 @@ function createCircle(
   yScale: ScaleLinear<number, number, never>,
   line: CartesianLine,
   name: string,
+  color?: ColorRepresentation,
 ): Mesh {
   const CircleRadius = 10;
   const CircleSegments = 32;
-  const circleMaterial = new MeshBasicMaterial({ color: 0x0000ff, side: DoubleSide });
+  const circleMaterial = new MeshBasicMaterial({ color: color ?? 0x0000ff, side: DoubleSide });
 
   const circleGeometry = new CircleGeometry(CircleRadius, CircleSegments);
 
@@ -98,6 +106,16 @@ function createCircle(
   circle.name = name;
 
   return circle;
+}
+
+function pointsFromLine(
+  inverseXScale: ScaleLinear<number, number, never>,
+  inverseYScale: ScaleLinear<number, number, never>,
+  line: Line,
+): CartesianLine {
+  const [x1, y1, _z1, x2, y2, _z2] = line.geometry.getAttribute('position').array;
+
+  return { start: { x: inverseXScale(x1), y: inverseYScale(y1) }, end: { x: inverseXScale(x2), y: inverseYScale(y2) } };
 }
 
 export function DotProduct2D(): JSX.Element {
@@ -116,6 +134,9 @@ export function DotProduct2D(): JSX.Element {
     const minUnit = Math.min(width, height);
     const xScale = scaleLinear().domain(RANGE).range([0, minUnit]);
     const yScale = scaleLinear().domain(RANGE).range([0, minUnit]);
+
+    const inverseXScale = scaleLinear().domain([0, minUnit]).range(RANGE);
+    const inverseYScale = scaleLinear().domain([0, minUnit]).range(RANGE);
 
     const scene = new Scene();
 
@@ -151,7 +172,7 @@ export function DotProduct2D(): JSX.Element {
 
     scene.add(lineB);
 
-    const grapperA = createCircle(xScale, yScale, LineA, 'A');
+    const grapperA = createCircle(xScale, yScale, LineA, 'A', 0xffd700);
 
     scene.add(grapperA);
 
@@ -159,7 +180,7 @@ export function DotProduct2D(): JSX.Element {
 
     scene.add(grabberB);
 
-    const projectionLine = projectLineAOntoLineB(xScale, yScale, LineA, LineB, projectionMaterial);
+    let projectionLine = projectLineAOntoLineB(xScale, yScale, LineA, LineB, projectionMaterial);
 
     scene.add(projectionLine);
 
@@ -201,11 +222,20 @@ export function DotProduct2D(): JSX.Element {
 
       const positionAttribute = line.geometry.getAttribute('position');
 
-      positionAttribute.setX(3, event.object.position.x);
-      positionAttribute.setY(4, event.object.position.y);
-      positionAttribute.setZ(5, 0);
+      positionAttribute.setX(1, event.object.position.x);
+      positionAttribute.setY(1, event.object.position.y);
+      positionAttribute.setZ(1, 0);
 
       positionAttribute.needsUpdate = true;
+
+      const newPointsA = pointsFromLine(inverseXScale, inverseYScale, lines.lineA);
+      const newPointsB = pointsFromLine(inverseXScale, inverseYScale, lines.lineB);
+
+      scene.remove(projectionLine);
+      setTimeout(() => {
+        projectionLine = projectLineAOntoLineB(xScale, yScale, newPointsA, newPointsB, projectionMaterial);
+        scene.add(projectionLine);
+      });
     });
 
     const tick = () => {
