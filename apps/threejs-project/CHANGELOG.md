@@ -1,5 +1,13 @@
 # threejs-starter-vite
 
+## 1.0.26
+
+### Patch Changes
+
+- 86c6bb0: update pnpm to 9.2.0
+- Updated dependencies [86c6bb0]
+  - @cutting/component-library@5.42.9
+
 ## 1.0.25
 
 ### Patch Changes
