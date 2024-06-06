@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.45.9
+
+### Patch Changes
+
+- 86c6bb0: update pnpm to 9.2.0
+
 ## 4.45.8
 
 ### Patch Changes

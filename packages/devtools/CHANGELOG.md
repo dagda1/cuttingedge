@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.11
+
+### Patch Changes
+
+- 86c6bb0: update pnpm to 9.2.0
+
 ## 4.63.10
 
 ### Patch Changes

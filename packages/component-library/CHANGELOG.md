@@ -1,5 +1,13 @@
 # @cutting/component-library
 
+## 5.42.9
+
+### Patch Changes
+
+- 86c6bb0: update pnpm to 9.2.0
+- Updated dependencies [86c6bb0]
+  - @cutting/hooks@4.57.5
+
 ## 5.42.8
 
 ### Patch Changes
