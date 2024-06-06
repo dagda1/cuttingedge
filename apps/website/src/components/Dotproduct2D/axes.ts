@@ -45,7 +45,7 @@ export function createTickMarks(
       const textGeometry = new TextGeometry(tickValue, {
         font: font,
         size: 10,
-        height: 1,
+        depth: 1,
         curveSegments: 12,
         bevelEnabled: false,
       });
