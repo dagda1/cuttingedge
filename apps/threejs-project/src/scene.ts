@@ -1,15 +1,17 @@
 import './style.css';
+
 import { assert } from '@cutting/assert';
-import { Vector2 } from 'three';
+import { scaleLinear } from 'd3-scale';
 import {
-  Scene,
-  WebGLRenderer,
   LinearSRGBColorSpace,
-  PCFSoftShadowMap,
   LineBasicMaterial,
   OrthographicCamera,
+  PCFSoftShadowMap,
+  Scene,
+  Vector2,
+  WebGLRenderer,
 } from 'three';
-import { scaleLinear } from 'd3-scale';
+
 import { createLine, createTickMarks } from './utils/axis';
 // import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 // import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
