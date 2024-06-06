@@ -1,7 +1,6 @@
 import type { ScaleLinear } from 'd3-scale';
 import type { Material, Scene } from 'three';
-import { Mesh, MeshBasicMaterial, Vector2 } from 'three';
-import { BufferGeometry, Line } from 'three';
+import { BufferGeometry, Line, Mesh, MeshBasicMaterial, Vector2 } from 'three';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 
