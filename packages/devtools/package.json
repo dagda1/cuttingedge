@@ -42,7 +42,7 @@
     "@vanilla-extract/esbuild-plugin": "2.3.6",
     "assert-ts": "^0.3.4",
     "autoprefixer": "10.4.19",
-    "browserslist": "4.23.0",
+    "browserslist": "4.23.1",
     "chalk": "5.3.0",
     "commander": "12.1.0",
     "copy": "0.3.2",
