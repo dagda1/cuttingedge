@@ -97,7 +97,7 @@
     "@types/react-router-dom": "5.3.3",
     "@types/regression": "2.0.6",
     "@types/url-join": "4.0.3",
-    "@vanilla-extract/vite-plugin": "4.0.10",
+    "@vanilla-extract/vite-plugin": "4.0.11",
     "copyfiles": "2.4.1",
     "install": "0.13.0",
     "nodemon": "3.1.3",

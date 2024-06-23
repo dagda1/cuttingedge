@@ -34,7 +34,7 @@
     "@typescript-eslint/parser": "7.7.0",
     "@vitest/coverage-v8": "1.6.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "@vanilla-extract/vite-plugin": "4.0.10",
+    "@vanilla-extract/vite-plugin": "4.0.11",
     "cheerio": "^1.0.0-rc.12",
     "core-js": "3.37.1",
     "eslint": "^8.57.0",
