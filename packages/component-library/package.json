@@ -43,7 +43,7 @@
     "@types/mdx-js__react": "2.0.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "@vanilla-extract/css": "^1.15.2",
+    "@vanilla-extract/css": "^1.15.3",
     "@types/react-is": "^18.3.0",
     "@vanilla-extract/sprinkles": "1.6.2",
     "@vanilla-extract/css-utils": "^0.1.4",

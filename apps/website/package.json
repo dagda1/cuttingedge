@@ -33,7 +33,7 @@
     "@cutting/use-mathjax": "workspace:*",
     "@cutting/util": "workspace:*",
     "@floating-ui/react": "^0.26.16",
-    "@vanilla-extract/css": "1.15.2",
+    "@vanilla-extract/css": "1.15.3",
     "@vanilla-extract/sprinkles": "1.6.2",
     "@visx/axis": "3.10.1",
     "@visx/curve": "3.3.0",
