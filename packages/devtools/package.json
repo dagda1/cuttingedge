@@ -84,7 +84,7 @@
   "devDependencies": {
     "@types/babel__core": "7.20.5",
     "@types/babel__plugin-transform-runtime": "7.9.5",
-    "@types/babel__preset-env": "7.9.6",
+    "@types/babel__preset-env": "7.9.7",
     "@types/copy": "0.3.5",
     "@types/fs-extra": "11.0.4",
     "@types/inquirer": "9.0.7",
