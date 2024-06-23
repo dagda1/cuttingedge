@@ -30,13 +30,6 @@ jobs:
 
       - name: echo npm dest
         run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"
-
-      - name: Get pnpm store directory
-        id: store-path
-        shell: bash
-        run: |
-          STORE_PATH=$(pnpm store path --silent)
-          echo "::set-output name=storePath::$STORE_PATH"
     
       - name: Cache pnpm modules
         uses: actions/cache@v4
