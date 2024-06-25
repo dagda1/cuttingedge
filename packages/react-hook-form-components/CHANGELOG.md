@@ -1,5 +1,13 @@
 # @cutting/react-hook-form-components
 
+## 0.5.33
+
+### Patch Changes
+
+- 0f6945d: upgrade pnpm to 9.4.0
+- Updated dependencies [0f6945d]
+  - @cutting/component-library@5.42.10
+
 ## 0.5.32
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @cutting/svg
 
+## 4.54.23
+
+### Patch Changes
+
+- 0f6945d: upgrade pnpm to 9.4.0
+- Updated dependencies [0f6945d]
+  - @cutting/use-get-parent-size@2.1.16
+
 ## 4.54.22
 
 ### Patch Changes
