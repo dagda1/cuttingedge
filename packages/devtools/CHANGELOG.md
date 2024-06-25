@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.63.12
+
+### Patch Changes
+
+- 0f6945d: upgrade pnpm to 9.4.0
+
 ## 4.63.11
 
 ### Patch Changes

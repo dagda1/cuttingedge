@@ -1,5 +1,11 @@
 # @cutting/use-shortcuts
 
+## 4.46.15
+
+### Patch Changes
+
+- 0f6945d: upgrade pnpm to 9.4.0
+
 ## 4.46.14
 
 ### Patch Changes

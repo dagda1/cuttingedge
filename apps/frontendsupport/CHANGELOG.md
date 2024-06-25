@@ -1,5 +1,17 @@
 # @cutting/frontend-support
 
+## 0.3.6
+
+### Patch Changes
+
+- 0f6945d: upgrade pnpm to 9.4.0
+- Updated dependencies [0f6945d]
+  - @cutting/react-hook-form-components@0.5.33
+  - @cutting/use-get-parent-size@2.1.16
+  - @cutting/component-library@5.42.10
+  - @cutting/hooks@4.57.6
+  - @cutting/useful-types@4.40.3
+
 ## 0.3.5
 
 ### Patch Changes
