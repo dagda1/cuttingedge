@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 4.46.0
+
+### Minor Changes
+
+- 935f348: add eslint simple sort plugin
+
 ## 4.45.10
 
 ### Patch Changes
