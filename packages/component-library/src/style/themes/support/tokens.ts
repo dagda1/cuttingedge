@@ -1,8 +1,10 @@
+import helveticaNeue from '@capsizecss/metrics/helveticaNeue';
 import type { DeepPartial } from '@cutting/util';
+
 import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
 import { extractFontMetricsForTheme } from '~/style/util/typography';
-import helveticaNeue from '@capsizecss/metrics/helveticaNeue';
+
 import { helveticaNowDisplayMedium } from './font.css';
 
 const colors = {

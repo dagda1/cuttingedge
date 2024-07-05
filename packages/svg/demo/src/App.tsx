@@ -1,11 +1,13 @@
-import * as styles from './global.css';
 import '@cutting/component-library/styles.css';
-import { useMemo, useRef } from 'react';
+
 import { ApplicationLayout } from '@cutting/component-library';
-import { ResponsiveSVG } from '../../src/components/ResponsiveSVG/ResponsiveSVG';
 import { useParentSize } from '@cutting/use-get-parent-size';
-import { scalePoint } from '@visx/scale';
 import { range } from '@cutting/util';
+import { scalePoint } from '@visx/scale';
+import { useMemo, useRef } from 'react';
+
+import { ResponsiveSVG } from '../../src/components/ResponsiveSVG/ResponsiveSVG';
+import * as styles from './global.css';
 
 export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);

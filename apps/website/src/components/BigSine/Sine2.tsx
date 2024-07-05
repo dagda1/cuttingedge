@@ -1,18 +1,20 @@
-import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+import { assert } from '@cutting/assert';
+import { Group, Line, ResponsiveSVG } from '@cutting/svg';
 import { useParentSize } from '@cutting/use-get-parent-size';
-import * as styles from './Sine2.css';
-import { useLayoutEffect, useMemo, useReducer, useRef } from 'react';
-import { ResponsiveSVG, Group, Line } from '@cutting/svg';
+import { SVGMathJax } from '@cutting/use-mathjax';
 import type { TickRendererProps } from '@visx/axis';
 import { AxisBottom, AxisLeft } from '@visx/axis';
-import { scaleLinear } from 'd3-scale';
-import { SVGMathJax } from '@cutting/use-mathjax';
-import { initialState, reducer, TWO_PI } from './reducer';
-import { line } from 'd3-shape';
 import { curveMonotoneX } from '@visx/curve';
 import { Arc, Circle } from '@visx/shape';
 import cs from 'classnames';
-import { assert } from '@cutting/assert';
+import { scaleLinear } from 'd3-scale';
+import { line } from 'd3-shape';
+import { useLayoutEffect, useMemo, useReducer, useRef } from 'react';
+
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+
+import { initialState, reducer, TWO_PI } from './reducer';
+import * as styles from './Sine2.css';
 
 const xTickValues = [0, 1.57, 3.14, 4.71, 6.28];
 const piMap = {

@@ -1,5 +1,6 @@
 import { join } from 'path';
-import { expect, it, describe } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { bundleMarkdown } from './bundleMarkdown';
 
 describe('bundleMarkdown', () => {

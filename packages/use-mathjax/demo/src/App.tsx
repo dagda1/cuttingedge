@@ -1,12 +1,13 @@
-import { StrictMode, useRef } from 'react';
-import { MathJaxProvider } from '../../src/provider/Provider/Provider';
-import { useMathJax } from '../../src/hooks/useMathJax/useMathJax';
-import { MathJax } from '../../src/components/MathJax/MathJax';
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import './global.css';
 
+import { StrictMode, useRef } from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-import './global.css';
+import { MathJax } from '../../src/components/MathJax/MathJax';
+import { useMathJax } from '../../src/hooks/useMathJax/useMathJax';
+import { MathJaxProvider } from '../../src/provider/Provider/Provider';
+
 export function Maths(): JSX.Element {
   const ref = useRef<HTMLParagraphElement>(null);
   useMathJax({ elements: ref.current });

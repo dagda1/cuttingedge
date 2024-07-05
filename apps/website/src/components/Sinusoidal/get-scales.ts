@@ -1,7 +1,7 @@
-import { identity, range } from '@cutting/util';
-import type { ScaleLinear } from 'd3-scale';
-import { scaleLinear } from '@visx/scale';
 import type { Point } from '@cutting/svg';
+import { identity, range } from '@cutting/util';
+import { scaleLinear } from '@visx/scale';
+import type { ScaleLinear } from 'd3-scale';
 import { parse } from 'mathjs';
 
 export type Dimensions = { width: number; height: number };

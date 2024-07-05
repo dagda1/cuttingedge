@@ -1,6 +1,8 @@
-import { posts } from './posts';
-import { TextLink, Inline, Stack, Text, PageBlock, Heading } from '@cutting/component-library';
+import { Heading, Inline, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
+
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+
+import { posts } from './posts';
 
 export function Blog(): JSX.Element {
   return (

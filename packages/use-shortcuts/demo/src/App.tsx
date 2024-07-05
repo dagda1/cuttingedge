@@ -1,8 +1,10 @@
 import './global.css';
-import React, { useState, useCallback } from 'react';
-import type { Point } from './types';
+
+import React, { useCallback, useState } from 'react';
+
 import { Box as MovableBox } from './Box';
 import { shortcutMap1, shortcutMap2 } from './shortCutMap';
+import type { Point } from './types';
 
 const boxes1 = [
   { x: 50, y: 160, color: 'red' },

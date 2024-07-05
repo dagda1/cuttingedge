@@ -1,7 +1,8 @@
+import { PageBlock } from '@cutting/component-library';
+
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 import * as styles from './ContactMe.css';
-import { PageBlock } from '@cutting/component-library';
 
 export function ContactMe(): JSX.Element {
   return (

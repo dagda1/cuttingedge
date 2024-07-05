@@ -1,9 +1,10 @@
-import { TextLink, Tiles, Stack, Text, Box, Inline, PageBlock } from '@cutting/component-library';
-import { ApplicationLayout } from '~/layouts/ApplicationLayout';
-import { repos } from './repos';
-import { Heading } from '@cutting/component-library';
-import * as styles from './OSS.css';
+import { Box, Heading, Inline, PageBlock, Stack, Text, TextLink, Tiles } from '@cutting/component-library';
+
 import github from '~/assets/images/github-medium.png';
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+
+import * as styles from './OSS.css';
+import { repos } from './repos';
 
 export function OSS(): JSX.Element {
   return (

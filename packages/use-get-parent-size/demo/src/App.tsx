@@ -1,19 +1,20 @@
 import '@cutting/component-library/styles.css';
+
 import { ApplicationLayout } from '@cutting/component-library';
 import { useRef } from 'react';
 import {
-  Scene,
-  BoxGeometry,
-  MeshBasicMaterial,
-  Mesh,
-  PerspectiveCamera,
-  WebGLRenderer,
   AxesHelper,
+  BoxGeometry,
   Clock,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
 } from 'three';
 
-import * as styles from './global.css';
 import { useParentSize } from '../../src/useParentSize/useParentSize';
+import * as styles from './global.css';
 
 export function App(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);

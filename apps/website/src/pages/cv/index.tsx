@@ -1,8 +1,9 @@
+import { PageBlock, Text, TextLink, Tiles } from '@cutting/component-library';
+
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import * as Urls from '~/urls';
 
 import * as styles from './CV.css';
-import { Tiles, TextLink, PageBlock, Text } from '@cutting/component-library';
 
 const docs = [
   { file: 'paulcowan-cv.pdf', url: Urls.DownloadPdf, text: 'pdf' },

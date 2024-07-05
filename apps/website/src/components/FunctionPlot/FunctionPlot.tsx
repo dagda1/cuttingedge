@@ -1,28 +1,26 @@
-import { useEffect } from 'react';
-import { useReducer } from 'react';
-import { useCallback, useMemo } from 'react';
-import { useRef } from 'react';
-import { ApplicationLayout } from '~/layouts/ApplicationLayout';
-import type { Point } from '@cutting/svg';
-import { useParentSize } from '@cutting/use-get-parent-size';
-import { AxisBottom, AxisLeft } from '@visx/axis';
-import { max, min, extent, range } from 'd3-array';
-import { derivative, parse, round } from 'mathjs';
 import { assert } from '@cutting/assert';
-import { ResponsiveSVG, Group } from '@cutting/svg';
-import { Circle, Line, LinePath } from '@visx/shape';
-import { curveBasisOpen } from '@visx/curve';
-import * as styles from './FunctionPlot.css';
-import { getYIntercept } from '~/viz/getYIntercept';
-import { Text } from '@visx/text';
-import { reducer, initialState } from './reducer';
-import type { SubmitHandler } from 'react-hook-form';
-import { scaleLinear } from '@visx/scale';
-import { ExpressionForm, type FormValues } from './ExpressionForm';
-
+import { Box } from '@cutting/component-library';
+import type { Point } from '@cutting/svg';
+import { Group, ResponsiveSVG } from '@cutting/svg';
+import { useParentSize } from '@cutting/use-get-parent-size';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { SVGMathJax } from '@cutting/use-mathjax';
-import { Box } from '@cutting/component-library';
+import { AxisBottom, AxisLeft } from '@visx/axis';
+import { curveBasisOpen } from '@visx/curve';
+import { scaleLinear } from '@visx/scale';
+import { Circle, Line, LinePath } from '@visx/shape';
+import { Text } from '@visx/text';
+import { extent, max, min, range } from 'd3-array';
+import { derivative, parse, round } from 'mathjs';
+import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+import { getYIntercept } from '~/viz/getYIntercept';
+
+import { ExpressionForm, type FormValues } from './ExpressionForm';
+import * as styles from './FunctionPlot.css';
+import { initialState, reducer } from './reducer';
 
 interface FunctionPlotProps {
   minX?: number;

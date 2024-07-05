@@ -1,10 +1,12 @@
-import { createThemeContract, style, styleVariants, assignVars } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
 import { createTextStyle } from '@capsizecss/vanilla-extract';
+import { assignVars, createThemeContract, style, styleVariants } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
+
 import { vars } from '~/style/themes/vars.css';
-import { mapToProperty } from '../util/map-property';
+
 import { breakpointQuery } from '../breakpoints';
 import { responsiveStyle } from '../responsive-style';
+import { mapToProperty } from '../util/map-property';
 
 export const fontFamily = style({
   fontFamily: vars.fontFamily.text,

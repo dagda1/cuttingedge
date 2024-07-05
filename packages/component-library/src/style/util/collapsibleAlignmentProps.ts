@@ -1,9 +1,10 @@
-import { type ReactNode, Children } from 'react';
-import { type ResponsiveRangeProps, resolveResponsiveRangeProps } from './resolveResponsiveRangeProps';
-import { optimizeResponsiveArray } from './optimizeResponsiveArray';
-import { type Align, type AlignY, alignToFlexAlign, alignYToFlexAlign } from './align';
+import { Children, type ReactNode } from 'react';
+
 import type { OptionalResponsiveValue } from '../atoms/sprinkles.css';
 import { normalizeResponsiveValue } from '../atoms/sprinkles.css';
+import { type Align, alignToFlexAlign, type AlignY, alignYToFlexAlign } from './align';
+import { optimizeResponsiveArray } from './optimizeResponsiveArray';
+import { resolveResponsiveRangeProps, type ResponsiveRangeProps } from './resolveResponsiveRangeProps';
 
 function invertAlignment<Alignment extends string>(alignment: Alignment) {
   if (alignment === 'flexStart') {

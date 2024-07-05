@@ -1,4 +1,5 @@
 import { styleVariants } from '@vanilla-extract/css';
+
 import type { Breakpoint } from '~/style/breakpoints';
 import { responsiveStyle } from '~/style/responsive-style';
 

@@ -1,18 +1,21 @@
+import 'rc-slider/assets/index.css';
+
 import { assert } from '@cutting/assert';
-import { useParentSize } from '@cutting/use-get-parent-size';
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { ApplicationLayout } from '~/layouts/ApplicationLayout';
-import { getScales } from './get-scales';
 import { Box, Button, Label, RadioGroup } from '@cutting/component-library';
 import type { Point } from '@cutting/svg';
 import { Group, ResponsiveSVG } from '@cutting/svg';
-import { AxisBottom, AxisLeft } from '@visx/axis';
+import { useParentSize } from '@cutting/use-get-parent-size';
 import { SVGMathJax } from '@cutting/use-mathjax';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import { AxisBottom, AxisLeft } from '@visx/axis';
 import { curveNatural } from '@visx/curve';
-import * as styles from './Sinusoidal.css';
 import { LinePath } from '@visx/shape';
+import Slider from 'rc-slider';
+import { useCallback, useMemo, useRef, useState } from 'react';
+
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+
+import { getScales } from './get-scales';
+import * as styles from './Sinusoidal.css';
 
 interface TrigonometricTransformsProps {}
 

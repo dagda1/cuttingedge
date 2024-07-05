@@ -1,7 +1,7 @@
-import { match } from 'ts-pattern';
+import type { ScaleLinear } from 'd3-scale';
 import { produce } from 'immer';
 import type { Reducer } from 'react';
-import type { ScaleLinear } from 'd3-scale';
+import { match } from 'ts-pattern';
 
 export const increase = (Math.PI * 2) / 360;
 

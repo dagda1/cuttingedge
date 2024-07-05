@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { describe, it, expect, afterEach } from 'vitest';
 import { renderHook } from '@testing-library/react-hooks';
-import { useShortcuts } from './useShortcuts';
-import type { ShortcutHandler } from './types/types';
 import mousetrap from 'mousetrap';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import { KeyCode } from './types/keycodes';
-import { vi } from 'vitest';
+import type { ShortcutHandler } from './types/types';
+import { useShortcuts } from './useShortcuts';
 
 const shortcutMap = { DO_SOMETHING: 'a' };
 const handler: ShortcutHandler<any> = (action) => {

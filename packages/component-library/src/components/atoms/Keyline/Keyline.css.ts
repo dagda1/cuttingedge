@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+
 import { vars } from '~/style/themes/vars.css';
 
 export const noRadiusOnRight = style({

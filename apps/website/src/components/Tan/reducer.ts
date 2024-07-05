@@ -1,7 +1,7 @@
+import type { ScaleLinear, ScalePoint } from 'd3-scale';
+import { produce } from 'immer';
 import type { Reducer } from 'react';
 import { match } from 'ts-pattern';
-import { produce } from 'immer';
-import type { ScaleLinear, ScalePoint } from 'd3-scale';
 
 export const maxTan = 3;
 

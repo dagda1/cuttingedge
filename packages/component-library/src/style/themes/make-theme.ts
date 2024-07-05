@@ -1,13 +1,14 @@
-import type { DeepPartial } from '@cutting/util';
-import { mapValues } from '@cutting/util';
-import type { Tokens } from './tokens';
-import { tokens as defaultTokens } from './tokens';
-import deepmerge from 'deepmerge';
 import { getCapHeight } from '@capsizecss/core';
 import { precomputeValues } from '@capsizecss/vanilla-extract';
+import type { DeepPartial } from '@cutting/util';
+import { mapValues } from '@cutting/util';
+import deepmerge from 'deepmerge';
+
 import type { Breakpoint } from '../breakpoints';
-import type { FontMetricsForTheme } from '../util/typography';
 import { palette } from '../palette.css';
+import type { FontMetricsForTheme } from '../util/typography';
+import type { Tokens } from './tokens';
+import { tokens as defaultTokens } from './tokens';
 
 const scaleCreator = (scale: 'px' | 'rem') => (v: string | number) => `${v}${scale}`;
 

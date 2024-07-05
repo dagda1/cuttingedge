@@ -1,4 +1,5 @@
 import { assignVars, createThemeContract, style } from '@vanilla-extract/css';
+
 import { vars } from '~/style/themes/vars.css';
 
 const textLinkVars = createThemeContract({
