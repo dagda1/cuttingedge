@@ -3,11 +3,11 @@
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { spawnSync } from 'child_process';
-import path from 'path';
-import chalk from 'chalk';
 import { assert } from 'assert-ts';
+import chalk from 'chalk';
+import { spawnSync } from 'child_process';
 import fs from 'fs';
+import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

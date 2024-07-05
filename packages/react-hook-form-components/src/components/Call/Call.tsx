@@ -1,7 +1,8 @@
+import { Box } from '@cutting/component-library';
 import { InlineWidget } from 'react-calendly';
+
 import * as styles from './Call.css';
 import type { CallProps } from './types';
-import { Box } from '@cutting/component-library';
 
 export function Call({ callType }: CallProps): JSX.Element {
   return (

@@ -1,5 +1,6 @@
+import { describe, expect, it } from 'vitest';
+
 import { isDate } from './date';
-import { expect, it, describe } from 'vitest';
 
 describe('isDate', () => {
   it('should determine dates', () => {

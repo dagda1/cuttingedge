@@ -1,5 +1,6 @@
-import { padNumber, stripSpaces, capitalize } from './index';
-import { expect, it, describe, test } from 'vitest';
+import { describe, expect, it, test } from 'vitest';
+
+import { capitalize, padNumber, stripSpaces } from './index';
 
 describe('string', () => {
   it('capitalize - should have first char uppercase', () => {

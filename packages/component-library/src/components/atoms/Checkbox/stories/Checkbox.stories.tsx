@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react';
 import type { ReactNode } from 'react';
-import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
+
+import { themedSelect, themedTemplateMaker } from '../../../stories/Stories';
 import type {
   CheckableEventHandlers,
   CheckableLayoutProps,

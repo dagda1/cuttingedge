@@ -1,14 +1,15 @@
+import { useIsomorphicLayoutEffect } from '@cutting/hooks';
+import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
+import type { MathDocument } from 'mathjax-full/js/core/MathDocument';
+import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
+import { TeX } from 'mathjax-full/js/input/tex';
+import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
+import { mathjax } from 'mathjax-full/js/mathjax';
+import { SVG } from 'mathjax-full/js/output/svg';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
-import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
-import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
+
 import { createStrictContext } from '../../createStrictContext';
-import { mathjax } from 'mathjax-full/js/mathjax';
-import { TeX } from 'mathjax-full/js/input/tex';
-import { SVG } from 'mathjax-full/js/output/svg';
-import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
-import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import type { MathDocument } from 'mathjax-full/js/core/MathDocument';
 
 interface MathDoc {
   version: string;

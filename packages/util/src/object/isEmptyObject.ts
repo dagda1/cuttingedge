@@ -1,5 +1,5 @@
-import { isEmpty } from './isEmpty';
 import { isDate } from '../date/date';
+import { isEmpty } from './isEmpty';
 import { isNil } from './isNil';
 import { isObject } from './isObject';
 

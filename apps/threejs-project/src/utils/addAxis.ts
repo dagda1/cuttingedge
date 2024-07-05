@@ -1,5 +1,4 @@
-import type { ColorRepresentation } from 'three';
-import { type Scene, Vector3, CylinderGeometry, MeshBasicMaterial, Mesh } from 'three';
+import type { ColorRepresentation, CylinderGeometry, Mesh, MeshBasicMaterial, type Scene, Vector3 } from 'three';
 
 export function addAxis(scene: Scene, start: Vector3, end: Vector3, color: ColorRepresentation = 0x000000): void {
   const direction = new Vector3().subVectors(end, start);

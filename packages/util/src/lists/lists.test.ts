@@ -1,5 +1,6 @@
+import { describe, expect, it } from 'vitest';
+
 import { flatten, flattenDeep } from './lists';
-import { expect, it, describe } from 'vitest';
 
 describe('flatten', () => {
   it('should flatten', () => {

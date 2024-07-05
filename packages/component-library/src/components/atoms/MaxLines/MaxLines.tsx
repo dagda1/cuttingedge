@@ -1,8 +1,9 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { type ReactNode } from 'react';
-import * as styles from './MaxLines.css';
-import { Box } from '../../molecules/Box/Box';
 import cs from 'classnames';
+import { type ReactNode } from 'react';
+
+import { Box } from '../../molecules/Box/Box';
+import * as styles from './MaxLines.css';
 
 interface MaxLinesProps {
   children: ReactNode;

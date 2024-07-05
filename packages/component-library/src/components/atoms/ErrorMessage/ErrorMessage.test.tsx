@@ -1,7 +1,8 @@
-import { expect, it, describe } from 'vitest';
+import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import type { ErrorProps } from './ErrorMessage';
 import { ErrorMessage } from './ErrorMessage';
-import { render } from '@testing-library/react';
 
 const wrap = (props: ErrorProps) => render(<ErrorMessage {...props} />);
 

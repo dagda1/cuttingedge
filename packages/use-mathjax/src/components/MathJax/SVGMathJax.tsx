@@ -1,5 +1,5 @@
-import type { MathJaxProps } from './types';
 import { MathJax } from './MathJax';
+import type { MathJaxProps } from './types';
 
 type SVGMathJaxProps = MathJaxProps & { width?: number; height?: number };
 

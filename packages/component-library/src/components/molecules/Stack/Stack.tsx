@@ -1,14 +1,15 @@
-import { Children, type ReactElement } from 'react';
 import { assert } from '@cutting/assert';
-import { Box } from '../Box/Box';
+import { Children, type ReactElement } from 'react';
+
+import type { ResponsiveSpace } from '../../../style/atoms/atoms';
 import type { OptionalResponsiveValue } from '../../../style/atoms/sprinkles.css';
 import { mapResponsiveValue } from '../../../style/atoms/sprinkles.css';
 import type { Align } from '../../../style/util/align';
 import { alignToFlexAlign } from '../../../style/util/align';
-import type { ResponsiveSpace } from '../../../style/atoms/atoms';
-import { Divider } from '../Divider/Divider';
-import { optimizeResponsiveArray } from '../../../style/util/optimizeResponsiveArray';
 import flattenChildren from '../../../style/util/flatten-children';
+import { optimizeResponsiveArray } from '../../../style/util/optimizeResponsiveArray';
+import { Box } from '../Box/Box';
+import { Divider } from '../Divider/Divider';
 
 const alignToDisplay = {
   left: 'block',

@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react';
+
+import { themedSelect, themedTemplateMaker } from '../../../stories/Stories';
 import { FormInput } from '../FormControls';
-import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 
 export default {
   title: 'molecules/FormInput',

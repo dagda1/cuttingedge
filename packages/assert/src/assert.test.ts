@@ -1,5 +1,7 @@
-import { describe, beforeAll, it, expect } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
+
 import { assert, configureAssert } from './assert';
+
 const logHistory: string[] = [];
 const log = (msg: string) => logHistory.push(msg);
 

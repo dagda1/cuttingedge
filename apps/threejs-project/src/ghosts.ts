@@ -1,28 +1,29 @@
 import './style.css';
+
 import { assert } from '@cutting/assert';
+import { GUI } from 'lil-gui';
 import {
-  Scene,
-  PerspectiveCamera,
-  WebGLRenderer,
   AmbientLight,
-  MeshStandardMaterial,
-  Mesh,
-  SphereGeometry,
-  PlaneGeometry,
-  DirectionalLight,
-  LinearSRGBColorSpace,
-  TextureLoader,
-  Group,
   BoxGeometry,
-  ConeGeometry,
-  RepeatWrapping,
-  PointLight,
-  Fog,
-  PCFSoftShadowMap,
   Clock,
+  ConeGeometry,
+  DirectionalLight,
+  Fog,
+  Group,
+  LinearSRGBColorSpace,
+  Mesh,
+  MeshStandardMaterial,
+  PCFSoftShadowMap,
+  PerspectiveCamera,
+  PlaneGeometry,
+  PointLight,
+  RepeatWrapping,
+  Scene,
+  SphereGeometry,
+  TextureLoader,
+  WebGLRenderer,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { GUI } from 'lil-gui';
 
 function run() {
   const canvas = document.querySelector<HTMLElement>('#scene');

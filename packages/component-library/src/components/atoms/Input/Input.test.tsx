@@ -1,9 +1,9 @@
-import { expect, it, describe } from 'vitest';
-import { Input } from './Input';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { render, fireEvent } from '@testing-library/react';
-import { vi } from 'vitest';
+import { fireEvent, render } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { Input } from './Input';
 
 const wrap = (props = {}) => render(<Input {...props} />);
 

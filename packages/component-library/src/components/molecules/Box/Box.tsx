@@ -1,6 +1,7 @@
 import cs from 'classnames';
-import { type AllHTMLAttributes, type ElementType, createElement, forwardRef, useEffect } from 'react';
 import dedent from 'dedent';
+import { type AllHTMLAttributes, createElement, type ElementType, forwardRef, useEffect } from 'react';
+
 import type { Atoms } from '../../../style/atoms/atoms';
 import { atoms } from '../../../style/atoms/atoms';
 import { sprinkles } from '../../../style/atoms/sprinkles.css';

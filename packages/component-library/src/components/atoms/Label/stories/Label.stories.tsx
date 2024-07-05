@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react';
+
+import { themedSelect, themedTemplateMaker } from '../../../stories/Stories';
 import { Label } from '../Label';
-import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 
 export default {
   title: 'atoms/Label',

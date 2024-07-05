@@ -1,12 +1,13 @@
+import cs from 'classnames';
 import type { ReactElement } from 'react';
 import { Children, Fragment, useMemo } from 'react';
-import * as styles from './Nav.css';
-import cs from 'classnames';
-import type { NavItemProps } from './NavItem';
-import { NavItems } from './NavItems';
+
 import { Box, type BoxProps } from '../Box/Box';
 import type { HamburgerVariants } from '../Hamburger/Hamburger';
 import { Hamburger } from '../Hamburger/Hamburger';
+import * as styles from './Nav.css';
+import type { NavItemProps } from './NavItem';
+import { NavItems } from './NavItems';
 
 export interface MenuState {
   isExpanded: boolean;

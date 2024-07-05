@@ -1,15 +1,16 @@
 import './style.css';
+
 import { assert } from '@cutting/assert';
 import {
-  Scene,
-  WebGLRenderer,
-  LinearSRGBColorSpace,
-  PCFSoftShadowMap,
-  LineBasicMaterial,
-  Vector2,
   BufferGeometry,
   Line,
+  LinearSRGBColorSpace,
+  LineBasicMaterial,
   OrthographicCamera,
+  PCFSoftShadowMap,
+  Scene,
+  Vector2,
+  WebGLRenderer,
 } from 'three';
 // import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 // import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';

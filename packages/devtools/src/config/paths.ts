@@ -1,7 +1,7 @@
-import type { ParsedCommandLine } from 'typescript';
-import path from 'path';
 import fs from 'fs';
 import { readFile } from 'fs/promises';
+import path from 'path';
+import type { ParsedCommandLine } from 'typescript';
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath: string) => path.resolve(appDirectory, relativePath);

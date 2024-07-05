@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
-import { useMathJaxContext } from '../../provider/Provider/Provider';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
+import { useMemo } from 'react';
+
+import { useMathJaxContext } from '../../provider/Provider/Provider';
 
 export interface UseMathJax {
   elements: HTMLElement | HTMLElement[] | SVGGElement | SVGElement[] | null;

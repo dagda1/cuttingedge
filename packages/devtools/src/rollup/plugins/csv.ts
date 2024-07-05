@@ -1,6 +1,6 @@
-import type { PluginImpl } from 'rollup';
 import { createFilter } from '@rollup/pluginutils';
 import Papa from 'papaparse';
+import type { PluginImpl } from 'rollup';
 
 export type CSVOptions = {
   dynamicTyping: boolean;

@@ -1,5 +1,6 @@
-import { noop, isFunction, isAsyncFunction, isPromise } from './functions';
-import { expect, it, describe } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
+import { isAsyncFunction, isFunction, isPromise, noop } from './functions';
 
 describe('functions', () => {
   it('should determine promises', async () => {

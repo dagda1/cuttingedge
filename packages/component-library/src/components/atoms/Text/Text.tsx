@@ -1,12 +1,13 @@
-import { useContext, useMemo } from 'react';
 import { assert } from '@cutting/assert';
+import cs from 'classnames';
+import { useContext, useMemo } from 'react';
+
 import type { TextStyleProps } from '../../../style/typography/typography';
 import { textStyles } from '../../../style/typography/typography';
-import { TextContext } from './TextContext';
-import { useDefaultTextProps } from './defaultTextProps';
-import cs from 'classnames';
-import * as styles from './Text.css';
 import { Typography, type TypographyProps } from '../Typography/Typography';
+import { useDefaultTextProps } from './defaultTextProps';
+import * as styles from './Text.css';
+import { TextContext } from './TextContext';
 
 type Layout = 'inline' | 'block';
 

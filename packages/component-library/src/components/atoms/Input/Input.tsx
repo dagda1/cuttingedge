@@ -1,5 +1,6 @@
-import type { InputHTMLAttributes, Ref } from 'react';
 import cs from 'classnames';
+import type { InputHTMLAttributes, Ref } from 'react';
+
 import * as styles from './Input.css';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

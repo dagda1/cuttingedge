@@ -1,7 +1,8 @@
-import { Box } from '../Box/Box';
-import { Testimonial } from '../Testimonial/Testimonial';
 import { Text } from '~/components/atoms/Text/Text';
 import type { TextStyleProps } from '~/style/typography/typography';
+
+import { Box } from '../Box/Box';
+import { Testimonial } from '../Testimonial/Testimonial';
 
 export function C2Testimonial({ tone }: { tone?: TextStyleProps['tone'] }): JSX.Element {
   return (

@@ -1,28 +1,29 @@
 import './style.css';
+
 import { assert } from '@cutting/assert';
 import {
-  Scene,
-  PerspectiveCamera,
-  WebGLRenderer,
   AmbientLight,
-  Color,
-  MeshStandardMaterial,
-  Mesh,
-  SphereGeometry,
   BoxGeometry,
-  PlaneGeometry,
-  TorusGeometry,
+  Clock,
+  Color,
   DirectionalLight,
   DirectionalLightHelper,
   HemisphereLight,
   HemisphereLightHelper,
+  Mesh,
+  MeshStandardMaterial,
+  PerspectiveCamera,
+  PlaneGeometry,
   PointLight,
   PointLightHelper,
   RectAreaLight,
+  Scene,
+  SphereGeometry,
   SpotLight,
   SpotLightHelper,
+  TorusGeometry,
   Vector3,
-  Clock,
+  WebGLRenderer,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper';

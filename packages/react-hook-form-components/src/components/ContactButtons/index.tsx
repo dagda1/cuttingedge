@@ -1,11 +1,12 @@
-import * as styles from './ContactButtons.css';
-import { ContactForm } from '../ContactForm/ContactForm';
-import { CallPopupButton } from '../Call/CallPopupButton';
-import type { CallType } from '../Call/types';
 import type { ButtonStyle } from '@cutting/component-library';
 import { Box, Button, Text } from '@cutting/component-library';
 import { useCallback, useState } from 'react';
+
+import { CallPopupButton } from '../Call/CallPopupButton';
+import type { CallType } from '../Call/types';
+import { ContactForm } from '../ContactForm/ContactForm';
 import { Modal } from '../Modal/Modal';
+import * as styles from './ContactButtons.css';
 
 type ContactButtonsProps = {
   callType: CallType;

@@ -1,13 +1,15 @@
-import { type ReactNode, Children } from 'react';
-import { Box } from '../Box/Box';
-import * as styles from './List.css';
 import cs from 'classnames';
+import { Children, type ReactNode } from 'react';
+
+import { DefaultTextPropsProvider, useDefaultTextProps } from '~/components/atoms/Text/defaultTextProps';
+import { Text, type TextProps } from '~/components/atoms/Text/Text';
+import { lineHeightContainer } from '~/style/lineHeightContainer.css';
+import flattenChildren from '~/style/util/flatten-children';
+
+import { Box } from '../Box/Box';
 import type { ReactNodeNoStrings, StackProps } from '../Stack/Stack';
 import { Stack } from '../Stack/Stack';
-import { Text, type TextProps } from '~/components/atoms/Text/Text';
-import { DefaultTextPropsProvider, useDefaultTextProps } from '~/components/atoms/Text/defaultTextProps';
-import flattenChildren from '~/style/util/flatten-children';
-import { lineHeightContainer } from '~/style/lineHeightContainer.css';
+import * as styles from './List.css';
 
 function numberToAlpha(inputNumber: number) {
   let returnValue = '';
