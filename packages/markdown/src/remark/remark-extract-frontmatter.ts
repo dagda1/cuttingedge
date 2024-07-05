@@ -1,5 +1,5 @@
-import { visit } from 'unist-util-visit';
 import { load } from 'js-yaml';
+import { visit } from 'unist-util-visit';
 
 type Tree = Parameters<typeof visit>[0];
 

@@ -1,6 +1,7 @@
 import type { ExtendedKeyboardEvent, MousetrapInstance, MousetrapStatic } from 'mousetrap';
 import mousetrap from 'mousetrap';
 import { useEffect, useRef } from 'react';
+
 import { buildShortcuts } from './buildShortcuts';
 import type { ShortcutAction, UseShortcuts, UseShortcutsResults } from './types/types';
 import { clearArray } from './utils/clearArray';

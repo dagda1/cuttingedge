@@ -1,7 +1,9 @@
-import { palette } from '~/style/palette.css';
 import arialMetfics from '@capsizecss/metrics/arial';
-import { extractFontMetricsForTheme } from '../util/typography';
+
+import { palette } from '~/style/palette.css';
 import { rem } from '~/utl/pxTo/rem';
+
+import { extractFontMetricsForTheme } from '../util/typography';
 
 const fontWeight = {
   regular: 400,

@@ -1,6 +1,7 @@
-import * as styles from './Modal.css';
 import { Box, Button } from '@cutting/component-library';
 import type { MouseEvent } from 'react';
+
+import * as styles from './Modal.css';
 
 interface ModalProps {
   isOpen: boolean;

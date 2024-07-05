@@ -1,9 +1,11 @@
-import { useContext, useMemo } from 'react';
-import { TextContext } from './TextContext';
 import { assert } from '@cutting/assert';
-import { textStyles } from '~/style/typography/typography';
 import cs from 'classnames';
+import { useContext, useMemo } from 'react';
+
+import { textStyles } from '~/style/typography/typography';
+
 import { base } from '../TextLink/TextLink.css';
+import { TextContext } from './TextContext';
 
 export function useGetTextStyles(): string {
   const textContext = useContext(TextContext);

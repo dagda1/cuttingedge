@@ -1,4 +1,5 @@
 import '@cutting/component-library/styles.css';
+
 import { ApplicationLayout, Heading } from '@cutting/component-library';
 
 export function App(): JSX.Element {

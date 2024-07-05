@@ -1,5 +1,6 @@
 import type { Meta } from '@storybook/react';
-import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
+
+import { themedSelect, themedTemplateMaker } from '../../../stories/Stories';
 import type { FormRadioGroupProps } from '../../FormControls/FormControls';
 import { FormRadioGroup } from '../../FormControls/FormControls';
 

@@ -1,5 +1,6 @@
+import { describe, expect, it } from 'vitest';
+
 import { uniqueId } from './uniqueid';
-import { expect, it, describe } from 'vitest';
 
 describe('uniqueId', () => {
   it('should be incrementing', () => {

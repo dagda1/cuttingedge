@@ -1,8 +1,9 @@
+import oswald from '@capsizecss/metrics/oswald';
 import type { DeepPartial } from '@cutting/util';
+
 import { palette } from '~/style/palette.css';
 import type { Tokens } from '~/style/themes/tokens';
 import { extractFontMetricsForTheme } from '~/style/util/typography';
-import oswald from '@capsizecss/metrics/oswald';
 
 const colors = {
   primary: palette.lime500,

@@ -1,4 +1,5 @@
 import { exec as spawn } from 'child_process';
+
 import { logger } from '../logger.js';
 
 export const run = (cmd: string): Promise<string> => {

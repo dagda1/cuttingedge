@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react';
+
+import { themedSelect, themedTemplateMaker } from '../../../stories/Stories';
 import { Input } from '../Input';
-import { themedTemplateMaker, themedSelect } from '../../../stories/Stories';
 
 export default {
   title: 'atoms/Input',

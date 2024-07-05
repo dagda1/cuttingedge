@@ -1,6 +1,7 @@
-import { expect, it, describe } from 'vitest';
-import { TextLink } from './TextLink';
 import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
+import { TextLink } from './TextLink';
 
 describe('<TextLink />', () => {
   it('should render target and rel props', () => {

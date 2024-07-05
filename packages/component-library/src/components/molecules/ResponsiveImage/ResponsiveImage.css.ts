@@ -1,4 +1,5 @@
 import { createVar, style } from '@vanilla-extract/css';
+
 import { responsiveStyle } from '~/style';
 
 export const mobileWidth = createVar();

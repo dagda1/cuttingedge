@@ -1,7 +1,9 @@
-import { LoadingIcon } from './LoadingIcon';
 import cs from 'classnames';
-import * as styles from './LoadingIcon.css';
+
 import { Heading } from '../../atoms/Heading/Heading';
+import { LoadingIcon } from './LoadingIcon';
+import * as styles from './LoadingIcon.css';
+
 export interface LoadingOverlayProps {
   busy: boolean;
   text?: string;

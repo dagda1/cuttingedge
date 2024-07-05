@@ -1,5 +1,6 @@
-import { pickBy, countBy, sortBy, sortedUniqBy, uniqBy, groupBy, keyBy } from './by';
-import { expect, it, describe } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
+import { countBy, groupBy, keyBy, pickBy, sortBy, sortedUniqBy, uniqBy } from './by';
 
 describe('by', () => {
   describe('pickBy', function () {

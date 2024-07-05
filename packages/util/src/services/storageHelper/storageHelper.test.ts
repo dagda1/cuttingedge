@@ -1,5 +1,6 @@
-import { StorageHelper, MemoryStorage } from '.';
-import { expect, it, describe } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
+import { MemoryStorage, StorageHelper } from '.';
 
 describe('storageHelper', () => {
   it('should set and remove on real storage', () => {

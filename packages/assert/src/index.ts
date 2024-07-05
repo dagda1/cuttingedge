@@ -1,1 +1,1 @@
-export { configureAssert, assert } from './assert';
+export { assert, configureAssert } from './assert';

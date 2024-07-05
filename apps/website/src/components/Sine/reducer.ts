@@ -1,6 +1,6 @@
-import type { Reducer } from 'react';
-import { scaleLinear, type ScaleLinear } from 'd3-scale';
 import { identity, range } from '@cutting/util';
+import { type ScaleLinear, scaleLinear } from 'd3-scale';
+import type { Reducer } from 'react';
 
 export type Dimensions = { width: number; height: number };
 

@@ -1,16 +1,17 @@
-import { build, analyzeMetafile } from 'esbuild';
-import { paths } from '../config/paths.js';
-import { nodeExternalsPlugin } from 'esbuild-node-externals';
-import { assert } from 'assert-ts';
-import logger from './logger.js';
-import type { CommonOptions } from 'esbuild';
-import path from 'path';
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
-import { copyAssets } from './copy-assets.js';
-import fs from 'fs';
+import { assert } from 'assert-ts';
 import { createCommand } from 'commander';
+import type { CommonOptions } from 'esbuild';
+import { analyzeMetafile, build } from 'esbuild';
+import { nodeExternalsPlugin } from 'esbuild-node-externals';
+import fs from 'fs';
 import { readFile } from 'fs/promises';
+import path from 'path';
 import { fileURLToPath } from 'url';
+
+import { paths } from '../config/paths.js';
+import { copyAssets } from './copy-assets.js';
+import logger from './logger.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

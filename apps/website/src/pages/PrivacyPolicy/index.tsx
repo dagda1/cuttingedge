@@ -1,5 +1,4 @@
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
-
 import Markdown from '~/markdown/privacy.mdx';
 
 export function PrivacyPolicy(): JSX.Element {

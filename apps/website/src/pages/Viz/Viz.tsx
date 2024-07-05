@@ -1,7 +1,8 @@
-import { Route, Routes } from 'react-router';
-import { Fallback } from '~/components/Fallback/Fallback';
 import { MathJaxProvider } from '@cutting/use-mathjax';
-import { Suspense, lazy } from 'react';
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router';
+
+import { Fallback } from '~/components/Fallback/Fallback';
 import * as Urls from '~/urls';
 
 const Sine = lazy(() => import('~/components/Sine/Sine'));

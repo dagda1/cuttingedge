@@ -1,18 +1,20 @@
 import {
-  useFloating,
   autoUpdate,
-  offset,
   flip,
-  shift,
-  useDismiss,
-  useRole,
-  useClick,
-  useInteractions,
   FloatingFocusManager,
+  offset,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  useRole,
 } from '@floating-ui/react';
-import { Text } from '~/components/atoms/Text/Text';
-import type { ReactNode } from 'react';
 import cs from 'classnames';
+import type { ReactNode } from 'react';
+
+import { Text } from '~/components/atoms/Text/Text';
+
 import * as styles from './Popover.css';
 
 interface PopoverProps {

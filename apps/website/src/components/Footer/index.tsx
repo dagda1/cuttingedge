@@ -1,9 +1,11 @@
-import { Column, Columns, TextLink, Inline, Stack, Text, PageBlock } from '@cutting/component-library';
+import { Column, Columns, Inline, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
+
 import cow from '~/assets/images/cow-logo-small2.png';
-import { footerPages } from '~/routes';
-import { TextNavLink } from '../TextNavLink/TextNavLink';
 import github from '~/assets/images/github.png';
 import twitter from '~/assets/images/twitter.png';
+import { footerPages } from '~/routes';
+
+import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 export function Footer(): JSX.Element {
   return (

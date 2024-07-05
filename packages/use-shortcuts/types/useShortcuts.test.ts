@@ -1,5 +1,6 @@
-import type { UseShortcutsResults } from '../src/types/types';
 import { KeyCode } from '../src/types/keycodes';
+import type { UseShortcutsResults } from '../src/types/types';
+
 const shortcutMap = {
   FIRST: 'a',
   SECOND: { combination: 'f' },

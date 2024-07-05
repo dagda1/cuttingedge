@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks/dom';
-import { vi, describe, expect, it, afterEach } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import { useInterval } from './useInterval';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

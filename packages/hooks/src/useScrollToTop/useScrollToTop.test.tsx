@@ -1,7 +1,7 @@
-import { expect, it, describe, beforeEach, afterEach } from 'vitest';
 import { render } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { useScrollToTop } from './useScrollToTop';
-import { vi } from 'vitest';
 
 describe('useScrollToTop', () => {
   beforeEach(() => {

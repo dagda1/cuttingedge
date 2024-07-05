@@ -1,9 +1,11 @@
+import cs from 'classnames';
 import { type ReactNode, useContext } from 'react';
+
+import { optimizeResponsiveArray } from '~/style/util/optimizeResponsiveArray';
+
 import { Box } from '../Box/Box';
 import { ColumnsContext } from '../Columns/ColumnsContext';
 import * as styles from './Column.css';
-import cs from 'classnames';
-import { optimizeResponsiveArray } from '~/style/util/optimizeResponsiveArray';
 
 export interface ColumnProps {
   children: ReactNode;

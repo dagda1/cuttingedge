@@ -1,8 +1,9 @@
 import cs from 'classnames';
+
 import type { Space } from '../atoms/atoms';
 import type { RequiredResponsiveValue } from '../atoms/sprinkles.css';
-import * as styles from './negativeMargin.css';
 import { resolveResponsiveProp } from '../util/resolveResponsiveProp';
+import * as styles from './negativeMargin.css';
 
 const directionStyles = {
   top: styles.top,

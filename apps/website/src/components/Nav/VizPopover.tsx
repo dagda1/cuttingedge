@@ -1,6 +1,6 @@
 import { List, Popover } from '@cutting/component-library';
+import { type ReactNode, useCallback, useState } from 'react';
 
-import { useState, type ReactNode, useCallback } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 const Links: { to: `/${string}`; children: ReactNode }[] = [

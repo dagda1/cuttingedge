@@ -1,5 +1,6 @@
+import { describe, expect, it } from 'vitest';
+
 import { isNumber } from '.';
-import { expect, it, describe } from 'vitest';
 
 describe('isNumber', () => {
   it('should test for number', () => {

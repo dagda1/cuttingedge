@@ -4,7 +4,7 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'simple-import-sort', 'import'],
   rules: {
     '@typescript-eslint/no-parameter-properties': ['off'],
     '@typescript-eslint/no-namespace': ['off'],
@@ -38,6 +38,13 @@ module.exports = {
     semi: ['error', 'always'],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
+    'import/no-unresolved': 'off',
+    'import/consistent-type-specifier-style': 'off',
   },
   overrides: [
     {

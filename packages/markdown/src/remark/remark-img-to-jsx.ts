@@ -1,6 +1,6 @@
-import { visit } from 'unist-util-visit';
-import sizeOf from 'image-size';
 import fs from 'fs';
+import sizeOf from 'image-size';
+import { visit } from 'unist-util-visit';
 
 type Tree = Parameters<typeof visit>[0];
 

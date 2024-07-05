@@ -1,5 +1,5 @@
-import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 import { responsiveStyle, vars } from '@cutting/component-library';
+import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 
 const spinY = keyframes({
   from: {

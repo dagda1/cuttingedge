@@ -1,9 +1,10 @@
-import { memo } from 'react';
-import { useForm, type SubmitHandler } from 'react-hook-form';
-import { MathJax } from '@cutting/use-mathjax';
-import { Input } from '@cutting/react-hook-form-components';
-import { parse } from 'mathjs';
 import { Button } from '@cutting/component-library';
+import { Input } from '@cutting/react-hook-form-components';
+import { MathJax } from '@cutting/use-mathjax';
+import { parse } from 'mathjs';
+import { memo } from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+
 import * as styles from './ExpressionForm.css';
 import { algebra, form } from './FunctionPlot.css';
 

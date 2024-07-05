@@ -1,9 +1,10 @@
 import { type ReactElement, type ReactNode } from 'react';
+
+import type * as typographyStyles from '../../../style/typography/typography.css';
+import { alignToFlexAlign } from '../../../style/util/align';
 import type { BoxProps } from '../../molecules/Box/Box';
 import { Box } from '../../molecules/Box/Box';
 import { MaxLines } from '../MaxLines/MaxLines';
-import { alignToFlexAlign } from '../../../style/util/align';
-import type * as typographyStyles from '../../../style/typography/typography.css';
 
 type IconSize = keyof typeof typographyStyles.textSizeUntrimmed | 'fill';
 

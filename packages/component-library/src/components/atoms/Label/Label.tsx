@@ -1,8 +1,10 @@
 import cs from 'classnames';
-import * as styles from './Label.css';
-import type { FontWeight } from '~/style/types';
 import type { PropsWithChildren } from 'react';
+
 import { Text } from '~/components/atoms/Text/Text';
+import type { FontWeight } from '~/style/types';
+
+import * as styles from './Label.css';
 
 export interface LabelProps {
   id?: string;

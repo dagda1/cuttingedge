@@ -1,5 +1,6 @@
+import { describe, expect, it } from 'vitest';
+
 import { wait } from './wait';
-import { expect, it, describe } from 'vitest';
 
 describe('wait', () => {
   it('should resolve if an html is found', async () => {

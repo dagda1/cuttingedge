@@ -1,16 +1,18 @@
+import cs from 'classnames';
 import { Children } from 'react';
+
+import type { Space } from '~/style/atoms/atoms';
+import type { RequiredResponsiveValue } from '~/style/atoms/sprinkles.css';
+import { mapResponsiveValue } from '~/style/atoms/sprinkles.css';
+import { negativeMargin } from '~/style/negativeMargin/negativeMargin';
+import flattenChildren from '~/style/util/flatten-children';
+import { resolveResponsiveProp } from '~/style/util/resolveResponsiveProp';
+
 import type { BoxProps } from '../Box/Box';
 import { Box } from '../Box/Box';
 import { Divider } from '../Divider/Divider';
-import * as styles from './Tiles.css';
 import type { ReactNodeNoStrings } from '../Stack/Stack';
-import type { RequiredResponsiveValue } from '~/style/atoms/sprinkles.css';
-import type { Space } from '~/style/atoms/atoms';
-import { negativeMargin } from '~/style/negativeMargin/negativeMargin';
-import flattenChildren from '~/style/util/flatten-children';
-import cs from 'classnames';
-import { resolveResponsiveProp } from '~/style/util/resolveResponsiveProp';
-import { mapResponsiveValue } from '~/style/atoms/sprinkles.css';
+import * as styles from './Tiles.css';
 
 export interface TilesProps {
   children: ReactNodeNoStrings;

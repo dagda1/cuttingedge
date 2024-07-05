@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
+import { describe, expect, it } from 'vitest';
+
 import { usePrevious } from './usePrevious';
-import { it, expect, describe } from 'vitest';
 
 const setUp = () => renderHook(({ state = 0 }) => usePrevious(state), { initialProps: { state: 0 } });
 

@@ -1,8 +1,9 @@
-import type { DeepPartial } from '@cutting/util';
-import type { Tokens } from '~/style/themes/tokens';
-import { palette } from '~/style/palette.css';
-import { extractFontMetricsForTheme } from '~/style/util/typography';
 import roboto from '@capsizecss/metrics/roboto';
+import type { DeepPartial } from '@cutting/util';
+
+import { palette } from '~/style/palette.css';
+import type { Tokens } from '~/style/themes/tokens';
+import { extractFontMetricsForTheme } from '~/style/util/typography';
 
 const colors = {
   primary: palette.lime500,

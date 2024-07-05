@@ -1,6 +1,6 @@
-import type { TickRendererProps } from '@visx/axis';
 import { Group } from '@cutting/svg';
 import { SVGMathJax } from '@cutting/use-mathjax';
+import type { TickRendererProps } from '@visx/axis';
 
 export function BottomAxis({ formattedValue, x, y }: TickRendererProps): JSX.Element {
   if (formattedValue === '$0$') {

@@ -1,10 +1,12 @@
 import { assert } from '@cutting/assert';
 import { type ReactNode } from 'react';
-import { type BoxProps, Box } from '../Box/Box';
+
+import { Keyline } from '~/components/atoms/Keyline/Keyline';
 import { optimizeResponsiveArray } from '~/style/util/optimizeResponsiveArray';
 import type { ResponsiveRangeProps } from '~/style/util/resolveResponsiveRangeProps';
 import { resolveResponsiveRangeProps } from '~/style/util/resolveResponsiveRangeProps';
-import { Keyline } from '~/components/atoms/Keyline/Keyline';
+
+import { Box, type BoxProps } from '../Box/Box';
 
 export const validCardComponents = ['div', 'article', 'aside', 'details', 'main', 'section'] as const;
 

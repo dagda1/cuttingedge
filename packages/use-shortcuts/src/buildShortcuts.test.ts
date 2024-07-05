@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { buildShortcuts } from './buildShortcuts';
 import { KeyCode } from './types/keycodes';
 

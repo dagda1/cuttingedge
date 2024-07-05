@@ -1,10 +1,12 @@
-import { TextLink } from '~/components/atoms/TextLink/TextLink';
+import cs from 'classnames';
+
 import { Text } from '~/components/atoms/Text/Text';
-import * as styles from './Testimonial.css';
+import { TextLink } from '~/components/atoms/TextLink/TextLink';
+import type { TextStyleProps } from '~/style/typography/typography';
+
 import type { ReactNodeNoStrings } from '../Stack/Stack';
 import { Stack } from '../Stack/Stack';
-import type { TextStyleProps } from '~/style/typography/typography';
-import cs from 'classnames';
+import * as styles from './Testimonial.css';
 
 interface TestimonialProps {
   from?: string;

@@ -1,5 +1,6 @@
-import { combinations } from './combinations';
 import { describe, expect, it } from 'vitest';
+
+import { combinations } from './combinations';
 
 const arr = ['red', 'orange', 'yellow', 'green'];
 

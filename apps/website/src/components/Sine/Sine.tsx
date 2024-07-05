@@ -1,17 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useReducer } from 'react';
-import { useRef } from 'react';
-import { ApplicationLayout } from '~/layouts/ApplicationLayout';
-import { ResponsiveSVG, Group, Line } from '@cutting/svg';
-import { useParentSize } from '@cutting/use-get-parent-size';
-import { AxisBottom, AxisLeft } from '@visx/axis';
-import { LinePath } from '@visx/shape';
-import { curveMonotoneX } from '@visx/curve';
-import { SVGMathJax } from '@cutting/use-mathjax';
-import * as styles from './Sine.css';
-import type { PiMapKeys } from './reducer';
-import { getScales, reducer, initialState, xTickValues, PiMap } from './reducer';
-import { BottomAxis } from './BottomAxis';
 import { assert } from '@cutting/assert';
+import { Group, Line, ResponsiveSVG } from '@cutting/svg';
+import { useParentSize } from '@cutting/use-get-parent-size';
+import { SVGMathJax } from '@cutting/use-mathjax';
+import { AxisBottom, AxisLeft } from '@visx/axis';
+import { curveMonotoneX } from '@visx/curve';
+import { LinePath } from '@visx/shape';
+import React, { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
+
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+
+import { BottomAxis } from './BottomAxis';
+import type { PiMapKeys } from './reducer';
+import { getScales, initialState, PiMap, reducer, xTickValues } from './reducer';
+import * as styles from './Sine.css';
 
 function Sine(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);

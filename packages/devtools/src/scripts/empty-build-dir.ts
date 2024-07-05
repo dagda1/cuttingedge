@@ -1,6 +1,7 @@
+import fs from 'fs-extra';
+
 import { paths } from '../config/paths.js';
 import logger from './logger.js';
-import fs from 'fs-extra';
 
 export const emptyBuildDir = (): void => {
   if (process.env.WATCHING !== 'true') {

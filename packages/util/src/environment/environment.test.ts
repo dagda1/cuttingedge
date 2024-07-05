@@ -1,5 +1,6 @@
+import { describe, expect, it } from 'vitest';
+
 import { isTest } from '.';
-import { expect, it, describe } from 'vitest';
 
 describe('environment', () => {
   it('should be isTest', () => {

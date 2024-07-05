@@ -1,18 +1,20 @@
+import { assert } from '@cutting/assert';
 import { Group, Line, ResponsiveSVG } from '@cutting/svg';
 import { useParentSize } from '@cutting/use-get-parent-size';
-import { scalePoint, scaleLinear } from '@visx/scale';
-import { Fragment, useLayoutEffect, useMemo, useReducer, useRef } from 'react';
-import { initialState, maxTan, reducer } from './reducer';
-import { AxisBottom, AxisLeft } from '@visx/axis';
+import { SVGMathJax } from '@cutting/use-mathjax';
 import { range } from '@cutting/util';
+import { AxisBottom, AxisLeft } from '@visx/axis';
+import { scaleLinear, scalePoint } from '@visx/scale';
 import { Arc, LinePath } from '@visx/shape';
 import { Text } from '@visx/text';
-import * as styles from './Tan.css';
 import cs from 'classnames';
-import { ApplicationLayout } from '~/layouts/ApplicationLayout';
-import { SVGMathJax } from '@cutting/use-mathjax';
 import { curveMonotoneX } from 'd3-shape';
-import { assert } from '@cutting/assert';
+import { Fragment, useLayoutEffect, useMemo, useReducer, useRef } from 'react';
+
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+
+import { initialState, maxTan, reducer } from './reducer';
+import * as styles from './Tan.css';
 
 const Ticks = [...range(-1, 1)];
 

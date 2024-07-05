@@ -1,4 +1,5 @@
-import type { RefObject, FC } from 'react';
+import type { FC, RefObject } from 'react';
+
 import type { ShortcutHandler } from '../../types/types';
 
 export interface ShortcutsProps<

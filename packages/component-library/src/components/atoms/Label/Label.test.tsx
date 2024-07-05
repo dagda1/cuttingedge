@@ -1,7 +1,8 @@
+import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import type { LabelProps } from './Label';
 import { Label } from './Label';
-import { render } from '@testing-library/react';
-import { expect, it, describe } from 'vitest';
 
 const wrap = (props: LabelProps = {}) => render(<Label {...props}>label</Label>);
 

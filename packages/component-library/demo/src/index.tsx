@@ -1,7 +1,8 @@
+import { assert } from '@cutting/assert';
 import type { FunctionComponent } from 'react';
 import { createRoot } from 'react-dom/client';
+
 import { App } from './App';
-import { assert } from '@cutting/assert';
 
 export const container = document.getElementById('root');
 

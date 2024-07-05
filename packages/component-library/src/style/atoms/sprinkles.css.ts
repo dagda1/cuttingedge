@@ -1,13 +1,15 @@
 import type { ConditionalValue, RequiredConditionalValue } from '@vanilla-extract/sprinkles';
 import {
-  defineProperties,
-  createSprinkles,
   createMapValueFn,
   createNormalizeValueFn,
+  createSprinkles,
+  defineProperties,
 } from '@vanilla-extract/sprinkles';
-import { breakpointNames, breakpoints } from '../breakpoints';
+
 import { vars } from '~/style/themes/vars.css';
 import { rem } from '~/utl/pxTo/rem';
+
+import { breakpointNames, breakpoints } from '../breakpoints';
 
 export type OptionalResponsiveValue<Value extends string | number> = ConditionalValue<
   typeof responsiveAtomicProperties,

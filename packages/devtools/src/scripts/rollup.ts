@@ -1,38 +1,39 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import type { OutputOptions } from 'rollup';
-import { rollup } from 'rollup';
-import type { ModuleFormat } from '../types/moduleFormat.js';
-import { paths } from '../config/paths.js';
-import fs from 'fs-extra';
-import path from 'path';
-import typescript from 'rollup-plugin-typescript2';
-import { logger } from './logger.js';
-import resolve from '@rollup/plugin-node-resolve';
-import { assert } from 'assert-ts';
-import json from '@rollup/plugin-json';
-import sourceMaps from 'rollup-plugin-sourcemaps';
-// @ts-ignore
-import terser from '@rollup/plugin-terser';
-import { copyAssets } from './copy-assets.js';
-import postcss from 'rollup-plugin-postcss';
 import { md } from '@cutting/rollup-plugin-md';
 // @ts-ignore
-import svgo from 'rollup-plugin-svgo';
-// @ts-ignore
 import eslint from '@rbnlffl/rollup-plugin-eslint';
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+import resolve from '@rollup/plugin-node-resolve';
 // @ts-ignore
-import url from 'postcss-url';
+import terser from '@rollup/plugin-terser';
+import { assert } from 'assert-ts';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
-import commonjs from '@rollup/plugin-commonjs';
-import { writeToPackage } from './write-package.js';
-import { csv } from '../rollup/plugins/csv.js';
-import postcssImport from 'postcss-import';
 import { createCommand } from 'commander';
-import analyzer from 'rollup-plugin-analyzer';
-import { readFile } from 'fs/promises';
-import ts from 'typescript';
 import deepmerge from 'deepmerge';
+import { readFile } from 'fs/promises';
+import fs from 'fs-extra';
+import path from 'path';
+import postcssImport from 'postcss-import';
+// @ts-ignore
+import url from 'postcss-url';
+import type { OutputOptions } from 'rollup';
+import { rollup } from 'rollup';
+import analyzer from 'rollup-plugin-analyzer';
+import postcss from 'rollup-plugin-postcss';
+import sourceMaps from 'rollup-plugin-sourcemaps';
+// @ts-ignore
+import svgo from 'rollup-plugin-svgo';
+import typescript from 'rollup-plugin-typescript2';
+import ts from 'typescript';
+
+import { paths } from '../config/paths.js';
+import { csv } from '../rollup/plugins/csv.js';
+import type { ModuleFormat } from '../types/moduleFormat.js';
+import { copyAssets } from './copy-assets.js';
+import { logger } from './logger.js';
+import { writeToPackage } from './write-package.js';
 
 // TODO: remove this shit
 const safePackageName = (name: string): string =>

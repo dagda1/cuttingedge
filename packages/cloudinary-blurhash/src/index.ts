@@ -1,4 +1,5 @@
 import { createCommand } from 'commander';
+
 import { generateBlurhashFile } from './generateBlurhashFile';
 
 export const program = createCommand('generate-blur-hash');

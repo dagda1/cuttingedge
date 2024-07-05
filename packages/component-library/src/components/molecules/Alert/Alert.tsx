@@ -1,10 +1,12 @@
-import type { ReactNode } from 'react';
-import cs from 'classnames';
-import * as styles from './Alert.css';
 import { capitalize } from '@cutting/util';
+import cs from 'classnames';
+import type { ReactNode } from 'react';
+
 import { Heading } from '~/components/atoms/Heading/Heading';
 import { Text } from '~/components/atoms/Text/Text';
+
 import { Stack } from '../Stack/Stack';
+import * as styles from './Alert.css';
 
 export type AlertType = 'success' | 'warning' | 'error';
 

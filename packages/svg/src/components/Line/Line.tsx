@@ -1,4 +1,5 @@
 import cx from 'classnames';
+
 import type { AddSVGProps, Point } from '../../types/types';
 
 export type LineProps = {

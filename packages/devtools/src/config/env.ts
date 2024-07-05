@@ -1,5 +1,6 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+
 import type { Env } from '../types/env.js';
 
 const NODE_ENV = process.env.NODE_ENV;

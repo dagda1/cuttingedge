@@ -1,5 +1,5 @@
-import type { Entries } from '../types/entries';
 import type { DeepPartial } from '../types/DeepPartial';
+import type { Entries } from '../types/entries';
 import { isNil } from './isNil';
 
 export type PropertyReturn = string | number | symbol;

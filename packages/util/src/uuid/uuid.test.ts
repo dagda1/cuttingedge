@@ -1,5 +1,6 @@
+import { describe, expect, it } from 'vitest';
+
 import { generateUUID } from './uuid';
-import { describe, it, expect } from 'vitest';
 
 describe('generateUUID', () => {
   it('should generate a uuid', () => {

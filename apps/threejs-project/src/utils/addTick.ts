@@ -1,4 +1,5 @@
 import { BufferGeometry, Line, LineBasicMaterial, type Scene, Vector3 } from 'three';
+
 import type { Axis } from '~/types';
 
 export function addTick(scene: Scene, position: number, axis: Axis, color = 0x000000): void {

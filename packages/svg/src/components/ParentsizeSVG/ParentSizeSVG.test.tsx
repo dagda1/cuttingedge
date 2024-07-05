@@ -1,7 +1,8 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
 import { useParentSize } from '@cutting/use-get-parent-size';
+import { render, screen } from '@testing-library/react';
 import { useRef } from 'react';
+import { describe, expect, it } from 'vitest';
+
 import type { ParentsizeSVGProps } from './ParentsizeSVG';
 import { ParentsizeSVG } from './ParentsizeSVG';
 

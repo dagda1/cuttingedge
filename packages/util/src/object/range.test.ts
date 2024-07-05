@@ -1,6 +1,7 @@
-import { expect, it, describe } from 'vitest';
-import { range } from './range';
+import { describe, expect, it } from 'vitest';
+
 import { identity } from './identity';
+import { range } from './range';
 
 describe('range', () => {
   it('creates a range iterator with start and end arguments', () => {

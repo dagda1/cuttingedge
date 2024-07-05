@@ -1,6 +1,7 @@
+import cs from 'classnames';
 import type { PropsWithChildren } from 'react';
 import { useRef } from 'react';
-import cs from 'classnames';
+
 import { useShortcuts } from '../../useShortcuts';
 import type { ShortcutsProps } from './types';
 

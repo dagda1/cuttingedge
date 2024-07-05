@@ -1,7 +1,6 @@
 import { palette, vars } from '@cutting/component-library';
 import type { ComplexStyleRule } from '@vanilla-extract/css';
-import { globalStyle } from '@vanilla-extract/css';
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 const steelBlue = '#4682B4';
 const thickStroke = '5px';

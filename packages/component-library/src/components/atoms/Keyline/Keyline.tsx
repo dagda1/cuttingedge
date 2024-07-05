@@ -1,7 +1,9 @@
+import cs from 'classnames';
+
 import type { BoxProps } from '~/components/molecules/Box/Box';
 import { Box } from '~/components/molecules/Box/Box';
+
 import * as styles from './Keyline.css';
-import cs from 'classnames';
 
 interface KeylineProps {
   borderRadius?: BoxProps['borderRadius'];

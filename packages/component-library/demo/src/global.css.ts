@@ -1,6 +1,8 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { vars } from '../../src/style/themes/vars.css';
+
 import { cuttingTheme } from '~/index';
+
+import { vars } from '../../src/style/themes/vars.css';
 
 export const background = style({
   marginTop: vars.space['large'],

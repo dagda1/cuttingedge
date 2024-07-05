@@ -1,13 +1,15 @@
-import * as urls from '~/urls';
-import * as styles from './Nav.css';
 import { Box, Heading, Nav, NavItem, NavItems, ResponsiveImage } from '@cutting/component-library';
+import cs from 'classnames';
+import { useCallback, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { TextNavLink } from '../TextNavLink/TextNavLink';
+
 import cow from '~/assets/images/cow-logo.png';
 import cowMobile from '~/assets/images/cow-mobile.png';
-import cs from 'classnames';
 import { bannerPages } from '~/routes';
-import { useCallback, useState } from 'react';
+import * as urls from '~/urls';
+
+import { TextNavLink } from '../TextNavLink/TextNavLink';
+import * as styles from './Nav.css';
 import { VizPopover } from './VizPopover';
 
 export interface MenuState {

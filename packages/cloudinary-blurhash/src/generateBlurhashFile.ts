@@ -1,11 +1,12 @@
-import { v2 } from 'cloudinary';
-import fs from 'fs';
-import type { BlurHashImage, SearchResults } from './types';
 import { getPixels } from '@unpic/pixels';
 import { encode } from 'blurhash';
 import chalk from 'chalk';
+import { v2 } from 'cloudinary';
+import fs from 'fs';
 import logUpdate from 'log-update';
 import path from 'path';
+
+import type { BlurHashImage, SearchResults } from './types';
 
 const {
   promises: { writeFile },

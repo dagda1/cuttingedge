@@ -1,7 +1,8 @@
-import { describe, it, expect } from 'vitest';
+import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import type { AlertProps } from './Alert';
 import { Alert } from './Alert';
-import { render } from '@testing-library/react';
 
 const wrap = (props: AlertProps) => render(<Alert {...props} />);
 
