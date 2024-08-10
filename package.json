@@ -35,7 +35,7 @@
     "@vitest/coverage-v8": "1.6.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vanilla-extract/vite-plugin": "4.0.13",
-    "cheerio": "^1.0.0-rc.12",
+    "cheerio": "^1.0.0",
     "core-js": "3.37.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "9.1.0",
