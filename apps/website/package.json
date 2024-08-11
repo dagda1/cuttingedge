@@ -51,7 +51,7 @@
     "d3-scale": "4.0.2",
     "d3-selection": "^3.0.0",
     "d3-shape": "^3.2.0",
-    "dayjs": "1.11.11",
+    "dayjs": "1.11.12",
     "express": "4.19.2",
     "global": "4.4.0",
     "helmet": "7.1.0",
