@@ -27,7 +27,7 @@
     "use-debounce": "^10.0.2"
   },
   "devDependencies": {
-    "@vanilla-extract/sprinkles": "1.6.2",
+    "@vanilla-extract/sprinkles": "1.6.3",
     "@testing-library/react": "16.0.0",
     "@testing-library/react-hooks": "8.0.1",
     "@types/react": "18.3.3",
