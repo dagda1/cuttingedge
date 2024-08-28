@@ -32,7 +32,7 @@
     "@types/mousetrap": "1.6.15",
     "@types/react": "18.3.4",
     "@types/react-dom": "18.3.0",
-    "@vanilla-extract/css": "^1.15.3",
+    "@vanilla-extract/css": "^1.15.5",
     "@cutting/assert": "workspace:*",
     "dtslint": "4.2.1",
     "react": "18.3.1",
