@@ -1,5 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function remarkInlineCodeLanguageCreator() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function remarkInlineCodeLanguageCreator(): Promise<() => (tree: any) => void> {
   const { visit } = await import('unist-util-visit');
   const { escapeHtml } = await import('@cutting/util');
 

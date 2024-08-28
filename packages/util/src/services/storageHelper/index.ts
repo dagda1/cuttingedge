@@ -60,11 +60,10 @@ export class StorageHelper implements Storage {
 
   constructor(storageType: StorageType) {
     try {
-      localStorage;
       this.storageWindow = window[storageType];
       this.storageWindow.setItem('cutting.test-ls', '1');
       this.storageWindow.removeItem('cutting.test-ls');
-    } catch (exception) {
+    } catch {
       this.storageWindow = MemoryStorage;
     }
   }

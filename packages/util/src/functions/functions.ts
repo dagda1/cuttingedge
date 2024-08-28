@@ -1,9 +1,7 @@
 import { isDate } from '../date/date';
 import { isNil } from '../object/isNil';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 export const noop = (): void => {};
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Fn = <A extends unknown[], R>(...args: A) => R;
 
 export const isPromise = <T>(obj: unknown): obj is Promise<T> => {

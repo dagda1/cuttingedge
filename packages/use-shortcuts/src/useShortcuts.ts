@@ -31,7 +31,7 @@ export const useShortcuts = <R extends Record<PropertyKey, unknown>, E extends H
     mousetrapRef.current = new mousetrap(ref.current);
 
     return (): void => {
-      mousetrapRef.current && mousetrapRef.current.reset();
+      mousetrapRef.current?.reset();
     };
   }, [ref]);
 

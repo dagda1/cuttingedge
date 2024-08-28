@@ -5,6 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
+import defaultConfig from './index.mjs'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,7 +16,8 @@ const compat = new FlatCompat({
 });
 
 export default [
-    ...compat.extends("./index.mjs", "plugin:react/recommended", "plugin:jsx-a11y/recommended"),
+    ...compat.extends("plugin:react/recommended", "plugin:jsx-a11y/recommended"),
+    ...defaultConfig,
     {
         plugins: {
             react,
@@ -41,13 +43,9 @@ export default [
         },
 
         rules: {
-            "react-hooks/rules-of-hooks": ["error", {
-                additionalHooks: "(useIsomorphicLayoutEffect)",
-            }],
+            "react-hooks/rules-of-hooks": ["error"],
 
-            "react-hooks/exhaustive-deps": ["error", {
-                additionalHooks: "(useIsomorphicLayoutEffect)",
-            }],
+            "react-hooks/exhaustive-deps": ["error"],
 
             "react/prop-types": 0,
             "react/react-in-jsx-scope": 0,
