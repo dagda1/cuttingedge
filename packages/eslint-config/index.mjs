@@ -44,14 +44,7 @@ export default [
             "@typescript-eslint/consistent-type-imports": "error",
             "no-var": "warn",
 
-            "@typescript-eslint/ban-types": ["error", {
-                types: {
-                    "{}": {
-                        message: "Use Record<string, unknown> instead",
-                        fixWith: "Record<string, unknown>",
-                    },
-                },
-            }],
+            "@typescript-eslint/no-empty-object-type": "error",
 
             curly: "error",
             eqeqeq: ["error", "always"],
