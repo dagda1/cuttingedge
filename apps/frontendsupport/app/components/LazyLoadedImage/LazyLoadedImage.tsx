@@ -40,8 +40,8 @@ export function LazyLoadedImage({
     img.src = src;
   }, [imgLoadedHandler, loaded, src]);
 
-  const resolvedWidth = layout === 'constrained' ? width ?? imageProps.width : undefined;
-  const resolvedHeight = layout === 'constrained' ? height ?? imageProps.height : undefined;
+  const resolvedWidth = layout === 'constrained' ? (width ?? imageProps.width) : undefined;
+  const resolvedHeight = layout === 'constrained' ? (height ?? imageProps.height) : undefined;
 
   assert(typeof resolvedWidth === 'number');
   assert(typeof resolvedHeight === 'number');

@@ -15,7 +15,7 @@
     "format": "^0.2.2",
     "front-matter": "^4.0.2",
     "github-slugger": "^2.0.0",
-    "esbuild": "^0.21.5",
+    "esbuild": "^0.23.1",
     "image-size": "^1.1.1",
     "js-yaml": "^4.1.0",
     "katex": "^0.16.11",

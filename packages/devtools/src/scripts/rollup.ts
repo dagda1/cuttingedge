@@ -72,13 +72,10 @@ async function generateBundledModule({
     },
     plugins: [
       eslint({
-        fix: false,
         throwOnError: true,
         throwOnWarning: true,
-        extensions: ['.ts', '.tsx', '.test.ts', '.test.tsx'],
         filterInclude: 'src/**',
         filterExclude: ['**/*.scss', '**/*.css', '**/*.md', '**/*.csv', 'dist/**', '**/*.json'],
-        useEslintrc: true,
       }),
       resolve({
         mainFields: ['module', 'browser', 'main'],
