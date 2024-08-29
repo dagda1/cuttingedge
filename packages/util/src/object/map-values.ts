@@ -1,6 +1,5 @@
 type ObjectIterator<T, K extends keyof T, R> = (value: T[K], key: string, collection: T) => R;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export const mapValues = <T extends Record<string, unknown>, R>(
   o: T,
   callback: ObjectIterator<T, keyof T, R>,

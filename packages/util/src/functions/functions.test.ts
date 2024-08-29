@@ -11,11 +11,11 @@ describe('functions', () => {
 
   it('should recognise functions', () => {
     expect(isFunction(() => ({}))).toBe(true);
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+
     expect(isFunction(function () {})).toBe(true);
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+
     expect(isFunction(async () => {})).toBe(true);
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+
     expect(isFunction(function* () {})).toBe(true);
     expect(isFunction(Math.round)).toBe(true);
     expect(isFunction(new Date())).toBe(false);

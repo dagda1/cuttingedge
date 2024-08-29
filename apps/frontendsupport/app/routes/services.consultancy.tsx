@@ -1,4 +1,4 @@
-import { Heading, C2Testimonial, Stack, Text } from '@cutting/component-library';
+import { C2Testimonial, Heading, Stack, Text } from '@cutting/component-library';
 import { ContactButtons } from '@cutting/react-hook-form-components';
 
 export default function Consultancy(): JSX.Element {

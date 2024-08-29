@@ -31,40 +31,34 @@ declare module '*.mdx' {
   export default classes;
 }
 
-
-declare module "*.png" {
+declare module '*.png' {
   const value: any;
   export default value;
 }
 
-declare module "*.jpg" {
+declare module '*.jpg' {
   const value: any;
   export default value;
 }
-
 
 interface ViteHotContext {
-  readonly data: any
+  readonly data: any;
 
-  accept(): void
-  accept(cb: (mod: any) => void): void
-  accept(dep: string, cb: (mod: any) => void): void
-  accept(deps: readonly string[], cb: (mods: any[]) => void): void
+  accept(): void;
+  accept(cb: (mod: any) => void): void;
+  accept(dep: string, cb: (mod: any) => void): void;
+  accept(deps: readonly string[], cb: (mods: any[]) => void): void;
 
-  dispose(cb: (data: any) => void): void
-  decline(): void
-  invalidate(): void
+  dispose(cb: (data: any) => void): void;
+  decline(): void;
+  invalidate(): void;
 
-  on<T extends string>(
-    event: T,
-    cb: (payload: any) => void
-  ): void
-  send<T extends string>(event: T, data?: any): void
+  on<T extends string>(event: T, cb: (payload: any) => void): void;
+  send<T extends string>(event: T, data?: any): void;
 }
 
-
 interface ImportMeta {
-  url: string
+  url: string;
 
-  readonly hot?: ViteHotContext
+  readonly hot?: ViteHotContext;
 }

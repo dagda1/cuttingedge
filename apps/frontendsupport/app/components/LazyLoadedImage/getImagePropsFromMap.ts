@@ -1,7 +1,16 @@
-import blurhashMap from '../../json/blurhash_image_map.json';
 import { assert } from '@cutting/assert';
 
-export function getImagePropsFromMap(url: string) {
+import blurhashMap from '../../json/blurhash_image_map.json';
+
+interface BlurHashImage {
+  id: string;
+  url: string;
+  blurhash: string;
+  width: number;
+  height: number;
+}
+
+export function getImagePropsFromMap(url: string): BlurHashImage {
   const urlParts = url.split('/');
 
   let fileName = urlParts.slice(-1)[0];

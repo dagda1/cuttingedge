@@ -1,5 +1,5 @@
 import { responsiveStyle } from '@cutting/component-library';
-import { style, createVar } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
 
 export const backgroundImage = createVar();
 

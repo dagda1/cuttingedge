@@ -1,19 +1,21 @@
+import './Home.css';
+
+import { assert } from '@cutting/assert';
 import { Box, C2Testimonial, DSTestimonial, Heading, List, Redhatestimonial, Text } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import gsap from 'gsap';
-import { Panel } from './Panel/Panel';
 import { useParentSize } from '@cutting/use-get-parent-size';
-import { useRef } from 'react';
-import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import ScrollToPlugin from 'gsap/ScrollToPlugin';
-import SplitText from 'gsap/SplitText';
-import { assert } from '@cutting/assert';
-import { Clients } from '../../components/Clients/Clients';
-import { Services } from '../Panels/Services/Services';
-import { About } from '../../components/About/About';
 import { Image } from '@unpic/react';
-import './Home.css';
+import gsap from 'gsap';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import SplitText from 'gsap/SplitText';
+import { useRef } from 'react';
+
+import { About } from '../../components/About/About';
+import { Clients } from '../../components/Clients/Clients';
+import { BreakGlass } from '../Panels/BreakGlass/BreakGlass';
+import { Services } from '../Panels/Services/Services';
+import { Panel } from './Panel/Panel';
 
 export function Home(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
@@ -53,7 +55,6 @@ export function Home(): JSX.Element {
       wordsClass: 'word',
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function main() {
       if (!width || width < 100) {
         return;

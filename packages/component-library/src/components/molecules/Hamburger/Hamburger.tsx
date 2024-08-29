@@ -3,9 +3,9 @@ import cs from 'classnames';
 import { Box } from '../Box/Box';
 import * as styles from './Hamburger.css';
 
-const hamburgerVariants = ['dark', 'light'] as const;
+const _hamburgerVariants = ['dark', 'light'] as const;
 
-export type HamburgerVariants = (typeof hamburgerVariants)[number];
+export type HamburgerVariants = (typeof _hamburgerVariants)[number];
 
 interface HamburgerProps {
   open: boolean;

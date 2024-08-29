@@ -1,12 +1,13 @@
-import { Box } from '@cutting/component-library';
-import { Panel } from '../Panel/Panel';
-import { range } from '@cutting/util';
-import { useRef } from 'react';
-import { Dot } from './Dot/Dot';
-import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { assert } from '@cutting/assert';
+import { Box } from '@cutting/component-library';
+import { useIsomorphicLayoutEffect } from '@cutting/hooks';
+import { range } from '@cutting/util';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
+
+import { Panel } from '../Panel/Panel';
+import { Dot } from './Dot/Dot';
 import { horizontalLoop } from './horizontalLoop';
 
 const numberOfDots = [...range(9)] as const;
@@ -64,7 +65,7 @@ export function Dots({ width }: DotsProps): JSX.Element {
         overflow="hidden"
       >
         {numberOfDots.map((_, i) => (
-          <Dot key={i} background={i == 4 ? '#ffffff' : '#1f1f1f'} />
+          <Dot key={i} background={i === 4 ? '#ffffff' : '#1f1f1f'} />
         ))}
       </Box>
     </Panel>

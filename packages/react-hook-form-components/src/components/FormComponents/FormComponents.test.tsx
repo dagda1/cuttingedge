@@ -27,7 +27,6 @@ function Form(props: any) {
 const wrap = (props?: FormProps<typeof FormInput>): RenderResult => {
   return render(<Form {...props} />);
 };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 
 describe('Form Components', () => {
   it('should wrap component with label', () => {

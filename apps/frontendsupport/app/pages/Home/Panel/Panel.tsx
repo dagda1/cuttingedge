@@ -1,7 +1,8 @@
 import type { BoxProps } from '@cutting/component-library';
 import { Box } from '@cutting/component-library';
-import { type ReactNode } from 'react';
 import cs from 'classnames';
+import { type ReactNode } from 'react';
+
 import * as styles from './Panel.css';
 
 type PanelProps = {

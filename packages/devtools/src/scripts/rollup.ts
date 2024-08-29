@@ -79,7 +79,7 @@ async function generateBundledModule({
       }),
       resolve({
         mainFields: ['module', 'browser', 'main'],
-        extensions: ['.mjs', '.cjs', '', '.ts', '.tsx', '.json', '.jsx'],
+        extensions: ['.ts', '.tsx', '.json', '.jsx'],
       }),
       commonjs(),
       json(),

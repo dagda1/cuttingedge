@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 // This should eventually be a npm package, but for now it lives here.
 // It's job is to notify the remix dev server of the version of the running
 // app to trigger HMR / HDR.
@@ -30,15 +31,15 @@ export default {
           }
         }
       }, 300);
-    },
+    }
   },
   set: {
     env() {
       // Pass matching env variables through to the application in dev mode.
       const passthruKeys = /^NODE_ENV$|^REMIX_DEV_/;
       return {
-        testing: Object.fromEntries(Object.entries(process.env).filter(([key]) => passthruKeys.test(key))),
+        testing: Object.fromEntries(Object.entries(process.env).filter(([key]) => passthruKeys.test(key)))
       };
-    },
-  },
+    }
+  }
 };

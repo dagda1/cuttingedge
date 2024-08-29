@@ -68,7 +68,7 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
 
         setSelectedValues([...selectedValues.filter((o) => o.id !== option.id), option]);
 
-        onChange && onChange(e);
+        onChange?.(e);
       },
       [onChange, selectedValues],
     );

@@ -8,7 +8,6 @@ export const container = document.getElementById('root');
 
 assert(!!container, `no container found for #root`);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const root = createRoot(container);
 
 const render = (Component: FunctionComponent) => {

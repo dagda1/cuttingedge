@@ -17,8 +17,6 @@ import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { getScales } from './get-scales';
 import * as styles from './Sinusoidal.css';
 
-interface TrigonometricTransformsProps {}
-
 type TrigFunctions = 'sin' | 'cos';
 
 const xTickValues = [-6.28, -4.71, -3.14, -1.57, 0, 1.57, 3.14, 4.71, 6.28];
@@ -34,7 +32,7 @@ const piMap = {
   [xTickValues[8]]: '$2\\pi$',
 };
 
-export function TrigonometricTransforms(_props: TrigonometricTransformsProps): JSX.Element {
+export function TrigonometricTransforms(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef, { initialValues: { width: 0, height: 0 } });
   assert(typeof width === 'number');

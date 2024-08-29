@@ -1,16 +1,17 @@
+import type { ReactNodeNoStrings } from '@cutting/component-library';
+import { Box, Heading, List, PageBlock, Text, TextLink } from '@cutting/component-library';
+import type { LoaderFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import type { Location, MetaFunction } from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
+import { Image } from '@unpic/react';
 import * as mdxBundler from 'mdx-bundler/client/index.js';
 import type { ReactNode } from 'react';
 import { Children, isValidElement, useMemo } from 'react';
-import { json } from '@remix-run/node';
-import type { LoaderFunction } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
-import { getPost } from '../utils/post.js';
-import type { ReactNodeNoStrings } from '@cutting/component-library';
-import { Box, Heading, List, PageBlock, Text, TextLink } from '@cutting/component-library';
-import type { FrontMatter } from '../types.js';
-import type { Location, MetaFunction } from '@remix-run/react';
+
 import { LazyLoadedImage } from '../components/LazyLoadedImage/LazyLoadedImage.js';
-import { Image } from '@unpic/react';
+import type { FrontMatter } from '../types.js';
+import { getPost } from '../utils/post.js';
 
 type LoaderData = {
   frontmatter: FrontMatter;
@@ -108,6 +109,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const meta: MetaFunction<any> = ({
   location,
   data: {
@@ -136,7 +138,7 @@ export const meta: MetaFunction<any> = ({
   ];
 };
 
-export default function PostRoute() {
+export default function PostRoute(): JSX.Element {
   const { code, frontmatter } = useLoaderData<LoaderData>();
 
   const Component = useMemo(() => mdxBundler.getMDXComponent(code), [code]);
@@ -158,8 +160,10 @@ export default function PostRoute() {
               h2: Heading2,
               h3: Heading3,
               h4: Heading4,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               a: TextLink as any,
               ul: Ul,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               img: Img as any,
             }}
             attributes={frontmatter}

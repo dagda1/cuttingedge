@@ -1,8 +1,0 @@
-/.git
-package.json
-packages/*/node_modules
-packages/*/dist
-packages/*/tools
-*.d.ts
-apps/*/dist
-scripts/warm-cache.mjs

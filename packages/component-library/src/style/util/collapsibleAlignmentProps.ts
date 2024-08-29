@@ -60,9 +60,9 @@ export function resolveCollapsibleAlignmentProps({ align, alignY, collapseBelow,
       ]),
       flexDirection: optimizeResponsiveArray([
         collapseMobile ? 'column' : 'row',
-        // eslint-disable-next-line no-nested-ternary
+
         collapseTablet ? 'column' : rowReverseTablet ? 'rowReverse' : 'row',
-        // eslint-disable-next-line no-nested-ternary
+
         collapseDesktop ? 'column' : rowReverseDesktop ? 'rowReverse' : 'row',
         rowReverseWide ? 'rowReverse' : 'row',
       ]),

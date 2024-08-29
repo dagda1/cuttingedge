@@ -23,7 +23,7 @@ export default function handleRequest(
   // free to delete this parameter in your app if you're not using it!
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loadContext: AppLoadContext,
-) {
+): Promise<unknown> {
   return isbot(request.headers.get('user-agent'))
     ? handleBotRequest(request, responseStatusCode, responseHeaders, remixContext)
     : handleBrowserRequest(request, responseStatusCode, responseHeaders, remixContext);

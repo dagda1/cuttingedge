@@ -1,13 +1,15 @@
 import { Box, Heading } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { horizontalLoop } from './loop';
-import { useRef } from 'react';
-import gsap from 'gsap';
-import { Panel } from '~/pages/Home/Panel/Panel';
-import cs from 'classnames';
-import * as styles from './Clients.css';
-import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 import { waitUntil } from '@cutting/util';
+import cs from 'classnames';
+import gsap from 'gsap';
+import { useRef } from 'react';
+
+import { Panel } from '~/pages/Home/Panel/Panel';
+
+import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
+import * as styles from './Clients.css';
+import { horizontalLoop } from './loop';
 
 const clients = [
   'https://res.cloudinary.com/ddospxsc8/image/upload/v1696609565/volvo_qhsx69.png',
@@ -25,6 +27,7 @@ interface ClientsProps {
 
 export function Clients({ width }: ClientsProps): JSX.Element {
   const id = useRef<NodeJS.Timeout>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const savedCallback = useRef<any>();
   const boxRef = useRef<HTMLDivElement>(null);
 
