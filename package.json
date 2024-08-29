@@ -69,7 +69,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
-      "eslint --fix"
+      "eslint -c ./packages/eslint-config/react.mjs --fix --warn-ignored=false"
     ],
     "*.{json,md}": [
       "prettier --write"

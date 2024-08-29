@@ -7,8 +7,8 @@ export function Contact(): JSX.Element {
   return (
     <Box paddingTop="xxxlarge" width="full" height="full" position="relative" zIndex="dropdown">
       <Stack space="large" align="center">
-        <Heading level="1">Let's Talk</Heading>
-        <Heading level="2">I can help!</Heading>
+        <Heading level="1">Let&apos;s Talk</Heading>
+        <Heading level="2">I can help&lsquo;</Heading>
         <Box className={styles.container}>
           <ContactForm />
         </Box>

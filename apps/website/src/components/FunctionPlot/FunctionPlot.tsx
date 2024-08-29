@@ -3,7 +3,6 @@ import { Box } from '@cutting/component-library';
 import type { Point } from '@cutting/svg';
 import { Group, ResponsiveSVG } from '@cutting/svg';
 import { useParentSize } from '@cutting/use-get-parent-size';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { curveBasisOpen } from '@visx/curve';

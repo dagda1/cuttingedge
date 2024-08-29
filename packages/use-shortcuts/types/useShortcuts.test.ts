@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { KeyCode } from '../src/types/keycodes';
 import type { UseShortcutsResults } from '../src/types/types';
 
-const shortcutMap = {
+const _shortcutMap = {
   FIRST: 'a',
   SECOND: { combination: 'f' },
   THIRD: { combination: [KeyCode.Ctrl, 'a'] },
   FOURTH: { sequence: ['x', 'z'] },
 } as const;
 
-export type R = UseShortcutsResults<typeof shortcutMap>;
+export type R = UseShortcutsResults<typeof _shortcutMap>;
 
 declare const o: R;
 

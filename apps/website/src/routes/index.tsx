@@ -20,7 +20,6 @@ const TermsOfService = lazy(() => import('~/pages/TermsOfService'));
 
 const Viz = lazy(() => import('~/pages/Viz/Viz'));
 
-/* eslint-disable react/display-name */
 export const routable: Page[] = [
   {
     heading: 'Home',

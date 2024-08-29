@@ -18,10 +18,9 @@ const compat = new FlatCompat({
 });
 
 export default [
-  { ignores: ['**/node_modules/**', '**/dist/**'] },
+  { ignores: ['**/node_modules/**', '**/dist/**', '**/**.d.ts'] },
   ...compat.extends('plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'),
   {
-    ignores: ['build', 'dist'],
     plugins: {
       '@typescript-eslint': typescriptEslint,
       'simple-import-sort': simpleImportSort,

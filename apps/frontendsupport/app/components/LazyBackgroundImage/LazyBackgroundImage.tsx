@@ -45,9 +45,11 @@ export function LazyBackgroundImage({
       observer.observe(containerRef.current);
     }
 
+    const current = containerRef.current;
+
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
+      if (current) {
+        observer.unobserve(current);
       }
     };
   }, [callback]);
