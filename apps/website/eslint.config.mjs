@@ -1,4 +1,4 @@
-import defaultConfig from '@cutting/eslint-config/react'
+import defaultConfig from '@cutting/eslint-config/react';
 
 /** @type {import("eslint").Linter.Config} */
-export default [...defaultConfig]
+export default [...defaultConfig];

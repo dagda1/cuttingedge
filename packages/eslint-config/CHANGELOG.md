@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 5.0.0
+
+### Major Changes
+
+- b2b9339: update eslint to 9.9.0
+
 ## 4.46.0
 
 ### Minor Changes
