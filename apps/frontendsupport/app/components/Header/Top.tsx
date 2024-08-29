@@ -1,9 +1,10 @@
-import { NavLink } from '@remix-run/react';
 import { Box, Nav, NavItem, NavItems, vars } from '@cutting/component-library';
-import { CTAButton } from '../CTAButton/CTAButton.js';
-import { useCallback, useState } from 'react';
-import { TextNavLink } from '../TextNavLink/TextNavLink.js';
+import { NavLink } from '@remix-run/react';
 import { Image } from '@unpic/react';
+import { useCallback, useState } from 'react';
+
+import { CTAButton } from '../CTAButton/CTAButton.js';
+import { TextNavLink } from '../TextNavLink/TextNavLink.js';
 import * as styles from './Top.css';
 
 export function TopNav(): JSX.Element {

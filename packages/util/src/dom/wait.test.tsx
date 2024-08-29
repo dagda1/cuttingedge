@@ -16,7 +16,7 @@ describe('wait', () => {
 
     try {
       found = await wait('#bar');
-    } catch (ex) {
+    } catch {
       expect(found).toBeUndefined();
     }
   });

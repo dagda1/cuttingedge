@@ -1,6 +1,7 @@
-import * as styles from './Scroller.css';
-import cs from 'classnames';
 import { Image } from '@unpic/react';
+import cs from 'classnames';
+
+import * as styles from './Scroller.css';
 
 export function Scroller(): JSX.Element {
   return (

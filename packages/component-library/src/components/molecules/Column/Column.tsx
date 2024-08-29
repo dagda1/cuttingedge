@@ -33,7 +33,6 @@ export function Column({ children, width }: ColumnProps): JSX.Element {
       width={width !== 'content' ? 'full' : undefined}
       flexShrink={width === 'content' ? 0 : undefined}
       flexGrow={1}
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       className={cs(styles.column, width !== 'content' ? styles.width[width!] : null)}
     >
       <Box

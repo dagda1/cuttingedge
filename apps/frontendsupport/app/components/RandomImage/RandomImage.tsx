@@ -1,12 +1,13 @@
+import { assert } from '@cutting/assert';
 import type { BoxProps } from '@cutting/component-library';
 import { Box } from '@cutting/component-library';
 import { useInterval } from '@cutting/hooks';
-import { useState } from 'react';
-import * as styles from './RandomImage.css';
 import cs from 'classnames';
-import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage.js';
-import { assert } from '@cutting/assert';
 import { buildImageUrl, extractPublicId, setConfig } from 'cloudinary-build-url';
+import { useState } from 'react';
+
+import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage.js';
+import * as styles from './RandomImage.css';
 
 setConfig({
   cloudName: 'ddospxsc8',

@@ -1,8 +1,9 @@
-import type { Ref } from 'react';
-import cs from 'classnames';
-import * as styles from './BreakingGlass.css';
 import { Box } from '@cutting/component-library';
 import { Image } from '@unpic/react';
+import cs from 'classnames';
+import type { Ref } from 'react';
+
+import * as styles from './BreakingGlass.css';
 
 interface BreakGlassProps {
   container: Ref<HTMLDivElement>;

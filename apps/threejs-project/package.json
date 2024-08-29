@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host --port 4400 -l info",
     "build": "tsc && vite build",
-    "lint": "eslint './**/*.{ts,tsx,js}' -c ./.eslintrc.json --fix",
+    "lint": "eslint './**/*.{ts,tsx}' --fix",
     "preview": "vite preview"
   },
   "dependencies": {

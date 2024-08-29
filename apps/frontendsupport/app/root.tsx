@@ -1,21 +1,29 @@
-import { json } from '@remix-run/node';
-import type { MetaFunction, LinksFunction, HeadersFunction } from '@remix-run/node';
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
-import rehypeStyles from './rehype.css';
-import katex from 'katex/dist/katex.min.css';
-import { cssBundleHref } from '@remix-run/css-bundle';
 import './global.css';
+
 import { supportTheme } from '@cutting/component-library';
 import cuttingStyles from '@cutting/component-library/styles.css';
-import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
 import { FormContextProvider } from '@cutting/react-hook-form-components';
-import cssStyles from './styles.css';
-import { Header } from './components/Header/Header.js';
-import * as styles from './root.css';
+import hookFormStyles from '@cutting/react-hook-form-components/styles.css';
+import { cssBundleHref } from '@remix-run/css-bundle';
+import type { HeadersFunction, LinksFunction, MetaFunction, TypedResponse } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
 import cs from 'classnames';
-import { contactFormProps } from './constants.js';
+import katex from 'katex/dist/katex.min.css';
 
-export async function loader() {
+import { Header } from './components/Header/Header.js';
+import { contactFormProps } from './constants.js';
+import rehypeStyles from './rehype.css';
+import * as styles from './root.css';
+import cssStyles from './styles.css';
+
+export async function loader(): Promise<
+  TypedResponse<{
+    ENV: {
+      GIT_COMMIT: string | undefined;
+    };
+  }>
+> {
   return json({
     ENV: {
       GIT_COMMIT: process.env.GIT_COMMIT,
@@ -53,7 +61,7 @@ export const headers: HeadersFunction = () => {
   };
 };
 
-export const meta: MetaFunction = ({ location, data }) => {
+export const meta: MetaFunction = ({ location, data: _data }) => {
   return [
     { title: 'Frontend Rescue' },
     { property: 'og:url', content: location.pathname },
@@ -132,7 +140,7 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export default function App() {
+export default function App(): JSX.Element {
   const data = useLoaderData<typeof loader>();
 
   return (

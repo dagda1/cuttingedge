@@ -1,4 +1,5 @@
-import { Box, Heading, PageBlock, TextLink, Text, Stack, List } from '@cutting/component-library';
+import { Box, Heading, List, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
+
 import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 
 export function About(): JSX.Element {

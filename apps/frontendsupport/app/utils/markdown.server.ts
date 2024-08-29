@@ -1,1 +1,1 @@
-export { getPosts as getBlogPosts, bundleMarkdown } from '@cutting/markdown';
+export { bundleMarkdown, getPosts as getBlogPosts } from '@cutting/markdown';

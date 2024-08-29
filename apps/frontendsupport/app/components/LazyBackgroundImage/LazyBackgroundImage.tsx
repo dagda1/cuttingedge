@@ -1,12 +1,13 @@
-import { useRef, useState, useCallback, useMemo } from 'react';
+import { assert } from '@cutting/assert';
 import { Box, type BoxProps } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { getImagePropsFromMap } from '../LazyLoadedImage/getImagePropsFromMap.js';
 import { blurhashToGradientCssObject } from '@unpic/placeholder';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import * as styles from './LazyBackgroundImage.css.js';
 import cs from 'classnames';
-import { assert } from '@cutting/assert';
+import { useCallback, useMemo, useRef, useState } from 'react';
+
+import { getImagePropsFromMap } from '../LazyLoadedImage/getImagePropsFromMap.js';
+import * as styles from './LazyBackgroundImage.css.js';
 
 interface LazyBackgroundImageProps {
   backgroundImage: string;
@@ -46,7 +47,6 @@ export function LazyBackgroundImage({
 
     return () => {
       if (containerRef.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(containerRef.current);
       }
     };
@@ -64,14 +64,14 @@ export function LazyBackgroundImage({
     <Box
       ref={containerRef}
       style={
-        !global.IntersectionObserver || backgroundStyle === 'repeat' || visible == false
+        !global.IntersectionObserver || backgroundStyle === 'repeat' || !visible
           ? style
           : assignInlineVars({ [styles.backgroundImage]: `url('${backgroundImage}') no-repeat center center fixed` })
       }
       height={height}
       className={cs(className, styles.bg, {
-        [styles.bgRepeat]: backgroundStyle == 'repeat',
-        [styles.bgStatic]: backgroundStyle == 'static',
+        [styles.bgRepeat]: backgroundStyle === 'repeat',
+        [styles.bgStatic]: backgroundStyle === 'static',
       })}
     ></Box>
   );

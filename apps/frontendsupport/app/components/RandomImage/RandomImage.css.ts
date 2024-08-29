@@ -1,5 +1,5 @@
-import { style } from '@vanilla-extract/css';
 import { responsiveStyle } from '@cutting/component-library';
+import { style } from '@vanilla-extract/css';
 
 export const mobile = style({
   ...responsiveStyle({

@@ -7,31 +7,30 @@ interface LoopConfig {
   repeat?: number;
   onChange?(h: HTMLElement, i: number): void;
   speed?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   snap?: any;
 }
 
-export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
+export function horizontalLoop(items: HTMLElement[], config: LoopConfig): gsap.core.Timeline {
   items = gsap.utils.toArray(items);
   config = config || {};
 
-  let onChange = config.onChange,
-    lastIndex = 0,
-    tl = gsap.timeline({
-      onUpdate:
-        onChange &&
-        function () {
-          let i = tl.closestIndex();
-          if (lastIndex !== i) {
-            lastIndex = i;
-            onChange?.(items[i]!, i);
-          }
-        },
-      paused: config.paused,
-      defaults: { ease: 'none' },
-      onReverseComplete: () => {
-        tl.totalTime(tl.rawTime() + tl.duration() * 100);
-      },
-    });
+  const onChange = config.onChange;
+  let lastIndex = 0;
+  const tl = gsap.timeline({
+    onUpdate() {
+      const i = tl.closestIndex();
+      if (lastIndex !== i) {
+        lastIndex = i;
+        onChange?.(items[i]!, i);
+      }
+    },
+    paused: config.paused,
+    defaults: { ease: 'none' },
+    onReverseComplete: () => {
+      tl.totalTime(tl.rawTime() + tl.duration() * 100);
+    },
+  });
 
   const length = items.length;
 
@@ -98,6 +97,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
 
   let timeWrap: (t: number) => number;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getClosest = (values: number[], value: any, wrap: any) => {
     let i = values.length,
       closest = 1e10,
@@ -151,13 +151,16 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
   };
 
   const refresh = (deep: boolean) => {
-    let progress = tl.progress();
+    const progress = tl.progress();
     tl.progress(0, true);
     populateWidths();
-    deep && populateTimeline();
+    if (deep) {
+      populateTimeline();
+    }
     tl.progress(progress, true);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let proxy: any;
 
   gsap.set(items, { x: 0 });
@@ -169,11 +172,16 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
 
   // window.addEventListener('resize', () => refresh(true));
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function toIndex(index: number, vars: any) {
     vars = vars || {};
-    Math.abs(index - curIndex) > length / 2 && (index += index > curIndex ? -length : length); // always go in the shortest direction
-    let newIndex = gsap.utils.wrap(0, length, index),
-      time = times[newIndex];
+    if (Math.abs(index - curIndex) > length / 2) {
+      index += index > curIndex ? -length : length; // always go in the shortest direction
+    }
+
+    const newIndex = gsap.utils.wrap(0, length, index);
+    let time = times[newIndex];
+
     if (time! > tl.time() !== index > curIndex && index !== curIndex) {
       // if we're wrapping the timeline's playhead, make the proper adjustments
       time! += tl.duration() * (index > curIndex ? 1 : -1);
@@ -186,9 +194,10 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
     gsap.killTweensOf(proxy);
     return vars.duration === 0 ? tl.time(timeWrap(time!)) : tl.tweenTo(time!, vars);
   }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tl.toIndex = (index: number, vars: any) => toIndex(index, vars);
   tl.closestIndex = (setCurrent: unknown) => {
-    let index = getClosest(times, tl.time(), tl.duration());
+    const index = getClosest(times, tl.time(), tl.duration());
     if (setCurrent) {
       curIndex = index;
       indexIsDirty = false;
@@ -198,9 +207,10 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
 
   tl.current = () => (indexIsDirty ? tl.closestIndex(true) : curIndex);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tl.next = (vars: any) => toIndex(tl.current() + 1, vars);
 
-  tl.previous = (vars: any) => toIndex(tl.current() - 1, vars);
+  tl.previous = (vars: unknown) => toIndex(tl.current() - 1, vars);
 
   tl.times = times;
 
@@ -212,7 +222,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig) {
 
   tl.refresh = refresh;
 
-  onChange && onChange(items[curIndex]!, curIndex);
+  onChange?.(items[curIndex]!, curIndex);
 
   return tl;
 }

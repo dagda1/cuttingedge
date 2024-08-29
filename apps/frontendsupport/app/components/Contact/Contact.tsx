@@ -1,5 +1,6 @@
 import { Box, Heading, Stack } from '@cutting/component-library';
 import { ContactForm } from '@cutting/react-hook-form-components';
+
 import * as styles from './Contact.css';
 
 export function Contact(): JSX.Element {

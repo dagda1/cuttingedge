@@ -19,21 +19,21 @@ const wrap = (props?: Partial<FormControlProps<HTMLInputElement>>): RenderResult
 describe('FormControl', () => {
   describe('types', () => {
     it('should type input element', () => {
-      const input = FormControl(Input);
-      type I = FormElementFromComponent<typeof input>;
+      const _input = FormControl(Input);
+      type I = FormElementFromComponent<typeof _input>;
 
       expectType<TypeOf<HTMLInputElement, I>>(true);
 
-      const textarea = FormControl(TextArea);
-      type T = FormElementFromComponent<typeof textarea>;
+      const _textarea = FormControl(TextArea);
+      type T = FormElementFromComponent<typeof _textarea>;
 
       expectType<TypeOf<HTMLTextAreaElement, T>>(true);
 
       const Div = (props: HTMLAttributes<HTMLDivElement>) => <div {...props}>Hello</div>;
 
-      const div = FormControl(Div);
+      const _div = FormControl(Div);
 
-      type D = FormElementFromComponent<typeof div>;
+      type D = FormElementFromComponent<typeof _div>;
 
       expectType<TypeOf<HTMLDivElement, D>>(true);
     });
