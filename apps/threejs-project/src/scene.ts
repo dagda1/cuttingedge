@@ -13,9 +13,6 @@ import {
 } from 'three';
 
 import { createLine, createTickMarks } from './utils/axis';
-// import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-// import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
-// import { axes } from './types';
 
 const RANGE = [-10, 10];
 
