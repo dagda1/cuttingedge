@@ -6,3 +6,15 @@ export interface DragEndEvent {
 }
 
 export type DragStartEvent = DragEndEvent;
+
+export interface Point {
+  x: number;
+  y: number;
+}
+
+export interface CartesianLine {
+  start: Point;
+  end: Point;
+}
+
+export type TwoDVector = [number, number];
