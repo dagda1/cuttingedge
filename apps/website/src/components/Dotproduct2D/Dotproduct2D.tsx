@@ -2,24 +2,12 @@ import { assert } from '@cutting/assert';
 import { Box } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { useParentSize } from '@cutting/use-get-parent-size';
-import type { ScaleLinear } from 'd3-scale';
 import { scaleLinear } from 'd3-scale';
 import { useRef } from 'react';
-import type {
-  BufferGeometry,
-  ColorRepresentation,
-  Line,
-  Material,
-  NormalBufferAttributes,
-  Object3DEventMap,
-} from 'three';
+import type { BufferGeometry, Line, Material, NormalBufferAttributes, Object3DEventMap } from 'three';
 import {
-  CircleGeometry,
-  DoubleSide,
   LinearSRGBColorSpace,
   LineBasicMaterial,
-  Mesh,
-  MeshBasicMaterial,
   OrthographicCamera,
   PCFSoftShadowMap,
   Scene,
@@ -30,99 +18,16 @@ import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
-import { createLine, createTickMarks } from './axes';
-import type { DragEndEvent, DragStartEvent } from './types';
+import { createTickMarks } from './axes';
+import { createCircle } from './circle';
+import { AddLineToGraph, createLine, pointsFromLine, projectLineAOntoLineB } from './line';
+import type { CartesianLine, DragEndEvent, DragStartEvent } from './types';
 
 const RANGE = [-10, 10];
-
-interface Point {
-  x: number;
-  y: number;
-}
-
-interface CartesianLine {
-  start: Point;
-  end: Point;
-}
-
-type TwoDVector = [number, number];
 
 const LineA: CartesianLine = { start: { x: 1, y: 4 }, end: { x: 8, y: 8 } };
 
 const LineB: CartesianLine = { start: { x: 1, y: 4 }, end: { x: 8, y: 2 } };
-
-function directionVector(line: CartesianLine): TwoDVector {
-  return [line.end.x - line.start.x, line.end.y - line.start.y];
-}
-
-function AddLineToGraph(
-  xScale: ScaleLinear<number, number, never>,
-  yScale: ScaleLinear<number, number, never>,
-  line: CartesianLine,
-  material: Material,
-) {
-  return createLine(
-    new Vector3(xScale(line.start.x), yScale(line.start.y), 0),
-    new Vector3(xScale(line.end.x), yScale(line.end.y), 0),
-    material,
-  );
-}
-
-function projectLineAOntoLineB(
-  xScale: ScaleLinear<number, number, never>,
-  yScale: ScaleLinear<number, number, never>,
-  lineA: CartesianLine,
-  lineB: CartesianLine,
-  material: Material,
-) {
-  const directionVectorA = directionVector(lineA);
-  const directionVectorB = directionVector(lineB);
-
-  const dotProductAB = directionVectorA[0] * directionVectorB[0] + directionVectorA[1] * directionVectorB[1];
-  const bSquared = directionVectorB[0] ** 2 + directionVectorB[1] ** 2;
-  const p = dotProductAB / bSquared;
-
-  const projbA = [directionVectorB[0] * p, directionVectorB[1] * p];
-
-  const projectionLine: CartesianLine = {
-    start: { ...LineA.start },
-    end: { x: lineA.start.x + projbA[0], y: lineA.start.y + projbA[1] },
-  };
-
-  return AddLineToGraph(xScale, yScale, projectionLine, material);
-}
-
-function createCircle(
-  xScale: ScaleLinear<number, number, never>,
-  yScale: ScaleLinear<number, number, never>,
-  line: CartesianLine,
-  name: string,
-  color?: ColorRepresentation,
-): Mesh {
-  const CircleRadius = 10;
-  const CircleSegments = 32;
-  const circleMaterial = new MeshBasicMaterial({ color: color ?? 0x0000ff, side: DoubleSide });
-
-  const circleGeometry = new CircleGeometry(CircleRadius, CircleSegments);
-
-  const circle = new Mesh(circleGeometry, circleMaterial);
-
-  circle.position.set(xScale(line.end.x), yScale(line.end.y), 0);
-
-  circle.name = name;
-
-  return circle;
-}
-
-function pointsFromLine(
-  inverseXScale: ScaleLinear<number, number, never>,
-  inverseYScale: ScaleLinear<number, number, never>,
-  line: Line,
-): CartesianLine {
-  const [x1, y1, _z1, x2, y2, _z2] = line.geometry.getAttribute('position').array;
-
-  return { start: { x: inverseXScale(x1), y: inverseYScale(y1) }, end: { x: inverseXScale(x2), y: inverseYScale(y2) } };
-}
 
 export function DotProduct2D(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
