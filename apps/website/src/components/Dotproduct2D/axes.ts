@@ -1,15 +1,10 @@
 import type { ScaleLinear } from 'd3-scale';
 import type { Material, Scene } from 'three';
 import { Mesh, MeshBasicMaterial, Vector3 } from 'three';
-import { BufferGeometry, Line } from 'three';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 
-export function createLine(start: Vector3, end: Vector3, material: Material): Line {
-  const geometry = new BufferGeometry().setFromPoints([start, end]);
-
-  return new Line(geometry, material);
-}
+import { createLine } from './line';
 
 export function createTickMarks(
   scene: Scene,
