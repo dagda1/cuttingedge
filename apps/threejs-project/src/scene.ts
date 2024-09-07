@@ -8,7 +8,7 @@ import {
   OrthographicCamera,
   PCFSoftShadowMap,
   Scene,
-  Vector2,
+  Vector3,
   WebGLRenderer,
 } from 'three';
 
@@ -34,15 +34,15 @@ function run() {
   const lineMaterial = new LineBasicMaterial({ color: 0xffffff });
   const tickMaterial = new LineBasicMaterial({ color: 0xffffff });
 
-  const xAxisStart = new Vector2(xScale(-10), yScale(0));
-  const xAxisEnd = new Vector2(xScale(10), yScale(0));
+  const xAxisStart = new Vector3(xScale(-10), yScale(0), 0);
+  const xAxisEnd = new Vector3(xScale(10), yScale(0), 0);
 
   const xAxis = createLine(xAxisStart, xAxisEnd, lineMaterial);
 
   scene.add(xAxis);
 
-  const yAxisStart = new Vector2(xScale(0), yScale(-10));
-  const yAxisEnd = new Vector2(xScale(0), yScale(10));
+  const yAxisStart = new Vector3(xScale(0), yScale(-10), 0);
+  const yAxisEnd = new Vector3(xScale(0), yScale(10), 0);
   const yAxis = createLine(yAxisStart, yAxisEnd, lineMaterial);
 
   scene.add(yAxis);
