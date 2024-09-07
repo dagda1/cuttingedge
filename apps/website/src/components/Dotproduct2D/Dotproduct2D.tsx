@@ -1,8 +1,10 @@
 import { assert } from '@cutting/assert';
 import { Box } from '@cutting/component-library';
+import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { useParentSize } from '@cutting/use-get-parent-size';
+import type { ScaleLinear } from 'd3-scale';
+import { scaleLinear } from 'd3-scale';
 import { useRef } from 'react';
-import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import type {
   BufferGeometry,
   ColorRepresentation,
@@ -11,20 +13,24 @@ import type {
   NormalBufferAttributes,
   Object3DEventMap,
 } from 'three';
-import { CircleGeometry, DoubleSide, Mesh, MeshBasicMaterial, Vector3 } from 'three';
 import {
-  Scene,
-  WebGLRenderer,
+  CircleGeometry,
+  DoubleSide,
   LinearSRGBColorSpace,
-  PCFSoftShadowMap,
   LineBasicMaterial,
+  Mesh,
+  MeshBasicMaterial,
   OrthographicCamera,
+  PCFSoftShadowMap,
+  Scene,
+  Vector3,
+  WebGLRenderer,
 } from 'three';
-import type { ScaleLinear } from 'd3-scale';
-import { scaleLinear } from 'd3-scale';
-import { useIsomorphicLayoutEffect } from '@cutting/hooks';
-import { createLine, createTickMarks } from './axes';
 import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
+
+import { ApplicationLayout } from '~/layouts/ApplicationLayout';
+
+import { createLine, createTickMarks } from './axes';
 import type { DragEndEvent, DragStartEvent } from './types';
 
 const RANGE = [-10, 10];
@@ -41,9 +47,9 @@ interface CartesianLine {
 
 type TwoDVector = [number, number];
 
-const LineA: CartesianLine = { start: { x: 1, y: 2 }, end: { x: 6, y: 5 } };
+const LineA: CartesianLine = { start: { x: 1, y: 4 }, end: { x: 8, y: 8 } };
 
-const LineB: CartesianLine = { start: { x: 1, y: 2 }, end: { x: 7, y: -4 } };
+const LineB: CartesianLine = { start: { x: 1, y: 4 }, end: { x: 8, y: 2 } };
 
 function directionVector(line: CartesianLine): TwoDVector {
   return [line.end.x - line.start.x, line.end.y - line.start.y];
@@ -140,6 +146,8 @@ export function DotProduct2D(): JSX.Element {
 
     const scene = new Scene();
 
+    scene.background = null;
+
     const lineMaterial = new LineBasicMaterial({ color: 0xffffff });
     const tickMaterial = new LineBasicMaterial({ color: 0xffffff });
     const vectorMaterial = new LineBasicMaterial({ color: 0xff0000 });
@@ -205,7 +213,10 @@ export function DotProduct2D(): JSX.Element {
 
     const renderer = new WebGLRenderer({
       canvas: canvasRef.current,
+      alpha: true,
+      preserveDrawingBuffer: true,
     });
+
     renderer.outputColorSpace = LinearSRGBColorSpace;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
@@ -217,7 +228,7 @@ export function DotProduct2D(): JSX.Element {
 
     controls.addEventListener('dragstart', function (_event: DragStartEvent) {});
 
-    controls.addEventListener('dragend', function (event: DragEndEvent) {
+    controls.addEventListener('drag', function (event: DragEndEvent) {
       const line = lines[`line${event.object.name}`];
 
       const positionAttribute = line.geometry.getAttribute('position');
