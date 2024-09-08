@@ -2,7 +2,7 @@ import { MathJaxProvider } from '@cutting/use-mathjax';
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 
-import DotProduct2D from '~/components/Dotproduct2D/Dotproduct2D';
+import DotProduct2D from '~/components/Dotproduct/Dotproduct';
 import { Fallback } from '~/components/Fallback/Fallback';
 import * as Urls from '~/urls';
 

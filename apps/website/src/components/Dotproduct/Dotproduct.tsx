@@ -34,7 +34,7 @@ export function DotProduct2D(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef, { initialValues: { width: 0, height: 0 } });
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rendererRef = useRef<WebGLRenderer>();
+  const rendererRef = useRef<WebGLRenderer>(null);
 
   assert(typeof width === 'number');
   assert(typeof height === 'number');
@@ -122,7 +122,11 @@ export function DotProduct2D(): JSX.Element {
 
     projectionLine = acutalProjectionLine;
 
-    let arcLine = drawArc({ lineA: LineB, lineB: LineA, xScale, yScale });
+    let arcLine: Line<BufferGeometry<NormalBufferAttributes>, LineBasicMaterial, Object3DEventMap>;
+
+    const { actualArcLine } = drawArc({ lineA: LineB, lineB: LineA, xScale, yScale });
+
+    arcLine = actualArcLine;
 
     let dashedLine = AddLineToGraph(
       xScale,
@@ -202,7 +206,9 @@ export function DotProduct2D(): JSX.Element {
         );
         projectionLine = acutalProjectionLine;
 
-        arcLine = drawArc({ lineB: newPointsA, lineA: newPointsB, xScale, yScale });
+        const { actualArcLine } = drawArc({ lineB: newPointsA, lineA: newPointsB, xScale, yScale });
+
+        arcLine = actualArcLine;
 
         dashedLine = AddLineToGraph(
           xScale,
