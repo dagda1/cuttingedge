@@ -33,7 +33,10 @@ export function projectLineAOntoLineB(
   lineA: CartesianLine,
   lineB: CartesianLine,
   material: Material,
-): Line<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap> {
+): {
+  acutalProjectionLine: Line<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap>;
+  cartesianProjectionLine: CartesianLine;
+} {
   const directionVectorA = directionVector(lineA);
   const directionVectorB = directionVector(lineB);
 
@@ -43,12 +46,14 @@ export function projectLineAOntoLineB(
 
   const projbA = [directionVectorB[0] * p, directionVectorB[1] * p];
 
-  const projectionLine: CartesianLine = {
+  const cartesianProjectionLine: CartesianLine = {
     start: { ...lineA.start },
     end: { x: lineA.start.x + projbA[0], y: lineA.start.y + projbA[1] },
   };
 
-  return AddLineToGraph(xScale, yScale, projectionLine, material);
+  const acutalProjectionLine = AddLineToGraph(xScale, yScale, cartesianProjectionLine, material);
+
+  return { acutalProjectionLine, cartesianProjectionLine };
 }
 
 export function pointsFromLine(
