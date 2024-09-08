@@ -3,7 +3,7 @@ import { Box } from '@cutting/component-library';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { useParentSize } from '@cutting/use-get-parent-size';
 import { scaleLinear } from 'd3-scale';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import type { BufferGeometry, Line, Material, NormalBufferAttributes, Object3DEventMap } from 'three';
 import {
   LinearSRGBColorSpace,
@@ -19,26 +19,38 @@ import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 import { createTickMarks } from './axes';
-import { createCircle } from './circle';
+import { createCircle, drawArc } from './circle';
 import { AddLineToGraph, createLine, pointsFromLine, projectLineAOntoLineB } from './line';
 import type { CartesianLine, DragEndEvent, DragStartEvent } from './types';
 
 const RANGE = [-10, 10];
 
-const LineA: CartesianLine = { start: { x: 1, y: 4 }, end: { x: 8, y: 8 } };
+const LineA: CartesianLine = { start: { x: 0, y: 0 }, end: { x: 5, y: 8 } };
 
-const LineB: CartesianLine = { start: { x: 1, y: 4 }, end: { x: 8, y: 2 } };
+const LineB: CartesianLine = { start: { x: 0, y: 0 }, end: { x: 9, y: 2 } };
 
 export function DotProduct2D(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef, { initialValues: { width: 0, height: 0 } });
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rendererRef = useRef<WebGLRenderer>();
 
   assert(typeof width === 'number');
   assert(typeof height === 'number');
 
+  useEffect(() => {
+    if (canvasRef.current) {
+      const webGLRenderer = new WebGLRenderer({
+        canvas: canvasRef.current,
+        alpha: true,
+      });
+
+      rendererRef.current = webGLRenderer;
+    }
+  }, []);
+
   useIsomorphicLayoutEffect(() => {
-    if (!canvasRef.current) {
+    if (!canvasRef.current || !rendererRef.current) {
       return;
     }
 
@@ -50,8 +62,6 @@ export function DotProduct2D(): JSX.Element {
     const inverseYScale = scaleLinear().domain([0, minUnit]).range(RANGE);
 
     const scene = new Scene();
-
-    scene.background = null;
 
     const lineMaterial = new LineBasicMaterial({ color: 0xffffff });
     const tickMaterial = new LineBasicMaterial({ color: 0xffffff });
@@ -94,8 +104,10 @@ export function DotProduct2D(): JSX.Element {
     scene.add(grabberB);
 
     let projectionLine = projectLineAOntoLineB(xScale, yScale, LineA, LineB, projectionMaterial);
+    let arcLine = drawArc({ lineA: LineB, lineB: LineA, xScale, yScale });
 
     scene.add(projectionLine);
+    scene.add(arcLine);
 
     const lines: Record<
       string,
@@ -107,29 +119,27 @@ export function DotProduct2D(): JSX.Element {
     } as const;
 
     window.addEventListener('resize', () => {
+      if (!rendererRef.current) {
+        return;
+      }
+
       camera.updateProjectionMatrix();
 
-      renderer.setSize(minUnit, minUnit);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      rendererRef.current.setSize(minUnit, minUnit);
+      rendererRef.current.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     });
 
     const camera = new OrthographicCamera(0, minUnit, minUnit, 0, -1, 1);
     camera.position.z = 1;
 
-    const renderer = new WebGLRenderer({
-      canvas: canvasRef.current,
-      alpha: true,
-      preserveDrawingBuffer: true,
-    });
+    rendererRef.current.outputColorSpace = LinearSRGBColorSpace;
+    rendererRef.current.shadowMap.enabled = true;
+    rendererRef.current.shadowMap.type = PCFSoftShadowMap;
+    rendererRef.current.setClearColor('#262837');
+    rendererRef.current.setSize(minUnit, minUnit);
+    rendererRef.current.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    renderer.outputColorSpace = LinearSRGBColorSpace;
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = PCFSoftShadowMap;
-    renderer.setClearColor('#262837');
-    renderer.setSize(minUnit, minUnit);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const controls = new DragControls([grapperA, grabberB], camera, renderer.domElement);
+    const controls = new DragControls([grapperA, grabberB], camera, rendererRef.current.domElement);
 
     controls.addEventListener('dragstart', function (_event: DragStartEvent) {});
 
@@ -148,14 +158,21 @@ export function DotProduct2D(): JSX.Element {
       const newPointsB = pointsFromLine(inverseXScale, inverseYScale, lines.lineB);
 
       scene.remove(projectionLine);
+      scene.remove(arcLine);
       setTimeout(() => {
         projectionLine = projectLineAOntoLineB(xScale, yScale, newPointsA, newPointsB, projectionMaterial);
+        arcLine = drawArc({ lineB: newPointsA, lineA: newPointsB, xScale, yScale });
         scene.add(projectionLine);
+        scene.add(arcLine);
       });
     });
 
     const tick = () => {
-      renderer.render(scene, camera);
+      if (!rendererRef.current) {
+        return;
+      }
+
+      rendererRef.current.render(scene, camera);
 
       // Call tick again on the next frame
       window.requestAnimationFrame(tick);
