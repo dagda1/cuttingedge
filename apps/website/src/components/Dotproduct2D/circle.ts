@@ -56,28 +56,27 @@ export function drawArc({
   const vectorB = new Vector3().subVectors(endPointB, startPoint).normalize();
 
   const dotProduct = vectorA.dot(vectorB);
-  const clampedDotProduct = Math.max(-1, Math.min(1, dotProduct)); // Clamp to handle precision issues
-  const angle = Math.acos(clampedDotProduct); //
+  const clampedDotProduct = Math.max(-1, Math.min(1, dotProduct));
+  const angle = Math.acos(clampedDotProduct);
 
-  const startAngle = Math.atan2(vectorA.y, vectorA.x); // Starting angle relative to x-axis
-  const endAngle = startAngle + angle; // End angle for the arc
+  const startAngle = Math.atan2(vectorA.y, vectorA.x);
+  const endAngle = startAngle + angle;
 
-  // Step 5: Create points along the arc
-  const arcPoints = []; // Array to hold points of the arc
-  const numPoints = 50; // Number of points along the arc
+  console.log({ startAngle: startAngle * (180 / Math.PI), endAngle: endAngle * (180 / Math.PI) });
+
+  const arcPoints: Vector3[] = [];
+  const numPoints = 50;
 
   for (let i = 0; i <= numPoints; i++) {
     const t = i / numPoints;
     const currentAngle = startAngle + t * (endAngle - startAngle);
     const x = startPoint.x + radius * Math.cos(currentAngle);
     const y = startPoint.y + radius * Math.sin(currentAngle);
-    arcPoints.push(new Vector3(x, y, 0)); // z = 0 to stay in the 2D plane
+    arcPoints.push(new Vector3(x, y, 0));
   }
 
-  // Step 6: Convert the points to a BufferGeometry
   const arcGeometry = new BufferGeometry().setFromPoints(arcPoints);
 
-  // Step 7: Create the arc line and add it to the scene
   const arcMaterial = new LineBasicMaterial({ color: 0xffffff });
   return new Line(arcGeometry, arcMaterial);
 }

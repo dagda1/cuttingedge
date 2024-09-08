@@ -110,17 +110,26 @@ export function DotProduct2D(): JSX.Element {
 
     scene.add(grabberB);
 
-    let projectionLine = projectLineAOntoLineB(xScale, yScale, LineA, LineB, projectionMaterial);
-    let arcLine = drawArc({ lineA: LineB, lineB: LineA, xScale, yScale });
+    let projectionLine: Line<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap>;
 
-    const projectionPoints = pointsFromLine(inverseXScale, inverseYScale, projectionLine);
+    const { acutalProjectionLine, cartesianProjectionLine } = projectLineAOntoLineB(
+      xScale,
+      yScale,
+      LineA,
+      LineB,
+      projectionMaterial,
+    );
+
+    projectionLine = acutalProjectionLine;
+
+    let arcLine = drawArc({ lineA: LineB, lineB: LineA, xScale, yScale });
 
     let dashedLine = AddLineToGraph(
       xScale,
       yScale,
       {
         start: { x: LineA.end.x, y: LineA.end.y },
-        end: { x: projectionPoints.end.x, y: projectionPoints.end.y },
+        end: { x: cartesianProjectionLine.end.x, y: cartesianProjectionLine.end.y },
       },
       dashedMaterial,
     );
@@ -184,16 +193,23 @@ export function DotProduct2D(): JSX.Element {
       scene.remove(dashedLine);
 
       setTimeout(() => {
-        projectionLine = projectLineAOntoLineB(xScale, yScale, newPointsA, newPointsB, projectionMaterial);
+        const { acutalProjectionLine, cartesianProjectionLine } = projectLineAOntoLineB(
+          xScale,
+          yScale,
+          newPointsA,
+          newPointsB,
+          projectionMaterial,
+        );
+        projectionLine = acutalProjectionLine;
+
         arcLine = drawArc({ lineB: newPointsA, lineA: newPointsB, xScale, yScale });
-        const newDashedLine = pointsFromLine(inverseXScale, inverseYScale, projectionLine);
 
         dashedLine = AddLineToGraph(
           xScale,
           yScale,
           {
             start: { x: newPointsA.end.x, y: newPointsA.end.y },
-            end: { x: newDashedLine.end.x, y: newDashedLine.end.y },
+            end: { x: cartesianProjectionLine.end.x, y: cartesianProjectionLine.end.y },
           },
           dashedMaterial,
         );
