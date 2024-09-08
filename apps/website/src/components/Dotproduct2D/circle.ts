@@ -47,7 +47,7 @@ export function drawArc({
   xScale: ScaleLinear<number, number, never>;
   yScale: ScaleLinear<number, number, never>;
   radius?: number;
-}): Line<BufferGeometry<NormalBufferAttributes>, LineBasicMaterial, Object3DEventMap> {
+}): { actualArcLine: Line<BufferGeometry<NormalBufferAttributes>, LineBasicMaterial, Object3DEventMap> } {
   const startPoint = new Vector3(xScale(lineA.start.x), yScale(lineA.start.y));
   const endPointA = new Vector3(xScale(lineA.end.x), yScale(lineA.end.y));
   const endPointB = new Vector3(xScale(lineB.end.x), yScale(lineB.end.y));
@@ -78,5 +78,5 @@ export function drawArc({
   const arcGeometry = new BufferGeometry().setFromPoints(arcPoints);
 
   const arcMaterial = new LineBasicMaterial({ color: 0xffffff });
-  return new Line(arcGeometry, arcMaterial);
+  return { actualArcLine: new Line(arcGeometry, arcMaterial) };
 }
