@@ -8,6 +8,7 @@ import type { BufferGeometry, Line, Material, NormalBufferAttributes, Object3DEv
 import {
   LinearSRGBColorSpace,
   LineBasicMaterial,
+  LineDashedMaterial,
   OrthographicCamera,
   PCFSoftShadowMap,
   Scene,
@@ -67,6 +68,12 @@ export function DotProduct2D(): JSX.Element {
     const tickMaterial = new LineBasicMaterial({ color: 0xffffff });
     const vectorMaterial = new LineBasicMaterial({ color: 0xff0000 });
     const projectionMaterial = new LineBasicMaterial({ color: 0x00ffff });
+    const dashedMaterial = new LineDashedMaterial({
+      color: 0xffffff,
+      dashSize: 0.1,
+      gapSize: 0.1,
+      linewidth: 1,
+    });
 
     const xAxis = createLine(
       new Vector3(xScale(-10), yScale(0), 0),
@@ -106,8 +113,23 @@ export function DotProduct2D(): JSX.Element {
     let projectionLine = projectLineAOntoLineB(xScale, yScale, LineA, LineB, projectionMaterial);
     let arcLine = drawArc({ lineA: LineB, lineB: LineA, xScale, yScale });
 
+    const projectionPoints = pointsFromLine(inverseXScale, inverseYScale, projectionLine);
+
+    let dashedLine = AddLineToGraph(
+      xScale,
+      yScale,
+      {
+        start: { x: LineA.end.x, y: LineA.end.y },
+        end: { x: projectionPoints.end.x, y: projectionPoints.end.y },
+      },
+      dashedMaterial,
+    );
+
+    dashedLine.computeLineDistances();
+
     scene.add(projectionLine);
     scene.add(arcLine);
+    scene.add(dashedLine);
 
     const lines: Record<
       string,
@@ -159,11 +181,28 @@ export function DotProduct2D(): JSX.Element {
 
       scene.remove(projectionLine);
       scene.remove(arcLine);
+      scene.remove(dashedLine);
+
       setTimeout(() => {
         projectionLine = projectLineAOntoLineB(xScale, yScale, newPointsA, newPointsB, projectionMaterial);
         arcLine = drawArc({ lineB: newPointsA, lineA: newPointsB, xScale, yScale });
+        const newDashedLine = pointsFromLine(inverseXScale, inverseYScale, projectionLine);
+
+        dashedLine = AddLineToGraph(
+          xScale,
+          yScale,
+          {
+            start: { x: newPointsA.end.x, y: newPointsA.end.y },
+            end: { x: newDashedLine.end.x, y: newDashedLine.end.y },
+          },
+          dashedMaterial,
+        );
+
+        dashedLine.computeLineDistances();
+
         scene.add(projectionLine);
         scene.add(arcLine);
+        scene.add(dashedLine);
       });
     });
 
