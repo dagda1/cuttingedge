@@ -70,7 +70,7 @@
     "react-router-dom": "6.26.1",
     "referrer-policy": "1.2.0",
     "regression": "2.0.1",
-    "serve-static": "1.15.0",
+    "serve-static": "1.16.0",
     "ts-pattern": "5.3.1",
     "url-join": "5.0.0"
   },
