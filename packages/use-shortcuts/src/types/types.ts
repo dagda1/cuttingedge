@@ -4,7 +4,7 @@ import type { RefObject } from 'react';
 export type UseShortcuts<R extends Record<string, unknown>, E extends HTMLElement = HTMLElement> = {
   shortcutMap: R;
   handler: ShortcutHandler<keyof R>;
-  ref?: RefObject<E>;
+  ref?: RefObject<E | null>;
 };
 
 export interface ShortcutAction<T extends PropertyKey> {

@@ -19,7 +19,8 @@
     "node_modules/vite/types/*",
     "node_modules/@floating-ui/dom/src/types.d.ts",
     "node_modules/@floating-ui/react-dom/src/types.d.ts",
-    "node_modules/@floating-ui/react/src/types.d.ts"
+    "node_modules/@floating-ui/react/src/types.d.ts",
+    "node_modules/@cutting/useful-types/global.d.ts"
   ],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "server.mts", "pruned"]
 }

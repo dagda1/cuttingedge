@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { describe, expect, it, vi } from 'vitest';
 

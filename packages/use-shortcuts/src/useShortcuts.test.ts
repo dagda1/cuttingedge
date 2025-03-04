@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import mousetrap from 'mousetrap';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 

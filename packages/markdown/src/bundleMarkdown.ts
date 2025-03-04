@@ -3,19 +3,18 @@ import { readdir, readFile } from 'fs/promises';
 import { bundleMDX } from 'mdx-bundler';
 import { join } from 'path';
 import readingTime from 'reading-time';
+import remarkAutolinkHeadings from 'rehype-autolink-headings';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import rehypeMathjax from 'rehype-mathjax';
 import rehypePresetMinify from 'rehype-preset-minify';
 import rehypePrismPlus from 'rehype-prism-plus';
 import rehypeRaw from 'rehype-raw';
-import remarkAutolinkHeadings from 'remark-autolink-headings';
+import rehypeSlug from 'rehype-slug';
 // import remarkMdxImages from 'remark-mdx-images';
 import remarkBreaks from 'remark-breaks';
-import remarkFootnotes from 'remark-footnotes';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
-import remarkSlug from 'remark-slug';
 
 import { formatDate } from './formatDate';
 import { remarkCodeTitles } from './remark/remark-code-title';
@@ -47,9 +46,8 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
         remarkBreaks,
         remarkCodeTitles,
         remarkInlineCodeLanguage,
-        [remarkFootnotes, { inlineNotes: true }],
         [remarkAutolinkHeadings, { behavior: 'wrap' }],
-        remarkSlug,
+        rehypeSlug,
         remarkGfm,
         remarkMath,
       ];

@@ -24,7 +24,7 @@ export function App(): JSX.Element {
     initialValues: { width: undefined, height: undefined },
   });
 
-  const tickFrame = useRef<number>();
+  const tickFrame = useRef<number>(undefined);
 
   useLayoutEffect(() => {
     if (!canvasRef.current || !ref.current) {

@@ -54,6 +54,7 @@ export const initialState = {
     maxX: 11,
   },
   tangent: {
+    x: undefined,
     direction: 'forwards' as Direction,
     label: {
       text: '',

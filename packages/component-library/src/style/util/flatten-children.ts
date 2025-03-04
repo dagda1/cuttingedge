@@ -8,7 +8,10 @@ type ReactChild = ReactElement | string | number;
 export default function flattenChildren(children: ReactNode, depth = 0, keys: (string | number)[] = []): ReactChild[] {
   return Children.toArray(children).reduce((acc: ReactChild[], node, nodeIndex) => {
     if (isFragment(node)) {
-      acc.push(...flattenChildren(node.props.children, depth + 1, keys.concat((node.key as string) || nodeIndex)));
+      acc.push(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...flattenChildren((node.props as any).children, depth + 1, keys.concat((node.key as string) || nodeIndex)),
+      );
     } else if (isValidElement(node)) {
       acc.push(
         cloneElement(node, {

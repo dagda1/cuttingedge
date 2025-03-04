@@ -1,5 +1,7 @@
 import { Box, Heading, Inline, PageBlock, Stack, Text, TextLink, Tiles } from '@cutting/component-library';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import github from '~/assets/images/github-medium.png';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 

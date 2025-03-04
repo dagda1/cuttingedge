@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Box, Heading, Nav, NavItem, NavItems, ResponsiveImage } from '@cutting/component-library';
 import cs from 'classnames';
 import { useCallback, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+// @ts-expect-error
 import cow from '~/assets/images/cow-logo.png';
+// @ts-expect-error
 import cowMobile from '~/assets/images/cow-mobile.png';
 import { bannerPages } from '~/routes';
 import * as urls from '~/urls';

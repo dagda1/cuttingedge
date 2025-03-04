@@ -38,7 +38,7 @@ export type ApplicationLayoutProps = {
   className?: string;
   footer?: ReactElement;
   header?: ReactElement;
-  innerRef?: RefObject<HTMLElement>;
+  innerRef?: RefObject<HTMLElement | null>;
   children: ReactNodeNoStrings;
   headerAriaLabel?: string;
   theme?: keyof typeof themes;

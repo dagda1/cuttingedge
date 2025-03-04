@@ -34,7 +34,7 @@ export function Tan(): JSX.Element {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const tickFrame = useRef<number>();
+  const tickFrame = useRef<number>(undefined);
 
   const { xScale, yScale, mainXscale, tanXScale, tanYScale, unitCircleWidth, initialY } = useMemo(() => {
     const wholeXScale = scaleLinear({
