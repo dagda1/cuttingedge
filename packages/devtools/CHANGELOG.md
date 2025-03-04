@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.64.0
+
+### Minor Changes
+
+- 27b80a8: update react to 19
+
 ## 4.63.12
 
 ### Patch Changes

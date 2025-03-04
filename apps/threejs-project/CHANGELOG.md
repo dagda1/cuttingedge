@@ -1,5 +1,16 @@
 # threejs-starter-vite
 
+## 1.1.0
+
+### Minor Changes
+
+- 27b80a8: update react to 19
+
+### Patch Changes
+
+- Updated dependencies [27b80a8]
+  - @cutting/component-library@5.43.0
+
 ## 1.0.27
 
 ### Patch Changes

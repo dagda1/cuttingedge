@@ -1,5 +1,17 @@
 # @cutting/component-library
 
+## 5.43.0
+
+### Minor Changes
+
+- 27b80a8: update react to 19
+
+### Patch Changes
+
+- Updated dependencies [27b80a8]
+  - @cutting/hooks@4.58.0
+  - @cutting/util@4.60.0
+
 ## 5.42.10
 
 ### Patch Changes

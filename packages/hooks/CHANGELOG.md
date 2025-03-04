@@ -1,5 +1,16 @@
 # @cutting/hooks
 
+## 4.58.0
+
+### Minor Changes
+
+- 27b80a8: update react to 19
+
+### Patch Changes
+
+- Updated dependencies [27b80a8]
+  - @cutting/util@4.60.0
+
 ## 4.57.6
 
 ### Patch Changes
