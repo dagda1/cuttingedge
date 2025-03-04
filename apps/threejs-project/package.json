@@ -12,8 +12,12 @@
   "dependencies": {
     "@cutting/component-library": "workspace:*",
     "@cutting/assert": "workspace:*",
-    "gsap": "npm:@gsap/shockingly@^3.12.5",
-    "lil-gui": "^0.19.2",
-    "three": "^0.167.1"
+    "d3-scale": "4.0.2",
+    "gsap": "npm:@gsap/shockingly@^3.12.7",
+    "lil-gui": "^0.20.0",
+    "three": "^0.174.0"
+  },
+  "volta": {
+    "extends": "../../package.json"
   }
 }

@@ -11,7 +11,8 @@
   "include": [
     "server.mts",
     "../../node_modules/@types/d3/index.d.ts",
-    "node_modules/vite/types/*"
+    "node_modules/vite/types/*",
+    "node_modules/@cutting/useful-types/global.d.ts"
   ],
   "exclude": ["pruned"],
   "references": [

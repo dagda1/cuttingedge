@@ -21,13 +21,6 @@ export function createFormComponent<C extends FunctionComponent<any>>(
   >(({ name, rules, control, errors, ...props }, ref) => {
     const error = errors[name];
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const Wrapped = forwardRef<any, any>((props, ref) => {
-      return <Component {...props} ref={ref} />;
-    });
-
-    Wrapped.displayName = 'WrappedFormComponent';
-
     return (
       <Controller
         name={name}
@@ -35,7 +28,7 @@ export function createFormComponent<C extends FunctionComponent<any>>(
         control={control}
         render={({ field }) => (
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          <Wrapped {...(props as any)} {...field} invalid={!!error} errorMessage={error?.message} ref={ref} />
+          <Component {...(props as any)} {...field} invalid={!!error} errorMessage={error?.message} ref={ref} />
         )}
       />
     );

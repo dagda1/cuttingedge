@@ -39,7 +39,7 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const tickFrame = useRef<number>();
+  const tickFrame = useRef<number>(undefined);
 
   const onSubmit: SubmitHandler<FormValues> = useCallback(({ expression }) => {
     dispatch({

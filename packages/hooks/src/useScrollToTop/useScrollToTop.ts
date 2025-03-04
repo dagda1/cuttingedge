@@ -4,7 +4,7 @@ import { useLayoutEffect } from 'react';
 import { usePrevious } from '../usePrevious/usePrevious';
 
 export interface UseScrollToTopProps<E = HTMLElement> {
-  ref: RefObject<E>;
+  ref: RefObject<E | null>;
 }
 
 export const useScrollToTop = ({ ref }: UseScrollToTopProps): void => {

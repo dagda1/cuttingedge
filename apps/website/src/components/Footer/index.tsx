@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Column, Columns, Inline, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
 
+// @ts-expect-error
 import cow from '~/assets/images/cow-logo-small2.png';
+// @ts-expect-error
 import github from '~/assets/images/github.png';
+// @ts-expect-error
 import twitter from '~/assets/images/twitter.png';
 import { footerPages } from '~/routes';
 

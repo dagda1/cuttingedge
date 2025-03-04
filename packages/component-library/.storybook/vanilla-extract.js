@@ -1,3 +1,4 @@
+/* eslint-disable */
 const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -10,11 +11,7 @@ export default {
 
     return {
       ...baseConfig,
-      plugins: [
-        ...plugins,
-        new VanillaExtractPlugin(),
-        new MiniCssExtractPlugin(),
-      ],
+      plugins: [...plugins, new VanillaExtractPlugin(), new MiniCssExtractPlugin()],
       module: {
         ...module,
         rules: [
@@ -26,13 +23,13 @@ export default {
               {
                 loader: require.resolve('css-loader'),
                 options: {
-                  url: false, // Required as image imports should be handled via JS/TS import statements
-                },
-              },
-            ],
-          },
-        ],
-      },
+                  url: false // Required as image imports should be handled via JS/TS import statements
+                }
+              }
+            ]
+          }
+        ]
+      }
     };
-  },
+  }
 };

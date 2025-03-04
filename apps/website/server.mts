@@ -1,14 +1,15 @@
-import { mkdir, writeFile, readFile } from 'fs/promises';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import express, { urlencoded } from 'express';
-import type { ViteDevServer } from 'vite';
+
 import { assert } from '@cutting/assert';
+import express, { urlencoded } from 'express';
+import { mkdir, readFile, writeFile } from 'fs/promises';
 import helmet, { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
-import referrerPolicy from 'referrer-policy';
 import puppeteer from 'puppeteer';
+import referrerPolicy from 'referrer-policy';
+import type { ViteDevServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -136,6 +137,8 @@ export async function createServer(): Promise<{
     });
   });
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   app.get('/og-image', async (req, res) => {
     const isContainer = process.env.OS_ENV === 'container';
     const url = req.query.url;
@@ -151,12 +154,11 @@ export async function createServer(): Promise<{
       const imagePath = `${ogCache}/${slug}_ogimage.png`;
       const pptrCache = path.join(process.cwd(), '.cache', 'pptr');
       await Promise.all([
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
         mkdir(pptrCache, { recursive: true }).catch(() => {}),
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
+
         mkdir(ogCache, { recursive: true }).catch(() => {}),
       ]);
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
+
       const cachedImage = await readFile(imagePath).catch(() => {});
 
       if (cachedImage) {
@@ -266,6 +268,7 @@ export async function createServer(): Promise<{
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {
       if (e instanceof Error) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         !isProd && vite?.ssrFixStacktrace(e);
         console.log(e.stack);
         res.status(500).end(e.stack);

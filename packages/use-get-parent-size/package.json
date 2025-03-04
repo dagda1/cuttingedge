@@ -24,26 +24,26 @@
   "dependencies": {
     "@cutting/assert": "workspace:*",
     "resize-observer-polyfill": "^1.5.1",
-    "use-debounce": "^10.0.3"
+    "use-debounce": "^10.0.4"
   },
   "devDependencies": {
     "@vanilla-extract/sprinkles": "1.6.3",
-    "@testing-library/react": "16.0.0",
+    "@testing-library/react": "16.2.0",
     "@testing-library/react-hooks": "8.0.1",
-    "@types/react": "18.3.4",
-    "@types/react-dom": "18.3.0",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
     "@types/react-router-dom": "5.3.3",
-    "@types/three": "^0.167.2",
-    "@vanilla-extract/css": "^1.15.5",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-router-dom": "6.26.1",
-    "three": "^0.167.1"
+    "@types/three": "^0.174.0",
+    "@vanilla-extract/css": "^1.17.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router-dom": "7.2.0",
+    "three": "^0.174.0"
   },
   "peerDependencies": {
-    "react": ">= 18.3.1",
-    "react-dom": ">= 18.3.1",
-    "resize-observer-polyfill": ">= ^1.5.x",
+    "react": ">= 19.0.0",
+    "react-dom": ">= 19.0.0",
+    "resize-observer-polyfill": ">= 1.5.1",
     "use-debounce": ">= 10.0.3"
   },
   "volta": {

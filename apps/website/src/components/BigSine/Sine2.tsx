@@ -43,7 +43,7 @@ export function Sine2(): JSX.Element {
   assert(typeof width === 'number');
   assert(typeof height === 'number');
 
-  const tickFrame = useRef<number>();
+  const tickFrame = useRef<number>(undefined);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const { xScale, yScale, yAxisPosition, sineCurve } = useMemo(() => {

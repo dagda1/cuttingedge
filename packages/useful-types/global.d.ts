@@ -1,5 +1,15 @@
+import type { JSX as Jsx } from "react/jsx-runtime";
+
 declare let __BROWSER__: boolean;
 declare let __DEV__: boolean;
+
+declare global {
+  namespace JSX {
+    type ElementClass = Jsx.ElementClass;
+    type Element = Jsx.Element;
+    type IntrinsicElements = Jsx.IntrinsicElements;
+  }
+}
 
 declare module '*.module.css' {
   const classes: { [key: string]: string };
@@ -35,7 +45,6 @@ declare module '*.png' {
   const value: any;
   export default value;
 }
-
 declare module '*.jpg' {
   const value: any;
   export default value;

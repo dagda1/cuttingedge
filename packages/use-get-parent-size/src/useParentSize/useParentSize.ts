@@ -20,7 +20,7 @@ const initialContentRect: Partial<ResizeObserverContentRect> = {
 };
 
 export const useParentSize = <E extends Element>(
-  ref: RefObject<E>,
+  ref: RefObject<E | null>,
   {
     debounceDelay = 500,
     initialValues = initialContentRect,

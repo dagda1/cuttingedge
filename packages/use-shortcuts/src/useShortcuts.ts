@@ -12,7 +12,7 @@ export const useShortcuts = <R extends Record<PropertyKey, unknown>, E extends H
   handler,
 }: UseShortcuts<R, E>): UseShortcutsResults<R> => {
   const shortcutsRef = useRef<ShortcutAction<keyof R>[]>([]);
-  const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>();
+  const mousetrapRef = useRef<MousetrapStatic | MousetrapInstance>(null);
 
   useEffect(() => {
     if (!!mousetrapRef.current) {

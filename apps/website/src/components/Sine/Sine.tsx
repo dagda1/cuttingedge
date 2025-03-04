@@ -21,7 +21,7 @@ function Sine(): JSX.Element {
   assert(typeof width === 'number');
   assert(typeof height === 'number');
 
-  const tickFrame = useRef<number>();
+  const tickFrame = useRef<number>(undefined);
   const { initialX, initialY, firstX, radius, xAxisScale, yAxisScale } = useMemo(
     () => getScales({ width, height }),
     [width, height],
