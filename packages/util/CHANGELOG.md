@@ -1,5 +1,11 @@
 # @cutting/util
 
+## 4.60.0
+
+### Minor Changes
+
+- 27b80a8: update react to 19
+
 ## 4.59.2
 
 ### Patch Changes

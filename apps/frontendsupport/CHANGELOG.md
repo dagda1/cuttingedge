@@ -1,5 +1,22 @@
 # @cutting/frontend-support
 
+## 0.4.0
+
+### Minor Changes
+
+- 27b80a8: update react to 19
+
+### Patch Changes
+
+- Updated dependencies [27b80a8]
+  - @cutting/react-hook-form-components@0.6.0
+  - @cutting/use-get-parent-size@2.2.0
+  - @cutting/component-library@5.43.0
+  - @cutting/useful-types@4.41.0
+  - @cutting/markdown@0.2.0
+  - @cutting/hooks@4.58.0
+  - @cutting/util@4.60.0
+
 ## 0.3.6
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.2.0
+
+### Minor Changes
+
+- 27b80a8: update react to 19
+
 ## 0.1.9
 
 ### Patch Changes

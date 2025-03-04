@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.41.0
+
+### Minor Changes
+
+- 27b80a8: update react to 19
+
 ## 4.40.3
 
 ### Patch Changes
