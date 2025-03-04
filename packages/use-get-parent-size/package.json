@@ -29,7 +29,6 @@
   "devDependencies": {
     "@vanilla-extract/sprinkles": "1.6.3",
     "@testing-library/react": "16.2.0",
-    "@testing-library/react-hooks": "8.0.1",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "@types/react-router-dom": "5.3.3",
