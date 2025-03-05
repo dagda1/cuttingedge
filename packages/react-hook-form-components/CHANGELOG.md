@@ -1,5 +1,16 @@
 # @cutting/react-hook-form-components
 
+## 0.7.0
+
+### Minor Changes
+
+- fac6b45: introduce new jsx.d.ts to @cutting/useful-types
+
+### Patch Changes
+
+- Updated dependencies [fac6b45]
+  - @cutting/component-library@5.44.0
+
 ## 0.6.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # @cutting/svg
 
+## 4.56.0
+
+### Minor Changes
+
+- fac6b45: introduce new jsx.d.ts to @cutting/useful-types
+
+### Patch Changes
+
+- Updated dependencies [fac6b45]
+  - @cutting/use-get-parent-size@2.3.0
+
 ## 4.55.0
 
 ### Minor Changes
