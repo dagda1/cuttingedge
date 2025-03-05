@@ -5,7 +5,8 @@
     "noEmit": true,
     "paths": {
       "~/*": ["src/*"]
-    }
+    },
+    "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"]
   },
   "include": [
     "src/**/*.ts",

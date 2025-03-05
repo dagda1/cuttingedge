@@ -6,13 +6,21 @@ settings:
   injectWorkspacePackages: true
 
 overrides:
-  eslint: ^9.21.0
+  '@types/react': 19.0.10
+  '@types/react-dom': 19.0.4
   '@typescript-eslint/parser': 8.26.0
-  gsap: npm:@gsap/shockingly@^3.12.5
+  gsap: npm:@gsap/shockingly@^3.12.7
 
 importers:
 
   .:
+    dependencies:
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
     devDependencies:
       '@changesets/cli':
         specifier: 2.28.1
@@ -166,7 +174,7 @@ importers:
         version: 0.27.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@gsap/shockingly':
         specifier: ^3.12.7
-        version: gsap@@gsap/shockingly@3.12.7
+        version: 3.12.7
       '@remix-run/architect':
         specifier: ^2.16.0
         version: 2.16.0(typescript@5.8.2)
@@ -213,7 +221,7 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       gsap:
-        specifier: npm:@gsap/shockingly@^3.12.5
+        specifier: npm:@gsap/shockingly@^3.12.7
         version: '@gsap/shockingly@3.12.7'
       image-size:
         specifier: ^2.0.0
@@ -233,18 +241,12 @@ importers:
       micromark-util-chunked:
         specifier: ^2.0.1
         version: 2.0.1
-      react:
-        specifier: ^19.0.0
-        version: 19.0.0
       react-calendly:
         specifier: ^4.3.1
         version: 4.3.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-device-detect:
         specifier: ^2.2.3
         version: 2.2.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.0.0(react@19.0.0)
       react-hook-form:
         specifier: 7.54.2
         version: 7.54.2(react@19.0.0)
@@ -263,6 +265,9 @@ importers:
       rehype-mathjax:
         specifier: ^7.1.0
         version: 7.1.0
+      rehype-mdx-import-media:
+        specifier: ^1.2.0
+        version: 1.2.0
       rehype-preset-minify:
         specifier: ^7.0.1
         version: 7.0.1
@@ -284,9 +289,6 @@ importers:
       remark-math:
         specifier: ^6.0.0
         version: 6.0.0
-      remark-mdx-images:
-        specifier: ^3.0.0
-        version: 3.0.0
       resize-observer-polyfill:
         specifier: ^1.5.1
         version: 1.5.1
@@ -331,10 +333,10 @@ importers:
         specifier: ^4.0.9
         version: 4.0.9
       '@types/react':
-        specifier: ^19.0.10
+        specifier: 19.0.10
         version: 19.0.10
       '@types/react-dom':
-        specifier: ^19.0.4
+        specifier: 19.0.4
         version: 19.0.4(@types/react@19.0.10)
       '@types/source-map-support':
         specifier: ^0.5.10
@@ -360,6 +362,12 @@ importers:
       prettier:
         specifier: 3.5.3
         version: 3.5.3
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
       toml:
         specifier: ^3.0.0
         version: 3.0.0
@@ -388,7 +396,7 @@ importers:
         specifier: 4.0.2
         version: 4.0.2
       gsap:
-        specifier: npm:@gsap/shockingly@^3.12.5
+        specifier: npm:@gsap/shockingly@^3.12.7
         version: '@gsap/shockingly@3.12.7'
       lil-gui:
         specifier: ^0.20.0
@@ -510,12 +518,6 @@ importers:
       rc-slider:
         specifier: ^11.1.8
         version: 11.1.8(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      react:
-        specifier: 19.0.0
-        version: 19.0.0
-      react-dom:
-        specifier: 19.0.0
-        version: 19.0.0(react@19.0.0)
       react-helmet:
         specifier: 6.1.0
         version: 6.1.0(react@19.0.0)
@@ -625,6 +627,12 @@ importers:
       nodemon:
         specifier: 3.1.9
         version: 3.1.9
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -743,9 +751,6 @@ importers:
       '@types/dedent':
         specifier: 0.7.2
         version: 0.7.2
-      '@types/mdx-js__react':
-        specifier: 2.0.0
-        version: 2.0.0(@types/react@19.0.10)(react@19.0.0)
       '@types/react':
         specifier: 19.0.10
         version: 19.0.10
@@ -893,12 +898,6 @@ importers:
       raf:
         specifier: 3.4.1
         version: 3.4.1
-      react:
-        specifier: 19.0.0
-        version: 19.0.0
-      react-dom:
-        specifier: 19.0.0
-        version: 19.0.0(react@19.0.0)
       rollup:
         specifier: 4.34.9
         version: 4.34.9
@@ -981,6 +980,12 @@ importers:
       eslint-plugin-react-hooks:
         specifier: 5.2.0
         version: 5.2.0(eslint@9.21.0)
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
 
   packages/eslint-config:
     dependencies:
@@ -991,7 +996,7 @@ importers:
         specifier: 8.26.0
         version: 8.26.0(eslint@9.21.0)(typescript@5.8.2)
       eslint:
-        specifier: ^9.21.0
+        specifier: 9.21.0
         version: 9.21.0
       eslint-config-prettier:
         specifier: 10.0.2
@@ -1093,6 +1098,9 @@ importers:
       rehype-mathjax:
         specifier: ^7.1.0
         version: 7.1.0
+      rehype-mdx-import-media:
+        specifier: ^1.2.0
+        version: 1.2.0
       rehype-preset-minify:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1114,9 +1122,6 @@ importers:
       remark-math:
         specifier: ^6.0.0
         version: 6.0.0
-      remark-mdx-images:
-        specifier: ^3.0.0
-        version: 3.0.0
       resize-observer-polyfill:
         specifier: ^1.5.1
         version: 1.5.1
@@ -1486,7 +1491,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
     peerDependencies:
       '@babel/core': ^7.11.0
-      eslint: ^9.21.0
+      eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
 
   '@babel/generator@7.26.9':
     resolution: {integrity: sha512-kEWdzjOAUMW4hAyrzJ0ZaTOu9OmpyDIQicIh0zg0EEcEkYXZb2TjtBhnHi2ViX7PKwZqF4xwqfAm299/QMP3lg==}
@@ -2827,7 +2832,7 @@ packages:
     resolution: {integrity: sha512-s3O3waFUrMV8P/XaF/+ZTp1X9XBZW1a4B97ZnjQF2KYWaFD2A8KyFBsrsfSjEmjn3RGWAIuvlneuZm3CUK3jbA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
 
   '@eslint-community/regexpp@4.12.1':
     resolution: {integrity: sha512-CCZCDJuduB9OUkFkY2IgppNZMi2lBQgD2qzwXkEia16cge2pijY/aXi96CJMquDMn3nJdlPV1A5KrJEXwfLNzQ==}
@@ -2837,7 +2842,7 @@ packages:
     resolution: {integrity: sha512-xvv7hJE32yhegJ8xNAnb62ggiAwTYHBpUCWhRxEj/ksvgDJuSXfoDkBcRYaYNFiJ+jH0IE3K16hd+xXzhBgNbg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^9.10.0
     peerDependenciesMeta:
       eslint:
         optional: true
@@ -3115,7 +3120,7 @@ packages:
   '@mdx-js/react@3.1.0':
     resolution: {integrity: sha512-QjHtSaoameoalGnKDT3FoIl4+9RwyTmo9ZJGBdLOks/YOiWHoRDI3PUwEzOE7kEmGcV3AFcp9K6dYu9rEuKLAQ==}
     peerDependencies:
-      '@types/react': '>=16'
+      '@types/react': 19.0.10
       react: '>=16'
 
   '@mdx-js/rollup@3.1.0':
@@ -3326,7 +3331,7 @@ packages:
     resolution: {integrity: sha512-lH+HyLQTs3S+aQrz1yPORudUyBwJzoIlqA7I/jeRlZ06xJGG5Gpd8yirFlMBiXT4yC9MyBnJYwoSMYZjKipQAQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^8
       rollup: ^3 || ^4
 
   '@remix-run/architect@2.16.0':
@@ -3366,7 +3371,7 @@ packages:
     resolution: {integrity: sha512-SkIE4ExtoxHaco2qFrkIRna5hiXLOSLnV2pkd7CACd0iETanVZatOSCK4Mi/s5CYQ25UNBpIzAUIIePfqWT+SQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^8.0.0
       react: ^18.0.0
       typescript: ^5.1.0
     peerDependenciesMeta:
@@ -3995,8 +4000,8 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       '@testing-library/dom': ^10.0.0
-      '@types/react': ^18.0.0 || ^19.0.0
-      '@types/react-dom': ^18.0.0 || ^19.0.0
+      '@types/react': 19.0.10
+      '@types/react-dom': 19.0.4
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
     peerDependenciesMeta:
@@ -4276,10 +4281,6 @@ packages:
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
 
-  '@types/mdx-js__react@2.0.0':
-    resolution: {integrity: sha512-CULRBwQwLTb2RrhERg43x4857LaAjWcA2oncJdW0zj9m6eZQbGcOxZTHMiOxYmNmSrbDJQwJ6JiokqzBLAenEA==}
-    deprecated: This is a stub types definition. @mdx-js/react provides its own type definitions, so you do not need this installed.
-
   '@types/mdx@2.0.13':
     resolution: {integrity: sha512-+OWZQfAYyio6YkJb3HLxDrvnx6SWWDbC0zVPfBRzUk0/nqoDyf6dNxQi3eArPe8rJ473nobTMQ/8Zk+LxJ+Yuw==}
 
@@ -4340,7 +4341,7 @@ packages:
   '@types/react-dom@19.0.4':
     resolution: {integrity: sha512-4fSQ8vWFkg+TGhePfUzVmat3eC14TXYSsiiDSLI0dVLsrm9gZFABjPy/Qu6TKgl1tq1Bu1yDsuQgY3A3DOjCcg==}
     peerDependencies:
-      '@types/react': ^19.0.0
+      '@types/react': 19.0.10
 
   '@types/react-helmet@6.1.11':
     resolution: {integrity: sha512-0QcdGLddTERotCXo3VFlUSWO3ztraw8nZ6e3zJSgG7apwV5xt+pJUS8ewPBqT4NYB1optGLprNQzFleIY84u/g==}
@@ -4428,7 +4429,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       '@typescript-eslint/parser': 8.26.0
-      eslint: ^9.21.0
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
       typescript: '*'
     peerDependenciesMeta:
       typescript:
@@ -4439,14 +4440,14 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       '@typescript-eslint/parser': 8.26.0
-      eslint: ^9.21.0
+      eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
 
   '@typescript-eslint/parser@8.26.0':
     resolution: {integrity: sha512-mNtXP9LTVBy14ZF3o7JG69gRPBK/2QWtQd0j0oH26HcY/foyJJau6pNUez7QrM5UHnSvwlQcJXKsk0I99B9pOA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
 
   '@typescript-eslint/scope-manager@5.62.0':
@@ -4461,7 +4462,7 @@ packages:
     resolution: {integrity: sha512-xsSQreu+VnfbqQpW5vnCJdq1Z3Q0U31qiWmRhr98ONQmcp/yhiPJFPq8MXiJVLiksmOKSjIldZzkebzHuCGzew==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: '*'
       typescript: '*'
     peerDependenciesMeta:
       typescript:
@@ -4471,7 +4472,7 @@ packages:
     resolution: {integrity: sha512-ruk0RNChLKz3zKGn2LwXuVoeBcUMh+jaqzN461uMMdxy5H9epZqIBtYj7UiPXRuOpaALXGbmRuZQhmwHhaS04Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
 
   '@typescript-eslint/types@5.62.0':
@@ -4501,13 +4502,13 @@ packages:
     resolution: {integrity: sha512-n8oxjeb5aIbPFEtmQxQYOLI0i9n5ySBEY/ZEHHZqKQSFnxio1rv6dthascc9dLuwrL0RC5mPCxB7vnAVGAYWAQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
 
   '@typescript-eslint/utils@8.26.0':
     resolution: {integrity: sha512-2L2tU3FVwhvU14LndnQCA2frYC8JnPDVKyQtWFPf8IYFMt/ykEN1bPolNhNbCVgOmdzTlWdusCTKA/9nKrf8Ig==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
 
   '@typescript-eslint/visitor-keys@5.62.0':
@@ -4759,8 +4760,8 @@ packages:
   '@webassemblyjs/wast-printer@1.9.0':
     resolution: {integrity: sha512-2J0nE95rHXHyQ24cWjMKJ1tqB/ds8z/cyeOZxJhcb+rW+SQASVjuznUSmdz5GpVJTzU8JkhYut0D3siFDD6wsA==}
 
-  '@webgpu/types@0.1.54':
-    resolution: {integrity: sha512-81oaalC8LFrXjhsczomEQ0u3jG+TqE6V9QHLA8GNZq/Rnot0KDugu3LhSYSlie8tSdooAN1Hov05asrUUp9qgg==}
+  '@webgpu/types@0.1.55':
+    resolution: {integrity: sha512-p97I8XEC1h04esklFqyIH+UhFrUcj8/1/vBWgc6lAK4jMJc+KbhUy8D4dquHYztFj6pHLqGcp/P1xvBBF4r3DA==}
 
   '@xtuc/ieee754@1.2.0':
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -6548,7 +6549,7 @@ packages:
     resolution: {integrity: sha512-1105/17ZIMjmCOJOPNfVdbXafLCLj3hPmkmB7dLgt7XsQ/zkxSuDerE/xgO3RxoHysR1N1whmquY0lSn2O0VLg==}
     hasBin: true
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: '>=7.0.0'
 
   eslint-import-resolver-node@0.3.7:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
@@ -6560,7 +6561,7 @@ packages:
     resolution: {integrity: sha512-A0bu4Ks2QqDWNpeEgTQMPTngaMhuDu4yv6xpftBMAf+1ziXnpx+eSR1WRfoPTe2BAiAjHFZ7kSNx1fvr5g5pmQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: '*'
       eslint-plugin-import: '*'
       eslint-plugin-import-x: '*'
     peerDependenciesMeta:
@@ -6594,14 +6595,14 @@ packages:
     resolution: {integrity: sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==}
     engines: {node: '>=8.10.0'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: '>=4.19.1'
 
   eslint-plugin-import@2.31.0:
     resolution: {integrity: sha512-ixmkI62Rbc2/w8Vfxyh1jQRTdRTF52VxwRVHl/ykPAmqG+Nb7/kNn+byLP0LxPgI7zWA16Jt82SybJInmMia3A==}
     engines: {node: '>=4'}
     peerDependencies:
       '@typescript-eslint/parser': '*'
-      eslint: ^9.21.0
+      eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9
     peerDependenciesMeta:
       '@typescript-eslint/parser':
         optional: true
@@ -6610,14 +6611,14 @@ packages:
     resolution: {integrity: sha512-9j+n8uj0+V0tmsoS7bYC7fLhQmIvjRqRYEcbDSi+TKPsTThLLXCyj5swMSSf/hTleeMktACnn+HFqXBr5gbcbA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6', yarn: '>=1'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^6.8.0 || ^7.0.0 || ^8.0.0
 
   eslint-plugin-jest@26.9.0:
     resolution: {integrity: sha512-TWJxWGp1J628gxh2KhaH1H1paEdgE2J61BBF1I59c6xWeL5+D1BzMxGDN/nXAfX+aSkR5u80K+XhskK6Gwq9ng==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.0.0
-      eslint: ^9.21.0
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
       jest: '*'
     peerDependenciesMeta:
       '@typescript-eslint/eslint-plugin':
@@ -6629,20 +6630,20 @@ packages:
     resolution: {integrity: sha512-scB3nz4WmG75pV8+3eRUQOHZlNSUhFNq37xnpgRkCCELU3XMvXAxLk1eqWWyE22Ki4Q01Fnsw9BA3cJHDPgn2Q==}
     engines: {node: '>=4.0'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9
 
   eslint-plugin-node@11.1.0:
     resolution: {integrity: sha512-oUwtPJ1W0SKD0Tr+wqu92c5xuCeQqB3hSCHasn/ZgjFdA9iDGNkNf2Zi9ztY7X+hNuMib23LNGRm6+uN+KLE3g==}
     engines: {node: '>=8.10.0'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: '>=5.16.0'
 
   eslint-plugin-prettier@5.2.3:
     resolution: {integrity: sha512-qJ+y0FfCp/mQYQ/vWQ3s7eUlFEL4PyKfAJxsnYTJ4YT73nsJBWqmEpFryxV9OeUiqmsTsYJ5Y+KDNaeP31wrRw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       '@types/eslint': '>=8.0.0'
-      eslint: ^9.21.0
+      eslint: '>=8.0.0'
       eslint-config-prettier: '*'
       prettier: '>=3.0.0'
     peerDependenciesMeta:
@@ -6655,30 +6656,30 @@ packages:
     resolution: {integrity: sha512-QzliNJq4GinDBcD8gPB5v0wh6g8q3SUi6EFF0x8N/BL9PoVs0atuGc47ozMRyOWAKdwaZ5OnbOEa3WR+dSGKuQ==}
     engines: {node: '>=10'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
 
   eslint-plugin-react-hooks@5.2.0:
     resolution: {integrity: sha512-+f15FfK64YQwZdJNELETdn5ibXEUQmW1DZL6KXhNnc2heoy/sg9VJJeT7n8TlMWouzWqSWavFkIhHyIbIAEapg==}
     engines: {node: '>=10'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
 
   eslint-plugin-react@7.37.4:
     resolution: {integrity: sha512-BGP0jRmfYyvOyvMoRX/uoUeW+GqNj9y16bPQzqAHf3AYII/tDs+jMN0dBVkl88/OZwNGwrVFxE7riHsXVfy/LQ==}
     engines: {node: '>=4'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
   eslint-plugin-simple-import-sort@12.1.1:
     resolution: {integrity: sha512-6nuzu4xwQtE3332Uz0to+TxDQYRLTKRESSc2hefVT48Zc8JthmN23Gx9lnYhu0FtkRSL1oxny3kJ2aveVhmOVA==}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: '>=5.0.0'
 
   eslint-plugin-testing-library@5.11.1:
     resolution: {integrity: sha512-5eX9e1Kc2PqVRed3taaLnAAqPZGEX75C+M/rXzUAI3wIg/ZxzUm1OVAwfe/O+vE+6YXOLetSe9g5GKD2ecXipw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: ^7.5.0 || ^8.0.0
 
   eslint-scope@4.0.3:
     resolution: {integrity: sha512-p7VutNr1O/QrxysMo3E45FjYDTeXBy0iTltPFNSqKAIfjDSXC+4dj+qfyuD8bfAXrW/y6lW3O76VaYNPKfpKrg==}
@@ -7061,7 +7062,7 @@ packages:
     resolution: {integrity: sha512-SbH/l9ikmMWycd5puHJKTkZJKddF4iRLyW3DeZ08HTI7NGyLS38MXd/KGgeWumQO7YNQbW2u/NtPT2YowbPaGQ==}
     engines: {node: '>=10', yarn: '>=1.0.0'}
     peerDependencies:
-      eslint: ^9.21.0
+      eslint: '>= 6'
       typescript: '>= 2.7'
       vue-template-compiler: '*'
       webpack: '>= 4'
@@ -7361,9 +7362,6 @@ packages:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
 
-  gsap@@gsap/shockingly@3.12.7:
-    resolution: {integrity: sha512-uvbaCkQCdjy7bNvzBWE21dVFa32uqBzCZfYgNRikcFn2SqyQ0/fDUJkfAtme9tdkv3n+niBpdGraLjVA26tTWQ==, tarball: https://npm.greensock.com/@gsap/shockingly/-/shockingly-3.12.7.tgz}
-
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
     hasBin: true
@@ -7502,6 +7500,9 @@ packages:
 
   hast-util-parse-selector@4.0.0:
     resolution: {integrity: sha512-wkQCkSYoOGCRKERFWcxMVMOcYE2K1AaNLU8DXS9arxnLOUEWbOXKXiJUNzEpqZ3JOKpnha3jkFrumEjVliDe7A==}
+
+  hast-util-properties-to-mdx-jsx-attributes@1.0.1:
+    resolution: {integrity: sha512-ZzxhjHZ+gyxaPIFp/nuRpVL4GIFoqzfH6vNgjaA3CuUAV6XCxYwAQfRczrZRkgL6msi6DdOl+/QEduOdzszvbg==}
 
   hast-util-raw@9.1.0:
     resolution: {integrity: sha512-Y8/SBAHkZGoNkpzqqfCldijcuUKh7/su31kEBp67cFY09Wy0mTRgtsLYsiIxMJxlu0f6AA5SUTbDR8K0rxnbUw==}
@@ -9580,6 +9581,9 @@ packages:
     resolution: {integrity: sha512-1Y1A//QUXEZK7YKz+rD9WydcE1+EuPr6ZBgKecAB8tmoW6UFv0NREVJe1p+jRxtThkcbbKkfwIbWJe/IeE6m2Q==}
     engines: {node: '>=0.10.0'}
 
+  parse-srcset@1.0.2:
+    resolution: {integrity: sha512-/2qh0lav6CmI15FzA3i/2Bzk2zCgQhGMkvhOhKNcBVQ1ldgpbfiNTVslmooUmWJcADi1f1kIeynbDRVzNlfR6Q==}
+
   parse5-htmlparser2-tree-adapter@7.1.0:
     resolution: {integrity: sha512-ruw5xyKs6lrpo9x9rCZqZZnIUntICjQAd0Wsmp396Ul9lN/h+ifgVV1x1gZHi8euej6wTfpqX8j+BFQxF0NS/g==}
 
@@ -10487,6 +10491,9 @@ packages:
   rehype-mathjax@7.1.0:
     resolution: {integrity: sha512-mJHNpoqCC5UZ24OKx0wNjlzV18qeJz/Q/LtEjxXzt8vqrZ1Z3GxQnVrHcF5/PogcXUK8cWwJ4U/LWOQWEiABHw==}
 
+  rehype-mdx-import-media@1.2.0:
+    resolution: {integrity: sha512-rf+2qnPv3LTqLtCr8GjhHUja2TEbmwWtD1o4jigrmGWbVDggOMxyNeqJhGpC4E3vtH+sY+a+u9WPSEaskEWPFA==}
+
   rehype-minify-attribute-whitespace@4.0.1:
     resolution: {integrity: sha512-QAfUrcZ6KCfpYonDbiWKTRpnVu9DYxFlvXMWWZe4BQbojwjjUbGIg1zoqyInJiJHAdYYyTHN5yJV2THa3opIng==}
 
@@ -10599,10 +10606,6 @@ packages:
 
   remark-mdx-frontmatter@4.0.0:
     resolution: {integrity: sha512-PZzAiDGOEfv1Ua7exQ8S5kKxkD8CDaSb4nM+1Mprs6u8dyvQifakh+kCj6NovfGXW+bTvrhjaR3srzjS2qJHKg==}
-
-  remark-mdx-images@3.0.0:
-    resolution: {integrity: sha512-EKpqw11XUprx/kFQPEkH3GdPEqI63Wcq5GT120N2hGlKCSwOM09NtL1i3G9HQ4TBIR2aF471HF5YStME5ukbJw==}
-    deprecated: Use rehype-mdx-import-media instead
 
   remark-mdx@2.3.0:
     resolution: {integrity: sha512-g53hMkpM0I98MU266IzDFMrTD980gNF3BJnkyFcmN+dD873mQeD5rdMO3Y2X+x8umQfbSE0PcoEDl7ledSA+2g==}
@@ -13907,6 +13910,7 @@ snapshots:
       reading-time: 1.5.0
       rehype-autolink-headings: 7.1.0
       rehype-mathjax: 7.1.0
+      rehype-mdx-import-media: 1.2.0
       rehype-preset-minify: 7.0.1
       rehype-prism-plus: 2.0.0
       rehype-raw: 7.0.0
@@ -13914,7 +13918,6 @@ snapshots:
       remark-breaks: 4.0.0
       remark-gfm: 4.0.1
       remark-math: 6.0.0
-      remark-mdx-images: 3.0.0
       resize-observer-polyfill: 1.5.1
       unist-util-visit: 5.0.0
     transitivePeerDependencies:
@@ -16250,13 +16253,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/mdx-js__react@2.0.0(@types/react@19.0.10)(react@19.0.0)':
-    dependencies:
-      '@mdx-js/react': 3.1.0(@types/react@19.0.10)(react@19.0.0)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
   '@types/mdx@2.0.13': {}
 
   '@types/mime@1.3.5': {}
@@ -16372,7 +16368,7 @@ snapshots:
       '@tweenjs/tween.js': 23.1.3
       '@types/stats.js': 0.17.3
       '@types/webxr': 0.5.21
-      '@webgpu/types': 0.1.54
+      '@webgpu/types': 0.1.55
       fflate: 0.8.2
       meshoptimizer: 0.18.1
 
@@ -16642,7 +16638,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.25.9(@babel/core@7.26.9)
       '@vanilla-extract/babel-plugin-debug-ids': 1.2.0
       '@vanilla-extract/css': 1.17.1(babel-plugin-macros@3.1.0)
-      esbuild: 0.17.19
+      esbuild: 0.17.6
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -17017,7 +17013,7 @@ snapshots:
       '@webassemblyjs/wast-parser': 1.9.0
       '@xtuc/long': 4.2.2
 
-  '@webgpu/types@0.1.54': {}
+  '@webgpu/types@0.1.55': {}
 
   '@xtuc/ieee754@1.2.0': {}
 
@@ -17037,7 +17033,7 @@ snapshots:
   abstract-leveldown@6.2.3:
     dependencies:
       buffer: 5.7.1
-      immediate: 3.3.0
+      immediate: 3.2.3
       level-concat-iterator: 2.0.1
       level-supports: 1.0.1
       xtend: 4.0.2
@@ -20271,8 +20267,6 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
-  gsap@@gsap/shockingly@3.12.7: {}
-
   gunzip-maybe@1.4.2:
     dependencies:
       browserify-zlib: 0.1.4
@@ -20446,6 +20440,19 @@ snapshots:
   hast-util-parse-selector@4.0.0:
     dependencies:
       '@types/hast': 3.0.4
+
+  hast-util-properties-to-mdx-jsx-attributes@1.0.1:
+    dependencies:
+      '@types/estree': 1.0.6
+      '@types/hast': 3.0.4
+      comma-separated-tokens: 2.0.3
+      estree-util-value-to-estree: 3.3.2
+      mdast-util-mdx-jsx: 3.2.0
+      property-information: 7.0.0
+      space-separated-tokens: 2.0.2
+      style-to-js: 1.1.16
+    transitivePeerDependencies:
+      - supports-color
 
   hast-util-raw@9.1.0:
     dependencies:
@@ -23222,6 +23229,8 @@ snapshots:
 
   parse-passwd@1.0.0: {}
 
+  parse-srcset@1.0.2: {}
+
   parse5-htmlparser2-tree-adapter@7.1.0:
     dependencies:
       domhandler: 5.0.3
@@ -24186,6 +24195,16 @@ snapshots:
       unist-util-visit-parents: 6.0.1
       vfile: 6.0.3
 
+  rehype-mdx-import-media@1.2.0:
+    dependencies:
+      '@types/hast': 3.0.4
+      hast-util-properties-to-mdx-jsx-attributes: 1.0.1
+      parse-srcset: 1.0.2
+      unified: 11.0.5
+      unist-util-visit: 5.0.0
+    transitivePeerDependencies:
+      - supports-color
+
   rehype-minify-attribute-whitespace@4.0.1:
     dependencies:
       '@types/hast': 3.0.4
@@ -24462,12 +24481,6 @@ snapshots:
       toml: 3.0.0
       unified: 11.0.5
       yaml: 2.7.0
-
-  remark-mdx-images@3.0.0:
-    dependencies:
-      '@types/mdast': 4.0.4
-      unified: 11.0.5
-      unist-util-visit: 5.0.0
 
   remark-mdx@2.3.0:
     dependencies:

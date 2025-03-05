@@ -11,7 +11,6 @@ import rehypePresetMinify from 'rehype-preset-minify';
 import rehypePrismPlus from 'rehype-prism-plus';
 import rehypeRaw from 'rehype-raw';
 import rehypeSlug from 'rehype-slug';
-// import remarkMdxImages from 'remark-mdx-images';
 import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';

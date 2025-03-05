@@ -9,7 +9,8 @@
     "noEmit": true,
     "paths": {
       "~/*": ["src/*"]
-    }
+    },
+    "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"]
   },
   "include": [
     "src/**/*.ts",
@@ -20,7 +21,7 @@
     "node_modules/@floating-ui/dom/src/types.d.ts",
     "node_modules/@floating-ui/react-dom/src/types.d.ts",
     "node_modules/@floating-ui/react/src/types.d.ts",
-    "node_modules/@cutting/useful-types/global.d.ts"
+    "../../node_modules/@types/mdx/index.d.ts"
   ],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "server.mts", "pruned"]
 }

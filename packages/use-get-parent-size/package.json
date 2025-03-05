@@ -40,8 +40,8 @@
     "three": "^0.174.0"
   },
   "peerDependencies": {
-    "react": ">= 19.0.0",
-    "react-dom": ">= 19.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "resize-observer-polyfill": ">= 1.5.1",
     "use-debounce": ">= 10.0.3"
   },

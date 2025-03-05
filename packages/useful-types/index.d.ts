@@ -22,7 +22,7 @@ interface ViteHotContext {
   dispose(cb: (data: any) => void): void;
   decline(): void;
   invalidate(): void;
-
+ 
   on<T extends string>(event: T, cb: (payload: any) => void): void;
   send<T extends string>(event: T, data?: any): void;
 }
