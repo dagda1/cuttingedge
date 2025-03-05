@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.41.0
+
+### Minor Changes
+
+- fac6b45: introduce new jsx.d.ts to @cutting/useful-types
+
 ## 4.40.5
 
 ### Patch Changes

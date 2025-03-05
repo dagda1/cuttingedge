@@ -1,5 +1,16 @@
 # @cutting/use-mathjax
 
+## 4.52.0
+
+### Minor Changes
+
+- fac6b45: introduce new jsx.d.ts to @cutting/useful-types
+
+### Patch Changes
+
+- Updated dependencies [fac6b45]
+  - @cutting/hooks@4.59.0
+
 ## 4.51.0
 
 ### Minor Changes

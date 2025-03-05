@@ -1,5 +1,11 @@
 # @cutting/use-shortcuts
 
+## 4.48.0
+
+### Minor Changes
+
+- fac6b45: introduce new jsx.d.ts to @cutting/useful-types
+
 ## 4.47.0
 
 ### Minor Changes

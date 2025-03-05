@@ -1,5 +1,21 @@
 # @cutting/frontend-support
 
+## 0.5.0
+
+### Minor Changes
+
+- fac6b45: introduce new jsx.d.ts to @cutting/useful-types
+
+### Patch Changes
+
+- Updated dependencies [fac6b45]
+  - @cutting/react-hook-form-components@0.7.0
+  - @cutting/use-get-parent-size@2.3.0
+  - @cutting/component-library@5.44.0
+  - @cutting/useful-types@4.42.0
+  - @cutting/markdown@0.3.0
+  - @cutting/hooks@4.59.0
+
 ## 0.4.0
 
 ### Minor Changes
