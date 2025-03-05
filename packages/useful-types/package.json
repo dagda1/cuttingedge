@@ -7,11 +7,19 @@
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
   "type": "module",
-  "module": "global.d.ts",
-  "types": "global.d.ts",
-  "typings": "global.d.ts",
+  "module": "index.d.ts",
+  "types": "index.d.ts",
+  "typings": "index.d.ts",
+  "typesVersions": {
+    "*": {
+      "jsx": [
+        "jsx.d.ts"
+      ]
+    }
+  },
   "files": [
-    "global.d.ts"
+    "index.d.ts",
+    "jsx.d.ts"
   ],
   "volta": {
     "extends": "../../package.json"

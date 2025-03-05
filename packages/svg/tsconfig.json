@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "rootDirs": ["src", "demo"],
-    "noEmit": true
+    "noEmit": true,
+    "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"]
   },
   "references": [
     { "path": "../util/tsconfig.dist.json" },

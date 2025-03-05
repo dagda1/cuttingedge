@@ -5,7 +5,13 @@
       "path": "./packages/devtools"
     },
     {
+      "path": "./packages/assert/tsconfig.dist.json"
+    },
+    {
       "path": "./packages/util/tsconfig.dist.json"
+    },
+    {
+      "path": "./packages/cloudinary-blurhash/tsconfig.dist.json"
     },
     {
       "path": "./packages/hooks/tsconfig.dist.json"
@@ -27,9 +33,6 @@
     },
     {
       "path": "./packages/use-mathjax/tsconfig.dist.json"
-    },
-    {
-      "path": "./packages/assert/tsconfig.dist.json"
     }
   ]
 }

@@ -2,7 +2,8 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "noEmit": true
+    "noEmit": true,
+    "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "references": [{ "path": "../util/tsconfig.dist.json" }]
