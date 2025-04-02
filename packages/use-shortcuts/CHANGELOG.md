@@ -1,5 +1,11 @@
 # @cutting/use-shortcuts
 
+## 4.49.0
+
+### Minor Changes
+
+- 7b27210: react 19.1.0
+
 ## 4.48.0
 
 ### Minor Changes

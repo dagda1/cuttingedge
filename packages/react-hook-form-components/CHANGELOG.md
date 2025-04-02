@@ -1,5 +1,16 @@
 # @cutting/react-hook-form-components
 
+## 0.8.0
+
+### Minor Changes
+
+- 7b27210: react 19.1.0
+
+### Patch Changes
+
+- Updated dependencies [7b27210]
+  - @cutting/component-library@5.45.0
+
 ## 0.7.0
 
 ### Minor Changes

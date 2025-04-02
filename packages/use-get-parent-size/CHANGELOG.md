@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.4.0
+
+### Minor Changes
+
+- 7b27210: react 19.1.0
+
 ## 2.3.0
 
 ### Minor Changes
