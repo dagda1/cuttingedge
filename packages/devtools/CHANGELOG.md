@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.66.0
+
+### Minor Changes
+
+- 7b27210: react 19.1.0
+
 ## 4.65.0
 
 ### Minor Changes

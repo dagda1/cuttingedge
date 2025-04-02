@@ -1,5 +1,16 @@
 # @cutting/svg
 
+## 4.57.0
+
+### Minor Changes
+
+- 7b27210: react 19.1.0
+
+### Patch Changes
+
+- Updated dependencies [7b27210]
+  - @cutting/use-get-parent-size@2.4.0
+
 ## 4.56.0
 
 ### Minor Changes

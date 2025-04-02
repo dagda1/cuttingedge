@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.60.0
+
+### Minor Changes
+
+- 7b27210: react 19.1.0
+
 ## 4.59.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # @cutting/use-mathjax
 
+## 4.53.0
+
+### Minor Changes
+
+- 7b27210: react 19.1.0
+
+### Patch Changes
+
+- Updated dependencies [7b27210]
+  - @cutting/hooks@4.60.0
+
 ## 4.52.0
 
 ### Minor Changes
