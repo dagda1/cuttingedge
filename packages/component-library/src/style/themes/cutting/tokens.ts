@@ -34,7 +34,7 @@ export const tokens: DeepPartial<Tokens> = {
     background: {
       body: 'transparent',
       focus: palette.yellow400,
-      linkHover: palette.yellow400,
+      linkHover: palette.yellow700,
     },
   },
   typography: {
