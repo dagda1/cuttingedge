@@ -230,7 +230,7 @@ export async function createServer(): Promise<{
     }
   });
 
-  app.use('*', async (req, res) => {
+  app.use('/{*splat}', async (req, res) => {
     try {
       const url = req.originalUrl;
 

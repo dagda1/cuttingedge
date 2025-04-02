@@ -1,3 +1,9 @@
 packages:
-  - 'packages/*'
-  - 'apps/*'
+  - "packages/*"
+  - "apps/*"
+
+publicHoistPattern:
+  - "@types/*"
+
+injectWorkspacePackages: true
+strictStorePkgContentCheck: false
