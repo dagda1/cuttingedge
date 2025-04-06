@@ -37,7 +37,7 @@
     "dedent": "^1.5.3",
     "format": "^0.2.2",
     "front-matter": "^4.0.2",
-    "gsap": "npm:@gsap/shockingly@^3.12.5",
+    "gsap": "npm:@gsap/shockingly@^3.12.7",
     "image-size": "^2.0.2",
     "isbot": "5.1.25",
     "js-yaml": "^4.1.0",

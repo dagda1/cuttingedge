@@ -47,8 +47,6 @@ RUN rm -rf /cutting/
 
 WORKDIR /cutting/
 
-COPY ./.npmrc .
-
 COPY ./apps/website/pruned ./dist
 
 RUN cat ./dist/package.json

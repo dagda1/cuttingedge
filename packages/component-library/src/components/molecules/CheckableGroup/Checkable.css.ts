@@ -18,4 +18,5 @@ export const legend = style({
 
 export const inline = style({
   display: 'flex',
+  flexWrap: 'wrap',
 });

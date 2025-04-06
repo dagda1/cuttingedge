@@ -7,3 +7,4 @@ publicHoistPattern:
 
 injectWorkspacePackages: true
 strictStorePkgContentCheck: false
+forceLegacyDeploy: true
