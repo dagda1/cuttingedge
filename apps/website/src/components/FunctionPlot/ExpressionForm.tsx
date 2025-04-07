@@ -1,11 +1,8 @@
 import { Button } from '@cutting/component-library';
 import { Input } from '@cutting/react-hook-form-components';
-import { MathJax } from '@cutting/use-mathjax';
-import { parse } from 'mathjs';
 import { memo } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import * as styles from './ExpressionForm.css';
 import { algebra, form } from './FunctionPlot.css';
 
 export interface FormValues {
@@ -31,7 +28,6 @@ function Form({ onSubmit, expression }: FormProps): JSX.Element {
   return (
     <div className={form}>
       <form onSubmit={handleSubmit(onSubmit)} method="POST" name="SignupForm" noValidate>
-        <MathJax className={styles.expression}>{`$ f(x) = ${parse(expression).toTex()}$`}</MathJax>
         <fieldset className={algebra}>
           <Input
             layout="horizontal"

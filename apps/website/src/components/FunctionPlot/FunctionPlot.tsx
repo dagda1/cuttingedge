@@ -3,7 +3,7 @@ import { Box } from '@cutting/component-library';
 import type { Point } from '@cutting/svg';
 import { Group, ResponsiveSVG } from '@cutting/svg';
 import { useParentSize } from '@cutting/use-get-parent-size';
-import { SVGMathJax } from '@cutting/use-mathjax';
+import { MathJax, SVGMathJax } from '@cutting/use-mathjax';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { curveBasisOpen } from '@visx/curve';
 import { scaleLinear } from '@visx/scale';
@@ -25,6 +25,8 @@ interface FunctionPlotProps {
   minX?: number;
   maxX?: number;
 }
+
+const margin = { top: 10, right: 10, bottom: 10, left: 10 } as const;
 
 export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -63,8 +65,8 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
   }, [maxX, minX, state.expression]);
 
   const { xAxisPosition, yAxisPosition, xScale, yScale } = useMemo(() => {
-    const xScale = scaleLinear({ range: [0, width] });
-    const yScale = scaleLinear({ range: [height, 0] });
+    const xScale = scaleLinear({ range: [margin.left, width - margin.right] });
+    const yScale = scaleLinear({ range: [height - margin.bottom, margin.top] });
 
     const minY = min(data, (d) => d.y);
 
@@ -227,6 +229,8 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
           </Group>
         </ResponsiveSVG>
       </section>
+      <MathJax className={styles.expression}>{`$ f(x) = ${parse(state.expression).toTex()}$`}</MathJax>
+
       <ExpressionForm onSubmit={onSubmit} expression={state.expression} />
       <Box display="none">
         <SVGMathJax>1</SVGMathJax>

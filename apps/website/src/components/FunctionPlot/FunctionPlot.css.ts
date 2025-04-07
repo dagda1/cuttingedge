@@ -1,4 +1,4 @@
-import { palette, responsiveStyle, ZIndex } from '@cutting/component-library';
+import { palette, responsiveStyle, vars, ZIndex } from '@cutting/component-library';
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { globalStyle, style } from '@vanilla-extract/css';
 
@@ -75,4 +75,16 @@ export const expression = style({
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
+  marginBottom: vars.space['small'],
+  ...responsiveStyle({
+    mobile: {
+      fontSize: '1.5rem',
+    },
+    tablet: {
+      fontSize: '2rem',
+    },
+    desktop: {
+      fontSize: '2.5rem',
+    },
+  }),
 });
