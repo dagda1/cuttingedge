@@ -11,6 +11,7 @@ const Sine2 = lazy(() => import('~/components/BigSine/Sine2'));
 const Tan = lazy(() => import('~/components/Tan/Tan'));
 const Sinusoidal = lazy(() => import('~/components/Sinusoidal/Sinusoidal'));
 const Polar = lazy(() => import('~/components/Polar/Polar'));
+const Vectors = lazy(() => import('~/components/Vectors/Vectors'));
 
 export function Viz(): JSX.Element {
   return (
@@ -61,6 +62,14 @@ export function Viz(): JSX.Element {
           element={
             <Suspense fallback={<Fallback />}>
               <Polar />
+            </Suspense>
+          }
+        />
+        <Route
+          path={Urls.Vectors}
+          element={
+            <Suspense fallback={<Fallback />}>
+              <Vectors />
             </Suspense>
           }
         />

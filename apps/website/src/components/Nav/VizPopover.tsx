@@ -13,6 +13,7 @@ const Links: { to: `/${string}`; children: ReactNode }[] = [
   { to: '/viz/sine2', children: 'MORE SINE' },
   { to: '/viz/tan', children: 'TAN' },
   { to: '/viz/polar', children: 'POLAR' },
+  { to: '/viz/vector-lines', children: 'VECTORS' },
 ];
 
 interface VizPopoverProps {

@@ -1,23 +1,25 @@
 import './style.css';
+
 import { assert } from '@cutting/assert';
 import {
-  Scene,
-  WebGLRenderer,
-  MeshBasicMaterial,
-  Mesh,
-  LineBasicMaterial,
-  Vector3,
   ArrowHelper,
   BufferGeometry,
   Line,
+  LineBasicMaterial,
+  Mesh,
+  MeshBasicMaterial,
   OrthographicCamera,
+  Scene,
+  Vector3,
+  WebGLRenderer,
 } from 'three';
-import { addTick } from './utils/addTick';
-import { addAxis } from './utils/addAxis';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
-import { axes } from './types';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+
+import { axes } from './types';
+import { addTick } from './utils/addTick';
+import { addCylinderLine } from './utils/lines';
 
 const AxisLength = 3;
 
@@ -28,9 +30,9 @@ function run() {
 
   const scene = new Scene();
 
-  addAxis(scene, new Vector3(-AxisLength, 0, 0), new Vector3(AxisLength, 0, 0));
-  addAxis(scene, new Vector3(0, -AxisLength, 0), new Vector3(0, AxisLength, 0));
-  addAxis(scene, new Vector3(0, 0, -AxisLength), new Vector3(0, 0, AxisLength));
+  addCylinderLine(scene, new Vector3(-AxisLength, 0, 0), new Vector3(AxisLength, 0, 0));
+  addCylinderLine(scene, new Vector3(0, -AxisLength, 0), new Vector3(0, AxisLength, 0));
+  addCylinderLine(scene, new Vector3(0, 0, -AxisLength), new Vector3(0, 0, AxisLength));
 
   const tickPositions = [-3, -2, -1, 0, 1, 2, 3];
 
@@ -147,9 +149,9 @@ function run() {
     scene.add(line);
   }
 
-  addAxis(scene, new Vector3(0, 0, 0), new Vector3(2, 2, 2), 0xff0000);
+  addCylinderLine(scene, new Vector3(0, 0, 0), new Vector3(2, 2, 2), 0xff0000);
 
-  addAxis(scene, new Vector3(0, 0, 0), new Vector3(1, 0, 1), 0x0000ff);
+  addCylinderLine(scene, new Vector3(0, 0, 0), new Vector3(1, 0, 1), 0x0000ff);
 
   const sizes = {
     width: window.innerWidth,
@@ -168,16 +170,16 @@ function run() {
 
   const frustumSize = 8;
   const aspect = sizes.width / sizes.height;
-  
+
   const camera = new OrthographicCamera(
-    -aspect * frustumSize / 2,
-    aspect * frustumSize / 2,
+    (-aspect * frustumSize) / 2,
+    (aspect * frustumSize) / 2,
     frustumSize / 2,
     -frustumSize / 2,
     0.1,
     100,
   );
-  camera.position.set(5, 5, 5);
+  camera.position.set(2, 2, 6);
   camera.lookAt(0, 0, 0);
 
   const renderer = new WebGLRenderer({
