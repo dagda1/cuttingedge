@@ -1,7 +1,12 @@
 import type { ColorRepresentation, Scene } from 'three';
 import { CylinderGeometry, Mesh, MeshBasicMaterial, Vector3 } from 'three';
 
-export function addAxis(scene: Scene, start: Vector3, end: Vector3, color: ColorRepresentation = 0x000000): void {
+export function addCylinderLine(
+  scene: Scene,
+  start: Vector3,
+  end: Vector3,
+  color: ColorRepresentation = 0x000000,
+): void {
   const direction = new Vector3().subVectors(end, start);
   const length = direction.length();
   const cylinderGeometry = new CylinderGeometry(0.02, 0.02, length, 8);

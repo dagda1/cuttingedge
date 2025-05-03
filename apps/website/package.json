@@ -50,6 +50,7 @@
     "regression": "2.0.1",
     "serve-static": "2.2.0",
     "ts-pattern": "5.9.0",
+    "three": "^0.181.2",
     "url-join": "5.0.0"
   },
   "devDependencies": {
