@@ -11,32 +11,32 @@
   "types": "dist/esm/index.d.ts",
   "license": "MIT",
   "dependencies": {
+    "@cutting/assert": "workspace:*",
     "@cutting/use-get-parent-size": "workspace:*",
     "@cutting/util": "workspace:*",
-    "classnames": "^2.5.1",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "1.5.1"
   },
   "devDependencies": {
     "@cutting/component-library": "workspace:*",
-    "@testing-library/dom": "^10.4.0",
+    "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.3.0",
     "@testing-library/user-event": "14.6.1",
-    "@vanilla-extract/css": "^1.17.1",
-    "@vanilla-extract/sprinkles": "1.6.3",
-    "@visx/scale": "^3.12.0",
+    "@visx/scale": "3.12.0",
+    "classnames": "2.5.1",
     "d3-scale": "4.0.2",
-    "@cutting/assert": "workspace:*",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "peerDependencies": {
+    "@visx/scale": "3.12.0",
+    "classnames": "2.5.1",
+    "d3-scale": "4.0.2",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "scripts": {
     "build": "NODE_ENV=production devtools rollup",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
-    "start": "pnpm vite --host --port 9000  -l=info  --clearScreen=false",
     "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test"
   },
