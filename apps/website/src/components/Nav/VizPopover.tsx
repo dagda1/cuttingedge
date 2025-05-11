@@ -4,6 +4,7 @@ import { type ReactNode, useCallback, useState } from 'react';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 
 const Links: { to: `/${string}`; children: ReactNode }[] = [
+  { to: '/viz/football-stats', children: 'FOOTBALL STATS' },
   { to: '/viz', children: 'SINE' },
   {
     to: '/viz/sinusoidal',

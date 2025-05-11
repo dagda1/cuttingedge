@@ -44,6 +44,8 @@
     "helmet": "8.1.0",
     "mathjs": "14.4.0",
     "nocache": "4.0.0",
+    "openai": "4.98.0",
+    "papaparse": "5.5.2",
     "puppeteer": "24.6.0",
     "rc-slider": "11.1.8",
     "referrer-policy": "1.2.0",

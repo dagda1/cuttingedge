@@ -7,6 +7,7 @@ import express, { urlencoded } from 'express';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import helmet, { contentSecurityPolicy } from 'helmet';
 import noCache from 'nocache';
+import { OpenAI } from 'openai';
 import puppeteer from 'puppeteer';
 import referrerPolicy from 'referrer-policy';
 import type { ViteDevServer } from 'vite';
@@ -16,6 +17,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD;
 const isProd = process.env.NODE_ENV === 'production';
 const PORT = Number(process.env.PORT ?? 3000);
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 
 process.env.MY_CUSTOM_SECRET = 'API_KEY_qwertyuiop';
 
@@ -37,6 +40,8 @@ export async function createServer(): Promise<{
   const indexProd = isProd ? fs.readFileSync(resolve('client/index.html'), 'utf-8') : '';
 
   const app = express();
+
+  app.use(express.json());
 
   let vite: ViteDevServer | undefined = undefined;
   if (!isProd) {
@@ -110,6 +115,34 @@ export async function createServer(): Promise<{
       }),
     );
   }
+
+  app.post('/api/analyze', async (req, res) => {
+    const { data, question } = req.body;
+
+    const prompt: OpenAI.Chat.ChatCompletionMessageParam[] = [
+      {
+        role: 'system',
+        content: 'You are a football analyst. Base your answers only on the provided match data.',
+      },
+      {
+        role: 'user',
+        content: `Match data:\n${JSON.stringify(data)}\n\nQuestion: ${question}`,
+      },
+    ];
+
+    try {
+      const result = await openai.chat.completions.create({
+        model: 'gpt-4.1',
+        messages: prompt,
+      });
+
+      const answer = result.choices[0]?.message?.content || 'No response.';
+      res.json({ answer });
+    } catch (err) {
+      consolse.error(err);
+      res.status(500).json({ error: 'AI request failed.' });
+    }
+  });
 
   app.get('/download-pdf', (_, res) => {
     const CVFile = 'paulcowan-cv.pdf';

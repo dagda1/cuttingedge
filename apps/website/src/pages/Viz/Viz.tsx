@@ -11,11 +11,20 @@ const Sine2 = lazy(() => import('~/components/BigSine/Sine2'));
 const Tan = lazy(() => import('~/components/Tan/Tan'));
 const Sinusoidal = lazy(() => import('~/components/Sinusoidal/Sinusoidal'));
 const Polar = lazy(() => import('~/components/Polar/Polar'));
+const FootballStatsUploader = lazy(() => import('~/pages/FootballStats/FootballStats'));
 
 export function Viz(): JSX.Element {
   return (
     <MathJaxProvider>
       <Routes>
+        <Route
+          path={Urls.FootballStats}
+          element={
+            <Suspense fallback={<Fallback />}>
+              <FootballStatsUploader />
+            </Suspense>
+          }
+        />
         <Route
           index
           element={

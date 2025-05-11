@@ -1,0 +1,17 @@
+minute,team,shots_on_target,possession,xG
+1,Liverpool,0,55,0.0
+1,Man City,0,45,0.0
+10,Liverpool,1,57,0.1
+10,Man City,0,43,0.0
+20,Liverpool,1,53,0.2
+20,Man City,1,47,0.1
+30,Liverpool,2,50,0.4
+30,Man City,2,50,0.3
+45,Liverpool,3,48,0.7
+45,Man City,3,52,0.5
+60,Liverpool,4,46,1.0
+60,Man City,4,54,0.8
+75,Liverpool,5,44,1.4
+75,Man City,5,56,1.2
+90,Liverpool,6,47,1.8
+90,Man City,7,53,1.9
