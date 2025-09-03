@@ -9,7 +9,7 @@
   "scripts": {
     "knip": "knip",
     "all": "pnpm i && pnpm build && pnpm lint && pnpm test",
-    "build": "turbo run build --filter=!./apps/frontendsupport",
+    "build": "turbo run build",
     "build:tsc": "tsc -b ./tsconfig.packages.json",
     "clean": "rm -rf ./packages/*/{tsconfig.*tsbuildinfo,dist}",
     "lint": "turbo run lint",
