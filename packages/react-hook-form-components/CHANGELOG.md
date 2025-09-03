@@ -1,5 +1,20 @@
 # @cutting/react-hook-form-components
 
+## 0.9.0
+
+### Minor Changes
+
+- b3a8f90: bump react to 17.1.1
+- 10a1082: update
+
+### Patch Changes
+
+- Updated dependencies [b3a8f90]
+- Updated dependencies [10a1082]
+  - @cutting/component-library@5.46.0
+  - @cutting/assert@0.2.0
+  - @cutting/util@4.61.0
+
 ## 0.8.0
 
 ### Minor Changes

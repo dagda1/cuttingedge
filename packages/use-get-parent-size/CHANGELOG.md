@@ -1,5 +1,17 @@
 # @cutting/use-get-parent-size
 
+## 2.5.0
+
+### Minor Changes
+
+- b3a8f90: bump react to 17.1.1
+- 10a1082: update
+
+### Patch Changes
+
+- Updated dependencies [10a1082]
+  - @cutting/assert@0.2.0
+
 ## 2.4.0
 
 ### Minor Changes

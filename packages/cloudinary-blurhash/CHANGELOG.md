@@ -1,5 +1,12 @@
 # @cutting/cloudinary-blurhash
 
+## 0.4.0
+
+### Minor Changes
+
+- b3a8f90: bump react to 17.1.1
+- 10a1082: update
+
 ## 0.3.0
 
 ### Minor Changes
