@@ -1,5 +1,20 @@
 # @cutting/svg
 
+## 4.58.0
+
+### Minor Changes
+
+- b3a8f90: bump react to 17.1.1
+- 10a1082: update
+
+### Patch Changes
+
+- Updated dependencies [b3a8f90]
+- Updated dependencies [10a1082]
+  - @cutting/use-get-parent-size@2.5.0
+  - @cutting/assert@0.2.0
+  - @cutting/util@4.61.0
+
 ## 4.57.0
 
 ### Minor Changes

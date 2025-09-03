@@ -1,7 +1,7 @@
 {
   "name": "@cutting/use-get-parent-size",
   "description": "Get resize events of an observed DOM element's height, width etc. from a resize-observer.",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "module": "dist/esm/index.js",
   "type": "module",
   "types": "dist/esm/index.d.ts",

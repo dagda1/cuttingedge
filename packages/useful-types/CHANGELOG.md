@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.43.0
+
+### Minor Changes
+
+- 10a1082: update
+
 ## 4.42.0
 
 ### Minor Changes

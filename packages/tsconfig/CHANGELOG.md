@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.42.0
+
+### Minor Changes
+
+- 10a1082: update
+
 ## 4.41.0
 
 ### Minor Changes
