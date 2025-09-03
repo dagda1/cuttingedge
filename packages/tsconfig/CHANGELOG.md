@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.43.0
+
+### Minor Changes
+
+- 8e62b3f: cunt
+
 ## 4.42.0
 
 ### Minor Changes

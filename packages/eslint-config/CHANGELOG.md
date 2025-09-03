@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 5.4.0
+
+### Minor Changes
+
+- 8e62b3f: cunt
+
 ## 5.3.0
 
 ### Minor Changes

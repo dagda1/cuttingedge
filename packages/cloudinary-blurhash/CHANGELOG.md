@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.5.0
+
+### Minor Changes
+
+- 8e62b3f: cunt
+
 ## 0.4.0
 
 ### Minor Changes

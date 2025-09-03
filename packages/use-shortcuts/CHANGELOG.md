@@ -1,5 +1,17 @@
 # @cutting/use-shortcuts
 
+## 4.51.0
+
+### Minor Changes
+
+- 8e62b3f: cunt
+
+### Patch Changes
+
+- Updated dependencies [8e62b3f]
+  - @cutting/assert@0.3.0
+  - @cutting/util@4.62.0
+
 ## 4.50.0
 
 ### Minor Changes
