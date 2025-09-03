@@ -1244,9 +1244,6 @@ importers:
       react-dom:
         specifier: 19.1.1
         version: 19.1.1(react@19.1.1)
-      resize-observer-polyfill:
-        specifier: 1.5.1
-        version: 1.5.1
 
   packages/tsconfig: {}
 

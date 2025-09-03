@@ -21,11 +21,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
     
-      - name: Setup Node.js 18.x
+      - name: Setup Node.js 22.x
         id: install_pnpm
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
           cache: 'pnpm'
 
       - name: echo npm dest
