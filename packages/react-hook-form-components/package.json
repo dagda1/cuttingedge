@@ -30,20 +30,20 @@
     "@cutting/assert": "workspace:*"
   },
   "devDependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-syntax-highlighter": "15.6.1",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "react-syntax-highlighter": "15.6.6",
     "@testing-library/react": "16.3.0",
-    "react-hook-form": "7.55.0",
-    "react-is": "19.1.0",
-    "react-calendly": "4.3.1"
+    "react-hook-form": "7.62.0",
+    "react-is": "19.1.1",
+    "react-calendly": "4.4.0"
   },
   "peerDependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-hook-form": "7.55.0",
-    "react-is": "19.1.0",
-    "react-calendly": "4.3.1"
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "react-hook-form": "7.62.0",
+    "react-is": "19.1.1",
+    "react-calendly": "4.4.0"
   },
   "keywords": [
     "react-hook-form",

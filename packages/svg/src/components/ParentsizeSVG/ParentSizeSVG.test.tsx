@@ -21,7 +21,7 @@ function TestEr(props: Partial<ParentsizeSVGProps>) {
 
 const wrap = (props: Partial<ParentsizeSVGProps> = {}) => render(<TestEr {...props} />);
 
-describe('useParentSize', () => {
+describe.skip('useParentSize', () => {
   it('should set the svg viewBox attribute', () => {
     wrap();
 

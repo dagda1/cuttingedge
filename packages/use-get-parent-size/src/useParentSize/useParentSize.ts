@@ -1,7 +1,6 @@
 import { assert } from '@cutting/assert';
 import type { RefObject } from 'react';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
 import { useDebouncedCallback } from 'use-debounce';
 
 import type { ResizeObserverContentRect, UseParentSizeOptions, UseParentSizeResult, Writeable } from './types';
@@ -35,6 +34,7 @@ export const useParentSize = <E extends Element>(
   } as ResizeObserverContentRect);
   const rerenderCount = useRef(0);
   const previousContentRect = useRef<Writeable<ResizeObserverContentRect>>(initialValues as ResizeObserverContentRect);
+  const firstUpdateDone = useRef(false);
 
   const transformer = useCallback(transformFunc, [transformFunc]);
 
@@ -72,6 +72,14 @@ export const useParentSize = <E extends Element>(
       const entry = entries[0];
       const newWidth = Math.round(entry.contentRect.width);
       const newHeight = Math.round(entry.contentRect.height);
+
+      if (!firstUpdateDone.current) {
+        previousContentRect.current.height = newHeight;
+        previousContentRect.current.width = newWidth;
+        debouncedCallback(entry.contentRect);
+        firstUpdateDone.current = true;
+        return;
+      }
 
       const widthDiff = Math.abs(newWidth - (previousContentRect.current.width ?? 0));
       const heightDiff = Math.abs(newHeight - (previousContentRect.current.height ?? 0));

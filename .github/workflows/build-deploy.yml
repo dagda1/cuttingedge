@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: pnpm/action-setup@v4.0.0
         with:
-          version: 10.7.1
+          version: 10.15.1
     
       - name: Checkout Repo
         uses: actions/checkout@v4
