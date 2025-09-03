@@ -1,11 +1,8 @@
 import { renderHook } from '@testing-library/react';
-import ResizeObserver from 'resize-observer-polyfill';
 import { describe, expect, it, vi } from 'vitest';
 
 import type { ResizeObserverContentRect } from './types';
 import { useParentSize } from './useParentSize';
-
-vi.mock('resize-observer-polyfill');
 
 const resize = (width: number, height: number): void => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
