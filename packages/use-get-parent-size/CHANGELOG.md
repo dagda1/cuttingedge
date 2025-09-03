@@ -1,5 +1,16 @@
 # @cutting/use-get-parent-size
 
+## 2.6.0
+
+### Minor Changes
+
+- 8e62b3f: cunt
+
+### Patch Changes
+
+- Updated dependencies [8e62b3f]
+  - @cutting/assert@0.3.0
+
 ## 2.5.0
 
 ### Minor Changes

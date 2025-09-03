@@ -1,5 +1,18 @@
 # @cutting/react-hook-form-components
 
+## 0.10.0
+
+### Minor Changes
+
+- 8e62b3f: cunt
+
+### Patch Changes
+
+- Updated dependencies [8e62b3f]
+  - @cutting/assert@0.3.0
+  - @cutting/component-library@5.47.0
+  - @cutting/util@4.62.0
+
 ## 0.9.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # @cutting/use-mathjax
 
+## 4.55.0
+
+### Minor Changes
+
+- 8e62b3f: cunt
+
+### Patch Changes
+
+- Updated dependencies [8e62b3f]
+  - @cutting/assert@0.3.0
+  - @cutting/hooks@4.62.0
+  - @cutting/util@4.62.0
+
 ## 4.54.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # @cutting/markdown
 
+## 0.6.0
+
+### Minor Changes
+
+- 8e62b3f: cunt
+
+### Patch Changes
+
+- Updated dependencies [8e62b3f]
+  - @cutting/util@4.62.0
+
 ## 0.5.0
 
 ### Minor Changes
