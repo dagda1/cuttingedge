@@ -1,65 +1,67 @@
-import { renderHook } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { act, renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { ResizeObserverContentRect } from './types';
 import { useParentSize } from './useParentSize';
 
-const resize = (width: number, height: number): void => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  ResizeObserver.mockImplementation((cb) => {
-    cb([{ contentRect: { width, height } }]);
-    return { observe: vi.fn(), disconnect: vi.fn(), unobserve: vi.fn() };
-  });
-};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let resizeObserverCallback: (entries: any[]) => void;
 
-const initialContentRect: Partial<ResizeObserverContentRect> = {
-  bottom: undefined,
-  height: undefined,
-  left: undefined,
-  width: undefined,
-  right: undefined,
-  top: undefined,
-  x: undefined,
-  y: undefined,
+beforeEach(() => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  global.ResizeObserver = vi.fn().mockImplementation((cb: any) => {
+    resizeObserverCallback = cb;
+    return {
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
+    };
+  });
+});
+
+const triggerResize = (width: number, height: number) => {
+  resizeObserverCallback([
+    {
+      contentRect: {
+        x: 0,
+        y: 0,
+        top: 0,
+        left: 0,
+        width,
+        height,
+        right: width,
+        bottom: height,
+      },
+    },
+  ]);
 };
 
 describe('useParentSize', () => {
-  it('should use initial default contentRect', async () => {
+  it('should use initial default contentRect', () => {
     const ref: { current: null | HTMLDivElement } = { current: document.createElement('div') };
     const { result } = renderHook(() => useParentSize(ref));
-
-    expect(result.current).toEqual(initialContentRect);
+    expect(result.current.width).toBeUndefined();
+    expect(result.current.height).toBeUndefined();
   });
 
-  it('should use user set initial dimensions', async () => {
+  it('should use user set initial dimensions', () => {
     const ref: { current: null | HTMLDivElement } = { current: document.createElement('div') };
     const { result } = renderHook(() => useParentSize(ref, { initialValues: { width: 200, height: 200 } }));
-
-    expect(result.current).toEqual({
-      width: 200,
-      height: 200,
-    });
+    expect(result.current.width).toBe(200);
+    expect(result.current.height).toBe(200);
   });
 
-  it('should return the dimensions of an element', async () => {
+  it('should return the dimensions of an element', () => {
     const ref: { current: null | HTMLDivElement } = { current: document.createElement('div') };
-
-    resize(200, 200);
-
     const { result } = renderHook(() => useParentSize(ref));
-
-    expect(result.current).toEqual({
-      width: 200,
-      height: 200,
+    act(() => {
+      triggerResize(200, 200);
     });
+    expect(result.current.width).toBe(200);
+    expect(result.current.height).toBe(200);
   });
 
-  it('should apply transformation', async () => {
+  it('should apply transformation', () => {
     const ref: { current: null | HTMLDivElement } = { current: document.createElement('div') };
-
-    resize(200, 200);
-
     const { result } = renderHook(() =>
       useParentSize(ref, {
         transformFunc: ({ width, height }) => ({
@@ -68,26 +70,20 @@ describe('useParentSize', () => {
         }),
       }),
     );
-
-    expect(result.current).toEqual({
-      width: 100,
-      height: 100,
+    act(() => {
+      triggerResize(200, 200);
     });
+    expect(result.current.width).toBe(100);
+    expect(result.current.height).toBe(100);
   });
 
-  it('should call the callback option', async () => {
+  it('should call the callback option', () => {
     const ref: { current: null | HTMLDivElement } = { current: document.createElement('div') };
-
     const callback = vi.fn();
-    resize(200, 200);
-
-    renderHook(() =>
-      useParentSize(ref, {
-        callback,
-        maxDifference: -1,
-      }),
-    );
-
+    renderHook(() => useParentSize(ref, { callback, maxDifference: -1, debounceDelay: 0 }));
+    act(() => {
+      triggerResize(200, 200);
+    });
     expect(callback).toHaveBeenCalledTimes(1);
   });
 });

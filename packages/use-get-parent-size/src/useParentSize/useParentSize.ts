@@ -76,7 +76,7 @@ export const useParentSize = <E extends Element>(
       if (!firstUpdateDone.current) {
         previousContentRect.current.height = newHeight;
         previousContentRect.current.width = newWidth;
-        setContentRect(entry.contentRect);
+        debouncedCallback(entry.contentRect);
         firstUpdateDone.current = true;
         return;
       }
