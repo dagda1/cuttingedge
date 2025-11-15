@@ -329,11 +329,11 @@ export function Home(): JSX.Element {
                 marginRight={{ desktop: 'large' }}
                 marginBottom="small"
               >
-                <Box className="hero-title italic">Is your team</Box>
+                <Box className="hero-title italic">When your React</Box>
               </Box>
               <Box display="flex" alignItems="center" justifyContent="center" marginY="small">
                 <Box display="flex" className="hero-title italic" component="span">
-                  struggling
+                  frontend is broken
                 </Box>
               </Box>
               <Box
@@ -343,10 +343,10 @@ export function Home(): JSX.Element {
                 marginY="small"
                 justifyContent={{ mobile: 'center', desktop: 'spaceAround' }}
               >
-                <Box className="hero-title">To Deliver</Box>
+                <Box className="hero-title">I fix it</Box>
               </Box>
               <Box display={{ mobile: 'none', desktop: 'block' }} className="hero-title" marginY="small">
-                <Box component="span">Frontend Features?</Box>
+                <Box component="span">Fast</Box>
               </Box>
               <Box display={{ mobile: 'block', desktop: 'none' }} justifyContent="center" width="full">
                 <Box display="flex" justifyContent="center" className="hero-title" marginY="small">
@@ -419,15 +419,15 @@ export function Home(): JSX.Element {
         <Box maxWidth="medium">
           <List space="xxxlarge" type="none">
             <Text tone="primary" size="large" className="hero-title3">
-              Your team are more familiar with backend development.
+              You need production-ready React fast
             </Text>
             <Text tone="primary" size="large" className="hero-title3">
-              The launch date is soon, and frontend development is at a standstill.
+              The frontend is blocking launch
             </Text>
           </List>
         </Box>
       </Panel>
-      <Clients width={width} />
+      <Clients />
       <Panel>
         <Services />
       </Panel>
