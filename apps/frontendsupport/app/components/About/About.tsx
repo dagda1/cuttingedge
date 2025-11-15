@@ -27,17 +27,17 @@ export function About(): JSX.Element {
               to frontend development.
             </Text>
             <Text component="p">
-              I am an open-source fanatic with over&nbsp;
+              I’m an open-source fanatic with countless &nbsp;
               <TextLink
                 external
-                href="https://github.com/pulls?q=is%3Amerged+is%3Apr+author%3Adagda1+-user%3Adagda1"
+                href="https://cutting.scot/oss"
                 data-testid="external-link"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                250+ merged pull requests in the past 24 months&nbsp;
+                merged pull requests&nbsp;
               </TextLink>
-              into many, many, many open source repositories.
+              across numerous major repositories.
             </Text>
             <Text component="p">
               I write professionally for&nbsp;
@@ -50,8 +50,7 @@ export function About(): JSX.Element {
               </TextLink>
             </Text>
             <Text component="p">
-              I have over 20+ years of experience working on some exceptional frontend pieces of work for companies such
-              as&nbsp;
+              I have over 25+ years of experience working on some exceptional frontend pieces of work for such as&nbsp;
             </Text>
             <List>
               <Text>
@@ -76,12 +75,9 @@ export function About(): JSX.Element {
                 </TextLink>
               </Text>
             </List>
+            <Text>I build and repair complex React frontends so products can launch on time.</Text>
             <Text>
-              I put a lot of my success as a frontend developer down to my ability to construct the best frontend
-              development environment to allow development teams to flourish.
-            </Text>
-            <Text>
-              At 53 years of age, I have more experience than most and I get results in a fraction of the time.
+              At 55 years of age, I have more experience than most and I get results in a fraction of the time.
             </Text>
           </Stack>
         </Box>
