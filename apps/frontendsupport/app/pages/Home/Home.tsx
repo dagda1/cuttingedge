@@ -329,11 +329,11 @@ export function Home(): JSX.Element {
                 marginRight={{ desktop: 'large' }}
                 marginBottom="small"
               >
-                <Box className="hero-title italic">When your React</Box>
+                <Box className="hero-title italic">Need Quality React</Box>
               </Box>
               <Box display="flex" alignItems="center" justifyContent="center" marginY="small">
                 <Box display="flex" className="hero-title italic" component="span">
-                  frontend is broken
+                  Frontend Code?
                 </Box>
               </Box>
               <Box
@@ -343,24 +343,10 @@ export function Home(): JSX.Element {
                 marginY="small"
                 justifyContent={{ mobile: 'center', desktop: 'spaceAround' }}
               >
-                <Box className="hero-title">I fix it</Box>
+                <Box className="hero-title">I Deliver</Box>
               </Box>
-              <Box display={{ mobile: 'none', desktop: 'block' }} className="hero-title" marginY="small">
+              <Box className="hero-title" marginY="small">
                 <Box component="span">Fast</Box>
-              </Box>
-              <Box display={{ mobile: 'block', desktop: 'none' }} justifyContent="center" width="full">
-                <Box display="flex" justifyContent="center" className="hero-title" marginY="small">
-                  Frontend
-                </Box>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  className="hero-title"
-                  marginTop="medium"
-                  marginBottom="xlarge"
-                >
-                  Features?
-                </Box>
               </Box>
 
               <Box display="flex" justifyContent="center" marginBottom={{ mobile: 'none', desktop: 'large' }}>
