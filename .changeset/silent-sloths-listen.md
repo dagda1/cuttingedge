@@ -16,4 +16,4 @@
 "@cutting/util": minor
 ---
 
-w
+update react to 19.2.0

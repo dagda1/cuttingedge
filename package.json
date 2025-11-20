@@ -53,7 +53,7 @@
     "use-debounce": "10.0.6"
   },
   "devDependencies": {
-    "@changesets/cli": "2.29.6",
+    "@changesets/cli": "2.29.7",
     "@cutting/assert": "workspace:*",
     "@cutting/devtools": "workspace:*",
     "@cutting/eslint-config": "workspace:*",
