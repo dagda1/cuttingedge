@@ -101,8 +101,8 @@ importers:
         version: 10.0.6(react@19.2.0)
     devDependencies:
       '@changesets/cli':
-        specifier: 2.29.7
-        version: 2.29.7(@types/node@24.10.1)
+        specifier: 2.29.6
+        version: 2.29.6(@types/node@24.10.1)
       '@cutting/assert':
         specifier: workspace:*
         version: link:packages/assert
@@ -255,7 +255,7 @@ importers:
         version: link:../../packages/util
       '@gsap/shockingly':
         specifier: ^3.13.0
-        version: 3.13.0
+        version: gsap@@gsap/shockingly@3.13.0
       '@remix-run/architect':
         specifier: ^2.17.0
         version: 2.17.2(typescript@5.9.3)
@@ -2165,8 +2165,8 @@ packages:
   '@changesets/changelog-git@0.2.1':
     resolution: {integrity: sha512-x/xEleCFLH28c3bQeQIyeZf8lFXyDFVn1SgcBiR2Tw/r4IAWlk1fzxCEZ6NxQAjF2Nwtczoen3OA2qR+UawQ8Q==}
 
-  '@changesets/cli@2.29.7':
-    resolution: {integrity: sha512-R7RqWoaksyyKXbKXBTbT4REdy22yH81mcFK6sWtqSanxUCbUi9Uf+6aqxZtDQouIqPdem2W56CdxXgsxdq7FLQ==}
+  '@changesets/cli@2.29.6':
+    resolution: {integrity: sha512-6qCcVsIG1KQLhpQ5zE8N0PckIx4+9QlHK3z6/lwKnw7Tir71Bjw8BeOZaxA/4Jt00pcgCnCSWZnyuZf5Il05QQ==}
     hasBin: true
 
   '@changesets/config@3.1.1':
@@ -7790,6 +7790,10 @@ packages:
   gray-matter@4.0.3:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
+
+  gsap@@gsap/shockingly@3.13.0:
+    resolution: {integrity: sha512-4AgtKV8q2A+fIwIXMFW72fJDdH4I5/bdq3PT2hfj4DghWGfkQvu/sw2lUPWHMGZzPJQame+TvoEcpbnmNgzTmQ==, tarball: https://npm.greensock.com/@gsap/shockingly/-/shockingly-3.13.0.tgz}
+    deprecated: This package has been deprecated in favor of the standard 'gsap' package available in the public npmjs repository which now includes all bonus plugins.
 
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
@@ -14173,7 +14177,7 @@ snapshots:
     dependencies:
       '@changesets/types': 6.1.0
 
-  '@changesets/cli@2.29.7(@types/node@24.10.1)':
+  '@changesets/cli@2.29.6(@types/node@24.10.1)':
     dependencies:
       '@changesets/apply-release-plan': 7.0.13
       '@changesets/assemble-release-plan': 6.0.9
@@ -17350,7 +17354,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.27.1(@babel/core@7.28.5)
       '@vanilla-extract/babel-plugin-debug-ids': 1.2.2
       '@vanilla-extract/css': 1.17.4(babel-plugin-macros@3.1.0)
-      esbuild: 0.17.6
+      esbuild: 0.17.19
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -21097,6 +21101,8 @@ snapshots:
       kind-of: 6.0.3
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
+
+  gsap@@gsap/shockingly@3.13.0: {}
 
   gunzip-maybe@1.4.2:
     dependencies:
