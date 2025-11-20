@@ -101,8 +101,8 @@ importers:
         version: 10.0.6(react@19.2.0)
     devDependencies:
       '@changesets/cli':
-        specifier: 2.29.6
-        version: 2.29.6(@types/node@24.10.1)
+        specifier: 2.29.7
+        version: 2.29.7(@types/node@24.10.1)
       '@cutting/assert':
         specifier: workspace:*
         version: link:packages/assert
@@ -233,20 +233,20 @@ importers:
         specifier: workspace:*
         version: link:../../packages/assert
       '@cutting/component-library':
-        specifier: 5.42.10
-        version: 5.42.10(@vanilla-extract/css-utils@0.1.6)(@vanilla-extract/dynamic@2.1.5)(@vanilla-extract/sprinkles@1.6.5(@vanilla-extract/css@1.17.4(babel-plugin-macros@3.1.0)))(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react-router@7.9.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        specifier: workspace:*
+        version: link:../../packages/component-library
       '@cutting/hooks':
-        specifier: 4.57.6
-        version: 4.57.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: workspace:*
+        version: link:../../packages/hooks
       '@cutting/markdown':
         specifier: workspace:*
         version: link:../../packages/markdown
       '@cutting/react-hook-form-components':
-        specifier: 0.5.33
-        version: 0.5.33(@vanilla-extract/css-utils@0.1.6)(@vanilla-extract/dynamic@2.1.5)(@vanilla-extract/sprinkles@1.6.5(@vanilla-extract/css@1.17.4(babel-plugin-macros@3.1.0)))(babel-plugin-macros@3.1.0)(react-calendly@4.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router@7.9.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        specifier: workspace:*
+        version: link:../../packages/react-hook-form-components
       '@cutting/use-get-parent-size':
-        specifier: 2.1.16
-        version: 2.1.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-debounce@10.0.6(react@18.3.1))
+        specifier: workspace:*
+        version: link:../../packages/use-get-parent-size
       '@cutting/useful-types':
         specifier: workspace:*
         version: link:../../packages/useful-types
@@ -257,28 +257,28 @@ importers:
         specifier: ^3.13.0
         version: gsap@@gsap/shockingly@3.13.0
       '@remix-run/architect':
-        specifier: ^2.17.0
+        specifier: ^2.17.2
         version: 2.17.2(typescript@5.9.3)
       '@remix-run/css-bundle':
-        specifier: ^2.17.0
+        specifier: ^2.17.2
         version: 2.17.2
       '@remix-run/node':
-        specifier: ^2.17.0
+        specifier: ^2.17.2
         version: 2.17.2(typescript@5.9.3)
       '@remix-run/react':
-        specifier: ^2.17.0
-        version: 2.17.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
+        specifier: ^2.17.2
+        version: 2.17.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
       '@unpic/placeholder':
         specifier: ^0.1.2
         version: 0.1.2
       '@unpic/react':
         specifier: ^1.0.1
-        version: 1.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.0.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       cloudinary-build-url:
         specifier: ^0.2.4
         version: 0.2.4
       cross-env:
-        specifier: ^10.0.0
+        specifier: ^10.1.0
         version: 10.1.0
       format:
         specifier: ^0.2.2
@@ -293,17 +293,17 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       isbot:
-        specifier: 5.1.30
-        version: 5.1.30
+        specifier: 5.1.32
+        version: 5.1.32
       js-yaml:
-        specifier: ^4.1.0
+        specifier: ^4.1.1
         version: 4.1.1
       katex:
-        specifier: ^0.16.22
+        specifier: ^0.16.25
         version: 0.16.25
       mdx-bundler:
         specifier: ^10.1.1
-        version: 10.1.1(esbuild@0.25.12)
+        version: 10.1.1(esbuild@0.27.0)
       micromark-util-chunked:
         specifier: ^2.0.1
         version: 2.0.1
@@ -348,7 +348,7 @@ importers:
         version: 5.0.0
     devDependencies:
       '@babel/runtime':
-        specifier: ^7.28.3
+        specifier: ^7.28.4
         version: 7.28.4
       '@cld-apis/types':
         specifier: ^0.1.6
@@ -361,22 +361,22 @@ importers:
         version: link:../../packages/cloudinary-blurhash
       '@esbuild-plugins/node-resolve':
         specifier: ^0.2.2
-        version: 0.2.2(esbuild@0.25.12)
+        version: 0.2.2(esbuild@0.27.0)
       '@fal-works/esbuild-plugin-global-externals':
         specifier: ^2.1.2
         version: 2.1.2
       '@floating-ui/react':
         specifier: 0.27.16
-        version: 0.27.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.27.16(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@pnpm/find-workspace-packages':
         specifier: ^6.0.9
         version: 6.0.9(@pnpm/logger@5.2.0)
       '@remix-run/dev':
-        specifier: ^2.17.0
-        version: 2.17.2(@remix-run/react@2.17.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3))(@types/node@24.10.1)(babel-plugin-macros@3.1.0)(terser@5.44.1)(tsx@4.20.6)(typescript@5.9.3)(vite@7.2.4(@types/node@24.10.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1))(yaml@2.8.1)
+        specifier: ^2.17.2
+        version: 2.17.2(@remix-run/react@2.17.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3))(@types/node@24.10.1)(babel-plugin-macros@3.1.0)(terser@5.44.1)(tsx@4.20.6)(typescript@5.9.3)(vite@7.2.4(@types/node@24.10.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1))(yaml@2.8.1)
       '@remix-run/eslint-config':
-        specifier: ^2.17.0
-        version: 2.17.2(eslint@9.39.1)(react@18.3.1)(typescript@5.9.3)
+        specifier: ^2.17.2
+        version: 2.17.2(eslint@9.39.1)(react@19.2.0)(typescript@5.9.3)
       '@types/js-yaml':
         specifier: ^4.0.9
         version: 4.0.9
@@ -393,17 +393,17 @@ importers:
         specifier: 1.6.5
         version: 1.6.5(@vanilla-extract/css@1.17.4(babel-plugin-macros@3.1.0))
       browserslist:
-        specifier: ^4.25.4
+        specifier: ^4.28.0
         version: 4.28.0
       classnames:
         specifier: 2.5.1
         version: 2.5.1
       dedent:
-        specifier: 1.6.0
-        version: 1.6.0(babel-plugin-macros@3.1.0)
+        specifier: 1.7.0
+        version: 1.7.0(babel-plugin-macros@3.1.0)
       esbuild:
-        specifier: ^0.25.9
-        version: 0.25.12
+        specifier: ^0.27.0
+        version: 0.27.0
       eslint-config-prettier:
         specifier: 10.1.8
         version: 10.1.8(eslint@9.39.1)
@@ -420,35 +420,35 @@ importers:
         specifier: 3.6.2
         version: 3.6.2
       react:
-        specifier: 18.3.1
-        version: 18.3.1
+        specifier: 19.2.0
+        version: 19.2.0
       react-calendly:
         specifier: 4.4.0
-        version: 4.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 4.4.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-device-detect:
         specifier: 2.2.3
-        version: 2.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.2.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-dom:
-        specifier: 18.3.1
-        version: 18.3.1(react@18.3.1)
+        specifier: 19.2.0
+        version: 19.2.0(react@19.2.0)
       react-hook-form:
         specifier: 7.66.1
-        version: 7.66.1(react@18.3.1)
+        version: 7.66.1(react@19.2.0)
       react-is:
-        specifier: 18.3.1
-        version: 18.3.1
+        specifier: 19.2.0
+        version: 19.2.0
       toml:
         specifier: ^3.0.0
         version: 3.0.0
       tsx:
-        specifier: ^4.20.5
+        specifier: ^4.20.6
         version: 4.20.6
       use-debounce:
         specifier: 10.0.6
-        version: 10.0.6(react@18.3.1)
+        version: 10.0.6(react@19.2.0)
       uuid:
-        specifier: ^11.1.0
-        version: 11.1.0
+        specifier: ^13.0.0
+        version: 13.0.0
       vite:
         specifier: 7.2.4
         version: 7.2.4(@types/node@24.10.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1)
@@ -2165,8 +2165,8 @@ packages:
   '@changesets/changelog-git@0.2.1':
     resolution: {integrity: sha512-x/xEleCFLH28c3bQeQIyeZf8lFXyDFVn1SgcBiR2Tw/r4IAWlk1fzxCEZ6NxQAjF2Nwtczoen3OA2qR+UawQ8Q==}
 
-  '@changesets/cli@2.29.6':
-    resolution: {integrity: sha512-6qCcVsIG1KQLhpQ5zE8N0PckIx4+9QlHK3z6/lwKnw7Tir71Bjw8BeOZaxA/4Jt00pcgCnCSWZnyuZf5Il05QQ==}
+  '@changesets/cli@2.29.7':
+    resolution: {integrity: sha512-R7RqWoaksyyKXbKXBTbT4REdy22yH81mcFK6sWtqSanxUCbUi9Uf+6aqxZtDQouIqPdem2W56CdxXgsxdq7FLQ==}
     hasBin: true
 
   '@changesets/config@3.1.1':
@@ -2254,46 +2254,8 @@ packages:
     resolution: {integrity: sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw==}
     engines: {node: '>=18'}
 
-  '@cutting/assert@0.1.4':
-    resolution: {integrity: sha512-k1LE8tCMKllAkb7ipdwCeK9DJVZlXu1IKW4ROXnvclsxtDPLLgkBx0oFRrrZeJ6J6nIubVZjC+DK7ilMboK/5A==}
-
-  '@cutting/component-library@5.42.10':
-    resolution: {integrity: sha512-KHO0Y7RgruUeCMgQOMxS0LsjjfkGROfH+Y9vaOHvbfUautPR2tk/sY2564LIXGTGOcDPSVk2O0LznrXMtAmDQg==}
-    peerDependencies:
-      '@vanilla-extract/css-utils': ^0.1.4
-      '@vanilla-extract/dynamic': ^2.1.1
-      '@vanilla-extract/sprinkles': 1.6.2
-      react: '>= 18.3.1'
-      react-dom: '>= 18.3.1'
-      react-is: '>= 18.3.1'
-      react-router: '>= 6.23.1'
-
-  '@cutting/hooks@4.57.6':
-    resolution: {integrity: sha512-HUvcWUj/OVuKYlbKZeq24pNBS4SvROsf3aa4KPsgMwCegDo4HieLdjf2dblMomITVFCjKiJxxF3Crzj9NJYEeA==}
-    peerDependencies:
-      react: '>= 18.3.1'
-      react-dom: '>= 18.3.1'
-
-  '@cutting/react-hook-form-components@0.5.33':
-    resolution: {integrity: sha512-Yl/5gX5P2WQed43WZBnBKC+O45hrVX+3B+CWWTKVRrRLy5tALaVkyoDZ52Uf645SleLCB7h5iwn0zGhQFLQOig==}
-    peerDependencies:
-      react: '>= 18.3.1'
-      react-calendly: '>= 4.3.1'
-      react-dom: '>= 18.3.1'
-
   '@cutting/rollup-plugin-md@0.5.0':
     resolution: {integrity: sha512-TNFEveA0I/nPG4CGO41HLVWKvkVAyVI4gpaByyHiBVA2XrpwhVfAvjZxQm7nJP6SqrHMncsI/EdIa+LYN5zHDQ==}
-
-  '@cutting/use-get-parent-size@2.1.16':
-    resolution: {integrity: sha512-vEhBqro7W0v93XRSgo72tQnejTkQgTVAR+Bmo/QGStWJcAX1bsjhxbw8EL0ApLISOEy65J0wTy4yITlzdGifkA==}
-    peerDependencies:
-      react: '>= 18.3.1'
-      react-dom: '>= 18.3.1'
-      resize-observer-polyfill: '>= ^1.5.x'
-      use-debounce: '>= 10.0.1'
-
-  '@cutting/util@4.59.2':
-    resolution: {integrity: sha512-HFU/kf4ox1M6QqjABlQtlQog4CL9C5ZPLWMW2VViRmrHhqRdnMbY0PpEZ8IV+arXEDagxQNaKy+D/U3cOww+zA==}
 
   '@definitelytyped/header-parser@0.2.20':
     resolution: {integrity: sha512-97YPAlUo8XjWNtZ+6k+My+50/ljE2iX6KEPjOZ1Az1RsZdKwJ6taAX3F5g6SY1SJr50bzdm2RZzyQNdRmHcs4w==}
@@ -3114,12 +3076,6 @@ packages:
 
   '@floating-ui/react-dom@2.1.6':
     resolution: {integrity: sha512-4JX6rEatQEvlmgU80wZyq9RT96HZJa88q8hp0pBd+LrczeDI4o6uA2M+uvxngVHo4Ihr8uibXxH6+70zhAFrVw==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-
-  '@floating-ui/react@0.26.28':
-    resolution: {integrity: sha512-yORQuuAtVpiRjpMhdc0wJj06b9JFjrYF4qp96j++v2NBpbi6SEGF7donUJ3TMieerQ6qVkAv1tgr7L4r5roTqw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -6541,22 +6497,6 @@ packages:
     resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
     engines: {node: '>=0.10'}
 
-  dedent@1.5.3:
-    resolution: {integrity: sha512-NHQtfOOW68WD8lgypbLA5oT+Bt0xXJhiYvoR6SmmNXZfpzOGXwdKWmcwG8N7PwVVWV3eF/68nmD9BaJSsTBhyQ==}
-    peerDependencies:
-      babel-plugin-macros: ^3.1.0
-    peerDependenciesMeta:
-      babel-plugin-macros:
-        optional: true
-
-  dedent@1.6.0:
-    resolution: {integrity: sha512-F1Z+5UCFpmQUzJa11agbyPVMbpgT/qA3/SKyJ1jyBgm7dUcUEa8v9JwDkerSQXfakBwFljIxhOJqGkjUwZ9FSA==}
-    peerDependencies:
-      babel-plugin-macros: ^3.1.0
-    peerDependenciesMeta:
-      babel-plugin-macros:
-        optional: true
-
   dedent@1.7.0:
     resolution: {integrity: sha512-HGFtf8yhuhGhqO07SV79tRp+br4MnbdjeVxotpn1QBl30pcLLCQjX5b2295ll0fv8RKDKsmWYrl05usHM9CewQ==}
     peerDependencies:
@@ -8567,8 +8507,8 @@ packages:
   isarray@2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
 
-  isbot@5.1.30:
-    resolution: {integrity: sha512-3wVJEonAns1OETX83uWsk5IAne2S5zfDcntD2hbtU23LelSqNXzXs9zKjMPOLMzroCgIjCfjYAEHrd2D6FOkiA==}
+  isbot@5.1.32:
+    resolution: {integrity: sha512-VNfjM73zz2IBZmdShMfAUg10prm6t7HFUQmNAEOAVS4YH92ZrZcvkMcGX6cIgBJAzWDzPent/EeAtYEHNPNPBQ==}
     engines: {node: '>=18'}
 
   isexe@2.0.0:
@@ -10673,11 +10613,6 @@ packages:
       react: '>= 0.14.0'
       react-dom: '>= 0.14.0'
 
-  react-dom@18.3.1:
-    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
-    peerDependencies:
-      react: ^18.3.1
-
   react-dom@19.2.0:
     resolution: {integrity: sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==}
     peerDependencies:
@@ -10690,12 +10625,6 @@ packages:
     resolution: {integrity: sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==}
     peerDependencies:
       react: '>=16.3.0'
-
-  react-hook-form@7.52.0:
-    resolution: {integrity: sha512-mJX506Xc6mirzLsmXUJyqlAI3Kj9Ph2RhplYhUVffeOQSnubK2uVqBFOBJmvKikvbFV91pxVXmDiR+QMF19x6A==}
-    engines: {node: '>=12.22.0'}
-    peerDependencies:
-      react: ^16.8.0 || ^17 || ^18 || ^19
 
   react-hook-form@7.66.1:
     resolution: {integrity: sha512-2KnjpgG2Rhbi+CIiIBQQ9Df6sMGH5ExNyFl4Hw9qO7pIqMBR8Bvu9RQyjl3JM4vehzCh9soiNUM/xYMswb2EiA==}
@@ -10759,10 +10688,6 @@ packages:
     engines: {node: '>= 16.20.2'}
     peerDependencies:
       react: '>= 0.14.0'
-
-  react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
-    engines: {node: '>=0.10.0'}
 
   react@19.2.0:
     resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
@@ -11305,9 +11230,6 @@ packages:
   saxes@6.0.0:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
-
-  scheduler@0.23.2:
-    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
 
   scheduler@0.27.0:
     resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
@@ -12481,8 +12403,8 @@ packages:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
 
-  uuid@11.1.0:
-    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+  uuid@13.0.0:
+    resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
     hasBin: true
 
   uuid@3.4.0:
@@ -13311,7 +13233,7 @@ snapshots:
       '@babel/types': 7.28.5
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
-      jsesc: 3.0.2
+      jsesc: 3.1.0
 
   '@babel/helper-annotate-as-pure@7.27.3':
     dependencies:
@@ -14177,7 +14099,7 @@ snapshots:
     dependencies:
       '@changesets/types': 6.1.0
 
-  '@changesets/cli@2.29.6(@types/node@24.10.1)':
+  '@changesets/cli@2.29.7(@types/node@24.10.1)':
     dependencies:
       '@changesets/apply-release-plan': 7.0.13
       '@changesets/assemble-release-plan': 6.0.9
@@ -14332,67 +14254,11 @@ snapshots:
 
   '@csstools/css-tokenizer@3.0.4': {}
 
-  '@cutting/assert@0.1.4': {}
-
-  '@cutting/component-library@5.42.10(@vanilla-extract/css-utils@0.1.6)(@vanilla-extract/dynamic@2.1.5)(@vanilla-extract/sprinkles@1.6.5(@vanilla-extract/css@1.17.4(babel-plugin-macros@3.1.0)))(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react-router@7.9.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@cutting/assert': 0.1.4
-      '@cutting/hooks': 4.57.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@cutting/util': 4.59.2
-      '@floating-ui/react': 0.26.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@vanilla-extract/css-utils': 0.1.6
-      '@vanilla-extract/dynamic': 2.1.5
-      '@vanilla-extract/sprinkles': 1.6.5(@vanilla-extract/css@1.17.4(babel-plugin-macros@3.1.0))
-      classnames: 2.5.1
-      dedent: 1.5.3(babel-plugin-macros@3.1.0)
-      deepmerge: 4.3.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-is: 18.3.1
-      react-router: 7.9.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-    transitivePeerDependencies:
-      - babel-plugin-macros
-
-  '@cutting/hooks@4.57.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@cutting/assert': 0.1.4
-      '@cutting/util': 4.59.2
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@cutting/react-hook-form-components@0.5.33(@vanilla-extract/css-utils@0.1.6)(@vanilla-extract/dynamic@2.1.5)(@vanilla-extract/sprinkles@1.6.5(@vanilla-extract/css@1.17.4(babel-plugin-macros@3.1.0)))(babel-plugin-macros@3.1.0)(react-calendly@4.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router@7.9.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@cutting/assert': 0.1.4
-      '@cutting/component-library': 5.42.10(@vanilla-extract/css-utils@0.1.6)(@vanilla-extract/dynamic@2.1.5)(@vanilla-extract/sprinkles@1.6.5(@vanilla-extract/css@1.17.4(babel-plugin-macros@3.1.0)))(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react-router@7.9.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@cutting/util': 4.59.2
-      react: 18.3.1
-      react-calendly: 4.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-dom: 18.3.1(react@18.3.1)
-      react-hook-form: 7.52.0(react@18.3.1)
-      react-is: 18.3.1
-    transitivePeerDependencies:
-      - '@vanilla-extract/css-utils'
-      - '@vanilla-extract/dynamic'
-      - '@vanilla-extract/sprinkles'
-      - babel-plugin-macros
-      - react-router
-
   '@cutting/rollup-plugin-md@0.5.0':
     dependencies:
       '@rollup/pluginutils': 4.2.1
       marked: 2.1.3
       rollup: 2.79.2
-
-  '@cutting/use-get-parent-size@2.1.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-debounce@10.0.6(react@18.3.1))':
-    dependencies:
-      '@cutting/assert': 0.1.4
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      use-debounce: 10.0.6(react@18.3.1)
-
-  '@cutting/util@4.59.2':
-    dependencies:
-      '@cutting/assert': 0.1.4
 
   '@definitelytyped/header-parser@0.2.20':
     dependencies:
@@ -14440,16 +14306,6 @@ snapshots:
   '@emotion/hash@0.9.2': {}
 
   '@epic-web/invariant@1.0.0': {}
-
-  '@esbuild-plugins/node-resolve@0.2.2(esbuild@0.25.12)':
-    dependencies:
-      '@types/resolve': 1.20.6
-      debug: 4.4.3(supports-color@5.5.0)
-      esbuild: 0.25.12
-      escape-string-regexp: 4.0.0
-      resolve: 1.22.11
-    transitivePeerDependencies:
-      - supports-color
 
   '@esbuild-plugins/node-resolve@0.2.2(esbuild@0.27.0)':
     dependencies:
@@ -14895,33 +14751,11 @@ snapshots:
       '@floating-ui/core': 1.7.3
       '@floating-ui/utils': 0.2.10
 
-  '@floating-ui/react-dom@2.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@floating-ui/dom': 1.7.4
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
   '@floating-ui/react-dom@2.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@floating-ui/dom': 1.7.4
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
-
-  '@floating-ui/react@0.26.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@floating-ui/react-dom': 2.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@floating-ui/utils': 0.2.10
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      tabbable: 6.3.0
-
-  '@floating-ui/react@0.27.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@floating-ui/react-dom': 2.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@floating-ui/utils': 0.2.10
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      tabbable: 6.3.0
 
   '@floating-ui/react@0.27.16(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
@@ -15138,17 +14972,6 @@ snapshots:
       fs-extra: 8.1.0
       globby: 11.1.0
       read-yaml-file: 1.1.0
-
-  '@mdx-js/esbuild@3.1.1(esbuild@0.25.12)':
-    dependencies:
-      '@mdx-js/mdx': 3.1.1
-      '@types/unist': 3.0.3
-      esbuild: 0.25.12
-      source-map: 0.7.6
-      vfile: 6.0.3
-      vfile-message: 4.0.3
-    transitivePeerDependencies:
-      - supports-color
 
   '@mdx-js/esbuild@3.1.1(esbuild@0.27.0)':
     dependencies:
@@ -15591,7 +15414,7 @@ snapshots:
 
   '@remix-run/css-bundle@2.17.2': {}
 
-  '@remix-run/dev@2.17.2(@remix-run/react@2.17.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3))(@types/node@24.10.1)(babel-plugin-macros@3.1.0)(terser@5.44.1)(tsx@4.20.6)(typescript@5.9.3)(vite@7.2.4(@types/node@24.10.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1))(yaml@2.8.1)':
+  '@remix-run/dev@2.17.2(@remix-run/react@2.17.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3))(@types/node@24.10.1)(babel-plugin-macros@3.1.0)(terser@5.44.1)(tsx@4.20.6)(typescript@5.9.3)(vite@7.2.4(@types/node@24.10.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1))(yaml@2.8.1)':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/generator': 7.28.5
@@ -15604,7 +15427,7 @@ snapshots:
       '@mdx-js/mdx': 2.3.0
       '@npmcli/package-json': 4.0.1
       '@remix-run/node': 2.17.2(typescript@5.9.3)
-      '@remix-run/react': 2.17.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
+      '@remix-run/react': 2.17.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
       '@remix-run/router': 1.23.0
       '@remix-run/server-runtime': 2.17.2(typescript@5.9.3)
       '@types/mdx': 2.0.13
@@ -15672,7 +15495,7 @@ snapshots:
       - utf-8-validate
       - yaml
 
-  '@remix-run/eslint-config@2.17.2(eslint@9.39.1)(react@18.3.1)(typescript@5.9.3)':
+  '@remix-run/eslint-config@2.17.2(eslint@9.39.1)(react@19.2.0)(typescript@5.9.3)':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/eslint-parser': 7.28.5(@babel/core@7.28.5)(eslint@9.39.1)
@@ -15691,7 +15514,7 @@ snapshots:
       eslint-plugin-react: 7.37.5(eslint@9.39.1)
       eslint-plugin-react-hooks: 4.6.2(eslint@9.39.1)
       eslint-plugin-testing-library: 5.11.1(eslint@9.39.1)(typescript@5.9.3)
-      react: 18.3.1
+      react: 19.2.0
     optionalDependencies:
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -15712,14 +15535,14 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.3
 
-  '@remix-run/react@2.17.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)':
+  '@remix-run/react@2.17.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)':
     dependencies:
       '@remix-run/router': 1.23.0
       '@remix-run/server-runtime': 2.17.2(typescript@5.9.3)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-router: 6.30.0(react@18.3.1)
-      react-router-dom: 6.30.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      react-router: 6.30.0(react@19.2.0)
+      react-router-dom: 6.30.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       turbo-stream: 2.4.1
     optionalDependencies:
       typescript: 5.9.3
@@ -17224,11 +17047,11 @@ snapshots:
     dependencies:
       blurhash: 2.0.5
 
-  '@unpic/react@1.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@unpic/react@1.0.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@unpic/core': 1.0.2
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   '@unrs/resolver-binding-android-arm-eabi@1.11.1':
     optional: true
@@ -19338,14 +19161,6 @@ snapshots:
       character-entities: 2.0.2
 
   decode-uri-component@0.2.2: {}
-
-  dedent@1.5.3(babel-plugin-macros@3.1.0):
-    optionalDependencies:
-      babel-plugin-macros: 3.1.0
-
-  dedent@1.6.0(babel-plugin-macros@3.1.0):
-    optionalDependencies:
-      babel-plugin-macros: 3.1.0
 
   dedent@1.7.0(babel-plugin-macros@3.1.0):
     optionalDependencies:
@@ -21973,7 +21788,7 @@ snapshots:
 
   isarray@2.0.5: {}
 
-  isbot@5.1.30: {}
+  isbot@5.1.32: {}
 
   isexe@2.0.0: {}
 
@@ -22824,21 +22639,6 @@ snapshots:
   mdn-data@2.0.14: {}
 
   mdn-data@2.12.2: {}
-
-  mdx-bundler@10.1.1(esbuild@0.25.12):
-    dependencies:
-      '@babel/runtime': 7.28.4
-      '@esbuild-plugins/node-resolve': 0.2.2(esbuild@0.25.12)
-      '@fal-works/esbuild-plugin-global-externals': 2.1.2
-      '@mdx-js/esbuild': 3.1.1(esbuild@0.25.12)
-      esbuild: 0.25.12
-      gray-matter: 4.0.3
-      remark-frontmatter: 5.0.0
-      remark-mdx-frontmatter: 4.0.0
-      uuid: 9.0.1
-      vfile: 6.0.3
-    transitivePeerDependencies:
-      - supports-color
 
   mdx-bundler@10.1.1(esbuild@0.27.0):
     dependencies:
@@ -24693,33 +24493,16 @@ snapshots:
 
   reachdown@1.1.0: {}
 
-  react-calendly@4.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
   react-calendly@4.4.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
-
-  react-device-detect@2.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      ua-parser-js: 1.0.41
 
   react-device-detect@2.2.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
       ua-parser-js: 1.0.41
-
-  react-dom@18.3.1(react@18.3.1):
-    dependencies:
-      loose-envify: 1.4.0
-      react: 18.3.1
-      scheduler: 0.23.2
 
   react-dom@19.2.0(react@19.2.0):
     dependencies:
@@ -24736,14 +24519,6 @@ snapshots:
       react-fast-compare: 3.2.2
       react-side-effect: 2.1.2(react@19.2.0)
 
-  react-hook-form@7.52.0(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-
-  react-hook-form@7.66.1(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-
   react-hook-form@7.66.1(react@19.2.0):
     dependencies:
       react: 19.2.0
@@ -24758,12 +24533,12 @@ snapshots:
 
   react-refresh@0.14.2: {}
 
-  react-router-dom@6.30.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-router-dom@6.30.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       '@remix-run/router': 1.23.0
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-router: 6.30.0(react@18.3.1)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      react-router: 6.30.0(react@19.2.0)
 
   react-router-dom@7.9.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
@@ -24771,18 +24546,10 @@ snapshots:
       react-dom: 19.2.0(react@19.2.0)
       react-router: 7.9.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
 
-  react-router@6.30.0(react@18.3.1):
+  react-router@6.30.0(react@19.2.0):
     dependencies:
       '@remix-run/router': 1.23.0
-      react: 18.3.1
-
-  react-router@7.9.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
-    dependencies:
-      cookie: 1.0.2
-      react: 18.3.1
-      set-cookie-parser: 2.7.2
-    optionalDependencies:
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.2.0
 
   react-router@7.9.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
@@ -24805,10 +24572,6 @@ snapshots:
       prismjs: 1.30.0
       react: 19.2.0
       refractor: 5.0.0
-
-  react@18.3.1:
-    dependencies:
-      loose-envify: 1.4.0
 
   react@19.2.0: {}
 
@@ -25670,10 +25433,6 @@ snapshots:
   saxes@6.0.0:
     dependencies:
       xmlchars: 2.2.0
-
-  scheduler@0.23.2:
-    dependencies:
-      loose-envify: 1.4.0
 
   scheduler@0.27.0: {}
 
@@ -27058,10 +26817,6 @@ snapshots:
       punycode: 1.4.1
       qs: 6.14.0
 
-  use-debounce@10.0.6(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-
   use-debounce@10.0.6(react@19.2.0):
     dependencies:
       react: 19.2.0
@@ -27090,7 +26845,7 @@ snapshots:
 
   utils-merge@1.0.1: {}
 
-  uuid@11.1.0: {}
+  uuid@13.0.0: {}
 
   uuid@3.4.0: {}
 
