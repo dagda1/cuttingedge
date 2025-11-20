@@ -1,4 +1,5 @@
 ---
+"@cutting/website": minor
 "@cutting/assert": minor
 "@cutting/cloudinary-blurhash": minor
 "@cutting/component-library": minor
@@ -16,4 +17,4 @@
 "@cutting/util": minor
 ---
 
-upgrade react to 19.2.0
+not goign to work
