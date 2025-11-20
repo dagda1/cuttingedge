@@ -7,15 +7,17 @@ import { useParentSize } from './useParentSize';
 let resizeObserverCallback: (entries: any[]) => void;
 
 beforeEach(() => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  global.ResizeObserver = vi.fn().mockImplementation((cb: any) => {
-    resizeObserverCallback = cb;
-    return {
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    };
-  });
+  global.ResizeObserver = vi.fn().mockImplementation(
+    class {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      constructor(cb: any) {
+        resizeObserverCallback = cb;
+      }
+      observe = vi.fn();
+      unobserve = vi.fn();
+      disconnect = vi.fn();
+    },
+  );
 });
 
 const triggerResize = (width: number, height: number) => {
