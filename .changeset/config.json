@@ -5,5 +5,10 @@
   "linked": [],
   "access": "public",
   "baseBranch": "main",
-  "updateInternalDependencies": "patch"
+  "updateInternalDependencies": "patch",
+  "ignored": [
+    "@cutting/frontend-support",
+    "@cutting/website",
+    "threejs-starter-vite"
+  ]
 }
