@@ -1,5 +1,4 @@
 ---
-"@cutting/website": minor
 "@cutting/assert": minor
 "@cutting/cloudinary-blurhash": minor
 "@cutting/component-library": minor
@@ -17,4 +16,4 @@
 "@cutting/util": minor
 ---
 
-not goign to work
+w
