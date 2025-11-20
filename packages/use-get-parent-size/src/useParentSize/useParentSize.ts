@@ -59,7 +59,10 @@ export const useParentSize = <E extends Element>(
         throw new Error('Maximum rerender count and no refElement Found');
       }
 
-      setContentRect({ ...contentRect } as ResizeObserverContentRect);
+      if (!firstUpdateDone.current) {
+        setContentRect({ ...contentRect } as ResizeObserverContentRect);
+      }
+
       rerenderCount.current++;
       return;
     }
