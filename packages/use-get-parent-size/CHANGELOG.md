@@ -1,5 +1,16 @@
 # @cutting/use-get-parent-size
 
+## 2.7.0
+
+### Minor Changes
+
+- c69a4bb: update react to 19.2.0
+
+### Patch Changes
+
+- Updated dependencies [c69a4bb]
+  - @cutting/assert@0.4.0
+
 ## 2.6.0
 
 ### Minor Changes

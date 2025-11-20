@@ -1,5 +1,17 @@
 # @cutting/hooks
 
+## 4.63.0
+
+### Minor Changes
+
+- c69a4bb: update react to 19.2.0
+
+### Patch Changes
+
+- Updated dependencies [c69a4bb]
+  - @cutting/assert@0.4.0
+  - @cutting/util@4.63.0
+
 ## 4.62.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.6.0
+
+### Minor Changes
+
+- c69a4bb: update react to 19.2.0
+
 ## 0.5.0
 
 ### Minor Changes
