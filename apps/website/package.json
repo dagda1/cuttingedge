@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "version": "4.31.3",
+  "version": "4.31.4",
   "license": "MIT",
   "type": "module",
   "scripts": {

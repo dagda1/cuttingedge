@@ -1,5 +1,19 @@
 # @cutting/frontend-support
 
+## 0.5.4
+
+### Patch Changes
+
+- Updated dependencies [c69a4bb]
+  - @cutting/assert@0.4.0
+  - @cutting/component-library@5.48.0
+  - @cutting/hooks@4.63.0
+  - @cutting/markdown@0.7.0
+  - @cutting/react-hook-form-components@0.11.0
+  - @cutting/use-get-parent-size@2.7.0
+  - @cutting/useful-types@4.45.0
+  - @cutting/util@4.63.0
+
 ## 0.5.3
 
 ### Patch Changes

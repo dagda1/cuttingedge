@@ -1,5 +1,18 @@
 # @cutting/component-library
 
+## 5.48.0
+
+### Minor Changes
+
+- c69a4bb: update react to 19.2.0
+
+### Patch Changes
+
+- Updated dependencies [c69a4bb]
+  - @cutting/assert@0.4.0
+  - @cutting/hooks@4.63.0
+  - @cutting/util@4.63.0
+
 ## 5.47.0
 
 ### Minor Changes
