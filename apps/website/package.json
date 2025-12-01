@@ -39,7 +39,7 @@
     "cookie-parser": "1.4.7",
     "core-js": "3.47.0",
     "csurf": "1.11.0",
-    "express": "5.1.0",
+    "express": "5.2.0",
     "global": "4.4.0",
     "helmet": "8.1.0",
     "mathjs": "15.1.0",
