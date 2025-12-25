@@ -26,4 +26,3 @@ export { escapeHtml } from './string/escapeHtml';
 export { capitalize, dasherize, decamelize, padNumber, stripSpaces } from './string/index';
 export type { DeepPartial } from './types/DeepPartial';
 export type { Entries } from './types/entries';
-export { generateUUID } from './uuid/uuid';
