@@ -4,6 +4,12 @@
 
 ### Minor Changes
 
+- af733ed: again again again
+
+## 4.45.0
+
+### Minor Changes
+
 - 510343b: revert
 
 ## 4.45.0
