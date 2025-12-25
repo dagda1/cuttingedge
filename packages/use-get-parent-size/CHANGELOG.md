@@ -4,6 +4,17 @@
 
 ### Minor Changes
 
+- 510343b: revert
+
+### Patch Changes
+
+- Updated dependencies [510343b]
+  - @cutting/assert@0.5.0
+
+## 2.8.0
+
+### Minor Changes
+
 - 54f4b15: again
 - 958b9fa: again
 - de29d47: cu
