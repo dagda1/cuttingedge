@@ -27,7 +27,7 @@
     "@remix-run/css-bundle": "^2.17.2",
     "@remix-run/node": "^2.17.2",
     "@remix-run/react": "^2.17.2",
-    "@gsap/shockingly": "^3.13.0",
+    "@gsap/shockingly": "^3.12.7",
     "@unpic/placeholder": "^0.1.2",
     "@unpic/react": "^1.0.1",
     "cloudinary-build-url": "^0.2.4",

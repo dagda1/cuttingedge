@@ -254,8 +254,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/util
       '@gsap/shockingly':
-        specifier: ^3.13.0
-        version: gsap@@gsap/shockingly@3.13.0
+        specifier: ^3.12.7
+        version: 3.13.0
       '@remix-run/architect':
         specifier: ^2.17.2
         version: 2.17.2(typescript@5.9.3)
@@ -7798,10 +7798,6 @@ packages:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
 
-  gsap@@gsap/shockingly@3.13.0:
-    resolution: {integrity: sha512-4AgtKV8q2A+fIwIXMFW72fJDdH4I5/bdq3PT2hfj4DghWGfkQvu/sw2lUPWHMGZzPJQame+TvoEcpbnmNgzTmQ==, tarball: https://npm.greensock.com/@gsap/shockingly/-/shockingly-3.13.0.tgz}
-    deprecated: This package has been deprecated in favor of the standard 'gsap' package available in the public npmjs repository which now includes all bonus plugins.
-
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
     hasBin: true
@@ -13320,7 +13316,7 @@ snapshots:
       '@babel/types': 7.28.5
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
-      jsesc: 3.1.0
+      jsesc: 3.0.2
 
   '@babel/helper-annotate-as-pure@7.27.3':
     dependencies:
@@ -17383,7 +17379,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.27.1(@babel/core@7.28.5)
       '@vanilla-extract/babel-plugin-debug-ids': 1.2.2
       '@vanilla-extract/css': 1.18.0(babel-plugin-macros@3.1.0)
-      esbuild: 0.17.19
+      esbuild: 0.17.6
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -21160,8 +21156,6 @@ snapshots:
       kind-of: 6.0.3
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
-
-  gsap@@gsap/shockingly@3.13.0: {}
 
   gunzip-maybe@1.4.2:
     dependencies:
