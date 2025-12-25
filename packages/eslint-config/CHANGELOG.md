@@ -1,5 +1,16 @@
 # @cutting/eslint-config
 
+## 5.6.0
+
+### Minor Changes
+
+- 54f4b15: again
+- 958b9fa: again
+- de29d47: cu
+- 5108680: again
+- bf42836: upgrade react to 19.2.3
+- cf8b2f2: shit
+
 ## 5.5.0
 
 ### Minor Changes

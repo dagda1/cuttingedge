@@ -1,5 +1,15 @@
 # @cutting/cloudinary-blurhash
 
+## 0.7.0
+
+### Minor Changes
+
+- 54f4b15: again
+- 958b9fa: again
+- de29d47: cu
+- 5108680: again
+- cf8b2f2: shit
+
 ## 0.6.0
 
 ### Minor Changes
