@@ -4,6 +4,19 @@
 
 ### Minor Changes
 
+- af733ed: again again again
+
+### Patch Changes
+
+- Updated dependencies [af733ed]
+  - @cutting/assert@0.5.0
+  - @cutting/hooks@4.64.0
+  - @cutting/util@4.64.0
+
+## 4.57.0
+
+### Minor Changes
+
 - 510343b: revert
 
 ### Patch Changes
