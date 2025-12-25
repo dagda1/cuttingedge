@@ -1,5 +1,27 @@
 # @cutting/hooks
 
+## 4.64.0
+
+### Minor Changes
+
+- 54f4b15: again
+- 958b9fa: again
+- de29d47: cu
+- 5108680: again
+- bf42836: upgrade react to 19.2.3
+- cf8b2f2: shit
+
+### Patch Changes
+
+- Updated dependencies [54f4b15]
+- Updated dependencies [958b9fa]
+- Updated dependencies [de29d47]
+- Updated dependencies [5108680]
+- Updated dependencies [bf42836]
+- Updated dependencies [cf8b2f2]
+  - @cutting/assert@0.5.0
+  - @cutting/util@4.64.0
+
 ## 4.63.0
 
 ### Minor Changes

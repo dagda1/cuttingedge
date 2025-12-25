@@ -1,5 +1,15 @@
 # @cutting/tsconfig
 
+## 4.45.0
+
+### Minor Changes
+
+- 54f4b15: again
+- 958b9fa: again
+- de29d47: cu
+- 5108680: again
+- cf8b2f2: shit
+
 ## 4.44.0
 
 ### Minor Changes
