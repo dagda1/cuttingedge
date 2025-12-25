@@ -1,6 +1,6 @@
 {
   "name": "@cutting/frontend-support",
-  "version": "0.5.7",
+  "version": "0.5.4",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@architect/architect": "^12.0.0",
-    "@cutting/component-library": "workspace:*",
-    "@cutting/hooks": "workspace:*",
+    "@cutting/component-library": "5.48.0",
+    "@cutting/hooks": "4.63.0",
     "@cutting/markdown": "workspace:*",
     "@cutting/react-hook-form-components": "workspace:*",
     "@cutting/use-get-parent-size": "workspace:*",
