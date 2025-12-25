@@ -4,6 +4,19 @@
 
 ### Minor Changes
 
+- 510343b: revert
+
+### Patch Changes
+
+- Updated dependencies [510343b]
+  - @cutting/component-library@5.49.0
+  - @cutting/assert@0.5.0
+  - @cutting/util@4.64.0
+
+## 0.12.0
+
+### Minor Changes
+
 - 54f4b15: again
 - 958b9fa: again
 - de29d47: cu
