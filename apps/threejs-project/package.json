@@ -15,7 +15,7 @@
     "d3-scale": "4.0.2",
     "gsap": "npm:@gsap/shockingly@^3.12.7",
     "lil-gui": "^0.21.0",
-    "three": "^0.181.2"
+    "three": "^0.182.0"
   },
   "volta": {
     "extends": "../../package.json"
