@@ -20,6 +20,7 @@
     { "path": "../../packages/hooks/tsconfig.dist.json" },
     { "path": "../../packages/component-library/tsconfig.dist.json" },
     { "path": "../../packages/svg/tsconfig.dist.json" },
-    { "path": "../../packages/use-mathjax/tsconfig.dist.json" }
+    { "path": "../../packages/use-mathjax/tsconfig.dist.json" },
+    { "path": "../../packages/vite-bundle-advisor/tsconfig.json" }
   ]
 }

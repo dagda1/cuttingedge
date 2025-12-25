@@ -7,8 +7,8 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/esm/index.d.mts",
   "type": "module",
   "license": "MIT",
   "scripts": {
@@ -18,13 +18,14 @@
     "@cutting/assert": "workspace:*"
   },
   "devDependencies": {
-    "tsdown": "^0.18.3"
+    "tsdown": "^0.18.3",
+    "vite": "^7.3.0"
   },
   "volta": {
     "extends": "../../package.json"
   },
   "exports": {
-    "types": "./dist/esm/index.d.ts",
-    "import": "./dist/esm/index.js"
+    "types": "./dist/esm/index.d.mts",
+    "import": "./dist/esm/index.mjs"
   }
 }

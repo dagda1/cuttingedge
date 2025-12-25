@@ -91,6 +91,7 @@
     "turbo": "2.7.2",
     "typescript": "5.9.3",
     "vite": "7.3.0",
+    "vite-bundle-analyzer": "^0.14.1",
     "vite-tsconfig-paths": "^6.0.3",
     "vitest": "4.0.16",
     "whatwg-fetch": "3.6.20"

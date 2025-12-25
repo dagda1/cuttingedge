@@ -214,6 +214,9 @@ importers:
       vite:
         specifier: 7.3.0
         version: 7.3.0(@types/node@25.0.3)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
+      vite-bundle-analyzer:
+        specifier: ^0.14.1
+        version: 0.14.3
       vite-tsconfig-paths:
         specifier: ^6.0.3
         version: 6.0.3(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))
@@ -561,6 +564,9 @@ importers:
       '@cutting/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
+      '@cutting/vite-bundle-advisor':
+        specifier: workspace:*
+        version: link:../../packages/vite-bundle-advisor
       '@floating-ui/dom':
         specifier: 1.7.4
         version: 1.7.4
@@ -1340,7 +1346,7 @@ importers:
         specifier: workspace:*
         version: link:../assert
 
-  packages/vite-bundle-inspector:
+  packages/vite-bundle-advisor:
     dependencies:
       '@cutting/assert':
         specifier: workspace:*
@@ -1349,6 +1355,9 @@ importers:
       tsdown:
         specifier: ^0.18.3
         version: 0.18.3(synckit@0.11.11)(typescript@5.9.3)
+      vite:
+        specifier: ^7.3.0
+        version: 7.3.0(@types/node@25.0.3)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
 
 packages:
 
@@ -10523,6 +10532,7 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qs@6.14.0:
@@ -12528,6 +12538,10 @@ packages:
   vinyl@1.2.0:
     resolution: {integrity: sha512-Ci3wnR2uuSAWFMSglZuB8Z2apBdtOyz8CV7dC6/U1XbltXBC+IuutUkXQISz01P+US2ouBuesSbV6zILZ6BuzQ==}
     engines: {node: '>= 0.9'}
+
+  vite-bundle-analyzer@0.14.3:
+    resolution: {integrity: sha512-gtYPRahkEdo7TRDLHqq+ZRE8Xfz5dt3UAl0NhkZBBYaGRd3EOyWJz9+WAqRSALf4szFhq5AS0TKvL9nVWiAkqw==}
+    hasBin: true
 
   vite-node@1.6.1:
     resolution: {integrity: sha512-YAXkfvGtuTzwWbDSACdJSg4A4DZiAqckWe90Zapc/sEX3XvHcw1NdurM/6od8J207tSDqNbSsgdCacBgvJKFuA==}
@@ -17274,7 +17288,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.27.1(@babel/core@7.28.5)
       '@vanilla-extract/babel-plugin-debug-ids': 1.2.2
       '@vanilla-extract/css': 1.18.0(babel-plugin-macros@3.1.0)
-      esbuild: 0.17.19
+      esbuild: 0.17.6
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -27022,6 +27036,8 @@ snapshots:
       clone: 1.0.4
       clone-stats: 0.0.1
       replace-ext: 0.0.1
+
+  vite-bundle-analyzer@0.14.3: {}
 
   vite-node@1.6.1(@types/node@25.0.3)(terser@5.44.1):
     dependencies:

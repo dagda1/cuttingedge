@@ -15,7 +15,8 @@
       "@cutting/use-mathjax": ["./packages/use-mathjax/src"],
       "@cutting/use-shortcuts": ["./packages/use-shortcuts/src"],
       "@cutting/util": ["./packages/util/src"],
-      "@cutting/assert": ["./packages/assert/src"]
+      "@cutting/assert": ["./packages/assert/src"],
+      "@cutting/vite-bundle-advisor": ["./packages/vite-bundle-advisor/src"]
     }
   }
 }
