@@ -1,0 +1,16 @@
+{
+  "name": "bundle-analyzer",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "analyze-bundle": "./src/index.ts"
+  },
+  "scripts": {
+    "analyze": "tsx src/index.ts",
+    "suggest": "tsx src/index.ts --suggest",
+    "compare": "tsx src/index.ts --compare"
+  },
+  "dependencies": {
+    "tsx": "^4.7.0"
+  }
+}
