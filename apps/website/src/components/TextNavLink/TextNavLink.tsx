@@ -2,8 +2,8 @@ import type { Taggable, TextProps } from '@cutting/component-library';
 import { Text, useGetTextStyles } from '@cutting/component-library';
 import cs from 'classnames';
 import { forwardRef } from 'react';
-import type { NavLinkProps } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import type { NavLinkProps } from 'react-router';
+import { NavLink } from 'react-router';
 
 type Props = NavLinkProps & { Component?: Taggable<NavLinkProps> } & Omit<TextProps, 'className'>;
 

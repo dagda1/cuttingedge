@@ -10,14 +10,7 @@ import { defineConfig } from 'vitest/config';
 const require = createRequire(import.meta.url);
 
 export default defineConfig({
-  plugins: [
-    mdx(),
-    tsconfigPaths(),
-    vanillaExtractPlugin(),
-    svgrPlugin({ svgrOptions: { icon: true } }),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    react() as any,
-  ],
+  plugins: [mdx(), tsconfigPaths(), vanillaExtractPlugin(), svgrPlugin({ svgrOptions: { icon: true } }), react()],
   assetsInclude: ['src/assets/images/**.png', 'src/assets/images/**.jpg'],
   mode: '',
   build: {

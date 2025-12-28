@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "module": "ES2022",
+    "target": "ES2022",
+    "noEmit": false
+  },
+  "include": [
+    "server.mts",
+    "../../node_modules/@types/d3/index.d.ts",
+    "node_modules/vite/types/*",
+    "../../node_modules/@types/mdx/index.d.ts"
+  ],
+  "exclude": ["pruned"],
+  "references": [
+    { "path": "../../packages/util/tsconfig.dist.json" },
+    { "path": "../../packages/hooks/tsconfig.dist.json" },
+    { "path": "../../packages/component-library/tsconfig.dist.json" },
+    { "path": "../../packages/svg/tsconfig.dist.json" },
+    { "path": "../../packages/use-mathjax/tsconfig.dist.json" }
+  ]
+}

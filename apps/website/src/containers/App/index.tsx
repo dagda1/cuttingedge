@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router';
 
 import * as styles from '~/assets/scss/global.css';
 import { MainRoutes } from '~/routes';

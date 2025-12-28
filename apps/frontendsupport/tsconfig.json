@@ -1,24 +1,28 @@
 {
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "module": "ES2022",
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
-    "target": "ES2022",
-    "strict": true,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "target": "ES2022",
+    "module": "ES2022",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "noEmit": true,
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["src/*"]
     },
-
-    // Remix takes care of building everything in `remix build`.
-    "noEmit": true
-  }
+    "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.json",
+    "vite.config.ts",
+    "../../node_modules/@types/d3/index.d.ts",
+    "node_modules/vite/types/*",
+    "node_modules/@floating-ui/dom/src/types.d.ts",
+    "node_modules/@floating-ui/react-dom/src/types.d.ts",
+    "node_modules/@floating-ui/react/src/types.d.ts",
+    "../../node_modules/@types/mdx/index.d.ts"
+  ],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "server.mts", "pruned"]
 }

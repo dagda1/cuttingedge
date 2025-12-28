@@ -1,7 +1,7 @@
 import { Box, Heading, Nav, NavItem, NavItems, ResponsiveImage } from '@cutting/component-library';
 import cs from 'classnames';
 import { useCallback, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 
 import cow from '~/assets/images/cow-logo.png';
 import cowMobile from '~/assets/images/cow-mobile.png';

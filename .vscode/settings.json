@@ -1,12 +1,13 @@
 {
-  "eslint.workingDirectories": [
-    "./packages/devtools",
-    "./packages/util",
-    "./packages/react-gel",
-    "./packages/component-library",
-    "./packages/useful-types",
-    "./packages/use-shortcuts",
-    "./apps/website"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.preferences.autoImportFileExcludePatterns": [],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
 }
