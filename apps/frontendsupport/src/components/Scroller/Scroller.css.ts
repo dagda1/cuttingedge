@@ -16,14 +16,13 @@ const pulse = keyframes({
 });
 
 export const scroller = style({
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'center',
+  position: 'absolute',
+  bottom: '2rem',
+  left: '50%',
+  transform: 'translateX(-50%)',
   opacity: 1,
 });
 
 export const arrow = style({
   animation: `${pulse} 1.5s infinite`,
-  position: 'relative',
-  left: '25px',
 });
