@@ -32,7 +32,7 @@
     "express": "4.21.2",
     "format": "^0.2.2",
     "front-matter": "^4.0.2",
-    "gsap": "npm:@gsap/shockingly@^3.12.7",
+    "gsap": "^3.13.0",
     "helmet": "8.1.0",
     "image-size": "^2.0.2",
     "isbot": "5.1.32",

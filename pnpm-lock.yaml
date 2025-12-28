@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
   injectWorkspacePackages: true
 
-overrides:
-  gsap: npm:@gsap/shockingly@^3.12.7
-
 importers:
 
   .:
@@ -272,8 +269,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       gsap:
-        specifier: npm:@gsap/shockingly@^3.12.7
-        version: '@gsap/shockingly@3.13.0'
+        specifier: ^3.13.0
+        version: 3.14.2
       helmet:
         specifier: 8.1.0
         version: 8.1.0
@@ -474,8 +471,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2
       gsap:
-        specifier: npm:@gsap/shockingly@^3.12.7
-        version: '@gsap/shockingly@3.13.0'
+        specifier: ^3.13.0
+        version: 3.14.2
       lil-gui:
         specifier: ^0.21.0
         version: 0.21.0
@@ -2558,10 +2555,6 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
-
-  '@gsap/shockingly@3.13.0':
-    resolution: {integrity: sha512-4AgtKV8q2A+fIwIXMFW72fJDdH4I5/bdq3PT2hfj4DghWGfkQvu/sw2lUPWHMGZzPJQame+TvoEcpbnmNgzTmQ==}
-    deprecated: This package has been deprecated in favor of the standard 'gsap' package available in the public npmjs repository which now includes all bonus plugins.
 
   '@gwhitney/detect-indent@7.0.1':
     resolution: {integrity: sha512-7bQW+gkKa2kKZPeJf6+c6gFK9ARxQfn+FKy9ScTBppyKRWH2KzsmweXUoklqeEiHiNVWaeP5csIdsNq6w7QhzA==}
@@ -6595,6 +6588,9 @@ packages:
   gray-matter@4.0.3:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
+
+  gsap@3.14.2:
+    resolution: {integrity: sha512-P8/mMxVLU7o4+55+1TCnQrPmgjPKnwkzkXOK1asnR9Jg2lna4tEY5qBJjMmAaOBDDZWtlRjBXjLa0w53G/uBLA==}
 
   gzip-size@6.0.0:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}
@@ -12479,8 +12475,6 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@gsap/shockingly@3.13.0': {}
-
   '@gwhitney/detect-indent@7.0.1': {}
 
   '@humanfs/core@0.19.1': {}
@@ -17709,6 +17703,8 @@ snapshots:
       kind-of: 6.0.3
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
+
+  gsap@3.14.2: {}
 
   gzip-size@6.0.0:
     dependencies:

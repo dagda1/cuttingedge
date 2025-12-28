@@ -109,9 +109,6 @@
     ]
   },
   "pnpm": {
-    "overrides": {
-      "gsap": "npm:@gsap/shockingly@^3.12.7"
-    },
     "updateConfig": {
       "ignoreDependencies": [
         "eslint",
