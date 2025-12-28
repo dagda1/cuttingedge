@@ -14,6 +14,8 @@ globalStyle('html,body', {
 globalStyle('body', {
   overflowX: 'hidden',
   overflowY: 'scroll',
+  background: '#0E151D',
+  color: '#A9ADC1',
 });
 
 globalStyle('main', {

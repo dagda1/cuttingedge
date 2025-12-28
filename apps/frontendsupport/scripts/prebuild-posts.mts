@@ -1,16 +1,52 @@
 import parseFrontMatter from 'front-matter';
 import { mkdir, readdir, readFile, writeFile } from 'fs/promises';
 import { dirname, join } from 'path';
-import rehypeHighlight from 'rehype-highlight';
+import remarkAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeMathjax from 'rehype-mathjax';
+import rehypePresetMinify from 'rehype-preset-minify';
+import rehypePrism from 'rehype-prism-plus';
+import rehypeRaw from 'rehype-raw';
+import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
 import { remark } from 'remark';
+import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 import remarkRehype from 'remark-rehype';
+import { visit } from 'unist-util-visit';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const postsRootPath = join(__dirname, '../blog-posts');
 const outputDir = join(__dirname, '../public/posts');
+
+function remarkCodeTitles() {
+  return (tree: any): void =>
+    visit(tree, 'code', (node: { lang?: string }, index: number, parent: any) => {
+      const nodeLang = node.lang || '';
+      let language = '';
+      let title = '';
+
+      if (nodeLang.includes(':')) {
+        language = nodeLang.slice(0, nodeLang.search(':'));
+        title = nodeLang.slice(nodeLang.search(':') + 1, nodeLang.length);
+      }
+
+      if (!title) {
+        return;
+      }
+
+      const className = 'remark-code-title';
+
+      const titleNode = {
+        type: 'html',
+        value: `<div class="${className}">${title}</div>`,
+      };
+
+      parent.children.splice(index, 0, titleNode);
+      node.lang = language;
+    });
+}
 
 async function prebuildPosts() {
   const dirs = await readdir(postsRootPath, { withFileTypes: true });
@@ -26,10 +62,20 @@ async function prebuildPosts() {
     const { body, attributes } = parseFrontMatter(source);
 
     const result = await remark()
+      .use(remarkBreaks)
+      .use(remarkCodeTitles)
+      .use(remarkAutolinkHeadings, { behavior: 'wrap' })
+      .use(rehypeSlug)
       .use(remarkGfm)
-      .use(remarkRehype)
-      .use(rehypeHighlight)
-      .use(rehypeStringify)
+      .use(remarkMath)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeMathjax)
+      .use(rehypePrism, { ignoreMissing: true })
+      .use(rehypePresetMinify)
+      .use(rehypeRaw, {
+        passThrough: ['mdxjsEsm', 'mdxFlowExpression', 'mdxTextExpression', 'mdxJsxFlowElement', 'mdxJsxTextElement'],
+      })
+      .use(rehypeStringify, { allowDangerousHtml: true })
       .process(body);
 
     const html = String(result);
