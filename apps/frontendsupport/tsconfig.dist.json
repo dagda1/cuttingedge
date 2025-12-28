@@ -14,7 +14,7 @@
     "node_modules/vite/types/*",
     "../../node_modules/@types/mdx/index.d.ts"
   ],
-  "exclude": ["pruned"],
+  "exclude": ["pruned", "dist"],
   "references": [
     { "path": "../../packages/util/tsconfig.dist.json" },
     { "path": "../../packages/hooks/tsconfig.dist.json" },

@@ -24,5 +24,11 @@
     "node_modules/@floating-ui/react/src/types.d.ts",
     "../../node_modules/@types/mdx/index.d.ts"
   ],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "server.mts", "pruned"]
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "server.mts",
+    "pruned",
+    "dist"
+  ]
 }

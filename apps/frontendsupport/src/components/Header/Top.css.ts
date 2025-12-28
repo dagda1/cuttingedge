@@ -5,6 +5,12 @@ export const logo = style({
   whiteSpace: 'nowrap',
 });
 
+export const header = style({
+  backgroundColor: vars.backgroundColor.body,
+  top: 0,
+  left: 0,
+});
+
 globalStyle(`${logo} img`, {
   position: 'relative',
   top: '-5px',

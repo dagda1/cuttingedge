@@ -1,25 +1,40 @@
+import { Box, Heading, Text } from '@cutting/component-library';
+import { Link } from 'react-router';
+
 import { Scroller } from '../../components/Scroller/Scroller';
 import * as styles from './Home.css';
 
 export function Home(): JSX.Element {
   return (
-    <div className={styles.home}>
-      <section className={styles.hero} style={{ position: 'relative' }}>
-        <div className={styles.container}>
-          <h1 className={styles.heroTitle}>Make your key pages load faster, feel snappier, and stop jumping around</h1>
-          <p className={styles.heroSubtitle}>
-            I run a 7-day performance sprint for React/Next sites—audit, implement the highest-impact fixes, and share
-            before/after results
-          </p>
-          <a href="/contact" className={styles.ctaButton}>
+    <Box className={styles.home}>
+      <Box
+        height="screen"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        position="relative"
+        textAlign="center"
+        marginY="xxxlarge"
+      >
+        <Box marginBottom="xxxlarge">
+          <Heading level="1" weight="regular">
+            Make your key pages load faster, feel snappier, and stop jumping around
+          </Heading>
+          <Box marginY="xxxlarge">
+            <Text component="p" size="large">
+              I run a 7-day performance sprint for React/Next sites—audit, implement the highest-impact fixes, and share
+              before/after results
+            </Text>
+          </Box>
+          <Link to="/contact" className={styles.ctaButton}>
             Get Started
-          </a>
-        </div>
-        <Scroller />
-      </section>
+          </Link>
+          <Scroller />
+        </Box>
+      </Box>
 
-      <section className={styles.services}>
-        <div className={styles.container}>
+      <Box marginBottom="xxxlarge">
+        <div>
           <h2 className={styles.sectionTitle}>What I Do</h2>
           <div className={styles.servicesGrid}>
             <div className={styles.serviceCard}>
@@ -42,10 +57,10 @@ export function Home(): JSX.Element {
             </div>
           </div>
         </div>
-      </section>
+      </Box>
 
       <section className={styles.ctaSection}>
-        <div className={styles.container}>
+        <div>
           <h2 className={styles.ctaTitle}>Ready to speed up your site?</h2>
           <p className={styles.ctaSubtitle}>Let&apos;s talk about your performance goals</p>
           <a href="/contact" className={styles.ctaButton}>
@@ -53,6 +68,6 @@ export function Home(): JSX.Element {
           </a>
         </div>
       </section>
-    </div>
+    </Box>
   );
 }

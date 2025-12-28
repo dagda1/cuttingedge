@@ -16,10 +16,9 @@ const pulse = keyframes({
 });
 
 export const scroller = style({
-  position: 'absolute',
-  bottom: '2rem',
-  left: '50%',
-  transform: 'translateX(-50%)',
+  marginTop: '3rem',
+  display: 'flex',
+  justifyContent: 'center',
   opacity: 1,
 });
 

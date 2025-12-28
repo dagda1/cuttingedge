@@ -1,17 +1,21 @@
 import './global.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
-import { supportTheme } from '@cutting/component-library';
+import { ApplicationLayout } from '@cutting/component-library';
 import { FormContextProvider } from '@cutting/react-hook-form-components';
-import cs from 'classnames';
 import { lazy, StrictMode, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
 
-import { Fallback } from './components/Fallback/Fallback';
+import { AboutSkeleton } from './components/Fallback/AboutSkeleton';
+import { ContactSkeleton } from './components/Fallback/ContactSkeleton';
+import { EmailConfirmationSkeleton } from './components/Fallback/EmailConfirmationSkeleton';
+import { PostsSkeleton } from './components/Fallback/PostsSkeleton';
+import { ServicesSkeleton } from './components/Fallback/ServicesSkeleton';
+import { TestimonialsSkeleton } from './components/Fallback/TestimonialsSkeleton';
 import { Header } from './components/Header/Header';
 import { contactFormProps } from './constants';
-import * as styles from './root.css';
+import Home from './routes/_index';
 
-const Home = lazy(() => import('./routes/_index'));
 const About = lazy(() => import('./routes/about'));
 const Contact = lazy(() => import('./routes/contact'));
 const EmailConfirmation = lazy(() => import('./routes/email.confirmation'));
@@ -28,130 +32,119 @@ const Testimonials = lazy(() => import('./routes/testimonials'));
 
 export function MainRoutes(): React.JSX.Element {
   return (
-    <div className={cs(supportTheme, styles.body)}>
-      <div id="portal" />
-      <Header />
-      <main>
-        <FormContextProvider {...contactFormProps}>
-          <Routes>
+    <ApplicationLayout theme="supportTheme" headerAriaLabel="Frontend Rescue" header={<Header />}>
+      <FormContextProvider {...contactFormProps}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/about"
+            element={
+              <Suspense fallback={<AboutSkeleton />}>
+                <About />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <Suspense fallback={<ContactSkeleton />}>
+                <Contact />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/email/confirmation"
+            element={
+              <Suspense fallback={<EmailConfirmationSkeleton />}>
+                <EmailConfirmation />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/posts"
+            element={
+              <Suspense fallback={<PostsSkeleton />}>
+                <Posts />
+              </Suspense>
+            }
+          >
             <Route
-              path="/"
+              index
               element={
-                <Suspense fallback={<Fallback />}>
-                  <Home />
+                <Suspense fallback={<PostsSkeleton />}>
+                  <PostsIndex />
                 </Suspense>
               }
             />
             <Route
-              path="/about"
+              path=":slug"
               element={
-                <Suspense fallback={<Fallback />}>
-                  <About />
+                <Suspense fallback={<PostsSkeleton />}>
+                  <PostSlug />
+                </Suspense>
+              }
+            />
+          </Route>
+          <Route
+            path="/services"
+            element={
+              <Suspense fallback={<ServicesSkeleton />}>
+                <Services />
+              </Suspense>
+            }
+          >
+            <Route
+              index
+              element={
+                <Suspense fallback={<ServicesSkeleton />}>
+                  <ServicesHome />
                 </Suspense>
               }
             />
             <Route
-              path="/contact"
+              path="consultancy"
               element={
-                <Suspense fallback={<Fallback />}>
-                  <Contact />
+                <Suspense fallback={<ServicesSkeleton />}>
+                  <ServicesConsultancy />
                 </Suspense>
               }
             />
             <Route
-              path="/email/confirmation"
+              path="critical"
               element={
-                <Suspense fallback={<Fallback />}>
-                  <EmailConfirmation />
+                <Suspense fallback={<ServicesSkeleton />}>
+                  <ServicesCritical />
                 </Suspense>
               }
             />
             <Route
-              path="/posts"
+              path="mentoring"
               element={
-                <Suspense fallback={<Fallback />}>
-                  <Posts />
-                </Suspense>
-              }
-            >
-              <Route
-                index
-                element={
-                  <Suspense fallback={<Fallback />}>
-                    <PostsIndex />
-                  </Suspense>
-                }
-              />
-              <Route
-                path=":slug"
-                element={
-                  <Suspense fallback={<Fallback />}>
-                    <PostSlug />
-                  </Suspense>
-                }
-              />
-            </Route>
-            <Route
-              path="/services"
-              element={
-                <Suspense fallback={<Fallback />}>
-                  <Services />
-                </Suspense>
-              }
-            >
-              <Route
-                index
-                element={
-                  <Suspense fallback={<Fallback />}>
-                    <ServicesHome />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="consultancy"
-                element={
-                  <Suspense fallback={<Fallback />}>
-                    <ServicesConsultancy />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="critical"
-                element={
-                  <Suspense fallback={<Fallback />}>
-                    <ServicesCritical />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="mentoring"
-                element={
-                  <Suspense fallback={<Fallback />}>
-                    <ServicesMentoring />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="rescue"
-                element={
-                  <Suspense fallback={<Fallback />}>
-                    <ServicesRescue />
-                  </Suspense>
-                }
-              />
-            </Route>
-            <Route
-              path="/testimonials"
-              element={
-                <Suspense fallback={<Fallback />}>
-                  <Testimonials />
+                <Suspense fallback={<ServicesSkeleton />}>
+                  <ServicesMentoring />
                 </Suspense>
               }
             />
-          </Routes>
-        </FormContextProvider>
-      </main>
-    </div>
+            <Route
+              path="rescue"
+              element={
+                <Suspense fallback={<ServicesSkeleton />}>
+                  <ServicesRescue />
+                </Suspense>
+              }
+            />
+          </Route>
+          <Route
+            path="/testimonials"
+            element={
+              <Suspense fallback={<TestimonialsSkeleton />}>
+                <Testimonials />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </FormContextProvider>
+    </ApplicationLayout>
   );
 }
 

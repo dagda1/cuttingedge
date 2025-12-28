@@ -1,0 +1,31 @@
+import Skeleton from 'react-loading-skeleton';
+
+export function PostsSkeleton(): JSX.Element {
+  return (
+    <div
+      style={{
+        background: '#0E151D',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100%',
+        height: '100%',
+        padding: '6rem 2rem',
+        overflow: 'auto',
+        zIndex: 9999,
+      }}
+    >
+      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <Skeleton baseColor="#1a2332" highlightColor="#2a3442" height={40} style={{ marginBottom: '3rem' }} />
+        {[1, 2, 3].map((i) => (
+          <div key={i} style={{ marginBottom: '2rem' }}>
+            <Skeleton baseColor="#1a2332" highlightColor="#2a3442" height={30} style={{ marginBottom: '0.5rem' }} />
+            <Skeleton baseColor="#1a2332" highlightColor="#2a3442" height={15} count={2} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

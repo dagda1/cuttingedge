@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import parseFrontMatter from 'front-matter';
 import { mkdir, readdir, readFile, writeFile } from 'fs/promises';
 import { dirname, join } from 'path';
@@ -22,6 +23,8 @@ const outputDir = join(__dirname, '../public/posts');
 
 function remarkCodeTitles() {
   return (tree: any): void =>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     visit(tree, 'code', (node: { lang?: string }, index: number, parent: any) => {
       const nodeLang = node.lang || '';
       let language = '';
