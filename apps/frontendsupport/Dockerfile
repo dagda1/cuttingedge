@@ -58,8 +58,8 @@ RUN sed -i -e 's|../../tsconfig-base.json|../../../tsconfig-base.json|g' ./dist/
 
 RUN echo -n "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc-deploy
 
-WORKDIR /app
+WORKDIR /app/dist
 
 ENV NODE_ENV=production
 EXPOSE 3001
-CMD ["node", "dist/server.mjs"]
+CMD ["node", "./dist/server.mjs"]

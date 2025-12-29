@@ -244,12 +244,18 @@ importers:
       '@cutting/util':
         specifier: workspace:*
         version: link:../../packages/util
+      '@floating-ui/react':
+        specifier: 0.27.16
+        version: 0.27.16(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@unpic/placeholder':
         specifier: ^0.1.2
         version: 0.1.2
       '@unpic/react':
         specifier: ^1.0.2
         version: 1.0.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
       cloudinary-build-url:
         specifier: ^0.2.4
         version: 0.2.4
@@ -341,9 +347,6 @@ importers:
       '@cutting/cloudinary-blurhash':
         specifier: workspace:*
         version: link:../../packages/cloudinary-blurhash
-      '@floating-ui/react':
-        specifier: 0.27.16
-        version: 0.27.16(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@pnpm/find-workspace-packages':
         specifier: ^6.0.9
         version: 6.0.9(@pnpm/logger@5.2.0)
@@ -377,9 +380,6 @@ importers:
       browserslist:
         specifier: ^4.28.1
         version: 4.28.1
-      classnames:
-        specifier: 2.5.1
-        version: 2.5.1
       dedent:
         specifier: 1.7.1
         version: 1.7.1(babel-plugin-macros@3.1.0)
