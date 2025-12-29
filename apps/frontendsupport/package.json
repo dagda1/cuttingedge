@@ -10,7 +10,7 @@
     "build": "rimraf dist && tsc -p ./tsconfig.dist.json && pnpm prebuild && tsc && vite build --outDir dist/client --ssrManifest && vite build --ssr src/entry-server.tsx --outDir dist/server && pnpm copy-blog-posts && ./fix-files",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
-    "dev": "nodemon --watch server.mts --watch src --ext ts,tsx --exec 'tsx server.mts'",
+    "dev": "PORT=3001 nodemon --watch server.mts --watch src/server --ext \"ts,tsx\" --exec 'tsx server.mts'",
     "lint": "eslint --fix .",
     "serve": "NODE_ENV=production node dist/server.mjs",
     "deploy:web": "rm -rf ./pruned && NODE_ENV=production pnpm build && pnpm --filter @cutting/frontend-support --prod deploy pruned && ./bin/deploy.sh",

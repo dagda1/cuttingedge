@@ -54,6 +54,8 @@ export async function createServer(): Promise<{
       },
       appType: 'custom',
     });
+
+    console.log({ root });
     // use vite's connect instance as middleware
     app.use(vite.middlewares);
   } else {

@@ -1,5 +1,6 @@
 import { Box, Heading, Text } from '@cutting/component-library';
-import { Link } from 'react-router';
+
+import { ContactButtons } from '~/components/Contact/ContactButtons';
 
 import { Scroller } from '../../components/Scroller/Scroller';
 import * as styles from './Home.css';
@@ -22,13 +23,11 @@ export function Home(): JSX.Element {
           </Heading>
           <Box marginY="xxxlarge">
             <Text component="p" size="large">
-              I run a 7-day performance sprint for React/Next sites—audit, implement the highest-impact fixes, and share
-              before/after results
+              I run a 7-day performance sprint for React/Next/SPAs where I audit your key pages, implement the
+              highest-impact fixes, and send a clear before/after report.
             </Text>
           </Box>
-          <Link to="/contact" className={styles.ctaButton}>
-            Get Started
-          </Link>
+          <ContactButtons justify="center" />
           <Scroller />
         </Box>
       </Box>
@@ -63,9 +62,7 @@ export function Home(): JSX.Element {
         <div>
           <h2 className={styles.ctaTitle}>Ready to speed up your site?</h2>
           <p className={styles.ctaSubtitle}>Let&apos;s talk about your performance goals</p>
-          <a href="/contact" className={styles.ctaButton}>
-            Schedule a Call
-          </a>
+          <ContactButtons justify="center" />
         </div>
       </section>
     </Box>
