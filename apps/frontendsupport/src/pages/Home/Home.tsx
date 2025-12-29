@@ -1,6 +1,7 @@
 import { Box, Heading, Text } from '@cutting/component-library';
 
 import { ContactButtons } from '~/components/Contact/ContactButtons';
+import Testimonials from '~/routes/testimonials';
 
 import { Scroller } from '../../components/Scroller/Scroller';
 import * as styles from './Home.css';
@@ -32,7 +33,7 @@ export function Home(): JSX.Element {
         </Box>
       </Box>
 
-      <Box marginBottom="xxxlarge">
+      <Box marginBottom="xxxlarge" paddingBottom="xxxlarge">
         <div>
           <h2 className={styles.sectionTitle}>What I Do</h2>
           <div className={styles.servicesGrid}>
@@ -63,8 +64,10 @@ export function Home(): JSX.Element {
           <h2 className={styles.ctaTitle}>Ready to speed up your site?</h2>
           <p className={styles.ctaSubtitle}>Let&apos;s talk about your performance goals</p>
           <ContactButtons justify="center" />
+          <Scroller />
         </div>
       </section>
+      <Testimonials />
     </Box>
   );
 }

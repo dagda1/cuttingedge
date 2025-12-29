@@ -9,6 +9,10 @@ export const root = style({
   // borderBottom: '1px dotted #0098d8',
 });
 
+globalStyle(`${root} figcaption cite span`, {
+  color: palette.white,
+});
+
 globalStyle(`${root} blockquote`, {
   boxShadow: '0 0 6px rgb(0 0 0 / 50%)',
   background: palette.white,

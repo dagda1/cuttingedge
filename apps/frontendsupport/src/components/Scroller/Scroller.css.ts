@@ -20,6 +20,7 @@ export const scroller = style({
   display: 'flex',
   justifyContent: 'center',
   opacity: 1,
+  marginLeft: '50px',
 });
 
 export const arrow = style({
