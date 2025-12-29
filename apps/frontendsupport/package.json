@@ -7,12 +7,13 @@
   "scripts": {
     "prebuild": "tsx scripts/prebuild-posts.mts",
     "copy-blog-posts": "rm -rf dist/server/blog-posts/* && cp -rf blog-posts dist/server",
-    "build": "rimraf dist && tsc -p ./tsconfig.dist.json && pnpm prebuild && tsc && vite build --outDir dist/client --ssrManifest && vite build --ssr src/entry-server.tsx --outDir dist/server && pnpm copy-blog-posts",
+    "build": "rimraf dist && tsc -p ./tsconfig.dist.json && pnpm prebuild && tsc && vite build --outDir dist/client --ssrManifest && vite build --ssr src/entry-server.tsx --outDir dist/server && pnpm copy-blog-posts && ./fix-files",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "dev": "nodemon --watch server.mts --watch src --ext ts,tsx --exec 'tsx server.mts'",
     "lint": "eslint --fix .",
     "serve": "NODE_ENV=production node dist/server.mjs",
+    "deploy:web": "rm -rf ./pruned && NODE_ENV=production pnpm build && pnpm --filter @cutting/frontend-support --prod deploy pruned && ./bin/deploy.sh",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -117,12 +118,8 @@
     "react-is": "19.2.0",
     "use-debounce": "10.0.6"
   },
-  "files": [
-    "dist",
-    "public"
-  ],
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   },
   "volta": {
     "extends": "../../package.json"
