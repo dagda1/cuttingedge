@@ -1,0 +1,53 @@
+name: Deploy Frontend Support to App Runner
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/frontendsupport/**'
+      - 'packages/**'
+      - 'pnpm-lock.yaml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.2
+
+      - name: Creating .npmrc
+        run: |
+          "${GITHUB_WORKSPACE}/scripts/create-npmrc.sh" "${{ secrets.NPM_TOKEN }}"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        run: |
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 313095418189.dkr.ecr.us-east-1.amazonaws.com
+
+      - name: Deploy to App Runner
+        env:
+          DOCKER_DEFAULT_PLATFORM: linux/amd64
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          pnpm --filter @cutting/frontend-support deploy:web
+          SERVICE_ARN=$(aws apprunner list-services --query "ServiceSummaryList[?ServiceName=='frontendsupport'].ServiceArn | [0]" --output text)
+          aws apprunner start-deployment --service-arn $SERVICE_ARN
