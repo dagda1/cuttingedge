@@ -271,6 +271,9 @@ importers:
       cross-env:
         specifier: ^10.1.0
         version: 10.1.0
+      dedent:
+        specifier: 1.7.1
+        version: 1.7.1(babel-plugin-macros@3.1.0)
       express:
         specifier: 5.2.1
         version: 5.2.1
@@ -383,9 +386,6 @@ importers:
       browserslist:
         specifier: ^4.28.1
         version: 4.28.1
-      dedent:
-        specifier: 1.7.1
-        version: 1.7.1(babel-plugin-macros@3.1.0)
       eslint-config-prettier:
         specifier: 10.1.8
         version: 10.1.8(eslint@9.39.2)
