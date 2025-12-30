@@ -8,6 +8,8 @@ import {
   Stack,
 } from '@cutting/component-library';
 
+import { ContactButtons } from '~/components/Contact/ContactButtons';
+
 export default function Testimonials(): JSX.Element {
   return (
     <Box paddingTop="xxxlarge" display="flex" justifyContent="center">
@@ -20,6 +22,7 @@ export default function Testimonials(): JSX.Element {
             <DSTestimonial />
             <C2Testimonial />
             <Redhatestimonial />
+            <ContactButtons justify="center" />
           </Box>
         </Stack>
       </PageBlock>

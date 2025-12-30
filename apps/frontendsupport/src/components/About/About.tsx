@@ -1,5 +1,6 @@
 import { Box, Heading, List, PageBlock, Stack, Text, TextLink } from '@cutting/component-library';
 
+import { ContactButtons } from '../Contact/ContactButtons';
 import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 
 export function About(): JSX.Element {
@@ -88,6 +89,9 @@ export function About(): JSX.Element {
               page experiences.
             </Text>
           </Stack>
+        </Box>
+        <Box marginTop="large">
+          <ContactButtons justify="center" />
         </Box>
       </PageBlock>
     </Box>
