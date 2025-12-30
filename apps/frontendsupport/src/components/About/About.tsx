@@ -8,7 +8,7 @@ export function About(): JSX.Element {
       <PageBlock>
         <Box component="section">
           <Stack space="large">
-            <Heading level="1">My story</Heading>
+            <Heading level="1">Performance-first frontend</Heading>
             <Box>
               <LazyLoadedImage
                 src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690230987/me_voddxj.png"
@@ -23,11 +23,15 @@ export function About(): JSX.Element {
               </TextLink>
             </Heading>
             <Text>
-              My passion is and always has been frontend development. I love the instant visual feedback that is unique
-              to frontend development.
+              I help teams make modern websites and web apps noticeably faster so key pages load quickly, feel
+              responsive, and stay visually stable.
             </Text>
             <Text component="p">
-              I’m an open-source fanatic with countless &nbsp;
+              Most of my work is performance-focused: reducing JavaScript bloat, improving rendering (SSR/CSR), caching,
+              taming third-party scripts, and turning slow pages into measurable wins.
+            </Text>
+            <Text component="p">
+              I’m an open-source fanatic with countless&nbsp;
               <TextLink
                 external
                 href="https://cutting.scot/oss"
@@ -35,22 +39,23 @@ export function About(): JSX.Element {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                merged pull requests&nbsp;
+                merged pull requests
               </TextLink>
-              across numerous major repositories.
+              &nbsp;across numerous major repositories.
             </Text>
             <Text component="p">
               I write professionally for&nbsp;
               <TextLink external href="https://blog.logrocket.com/author/paulcowan/">
-                logrocket
+                LogRocket
               </TextLink>
-              &nbsp;and my own&nbsp;
+              &nbsp;and on my own&nbsp;
               <TextLink external href="https://thesoftwaresimpleton.com">
-                personal blog.
+                personal blog
               </TextLink>
+              , often about practical web performance.
             </Text>
             <Text component="p">
-              I have over 25+ years of experience working on some exceptional frontend pieces of work for such as&nbsp;
+              I have 25+ years of experience shipping and improving frontends for organisations such as
             </Text>
             <List>
               <Text>
@@ -75,9 +80,12 @@ export function About(): JSX.Element {
                 </TextLink>
               </Text>
             </List>
-            <Text>I build and repair complex React frontends so products can launch on time.</Text>
             <Text>
-              At 55 years of age, I have more experience than most and I get results in a fraction of the time.
+              I run short performance sprints that audit, fix, and prove improvements with clear before/after results.
+            </Text>
+            <Text>
+              I’m pragmatic, fast-moving, and focused on impact: fewer bytes shipped, faster interactions, and smoother
+              page experiences.
             </Text>
           </Stack>
         </Box>

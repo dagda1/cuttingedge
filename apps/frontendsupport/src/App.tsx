@@ -10,7 +10,6 @@ import { AboutSkeleton } from './components/Fallback/AboutSkeleton';
 import { ContactSkeleton } from './components/Fallback/ContactSkeleton';
 import { EmailConfirmationSkeleton } from './components/Fallback/EmailConfirmationSkeleton';
 import { PostsSkeleton } from './components/Fallback/PostsSkeleton';
-import { ServicesSkeleton } from './components/Fallback/ServicesSkeleton';
 import { TestimonialsSkeleton } from './components/Fallback/TestimonialsSkeleton';
 import { Header } from './components/Header/Header';
 import { contactFormProps } from './constants';
@@ -22,12 +21,6 @@ const EmailConfirmation = lazy(() => import('./routes/email.confirmation'));
 const Posts = lazy(() => import('./routes/posts'));
 const PostsIndex = lazy(() => import('./routes/posts._index'));
 const PostSlug = lazy(() => import('./routes/posts.$slug'));
-const Services = lazy(() => import('./routes/services'));
-const ServicesConsultancy = lazy(() => import('./routes/services.consultancy'));
-const ServicesCritical = lazy(() => import('./routes/services.critical'));
-const ServicesHome = lazy(() => import('./routes/services.home'));
-const ServicesMentoring = lazy(() => import('./routes/services.mentoring'));
-const ServicesRescue = lazy(() => import('./routes/services.rescue'));
 const Testimonials = lazy(() => import('./routes/testimonials'));
 
 export function MainRoutes(): React.JSX.Element {
@@ -85,55 +78,7 @@ export function MainRoutes(): React.JSX.Element {
               }
             />
           </Route>
-          <Route
-            path="/services"
-            element={
-              <Suspense fallback={<ServicesSkeleton />}>
-                <Services />
-              </Suspense>
-            }
-          >
-            <Route
-              index
-              element={
-                <Suspense fallback={<ServicesSkeleton />}>
-                  <ServicesHome />
-                </Suspense>
-              }
-            />
-            <Route
-              path="consultancy"
-              element={
-                <Suspense fallback={<ServicesSkeleton />}>
-                  <ServicesConsultancy />
-                </Suspense>
-              }
-            />
-            <Route
-              path="critical"
-              element={
-                <Suspense fallback={<ServicesSkeleton />}>
-                  <ServicesCritical />
-                </Suspense>
-              }
-            />
-            <Route
-              path="mentoring"
-              element={
-                <Suspense fallback={<ServicesSkeleton />}>
-                  <ServicesMentoring />
-                </Suspense>
-              }
-            />
-            <Route
-              path="rescue"
-              element={
-                <Suspense fallback={<ServicesSkeleton />}>
-                  <ServicesRescue />
-                </Suspense>
-              }
-            />
-          </Route>
+
           <Route
             path="/testimonials"
             element={

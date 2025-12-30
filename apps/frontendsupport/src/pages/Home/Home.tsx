@@ -1,5 +1,6 @@
 import { Box, Heading, Text } from '@cutting/component-library';
 
+import { About } from '~/components/About/About';
 import { ContactButtons } from '~/components/Contact/ContactButtons';
 import Testimonials from '~/routes/testimonials';
 
@@ -24,8 +25,8 @@ export function Home(): JSX.Element {
           </Heading>
           <Box marginY="xxxlarge">
             <Text component="p" size="large">
-              I run a 7-day performance sprint for React/Next/SPAs where I audit your key pages, implement the
-              highest-impact fixes, and send a clear before/after report.
+              I run a 7-day performance sprint for modern websites and web apps, especially JavaScript-heavy ones, where
+              I audit your key pages, implement the highest-impact fixes, and send a clear before/after report.
             </Text>
           </Box>
           <ContactButtons justify="center" />
@@ -46,7 +47,8 @@ export function Home(): JSX.Element {
             <div className={styles.serviceCard}>
               <h3 className={styles.serviceCardTitle}>Implementation</h3>
               <p className={styles.serviceCardText}>
-                Ship the highest-impact optimizations: code splitting, lazy loading, image optimization
+                Ship the highest-impact optimizations: code splitting, lazy loading, image optimization, shrink bundle
+                sizes, dead code elimination, and more.
               </p>
             </div>
             <div className={styles.serviceCard}>
@@ -68,6 +70,8 @@ export function Home(): JSX.Element {
         </div>
       </section>
       <Testimonials />
+      <Scroller />
+      <About />
     </Box>
   );
 }

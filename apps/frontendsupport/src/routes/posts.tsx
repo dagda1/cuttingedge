@@ -1,6 +1,7 @@
 import { Box, Heading, Stack } from '@cutting/component-library';
-import { ContactButtons } from '@cutting/react-hook-form-components';
 import { Outlet } from 'react-router';
+
+import { ContactButtons } from '~/components/Contact/ContactButtons';
 
 export default function Services(): JSX.Element {
   return (
@@ -10,7 +11,7 @@ export default function Services(): JSX.Element {
         <Stack space="large" align="center">
           <Heading level="2">Do you need frontend help?</Heading>
           <Box marginBottom="large">
-            <ContactButtons justify="center" callType="chat" />
+            <ContactButtons justify="center" />
           </Box>
         </Stack>
       </Box>

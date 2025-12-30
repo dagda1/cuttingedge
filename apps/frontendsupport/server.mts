@@ -46,8 +46,6 @@ export async function createServer(): Promise<{
       server: {
         middlewareMode: true,
         watch: {
-          // During tests we edit the files too fast and sometimes chokidar
-          // misses change events, so enforce polling for consistency
           usePolling: true,
           interval: 10,
         },
@@ -55,8 +53,6 @@ export async function createServer(): Promise<{
       appType: 'custom',
     });
 
-    console.log({ root });
-    // use vite's connect instance as middleware
     app.use(vite.middlewares);
   } else {
     app.use((await import('compression')).default({ level: 1 }));

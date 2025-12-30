@@ -16,9 +16,11 @@ export default function Testimonials(): JSX.Element {
           <Heading center level="1">
             Testimonials: The True Measure of Success
           </Heading>
-          <Redhatestimonial />
-          <DSTestimonial />
-          <C2Testimonial />
+          <Box>
+            <DSTestimonial />
+            <C2Testimonial />
+            <Redhatestimonial />
+          </Box>
         </Stack>
       </PageBlock>
     </Box>

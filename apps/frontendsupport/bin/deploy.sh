@@ -10,7 +10,4 @@ docker tag frontendsupport:latest 313095418189.dkr.ecr.us-east-1.amazonaws.com/f
 
 docker push 313095418189.dkr.ecr.us-east-1.amazonaws.com/frontendsupport:latest
 
-SERVICE_ARN=$(aws apprunner list-services --query "ServiceSummaryList[?ServiceName=='frontendsupport'].ServiceArn | [0]" --output text)
-aws apprunner start-deployment --service-arn $SERVICE_ARN
-
 rm -rf ./pruned
