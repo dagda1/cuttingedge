@@ -1,3 +1,4 @@
+import { responsiveStyle, vars } from '@cutting/component-library';
 import { keyframes, style } from '@vanilla-extract/css';
 
 const fadeIn = keyframes({
@@ -12,6 +13,16 @@ const fadeIn = keyframes({
 export const home = style({
   fontFamily: "'Helvetica Now Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   animation: `${fadeIn} 0.5s ease-in`,
+  ...responsiveStyle({
+    mobile: {
+      marginLeft: vars.space.medium,
+      marginRight: vars.space.medium,
+    },
+    desktop: {
+      marginLeft: 0,
+      marginRight: 0,
+    },
+  }),
 });
 
 export const ctaButton = style({

@@ -56,7 +56,7 @@ export function About(): JSX.Element {
               , often about practical web performance.
             </Text>
             <Text component="p">
-              I have 25+ years of experience shipping and improving frontends for organisations such as
+              I have 25+ years of experience shipping and improving frontends for organisations such as:
             </Text>
             <List>
               <Text>

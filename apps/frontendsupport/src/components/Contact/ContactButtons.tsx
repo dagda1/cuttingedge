@@ -1,3 +1,4 @@
+import { Box } from '@cutting/component-library';
 import { lazy, Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
@@ -24,7 +25,9 @@ export function ContactButtons({ justify: justify = 'flexStart' }: ContactButton
         </div>
       }
     >
-      <ContactForm callType="chat" justify={justify} />
+      <Box>
+        <ContactForm callType="chat" justify={justify} />
+      </Box>
     </Suspense>
   );
 }
