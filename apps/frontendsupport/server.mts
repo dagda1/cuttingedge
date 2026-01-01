@@ -93,8 +93,6 @@ export async function createServer(): Promise<{
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   app.get('/og-image', async (req, res) => {
     const isContainer = process.env.OS_ENV === 'container';
     const url = req.query.url;
