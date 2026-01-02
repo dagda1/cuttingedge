@@ -4,7 +4,6 @@ https://www.chillys.com
 
 | Contacted | Site                               | Perf |
 | --------: | ---------------------------------- | ---- |
-|       [ ] | https://www.ohpolly.com            | 43   |
 |       [ ] | https://www.victoriabeckham.com    | 50   |
 |       [ ] | https://kyliejennercosmetics.co.uk | 52   |
 |       [ ] | https://tropicskincare.com         | 60   |
@@ -14,6 +13,6 @@ https://www.chillys.com
 
 ## Best shopify sites
 
-https://deliveroo-packaging.com
-https://heinztohome.co.uk/
-https://uk.huel.com/
+- https://deliveroo-packaging.com
+- https://heinztohome.co.uk/
+- https://uk.huel.com/
