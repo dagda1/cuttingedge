@@ -103,7 +103,7 @@ export async function createServer(): Promise<{
           fontSrc: ["'self'", 'data:', 'https://fonts.gstatic.com', 'https://fonts.googleapis.com'],
           objectSrc: ["'self'", 'blob:'],
           frameSrc: ["'self'", 'https://www.formlets.com'],
-          manifestSrc: ['data:'],
+          manifestSrc: ["'self'"],
         },
       }),
     );
