@@ -1,3 +1,4 @@
+import { range } from '@cutting/util';
 import Skeleton from 'react-loading-skeleton';
 
 export function PostsSkeleton(): JSX.Element {
@@ -17,12 +18,11 @@ export function PostsSkeleton(): JSX.Element {
         zIndex: 9999,
       }}
     >
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <Skeleton baseColor="#1a2332" highlightColor="#2a3442" height={40} style={{ marginBottom: '3rem' }} />
-        {[1, 2, 3].map((i) => (
-          <div key={i} style={{ marginBottom: '2rem' }}>
-            <Skeleton baseColor="#1a2332" highlightColor="#2a3442" height={30} style={{ marginBottom: '0.5rem' }} />
-            <Skeleton baseColor="#1a2332" highlightColor="#2a3442" height={15} count={2} />
+      <div style={{ maxWidth: '882px', margin: '0 auto' }}>
+        <Skeleton baseColor="#1a2332" highlightColor="#2a3442" height={43} style={{ marginBottom: '1rem' }} />
+        {[...range(5)].map((i) => (
+          <div key={i} style={{ marginTop: '1.5rem' }}>
+            <Skeleton baseColor="#1a2332" highlightColor="#2a3442" height={105} style={{ marginBottom: '0.5rem' }} />
           </div>
         ))}
       </div>
