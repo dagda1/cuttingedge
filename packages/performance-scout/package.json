@@ -1,0 +1,28 @@
+{
+  "name": "performance-scout",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "CLI tool to discover and test UK Shopify sites for performance",
+  "scripts": {
+    "scan": "tsx ./scan.ts",
+    "scan:serper": "tsx ./scan.ts --use-serper"
+  },
+  "keywords": [
+    "shopify",
+    "lighthouse",
+    "performance",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lighthouse": "^13.0.1",
+    "serpapi": "^2.2.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}
