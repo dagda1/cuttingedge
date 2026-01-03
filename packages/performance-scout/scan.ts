@@ -17,12 +17,14 @@ const execFileAsync = promisify(execFile);
 interface Config {
   DESKTOP_THRESHOLD: number;
   MOBILE_THRESHOLD: number;
+  SEO_THRESHOLD: number;
   MAX_RESULTS: number;
 }
 
 const config: Config = JSON.parse(await fs.readFile(path.join(__dirname, 'config.json'), 'utf-8'));
 const DESKTOP_THRESHOLD = config.DESKTOP_THRESHOLD || 50;
 const MOBILE_THRESHOLD = config.MOBILE_THRESHOLD || 50;
+const SEO_THRESHOLD = config.SEO_THRESHOLD || 50;
 const MAX_RESULTS = config.MAX_RESULTS || 10;
 
 const COMPLETED_FILE = path.join(__dirname, 'completed.md');
@@ -151,9 +153,12 @@ async function verifyShopify(domain: string): Promise<boolean> {
   }
 }
 
-async function runLighthouse(domain: string, isDesktop: boolean = false): Promise<number | null> {
+async function runLighthouse(
+  domain: string,
+  isDesktop: boolean = false,
+): Promise<{ performance: number | null; seo: number | null }> {
   const url = `https://${domain}`;
-  const args = [url, '--only-categories=performance', '--output=json', '--quiet', '--chrome-flags=--headless'];
+  const args = [url, '--only-categories=performance,seo', '--output=json', '--quiet', '--chrome-flags=--headless'];
 
   if (isDesktop) {
     args.push('--preset=desktop');
@@ -162,26 +167,31 @@ async function runLighthouse(domain: string, isDesktop: boolean = false): Promis
   try {
     const { stdout } = await execFileAsync('lighthouse', args, { maxBuffer: 10 * 1024 * 1024 });
     const result = JSON.parse(stdout) as LHResult;
-    const score = result.categories?.performance?.score;
-    return score !== null && score !== undefined ? Math.round(score * 100) : null;
+    const perfScore = result.categories?.performance?.score;
+    const seoScore = result.categories?.seo?.score;
+    return {
+      performance: perfScore !== null && perfScore !== undefined ? Math.round(perfScore * 100) : null,
+      seo: seoScore !== null && seoScore !== undefined ? Math.round(seoScore * 100) : null,
+    };
   } catch (error) {
     console.error(
       `Lighthouse error for ${domain} (${isDesktop ? 'desktop' : 'mobile'}):`,
       error instanceof Error ? error.message : String(error),
     );
-    return null;
+    return { performance: null, seo: null };
   }
 }
 
 async function testSite(domain: string) {
   console.log(`Testing ${domain}...`);
 
-  const [desktopScore, mobileScore] = await Promise.all([runLighthouse(domain, true), runLighthouse(domain, false)]);
+  const [desktopResult, mobileResult] = await Promise.all([runLighthouse(domain, true), runLighthouse(domain, false)]);
 
   return {
     domain,
-    desktopScore,
-    mobileScore,
+    desktopScore: desktopResult.performance,
+    mobileScore: mobileResult.performance,
+    seoScore: mobileResult.seo,
   };
 }
 
@@ -207,7 +217,10 @@ async function main(): Promise<void> {
   const needsHeader = !fileExists || (await fs.readFile(outputPath, 'utf-8')).length === 0;
 
   if (needsHeader) {
-    await fs.writeFile(outputPath, '| Site | Desktop Perf | Mobile Perf |\n|------|--------------|-------------|\n');
+    await fs.writeFile(
+      outputPath,
+      '| Site | Desktop Perf | Mobile Perf | SEO |\n|------|--------------|-------------|-----|\n',
+    );
   }
 
   const results: Awaited<ReturnType<typeof testSite>>[] = [];
@@ -240,20 +253,26 @@ async function main(): Promise<void> {
 
     const desktop = testResult.desktopScore !== null ? testResult.desktopScore : 'N/A';
     const mobile = testResult.mobileScore !== null ? testResult.mobileScore : 'N/A';
+    const seo = testResult.seoScore !== null ? testResult.seoScore : 'N/A';
 
     const meetsThreshold =
       testResult.desktopScore !== null &&
       testResult.mobileScore !== null &&
-      (testResult.desktopScore < DESKTOP_THRESHOLD || testResult.mobileScore < MOBILE_THRESHOLD);
+      testResult.seoScore !== null &&
+      (testResult.desktopScore < DESKTOP_THRESHOLD ||
+        testResult.mobileScore < MOBILE_THRESHOLD ||
+        testResult.seoScore < SEO_THRESHOLD);
 
     if (meetsThreshold) {
       results.push(testResult);
-      const row = `| ${testResult.domain} | ${desktop} | ${mobile} |\n`;
+      const row = `| ${testResult.domain} | ${desktop} | ${mobile} | ${seo} |\n`;
       console.log(`Writing to ${outputPath}: ${row.trim()}`);
       await fs.appendFile(outputPath, row);
-      console.log(`Added ${domain} to results (${results.length}) - Desktop: ${desktop}, Mobile: ${mobile}\n`);
+      console.log(
+        `Added ${domain} to results (${results.length}) - Desktop: ${desktop}, Mobile: ${mobile}, SEO: ${seo}\n`,
+      );
     } else {
-      console.log(`${domain} scores too high, skipping - Desktop: ${desktop}, Mobile: ${mobile}\n`);
+      console.log(`${domain} scores too high, skipping - Desktop: ${desktop}, Mobile: ${mobile}, SEO: ${seo}\n`);
     }
   }
 
