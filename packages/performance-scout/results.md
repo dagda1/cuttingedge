@@ -10,3 +10,6 @@
 | rokit.co.uk                | 44           | 22          | 77  |
 | bornprimitive.co.uk        | 51           | 27          | 92  |
 | lighthouseclothing.co.uk   | 72           | 26          | 92  |
+| mandatorytraining.co.uk    | 60           | 24          | 75  |
+| boopbeauty.co.uk           | 73           | 10          | 85  |
+| bareminerals.co.uk         | 38           | 6           | 92  |
