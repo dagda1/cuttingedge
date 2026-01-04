@@ -8,3 +8,5 @@
 | songmicshome.co.uk         | 31           | 26          | 69  |
 | lovisa.co.uk               | 36           | 29          | 92  |
 | rokit.co.uk                | 44           | 22          | 77  |
+| bornprimitive.co.uk        | 51           | 27          | 92  |
+| lighthouseclothing.co.uk   | 72           | 26          | 92  |
