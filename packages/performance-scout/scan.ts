@@ -22,10 +22,10 @@ interface Config {
 }
 
 const config: Config = JSON.parse(await fs.readFile(path.join(__dirname, 'config.json'), 'utf-8'));
-const DESKTOP_THRESHOLD = config.DESKTOP_THRESHOLD || 50;
-const MOBILE_THRESHOLD = config.MOBILE_THRESHOLD || 50;
-const SEO_THRESHOLD = config.SEO_THRESHOLD || 50;
-const MAX_RESULTS = config.MAX_RESULTS || 10;
+const DESKTOP_THRESHOLD = config.DESKTOP_THRESHOLD;
+const MOBILE_THRESHOLD = config.MOBILE_THRESHOLD;
+const SEO_THRESHOLD = config.SEO_THRESHOLD;
+const MAX_RESULTS = config.MAX_RESULTS;
 
 const COMPLETED_FILE = path.join(__dirname, 'completed.md');
 
