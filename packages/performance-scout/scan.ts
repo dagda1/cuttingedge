@@ -19,6 +19,7 @@ interface Config {
   MOBILE_THRESHOLD: number;
   SEO_THRESHOLD: number;
   MAX_RESULTS: number;
+  crawledVerticals: string[];
 }
 
 const config: Config = JSON.parse(await fs.readFile(path.join(__dirname, 'config.json'), 'utf-8'));
@@ -28,8 +29,11 @@ const SEO_THRESHOLD = config.SEO_THRESHOLD;
 const MAX_RESULTS = config.MAX_RESULTS;
 
 const COMPLETED_FILE = path.join(__dirname, 'completed.md');
+const CONFIG_FILE = path.join(__dirname, 'config.json');
 
 const useSerper = process.argv.includes('--use-serper');
+const verticalArg = process.argv.find((arg) => arg.startsWith('--vertical='));
+const vertical = verticalArg ? verticalArg.split('=')[1] : null;
 
 async function loadCompletedDomains(): Promise<Set<string>> {
   if (!existsSync(COMPLETED_FILE)) {
@@ -59,15 +63,28 @@ async function loadCandidatesFromFile(): Promise<string[]> {
     .filter((line) => line.length > 0);
 }
 
+async function saveConfig(): Promise<void> {
+  await fs.writeFile(CONFIG_FILE, JSON.stringify(config, null, 2) + '\n');
+}
+
 async function fetchSerperCandidates(completedDomains: Set<string>): Promise<string[]> {
   const apiKey = process.env.SERPER_API_KEY;
   if (!apiKey) {
     throw new Error('SERPER_API_KEY environment variable is required');
   }
 
-  console.log('Fetching candidates from Serper API...');
+  if (!vertical) {
+    throw new Error('--vertical=<keyword> is required when using --use-serper');
+  }
 
-  let query = '"cdn.shopify.com" site:.uk';
+  if (config.crawledVerticals.includes(vertical)) {
+    console.log(`Vertical "${vertical}" already crawled, exiting.`);
+    process.exit(0);
+  }
+
+  console.log(`Fetching candidates from Serper API for vertical: ${vertical}...`);
+
+  let query = `"cdn.shopify.com" ${vertical} site:.uk`;
   for (const domain of completedDomains) {
     query += ` -site:${domain}`;
   }
@@ -274,6 +291,12 @@ async function main(): Promise<void> {
     } else {
       console.log(`${domain} scores too high, skipping - Desktop: ${desktop}, Mobile: ${mobile}, SEO: ${seo}\n`);
     }
+  }
+
+  if (useSerper && vertical) {
+    config.crawledVerticals.push(vertical);
+    await saveConfig();
+    console.log(`Added "${vertical}" to crawled verticals.`);
   }
 
   console.log(`\n=== Scan Complete ===`);

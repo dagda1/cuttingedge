@@ -2,5 +2,6 @@
   "DESKTOP_THRESHOLD": 40,
   "MOBILE_THRESHOLD": 30,
   "SEO_THRESHOLD": 50,
-  "MAX_RESULTS": 100
+  "MAX_RESULTS": 100,
+  "crawledVerticals": ["fashion"]
 }
