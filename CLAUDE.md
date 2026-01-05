@@ -8,7 +8,8 @@ Build the smallest correct solution that matches the spec.
 
 - No code comments (no `//`, `/* */`, `#`).
 - Prefer small functions and descriptive names over comments.
-- Don’t change unrelated files.
+- Don't change unrelated files.
+- Avoid fixed pixels; use `vars.space` from `@cutting/component-library` for spacing.
 
 ## Output expectations
 
@@ -28,3 +29,10 @@ Build the smallest correct solution that matches the spec.
 ## When unsure
 
 Stop and ask for clarification before coding.
+
+# Code Modification Policy
+
+- Do NOT modify code unless explicitly asked
+- When the user complains about something, ask if they want it changed
+- Do not add features that weren't requested
+- Do not add code comments
