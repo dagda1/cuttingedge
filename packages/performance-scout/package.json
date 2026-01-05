@@ -1,6 +1,6 @@
 {
   "name": "performance-scout",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "CLI tool to discover and test UK Shopify sites for performance",
   "scripts": {
