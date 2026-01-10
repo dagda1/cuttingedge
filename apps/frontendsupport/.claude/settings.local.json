@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:frontendrescue.com)",
+      "WebFetch(domain:www.reddit.com)"
+    ]
+  }
+}
