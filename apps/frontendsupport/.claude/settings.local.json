@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:frontendrescue.com)",
-      "WebFetch(domain:www.reddit.com)"
+      "WebFetch(domain:www.reddit.com)",
+      "WebFetch(domain:portal.catchpoint.com)",
+      "Bash(cat:*)"
     ]
   }
 }

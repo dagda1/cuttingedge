@@ -90,7 +90,6 @@ async function prebuildPosts() {
 
     await writeFile(join(outputDir, `${dir.name}.json`), JSON.stringify(postData), 'utf-8');
 
-    // Add to posts list
     const meta = (attributes as any).meta || {};
     postsList.push({
       slug: dir.name,
@@ -103,7 +102,8 @@ async function prebuildPosts() {
     });
   }
 
-  // Write posts list
+  postsList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
   await writeFile(join(outputDir, 'posts-list.json'), JSON.stringify(postsList), 'utf-8');
 
   console.log(`Pre-rendered ${postDirs.length} blog posts`);
