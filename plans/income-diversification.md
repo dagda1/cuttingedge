@@ -49,8 +49,10 @@ Coding is the comfort zone. Resist hiding there.
 - Mobile: 6
 - Desktop: 38
 - SEO: 92
-- Status: not started
+- Status: run WebPageTest
+- WebPageTest URL: (add here)
 - Findings: (add here)
+- Blog post: `blog-posts/2025-01-10-shopify-performance-audit/index.md`
 
 ## Next
 
