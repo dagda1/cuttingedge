@@ -54,6 +54,42 @@ Coding is the comfort zone. Resist hiding there.
 - Findings: (add here)
 - Blog post: `blog-posts/2025-01-10-shopify-performance-audit/index.md`
 
+## Blog Post Promotion
+
+### Post to r/shopify
+
+**Title:** My store scored 5/100 on Lighthouse mobile. I ran an audit to figure out what's actually wrong.
+
+**Body:**
+
+I keep seeing posts here about Shopify speed scores, so I ran a proper audit on a store (not mine, anonymized) to see what's really going on.
+
+The strange part: the site felt fine when I used it. Fast, even. But Lighthouse gave it a 5/100 performance score on mobile.
+
+Turns out Lighthouse simulates a mid-range Android on throttled 4G - basically worst case. That's why your phone test feels fine but the score says disaster.
+
+The real problems I found:
+
+- 14 render-blocking scripts (6 JS, 8 CSS)
+- 10.7s before anything meaningful shows up
+- Layout shift from a slow-loading video
+- 11MB page weight
+
+Each app/script on its own isn't terrible. But they all load at once, on every page.
+
+I wrote up what I found: [Full write-up here](https://frontendrescue.com/posts/2025-01-10-shopify-performance-audit)
+
+Curious if anyone else has dug into their speed score like this?
+
+---
+
+**Also post to:**
+
+- [ ] r/ecommerce
+- [ ] Shopify Community forums
+- [ ] Twitter/X with #shopify #ecommerce
+- [ ] LinkedIn
+
 ## Next
 
 Answer questions in communities to understand problems.

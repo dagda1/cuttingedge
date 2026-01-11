@@ -7,7 +7,7 @@ meta:
   tags: ["shopify", "performance", "core-web-vitals", "e-commerce"]
 ---
 
-I recently ran a performance audit on a Shopify store with a brutal speed score. The kind of score that makes Shopify's dashboard flash warnings at you. Shopify's speed score is based on Google Lighthouse, and this store scored a brutal 6 out of 100 on mobile.
+I recently ran a performance audit on a Shopify store with a brutal speed score. The kind of score that makes Shopify's dashboard flash warnings at you. Shopify's speed score is based on Google Lighthouse, and this store scored a brutal 5 out of 100 on mobile.
 
 I've anonymised the results, but everything here is from a real store that's live and taking orders right now.
 

@@ -19,7 +19,7 @@ export function Home(): JSX.Element {
         textAlign="center"
         marginY="xxxlarge"
       >
-        <Box marginBottom="xxxlarge">
+        <Box>
           <Heading level="1" weight="regular">
             I make slow sites fast
           </Heading>
@@ -28,7 +28,7 @@ export function Home(): JSX.Element {
               I find what&apos;s slowing you down and fix it. You get faster pages, fewer bounces, and more sales.
             </Text>
           </Box>
-          <Box marginBottom="xlarge">
+          <Box marginBottom="xxxlarge">
             <Heading level="2">If your site isn&apos;t faster, you don&apos;t pay.</Heading>
           </Box>
           <ContactButtons justify="center" />
@@ -42,15 +42,26 @@ export function Home(): JSX.Element {
           <div className={styles.servicesGrid}>
             <div className={styles.serviceCard}>
               <h3 className={styles.serviceCardTitle}>Find the problem</h3>
-              <p className={styles.serviceCardText}>I figure out what&apos;s slowing your site down</p>
+              <ul className={styles.serviceCardList}>
+                <li>Identify bloat</li>
+                <li>Find the worst images</li>
+                <li>Identify layout shift</li>
+                <li>Find slow third-party scripts</li>
+              </ul>
             </div>
             <div className={styles.serviceCard}>
               <h3 className={styles.serviceCardTitle}>Fix it</h3>
-              <p className={styles.serviceCardText}>I make the changes so it loads faster</p>
+              <ul className={styles.serviceCardList}>
+                <li>Prioritize what matters most</li>
+                <li>Hit Google&apos;s speed targets</li>
+              </ul>
             </div>
             <div className={styles.serviceCard}>
-              <h3 className={styles.serviceCardTitle}>Show the results</h3>
-              <p className={styles.serviceCardText}>You see the before and after</p>
+              <h3 className={styles.serviceCardTitle}>The proof</h3>
+              <ul className={styles.serviceCardList}>
+                <li>Before and after metrics</li>
+                <li>If it&apos;s not faster, you don&apos;t pay</li>
+              </ul>
             </div>
           </div>
         </div>

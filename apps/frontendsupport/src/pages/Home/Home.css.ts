@@ -84,6 +84,15 @@ export const serviceCardText = style({
   color: '#A9ADC1',
 });
 
+export const serviceCardList = style({
+  fontSize: '1.125rem',
+  lineHeight: 1.8,
+  color: '#A9ADC1',
+  listStyle: 'none',
+  padding: 0,
+  margin: 0,
+});
+
 export const ctaSection = style({
   background: '#0E151D',
   color: '#fff',

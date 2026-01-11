@@ -22,11 +22,12 @@
 
 ## Practical Steps
 
-- Tests first, based on JIRA acceptance criteria
-- Sonar quality gates: fail PRs that introduce duplication (new code only)
-- Danger.js: warn when using basic libraries over preferred alternatives
+- Tests first, based on acceptance criteria. Gives AI better context
+- Sonar quality gates to fail PRs that introduce duplication (new code only)
+- Danger.js to warn when basic libraries are used instead of preferred alternatives (e.g. @mui/material table vs material-react-table)
 - Flag new files over X lines, or PRs that grow files by Y+ lines
-- Manual review is last step, still essential
+- [jscpd](https://github.com/kucherenko/jscpd) to detect duplicated functions within the same PR
+- Manual review is the last step, still important
 
 ## What Happens If We Don't
 
