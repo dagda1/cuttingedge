@@ -1,47 +1,40 @@
 # Ground Rules for Better PRs
 
-- Instruct the AI to prefer battle-tested open source over creating from scratch
-- If not open source, then have we got anything existing in our packages (@intact/component-library, @intact/core, @harbour/core etc.)
-- Avoid duplication - reuse existing helpers
-- Maintain ownership of the code
-- Small focused PRs (max files length) that must be deployable and show something working
+- Prefer battle-tested open source over building from scratch
+- If no open source, check our packages first (@intact/component-library, @intact/core, @harbour/core)
+- Reuse existing helpers. Don't duplicate.
+- Don't copy logic to work around complexity. Fix or extend the original.
+- Own your code. Be able to explain every line.
+- Small focused PRs that deploy and show something working
 
 ## Hold AI to the Same Standards
 
-- AI favours volume over precision and ownership
-- You wouldn't accept a 100-file PR from a new dev - don't accept it from AI
-- Don't reverse decades of hard-won practices (DRY, small PRs, code ownership) just because AI makes it easy to generate code, these came about because things when wrong
-<<<<<<< HEAD
-- PR reviews now take forever - too much volume for the eye to take in
-=======
-- PR reviews could take forever or just ignored - too much volume for the eye to take in
->>>>>>> 3448a362 (add scope to performance scout)
-- Open source/existing code has tests, is battle-hardened from real use, and edge cases are already solved - AI code has none of that
-
-## Practical Steps
-
-- Write tests first based on acceptance criteria from JIRA stories - gives AI better context
-- Use Sonar quality gates to fail PRs that introduce duplication or don't meet standards (analyzes new code only)
-- stricter eslint rules
-- Use Danger.js to highlight (not block) when basic libraries are used instead of preferred alternatives (e.g. @mui/material table vs material-react-table)
-- Sonar/jscpd can detect duplicated functions within the same PR
-- Fail/warn on large new files (Danger.js or CI script to flag any new file over X lines)
-- Fail/warn if a PR grows an existing file by more than Y lines
-<<<<<<< HEAD
-- Manually viewing the PR is the last step but still important
-=======
-- Manually reviewing the PR is the last step but still important
->>>>>>> 3448a362 (add scope to performance scout)
+- You wouldn't accept a 100-file PR from a new dev. Don't accept it from AI.
+- AI favours volume over precision. Reviewers rubber-stamp because they can't review 100 files.
+- DRY, small PRs, code ownership exist because we learned what happens without them.
+- Open source is tested and battle-hardened. AI code has none of that.
 
 ## AI Doesn't Extend, It Recreates
 
-- When adding to complex existing code, AI errs on the side of caution and recreates everything instead of extending
-- Example: DSL-to-react-json-schema-form transformer - adding a new feature resulted in an 800+ line file that recreated all types (weaker), all functions (worse), instead of extending what was there
-- Funny side effect: GitHub hides large files by default - I missed the 800 page monster in the PR review initially :)
-<<<<<<< HEAD
-=======
+- **Copy-and-diverge**: AI hits complex code, doesn't understand why it's complex, copies what it needs with looser types. Now you have two versions—one tested, one not. They'll drift.
+- Recent PR: 800-line duplicated file. GitHub hides large files by default. I missed it first time.
+- **NIH on steroids**: AI sees "table with editing" and builds one. It doesn't know material-react-table exists with years of bug fixes already solved.
 
-## citations
+## Practical Steps
 
-- [SonarSource blog on poor code quality growth in AI-accelerated codebases](https://www.sonarsource.com/blog/the-inevitable-rise-of-poor-code-quality-in-ai-accelerated-codebases)
->>>>>>> 3448a362 (add scope to performance scout)
+- Tests first, based on JIRA acceptance criteria
+- Sonar quality gates: fail PRs that introduce duplication (new code only)
+- Danger.js: warn when using basic libraries over preferred alternatives
+- Flag new files over X lines, or PRs that grow files by Y+ lines
+- Manual review is last step, still essential
+
+## What Happens If We Don't
+
+- You fix a bug in the original. The copy still has it. You don't know the copy exists.
+- "AI will know" — AI has no memory between sessions. If you need AI to understand your own code, you've lost.
+- Bugs ship that open source fixed years ago
+- 2am incident, no one knows where to look
+
+## Citations
+
+- [SonarSource: Poor code quality in AI-accelerated codebases](https://www.sonarsource.com/blog/the-inevitable-rise-of-poor-code-quality-in-ai-accelerated-codebases)
