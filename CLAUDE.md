@@ -10,6 +10,7 @@ Build the smallest correct solution that matches the spec.
 - Prefer small functions and descriptive names over comments.
 - Don't change unrelated files.
 - Avoid fixed pixels; use `vars.space` from `@cutting/component-library` for spacing.
+- Prefer existing npm packages over reimplementing functionality.
 
 ## Output expectations
 

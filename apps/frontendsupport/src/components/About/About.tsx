@@ -9,7 +9,7 @@ export function About(): JSX.Element {
       <PageBlock>
         <Box component="section">
           <Stack space="large">
-            <Heading level="1">Performance-first frontend</Heading>
+            <Heading level="1">Frontend First</Heading>
             <Box>
               <LazyLoadedImage
                 src="https://res.cloudinary.com/ddospxsc8/image/upload/v1690230987/me_voddxj.png"
@@ -23,14 +23,7 @@ export function About(): JSX.Element {
                 Paul Cowan (CEO)
               </TextLink>
             </Heading>
-            <Text>
-              I help teams make modern websites and web apps noticeably faster so key pages load quickly, feel
-              responsive, and stay visually stable.
-            </Text>
-            <Text component="p">
-              Most of my work is performance-focused: reducing JavaScript bloat, improving rendering (SSR/CSR), caching,
-              taming third-party scripts, and turning slow pages into measurable wins.
-            </Text>
+
             <Text component="p">
               I’m an open-source fanatic with countless&nbsp;
               <TextLink
@@ -81,13 +74,6 @@ export function About(): JSX.Element {
                 </TextLink>
               </Text>
             </List>
-            <Text>
-              I run short performance sprints that audit, fix, and prove improvements with clear before/after results.
-            </Text>
-            <Text>
-              I’m pragmatic, fast-moving, and focused on impact: fewer bytes shipped, faster interactions, and smoother
-              page experiences.
-            </Text>
           </Stack>
         </Box>
         <Box marginTop="large">

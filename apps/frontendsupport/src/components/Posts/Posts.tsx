@@ -2,6 +2,7 @@ import { Box, Heading, List, PageBlock, Stack, Text, vars } from '@cutting/compo
 import { Image } from '@unpic/react';
 
 import type { PostData } from '../../types/post';
+import { ImagePlaceholder } from '../ImagePlaceholder/ImagePlaceholder';
 import { LazyLoadedImage } from '../LazyLoadedImage/LazyLoadedImage';
 import { TextNavLink } from '../TextNavLink/TextNavLink';
 
@@ -25,8 +26,12 @@ export function Posts({ posts }: PostsProps): JSX.Element {
                   style={{ border: `1px solid ${vars.foregroundColor.primary}` }}
                 >
                   <Box display={{ mobile: 'block', desktop: 'flex' }} alignItems="center">
-                    <Box marginRight="small">
-                      {post.image && <ImageComponent loading="lazy" src={post.image} width={150} height={100} />}
+                    <Box marginRight="small" style={{ minWidth: 150, minHeight: 100 }}>
+                      {post.image ? (
+                        <ImageComponent loading="lazy" src={post.image} width={150} height={100} />
+                      ) : (
+                        <ImagePlaceholder />
+                      )}
                     </Box>
                     <Stack space="medium">
                       <Heading level="2">

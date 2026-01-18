@@ -21,15 +21,15 @@ export function Home(): JSX.Element {
       >
         <Box>
           <Heading level="1" weight="regular">
-            I make slow sites fast
+            I fix frontend messes
           </Heading>
           <Box marginY="xxxlarge">
             <Text component="p" size="large">
-              I find what&apos;s slowing you down and fix it. You get faster pages, fewer bounces, and more sales.
+              AI-generated or otherwise.
             </Text>
           </Box>
           <Box marginBottom="xxxlarge">
-            <Heading level="2">If your site isn&apos;t faster, you don&apos;t pay.</Heading>
+            <Heading level="2">If I don&apos;t fix it, you don&apos;t pay.</Heading>
           </Box>
           <ContactButtons justify="center" />
           <Scroller />
@@ -43,24 +43,24 @@ export function Home(): JSX.Element {
             <div className={styles.serviceCard}>
               <h3 className={styles.serviceCardTitle}>Find the problem</h3>
               <ul className={styles.serviceCardList}>
-                <li>Identify bloat</li>
-                <li>Find the worst images</li>
-                <li>Identify layout shift</li>
-                <li>Find slow third-party scripts</li>
+                <li>Audit your codebase</li>
+                <li>Identify duplication and technical debt</li>
+                <li>Map what&apos;s slowing your team down</li>
               </ul>
             </div>
             <div className={styles.serviceCard}>
               <h3 className={styles.serviceCardTitle}>Fix it</h3>
               <ul className={styles.serviceCardList}>
-                <li>Prioritize what matters most</li>
-                <li>Hit Google&apos;s speed targets</li>
+                <li>Remove duplication (DRY)</li>
+                <li>Set up foundations that scale</li>
+                <li>Remove what shouldn&apos;t be there</li>
               </ul>
             </div>
             <div className={styles.serviceCard}>
               <h3 className={styles.serviceCardTitle}>The proof</h3>
               <ul className={styles.serviceCardList}>
-                <li>Before and after metrics</li>
-                <li>If it&apos;s not faster, you don&apos;t pay</li>
+                <li>Your team moves faster</li>
+                <li>If it&apos;s not better, you don&apos;t pay</li>
               </ul>
             </div>
           </div>
@@ -69,7 +69,7 @@ export function Home(): JSX.Element {
 
       <section className={styles.ctaSection}>
         <div>
-          <h2 className={styles.ctaTitle}>Ready to speed up your site?</h2>
+          <h2 className={styles.ctaTitle}>Ready to fix the mess?</h2>
           <p className={styles.ctaSubtitle}>Free call to find out what&apos;s slowing you down</p>
           <ContactButtons justify="center" />
           <Scroller />
