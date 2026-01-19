@@ -10,7 +10,7 @@ Here's what I'm seeing in codebases with the new wave of AI-generated code.
 
 ## The Duplication Problem
 
-Here's what actually happens. A developer plans a feature with AI that needs a table with inline editing. AI builds one from scratch using MUI primitives. It works. Ship it.
+Here's what actually happens. A developer plans a feature with AI that needs a table with inline editing. AI builds one from scratch using [material-ui](https://mui.com/) primitives. It works. Ship it.
 
 Next sprint, different feature, same need. AI builds another table. Slightly different. Also works. Ship it.
 
