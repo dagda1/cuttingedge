@@ -45,7 +45,7 @@ Keep it simple, no pitch:
 
 ## Emerging Opportunity: AI Cleanup Wave
 
-Companies that went hard on AI-generated code in 2024-2025 may be hitting the wall - can't maintain it, can't scale it, can't onboard new devs.
+Companies that went hard on AI-generated code in 2025-2026 may be hitting the wall - can't maintain it, can't scale it, can't onboard new devs.
 
 **Too early to validate publicly** - but your network conversations might surface this.
 

@@ -59,6 +59,6 @@ Instructions are better than nothing. But they're not a solution.
 
 ## The Coming Reckoning
 
-Right now we're in the hype phase. Everyone's excited about shipping faster. The teams that went hard on AI-generated code in 2024 will hit the wall in 2025. Can't maintain it. Can't scale it. Can't onboard new developers into the mess.
+Right now we're in the hype phase. Everyone's excited about shipping faster. The teams that went hard on AI-generated code in 2025 will hit the wall in 2026. Can't maintain it. Can't scale it. Can't onboard new developers into the mess.
 
 ## The cleanup work is coming. The question is whether you'll need it.
