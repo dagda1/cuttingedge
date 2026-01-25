@@ -2,13 +2,13 @@
 meta:
   title: AI Makes Your Codebase Dumber (Unless You Fight Back)
   description: AI favours quick wins over maintainable code, here is how to stop it
-  date: "2026-01-123T00:00:00.000Z"
+  date: "2026-01-25T00:00:00.000Z"
   tags: ["AI", "slop"]
 ---
 
 The [Ralph Wiggum pattern](https://ghuntley.com/ralph/), letting AI agents run unsupervised in infinite loops while you go away from the keyboard, has me convinced we've slipped into a parallel universe where "naive persistence" counts as engineering.
 
-## AI's Default Behaviors That Destroy Codebases
+## AI Code stinks
 
 ### 1. Speed Over Sustainability
 
