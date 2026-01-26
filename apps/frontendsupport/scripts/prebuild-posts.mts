@@ -21,6 +21,40 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const postsRootPath = join(__dirname, '../blog-posts');
 const outputDir = join(__dirname, '../public/posts');
 
+const LANGUAGE_ALIASES: Record<string, string> = {
+  ts: 'typescript',
+  js: 'javascript',
+};
+
+function rehypeInlineCodeLanguage() {
+  return (tree: any) => {
+    visit(tree, 'element', (node: any, _index: number, parent: any) => {
+      if (node.tagName !== 'code') {
+        return;
+      }
+      if (parent?.tagName === 'pre') {
+        return;
+      }
+
+      const text = node.children?.[0]?.value;
+      if (!text) {
+        return;
+      }
+
+      const match = text.match(/^(\w+)\s+(.+)$/s);
+      if (!match) {
+        return;
+      }
+
+      const [, lang, code] = match;
+      const language = LANGUAGE_ALIASES[lang] || lang;
+      node.properties = node.properties || {};
+      node.properties.className = [`language-${language}`, 'code-inline'];
+      node.children[0].value = code;
+    });
+  };
+}
+
 function remarkCodeTitles() {
   return (tree: any): void =>
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -74,6 +108,7 @@ async function prebuildPosts() {
       .use(remarkRehype, { allowDangerousHtml: true })
       .use(rehypeMathjax)
       .use(rehypePrism, { ignoreMissing: true })
+      .use(rehypeInlineCodeLanguage)
       .use(rehypePresetMinify)
       .use(rehypeRaw, {
         passThrough: ['mdxjsEsm', 'mdxFlowExpression', 'mdxTextExpression', 'mdxJsxFlowElement', 'mdxJsxTextElement'],

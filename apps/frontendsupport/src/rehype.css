@@ -111,11 +111,19 @@ pre[class*="language-"] {
 	background: #1e1e1e;
 }
 
-:not(pre) > code[class*="language-"] {
+:not(pre) > code[class*="language-"]:not(.code-inline) {
 	padding: .1em .3em;
 	border-radius: .3em;
 	color: #db4c69;
 	background: #1e1e1e;
+}
+
+.code-inline {
+	padding: .1em .3em;
+	border-radius: .3em;
+	background: #1e1e1e;
+	font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
+	font-size: inherit !important;
 }
 
 :not(pre) > code:not([class*="language-"]) {

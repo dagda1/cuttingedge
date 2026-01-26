@@ -14,11 +14,11 @@ The [Ralph Wiggum pattern](https://ghuntley.com/ralph/), letting AI agents run u
 
 AI optimises for the first thing that works, not the right solution. Ask it to fix a bug and it'll reach for the quickest hack: disable the feature, hardcode a value, bypass the problem entirely. Understanding the actual root cause takes effort, and effort isn't in the training data.
 
-Recently I was debugging a table with virtualisation that wasn't rendering. The fix was `min-height: 0` on the flex container. Instead of investigating, the AI blindly slapped on `height: 600px`, a hack that "works" but breaks layout everywhere else.
+Recently I was debugging a table with virtualisation that wasn't rendering. The fix was `css min-height: 0` on the flex container. Instead of investigating, the AI blindly slapped on `css height: 600px`, a hack that "works" but breaks layout everywhere else.
 
 ### 2. Brute Force Over Optimization
 
-AI defaults to the naive O(n²) approach every time. I had a search filter that needed to check nested objects. AI's solution was to loop through every field in every nested object on every keystroke. It would have blown the stack on any real dataset. I used a pre-computed `searchableText` field, building the search string once when data loads instead of on every filter operation. AI would never have suggested this.
+AI defaults to the naive O(n²) approach every time. I had a search filter that needed to check nested objects. AI's solution was to loop through every field in every nested object on every keystroke. It would have blown the stack on any real dataset. I used a pre-computed `ts searchableText` field, building the search string once when data loads instead of on every filter operation. AI would never have suggested this.
 
 ## What Actually Works
 
@@ -32,7 +32,7 @@ You own the code, you understand the code. AI explores solutions, you make decis
 
 ### Verify Everything
 
-Check that APIs actually exist. Check existing patterns in the codebase. Don't assume AI knows your dependencies. It will confidently use functions that don't exist.
+Don't assume AI remembers your codebase conventions. Even with a CLAUDE.md file, it needs constant reminding.
 
 ### Push for Optimization
 
@@ -40,4 +40,4 @@ AI won't suggest pre-computation, memoization, or debouncing unprompted. You hav
 
 ### Say No to Hacks
 
-"Don't just disable the feature." "No hardcoded pixel values." "Understand the actual problem first." If you don't say this, AI will take the path of least resistance every time.
+"Don't just disable the feature." "No hardcoded pixel values." "Understand the actual problem first." "Do not duplicte" "Do not weaken the types". If you don't say this, AI will take the path of least resistance every time.

@@ -17,7 +17,6 @@ import remarkMath from 'remark-math';
 
 import { formatDate } from './formatDate';
 import { remarkCodeTitles } from './remark/remark-code-title';
-import { remarkInlineCodeLanguageCreator } from './remark/remark-inline-code-language';
 import type { FrontMatter, FrontMatterMeta } from './types';
 
 export type MarkdownAttributes = {
@@ -31,8 +30,6 @@ type Matter = ReturnType<typeof bundleMDX>;
 export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
   const source = await readFile(markdownPath, 'utf-8');
 
-  const remarkInlineCodeLanguage = await remarkInlineCodeLanguageCreator();
-
   process.env.ESBUILD_BINARY_PATH = join(root, 'node_modules', 'esbuild', 'bin', 'esbuild');
   process.env.NODE_ENV = 'production';
 
@@ -41,10 +38,8 @@ export async function bundleMarkdown(markdownPath: string): Promise<Matter> {
     mdxOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        // remarkMdxImages,
         remarkBreaks,
         remarkCodeTitles,
-        remarkInlineCodeLanguage,
         [remarkAutolinkHeadings, { behavior: 'wrap' }],
         rehypeSlug,
         remarkGfm,
