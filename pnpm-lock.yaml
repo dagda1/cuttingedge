@@ -1119,6 +1119,9 @@ importers:
       github-slugger:
         specifier: 2.0.0
         version: 2.0.0
+      hast-util-to-html:
+        specifier: ^9.0.5
+        version: 9.0.5
       image-size:
         specifier: 2.0.2
         version: 2.0.2
@@ -1140,6 +1143,9 @@ importers:
       reading-time:
         specifier: 1.5.0
         version: 1.5.0
+      refractor:
+        specifier: ^5.0.0
+        version: 5.0.0
       rehype-autolink-headings:
         specifier: 7.1.0
         version: 7.1.0
@@ -1164,6 +1170,9 @@ importers:
       remark-gfm:
         specifier: 4.0.1
         version: 4.0.1
+      remark-inline-code-language:
+        specifier: ^1.0.1
+        version: 1.0.1
       remark-math:
         specifier: 6.0.0
         version: 6.0.0
@@ -9670,6 +9679,9 @@ packages:
   remark-gfm@4.0.1:
     resolution: {integrity: sha512-1quofZ2RQ9EWdeN34S79+KExV1764+wCUGop5CPL1WGdD0ocPpu91lzPGbwWMECpEpd42kJGQwzRfyov9j4yNg==}
 
+  remark-inline-code-language@1.0.1:
+    resolution: {integrity: sha512-aIYMKqSUqZgQ1kcTgRmdtsfkxoYp7d8bMeThCZ/+siKlvOsUAVMSX4UtvMnrPshxXm7QPjYyMAQ78NBoeDLBYw==}
+
   remark-math@6.0.0:
     resolution: {integrity: sha512-MMqgnP74Igy+S3WwnhQ7kqGlEerTETXMvJhrUzDikVZ2/uogJCb+WHUg97hK9/jcfc0dkD73s3LN8zU49cTEtA==}
 
@@ -10503,6 +10515,7 @@ packages:
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   telejson@6.0.8:
     resolution: {integrity: sha512-nerNXi+j8NK1QEfBHtZUN/aLdDcyupA//9kAboYLrtzZlPLpUfqbVGWb9zz91f/mIjRbAYhbgtnJHY8I1b5MBg==}
@@ -22020,6 +22033,8 @@ snapshots:
       unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
+
+  remark-inline-code-language@1.0.1: {}
 
   remark-math@6.0.0:
     dependencies:

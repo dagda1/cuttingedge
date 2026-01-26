@@ -5,7 +5,9 @@
       "WebFetch(domain:www.reddit.com)",
       "WebFetch(domain:portal.catchpoint.com)",
       "Bash(cat:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(pnpm add:*)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

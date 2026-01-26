@@ -8,7 +8,7 @@ meta:
 
 The [Ralph Wiggum pattern](https://ghuntley.com/ralph/), letting AI agents run unsupervised in infinite loops while you go away from the keyboard, has me convinced we've slipped into a parallel universe where "naive persistence" counts as engineering.
 
-## AI Code stinks
+## AI Code smells to avoid
 
 ### 1. Speed Over Sustainability
 
