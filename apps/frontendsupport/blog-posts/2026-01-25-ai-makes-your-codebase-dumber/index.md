@@ -30,9 +30,9 @@ You own the code, you understand the code. AI explores solutions, you make decis
 
 "Why this approach?" "What are the tradeoffs?" "Is this the proper fix or a hack?" If AI can't answer these, it doesn't know what it's doing.
 
-### Verify Everything
+## Don't Trust CLAUDE.md or Skills
 
-Don't assume AI remembers your codebase conventions. Even with a CLAUDE.md file, it needs constant reminding.
+You can write a CLAUDE.md file with all your codebase conventions. You can set up skills. AI will still ignore them. It needs constant reminding, every session, sometimes every prompt.
 
 ### Push for Optimization
 
@@ -40,4 +40,8 @@ AI won't suggest pre-computation, memoization, or debouncing unprompted. You hav
 
 ### Say No to Hacks
 
-"Don't just disable the feature." "No hardcoded pixel values." "Understand the actual problem first." "Do not duplicte" "Do not weaken the types". If you don't say this, AI will take the path of least resistance every time.
+"No hardcoded pixel values." "Understand the actual problem first." "Do not duplicte" "Do not weaken the types". If you don't say this, AI will take the path of least resistance every time.
+
+## Verify Everything
+
+The more you blidly trust AI, the more it will rot your codebase.
