@@ -18,7 +18,7 @@ LLMs are good at generating plausible-looking code fast, but "plausible-looking"
 
 LLMs don't understand your codebase. They don't reason about architecture. They predict what token comes next based on patterns in training data. That's it. When the output looks intelligent, it's because the training data had similar patterns. When it fails, it's because your situation wasn't in the training data. There's no understanding underneath.
 
-Anthropic's CEO is writing [essays](https://darioamodei.com/machines-of-loving-grace) about autonomous AI wiping out humanity. Meanwhile, I can't get AI to render a pixel perfect webpage.
+Anthropic's CEO is writing [essays](https://darioamodei.com/machines-of-loving-grace) about autonomous AI driven drones wiping out humanity. Meanwhile, I can't get AI to render a pixel perfect webpage.
 
 ## AI Code smells to avoid
 
