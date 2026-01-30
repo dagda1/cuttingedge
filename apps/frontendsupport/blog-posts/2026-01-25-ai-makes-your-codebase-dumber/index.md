@@ -14,6 +14,10 @@ I don't want to be alarmist, but I can see this coming: medical misdiagnoses, le
 
 LLMs are good at generating plausible-looking code fast, but "plausible-looking" isn't the same as correct, clean, or following a project's actual standards. I can't understand why more people aren't highlighting this. The gap between the marketing and real use is massive.
 
+## WARNING!!! They're Just Next Token Predictors
+
+LLMs don't understand your codebase. They don't reason about architecture. They predict what token comes next based on patterns in training data. That's it. When the output looks intelligent, it's because the training data had similar patterns. When it fails, it's because your situation wasn't in the training data. There's no understanding underneath.
+
 Anthropic's CEO is writing [essays](https://darioamodei.com/machines-of-loving-grace) about autonomous AI wiping out humanity. Meanwhile, I can't get AI to render a pixel perfect webpage.
 
 ## AI Code smells to avoid
@@ -62,10 +66,6 @@ You own the code, you understand the code. AI explores solutions, you make decis
 ### Demand Justification
 
 "Why this approach?" "What are the tradeoffs?" "Is this the proper fix or a hack?" If AI can't answer these, it doesn't know what it's doing.
-
-## Don't Trust CLAUDE.md or Skills
-
-You can write a CLAUDE.md file with all your codebase conventions. You can set up skills. AI will still ignore them. It needs constant reminding, every session, sometimes every prompt.
 
 ### Push for Optimization
 
