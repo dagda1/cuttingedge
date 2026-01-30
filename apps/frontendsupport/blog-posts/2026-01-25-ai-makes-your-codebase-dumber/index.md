@@ -6,19 +6,50 @@ meta:
   tags: ["AI", "slop"]
 ---
 
-The [Ralph Wiggum pattern](https://ghuntley.com/ralph/), letting AI agents run unsupervised in infinite loops while you go away from the keyboard, has me convinced we've slipped into a parallel universe where "naive persistence" counts as engineering.
+This is my controversial take on LLMs for coding, from using one daily. It feels like billions have been poured into plausible-sounding text generators, deployed into production systems, and the humans still have to catch the mistakes.
 
-LLMs are good at generating plausible-looking code fast, but "plausible-looking" isn't the same as correct, clean, or following a project's actual standards. The gap between demo videos and real-world use is massive.
+I'm staggered by the [Ralph Wiggum pattern](https://ghuntley.com/ralph/) — letting AI agents run unsupervised in infinite loops while you go away from the keyboard. Autonomous agents chained together, no human in the loop, each one hallucinating into the next.
+
+I don't want to be alarmist, but I can see this coming: medical misdiagnoses, legal filings with fake citations, code vulnerabilities shipped to production. The body count just won't be tracked as "AI-caused."
+
+LLMs are good at generating plausible-looking code fast, but "plausible-looking" isn't the same as correct, clean, or following a project's actual standards. I can't understand why more people aren't highlighting this. The gap between the marketing and real use is massive.
+
+Anthropic's CEO is writing [essays](https://darioamodei.com/machines-of-loving-grace) about autonomous AI wiping out humanity. Meanwhile, I can't get AI to render a pixel perfect webpage.
 
 ## AI Code smells to avoid
 
-### 1. Speed Over Sustainability
+### 1. Duplication on an Industrial Scale
+
+LLMs are trained on tutorials, examples, and greenfield projects. Not on integrating changes into existing codebases. So they do what their training data shows: create new stuff. Need auth logic? They'll write it fresh, even if you already have it in three other places. Need a utility function? They'll inline it rather than find yours.
+Left unchecked, every AI change increases entropy. More files, more duplication, more inconsistent patterns. The codebase becomes harder to reason about, which makes the next change even more likely to go wrong.
+
+### 2. Hallucinations and Baffling Assumptions
+
+AI confidently presents wrong code with the same tone as correct code. It invents APIs that don't exist, assumes libraries you're not using, and makes decisions about your codebase without asking. Every wrong assumption costs time: you have to spot it, understand why it's wrong, then fix it. The productivity gains vanish into cleanup.
+
+### 3. Changing Code Without Permission
+
+Ask AI to fix one thing and it'll "improve" three others. It refactors code you didn't ask it to touch, introduces bugs in files you weren't even discussing, and weakens types to make things compile. Ask it to move a function to a new file and it won't just move it. It'll rewrite it and introduce bugs. I've seen it modify a mock API to match a bug rather than fix the actual bug. Every change you didn't ask for is a change you have to review, understand, and probably revert.
+
+### 4. False Promises
+
+> "I won't change code you didn't ask me to touch."
+
+It will.
+
+> "I'll always refer to CLAUDE.md before making changes."
+
+It won't.
+
+AI will apologise and say it won't happen again. It will. Every session resets. Every prompt is a fresh opportunity to ignore everything you've told it. The promises mean nothing.
+
+### 5. Speed Over Sustainability
 
 AI optimises for the first thing that works, not the right solution. Ask it to fix a bug and it'll reach for the quickest hack: disable the feature, hardcode a value, bypass the problem entirely. Understanding the actual root cause takes effort, and effort isn't in the training data.
 
 Recently I was debugging a table with virtualisation that wasn't rendering. The fix was `css min-height: 0` on the flex container. Instead of investigating, the AI blindly slapped on `css height: 600px`, a hack that "works" but breaks layout everywhere else.
 
-### 2. Brute Force Over Optimization
+### 6. Brute Force Over Optimization
 
 AI defaults to the naive O(n²) approach every time. I had a search filter that needed to check nested objects. AI's solution was to loop through every field in every nested object on every keystroke. It would have blown the stack on any real dataset. I used a pre-computed `ts searchableText` field, building the search string once when data loads instead of on every filter operation. AI would never have suggested this.
 
@@ -42,8 +73,8 @@ AI won't suggest pre-computation, memoization, or debouncing unprompted. You hav
 
 ### Say No to Hacks
 
-"No hardcoded pixel values." "Understand the actual problem first." "Do not duplicte" "Do not weaken the types". If you don't say this, AI will take the path of least resistance every time.
+"No hardcoded pixel values." "Understand the actual problem first." "Do not duplicate" "Do not weaken the types". If you don't say this, AI will take the path of least resistance every time.
 
 ## Verify Everything
 
-The more you blidly trust AI, the more it will rot your codebase.
+The more you blindly trust AI, the more it will rot your codebase.
