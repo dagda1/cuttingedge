@@ -31,29 +31,33 @@ Left unchecked, every AI change increases entropy. More files, more duplication,
 
 AI confidently presents wrong code with the same tone as correct code. It invents APIs that don't exist, assumes libraries you're not using, and makes decisions about your codebase without asking. Every wrong assumption costs time: you have to spot it, understand why it's wrong, then fix it. The productivity gains vanish into cleanup.
 
-### 3. Changing Code Without Permission
+### 3. Defensive Code That Hides Problems
+
+AI doesn't fix bugs, it hides them. Optional chaining everywhere so undefined doesn't crash. Try/catch blocks that swallow exceptions silently. If statements that guard against data that shouldn't be null in the first place. The code "works" but the actual problem is buried. You end up with a codebase full of defensive checks that exist because nobody understood why the data was wrong.
+
+### 4. Changing Code Without Permission
 
 Ask AI to fix one thing and it'll "improve" three others. It refactors code you didn't ask it to touch, introduces bugs in files you weren't even discussing, and weakens types to make things compile. Ask it to move a function to a new file and it won't just move it. It'll rewrite it and introduce bugs. I've seen it modify a mock API to match a bug rather than fix the actual bug. Every change you didn't ask for is a change you have to review, understand, and probably revert.
 
-### 4. False Promises
+### 5. False Promises
 
 > "I won't change code you didn't ask me to touch."
 
-It will.
+AI will.
 
 > "I'll always refer to CLAUDE.md before making changes."
 
-It won't.
+AI won't.
 
 AI will apologise and say it won't happen again. It will. Every session resets. Every prompt is a fresh opportunity to ignore everything you've told it. The promises mean nothing.
 
-### 5. Speed Over Sustainability
+### 6. Speed Over Sustainability
 
 AI optimises for the first thing that works, not the right solution. Ask it to fix a bug and it'll reach for the quickest hack: disable the feature, hardcode a value, bypass the problem entirely. Understanding the actual root cause takes effort, and effort isn't in the training data.
 
 Recently I was debugging a table with virtualisation that wasn't rendering. The fix was `css min-height: 0` on the flex container. Instead of investigating, the AI blindly slapped on `css height: 600px`, a hack that "works" but breaks layout everywhere else.
 
-### 6. Brute Force Over Optimization
+### 7. Brute Force Over Optimization
 
 AI defaults to the naive O(n²) approach every time. I had a search filter that needed to check nested objects. AI's solution was to loop through every field in every nested object on every keystroke. It would have blown the stack on any real dataset. I used a pre-computed `ts searchableText` field, building the search string once when data loads instead of on every filter operation. AI would never have suggested this.
 
