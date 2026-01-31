@@ -27,6 +27,7 @@ Anthropic's CEO is writing [essays](https://darioamodei.com/machines-of-loving-g
 ### 1. Duplication on an Industrial Scale
 
 LLMs are trained on tutorials, examples, and greenfield projects. Not on integrating changes into existing codebases. So they do what their training data shows: create new stuff. Need auth logic? They'll write it fresh, even if you already have it in three other places. Need a utility function? They'll inline it rather than find yours.
+
 Left unchecked, every AI change increases entropy. More files, more duplication, more inconsistent patterns. The codebase becomes harder to reason about, which makes the next change even more likely to go wrong.
 
 ### 2. Hallucinations and Baffling Assumptions
