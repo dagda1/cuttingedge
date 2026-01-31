@@ -1,7 +1,7 @@
 ---
 meta:
-  title: AI Makes Your Codebase Dumber (Unless You Fight Back)
-  description: AI favours quick wins over maintainable code, here is how to stop it
+  title: The good, the bad, and the downright dangerous of coding with AI
+  description: AI Code Smells
   date: "2026-01-25T00:00:00.000Z"
   tags: ["AI", "slop"]
 ---
