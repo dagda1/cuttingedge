@@ -6,7 +6,7 @@ meta:
   tags: ["AI", "slop"]
 ---
 
-I use LLMs for coding daily. This is my take.
+I use LLMs for coding daily. After months of usage, I've seen enough to have strong opinions about what they're good at and where they fall apart.
 
 Billions have been poured into plausible-sounding text generators, deployed into production systems, and the humans still have to catch the mistakes.
 
