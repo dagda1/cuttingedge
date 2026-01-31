@@ -41,7 +41,7 @@ AI doesn't fix bugs, it hides them. Optional chaining everywhere so undefined do
 
 ### 4. Changing Code Without Permission
 
-Ask AI to fix one thing and it'll "improve" three others. It refactors code you didn't ask it to touch, introduces bugs in files you weren't even discussing, and weakens types to make things compile. Ask it to move a function to a new file and it won't just move it. It'll rewrite it and introduce bugs. I've seen it modify a mock API to match a bug rather than fix the actual bug. Every change you didn't ask for is a change you have to review, understand, and probably revert.
+Ask AI to fix one thing and it'll "improve" three others. It refactors code you didn't ask it to touch, introduces bugs in files you weren't even discussing, and weakens types to make things compile. Ask it to move a function to a new file and it won't just move it. It'll rewrite it and introduce bugs. I've seen it modify a mock API file to fix a bug rather than fix the actual bug. Every change you didn't ask for is a change you have to review, understand, and probably revert.
 
 ### 5. False Promises
 
