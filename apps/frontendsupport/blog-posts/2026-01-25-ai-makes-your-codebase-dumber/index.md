@@ -6,11 +6,13 @@ meta:
   tags: ["AI", "slop"]
 ---
 
-This is my controversial take on LLMs for coding, from using one daily. It feels like billions have been poured into plausible-sounding text generators, deployed into production systems, and the humans still have to catch the mistakes.
+I use LLMs for coding daily. This is my take.
 
-I'm staggered by the [Ralph Wiggum pattern](https://ghuntley.com/ralph/) — letting AI agents run unsupervised in infinite loops while you go away from the keyboard. Autonomous agents chained together, no human in the loop, each one hallucinating into the next.
+Billions have been poured into plausible-sounding text generators, deployed into production systems, and the humans still have to catch the mistakes.
 
-I don't want to be alarmist, but I can see this coming: medical misdiagnoses, legal filings with fake citations, code vulnerabilities shipped to production. The body count just won't be tracked as "AI-caused."
+I'm staggered by the [Ralph Wiggum pattern](https://ghuntley.com/ralph/). Letting AI agents run unsupervised in infinite loops while you go away from the keyboard. Autonomous agents chained together, no human in the loop, each one hallucinating into the next.
+
+I don't want to be alarmist, but I can see medical misdiagnoses, legal filings with fake citations, and code vulnerabilities shipped to production. The body count just won't be tracked as "AI-caused."
 
 LLMs are good at generating plausible-looking code fast, but "plausible-looking" isn't the same as correct, clean, or following a project's actual standards. I can't understand why more people aren't highlighting this. The gap between the marketing and real use is massive.
 
@@ -18,7 +20,7 @@ LLMs are good at generating plausible-looking code fast, but "plausible-looking"
 
 LLMs don't understand your codebase. They don't reason about architecture. They predict what token comes next based on patterns in training data. That's it. When the output looks intelligent, it's because the training data had similar patterns. When it fails, it's because your situation wasn't in the training data. There's no understanding underneath.
 
-Anthropic's CEO is writing [essays](https://darioamodei.com/machines-of-loving-grace) about autonomous AI driven drones wiping out humanity. Meanwhile, I can't get AI to render a pixel perfect webpage.
+Anthropic's CEO is writing [essays](https://darioamodei.com/machines-of-loving-grace) about autonomous AI driven drones wiping out humanity. Meanwhile, I watch AI struggle to position a checkbox correctly on a webpage.
 
 ## AI Code smells to avoid
 
@@ -28,6 +30,8 @@ LLMs are trained on tutorials, examples, and greenfield projects. Not on integra
 Left unchecked, every AI change increases entropy. More files, more duplication, more inconsistent patterns. The codebase becomes harder to reason about, which makes the next change even more likely to go wrong.
 
 ### 2. Hallucinations and Baffling Assumptions
+
+LLMs are trained to sound confident, not to admit when they don't know. So they make things up instead of saying nothing.
 
 AI confidently presents wrong code with the same tone as correct code. It invents APIs that don't exist, assumes libraries you're not using, and makes decisions about your codebase without asking. Every wrong assumption costs time: you have to spot it, understand why it's wrong, then fix it. The productivity gains vanish into cleanup.
 
@@ -51,15 +55,15 @@ AI won't.
 
 AI will apologise and say it won't happen again. It will. Every session resets. Every prompt is a fresh opportunity to ignore everything you've told it. The promises mean nothing.
 
-### 6. Speed Over Sustainability
+### 6. Brute Force Over Optimization
+
+AI defaults to the naive O(n²) approach every time. I had a search filter that needed to check nested objects. AI's solution was to loop through every field in every nested object on every keystroke. It would have blown the stack on any real dataset. I used a pre-computed `ts searchableText` field, building the search string once when data loads instead of on every filter operation. AI would never have suggested this.
+
+### 7. Speed Over Sustainability
 
 AI optimises for the first thing that works, not the right solution. Ask it to fix a bug and it'll reach for the quickest hack: disable the feature, hardcode a value, bypass the problem entirely. Understanding the actual root cause takes effort, and effort isn't in the training data.
 
 Recently I was debugging a table with virtualisation that wasn't rendering. The fix was `css min-height: 0` on the flex container. Instead of investigating, the AI blindly slapped on `css height: 600px`, a hack that "works" but breaks layout everywhere else.
-
-### 7. Brute Force Over Optimization
-
-AI defaults to the naive O(n²) approach every time. I had a search filter that needed to check nested objects. AI's solution was to loop through every field in every nested object on every keystroke. It would have blown the stack on any real dataset. I used a pre-computed `ts searchableText` field, building the search string once when data loads instead of on every filter operation. AI would never have suggested this.
 
 ## What Actually Works
 
