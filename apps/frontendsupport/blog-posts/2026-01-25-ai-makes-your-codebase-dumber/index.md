@@ -54,14 +54,23 @@ AI will.
 
 AI won't. Generic behavioral instructions compete with training patterns and lose. "Don't rewrite code" is abstract. The model ignores it.
 
-What works: specific pattern-based rules. Not "be careful with imports" but:
+What works: specific pattern-based rules. Not "handle errors properly" but:
 
 ```tsx
-// Bad: imports entire icon library
-import { ChevronRight } from "@mui/icons-material";
+// Bad: swallowing errors
+try {
+  await saveUser(data);
+} catch {
+  // silently fails
+}
 
-// Good: direct import
-import ChevronRight from "@mui/icons-material/ChevronRight";
+// Good: surface the failure
+try {
+  await saveUser(data);
+} catch (error) {
+  logger.error("Failed to save user", { error, data });
+  throw error;
+}
 ```
 
 Vercel's [agent-skills](https://github.com/vercel-labs/agent-skills) takes this approach: 57 concrete React patterns the model can match and apply. Pattern instructions align with how the model works. Behavioral instructions fight it.
