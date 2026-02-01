@@ -50,11 +50,21 @@ Ask AI to fix one thing and it'll "improve" three others. It refactors code you 
 
 AI will.
 
-> "I'll always refer to CLAUDE.md before making changes."
+> "I'll follow the rules in CLAUDE.md."
 
-AI won't.
+AI won't. Generic behavioral instructions compete with training patterns and lose. "Don't rewrite code" is abstract. The model ignores it.
 
-AI will apologise and say it won't happen again. It will. Every session resets. Every prompt is a fresh opportunity to ignore everything you've told it. The promises mean nothing.
+What works: specific pattern-based rules. Not "be careful with imports" but:
+
+```tsx
+// Bad: imports entire icon library
+import { ChevronRight } from "@mui/icons-material";
+
+// Good: direct import
+import ChevronRight from "@mui/icons-material/ChevronRight";
+```
+
+Vercel's [agent-skills](https://github.com/vercel-labs/agent-skills) takes this approach: 57 concrete React patterns the model can match and apply. Pattern instructions align with how the model works. Behavioral instructions fight it.
 
 ### 6. Brute Force Over Optimization
 
