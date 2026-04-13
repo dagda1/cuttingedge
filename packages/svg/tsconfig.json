@@ -1,16 +1,8 @@
 {
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "baseUrl": "./",
     "rootDirs": ["src", "demo"],
-    "noEmit": true,
-    "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"]
+    "noEmit": true
   },
-  "references": [
-    { "path": "../util/tsconfig.dist.json" },
-    { "path": "../hooks/tsconfig.dist.json" },
-    { "path": "../component-library/tsconfig.dist.json" },
-    { "path": "../use-get-parent-size/tsconfig.dist.json" }
-  ],
   "include": ["src/**/*.ts", "src/**/*.tsx", "demo"]
 }

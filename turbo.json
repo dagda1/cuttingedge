@@ -4,7 +4,7 @@
   "tasks": {
     "//#build:tsc": {
       "dependsOn": [],
-      "outputs": ["dist/**"]
+      "outputs": ["tools/**"]
     },
     "build": {
       "dependsOn": ["//#build:tsc", "^build"],

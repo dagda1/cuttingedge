@@ -1,12 +1,11 @@
 {
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "baseUrl": "./",
     "noEmit": true,
+    "rootDir": "src",
     "paths": {
-      "~/*": ["src/*"]
-    },
-    "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"]
+      "~/*": ["./src/*"]
+    }
   },
   "include": [
     "src/**/*.ts",
@@ -14,6 +13,5 @@
     "test/**/*.ts",
     "test/**/*.tsx",
     "setupTests.ts"
-  ],
-  "references": [{ "path": "../util/tsconfig.dist.json" }]
+  ]
 }

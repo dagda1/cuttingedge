@@ -3,11 +3,6 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "CommonJS",
-    "allowJs": true,
-    "types": [
-      "node",
-      "@types/vitest",
-      "@cutting/useful-types"
-    ]
+    "allowJs": true
   }
 }

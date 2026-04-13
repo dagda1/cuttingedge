@@ -42,7 +42,7 @@ RUN rm google-chrome-stable_current_amd64.deb
 # Check chrome version
 RUN echo "Chrome: " && google-chrome --version
 
-RUN npm install -g pnpm@10.26.2
+RUN npm install -g pnpm@10.33.0
 
 RUN rm -rf /cutting/
 

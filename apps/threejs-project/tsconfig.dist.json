@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/esm",
     "rootDir": "./src",
     "noEmit": false,
@@ -9,9 +8,6 @@
       "~/*": ["src/*"]
     }
   },
-  "references": [
-    { "path": "../../packages/component-library/tsconfig.dist.json" }
-  ],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": [
     "src/**/*.test.ts",

@@ -25,24 +25,24 @@
     "build": "NODE_ENV=production devtools esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json"
   },
   "dependencies": {
+    "@cutting/assert": "workspace:*",
     "@cutting/component-library": "workspace:*",
-    "@cutting/util": "workspace:*",
-    "@cutting/assert": "workspace:*"
+    "@cutting/util": "workspace:*"
   },
   "devDependencies": {
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-syntax-highlighter": "16.1.0",
-    "@testing-library/react": "16.3.1",
-    "react-hook-form": "7.69.0",
-    "react-is": "19.2.3",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "react-syntax-highlighter": "16.1.1",
+    "@testing-library/react": "16.3.2",
+    "react-hook-form": "7.72.1",
+    "react-is": "19.2.5",
     "react-calendly": "4.4.0"
   },
   "peerDependencies": {
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-hook-form": "7.69.0",
-    "react-is": "19.2.3",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "react-hook-form": "7.72.1",
+    "react-is": "19.2.5",
     "react-calendly": "4.4.0"
   },
   "keywords": [

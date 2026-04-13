@@ -1,12 +1,11 @@
 import type { Point } from '@cutting/svg';
 import { identity, range } from '@cutting/util';
 import { scaleLinear } from '@visx/scale';
-import type { ScaleLinear } from 'd3-scale';
 import { parse } from 'mathjs';
 
 export type Dimensions = { width: number; height: number };
 
-type TrigLinear = ScaleLinear<number, number, never>;
+type TrigLinear = ReturnType<typeof scaleLinear>;
 
 type GetScalesProps = Dimensions & { a: number; b: number; c: number; d: number; trigFunction: string };
 interface GetScalesResult {

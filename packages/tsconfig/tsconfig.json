@@ -5,7 +5,6 @@
     "moduleResolution": "Bundler",
     "strict": true,
     "jsx": "react-jsx",
-    "outDir": "./dist/esm",
     "removeComments": false,
     "checkJs": false,
     "isolatedModules": true,
@@ -13,11 +12,11 @@
     "esModuleInterop": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
-    "downlevelIteration": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "noFallthroughCasesInSwitch": true,
-    "lib": ["es5", "es2015", "es2016", "ES2019", "ES2022", "ES2023", "dom"]
+    "noUncheckedSideEffectImports": false,
+    "lib": ["ES2025", "DOM", "DOM.Iterable"]
   }
 }
