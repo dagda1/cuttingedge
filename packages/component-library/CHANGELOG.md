@@ -1,5 +1,18 @@
 # @cutting/component-library
 
+## 5.50.0
+
+### Minor Changes
+
+- d91afd0: bump
+
+### Patch Changes
+
+- Updated dependencies [d91afd0]
+  - @cutting/assert@0.6.0
+  - @cutting/hooks@4.65.0
+  - @cutting/util@4.65.0
+
 ## 5.49.0
 
 ### Minor Changes

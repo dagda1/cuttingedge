@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.71.0
+
+### Minor Changes
+
+- d91afd0: bump
+
 ## 4.70.0
 
 ### Minor Changes

@@ -1,5 +1,24 @@
 # @cutting/website
 
+## 4.33.0
+
+### Minor Changes
+
+- d91afd0: bump
+
+### Patch Changes
+
+- Updated dependencies [d91afd0]
+  - @cutting/assert@0.6.0
+  - @cutting/component-library@5.50.0
+  - @cutting/hooks@4.65.0
+  - @cutting/react-hook-form-components@0.13.0
+  - @cutting/svg@4.62.0
+  - @cutting/use-get-parent-size@2.9.0
+  - @cutting/use-mathjax@4.58.0
+  - @cutting/useful-types@4.46.0
+  - @cutting/util@4.65.0
+
 ## 4.32.0
 
 ### Minor Changes

@@ -1,5 +1,23 @@
 # @cutting/frontend-support
 
+## 0.7.0
+
+### Minor Changes
+
+- d91afd0: bump
+
+### Patch Changes
+
+- Updated dependencies [d91afd0]
+  - @cutting/assert@0.6.0
+  - @cutting/component-library@5.50.0
+  - @cutting/hooks@4.65.0
+  - @cutting/markdown@0.9.0
+  - @cutting/react-hook-form-components@0.13.0
+  - @cutting/use-get-parent-size@2.9.0
+  - @cutting/useful-types@4.46.0
+  - @cutting/util@4.65.0
+
 ## 0.6.0
 
 ### Minor Changes

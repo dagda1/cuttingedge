@@ -1,5 +1,18 @@
 # @cutting/react-hook-form-components
 
+## 0.13.0
+
+### Minor Changes
+
+- d91afd0: bump
+
+### Patch Changes
+
+- Updated dependencies [d91afd0]
+  - @cutting/assert@0.6.0
+  - @cutting/component-library@5.50.0
+  - @cutting/util@4.65.0
+
 ## 0.12.0
 
 ### Minor Changes

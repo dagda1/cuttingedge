@@ -1,5 +1,11 @@
 # @cutting/assert
 
+## 0.6.0
+
+### Minor Changes
+
+- d91afd0: bump
+
 ## 0.5.0
 
 ### Minor Changes

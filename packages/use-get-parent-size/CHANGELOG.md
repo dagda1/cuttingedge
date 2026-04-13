@@ -1,5 +1,16 @@
 # @cutting/use-get-parent-size
 
+## 2.9.0
+
+### Minor Changes
+
+- d91afd0: bump
+
+### Patch Changes
+
+- Updated dependencies [d91afd0]
+  - @cutting/assert@0.6.0
+
 ## 2.8.0
 
 ### Minor Changes
