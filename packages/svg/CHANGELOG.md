@@ -1,5 +1,18 @@
 # @cutting/svg
 
+## 4.62.0
+
+### Minor Changes
+
+- d91afd0: bump
+
+### Patch Changes
+
+- Updated dependencies [d91afd0]
+  - @cutting/assert@0.6.0
+  - @cutting/use-get-parent-size@2.9.0
+  - @cutting/util@4.65.0
+
 ## 4.61.0
 
 ### Minor Changes

@@ -4,6 +4,12 @@
 
 ### Minor Changes
 
+- d91afd0: bump
+
+## 4.46.0
+
+### Minor Changes
+
 - af733ed: again again again
 
 ## 4.46.0

@@ -1,5 +1,17 @@
 # @cutting/use-shortcuts
 
+## 4.54.0
+
+### Minor Changes
+
+- d91afd0: bump
+
+### Patch Changes
+
+- Updated dependencies [d91afd0]
+  - @cutting/assert@0.6.0
+  - @cutting/util@4.65.0
+
 ## 4.53.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 5.7.0
+
+### Minor Changes
+
+- d91afd0: bump
+
 ## 5.6.0
 
 ### Minor Changes

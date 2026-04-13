@@ -1,5 +1,17 @@
 # @cutting/hooks
 
+## 4.65.0
+
+### Minor Changes
+
+- d91afd0: bump
+
+### Patch Changes
+
+- Updated dependencies [d91afd0]
+  - @cutting/assert@0.6.0
+  - @cutting/util@4.65.0
+
 ## 4.64.0
 
 ### Minor Changes

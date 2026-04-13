@@ -1,5 +1,11 @@
 # performance-scout
 
+## 0.4.0
+
+### Minor Changes
+
+- d91afd0: bump
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @cutting/tsconfig
 
+## 4.46.0
+
+### Minor Changes
+
+- d91afd0: bump
+
 ## 4.45.0
 
 ### Minor Changes
