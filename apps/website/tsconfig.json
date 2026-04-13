@@ -1,16 +1,8 @@
 {
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "ES2022",
-    "module": "ES2022",
-    "outDir": "./dist",
     "rootDir": ".",
-    "noEmit": true,
-    "paths": {
-      "~/*": ["src/*"]
-    },
-    "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"]
+    "noEmit": true
   },
   "include": [
     "src/**/*.ts",

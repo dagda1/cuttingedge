@@ -13,9 +13,6 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: '@cutting/devtools/setuptests',
     css: true,
-    deps: {
-      fallbackCJS: true,
-    },
     include: ['./src/**/*.test.ts'],
   },
 });

@@ -22,20 +22,20 @@
     "build": "NODE_ENV=production devtools rollup"
   },
   "dependencies": {
+    "@cutting/assert": "workspace:*",
     "@cutting/hooks": "workspace:*",
     "@cutting/util": "workspace:*",
-    "@cutting/assert": "workspace:*",
     "mathjax-full": "3.2.2"
   },
   "devDependencies": {
-    "@vanilla-extract/css": "^1.18.0",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-syntax-highlighter": "16.1.0"
+    "@vanilla-extract/css": "^1.20.1",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "react-syntax-highlighter": "16.1.1"
   },
   "peerDependencies": {
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   },
   "keywords": [
     "hotkeys",

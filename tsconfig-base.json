@@ -1,11 +1,16 @@
 {
   "extends": "@cutting/tsconfig",
   "compilerOptions": {
-    "composite": true,
+    "baseUrl": "${configDir}",
     "declaration": true,
     "declarationMap": true,
+    "jsx": "react-jsx",
     "sourceMap": true,
+    "outDir": "${configDir}/dist/esm",
+    "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"],
+    "ignoreDeprecations": "6.0",
     "paths": {
+      "~/*": ["${configDir}/src/*"],
       "@cutting/component-library": ["./packages/component-library/src"],
       "@cutting/devtools": ["./packages/devtools/src"],
       "@cutting/hooks": ["./packages/hooks/src"],

@@ -49,7 +49,7 @@ async function bundle({
     platform: 'browser',
     sourcemap: true,
     format: 'esm',
-    target: ['es2020', 'chrome85', 'firefox85', 'safari14', 'edge19', 'node16'],
+    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4', 'node24'],
     treeShaking: true,
     allowOverwrite: true,
     inject: [reactShimPath],

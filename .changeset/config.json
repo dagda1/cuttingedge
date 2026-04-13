@@ -6,9 +6,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignored": [
-    "@cutting/frontend-support",
-    "@cutting/website",
-    "threejs-starter-vite"
-  ]
+  "ignored": ["@cutting/frontend-support", "@cutting/website"]
 }
