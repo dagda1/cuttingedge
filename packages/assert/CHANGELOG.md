@@ -4,6 +4,12 @@
 
 ### Minor Changes
 
+- 98caae6: upgrade to typescript 6.0
+
+## 0.5.0
+
+### Minor Changes
+
 - af733ed: again again again
 
 ## 0.5.0

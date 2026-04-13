@@ -1,5 +1,23 @@
 # @cutting/frontend-support
 
+## 0.6.0
+
+### Minor Changes
+
+- 98caae6: upgrade to typescript 6.0
+
+### Patch Changes
+
+- Updated dependencies [98caae6]
+  - @cutting/react-hook-form-components@0.12.0
+  - @cutting/use-get-parent-size@2.8.0
+  - @cutting/component-library@5.49.0
+  - @cutting/markdown@0.8.0
+  - @cutting/assert@0.5.0
+  - @cutting/hooks@4.64.0
+  - @cutting/util@4.64.0
+  - @cutting/useful-types@4.45.0
+
 ## 0.5.7
 
 ### Patch Changes

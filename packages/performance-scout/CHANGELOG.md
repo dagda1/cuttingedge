@@ -1,5 +1,11 @@
 # performance-scout
 
+## 0.3.0
+
+### Minor Changes
+
+- 98caae6: upgrade to typescript 6.0
+
 ## 0.2.0
 
 ### Minor Changes
