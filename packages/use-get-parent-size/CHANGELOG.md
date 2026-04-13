@@ -4,6 +4,17 @@
 
 ### Minor Changes
 
+- 98caae6: upgrade to typescript 6.0
+
+### Patch Changes
+
+- Updated dependencies [98caae6]
+  - @cutting/assert@0.5.0
+
+## 2.8.0
+
+### Minor Changes
+
 - af733ed: again again again
 
 ### Patch Changes
