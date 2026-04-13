@@ -9,8 +9,8 @@
   "scripts": {
     "knip": "knip",
     "all": "pnpm i && pnpm build && pnpm lint && pnpm test",
-    "build": "turbo run build",
-    "build:tsc": "pnpm --filter @cutting/devtools build",
+    "build": "pnpm build:tsc && pnpm install && pnpm turbo run build",
+    "build:tsc": "pnpm --filter @cutting/devtools build-tools",
     "clean": "rm -rf ./packages/*/{tsconfig.*tsbuildinfo,dist}",
     "lint": "turbo run lint",
     "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix",
@@ -89,7 +89,7 @@
     "prettier": "3.8.2",
     "turbo": "2.9.6",
     "typescript": "6.0.2",
-    "vite": "8.0.8",
+    "vite": "7.3.2",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "4.1.4",
     "whatwg-fetch": "3.6.20"

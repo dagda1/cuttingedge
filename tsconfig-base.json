@@ -1,13 +1,14 @@
 {
   "extends": "@cutting/tsconfig",
   "compilerOptions": {
+    "baseUrl": "${configDir}",
     "declaration": true,
     "declarationMap": true,
     "jsx": "react-jsx",
     "sourceMap": true,
     "outDir": "${configDir}/dist/esm",
-    "preserveSymlinks": false,
     "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"],
+    "ignoreDeprecations": "6.0",
     "paths": {
       "~/*": ["${configDir}/src/*"],
       "@cutting/component-library": ["./packages/component-library/src"],

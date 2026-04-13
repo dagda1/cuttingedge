@@ -1,5 +1,5 @@
 {
   "permissions": {
-    "allow": ["WebSearch", "WebFetch(domain:gist.github.com)"]
+    "allow": ["WebSearch", "WebFetch(domain:gist.github.com)", "Bash(npx:*)"]
   }
 }

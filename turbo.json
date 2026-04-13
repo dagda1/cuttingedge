@@ -2,12 +2,8 @@
   "$schema": "https://turborepo.org/schema.json",
   "globalDependencies": ["tsconfig-base.json", "tsconfig.packages.json"],
   "tasks": {
-    "//#build:tsc": {
-      "dependsOn": [],
-      "outputs": ["tools/**"]
-    },
     "build": {
-      "dependsOn": ["//#build:tsc", "^build"],
+      "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
     "test": {

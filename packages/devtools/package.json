@@ -24,7 +24,7 @@
     }
   },
   "scripts": {
-    "build": "NODE_ENV=production tsc --build && pnpm postbuild",
+    "build-tools": "NODE_ENV=production tsc --build && pnpm postbuild",
     "postbuild": "chmod -R 777 tools && git update-index  --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test",
     "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix"
@@ -77,6 +77,7 @@
     "package",
     "init",
     "tools",
+    "react-shim.js",
     "setuptests.js"
   ],
   "devDependencies": {
@@ -86,7 +87,6 @@
     "@types/copy": "0.3.5",
     "@types/fs-extra": "11.0.4",
     "@types/inquirer": "9.0.9",
-    "@types/node": "25.6.0",
     "@types/papaparse": "5.5.2",
     "@types/postcss-import": "14.0.3",
     "@types/rollup-plugin-size-snapshot": "0.10.5",

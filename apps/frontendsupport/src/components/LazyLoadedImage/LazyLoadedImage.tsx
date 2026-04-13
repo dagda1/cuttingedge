@@ -2,13 +2,14 @@ import { assert } from '@cutting/assert';
 import { useIsomorphicLayoutEffect } from '@cutting/hooks';
 import { blurhashToCssGradientString } from '@unpic/placeholder';
 import { Image, type ImageProps } from '@unpic/react';
+import type { RefAttributes } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 
 import { getImagePropsFromMap } from './getImagePropsFromMap';
 
 type Layout = ImageProps['layout'];
 
-type LazyLoadedImageProps = Omit<ImageProps, 'layout'> & { layout?: Layout } & React.RefAttributes<HTMLImageElement>;
+type LazyLoadedImageProps = Omit<ImageProps, 'layout'> & { layout?: Layout } & RefAttributes<HTMLImageElement>;
 
 export function LazyLoadedImage({
   src,
@@ -49,15 +50,16 @@ export function LazyLoadedImage({
 
   return (
     <Image
-      loading={loading}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      layout={layout as any}
-      width={resolvedWidth}
-      height={resolvedHeight}
-      background={placeholderStyle}
-      src={src}
-      onLoad={() => setLoaded(true)}
-      {...props}
+      {...({
+        loading,
+        layout,
+        width: resolvedWidth,
+        height: resolvedHeight,
+        background: placeholderStyle,
+        src,
+        onLoad: () => setLoaded(true),
+        ...props,
+      } as ImageProps)}
     />
   );
 }

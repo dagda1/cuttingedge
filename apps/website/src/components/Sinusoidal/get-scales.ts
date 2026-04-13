@@ -5,7 +5,7 @@ import { parse } from 'mathjs';
 
 export type Dimensions = { width: number; height: number };
 
-type TrigLinear = ReturnType<typeof scaleLinear>;
+type TrigLinear = ReturnType<typeof scaleLinear<number>>;
 
 type GetScalesProps = Dimensions & { a: number; b: number; c: number; d: number; trigFunction: string };
 interface GetScalesResult {
@@ -31,11 +31,11 @@ export function getScales({ a, b, c, d, trigFunction, width, height }: GetScales
 
   const sineData = xValues.map((x) => ({ x, y: expression.evaluate({ a, b, c, d, x }) }));
 
-  const xScale = scaleLinear()
+  const xScale = scaleLinear<number>()
     .domain([Math.PI * -2, TWO_PI])
     .range([0, width]);
 
-  const yScale = scaleLinear().domain([-3, 3]).range([height, 0]);
+  const yScale = scaleLinear<number>().domain([-3, 3]).range([height, 0]);
 
   return {
     xScale,
