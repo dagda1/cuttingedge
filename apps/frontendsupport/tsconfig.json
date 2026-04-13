@@ -4,10 +4,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "rootDir": ".",
-    "noEmit": true,
-    "paths": {
-      "~/*": ["./src/*"]
-    }
+    "noEmit": true
   },
   "include": [
     "src/**/*.ts",
