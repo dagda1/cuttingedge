@@ -17,4 +17,4 @@
 "@cutting/svg": patch
 ---
 
-update to latest react and friends
+add changeset for patch version bump to update react and related dependencies across all packages
