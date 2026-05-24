@@ -94,11 +94,11 @@
     "vitest": "4.1.7",
     "whatwg-fetch": "3.6.20"
   },
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@11.3.0",
   "volta": {
     "node": "22.22.1",
     "npm": "11.12.0",
-    "pnpm": "10.33.0"
+    "pnpm": "11.3.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
@@ -106,29 +106,6 @@
     ],
     "*.{json,md}": [
       "prettier --write"
-    ]
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.2.15",
-      "@types/react-dom": "19.2.3",
-      "react": "19.2.6",
-      "react-dom": "19.2.6"
-    },
-    "updateConfig": {
-      "ignoreDependencies": [
-        "eslint",
-        "*eslint*"
-      ]
-    },
-    "onlyBuiltDependencies": [
-      "@swc/core",
-      "core-js",
-      "esbuild",
-      "fsevents",
-      "husky",
-      "leveldown",
-      "puppeteer"
     ]
   }
 }
