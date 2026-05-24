@@ -1,5 +1,11 @@
 # performance-scout
 
+## 0.4.1
+
+### Patch Changes
+
+- 88e84cb: add changeset for patch version bump to update react and related dependencies across all packages
+
 ## 0.4.0
 
 ### Minor Changes

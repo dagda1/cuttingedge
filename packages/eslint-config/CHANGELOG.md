@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 5.7.1
+
+### Patch Changes
+
+- 88e84cb: add changeset for patch version bump to update react and related dependencies across all packages
+
 ## 5.7.0
 
 ### Minor Changes

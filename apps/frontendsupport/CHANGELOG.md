@@ -1,5 +1,20 @@
 # @cutting/frontend-support
 
+## 0.7.1
+
+### Patch Changes
+
+- 88e84cb: add changeset for patch version bump to update react and related dependencies across all packages
+- Updated dependencies [88e84cb]
+  - @cutting/react-hook-form-components@0.13.1
+  - @cutting/use-get-parent-size@2.9.1
+  - @cutting/component-library@5.50.1
+  - @cutting/markdown@0.9.1
+  - @cutting/assert@0.6.1
+  - @cutting/hooks@4.65.1
+  - @cutting/util@4.65.1
+  - @cutting/useful-types@4.46.0
+
 ## 0.7.0
 
 ### Minor Changes

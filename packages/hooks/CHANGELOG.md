@@ -1,5 +1,14 @@
 # @cutting/hooks
 
+## 4.65.1
+
+### Patch Changes
+
+- 88e84cb: add changeset for patch version bump to update react and related dependencies across all packages
+- Updated dependencies [88e84cb]
+  - @cutting/assert@0.6.1
+  - @cutting/util@4.65.1
+
 ## 4.65.0
 
 ### Minor Changes
