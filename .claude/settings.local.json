@@ -6,7 +6,8 @@
       "Bash(npx:*)",
       "Bash(npm view *)",
       "Bash(dig +short NS cutting.scot)",
-      "Bash(whois cutting.scot)"
+      "Bash(whois cutting.scot)",
+      "Bash(grep -n \"P1.0\\\\|Discovery\\\\|frontendrescue.com\\\\` returns\" /Users/paulcowan/projects/cuttingedge/plans/aws-ecs-migration.md)"
     ]
   }
 }

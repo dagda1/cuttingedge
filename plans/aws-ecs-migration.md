@@ -25,12 +25,12 @@ App Runner entered maintenance mode on 2026-04-30. Existing `frontendsupport` se
 
 ```
 Route53 (frontendrescue.com / cutting.scot)
-  → CloudFront (TLS via ACM, gzip/brotli, edge cache)
-      ├─ /static/* and built assets → S3 bucket
-      └─ everything else            → ALB (HTTPS) → ECS Fargate task (Node server, port 3000/3001)
+  → CloudFront (TLS via ACM, gzip/brotli, edge cache, aggressive cache on /assets/*)
+      → ALB (HTTPS) → ECS Fargate task (Node server, port 3000/3001)
 ```
 
-- **nginx container is removed** (website only — frontendsupport never had one). TLS → CloudFront. HTTP→HTTPS → CloudFront. gzip → CloudFront. Static file serving → S3. Reverse proxy → ALB.
+- **Single origin (ALB).** Node already serves its own static files; CloudFront handles edge cache + TLS + compression. No S3 bucket, no OAC. Drop in later if origin load becomes a problem.
+- **nginx container is removed** (website only — frontendsupport never had one). TLS → CloudFront. HTTP→HTTPS → CloudFront. gzip → CloudFront.
 - Both Node servers do **SSR + puppeteer-driven OG images** — must stay as a real origin, not pre-rendered.
 - ECS Express Mode runs Fargate under the hood; task def points at the existing ECR image.
 
@@ -41,40 +41,67 @@ Route53 (frontendrescue.com / cutting.scot)
 - Live on AWS App Runner, image `313095418189.dkr.ecr.us-east-1.amazonaws.com/frontendsupport:latest`, port 3001.
 - Custom domain `frontendrescue.com` via `aws_apprunner_custom_domain_association`.
 - DNS already in Route53 (existing `data "aws_route53_zone" "main"` block).
-- Single container, no nginx.
+- Single container, no nginx. Node serves its own static files from `dist/client/`.
+- Server source `apps/frontendsupport/server.mts` has zero `@aws-sdk/*` imports — task role only needs the AWS-managed permissions on the execution role (ECR pull + CloudWatch Logs). No custom task role policy needed.
 
-### Build target infra
+### Build target infra (in the existing `apps/frontendsupport/terraform/` directory)
 
-1. **Create `apps/frontendsupport/terraform-ecs/`** as a new directory alongside the existing `terraform/` (keep the App Runner config intact until cutover succeeds — rollback path).
-2. **Resources to declare:**
-   - `aws_s3_bucket` for static assets + bucket policy for CloudFront OAC.
-   - `aws_acm_certificate` (ACM-managed, `validation_method = "DNS"`) for `frontendrescue.com` + `www.frontendrescue.com`, validated via the existing Route53 zone. **Must be in `us-east-1` for CloudFront.** Reuse for ALB if ALB stays in `us-east-1`.
-   - `aws_lb` (internal=false, application), `aws_lb_target_group` (ip target type for Fargate, port 3001), `aws_lb_listener` (HTTPS:443 with ACM cert ARN).
-   - `aws_ecs_cluster`, `aws_ecs_task_definition` (Fargate, single container `frontendsupport`, port 3001, awslogs driver, 1 vCPU / 2 GB initially — bump if puppeteer struggles), `aws_ecs_service` (Express Mode, desired_count=1, attached to target group).
-   - `aws_security_group` pair: ALB SG allows 443 from world; task SG allows 3001 from ALB SG only.
-   - `aws_cloudfront_distribution` with two origins (S3 + ALB), default behaviour → ALB, `/static/*` behaviour → S3, viewer protocol policy `redirect-to-https`, `aliases = ["frontendrescue.com"]`.
-   - `aws_route53_record` ALIAS for `frontendrescue.com` → CloudFront _(only added at cutover — see runbook)_.
-   - IAM: task execution role (ECR pull + CloudWatch logs), task role (whatever the app needs at runtime — check `apps/frontendsupport/server.mts` for AWS SDK calls).
-3. **Add static asset sync to `apps/frontendsupport/bin/deploy.sh`:** `aws s3 sync ./dist/client/static s3://<bucket>/static --delete` after the ECR push.
+Add the new resources alongside the existing App Runner ones in the same files. App Runner keeps running and serving `frontendrescue.com` throughout — it stays as the rollback path until the new stack is verified.
+
+New resources to add:
+
+- `aws_acm_certificate` (`validation_method = "DNS"`) for `frontendrescue.com`, validated via the existing `data.aws_route53_zone.main` + `aws_route53_record` + `aws_acm_certificate_validation`. **Region `us-east-1`** (CloudFront requirement; ALB stays in `us-east-1` and reuses the same cert).
+- `data "aws_vpc" "default"` + `data "aws_subnets" "default"` (reuse default VPC for v1).
+- `aws_security_group` pair: ALB SG allows 443 from world; task SG allows 3001 from ALB SG only.
+- `aws_lb` (internet-facing, application), `aws_lb_target_group` (target_type `ip`, port 3001, health check path `/`), `aws_lb_listener` HTTPS:443 with the ACM cert ARN.
+- IAM: `aws_iam_role.ecs_task_execution` with `AmazonECSTaskExecutionRolePolicy` attached. No custom task role (server makes zero AWS SDK calls).
+- `aws_ecs_cluster`, `aws_ecs_task_definition` (Fargate, container `frontendsupport`, port 3001, awslogs driver, 1024 CPU / 2048 MB), `aws_ecs_service` (Fargate, desired_count=1, attached to target group, assign public IP for default VPC).
+- `aws_cloudwatch_log_group` for the ECS task logs.
+- `aws_cloudfront_distribution` with single ALB origin, default behaviour passes through, additional `/assets/*` cache behaviour with `min_ttl=31536000` (Vite hashed assets are immutable), viewer protocol policy `redirect-to-https`, `aliases = ["frontendrescue.com"]`, viewer cert = the ACM cert ARN.
+
+NOT added yet (deferred to cutover step):
+
+- `aws_route53_record` ALIAS `frontendrescue.com` → CloudFront. Apex still resolves to App Runner until this is added.
 
 ### Cutover runbook
 
-The Route53 ALIAS swap is the only step that affects real users. Everything before it must be verified.
+The Route53 ALIAS swap is the only step that affects real users. Everything before it must be verified. Treat the cutover as a professional change: tag every new resource (`Name`, `Environment=production`, `ManagedBy=terraform`, `App=frontendsupport`); gate the flip on health-check + smoke-test signals; stay watching for 30 min after the flip before walking away.
 
-1. `terraform apply` in `terraform-ecs/` — everything **except** the ALIAS record. CloudFront comes up on its default `*.cloudfront.net` hostname.
-2. Push image to ECR (already wired). Sync static assets to S3.
-3. Force ECS to pick up the image (`aws ecs update-service --force-new-deployment`). Wait for steady state.
-4. Smoke-test against the new stack via `Host` header + `/etc/hosts` override pointing `frontendrescue.com` at a CloudFront edge IP. SSR + puppeteer OG images must work. Do NOT proceed until this passes.
-5. **THE FLIP:** in the App Runner terraform, comment out `aws_apprunner_custom_domain_association`. In `terraform-ecs/`, add the Route53 ALIAS. `terraform apply` both.
-6. Watch CloudWatch logs + ALB target metrics. App Runner still serving stragglers behind stale resolver caches.
-7. Once 24h of zero traffic on App Runner: `terraform destroy` against the old `terraform/` directory (deletes App Runner service + IAM role).
-8. Rename `terraform-ecs/` → `terraform/`. Delete the old App Runner-specific tfvars entries.
+1. `terraform apply` — adds the new stack (ALB, ECS, CloudFront, etc.) alongside the still-running App Runner service. CloudFront comes up on its default `*.cloudfront.net` hostname. Apex DNS unchanged.
+2. Push image to ECR (existing `bin/deploy.sh` already does this — no changes needed).
+3. Force ECS to pick up the image: `aws ecs update-service --cluster <c> --service <s> --force-new-deployment`. Wait for steady state.
+4. **Pre-flip gate — all three must pass:**
+   - `aws elbv2 describe-target-health --target-group-arn <arn> --query 'TargetHealthDescriptions[*].TargetHealth.State'` → `["healthy"]`.
+   - `aws ecs describe-services --cluster <c> --services <s> --query 'services[0].deployments[0].rolloutState'` → `"COMPLETED"`.
+   - Smoke test: `/etc/hosts` override pointing `frontendrescue.com` at a CloudFront edge IP — render home page in browser, exercise the puppeteer OG image route, confirm any client-side routing works.
+5. **THE FLIP (the only user-visible step):** remove `aws_apprunner_custom_domain_association` from the terraform files, add `aws_route53_record` ALIAS for `frontendrescue.com` → CloudFront. `terraform apply`.
+6. **Post-flip watch (30 min, do not walk away):**
+   - `dig +short frontendrescue.com` returns CloudFront IPs within 60s.
+   - `curl -I https://frontendrescue.com` returns 200, `via:` header names CloudFront.
+   - CloudWatch: ALB `HTTPCode_Target_5XX_Count` stays 0; `TargetResponseTime` p95 stays under historical App Runner baseline.
+   - Tail ECS task logs: `aws logs tail /ecs/frontendsupport --follow`. Look for unhandled exceptions or repeated 5xx.
+7. App Runner still receives some traffic from stale resolver caches — that's fine. Once 24h of zero traffic on App Runner (verify via `AWS/AppRunner RequestCount` in CloudWatch), proceed to the deletion checklist below.
+
+### Deletion checklist (zero billing residue)
+
+After cutover succeeds, remove every App Runner-era resource from `apps/frontendsupport/terraform/` and `terraform apply` to destroy them. Each must be verified gone.
+
+- [ ] Remove `aws_apprunner_service.frontendsupport`, then apply.
+  - Verify: `aws apprunner list-services --query "ServiceSummaryList[?ServiceName=='frontendsupport']"` → `[]`.
+- [ ] Remove `aws_iam_role.apprunner_role` + `aws_iam_role_policy_attachment.apprunner_ecr_policy`, then apply.
+  - Verify: `aws iam get-role --role-name frontendsupport-apprunner-role` → `NoSuchEntity`.
+- [ ] Sweep for orphaned App Runner extras the terraform never owned:
+  - `aws apprunner list-auto-scaling-configurations` — delete anything mentioning `frontendsupport`.
+  - `aws apprunner list-vpc-connectors` — delete any referencing this service.
+- [ ] Clean up `variables.tf` / `terraform.tfvars`: drop `cpu`, `memory`, `custom_domain`, `route53_zone_name` defaults that were App Runner-specific. Keep `port`, `app_name`, `ecr_repository_url`, `image_tag` (still used by ECS).
+- [ ] Final billing sanity: `aws ce get-cost-and-usage --service "AWS App Runner"` after 48h should return `$0.00` for the new period.
+- [ ] Commit the cleaned-up terraform.
 
 ### What we learn here (carries to Phase 2)
 
-- Concrete ECS Express Mode resource shape (cluster, task def, service, autoscaling defaults).
+- Concrete ECS Express Mode terraform resource shape end-to-end.
 - ALB + Fargate `ip` target type wiring.
-- CloudFront with dual origins (S3 + ALB), behaviour ordering, OAC bucket policy.
+- CloudFront → ALB origin pattern.
 - ACM DNS validation flow with an existing Route53 zone.
 - Fargate task size that keeps puppeteer happy.
 
@@ -100,36 +127,50 @@ ACM DNS validation writes TXT records to the authoritative zone, so the zone mus
 
 Only after this is done can ACM issue the cert.
 
-### Build target infra
+### Build target infra (new `apps/website/terraform/` directory — none exists yet)
 
-1. **Copy `apps/frontendsupport/terraform/`** (the new ECS Express Mode one, post-rename) to `apps/website/terraform/`. Adjust:
-   - Container `website_server`, port 3000.
-   - Hostnames `cutting.scot` + `www.cutting.scot`.
-   - Route53 zone is the new `cutting_scot` zone from Phase 2a.
-   - Aliases on CloudFront include both apex and www.
-2. **Update `apps/website/bin/deploy.sh`:** drop the `website_nginx` build/tag/push lines. Add the S3 sync.
+Website has no AWS infra today (lives entirely on DigitalOcean), so the terraform directory is being created fresh. Use the post-cutover `apps/frontendsupport/terraform/` (App Runner resources removed, ECS+CF resources kept) as the template. Copy and adjust:
 
-### Cutover runbook (downtime OK)
+- Container `website_server`, port 3000.
+- Hostnames `cutting.scot` + `www.cutting.scot` (CloudFront aliases both).
+- Route53 zone is `cutting_scot` from Phase 2a.
+- ACM cert covers both apex and www.
+- Drop the `aws_s3_bucket` and any nginx-related thinking — Node serves its own static.
 
-The Route53 ALIAS swap is the only step that affects real users.
+Update `apps/website/bin/deploy.sh`: drop the `website_nginx` build/tag/push lines. No S3 sync needed.
 
-1. `terraform apply` everything **except** the apex/www ALIAS records.
-2. Push `website_server` image to ECR. Sync static assets to S3.
+### Cutover runbook (downtime OK, professional treatment)
+
+The Route53 ALIAS swap is the only step that affects real users. Tag every new resource; gate the flip on health + smoke signals; watch for 30 min post-flip.
+
+1. `terraform apply` — builds the full new stack. No DNS records added yet for apex/www. Droplet still serving.
+2. Push `website_server` image to ECR (existing `bin/deploy.sh`, minus nginx).
 3. Force ECS service to pick up the new image. Wait for steady state.
-4. Smoke-test via `Host` header + `/etc/hosts` override pointing `cutting.scot` at a CloudFront edge IP. SSR + puppeteer OG images must work. Do NOT proceed until this passes.
-5. **THE FLIP:** apply the Route53 ALIAS records for apex + www → CloudFront. TTL=60s from Phase 2a so propagation is fast.
-6. Watch CloudWatch logs + ALB target metrics. DO droplet still serving stragglers — fine.
-7. Once 24h of zero traffic to droplet: `doctl compute droplet delete <id>`, cancel the droplet, remove the DO billing entry.
-8. **Cleanup commits** (separate PR, after droplet is gone):
-   - Delete `apps/website/nginx/`, `docker-compose-in-production.yml`, `docker-compose-prod.yml`.
-   - Strip nginx build/push from `bin/deploy.sh` (already done in build step, formalise it).
-   - Delete ECR repo `website_nginx`.
-   - Delete `/root/ssl/` cert + key — the paid CA is being abandoned.
+4. **Pre-flip gate — all three must pass:**
+   - ALB target group health → `["healthy"]`.
+   - ECS service rollout → `"COMPLETED"`.
+   - Smoke test: `/etc/hosts` override for `cutting.scot` + `www.cutting.scot` → CloudFront edge IP. SSR + puppeteer OG image generation must work in a real browser.
+5. **THE FLIP:** add the `aws_route53_record` ALIAS records for apex + www → CloudFront and `terraform apply`. TTL=60s from Phase 2a so propagation is fast.
+6. **Post-flip watch (30 min):** `dig`, `curl`, ALB 5xx rate, ECS task logs (`aws logs tail /ecs/website --follow`). No anomalies before walking away.
+7. DO droplet still serving stragglers — fine. Once 24h of zero traffic to droplet, proceed to deletion checklist below.
+
+### Deletion checklist (zero billing residue)
+
+- [ ] `doctl compute droplet delete <id> --force`.
+  - Verify: `doctl compute droplet list` does not list it.
+- [ ] Cancel any DigitalOcean reserved IPs / volumes / snapshots attached to the droplet.
+  - Verify: `doctl compute reserved-ip list`, `doctl compute volume list`, `doctl compute snapshot list` — nothing referencing the droplet.
+- [ ] Confirm DO DNS zone for `cutting.scot` already deleted (in Phase 2a). Verify in DO control panel.
+- [ ] Final DigitalOcean billing sanity: log into DO control panel, confirm next invoice estimate is `$0` (or matches whatever else still runs there).
+- [ ] Delete ECR repo `website_nginx`: `aws ecr delete-repository --repository-name website_nginx --force`.
+  - Verify: `aws ecr describe-repositories --query "repositories[?repositoryName=='website_nginx']"` → `[]`.
+- [ ] **Cleanup commit** (after droplet gone):
+  - Delete `apps/website/nginx/`, `docker-compose-in-production.yml`, `docker-compose-prod.yml`.
+  - Strip nginx build/push from `bin/deploy.sh` (formalise the build-step change).
+  - The paid TLS cert + key on the old droplet die with it — no separate action needed.
 
 ## Things to verify before writing terraform
 
-- Vite build output path for static assets (confirms what gets synced to S3). Same for both apps.
-- Does either Node server need outbound access to anything specific (RDS, Secrets Manager, third-party APIs)? Drives task role IAM policy and VPC routing.
 - Puppeteer + Chrome inside Fargate: confirm the Dockerfile's Chrome install survives the move (already runs on App Runner for frontendsupport, so likely fine, but task size must be generous — start 1 vCPU / 2 GB, bump if needed).
 
 ## Out of scope
@@ -144,15 +185,6 @@ Each step: action + how to prove it worked. Resume from first unchecked.
 
 ### Phase 1 — frontendsupport
 
-**P1.0 — Discovery**
-
-- [ ] Confirm App Runner service is currently serving traffic.
-  - Verify: `curl -I https://frontendrescue.com` returns `200` or `301`.
-- [ ] Locate Vite client build output directory (likely `dist/client/`).
-  - Verify: `pnpm --filter @cutting/frontendsupport build && ls apps/frontendsupport/dist/client/` shows hashed JS/CSS assets.
-- [ ] Grep `apps/frontendsupport/server.mts` for AWS SDK imports / external service calls.
-  - Verify: list every `@aws-sdk/*` import and any third-party fetch — drives task-role IAM policy.
-
 **P1.1 — Scaffold terraform-ecs/**
 
 - [ ] `mkdir apps/frontendsupport/terraform-ecs && cd $_ && terraform init` (with same provider versions as `terraform/`).
@@ -165,13 +197,8 @@ Each step: action + how to prove it worked. Resume from first unchecked.
 
 **P1.3 — ACM cert**
 
-- [ ] `aws_acm_certificate` for `frontendrescue.com` + `www.frontendrescue.com`, DNS validation, + `aws_route53_record` validation records + `aws_acm_certificate_validation`. Region `us-east-1`.
+- [ ] `aws_acm_certificate` for `frontendrescue.com`, DNS validation, + `aws_route53_record` validation records + `aws_acm_certificate_validation`. Region `us-east-1`.
   - Verify after apply: `aws acm describe-certificate --certificate-arn <arn> --region us-east-1 --query 'Certificate.Status'` → `"ISSUED"`.
-
-**P1.4 — S3 static bucket**
-
-- [ ] `aws_s3_bucket` + block-public-access + bucket policy granting CloudFront OAC `s3:GetObject`.
-  - Verify: `aws s3api get-public-access-block --bucket <name>` shows all four flags `true`.
 
 **P1.5 — ALB**
 
@@ -187,7 +214,7 @@ Each step: action + how to prove it worked. Resume from first unchecked.
 
 **P1.7 — CloudFront**
 
-- [ ] `aws_cloudfront_distribution` with two origins (S3 with OAC, ALB with HTTPS), default behaviour → ALB, `/static/*` → S3, viewer protocol policy `redirect-to-https`, `aliases = ["frontendrescue.com", "www.frontendrescue.com"]`, cert ARN.
+- [ ] `aws_cloudfront_distribution` with single ALB origin (HTTPS), default cache behaviour passes through, additional cache behaviour for `/assets/*` with `min_ttl=31536000, default_ttl=31536000` (Vite hashed assets are immutable), viewer protocol policy `redirect-to-https`, `aliases = ["frontendrescue.com"]`, cert ARN.
   - Verify after apply (takes 5-10 min):
     - `aws cloudfront get-distribution --id <id> --query 'Distribution.Status'` → `"Deployed"`.
     - `curl -I https://<cloudfront-domain>/` returns 200 + `via:` header naming CloudFront.
@@ -196,8 +223,6 @@ Each step: action + how to prove it worked. Resume from first unchecked.
 
 - [ ] Push image: existing `apps/frontendsupport/bin/deploy.sh`.
   - Verify: `aws ecr describe-images --repository-name frontendsupport --image-ids imageTag=latest --query 'imageDetails[0].imagePushedAt'` shows a fresh timestamp.
-- [ ] Sync static assets: `aws s3 sync apps/frontendsupport/dist/client/static s3://<bucket>/static --delete`.
-  - Verify: `aws s3 ls s3://<bucket>/static/` lists hashed asset filenames.
 - [ ] Force ECS deployment: `aws ecs update-service --cluster <c> --service <s> --force-new-deployment`.
   - Verify: `aws ecs describe-services ... --query 'services[0].deployments[0].rolloutState'` → `"COMPLETED"`.
 
@@ -211,7 +236,7 @@ Each step: action + how to prove it worked. Resume from first unchecked.
 **P1.10 — DNS flip (the only user-visible step)**
 
 - [ ] In old `terraform/`, comment out `aws_apprunner_custom_domain_association` and `apply`.
-- [ ] In `terraform-ecs/`, add `aws_route53_record` ALIAS for apex + www → CloudFront, `apply`.
+- [ ] In `terraform-ecs/`, add `aws_route53_record` ALIAS for `frontendrescue.com` → CloudFront, `apply`.
   - Verify: `dig +short frontendrescue.com` returns CloudFront IPs (not App Runner IPs) within 60s.
   - Verify: `curl -I https://frontendrescue.com` returns 200, `via:` header names CloudFront.
 
