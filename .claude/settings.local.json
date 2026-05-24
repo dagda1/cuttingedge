@@ -1,5 +1,12 @@
 {
   "permissions": {
-    "allow": ["WebSearch", "WebFetch(domain:gist.github.com)", "Bash(npx:*)"]
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:gist.github.com)",
+      "Bash(npx:*)",
+      "Bash(npm view *)",
+      "Bash(dig +short NS cutting.scot)",
+      "Bash(whois cutting.scot)"
+    ]
   }
 }

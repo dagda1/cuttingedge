@@ -4,9 +4,15 @@ on:
   push:
     branches:
       - main
+
 env:
   CI: true
   HUSKY: 0
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
 
 jobs:
   version:
@@ -17,11 +23,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: setup node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22.x
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: upgrade npm
+        run: npm install -g npm@latest
 
       - name: Cache pnpm modules
         uses: actions/cache@v4
@@ -36,18 +46,9 @@ jobs:
         with:
           version: 10.33.0
 
-      - name: echo npm dest
-        run: echo "pnpm installed in ${{steps.install_pnpm.outputs.dest}}"
-      
-      - name: Creating .npmrc
-        run: |
-          "${GITHUB_WORKSPACE}/scripts/create-npmrc.sh" "${{ secrets.NPM_TOKEN }}"
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
       - name: install dependencies
         run: pnpm install
-      
+
       - name: Create PR or Publish release
         id: changesets
         uses: changesets/action@v1
@@ -58,10 +59,10 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: 'true'
 
       - name: Update lock file
-        run: pnpm install  --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Commit lock file
         uses: stefanzweifel/git-auto-commit-action@v5
