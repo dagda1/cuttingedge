@@ -26,19 +26,19 @@
   },
   "devDependencies": {
     "@testing-library/react": "16.3.2",
-    "@types/three": "0.183.1",
-    "react": "19.2.5",
-    "react-dom": "19.2.5",
-    "react-router": "7.14.0",
+    "@types/three": "0.184.1",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-router": "7.15.1",
     "resize-observer-polyfill": "1.5.1",
-    "three": "0.183.2",
+    "three": "0.184.0",
     "use-debounce": "10.1.1"
   },
   "peerDependencies": {
-    "react": "19.2.5",
-    "react-dom": "19.2.5",
-    "react-router": "7.14.0",
-    "three": "0.183.2",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-router": "7.15.1",
+    "three": "0.184.0",
     "use-debounce": "10.1.1"
   },
   "volta": {
