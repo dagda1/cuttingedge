@@ -1,6 +1,6 @@
 {
   "name": "@cutting/eslint-config",
-  "version": "5.7.0",
+  "version": "5.7.1",
   "description": "Cutting eslint configuration definition",
   "type": "module",
   "module": "index.mjs",
