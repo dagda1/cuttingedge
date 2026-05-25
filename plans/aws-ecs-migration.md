@@ -50,14 +50,15 @@ Add the new resources alongside the existing App Runner ones in the same files. 
 
 New resources to add:
 
-- `aws_acm_certificate` (`validation_method = "DNS"`) for `frontendrescue.com`, validated via the existing `data.aws_route53_zone.main` + `aws_route53_record` + `aws_acm_certificate_validation`. **Region `us-east-1`** (CloudFront requirement; ALB stays in `us-east-1` and reuses the same cert).
-- `data "aws_vpc" "default"` + `data "aws_subnets" "default"` (reuse default VPC for v1).
-- `aws_security_group` pair: ALB SG allows 443 from world; task SG allows 3001 from ALB SG only.
-- `aws_lb` (internet-facing, application), `aws_lb_target_group` (target_type `ip`, port 3001, health check path `/`), `aws_lb_listener` HTTPS:443 with the ACM cert ARN.
-- IAM: `aws_iam_role.ecs_task_execution` with `AmazonECSTaskExecutionRolePolicy` attached. No custom task role (server makes zero AWS SDK calls).
-- `aws_ecs_cluster`, `aws_ecs_task_definition` (Fargate, container `frontendsupport`, port 3001, awslogs driver, 1024 CPU / 2048 MB), `aws_ecs_service` (Fargate, desired_count=1, attached to target group, assign public IP for default VPC).
-- `aws_cloudwatch_log_group` for the ECS task logs.
-- `aws_cloudfront_distribution` with single ALB origin, default behaviour passes through, additional `/assets/*` cache behaviour with `min_ttl=31536000` (Vite hashed assets are immutable), viewer protocol policy `redirect-to-https`, `aliases = ["frontendrescue.com"]`, viewer cert = the ACM cert ARN.
+**TLS terminates at CloudFront, not the ALB.** CloudFront can't do HTTPS to the ALB by its `*.elb.amazonaws.com` hostname (cert is for `frontendrescue.com` → hostname mismatch → 502). So CloudFront → ALB is plain HTTP, and the ALB is locked to CloudFront's IP ranges via the `com.amazonaws.global.cloudfront.origin-facing` managed prefix list. The ACM cert is the CloudFront _viewer_ cert.
+
+Files written in `apps/frontendsupport/terraform/` (one concern per file):
+
+- `domain.tf` — `aws_acm_certificate` (`validation_method = "DNS"`, region `us-east-1`) + `aws_route53_record.cert_validation` + `aws_acm_certificate_validation`, all using the existing `data.aws_route53_zone.main`. App Runner resources still here, untouched.
+- `network.tf` — `data.aws_vpc.default`, `data.aws_subnets.default`, `data.aws_ec2_managed_prefix_list.cloudfront`. ALB SG allows **HTTP:80 from the CloudFront prefix list only**; task SG allows 3001 from ALB SG only.
+- `alb.tf` — `aws_lb` (internet-facing), `aws_lb_target_group` (target_type `ip`, port 3001, health check `/`), `aws_lb_listener` **HTTP:80** → target group (no cert on the ALB).
+- `ecs.tf` — `aws_iam_role.ecs_task_execution` + `AmazonECSTaskExecutionRolePolicy`; `aws_cloudwatch_log_group` `/ecs/frontendsupport`; `aws_ecs_cluster` (Container Insights on); `aws_ecs_task_definition` (Fargate, 1024/2048, container port 3001, env from `var.environment_variables`, awslogs); `aws_ecs_service` (Fargate, desired_count=1, default subnets, task SG, `assign_public_ip=true`, attached to target group, `depends_on` the HTTP listener).
+- `cloudfront.tf` — `aws_cloudfront_distribution`, single ALB origin over HTTP (`origin_protocol_policy = "http-only"`); default behaviour uses `Managed-CachingDisabled` + `Managed-AllViewer` (SSR, nothing cached); `/assets/*` behaviour uses `Managed-CachingOptimized` (Vite hashed assets); viewer cert = validated ACM cert; `aliases = ["frontendrescue.com"]`; `PriceClass_100`.
 
 NOT added yet (deferred to cutover step):
 
