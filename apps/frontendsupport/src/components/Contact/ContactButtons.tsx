@@ -1,10 +1,7 @@
 import { Box } from '@cutting/component-library';
-import { lazy, Suspense } from 'react';
+import { ContactButtons as ContactForm } from '@cutting/react-hook-form-components';
+import { Suspense } from 'react';
 import Skeleton from 'react-loading-skeleton';
-
-const ContactForm = lazy(() =>
-  import('@cutting/react-hook-form-components').then((module) => ({ default: module.ContactButtons })),
-);
 
 interface ContactButtonsProps {
   justify?: 'flexStart' | 'center' | 'flexEnd';

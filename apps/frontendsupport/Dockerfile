@@ -62,4 +62,4 @@ WORKDIR /app/dist
 
 ENV NODE_ENV=production
 EXPOSE 3001
-CMD ["node", "./dist/server.mjs"]
+CMD ["node", "./dist/esm/server.mjs"]

@@ -32,7 +32,7 @@ export async function createServer(): Promise<{
 }> {
   const resolve = (p: string) => path.resolve(__dirname, p);
 
-  const indexProd = isProd ? fs.readFileSync(resolve('client/index.html'), 'utf-8') : '';
+  const indexProd = isProd ? fs.readFileSync(resolve('../client/index.html'), 'utf-8') : '';
 
   const app = express();
 

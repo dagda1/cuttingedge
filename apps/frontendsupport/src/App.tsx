@@ -14,6 +14,7 @@ import { TestimonialsSkeleton } from './components/Fallback/TestimonialsSkeleton
 import { Header } from './components/Header/Header';
 import { contactFormProps } from './constants';
 import Home from './routes/_index';
+import Testimonials from './routes/testimonials';
 
 const About = lazy(() => import('./routes/about'));
 const Contact = lazy(() => import('./routes/contact'));
@@ -21,7 +22,6 @@ const EmailConfirmation = lazy(() => import('./routes/email.confirmation'));
 const Posts = lazy(() => import('./routes/posts'));
 const PostsIndex = lazy(() => import('./routes/posts._index'));
 const PostSlug = lazy(() => import('./routes/posts.$slug'));
-const Testimonials = lazy(() => import('./routes/testimonials'));
 
 export function MainRoutes(): React.JSX.Element {
   return (
