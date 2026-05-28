@@ -39,3 +39,16 @@ resource "aws_acm_certificate_validation" "frontendsupport" {
   certificate_arn         = aws_acm_certificate.frontendsupport.arn
   validation_record_fqdns = [for r in aws_route53_record.cert_validation : r.fqdn]
 }
+
+resource "aws_route53_record" "apex" {
+  zone_id         = data.aws_route53_zone.main.zone_id
+  name            = var.custom_domain
+  type            = "A"
+  allow_overwrite = true
+
+  alias {
+    name                   = aws_cloudfront_distribution.frontendsupport.domain_name
+    zone_id                = aws_cloudfront_distribution.frontendsupport.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
