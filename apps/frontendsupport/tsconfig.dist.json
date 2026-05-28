@@ -4,6 +4,7 @@
     "rootDir": ".",
     "module": "ES2022",
     "target": "ES2022",
+    "outDir": "${configDir}/dist",
     "noEmit": false
   },
   "include": [
