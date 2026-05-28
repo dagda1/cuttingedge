@@ -21,7 +21,7 @@ export function Home(): JSX.Element {
       >
         <Box>
           <Heading level="1" weight="regular">
-            I fix frontend messes
+            I fix react frontends
           </Heading>
           <Box marginY="xxxlarge">
             <Text component="p" size="large">
