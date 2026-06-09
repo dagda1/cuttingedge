@@ -1,13 +1,13 @@
-name: Deploy Frontend Support to ECS
+name: Deploy Website to ECS
 
 on:
   push:
     branches: [main]
     paths:
-      - 'apps/frontendsupport/**'
+      - 'apps/website/**'
       - 'packages/**'
       - 'pnpm-lock.yaml'
-      - '.github/workflows/deploy-frontendsupport.yml'
+      - '.github/workflows/deploy-website.yml'
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -58,7 +58,7 @@ jobs:
         with:
           aws-region: us-east-1
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}        
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Deploy (inline deploy:web)
         env:
@@ -69,14 +69,14 @@ jobs:
           AWS_DEFAULT_REGION: us-east-1
           NODE_ENV: production
         run: |
-          cd apps/frontendsupport
+          cd apps/website
           REGISTRY="$(aws sts get-caller-identity --query Account --output text).dkr.ecr.us-east-1.amazonaws.com"
           rm -rf pruned
-          pnpm --filter @cutting/frontend-support build
-          pnpm --filter @cutting/frontend-support --prod deploy pruned
-          docker build --build-arg CPPFLAGS="-DPNG_ARM_NEON_OPT=0" -t frontendsupport:latest -f Dockerfile .
+          pnpm --filter @cutting/website build
+          pnpm --filter @cutting/website --prod deploy pruned
+          docker build --build-arg CPPFLAGS="-DPNG_ARM_NEON_OPT=0" -t website_server:latest -f Dockerfile .
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$REGISTRY"
-          docker tag frontendsupport:latest "$REGISTRY/frontendsupport:latest"
-          docker push "$REGISTRY/frontendsupport:latest"
-          aws ecs update-service --cluster frontendsupport --service frontendsupport --region us-east-1 --force-new-deployment
+          docker tag website_server:latest "$REGISTRY/website_server:latest"
+          docker push "$REGISTRY/website_server:latest"
+          aws ecs update-service --cluster website --service website --region us-east-1 --force-new-deployment
           rm -rf ./pruned

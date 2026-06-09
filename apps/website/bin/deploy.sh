@@ -1,22 +1,18 @@
 #!/bin/bash
-
-source ./bin/env.sh
-
-echo "building backend"
+set -euo pipefail
 
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
-dcprod build --build-arg CPPFLAGS="-DPNG_ARM_NEON_OPT=0"
+REGISTRY="$(aws sts get-caller-identity --query Account --output text).dkr.ecr.us-east-1.amazonaws.com"
 
-./bin/stop_production.sh
-./bin/start_production.sh
+docker build --build-arg CPPFLAGS="-DPNG_ARM_NEON_OPT=0" -t website_server:latest -f Dockerfile .
 
-aws ecr get-login-password --region us-east-1  | docker login --username AWS --password-stdin 313095418189.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$REGISTRY"
 
-docker tag website-nginx:latest 313095418189.dkr.ecr.us-east-1.amazonaws.com/website_nginx:latest
-docker tag website-server:latest 313095418189.dkr.ecr.us-east-1.amazonaws.com/website_server:latest
+docker tag website_server:latest "$REGISTRY/website_server:latest"
 
-docker push 313095418189.dkr.ecr.us-east-1.amazonaws.com/website_server:latest
-docker push 313095418189.dkr.ecr.us-east-1.amazonaws.com/website_nginx:latest
+docker push "$REGISTRY/website_server:latest"
+
+aws ecs update-service --cluster website --service website --region us-east-1 --force-new-deployment
 
 rm -rf ./pruned

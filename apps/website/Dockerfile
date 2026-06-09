@@ -48,7 +48,7 @@ RUN rm -rf /cutting/
 
 WORKDIR /cutting/
 
-COPY ./apps/website/pruned ./dist
+COPY ./pruned ./dist
 
 RUN cat ./dist/package.json
 
@@ -59,3 +59,7 @@ RUN sed -i -e s/'..\/..\/tsconfig-base.json'/'..\/..\/..\/tsconfig-base.json'/g 
 RUN echo -n "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc-deploy
 
 WORKDIR /cutting/dist
+
+ENV NODE_ENV=production
+EXPOSE 3000
+CMD ["npm", "serve"]
