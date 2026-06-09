@@ -2,6 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": ".",
+    "module": "ES2022",
+    "target": "ES2022",
+    "outDir": "${configDir}/dist",
     "noEmit": false
   },
   "include": [
@@ -10,5 +13,5 @@
     "node_modules/vite/types/*",
     "../../node_modules/@types/mdx/index.d.ts"
   ],
-  "exclude": ["pruned"]
+  "exclude": ["pruned", "dist"]
 }

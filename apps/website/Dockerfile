@@ -44,21 +44,21 @@ RUN echo "Chrome: " && google-chrome --version
 
 RUN npm install -g pnpm@11.3.0
 
-RUN rm -rf /cutting/
+RUN rm -rf /app/
 
-WORKDIR /cutting/
+WORKDIR /app/
 
 COPY ./pruned ./dist
 
 RUN cat ./dist/package.json
 
-RUN sed -i -e s/'..\/..\/package.json'/'..\/..\/..\/package.json'/g ./dist/package.json
-RUN sed -i -e s/'..\/..\/tsconfig-base.json'/'..\/..\/..\/tsconfig-base.json'/g ./dist/tsconfig.json
+RUN sed -i -e 's|../../package.json|../../../package.json|g' ./dist/package.json
+RUN sed -i -e 's|../../tsconfig-base.json|../../../tsconfig-base.json|g' ./dist/tsconfig.json
 
 
 RUN echo -n "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc-deploy
 
-WORKDIR /cutting/dist
+WORKDIR /app/dist
 
 ENV NODE_ENV=production
 EXPOSE 3000
