@@ -62,4 +62,4 @@ WORKDIR /cutting/dist
 
 ENV NODE_ENV=production
 EXPOSE 3000
-CMD ["npm", "serve"]
+CMD ["node", "./dist/server.mjs"]
