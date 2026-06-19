@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.72.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
 ## 4.71.1
 
 ### Patch Changes

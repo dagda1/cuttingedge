@@ -1,5 +1,16 @@
 # @cutting/react-hook-form-components
 
+## 0.14.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
+### Patch Changes
+
+- Updated dependencies [c702763]
+  - @cutting/component-library@5.51.0
+
 ## 0.13.1
 
 ### Patch Changes

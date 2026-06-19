@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.66.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
 ## 4.65.1
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @cutting/svg
 
+## 4.63.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
+### Patch Changes
+
+- Updated dependencies [c702763]
+  - @cutting/use-get-parent-size@2.10.0
+
 ## 4.62.1
 
 ### Patch Changes

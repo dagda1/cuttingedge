@@ -1,5 +1,16 @@
 # @cutting/component-library
 
+## 5.51.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
+### Patch Changes
+
+- Updated dependencies [c702763]
+  - @cutting/hooks@4.66.0
+
 ## 5.50.1
 
 ### Patch Changes

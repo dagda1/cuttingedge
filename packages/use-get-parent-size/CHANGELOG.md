@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.10.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
 ## 2.9.1
 
 ### Patch Changes
