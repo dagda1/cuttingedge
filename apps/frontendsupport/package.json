@@ -7,7 +7,8 @@
   "scripts": {
     "prebuild": "tsx scripts/prebuild-posts.mts",
     "copy-blog-posts": "rm -rf dist/server/blog-posts/* && cp -rf blog-posts dist/server",
-    "build": "rimraf dist && tsc -p ./tsconfig.dist.json && pnpm prebuild && tsc && vite build --outDir dist/client --ssrManifest && vite build --ssr src/entry-server.tsx --outDir dist/server && pnpm copy-blog-posts && ./fix-files",
+    "build": "rimraf dist && tsc -p ./tsconfig.dist.json && pnpm prebuild && tsc && vite build --outDir dist/client --ssrManifest && vite build --ssr src/entry-server.tsx --outDir dist/server && pnpm copy-blog-posts && ./fix-files && pnpm prerender",
+    "prerender": "tsx scripts/prerender.mts",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "dev": "run-p dev:server dev:posts",
