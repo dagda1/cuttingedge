@@ -1,6 +1,5 @@
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
 const isTest = process.env.NODE_ENV === 'test';
@@ -8,7 +7,10 @@ const isTest = process.env.NODE_ENV === 'test';
 // https://vitejs.dev/config/
 export default defineConfig({
   root: isTest ? '.' : 'demo',
-  plugins: [vanillaExtractPlugin(), tsconfigPaths({ root: '../../' }), react()],
+  plugins: [vanillaExtractPlugin(), react()],
+  resolve: {
+    tsconfigPaths: true,
+  },
   test: {
     globals: true,
     environment: 'jsdom',

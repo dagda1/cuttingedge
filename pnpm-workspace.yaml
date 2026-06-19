@@ -35,3 +35,8 @@ allowBuilds:
   fsevents: true
   husky: true
   puppeteer: true
+
+minimumReleaseAgeExclude:
+  - '@types/node@26.0.0'
+  - papaparse@5.5.4
+  - react-router@8.0.1
