@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 5.8.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
 ## 5.7.1
 
 ### Patch Changes

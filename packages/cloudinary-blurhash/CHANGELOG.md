@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.9.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
 ## 0.8.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cutting/use-shortcuts
 
+## 4.55.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
 ## 4.54.1
 
 ### Patch Changes

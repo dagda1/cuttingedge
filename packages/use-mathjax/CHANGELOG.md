@@ -1,5 +1,16 @@
 # @cutting/use-mathjax
 
+## 4.59.0
+
+### Minor Changes
+
+- c702763: upgrade @visx to 4
+
+### Patch Changes
+
+- Updated dependencies [c702763]
+  - @cutting/hooks@4.66.0
+
 ## 4.58.1
 
 ### Patch Changes
