@@ -64,8 +64,8 @@ Then the ALB, its listener and target group, and the two security groups (`front
 ## 5. Verify
 
 ```
-curl -I https://frontendrescue.scot
-curl -s https://frontendrescue.scot/about | grep -o '<title>[^<]*</title>'
+curl -I https://frontendrescue.com
+curl -s https://frontendrescue.com/about | grep -o '<title>[^<]*</title>'
 ```
 
 Both should return 200 / the prerendered page.
