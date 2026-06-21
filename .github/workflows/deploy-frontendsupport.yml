@@ -54,5 +54,4 @@ jobs:
           ACCOUNT="$(aws sts get-caller-identity --query Account --output text)"
           BUCKET="frontendsupport-site-${ACCOUNT}"
           aws s3 sync dist/client "s3://${BUCKET}" --delete
-          DIST_ID="$(aws cloudfront list-distributions --query "DistributionList.Items[?contains(Aliases.Items, 'frontendrescue.scot')].Id" --output text)"
-          aws cloudfront create-invalidation --distribution-id "$DIST_ID" --paths "/*"
+          aws cloudfront create-invalidation --distribution-id E3H4YDK8TII931 --paths "/*"
