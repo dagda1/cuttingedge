@@ -39,8 +39,8 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build
-        run: pnpm turbo run build --filter=@cutting/frontend-support
-
+        run: pnpm build
+`
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
