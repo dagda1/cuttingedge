@@ -1,4 +1,4 @@
-name: Deploy Frontend Support to ECS
+name: Deploy Frontend Support to S3
 
 on:
   push:
@@ -20,18 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Debug AWS creds
-        shell: bash
-        run: |
-          set -e
-          echo "AWS_ACCESS_KEY_ID present? $([ -n "${AWS_ACCESS_KEY_ID:-}" ] && echo yes || echo no)"
-          echo "AWS_SECRET_ACCESS_KEY present? $([ -n "${AWS_SECRET_ACCESS_KEY:-}" ] && echo yes || echo no)"
-          aws sts get-caller-identity
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -51,32 +39,20 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build
-        run: pnpm build
+        run: pnpm --filter @cutting/frontend-support build
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: us-east-1
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}        
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Deploy (inline deploy:web)
-        env:
-          DOCKER_DEFAULT_PLATFORM: linux/amd64
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
-          NODE_ENV: production
+      - name: Deploy to S3 and invalidate CloudFront
         run: |
           cd apps/frontendsupport
-          REGISTRY="$(aws sts get-caller-identity --query Account --output text).dkr.ecr.us-east-1.amazonaws.com"
-          rm -rf pruned
-          pnpm --filter @cutting/frontend-support build
-          pnpm --filter @cutting/frontend-support --prod deploy pruned
-          docker build --build-arg CPPFLAGS="-DPNG_ARM_NEON_OPT=0" -t frontendsupport:latest -f Dockerfile .
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$REGISTRY"
-          docker tag frontendsupport:latest "$REGISTRY/frontendsupport:latest"
-          docker push "$REGISTRY/frontendsupport:latest"
-          aws ecs update-service --cluster frontendsupport --service frontendsupport --region us-east-1 --force-new-deployment
-          rm -rf ./pruned
+          ACCOUNT="$(aws sts get-caller-identity --query Account --output text)"
+          BUCKET="frontendsupport-site-${ACCOUNT}"
+          aws s3 sync dist/client "s3://${BUCKET}" --delete
+          DIST_ID="$(aws cloudfront list-distributions --query "DistributionList.Items[?contains(Aliases.Items, 'frontendrescue.scot')].Id" --output text)"
+          aws cloudfront create-invalidation --distribution-id "$DIST_ID" --paths "/*"
