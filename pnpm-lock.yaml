@@ -229,6 +229,9 @@ importers:
       '@cutting/component-library':
         specifier: workspace:*
         version: link:../../packages/component-library
+      '@cutting/devtools':
+        specifier: workspace:*
+        version: link:../../packages/devtools
       '@cutting/hooks':
         specifier: workspace:*
         version: link:../../packages/hooks
@@ -962,6 +965,9 @@ importers:
       '@types/copy':
         specifier: 0.3.5
         version: 0.3.5
+      '@types/express':
+        specifier: 5.0.3
+        version: 5.0.3
       '@types/fs-extra':
         specifier: 11.0.4
         version: 11.0.4
@@ -977,6 +983,9 @@ importers:
       '@types/rollup-plugin-size-snapshot':
         specifier: 0.10.5
         version: 0.10.5
+      '@types/serve-static':
+        specifier: 1.15.9
+        version: 1.15.9
       '@types/validate-npm-package-name':
         specifier: 4.0.2
         version: 4.0.2
@@ -1001,12 +1010,21 @@ importers:
       eslint-plugin-react-hooks:
         specifier: 7.1.1
         version: 7.1.1(eslint@10.5.0)
+      express:
+        specifier: 5.2.1
+        version: 5.2.1
+      puppeteer:
+        specifier: 25.1.0
+        version: 25.1.0
       react:
         specifier: 19.2.6
         version: 19.2.6
       react-dom:
         specifier: 19.2.6
         version: 19.2.6(react@19.2.6)
+      serve-static:
+        specifier: 2.2.1
+        version: 2.2.1
 
   packages/eslint-config:
     dependencies:
@@ -4191,6 +4209,9 @@ packages:
   '@types/express-serve-static-core@5.1.1':
     resolution: {integrity: sha512-v4zIMr/cX7/d2BpAEX3KNKL/JrT1s43s96lLvvdTmza1oEvDudCqK9aF/djc/SWgy8Yh0h30TZx5VpzqFCxk5A==}
 
+  '@types/express@5.0.3':
+    resolution: {integrity: sha512-wGA0NX93b19/dZC1J18tKWVIYWyyF2ZjT9vin/NRu0qzzvfVzWjs04iq2rQ3H65vCTQYlRqs3YHfY7zjdV+9Kw==}
+
   '@types/express@5.0.6':
     resolution: {integrity: sha512-sKYVuV7Sv9fbPIt/442koC7+IIwK5olP1KWeD88e/idgoJqDm3JV/YUiPwkoKK92ylff2MGxSz1CSjsXelx0YA==}
 
@@ -4238,6 +4259,9 @@ packages:
 
   '@types/mdx@2.0.14':
     resolution: {integrity: sha512-T48PeuJtvLosNTPVhfnIp3i/n3a4g4Bad7YCq5k64D4u7NwDrAotikQ+5+sjtUvBmxCMlbo3dVL+C2dP0rWHzg==}
+
+  '@types/mime@1.3.5':
+    resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
 
   '@types/mousetrap@1.6.15':
     resolution: {integrity: sha512-qL0hyIMNPow317QWW/63RvL1x5MVMV+Ru3NaY9f/CuEpCqrmb7WeuK2071ZY5hczOnm38qExWM2i2WtkXLSqFw==}
@@ -4325,8 +4349,14 @@ packages:
   '@types/rollup-plugin-size-snapshot@0.10.5':
     resolution: {integrity: sha512-//Vo5Cn7f18JeDK956zrdNroMNXtImWiccc4uDYlra+brPD5I7HlYFrdFSmFQAwRO0d7rBdsxE0OMF5ALd1Jug==}
 
+  '@types/send@0.17.6':
+    resolution: {integrity: sha512-Uqt8rPBE8SY0RK8JB1EzVOIZ32uqy8HwdxCnoCOsYrvnswqmFZ/k+9Ikidlk/ImhsdvBsloHbAlewb2IEBV/Og==}
+
   '@types/send@1.2.1':
     resolution: {integrity: sha512-arsCikDvlU99zl1g69TcAB3mzZPpxgw0UQnaHeC1Nwb015xp8bknZv5rIfri9xTOcMuaVgvabfIRA7PSZVuZIQ==}
+
+  '@types/serve-static@1.15.9':
+    resolution: {integrity: sha512-dOTIuqpWLyl3BBXU3maNQsS4A3zuuoYRNIvYSxxhebPfXg2mzWQEPne/nlJ37yOse6uGgR386uTpdsx4D0QZWA==}
 
   '@types/serve-static@2.2.0':
     resolution: {integrity: sha512-8mam4H1NHLtu7nmtalF7eyBH14QyOASmcxHhSfEoRyr0nP/YdoesEtU+uSRvMe96TW/HPTtkoKqQLl53N7UXMQ==}
@@ -15047,6 +15077,12 @@ snapshots:
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.1
 
+  '@types/express@5.0.3':
+    dependencies:
+      '@types/body-parser': 1.19.6
+      '@types/express-serve-static-core': 5.1.1
+      '@types/serve-static': 2.2.0
+
   '@types/express@5.0.6':
     dependencies:
       '@types/body-parser': 1.19.6
@@ -15094,6 +15130,8 @@ snapshots:
       '@types/unist': 3.0.3
 
   '@types/mdx@2.0.14': {}
+
+  '@types/mime@1.3.5': {}
 
   '@types/mousetrap@1.6.15': {}
 
@@ -15181,9 +15219,20 @@ snapshots:
     dependencies:
       rollup: 0.63.5
 
+  '@types/send@0.17.6':
+    dependencies:
+      '@types/mime': 1.3.5
+      '@types/node': 26.0.0
+
   '@types/send@1.2.1':
     dependencies:
       '@types/node': 26.0.0
+
+  '@types/serve-static@1.15.9':
+    dependencies:
+      '@types/http-errors': 2.0.5
+      '@types/node': 26.0.0
+      '@types/send': 0.17.6
 
   '@types/serve-static@2.2.0':
     dependencies:

@@ -15,6 +15,10 @@
       "types": "./tools/index.d.ts",
       "import": "./tools/index.min.js"
     },
+    "./prerender.js": {
+      "types": "./tools/prerender/index.d.ts",
+      "import": "./tools/prerender/index.js"
+    },
     "./paths.js": {
       "import": "./tools/config/paths.js"
     },
@@ -82,6 +86,11 @@
   ],
   "devDependencies": {
     "@types/babel__core": "7.20.5",
+    "@types/express": "5.0.3",
+    "@types/serve-static": "1.15.9",
+    "express": "5.2.1",
+    "puppeteer": "25.1.0",
+    "serve-static": "2.2.1",
     "@types/babel__plugin-transform-runtime": "7.9.5",
     "@types/babel__preset-env": "7.10.0",
     "@types/copy": "0.3.5",
@@ -102,8 +111,22 @@
     "react-dom": "19.2.7"
   },
   "peerDependencies": {
+    "express": "*",
+    "puppeteer": "*",
     "react": "19.2.7",
-    "react-dom": "19.2.7"
+    "react-dom": "19.2.7",
+    "serve-static": "*"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": true
+    },
+    "puppeteer": {
+      "optional": true
+    },
+    "serve-static": {
+      "optional": true
+    }
   },
   "volta": {
     "extends": "../../package.json"
