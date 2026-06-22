@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "prebuild": "tsx scripts/prebuild-posts.mts",
-    "build": "rimraf dist && pnpm prebuild && tsc && vite build --outDir dist/client --ssrManifest && pnpm og-images && pnpm prerender",
-    "og-images": "tsx scripts/og-images.mts",
+    "build": "rimraf dist && pnpm prebuild && tsc && vite build --outDir dist/client --ssrManifest && pnpm prerender",
     "prerender": "tsx scripts/prerender.mts",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",

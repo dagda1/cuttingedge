@@ -3,28 +3,31 @@ import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { dirname, join } from 'node:path';
 
-export interface PrerenderRoute {
-  path: string;
+export interface SiteMeta {
   title: string;
   description: string;
-  image: string;
 }
 
-export interface PrerenderOptions {
+export interface PrerenderSiteOptions {
   clientDir: string;
   baseUrl: string;
-  routes: PrerenderRoute[];
-}
-
-export interface OgImageTarget {
-  path: string;
-  name: string;
-}
-
-export interface OgImagesOptions {
-  clientDir: string;
-  targets: OgImageTarget[];
+  defaultMeta: SiteMeta;
+  resolveMeta?: (path: string) => Promise<Partial<SiteMeta> | undefined> | Partial<SiteMeta> | undefined;
   viewport?: { width: number; height: number };
+}
+
+function slugForPath(path: string): string {
+  const slug = path.replace(/^\/+|\/+$/g, '').replace(/\//g, '-');
+  return slug || 'home';
+}
+
+function normalize(path: string): string {
+  const [withoutHash] = path.split('#');
+  const [clean] = withoutHash.split('?');
+  if (clean.length > 1 && clean.endsWith('/')) {
+    return clean.slice(0, -1);
+  }
+  return clean;
 }
 
 function setMeta(html: string, key: string, value: string): string {
@@ -32,49 +35,25 @@ function setMeta(html: string, key: string, value: string): string {
   return html.replace(re, (_match, before: string, after: string) => `${before}${value}${after}`);
 }
 
-function outputPath(clientDir: string, route: string): string {
-  const segment = route === '/' ? '' : route;
+function outputPath(clientDir: string, path: string): string {
+  const segment = path === '/' ? '' : path;
   return join(clientDir, segment, 'index.html');
 }
 
-export async function prerender({ clientDir, baseUrl, routes }: PrerenderOptions): Promise<void> {
-  const template = await readFile(join(clientDir, 'index.html'), 'utf-8');
-
-  for (const route of routes) {
-    const values: Record<string, string> = {
-      'og:url': `${baseUrl}${route.path}`,
-      'twitter:url': `${baseUrl}${route.path}`,
-      'og:title': route.title,
-      'og:image:alt': route.title,
-      'twitter:title': route.title,
-      'og:description': route.description,
-      'twitter:description': route.description,
-      'og:image': route.image,
-      'twitter:image:src': route.image,
-    };
-
-    let html = template;
-    for (const [key, value] of Object.entries(values)) {
-      html = setMeta(html, key, value);
-    }
-    html = html.replace(/<title>[^<]*<\/title>/, `<title>${route.title}</title>`);
-
-    const target = outputPath(clientDir, route.path);
-    await mkdir(dirname(target), { recursive: true });
-    await writeFile(target, html, 'utf-8');
-  }
-
-  console.log(`Pre-rendered ${routes.length} routes (head meta only)`);
-}
-
-export async function generateOgImages({
+export async function prerenderSite({
   clientDir,
-  targets,
+  baseUrl,
+  defaultMeta,
+  resolveMeta,
   viewport = { width: 1200, height: 630 },
-}: OgImagesOptions): Promise<void> {
+}: PrerenderSiteOptions): Promise<void> {
   const { default: express } = await import('express');
   const { default: serveStatic } = await import('serve-static');
   const { default: puppeteer } = await import('puppeteer');
+
+  const template = await readFile(join(clientDir, 'index.html'), 'utf-8');
+  const ogDir = join(clientDir, 'og');
+  await mkdir(ogDir, { recursive: true });
 
   const app = express();
   app.use(serveStatic(clientDir, { index: ['index.html'] }));
@@ -82,26 +61,82 @@ export async function generateOgImages({
   const server = createServer(app);
   await new Promise<void>((resolve) => server.listen(0, resolve));
   const port = (server.address() as AddressInfo).port;
+  const origin = `http://localhost:${port}`;
 
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--font-render-hinting=none'],
   });
 
-  try {
-    const ogDir = join(clientDir, 'og');
-    await mkdir(ogDir, { recursive: true });
+  const queue: string[] = ['/'];
+  const seen = new Set<string>(['/']);
+  const prerendered: string[] = [];
 
-    for (const target of targets) {
+  try {
+    while (queue.length > 0) {
+      const path = queue.shift() as string;
       const page = await browser.newPage();
       await page.setViewport(viewport);
-      await page.goto(`http://localhost:${port}${target.path}`, { waitUntil: 'networkidle0', timeout: 50000 });
+
+      const response = await page.goto(`${origin}${path}`, { waitUntil: 'networkidle0', timeout: 50000 });
+      const contentType = response?.headers()['content-type'] ?? '';
+
+      if (!contentType.includes('text/html')) {
+        await page.close();
+        continue;
+      }
+
+      const slug = slugForPath(path);
       const screenshot = await page.screenshot({ type: 'png' });
-      await writeFile(join(ogDir, `${target.name}.png`), screenshot);
+      await writeFile(join(ogDir, `${slug}.png`), screenshot);
+
+      const hrefs = await page.$$eval('a[href]', (els: Element[]) => els.map((el) => el.getAttribute('href') ?? ''));
       await page.close();
+
+      for (const href of hrefs) {
+        if (!href.startsWith('/') || href.startsWith('//')) {
+          continue;
+        }
+        const next = normalize(href);
+        if (!seen.has(next)) {
+          seen.add(next);
+          queue.push(next);
+        }
+      }
+
+      const override = (await resolveMeta?.(path)) ?? {};
+      const meta: SiteMeta = {
+        title: override.title ?? defaultMeta.title,
+        description: override.description ?? defaultMeta.description,
+      };
+      const image = `${baseUrl}/og/${slug}.png`;
+      const url = `${baseUrl}${path}`;
+
+      const values: Record<string, string> = {
+        'og:url': url,
+        'twitter:url': url,
+        'og:title': meta.title,
+        'og:image:alt': meta.title,
+        'twitter:title': meta.title,
+        'og:description': meta.description,
+        'twitter:description': meta.description,
+        'og:image': image,
+        'twitter:image:src': image,
+      };
+
+      let html = template;
+      for (const [key, value] of Object.entries(values)) {
+        html = setMeta(html, key, value);
+      }
+      html = html.replace(/<title>[^<]*<\/title>/, `<title>${meta.title}</title>`);
+
+      const target = outputPath(clientDir, path);
+      await mkdir(dirname(target), { recursive: true });
+      await writeFile(target, html, 'utf-8');
+      prerendered.push(path);
     }
 
-    console.log(`Generated ${targets.length} OG images`);
+    console.log(`Prerendered ${prerendered.length} routes with OG images: ${prerendered.join(', ')}`);
   } finally {
     await browser.close();
     server.close();
