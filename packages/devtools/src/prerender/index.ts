@@ -12,8 +12,40 @@ export interface PrerenderSiteOptions {
   clientDir: string;
   baseUrl: string;
   defaultMeta: SiteMeta;
+  routes?: string[];
+  exclude?: string[];
   resolveMeta?: (path: string) => Promise<Partial<SiteMeta> | undefined> | Partial<SiteMeta> | undefined;
   viewport?: { width: number; height: number };
+}
+
+export function parseConstants(source: string): Record<string, string> {
+  const constants: Record<string, string> = {};
+  for (const match of source.matchAll(/export\s+const\s+(\w+)\s*=\s*["'`]([^"'`]+)["'`]/g)) {
+    constants[match[1]] = match[2];
+  }
+  return constants;
+}
+
+export function extractRoutePaths(source: string, constants: Record<string, string> = {}): string[] {
+  const paths = new Set<string>();
+
+  const add = (path: string): void => {
+    if (path.startsWith('/') && !path.includes(':') && !path.includes('*')) {
+      paths.add(path);
+    }
+  };
+
+  for (const match of source.matchAll(/\bpath\s*[=:]\s*["'`]([^"'`]+)["'`]/g)) {
+    add(match[1]);
+  }
+  for (const match of source.matchAll(/\bpath\s*[=:]\s*\{?\s*\w+\.(\w+)\s*\}?/g)) {
+    const value = constants[match[1]];
+    if (value) {
+      add(value);
+    }
+  }
+
+  return [...paths];
 }
 
 function slugForPath(path: string): string {
@@ -44,9 +76,12 @@ export async function prerenderSite({
   clientDir,
   baseUrl,
   defaultMeta,
+  routes = [],
+  exclude = [],
   resolveMeta,
   viewport = { width: 1200, height: 630 },
 }: PrerenderSiteOptions): Promise<void> {
+  const excluded = new Set(exclude.map(normalize));
   const { default: express } = await import('express');
   const { default: serveStatic } = await import('serve-static');
   const { default: puppeteer } = await import('puppeteer');
@@ -68,8 +103,9 @@ export async function prerenderSite({
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--font-render-hinting=none'],
   });
 
-  const queue: string[] = ['/'];
-  const seen = new Set<string>(['/']);
+  const seeds = ['/', ...routes].map(normalize).filter((path) => !excluded.has(path));
+  const queue: string[] = [...new Set(seeds)];
+  const seen = new Set<string>(queue);
   const prerendered: string[] = [];
 
   try {
@@ -98,7 +134,7 @@ export async function prerenderSite({
           continue;
         }
         const next = normalize(href);
-        if (!seen.has(next)) {
+        if (!seen.has(next) && !excluded.has(next)) {
           seen.add(next);
           queue.push(next);
         }

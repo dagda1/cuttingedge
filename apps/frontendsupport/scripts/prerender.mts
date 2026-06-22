@@ -1,4 +1,4 @@
-import { prerenderSite, type SiteMeta } from '@cutting/devtools/prerender.js';
+import { extractRoutePaths, prerenderSite, type SiteMeta } from '@cutting/devtools/prerender.js';
 import { readFile } from 'fs/promises';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
@@ -18,10 +18,13 @@ type Post = { slug: string; title: string; description: string };
 const list = JSON.parse(await readFile(join(clientDir, 'posts', 'posts-list.json'), 'utf-8')) as Post[];
 const postMeta = new Map(list.map((post) => [post.slug, { title: post.title, description: post.description }]));
 
+const routes = extractRoutePaths(await readFile(join(__dirname, '../src/App.tsx'), 'utf-8'));
+
 await prerenderSite({
   clientDir,
   baseUrl: BASE_URL,
   defaultMeta: DEFAULT_META,
+  routes,
   resolveMeta: (path) => {
     const match = path.match(/^\/posts\/(.+)$/);
     return match ? postMeta.get(match[1]) : undefined;
