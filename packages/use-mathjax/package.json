@@ -19,7 +19,7 @@
     "test": "NODE_ENV=test vitest",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "lint:fix": "pnpm lint --fix",
-    "build": "NODE_ENV=production devtools rollup"
+    "build": "NODE_ENV=production devtools rolldown"
   },
   "dependencies": {
     "@cutting/assert": "workspace:*",

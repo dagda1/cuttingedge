@@ -1,7 +1,6 @@
 import fs from 'fs';
 import { readFile } from 'fs/promises';
 import path from 'path';
-import type { ParsedCommandLine } from 'typescript';
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath: string) => path.resolve(appDirectory, relativePath);
@@ -13,8 +12,8 @@ const tsConfigPath = resolveApp('tsconfig.json');
 const tsConfigProductionPath = resolveApp('tsconfig.dist.json');
 
 type OurCompilerOptions = {
-  compilerOptions: Partial<Pick<ParsedCommandLine['options'], 'outDir'> & { module?: string }>;
-  references?: ParsedCommandLine['projectReferences'];
+  compilerOptions: { outDir?: string; module?: string };
+  references?: { path: string }[];
 };
 
 const tsConfig: OurCompilerOptions = fs.existsSync(tsConfigPath)

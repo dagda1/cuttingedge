@@ -29,7 +29,7 @@
     "test.md"
   ],
   "scripts": {
-    "build": "NODE_ENV=production devtools rollup",
+    "build": "NODE_ENV=production devtools rolldown",
     "lint": "eslint ./src/**/*.ts --fix",
     "start": "echo no demo yet",
     "test": "echo not tests yet",

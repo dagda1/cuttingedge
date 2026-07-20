@@ -13,7 +13,6 @@
     "build:tsc": "pnpm --filter @cutting/devtools build-tools",
     "clean": "rm -rf ./packages/*/{tsconfig.*tsbuildinfo,dist}",
     "lint": "turbo run lint",
-    "lint:js": "eslint --ext .js . -c ./packages/devtools/.eslintrc.json --ignore-path ./.eslintignore --fix",
     "prepare": "husky install",
     "test": "CI=true turbo run test -- --coverage --run",
     "watch": "pnpm build:tsc && pnpm tsc -b ./tsconfig.packages.json --watch",
@@ -88,7 +87,7 @@
     "node-fetch": "3.3.2",
     "prettier": "3.9.5",
     "turbo": "2.10.5",
-    "typescript": "7.0.2",
+    "typescript": "6.0.3",
     "vite": "8.1.5",
     "vitest": "4.1.10",
     "whatwg-fetch": "3.6.20"

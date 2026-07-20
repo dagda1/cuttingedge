@@ -20,7 +20,7 @@ let command = '';
 switch (script) {
   case 'generate-blurhash':
   case 'devserver-start':
-  case 'rollup':
+  case 'rolldown':
   case 'esbuild':
   case 'ts-build': {
     command = path.join(__dirname, `../scripts/${script}.js`);

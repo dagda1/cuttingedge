@@ -19,7 +19,7 @@
     "test:types": "dtslint types --localTs ../../node_modules/typescript/lib --expectOnly",
     "test": "NODE_ENV=test vitest",
     "test:all": "CI=true pnpm test:unit && pnpm test:types",
-    "build": "NODE_ENV=production devtools rollup",
+    "build": "NODE_ENV=production devtools rolldown",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix"
   },
   "dependencies": {

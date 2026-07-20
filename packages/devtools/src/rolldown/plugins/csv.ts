@@ -1,6 +1,6 @@
 import { createFilter } from '@rollup/pluginutils';
 import Papa from 'papaparse';
-import type { PluginImpl } from 'rollup';
+import type { Plugin } from 'rolldown';
 
 export type CSVOptions = {
   dynamicTyping: boolean;
@@ -10,7 +10,7 @@ export type CSVOptions = {
   exclude: string | RegExp | (string | RegExp)[];
 };
 
-export const csv: PluginImpl = () => {
+export const csv = (): Plugin => {
   const filter = createFilter('**/*.csv');
 
   return {

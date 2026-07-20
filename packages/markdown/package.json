@@ -43,7 +43,7 @@
     "test.md"
   ],
   "scripts": {
-    "build": "NODE_ENV=production devtools rollup",
+    "build": "NODE_ENV=production devtools rolldown",
     "lint": "eslint ./src/**/*.ts --fix",
     "start": "pnpm vite --host --port 9000  -l=info  --clearScreen=false",
     "test": "echo test timing out in ci for some reason",

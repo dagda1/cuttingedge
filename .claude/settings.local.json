@@ -11,7 +11,18 @@
       "Skill(update-config)",
       "Read(//Users/paulcowan/.cache/puppeteer/chrome/**)",
       "Read(//Users/paulcowan/.cache/puppeteer/**)",
-      "Bash(pnpm exec *)"
+      "Bash(pnpm exec *)",
+      "WebFetch(domain:rolldown.rs)",
+      "WebFetch(domain:github.com)",
+      "Bash(git mv *)",
+      "Bash(perl -pi -e 's/devtools rollup/devtools rolldown/' packages/cloudinary-blurhash/package.json packages/markdown/package.json packages/assert/package.json packages/hooks/package.json packages/svg/package.json packages/use-shortcuts/package.json packages/use-mathjax/package.json packages/use-get-parent-size/package.json packages/util/package.json)",
+      "Bash(PUPPETEER_SKIP_DOWNLOAD=1 pnpm install)",
+      "Bash(pnpm build-tools *)",
+      "Bash(pnpm build *)",
+      "Bash(pnpm --filter @cutting/cloudinary-blurhash --filter @cutting/markdown --filter @cutting/assert --filter @cutting/hooks --filter @cutting/svg --filter @cutting/use-shortcuts --filter @cutting/use-mathjax --filter @cutting/use-get-parent-size build)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(pnpm --filter @cutting/assert lint)",
+      "Bash(git checkout *)"
     ]
   }
 }

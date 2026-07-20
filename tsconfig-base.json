@@ -9,17 +9,7 @@
     "types": ["node", "@cutting/useful-types", "@cutting/useful-types/jsx"],
     "ignoreDeprecations": "6.0",
     "paths": {
-      "~/*": ["${configDir}/src/*"],
-      "@cutting/component-library": ["./packages/component-library/src"],
-      "@cutting/devtools": ["./packages/devtools/src"],
-      "@cutting/hooks": ["./packages/hooks/src"],
-      "@cutting/markdown": ["./packages/markdown/src"],
-      "@cutting/svg": ["./packages/svg/src"],
-      "@cutting/use-get-parent-size": ["./packages/use-get-parent-size/src"],
-      "@cutting/use-mathjax": ["./packages/use-mathjax/src"],
-      "@cutting/use-shortcuts": ["./packages/use-shortcuts/src"],
-      "@cutting/util": ["./packages/util/src"],
-      "@cutting/assert": ["./packages/assert/src"]
+      "~/*": ["${configDir}/src/*"]
     }
   }
 }

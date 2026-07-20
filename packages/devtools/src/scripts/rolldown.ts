@@ -1,12 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { md } from '@cutting/rollup-plugin-md';
-// @ts-ignore
-import eslint from '@rbnlffl/rollup-plugin-eslint';
-import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-import resolve from '@rollup/plugin-node-resolve';
-// @ts-ignore
-import terser from '@rollup/plugin-terser';
 import { assert } from 'assert-ts';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
@@ -18,24 +11,21 @@ import path from 'path';
 import postcssImport from 'postcss-import';
 // @ts-ignore
 import url from 'postcss-url';
-import type { OutputOptions } from 'rollup';
-import { rollup } from 'rollup';
+import type { OutputOptions } from 'rolldown';
+import { rolldown } from 'rolldown';
+import { dts } from 'rolldown-plugin-dts';
 import analyzer from 'rollup-plugin-analyzer';
 import postcss from 'rollup-plugin-postcss';
-import sourceMaps from 'rollup-plugin-sourcemaps';
 // @ts-ignore
 import svgo from 'rollup-plugin-svgo';
-import typescript from 'rollup-plugin-typescript2';
-import ts from 'typescript';
 
 import { paths } from '../config/paths.js';
-import { csv } from '../rollup/plugins/csv.js';
+import { csv } from '../rolldown/plugins/csv.js';
 import type { ModuleFormat } from '../types/moduleFormat.js';
 import { copyAssets } from './copy-assets.js';
 import { logger } from './logger.js';
 import { writeToPackage } from './write-package.js';
 
-// TODO: remove this shit
 const safePackageName = (name: string): string =>
   name.toLowerCase().replace(/(^@.*\/)|((^[^a-zA-Z]+)|[^\w.-])|([^a-zA-Z0-9]+$)/g, '');
 
@@ -62,27 +52,19 @@ async function generateBundledModule({
 
   const minify = env === 'production';
 
-  const bundle = await rollup({
+  const bundle = await rolldown({
     input: entryFile,
     external: (id: string) => {
       return !id.startsWith('.') && !path.isAbsolute(id);
+    },
+    resolve: {
+      mainFields: ['module', 'browser', 'main'],
+      extensions: ['.ts', '.tsx', '.json', '.jsx'],
     },
     treeshake: {
       propertyReadSideEffects: false,
     },
     plugins: [
-      eslint({
-        throwOnError: true,
-        throwOnWarning: true,
-        filterInclude: 'src/**',
-        filterExclude: ['**/*.scss', '**/*.css', '**/*.md', '**/*.csv', 'dist/**', '**/*.json'],
-      }),
-      resolve({
-        mainFields: ['module', 'browser', 'main'],
-        extensions: ['.ts', '.tsx', '.json', '.jsx'],
-      }),
-      commonjs(),
-      json(),
       md(),
       postcss({
         extract: true,
@@ -99,57 +81,20 @@ async function generateBundledModule({
         ],
       }),
       csv(),
-      typescript({
-        typescript: ts,
+      dts({
         tsconfig: paths.tsConfigProduction,
-        abortOnError: true,
-        tsconfigDefaults: {
-          compilerOptions: {
-            sourceMap: true,
-            declaration: true,
-            target: 'esnext',
-            jsx: 'react-jsx',
-          },
-          useTsconfigDeclarationDir: true,
-        },
-        tsconfigOverride: {
-          compilerOptions: {
-            sourceMap: true,
-            target: 'esnext',
-          },
-        },
       }),
       svgo(),
-      minify &&
-        terser({
-          // @ts-ignore
-          output: { comments: false },
-          compress: {
-            keep_infinity: true,
-            pure_getters: true,
-            passes: 10,
-          },
-          ecma: 5,
-          toplevel: moduleFormat === 'cjs',
-        }),
-      sourceMaps(),
       analyze && analyzer({ summaryOnly: true }),
     ].filter(Boolean),
   });
 
-  const extension = env === 'production' ? 'min' : 'js';
-  const fileName = `index.${extension}`;
-  const outputFileName = path.join(paths.appBuild, moduleFormat, fileName);
-
-  logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
   const buildOptions: OutputOptions = {
     format: moduleFormat,
     name: packageName,
     exports: 'named',
     sourcemap: true,
-    esModule: true,
-    interop: 'auto',
-    freeze: false,
+    minify,
     globals: { react: 'React' },
   };
 
@@ -166,14 +111,14 @@ async function generateBundledModule({
       }) as OutputOptions,
     );
   } else {
-    const fileName = `index.js`;
-    const outputFileName = path.join(paths.appBuild, moduleFormat, fileName);
+    const dir = path.join(paths.appBuild, moduleFormat);
 
-    logger.info(`writing ${path.basename(outputFileName)} for ${packageName}`);
+    logger.info(`writing ${path.join(dir, 'index.js')} for ${packageName}`);
 
     await bundle.write(
       deepmerge(buildOptions, {
-        file: outputFileName,
+        dir,
+        entryFileNames: '[name].js',
       }) as OutputOptions,
     );
   }
@@ -200,7 +145,7 @@ const getInputFile = (packageName: string, inputFileOverride?: string): string =
 
   const inputFile = candidates.find((candidate) => fs.existsSync(candidate));
 
-  assert(!!inputFile, 'No rootFile found for rollup');
+  assert(!!inputFile, 'No rootFile found for rolldown');
 
   logger.start(`using input file ${path.basename(inputFile)} for ${packageName}`);
 
@@ -238,7 +183,7 @@ async function build({
 
   const buildDir = path.basename(paths.appBuild);
 
-  const esmFile = path.join(buildDir, 'esm', `index.min.js`);
+  const esmFile = path.join(buildDir, 'esm', `index.js`);
   pkgJson.module = esmFile;
 
   const dtsFile = path.join(buildDir, 'esm', `index.d.ts`);
@@ -257,13 +202,13 @@ async function build({
   await writeToPackage(pkgJsonPath, pkgJson);
 }
 
-export const program = createCommand('rollup');
+export const program = createCommand('rolldown');
 
 program
-  .description('execute a rollup build')
+  .description('execute a rolldown build')
   .option('-a, --analyze', 'analyze the bundle', false)
   .option('-i, --input-file <path>', 'the entry file')
-  .option('-p, --preserve-modules', 'rollup preserveModules', false)
+  .option('-p, --preserve-modules', 'rolldown preserveModules', false)
   .parse(process.argv)
   .action(async function ({ inputFile, analyze, preserveModules }) {
     try {
