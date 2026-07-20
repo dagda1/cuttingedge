@@ -1,5 +1,24 @@
 # @cutting/frontend-support
 
+## 0.8.0
+
+### Minor Changes
+
+- 5dd8f8f: upgrade pnpm to 11.15.1 and dependency upgrade apart from typescript 7 (pinned at 6.0.3 until typescript-eslint supports the TS 7.1 API), migrate the devtools bundler from rollup to rolldown: declarations now come from rolldown-plugin-dts and minification from rolldown instead of terser, and packages type-check with tsc --noEmit before bundling
+
+### Patch Changes
+
+- Updated dependencies [5dd8f8f]
+  - @cutting/react-hook-form-components@0.15.0
+  - @cutting/use-get-parent-size@2.11.0
+  - @cutting/component-library@5.52.0
+  - @cutting/devtools@4.73.0
+  - @cutting/markdown@0.11.0
+  - @cutting/assert@0.7.0
+  - @cutting/hooks@4.67.0
+  - @cutting/util@4.66.0
+  - @cutting/useful-types@4.46.0
+
 ## 0.7.2
 
 ### Patch Changes
