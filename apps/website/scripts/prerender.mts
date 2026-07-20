@@ -2,7 +2,7 @@ import { readFile } from 'fs/promises';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
-import { extractRoutePaths, parseConstants, prerenderSite, type SiteMeta } from '@cutting/devtools/prerender.js';
+import { extractRoutePaths, parseConstants, prerenderSite, type SiteMeta } from '@cutting/devtools/prerender.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const clientDir = join(__dirname, '../dist/client');

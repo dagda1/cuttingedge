@@ -1,4 +1,4 @@
-import { extractRoutePaths, prerenderSite, type SiteMeta } from '@cutting/devtools/prerender.js';
+import { extractRoutePaths, prerenderSite, type SiteMeta } from '@cutting/devtools/prerender.ts';
 import { readFile } from 'fs/promises';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';

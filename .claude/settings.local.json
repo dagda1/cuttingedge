@@ -8,7 +8,28 @@
       "Bash(dig +short NS cutting.scot)",
       "Bash(whois cutting.scot)",
       "Bash(grep -n \"P1.0\\\\|Discovery\\\\|frontendrescue.com\\\\` returns\" /Users/paulcowan/projects/cuttingedge/plans/aws-ecs-migration.md)",
-      "Skill(update-config)"
+      "Skill(update-config)",
+      "Read(//Users/paulcowan/.cache/puppeteer/chrome/**)",
+      "Read(//Users/paulcowan/.cache/puppeteer/**)",
+      "Bash(pnpm exec *)",
+      "WebFetch(domain:rolldown.rs)",
+      "WebFetch(domain:github.com)",
+      "Bash(git mv *)",
+      "Bash(perl -pi -e 's/devtools rollup/devtools rolldown/' packages/cloudinary-blurhash/package.json packages/markdown/package.json packages/assert/package.json packages/hooks/package.json packages/svg/package.json packages/use-shortcuts/package.json packages/use-mathjax/package.json packages/use-get-parent-size/package.json packages/util/package.json)",
+      "Bash(PUPPETEER_SKIP_DOWNLOAD=1 pnpm install)",
+      "Bash(pnpm build-tools *)",
+      "Bash(pnpm build *)",
+      "Bash(pnpm --filter @cutting/cloudinary-blurhash --filter @cutting/markdown --filter @cutting/assert --filter @cutting/hooks --filter @cutting/svg --filter @cutting/use-shortcuts --filter @cutting/use-mathjax --filter @cutting/use-get-parent-size build)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(pnpm --filter @cutting/assert lint)",
+      "Bash(git checkout *)",
+      "Skill(loop)",
+      "Bash(echo \"build exit: $?\")",
+      "Read(//Users/paulcowan/projects/**)",
+      "Bash(awk 'NR<=234 && /^  [a-zA-Z@.\\\\/-]+:$/ {imp=$0} END{}' pnpm-lock.yaml)",
+      "Bash(awk 'NR<=234 && /^  [^ ]/ {line=$0} NR==234 {print \"importer:\", line}' pnpm-lock.yaml)",
+      "Bash(PUPPETEER_SKIP_DOWNLOAD=1 pnpm install --force)",
+      "Bash(pnpm --filter @cutting/frontend-support build)"
     ]
   }
 }

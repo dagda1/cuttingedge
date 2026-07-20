@@ -9,5 +9,4 @@ export type StandardProps<C, Removals extends keyof C = never, AcceptsRef = true
 };
 
 export type Taggable<TProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>> =
-  | FunctionComponent<TProps>
-  | string;
+  FunctionComponent<TProps> | string;

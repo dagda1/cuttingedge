@@ -1,15 +1,7 @@
 import type { SVGAttributes as SvgAttributes } from 'react';
 
 export type PreserveAspectRatioAlignment =
-  | 'xMinYMin'
-  | 'xMidYMin'
-  | 'xMaxYMin'
-  | 'xMinYMid'
-  | 'xMidYMid'
-  | 'xMaxYMid'
-  | 'xMinYMax'
-  | 'xMidYMax'
-  | 'xMaxYMax';
+  'xMinYMin' | 'xMidYMin' | 'xMaxYMin' | 'xMinYMid' | 'xMidYMid' | 'xMaxYMid' | 'xMinYMax' | 'xMidYMax' | 'xMaxYMax';
 
 export type MeetOrSlice = 'meet' | 'slice';
 
