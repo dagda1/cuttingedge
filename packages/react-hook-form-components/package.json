@@ -34,14 +34,14 @@
     "react-dom": "19.2.7",
     "react-syntax-highlighter": "16.1.1",
     "@testing-library/react": "16.3.2",
-    "react-hook-form": "7.79.0",
+    "react-hook-form": "7.82.0",
     "react-is": "19.2.7",
     "react-calendly": "4.4.0"
   },
   "peerDependencies": {
     "react": "19.2.7",
     "react-dom": "19.2.7",
-    "react-hook-form": "7.79.0",
+    "react-hook-form": "7.82.0",
     "react-is": "19.2.7",
     "react-calendly": "4.4.0"
   },

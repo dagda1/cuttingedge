@@ -1,7 +1,6 @@
 {
   "extends": "@cutting/tsconfig",
   "compilerOptions": {
-    "baseUrl": "${configDir}",
     "declaration": true,
     "declarationMap": true,
     "jsx": "react-jsx",

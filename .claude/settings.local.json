@@ -8,7 +8,10 @@
       "Bash(dig +short NS cutting.scot)",
       "Bash(whois cutting.scot)",
       "Bash(grep -n \"P1.0\\\\|Discovery\\\\|frontendrescue.com\\\\` returns\" /Users/paulcowan/projects/cuttingedge/plans/aws-ecs-migration.md)",
-      "Skill(update-config)"
+      "Skill(update-config)",
+      "Read(//Users/paulcowan/.cache/puppeteer/chrome/**)",
+      "Read(//Users/paulcowan/.cache/puppeteer/**)",
+      "Bash(pnpm exec *)"
     ]
   }
 }
