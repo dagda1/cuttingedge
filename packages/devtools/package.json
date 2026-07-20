@@ -19,6 +19,7 @@
       "types": "./tools/prerender/index.d.ts",
       "import": "./tools/prerender/index.js"
     },
+    "./prerender.ts": "./src/prerender/index.ts",
     "./paths.js": {
       "import": "./tools/config/paths.js"
     },
@@ -69,6 +70,7 @@
     "validate-npm-package-name": "8.0.0"
   },
   "files": [
+    "src/prerender",
     "bin",
     "web",
     "web/**/*",

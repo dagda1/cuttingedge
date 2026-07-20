@@ -3,6 +3,7 @@ import { md } from '@cutting/rollup-plugin-md';
 import { assert } from 'assert-ts';
 // @ts-ignore
 import autoprefixer from 'autoprefixer';
+import { spawnSync } from 'child_process';
 import { createCommand } from 'commander';
 import deepmerge from 'deepmerge';
 import { readFile } from 'fs/promises';
@@ -162,6 +163,12 @@ async function build({
   const pkg = JSON.parse(await readFile(pkgJsonPath, 'utf-8'));
 
   const packageName = pkg.name;
+
+  logger.info(`type checking ${packageName}`);
+
+  const typecheck = spawnSync('tsc', ['--noEmit', '-p', paths.tsConfigProduction], { stdio: 'inherit' });
+
+  assert(typecheck.status === 0, `type check failed for ${packageName}`);
 
   const entryFile = getInputFile(packageName, inputFile);
 

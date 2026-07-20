@@ -22,7 +22,14 @@
       "Bash(pnpm --filter @cutting/cloudinary-blurhash --filter @cutting/markdown --filter @cutting/assert --filter @cutting/hooks --filter @cutting/svg --filter @cutting/use-shortcuts --filter @cutting/use-mathjax --filter @cutting/use-get-parent-size build)",
       "Bash(echo \"exit: $?\")",
       "Bash(pnpm --filter @cutting/assert lint)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Skill(loop)",
+      "Bash(echo \"build exit: $?\")",
+      "Read(//Users/paulcowan/projects/**)",
+      "Bash(awk 'NR<=234 && /^  [a-zA-Z@.\\\\/-]+:$/ {imp=$0} END{}' pnpm-lock.yaml)",
+      "Bash(awk 'NR<=234 && /^  [^ ]/ {line=$0} NR==234 {print \"importer:\", line}' pnpm-lock.yaml)",
+      "Bash(PUPPETEER_SKIP_DOWNLOAD=1 pnpm install --force)",
+      "Bash(pnpm --filter @cutting/frontend-support build)"
     ]
   }
 }
