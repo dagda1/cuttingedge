@@ -934,6 +934,9 @@ importers:
       rollup-plugin-svgo:
         specifier: 2.0.0
         version: 2.0.0
+      tsx:
+        specifier: 4.23.1
+        version: 4.23.1
       validate-npm-package-name:
         specifier: 8.0.0
         version: 8.0.0
@@ -13061,6 +13064,7 @@ snapshots:
       rollup-plugin-node-externals: 9.0.1(rollup@4.62.2)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.28.1)(terser@5.49.0)(tsx@4.23.1)(yaml@2.9.0))
       rollup-plugin-postcss: 4.0.2(postcss@8.5.20)
       rollup-plugin-svgo: 2.0.0
+      tsx: 4.23.1
       validate-npm-package-name: 8.0.0
     optionalDependencies:
       express: 5.2.1(supports-color@5.5.0)

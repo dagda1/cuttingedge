@@ -23,7 +23,7 @@ switch (script) {
   case 'rolldown':
   case 'esbuild':
   case 'ts-build': {
-    command = path.join(__dirname, `../scripts/${script}.js`);
+    command = path.join(__dirname, `../scripts/${script}.ts`);
     break;
   }
   default:
@@ -34,7 +34,9 @@ switch (script) {
 
 assert(fs.existsSync(command), `Unknown script ${command}`);
 
-const result = spawnSync('node', ['--experimental-import-meta-resolve', path.resolve(command)].concat(args), {
+const tsxBin = path.join(__dirname, '../../node_modules/.bin/tsx');
+
+const result = spawnSync(tsxBin, [path.resolve(command)].concat(args), {
   stdio: 'inherit',
 });
 

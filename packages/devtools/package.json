@@ -5,32 +5,23 @@
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
   },
-  "bin": "./tools/bin/cutting.js",
+  "bin": "./src/bin/cutting.ts",
   "author": "Paul Cowan <paul.cowan@cutting.scot>",
   "license": "MIT",
   "type": "module",
-  "module": "tools/index.min.js",
+  "module": "src/index.ts",
   "exports": {
-    ".": {
-      "types": "./tools/index.d.ts",
-      "import": "./tools/index.min.js"
-    },
-    "./prerender.js": {
-      "types": "./tools/prerender/index.d.ts",
-      "import": "./tools/prerender/index.js"
-    },
+    ".": "./src/index.ts",
     "./prerender.ts": "./src/prerender/index.ts",
     "./paths.js": {
-      "import": "./tools/config/paths.js"
+      "import": "./src/config/paths.ts"
     },
     "./setuptests.js": {
-      "import": "./tools/vitest/setupTests.js",
-      "require": "./tools/vitest/setupTests.js"
+      "import": "./src/vitest/setupTests.ts",
+      "require": "./src/vitest/setupTests.ts"
     }
   },
   "scripts": {
-    "build-tools": "NODE_ENV=production tsc --build && pnpm postbuild",
-    "postbuild": "chmod -R 777 tools && git update-index  --chmod=+x --add ./tools/bin/cutting.js",
     "test": "echo test",
     "lint": "eslint 'src/**/*.{ts,tsx,js}' --fix"
   },
@@ -67,17 +58,16 @@
     "rollup-plugin-node-externals": "9.0.1",
     "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-svgo": "2.0.0",
+    "tsx": "4.23.1",
     "validate-npm-package-name": "8.0.0"
   },
   "files": [
-    "src/prerender",
-    "bin",
+    "src",
     "web",
     "web/**/*",
     "cli",
     "package",
     "init",
-    "tools",
     "react-shim.js",
     "setuptests.js"
   ],

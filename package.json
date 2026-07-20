@@ -9,13 +9,12 @@
   "scripts": {
     "knip": "knip",
     "all": "pnpm i && pnpm build && pnpm lint && pnpm test",
-    "build": "pnpm build:tsc && pnpm install && pnpm turbo run build",
-    "build:tsc": "pnpm --filter @cutting/devtools build-tools",
+    "build": "pnpm install && pnpm turbo run build",
     "clean": "rm -rf ./packages/*/{tsconfig.*tsbuildinfo,dist}",
     "lint": "turbo run lint",
     "prepare": "husky install",
     "test": "CI=true turbo run test -- --coverage --run",
-    "watch": "pnpm build:tsc && pnpm tsc -b ./tsconfig.packages.json --watch",
+    "watch": "pnpm tsc -b ./tsconfig.packages.json --watch",
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile",
     "prerelease": "pnpm clean && pnpm install --no-frozen-lockfile && pnpm run build",
     "release": "pnpm run prerelease && changeset publish && git push --follow-tags"
