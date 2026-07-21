@@ -1,5 +1,12 @@
 # @cutting/use-get-parent-size
 
+## 2.11.1
+
+### Patch Changes
+
+- Updated dependencies [db41edb]
+  - @cutting/assert@0.7.1
+
 ## 2.11.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @cutting/markdown
 
+## 0.11.1
+
+### Patch Changes
+
+- Updated dependencies [db41edb]
+  - @cutting/assert@0.7.1
+  - @cutting/util@4.66.1
+
 ## 0.11.0
 
 ### Minor Changes

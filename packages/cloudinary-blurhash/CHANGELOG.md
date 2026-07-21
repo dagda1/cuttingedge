@@ -1,5 +1,12 @@
 # @cutting/cloudinary-blurhash
 
+## 0.10.1
+
+### Patch Changes
+
+- Updated dependencies [db41edb]
+  - @cutting/assert@0.7.1
+
 ## 0.10.0
 
 ### Minor Changes
