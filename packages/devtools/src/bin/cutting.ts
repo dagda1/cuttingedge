@@ -7,6 +7,7 @@ import { assert } from 'assert-ts';
 import chalk from 'chalk';
 import { spawnSync } from 'child_process';
 import fs from 'fs';
+import { createRequire } from 'module';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -34,11 +35,14 @@ switch (script) {
 
 assert(fs.existsSync(command), `Unknown script ${command}`);
 
-const tsxBin = path.join(__dirname, '../../node_modules/.bin/tsx');
+const require = createRequire(import.meta.url);
+const tsxCli = require.resolve('tsx/cli');
 
-const result = spawnSync(tsxBin, [path.resolve(command)].concat(args), {
+const result = spawnSync(process.execPath, [tsxCli, path.resolve(command)].concat(args), {
   stdio: 'inherit',
 });
+
+assert(!result.error, `failed to run ${command}: ${result.error?.message}`);
 
 if (result.signal) {
   if (result.signal === 'SIGKILL') {
