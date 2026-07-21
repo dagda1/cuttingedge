@@ -9,6 +9,9 @@
   "type": "module",
   "sideEffects": false,
   "types": "dist/esm/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "dependencies": {
     "@cutting/assert": "workspace:*",
