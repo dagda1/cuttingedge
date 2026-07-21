@@ -1,5 +1,14 @@
 # @cutting/component-library
 
+## 5.52.1
+
+### Patch Changes
+
+- Updated dependencies [db41edb]
+  - @cutting/assert@0.7.1
+  - @cutting/util@4.66.1
+  - @cutting/hooks@4.67.1
+
 ## 5.52.0
 
 ### Minor Changes

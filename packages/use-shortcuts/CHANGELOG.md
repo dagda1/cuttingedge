@@ -1,5 +1,13 @@
 # @cutting/use-shortcuts
 
+## 4.56.1
+
+### Patch Changes
+
+- Updated dependencies [db41edb]
+  - @cutting/assert@0.7.1
+  - @cutting/util@4.66.1
+
 ## 4.56.0
 
 ### Minor Changes

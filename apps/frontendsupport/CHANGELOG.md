@@ -1,5 +1,19 @@
 # @cutting/frontend-support
 
+## 0.8.1
+
+### Patch Changes
+
+- Updated dependencies [db41edb]
+  - @cutting/devtools@4.73.1
+  - @cutting/assert@0.7.1
+  - @cutting/util@4.66.1
+  - @cutting/component-library@5.52.1
+  - @cutting/hooks@4.67.1
+  - @cutting/markdown@0.11.1
+  - @cutting/react-hook-form-components@0.15.1
+  - @cutting/use-get-parent-size@2.11.1
+
 ## 0.8.0
 
 ### Minor Changes

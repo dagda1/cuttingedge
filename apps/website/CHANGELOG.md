@@ -1,5 +1,19 @@
 # @cutting/website
 
+## 4.34.1
+
+### Patch Changes
+
+- Updated dependencies [db41edb]
+  - @cutting/assert@0.7.1
+  - @cutting/util@4.66.1
+  - @cutting/svg@4.64.1
+  - @cutting/component-library@5.52.1
+  - @cutting/hooks@4.67.1
+  - @cutting/react-hook-form-components@0.15.1
+  - @cutting/use-get-parent-size@2.11.1
+  - @cutting/use-mathjax@4.60.1
+
 ## 4.34.0
 
 ### Minor Changes
