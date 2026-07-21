@@ -35,7 +35,9 @@
       "Bash(pnpm --filter @cutting/assert build)",
       "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{const j=JSON.parse\\(d\\);console.log\\('fileCount',j.dist.fileCount\\)}\\)\")",
       "Bash(pnpm pack *)",
-      "Bash(tar -tzf /private/tmp/claude-501/-Users-paulcowan-projects-cuttingedge/f421e1d3-d311-4db8-a567-3b7871b5e292/scratchpad/assert-test.tgz)"
+      "Bash(tar -tzf /private/tmp/claude-501/-Users-paulcowan-projects-cuttingedge/f421e1d3-d311-4db8-a567-3b7871b5e292/scratchpad/assert-test.tgz)",
+      "Read(//Users/paulcowan/.claude/**)",
+      "Read(//Users/paulcowan/claude/skills/**)"
     ]
   }
 }
