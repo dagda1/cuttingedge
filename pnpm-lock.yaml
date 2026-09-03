@@ -2189,16 +2189,16 @@ packages:
   '@cutting/util@file:packages/util':
     resolution: {directory: packages/util, type: directory}
 
-  '@definitelytyped/header-parser@0.2.29':
-    resolution: {integrity: sha512-w2oVQ+VX8zVTXco3NInGwg94SHmoqqfKN5jXkibTrjwevrYTAvxs9OxLZOyO5BdMSF/SIL5L6nJN6C+652mC7w==}
+  '@definitelytyped/header-parser@0.2.30':
+    resolution: {integrity: sha512-uG0SU+Mr4PYZfkGI7/gywdMFsSUICFl2Q/fT2Tf68de9KUkXxzdgyBQ+3Uq+ok+zlZl/I4A/t1QCQfo69v5mrw==}
     engines: {node: '>=20.17.0'}
 
   '@definitelytyped/typescript-versions@0.1.12':
     resolution: {integrity: sha512-sbdf3l4MEhnwGCP0ZxkSdOZH4wtiG7J7YEMwd/i34uAw/yeZkPDhFwORPqdTknzAUmcbIg81aPr6sVk7ZDCgcw==}
     engines: {node: '>=20.17.0'}
 
-  '@definitelytyped/utils@0.1.14':
-    resolution: {integrity: sha512-dh6J1DPR2WbczPP5/eFeeVh0tXiYTnfM0FTl6NzVqpummcqSzbo9gB2ySXQaK7Xr4bJskz/lszSBuDrz9bFWcw==}
+  '@definitelytyped/utils@0.1.15':
+    resolution: {integrity: sha512-pTsFCbthyU5FrngiL8loMsZcVQxs9L3RRcM4Dina6QUxW3IlA9sXFi6gmlBkeRveVN7ROUZFCeIU3jBzp2ZHVQ==}
     engines: {node: '>=20.17.0'}
 
   '@dimforge/rapier3d-compat@0.12.0':
@@ -4659,6 +4659,7 @@ packages:
   '@xmldom/xmldom@0.9.10':
     resolution: {integrity: sha512-A9gOqLdi6cV4ibazAjcQufGj0B1y/vDqYrcuP6d/6x8P27gRS8643Dj9o1dEKtB6O7fwxb2FgBmJS2mX7gpvdw==}
     engines: {node: '>=14.6'}
+    deprecated: this version has critical issues, please update to the latest version
 
   '@xtuc/ieee754@1.2.0':
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -12981,10 +12982,10 @@ snapshots:
     dependencies:
       '@cutting/assert': file:packages/assert
 
-  '@definitelytyped/header-parser@0.2.29(supports-color@8.1.1)':
+  '@definitelytyped/header-parser@0.2.30(supports-color@8.1.1)':
     dependencies:
       '@definitelytyped/typescript-versions': 0.1.12
-      '@definitelytyped/utils': 0.1.14(supports-color@8.1.1)
+      '@definitelytyped/utils': 0.1.15(supports-color@8.1.1)
       semver: 7.8.5
     transitivePeerDependencies:
       - bare-abort-controller
@@ -12994,7 +12995,7 @@ snapshots:
 
   '@definitelytyped/typescript-versions@0.1.12': {}
 
-  '@definitelytyped/utils@0.1.14(supports-color@8.1.1)':
+  '@definitelytyped/utils@0.1.15(supports-color@8.1.1)':
     dependencies:
       '@types/node': 25.9.5
       cachedir: 2.4.0
@@ -17702,7 +17703,7 @@ snapshots:
 
   dts-critic@3.3.11(supports-color@8.1.1)(typescript@6.0.3):
     dependencies:
-      '@definitelytyped/header-parser': 0.2.29(supports-color@8.1.1)
+      '@definitelytyped/header-parser': 0.2.30(supports-color@8.1.1)
       command-exists: 1.2.9
       rimraf: 3.0.2
       semver: 6.3.1
@@ -17719,9 +17720,9 @@ snapshots:
 
   dtslint@4.2.1(supports-color@8.1.1)(typescript@6.0.3):
     dependencies:
-      '@definitelytyped/header-parser': 0.2.29(supports-color@8.1.1)
+      '@definitelytyped/header-parser': 0.2.30(supports-color@8.1.1)
       '@definitelytyped/typescript-versions': 0.1.12
-      '@definitelytyped/utils': 0.1.14(supports-color@8.1.1)
+      '@definitelytyped/utils': 0.1.15(supports-color@8.1.1)
       dts-critic: 3.3.11(supports-color@8.1.1)(typescript@6.0.3)
       fs-extra: 6.0.1
       json-stable-stringify: 1.3.0
