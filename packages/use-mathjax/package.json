@@ -28,14 +28,14 @@
     "mathjax-full": "3.2.2"
   },
   "devDependencies": {
-    "@vanilla-extract/css": "^1.21.1",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
+    "@vanilla-extract/css": "^1.21.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "react-syntax-highlighter": "16.1.1"
   },
   "peerDependencies": {
-    "react": "19.2.7",
-    "react-dom": "19.2.7"
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "keywords": [
     "hotkeys",

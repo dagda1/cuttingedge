@@ -37,7 +37,8 @@
       "Bash(pnpm pack *)",
       "Bash(tar -tzf /private/tmp/claude-501/-Users-paulcowan-projects-cuttingedge/f421e1d3-d311-4db8-a567-3b7871b5e292/scratchpad/assert-test.tgz)",
       "Read(//Users/paulcowan/.claude/**)",
-      "Read(//Users/paulcowan/claude/skills/**)"
+      "Read(//Users/paulcowan/claude/skills/**)",
+      "WebFetch(domain:docs.devin.ai)"
     ]
   }
 }

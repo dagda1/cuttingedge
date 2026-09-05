@@ -25,19 +25,19 @@
     "@cutting/assert": "workspace:*"
   },
   "devDependencies": {
-    "@testing-library/react": "16.3.2",
-    "@types/three": "0.185.1",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
-    "react-router": "8.2.0",
+    "@testing-library/react": "16.3.3",
+    "@types/three": "0.185.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-router": "8.3.1",
     "resize-observer-polyfill": "1.5.1",
     "three": "0.185.1",
     "use-debounce": "10.1.1"
   },
   "peerDependencies": {
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
-    "react-router": "8.2.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-router": "8.3.1",
     "three": "0.185.1",
     "use-debounce": "10.1.1"
   },
