@@ -1,5 +1,11 @@
 # @cutting/cloudinary-blurhash
 
+## 0.11.0
+
+### Minor Changes
+
+- d5970c3: upgrade react to 19.2.8
+
 ## 0.10.1
 
 ### Patch Changes

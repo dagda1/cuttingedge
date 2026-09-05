@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.74.0
+
+### Minor Changes
+
+- d5970c3: upgrade react to 19.2.8
+
 ## 4.73.1
 
 ### Patch Changes

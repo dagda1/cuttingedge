@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 5.10.0
+
+### Minor Changes
+
+- d5970c3: upgrade react to 19.2.8
+
 ## 5.9.0
 
 ### Minor Changes

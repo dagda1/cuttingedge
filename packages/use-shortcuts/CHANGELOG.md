@@ -1,5 +1,11 @@
 # @cutting/use-shortcuts
 
+## 4.57.0
+
+### Minor Changes
+
+- d5970c3: upgrade react to 19.2.8
+
 ## 4.56.1
 
 ### Patch Changes

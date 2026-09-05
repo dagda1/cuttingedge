@@ -1,5 +1,16 @@
 # @cutting/svg
 
+## 4.65.0
+
+### Minor Changes
+
+- d5970c3: upgrade react to 19.2.8
+
+### Patch Changes
+
+- Updated dependencies [d5970c3]
+  - @cutting/use-get-parent-size@2.12.0
+
 ## 4.64.1
 
 ### Patch Changes

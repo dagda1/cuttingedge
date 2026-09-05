@@ -1,5 +1,11 @@
 # @cutting/hooks
 
+## 4.68.0
+
+### Minor Changes
+
+- d5970c3: upgrade react to 19.2.8
+
 ## 4.67.1
 
 ### Patch Changes

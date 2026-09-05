@@ -1,5 +1,16 @@
 # @cutting/use-mathjax
 
+## 4.61.0
+
+### Minor Changes
+
+- d5970c3: upgrade react to 19.2.8
+
+### Patch Changes
+
+- Updated dependencies [d5970c3]
+  - @cutting/hooks@4.68.0
+
 ## 4.60.1
 
 ### Patch Changes
