@@ -1,5 +1,11 @@
 # performance-scout
 
+## 0.7.0
+
+### Minor Changes
+
+- d5970c3: upgrade react to 19.2.8
+
 ## 0.6.0
 
 ### Minor Changes

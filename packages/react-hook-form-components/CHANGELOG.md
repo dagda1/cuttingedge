@@ -1,5 +1,16 @@
 # @cutting/react-hook-form-components
 
+## 0.16.0
+
+### Minor Changes
+
+- d5970c3: upgrade react to 19.2.8
+
+### Patch Changes
+
+- Updated dependencies [d5970c3]
+  - @cutting/component-library@5.53.0
+
 ## 0.15.1
 
 ### Patch Changes
