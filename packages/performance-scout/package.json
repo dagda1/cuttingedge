@@ -24,11 +24,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "lighthouse": "^13.4.0",
+    "lighthouse": "^13.4.1",
     "serpapi": "^2.2.1"
   },
   "devDependencies": {
-    "tsx": "^4.23.1"
+    "tsx": "^4.23.13"
   },
   "volta": {
     "extends": "../../package.json"

@@ -28,17 +28,17 @@
     "mousetrap": "1.6.5"
   },
   "devDependencies": {
-    "@testing-library/react": "16.3.2",
+    "@testing-library/react": "16.3.3",
     "@types/mousetrap": "1.6.15",
     "classnames": "2.5.1",
     "dtslint": "4.2.1",
-    "react": "19.2.7",
-    "react-dom": "19.2.7"
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "peerDependencies": {
     "classnames": "2.5.1",
-    "react": "19.2.7",
-    "react-dom": "19.2.7"
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "volta": {
     "extends": "../../package.json"
