@@ -42,7 +42,7 @@ RUN rm google-chrome-stable_current_amd64.deb
 # Check chrome version
 RUN echo "Chrome: " && google-chrome --version
 
-RUN npm install -g pnpm@11.15.1
+RUN npm install -g pnpm@11.26.0
 
 RUN rm -rf /app/
 
