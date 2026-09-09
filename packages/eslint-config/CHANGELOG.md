@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 5.11.0
+
+### Minor Changes
+
+- 63528c0: update eslint
+
 ## 5.10.0
 
 ### Minor Changes

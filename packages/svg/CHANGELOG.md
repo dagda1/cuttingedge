@@ -1,5 +1,18 @@
 # @cutting/svg
 
+## 4.66.0
+
+### Minor Changes
+
+- 63528c0: update eslint
+
+### Patch Changes
+
+- Updated dependencies [63528c0]
+  - @cutting/assert@0.8.0
+  - @cutting/use-get-parent-size@2.13.0
+  - @cutting/util@4.67.0
+
 ## 4.65.0
 
 ### Minor Changes
