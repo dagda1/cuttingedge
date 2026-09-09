@@ -31,14 +31,14 @@
     "react-dom": "19.2.8",
     "react-router": "8.3.1",
     "resize-observer-polyfill": "1.5.1",
-    "three": "0.185.1",
+    "three": "0.186.0",
     "use-debounce": "10.1.1"
   },
   "peerDependencies": {
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-router": "8.3.1",
-    "three": "0.185.1",
+    "three": "0.186.0",
     "use-debounce": "10.1.1"
   },
   "volta": {

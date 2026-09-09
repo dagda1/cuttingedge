@@ -44,7 +44,7 @@
     "dotenv": "17.4.2",
     "esbuild": "0.28.2",
     "fs-extra": "11.4.0",
-    "inquirer": "14.2.1",
+    "inquirer": "14.2.2",
     "papaparse": "5.7.0",
     "postcss": "8.5.28",
     "postcss-import": "17.0.0",

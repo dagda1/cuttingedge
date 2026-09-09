@@ -18,7 +18,7 @@
 
 ### Minor Changes
 
-- 5dd8f8f: upgrade pnpm to 11.15.1 and dependency upgrade apart from typescript 7 (pinned at 6.0.3 until typescript-eslint supports the TS 7.1 API), migrate the devtools bundler from rollup to rolldown: declarations now come from rolldown-plugin-dts and minification from rolldown instead of terser, and packages type-check with tsc --noEmit before bundling
+- 5dd8f8f: upgrade pnpm to 11.26.0 and dependency upgrade apart from typescript 7 (pinned at 6.0.3 until typescript-eslint supports the TS 7.1 API), migrate the devtools bundler from rollup to rolldown: declarations now come from rolldown-plugin-dts and minification from rolldown instead of terser, and packages type-check with tsc --noEmit before bundling
 
 ### Patch Changes
 
@@ -816,7 +816,7 @@
   - @cutting/component-library@5.36.1
   - @cutting/react-hook-form-components@0.3.4
   - @cutting/svg@4.52.0
-  - @cutting/use-get-parent-size@1.26.0
+  - @cutting/use-get-parent-size@11.26.0
 
 ## 4.29.13
 
@@ -826,7 +826,7 @@
   - @cutting/component-library@5.36.0
   - @cutting/react-hook-form-components@0.3.3
   - @cutting/svg@4.52.0
-  - @cutting/use-get-parent-size@1.26.0
+  - @cutting/use-get-parent-size@11.26.0
 
 ## 4.29.12
 
@@ -836,7 +836,7 @@
   - @cutting/component-library@5.35.1
   - @cutting/react-hook-form-components@0.3.2
   - @cutting/svg@4.52.0
-  - @cutting/use-get-parent-size@1.26.0
+  - @cutting/use-get-parent-size@11.26.0
 
 ## 4.29.11
 
@@ -846,7 +846,7 @@
   - @cutting/component-library@5.35.0
   - @cutting/react-hook-form-components@0.3.1
   - @cutting/svg@4.52.0
-  - @cutting/use-get-parent-size@1.26.0
+  - @cutting/use-get-parent-size@11.26.0
 
 ## 4.29.10
 
@@ -857,7 +857,7 @@
   - @cutting/hooks@4.55.0
   - @cutting/react-hook-form-components@0.3.0
   - @cutting/svg@4.52.0
-  - @cutting/use-get-parent-size@1.26.0
+  - @cutting/use-get-parent-size@11.26.0
   - @cutting/use-mathjax@4.49.0
   - @cutting/util@4.57.0
 
