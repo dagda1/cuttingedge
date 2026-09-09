@@ -1,6 +1,6 @@
 {
   "name": "@cutting/eslint-config",
-  "version": "5.10.0",
+  "version": "5.11.0",
   "description": "Cutting eslint configuration definition",
   "repository": {
     "type": "git",

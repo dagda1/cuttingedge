@@ -1,5 +1,11 @@
 # performance-scout
 
+## 0.8.0
+
+### Minor Changes
+
+- 63528c0: update eslint
+
 ## 0.7.0
 
 ### Minor Changes

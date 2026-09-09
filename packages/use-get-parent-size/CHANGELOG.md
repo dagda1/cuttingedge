@@ -1,5 +1,16 @@
 # @cutting/use-get-parent-size
 
+## 2.13.0
+
+### Minor Changes
+
+- 63528c0: update eslint
+
+### Patch Changes
+
+- Updated dependencies [63528c0]
+  - @cutting/assert@0.8.0
+
 ## 2.12.0
 
 ### Minor Changes

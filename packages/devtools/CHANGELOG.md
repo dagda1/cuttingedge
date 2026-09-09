@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.75.0
+
+### Minor Changes
+
+- 63528c0: update eslint
+
 ## 4.74.0
 
 ### Minor Changes
