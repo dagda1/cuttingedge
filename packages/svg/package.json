@@ -26,15 +26,15 @@
     "@visx/scale": "4.0.0",
     "classnames": "2.5.1",
     "d3-scale": "4.0.2",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "peerDependencies": {
     "@visx/scale": "4.0.0",
     "classnames": "2.5.1",
     "d3-scale": "4.0.2",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "scripts": {
     "start": "pnpm vite --host --port 9000  -l=info  --clearScreen=false",
