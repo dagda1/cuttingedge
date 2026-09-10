@@ -1,5 +1,16 @@
 # @cutting/react-hook-form-components
 
+## 0.18.0
+
+### Minor Changes
+
+- 10e3303: upgrade to react 19.3.0
+
+### Patch Changes
+
+- Updated dependencies [10e3303]
+  - @cutting/component-library@5.55.0
+
 ## 0.17.0
 
 ### Minor Changes

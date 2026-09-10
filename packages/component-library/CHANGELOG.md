@@ -1,5 +1,11 @@
 # @cutting/component-library
 
+## 5.55.0
+
+### Minor Changes
+
+- 10e3303: upgrade to react 19.3.0
+
 ## 5.54.0
 
 ### Minor Changes

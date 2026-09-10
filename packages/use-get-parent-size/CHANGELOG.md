@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.14.0
+
+### Minor Changes
+
+- 10e3303: upgrade to react 19.3.0
+
 ## 2.13.0
 
 ### Minor Changes

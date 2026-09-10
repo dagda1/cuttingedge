@@ -1,5 +1,11 @@
 # @cutting/use-mathjax
 
+## 4.63.0
+
+### Minor Changes
+
+- 10e3303: upgrade to react 19.3.0
+
 ## 4.62.0
 
 ### Minor Changes
