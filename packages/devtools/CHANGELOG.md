@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.76.0
+
+### Minor Changes
+
+- 10e3303: upgrade to react 19.3.0
+
 ## 4.75.0
 
 ### Minor Changes
