@@ -290,8 +290,8 @@ importers:
         specifier: 8.3.0
         version: 8.3.0
       image-size:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.0.3
+        version: 2.0.3
       isbot:
         specifier: 5.2.2
         version: 5.2.2
@@ -1096,8 +1096,8 @@ importers:
         specifier: ^9.0.5
         version: 9.0.5
       image-size:
-        specifier: 2.0.2
-        version: 2.0.2
+        specifier: 2.0.3
+        version: 2.0.3
       js-yaml:
         specifier: 5.4.1
         version: 5.4.1
@@ -7219,6 +7219,11 @@ packages:
     engines: {node: '>=16.x'}
     hasBin: true
 
+  image-size@2.0.3:
+    resolution: {integrity: sha512-9BJAtVCBth+76NwqnEfWr3PiRnYhbquk6K/USuQ1GQajz5NgLzO7tNsnoNjHfO7LuftgkBf+CCH6j28hjMbIYQ==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   image-ssim@0.2.0:
     resolution: {integrity: sha512-W7+sO6/yhxy83L0G7xR8YAc5Z5QFtYEXXRV6EaE8tuYBZJnA3gVgp3q7X7muhLZVodeb9UfvjSbwt9VJwjIYAg==}
 
@@ -10640,6 +10645,9 @@ packages:
   third-party-web@0.29.2:
     resolution: {integrity: sha512-fegtha91tq2DHphyoiBXVHjVi2YG9zFaRnboT9C28tO1en9Y3wJsfspuy40F+u5wl3hHVbw7cnd1b67kEGHb8g==}
 
+  third-party-web@0.30.0:
+    resolution: {integrity: sha512-p+PfyL5U0ediGzvwPzMSdD9MnC8rHW6nWJJVLIQvqN7RsSqfaZ+7n4c9GILqH36EYR0eXB9CzAeCRnKFr/9uJg==}
+
   three@0.186.0:
     resolution: {integrity: sha512-cr/fIM2ddMSVbYVgkfD4jLJv7Fh/8ZTjvo+7gQeSVGUZHxpx9FDwoL5iC7hUz/LiRA8wMbqfnb90xKfm1/HHkQ==}
 
@@ -13520,7 +13528,7 @@ snapshots:
   '@paulirish/trace_engine@0.0.65':
     dependencies:
       legacy-javascript: 0.0.1
-      third-party-web: 0.29.2
+      third-party-web: 0.30.0
 
   '@pkgr/core@0.3.6': {}
 
@@ -19151,6 +19159,8 @@ snapshots:
 
   image-size@2.0.2: {}
 
+  image-size@2.0.3: {}
+
   image-ssim@0.2.0: {}
 
   immer@11.1.18: {}
@@ -23600,6 +23610,8 @@ snapshots:
       - react-native-b4a
 
   third-party-web@0.29.2: {}
+
+  third-party-web@0.30.0: {}
 
   three@0.186.0: {}
 

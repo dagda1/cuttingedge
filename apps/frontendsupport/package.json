@@ -41,7 +41,7 @@
     "front-matter": "^4.0.2",
     "gsap": "^3.15.0",
     "helmet": "8.3.0",
-    "image-size": "^2.0.2",
+    "image-size": "^2.0.3",
     "isbot": "5.2.2",
     "js-yaml": "^5.4.1",
     "katex": "^0.18.7",

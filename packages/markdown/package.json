@@ -18,7 +18,7 @@
     "front-matter": "4.0.2",
     "github-slugger": "2.0.0",
     "hast-util-to-html": "^9.0.5",
-    "image-size": "2.0.2",
+    "image-size": "2.0.3",
     "js-yaml": "5.4.1",
     "katex": "0.18.7",
     "maath": "0.10.8",
