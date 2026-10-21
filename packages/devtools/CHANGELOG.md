@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.77.0
+
+### Minor Changes
+
+- 7cec844: update react to 19.3.1
+
 ## 4.76.0
 
 ### Minor Changes

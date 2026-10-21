@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 5.12.0
+
+### Minor Changes
+
+- 7cec844: update react to 19.3.1
+
 ## 5.11.0
 
 ### Minor Changes
