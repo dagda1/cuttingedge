@@ -1,5 +1,11 @@
 # @cutting/markdown
 
+## 0.14.0
+
+### Minor Changes
+
+- 7cec844: update react to 19.3.1
+
 ## 0.13.0
 
 ### Minor Changes

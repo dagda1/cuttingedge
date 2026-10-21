@@ -1,5 +1,11 @@
 # performance-scout
 
+## 0.9.0
+
+### Minor Changes
+
+- 7cec844: update react to 19.3.1
+
 ## 0.8.0
 
 ### Minor Changes
