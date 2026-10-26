@@ -56,35 +56,24 @@
     "@cutting/eslint-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
-    "@eslint/compat": "^2.1.1",
-    "@eslint/eslintrc": "^3.3.7",
-    "@eslint/js": "^10.0.1",
     "@mdx-js/loader": "^3.1.1",
     "@rollup/plugin-terser": "1.0.0",
     "@types/node": "26.6.5",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "@typescript-eslint/eslint-plugin": "8.72.0",
-    "@typescript-eslint/parser": "8.72.0",
     "@vanilla-extract/vite-plugin": "5.2.6",
     "@vitejs/plugin-react": "^6.1.2",
     "@vitest/coverage-v8": "5.0.5",
     "cheerio": "^1.2.0",
     "core-js": "3.51.0",
-    "eslint": "^10.13.0",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-prettier": "5.5.7",
-    "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-react-hooks": "7.1.1",
     "eslint-plugin-simple-import-sort": "^14.0.0",
     "follow-redirects": "1.16.1",
     "husky": "9.1.7",
     "jsdom": "30.1.3",
     "lint-staged": "17.6.0",
     "node-fetch": "3.3.2",
-    "prettier": "3.9.10",
+    "oxfmt": "0.74.0",
+    "oxlint": "1.89.0",
     "turbo": "2.11.10",
     "typescript": "6.0.3",
     "vite": "8.3.5",
@@ -99,10 +88,11 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
-      "eslint -c ./packages/eslint-config/react.mjs --fix --warn-ignored=false"
+      "oxlint --fix",
+      "oxfmt"
     ],
     "*.{json,md}": [
-      "prettier --write"
+      "oxfmt"
     ]
   }
 }

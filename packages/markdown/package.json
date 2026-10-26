@@ -44,7 +44,7 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production devtools rolldown",
-    "lint": "eslint ./src/**/*.ts --fix",
+    "lint": "oxlint ./src --fix && oxfmt ./src",
     "start": "pnpm vite --host --port 9000  -l=info  --clearScreen=false",
     "test": "echo test timing out in ci for some reason",
     "test:ci": "echo test timing out in ci for some reason"

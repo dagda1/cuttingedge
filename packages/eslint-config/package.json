@@ -13,6 +13,7 @@
   "files": [
     "index.mjs",
     "react.mjs",
+    "oxfmt.mjs",
     "README.md",
     "partial.html"
   ],
@@ -25,34 +26,22 @@
     "react"
   ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "8.72.0",
-    "@typescript-eslint/parser": "8.72.0",
-    "eslint": "10.13.0",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-prettier": "5.5.7",
-    "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-react-hooks": "7.1.1",
     "eslint-plugin-simple-import-sort": "14.0.0",
-    "prettier": "3.9.10"
-  },
-  "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "8.72.0",
-    "@typescript-eslint/parser": "8.72.0",
-    "eslint": "10.13.0",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-prettier": "5.5.7",
-    "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-react-hooks": "7.1.1",
-    "prettier": "3.9.10"
+    "oxfmt": "0.74.0",
+    "oxlint": "1.89.0"
   },
   "exports": {
     "./eslint": "./index.mjs",
-    "./react": "./react.mjs"
+    "./react": "./react.mjs",
+    "./oxfmt": "./oxfmt.mjs"
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "5.0.5"
   }
 }

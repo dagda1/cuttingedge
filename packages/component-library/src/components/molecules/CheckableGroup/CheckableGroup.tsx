@@ -27,8 +27,10 @@ export type CheckableGroupProps<V extends CheckableValueType> = InputProps & {
   innerRef?: Ref<HTMLInputElement>;
 } & CheckableLayoutProps;
 
-export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
-  return function CheckableGroup<V extends CheckableValueType>({
+export function CheckableGroup(
+  Comp: typeof Radio | typeof Checkbox,
+): <V extends CheckableValueType>(props: CheckableGroupProps<V>) => JSX.Element {
+  function CheckableGroup<V extends CheckableValueType>({
     legend,
     legendMode = 'screen-reader-only',
     checkableLayout,
@@ -110,5 +112,9 @@ export function CheckableGroup(Comp: typeof Radio | typeof Checkbox) {
         </Stack>
       </fieldset>
     );
-  };
+  }
+
+  CheckableGroup.displayName = `CheckableGroup(${Comp.displayName})`;
+
+  return CheckableGroup;
 }

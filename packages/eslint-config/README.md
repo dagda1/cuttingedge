@@ -1,82 +1,92 @@
 # Cutting eslint-config
 
-This package centralises eslint rules to a common package that can be consumed by other packages.
+This package holds the shared [Oxlint](https://oxc.rs/docs/guide/usage/linter) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter) configs that other packages use.
 
-## Intstallation
-
-Import this library:
+## Installation
 
 ```bash
-pnpm add @cutting/eslint-config -S
+pnpm add @cutting/eslint-config -D
 ```
 
-Create a `.eslintrc.json` in the root of the project that will consume this library.
+The package installs `oxlint`, `oxfmt` and `eslint-plugin-simple-import-sort`.
 
-The bare minimum that is required for a consuming package's `.eslintrc.json` is:
+## Configuration
+
+Create one `oxlint.config.ts` in the root of the repo:
+
+```ts
+import config from '@cutting/eslint-config/react';
+
+export default config;
+```
+
+Use `@cutting/eslint-config/eslint` instead for a repo with no React code.
+
+Create one `oxfmt.config.ts` in the root of the repo:
+
+```ts
+import config from '@cutting/eslint-config/oxfmt';
+
+export default config;
+```
+
+Oxlint and oxfmt find these files from any folder below the root, so a package needs no config file of its own.
+
+### package.json scripts
+
+Add a `lint` script to each package:
 
 ```json
-{
-  "extends": ["@cutting/eslint-config/react"]
-}
-```
-
-### Packages.json scripts
-
-Add the following lines to your package.json to enable linting and prettier to run on files without extensions:
-
-```bash
   "scripts": {
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "pnpm run lint -- --fix"
+    "lint": "oxlint ./src --fix && oxfmt ./src"
   }
 ```
 
-## VS Code extensions
+## Disable comments
 
-ESLint
+Oxlint obeys `oxlint-disable` and `eslint-disable` comments:
 
-After installing the extension, we need to change some settings of VSCode under: File > Preferences > Settings . Here we want to go to the JSON view of our settings in the top right corner there is a Button with {} on it. Here we need to add this config 👇:
+```ts
+// oxlint-disable-next-line typescript/no-explicit-any
 
-```json
-"eslint.validate": [
-  "javascript",
-  "javascriptreact",
-  {
-    "language": "typescript",
-    "autoFix": true
-  },
-  {
-    "language": "typescriptreact",
-    "autoFix": true
-  }
-]
+/* oxlint-disable eqeqeq */
 ```
+
 ## What rules are applied
 
-The following sets of rules are implemented in this package:
+### `@cutting/eslint-config/eslint`
 
-## Typescript
+- The `@typescript-eslint/recommended` rules.
+- `curly`, `eqeqeq`, `no-var`, `prefer-const` and `no-unused-vars` (names that start with `_` are ignored).
+- `typescript/explicit-module-boundary-types` and `typescript/consistent-type-imports`.
+- `import/first`, `import/newline-after-import` and `import/no-duplicates`.
+- `simple-import-sort/imports` and `simple-import-sort/exports`, through the `eslint-plugin-simple-import-sort` JS plugin.
 
-@typescript-eslint/recommended (rules)
+### `@cutting/eslint-config/react`
 
-**React**
-All typescript rules, plus (in order):
+All the rules above, plus:
 
-eslint-plugin-react/recommended (rules)
-eslint-plugin-jsx-a11y (rules)
-eslint-plugin-react-hooks (rules set manually)
-eslint-plugin-import (rules)
-eslint-config-prettier (rules)
-eslint-config-prettier/@typescript-eslint
-Overrides
-Some rules are overriden. Please see `.eslintrc.json` in the package.
+- The `eslint-plugin-react` recommended rules.
+- The `eslint-plugin-jsx-a11y` recommended rules.
+- `react/rules-of-hooks` and `react/exhaustive-deps`, which also checks `useIsomorphicLayoutEffect`.
+
+### `@cutting/eslint-config/oxfmt`
+
+- `printWidth: 120`, `singleQuote: true`, `semi: true`, `tabWidth: 2`, `trailingComma: 'all'`, `sortPackageJson: false`.
+- `*.js` files use `printWidth: 140` and `trailingComma: 'none'`.
 
 ## Overrides
 
-Rules can be overriden in the consuming project's `.eslintrc.json`, or you can disable rules in the files rule by adding the following types of comment
+Spread the config and change its `rules` in the root `oxlint.config.ts`:
 
-```javascript
-/* eslint-disable: <rule> */
+```ts
+import config from '@cutting/eslint-config/react';
 
-//eslint-disable-next-line <rule>
+export default {
+  ...config,
+  rules: {
+    ...config.rules,
+    'no-var': 'off',
+  },
+};
 ```

@@ -1,111 +1,69 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-import { fixupPluginRules } from '@eslint/compat';
-import { FlatCompat } from '@eslint/eslintrc';
-import js from '@eslint/js';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import _import from 'eslint-plugin-import';
-import simpleImportSort from 'eslint-plugin-simple-import-sort';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-export default [
-  { ignores: ['**/node_modules/**', '**/dist/**', '**/**.d.ts'] },
-  ...compat.extends('plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'),
-  {
-    plugins: {
-      '@typescript-eslint': typescriptEslint,
-      'simple-import-sort': simpleImportSort,
-      import: fixupPluginRules(_import),
-    },
-
-    languageOptions: {
-      globals: {
-        MyGlobal: true,
+export default {
+  plugins: ['typescript', 'import'],
+  jsPlugins: ['eslint-plugin-simple-import-sort'],
+  categories: {
+    correctness: 'off',
+  },
+  env: {
+    builtin: true,
+  },
+  globals: {
+    MyGlobal: 'writable',
+  },
+  ignorePatterns: ['**/node_modules/**', '**/dist/**', '**/**.d.ts'],
+  rules: {
+    'no-array-constructor': 'error',
+    'no-unused-expressions': 'error',
+    'no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
       },
-
-      parser: tsParser,
-    },
-
-    rules: {
-      '@typescript-eslint/no-parameter-properties': ['off'],
-      '@typescript-eslint/no-namespace': ['off'],
-
-      '@typescript-eslint/explicit-module-boundary-types': [
-        'error',
-        {
-          allowArgumentsExplicitlyTypedAsAny: true,
-        },
-      ],
-
-      '@typescript-eslint/consistent-type-imports': 'error',
-      'no-var': 'warn',
-
-      '@typescript-eslint/no-empty-object-type': 'error',
-
-      curly: 'error',
-      eqeqeq: ['error', 'always'],
-      'prefer-const': 'warn',
-
-      'prettier/prettier': [
-        'error',
-        {
-          printWidth: 120,
-          singleQuote: true,
-          semi: true,
-          tabWidth: 2,
-          trailingComma: 'all',
-        },
-      ],
-
-      semi: ['error', 'always'],
-      'no-unused-vars': 'off',
-
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-        },
-      ],
-
-      'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
-      'import/first': 'error',
-      'import/newline-after-import': 'error',
-      'import/no-duplicates': 'error',
-      'import/no-unresolved': 'off',
-      'import/consistent-type-specifier-style': 'off',
-    },
+    ],
+    'typescript/ban-ts-comment': 'error',
+    'typescript/no-duplicate-enum-values': 'error',
+    'typescript/no-empty-object-type': 'error',
+    'typescript/no-explicit-any': 'error',
+    'typescript/no-extra-non-null-assertion': 'error',
+    'typescript/no-misused-new': 'error',
+    'typescript/no-namespace': 'off',
+    'typescript/no-non-null-asserted-optional-chain': 'error',
+    'typescript/no-require-imports': 'error',
+    'typescript/no-this-alias': 'error',
+    'typescript/no-unnecessary-type-constraint': 'error',
+    'typescript/no-unsafe-declaration-merging': 'error',
+    'typescript/no-unsafe-function-type': 'error',
+    'typescript/no-wrapper-object-types': 'error',
+    'typescript/prefer-as-const': 'error',
+    'typescript/prefer-namespace-keyword': 'error',
+    'typescript/triple-slash-reference': 'error',
+    'typescript/explicit-module-boundary-types': [
+      'error',
+      {
+        allowArgumentsExplicitlyTypedAsAny: true,
+      },
+    ],
+    'typescript/consistent-type-imports': 'error',
+    'no-var': 'warn',
+    curly: 'error',
+    eqeqeq: ['error', 'always'],
+    'prefer-const': 'warn',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
+    'import/consistent-type-specifier-style': 'off',
   },
-  {
-    files: ['**/*.js'],
-
-    rules: {
-      'prettier/prettier': [
-        'error',
-        {
-          printWidth: 140,
-          singleQuote: true,
-          semi: true,
-          tabWidth: 2,
-          trailingComma: 'none',
-        },
-      ],
-
-      semi: ['error', 'always'],
-      '@typescript-eslint/no-use-before-define': ['off'],
-      '@typescript-eslint/camelcase': ['off'],
-      '@typescript-eslint/no-var-requires': ['off'],
-      'no-var': ['off'],
+  overrides: [
+    {
+      files: ['**/*.js'],
+      rules: {
+        'no-use-before-define': 'off',
+        'typescript/no-var-requires': 'off',
+        'no-var': 'off',
+      },
     },
-  },
-];
+  ],
+};
