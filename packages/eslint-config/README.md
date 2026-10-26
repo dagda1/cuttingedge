@@ -42,6 +42,17 @@ Add a `lint` script to each package:
   }
 ```
 
+### Format on save in VS Code
+
+Install the [Oxc extension](https://marketplace.visualstudio.com/items?itemName=oxc.oxc-vscode) (`oxc.oxc-vscode`), and add this to `.vscode/settings.json`:
+
+```json
+{
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true
+}
+```
+
 ## Disable comments
 
 Oxlint obeys `oxlint-disable` and `eslint-disable` comments:

@@ -1,9 +1,9 @@
 # @cutting/hooks - reusable react hooks for reusable things
 
 [![npm version](https://img.shields.io/npm/v/@cutting/hooks.svg)](https://www.npmjs.com/package/@cutting/hooks)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![code style: oxfmt](https://img.shields.io/badge/code_style-oxfmt-ff69b4.svg)](https://oxc.rs/docs/guide/usage/formatter)
 
-## install 
+## install
 
 ```sh
 pnpm add @cutting/hooks

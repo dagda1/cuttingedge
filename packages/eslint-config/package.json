@@ -12,8 +12,11 @@
   "license": "MIT",
   "files": [
     "index.mjs",
+    "index.d.mts",
     "react.mjs",
+    "react.d.mts",
     "oxfmt.mjs",
+    "oxfmt.d.mts",
     "README.md",
     "partial.html"
   ],
@@ -31,9 +34,18 @@
     "oxlint": "1.89.0"
   },
   "exports": {
-    "./eslint": "./index.mjs",
-    "./react": "./react.mjs",
-    "./oxfmt": "./oxfmt.mjs"
+    "./eslint": {
+      "types": "./index.d.mts",
+      "default": "./index.mjs"
+    },
+    "./react": {
+      "types": "./react.d.mts",
+      "default": "./react.mjs"
+    },
+    "./oxfmt": {
+      "types": "./oxfmt.d.mts",
+      "default": "./oxfmt.mjs"
+    }
   },
   "volta": {
     "extends": "../../package.json"
