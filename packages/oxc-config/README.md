@@ -86,18 +86,42 @@ All the rules above, plus:
 - `printWidth: 120`, `singleQuote: true`, `semi: true`, `tabWidth: 2`, `trailingComma: 'all'`, `sortPackageJson: false`.
 - `*.js` files use `printWidth: 140` and `trailingComma: 'none'`.
 
-## Overrides
+## Extending
 
-Spread the config and change its `rules` in the root `oxlint.config.ts`:
+Spread the config in the root `oxlint.config.ts`, and add to each field:
 
 ```ts
 import config from '@cutting/oxc-config/react';
 
 export default {
   ...config,
+  ignorePatterns: [...config.ignorePatterns, 'tools'],
+  plugins: [...config.plugins, 'vitest'],
   rules: {
     ...config.rules,
     'no-var': 'off',
   },
+  overrides: [
+    ...config.overrides,
+    {
+      files: ['**/*.test.ts'],
+      rules: {
+        'typescript/no-explicit-any': 'off',
+      },
+    },
+  ],
+};
+```
+
+Spread each field you change. A field without the spread replaces the shared value.
+
+Extend `oxfmt.config.ts` the same way:
+
+```ts
+import config from '@cutting/oxc-config/oxfmt';
+
+export default {
+  ...config,
+  printWidth: 100,
 };
 ```
