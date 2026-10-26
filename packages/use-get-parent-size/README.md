@@ -1,7 +1,7 @@
 # @cutting/use-get-parent-size - Get resize events of an observed DOM element's height, width etc. from a resize-observer.
 
 [![npm version](https://img.shields.io/npm/v/@cutting/use-get-parent-size.svg)](https://www.npmjs.com/package/@cutting/use-get-parent-size)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![code style: oxfmt](https://img.shields.io/badge/code_style-oxfmt-ff69b4.svg)](https://oxc.rs/docs/guide/usage/formatter)
 
 ## install
 
@@ -47,9 +47,7 @@ interface DOMRectReadOnly {
 export interface UseParentSizeOptions {
   debounceDelay: number;
   initialValues: Partial<ResizeObserverContentRect>;
-  transformFunc?: (
-    entry: Partial<ResizeObserverContentRect>
-  ) => Partial<ResizeObserverContentRect>;
+  transformFunc?: (entry: Partial<ResizeObserverContentRect>) => Partial<ResizeObserverContentRect>;
   maxDifference?: number;
   transformFunc?: ({ width, height }: Dimensions) => Dimensions;
   callback?(entry: ResizeObserverContentRect): void;

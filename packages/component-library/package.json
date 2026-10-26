@@ -80,7 +80,7 @@
   "scripts": {
     "prebuild": "tsc",
     "build": "NODE_ENV=production devtools esbuild && tsc --emitDeclarationOnly -p ./tsconfig.dist.json",
-    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
+    "lint": "oxlint ./src --fix && oxfmt ./src",
     "start": "pnpm vite --host --port 7000 -l info",
     "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test",
