@@ -1,6 +1,6 @@
 {
   "name": "@cutting/oxc-config",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Cutting Oxlint and oxfmt configuration",
   "repository": {
     "type": "git",
