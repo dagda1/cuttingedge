@@ -18,7 +18,7 @@ function formatFixture(fileName: string, source: string): string {
   const configPath = join(fixtureDir, 'oxfmt.config.ts');
 
   try {
-    writeFileSync(configPath, "import config from '@cutting/eslint-config/oxfmt';\n\nexport default config;\n");
+    writeFileSync(configPath, "import config from '@cutting/oxc-config/oxfmt';\n\nexport default config;\n");
 
     const result = spawnSync('oxfmt', ['-c', configPath, '--stdin-filepath', join(fixtureDir, fileName)], {
       input: source,
@@ -39,7 +39,7 @@ function formatFixture(fileName: string, source: string): string {
   }
 }
 
-describe('@cutting/eslint-config/oxfmt', () => {
+describe('@cutting/oxc-config/oxfmt', () => {
   it('wraps .ts files at 120 columns with trailing commas', () => {
     expect(formatFixture('fits.ts', line120)).toBe(line120);
     expect(formatFixture('wraps.ts', line121)).toBe(

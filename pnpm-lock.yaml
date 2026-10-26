@@ -109,9 +109,9 @@ importers:
       '@cutting/devtools':
         specifier: workspace:*
         version: link:packages/devtools
-      '@cutting/eslint-config':
+      '@cutting/oxc-config':
         specifier: workspace:*
-        version: file:packages/eslint-config(eslint@8.57.1(supports-color@8.1.1))
+        version: file:packages/oxc-config(eslint@8.57.1(supports-color@8.1.1))
       '@cutting/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
@@ -954,22 +954,6 @@ importers:
         specifier: 2.2.1
         version: 2.2.1(supports-color@8.1.1)
 
-  packages/eslint-config:
-    dependencies:
-      eslint-plugin-simple-import-sort:
-        specifier: 14.0.0
-        version: 14.0.0(eslint@10.13.0(supports-color@8.1.1))
-      oxfmt:
-        specifier: 0.74.0
-        version: 0.74.0
-      oxlint:
-        specifier: 1.89.0
-        version: 1.89.0
-    devDependencies:
-      vitest:
-        specifier: 5.0.5
-        version: 5.0.5(@opentelemetry/api@1.10.0)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))
-
   packages/hooks:
     dependencies:
       '@cutting/assert':
@@ -1072,6 +1056,22 @@ importers:
       unist-util-visit:
         specifier: 5.1.0
         version: 5.1.0
+
+  packages/oxc-config:
+    dependencies:
+      eslint-plugin-simple-import-sort:
+        specifier: 14.0.0
+        version: 14.0.0(eslint@10.13.0(supports-color@8.1.1))
+      oxfmt:
+        specifier: 0.74.0
+        version: 0.74.0
+      oxlint:
+        specifier: 1.89.0
+        version: 1.89.0
+    devDependencies:
+      vitest:
+        specifier: 5.0.5
+        version: 5.0.5(@opentelemetry/api@1.10.0)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))
 
   packages/performance-scout:
     dependencies:
@@ -1254,9 +1254,9 @@ importers:
 
   packages/useful-types:
     devDependencies:
-      '@cutting/eslint-config':
+      '@cutting/oxc-config':
         specifier: workspace:*
-        version: link:../eslint-config
+        version: link:../oxc-config
 
   packages/util:
     dependencies:
@@ -2102,11 +2102,11 @@ packages:
       serve-static:
         optional: true
 
-  '@cutting/eslint-config@file:packages/eslint-config':
-    resolution: {directory: packages/eslint-config, type: directory}
-
   '@cutting/markdown@file:packages/markdown':
     resolution: {directory: packages/markdown, type: directory}
+
+  '@cutting/oxc-config@file:packages/oxc-config':
+    resolution: {directory: packages/oxc-config, type: directory}
 
   '@cutting/rollup-plugin-md@0.5.0':
     resolution: {integrity: sha512-TNFEveA0I/nPG4CGO41HLVWKvkVAyVI4gpaByyHiBVA2XrpwhVfAvjZxQm7nJP6SqrHMncsI/EdIa+LYN5zHDQ==}
@@ -12668,18 +12668,6 @@ snapshots:
       - vite
       - vue-tsc
 
-  '@cutting/eslint-config@file:packages/eslint-config(eslint@8.57.1(supports-color@8.1.1))':
-    dependencies:
-      eslint-plugin-simple-import-sort: 14.0.0(eslint@8.57.1(supports-color@8.1.1))
-      oxfmt: 0.74.0
-      oxlint: 1.89.0
-    transitivePeerDependencies:
-      - '@astrojs/compiler-rs'
-      - eslint
-      - oxlint-tsgolint
-      - svelte
-      - vite-plus
-
   '@cutting/markdown@file:packages/markdown(@types/three@0.186.0)(supports-color@5.5.0)(three@0.186.1)':
     dependencies:
       '@cutting/assert': file:packages/assert
@@ -12712,6 +12700,18 @@ snapshots:
       - '@types/three'
       - supports-color
       - three
+
+  '@cutting/oxc-config@file:packages/oxc-config(eslint@8.57.1(supports-color@8.1.1))':
+    dependencies:
+      eslint-plugin-simple-import-sort: 14.0.0(eslint@8.57.1(supports-color@8.1.1))
+      oxfmt: 0.74.0
+      oxlint: 1.89.0
+    transitivePeerDependencies:
+      - '@astrojs/compiler-rs'
+      - eslint
+      - oxlint-tsgolint
+      - svelte
+      - vite-plus
 
   '@cutting/rollup-plugin-md@0.5.0':
     dependencies:

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { lintFixture } from './oxlint-fixture';
 
-describe('@cutting/eslint-config/eslint', () => {
+describe('@cutting/oxc-config/eslint', () => {
   it('sorts imports', () => {
     const source = "import { b } from './b';\nimport { a } from './a';\n\nexport const sum = a + b;\n";
 

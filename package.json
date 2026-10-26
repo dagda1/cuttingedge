@@ -53,7 +53,7 @@
   "devDependencies": {
     "@changesets/cli": "3.0.3",
     "@cutting/devtools": "workspace:*",
-    "@cutting/eslint-config": "workspace:*",
+    "@cutting/oxc-config": "workspace:*",
     "@cutting/tsconfig": "workspace:*",
     "@cutting/useful-types": "workspace:*",
     "@mdx-js/loader": "^3.1.1",

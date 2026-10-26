@@ -1,4 +1,4 @@
-import config from '@cutting/eslint-config/react';
+import config from '@cutting/oxc-config/react';
 
 export default {
   ...config,

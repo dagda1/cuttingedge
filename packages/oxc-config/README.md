@@ -1,11 +1,11 @@
-# Cutting eslint-config
+# Cutting oxc-config
 
 This package holds the shared [Oxlint](https://oxc.rs/docs/guide/usage/linter) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter) configs that other packages use.
 
 ## Installation
 
 ```bash
-pnpm add @cutting/eslint-config -D
+pnpm add @cutting/oxc-config -D
 ```
 
 The package installs `oxlint`, `oxfmt` and `eslint-plugin-simple-import-sort`.
@@ -15,17 +15,17 @@ The package installs `oxlint`, `oxfmt` and `eslint-plugin-simple-import-sort`.
 Create one `oxlint.config.ts` in the root of the repo:
 
 ```ts
-import config from '@cutting/eslint-config/react';
+import config from '@cutting/oxc-config/react';
 
 export default config;
 ```
 
-Use `@cutting/eslint-config/eslint` instead for a repo with no React code.
+Use `@cutting/oxc-config/eslint` instead for a repo with no React code.
 
 Create one `oxfmt.config.ts` in the root of the repo:
 
 ```ts
-import config from '@cutting/eslint-config/oxfmt';
+import config from '@cutting/oxc-config/oxfmt';
 
 export default config;
 ```
@@ -65,7 +65,7 @@ Oxlint obeys `oxlint-disable` and `eslint-disable` comments:
 
 ## What rules are applied
 
-### `@cutting/eslint-config/eslint`
+### `@cutting/oxc-config/eslint`
 
 - The `@typescript-eslint/recommended` rules.
 - `curly`, `eqeqeq`, `no-var`, `prefer-const` and `no-unused-vars` (names that start with `_` are ignored).
@@ -73,7 +73,7 @@ Oxlint obeys `oxlint-disable` and `eslint-disable` comments:
 - `import/first`, `import/newline-after-import` and `import/no-duplicates`.
 - `simple-import-sort/imports` and `simple-import-sort/exports`, through the `eslint-plugin-simple-import-sort` JS plugin.
 
-### `@cutting/eslint-config/react`
+### `@cutting/oxc-config/react`
 
 All the rules above, plus:
 
@@ -81,7 +81,7 @@ All the rules above, plus:
 - The `eslint-plugin-jsx-a11y` recommended rules.
 - `react/rules-of-hooks` and `react/exhaustive-deps`, which also checks `useIsomorphicLayoutEffect`.
 
-### `@cutting/eslint-config/oxfmt`
+### `@cutting/oxc-config/oxfmt`
 
 - `printWidth: 120`, `singleQuote: true`, `semi: true`, `tabWidth: 2`, `trailingComma: 'all'`, `sortPackageJson: false`.
 - `*.js` files use `printWidth: 140` and `trailingComma: 'none'`.
@@ -91,7 +91,7 @@ All the rules above, plus:
 Spread the config and change its `rules` in the root `oxlint.config.ts`:
 
 ```ts
-import config from '@cutting/eslint-config/react';
+import config from '@cutting/oxc-config/react';
 
 export default {
   ...config,

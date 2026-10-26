@@ -13,10 +13,7 @@ export function lintFixture(configExport: 'eslint' | 'react', fileName: string, 
   const filePath = join(fixtureDir, fileName);
 
   try {
-    writeFileSync(
-      configPath,
-      `import config from '@cutting/eslint-config/${configExport}';\n\nexport default config;\n`,
-    );
+    writeFileSync(configPath, `import config from '@cutting/oxc-config/${configExport}';\n\nexport default config;\n`);
     writeFileSync(filePath, source);
 
     const result = spawnSync('oxlint', ['-c', configPath, '--format', 'json', filePath], { encoding: 'utf8' });

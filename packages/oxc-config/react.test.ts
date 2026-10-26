@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { lintFixture } from './oxlint-fixture';
 
-describe('@cutting/eslint-config/react', () => {
+describe('@cutting/oxc-config/react', () => {
   it('checks hook dependencies in useIsomorphicLayoutEffect', () => {
     const source = [
       "import { useState } from 'react';",
