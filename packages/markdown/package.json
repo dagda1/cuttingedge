@@ -20,9 +20,9 @@
     "hast-util-to-html": "^9.0.5",
     "image-size": "2.0.4",
     "js-yaml": "5.5.0",
-    "katex": "0.19.0",
+    "katex": "0.19.1",
     "maath": "0.10.8",
-    "mdast-util-to-markdown": "2.2.0",
+    "mdast-util-to-markdown": "2.2.1",
     "mdx-bundler": "10.1.1",
     "reading-time": "1.5.0",
     "refractor": "^5.0.0",
@@ -36,7 +36,7 @@
     "remark-gfm": "4.0.1",
     "remark-inline-code-language": "^1.0.1",
     "remark-math": "6.0.0",
-    "unist-util-visit": "5.1.0"
+    "unist-util-visit": "5.2.0"
   },
   "files": [
     "dist/**/*",

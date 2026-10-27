@@ -5,7 +5,7 @@ type Tree = Parameters<typeof visit>[0];
 export function remarkCodeTitles() {
   return (tree: Tree): void =>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    visit(tree, 'code', (node: { lang?: string }, index: number, parent: any) => {
+    visit(tree, 'code', (node: { lang?: string }, index: number | undefined, parent: any) => {
       const nodeLang = node.lang || '';
       let language = '';
       let title = '';
