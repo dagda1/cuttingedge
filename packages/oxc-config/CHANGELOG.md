@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 1.0.0
+
+### Major Changes
+
+- 66a0cad: Replace ESLint and Prettier with Oxlint and oxfmt. `./eslint` and `./react` now export Oxlint configs, and the new `./oxfmt` export is an oxfmt config. Consumers must replace `eslint.config.mjs` with a root `oxlint.config.ts` and `oxfmt.config.ts`, and change lint scripts to `oxlint ./src --fix && oxfmt ./src`.
+
 ## 5.12.0
 
 ### Minor Changes
