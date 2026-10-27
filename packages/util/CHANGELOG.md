@@ -1,5 +1,13 @@
 # @cutting/util
 
+## 4.67.1
+
+### Patch Changes
+
+- e262415: Build with TypeScript 7.0.2.
+- Updated dependencies [e262415]
+  - @cutting/assert@0.8.1
+
 ## 4.67.0
 
 ### Minor Changes

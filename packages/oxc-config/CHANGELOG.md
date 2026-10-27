@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 1.0.1
+
+### Patch Changes
+
+- e262415: Build with TypeScript 7.0.2.
+
 ## 1.0.0
 
 ### Major Changes
