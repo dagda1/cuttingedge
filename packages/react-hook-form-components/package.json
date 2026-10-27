@@ -1,13 +1,17 @@
 {
   "name": "@cutting/react-hook-form-components",
-  "description": "components for react-hook-form.",
   "version": "0.19.0",
-  "type": "module",
-  "module": "dist/esm/src.js",
-  "types": "dist/esm/index.d.ts",
-  "sideEffects": [
-    "*.css"
+  "description": "components for react-hook-form.",
+  "keywords": [
+    "focus",
+    "hook",
+    "hooks",
+    "react",
+    "react-hook-form",
+    "reactjs",
+    "reactnative"
   ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dagda1/cuttingedge.git"
@@ -15,7 +19,24 @@
   "files": [
     "dist/**/*"
   ],
-  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "module": "dist/esm/src.js",
+  "types": "dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/src.js"
+    },
+    "./styles.css": {
+      "import": "./dist/esm/src.css"
+    },
+    "./package.json": {
+      "import": "./package.json"
+    }
+  },
   "scripts": {
     "start": "pnpm vite --host --port 9000  -l=info  --clearScreen=false",
     "test": "NODE_ENV=test vitest",
@@ -29,44 +50,22 @@
     "@cutting/util": "workspace:*"
   },
   "devDependencies": {
-    "react": "19.3.1",
-    "react-dom": "19.3.1",
-    "react-syntax-highlighter": "16.1.2",
     "@testing-library/react": "16.3.3",
-    "react-hook-form": "7.90.0",
+    "react": "19.3.1",
+    "react-calendly": "4.4.0",
+    "react-dom": "19.3.1",
+    "react-hook-form": "7.91.0",
     "react-is": "19.3.1",
-    "react-calendly": "4.4.0"
+    "react-syntax-highlighter": "16.1.2"
   },
   "peerDependencies": {
     "react": "19.3.1",
+    "react-calendly": "4.4.0",
     "react-dom": "19.3.1",
-    "react-hook-form": "7.90.0",
-    "react-is": "19.3.1",
-    "react-calendly": "4.4.0"
+    "react-hook-form": "7.91.0",
+    "react-is": "19.3.1"
   },
-  "keywords": [
-    "react-hook-form",
-    "focus",
-    "react",
-    "reactjs",
-    "reactnative",
-    "hooks",
-    "hook",
-    "hooks"
-  ],
   "volta": {
     "extends": "../../package.json"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/esm/index.d.ts",
-      "import": "./dist/esm/src.js"
-    },
-    "./styles.css": {
-      "import": "./dist/esm/src.css"
-    },
-    "./package.json": {
-      "import": "./package.json"
-    }
   }
 }
