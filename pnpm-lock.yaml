@@ -1063,11 +1063,11 @@ importers:
         specifier: 14.0.0
         version: 14.0.0(eslint@10.13.0(supports-color@8.1.1))
       oxfmt:
-        specifier: 0.74.0
-        version: 0.74.0
+        specifier: 0.75.0
+        version: 0.75.0
       oxlint:
-        specifier: 1.89.0
-        version: 1.89.0
+        specifier: 1.90.0
+        version: 1.90.0
     devDependencies:
       vitest:
         specifier: 5.0.5
