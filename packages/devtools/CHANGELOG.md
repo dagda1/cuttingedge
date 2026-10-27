@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.77.1
+
+### Patch Changes
+
+- e262415: Build with TypeScript 7.0.2.
+
 ## 4.77.0
 
 ### Minor Changes

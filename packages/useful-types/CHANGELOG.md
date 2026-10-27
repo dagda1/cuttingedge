@@ -1,5 +1,11 @@
 # @cutting/useful-types
 
+## 4.46.1
+
+### Patch Changes
+
+- e262415: Build with TypeScript 7.0.2.
+
 ## 4.46.0
 
 ### Minor Changes

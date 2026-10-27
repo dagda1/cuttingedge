@@ -1,5 +1,11 @@
 # @cutting/assert
 
+## 0.8.1
+
+### Patch Changes
+
+- e262415: Build with TypeScript 7.0.2.
+
 ## 0.8.0
 
 ### Minor Changes

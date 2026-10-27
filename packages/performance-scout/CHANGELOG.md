@@ -1,5 +1,11 @@
 # performance-scout
 
+## 0.9.1
+
+### Patch Changes
+
+- e262415: Build with TypeScript 7.0.2.
+
 ## 0.9.0
 
 ### Minor Changes
