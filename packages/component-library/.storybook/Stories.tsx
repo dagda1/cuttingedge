@@ -1,11 +1,10 @@
 /* eslint-disable react/display-name */
-import type { StoryObj } from '@storybook/react';
 import type { FunctionComponent } from 'react';
 
-import { cuttingTheme } from '../../style/themes/cutting/cutting.css';
-import { defaultTheme } from '../../style/themes/default/default.css';
-import { salesTheme } from '../../style/themes/sales/salesTheme.css';
-import { ApplicationLayout } from '../templates/ApplicationLayout/ApplicationLayout';
+import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
+import { cuttingTheme } from '../src/style/themes/cutting/cutting.css';
+import { defaultTheme } from '../src/style/themes/default/default.css';
+import { salesTheme } from '../src/style/themes/sales/salesTheme.css';
 import * as styles from './Stories.css';
 
 const themes = {
@@ -29,7 +28,9 @@ export function themedSelect() {
   };
 }
 
-export function themedTemplateMaker<T>(C: FunctionComponent<T>): StoryObj<typeof C> {
+export type ThemedTemplate<T> = ((props: T & { theme?: string }) => JSX.Element) & { args?: Partial<T> };
+
+export function themedTemplateMaker<T>(C: FunctionComponent<T>): ThemedTemplate<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return ({ theme, ...args }: any) => {
     const chosenTheme = typeof theme === 'undefined' ? defaultTheme : theme;

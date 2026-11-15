@@ -3,6 +3,8 @@ import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { dirname, join } from 'node:path';
 
+import { trimSlashes } from './trimSlashes.js';
+
 export interface SiteMeta {
   title: string;
   description: string;
@@ -38,7 +40,7 @@ export function extractRoutePaths(source: string, constants: Record<string, stri
   for (const match of source.matchAll(/\bpath\s*[=:]\s*["'`]([^"'`]+)["'`]/g)) {
     add(match[1]);
   }
-  for (const match of source.matchAll(/\bpath\s*[=:]\s*\{?\s*\w+\.(\w+)\s*\}?/g)) {
+  for (const match of source.matchAll(/\bpath\s*[=:]\s*(?:\{\s*)?\w+\.(\w+)/g)) {
     const value = constants[match[1]];
     if (value) {
       add(value);
@@ -49,7 +51,7 @@ export function extractRoutePaths(source: string, constants: Record<string, stri
 }
 
 function slugForPath(path: string): string {
-  const slug = path.replace(/^\/+|\/+$/g, '').replace(/\//g, '-');
+  const slug = trimSlashes(path).replace(/\//g, '-');
   return slug || 'home';
 }
 

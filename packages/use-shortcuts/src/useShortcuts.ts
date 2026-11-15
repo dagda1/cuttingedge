@@ -70,6 +70,5 @@ export const useShortcuts = <R extends Record<PropertyKey, unknown>, E extends H
     };
   }, [handler, ref, shortcutMap]);
 
-  // for testing
   return { shortcuts: shortcutsRef.current };
 };

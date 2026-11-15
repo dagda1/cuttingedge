@@ -40,8 +40,8 @@ export const shape = style({
 
 const baseL = 300;
 const halfBase = baseL / 2;
-const apothem = baseL; //(1/2 base) / cos(theta)
-const apexAngle = '30deg'; // apex angle = 180 - 90(right-angle) - α
+const apothem = baseL;
+const apexAngle = '30deg';
 const baseMove = 0 - (apothem - halfBase);
 
 export const base = style({

@@ -1,4 +1,4 @@
-import type { CSSProperties, FunctionComponent, Ref } from 'react';
+import type { CSSProperties, DetailedHTMLProps, FunctionComponent, HTMLAttributes, Ref } from 'react';
 
 export type StandardProps<C, Removals extends keyof C = never, AcceptsRef = true> = Omit<C, 'classes' | Removals> & {
   className?: string;
@@ -8,6 +8,6 @@ export type StandardProps<C, Removals extends keyof C = never, AcceptsRef = true
   ref?: AcceptsRef extends true ? (C extends { ref?: infer RefType } ? RefType : Ref<unknown>) : never;
 };
 
-export type Taggable<TProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>> =
+export type Taggable<TProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>> =
   | FunctionComponent<TProps>
   | string;

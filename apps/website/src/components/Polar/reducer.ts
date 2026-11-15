@@ -81,8 +81,6 @@ export const reducer: Reducer<State, PolarActions> = produce((state, action) => 
       if (state.points.length <= 1) {
         console.log(current(state));
         state.current = [...state.bucket];
-        // state.points = [];
-        // state.time = 0;
         return;
       }
 

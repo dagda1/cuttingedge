@@ -87,7 +87,8 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
     const yScaleDomain = nonNegativeXAxis ? [0, max(data, (d) => d.y)] : extent(data, (d) => d.y);
     yScale.domain(yScaleDomain as number[]);
 
-    const xAxisPosition = nonNegativeXAxis ? height : positiveAndNegative ? yScale(0) : 0;
+    const crossingXAxisPosition = positiveAndNegative ? yScale(0) : 0;
+    const xAxisPosition = nonNegativeXAxis ? height : crossingXAxisPosition;
 
     const minX = min(data, (d) => d.x) as number;
     const maxX = max(data, (d) => d.y) as number;
@@ -95,7 +96,8 @@ export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.
     const positiveXOnly = minX > 0 && maxX > 0;
     const negativeXOnly = minX < 0 && maxX < 0;
 
-    const yAxisPosition = positiveXOnly ? 0 : negativeXOnly ? width : xScale(0);
+    const crossingYAxisPosition = negativeXOnly ? width : xScale(0);
+    const yAxisPosition = positiveXOnly ? 0 : crossingYAxisPosition;
 
     return { xScale, yScale, xAxisPosition, yAxisPosition, firstX };
   }, [width, height, data]);

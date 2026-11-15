@@ -2,7 +2,6 @@
 'use strict';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { assert } from 'assert-ts';
 import chalk from 'chalk';
 import { spawnSync } from 'child_process';

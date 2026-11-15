@@ -48,10 +48,6 @@ const defaultConfiguration: RequiredConfiguration = {
 
 let configuration = defaultConfiguration;
 
-/**
- * Customize formatting of assertion failure messages, creation of failure Errors and reporting of failures
- * @param custom
- */
 export function configureAssert(custom: AssertConfiguration): void {
   const newConfig: RequiredConfiguration = {
     ...configuration,
@@ -63,30 +59,13 @@ export function configureAssert(custom: AssertConfiguration): void {
   configuration = newConfig;
 }
 
-/**
- * For test purpose
- */
 export function testResetConfiguration(): void {
   configuration = defaultConfiguration;
 }
 
 interface Assert {
-  /**
-   * Verify that a condition is satisfied.
-   * @param condition Condition to be true
-   * @param message Error message
-   * @param props Any props relevant.
-   * @throws Throws exception if condition is false.
-   */
   (condition: boolean, message?: string, props?: object | (() => object)): asserts condition;
 
-  /**
-   * Verify that an optional value actually has a proper value in this context, i.e. not null or undefined.
-   * @param value Value to be verified
-   * @param message Error message
-   * @param props If message is a string id, format any matching key values into message. Props are also reported to dev team.
-   * @throws Throws exception if value is null or undefined
-   */
   <T>(value: T | undefined | null, message?: string, props?: object | (() => object)): T;
 }
 

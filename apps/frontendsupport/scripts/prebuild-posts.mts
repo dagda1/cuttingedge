@@ -58,7 +58,7 @@ function rehypeInlineCodeLanguage() {
 function remarkCodeTitles() {
   return (tree: any): void =>
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error
     visit(tree, 'code', (node: { lang?: string }, index: number, parent: any) => {
       const nodeLang = node.lang || '';
       let language = '';

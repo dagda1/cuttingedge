@@ -14,14 +14,14 @@ async function fetchAndParseLinksFromParent(url, parentSelector) {
 
     return links;
   } catch (error) {
-    console.error("Failed to fetch and parse the URL:", error);
+    console.error('Failed to fetch and parse the URL:', error);
     return [];
   }
 }
 
 async function warmCache(links) {
   try {
-    for(const url of links) {
+    for (const url of links) {
       const nextUrl = `https://frontendrescue.com${url}`;
 
       console.log(`loading url ${nextUrl}`);
@@ -35,6 +35,5 @@ async function warmCache(links) {
   }
 }
 
-// Test the function
-const parentElementSelector = 'main ul';  // Replace with your specific selector
+const parentElementSelector = 'main ul';
 fetchAndParseLinksFromParent('https://frontendrescue.com/posts', parentElementSelector).then(warmCache);

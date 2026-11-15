@@ -8,7 +8,7 @@ This package holds the shared [Oxlint](https://oxc.rs/docs/guide/usage/linter) a
 pnpm add @cutting/oxc-config -D
 ```
 
-The package installs `oxlint`, `oxfmt` and `eslint-plugin-simple-import-sort`.
+The package installs `oxlint`, `oxfmt`, `eslint-plugin-simple-import-sort`, `eslint-plugin-sonarjs` and `eslint-plugin-storybook`.
 
 ## Configuration
 
@@ -72,6 +72,14 @@ Oxlint obeys `oxlint-disable` and `eslint-disable` comments:
 - `typescript/explicit-module-boundary-types` and `typescript/consistent-type-imports`.
 - `import/first`, `import/newline-after-import` and `import/no-duplicates`.
 - `simple-import-sort/imports` and `simple-import-sort/exports`, through the `eslint-plugin-simple-import-sort` JS plugin.
+- `no-empty`.
+- `cutting/no-comments`: no comments. Lint directives (`eslint-`, `oxlint-`), `@ts-expect-error`, `$ExpectType`, `$ExpectError`, `GraphQL` tags, triple-slash references and a shebang line are allowed.
+- The `eslint-plugin-sonarjs` recommended rules, without `sonarjs/max-lines`, `sonarjs/no-nested-template-literals` and `sonarjs/no-commented-code`. Oxlint's built-in rule replaces each sonar rule that has one. These rules are off in `*.test.ts`, `*.test.tsx`, `*.stories.tsx` and `__mocks__`.
+- `max-lines`: a `*.ts` or `*.tsx` file has at most 200 lines, not counting blank lines and comments. The rule is off in `*.test.ts`, `*.test.tsx`, `*.stories.tsx` and `__mocks__`.
+- `cutting/no-browser-storage`: no `localStorage` or `sessionStorage` in `*.test.ts` and `*.test.tsx`.
+- `cutting/no-test-code-imports`: no import from `@storybook/*`, `storybook/*`, `msw`, `vitest` or `@testing-library/*` in a `*.ts` or `*.tsx` file. The rule is off in `*.test.ts`, `*.test.tsx`, `*.stories.tsx`, `__mocks__` and `.storybook`.
+
+The `cutting/*` rules come from a JS plugin inside this package.
 
 ### `@cutting/oxc-config/react`
 
@@ -80,6 +88,9 @@ All the rules above, plus:
 - The `eslint-plugin-react` recommended rules.
 - The `eslint-plugin-jsx-a11y` recommended rules.
 - `react/rules-of-hooks` and `react/exhaustive-deps`, which also checks `useIsomorphicLayoutEffect`.
+- `cutting/no-react-namespace` and `cutting/no-react-namespace-types`: no `React.` in values or in types. Use named imports.
+- `typescript/no-restricted-imports`: no `JSX` import from `react`.
+- The `eslint-plugin-storybook` recommended rules, in `*.stories.*` and `*.story.*` files and in `.storybook/main.*`.
 
 ### `@cutting/oxc-config/oxfmt`
 

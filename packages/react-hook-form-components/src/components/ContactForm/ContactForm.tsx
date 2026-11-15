@@ -51,9 +51,6 @@ export function ContactForm({ buttonStyle = 'primary' }: Pick<FormValues, 'butto
       .catch((error) => {
         console.error(error);
       });
-
-    // form.current.action = CRM;
-    // form.current.submit();
   };
 
   return (

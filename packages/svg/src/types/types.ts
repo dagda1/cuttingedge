@@ -1,4 +1,4 @@
-import type { SVGAttributes as SvgAttributes } from 'react';
+import type { SVGAttributes as SvgAttributes, SVGProps } from 'react';
 
 export type PreserveAspectRatioAlignment =
   | 'xMinYMin'
@@ -15,7 +15,7 @@ export type MeetOrSlice = 'meet' | 'slice';
 
 export type PreserveAspectRatio = `${PreserveAspectRatioAlignment} ${MeetOrSlice}` | 'none';
 
-export type AddSVGProps<Props, Element extends SVGElement> = Props & Omit<React.SVGProps<Element>, keyof Props>;
+export type AddSVGProps<Props, Element extends SVGElement> = Props & Omit<SVGProps<Element>, keyof Props>;
 
 export interface Point {
   x: number;

@@ -1,23 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-// const fadeBars = keyframes({
-//   '0%': {
-//     opacity: 1,
-//   },
-//   '100%': {
-//     opacity: 0,
-//   },
-// });
-
-// const fadeDots = keyframes({
-//   '0%': {
-//     opacity: 1,
-//   },
-//   '100%': {
-//     opacity: 0.3,
-//   },
-// });
-
 export const loadingIcon = style({});
 
 export const bars = style({});

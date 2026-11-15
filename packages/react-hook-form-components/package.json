@@ -54,7 +54,7 @@
     "react": "19.3.1",
     "react-calendly": "4.4.0",
     "react-dom": "19.3.1",
-    "react-hook-form": "7.91.0",
+    "react-hook-form": "7.92.0",
     "react-is": "19.3.1",
     "react-syntax-highlighter": "16.1.2"
   },
@@ -62,7 +62,7 @@
     "react": "19.3.1",
     "react-calendly": "4.4.0",
     "react-dom": "19.3.1",
-    "react-hook-form": "7.91.0",
+    "react-hook-form": "7.92.0",
     "react-is": "19.3.1"
   },
   "volta": {

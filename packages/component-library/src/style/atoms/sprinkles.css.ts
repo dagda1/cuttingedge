@@ -184,8 +184,6 @@ export const sprinkles = createSprinkles(
   unresponsiveAtomicProperties,
   responsiveAtomicProperties,
   colorAtomicProperties,
-  // TODO: pseudo properties
-  // pseudoAtomicProperties,
 );
 
 export const mapResponsiveValue = createMapValueFn(responsiveAtomicProperties);

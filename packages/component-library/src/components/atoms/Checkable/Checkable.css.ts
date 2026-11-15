@@ -26,7 +26,6 @@ globalStyle(`${item} input`, {
 });
 
 globalStyle(`${item} label`, {
-  // ...responsiveTextStyleRule.body,
   fontWeight: vars.textWeight.regular,
   paddingLeft: vars.space['xxsmall'],
   display: 'inline-block',

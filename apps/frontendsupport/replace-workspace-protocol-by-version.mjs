@@ -15,16 +15,12 @@ program.parse();
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const projects = await findWorkspacePackagesNoCheck(path.join(__dirname, '..', '..', '..'));
-// first elem of returned array is the root package.json, the monorepo itself --> discard that
 const [, ...workspaceProjects] = projects;
 
 const absolutePath = path.join(process.cwd(), program.args[0]);
 
 const packageJsonContent = JSON.parse(await fs.promises.readFile(absolutePath, 'utf-8'));
 
-/**
- * @param {{[key: string]: string}} dependencies
- */
 function replaceWorkspaceProtocolBySpecificVersion(dependencies) {
   if (typeof dependencies !== 'object' || dependencies === null) {
     return;

@@ -29,22 +29,25 @@ export function horizontalLoop(items: any, config: Config): gsap.core.Timeline {
     pixelsPerSecond = (config.speed || 1) * 100;
   let curIndex = 0;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const snap = config.snap === false ? (v: any) => v : gsap.utils.snap(config.snap || 1); // some browsers shift by a pixel to accommodate flex layouts, so for example if width is 20% the first element's width might be 242px, and the next 243px, alternating back and forth. So we snap to 5 percentage points to make things look more natural
+  const snap = config.snap === false ? (v: any) => v : gsap.utils.snap(config.snap || 1);
   let curX, distanceToStart, distanceToLoop, item;
 
-  gsap.set(items, {
-    // convert "x" to "xPercent" to make things responsive, and populate the widths/xPercents Arrays to make lookups faster.
-    xPercent: (index: number, element: HTMLElement) => {
-      const w = (widths[index] = parseFloat(gsap.getProperty(element, 'width', 'px') as string));
-      xPercents[index] = snap(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ((((parseFloat(gsap.getProperty(element, 'x', 'px') as string) / w) * 100) as any) +
+  const populateWidths = (): void => {
+    gsap.set(items, {
+      xPercent: (index: number, element: HTMLElement) => {
+        const w = (widths[index] = parseFloat(gsap.getProperty(element, 'width', 'px') as string));
+        xPercents[index] = snap(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          gsap.getProperty(element, 'xPercent')) as any,
-      );
-      return xPercents[index];
-    },
-  });
+          ((((parseFloat(gsap.getProperty(element, 'x', 'px') as string) / w) * 100) as any) +
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            gsap.getProperty(element, 'xPercent')) as any,
+        );
+        return xPercents[index];
+      },
+    });
+  };
+
+  populateWidths();
   gsap.set(items, { x: 0 });
   const totalWidth =
     items[length - 1].offsetLeft +
@@ -80,13 +83,12 @@ export function horizontalLoop(items: any, config: Config): gsap.core.Timeline {
   function toIndex(index: number, vars: gsap.TweenVars) {
     vars = vars || {};
     if (Math.abs(index - curIndex) > length / 2) {
-      index += index > curIndex ? -length : length; // always go in the shortest direction
+      index += index > curIndex ? -length : length;
     }
     const newIndex = gsap.utils.wrap(0, length, index);
     let time = times[newIndex];
 
     if (time > tl.time() !== index > curIndex) {
-      // if we're wrapping the timeline's playhead, make the proper adjustments
       vars.modifiers = { time: gsap.utils.wrap(0, tl.duration()) };
       time += tl.duration() * (index > curIndex ? 1 : -1);
     }
@@ -99,7 +101,7 @@ export function horizontalLoop(items: any, config: Config): gsap.core.Timeline {
   tl.current = () => curIndex;
   tl.toIndex = (index: number, vars: gsap.TweenVars) => toIndex(index, vars);
   tl.times = times;
-  tl.progress(1, true).progress(0, true); // pre-render for performance
+  tl.progress(1, true).progress(0, true);
   if (config.reversed) {
     tl.vars.onReverseComplete?.();
     tl.reverse();

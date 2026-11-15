@@ -31,12 +31,8 @@ globalStyle(`${container} section`, {
 
 globalStyle(`${container} tspan`, {
   ...responsiveStyle({
-    mobile: {
-      // fontSize: '0.75rem',
-    },
-    tablet: {
-      // fontSize: '1rem',
-    },
+    mobile: {},
+    tablet: {},
   }),
   fill: palette.white,
 });

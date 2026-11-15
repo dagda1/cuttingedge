@@ -31,7 +31,7 @@ describe('useShortcuts', () => {
     const { shortcuts } = result.current;
 
     expect(shortcuts).toHaveLength(1);
-    expect(shortcuts[0].trapper).toBe(mousetrap); // should be global mousetrap function
+    expect(shortcuts[0].trapper).toBe(mousetrap);
   });
 
   it('should create shortcuts with a ref and not create multiple event handlers', () => {
@@ -49,7 +49,7 @@ describe('useShortcuts', () => {
 
     expect(shortcuts).toHaveLength(1);
 
-    expect(shortcuts[0].trapper).not.toBe(mousetrap); // should be mousetrap instance
+    expect(shortcuts[0].trapper).not.toBe(mousetrap);
     let mtrap = shortcuts[0].trapper as any;
     expect(Object.keys(mtrap._callbacks)[0]).toBe('a');
 

@@ -32,6 +32,24 @@ const piMap = {
   [xTickValues[8]]: '$2\\pi$',
 };
 
+const coefficientText = (coefficient: number): string => ([0, 1].includes(coefficient) ? '' : String(coefficient));
+
+const phaseShiftText = (shift: number): string => {
+  if (shift === 0) {
+    return '';
+  }
+
+  return shift > 0 ? `-${shift}` : `+${Math.abs(shift)}`;
+};
+
+const verticalShiftText = (shift: number): string => {
+  if (shift === 0) {
+    return '';
+  }
+
+  return shift > 0 ? `+${shift}` : `${shift}`;
+};
+
 export function TrigonometricTransforms(): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useParentSize(containerRef, { initialValues: { width: 0, height: 0 } });
@@ -58,7 +76,7 @@ export function TrigonometricTransforms(): JSX.Element {
   return (
     <ApplicationLayout
       centerHeading
-      heading={`y=${[0, 1].includes(a) ? '' : a}${trigFunction}(${[0, 1].includes(b) ? '' : b}x${[0].includes(c) ? '' : c > 0 ? `-${c}` : `+${Math.abs(c)}`})${[0].includes(d) ? '' : d > 0 ? `+${d}` : `${d}`}`}
+      heading={`y=${coefficientText(a)}${trigFunction}(${coefficientText(b)}x${phaseShiftText(c)})${verticalShiftText(d)}`}
       showFooter={false}
     >
       <Box component="section" ref={containerRef} position="relative" padding="small">

@@ -173,8 +173,6 @@ export const reducer: Reducer<State, Actions> = produce((state: State, action: A
       };
 
       state.time = newTime;
-
-      return;
     })
     .otherwise(() => state);
 });

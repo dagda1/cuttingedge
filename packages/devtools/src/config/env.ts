@@ -38,7 +38,6 @@ export function getClientEnv(
     ...additional,
   };
 
-  // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = Object.keys(raw).reduce((env: Partial<Env>, key) => {
     if (['__DEV__', '__BROWSER__', '__COMMIT__'].includes(key)) {
       env[key] = JSON.stringify(raw[key]);

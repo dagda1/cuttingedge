@@ -4,11 +4,6 @@ export class Exception extends Error {
   public type = 'HTTP_EXCEPTION';
   public status: number;
 
-  /**
-   *
-   * @param status
-   * @param message
-   */
   constructor(status: number, message?: string) {
     super(message);
 

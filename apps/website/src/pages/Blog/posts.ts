@@ -4,7 +4,6 @@ export interface Post {
   link: string;
 }
 
-// eslint:disable
 export const posts: Post[] = [
   {
     title: 'Frustrations with React Hooks',

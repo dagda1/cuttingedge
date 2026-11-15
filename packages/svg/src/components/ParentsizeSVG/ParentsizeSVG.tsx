@@ -12,7 +12,7 @@ export type ParentsizeSVGProps<E extends HTMLElement = HTMLElement> = {
   align?: Align;
   scale?: number;
   options?: Partial<UseParentSizeOptions>;
-} & Partial<Omit<ResponsiveSVGProps, 'innerRef' | 'height' | 'height'>>;
+} & Partial<Omit<ResponsiveSVGProps, 'innerRef' | 'height'>>;
 
 export function ParentsizeSVG<E extends HTMLElement>({
   parentRef,

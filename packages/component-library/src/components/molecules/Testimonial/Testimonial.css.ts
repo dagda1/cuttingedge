@@ -5,8 +5,6 @@ import { vars } from '~/style/themes/vars.css';
 
 export const root = style({
   position: 'relative',
-  // borderTop: '1px dotted #0098d8',
-  // borderBottom: '1px dotted #0098d8',
 });
 
 globalStyle(`${root} figcaption cite span`, {
