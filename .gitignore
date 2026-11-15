@@ -72,3 +72,9 @@ pruned
 knip.txt
 
 *.map
+# jscpd output
+/jscpd-report/
+
+# /spec and /build task files; only retro.md is committed
+/plans/*/*
+!/plans/*/retro.md

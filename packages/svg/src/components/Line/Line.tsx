@@ -1,14 +1,13 @@
 import cx from 'classnames';
+import type { Ref } from 'react';
 
 import type { AddSVGProps, Point } from '../../types/types';
 
 export type LineProps = {
   className?: string;
-  innerRef?: React.Ref<SVGLineElement>;
+  innerRef?: Ref<SVGLineElement>;
   fill?: string;
-  /** Starting x,y point of the line. */
   from?: Point;
-  /** Ending x,y point of the line. */
   to?: Point;
 };
 

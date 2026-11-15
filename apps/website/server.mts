@@ -136,7 +136,7 @@ export async function createServer(): Promise<{
   });
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  // @ts-expect-error
   app.get('/og-image', async (req, res) => {
     const isContainer = process.env.OS_ENV === 'container';
     const url = req.query.url;
@@ -216,8 +216,6 @@ export async function createServer(): Promise<{
       await element.dispose();
       await browser.close();
 
-      // const final = await sharp(screenshot).resize({ width: 1200, height: 630 }).toBuffer();
-
       await writeFile(imagePath, screenshot);
 
       res.setHeader('Content-Type', 'image/png');
@@ -239,14 +237,13 @@ export async function createServer(): Promise<{
       let template, render;
       if (!isProd) {
         assert(!!vite, `no vite`);
-        // always read fresh template in dev
         template = fs.readFileSync(resolve('index.html'), 'utf-8');
         template = await vite.transformIndexHtml(url, template);
         render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render;
       } else {
         template = indexProd;
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         render = (await import('./server/entry-server.js')).render;
       }
 
@@ -254,7 +251,6 @@ export async function createServer(): Promise<{
       const appHtml = render(url, context);
 
       if (context.url) {
-        // Somewhere a `<Redirect>` was rendered
         return res.redirect(301, context.url);
       }
 

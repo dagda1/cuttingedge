@@ -18,6 +18,19 @@ function invertAlignment<Alignment extends string>(alignment: Alignment) {
   return alignment;
 }
 
+const displayFor = (collapse: boolean) => (collapse ? 'block' : 'flex');
+
+const rowDirectionFor = (rowReverse: boolean | undefined) => (rowReverse ? 'rowReverse' : 'row');
+
+const flexDirectionFor = (collapse: boolean, rowReverse: boolean | undefined) =>
+  collapse ? 'column' : rowDirectionFor(rowReverse);
+
+const justifyContentFor = <Alignment extends string>(rowReverse: boolean | undefined, alignment: Alignment) =>
+  rowReverse ? invertAlignment(alignment) : alignment;
+
+const childDisplayFor = (collapse: boolean, justifyContent: string) =>
+  collapse && justifyContent !== 'flexStart' ? 'flex' : 'block';
+
 export interface CollapsibleAlignmentProps {
   collapseBelow?: ResponsiveRangeProps['below'];
   align?: OptionalResponsiveValue<Align>;
@@ -53,34 +66,32 @@ export function resolveCollapsibleAlignmentProps({ align, alignY, collapseBelow,
     },
     collapsibleAlignmentProps: {
       display: optimizeResponsiveArray([
-        collapseMobile ? 'block' : 'flex',
-        collapseTablet ? 'block' : 'flex',
-        collapseDesktop ? 'block' : 'flex',
+        displayFor(collapseMobile),
+        displayFor(collapseTablet),
+        displayFor(collapseDesktop),
         'flex',
       ]),
       flexDirection: optimizeResponsiveArray([
         collapseMobile ? 'column' : 'row',
-
-        collapseTablet ? 'column' : rowReverseTablet ? 'rowReverse' : 'row',
-
-        collapseDesktop ? 'column' : rowReverseDesktop ? 'rowReverse' : 'row',
-        rowReverseWide ? 'rowReverse' : 'row',
+        flexDirectionFor(collapseTablet, rowReverseTablet),
+        flexDirectionFor(collapseDesktop, rowReverseDesktop),
+        rowDirectionFor(rowReverseWide),
       ]),
       justifyContent: align
         ? optimizeResponsiveArray([
             justifyContentMobile,
-            rowReverseTablet ? invertAlignment(justifyContentTablet) : justifyContentTablet,
-            rowReverseDesktop ? invertAlignment(justifyContentDesktop) : justifyContentDesktop,
-            rowReverseWide ? invertAlignment(justifyContentWide) : justifyContentWide,
+            justifyContentFor(rowReverseTablet, justifyContentTablet),
+            justifyContentFor(rowReverseDesktop, justifyContentDesktop),
+            justifyContentFor(rowReverseWide, justifyContentWide),
           ])
         : undefined,
       alignItems: alignY ? alignYToFlexAlign(alignY) : undefined,
     },
     collapsibleAlignmentChildProps: {
       display: optimizeResponsiveArray([
-        collapseMobile && justifyContentMobile !== 'flexStart' ? 'flex' : 'block',
-        collapseTablet && justifyContentTablet !== 'flexStart' ? 'flex' : 'block',
-        collapseDesktop && justifyContentDesktop !== 'flexStart' ? 'flex' : 'block',
+        childDisplayFor(collapseMobile, justifyContentMobile),
+        childDisplayFor(collapseTablet, justifyContentTablet),
+        childDisplayFor(collapseDesktop, justifyContentDesktop),
         'block',
       ]),
       justifyContent: optimizeResponsiveArray([

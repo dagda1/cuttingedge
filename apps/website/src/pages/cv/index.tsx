@@ -10,7 +10,6 @@ const docs = [
   { file: 'paulcowan-cv.docx', url: Urls.DownloadWordDoc, text: 'word (.docx)' },
 ] as const;
 
-// eslint:disable
 export function CV(): JSX.Element {
   const CVFile = 'paulcowan-cv.pdf';
 

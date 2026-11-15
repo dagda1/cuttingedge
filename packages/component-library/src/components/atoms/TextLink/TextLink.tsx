@@ -1,7 +1,14 @@
 import { assert } from '@cutting/assert';
 import cs from 'classnames';
 import dedent from 'dedent';
-import type { AnchorHTMLAttributes, ComponentType, ForwardRefRenderFunction, Ref } from 'react';
+import type {
+  AnchorHTMLAttributes,
+  ComponentType,
+  ForwardRefExoticComponent,
+  ForwardRefRenderFunction,
+  Ref,
+  RefAttributes,
+} from 'react';
 import { createContext, forwardRef, useContext } from 'react';
 
 import type { Atoms } from '~/style/atoms/atoms';
@@ -43,7 +50,7 @@ const LinkComponentContext = createContext<LinkComponent>(DefaultLinkComponent);
 export const useLinkComponent = (
   ref: Ref<HTMLAnchorElement>,
 ):
-  | React.ForwardRefExoticComponent<LinkComponentProps & React.RefAttributes<HTMLAnchorElement>>
+  | ForwardRefExoticComponent<LinkComponentProps & RefAttributes<HTMLAnchorElement>>
   | ComponentType<LinkComponentProps> => {
   const linkComponent = useContext(LinkComponentContext);
 
@@ -75,8 +82,6 @@ export const useLinkStyles = ({
   const textContext = useContext(TextContext);
   const headingContext = useContext(HeadingContext);
 
-  // Links nested inside Text components that use coloured tones
-  // are automatically converted to `weak` weight.
   const isWeakDueToTextTone = !headingContext && textContext?.tone !== 'neutral' && textContext?.tone !== 'secondary';
 
   const linkStyles = weight === 'weak' || isWeakDueToTextTone ? styles.weakLink : undefined;

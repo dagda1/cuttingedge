@@ -7,7 +7,7 @@ import { Testimonial } from '../Testimonial/Testimonial';
 export function C2Testimonial({ tone }: { tone?: TextStyleProps['tone'] }): JSX.Element {
   return (
     <Box marginY="medium">
-      <Testimonial tone={tone} from="Richard McGlave (Continuity2)" url="http://continuity2.com">
+      <Testimonial tone={tone} from="Richard McGlave (Continuity2)" url="https://continuity2.com">
         <Text component="p" tone="secondary">
           Paul eradicated the manual steps in our development pipeline that stopped our developers from working on
           features.

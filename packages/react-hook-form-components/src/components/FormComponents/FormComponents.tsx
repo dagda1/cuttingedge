@@ -37,12 +37,9 @@ export function createFormComponent<C extends FunctionComponent<any>>(
   F.displayName = 'FormComponent';
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  // @ts-expect-error
   return F;
 }
 
-// TODO: remove annotations.  Currently weird type error
-// The inferred type of 'Input' cannot be named without a reference to '@cutting/component-library/node_modules/@types/react'.
-// This is likely not portable. A type annotation is necessary.
 export const Input: (props: FormProps<typeof FormInput>) => ReactNode = createFormComponent(FormInput);
 export const TextArea: (props: FormProps<typeof FormTextArea>) => ReactNode = createFormComponent(FormTextArea);

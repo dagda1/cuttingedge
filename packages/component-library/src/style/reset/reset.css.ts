@@ -5,13 +5,10 @@ export const base = style({
   padding: 0,
   border: 0,
   boxSizing: 'border-box',
-  // fontSize: '100%',
-  // font: 'inherit',
   verticalAlign: 'baseline',
   WebkitTapHighlightColor: 'transparent',
 });
 
-// HTML5 display-role reset for older browsers
 const block = style({
   display: 'block',
 });
@@ -49,7 +46,6 @@ const appearance = style({
 
 const field = style([block, appearance]);
 
-// Custom reset rules
 const mark = style({
   backgroundColor: 'transparent',
   color: 'inherit',

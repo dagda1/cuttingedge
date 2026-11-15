@@ -17,8 +17,6 @@ export const isAsyncFunction = <F extends Fn>(f: F): boolean => {
 
   const s = f.toString().trim();
 
-  // not a great way to determine but there does not appear to be any
-  // other way by conventional means
   return !!(s.match(/^async /) || s.match(/return __awaiter/));
 };
 

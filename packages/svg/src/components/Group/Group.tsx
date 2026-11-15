@@ -1,18 +1,16 @@
 import cx from 'classnames';
+import type { ReactNode, Ref, SVGProps } from 'react';
 
 type GroupOnlyProps = {
-  /** Top offset applied to `<g/>`. */
   y?: number;
-  /** Left offset applied to `<g/>`. */
   x?: number;
-  /** Override `x` and `y` to provide the entire `transform` string. */
   transform?: string;
   className?: string;
-  children?: React.ReactNode;
-  innerRef?: React.Ref<SVGGElement>;
+  children?: ReactNode;
+  innerRef?: Ref<SVGGElement>;
 };
 
-type GroupProps = GroupOnlyProps & Omit<React.SVGProps<SVGGElement>, keyof GroupOnlyProps>;
+type GroupProps = GroupOnlyProps & Omit<SVGProps<SVGGElement>, keyof GroupOnlyProps>;
 
 export function Group({
   y = 0,

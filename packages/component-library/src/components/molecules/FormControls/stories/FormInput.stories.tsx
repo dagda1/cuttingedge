@@ -1,6 +1,6 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 
-import { themedSelect, themedTemplateMaker } from '../../../stories/Stories';
+import { themedSelect, themedTemplateMaker } from '../../../../../.storybook/Stories';
 import { FormInput } from '../FormControls';
 
 export default {

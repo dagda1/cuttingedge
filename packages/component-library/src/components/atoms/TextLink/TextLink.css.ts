@@ -24,15 +24,6 @@ export const base = style({
   ':hover': {
     color: vars.foregroundColor.linkHover,
     textDecoration: 'none',
-    /*
-      Duplicating the thickness rule due to inconsistent support
-      for shorthand properties of `text-decoration`. Without this,
-      applying the above decoration rule resets the thickness in
-      browsers that do support shorthands.
-
-      We also cannot use the long-form `text-decoration-line` due
-      to browser support policy of Edge 16+.
-    */
     textDecorationThickness: '0.8em',
   },
   ':focus-visible': {

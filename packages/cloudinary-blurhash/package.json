@@ -22,7 +22,7 @@
     "log-update": "^8.0.0"
   },
   "devDependencies": {
-    "commander": "15.0.0"
+    "commander": "15.1.0"
   },
   "files": [
     "dist/**/*",

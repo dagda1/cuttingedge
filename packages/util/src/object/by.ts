@@ -64,7 +64,11 @@ export const sortBy = <T, R>(o: T[], selector: (item: T) => R): T[] => {
     const a = selector(x);
     const b = selector(y);
 
-    return a > b ? 1 : a < b ? -1 : 0;
+    if (a > b) {
+      return 1;
+    }
+
+    return a < b ? -1 : 0;
   });
 
   return result;

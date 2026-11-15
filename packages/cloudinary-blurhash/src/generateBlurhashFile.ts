@@ -12,8 +12,6 @@ const {
   promises: { writeFile },
 } = fs;
 
-// console.log(v2.config());
-
 const percentage = (partialValue: number, totalValue: number) => ((100 * partialValue) / totalValue).toFixed(2);
 
 const parseHrtimeToSeconds = (hrtime: [number, number]) => {

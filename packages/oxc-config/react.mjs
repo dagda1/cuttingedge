@@ -1,8 +1,29 @@
+import { fileURLToPath } from 'node:url';
+
+import storybook from 'eslint-plugin-storybook';
+
 import base from './index.mjs';
+
+const storybookPlugin = fileURLToPath(import.meta.resolve('eslint-plugin-storybook'));
+
+const toOxlintGlob = (pattern) =>
+  pattern.replace(/@\(([^)]+)\)/, (_match, extensions) => `{${extensions.replaceAll('|', ',')}}`);
+
+const storybookOverrides = storybook.configs['flat/recommended']
+  .filter((entry) => entry.files)
+  .map((entry) => ({
+    files: entry.files.map(toOxlintGlob),
+    rules: Object.fromEntries(
+      Object.entries(entry.rules)
+        .filter(([rule]) => rule.startsWith('storybook/') || rule === 'react-hooks/rules-of-hooks')
+        .map(([rule, severity]) => [rule.replace('react-hooks/', 'react/'), severity]),
+    ),
+  }));
 
 export default {
   ...base,
   plugins: [...base.plugins, 'react', 'jsx-a11y'],
+  jsPlugins: [...base.jsPlugins, storybookPlugin],
   settings: {
     react: {
       version: '19',
@@ -10,6 +31,20 @@ export default {
   },
   rules: {
     ...base.rules,
+    'cutting/no-react-namespace': 'error',
+    'cutting/no-react-namespace-types': 'error',
+    'typescript/no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'react',
+            importNames: ['JSX'],
+            message: "Do not import JSX from 'react'. Use ReactElement or ReactNode instead.",
+          },
+        ],
+      },
+    ],
     'react/display-name': 'error',
     'react/jsx-key': 'error',
     'react/jsx-no-comment-textnodes': 'error',
@@ -67,4 +102,5 @@ export default {
     'jsx-a11y/scope': 'error',
     'jsx-a11y/tabindex-no-positive': 'error',
   },
+  overrides: [...base.overrides, ...storybookOverrides],
 };

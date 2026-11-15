@@ -24,7 +24,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "lighthouse": "^13.5.0",
+    "lighthouse": "^13.6.0",
     "serpapi": "^2.2.1"
   },
   "devDependencies": {

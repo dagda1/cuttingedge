@@ -4,7 +4,6 @@ import { defineConfig } from 'vitest/config';
 
 const isTest = process.env.NODE_ENV === 'test';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   root: isTest ? '.' : 'demo',
   plugins: [vanillaExtractPlugin(), react()],

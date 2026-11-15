@@ -50,7 +50,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig): gsap.c
 
   const pixelsPerSecond = (config.speed || 1) * 100;
 
-  const snap = !config.snap ? (v: number) => v : gsap.utils.snap(config.snap || 1); // some browsers shift by a pixel to accommodate flex layouts, so for example if width is 20% the first element's width might be 242px, and the next 243px, alternating back and forth. So we snap to 5 percentage points to make things look more natural
+  const snap = !config.snap ? (v: number) => v : gsap.utils.snap(config.snap || 1);
 
   const container = items[0]!.parentNode as HTMLElement;
 
@@ -89,7 +89,6 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig): gsap.c
     });
 
     gsap.set(items, {
-      // convert "x" to "xPercent" to make things responsive, and populate the widths/xPercents Arrays to make lookups faster.
       xPercent: (i: number) => xPercents[i]!,
     });
     totalWidth = getTotalWidth();
@@ -170,20 +169,17 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig): gsap.c
   assert(isNaN(totalWidth) === false, `totalWidth is NaN`);
   populateTimeline();
 
-  // window.addEventListener('resize', () => refresh(true));
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function toIndex(index: number, vars: any) {
     vars = vars || {};
     if (Math.abs(index - curIndex) > length / 2) {
-      index += index > curIndex ? -length : length; // always go in the shortest direction
+      index += index > curIndex ? -length : length;
     }
 
     const newIndex = gsap.utils.wrap(0, length, index);
     let time = times[newIndex];
 
     if (time! > tl.time() !== index > curIndex && index !== curIndex) {
-      // if we're wrapping the timeline's playhead, make the proper adjustments
       time! += tl.duration() * (index > curIndex ? 1 : -1);
     }
     if (time! < 0 || time! > tl.duration()) {
@@ -214,7 +210,7 @@ export function horizontalLoop(items: HTMLElement[], config: LoopConfig): gsap.c
 
   tl.times = times;
 
-  tl.progress(1, true).progress(0, true); // pre-render for performance
+  tl.progress(1, true).progress(0, true);
 
   tl.closestIndex(true);
 

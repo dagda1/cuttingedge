@@ -1,14 +1,14 @@
 import type { BoxProps } from '@cutting/component-library';
 import { Box } from '@cutting/component-library';
 import cs from 'classnames';
-import { type ReactNode } from 'react';
+import { type ReactNode, type RefObject } from 'react';
 
 import * as styles from './Panel.css';
 
 type PanelProps = {
   children: ReactNode;
   mode?: 'dark' | 'light';
-  innerRef?: React.RefObject<HTMLDivElement | null>;
+  innerRef?: RefObject<HTMLDivElement | null>;
   className?: string;
 } & BoxProps;
 

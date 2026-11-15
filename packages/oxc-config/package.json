@@ -13,6 +13,7 @@
   "files": [
     "index.mjs",
     "index.d.mts",
+    "plugin.mjs",
     "react.mjs",
     "react.d.mts",
     "oxfmt.mjs",
@@ -30,8 +31,10 @@
   ],
   "dependencies": {
     "eslint-plugin-simple-import-sort": "14.0.0",
-    "oxfmt": "0.74.0",
-    "oxlint": "1.89.0"
+    "eslint-plugin-sonarjs": "4.2.2",
+    "eslint-plugin-storybook": "10.6.7",
+    "oxfmt": "0.78.0",
+    "oxlint": "1.93.0"
   },
   "exports": {
     "./eslint": {
@@ -54,6 +57,6 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "vitest": "5.0.5"
+    "vitest": "5.1.0"
   }
 }

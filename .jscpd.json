@@ -1,0 +1,23 @@
+{
+  "reporters": ["consoleFull", "markdown", "json"],
+  "output": "./jscpd-report",
+  "pattern": "**/src/**/*.{ts,tsx}",
+  "minLines": 5,
+  "minTokens": 40,
+  "ignorePattern": ["import\\s[^;\\n]+[;\\n]", "export\\s\\*\\sfrom\\s[^;\\n]+[;\\n]"],
+  "formatsExts": {
+    "typescript": ["ts", "tsx"]
+  },
+  "ignore": [
+    "**/node_modules/**",
+    "**/__mocks__/**",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.stories.tsx",
+    "**/styles.ts",
+    "**/styles.tsx",
+    "**/vite.config.mts",
+    "**/App.tsx",
+    "**/main.tsx"
+  ]
+}

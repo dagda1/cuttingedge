@@ -109,8 +109,6 @@ export const initialState = {
   dot: { cx: 0, cy: 0, r: MarkerWidth },
   verticalDot: { cx: 0, cy: 0, r: MarkerWidth },
   joiningLine: { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } },
-  // TODO: fix axisDot
-  // axisDot: { cx: 0, cy: 0, r: MarkerWidth },
   axisDot: { cx: 0, cy: 0, r: 0 },
   sine: [
     {
@@ -131,76 +129,70 @@ export const initialState = {
 };
 
 export const reducer: Reducer<typeof initialState, SineActions> = (state, action) => {
-  switch (action.type) {
-    case 'TICK':
-      const newTime = state.time + increase;
-      const newXIncrement = state.xIncrement > Math.PI * 2 ? increase : state.xIncrement + increase;
-
-      const { radius, firstX } = action.payload;
-
-      const sine = [...range(0, 54)].map((x) => (x * 10) / 85).map((x) => ({ x, y: -Math.sin(x - newTime) }));
-
-      const dx = radius * Math.cos(newTime);
-      const dy = radius * -Math.sin(newTime); // counter-clockwise
-
-      const rays = radians.map(({ value, label }) => {
-        const offsetX = value > Math.PI / 2 && value < (3 * Math.PI) / 2 ? -20 : -5;
-        const offsetY = value > 0 && value < Math.PI ? -35 : 0;
-        const cosX = radius * Math.cos(value);
-        const sinY = radius * -Math.sin(value);
-
-        return {
-          cosX,
-          sinY,
-          offsetX: offsetX + cosX,
-          offsetY: offsetY + sinY,
-          label,
-        };
-      });
-
-      return {
-        ...state,
-        unitCircle: {
-          ...state.unitCircle,
-          r: radius,
-        },
-        // TODO: fix axisDot
-        // axisDot: {
-        //   ...state.axisDot,
-        //   cx: xAxisScale(newXIncrement),
-        // },
-        dot: {
-          cx: dx,
-          cy: dy,
-          r: MarkerWidth,
-        },
-        joiningLine: {
-          ...state.joiningLine,
-          from: { x: firstX, y: state.joiningLine.from.y },
-        },
-        hypotenuse: {
-          ...state.hypotenuse,
-          to: { x: dx, y: dy },
-        },
-        opposite: {
-          ...state.opposite,
-          from: { x: dx, y: dy },
-          to: { x: dx, y: 0 },
-        },
-        adjacent: {
-          ...state.adjacent,
-          from: { x: dx, y: 0 },
-        },
-        verticalDot: {
-          ...state.verticalDot,
-          cy: dy,
-        },
-        time: newTime,
-        xIncrement: newXIncrement,
-        sine,
-        rays,
-      };
-    default:
-      return state;
+  if (action.type !== 'TICK') {
+    return state;
   }
+
+  const newTime = state.time + increase;
+  const newXIncrement = state.xIncrement > Math.PI * 2 ? increase : state.xIncrement + increase;
+
+  const { radius, firstX } = action.payload;
+
+  const sine = [...range(0, 54)].map((x) => (x * 10) / 85).map((x) => ({ x, y: -Math.sin(x - newTime) }));
+
+  const dx = radius * Math.cos(newTime);
+  const dy = radius * -Math.sin(newTime);
+
+  const rays = radians.map(({ value, label }) => {
+    const offsetX = value > Math.PI / 2 && value < (3 * Math.PI) / 2 ? -20 : -5;
+    const offsetY = value > 0 && value < Math.PI ? -35 : 0;
+    const cosX = radius * Math.cos(value);
+    const sinY = radius * -Math.sin(value);
+
+    return {
+      cosX,
+      sinY,
+      offsetX: offsetX + cosX,
+      offsetY: offsetY + sinY,
+      label,
+    };
+  });
+
+  return {
+    ...state,
+    unitCircle: {
+      ...state.unitCircle,
+      r: radius,
+    },
+    dot: {
+      cx: dx,
+      cy: dy,
+      r: MarkerWidth,
+    },
+    joiningLine: {
+      ...state.joiningLine,
+      from: { x: firstX, y: state.joiningLine.from.y },
+    },
+    hypotenuse: {
+      ...state.hypotenuse,
+      to: { x: dx, y: dy },
+    },
+    opposite: {
+      ...state.opposite,
+      from: { x: dx, y: dy },
+      to: { x: dx, y: 0 },
+    },
+    adjacent: {
+      ...state.adjacent,
+      from: { x: dx, y: 0 },
+    },
+    verticalDot: {
+      ...state.verticalDot,
+      cy: dy,
+    },
+    time: newTime,
+    xIncrement: newXIncrement,
+    sine,
+    rays,
+  };
 };

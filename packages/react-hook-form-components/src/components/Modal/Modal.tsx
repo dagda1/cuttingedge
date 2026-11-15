@@ -1,12 +1,12 @@
 import { Box, Button } from '@cutting/component-library';
-import type { MouseEvent } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 
 import * as styles from './Modal.css';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function Modal({ isOpen, onClose, children }: ModalProps): JSX.Element | null {

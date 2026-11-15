@@ -15,16 +15,19 @@ const directionStyles = {
 export const negativeMargin = (
   direction: Exclude<keyof typeof styles, 'preventCollapsePseudo'>,
   space?: RequiredResponsiveValue<Space>,
-): string | null =>
-  space
-    ? cs(
-        direction === 'top' || direction === 'bottom' ? styles.preventCollapsePseudo[direction] : undefined,
-        resolveResponsiveProp(
-          space,
-          directionStyles[direction].mobile,
-          directionStyles[direction].tablet,
-          directionStyles[direction].desktop,
-          directionStyles[direction].wide,
-        ),
-      )
-    : null;
+): string | null => {
+  if (!space) {
+    return null;
+  }
+
+  return cs(
+    direction === 'top' || direction === 'bottom' ? styles.preventCollapsePseudo[direction] : undefined,
+    resolveResponsiveProp(
+      space,
+      directionStyles[direction].mobile,
+      directionStyles[direction].tablet,
+      directionStyles[direction].desktop,
+      directionStyles[direction].wide,
+    ),
+  );
+};

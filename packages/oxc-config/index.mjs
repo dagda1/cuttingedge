@@ -1,6 +1,47 @@
+import { fileURLToPath } from 'node:url';
+
+import sonarjs from 'eslint-plugin-sonarjs';
+
+const cuttingPlugin = fileURLToPath(new URL('./plugin.mjs', import.meta.url));
+const sonarPlugin = fileURLToPath(import.meta.resolve('eslint-plugin-sonarjs'));
+
+const builtInSonarRules = [
+  'block-scoped-var',
+  'no-control-regex',
+  'no-delete-var',
+  'no-empty-character-class',
+  'no-fallthrough',
+  'no-invalid-regexp',
+  'no-labels',
+  'no-misleading-character-class',
+  'no-regex-spaces',
+  'no-unused-vars',
+  'no-useless-catch',
+];
+
+const recommendedSonarRules = Object.entries(sonarjs.configs.recommended.rules);
+
+const sonarRules = Object.fromEntries(
+  recommendedSonarRules.map(([rule, severity]) => [
+    rule,
+    builtInSonarRules.includes(rule.replace('sonarjs/', '')) ? 'off' : severity,
+  ]),
+);
+
+const builtInSonarReplacements = Object.fromEntries(
+  builtInSonarRules.filter((rule) => rule !== 'no-unused-vars').map((rule) => [rule, 'error']),
+);
+
+const withoutSonarRules = Object.fromEntries(
+  [...recommendedSonarRules.map(([rule]) => rule), ...Object.keys(builtInSonarReplacements)].map((rule) => [
+    rule,
+    'off',
+  ]),
+);
+
 export default {
   plugins: ['typescript', 'import'],
-  jsPlugins: ['eslint-plugin-simple-import-sort'],
+  jsPlugins: ['eslint-plugin-simple-import-sort', cuttingPlugin, sonarPlugin],
   categories: {
     correctness: 'off',
   },
@@ -12,7 +53,14 @@ export default {
   },
   ignorePatterns: ['**/node_modules/**', '**/dist/**', '**/**.d.ts'],
   rules: {
+    ...sonarRules,
+    ...builtInSonarReplacements,
+    'sonarjs/max-lines': 'off',
+    'sonarjs/no-nested-template-literals': 'off',
+    'sonarjs/no-commented-code': 'off',
     'no-array-constructor': 'error',
+    'no-empty': 'error',
+    'cutting/no-comments': 'error',
     'no-unused-expressions': 'error',
     'no-unused-vars': [
       'error',
@@ -63,6 +111,32 @@ export default {
         'no-use-before-define': 'off',
         'typescript/no-var-requires': 'off',
         'no-var': 'off',
+      },
+    },
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      rules: {
+        'cutting/no-test-code-imports': 'error',
+        'max-lines': ['error', { max: 200, skipBlankLines: true, skipComments: true }],
+      },
+    },
+    {
+      files: ['**/*.test.ts', '**/*.test.tsx'],
+      rules: {
+        'cutting/no-browser-storage': 'error',
+      },
+    },
+    {
+      files: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx', '**/__mocks__/**'],
+      rules: {
+        ...withoutSonarRules,
+        'max-lines': 'off',
+      },
+    },
+    {
+      files: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx', '**/__mocks__/**', '**/.storybook/**'],
+      rules: {
+        'cutting/no-test-code-imports': 'off',
       },
     },
   ],

@@ -72,7 +72,8 @@ function randomImage({ imageSet }: Pick<RandomImageProps, 'imageSet'>): string {
 
   assert(!!images, `no images at ${imageSet - 1}`);
 
-  const index = Math.floor(Math.random() * images.length);
+  const [randomValue] = crypto.getRandomValues(new Uint32Array(1));
+  const index = randomValue % images.length;
 
   const image = images[index];
 

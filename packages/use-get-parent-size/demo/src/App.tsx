@@ -65,8 +65,6 @@ export function App(): JSX.Element {
       const elapsedTime = clock.getElapsedTime();
 
       mesh.rotation.y = elapsedTime;
-      // camera.position.x = Math.cos(elapsedTime);
-      // camera.position.y = Math.sin(elapsedTime);
 
       renderer.render(scene, camera);
 

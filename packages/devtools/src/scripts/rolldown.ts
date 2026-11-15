@@ -1,23 +1,23 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { md } from '@cutting/rollup-plugin-md';
 import { assert } from 'assert-ts';
-// @ts-ignore
 import autoprefixer from 'autoprefixer';
 import { spawnSync } from 'child_process';
 import { createCommand } from 'commander';
 import deepmerge from 'deepmerge';
 import { readFile } from 'fs/promises';
 import fs from 'fs-extra';
+import { createRequire } from 'module';
 import path from 'path';
 import postcssImport from 'postcss-import';
-// @ts-ignore
+// @ts-expect-error
 import url from 'postcss-url';
 import type { OutputOptions } from 'rolldown';
 import { rolldown } from 'rolldown';
 import { dts } from 'rolldown-plugin-dts';
 import analyzer from 'rollup-plugin-analyzer';
 import postcss from 'rollup-plugin-postcss';
-// @ts-ignore
+// @ts-expect-error
 import svgo from 'rollup-plugin-svgo';
 
 import { paths } from '../config/paths.js';
@@ -25,10 +25,8 @@ import { csv } from '../rolldown/plugins/csv.js';
 import type { ModuleFormat } from '../types/moduleFormat.js';
 import { copyAssets } from './copy-assets.js';
 import { logger } from './logger.js';
+import { safePackageName } from './safePackageName.js';
 import { writeToPackage } from './write-package.js';
-
-const safePackageName = (name: string): string =>
-  name.toLowerCase().replace(/(^@.*\/)|((^[^a-zA-Z]+)|[^\w.-])|([^a-zA-Z0-9]+$)/g, '');
 
 export interface BundlerOptions {
   packageName: string;
@@ -166,8 +164,14 @@ async function build({
 
   logger.info(`type checking ${packageName}`);
 
-  const typecheck = spawnSync('tsc', ['--noEmit', '-p', paths.tsConfigProduction], { stdio: 'inherit' });
+  const typescriptDir = path.dirname(createRequire(pkgJsonPath).resolve('typescript/package.json'));
+  const tsc = path.join(typescriptDir, 'bin', 'tsc');
 
+  const typecheck = spawnSync(process.execPath, [tsc, '--noEmit', '-p', paths.tsConfigProduction], {
+    stdio: 'inherit',
+  });
+
+  assert(!typecheck.error, `failed to run tsc for ${packageName}: ${typecheck.error?.message}`);
   assert(typecheck.status === 0, `type check failed for ${packageName}`);
 
   const entryFile = getInputFile(packageName, inputFile);

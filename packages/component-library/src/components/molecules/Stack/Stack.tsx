@@ -32,8 +32,6 @@ const useStackItem = ({ align, space, component }: UseStackItemProps) =>
   ({
     paddingTop: space,
     display: component === 'span' ? 'block' : undefined,
-    // If we're aligned left across all screen sizes,
-    // there's actually no alignment work to do.
     ...(align === 'left'
       ? null
       : {

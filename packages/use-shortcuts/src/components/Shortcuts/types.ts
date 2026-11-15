@@ -1,11 +1,11 @@
-import type { FC, RefObject } from 'react';
+import type { DetailedHTMLProps, FC, HTMLAttributes, RefObject } from 'react';
 
 import type { ShortcutHandler } from '../../types/types';
 
 export interface ShortcutsProps<
   R extends Record<PropertyKey, unknown>,
   E extends HTMLElement = HTMLElement,
-  C = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
+  C = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>,
 > {
   tabIndex?: number;
   className?: string;

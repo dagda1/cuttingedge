@@ -2,11 +2,13 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "noEmit": true,
-    "rootDir": "src"
+    "rootDir": "."
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
     "test/**/*.ts",
     "test/**/*.tsx",
     "setupTests.ts"

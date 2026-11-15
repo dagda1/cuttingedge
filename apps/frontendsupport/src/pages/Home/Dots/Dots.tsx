@@ -43,8 +43,8 @@ export function Dots({ width }: DotsProps): JSX.Element {
           type: 'pointer,touch,wheel',
           wheelSpeed: -1,
           onChange: (self: { deltaX: number; deltaY: number }) => {
-            loop.timeScale(Math.abs(self.deltaX) > Math.abs(self.deltaY) ? -self.deltaX : -self.deltaY); // whichever direction is bigger
-            slow.invalidate().restart(); // now decelerate
+            loop.timeScale(Math.abs(self.deltaX) > Math.abs(self.deltaY) ? -self.deltaX : -self.deltaY);
+            slow.invalidate().restart();
           },
         });
       });

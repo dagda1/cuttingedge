@@ -5,7 +5,6 @@ import { join } from 'path';
 import readingTime from 'reading-time';
 import remarkAutolinkHeadings from 'rehype-autolink-headings';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import rehypeMathjax from 'rehype-mathjax';
 import rehypePresetMinify from 'rehype-preset-minify';
 import rehypePrismPlus from 'rehype-prism-plus';

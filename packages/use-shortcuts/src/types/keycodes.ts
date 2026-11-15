@@ -6,7 +6,7 @@ export enum KeyCode {
   Enter = 'enter',
   Escape = 'esc',
   LeftArrow = 'left',
-  Mod = 'mod', // On Mac this ends up mapping to command whereas on Windows and Linux it maps to ctrl.
+  Mod = 'mod',
   RightArrow = 'right',
   Shift = 'shift',
   UpArrow = 'up',

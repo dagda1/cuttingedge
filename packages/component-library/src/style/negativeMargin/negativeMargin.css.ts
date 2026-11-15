@@ -32,7 +32,6 @@ export const preventCollapsePseudo = {
   bottom: style(afterPseudo({ content: '""', display: 'table' })),
 };
 
-// Applying negative `marginBottom` to the before pseudo element to bleed up
 export const top = {
   mobile: stylesForBreakpoint('mobile', 'marginBottom', beforePseudo),
   tablet: stylesForBreakpoint('tablet', 'marginBottom', beforePseudo),
@@ -40,7 +39,6 @@ export const top = {
   wide: stylesForBreakpoint('wide', 'marginBottom', beforePseudo),
 };
 
-// Applying negative `marginTop` to the after pseudo element to bleed down
 export const bottom = {
   mobile: stylesForBreakpoint('mobile', 'marginTop', afterPseudo),
   tablet: stylesForBreakpoint('tablet', 'marginTop', afterPseudo),
