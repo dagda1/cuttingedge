@@ -1,0 +1,38 @@
+{
+  "name": "@cutting/scraper",
+  "version": "0.1.0",
+  "description": "Scrapers for football data",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagda1/cuttingedge.git"
+  },
+  "types": "dist/esm/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "NODE_ENV=production devtools rolldown",
+    "lint": "oxlint ./src ./scripts --fix && oxfmt ./src ./scripts",
+    "test": "NODE_ENV=test vitest",
+    "test:ci": "CI=true pnpm test",
+    "fetch-data": "tsx scripts/fetch-data.ts"
+  },
+  "dependencies": {
+    "@cutting/assert": "workspace:*",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "tsx": "4.23.15"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "module": "dist/esm/index.js",
+  "exports": {
+    "types": "./dist/esm/index.d.ts",
+    "import": "./dist/esm/index.js"
+  }
+}

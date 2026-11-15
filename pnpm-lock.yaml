@@ -1129,6 +1129,19 @@ importers:
         specifier: 16.1.2
         version: 16.1.2(react@19.2.6)
 
+  packages/scraper:
+    dependencies:
+      '@cutting/assert':
+        specifier: workspace:*
+        version: link:../assert
+      zod:
+        specifier: ^4.6.7
+        version: 4.6.7
+    devDependencies:
+      tsx:
+        specifier: 4.23.15
+        version: 4.23.15
+
   packages/svg:
     dependencies:
       '@cutting/assert':
