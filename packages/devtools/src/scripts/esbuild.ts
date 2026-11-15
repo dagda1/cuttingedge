@@ -111,6 +111,6 @@ program
   .option('-a, --analyze', 'analyze the bundle', false)
   .parse(process.argv)
   .action(async function ({ analyze }) {
-    await runBuild(() => buildPackage({ analyze }));
+    await runBuild('esbuild', () => buildPackage({ analyze }));
   })
   .parse(process.argv);

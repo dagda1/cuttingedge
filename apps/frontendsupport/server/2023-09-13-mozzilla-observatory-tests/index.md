@@ -2,9 +2,9 @@
 meta:
   title: Add this Github action to avoid security exploits
   description: Find out now before you suddenly find out you have security exploits
-  date: "2023-09-13T00:00:00.000Z"
-  image: "https://res.cloudinary.com/ddospxsc8/image/upload/v1694611874/observatory_umk7ra.png"
-  tags: ["github-actions", "continuous-integration", "devops"]
+  date: '2023-09-13T00:00:00.000Z'
+  image: 'https://res.cloudinary.com/ddospxsc8/image/upload/v1694611874/observatory_umk7ra.png'
+  tags: ['github-actions', 'continuous-integration', 'devops']
 ---
 
 Imagine a week before launching the online offering that you and your team have been burning the midnight oil over that you suddenly discover you have security exploits such as cross-site scripting attacks, man-in-the-middle attacks, cross-domain information leakage, cookie compromise, content delivery network compromise, or improperly issued certificates. Having this reported to you can knock your go-live date back months, or, even worse, your users could lose all confidence if the web offering is hacked through these exploits.
@@ -60,16 +60,16 @@ const contentSecurityPolicy = [
   `connect-src 'self' ${CRM} ${NEWSLETTER} ${CDN} ${TRACKING} https://cdn.plyr.io https://plausible.io`,
   `frame-ancestors 'self' https://plausible.io`,
   `form-action 'self' ${NEWSLETTER} ${CRM} ${CDN};`,
-].join(";");
+].join(';');
 
 export const headers: HeadersFunction = () => {
   return {
-    "X-XSS-Protection": "1; mode=block",
-    "X-Content-Type-Options": "nosniff",
-    "Referrer-Policy": "strict-origin-when-cross-origin",
-    "X-Frame-Options": "DENY",
-    "Strict-Transport-Security": "max-age=63072000",
-    "Content-Security-Policy": contentSecurityPolicy,
+    'X-XSS-Protection': '1; mode=block',
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'X-Frame-Options': 'DENY',
+    'Strict-Transport-Security': 'max-age=63072000',
+    'Content-Security-Policy': contentSecurityPolicy,
   };
 };
 ```
@@ -102,7 +102,7 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: 24
           registry-url: "https://registry.npmjs.org"
 
       - uses: actions/checkout@v2

@@ -8,8 +8,9 @@ import { Arc, LinePath } from '@visx/shape';
 import { Text } from '@visx/text';
 import cs from 'classnames';
 import { curveMonotoneX } from 'd3-shape';
-import { Fragment, useLayoutEffect, useMemo, useReducer, useRef } from 'react';
+import { useLayoutEffect, useMemo, useReducer, useRef } from 'react';
 
+import { UnitCircleRays } from '~/components/UnitCircleRays/UnitCircleRays';
 import { useContainerSize } from '~/hooks/useContainerSize';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
@@ -132,14 +133,7 @@ export function Tan(): JSX.Element {
                 <circle className={styles.unitCircle} {...state.unitCircle} />
                 <Group transform={`translate(${state.unitCircle.cx}, ${state.unitCircle.cy})`}>
                   <Group className={styles.rays}>
-                    {state.rays.map(({ cosX, sinY, label, offsetX, offsetY }) => (
-                      <Fragment key={label}>
-                        <Group transform={`translate(${offsetX}, ${offsetY})`}>
-                          <SVGMathJax>{label}</SVGMathJax>
-                        </Group>
-                        <Line className={styles.ray} from={{ x: 0, y: 0 }} to={{ x: cosX, y: sinY }} />
-                      </Fragment>
-                    ))}
+                    <UnitCircleRays rays={state.rays} rayClassName={styles.ray} />
                   </Group>
                   <Arc
                     innerRadius={0}
