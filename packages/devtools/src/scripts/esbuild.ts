@@ -9,9 +9,10 @@ import { readFile } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { paths } from '../config/paths.js';
-import { copyAssets } from './copy-assets.js';
-import logger from './logger.js';
+import { paths } from '../config/paths';
+import { copyAssets } from './copy-assets';
+import logger from './logger';
+import { runBuild } from './runBuild';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -110,13 +111,6 @@ program
   .option('-a, --analyze', 'analyze the bundle', false)
   .parse(process.argv)
   .action(async function ({ analyze }) {
-    try {
-      await buildPackage({ analyze });
-
-      logger.done('finished building');
-    } catch (err) {
-      logger.error(err);
-      process.exit(1);
-    }
+    await runBuild(() => buildPackage({ analyze }));
   })
   .parse(process.argv);

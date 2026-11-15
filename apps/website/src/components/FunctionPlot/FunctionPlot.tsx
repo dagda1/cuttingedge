@@ -2,7 +2,6 @@ import { assert } from '@cutting/assert';
 import { Box } from '@cutting/component-library';
 import type { Point } from '@cutting/svg';
 import { Group, ResponsiveSVG } from '@cutting/svg';
-import { useParentSize } from '@cutting/use-get-parent-size';
 import { MathJax, SVGMathJax } from '@cutting/use-mathjax';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { curveBasisOpen } from '@visx/curve';
@@ -14,6 +13,7 @@ import { derivative, parse, round } from 'mathjs';
 import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 
+import { useContainerSize } from '~/hooks/useContainerSize';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 import { getYIntercept } from '~/viz/getYIntercept';
 
@@ -29,15 +29,8 @@ interface FunctionPlotProps {
 const margin = { top: 10, right: 10, bottom: 10, left: 10 } as const;
 
 export function FunctionPlot({ minX = -10, maxX = 11 }: FunctionPlotProps): JSX.Element {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const { containerRef, width, height } = useContainerSize({ debounceDelay: 500 });
   const tangentRef = useRef<SVGCircleElement>(null);
-  const { width, height } = useParentSize(containerRef, {
-    debounceDelay: 500,
-    initialValues: { width: 0, height: 0 },
-  });
-
-  assert(typeof width === 'number');
-  assert(typeof height === 'number');
 
   const [state, dispatch] = useReducer(reducer, initialState);
 

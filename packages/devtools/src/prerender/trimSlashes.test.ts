@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { trimSlashes } from './trimSlashes.js';
+import { trimSlashes } from './trimSlashes';
 
 describe('trimSlashes', () => {
   it('removes the slashes at both ends and keeps the ones inside', () => {

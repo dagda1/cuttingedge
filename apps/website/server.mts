@@ -135,8 +135,6 @@ export async function createServer(): Promise<{
     });
   });
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   app.get('/og-image', async (req, res) => {
     const isContainer = process.env.OS_ENV === 'container';
     const url = req.query.url;
@@ -242,8 +240,7 @@ export async function createServer(): Promise<{
         render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render;
       } else {
         template = indexProd;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
+        // @ts-expect-error the server build emits entry-server.js, so it has no types before that build
         render = (await import('./server/entry-server.js')).render;
       }
 

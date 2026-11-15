@@ -2,10 +2,10 @@ import { exec } from 'child_process';
 import fs from 'fs-extra';
 import path from 'path';
 
-import { paths } from '../config/paths.js';
-import { copyAssets } from './copy-assets.js';
-import { logger } from './logger.js';
-import { findFile } from './utils/finders.js';
+import { paths } from '../config/paths';
+import { copyAssets } from './copy-assets';
+import { logger } from './logger';
+import { findFile } from './utils/finders';
 
 const isProduction = process.env.NODE_ENV === 'production';
 

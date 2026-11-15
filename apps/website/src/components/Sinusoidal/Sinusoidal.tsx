@@ -1,17 +1,16 @@
 import 'rc-slider/assets/index.css';
 
-import { assert } from '@cutting/assert';
 import { Box, Button, Label, RadioGroup } from '@cutting/component-library';
 import type { Point } from '@cutting/svg';
 import { Group, ResponsiveSVG } from '@cutting/svg';
-import { useParentSize } from '@cutting/use-get-parent-size';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { curveNatural } from '@visx/curve';
 import { LinePath } from '@visx/shape';
 import Slider from 'rc-slider';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
+import { useContainerSize } from '~/hooks/useContainerSize';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 import { getScales } from './get-scales';
@@ -51,10 +50,7 @@ const verticalShiftText = (shift: number): string => {
 };
 
 export function TrigonometricTransforms(): JSX.Element {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { width, height } = useParentSize(containerRef, { initialValues: { width: 0, height: 0 } });
-  assert(typeof width === 'number');
-  assert(typeof height === 'number');
+  const { containerRef, width, height } = useContainerSize();
   const [a, setA] = useState(1);
   const [b, setB] = useState(1);
   const [c, setC] = useState(0);

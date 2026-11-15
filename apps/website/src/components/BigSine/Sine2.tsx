@@ -1,6 +1,4 @@
-import { assert } from '@cutting/assert';
 import { Group, Line, ResponsiveSVG } from '@cutting/svg';
-import { useParentSize } from '@cutting/use-get-parent-size';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import type { TickRendererProps } from '@visx/axis';
 import { AxisBottom, AxisLeft } from '@visx/axis';
@@ -11,6 +9,7 @@ import { scaleLinear } from 'd3-scale';
 import { line } from 'd3-shape';
 import { useLayoutEffect, useMemo, useReducer, useRef } from 'react';
 
+import { useContainerSize } from '~/hooks/useContainerSize';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 import { initialState, reducer, TWO_PI } from './reducer';
@@ -34,14 +33,7 @@ function TickComponent({ formattedValue, x, y }: TickRendererProps) {
 }
 
 export function Sine2(): JSX.Element {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { width, height } = useParentSize(containerRef, {
-    debounceDelay: 500,
-    initialValues: { width: 0, height: 0 },
-  });
-
-  assert(typeof width === 'number');
-  assert(typeof height === 'number');
+  const { containerRef, width, height } = useContainerSize({ debounceDelay: 500 });
 
   const tickFrame = useRef<number>(undefined);
   const [state, dispatch] = useReducer(reducer, initialState);

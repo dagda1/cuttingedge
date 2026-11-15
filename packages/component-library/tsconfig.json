@@ -2,7 +2,11 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "noEmit": true,
-    "rootDir": "."
+    "rootDir": ".",
+    "paths": {
+      "~/*": ["${configDir}/src/*"],
+      "~storybook/*": ["${configDir}/.storybook/*"]
+    }
   },
   "include": [
     "src/**/*.ts",

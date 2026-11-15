@@ -1,6 +1,5 @@
 import { assert } from '@cutting/assert';
 import { Group, Line, ResponsiveSVG } from '@cutting/svg';
-import { useParentSize } from '@cutting/use-get-parent-size';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { range } from '@cutting/util';
 import { AxisBottom, AxisLeft } from '@visx/axis';
@@ -11,6 +10,7 @@ import cs from 'classnames';
 import { curveMonotoneX } from 'd3-shape';
 import { Fragment, useLayoutEffect, useMemo, useReducer, useRef } from 'react';
 
+import { useContainerSize } from '~/hooks/useContainerSize';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 import { initialState, maxTan, reducer } from './reducer';
@@ -23,14 +23,7 @@ const MainTicks = ['$0$', '$\\pi$', '$2\\pi$', '$3\\pi$', '$4\\pi$'];
 const circles = 1;
 
 export function Tan(): JSX.Element {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { width, height } = useParentSize(containerRef, {
-    debounceDelay: 1000,
-    initialValues: { width: 0, height: 0 },
-  });
-
-  assert(typeof width === 'number');
-  assert(typeof height === 'number');
+  const { containerRef, width, height } = useContainerSize({ debounceDelay: 1000 });
 
   const [state, dispatch] = useReducer(reducer, initialState);
 

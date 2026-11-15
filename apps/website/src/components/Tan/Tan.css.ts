@@ -30,10 +30,6 @@ globalStyle(`${container} section`, {
 });
 
 globalStyle(`${container} tspan`, {
-  ...responsiveStyle({
-    mobile: {},
-    tablet: {},
-  }),
   fill: palette.white,
 });
 

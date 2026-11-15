@@ -57,8 +57,7 @@ function rehypeInlineCodeLanguage() {
 
 function remarkCodeTitles() {
   return (tree: any): void =>
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
+    // @ts-expect-error the visitor signature does not match the unist-util-visit overloads
     visit(tree, 'code', (node: { lang?: string }, index: number, parent: any) => {
       const nodeLang = node.lang || '';
       let language = '';
