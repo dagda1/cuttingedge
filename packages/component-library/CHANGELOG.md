@@ -1,5 +1,18 @@
 # @cutting/component-library
 
+## 5.57.0
+
+### Minor Changes
+
+- 45e6e83: upgrade dependencies, configure jscpd reporting and plan-file ignores, use cryptographic randomness for random images, and clean up TypeScript suppressions and comments
+
+### Patch Changes
+
+- Updated dependencies [45e6e83]
+  - @cutting/assert@0.9.0
+  - @cutting/hooks@4.71.0
+  - @cutting/util@4.68.0
+
 ## 5.56.1
 
 ### Patch Changes

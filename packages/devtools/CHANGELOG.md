@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.78.0
+
+### Minor Changes
+
+- 45e6e83: upgrade dependencies, configure jscpd reporting and plan-file ignores, use cryptographic randomness for random images, and clean up TypeScript suppressions and comments
+
 ## 4.77.1
 
 ### Patch Changes

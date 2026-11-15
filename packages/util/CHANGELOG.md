@@ -1,5 +1,16 @@
 # @cutting/util
 
+## 4.68.0
+
+### Minor Changes
+
+- 45e6e83: upgrade dependencies, configure jscpd reporting and plan-file ignores, use cryptographic randomness for random images, and clean up TypeScript suppressions and comments
+
+### Patch Changes
+
+- Updated dependencies [45e6e83]
+  - @cutting/assert@0.9.0
+
 ## 4.67.1
 
 ### Patch Changes
