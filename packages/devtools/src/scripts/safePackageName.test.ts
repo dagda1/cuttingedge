@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { safePackageName } from './safePackageName.js';
+import { safePackageName } from './safePackageName';
 
 describe('safePackageName', () => {
   it('drops the scope of a scoped package', () => {

@@ -1,12 +1,11 @@
-import { assert } from '@cutting/assert';
 import { Group, Line, ResponsiveSVG } from '@cutting/svg';
-import { useParentSize } from '@cutting/use-get-parent-size';
 import { SVGMathJax } from '@cutting/use-mathjax';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { curveMonotoneX } from '@visx/curve';
 import { LinePath } from '@visx/shape';
 import React, { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 
+import { useContainerSize } from '~/hooks/useContainerSize';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
 import { BottomAxis } from './BottomAxis';
@@ -15,11 +14,7 @@ import { getScales, initialState, PiMap, reducer, xTickValues } from './reducer'
 import * as styles from './Sine.css';
 
 function Sine(): JSX.Element {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { width, height } = useParentSize(containerRef, { initialValues: { width: 0, height: 0 } });
-
-  assert(typeof width === 'number');
-  assert(typeof height === 'number');
+  const { containerRef, width, height } = useContainerSize();
 
   const tickFrame = useRef<number>(undefined);
   const { initialX, initialY, firstX, radius, xAxisScale, yAxisScale } = useMemo(

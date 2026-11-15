@@ -1,44 +1,35 @@
-/* eslint-disable react/display-name */
-import type { FunctionComponent } from 'react';
+import type { ComponentType } from 'react';
 
-import { ApplicationLayout } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
-import { cuttingTheme } from '../src/style/themes/cutting/cutting.css';
-import { defaultTheme } from '../src/style/themes/default/default.css';
-import { salesTheme } from '../src/style/themes/sales/salesTheme.css';
+import type { ThemeKeys } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
+import { ApplicationLayout, Themes } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
 import * as styles from './Stories.css';
 
-const themes = {
-  defaultTheme,
-  cuttingTheme,
-  salesTheme,
-} as const;
+interface ThemeArgTypes {
+  theme: {
+    options: ThemeKeys[];
+    control: { type: 'select' };
+  };
+}
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function themedSelect() {
+export function themedSelect(): ThemeArgTypes {
   return {
     theme: {
-      options: Object.keys(themes),
-      mapping: themes,
-      control: {
-        type: 'select',
-        labels: Object.keys(themes),
-      },
-      defaultValue: themes.defaultTheme,
+      options: Themes,
+      control: { type: 'select' },
     },
   };
 }
 
-export type ThemedTemplate<T> = ((props: T & { theme?: string }) => JSX.Element) & { args?: Partial<T> };
+type ThemedProps<T> = T & { theme?: ThemeKeys };
 
-export function themedTemplateMaker<T>(C: FunctionComponent<T>): ThemedTemplate<T> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return ({ theme, ...args }: any) => {
-    const chosenTheme = typeof theme === 'undefined' ? defaultTheme : theme;
+export type ThemedTemplate<T> = ((props: ThemedProps<T>) => JSX.Element) & { args?: Partial<T> };
 
+export function themedTemplateMaker<T extends object>(Component: ComponentType<T>): ThemedTemplate<T> {
+  return function ThemedStory({ theme = 'defaultTheme', ...args }: ThemedProps<T>): JSX.Element {
     return (
-      <ApplicationLayout theme={chosenTheme}>
+      <ApplicationLayout theme={theme}>
         <div className={styles.root}>
-          <C {...args} />
+          <Component {...(args as T)} />
         </div>
       </ApplicationLayout>
     );

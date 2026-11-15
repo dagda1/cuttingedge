@@ -43,5 +43,5 @@ export const Layout = Template.bind({});
 
 Layout.args = {
   heading: 'heading',
-  children: 'Application Layout',
+  children: <p>Application Layout</p>,
 };

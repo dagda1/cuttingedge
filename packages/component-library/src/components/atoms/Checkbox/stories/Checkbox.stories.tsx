@@ -1,7 +1,8 @@
 import type { Meta } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
 
-import { themedSelect, themedTemplateMaker } from '../../../../../.storybook/Stories';
+import { themedSelect, themedTemplateMaker } from '~storybook/Stories';
+
 import type {
   CheckableEventHandlers,
   CheckableLayoutProps,

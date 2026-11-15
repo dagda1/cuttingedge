@@ -36,8 +36,7 @@ export function createFormComponent<C extends FunctionComponent<any>>(
 
   F.displayName = 'FormComponent';
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
+  // @ts-expect-error the forwardRef component type does not match the declared function signature
   return F;
 }
 

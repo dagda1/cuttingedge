@@ -28,10 +28,10 @@
     "@mdx-js/react": "3.1.1",
     "@storybook/addon-actions": "9.0.8",
     "@storybook/addon-docs": "10.6.7",
-    "@storybook/addon-essentials": "8.6.14",
     "@storybook/addon-links": "10.6.7",
     "@storybook/react": "10.6.7",
     "@storybook/react-vite": "10.6.7",
+    "@testing-library/dom": "10.4.2",
     "@testing-library/react": "16.3.3",
     "@types/babel__core": "7.20.5",
     "@types/dedent": "1.7.2",
@@ -54,6 +54,7 @@
     "react-router": "8.5.1",
     "require-from-string": "2.0.2",
     "serve-handler": "6.1.8",
+    "storybook": "10.6.7",
     "storybook-addon-designs": "6.3.1",
     "ts-expect": "1.3.0"
   },
@@ -83,8 +84,8 @@
     "start": "pnpm vite --host --port 7000 -l info",
     "test": "NODE_ENV=test vitest",
     "test:ci": "CI=true pnpm test",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "exports": {
     ".": {

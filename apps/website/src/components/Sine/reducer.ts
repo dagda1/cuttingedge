@@ -2,6 +2,8 @@ import { identity, range } from '@cutting/util';
 import { type ScaleLinear, scaleLinear } from 'd3-scale';
 import type { Reducer } from 'react';
 
+import { radians } from '../unitCircleRadians';
+
 export type Dimensions = { width: number; height: number };
 
 type SineLinear = ScaleLinear<number, number, never>;
@@ -19,25 +21,6 @@ export const PiMap = {
 } as const;
 
 export type PiMapKeys = keyof typeof PiMap;
-
-const radians = [
-  { value: Math.PI / 2, label: '$\\frac{\\pi}2(0, 1)$' },
-  { value: Math.PI / 3, label: '$\\frac{\\pi}3(\\frac{1}{2},\\frac{\\sqrt3}{2}$)' },
-  { value: Math.PI / 4, label: '$\\frac{\\pi}4(\\frac{\\sqrt2}{2}, \\frac{\\sqrt2}{2})$' },
-  { value: Math.PI / 6, label: '$\\frac{\\pi}6(\\frac{\\sqrt3}{2}, \\frac{1}{2})$' },
-  { value: 2 * Math.PI, label: '${2\\pi}$(1,0)' },
-  { value: (11 * Math.PI) / 6, label: '$\\frac{11\\pi}6(\\frac{\\sqrt3}{2}, -\\frac{1}{2})$' },
-  { value: (7 * Math.PI) / 4, label: '$\\frac{7\\pi}4(\\frac{\\sqrt2}{2}, -\\frac{\\sqrt2}{2})$' },
-  { value: (5 * Math.PI) / 3, label: '$\\frac{5\\pi}3(\\frac{1}{2}, -\\frac{\\sqrt3}{2})$' },
-  { value: (3 * Math.PI) / 2, label: '$\\frac{3\\pi}2(0,-1)$' },
-  { value: (4 * Math.PI) / 3, label: '$\\frac{4\\pi}3(-\\frac{1}{2}, -\\frac{\\sqrt3}{2})$' },
-  { value: (5 * Math.PI) / 4, label: '$\\frac{5\\pi}4(-\\frac{\\sqrt2}{2}, -\\frac{\\sqrt2}{2})$' },
-  { value: (7 * Math.PI) / 6, label: '$\\frac{7\\pi}6(-\\frac{\\sqrt3}{2}, -\\frac{1}{2})$' },
-  { value: Math.PI, label: '$\\pi$(-1,0)' },
-  { value: (5 * Math.PI) / 6, label: '$\\frac{5\\pi}6(-\\frac{\\sqrt3}{2}, \\frac{1}{2})$' },
-  { value: (3 * Math.PI) / 4, label: '$\\frac{3\\pi}4(-\\frac{\\sqrt2}{2}, \\frac{\\sqrt2}{2})$' },
-  { value: (2 * Math.PI) / 3, label: '$\\frac{2\\pi}3(-\\frac{1}{2}, \\frac{\\sqrt3}{2})$' },
-];
 
 export const getScales = ({
   width,

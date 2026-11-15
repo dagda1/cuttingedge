@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { md } from '@cutting/rollup-plugin-md';
 import { assert } from 'assert-ts';
 import autoprefixer from 'autoprefixer';
@@ -10,23 +9,24 @@ import fs from 'fs-extra';
 import { createRequire } from 'module';
 import path from 'path';
 import postcssImport from 'postcss-import';
-// @ts-expect-error
+// @ts-expect-error postcss-url ships no type declarations
 import url from 'postcss-url';
 import type { OutputOptions } from 'rolldown';
 import { rolldown } from 'rolldown';
 import { dts } from 'rolldown-plugin-dts';
 import analyzer from 'rollup-plugin-analyzer';
 import postcss from 'rollup-plugin-postcss';
-// @ts-expect-error
+// @ts-expect-error rollup-plugin-svgo ships no type declarations
 import svgo from 'rollup-plugin-svgo';
 
-import { paths } from '../config/paths.js';
-import { csv } from '../rolldown/plugins/csv.js';
-import type { ModuleFormat } from '../types/moduleFormat.js';
-import { copyAssets } from './copy-assets.js';
-import { logger } from './logger.js';
-import { safePackageName } from './safePackageName.js';
-import { writeToPackage } from './write-package.js';
+import { paths } from '../config/paths';
+import { csv } from '../rolldown/plugins/csv';
+import type { ModuleFormat } from '../types/moduleFormat';
+import { copyAssets } from './copy-assets';
+import { logger } from './logger';
+import { runBuild } from './runBuild';
+import { safePackageName } from './safePackageName';
+import { writeToPackage } from './write-package';
 
 export interface BundlerOptions {
   packageName: string;
@@ -222,13 +222,6 @@ program
   .option('-p, --preserve-modules', 'rolldown preserveModules', false)
   .parse(process.argv)
   .action(async function ({ inputFile, analyze, preserveModules }) {
-    try {
-      await build({ inputFile, analyze, preserveModules });
-
-      logger.done('finished building');
-    } catch (err) {
-      logger.error(err);
-      process.exit(1);
-    }
+    await runBuild(() => build({ inputFile, analyze, preserveModules }));
   })
   .parse(process.argv);

@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react-vite';
 
-import { themedSelect, themedTemplateMaker } from '../../../../../.storybook/Stories';
+import { themedSelect, themedTemplateMaker } from '~storybook/Stories';
+
 import { Button } from '../Button';
 
 export default {

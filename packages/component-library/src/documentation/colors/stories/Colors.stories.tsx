@@ -1,8 +1,8 @@
 import type { Meta } from '@storybook/react-vite';
 
 import { vars } from '~/style/themes/vars.css';
+import { themedSelect, themedTemplateMaker } from '~storybook/Stories';
 
-import { themedSelect, themedTemplateMaker } from '../../../../.storybook/Stories';
 import * as styles from './Colors.css';
 
 function ColorList() {
