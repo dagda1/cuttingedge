@@ -1,10 +1,10 @@
 import { Group, Line, ResponsiveSVG } from '@cutting/svg';
-import { SVGMathJax } from '@cutting/use-mathjax';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { curveMonotoneX } from '@visx/curve';
 import { LinePath } from '@visx/shape';
-import React, { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 
+import { UnitCircleRays } from '~/components/UnitCircleRays/UnitCircleRays';
 import { useContainerSize } from '~/hooks/useContainerSize';
 import { ApplicationLayout } from '~/layouts/ApplicationLayout';
 
@@ -44,14 +44,7 @@ function Sine(): JSX.Element {
       <section className={styles.main} ref={containerRef}>
         <ResponsiveSVG width={width} height={height}>
           <Group x={initialX} y={initialY}>
-            {state.rays.map(({ cosX, sinY, label, offsetX, offsetY }) => (
-              <React.Fragment key={label}>
-                <Group transform={`translate(${offsetX}, ${offsetY})`}>
-                  <SVGMathJax>{label}</SVGMathJax>
-                </Group>
-                <Line className={styles.ray} from={{ x: 0, y: 0 }} to={{ x: cosX, y: sinY }} />
-              </React.Fragment>
-            ))}
+            <UnitCircleRays rays={state.rays} rayClassName={styles.ray} />
             <circle className={styles.unitCircle} {...state.unitCircle} />
 
             <Line className={styles.hypotenuse} {...state.hypotenuse} />

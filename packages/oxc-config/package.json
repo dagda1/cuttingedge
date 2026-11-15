@@ -54,7 +54,8 @@
     "extends": "../../package.json"
   },
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "oxlint . --fix && oxfmt ."
   },
   "devDependencies": {
     "vitest": "5.1.0"

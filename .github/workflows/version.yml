@@ -20,12 +20,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: setup node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22.x
           registry-url: 'https://registry.npmjs.org'
@@ -34,14 +34,14 @@ jobs:
         run: npm install -g npm@latest
 
       - name: Cache pnpm modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
 
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v6
         id: install_pnpm
         with:
           version: 11.26.0
@@ -65,7 +65,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Commit lock file
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: update lock file"
           branch: changeset-release/main

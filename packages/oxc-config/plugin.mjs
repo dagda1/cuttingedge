@@ -22,7 +22,7 @@ export default {
   rules: {
     'no-comments': noComments,
     'no-react-namespace': selectorRule(
-      "MemberExpression[object.name='React']",
+      "MemberExpression[object.name='React'], JSXMemberExpression[object.name='React']",
       'Avoid using React.*. Use named imports instead.',
     ),
     'no-react-namespace-types': selectorRule(

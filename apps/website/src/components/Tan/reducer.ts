@@ -3,7 +3,7 @@ import { produce } from 'immer';
 import type { Reducer } from 'react';
 import { match } from 'ts-pattern';
 
-import { radians } from '../unitCircleRadians';
+import { radians } from '~/components/unitCircleRadians';
 
 export const maxTan = 3;
 

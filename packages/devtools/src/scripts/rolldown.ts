@@ -222,6 +222,6 @@ program
   .option('-p, --preserve-modules', 'rolldown preserveModules', false)
   .parse(process.argv)
   .action(async function ({ inputFile, analyze, preserveModules }) {
-    await runBuild(() => build({ inputFile, analyze, preserveModules }));
+    await runBuild('rolldown', () => build({ inputFile, analyze, preserveModules }));
   })
   .parse(process.argv);

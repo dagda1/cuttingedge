@@ -1,7 +1,8 @@
 import type { ComponentType } from 'react';
 
-import type { ThemeKeys } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
-import { ApplicationLayout, Themes } from '../src/components/templates/ApplicationLayout/ApplicationLayout';
+import type { ThemeKeys } from '~/components/templates/ApplicationLayout/ApplicationLayout';
+import { ApplicationLayout, Themes } from '~/components/templates/ApplicationLayout/ApplicationLayout';
+
 import * as styles from './Stories.css';
 
 interface ThemeArgTypes {

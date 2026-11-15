@@ -2,7 +2,7 @@ import { identity, range } from '@cutting/util';
 import { type ScaleLinear, scaleLinear } from 'd3-scale';
 import type { Reducer } from 'react';
 
-import { radians } from '../unitCircleRadians';
+import { radians } from '~/components/unitCircleRadians';
 
 export type Dimensions = { width: number; height: number };
 
