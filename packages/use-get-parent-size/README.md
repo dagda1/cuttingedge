@@ -25,7 +25,7 @@ const { width, height } = useParentSize(ref, options);
 
 `useParentSize` takes a react [ref object](https://reactjs.org/docs/refs-and-the-dom.html) and an optional `options` object.
 
-The element that the `ref` points to must render in the same commit as the component that calls `useParentSize`. If the `ref` is not attached to an element, the hook throws `useParentSize: the ref is not attached to an element`.
+The element that the `ref` points to can render later than the component that calls `useParentSize`. While the `ref` is not attached to an element, the hook returns `initialValues`. The hook observes the element after the render that attaches it.
 
 Returns the contentRect of the observed element:
 
@@ -173,7 +173,7 @@ it('draws at the measured size', () => {
 ```
 
 - Call `resizeTo` inside `act`, because the hook sets state.
-- The component must attach the `ref` to an element, or the hook throws.
+- While the component does not attach the `ref` to an element, the hook returns `initialValues`.
 - The hook delivers the first resize immediately. For a second resize in the same test, call `vi.useFakeTimers()` and advance the timers by `debounceDelay`.
 - A resize of `maxDifference` or less in both `width` and `height` is ignored.
 

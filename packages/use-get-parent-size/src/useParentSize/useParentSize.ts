@@ -1,4 +1,3 @@
-import { assert } from '@cutting/assert';
 import type { RefObject } from 'react';
 import { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
@@ -76,9 +75,8 @@ export const useParentSize = <E extends Element>(
 
   useEffect(() => {
     const element = ref.current;
-    assert(element !== null, 'useParentSize: the ref is not attached to an element');
 
-    if (observation.current?.element === element) {
+    if (element === null || observation.current?.element === element) {
       return;
     }
 
