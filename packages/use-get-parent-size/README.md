@@ -25,6 +25,8 @@ const { width, height } = useParentSize(ref, options);
 
 `useParentSize` takes a react [ref object](https://reactjs.org/docs/refs-and-the-dom.html) and an optional `options` object.
 
+The element that the `ref` points to must render in the same commit as the component that calls `useParentSize`. If the `ref` is not attached to an element, the hook throws `useParentSize: the ref is not attached to an element`.
+
 Returns the contentRect of the observed element:
 
 ```ts
