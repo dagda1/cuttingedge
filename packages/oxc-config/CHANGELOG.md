@@ -1,5 +1,11 @@
 # @cutting/eslint-config
 
+## 1.2.0
+
+### Minor Changes
+
+- ad80068: add no-vi-mock lint rule for tests and update dependencies across the monorepo
+
 ## 1.1.0
 
 ### Minor Changes

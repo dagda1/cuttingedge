@@ -1,5 +1,16 @@
 # @cutting/svg
 
+## 4.70.0
+
+### Minor Changes
+
+- ad80068: add no-vi-mock lint rule for tests and update dependencies across the monorepo
+
+### Patch Changes
+
+- Updated dependencies [ad80068]
+  - @cutting/use-get-parent-size@2.17.0
+
 ## 4.69.1
 
 ### Patch Changes
