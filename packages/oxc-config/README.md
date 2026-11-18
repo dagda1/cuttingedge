@@ -77,6 +77,7 @@ Oxlint obeys `oxlint-disable` and `eslint-disable` comments:
 - The `eslint-plugin-sonarjs` recommended rules, without `sonarjs/max-lines`, `sonarjs/no-nested-template-literals` and `sonarjs/no-commented-code`. Oxlint's built-in rule replaces each sonar rule that has one. These rules are off in `*.test.ts`, `*.test.tsx`, `*.stories.tsx` and `__mocks__`.
 - `max-lines`: a `*.ts` or `*.tsx` file has at most 200 lines, not counting blank lines and comments. The rule is off in `*.test.ts`, `*.test.tsx`, `*.stories.tsx` and `__mocks__`.
 - `cutting/no-browser-storage`: no `localStorage` or `sessionStorage` in `*.test.ts` and `*.test.tsx`.
+- `cutting/no-vi-mock`: no `vi.mock` or `vi.doMock` in `*.test.ts` and `*.test.tsx`. `vi.fn`, `vi.spyOn` and `vi.stubGlobal` are allowed.
 - `cutting/no-test-code-imports`: no import from `@storybook/*`, `storybook/*`, `msw`, `vitest` or `@testing-library/*` in a `*.ts` or `*.tsx` file. The rule is off in `*.test.ts`, `*.test.tsx`, `*.stories.tsx`, `__mocks__` and `.storybook`.
 
 The `cutting/*` rules come from a JS plugin inside this package.
