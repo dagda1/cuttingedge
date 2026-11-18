@@ -132,3 +132,62 @@ const Pipeline = () => {
     debounceDelay: 500,
   });
 ```
+
+## Testing
+
+jsdom has no `ResizeObserver`. Replace the global with a stub, render the component, send a size, and assert on the DOM. `vi.mock` is not necessary.
+
+```tsx
+import { act, render, screen } from '@testing-library/react';
+import { beforeEach, expect, it, vi } from 'vitest';
+
+let notifyResize: ResizeObserverCallback;
+
+class ResizeObserverStub implements ResizeObserver {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+
+  constructor(callback: ResizeObserverCallback) {
+    notifyResize = callback;
+  }
+}
+
+function resizeTo(width: number, height: number): void {
+  const entry = { contentRect: new DOMRectReadOnly(0, 0, width, height) } as ResizeObserverEntry;
+
+  notifyResize([entry], new ResizeObserverStub(notifyResize));
+}
+
+beforeEach(() => {
+  vi.stubGlobal('ResizeObserver', ResizeObserverStub);
+});
+
+it('draws at the measured size', () => {
+  render(<Chart />);
+
+  act(() => resizeTo(800, 400));
+
+  expect(screen.getByRole('img').getAttribute('viewBox')).toBe('0 0 800 400');
+});
+```
+
+- Call `resizeTo` inside `act`, because the hook sets state.
+- The component must attach the `ref` to an element, or the hook throws.
+- The hook delivers the first resize immediately. For a second resize in the same test, call `vi.useFakeTimers()` and advance the timers by `debounceDelay`.
+- A resize of `maxDifference` or less in both `width` and `height` is ignored.
+
+### With `isolate: false`
+
+Test files in one worker share globals, so a stub from one file stays for the next file. Set `unstubGlobals: true` in the Vitest config. Vitest then restores the globals before each test.
+
+```ts
+export default defineConfig({
+  test: {
+    isolate: false,
+    unstubGlobals: true,
+  },
+});
+```
+
+Keep the `vi.stubGlobal` call in `beforeEach`, so each test installs its own stub.
