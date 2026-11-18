@@ -22,7 +22,7 @@
     "@cutting/component-library": "workspace:*",
     "@testing-library/dom": "10.4.2",
     "@testing-library/react": "16.3.3",
-    "@testing-library/user-event": "14.6.10",
+    "@testing-library/user-event": "14.6.12",
     "@visx/scale": "4.0.0",
     "classnames": "2.5.1",
     "d3-scale": "4.0.3",

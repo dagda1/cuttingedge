@@ -15,6 +15,16 @@ const storageSource = [
 
 const testImportSource = "import { vi } from 'vitest';\n\nexport const timer = vi.fn();\n";
 
+const moduleMockSource = [
+  "vi.mock('react-use');",
+  "vi.doMock('./fields', () => ({}));",
+  'const onChange = vi.fn();',
+  "vi.spyOn(console, 'error');",
+  '',
+  'export { onChange };',
+  '',
+].join('\n');
+
 const nestedConditionalSource =
   'export const pick = (first: boolean, second: boolean): number => (first ? (second ? 1 : 2) : 3);\n';
 
@@ -34,6 +44,7 @@ const sources = {
   'timer.ts': testImportSource,
   'timer.test.ts': testImportSource,
   'timer.stories.tsx': testImportSource,
+  'thing.test.ts': moduleMockSource,
   'pick.ts': nestedConditionalSource,
   'pick.test.ts': nestedConditionalSource,
   'pick.stories.tsx': nestedConditionalSource,
@@ -85,6 +96,14 @@ describe('@cutting/oxc-config/eslint', () => {
 
     expect(storageCodes).toHaveLength(2);
     expect(lintCodes('theme.ts')).not.toContain('cutting(no-browser-storage)');
+  });
+
+  it('reports vi.mock and vi.doMock, but not vi.fn or vi.spyOn', () => {
+    const mockLines = diagnosticsFor('thing.test.ts')
+      .filter((diagnostic) => diagnostic.code === 'cutting(no-vi-mock)')
+      .map((diagnostic) => diagnostic.labels[0].span.line);
+
+    expect(mockLines).toEqual([1, 2]);
   });
 
   it('reports a test package import in app code only', () => {

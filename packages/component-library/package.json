@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@capsizecss/core": "4.1.3",
-    "@capsizecss/metrics": "4.4.0",
+    "@capsizecss/metrics": "4.5.0",
     "@capsizecss/vanilla-extract": "2.0.4",
     "@floating-ui/react": "0.27.20",
     "@mdx-js/react": "3.1.1",
@@ -42,7 +42,7 @@
     "@vanilla-extract/sprinkles": "1.7.1",
     "autoprefixer": "10.6.2",
     "classnames": "2.5.1",
-    "csstype": "3.2.3",
+    "csstype": "3.2.4",
     "dedent": "1.7.2",
     "deepmerge": "4.3.1",
     "esbuild": "0.28.2",
@@ -51,7 +51,7 @@
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-is": "19.3.1",
-    "react-router": "8.5.1",
+    "react-router": "8.5.2",
     "require-from-string": "2.0.2",
     "serve-handler": "6.1.8",
     "storybook": "10.6.7",
@@ -60,7 +60,7 @@
   },
   "peerDependencies": {
     "@capsizecss/core": "4.1.3",
-    "@capsizecss/metrics": "4.4.0",
+    "@capsizecss/metrics": "4.5.0",
     "@capsizecss/vanilla-extract": "2.0.4",
     "@vanilla-extract/css": "1.21.3",
     "@vanilla-extract/css-utils": "0.1.6",
@@ -72,7 +72,7 @@
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-is": "19.3.1",
-    "react-router": "8.5.1"
+    "react-router": "8.5.2"
   },
   "volta": {
     "extends": "../../package.json"

@@ -33,6 +33,10 @@ export default {
       'Identifier[name=/^(localStorage|sessionStorage)$/]',
       'Do not touch browser storage in a test. Pass an in-memory storage to the code under test.',
     ),
+    'no-vi-mock': selectorRule(
+      "CallExpression[callee.object.name='vi'][callee.property.name=/^(mock|doMock)$/]",
+      'Do not mock modules. Run the real code and fake only the boundary, such as the network or a browser global.',
+    ),
     'no-test-code-imports': selectorRule(
       String.raw`:matches(ImportDeclaration, ExportNamedDeclaration, ExportAllDeclaration)[source.value=/^(@storybook\/|storybook\/|msw(\/|$)|vitest$|@testing-library\/)/]`,
       'App code must not import test or story packages. Move the helper to a .test or .stories file, __mocks__ or .storybook.',

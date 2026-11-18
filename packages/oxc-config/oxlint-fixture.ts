@@ -6,6 +6,7 @@ export interface Diagnostic {
   code: string;
   message: string;
   filename: string;
+  labels: { span: { line: number } }[];
 }
 
 const oxlintPath = join(import.meta.dirname, 'node_modules', '.bin', 'oxlint');

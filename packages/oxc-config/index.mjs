@@ -124,6 +124,7 @@ export default {
       files: ['**/*.test.ts', '**/*.test.tsx'],
       rules: {
         'cutting/no-browser-storage': 'error',
+        'cutting/no-vi-mock': 'error',
       },
     },
     {
