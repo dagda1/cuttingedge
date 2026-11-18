@@ -1,5 +1,11 @@
 # @cutting/devtools
 
+## 4.79.0
+
+### Minor Changes
+
+- ad80068: add no-vi-mock lint rule for tests and update dependencies across the monorepo
+
 ## 4.78.0
 
 ### Minor Changes
