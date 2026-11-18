@@ -1,19 +1,39 @@
-import { act, renderHook } from '@testing-library/react';
+import { act, render, renderHook } from '@testing-library/react';
+import type { RefObject } from 'react';
+import { useRef } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useParentSize } from './useParentSize';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let resizeObserverCallback: (entries: any[]) => void;
+const observe = vi.fn();
+
+function Child({ parentRef }: { parentRef: RefObject<HTMLDivElement | null> }): JSX.Element {
+  const { width } = useParentSize(parentRef, { initialValues: { width: 0 } });
+
+  return <span>{width}</span>;
+}
+
+function Parent(): JSX.Element {
+  const parentRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div ref={parentRef} data-testid="parent">
+      <Child parentRef={parentRef} />
+    </div>
+  );
+}
 
 beforeEach(() => {
+  observe.mockClear();
   global.ResizeObserver = vi.fn().mockImplementation(
     class {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       constructor(cb: any) {
         resizeObserverCallback = cb;
       }
-      observe = vi.fn();
+      observe = observe;
       unobserve = vi.fn();
       disconnect = vi.fn();
     },
@@ -87,5 +107,28 @@ describe('useParentSize', () => {
       triggerResize(200, 200);
     });
     expect(callback).toHaveBeenCalledTimes(1);
+  });
+
+  it('should keep one ResizeObserver across resizes', () => {
+    const ref: { current: null | HTMLDivElement } = { current: document.createElement('div') };
+    renderHook(() => useParentSize(ref, { maxDifference: -1, debounceDelay: 0 }));
+    act(() => {
+      triggerResize(200, 200);
+    });
+    act(() => {
+      triggerResize(400, 400);
+    });
+    expect(global.ResizeObserver).toHaveBeenCalledTimes(1);
+  });
+
+  it('should observe an element that an ancestor attaches the ref to', () => {
+    const { getByTestId } = render(<Parent />);
+    expect(observe).toHaveBeenCalledTimes(1);
+    expect(observe).toHaveBeenCalledWith(getByTestId('parent'));
+  });
+
+  it('should throw when the ref is not attached to an element', () => {
+    const ref: { current: null | HTMLDivElement } = { current: null };
+    expect(() => renderHook(() => useParentSize(ref))).toThrow('useParentSize: the ref is not attached to an element');
   });
 });
