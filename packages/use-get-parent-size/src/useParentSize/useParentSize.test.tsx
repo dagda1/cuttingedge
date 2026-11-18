@@ -58,7 +58,7 @@ function Delayed({ ready }: { ready: boolean }): JSX.Element {
   const { width } = useParentSize(ref, { initialValues: { width: 0 } });
 
   if (!ready) {
-    return <div>Loading...</div>;
+    return <div>Loading at {width}</div>;
   }
 
   return <div ref={ref}>{width}</div>;
@@ -160,8 +160,25 @@ describe('useParentSize', () => {
 
   it('should return the initial values while the ref is not attached to an element', () => {
     const { getByText } = render(<Delayed ready={false} />);
-    expect(getByText('Loading...')).toBeTruthy();
+    expect(getByText('Loading at 0')).toBeTruthy();
     expect(observers).toHaveLength(0);
+  });
+
+  it('should stop observing when the element is removed', () => {
+    const { rerender } = render(<Delayed ready />);
+    rerender(<Delayed ready={false} />);
+    expect(observers[0].disconnect).toHaveBeenCalledTimes(1);
+  });
+
+  it('should observe again when a removed element renders again', () => {
+    const { rerender, getByText } = render(<Delayed ready />);
+    rerender(<Delayed ready={false} />);
+    rerender(<Delayed ready />);
+    act(() => {
+      triggerResize(200, 100);
+    });
+    expect(observers).toHaveLength(2);
+    expect(getByText('200')).toBeTruthy();
   });
 
   it('should measure an element that renders after the first render', () => {

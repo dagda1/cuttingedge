@@ -76,11 +76,16 @@ export const useParentSize = <E extends Element>(
   useEffect(() => {
     const element = ref.current;
 
-    if (element === null || observation.current?.element === element) {
+    if (observation.current?.element === element) {
       return;
     }
 
     observation.current?.resizeObserver.disconnect();
+    observation.current = undefined;
+
+    if (element === null) {
+      return;
+    }
 
     const resizeObserver = new ResizeObserver((entries) => reportResize(entries));
     resizeObserver.observe(element);
