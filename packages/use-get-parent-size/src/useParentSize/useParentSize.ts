@@ -1,11 +1,10 @@
 import { assert } from '@cutting/assert';
 import type { RefObject } from 'react';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import type { ResizeObserverContentRect, UseParentSizeOptions, UseParentSizeResult, Writeable } from './types';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
-import { identity, isNil } from './util';
+import { identity } from './util';
 
 const initialContentRect: Partial<ResizeObserverContentRect> = {
   bottom: undefined,
@@ -32,7 +31,6 @@ export const useParentSize = <E extends Element>(
     ...initialContentRect,
     ...initialValues,
   } as ResizeObserverContentRect);
-  const rerenderCount = useRef(0);
   const previousContentRect = useRef<Writeable<ResizeObserverContentRect>>(initialValues as ResizeObserverContentRect);
   const firstUpdateDone = useRef(false);
 
@@ -51,21 +49,9 @@ export const useParentSize = <E extends Element>(
     },
   );
 
-  const refElement = ref.current;
-
-  useIsomorphicLayoutEffect(() => {
-    if (isNil(refElement)) {
-      if (rerenderCount.current > 10) {
-        throw new Error('Maximum rerender count and no refElement Found');
-      }
-
-      if (!firstUpdateDone.current) {
-        setContentRect({ ...contentRect } as ResizeObserverContentRect);
-      }
-
-      rerenderCount.current++;
-      return;
-    }
+  useEffect(() => {
+    const element = ref.current;
+    assert(element !== null, 'useParentSize: the ref is not attached to an element');
 
     const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
       if (!Array.isArray(entries) || entries.length !== 1) {
@@ -94,14 +80,10 @@ export const useParentSize = <E extends Element>(
       }
     });
 
-    requestAnimationFrame(() => resizeObserver?.observe(refElement));
+    resizeObserver.observe(element);
 
-    return () => {
-      if (!!refElement) {
-        resizeObserver?.unobserve(refElement);
-      }
-    };
-  }, [maxDifference, debouncedCallback, refElement, initialValues, contentRect]);
+    return () => resizeObserver.disconnect();
+  }, [ref, maxDifference, debouncedCallback]);
 
   return useMemo(() => transformer(contentRect), [contentRect, transformer]);
 };
