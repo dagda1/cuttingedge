@@ -53,6 +53,17 @@ function Replaceable({ elementKey }: { elementKey: string }): JSX.Element {
   return <div key={elementKey} ref={ref} data-testid={elementKey} />;
 }
 
+function Delayed({ ready }: { ready: boolean }): JSX.Element {
+  const ref = useRef<HTMLDivElement>(null);
+  const { width } = useParentSize(ref, { initialValues: { width: 0 } });
+
+  if (!ready) {
+    return <div>Loading...</div>;
+  }
+
+  return <div ref={ref}>{width}</div>;
+}
+
 beforeEach(() => {
   observers.length = 0;
   vi.stubGlobal('ResizeObserver', ResizeObserverStub);
@@ -147,8 +158,18 @@ describe('useParentSize', () => {
     expect(result.current.width).toBeUndefined();
   });
 
-  it('should throw when the ref is not attached to an element', () => {
-    const ref: RefObject<HTMLDivElement | null> = { current: null };
-    expect(() => renderHook(() => useParentSize(ref))).toThrow('useParentSize: the ref is not attached to an element');
+  it('should return the initial values while the ref is not attached to an element', () => {
+    const { getByText } = render(<Delayed ready={false} />);
+    expect(getByText('Loading...')).toBeTruthy();
+    expect(observers).toHaveLength(0);
+  });
+
+  it('should measure an element that renders after the first render', () => {
+    const { rerender, getByText } = render(<Delayed ready={false} />);
+    rerender(<Delayed ready />);
+    act(() => {
+      triggerResize(200, 100);
+    });
+    expect(getByText('200')).toBeTruthy();
   });
 });
