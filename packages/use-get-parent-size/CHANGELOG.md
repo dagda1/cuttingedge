@@ -1,5 +1,11 @@
 # @cutting/use-get-parent-size
 
+## 2.16.1
+
+### Patch Changes
+
+- 63e67ce: Fix useParentSize creating a new ResizeObserver on every resize. The hook now reads the ref in an effect and keeps one observer for each element. While the ref is not attached to an element, the hook returns `initialValues` and observes the element after the render that attaches it.
+
 ## 2.16.0
 
 ### Minor Changes
